@@ -23,6 +23,7 @@ import javax.annotation.Nonnull;
 import org.opensearch.client.codegen.exceptions.JavaFormatterException;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Shape;
+import org.opensearch.client.codegen.utils.ObjectBuilderBase;
 
 public final class TemplateRenderer {
     @Nonnull
@@ -82,10 +83,18 @@ public final class TemplateRenderer {
         return new Builder();
     }
 
-    public static final class Builder {
+    public static final class Builder extends ObjectBuilderBase<TemplateRenderer, Builder> {
         private TemplateValueFormatter valueFormatter;
         private TemplateLoader templateLoader;
         private JavaCodeFormatter javaCodeFormatter;
+
+        private Builder() {}
+
+        @Nonnull
+        @Override
+        protected TemplateRenderer construct() {
+            return new TemplateRenderer(this);
+        }
 
         @Nonnull
         public Builder withValueFormatter(@Nonnull Function<TemplateValueFormatter.Builder, TemplateValueFormatter.Builder> configurator) {
@@ -105,11 +114,6 @@ public final class TemplateRenderer {
         public Builder withJavaCodeFormatter(@Nonnull JavaCodeFormatter javaCodeFormatter) {
             this.javaCodeFormatter = Objects.requireNonNull(javaCodeFormatter, "javaCodeFormatter must not be null");
             return this;
-        }
-
-        @Nonnull
-        public TemplateRenderer build() {
-            return new TemplateRenderer(this);
         }
     }
 }

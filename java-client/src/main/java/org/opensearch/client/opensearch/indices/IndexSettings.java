@@ -41,6 +41,7 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainDeserializable;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -1108,7 +1109,7 @@ public class IndexSettings implements PlainJsonSerializable {
      * Builder for {@link IndexSettings}.
      */
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettings> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettings>, PlainDeserializable<Builder> {
         @Nullable
         private IndexSettings index;
 
@@ -1919,6 +1920,10 @@ public class IndexSettings implements PlainJsonSerializable {
             return this;
         }
 
+        @Override
+        public Builder self() {
+            return this;
+        }
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -1501,34 +1501,6 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/nodes.hot_threads@200'
-  /_cluster/nodes/{node_id}/hotthreads:
-    get:
-      operationId: nodes.hot_threads.3
-      x-operation-group: nodes.hot_threads
-      x-ignorable: true
-      deprecated: true
-      x-deprecation-message: The hot threads API accepts `hotthreads` but only `hot_threads` is documented
-      x-version-added: '1.0'
-      x-version-deprecated: '1.0'
-      description: Returns information about hot threads on each node in the cluster.
-      externalDocs:
-        url: https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-hot-threads/
-      parameters:
-        - $ref: '#/components/parameters/nodes.hot_threads::path.node_id'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.ignore_idle_threads'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.interval'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.snapshots'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.threads'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.timeout'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.type'
-        - $ref: '#/components/parameters/_global::query.pretty'
-        - $ref: '#/components/parameters/_global::query.human'
-        - $ref: '#/components/parameters/_global::query.error_trace'
-        - $ref: '#/components/parameters/_global::query.source'
-        - $ref: '#/components/parameters/_global::query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/nodes.hot_threads@200'
   /_cluster/nodes/hot_threads:
     get:
       operationId: nodes.hot_threads.0
@@ -1536,33 +1508,6 @@ paths:
       x-ignorable: true
       deprecated: true
       x-deprecation-message: The hot accepts /_cluster/nodes as prefix for backwards compatibility reasons
-      x-version-added: '1.0'
-      x-version-deprecated: '1.0'
-      description: Returns information about hot threads on each node in the cluster.
-      externalDocs:
-        url: https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-hot-threads/
-      parameters:
-        - $ref: '#/components/parameters/nodes.hot_threads::query.ignore_idle_threads'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.interval'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.snapshots'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.threads'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.timeout'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.type'
-        - $ref: '#/components/parameters/_global::query.pretty'
-        - $ref: '#/components/parameters/_global::query.human'
-        - $ref: '#/components/parameters/_global::query.error_trace'
-        - $ref: '#/components/parameters/_global::query.source'
-        - $ref: '#/components/parameters/_global::query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/nodes.hot_threads@200'
-  /_cluster/nodes/hotthreads:
-    get:
-      operationId: nodes.hot_threads.1
-      x-operation-group: nodes.hot_threads
-      x-ignorable: true
-      deprecated: true
-      x-deprecation-message: The hot threads API accepts `hotthreads` but only `hot_threads` is documented
       x-version-added: '1.0'
       x-version-deprecated: '1.0'
       description: Returns information about hot threads on each node in the cluster.
@@ -1663,6 +1608,8 @@ paths:
         - $ref: '#/components/parameters/_global::query.error_trace'
         - $ref: '#/components/parameters/_global::query.source'
         - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/cluster.put_weighted_routing'
       responses:
         '200':
           $ref: '#/components/responses/cluster.put_weighted_routing@200'
@@ -1674,6 +1621,8 @@ paths:
       description: Delete weighted shard routing weights.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-awareness/#example-deleting-weights
+      requestBody:
+        $ref: '#/components/requestBodies/cluster.delete_weighted_routing'
       responses:
         '200':
           $ref: '#/components/responses/cluster.delete_weighted_routing@200'
@@ -3101,34 +3050,6 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/nodes.hot_threads@200'
-  /_nodes/{node_id}/hotthreads:
-    get:
-      operationId: nodes.hot_threads.7
-      x-operation-group: nodes.hot_threads
-      x-ignorable: true
-      deprecated: true
-      x-deprecation-message: The hot threads API accepts `hotthreads` but only `hot_threads` is documented
-      x-version-added: '1.0'
-      x-version-deprecated: '1.0'
-      description: Returns information about hot threads on each node in the cluster.
-      externalDocs:
-        url: https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-hot-threads/
-      parameters:
-        - $ref: '#/components/parameters/nodes.hot_threads::path.node_id'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.ignore_idle_threads'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.interval'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.snapshots'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.threads'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.timeout'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.type'
-        - $ref: '#/components/parameters/_global::query.pretty'
-        - $ref: '#/components/parameters/_global::query.human'
-        - $ref: '#/components/parameters/_global::query.error_trace'
-        - $ref: '#/components/parameters/_global::query.source'
-        - $ref: '#/components/parameters/_global::query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/nodes.hot_threads@200'
   /_nodes/{node_id}/reload_secure_settings:
     post:
       operationId: nodes.reload_secure_settings.1
@@ -3275,33 +3196,6 @@ paths:
       operationId: nodes.hot_threads.4
       x-operation-group: nodes.hot_threads
       x-version-added: '1.0'
-      description: Returns information about hot threads on each node in the cluster.
-      externalDocs:
-        url: https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-hot-threads/
-      parameters:
-        - $ref: '#/components/parameters/nodes.hot_threads::query.ignore_idle_threads'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.interval'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.snapshots'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.threads'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.timeout'
-        - $ref: '#/components/parameters/nodes.hot_threads::query.type'
-        - $ref: '#/components/parameters/_global::query.pretty'
-        - $ref: '#/components/parameters/_global::query.human'
-        - $ref: '#/components/parameters/_global::query.error_trace'
-        - $ref: '#/components/parameters/_global::query.source'
-        - $ref: '#/components/parameters/_global::query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/nodes.hot_threads@200'
-  /_nodes/hotthreads:
-    get:
-      operationId: nodes.hot_threads.5
-      x-operation-group: nodes.hot_threads
-      x-ignorable: true
-      deprecated: true
-      x-deprecation-message: The hot threads API accepts `hotthreads` but only `hot_threads` is documented
-      x-version-added: '1.0'
-      x-version-deprecated: '1.0'
       description: Returns information about hot threads on each node in the cluster.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-hot-threads/
@@ -3473,6 +3367,81 @@ paths:
           $ref: '#/components/responses/security.get_sslinfo@200'
         '500':
           $ref: '#/components/responses/security.get_sslinfo@500'
+  /_plugins/_asynchronous_search:
+    post:
+      operationId: asynchronous_search.search.0
+      x-operation-group: asynchronous_search.search
+      x-version-added: '1.0'
+      description: Perform an asynchronous search.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/async/index/#rest-api
+      parameters:
+        - $ref: '#/components/parameters/asynchronous_search.search::query.index'
+        - $ref: '#/components/parameters/asynchronous_search.search::query.keep_alive'
+        - $ref: '#/components/parameters/asynchronous_search.search::query.keep_on_completion'
+        - $ref: '#/components/parameters/asynchronous_search.search::query.wait_for_completion_timeout'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/asynchronous_search.search'
+      responses:
+        '200':
+          $ref: '#/components/responses/asynchronous_search.search@200'
+  /_plugins/_asynchronous_search/{id}:
+    delete:
+      operationId: asynchronous_search.delete.0
+      x-operation-group: asynchronous_search.delete
+      x-version-added: '1.0'
+      description: Delete asynchronous search.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/async/index/#delete-searches-and-results
+      parameters:
+        - $ref: '#/components/parameters/asynchronous_search.delete::path.id'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/asynchronous_search.delete@200'
+    get:
+      operationId: asynchronous_search.get.0
+      x-operation-group: asynchronous_search.get
+      x-version-added: '1.0'
+      description: Get partial responses from asynchronous search.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/async/index/#get-partial-results
+      parameters:
+        - $ref: '#/components/parameters/asynchronous_search.get::path.id'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/asynchronous_search.get@200'
+  /_plugins/_asynchronous_search/stats:
+    get:
+      operationId: asynchronous_search.stats.0
+      x-operation-group: asynchronous_search.stats
+      x-version-added: '1.0'
+      description: Monitoring of asynchronous searches that are running, completed, and/or persisted.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/async/index/#monitor-stats
+      responses:
+        '200':
+          $ref: '#/components/responses/asynchronous_search.stats@200'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
   /_plugins/_knn/{node_id}/stats:
     get:
       operationId: knn.stats.2
@@ -11006,6 +10975,89 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/indices.validate_query@200'
+  /_opendistro/_asynchronous_search:
+    post:
+      operationId: asynchronous_search.search.0_superseded
+      x-operation-group: asynchronous_search.search
+      x-version-added: '1.0'
+      description: Perform an asynchronous search.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/async/index/#rest-api
+      parameters:
+        - $ref: '#/components/parameters/asynchronous_search.search::query.index'
+        - $ref: '#/components/parameters/asynchronous_search.search::query.keep_alive'
+        - $ref: '#/components/parameters/asynchronous_search.search::query.keep_on_completion'
+        - $ref: '#/components/parameters/asynchronous_search.search::query.wait_for_completion_timeout'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/asynchronous_search.search'
+      responses:
+        '200':
+          $ref: '#/components/responses/asynchronous_search.search@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_asynchronous_search/stats:
+    get:
+      operationId: asynchronous_search.stats.0_superseded
+      x-operation-group: asynchronous_search.stats
+      x-version-added: '1.0'
+      description: Monitoring of asynchronous searches that are running, completed, and/or persisted.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/async/index/#monitor-stats
+      responses:
+        '200':
+          $ref: '#/components/responses/asynchronous_search.stats@200'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_asynchronous_search/{id}:
+    get:
+      operationId: asynchronous_search.get.0_superseded
+      x-operation-group: asynchronous_search.get
+      x-version-added: '1.0'
+      description: Get partial responses from asynchronous search.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/async/index/#get-partial-results
+      parameters:
+        - $ref: '#/components/parameters/asynchronous_search.get::path.id'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/asynchronous_search.get@200'
+      deprecated: true
+      x-ignorable: true
+    delete:
+      operationId: asynchronous_search.delete.0_superseded
+      x-operation-group: asynchronous_search.delete
+      x-version-added: '1.0'
+      description: Delete asynchronous search.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/search-plugins/async/index/#delete-searches-and-results
+      parameters:
+        - $ref: '#/components/parameters/asynchronous_search.delete::path.id'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/asynchronous_search.delete@200'
+      deprecated: true
+      x-ignorable: true
   /_opendistro/_knn/stats/{stat}:
     get:
       operationId: knn.stats.1_superseded
@@ -12876,6 +12928,112 @@ paths:
           $ref: '#/components/responses/sql.post_stats@200'
       deprecated: true
       x-ignorable: true
+  /_cluster/nodes/hotthreads:
+    get:
+      operationId: nodes.hot_threads.0_superseded
+      x-operation-group: nodes.hot_threads
+      x-ignorable: true
+      deprecated: true
+      x-deprecation-message: The hot accepts /_cluster/nodes as prefix for backwards compatibility reasons
+      x-version-added: '1.0'
+      x-version-deprecated: '1.0'
+      description: Returns information about hot threads on each node in the cluster.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-hot-threads/
+      parameters:
+        - $ref: '#/components/parameters/nodes.hot_threads::query.ignore_idle_threads'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.interval'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.snapshots'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.threads'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.timeout'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.type'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/nodes.hot_threads@200'
+  /_cluster/nodes/{node_id}/hotthreads:
+    get:
+      operationId: nodes.hot_threads.2_superseded
+      x-operation-group: nodes.hot_threads
+      x-ignorable: true
+      deprecated: true
+      x-deprecation-message: The hot accepts /_cluster/nodes as prefix for backwards compatibility reasons
+      x-version-added: '1.0'
+      x-version-deprecated: '1.0'
+      description: Returns information about hot threads on each node in the cluster.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-hot-threads/
+      parameters:
+        - $ref: '#/components/parameters/nodes.hot_threads::path.node_id'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.ignore_idle_threads'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.interval'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.snapshots'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.threads'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.timeout'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.type'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/nodes.hot_threads@200'
+  /_nodes/{node_id}/hotthreads:
+    get:
+      operationId: nodes.hot_threads.6_superseded
+      x-operation-group: nodes.hot_threads
+      x-version-added: '1.0'
+      description: Returns information about hot threads on each node in the cluster.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-hot-threads/
+      parameters:
+        - $ref: '#/components/parameters/nodes.hot_threads::path.node_id'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.ignore_idle_threads'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.interval'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.snapshots'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.threads'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.timeout'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.type'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/nodes.hot_threads@200'
+      deprecated: true
+      x-ignorable: true
+  /_nodes/hotthreads:
+    get:
+      operationId: nodes.hot_threads.4_superseded
+      x-operation-group: nodes.hot_threads
+      x-version-added: '1.0'
+      description: Returns information about hot threads on each node in the cluster.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/api-reference/nodes-apis/nodes-hot-threads/
+      parameters:
+        - $ref: '#/components/parameters/nodes.hot_threads::query.ignore_idle_threads'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.interval'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.snapshots'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.threads'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.timeout'
+        - $ref: '#/components/parameters/nodes.hot_threads::query.type'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/nodes.hot_threads@200'
+      deprecated: true
+      x-ignorable: true
 components:
   parameters:
     _global::query.pretty:
@@ -12920,6 +13078,40 @@ components:
             items:
               type: string
       x-global: true
+    asynchronous_search.delete::path.id:
+      name: id
+      in: path
+      schema:
+        type: string
+    asynchronous_search.get::path.id:
+      name: id
+      in: path
+      schema:
+        type: string
+    asynchronous_search.search::query.index:
+      name: index
+      in: query
+      description: The name of the index to be searched.
+      schema:
+        type: string
+    asynchronous_search.search::query.keep_alive:
+      name: keep_alive
+      in: query
+      description: The amount of time that the result is saved in the cluster.
+      schema:
+        type: string
+    asynchronous_search.search::query.keep_on_completion:
+      name: keep_on_completion
+      in: query
+      description: Whether you want to save the results in the cluster after the search is complete.
+      schema:
+        type: boolean
+    asynchronous_search.search::query.wait_for_completion_timeout:
+      name: wait_for_completion_timeout
+      in: query
+      description: The amount of time that you plan to wait for the results.
+      schema:
+        type: string
     bulk::path.index:
       in: path
       name: index
@@ -13080,7 +13272,7 @@ components:
       in: query
       description: The unit in which to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:Bytes'
+        $ref: '#/components/schemas/_common:StorageType'
     cat.all_pit_segments::query.format:
       name: format
       in: query
@@ -13139,7 +13331,7 @@ components:
       name: bytes
       description: The unit used to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:Bytes'
+        $ref: '#/components/schemas/_common:StorageType'
       style: form
     cat.allocation::query.cluster_manager_timeout:
       name: cluster_manager_timeout
@@ -13188,7 +13380,7 @@ components:
       description: Operation timeout for connection to master node.
       schema:
         $ref: '#/components/schemas/_common:Duration'
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
       deprecated: true
     cat.allocation::query.s:
@@ -13257,7 +13449,7 @@ components:
       description: Operation timeout for connection to master node.
       schema:
         $ref: '#/components/schemas/_common:Duration'
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
       deprecated: true
     cat.cluster_manager::query.s:
@@ -13349,7 +13541,7 @@ components:
       name: bytes
       description: The unit used to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:Bytes'
+        $ref: '#/components/schemas/_common:StorageType'
       style: form
     cat.fielddata::query.fields:
       in: query
@@ -13478,7 +13670,7 @@ components:
       name: bytes
       description: The unit used to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:Bytes'
+        $ref: '#/components/schemas/_common:StorageType'
       style: form
     cat.indices::query.cluster_manager_timeout:
       name: cluster_manager_timeout
@@ -13549,7 +13741,7 @@ components:
       description: Operation timeout for connection to master node.
       schema:
         $ref: '#/components/schemas/_common:Duration'
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
       deprecated: true
     cat.indices::query.pri:
@@ -13633,7 +13825,7 @@ components:
       description: Operation timeout for connection to master node.
       schema:
         $ref: '#/components/schemas/_common:Duration'
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
       deprecated: true
     cat.master::query.s:
@@ -13702,7 +13894,7 @@ components:
       description: Operation timeout for connection to master node.
       schema:
         $ref: '#/components/schemas/_common:Duration'
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
       deprecated: true
     cat.nodeattrs::query.s:
@@ -13729,7 +13921,7 @@ components:
       name: bytes
       description: The unit used to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:Bytes'
+        $ref: '#/components/schemas/_common:StorageType'
       style: form
     cat.nodes::query.cluster_manager_timeout:
       name: cluster_manager_timeout
@@ -13791,7 +13983,7 @@ components:
       description: Operation timeout for connection to master node.
       schema:
         $ref: '#/components/schemas/_common:Duration'
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
       deprecated: true
     cat.nodes::query.s:
@@ -13866,7 +14058,7 @@ components:
       description: Operation timeout for connection to master node.
       schema:
         $ref: '#/components/schemas/_common:Duration'
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
       deprecated: true
     cat.pending_tasks::query.s:
@@ -13899,7 +14091,7 @@ components:
       in: query
       description: The unit in which to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:Bytes'
+        $ref: '#/components/schemas/_common:StorageType'
     cat.pit_segments::query.format:
       name: format
       in: query
@@ -13992,7 +14184,7 @@ components:
       description: Operation timeout for connection to master node.
       schema:
         $ref: '#/components/schemas/_common:Duration'
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
       deprecated: true
     cat.plugins::query.s:
@@ -14037,7 +14229,7 @@ components:
       name: bytes
       description: The unit used to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:Bytes'
+        $ref: '#/components/schemas/_common:StorageType'
       style: form
     cat.recovery::query.detailed:
       in: query
@@ -14156,7 +14348,7 @@ components:
       description: Operation timeout for connection to master node.
       schema:
         $ref: '#/components/schemas/_common:Duration'
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
       deprecated: true
     cat.repositories::query.s:
@@ -14208,7 +14400,7 @@ components:
       in: query
       description: The unit in which to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:Bytes'
+        $ref: '#/components/schemas/_common:StorageType'
     cat.segment_replication::query.completed_only:
       name: completed_only
       in: query
@@ -14340,7 +14532,7 @@ components:
       name: bytes
       description: The unit used to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:Bytes'
+        $ref: '#/components/schemas/_common:StorageType'
       style: form
     cat.segments::query.cluster_manager_timeout:
       name: cluster_manager_timeout
@@ -14381,7 +14573,7 @@ components:
       description: Operation timeout for connection to master node.
       schema:
         $ref: '#/components/schemas/_common:Duration'
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
       deprecated: true
     cat.segments::query.s:
@@ -14419,7 +14611,7 @@ components:
       name: bytes
       description: The unit used to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:Bytes'
+        $ref: '#/components/schemas/_common:StorageType'
       style: form
     cat.shards::query.cluster_manager_timeout:
       name: cluster_manager_timeout
@@ -14468,7 +14660,7 @@ components:
       description: Operation timeout for connection to master node.
       schema:
         $ref: '#/components/schemas/_common:Duration'
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
       deprecated: true
     cat.shards::query.s:
@@ -14555,7 +14747,7 @@ components:
       description: Operation timeout for connection to master node.
       schema:
         $ref: '#/components/schemas/_common:Duration'
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
       deprecated: true
     cat.snapshots::query.s:
@@ -14726,7 +14918,7 @@ components:
       description: Operation timeout for connection to master node.
       schema:
         $ref: '#/components/schemas/_common:Duration'
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
       deprecated: true
     cat.templates::query.s:
@@ -14805,7 +14997,7 @@ components:
       description: Operation timeout for connection to master node.
       schema:
         $ref: '#/components/schemas/_common:Duration'
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
       deprecated: true
     cat.thread_pool::query.s:
@@ -14889,7 +15081,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     cluster.delete_component_template::query.timeout:
       in: query
@@ -14952,7 +15144,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     cluster.get_component_template::path.name:
       in: path
@@ -14991,7 +15183,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     cluster.get_decommission_awareness::path.awareness_attribute_name:
       name: awareness_attribute_name
@@ -15034,7 +15226,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     cluster.get_settings::query.timeout:
       in: query
@@ -15105,7 +15297,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     cluster.health::query.timeout:
       in: query
@@ -15185,7 +15377,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     cluster.post_voting_config_exclusions::query.node_ids:
       in: query
@@ -15254,7 +15446,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     cluster.put_component_template::query.timeout:
       name: timeout
@@ -15301,7 +15493,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     cluster.put_settings::query.timeout:
       in: query
@@ -15347,7 +15539,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     cluster.reroute::query.metric:
       in: query
@@ -15440,7 +15632,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     cluster.state::query.wait_for_metadata_version:
       in: query
@@ -15768,7 +15960,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     dangling_indices.delete_dangling_index::query.timeout:
       in: query
@@ -15808,7 +16000,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     dangling_indices.import_dangling_index::query.timeout:
       in: query
@@ -16150,7 +16342,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     delete_script::query.timeout:
       in: query
@@ -16601,7 +16793,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     get_source::path.id:
       in: path
@@ -16935,7 +17127,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.add_block::query.timeout:
       in: query
@@ -17083,7 +17275,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.clone::query.task_execution_timeout:
       name: task_execution_timeout
@@ -17170,7 +17362,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.close::query.timeout:
       in: query
@@ -17229,7 +17421,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.create::query.timeout:
       in: query
@@ -17297,7 +17489,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.delete_alias::query.timeout:
       in: query
@@ -17339,7 +17531,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.delete_index_template::query.timeout:
       in: query
@@ -17375,7 +17567,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.delete_template::query.timeout:
       in: query
@@ -17444,7 +17636,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.delete::query.timeout:
       in: query
@@ -17547,7 +17739,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.exists_template::path.name:
       in: path
@@ -17588,7 +17780,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.exists::path.index:
       in: path
@@ -17952,7 +18144,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.get_mapping::path.index:
       in: path
@@ -18027,7 +18219,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.get_settings::path.index:
       in: path
@@ -18121,7 +18313,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.get_template::path.name:
       in: path
@@ -18167,7 +18359,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.get_upgrade::path.index:
       name: index
@@ -18277,7 +18469,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.open::path.index:
       in: path
@@ -18336,7 +18528,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.open::query.task_execution_timeout:
       name: task_execution_timeout
@@ -18410,7 +18602,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.put_alias::query.timeout:
       in: query
@@ -18458,7 +18650,7 @@ components:
       description: Operation timeout for connection to master node.
       schema:
         $ref: '#/components/schemas/_common:Duration'
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
       deprecated: true
     indices.put_mapping::path.index:
@@ -18513,7 +18705,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.put_mapping::query.timeout:
       in: query
@@ -18599,7 +18791,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.put_settings::query.preserve_existing:
       in: query
@@ -18651,7 +18843,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.put_template::query.order:
       in: query
@@ -18795,7 +18987,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.rollover::query.timeout:
       in: query
@@ -18947,7 +19139,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.shrink::query.task_execution_timeout:
       name: task_execution_timeout
@@ -19028,7 +19220,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.simulate_template::path.name:
       in: path
@@ -19071,7 +19263,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.split::path.index:
       in: path
@@ -19114,7 +19306,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.split::query.task_execution_timeout:
       name: task_execution_timeout
@@ -19255,7 +19447,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     indices.update_aliases::query.timeout:
       in: query
@@ -19445,7 +19637,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     ingest.delete_pipeline::query.timeout:
       in: query
@@ -19484,7 +19676,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     ingest.put_pipeline::path.id:
       in: path
@@ -19509,7 +19701,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     ingest.put_pipeline::query.timeout:
       in: query
@@ -20895,7 +21087,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     put_script::query.timeout:
       in: query
@@ -22135,7 +22327,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     snapshot.cleanup_repository::query.timeout:
       in: query
@@ -22183,7 +22375,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     snapshot.create_repository::path.repository:
       in: path
@@ -22208,7 +22400,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     snapshot.create_repository::query.timeout:
       in: query
@@ -22255,7 +22447,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     snapshot.create::query.wait_for_completion:
       in: query
@@ -22288,7 +22480,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     snapshot.delete_repository::query.timeout:
       in: query
@@ -22328,7 +22520,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     snapshot.get_repository::path.repository:
       in: path
@@ -22361,7 +22553,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     snapshot.get::path.repository:
       in: path
@@ -22405,7 +22597,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     snapshot.get::query.verbose:
       in: query
@@ -22445,7 +22637,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     snapshot.restore::query.wait_for_completion:
       in: query
@@ -22494,7 +22686,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     snapshot.verify_repository::path.repository:
       in: path
@@ -22519,7 +22711,7 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       style: form
-      x-version-deprecated: 2.0.0
+      x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use 'cluster_manager_timeout' instead.
     snapshot.verify_repository::query.timeout:
       in: query
@@ -23363,6 +23555,11 @@ components:
       style: form
       x-default: '1'
   requestBodies:
+    asynchronous_search.search:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/asynchronous_search._common:Search'
     bulk:
       content:
         application/x-ndjson:
@@ -23414,6 +23611,11 @@ components:
                 description: Specifies the ID of the shard that you would like an explanation for.
                 type: number
             description: The index, shard, and primary flag to explain. Empty means 'explain the first unassigned shard'
+    cluster.delete_weighted_routing:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/cluster.weighted_routing:WeightsBase'
     cluster.put_component_template:
       content:
         application/json:
@@ -23451,6 +23653,11 @@ components:
                 additionalProperties: {}
             description: The settings to be updated. Can be either `transient` or `persistent` (survives cluster restart).
       required: true
+    cluster.put_weighted_routing:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/cluster.weighted_routing:Weights'
     cluster.reroute:
       content:
         application/json:
@@ -24344,10 +24551,10 @@ components:
               knn:
                 description: Defines the approximate kNN search to run.
                 oneOf:
-                  - $ref: '#/components/schemas/_common:KnnQuery'
+                  - $ref: '#/components/schemas/_common.query_dsl:KnnQuery'
                   - type: array
                     items:
-                      $ref: '#/components/schemas/_common:KnnQuery'
+                      $ref: '#/components/schemas/_common.query_dsl:KnnQuery'
               rank:
                 $ref: '#/components/schemas/_common:RankContainer'
               min_score:
@@ -24864,6 +25071,29 @@ components:
                 $ref: '#/components/schemas/_common:Conflicts'
             description: The search definition using the Query DSL
   responses:
+    asynchronous_search.delete@200:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              acknowledged:
+                type: boolean
+    asynchronous_search.get@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/asynchronous_search._common:ResponseBody'
+    asynchronous_search.search@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/asynchronous_search._common:ResponseBody'
+    asynchronous_search.stats@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/asynchronous_search._common:StatsResponse'
     bulk@200:
       content:
         application/json:
@@ -25215,11 +25445,19 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
-    cluster.delete_decommission_awareness@200: {}
+    cluster.delete_decommission_awareness@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     cluster.delete_voting_config_exclusions@200:
       content:
         application/json: {}
-    cluster.delete_weighted_routing@200: {}
+    cluster.delete_weighted_routing@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     cluster.exists_component_template@200:
       content:
         application/json: {}
@@ -25235,7 +25473,11 @@ components:
                   $ref: '#/components/schemas/cluster._common:ComponentTemplate'
             required:
               - component_templates
-    cluster.get_decommission_awareness@200: {}
+    cluster.get_decommission_awareness@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/cluster.decommission_awareness:DecommissionStatusResponse'
     cluster.get_settings@200:
       content:
         application/json:
@@ -25244,20 +25486,21 @@ components:
             properties:
               persistent:
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: true
               transient:
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: true
               defaults:
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: true
             required:
               - persistent
               - transient
-    cluster.get_weighted_routing@200: {}
+    cluster.get_weighted_routing@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/cluster.weighted_routing:WeightsResponse'
     cluster.health@200:
       content:
         application/json:
@@ -25283,7 +25526,11 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
-    cluster.put_decommission_awareness@200: {}
+    cluster.put_decommission_awareness@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     cluster.put_settings@200:
       content:
         application/json:
@@ -25302,7 +25549,11 @@ components:
               - acknowledged
               - persistent
               - transient
-    cluster.put_weighted_routing@200: {}
+    cluster.put_weighted_routing@200:
+      content:
+        application/json:
+          schema:
+            type: object
     cluster.remote_info@200:
       content:
         application/json:
@@ -25346,6 +25597,8 @@ components:
           schema:
             type: object
             properties:
+              terminated_early:
+                type: boolean
               count:
                 type: number
               _shards:
@@ -25416,42 +25669,12 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              batches:
-                type: number
-              deleted:
-                type: number
-              failures:
-                type: array
-                items:
-                  $ref: '#/components/schemas/_common:BulkIndexByScrollFailure'
-              noops:
-                type: number
-              requests_per_second:
-                type: number
-              retries:
-                $ref: '#/components/schemas/_common:Retries'
-              slice_id:
-                type: number
-              task:
-                $ref: '#/components/schemas/_common:TaskId'
-              throttled:
-                $ref: '#/components/schemas/_common:Duration'
-              throttled_millis:
-                $ref: '#/components/schemas/_common:DurationValueUnitMillis'
-              throttled_until:
-                $ref: '#/components/schemas/_common:Duration'
-              throttled_until_millis:
-                $ref: '#/components/schemas/_common:DurationValueUnitMillis'
-              timed_out:
-                type: boolean
-              took:
-                $ref: '#/components/schemas/_common:DurationValueUnitMillis'
-              total:
-                type: number
-              version_conflicts:
-                type: number
+            anyOf:
+              - $ref: '#/components/schemas/_common:BulkByScrollResponseBase'
+              - type: object
+                properties:
+                  task:
+                    $ref: '#/components/schemas/_common:TaskId'
     delete_pit@200:
       content:
         application/json:
@@ -25699,10 +25922,10 @@ components:
                 items:
                   $ref: '#/components/schemas/indices.data_streams_stats:DataStreamsStatsItem'
               total_store_sizes:
-                $ref: '#/components/schemas/_common:ByteSize'
+                $ref: '#/components/schemas/_common:StorageSize'
               total_store_size_bytes:
                 description: Total size, in bytes, of all shards for the selected data streams.
-                type: number
+                $ref: '#/components/schemas/_common:Bytes'
             required:
               - _shards
               - backing_indices
@@ -26239,7 +26462,9 @@ components:
                   $ref: '#/components/schemas/_core.mtermvectors:TermVectorsResult'
             required:
               - docs
-    nodes.hot_threads@200: {}
+    nodes.hot_threads@200:
+      content:
+        text/plain: {}
     nodes.info@200:
       content:
         application/json:
@@ -26541,42 +26766,12 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              batches:
-                type: number
-              created:
-                type: number
-              deleted:
-                type: number
-              failures:
-                type: array
-                items:
-                  $ref: '#/components/schemas/_common:BulkIndexByScrollFailure'
-              noops:
-                type: number
-              retries:
-                $ref: '#/components/schemas/_common:Retries'
-              requests_per_second:
-                type: number
-              slice_id:
-                type: number
-              task:
-                $ref: '#/components/schemas/_common:TaskId'
-              throttled_millis:
-                $ref: '#/components/schemas/_common:EpochTimeUnitMillis'
-              throttled_until_millis:
-                $ref: '#/components/schemas/_common:EpochTimeUnitMillis'
-              timed_out:
-                type: boolean
-              took:
-                $ref: '#/components/schemas/_common:DurationValueUnitMillis'
-              total:
-                type: number
-              updated:
-                type: number
-              version_conflicts:
-                type: number
+            anyOf:
+              - $ref: '#/components/schemas/_common:BulkByScrollResponseBase'
+              - type: object
+                properties:
+                  task:
+                    $ref: '#/components/schemas/_common:TaskId'
     remote_store.restore@200:
       content:
         application/json:
@@ -27541,7 +27736,7 @@ components:
               task:
                 $ref: '#/components/schemas/tasks._common:TaskInfo'
               response:
-                type: object
+                $ref: '#/components/schemas/tasks._common:TaskResponse'
               error:
                 $ref: '#/components/schemas/_common:ErrorCause'
             required:
@@ -27630,42 +27825,12 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              batches:
-                type: number
-              failures:
-                type: array
-                items:
-                  $ref: '#/components/schemas/_common:BulkIndexByScrollFailure'
-              noops:
-                type: number
-              deleted:
-                type: number
-              requests_per_second:
-                type: number
-              retries:
-                $ref: '#/components/schemas/_common:Retries'
-              task:
-                $ref: '#/components/schemas/_common:TaskId'
-              timed_out:
-                type: boolean
-              took:
-                $ref: '#/components/schemas/_common:DurationValueUnitMillis'
-              total:
-                type: number
-              updated:
-                type: number
-              version_conflicts:
-                type: number
-              throttled:
-                $ref: '#/components/schemas/_common:Duration'
-              throttled_millis:
-                $ref: '#/components/schemas/_common:DurationValueUnitMillis'
-              throttled_until:
-                $ref: '#/components/schemas/_common:Duration'
-              throttled_until_millis:
-                $ref: '#/components/schemas/_common:DurationValueUnitMillis'
+            anyOf:
+              - $ref: '#/components/schemas/_common:BulkByScrollResponseBase'
+              - type: object
+                properties:
+                  task:
+                    $ref: '#/components/schemas/_common:TaskId'
     update@200:
       content:
         application/json:
@@ -27705,12 +27870,100 @@ components:
         transport_address:
           $ref: '#/components/schemas/_common:TransportAddress'
       required:
-        - attributes
-        - host
-        - ip
         - name
-        - transport_address
-    _common:BulkIndexByScrollFailure:
+    _common:BulkByScrollFailure:
+      anyOf:
+        - $ref: '#/components/schemas/_common:BulkItemResponseFailure'
+        - $ref: '#/components/schemas/_common:ScrollableHitSourceSearchFailure'
+    _common:BulkByScrollResponseBase:
+      allOf:
+        - $ref: '#/components/schemas/_common:BulkByScrollTaskStatus'
+        - type: object
+          properties:
+            took:
+              type: integer
+              format: int64
+            timed_out:
+              type: boolean
+            failures:
+              type: array
+              items:
+                $ref: '#/components/schemas/_common:BulkByScrollFailure'
+          required:
+            - failures
+            - timed_out
+            - took
+    _common:BulkByScrollTaskStatus:
+      type: object
+      properties:
+        slice_id:
+          type: integer
+          format: int32
+        total:
+          description: The number of documents that were successfully processed.
+          type: integer
+          format: int64
+        updated:
+          description: The number of documents that were successfully updated, for example, a document with same ID already existed prior to reindex updating it.
+          type: integer
+          format: int64
+        created:
+          description: The number of documents that were successfully created.
+          type: integer
+          format: int64
+        deleted:
+          description: The number of documents that were successfully deleted.
+          type: integer
+          format: int64
+        batches:
+          description: The number of scroll responses pulled back by the reindex.
+          type: integer
+          format: int32
+        version_conflicts:
+          description: The number of version conflicts that reindex hits.
+          type: integer
+          format: int64
+        noops:
+          description: The number of documents that were ignored.
+          type: integer
+          format: int64
+        retries:
+          $ref: '#/components/schemas/_common:Retries'
+        throttled_millis:
+          $ref: '#/components/schemas/_common:DurationValueUnitMillis'
+        throttled:
+          $ref: '#/components/schemas/_common:Duration'
+        requests_per_second:
+          description: The number of requests per second effectively executed during the reindex.
+          type: number
+          format: float
+        canceled:
+          type: string
+        throttled_until_millis:
+          $ref: '#/components/schemas/_common:DurationValueUnitMillis'
+        throttled_until:
+          $ref: '#/components/schemas/_common:Duration'
+        slices:
+          type: array
+          items:
+            $ref: '#/components/schemas/_common:BulkByScrollTaskStatusOrException'
+      required:
+        - batches
+        - deleted
+        - noops
+        - requests_per_second
+        - retries
+        - throttled_millis
+        - throttled_until_millis
+        - total
+        - version_conflicts
+    _common:BulkByScrollTaskStatusOrException:
+      oneOf:
+        - title: status
+          $ref: '#/components/schemas/_common:BulkByScrollTaskStatus'
+        - title: exception
+          $ref: '#/components/schemas/_common:ErrorCause'
+    _common:BulkItemResponseFailure:
       type: object
       properties:
         cause:
@@ -27720,35 +27973,16 @@ components:
         index:
           $ref: '#/components/schemas/_common:IndexName'
         status:
-          type: number
-        type:
-          type: string
+          type: integer
+          format: int32
       required:
         - cause
-        - id
         - index
         - status
-        - type
     _common:byte:
       type: number
     _common:Bytes:
-      type: string
-      enum:
-        - b
-        - g
-        - gb
-        - k
-        - kb
-        - m
-        - mb
-        - p
-        - pb
-        - t
-        - tb
-    _common:ByteSize:
-      oneOf:
-        - type: number
-        - type: string
+      type: integer
     _common:ClusterDetails:
       type: object
       properties:
@@ -27809,9 +28043,9 @@ components:
       properties:
         size_in_bytes:
           description: Total amount, in bytes, of memory used for completion across all shards assigned to selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         fields:
           type: object
           additionalProperties:
@@ -28008,9 +28242,9 @@ components:
         evictions:
           type: number
         memory_size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         memory_size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         fields:
           type: object
           additionalProperties:
@@ -28021,9 +28255,9 @@ components:
       type: object
       properties:
         memory_size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         memory_size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - memory_size_in_bytes
     _common:Fields:
@@ -28036,9 +28270,9 @@ components:
       type: object
       properties:
         size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - size_in_bytes
     _common:FieldValue:
@@ -28162,7 +28396,7 @@ components:
       properties:
         total:
           type: number
-        time:
+        getTime:
           $ref: '#/components/schemas/_common:Duration'
         time_in_millis:
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
@@ -28363,38 +28597,34 @@ components:
             - source
     _common:Ip:
       type: string
-    _common:KnnQuery:
+    _common:KnnField:
       type: object
       properties:
-        field:
-          $ref: '#/components/schemas/_common:Field'
-        query_vector:
+        vector:
           $ref: '#/components/schemas/_common:QueryVector'
-        query_vector_builder:
-          $ref: '#/components/schemas/_common:QueryVectorBuilder'
         k:
-          description: The final number of nearest neighbors to return as top hits
+          description: The final number of nearest neighbors to return as top hits.
           type: number
-        num_candidates:
-          description: The number of nearest neighbor candidates to consider per shard
+        min_score:
+          description: The minimum similarity score for a neighbor to be considered a hit.
           type: number
-        boost:
-          description: Boost value to apply to kNN scores
+          x-version-added: '2.14'
+        max_distance:
+          description: The maximum physical distance in vector space for a neighbor to be considered a hit.
           type: number
+          x-version-added: '2.14'
         filter:
-          description: Filters for the kNN search query
+          description: Filters for the kNN search query.
           oneOf:
             - $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
             - type: array
               items:
                 $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
-        similarity:
-          description: The minimum similarity for a vector to be considered a match
+        boost:
+          description: Boost value to apply to kNN scores
           type: number
       required:
-        - field
-        - k
-        - num_candidates
+        - vector
     _common:LatLonGeoLocation:
       type: object
       properties:
@@ -28421,21 +28651,21 @@ components:
         current_docs:
           type: number
         current_size:
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         current_size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         total:
           type: number
         total_auto_throttle:
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         total_auto_throttle_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         total_docs:
           type: number
         total_size:
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         total_size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         total_stopped_time:
           $ref: '#/components/schemas/_common:Duration'
         total_stopped_time_in_millis:
@@ -28551,6 +28781,8 @@ components:
         - remote_cluster_client
         - transform
         - voting_only
+      x-deprecated-enums:
+        - master
     _common:NodeRoles:
       description: Node roles.
       type: array
@@ -28599,13 +28831,13 @@ components:
             $ref: '#/components/schemas/_common:ErrorCause'
         total:
           description: Total number of nodes selected by the request.
-          type: number
+          type: integer
         successful:
           description: Number of nodes that responded successfully to the request.
-          type: number
+          type: integer
         failed:
           description: Number of nodes that rejected the request or failed to respond. If this value is not 0, a reason for the rejection or failure is included in the response.
-          type: number
+          type: integer
       required:
         - failed
         - successful
@@ -28750,10 +28982,10 @@ components:
           description: Total count of query cache hits across all shards assigned to selected nodes.
           type: number
         memory_size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         memory_size_in_bytes:
           description: Total amount, in bytes, of memory used for the query cache across all shards assigned to selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         miss_count:
           description: Total count of query cache misses across all shards assigned to selected nodes.
           type: number
@@ -28772,13 +29004,6 @@ components:
       type: array
       items:
         type: number
-    _common:QueryVectorBuilder:
-      type: object
-      properties:
-        text_embedding:
-          $ref: '#/components/schemas/_common:TextEmbedding'
-      minProperties: 1
-      maxProperties: 1
     _common:RankBase:
       type: object
     _common:RankContainer:
@@ -28814,6 +29039,8 @@ components:
       properties:
         external_total:
           type: number
+        external_total_time:
+          $ref: '#/components/schemas/_common:Duration'
         external_total_time_in_millis:
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         listeners:
@@ -28846,6 +29073,9 @@ components:
         total_download_size:
           description: The total amount of data download from the remote segment store.
           $ref: '#/components/schemas/_common:RemoteStoreUploadDownloadStats'
+        total_time_spent:
+          description: The total duration, spent on downloads from the remote segment store.
+          $ref: '#/components/schemas/_common:Duration'
         total_time_spent_in_millis:
           description: The total duration, in milliseconds, spent on downloads from the remote segment store.
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
@@ -28885,15 +29115,24 @@ components:
       type: object
       description: The total amount of data uploaded to the remote translog store.
       properties:
+        failed:
+          description: The number of bytes that failed to upload to the remote translog store.
+          $ref: '#/components/schemas/_common:StorageSize'
         failed_bytes:
           description: The number of bytes that failed to upload to the remote translog store.
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
+        started:
+          description: The number of bytes successfully uploaded to the remote translog store.
+          $ref: '#/components/schemas/_common:StorageSize'
         started_bytes:
           description: The number of bytes successfully uploaded to the remote translog store.
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
+        succeeded:
+          description: The number of bytes successfully uploaded to the remote translog store.
+          $ref: '#/components/schemas/_common:StorageSize'
         succeeded_bytes:
           description: The number of bytes successfully uploaded to the remote translog store.
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - failed_bytes
         - started_bytes
@@ -28919,15 +29158,24 @@ components:
       type: object
       description: The amount of data, in bytes, uploaded or downloaded to/from the remote segment store.
       properties:
+        failed:
+          description: The number of bytes that failed to upload/upload to/from the remote segment store.
+          $ref: '#/components/schemas/_common:StorageSize'
         failed_bytes:
           description: The number of bytes that failed to upload/upload to/from the remote segment store.
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
+        started:
+          description: The number of bytes to upload/download to/from the remote segment store after the upload/download has started.
+          $ref: '#/components/schemas/_common:StorageSize'
         started_bytes:
           description: The number of bytes to upload/download to/from the remote segment store after the upload/download has started.
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
+        succeeded:
+          description: The number of bytes successfully uploaded/downloaded to/from the remote segment store.
+          $ref: '#/components/schemas/_common:StorageSize'
         succeeded_bytes:
           description: The number of bytes successfully uploaded/downloaded to/from the remote segment store.
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - failed_bytes
         - started_bytes
@@ -28945,12 +29193,18 @@ components:
       type: object
       description: The amount of lag during upload between the remote segment store and the local store.
       properties:
+        max:
+          description: The maximum amount of lag, in bytes, during the upload refresh between the remote segment store and the local store.
+          $ref: '#/components/schemas/_common:StorageSize'
         max_bytes:
           description: The maximum amount of lag, in bytes, during the upload refresh between the remote segment store and the local store.
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
+        total:
+          description: The total number of bytes that lagged during the upload refresh between the remote segment store and the local store.
+          $ref: '#/components/schemas/_common:StorageSize'
         total_bytes:
           description: The total number of bytes that lagged during the upload refresh between the remote segment store and the local store.
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - max_bytes
         - total_bytes
@@ -28958,6 +29212,9 @@ components:
       type: object
       description: Statistics related to uploads to the remote segment store.
       properties:
+        max_refresh_time_lag:
+          description: The maximum duration that the remote refresh is behind the local refresh.
+          $ref: '#/components/schemas/_common:Duration'
         max_refresh_time_lag_in_millis:
           description: The maximum duration, in milliseconds, that the remote refresh is behind the local refresh.
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
@@ -28965,6 +29222,9 @@ components:
           $ref: '#/components/schemas/_common:RemoteStoreUploadPressureStats'
         refresh_size_lag:
           $ref: '#/components/schemas/_common:RemoteStoreUploadRefreshSizeLagStats'
+        total_time_spent:
+          description: The total amount of time, spent on uploads to the remote segment store.
+          $ref: '#/components/schemas/_common:Duration'
         total_time_spent_in_millis:
           description: The total amount of time, in milliseconds, spent on uploads to the remote segment store.
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
@@ -28984,9 +29244,9 @@ components:
         hit_count:
           type: number
         memory_size:
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         memory_size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         miss_count:
           type: number
       required:
@@ -28997,6 +29257,8 @@ components:
     _common:RequestStats:
       type: object
       properties:
+        time:
+          $ref: '#/components/schemas/_common:Duration'
         time_in_millis:
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         current:
@@ -29015,9 +29277,11 @@ components:
       type: object
       properties:
         bulk:
-          type: number
+          type: integer
+          format: int64
         search:
-          type: number
+          type: integer
+          format: int64
       required:
         - bulk
         - search
@@ -29094,6 +29358,24 @@ components:
         - number
         - string
         - version
+    _common:ScrollableHitSourceSearchFailure:
+      type: object
+      properties:
+        index:
+          $ref: '#/components/schemas/_common:IndexName'
+        shard:
+          type: integer
+          format: int32
+        node:
+          type: string
+        status:
+          type: integer
+          format: int32
+        reason:
+          $ref: '#/components/schemas/_common:ErrorCause'
+      required:
+        - reason
+        - status
     _common:ScrollId:
       type: string
     _common:ScrollIds:
@@ -29214,11 +29496,11 @@ components:
       type: object
       properties:
         max_bytes_behind:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
         max_replication_lag:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
         total_bytes_behind:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - max_bytes_behind
         - max_replication_lag
@@ -29230,10 +29512,10 @@ components:
           description: Total number of segments across all shards assigned to selected nodes.
           type: number
         doc_values_memory:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         doc_values_memory_in_bytes:
           description: Total amount, in bytes, of memory used for doc values across all shards assigned to selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         file_sizes:
           description: |-
             This object is not populated by the cluster stats API.
@@ -29242,55 +29524,62 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/indices.stats:ShardFileSizeInfo'
         fixed_bit_set:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         fixed_bit_set_memory_in_bytes:
           description: Total amount of memory, in bytes, used by fixed bit sets across all shards assigned to selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         index_writer_memory:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         index_writer_max_memory_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         index_writer_memory_in_bytes:
           description: Total amount, in bytes, of memory used by all index writers across all shards assigned to selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         max_unsafe_auto_id_timestamp:
           description: Unix timestamp, in milliseconds, of the most recently retried indexing request.
           type: number
         memory:
-          $ref: '#/components/schemas/_common:ByteSize'
+          description: Total amount, of memory used for segments across all shards assigned to selected nodes.
+          $ref: '#/components/schemas/_common:StorageSize'
         memory_in_bytes:
           description: Total amount, in bytes, of memory used for segments across all shards assigned to selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         norms_memory:
-          $ref: '#/components/schemas/_common:ByteSize'
+          description: Total amount of memory used for normalization factors across all shards assigned to selected nodes.
+          $ref: '#/components/schemas/_common:StorageSize'
         norms_memory_in_bytes:
           description: Total amount, in bytes, of memory used for normalization factors across all shards assigned to selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         points_memory:
-          $ref: '#/components/schemas/_common:ByteSize'
+          description: Total amount of memory used for points across all shards assigned to selected nodes.
+          $ref: '#/components/schemas/_common:StorageSize'
         points_memory_in_bytes:
           description: Total amount, in bytes, of memory used for points across all shards assigned to selected nodes.
-          type: number
-        stored_memory:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
+        stored_fields_memory:
+          description: Total amount of memory used for stored fields across all shards assigned to selected nodes.
+          $ref: '#/components/schemas/_common:StorageSize'
         stored_fields_memory_in_bytes:
           description: Total amount, in bytes, of memory used for stored fields across all shards assigned to selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        terms_memory:
+          description: Total amount of memory used for terms across all shards assigned to selected nodes.
+          $ref: '#/components/schemas/_common:StorageSize'
         terms_memory_in_bytes:
           description: Total amount, in bytes, of memory used for terms across all shards assigned to selected nodes.
-          type: number
-        terms_memory:
-          $ref: '#/components/schemas/_common:ByteSize'
-        term_vectory_memory:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
+        term_vectors_memory:
+          description: Total amount of memory used for term vectors across all shards assigned to selected nodes.
+          $ref: '#/components/schemas/_common:StorageSize'
         term_vectors_memory_in_bytes:
           description: Total amount, in bytes, of memory used for term vectors across all shards assigned to selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         version_map_memory:
-          $ref: '#/components/schemas/_common:ByteSize'
+          description: Total amount of memory used by all version maps across all shards assigned to selected nodes.
+          $ref: '#/components/schemas/_common:StorageSize'
         version_map_memory_in_bytes:
           description: Total amount, in bytes, of memory used by all version maps across all shards assigned to selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         remote_store:
           $ref: '#/components/schemas/_common:RemoteStoreStats'
         segment_replication:
@@ -29310,7 +29599,7 @@ components:
         - terms_memory_in_bytes
         - version_map_memory_in_bytes
     _common:SequenceNumber:
-      type: number
+      type: integer
       format: int64
     _common:ShardFailure:
       type: object
@@ -29322,7 +29611,7 @@ components:
         reason:
           $ref: '#/components/schemas/_common:ErrorCause'
         shard:
-          type: number
+          type: integer
         status:
           type: string
       required:
@@ -29417,6 +29706,23 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/_common:FieldValue'
+    _common:StorageSize:
+      type: string
+      pattern: \d+(\.\d+)?(b|kb|k|mb|m|gb|g|tb|t|pb|p)
+    _common:StorageType:
+      type: string
+      enum:
+        - b
+        - g
+        - gb
+        - k
+        - kb
+        - m
+        - mb
+        - p
+        - pb
+        - t
+        - tb
     _common:StoredScript:
       type: object
       properties:
@@ -29445,15 +29751,15 @@ components:
       type: object
       properties:
         size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         size_in_bytes:
           description: Total size, in bytes, of all shards assigned to selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         reserved:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         reserved_in_bytes:
           description: A prediction, in bytes, of how much larger the shard stores will eventually grow due to ongoing peer recoveries, restoring snapshots, and similar activities.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - reserved_in_bytes
         - size_in_bytes
@@ -29517,7 +29823,7 @@ components:
       type: object
       properties:
         task_id:
-          type: number
+          type: integer
         node_id:
           $ref: '#/components/schemas/_common:NodeId'
         status:
@@ -29533,16 +29839,6 @@ components:
       oneOf:
         - type: string
         - type: number
-    _common:TextEmbedding:
-      type: object
-      properties:
-        model_id:
-          type: string
-        model_text:
-          type: string
-      required:
-        - model_id
-        - model_text
     _common:TimeOfDay:
       description: Time of day, expressed as HH:MM:SS.
       type: string
@@ -29588,15 +29884,15 @@ components:
         remote_store:
           $ref: '#/components/schemas/_common:RemoteStoreTranslogStats'
         size:
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         uncommitted_operations:
           type: number
         uncommitted_size:
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         uncommitted_size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - earliest_last_modified_age
         - operations
@@ -29609,16 +29905,17 @@ components:
       type: string
       x-version-removed: '2.0'
     _common:uint:
-      type: number
+      type: integer
     _common:ulong:
       type: number
     _common:UnitMillis:
       description: Time unit for milliseconds.
-      type: number
+      type: integer
       format: int64
     _common:UnitNanos:
       description: Time unit for nanoseconds.
-      type: number
+      type: integer
+      format: int64
     _common:UnitSeconds:
       description: Time unit for seconds.
       type: number
@@ -29627,7 +29924,7 @@ components:
     _common:Uuid:
       type: string
     _common:VersionNumber:
-      type: number
+      type: integer
       format: int64
     _common:VersionString:
       type: string
@@ -29697,7 +29994,7 @@ components:
         _index:
           $ref: '#/components/schemas/_common:IndexName'
         _primary_term:
-          type: number
+          type: integer
           format: int64
         result:
           $ref: '#/components/schemas/_common:Result'
@@ -37025,6 +37322,12 @@ components:
           $ref: '#/components/schemas/_common:Field'
       required:
         - pattern
+    _common.query_dsl:KnnQuery:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/_common:KnnField'
+      minProperties: 1
+      maxProperties: 1
     _common.query_dsl:Like:
       description: Text that we want similar documents for or a lookup to a document's field for the text.
       oneOf:
@@ -37566,6 +37869,8 @@ components:
             $ref: '#/components/schemas/_common.query_dsl:IntervalsQuery'
           minProperties: 1
           maxProperties: 1
+        knn:
+          $ref: '#/components/schemas/_common.query_dsl:KnnQuery'
         match:
           description: |-
             Returns documents that match a provided text, number, date or boolean value.
@@ -38204,10 +38509,27 @@ components:
               type: boolean
           required:
             - value
-    _common.query_dsl:TermsQuery:
-      allOf:
-        - $ref: '#/components/schemas/_common.query_dsl:QueryBase'
+    _common.query_dsl:Terms:
+      oneOf:
+        - type: array
+          items:
+            type: string
         - type: object
+          properties:
+            index:
+              $ref: '#/components/schemas/_common:IndexName'
+            id:
+              $ref: '#/components/schemas/_common:Id'
+            path:
+              $ref: '#/components/schemas/_common:Field'
+            routing:
+              $ref: '#/components/schemas/_common:Routing'
+          additionalProperties: true
+          description: Object for fetching terms.
+    _common.query_dsl:TermsQuery:
+      anyOf:
+        - $ref: '#/components/schemas/_common.query_dsl:QueryBase'
+        - $ref: '#/components/schemas/_common.query_dsl:Terms'
     _common.query_dsl:TermsSetQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl:QueryBase'
@@ -38218,10 +38540,7 @@ components:
             minimum_should_match_script:
               $ref: '#/components/schemas/_common:Script'
             terms:
-              description: Array of terms you wish to find in the provided field.
-              type: array
-              items:
-                type: string
+              $ref: '#/components/schemas/_common.query_dsl:Terms'
           required:
             - terms
     _common.query_dsl:TextExpansionQuery:
@@ -38749,10 +39068,10 @@ components:
         knn:
           description: Defines the approximate kNN search to run.
           oneOf:
-            - $ref: '#/components/schemas/_common:KnnQuery'
+            - $ref: '#/components/schemas/_common.query_dsl:KnnQuery'
             - type: array
               items:
-                $ref: '#/components/schemas/_common:KnnQuery'
+                $ref: '#/components/schemas/_common.query_dsl:KnnQuery'
         from:
           description: |-
             Starting document offset. By default, you cannot page through more than 10,000
@@ -40294,6 +40613,186 @@ components:
           properties:
             get:
               $ref: '#/components/schemas/_common:InlineGet'
+    asynchronous_search._common:AsynchronousSearchStats:
+      type: object
+      properties:
+        submitted:
+          type: integer
+        initialized:
+          type: integer
+        search_failed:
+          type: integer
+        search_completed:
+          type: integer
+        rejected:
+          type: integer
+        persist_failed:
+          type: integer
+        cancelled:
+          type: integer
+        running_current:
+          type: integer
+        persisted:
+          type: integer
+    asynchronous_search._common:NodesStats:
+      type: object
+      properties:
+        asynchronous_search_stats:
+          $ref: '#/components/schemas/asynchronous_search._common:AsynchronousSearchStats'
+    asynchronous_search._common:ResponseBody:
+      type: object
+      properties:
+        id:
+          type: string
+        state:
+          type: string
+        start_time_in_millis:
+          type: number
+        expiration_time_in_millis:
+          type: number
+        took:
+          type: number
+        response:
+          $ref: '#/components/schemas/_core.search:ResponseBody'
+    asynchronous_search._common:Search:
+      type: object
+      properties:
+        aggregations:
+          description: Defines the aggregations that are run as part of the search request.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/_common.aggregations:AggregationContainer'
+        collapse:
+          $ref: '#/components/schemas/_core.search:FieldCollapse'
+        explain:
+          description: If true, returns detailed information about score computation as part of a hit.
+          type: boolean
+        ext:
+          description: Configuration of search extensions defined by OpenSearch plugins.
+          type: object
+          additionalProperties:
+            type: object
+        from:
+          description: |-
+            Starting document offset.
+            Needs to be non-negative.
+            By default, you cannot page through more than 10,000 hits using the `from` and `size` parameters.
+            To page through more hits, use the `search_after` parameter.
+          type: number
+        highlight:
+          $ref: '#/components/schemas/_core.search:Highlight'
+        track_total_hits:
+          $ref: '#/components/schemas/_core.search:TrackHits'
+        indices_boost:
+          description: Boosts the _score of documents from specified indices.
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: number
+        docvalue_fields:
+          description: |-
+            Array of wildcard (`*`) patterns.
+            The request returns doc values for field names matching these patterns in the `hits.fields` property of the response.
+          type: array
+          items:
+            $ref: '#/components/schemas/_common.query_dsl:FieldAndFormat'
+        rank:
+          $ref: '#/components/schemas/_common:RankContainer'
+        min_score:
+          description: |-
+            Minimum `_score` for matching documents.
+            Documents with a lower `_score` are not included in the search results.
+          type: number
+        post_filter:
+          $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
+        profile:
+          description: |-
+            Set to `true` to return detailed timing information about the execution of individual components in a search request.
+            NOTE: This is a debugging tool and adds significant overhead to search execution.
+          type: boolean
+        query:
+          $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
+        script_fields:
+          description: Retrieve a script evaluation (based on different fields) for each hit.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/_common:ScriptField'
+        search_after:
+          $ref: '#/components/schemas/_common:SortResults'
+        size:
+          description: |-
+            The number of hits to return.
+            By default, you cannot page through more than 10,000 hits using the `from` and `size` parameters.
+            To page through more hits, use the `search_after` parameter.
+          type: number
+        slice:
+          $ref: '#/components/schemas/_common:SlicedScroll'
+        sort:
+          $ref: '#/components/schemas/_common:Sort'
+        _source:
+          $ref: '#/components/schemas/_core.search:SourceConfig'
+        fields:
+          description: |-
+            Array of wildcard (`*`) patterns.
+            The request returns values for field names matching these patterns in the `hits.fields` property of the response.
+          type: array
+          items:
+            $ref: '#/components/schemas/_common.query_dsl:FieldAndFormat'
+        suggest:
+          $ref: '#/components/schemas/_core.search:Suggester'
+        terminate_after:
+          description: |-
+            Maximum number of documents to collect for each shard.
+            If a query reaches this limit, OpenSearch terminates the query early.
+            OpenSearch collects documents before sorting.
+            Use with caution.
+            OpenSearch applies this parameter to each shard handling the request.
+            When possible, let OpenSearch perform early termination automatically.
+            Avoid specifying this parameter for requests that target data streams with backing indices across multiple data tiers.
+            If set to `0` (default), the query does not terminate early.
+          type: number
+        timeout:
+          description: |-
+            Specifies the period of time to wait for a response from each shard.
+            If no response is received before the timeout expires, the request fails and returns an error.
+            Defaults to no timeout.
+          type: string
+        track_scores:
+          description: If true, calculate and return document scores, even if the scores are not used for sorting.
+          type: boolean
+        version:
+          description: If true, returns document version as part of a hit.
+          type: boolean
+        seq_no_primary_term:
+          description: If `true`, returns sequence number and primary term of the last modification of each hit.
+          type: boolean
+        stored_fields:
+          $ref: '#/components/schemas/_common:Fields'
+        pit:
+          $ref: '#/components/schemas/_core.search:PointInTimeReference'
+        runtime_mappings:
+          $ref: '#/components/schemas/_common.mapping:RuntimeFields'
+        stats:
+          description: |-
+            Stats groups to associate with the search.
+            Each group maintains a statistics aggregation for its associated searches.
+            You can retrieve these stats using the indices stats API.
+          type: array
+          items:
+            type: string
+      description: The search definition using the Query DSL.
+    asynchronous_search._common:StatsResponse:
+      type: object
+      properties:
+        _nodes:
+          $ref: '#/components/schemas/_common:NodeStatistics'
+        cluster_name:
+          type: string
+        nodes:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/asynchronous_search._common:NodesStats'
     cat._common:CatPitSegmentsRecord:
       type: object
       properties:
@@ -40408,44 +40907,44 @@ components:
           description: |-
             Disk space used by the node's shards. Does not include disk space for the translog or unassigned shards.
             IMPORTANT: This metric double-counts disk space for hard-linked files, such as those created when shrinking, splitting, or cloning an index.
-          anyOf:
-            - $ref: '#/components/schemas/_common:ByteSize'
-            - type: 'null'
+          type:
+            - 'null'
+            - string
         disk.used:
           description: |-
             Total disk space in use.
             OpenSearch retrieves this metric from the node's operating system (OS).
             The metric includes disk space for: OpenSearch, including the translog and unassigned shards; the node's operating system; any other applications or files on the node.
             Unlike `disk.indices`, this metric does not double-count disk space for hard-linked files.
-          anyOf:
-            - $ref: '#/components/schemas/_common:ByteSize'
-            - type: 'null'
+          type:
+            - 'null'
+            - string
         disk.avail:
           description: |-
             Free disk space available to OpenSearch.
             OpenSearch retrieves this metric from the node's operating system.
             Disk-based shard allocation uses this metric to assign shards to nodes based on available disk space.
-          anyOf:
-            - $ref: '#/components/schemas/_common:ByteSize'
-            - type: 'null'
+          type:
+            - 'null'
+            - string
         disk.total:
           description: Total disk space for the node, including in-use and available space.
-          anyOf:
-            - $ref: '#/components/schemas/_common:ByteSize'
-            - type: 'null'
+          type:
+            - 'null'
+            - string
         disk.percent:
           description: Total percentage of disk space in use. Calculated as `disk.used / disk.total`.
-          anyOf:
+          oneOf:
             - $ref: '#/components/schemas/_common:Percentage'
             - type: 'null'
         host:
           description: Network host for the node. Set using the `network.host` setting.
-          anyOf:
+          oneOf:
             - $ref: '#/components/schemas/_common:Host'
             - type: 'null'
         ip:
           description: IP address and port for the node.
-          anyOf:
+          oneOf:
             - $ref: '#/components/schemas/_common:Ip'
             - type: 'null'
         node:
@@ -40596,352 +41095,640 @@ components:
             - string
         completion.size:
           description: size of completion
-          type: string
+          type:
+            - 'null'
+            - string
         pri.completion.size:
           description: size of completion
-          type: string
+          type:
+            - 'null'
+            - string
         fielddata.memory_size:
           description: used fielddata cache
-          type: string
+          type:
+            - 'null'
+            - string
         pri.fielddata.memory_size:
           description: used fielddata cache
-          type: string
+          type:
+            - 'null'
+            - string
         fielddata.evictions:
           description: fielddata evictions
-          type: string
+          type:
+            - 'null'
+            - string
         pri.fielddata.evictions:
           description: fielddata evictions
-          type: string
+          type:
+            - 'null'
+            - string
         query_cache.memory_size:
           description: used query cache
-          type: string
+          type:
+            - 'null'
+            - string
         pri.query_cache.memory_size:
           description: used query cache
-          type: string
+          type:
+            - 'null'
+            - string
         query_cache.evictions:
           description: query cache evictions
-          type: string
+          type:
+            - 'null'
+            - string
         pri.query_cache.evictions:
           description: query cache evictions
-          type: string
+          type:
+            - 'null'
+            - string
         request_cache.memory_size:
           description: used request cache
-          type: string
+          type:
+            - 'null'
+            - string
         pri.request_cache.memory_size:
           description: used request cache
-          type: string
+          type:
+            - 'null'
+            - string
         request_cache.evictions:
           description: request cache evictions
-          type: string
+          type:
+            - 'null'
+            - string
         pri.request_cache.evictions:
           description: request cache evictions
-          type: string
+          type:
+            - 'null'
+            - string
         request_cache.hit_count:
           description: request cache hit count
-          type: string
+          type:
+            - 'null'
+            - string
         pri.request_cache.hit_count:
           description: request cache hit count
-          type: string
+          type:
+            - 'null'
+            - string
         request_cache.miss_count:
           description: request cache miss count
-          type: string
+          type:
+            - 'null'
+            - string
         pri.request_cache.miss_count:
           description: request cache miss count
-          type: string
+          type:
+            - 'null'
+            - string
         flush.total:
           description: number of flushes
-          type: string
+          type:
+            - 'null'
+            - string
         pri.flush.total:
           description: number of flushes
-          type: string
+          type:
+            - 'null'
+            - string
         flush.total_time:
           description: time spent in flush
-          type: string
+          type:
+            - 'null'
+            - string
         pri.flush.total_time:
           description: time spent in flush
-          type: string
+          type:
+            - 'null'
+            - string
         get.current:
           description: number of current get ops
-          type: string
+          type:
+            - 'null'
+            - string
         pri.get.current:
           description: number of current get ops
-          type: string
+          type:
+            - 'null'
+            - string
         get.time:
           description: time spent in get
-          type: string
+          type:
+            - 'null'
+            - string
         pri.get.time:
           description: time spent in get
-          type: string
+          type:
+            - 'null'
+            - string
         get.total:
           description: number of get ops
-          type: string
+          type:
+            - 'null'
+            - string
         pri.get.total:
           description: number of get ops
-          type: string
+          type:
+            - 'null'
+            - string
         get.exists_time:
           description: time spent in successful gets
-          type: string
+          type:
+            - 'null'
+            - string
         pri.get.exists_time:
           description: time spent in successful gets
-          type: string
+          type:
+            - 'null'
+            - string
         get.exists_total:
           description: number of successful gets
-          type: string
+          type:
+            - 'null'
+            - string
         pri.get.exists_total:
           description: number of successful gets
-          type: string
+          type:
+            - 'null'
+            - string
         get.missing_time:
           description: time spent in failed gets
-          type: string
+          type:
+            - 'null'
+            - string
         pri.get.missing_time:
           description: time spent in failed gets
-          type: string
+          type:
+            - 'null'
+            - string
         get.missing_total:
           description: number of failed gets
-          type: string
+          type:
+            - 'null'
+            - string
         pri.get.missing_total:
           description: number of failed gets
-          type: string
+          type:
+            - 'null'
+            - string
         indexing.delete_current:
           description: number of current deletions
-          type: string
+          type:
+            - 'null'
+            - string
         pri.indexing.delete_current:
           description: number of current deletions
-          type: string
+          type:
+            - 'null'
+            - string
         indexing.delete_time:
           description: time spent in deletions
-          type: string
+          type:
+            - 'null'
+            - string
         pri.indexing.delete_time:
           description: time spent in deletions
-          type: string
+          type:
+            - 'null'
+            - string
         indexing.delete_total:
           description: number of delete ops
-          type: string
+          type:
+            - 'null'
+            - string
         pri.indexing.delete_total:
           description: number of delete ops
-          type: string
+          type:
+            - 'null'
+            - string
         indexing.index_current:
           description: number of current indexing ops
-          type: string
+          type:
+            - 'null'
+            - string
         pri.indexing.index_current:
           description: number of current indexing ops
-          type: string
+          type:
+            - 'null'
+            - string
         indexing.index_time:
           description: time spent in indexing
-          type: string
+          type:
+            - 'null'
+            - string
         pri.indexing.index_time:
           description: time spent in indexing
-          type: string
+          type:
+            - 'null'
+            - string
         indexing.index_total:
           description: number of indexing ops
-          type: string
+          type:
+            - 'null'
+            - string
         pri.indexing.index_total:
           description: number of indexing ops
-          type: string
+          type:
+            - 'null'
+            - string
         indexing.index_failed:
           description: number of failed indexing ops
-          type: string
+          type:
+            - 'null'
+            - string
         pri.indexing.index_failed:
           description: number of failed indexing ops
-          type: string
+          type:
+            - 'null'
+            - string
         merges.current:
           description: number of current merges
-          type: string
+          type:
+            - 'null'
+            - string
         pri.merges.current:
           description: number of current merges
-          type: string
+          type:
+            - 'null'
+            - string
         merges.current_docs:
           description: number of current merging docs
-          type: string
+          type:
+            - 'null'
+            - string
         pri.merges.current_docs:
           description: number of current merging docs
-          type: string
+          type:
+            - 'null'
+            - string
         merges.current_size:
           description: size of current merges
-          type: string
+          type:
+            - 'null'
+            - string
         pri.merges.current_size:
           description: size of current merges
-          type: string
+          type:
+            - 'null'
+            - string
         merges.total:
           description: number of completed merge ops
-          type: string
+          type:
+            - 'null'
+            - string
         pri.merges.total:
           description: number of completed merge ops
-          type: string
+          type:
+            - 'null'
+            - string
         merges.total_docs:
           description: docs merged
-          type: string
+          type:
+            - 'null'
+            - string
         pri.merges.total_docs:
           description: docs merged
-          type: string
+          type:
+            - 'null'
+            - string
         merges.total_size:
           description: size merged
-          type: string
+          type:
+            - 'null'
+            - string
         pri.merges.total_size:
           description: size merged
-          type: string
+          type:
+            - 'null'
+            - string
         merges.total_time:
           description: time spent in merges
-          type: string
+          type:
+            - 'null'
+            - string
         pri.merges.total_time:
           description: time spent in merges
-          type: string
+          type:
+            - 'null'
+            - string
         refresh.total:
           description: total refreshes
-          type: string
+          type:
+            - 'null'
+            - string
         pri.refresh.total:
           description: total refreshes
-          type: string
+          type:
+            - 'null'
+            - string
         refresh.time:
           description: time spent in refreshes
-          type: string
+          type:
+            - 'null'
+            - string
         pri.refresh.time:
           description: time spent in refreshes
-          type: string
+          type:
+            - 'null'
+            - string
         refresh.external_total:
           description: total external refreshes
-          type: string
+          type:
+            - 'null'
+            - string
         pri.refresh.external_total:
           description: total external refreshes
-          type: string
+          type:
+            - 'null'
+            - string
         refresh.external_time:
           description: time spent in external refreshes
-          type: string
+          type:
+            - 'null'
+            - string
         pri.refresh.external_time:
           description: time spent in external refreshes
-          type: string
+          type:
+            - 'null'
+            - string
         refresh.listeners:
           description: number of pending refresh listeners
-          type: string
+          type:
+            - 'null'
+            - string
         pri.refresh.listeners:
           description: number of pending refresh listeners
-          type: string
+          type:
+            - 'null'
+            - string
         search.fetch_current:
           description: current fetch phase ops
-          type: string
+          type:
+            - 'null'
+            - string
         pri.search.fetch_current:
           description: current fetch phase ops
-          type: string
+          type:
+            - 'null'
+            - string
         search.fetch_time:
           description: time spent in fetch phase
-          type: string
+          type:
+            - 'null'
+            - string
         pri.search.fetch_time:
           description: time spent in fetch phase
-          type: string
+          type:
+            - 'null'
+            - string
         search.fetch_total:
           description: total fetch ops
-          type: string
+          type:
+            - 'null'
+            - string
         pri.search.fetch_total:
           description: total fetch ops
-          type: string
+          type:
+            - 'null'
+            - string
         search.open_contexts:
           description: open search contexts
-          type: string
+          type:
+            - 'null'
+            - string
         pri.search.open_contexts:
           description: open search contexts
-          type: string
+          type:
+            - 'null'
+            - string
         search.query_current:
           description: current query phase ops
-          type: string
+          type:
+            - 'null'
+            - string
         pri.search.query_current:
           description: current query phase ops
-          type: string
+          type:
+            - 'null'
+            - string
         search.query_time:
           description: time spent in query phase
-          type: string
+          type:
+            - 'null'
+            - string
         pri.search.query_time:
           description: time spent in query phase
-          type: string
+          type:
+            - 'null'
+            - string
         search.query_total:
           description: total query phase ops
-          type: string
+          type:
+            - 'null'
+            - string
         pri.search.query_total:
           description: total query phase ops
-          type: string
+          type:
+            - 'null'
+            - string
+        search.concurrent_query_current:
+          type:
+            - 'null'
+            - string
+        pri.search.concurrent_query_current:
+          type:
+            - 'null'
+            - string
+        search.concurrent_query_time:
+          type:
+            - 'null'
+            - string
+        pri.search.concurrent_query_time:
+          type:
+            - 'null'
+            - string
+        search.concurrent_query_total:
+          type:
+            - 'null'
+            - string
+        pri.search.concurrent_query_total:
+          type:
+            - 'null'
+            - string
+        search.concurrent_avg_slice_count:
+          type:
+            - 'null'
+            - string
+        pri.search.concurrent_avg_slice_count:
+          type:
+            - 'null'
+            - string
         search.scroll_current:
           description: open scroll contexts
-          type: string
+          type:
+            - 'null'
+            - string
         pri.search.scroll_current:
           description: open scroll contexts
-          type: string
+          type:
+            - 'null'
+            - string
         search.scroll_time:
           description: time scroll contexts held open
-          type: string
+          type:
+            - 'null'
+            - string
         pri.search.scroll_time:
           description: time scroll contexts held open
-          type: string
+          type:
+            - 'null'
+            - string
         search.scroll_total:
           description: completed scroll contexts
-          type: string
+          type:
+            - 'null'
+            - string
         pri.search.scroll_total:
           description: completed scroll contexts
-          type: string
+          type:
+            - 'null'
+            - string
+        search.point_in_time_current:
+          type:
+            - 'null'
+            - string
+        pri.search.point_in_time_current:
+          type:
+            - 'null'
+            - string
+        search.point_in_time_time:
+          type:
+            - 'null'
+            - string
+        pri.search.point_in_time_time:
+          type:
+            - 'null'
+            - string
+        search.point_in_time_total:
+          type:
+            - 'null'
+            - string
+        pri.search.point_in_time_total:
+          type:
+            - 'null'
+            - string
         segments.count:
           description: number of segments
-          type: string
+          type:
+            - 'null'
+            - string
         pri.segments.count:
           description: number of segments
-          type: string
+          type:
+            - 'null'
+            - string
         segments.memory:
           description: memory used by segments
-          type: string
+          type:
+            - 'null'
+            - string
         pri.segments.memory:
           description: memory used by segments
-          type: string
+          type:
+            - 'null'
+            - string
         segments.index_writer_memory:
           description: memory used by index writer
-          type: string
+          type:
+            - 'null'
+            - string
         pri.segments.index_writer_memory:
           description: memory used by index writer
-          type: string
+          type:
+            - 'null'
+            - string
         segments.version_map_memory:
           description: memory used by version map
-          type: string
+          type:
+            - 'null'
+            - string
         pri.segments.version_map_memory:
           description: memory used by version map
-          type: string
+          type:
+            - 'null'
+            - string
         segments.fixed_bitset_memory:
           description: memory used by fixed bit sets for nested object field types and export type filters for types referred in _parent fields
-          type: string
+          type:
+            - 'null'
+            - string
         pri.segments.fixed_bitset_memory:
           description: memory used by fixed bit sets for nested object field types and export type filters for types referred in _parent fields
-          type: string
+          type:
+            - 'null'
+            - string
         warmer.current:
           description: current warmer ops
-          type: string
+          type:
+            - 'null'
+            - string
         pri.warmer.current:
           description: current warmer ops
-          type: string
+          type:
+            - 'null'
+            - string
         warmer.total:
           description: total warmer ops
-          type: string
+          type:
+            - 'null'
+            - string
         pri.warmer.total:
           description: total warmer ops
-          type: string
+          type:
+            - 'null'
+            - string
         warmer.total_time:
           description: time spent in warmers
-          type: string
+          type:
+            - 'null'
+            - string
         pri.warmer.total_time:
           description: time spent in warmers
-          type: string
+          type:
+            - 'null'
+            - string
         suggest.current:
           description: number of current suggest ops
-          type: string
+          type:
+            - 'null'
+            - string
         pri.suggest.current:
           description: number of current suggest ops
-          type: string
+          type:
+            - 'null'
+            - string
         suggest.time:
           description: time spend in suggest
-          type: string
+          type:
+            - 'null'
+            - string
         pri.suggest.time:
           description: time spend in suggest
-          type: string
+          type:
+            - 'null'
+            - string
         suggest.total:
           description: number of suggest ops
-          type: string
+          type:
+            - 'null'
+            - string
         pri.suggest.total:
           description: number of suggest ops
-          type: string
+          type:
+            - 'null'
+            - string
         memory.total:
           description: total used memory
           type: string
@@ -40950,36 +41737,6 @@ components:
           type: string
         search.throttled:
           description: indicates if the index is search throttled
-          type: string
-        bulk.total_operations:
-          description: number of bulk shard ops
-          type: string
-        pri.bulk.total_operations:
-          description: number of bulk shard ops
-          type: string
-        bulk.total_time:
-          description: time spend in shard bulk
-          type: string
-        pri.bulk.total_time:
-          description: time spend in shard bulk
-          type: string
-        bulk.total_size_in_bytes:
-          description: total size in bytes of shard bulk
-          type: string
-        pri.bulk.total_size_in_bytes:
-          description: total size in bytes of shard bulk
-          type: string
-        bulk.avg_time:
-          description: average time spend in shard bulk
-          type: string
-        pri.bulk.avg_time:
-          description: average time spend in shard bulk
-          type: string
-        bulk.avg_size_in_bytes:
-          description: average size in bytes of shard bulk
-          type: string
-        pri.bulk.avg_size_in_bytes:
-          description: average size in bytes of shard bulk
           type: string
     cat.master:MasterRecord:
       type: object
@@ -41055,11 +41812,11 @@ components:
           description: The Java version.
           type: string
         disk.total:
-          $ref: '#/components/schemas/_common:ByteSize'
+          type: string
         disk.used:
-          $ref: '#/components/schemas/_common:ByteSize'
+          type: string
         disk.avail:
-          $ref: '#/components/schemas/_common:ByteSize'
+          type: string
         disk.used_percent:
           $ref: '#/components/schemas/_common:Percentage'
         heap.current:
@@ -41121,7 +41878,7 @@ components:
             Indicates whether the node is the elected master node.
             Returned values include `*`(elected master) and `-`(not elected master).
           type: string
-          x-version-deprecated: 2.0.0
+          x-version-deprecated: '2.0'
           x-deprecation-message: To promote inclusive language, use 'cluster_manager' instead.
         name:
           $ref: '#/components/schemas/_common:Name'
@@ -41272,6 +42029,14 @@ components:
         search.query_total:
           description: The total query phase operations.
           type: string
+        search.concurrent_query_current:
+          type: string
+        search.concurrent_query_time:
+          type: string
+        search.concurrent_query_total:
+          type: string
+        search.concurrent_avg_slice_count:
+          type: string
         search.scroll_current:
           description: The open scroll contexts.
           type: string
@@ -41280,6 +42045,12 @@ components:
           type: string
         search.scroll_total:
           description: The completed scroll contexts.
+          type: string
+        search.point_in_time_current:
+          type: string
+        search.point_in_time_time:
+          type: string
+        search.point_in_time_total:
           type: string
         segments.count:
           description: The number of segments.
@@ -41364,11 +42135,11 @@ components:
         start_time:
           $ref: '#/components/schemas/_common:DateTime'
         start_time_millis:
-          $ref: '#/components/schemas/_common:EpochTimeUnitMillis'
+          $ref: '#/components/schemas/_common:StringifiedEpochTimeUnitMillis'
         stop_time:
           $ref: '#/components/schemas/_common:DateTime'
         stop_time_millis:
-          $ref: '#/components/schemas/_common:EpochTimeUnitMillis'
+          $ref: '#/components/schemas/_common:StringifiedEpochTimeUnitMillis'
         time:
           $ref: '#/components/schemas/_common:Duration'
         type:
@@ -41472,9 +42243,9 @@ components:
             Also, OpenSearch creates extra deleted documents to internally track the recent history of operations on a shard.
           type: string
         size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         size.memory:
-          $ref: '#/components/schemas/_common:ByteSize'
+          type: string
         committed:
           description: |-
             If `true`, the segment is synced to disk.
@@ -41531,7 +42302,9 @@ components:
             - string
         id:
           description: The unique identifier for the node.
-          type: string
+          type:
+            - 'null'
+            - string
         node:
           description: The name of node.
           type:
@@ -41539,7 +42312,9 @@ components:
             - string
         sync_id:
           description: The sync identifier.
-          type: string
+          type:
+            - 'null'
+            - string
         unassigned.reason:
           description: |-
             The reason for the last change to the state of an unassigned shard.
@@ -41562,204 +42337,372 @@ components:
             `REINITIALIZED`: When a shard moves from started back to initializing.
             `REPLICA_ADDED`: Unassigned as a result of explicit addition of a replica.
             `REROUTE_CANCELLED`: Unassigned as a result of explicit cancel reroute command.
-          type: string
+          type:
+            - 'null'
+            - string
         unassigned.at:
           description: The time at which the shard became unassigned in Coordinated Universal Time (UTC).
-          type: string
+          type:
+            - 'null'
+            - string
         unassigned.for:
           description: The time at which the shard was requested to be unassigned in Coordinated Universal Time (UTC).
-          type: string
+          type:
+            - 'null'
+            - string
         unassigned.details:
           description: |-
             Additional details as to why the shard became unassigned.
             It does not explain why the shard is not assigned; use the cluster allocation explain API for that information.
-          type: string
+          type:
+            - 'null'
+            - string
         recoverysource.type:
           description: The type of recovery source.
-          type: string
+          type:
+            - 'null'
+            - string
         completion.size:
           description: The size of completion.
-          type: string
+          type:
+            - 'null'
+            - string
         fielddata.memory_size:
           description: The used fielddata cache memory.
-          type: string
+          type:
+            - 'null'
+            - string
         fielddata.evictions:
           description: The fielddata cache evictions.
-          type: string
+          type:
+            - 'null'
+            - string
         query_cache.memory_size:
           description: The used query cache memory.
-          type: string
+          type:
+            - 'null'
+            - string
         query_cache.evictions:
           description: The query cache evictions.
-          type: string
+          type:
+            - 'null'
+            - string
         flush.total:
           description: The number of flushes.
-          type: string
+          type:
+            - 'null'
+            - string
         flush.total_time:
           description: The time spent in flush.
-          type: string
+          type:
+            - 'null'
+            - string
         get.current:
           description: The number of current get operations.
-          type: string
+          type:
+            - 'null'
+            - string
         get.time:
           description: The time spent in get operations.
-          type: string
+          type:
+            - 'null'
+            - string
         get.total:
           description: The number of get operations.
-          type: string
+          type:
+            - 'null'
+            - string
         get.exists_time:
           description: The time spent in successful get operations.
-          type: string
+          type:
+            - 'null'
+            - string
         get.exists_total:
           description: The number of successful get operations.
-          type: string
+          type:
+            - 'null'
+            - string
         get.missing_time:
           description: The time spent in failed get operations.
-          type: string
+          type:
+            - 'null'
+            - string
         get.missing_total:
           description: The number of failed get operations.
-          type: string
+          type:
+            - 'null'
+            - string
         indexing.delete_current:
           description: The number of current deletion operations.
-          type: string
+          type:
+            - 'null'
+            - string
         indexing.delete_time:
           description: The time spent in deletion operations.
-          type: string
+          type:
+            - 'null'
+            - string
         indexing.delete_total:
           description: The number of delete operations.
-          type: string
+          type:
+            - 'null'
+            - string
         indexing.index_current:
           description: The number of current indexing operations.
-          type: string
+          type:
+            - 'null'
+            - string
         indexing.index_time:
           description: The time spent in indexing operations.
-          type: string
+          type:
+            - 'null'
+            - string
         indexing.index_total:
           description: The number of indexing operations.
-          type: string
+          type:
+            - 'null'
+            - string
         indexing.index_failed:
           description: The number of failed indexing operations.
-          type: string
+          type:
+            - 'null'
+            - string
         merges.current:
           description: The number of current merge operations.
-          type: string
+          type:
+            - 'null'
+            - string
         merges.current_docs:
           description: The number of current merging documents.
-          type: string
+          type:
+            - 'null'
+            - string
         merges.current_size:
           description: The size of current merge operations.
-          type: string
+          type:
+            - 'null'
+            - string
         merges.total:
           description: The number of completed merge operations.
-          type: string
+          type:
+            - 'null'
+            - string
         merges.total_docs:
           description: The number of merged documents.
-          type: string
+          type:
+            - 'null'
+            - string
         merges.total_size:
           description: The size of current merges.
-          type: string
+          type:
+            - 'null'
+            - string
         merges.total_time:
           description: The time spent merging documents.
-          type: string
+          type:
+            - 'null'
+            - string
         refresh.total:
           description: The total number of refreshes.
-          type: string
+          type:
+            - 'null'
+            - string
         refresh.time:
           description: The time spent in refreshes.
-          type: string
+          type:
+            - 'null'
+            - string
         refresh.external_total:
           description: The total number of external refreshes.
-          type: string
+          type:
+            - 'null'
+            - string
         refresh.external_time:
           description: The time spent in external refreshes.
-          type: string
+          type:
+            - 'null'
+            - string
         refresh.listeners:
           description: The number of pending refresh listeners.
-          type: string
+          type:
+            - 'null'
+            - string
         search.fetch_current:
           description: The current fetch phase operations.
-          type: string
+          type:
+            - 'null'
+            - string
         search.fetch_time:
           description: The time spent in fetch phase.
-          type: string
+          type:
+            - 'null'
+            - string
         search.fetch_total:
           description: The total number of fetch operations.
-          type: string
+          type:
+            - 'null'
+            - string
         search.open_contexts:
           description: The number of open search contexts.
-          type: string
+          type:
+            - 'null'
+            - string
         search.query_current:
           description: The current query phase operations.
-          type: string
+          type:
+            - 'null'
+            - string
         search.query_time:
           description: The time spent in query phase.
-          type: string
+          type:
+            - 'null'
+            - string
         search.query_total:
           description: The total number of query phase operations.
-          type: string
+          type:
+            - 'null'
+            - string
+        search.concurrent_query_current:
+          type:
+            - 'null'
+            - string
+        search.concurrent_query_time:
+          type:
+            - 'null'
+            - string
+        search.concurrent_query_total:
+          type:
+            - 'null'
+            - string
+        search.concurrent_avg_slice_count:
+          type:
+            - 'null'
+            - string
         search.scroll_current:
           description: The open scroll contexts.
-          type: string
+          type:
+            - 'null'
+            - string
         search.scroll_time:
           description: The time scroll contexts were held open.
-          type: string
+          type:
+            - 'null'
+            - string
         search.scroll_total:
           description: The number of completed scroll contexts.
-          type: string
+          type:
+            - 'null'
+            - string
+        search.point_in_time_current:
+          type:
+            - 'null'
+            - string
+        search.point_in_time_time:
+          type:
+            - 'null'
+            - string
+        search.point_in_time_total:
+          type:
+            - 'null'
+            - string
+        search.search_idle_reactivate_count_total:
+          type:
+            - 'null'
+            - string
         segments.count:
           description: The number of segments.
-          type: string
+          type:
+            - 'null'
+            - string
         segments.memory:
           description: The memory used by segments.
-          type: string
+          type:
+            - 'null'
+            - string
         segments.index_writer_memory:
           description: The memory used by the index writer.
-          type: string
+          type:
+            - 'null'
+            - string
         segments.version_map_memory:
           description: The memory used by the version map.
-          type: string
+          type:
+            - 'null'
+            - string
         segments.fixed_bitset_memory:
           description: The memory used by fixed bit sets for nested object field types and export type filters for types referred in `_parent` fields.
-          type: string
+          type:
+            - 'null'
+            - string
         seq_no.max:
           description: The maximum sequence number.
-          type: string
+          type:
+            - 'null'
+            - string
         seq_no.local_checkpoint:
           description: The local checkpoint.
-          type: string
+          type:
+            - 'null'
+            - string
         seq_no.global_checkpoint:
           description: The global checkpoint.
-          type: string
+          type:
+            - 'null'
+            - string
         warmer.current:
           description: The number of current warmer operations.
-          type: string
+          type:
+            - 'null'
+            - string
         warmer.total:
           description: The total number of warmer operations.
-          type: string
+          type:
+            - 'null'
+            - string
         warmer.total_time:
           description: The time spent in warmer operations.
-          type: string
+          type:
+            - 'null'
+            - string
         path.data:
           description: The shard data path.
-          type: string
+          type:
+            - 'null'
+            - string
         path.state:
           description: The shard state path.
-          type: string
+          type:
+            - 'null'
+            - string
         bulk.total_operations:
           description: The number of bulk shard operations.
-          type: string
+          type:
+            - 'null'
+            - string
         bulk.total_time:
           description: The time spent in shard bulk operations.
-          type: string
+          type:
+            - 'null'
+            - string
         bulk.total_size_in_bytes:
           description: The total size in bytes of shard bulk operations.
-          type: string
+          type:
+            - 'null'
+            - string
         bulk.avg_time:
           description: The average time spent in shard bulk operations.
-          type: string
+          type:
+            - 'null'
+            - string
         bulk.avg_size_in_bytes:
           description: The average size in bytes of shard bulk operations.
-          type: string
+          type:
+            - 'null'
+            - string
+        docs.deleted:
+          type:
+            - 'null'
+            - string
     cat.snapshots:SnapshotsRecord:
       type: object
       properties:
@@ -41922,6 +42865,8 @@ components:
         completed:
           description: The number of completed tasks.
           type: string
+        total_wait_time:
+          type: string
         core:
           description: The core number of active threads allowed in a scaling thread pool.
           type:
@@ -42012,7 +42957,7 @@ components:
         in_sync:
           type: boolean
         matching_size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         matching_sync_id:
           type: boolean
         store_exception:
@@ -42034,7 +42979,9 @@ components:
         shard_sizes:
           type: object
           additionalProperties:
-            type: number
+            oneOf:
+              - $ref: '#/components/schemas/_common:Bytes'
+              - $ref: '#/components/schemas/_common:StorageSize'
         shard_data_set_sizes:
           type: object
           additionalProperties:
@@ -42089,12 +43036,18 @@ components:
       properties:
         path:
           type: string
+        total:
+          $ref: '#/components/schemas/_common:StorageSize'
         total_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        used:
+          $ref: '#/components/schemas/_common:StorageSize'
         used_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        free:
+          $ref: '#/components/schemas/_common:StorageSize'
         free_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         free_disk_percent:
           type: number
         used_disk_percent:
@@ -42206,6 +43159,35 @@ components:
         - REINITIALIZED
         - REPLICA_ADDED
         - REROUTE_CANCELLED
+    cluster.decommission_awareness:DecommissionStatusResponse:
+      oneOf:
+        - $ref: '#/components/schemas/cluster.decommission_awareness:ZoneDecommissionStatusResponse'
+    cluster.decommission_awareness:ZoneDecommissionStatusResponse:
+      type: object
+      additionalProperties:
+        type: string
+        enum:
+          - DRAINING
+          - FAILED
+          - INIT
+          - IN_PROGRESS
+          - SUCCESSFUL
+    cluster.health:AwarenessAttributeStats:
+      type: object
+      x-version-added: '2.5'
+      properties:
+        active_shards:
+          type: number
+        initializing_shards:
+          type: number
+        relocating_shards:
+          type: number
+        unassigned_shards:
+          type: number
+        data_nodes:
+          type: number
+        weight:
+          type: number
     cluster.health:HealthResponseBody:
       type: object
       properties:
@@ -42217,11 +43199,25 @@ components:
           type: number
         active_shards_percent_as_number:
           $ref: '#/components/schemas/_common:Percentage'
+        awareness_attributes:
+          description: Cluster health information for each awareness attribute.
+          type: object
+          x-version-added: '2.5'
+          additionalProperties:
+            $ref: '#/components/schemas/cluster.health:AwarenessAttributeStats'
         cluster_name:
           $ref: '#/components/schemas/_common:Name'
         delayed_unassigned_shards:
           description: The number of shards whose allocation has been delayed by the timeout settings.
           type: number
+        discovered_master:
+          description: True if the master node has been discovered.
+          type: boolean
+          x-version-deprecated: '2.0'
+        discovered_cluster_manager:
+          description: True if the cluster manager node has been discovered.
+          type: boolean
+          x-version-added: '2.0'
         indices:
           type: object
           additionalProperties:
@@ -42251,7 +43247,7 @@ components:
         task_max_waiting_in_queue_millis:
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         timed_out:
-          description: If false the response returned within the period of time that is specified by the timeout parameter (30s by default)
+          description: If false the response returned within the period of time that is specified by the timeout parameter (30s by default).
           type: boolean
         unassigned_shards:
           description: The number of shards that are not allocated.
@@ -42617,18 +43613,38 @@ components:
     cluster.stats:ClusterFileSystem:
       type: object
       properties:
+        available:
+          description: |-
+            Total number of bytes available to JVM in file stores across all selected nodes.
+            Depending on operating system or process-level restrictions, this number may be less than `nodes.fs.free_in_byes`.
+            This is the actual amount of free disk space the selected OpenSearch nodes can use.
+          $ref: '#/components/schemas/_common:StorageSize'
         available_in_bytes:
           description: |-
             Total number of bytes available to JVM in file stores across all selected nodes.
             Depending on operating system or process-level restrictions, this number may be less than `nodes.fs.free_in_byes`.
             This is the actual amount of free disk space the selected OpenSearch nodes can use.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        free:
+          description: Total number of unallocated bytes in file stores across all selected nodes.
+          $ref: '#/components/schemas/_common:StorageSize'
         free_in_bytes:
           description: Total number of unallocated bytes in file stores across all selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        total:
+          description: Total size, of all file stores across all selected nodes.
+          $ref: '#/components/schemas/_common:StorageSize'
         total_in_bytes:
           description: Total size, in bytes, of all file stores across all selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        cache_reserved:
+          description: Total size, of all cache reserved across all selected nodes.
+          $ref: '#/components/schemas/_common:StorageSize'
+          x-version-added: '2.7'
+        cache_reserved_in_bytes:
+          description: Total size, in bytes, of all cache reserved across all selected nodes.
+          $ref: '#/components/schemas/_common:Bytes'
+          x-version-added: '2.7'
       required:
         - available_in_bytes
         - free_in_bytes
@@ -42715,6 +43731,8 @@ components:
     cluster.stats:ClusterJvm:
       type: object
       properties:
+        max_uptime:
+          $ref: '#/components/schemas/_common:Duration'
         max_uptime_in_millis:
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         mem:
@@ -42735,12 +43753,18 @@ components:
     cluster.stats:ClusterJvmMemory:
       type: object
       properties:
+        heap_max:
+          description: Maximum amount of memory available for use by the heap across all selected nodes.
+          $ref: '#/components/schemas/_common:StorageSize'
         heap_max_in_bytes:
           description: Maximum amount of memory, in bytes, available for use by the heap across all selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        heap_used:
+          description: Memory currently in use by the heap across all selected nodes.
+          $ref: '#/components/schemas/_common:StorageSize'
         heap_used_in_bytes:
           description: Memory, in bytes, currently in use by the heap across all selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - heap_max_in_bytes
         - heap_used_in_bytes
@@ -42811,10 +43835,16 @@ components:
           type: number
         master:
           type: number
+        cluster_manager:
+          type: number
+          x-version-added: '2.0'
         ml:
           type: number
         remote_cluster_client:
           type: number
+        search:
+          type: number
+          x-version-added: '2.4'
         total:
           type: number
         transform:
@@ -42824,17 +43854,10 @@ components:
       required:
         - coordinating_only
         - data
-        - data_cold
-        - data_content
-        - data_hot
-        - data_warm
         - ingest
         - master
-        - ml
         - remote_cluster_client
         - total
-        - transform
-        - voting_only
     cluster.stats:ClusterNodes:
       type: object
       properties:
@@ -42880,7 +43903,6 @@ components:
         - count
         - discovery_types
         - fs
-        - indexing_pressure
         - ingest
         - jvm
         - network_types
@@ -43081,10 +44103,10 @@ components:
           description: Total number of fields in all non-system indices, accounting for mapping deduplication.
           type: number
         total_deduplicated_mapping_size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         total_deduplicated_mapping_size_in_bytes:
           description: Total size of all mappings, in bytes, after deduplication and compression.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - field_types
     cluster.stats:IndexingPressure:
@@ -43100,7 +44122,7 @@ components:
         current:
           $ref: '#/components/schemas/cluster.stats:IndexingPressureMemorySummary'
         limit_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         total:
           $ref: '#/components/schemas/cluster.stats:IndexingPressureMemorySummary'
       required:
@@ -43111,19 +44133,19 @@ components:
       type: object
       properties:
         all_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         combined_coordinating_and_primary_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         coordinating_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         coordinating_rejections:
           type: number
         primary_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         primary_rejections:
           type: number
         replica_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         replica_rejections:
           type: number
       required:
@@ -43140,7 +44162,7 @@ components:
         primary_shard_count:
           type: number
         total_primary_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         version:
           $ref: '#/components/schemas/_common:VersionString'
       required:
@@ -43162,26 +44184,34 @@ components:
           type: string
       required:
         - count
-        - flavor
         - type
     cluster.stats:OperatingSystemMemoryInfo:
       type: object
       properties:
         adjusted_total_in_bytes:
           description: Total amount, in bytes, of memory across all selected nodes, but using the value specified using the `es.total_memory_bytes` system property instead of measured total memory for those nodes where that system property was set.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        free:
+          description: Amount, in bytes, of free physical memory across all selected nodes.
+          $ref: '#/components/schemas/_common:StorageSize'
         free_in_bytes:
           description: Amount, in bytes, of free physical memory across all selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         free_percent:
           description: Percentage of free physical memory across all selected nodes.
           type: number
+        total:
+          description: Total amount of physical memory across all selected nodes.
+          $ref: '#/components/schemas/_common:StorageSize'
         total_in_bytes:
           description: Total amount, in bytes, of physical memory across all selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        used:
+          description: Amount of physical memory in use across all selected nodes.
+          $ref: '#/components/schemas/_common:StorageSize'
         used_in_bytes:
           description: Amount, in bytes, of physical memory in use across all selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         used_percent:
           description: Percentage of physical memory in use across all selected nodes.
           type: number
@@ -43277,6 +44307,25 @@ components:
             - nodes
             - status
             - timestamp
+    cluster.weighted_routing:Weights:
+      allOf:
+        - $ref: '#/components/schemas/cluster.weighted_routing:WeightsBase'
+        - type: object
+          properties:
+            weights:
+              type: object
+    cluster.weighted_routing:WeightsBase:
+      type: object
+      properties:
+        _version:
+          $ref: '#/components/schemas/_common:VersionNumber'
+    cluster.weighted_routing:WeightsResponse:
+      allOf:
+        - $ref: '#/components/schemas/cluster.weighted_routing:Weights'
+        - type: object
+          properties:
+            discovered_cluster_manager:
+              type: boolean
     dangling_indices.list_dangling_indices:DanglingIndex:
       type: object
       properties:
@@ -43444,13 +44493,13 @@ components:
         max_docs:
           type: number
         min_size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         max_size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         min_primary_shard_size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         max_primary_shard_size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         min_primary_shard_docs:
           type: number
         max_primary_shard_docs:
@@ -44284,7 +45333,7 @@ components:
         durability:
           $ref: '#/components/schemas/indices._common:TranslogDurability'
         flush_threshold_size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         retention:
           $ref: '#/components/schemas/indices._common:TranslogRetention'
     indices._common:TranslogDurability:
@@ -44296,7 +45345,7 @@ components:
       type: object
       properties:
         size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         age:
           $ref: '#/components/schemas/_common:Duration'
     indices.add_block:IndicesBlockOptions:
@@ -44459,10 +45508,10 @@ components:
         maximum_timestamp:
           $ref: '#/components/schemas/_common:EpochTimeUnitMillis'
         store_size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         store_size_bytes:
           description: Total size, in bytes, of all shards for the data stream's backing indices.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - backing_indices
         - data_stream
@@ -44542,21 +45591,21 @@ components:
         percent:
           $ref: '#/components/schemas/_common:Percentage'
         recovered:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         recovered_in_bytes:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
         recovered_from_snapshot:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         recovered_from_snapshot_in_bytes:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
         reused:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         reused_in_bytes:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
         total:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         total_in_bytes:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - percent
         - recovered_in_bytes
@@ -44796,21 +45845,21 @@ components:
         max_docs:
           type: number
         max_size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         max_size_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         min_size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         min_size_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         max_primary_shard_size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         max_primary_shard_size_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         min_primary_shard_size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         min_primary_shard_size_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         max_primary_shard_docs:
           type: number
         min_primary_shard_docs:
@@ -44822,35 +45871,41 @@ components:
           type: object
           additionalProperties:
             oneOf:
-              - $ref: '#/components/schemas/indices.segments:ShardsSegment'
               - type: array
                 items:
                   $ref: '#/components/schemas/indices.segments:ShardsSegment'
+              - $ref: '#/components/schemas/indices.segments:ShardsSegment'
       required:
         - shards
     indices.segments:Segment:
       type: object
       properties:
+        generation:
+          type: integer
+        num_docs:
+          type: integer
+        deleted_docs:
+          type: integer
+        size:
+          $ref: '#/components/schemas/_common:StorageSize'
+        size_in_bytes:
+          $ref: '#/components/schemas/_common:Bytes'
+        memory:
+          $ref: '#/components/schemas/_common:StorageSize'
+        memory_in_bytes:
+          $ref: '#/components/schemas/_common:Bytes'
+        committed:
+          type: boolean
+        search:
+          type: boolean
+        version:
+          $ref: '#/components/schemas/_common:VersionString'
+        compound:
+          type: boolean
         attributes:
           type: object
           additionalProperties:
             type: string
-        committed:
-          type: boolean
-        compound:
-          type: boolean
-        deleted_docs:
-          type: number
-        generation:
-          type: number
-        search:
-          type: boolean
-        size_in_bytes:
-          type: number
-        num_docs:
-          type: number
-        version:
-          $ref: '#/components/schemas/_common:VersionString'
       required:
         - attributes
         - committed
@@ -45077,14 +46132,16 @@ components:
       properties:
         description:
           type: string
+        size:
+          $ref: '#/components/schemas/_common:StorageSize'
         size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         min_size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         max_size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         average_size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         count:
           type: number
       required:
@@ -46244,7 +47301,7 @@ components:
           type: string
           description: The model group name.
         latest_version:
-          type: number
+          type: integer
           description: The latest version.
         description:
           type: string
@@ -46401,16 +47458,16 @@ components:
       properties:
         estimated_size:
           description: Estimated memory used for the operation.
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         estimated_size_in_bytes:
           description: Estimated memory used, in bytes, for the operation.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         limit_size:
           description: Memory limit for the circuit breaker.
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         limit_size_in_bytes:
           description: Memory limit, in bytes, for the circuit breaker.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         overhead:
           description: A constant that all estimates for the circuit breaker are multiplied with to calculate a final estimate.
           type: number
@@ -46502,7 +47559,7 @@ components:
           type: number
         request_size_bytes:
           description: Cumulative size in bytes of all requests from this client.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         x_opaque_id:
           description: |-
             Value from the client's `x-opaque-id` HTTP header.
@@ -46622,34 +47679,38 @@ components:
       properties:
         available:
           description: Total amount of disk space available to this Java virtual machine on this file store.
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         available_in_bytes:
           description: Total number of bytes available to this Java virtual machine on this file store.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        cache_reserved:
+          x-version-added: '2.7'
+          description: Total number of cache bytes reserved available to this Java virtual machine on this file store.
+          $ref: '#/components/schemas/_common:StorageSize'
         cache_reserved_in_bytes:
           x-version-added: '2.7'
           description: Total number of cache bytes reserved available to this Java virtual machine on this file store.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         disk_queue:
           type: string
         disk_reads:
           type: number
         disk_read_size:
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         disk_read_size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         disk_writes:
           type: number
         disk_write_size:
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         disk_write_size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         free:
           description: Total amount of unallocated disk space in the file store.
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         free_in_bytes:
           description: Total number of unallocated bytes in the file store.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         mount:
           description: 'Mount point of the file store (for example: `/dev/sda2`).'
           type: string
@@ -46658,10 +47719,10 @@ components:
           type: string
         total:
           description: Total size of the file store.
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         total_in_bytes:
           description: Total size of the file store in bytes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         type:
           description: 'Type of the file store (ex: ext4).'
           type: string
@@ -46723,29 +47784,33 @@ components:
             Total disk space available to this Java virtual machine on all file stores.
             Depending on OS or process level restrictions, this might appear less than `free`.
             This is the actual amount of free disk space the OpenSearch node can utilize.
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         available_in_bytes:
           description: |-
             Total number of bytes available to this Java virtual machine on all file stores.
             Depending on OS or process level restrictions, this might appear less than `free_in_bytes`.
             This is the actual amount of free disk space the OpenSearch node can utilize.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         free:
           description: Total unallocated disk space in all file stores.
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         free_in_bytes:
           description: Total number of unallocated bytes in all file stores.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         total:
           description: Total size of all file stores.
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         total_in_bytes:
           description: Total size of all file stores in bytes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        cache_reserved:
+          x-version-added: '2.7'
+          description: Total size of cache bytes reserved in all file stores.
+          $ref: '#/components/schemas/_common:StorageSize'
         cache_reserved_in_bytes:
           x-version-added: '2.7'
           description: Total size of cache bytes reserved in all file stores.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
     nodes._common:GarbageCollector:
       type: object
       properties:
@@ -46791,12 +47856,12 @@ components:
       type: object
       properties:
         limit:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         limit_in_bytes:
           description: |-
             Configured memory limit, in bytes, for the indexing requests.
             Replica requests have an automatic limit that is 1.5x this value.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         current:
           $ref: '#/components/schemas/nodes._common:PressureMemory'
         total:
@@ -46830,6 +47895,8 @@ components:
             type: object
             additionalProperties:
               $ref: '#/components/schemas/nodes._common:KeyedProcessor'
+        time:
+          $ref: '#/components/schemas/_common:Duration'
         time_in_millis:
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
     nodes._common:IoStatDevice:
@@ -46915,24 +47982,39 @@ components:
     nodes._common:JvmMemoryStats:
       type: object
       properties:
+        heap_used:
+          description: Memory currently in use by the heap.
+          $ref: '#/components/schemas/_common:StorageSize'
         heap_used_in_bytes:
           description: Memory, in bytes, currently in use by the heap.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         heap_used_percent:
           description: Percentage of memory currently in use by the heap.
           type: number
+        heap_committed:
+          description: Amount of memory available for use by the heap.
+          $ref: '#/components/schemas/_common:StorageSize'
         heap_committed_in_bytes:
           description: Amount of memory, in bytes, available for use by the heap.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        heap_max:
+          description: Maximum amount of memory available for use by the heap.
+          $ref: '#/components/schemas/_common:StorageSize'
         heap_max_in_bytes:
           description: Maximum amount of memory, in bytes, available for use by the heap.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        non_heap_used:
+          description: Non-heap memory used.
+          $ref: '#/components/schemas/_common:StorageSize'
         non_heap_used_in_bytes:
           description: Non-heap memory used, in bytes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        non_heap_committed:
+          description: Amount of non-heap memory available.
+          $ref: '#/components/schemas/_common:StorageSize'
         non_heap_committed_in_bytes:
           description: Amount of non-heap memory available, in bytes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         pools:
           description: Contains statistics about heap memory usage for the node.
           type: object
@@ -46957,10 +48039,14 @@ components:
     nodes._common:LastGcStats:
       type: object
       properties:
+        used:
+          $ref: '#/components/schemas/_common:StorageSize'
         used_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        max:
+          $ref: '#/components/schemas/_common:StorageSize'
         max_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         usage_percent:
           type: number
     nodes._common:MemoryStats:
@@ -46970,28 +48056,37 @@ components:
           description: |-
             If the amount of physical memory has been overridden using the `es`.`total_memory_bytes` system property then this reports the overridden value in bytes.
             Otherwise it reports the same value as `total_in_bytes`.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         resident:
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         resident_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         share:
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         share_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         total_virtual:
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         total_virtual_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        total:
+          description: Total amount of physical memory.
+          $ref: '#/components/schemas/_common:StorageSize'
         total_in_bytes:
           description: Total amount of physical memory in bytes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        free:
+          description: Amount of free physical memory.
+          $ref: '#/components/schemas/_common:StorageSize'
         free_in_bytes:
           description: Amount of free physical memory in bytes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        used:
+          description: Amount of used physical memory.
+          $ref: '#/components/schemas/_common:StorageSize'
         used_in_bytes:
           description: Amount of used physical memory in bytes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
     nodes._common:NodeBufferPool:
       type: object
       properties:
@@ -47000,16 +48095,16 @@ components:
           type: number
         total_capacity:
           description: Total capacity of buffer pools.
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         total_capacity_in_bytes:
           description: Total capacity of buffer pools in bytes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         used:
           description: Size of buffer pools.
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         used_in_bytes:
           description: Size of buffer pools in bytes.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
     nodes._common:NodeReloadError:
       type: object
       properties:
@@ -47044,18 +48139,30 @@ components:
     nodes._common:Pool:
       type: object
       properties:
+        used:
+          description: Memory used by the heap.
+          $ref: '#/components/schemas/_common:StorageSize'
         used_in_bytes:
           description: Memory, in bytes, used by the heap.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        max:
+          description: Maximum amount of memory available for use by the heap.
+          $ref: '#/components/schemas/_common:StorageSize'
         max_in_bytes:
           description: Maximum amount of memory, in bytes, available for use by the heap.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        peak_used:
+          description: Largest amount of memory historically used by the heap.
+          $ref: '#/components/schemas/_common:StorageSize'
         peak_used_in_bytes:
           description: Largest amount of memory, in bytes, historically used by the heap.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        peak_max:
+          description: Largest amount of memory historically used by the heap.
+          $ref: '#/components/schemas/_common:StorageSize'
         peak_max_in_bytes:
           description: Largest amount of memory, in bytes, historically used by the heap.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         last_gc_stats:
           description: Most recent GC cycle stats for a particular memory pool.
           $ref: '#/components/schemas/nodes._common:LastGcStats'
@@ -47063,32 +48170,32 @@ components:
       type: object
       properties:
         all:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         all_in_bytes:
           description: Memory consumed, in bytes, by indexing requests in the coordinating, primary, or replica stage.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         combined_coordinating_and_primary:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         combined_coordinating_and_primary_in_bytes:
           description: |-
             Memory consumed, in bytes, by indexing requests in the coordinating or primary stage.
             This value is not the sum of coordinating and primary as a node can reuse the coordinating memory if the primary stage is executed locally.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         coordinating:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         coordinating_in_bytes:
           description: Memory consumed, in bytes, by indexing requests in the coordinating stage.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         primary:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         primary_in_bytes:
           description: Memory consumed, in bytes, by indexing requests in the primary stage.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         replica:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         replica_in_bytes:
           description: Memory consumed, in bytes, by indexing requests in the replica stage.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         coordinating_rejections:
           description: Number of indexing requests rejected in the coordinating stage.
           type: number
@@ -47208,13 +48315,13 @@ components:
         count:
           type: number
         uncompressed_size:
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         uncompressed_size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         compressed_size:
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         compressed_size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
     nodes._common:ShardAdmissionControlStats:
       type: object
       properties:
@@ -47229,8 +48336,10 @@ components:
     nodes._common:ShardCacheStats:
       type: object
       properties:
+        size:
+          $ref: '#/components/schemas/_common:StorageSize'
         size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         evictions:
           type: number
         hit_count:
@@ -47319,8 +48428,12 @@ components:
       properties:
         cancellation_count:
           type: number
+        current_max:
+          $ref: '#/components/schemas/_common:Duration'
         current_max_millis:
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
+        current_avg:
+          $ref: '#/components/schemas/_common:Duration'
         current_avg_millis:
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
     nodes._common:ShardSearchBackpressureTaskResourceTrackerElapsedTimeTrackerStats:
@@ -47328,8 +48441,12 @@ components:
       properties:
         cancellation_count:
           type: number
+        current_max:
+          $ref: '#/components/schemas/_common:Duration'
         current_max_millis:
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
+        current_avg:
+          $ref: '#/components/schemas/_common:Duration'
         current_avg_millis:
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
     nodes._common:ShardSearchBackpressureTaskResourceTrackerHeapUsageTrackerStats:
@@ -47337,12 +48454,18 @@ components:
       properties:
         cancellation_count:
           type: number
+        current_max:
+          $ref: '#/components/schemas/_common:StorageSize'
         current_max_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        current_avg:
+          $ref: '#/components/schemas/_common:StorageSize'
         current_avg_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
+        rolling_avg:
+          $ref: '#/components/schemas/_common:StorageSize'
         rolling_avg_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
     nodes._common:ShardSearchBackpressureTaskResourceTrackerStats:
       type: object
       properties:
@@ -47376,6 +48499,8 @@ components:
       properties:
         count:
           type: number
+        time:
+          $ref: '#/components/schemas/_common:Duration'
         time_in_millis:
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         current:
@@ -47522,6 +48647,11 @@ components:
         threads:
           description: Number of threads in the thread pool.
           type: number
+        total_wait_time:
+          description: |
+            The total amount of time that tasks spend waiting in the thread pool queue.
+            Currently, only `search`, `search_throttled`, and `index_searcher` thread pools support this metric.
+          $ref: '#/components/schemas/_common:Duration'
         total_wait_time_in_nanos:
           description: |
             The total amount of time that tasks spend waiting in the thread pool queue.
@@ -47554,10 +48684,10 @@ components:
           type: number
         rx_size:
           description: Size of RX packets received by the node during internal cluster communication.
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         rx_size_in_bytes:
           description: Size, in bytes, of RX packets received by the node during internal cluster communication.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         server_open:
           description: Current number of inbound TCP connections used for internal communication between nodes.
           type: number
@@ -47566,10 +48696,10 @@ components:
           type: number
         tx_size:
           description: Size of TX packets sent by the node during internal cluster communication.
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         tx_size_in_bytes:
           description: Size, in bytes, of TX packets sent by the node during internal cluster communication.
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         total_outbound_connections:
           description: |-
             The cumulative number of outbound transport connections that this node has opened since it started.
@@ -47671,7 +48801,7 @@ components:
           description: Total heap allowed to be used to hold recently indexed documents before they must be written to disk. This size is a shared pool across all shards on this node, and is controlled by Indexing Buffer settings.
           type: number
         total_indexing_buffer_in_bytes:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:Bytes'
         transport:
           $ref: '#/components/schemas/nodes.info:NodeInfoTransport'
         transport_address:
@@ -47741,9 +48871,9 @@ components:
           items:
             type: string
         max_content_length:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         max_content_length_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         publish_address:
           type: string
       required:
@@ -47784,25 +48914,25 @@ components:
       type: object
       properties:
         direct_max:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         direct_max_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         heap_init:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         heap_init_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         heap_max:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         heap_max_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         non_heap_init:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         non_heap_init_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         non_heap_max:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         non_heap_max_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - direct_max_in_bytes
         - heap_init_in_bytes
@@ -47813,9 +48943,9 @@ components:
       type: object
       properties:
         total:
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         total_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - total
         - total_in_bytes
@@ -47846,9 +48976,9 @@ components:
       type: object
       properties:
         cache_size:
-          type: string
+          $ref: '#/components/schemas/_common:StorageSize'
         cache_size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         cores_per_socket:
           type: number
         mhz:
@@ -50468,7 +51598,7 @@ components:
         file_count:
           type: number
         size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - file_count
         - size_in_bytes
@@ -50478,9 +51608,9 @@ components:
         shard_count:
           type: number
         size:
-          $ref: '#/components/schemas/_common:ByteSize'
+          $ref: '#/components/schemas/_common:StorageSize'
         size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
         max_segments_per_shard:
           type: number
       required:
@@ -50584,7 +51714,7 @@ components:
         file_count:
           type: number
         size_in_bytes:
-          type: number
+          $ref: '#/components/schemas/_common:Bytes'
       required:
         - file_count
         - size_in_bytes
@@ -50953,32 +52083,43 @@ components:
         - nodes
         - none
         - parents
-    tasks._common:NodeTasks:
+    tasks._common:PersistentTaskStatus:
       type: object
       properties:
-        name:
-          $ref: '#/components/schemas/_common:NodeId'
-        transport_address:
-          $ref: '#/components/schemas/_common:TransportAddress'
-        host:
-          $ref: '#/components/schemas/_common:Host'
-        ip:
-          $ref: '#/components/schemas/_common:Ip'
-        roles:
-          type: array
-          items:
-            type: string
-        attributes:
-          type: object
-          additionalProperties:
-            type: string
-        tasks:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/tasks._common:TaskInfo'
+        state:
+          type: string
       required:
-        - tasks
-    tasks._common:ParentTaskInfo:
+        - state
+    tasks._common:RawTaskStatus:
+      type: object
+      additionalProperties:
+        title: metadata
+    tasks._common:ReplicationTaskStatus:
+      type: object
+      properties:
+        phase:
+          type: string
+      required:
+        - phase
+    tasks._common:Status:
+      description: Task status information can vary wildly from task to task.
+      anyOf:
+        - $ref: '#/components/schemas/tasks._common:ReplicationTaskStatus'
+        - $ref: '#/components/schemas/_common:BulkByScrollTaskStatus'
+        - $ref: '#/components/schemas/tasks._common:PersistentTaskStatus'
+        - $ref: '#/components/schemas/tasks._common:RawTaskStatus'
+    tasks._common:TaskExecutingNode:
+      allOf:
+        - $ref: '#/components/schemas/_common:BaseNode'
+        - type: object
+          properties:
+            tasks:
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/tasks._common:TaskInfo'
+          required:
+            - tasks
+    tasks._common:TaskGroup:
       allOf:
         - $ref: '#/components/schemas/tasks._common:TaskInfo'
         - type: object
@@ -50986,7 +52127,7 @@ components:
             children:
               type: array
               items:
-                $ref: '#/components/schemas/tasks._common:TaskInfo'
+                $ref: '#/components/schemas/tasks._common:TaskGroup'
     tasks._common:TaskInfo:
       type: object
       properties:
@@ -51003,7 +52144,8 @@ components:
           additionalProperties:
             type: string
         id:
-          type: number
+          type: integer
+          format: int64
         node:
           $ref: '#/components/schemas/_common:NodeId'
         running_time:
@@ -51013,8 +52155,7 @@ components:
         start_time_in_millis:
           $ref: '#/components/schemas/_common:EpochTimeUnitMillis'
         status:
-          description: Task status information can vary wildly from task to task.
-          type: object
+          $ref: '#/components/schemas/tasks._common:Status'
         type:
           type: string
         parent_task_id:
@@ -51030,12 +52171,14 @@ components:
         - type
     tasks._common:TaskInfos:
       oneOf:
-        - type: array
+        - title: grouped_by_none
+          type: array
           items:
             $ref: '#/components/schemas/tasks._common:TaskInfo'
-        - type: object
+        - title: grouped_by_parents
+          type: object
           additionalProperties:
-            $ref: '#/components/schemas/tasks._common:ParentTaskInfo'
+            $ref: '#/components/schemas/tasks._common:TaskGroup'
     tasks._common:TaskListResponseBase:
       type: object
       properties:
@@ -51051,9 +52194,12 @@ components:
           description: Task information grouped by node, if `group_by` was set to `node` (the default).
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/tasks._common:NodeTasks'
+            $ref: '#/components/schemas/tasks._common:TaskExecutingNode'
         tasks:
           $ref: '#/components/schemas/tasks._common:TaskInfos'
+    tasks._common:TaskResponse:
+      anyOf:
+        - $ref: '#/components/schemas/_common:BulkByScrollResponseBase'
     transforms._common:ContinuousStats:
       type: object
       properties:

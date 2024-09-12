@@ -37,13 +37,13 @@ import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch.tasks.ListResponse;
+import org.opensearch.client.opensearch.tasks.TaskListResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
 
 // typedef: _global.delete_by_query_rethrottle.Response
 
 @JsonpDeserializable
-public class DeleteByQueryRethrottleResponse extends ListResponse {
+public class DeleteByQueryRethrottleResponse extends TaskListResponseBase {
     // ---------------------------------------------------------------------------------------------
 
     private DeleteByQueryRethrottleResponse(Builder builder) {
@@ -61,7 +61,9 @@ public class DeleteByQueryRethrottleResponse extends ListResponse {
      * Builder for {@link DeleteByQueryRethrottleResponse}.
      */
 
-    public static class Builder extends ListResponse.AbstractBuilder<Builder> implements ObjectBuilder<DeleteByQueryRethrottleResponse> {
+    public static class Builder extends TaskListResponseBase.AbstractBuilder<Builder>
+        implements
+            ObjectBuilder<DeleteByQueryRethrottleResponse> {
         @Override
         protected Builder self() {
             return this;
@@ -91,7 +93,7 @@ public class DeleteByQueryRethrottleResponse extends ListResponse {
     );
 
     protected static void setupDeleteByQueryRethrottleResponseDeserializer(ObjectDeserializer<DeleteByQueryRethrottleResponse.Builder> op) {
-        ListResponse.setupListResponseDeserializer(op);
+        TaskListResponseBase.setupTaskListResponseBaseDeserializer(op);
 
     }
 

@@ -41,6 +41,7 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainDeserializable;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
 import org.opensearch.client.opensearch.indices.Alias;
@@ -139,7 +140,7 @@ public class IndexTemplateMapping implements PlainJsonSerializable {
      * Builder for {@link IndexTemplateMapping}.
      */
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexTemplateMapping> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexTemplateMapping>, PlainDeserializable<Builder> {
         @Nullable
         private Map<String, Alias> aliases;
 
@@ -218,6 +219,11 @@ public class IndexTemplateMapping implements PlainJsonSerializable {
             _checkSingleUse();
 
             return new IndexTemplateMapping(this);
+        }
+
+        @Override
+        public Builder self() {
+            return this;
         }
     }
 

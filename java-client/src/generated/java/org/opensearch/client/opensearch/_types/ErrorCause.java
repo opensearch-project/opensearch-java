@@ -379,6 +379,7 @@ public class ErrorCause implements PlainJsonSerializable {
             return new ErrorCause(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

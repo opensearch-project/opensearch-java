@@ -119,7 +119,7 @@ public class TermQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().field(field).value(value).caseInsensitive(caseInsensitive);
+        return toBuilder(new Builder()).field(field).value(value).caseInsensitive(caseInsensitive);
     }
 
     // ---------------------------------------------------------------------------------------------

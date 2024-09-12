@@ -17,6 +17,7 @@ import javax.annotation.Nullable;
 import org.apache.commons.text.StringEscapeUtils;
 import org.opensearch.client.codegen.model.Types;
 import org.opensearch.client.codegen.renderer.lambdas.TemplateStringLambda;
+import org.opensearch.client.codegen.utils.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.Strings;
 
 public final class TemplateGlobalContext implements Mustache.CustomContext {
@@ -53,9 +54,17 @@ public final class TemplateGlobalContext implements Mustache.CustomContext {
             .withValue("TYPES", Types.TYPES_MAP);
     }
 
-    public static final class Builder {
+    public static final class Builder extends ObjectBuilderBase<TemplateGlobalContext, Builder> {
         private final Map<String, Object> values = new HashMap<>();
         private TemplateRenderer renderer;
+
+        private Builder() {}
+
+        @Nonnull
+        @Override
+        protected TemplateGlobalContext construct() {
+            return new TemplateGlobalContext(this);
+        }
 
         @Nonnull
         public Builder withLambda(@Nonnull String name, @Nonnull TemplateStringLambda lambda) {
@@ -79,11 +88,6 @@ public final class TemplateGlobalContext implements Mustache.CustomContext {
         public Builder withRenderer(@Nonnull TemplateRenderer renderer) {
             this.renderer = Objects.requireNonNull(renderer, "renderer must not be null");
             return this;
-        }
-
-        @Nonnull
-        public TemplateGlobalContext build() {
-            return new TemplateGlobalContext(this);
         }
     }
 }

@@ -259,6 +259,7 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
             return new RegisterModelGroupRequest(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

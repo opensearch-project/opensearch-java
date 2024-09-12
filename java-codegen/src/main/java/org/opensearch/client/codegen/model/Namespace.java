@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -22,6 +23,8 @@ import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Namespace {
+    private static final Set<String> PARTIAL_NAMESPACES = Set.of("");
+
     private final Namespace parent;
     private final String name;
     private final Map<String, Namespace> children = new TreeMap<>();
@@ -82,8 +85,10 @@ public class Namespace {
 
         if (operations.isEmpty()) return;
 
-        new Client(this, false, operations).render(ctx);
-        new Client(this, true, operations).render(ctx);
+        var asBaseClass = PARTIAL_NAMESPACES.contains(name);
+
+        new Client(this, false, asBaseClass, operations).render(ctx);
+        new Client(this, true, asBaseClass, operations).render(ctx);
     }
 
     private Collection<RequestShape> getOperationsForClient() {
@@ -95,32 +100,42 @@ public class Namespace {
         return "OpenSearch" + Strings.toPascalCase(name) + (async ? "Async" : "") + "Client" + (base ? "Base" : "");
     }
 
-    private Type getClientType(boolean async, boolean base) {
-        var type = Type.builder().pkg(getPackageName()).name(getClientClassName(async, base));
-        if (base) {
-            type.typeParams(getClientType(async, false));
-        }
-        return type.build();
+    private Type getClientType(boolean async) {
+        return Type.builder().withPackage(getPackageName()).withName(getClientClassName(async, false)).build();
     }
 
     private static class Client extends Shape {
         private final boolean async;
+        private final boolean base;
         private final Collection<RequestShape> operations;
 
-        private Client(Namespace parent, boolean async, Collection<RequestShape> operations) {
-            super(parent, parent.getClientClassName(async, false), null, "Client for the " + parent.name + " namespace.");
+        private Client(Namespace parent, boolean async, boolean base, Collection<RequestShape> operations) {
+            super(parent, parent.getClientClassName(async, base), null, "Client for the " + parent.name + " namespace.");
             this.async = async;
+            this.base = base;
             this.operations = operations;
         }
 
         @Override
+        public TypeParameterDiamond getTypeParameters() {
+            if (!base) return null;
+            var thisType = getType().withTypeParameters(Type.builder().withName("Self").build());
+            return TypeParameterDiamond.builder()
+                .withParams(TypeParameterDefinition.builder().withName("Self").withExtends(thisType).build())
+                .build();
+        }
+
+        @Override
+        public boolean isAbstract() {
+            return base;
+        }
+
+        @Override
         public Type getExtendsType() {
-            switch (parent.name) {
-                case "":
-                    return parent.getClientType(async, true);
-                default:
-                    return Types.Client.ApiClient(Types.Client.Transport.OpenSearchTransport, getType());
-            }
+            return Types.Client.ApiClient(
+                Types.Client.Transport.OpenSearchTransport,
+                !base ? getType() : Type.builder().withName("Self").build()
+            );
         }
 
         public String getName() {
@@ -139,6 +154,10 @@ public class Namespace {
             return this.async;
         }
 
+        public boolean isBase() {
+            return this.base;
+        }
+
         @Override
         public String toString() {
             return new ToStringBuilder(this).append("type", getType()).toString();
@@ -149,7 +168,7 @@ public class Namespace {
             private final String name;
 
             public ClientRef(Namespace namespace, boolean async) {
-                this.type = namespace.getClientType(async, false);
+                this.type = namespace.getClientType(async);
                 this.name = namespace.name;
             }
 

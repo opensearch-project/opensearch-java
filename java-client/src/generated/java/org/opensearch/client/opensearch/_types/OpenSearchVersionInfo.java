@@ -328,6 +328,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
             return new OpenSearchVersionInfo(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

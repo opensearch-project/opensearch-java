@@ -141,7 +141,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().field(field).vector(vector).k(k).minScore(minScore).maxDistance(maxDistance).filter(filter);
+        return toBuilder(new Builder()).field(field).vector(vector).k(k).minScore(minScore).maxDistance(maxDistance).filter(filter);
     }
 
     /**

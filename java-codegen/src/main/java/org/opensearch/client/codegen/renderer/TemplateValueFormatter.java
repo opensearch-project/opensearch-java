@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import javax.annotation.Nonnull;
+import org.opensearch.client.codegen.utils.ObjectBuilderBase;
 
 public final class TemplateValueFormatter implements Mustache.Formatter {
     @Nonnull
@@ -50,8 +51,16 @@ public final class TemplateValueFormatter implements Mustache.Formatter {
         return new Builder();
     }
 
-    public static final class Builder {
+    public static final class Builder extends ObjectBuilderBase<TemplateValueFormatter, Builder> {
         private final Map<Class<?>, Formatter<?>> formatters = new HashMap<>();
+
+        private Builder() {}
+
+        @Nonnull
+        @Override
+        protected TemplateValueFormatter construct() {
+            return new TemplateValueFormatter(this);
+        }
 
         @Nonnull
         public <T> Builder withFormatter(@Nonnull Class<T> clazz, @Nonnull Formatter<? super T> formatter) {
@@ -59,10 +68,6 @@ public final class TemplateValueFormatter implements Mustache.Formatter {
             Objects.requireNonNull(formatter, "formatter must not be null");
             formatters.put(clazz, formatter);
             return this;
-        }
-
-        public TemplateValueFormatter build() {
-            return new TemplateValueFormatter(this);
         }
     }
 }

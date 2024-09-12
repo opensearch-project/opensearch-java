@@ -87,6 +87,7 @@ public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
             return new ImportDanglingIndexResponse(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

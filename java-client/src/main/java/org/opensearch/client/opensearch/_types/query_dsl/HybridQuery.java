@@ -56,7 +56,7 @@ public class HybridQuery extends QueryBase implements QueryVariant {
     }
 
     public HybridQuery.Builder toBuilder() {
-        return new HybridQuery.Builder().queries(queries);
+        return toBuilder(new Builder()).queries(queries);
     }
 
     public static class Builder extends QueryBase.AbstractBuilder<HybridQuery.Builder> implements ObjectBuilder<HybridQuery> {

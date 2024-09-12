@@ -59,6 +59,7 @@ public class DeleteModelResponse extends WriteResponseBase {
             return new DeleteModelResponse(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

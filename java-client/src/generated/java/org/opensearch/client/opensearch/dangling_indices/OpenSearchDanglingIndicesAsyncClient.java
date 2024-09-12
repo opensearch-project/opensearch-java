@@ -42,9 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -74,13 +72,7 @@ public class OpenSearchDanglingIndicesAsyncClient extends ApiClient<OpenSearchTr
      */
     public CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(DeleteDanglingIndexRequest request) throws IOException,
         OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteDanglingIndexRequest,
-            DeleteDanglingIndexResponse,
-            ErrorResponse>) DeleteDanglingIndexRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(request, DeleteDanglingIndexRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -101,13 +93,7 @@ public class OpenSearchDanglingIndicesAsyncClient extends ApiClient<OpenSearchTr
      */
     public CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(ImportDanglingIndexRequest request) throws IOException,
         OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ImportDanglingIndexRequest,
-            ImportDanglingIndexResponse,
-            ErrorResponse>) ImportDanglingIndexRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(request, ImportDanglingIndexRequest._ENDPOINT, this.transportOptions);
     }
 
     /**

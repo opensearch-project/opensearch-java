@@ -50,11 +50,6 @@ public class RequestShape extends ObjectShape {
         return operationGroup.getName();
     }
 
-    @Override
-    public boolean extendsOtherShape() {
-        return extendsType != Types.Client.OpenSearch._Types.RequestBase;
-    }
-
     public String getHttpMethod() {
         return Streams.sortedBy(httpMethods.stream(), m -> {
             switch (m) {
@@ -78,7 +73,7 @@ public class RequestShape extends ObjectShape {
     }
 
     public Type getResponseType() {
-        return Type.builder().pkg(getPackageName()).name(responseClassName(operationGroup)).build();
+        return Type.builder().withPackage(getPackageName()).withName(responseClassName(operationGroup)).build();
     }
 
     public boolean canBeSingleton() {
@@ -144,6 +139,7 @@ public class RequestShape extends ObjectShape {
 
     private void addField(Field field) {
         fields.put(field.getName(), field);
+        tryAddReference(ReferenceKind.Field, field.getType());
     }
 
     @Override

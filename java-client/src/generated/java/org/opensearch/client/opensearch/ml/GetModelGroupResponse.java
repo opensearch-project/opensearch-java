@@ -237,6 +237,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
             return new GetModelGroupResponse(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

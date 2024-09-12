@@ -23,6 +23,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Maps;
+import org.opensearch.client.codegen.utils.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.Sets;
 import org.opensearch.client.codegen.utils.Versions;
 import org.semver4j.Semver;
@@ -182,6 +183,10 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         return is(OpenApiSchemaType.Boolean);
     }
 
+    public boolean isInteger() {
+        return is(OpenApiSchemaType.Integer);
+    }
+
     public boolean isNumber() {
         return is(OpenApiSchemaType.Number);
     }
@@ -311,7 +316,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         return new Builder();
     }
 
-    public static class Builder {
+    public static class Builder extends ObjectBuilderBase<OpenApiSchema, Builder> {
         @Nullable
         private OpenApiElement<?> parent;
         @Nullable
@@ -353,6 +358,14 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         @Nullable
         private Semver versionRemoved;
 
+        private Builder() {}
+
+        @Nonnull
+        @Override
+        protected OpenApiSchema construct() {
+            return new OpenApiSchema(this);
+        }
+
         @Nonnull
         public Builder withPointer(@Nonnull JsonPointer pointer) {
             this.pointer = Objects.requireNonNull(pointer, "pointer must not be null");
@@ -379,11 +392,6 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         public Builder withAllOf(@Nullable List<OpenApiSchema> allOf) {
             this.allOf = allOf;
             return this;
-        }
-
-        @Nonnull
-        public OpenApiSchema build() {
-            return new OpenApiSchema(this);
         }
     }
 }

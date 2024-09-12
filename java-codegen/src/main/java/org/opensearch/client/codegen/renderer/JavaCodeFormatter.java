@@ -25,6 +25,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 import org.opensearch.client.codegen.exceptions.JavaFormatterException;
 import org.opensearch.client.codegen.utils.MavenArtifactResolver;
+import org.opensearch.client.codegen.utils.ObjectBuilderBase;
 
 public class JavaCodeFormatter implements AutoCloseable {
     private final Formatter formatter;
@@ -75,9 +76,17 @@ public class JavaCodeFormatter implements AutoCloseable {
         return new Builder();
     }
 
-    public static final class Builder {
+    public static final class Builder extends ObjectBuilderBase<JavaCodeFormatter, Builder> {
         private Path rootDir;
         private File eclipseFormatterConfig;
+
+        private Builder() {}
+
+        @Nonnull
+        @Override
+        protected JavaCodeFormatter construct() {
+            return new JavaCodeFormatter(this);
+        }
 
         @Nonnull
         public Builder withRootDir(@Nonnull Path rootDir) {
@@ -89,11 +98,6 @@ public class JavaCodeFormatter implements AutoCloseable {
         public Builder withEclipseFormatterConfig(@Nonnull File eclipseFormatterConfig) {
             this.eclipseFormatterConfig = Objects.requireNonNull(eclipseFormatterConfig, "eclipseFormatterConfig must not be null");
             return this;
-        }
-
-        @Nonnull
-        public JavaCodeFormatter build() {
-            return new JavaCodeFormatter(this);
         }
     }
 }
