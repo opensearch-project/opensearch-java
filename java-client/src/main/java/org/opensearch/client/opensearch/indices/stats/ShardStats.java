@@ -33,33 +33,14 @@
 package org.opensearch.client.opensearch.indices.stats;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.function.Function;
-import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonpDeserializable;
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.ObjectBuilderDeserializer;
-import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.opensearch._types.BulkStats;
-import org.opensearch.client.opensearch._types.CompletionStats;
-import org.opensearch.client.opensearch._types.DocStats;
-import org.opensearch.client.opensearch._types.FielddataStats;
-import org.opensearch.client.opensearch._types.FlushStats;
-import org.opensearch.client.opensearch._types.GetStats;
-import org.opensearch.client.opensearch._types.IndexingStats;
-import org.opensearch.client.opensearch._types.MergesStats;
-import org.opensearch.client.opensearch._types.RecoveryStats;
-import org.opensearch.client.opensearch._types.RefreshStats;
-import org.opensearch.client.opensearch._types.RequestCacheStats;
-import org.opensearch.client.opensearch._types.SearchStats;
-import org.opensearch.client.opensearch._types.SegmentsStats;
-import org.opensearch.client.opensearch._types.StoreStats;
-import org.opensearch.client.opensearch._types.TranslogStats;
-import org.opensearch.client.opensearch._types.WarmerStats;
+import org.opensearch.client.json.*;
+import org.opensearch.client.opensearch._types.*;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+
+import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: indices.stats.ShardStats
 
@@ -139,8 +120,7 @@ public class ShardStats implements PlainJsonSerializable {
         this.translog = ApiTypeHelper.requireNonNull(builder.translog, this, "translog");
         this.warmer = ApiTypeHelper.requireNonNull(builder.warmer, this, "warmer");
         this.bulk = builder.bulk;
-        this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-
+        this.shards = builder.shards;
     }
 
     public static ShardStats of(Function<Builder, ObjectBuilder<ShardStats>> fn) {
