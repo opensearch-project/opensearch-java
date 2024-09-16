@@ -210,7 +210,7 @@ dependencies {
       exclude(group = "org.apache.httpcomponents.core5")
     }
     implementation("org.apache.httpcomponents.core5", "httpcore5", "5.2.5")
-    implementation("org.apache.httpcomponents.core5", "httpcore5-h2", "5.2.5")
+    implementation("org.apache.httpcomponents.core5", "httpcore5-h2", "5.3")
 
     // For AwsSdk2Transport
     "awsSdk2SupportCompileOnly"("software.amazon.awssdk","sdk-core","[2.15,3.0)")
