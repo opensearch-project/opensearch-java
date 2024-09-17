@@ -11,6 +11,7 @@ package org.opensearch.client.opensearch.json;
 import java.util.Collections;
 import org.junit.Assert;
 import org.junit.Test;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.Result;
 import org.opensearch.client.opensearch.core.IndexResponse;
@@ -67,4 +68,27 @@ public class PlainJsonSerializableTest extends Assert {
 
     }
 
+    // Test SearchRequest with range query
+    @Test
+    public void testRangeQuery() {
+
+        String expectedStringValue =
+            "{\"aggregations\":{},\"query\":{\"range\":{\"age\":{\"gte\":\"2024-01-01T00:00:00Z\",\"lte\":\"2024-01-02T00:00:00Z\",\"format\":\"strict_date_optional_time\"}}},\"terminate_after\":5}";
+
+        SearchRequest searchRequest = SearchRequest.of(
+            request -> request.index("index1", "index2")
+                .aggregations(Collections.emptyMap())
+                .terminateAfter(5L)
+                .query(
+                    q -> q.range(
+                        r -> r.field("age")
+                            .gte(JsonData.of("2024-01-01T00:00:00Z"))
+                            .lte(JsonData.of("2024-01-02T00:00:00Z"))
+                            .format("strict_date_optional_time")
+                    )
+                )
+        );
+        String searchRequestString = searchRequest.toJsonString();
+        assertEquals(expectedStringValue, searchRequestString);
+    }
 }
