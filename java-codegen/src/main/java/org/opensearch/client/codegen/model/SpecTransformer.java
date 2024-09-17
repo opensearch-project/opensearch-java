@@ -21,7 +21,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.NotImplementedException;
@@ -44,7 +43,6 @@ import org.opensearch.client.codegen.openapi.OpenApiSchema;
 import org.opensearch.client.codegen.openapi.OpenApiSchemaFormat;
 import org.opensearch.client.codegen.openapi.OpenApiSchemaType;
 import org.opensearch.client.codegen.openapi.OpenApiSpecification;
-import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Versions;
 
 public class SpecTransformer {
