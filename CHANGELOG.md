@@ -17,6 +17,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Fix queries not preserving boost and name when converted to builders ([#1181](https://github.com/opensearch-project/opensearch-java/pull/1181))
+- Remove required check on ShardStats.shards ([#1177](https://github.com/opensearch-project/opensearch-java/pull/1177))
 
 ### Security
 
