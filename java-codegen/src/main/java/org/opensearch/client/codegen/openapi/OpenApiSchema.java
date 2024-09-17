@@ -11,7 +11,6 @@ package org.opensearch.client.codegen.openapi;
 import static org.opensearch.client.codegen.utils.Functional.ifNonnull;
 
 import io.swagger.v3.oas.models.media.Schema;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -55,8 +54,6 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nullable
     private final List<String> enums;
     @Nullable
-    private final Set<String> deprecatedEnums;
-    @Nullable
     private final OpenApiSchema items;
     @Nullable
     private final OpenApiSchema additionalProperties;
@@ -70,6 +67,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     private final String pattern;
     @Nullable
     private final Semver versionRemoved;
+    @Nullable
+    private final Semver versionDeprecated;
 
     private OpenApiSchema(@Nonnull Builder builder) {
         super(builder.parent, Objects.requireNonNull(builder.pointer, "pointer must not be null"), builder.$ref, OpenApiSchema.class);
@@ -82,7 +81,6 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         anyOf = builder.anyOf;
         oneOf = builder.oneOf;
         enums = builder.enums;
-        deprecatedEnums = builder.deprecatedEnums;
         items = builder.items;
         additionalProperties = builder.additionalProperties;
         properties = builder.properties;
@@ -90,6 +88,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         title = builder.title;
         pattern = builder.pattern;
         versionRemoved = builder.versionRemoved;
+        versionDeprecated = builder.versionDeprecated;
     }
 
     protected OpenApiSchema(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer, @Nonnull Schema<?> schema) {
@@ -139,10 +138,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
 
         var extensions = schema.getExtensions();
 
-        // noinspection unchecked
-        deprecatedEnums = Maps.tryGet(extensions, "x-deprecated-enums").map(e -> (Collection<String>) e).map(HashSet::new).orElse(null);
-
         versionRemoved = Maps.tryGet(extensions, "x-version-removed").map(v -> Versions.coerce((String) v)).orElse(null);
+        versionDeprecated = Maps.tryGet(extensions, "x-version-deprecated").map(v -> Versions.coerce((String) v)).orElse(null);
     }
 
     @Nonnull
@@ -199,6 +196,10 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         return is(OpenApiSchemaType.String);
     }
 
+    public boolean isStringEnum() {
+        return isString() && hasEnums();
+    }
+
     public boolean hasAllOf() {
         return allOf != null && !allOf.isEmpty();
     }
@@ -236,11 +237,6 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     }
 
     @Nonnull
-    public Optional<Set<String>> getDeprecatedEnums() {
-        return Sets.unmodifiableOpt(deprecatedEnums);
-    }
-
-    @Nonnull
     public Optional<OpenApiSchema> getItems() {
         return Optional.ofNullable(items);
     }
@@ -273,6 +269,11 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nonnull
     public Optional<Semver> getVersionRemoved() {
         return Optional.ofNullable(versionRemoved);
+    }
+
+    @Nonnull
+    public Optional<Semver> getVersionDeprecated() {
+        return Optional.ofNullable(versionDeprecated);
     }
 
     public static Set<OpenApiSchemaType> determineTypes(List<OpenApiSchema> schemas) {
@@ -342,8 +343,6 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         @Nullable
         private List<String> enums;
         @Nullable
-        private Set<String> deprecatedEnums;
-        @Nullable
         private OpenApiSchema items;
         @Nullable
         private OpenApiSchema additionalProperties;
@@ -357,6 +356,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         private String pattern;
         @Nullable
         private Semver versionRemoved;
+        @Nullable
+        private Semver versionDeprecated;
 
         private Builder() {}
 

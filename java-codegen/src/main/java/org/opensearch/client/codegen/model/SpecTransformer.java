@@ -11,6 +11,7 @@ package org.opensearch.client.codegen.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -42,7 +43,6 @@ import org.opensearch.client.codegen.openapi.OpenApiSchema;
 import org.opensearch.client.codegen.openapi.OpenApiSchemaFormat;
 import org.opensearch.client.codegen.openapi.OpenApiSchemaType;
 import org.opensearch.client.codegen.openapi.OpenApiSpecification;
-import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Versions;
 
 public class SpecTransformer {
@@ -249,25 +249,33 @@ public class SpecTransformer {
 
         var description = schema.getDescription().orElse(null);
 
+        var oneOf = schema.getOneOf();
+
         if (schema.isArray()) {
             shape = new ArrayShape(parent, className, mapType(schema), typedefName, description);
             visitedSchemas.putIfAbsent(schema, shape);
-        } else if (schema.isString() && schema.hasEnums()) {
-            var deprecatedEnums = schema.getDeprecatedEnums().orElseGet(Collections::emptySet);
-            shape = new EnumShape(
-                parent,
-                className,
-                Lists.map(schema.getEnums().orElseThrow(), v -> new EnumShape.Variant(v, deprecatedEnums.contains(v))),
-                typedefName,
-                description
-            );
+        } else if (schema.isStringEnum() || (oneOf.isPresent() && oneOf.get().stream().allMatch(OpenApiSchema::isStringEnum))) {
+            var variants = new ArrayList<EnumShape.Variant>();
+
+            if (oneOf.isPresent()) {
+                oneOf.get().forEach(s -> {
+                    var isDeprecated = s.getVersionDeprecated().isPresent();
+                    s.getEnums().orElseThrow().forEach(v -> variants.add(new EnumShape.Variant(v, isDeprecated)));
+                });
+            } else {
+                schema.getEnums().orElseThrow().forEach(v -> variants.add(new EnumShape.Variant(v, false)));
+            }
+
+            variants.sort(Comparator.comparing(EnumShape.Variant::getName));
+
+            shape = new EnumShape(parent, className, variants, typedefName, description);
             visitedSchemas.putIfAbsent(schema, shape);
-        } else if (schema.hasOneOf()) {
+        } else if (oneOf.isPresent()) {
             var taggedUnion = new TaggedUnionShape(parent, className, typedefName, description);
             shape = taggedUnion;
             visitedSchemas.putIfAbsent(schema, shape);
 
-            schema.getOneOf().orElseThrow().forEach(s -> {
+            oneOf.get().forEach(s -> {
                 var title = s.getTitle()
                     .orElseThrow(() -> new IllegalStateException("oneOf variant [" + s.getPointer() + "] is missing a `title` tag"));
                 taggedUnion.addVariant(title, mapType(s));
@@ -509,8 +517,8 @@ public class SpecTransformer {
         if (schema.isInteger() || schema.isNumber() || schema.isArray()) {
             return false;
         }
-        if (schema.isString() && schema.getEnums().isEmpty()) {
-            return false;
+        if (schema.isString()) {
+            return schema.hasEnums();
         }
         if (schema.isObject()
             && schema.getProperties().map(Map::isEmpty).orElse(true)
@@ -518,7 +526,8 @@ public class SpecTransformer {
             return false;
         }
         if (schema.getOneOf().isPresent()) {
-            return schema.getOneOf().orElseThrow().stream().allMatch(s -> s.getTitle().isPresent());
+            var oneOf = schema.getOneOf().orElseThrow();
+            return oneOf.stream().allMatch(s -> s.getTitle().isPresent()) || oneOf.stream().allMatch(OpenApiSchema::isStringEnum);
         }
         if (schema.getAllOf().isPresent()) {
             return schema.determineSingleType().orElse(null) == OpenApiSchemaType.Object;
