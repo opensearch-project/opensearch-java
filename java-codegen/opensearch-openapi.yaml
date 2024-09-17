@@ -3442,6 +3442,428 @@ paths:
         - $ref: '#/components/parameters/_global::query.error_trace'
         - $ref: '#/components/parameters/_global::query.source'
         - $ref: '#/components/parameters/_global::query.filter_path'
+  /_plugins/_flow_framework/workflow:
+    post:
+      operationId: flow_framework.create.0
+      x-operation-group: flow_framework.create
+      x-version-added: '2.12'
+      description: Create a workflow.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/automating-configurations/api/create-workflow/
+      parameters:
+        - $ref: '#/components/parameters/flow_framework.create::query.provision'
+        - $ref: '#/components/parameters/flow_framework.create::query.reprovision'
+        - $ref: '#/components/parameters/flow_framework.create::query.update_fields'
+        - $ref: '#/components/parameters/flow_framework.create::query.use_case'
+        - $ref: '#/components/parameters/flow_framework.create::query.validation'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/flow_framework.create'
+      responses:
+        '201':
+          $ref: '#/components/responses/flow_framework.create@201'
+        '400':
+          $ref: '#/components/responses/flow_framework.create@400'
+        '403':
+          $ref: '#/components/responses/flow_framework.create@403'
+  /_plugins/_flow_framework/workflow/_search:
+    get:
+      operationId: flow_framework.search.1
+      x-operation-group: flow_framework.search
+      x-version-added: '2.12'
+      description: Search for workflows by using a query matching a field.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/automating-configurations/api/provision-workflow/
+      requestBody:
+        $ref: '#/components/requestBodies/flow_framework.search'
+      responses:
+        '200':
+          $ref: '#/components/responses/flow_framework.search@200'
+        '400':
+          $ref: '#/components/responses/flow_framework.search@400'
+        '403':
+          $ref: '#/components/responses/flow_framework.search@403'
+        '408':
+          $ref: '#/components/responses/flow_framework.search@408'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+    post:
+      operationId: flow_framework.search.0
+      x-operation-group: flow_framework.search
+      x-version-added: '2.12'
+      description: Search for workflows by using a query matching a field.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/automating-configurations/api/provision-workflow/
+      requestBody:
+        $ref: '#/components/requestBodies/flow_framework.search'
+      responses:
+        '200':
+          $ref: '#/components/responses/flow_framework.search@200'
+        '400':
+          $ref: '#/components/responses/flow_framework.search@400'
+        '403':
+          $ref: '#/components/responses/flow_framework.search@403'
+        '408':
+          $ref: '#/components/responses/flow_framework.search@408'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+  /_plugins/_flow_framework/workflow/_steps:
+    get:
+      operationId: flow_framework.get_steps.0
+      x-operation-group: flow_framework.get_steps
+      x-version-added: '2.12'
+      description: Get a list of workflow steps.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/automating-configurations/api/get-workflow-steps/
+      parameters:
+        - $ref: '#/components/parameters/flow_framework.get_steps::query.workflow_step'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/flow_framework.get_steps@200'
+        '400':
+          $ref: '#/components/responses/flow_framework.get_steps@400'
+        '403':
+          $ref: '#/components/responses/flow_framework.get_steps@403'
+  /_plugins/_flow_framework/workflow/{workflow_id}:
+    delete:
+      operationId: flow_framework.delete.0
+      x-operation-group: flow_framework.delete
+      x-version-added: '2.12'
+      description: Delete a workflow.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/automating-configurations/api/delete-workflow/
+      parameters:
+        - $ref: '#/components/parameters/flow_framework.delete::path.workflow_id'
+        - $ref: '#/components/parameters/flow_framework.delete::query.clear_status'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/flow_framework.delete@200'
+        '400':
+          $ref: '#/components/responses/flow_framework.delete@400'
+        '403':
+          $ref: '#/components/responses/flow_framework.delete@403'
+    get:
+      operationId: flow_framework.get.0
+      x-operation-group: flow_framework.get
+      x-version-added: '2.12'
+      externalDocs:
+        url: https://opensearch.org/docs/latest/automating-configurations/api/get-workflow/
+      description: Get a workflow.
+      parameters:
+        - $ref: '#/components/parameters/flow_framework.get::path.workflow_id'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/flow_framework.get@200'
+        '404':
+          $ref: '#/components/responses/flow_framework.get@404'
+    put:
+      operationId: flow_framework.update.0
+      x-operation-group: flow_framework.update
+      x-version-added: '2.12'
+      description: Update a workflow. You can only update a complete workflow if it has not yet been provisioned.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/automating-configurations/api/create-workflow/
+      parameters:
+        - $ref: '#/components/parameters/flow_framework.update::path.workflow_id'
+        - $ref: '#/components/parameters/flow_framework.update::query.provision'
+        - $ref: '#/components/parameters/flow_framework.update::query.reprovision'
+        - $ref: '#/components/parameters/flow_framework.update::query.update_fields'
+        - $ref: '#/components/parameters/flow_framework.update::query.use_case'
+        - $ref: '#/components/parameters/flow_framework.update::query.validation'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/flow_framework.update'
+      responses:
+        '201':
+          $ref: '#/components/responses/flow_framework.update@201'
+          description: It returns the workflow_id
+        '400':
+          $ref: '#/components/responses/flow_framework.update@400'
+        '404':
+          $ref: '#/components/responses/flow_framework.update@404'
+  /_plugins/_flow_framework/workflow/{workflow_id}/_deprovision:
+    post:
+      operationId: flow_framework.deprovision.0
+      x-operation-group: flow_framework.deprovision
+      x-version-added: '2.12'
+      description: Deprovision workflow's resources when you no longer need it.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/automating-configurations/api/deprovision-workflow/
+      parameters:
+        - $ref: '#/components/parameters/flow_framework.deprovision::path.workflow_id'
+        - $ref: '#/components/parameters/flow_framework.deprovision::query.allow_delete'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/flow_framework.deprovision@200'
+        '202':
+          $ref: '#/components/responses/flow_framework.deprovision@202'
+        '403':
+          $ref: '#/components/responses/flow_framework.deprovision@403'
+        '404':
+          $ref: '#/components/responses/flow_framework.deprovision@404'
+  /_plugins/_flow_framework/workflow/{workflow_id}/_provision:
+    post:
+      operationId: flow_framework.provision.0
+      x-operation-group: flow_framework.provision
+      x-version-added: '2.12'
+      description: Provisioning a workflow. This API is also executed when the Create or Update Workflow API is called with the provision parameter set to true.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/automating-configurations/api/provision-workflow/
+      parameters:
+        - $ref: '#/components/parameters/flow_framework.provision::path.workflow_id'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        description: |-
+          Pass dynamic substitution expressions as key-value pairs, either as query parameters or in the request body.
+          For example, if you specified a credential field in the template as `openai_key: '$'`,
+          you can pass `openai_key` as a query parameter or in the request body.
+        $ref: '#/components/requestBodies/flow_framework.provision'
+      responses:
+        '200':
+          $ref: '#/components/responses/flow_framework.provision@200'
+        '400':
+          $ref: '#/components/responses/flow_framework.provision@400'
+        '403':
+          $ref: '#/components/responses/flow_framework.provision@403'
+  /_plugins/_flow_framework/workflow/{workflow_id}/_status:
+    get:
+      operationId: flow_framework.get_status.0
+      x-operation-group: flow_framework.get_status
+      x-version-added: '2.12'
+      description: Get the provisioning deployment status until it is complete.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/automating-configurations/api/get-workflow-status/
+      parameters:
+        - $ref: '#/components/parameters/flow_framework.get_status::path.workflow_id'
+        - $ref: '#/components/parameters/flow_framework.get_status::query.all'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/flow_framework.get_status@200'
+        '403':
+          $ref: '#/components/responses/flow_framework.get_status@403'
+        '404':
+          $ref: '#/components/responses/flow_framework.get_status@404'
+  /_plugins/_flow_framework/workflow/state/_search:
+    get:
+      operationId: flow_framework.search_state.1
+      x-operation-group: flow_framework.search_state
+      x-version-added: '2.12'
+      description: Search for workflows by using a query matching a field.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/automating-configurations/api/search-workflow-state/
+      requestBody:
+        $ref: '#/components/requestBodies/flow_framework.search_state'
+      responses:
+        '200':
+          $ref: '#/components/responses/flow_framework.search_state@200'
+        '400':
+          $ref: '#/components/responses/flow_framework.search_state@400'
+        '403':
+          $ref: '#/components/responses/flow_framework.search_state@403'
+        '408':
+          $ref: '#/components/responses/flow_framework.search_state@408'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+    post:
+      operationId: flow_framework.search_state.0
+      x-operation-group: flow_framework.search_state
+      x-version-added: '2.12'
+      description: Search for workflows by using a query matching a field.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/automating-configurations/api/search-workflow-state/
+      requestBody:
+        $ref: '#/components/requestBodies/flow_framework.search_state'
+      responses:
+        '200':
+          $ref: '#/components/responses/flow_framework.search_state@200'
+        '400':
+          $ref: '#/components/responses/flow_framework.search_state@400'
+        '403':
+          $ref: '#/components/responses/flow_framework.search_state@403'
+        '408':
+          $ref: '#/components/responses/flow_framework.search_state@408'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+  /_plugins/_ism/add/{index}:
+    post:
+      operationId: ism.add_policy.0
+      x-operation-group: ism.add_policy
+      description: Adds a policy to an index.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#add-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.add_policy::path.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.add_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.add_policy@200'
+  /_plugins/_ism/change_policy/{index}:
+    post:
+      operationId: ism.change_policy.0
+      x-operation-group: ism.change_policy
+      description: Updates the managed index policy to a new policy.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#update-managed-index-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.change_policy::path.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.change_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.change_policy@200'
+  /_plugins/_ism/explain/{index}:
+    get:
+      operationId: ism.explain_index.0
+      x-operation-group: ism.explain_index
+      description: Gets the currently applied policy on an index.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#explain-index
+      parameters:
+        - $ref: '#/components/parameters/ism.explain_index::path.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.explain_index@200'
+  /_plugins/_ism/policies/{policy_id}:
+    delete:
+      operationId: ism.delete_policy.0
+      x-operation-group: ism.delete_policy
+      description: Deletes a policy.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#delete-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.delete_policy::path.policy_id'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.delete_policy@200'
+    get:
+      operationId: ism.get_policy.0
+      x-operation-group: ism.get_policy
+      description: Gets the policy.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#get-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.get_policy::path.policy_id'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.get_policy@200'
+    put:
+      operationId: ism.put_policy.0
+      x-operation-group: ism.put_policy
+      description: Creates or updates a policy.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#create-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.put_policy::path.policy_id'
+        - $ref: '#/components/parameters/ism.put_policy::query.if_primary_term'
+        - $ref: '#/components/parameters/ism.put_policy::query.if_seq_no'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.put_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.put_policy@200'
+        '201':
+          $ref: '#/components/responses/ism.put_policy@201'
+  /_plugins/_ism/remove/{index}:
+    post:
+      operationId: ism.remove_policy.0
+      x-operation-group: ism.remove_policy
+      description: Removes a policy from an index.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#remove-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.remove_policy::path.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.remove_policy@200'
   /_plugins/_knn/{node_id}/stats:
     get:
       operationId: knn.stats.2
@@ -6415,13 +6837,15 @@ paths:
         '200':
           $ref: '#/components/responses/transforms.search@200'
   /_plugins/_transform/_preview:
-    get:
+    post:
       operationId: transforms.preview.0
       x-operation-group: transforms.preview
       x-version-added: '1.0'
       description: Returns a preview of what a transformed index would look like.
       externalDocs:
         url: https://opensearch.org/docs/latest/im-plugin/index-transforms/transforms-apis/#preview-a-transform-jobs-results
+      requestBody:
+        $ref: '#/components/requestBodies/transforms.preview'
       responses:
         '200':
           $ref: '#/components/responses/transforms.preview@200'
@@ -11058,6 +11482,147 @@ paths:
           $ref: '#/components/responses/asynchronous_search.delete@200'
       deprecated: true
       x-ignorable: true
+  /_opendistro/_ism/add/{index}:
+    post:
+      operationId: ism.add_policy.0_superseded
+      x-operation-group: ism.add_policy
+      description: Adds a policy to an index.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#add-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.add_policy::path.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.add_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.add_policy@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_ism/change_policy/{index}:
+    post:
+      operationId: ism.change_policy.0_superseded
+      x-operation-group: ism.change_policy
+      description: Updates the managed index policy to a new policy.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#update-managed-index-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.change_policy::path.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.change_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.change_policy@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_ism/explain/{index}:
+    get:
+      operationId: ism.explain_index.0_superseded
+      x-operation-group: ism.explain_index
+      description: Gets the currently applied policy on an index.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#explain-index
+      parameters:
+        - $ref: '#/components/parameters/ism.explain_index::path.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.explain_index@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_ism/policies/{policyID}:
+    get:
+      operationId: ism.get_policy.0_superseded
+      x-operation-group: ism.get_policy
+      description: Gets the policy.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#get-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.get_policy::path.policy_id'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.get_policy@200'
+      deprecated: true
+      x-ignorable: true
+    put:
+      operationId: ism.put_policy.0_superseded
+      x-operation-group: ism.put_policy
+      description: Creates or updates a policy.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#create-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.put_policy::path.policy_id'
+        - $ref: '#/components/parameters/ism.put_policy::query.if_primary_term'
+        - $ref: '#/components/parameters/ism.put_policy::query.if_seq_no'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.put_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.put_policy@200'
+        '201':
+          $ref: '#/components/responses/ism.put_policy@201'
+      deprecated: true
+      x-ignorable: true
+    delete:
+      operationId: ism.delete_policy.0_superseded
+      x-operation-group: ism.delete_policy
+      description: Deletes a policy.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#delete-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.delete_policy::path.policy_id'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.delete_policy@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_ism/remove/{index}:
+    post:
+      operationId: ism.remove_policy.0_superseded
+      x-operation-group: ism.remove_policy
+      description: Removes a policy from an index.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#remove-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.remove_policy::path.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.remove_policy@200'
+      deprecated: true
+      x-ignorable: true
   /_opendistro/_knn/stats/{stat}:
     get:
       operationId: knn.stats.1_superseded
@@ -13070,7 +13635,7 @@ components:
     _global::query.filter_path:
       name: filter_path
       in: query
-      description: Comma-separated list of filters used to reduce the response.
+      description: Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
       schema:
         oneOf:
           - type: string
@@ -13272,7 +13837,7 @@ components:
       in: query
       description: The unit in which to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:StorageType'
+        $ref: '#/components/schemas/_common:ByteUnit'
     cat.all_pit_segments::query.format:
       name: format
       in: query
@@ -13331,7 +13896,7 @@ components:
       name: bytes
       description: The unit used to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:StorageType'
+        $ref: '#/components/schemas/_common:ByteUnit'
       style: form
     cat.allocation::query.cluster_manager_timeout:
       name: cluster_manager_timeout
@@ -13541,7 +14106,7 @@ components:
       name: bytes
       description: The unit used to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:StorageType'
+        $ref: '#/components/schemas/_common:ByteUnit'
       style: form
     cat.fielddata::query.fields:
       in: query
@@ -13670,7 +14235,7 @@ components:
       name: bytes
       description: The unit used to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:StorageType'
+        $ref: '#/components/schemas/_common:ByteUnit'
       style: form
     cat.indices::query.cluster_manager_timeout:
       name: cluster_manager_timeout
@@ -13921,7 +14486,7 @@ components:
       name: bytes
       description: The unit used to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:StorageType'
+        $ref: '#/components/schemas/_common:ByteUnit'
       style: form
     cat.nodes::query.cluster_manager_timeout:
       name: cluster_manager_timeout
@@ -14091,7 +14656,7 @@ components:
       in: query
       description: The unit in which to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:StorageType'
+        $ref: '#/components/schemas/_common:ByteUnit'
     cat.pit_segments::query.format:
       name: format
       in: query
@@ -14229,7 +14794,7 @@ components:
       name: bytes
       description: The unit used to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:StorageType'
+        $ref: '#/components/schemas/_common:ByteUnit'
       style: form
     cat.recovery::query.detailed:
       in: query
@@ -14400,7 +14965,7 @@ components:
       in: query
       description: The unit in which to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:StorageType'
+        $ref: '#/components/schemas/_common:ByteUnit'
     cat.segment_replication::query.completed_only:
       name: completed_only
       in: query
@@ -14532,7 +15097,7 @@ components:
       name: bytes
       description: The unit used to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:StorageType'
+        $ref: '#/components/schemas/_common:ByteUnit'
       style: form
     cat.segments::query.cluster_manager_timeout:
       name: cluster_manager_timeout
@@ -14611,7 +15176,7 @@ components:
       name: bytes
       description: The unit used to display byte values.
       schema:
-        $ref: '#/components/schemas/_common:StorageType'
+        $ref: '#/components/schemas/_common:ByteUnit'
       style: form
     cat.shards::query.cluster_manager_timeout:
       name: cluster_manager_timeout
@@ -16770,6 +17335,125 @@ components:
         type: boolean
         default: false
       style: form
+    flow_framework.create::query.provision:
+      in: query
+      name: provision
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:Provision'
+    flow_framework.create::query.reprovision:
+      x-version-added: '2.17'
+      in: query
+      name: reprovision
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:Reprovision'
+    flow_framework.create::query.update_fields:
+      in: query
+      name: update_fields
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:UpdateFields'
+    flow_framework.create::query.use_case:
+      description: To use a workflow template, specify it in the use_case query parameter when creating a workflow.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/automating-configurations/workflow-templates/#supported-workflow-templates
+      in: query
+      name: use_case
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:UseCase'
+    flow_framework.create::query.validation:
+      in: query
+      name: validation
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:Validation'
+    flow_framework.delete::path.workflow_id:
+      name: workflow_id
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:WorkflowID'
+    flow_framework.delete::query.clear_status:
+      in: query
+      name: clear_status
+      schema:
+        description: Delete the workflow state (without deprovisioning resources) after deleting the template. OpenSearch deletes the workflow state only if the provisioning status is not IN_PROGRESS. Default is false.
+        type: boolean
+        default: false
+    flow_framework.deprovision::path.workflow_id:
+      name: workflow_id
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:WorkflowID'
+    flow_framework.deprovision::query.allow_delete:
+      in: query
+      name: allow_delete
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:AllowDelete'
+    flow_framework.get_status::path.workflow_id:
+      name: workflow_id
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:WorkflowID'
+    flow_framework.get_status::query.all:
+      description: The all parameter specifies whether the response should return all fields.
+      in: query
+      name: all
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:All'
+    flow_framework.get_steps::query.workflow_step:
+      in: query
+      name: workflow_step
+      required: false
+      schema:
+        description: The name of the step to retrieve.
+        $ref: '#/components/schemas/flow_framework.common:WorkflowStepName'
+    flow_framework.get::path.workflow_id:
+      name: workflow_id
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:WorkflowID'
+    flow_framework.provision::path.workflow_id:
+      name: workflow_id
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:WorkflowID'
+    flow_framework.update::path.workflow_id:
+      name: workflow_id
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:WorkflowID'
+    flow_framework.update::query.provision:
+      in: query
+      name: provision
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:Provision'
+    flow_framework.update::query.reprovision:
+      x-version-added: '2.17'
+      in: query
+      name: reprovision
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:Reprovision'
+    flow_framework.update::query.update_fields:
+      in: query
+      name: update_fields
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:UpdateFields'
+    flow_framework.update::query.use_case:
+      description: To use a workflow template, specify it in the use_case query parameter when creating a workflow.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/automating-configurations/workflow-templates/#supported-workflow-templates
+      in: query
+      name: use_case
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:UseCase'
+    flow_framework.update::query.validation:
+      in: query
+      name: validation
+      schema:
+        $ref: '#/components/schemas/flow_framework.common:Validation'
     get_script::path.id:
       in: path
       name: id
@@ -19728,6 +20412,78 @@ components:
         type: boolean
         default: false
       style: form
+    ism.add_policy::path.index:
+      name: index
+      in: path
+      description: |-
+        Comma-separated list of data streams, indices, and aliases.
+        Supports wildcards (`*`).
+      required: true
+      schema:
+        $ref: '#/components/schemas/_common:IndexName'
+      style: simple
+    ism.change_policy::path.index:
+      name: index
+      in: path
+      description: |-
+        Comma-separated list of data streams, indices, and aliases.
+        Supports wildcards (`*`).
+      required: true
+      schema:
+        $ref: '#/components/schemas/_common:IndexName'
+      style: simple
+    ism.delete_policy::path.policy_id:
+      name: policy_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ism.explain_index::path.index:
+      name: index
+      in: path
+      description: |-
+        Comma-separated list of data streams, indices, and aliases.
+        Supports wildcards (`*`).
+      required: true
+      schema:
+        $ref: '#/components/schemas/_common:IndexName'
+      style: simple
+    ism.get_policy::path.policy_id:
+      name: policy_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ism.put_policy::path.policy_id:
+      name: policy_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ism.put_policy::query.if_primary_term:
+      name: if_primary_term
+      in: query
+      description: Only perform the operation if the document has this primary term.
+      schema:
+        type: number
+      style: form
+    ism.put_policy::query.if_seq_no:
+      name: if_seq_no
+      in: query
+      description: Only perform the operation if the document has this sequence number.
+      schema:
+        $ref: '#/components/schemas/_common:SequenceNumber'
+      style: form
+    ism.remove_policy::path.index:
+      name: index
+      in: path
+      description: |-
+        Comma-separated list of data streams, indices, and aliases.
+        Supports wildcards (`*`).
+      required: true
+      schema:
+        $ref: '#/components/schemas/_common:IndexName'
+      style: simple
     knn.delete_model::path.model_id:
       name: model_id
       in: path
@@ -23736,6 +24492,34 @@ components:
               runtime_mappings:
                 $ref: '#/components/schemas/_common.mapping:RuntimeFields'
             description: An index filter specified with the Query DSL
+    flow_framework.create:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/flow_framework.common:FlowFrameworkCreate'
+    flow_framework.provision:
+      required: false
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/flow_framework.common:UserProvidedSubstitutionExpressions'
+    flow_framework.search:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/flow_framework.common:SearchWorkflowRequest'
+    flow_framework.search_state:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/flow_framework.common:SearchWorkflowRequest'
+    flow_framework.update:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/flow_framework.common:FlowFrameworkUpdate'
     index:
       content:
         application/json:
@@ -24148,6 +24932,21 @@ components:
                 $ref: '#/components/schemas/ingest._common:Pipeline'
             description: The simulate definition
       required: true
+    ism.add_policy:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:AddPolicyRequest'
+    ism.change_policy:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:ChangePolicyRequest'
+    ism.put_policy:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:PutPolicyRequest'
     knn.search_models:
       content:
         application/json:
@@ -24548,13 +25347,6 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/_common.query_dsl:FieldAndFormat'
-              knn:
-                description: Defines the approximate kNN search to run.
-                oneOf:
-                  - $ref: '#/components/schemas/_common.query_dsl:KnnQuery'
-                  - type: array
-                    items:
-                      $ref: '#/components/schemas/_common.query_dsl:KnnQuery'
               rank:
                 $ref: '#/components/schemas/_common:RankContainer'
               min_score:
@@ -25016,6 +25808,16 @@ components:
                 additionalProperties:
                   type: string
             description: Define parameters and or supply a document to get termvectors for. See documentation.
+    transforms.preview:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              transform:
+                $ref: '#/components/schemas/transforms._common:Transform'
+            required:
+              - transform
     transforms.put:
       content:
         application/json:
@@ -25669,7 +26471,7 @@ components:
       content:
         application/json:
           schema:
-            anyOf:
+            oneOf:
               - $ref: '#/components/schemas/_common:BulkByScrollResponseBase'
               - type: object
                 properties:
@@ -25738,6 +26540,175 @@ components:
             required:
               - fields
               - indices
+    flow_framework.create@201:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              workflow_id:
+                type: string
+                description: The ID of the workflow to be updated. Required for the PUT method.
+            required:
+              - workflow_id
+    flow_framework.create@400:
+      description: Bad Request - Multiple possible reasons
+      content:
+        application/json:
+          oneOf:
+            - $ref: '#/components/schemas/flow_framework.errors:InvalidParameterError'
+            - $ref: '#/components/schemas/flow_framework.errors:ConflictError'
+            - $ref: '#/components/schemas/flow_framework.errors:MissingParameterError'
+            - $ref: '#/components/schemas/flow_framework.errors:ParameterConflictError'
+            - $ref: '#/components/schemas/flow_framework.errors:MaxWorkflowsLimitError'
+            - $ref: '#/components/schemas/flow_framework.errors:WorkflowSaveError'
+    flow_framework.create@403:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:FlowFrameworkAPIDisabledError'
+    flow_framework.delete@200:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.common:FlowFrameworkDeleteResponse'
+    flow_framework.delete@400:
+      description: Work Flow Id Null Error
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:WorkFlowIdNullError'
+    flow_framework.delete@403:
+      description: Flow Framework API Disabled Error
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:FlowFrameworkAPIDisabledError'
+    flow_framework.deprovision@200:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.common:WorkflowID'
+    flow_framework.deprovision@202:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:DeprovisioningError'
+    flow_framework.deprovision@403:
+      content:
+        application/json:
+          oneOf:
+            - $ref: '#/components/schemas/flow_framework.errors:FlowFrameworkAPIDisabledError'
+            - $ref: '#/components/schemas/flow_framework.errors:DeprovisioningForbiddenError'
+    flow_framework.deprovision@404:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:TemplateNotFoundError'
+    flow_framework.get_status@200:
+      content:
+        application/json:
+          oneOf:
+            - $ref: '#/components/schemas/flow_framework.common:WorkFlowStatusFullResponse'
+            - $ref: '#/components/schemas/flow_framework.common:WorkFlowStatusDefaultResponse'
+    flow_framework.get_status@403:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:FlowFrameworkAPIDisabledError'
+    flow_framework.get_status@404:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:TemplateNotFoundError'
+    flow_framework.get_steps@200:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.common:WorkflowStep'
+    flow_framework.get_steps@400:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:WorkflowStepsRetrieveError'
+    flow_framework.get_steps@403:
+      description: Flow Framework API Disabled Error
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:FlowFrameworkAPIDisabledError'
+    flow_framework.get@200:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.common:FlowFrameworkGetResponse'
+    flow_framework.get@404:
+      description: Template Not Found Error
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:TemplateNotFoundError'
+    flow_framework.provision@200:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.common:WorkflowID'
+    flow_framework.provision@400:
+      content:
+        application/json:
+          oneOf:
+            - $ref: '#/components/schemas/flow_framework.errors:WorkFlowIdNullError'
+            - $ref: '#/components/schemas/flow_framework.errors:RequestBodyParsingFailedError'
+            - $ref: '#/components/schemas/flow_framework.errors:InvalidRequestBodyFieldError'
+            - $ref: '#/components/schemas/flow_framework.errors:DuplicateKeyError'
+    flow_framework.provision@403:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:FlowFrameworkAPIDisabledError'
+    flow_framework.search_state@200:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.common:WorkflowSearchStateResponse'
+    flow_framework.search_state@400:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:BadRequestError'
+    flow_framework.search_state@403:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:FlowFrameworkAPIDisabledError'
+    flow_framework.search_state@408:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:RequestTimeoutError'
+    flow_framework.search@200:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.common:WorkflowSearchResponse'
+    flow_framework.search@400:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:BadRequestError'
+    flow_framework.search@403:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:FlowFrameworkAPIDisabledError'
+    flow_framework.search@408:
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:RequestTimeoutError'
+    flow_framework.update@201:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              workflow_id:
+                type: string
+                description: The ID of the workflow to be updated. Required for the PUT method.
+            required:
+              - workflow_id
+    flow_framework.update@400:
+      description: Bad Request - Multiple possible reasons
+      content:
+        application/json:
+          oneOf:
+            - $ref: '#/components/schemas/flow_framework.errors:InvalidParameterError'
+            - $ref: '#/components/schemas/flow_framework.errors:ConflictError'
+            - $ref: '#/components/schemas/flow_framework.errors:MissingParameterError'
+            - $ref: '#/components/schemas/flow_framework.errors:ParameterConflictError'
+            - $ref: '#/components/schemas/flow_framework.errors:MaxWorkflowsLimitError'
+            - $ref: '#/components/schemas/flow_framework.errors:WorkflowSaveError'
+    flow_framework.update@404:
+      description: Template Not Found Error
+      content:
+        application/json:
+          $ref: '#/components/schemas/flow_framework.errors:TemplateNotFoundError'
     get_all_pits@200:
       content:
         application/json:
@@ -25922,10 +26893,10 @@ components:
                 items:
                   $ref: '#/components/schemas/indices.data_streams_stats:DataStreamsStatsItem'
               total_store_sizes:
-                $ref: '#/components/schemas/_common:StorageSize'
+                $ref: '#/components/schemas/_common:HumanReadableByteCount'
               total_store_size_bytes:
                 description: Total size, in bytes, of all shards for the selected data streams.
-                $ref: '#/components/schemas/_common:Bytes'
+                $ref: '#/components/schemas/_common:ByteCount'
             required:
               - _shards
               - backing_indices
@@ -26354,6 +27325,46 @@ components:
                   $ref: '#/components/schemas/ingest.simulate:PipelineSimulation'
             required:
               - docs
+    ism.add_policy@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:AddPolicyResponse'
+    ism.change_policy@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:ChangePolicyResponse'
+    ism.delete_policy@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:DeletePolicyResponse'
+    ism.explain_index@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:ExplainIndexResponse'
+    ism.get_policy@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:GetPolicyResponse'
+    ism.put_policy@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:PutPolicyResponse'
+    ism.put_policy@201:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:PutPolicyResponse'
+    ism.remove_policy@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:RemovePolicyResponse'
     knn.delete_model@200: {}
     knn.get_model@200: {}
     knn.search_models@200: {}
@@ -26766,7 +27777,7 @@ components:
       content:
         application/json:
           schema:
-            anyOf:
+            oneOf:
               - $ref: '#/components/schemas/_common:BulkByScrollResponseBase'
               - type: object
                 properties:
@@ -27825,7 +28836,7 @@ components:
       content:
         application/json:
           schema:
-            anyOf:
+            oneOf:
               - $ref: '#/components/schemas/_common:BulkByScrollResponseBase'
               - type: object
                 properties:
@@ -27981,8 +28992,23 @@ components:
         - status
     _common:byte:
       type: number
-    _common:Bytes:
+    _common:ByteCount:
       type: integer
+      format: int64
+    _common:ByteUnit:
+      type: string
+      enum:
+        - b
+        - g
+        - gb
+        - k
+        - kb
+        - m
+        - mb
+        - p
+        - pb
+        - t
+        - tb
     _common:ClusterDetails:
       type: object
       properties:
@@ -28043,9 +29069,9 @@ components:
       properties:
         size_in_bytes:
           description: Total amount, in bytes, of memory used for completion across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         fields:
           type: object
           additionalProperties:
@@ -28242,9 +29268,9 @@ components:
         evictions:
           type: number
         memory_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         memory_size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         fields:
           type: object
           additionalProperties:
@@ -28255,9 +29281,9 @@ components:
       type: object
       properties:
         memory_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         memory_size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - memory_size_in_bytes
     _common:Fields:
@@ -28270,9 +29296,9 @@ components:
       type: object
       properties:
         size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - size_in_bytes
     _common:FieldValue:
@@ -28283,6 +29309,10 @@ components:
         - number
         - object
         - string
+    _common:FieldWithOrder:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/_common:ScoreSort'
     _common:FlushStats:
       type: object
       properties:
@@ -28458,6 +29488,9 @@ components:
           - type: array
             items:
               type: string
+    _common:HumanReadableByteCount:
+      type: string
+      pattern: \d+(\.\d+)?(b|kb|k|mb|m|gb|g|tb|t|pb|p)
     _common:IBDistribution:
       type: string
       enum:
@@ -28651,21 +29684,21 @@ components:
         current_docs:
           type: number
         current_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         current_size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         total:
           type: number
         total_auto_throttle:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         total_auto_throttle_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         total_docs:
           type: number
         total_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         total_size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         total_stopped_time:
           $ref: '#/components/schemas/_common:Duration'
         total_stopped_time_in_millis:
@@ -28707,6 +29740,13 @@ components:
         - type: string
     _common:MultiTermQueryRewrite:
       type: string
+      enum:
+        - constant_score
+        - constant_score_boolean
+        - scoring_boolean
+        - top_terms_N
+        - top_terms_blended_freqs_N
+        - top_terms_boost_N
     _common:Name:
       type: string
     _common:Names:
@@ -28764,25 +29804,32 @@ components:
     _common:NodeName:
       type: string
     _common:NodeRole:
-      type: string
-      enum:
-        - client
-        - cluster_manager
-        - coordinating_only
-        - data
-        - data_cold
-        - data_content
-        - data_frozen
-        - data_hot
-        - data_warm
-        - ingest
-        - master
-        - ml
-        - remote_cluster_client
-        - transform
-        - voting_only
-      x-deprecated-enums:
-        - master
+      oneOf:
+        - type: string
+          enum:
+            - client
+            - coordinating_only
+            - data
+            - data_cold
+            - data_content
+            - data_frozen
+            - data_hot
+            - data_warm
+            - ingest
+            - ml
+            - remote_cluster_client
+            - transform
+            - voting_only
+        - type: string
+          enum:
+            - master
+          deprecated: true
+          x-version-deprecated: '2.0'
+          x-deprecation-message: To promote inclusive language, use 'cluster_manager' instead.
+        - type: string
+          enum:
+            - cluster_manager
+          x-version-added: '2.0'
     _common:NodeRoles:
       description: Node roles.
       type: array
@@ -28890,10 +29937,11 @@ components:
         - index
     _common:Password:
       type: string
-    _common:Percentage:
-      oneOf:
-        - type: string
-        - type: number
+    _common:PercentageNumber:
+      type: number
+    _common:PercentageString:
+      type: string
+      pattern: \d+(\.\d+)?
     _common:PhaseTook:
       type: object
       properties:
@@ -28982,10 +30030,10 @@ components:
           description: Total count of query cache hits across all shards assigned to selected nodes.
           type: number
         memory_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         memory_size_in_bytes:
           description: Total amount, in bytes, of memory used for the query cache across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         miss_count:
           description: Total count of query cache misses across all shards assigned to selected nodes.
           type: number
@@ -29117,22 +30165,22 @@ components:
       properties:
         failed:
           description: The number of bytes that failed to upload to the remote translog store.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         failed_bytes:
           description: The number of bytes that failed to upload to the remote translog store.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         started:
           description: The number of bytes successfully uploaded to the remote translog store.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         started_bytes:
           description: The number of bytes successfully uploaded to the remote translog store.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         succeeded:
           description: The number of bytes successfully uploaded to the remote translog store.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         succeeded_bytes:
           description: The number of bytes successfully uploaded to the remote translog store.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - failed_bytes
         - started_bytes
@@ -29160,22 +30208,22 @@ components:
       properties:
         failed:
           description: The number of bytes that failed to upload/upload to/from the remote segment store.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         failed_bytes:
           description: The number of bytes that failed to upload/upload to/from the remote segment store.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         started:
           description: The number of bytes to upload/download to/from the remote segment store after the upload/download has started.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         started_bytes:
           description: The number of bytes to upload/download to/from the remote segment store after the upload/download has started.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         succeeded:
           description: The number of bytes successfully uploaded/downloaded to/from the remote segment store.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         succeeded_bytes:
           description: The number of bytes successfully uploaded/downloaded to/from the remote segment store.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - failed_bytes
         - started_bytes
@@ -29195,16 +30243,16 @@ components:
       properties:
         max:
           description: The maximum amount of lag, in bytes, during the upload refresh between the remote segment store and the local store.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         max_bytes:
           description: The maximum amount of lag, in bytes, during the upload refresh between the remote segment store and the local store.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         total:
           description: The total number of bytes that lagged during the upload refresh between the remote segment store and the local store.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         total_bytes:
           description: The total number of bytes that lagged during the upload refresh between the remote segment store and the local store.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - max_bytes
         - total_bytes
@@ -29244,9 +30292,9 @@ components:
         hit_count:
           type: number
         memory_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         memory_size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         miss_count:
           type: number
       required:
@@ -29496,11 +30544,11 @@ components:
       type: object
       properties:
         max_bytes_behind:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         max_replication_lag:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         total_bytes_behind:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - max_bytes_behind
         - max_replication_lag
@@ -29512,10 +30560,10 @@ components:
           description: Total number of segments across all shards assigned to selected nodes.
           type: number
         doc_values_memory:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         doc_values_memory_in_bytes:
           description: Total amount, in bytes, of memory used for doc values across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         file_sizes:
           description: |-
             This object is not populated by the cluster stats API.
@@ -29524,62 +30572,62 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/indices.stats:ShardFileSizeInfo'
         fixed_bit_set:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         fixed_bit_set_memory_in_bytes:
           description: Total amount of memory, in bytes, used by fixed bit sets across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         index_writer_memory:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         index_writer_max_memory_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         index_writer_memory_in_bytes:
           description: Total amount, in bytes, of memory used by all index writers across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         max_unsafe_auto_id_timestamp:
           description: Unix timestamp, in milliseconds, of the most recently retried indexing request.
           type: number
         memory:
           description: Total amount, of memory used for segments across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         memory_in_bytes:
           description: Total amount, in bytes, of memory used for segments across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         norms_memory:
           description: Total amount of memory used for normalization factors across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         norms_memory_in_bytes:
           description: Total amount, in bytes, of memory used for normalization factors across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         points_memory:
           description: Total amount of memory used for points across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         points_memory_in_bytes:
           description: Total amount, in bytes, of memory used for points across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         stored_fields_memory:
           description: Total amount of memory used for stored fields across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         stored_fields_memory_in_bytes:
           description: Total amount, in bytes, of memory used for stored fields across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         terms_memory:
           description: Total amount of memory used for terms across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         terms_memory_in_bytes:
           description: Total amount, in bytes, of memory used for terms across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         term_vectors_memory:
           description: Total amount of memory used for term vectors across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         term_vectors_memory_in_bytes:
           description: Total amount, in bytes, of memory used for term vectors across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         version_map_memory:
           description: Total amount of memory used by all version maps across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         version_map_memory_in_bytes:
           description: Total amount, in bytes, of memory used by all version maps across all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         remote_store:
           $ref: '#/components/schemas/_common:RemoteStoreStats'
         segment_replication:
@@ -29675,6 +30723,7 @@ components:
     _common:SortCombinations:
       oneOf:
         - $ref: '#/components/schemas/_common:Field'
+        - $ref: '#/components/schemas/_common:FieldWithOrder'
         - $ref: '#/components/schemas/_common:SortOptions'
     _common:SortMode:
       type: string
@@ -29706,23 +30755,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/_common:FieldValue'
-    _common:StorageSize:
-      type: string
-      pattern: \d+(\.\d+)?(b|kb|k|mb|m|gb|g|tb|t|pb|p)
-    _common:StorageType:
-      type: string
-      enum:
-        - b
-        - g
-        - gb
-        - k
-        - kb
-        - m
-        - mb
-        - p
-        - pb
-        - t
-        - tb
     _common:StoredScript:
       type: object
       properties:
@@ -29751,15 +30783,15 @@ components:
       type: object
       properties:
         size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         size_in_bytes:
           description: Total size, in bytes, of all shards assigned to selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         reserved:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         reserved_in_bytes:
           description: A prediction, in bytes, of how much larger the shard stores will eventually grow due to ongoing peer recoveries, restoring snapshots, and similar activities.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - reserved_in_bytes
         - size_in_bytes
@@ -29884,15 +30916,15 @@ components:
         remote_store:
           $ref: '#/components/schemas/_common:RemoteStoreTranslogStats'
         size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         uncommitted_operations:
           type: number
         uncommitted_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         uncommitted_size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - earliest_last_modified_age
         - operations
@@ -30014,6 +31046,32 @@ components:
         - _shards
         - _version
         - result
+    _common:XyCartesianCoordinates:
+      x-version-added: '2.4'
+      type: object
+      properties:
+        x:
+          description: The x coordinate.
+          type: number
+        y:
+          description: The y coordinate.
+          type: number
+      required:
+        - x
+        - y
+    _common:XyLocation:
+      x-version-added: '2.4'
+      description: |-
+        A two-dimensional Cartesian point specified by x and y coordinates. It can be represented in various ways:
+        - as a `{x, y}` object
+        - as a `[x, y]` array
+        - as a string in `"x, y"` or WKT point formats.
+      oneOf:
+        - $ref: '#/components/schemas/_common:XyCartesianCoordinates'
+        - type: array
+          items:
+            type: number
+        - type: string
     _common.aggregations:AdjacencyMatrixAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations:MultiBucketAggregateBaseAdjacencyMatrixBucket'
@@ -35858,6 +36916,10 @@ components:
               $ref: '#/components/schemas/_common.mapping:GeoOrientation'
             strategy:
               $ref: '#/components/schemas/_common.mapping:GeoStrategy'
+              deprecated: true
+            distance_error_pct:
+              type: number
+              deprecated: true
             type:
               type: string
               enum:
@@ -36185,23 +37247,6 @@ components:
                 - percolator
           required:
             - type
-    _common.mapping:PointProperty:
-      allOf:
-        - $ref: '#/components/schemas/_common.mapping:DocValuesPropertyBase'
-        - type: object
-          properties:
-            ignore_malformed:
-              type: boolean
-            ignore_z_value:
-              type: boolean
-            null_value:
-              type: string
-            type:
-              type: string
-              enum:
-                - point
-          required:
-            - type
     _common.mapping:Property:
       type: object
       discriminator:
@@ -36237,8 +37282,8 @@ components:
         - $ref: '#/components/schemas/_common.mapping:TokenCountProperty'
         - $ref: '#/components/schemas/_common.mapping:GeoPointProperty'
         - $ref: '#/components/schemas/_common.mapping:GeoShapeProperty'
-        - $ref: '#/components/schemas/_common.mapping:PointProperty'
-        - $ref: '#/components/schemas/_common.mapping:ShapeProperty'
+        - $ref: '#/components/schemas/_common.mapping:XyPointProperty'
+        - $ref: '#/components/schemas/_common.mapping:XyShapeProperty'
         - $ref: '#/components/schemas/_common.mapping:ByteNumberProperty'
         - $ref: '#/components/schemas/_common.mapping:DoubleNumberProperty'
         - $ref: '#/components/schemas/_common.mapping:FloatNumberProperty'
@@ -36404,25 +37449,6 @@ components:
               type: string
               enum:
                 - search_as_you_type
-          required:
-            - type
-    _common.mapping:ShapeProperty:
-      allOf:
-        - $ref: '#/components/schemas/_common.mapping:DocValuesPropertyBase'
-        - type: object
-          properties:
-            coerce:
-              type: boolean
-            ignore_malformed:
-              type: boolean
-            ignore_z_value:
-              type: boolean
-            orientation:
-              $ref: '#/components/schemas/_common.mapping:GeoOrientation'
-            type:
-              type: string
-              enum:
-                - shape
           required:
             - type
     _common.mapping:ShortNumberProperty:
@@ -36665,6 +37691,44 @@ components:
                 - wildcard
             null_value:
               type: string
+          required:
+            - type
+    _common.mapping:XyPointProperty:
+      x-version-added: '2.4'
+      allOf:
+        - $ref: '#/components/schemas/_common.mapping:DocValuesPropertyBase'
+        - type: object
+          properties:
+            ignore_malformed:
+              type: boolean
+            ignore_z_value:
+              type: boolean
+            null_value:
+              $ref: '#/components/schemas/_common:XyLocation'
+            type:
+              type: string
+              enum:
+                - xy_point
+          required:
+            - type
+    _common.mapping:XyShapeProperty:
+      x-version-added: '2.4'
+      allOf:
+        - $ref: '#/components/schemas/_common.mapping:DocValuesPropertyBase'
+        - type: object
+          properties:
+            coerce:
+              type: boolean
+            ignore_malformed:
+              type: boolean
+            ignore_z_value:
+              type: boolean
+            orientation:
+              $ref: '#/components/schemas/_common.mapping:GeoOrientation'
+            type:
+              type: string
+              enum:
+                - xy_shape
           required:
             - type
     _common.query_dsl:BoolQuery:
@@ -37042,6 +38106,9 @@ components:
               $ref: '#/components/schemas/_common.query_dsl:GeoValidationMethod'
             ignore_unmapped:
               $ref: '#/components/schemas/_common.query_dsl:IgnoreUnmapped'
+          additionalProperties:
+            $ref: '#/components/schemas/_common:GeoBounds'
+          minProperties: 1
     _common.query_dsl:GeoDecayFunction:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl:DecayFunctionBase'
@@ -37063,11 +38130,11 @@ components:
               $ref: '#/components/schemas/_common.query_dsl:GeoValidationMethod'
             ignore_unmapped:
               $ref: '#/components/schemas/_common.query_dsl:IgnoreUnmapped'
-            field:
-              type: object
+          additionalProperties:
+            $ref: '#/components/schemas/_common:GeoLocation'
+          minProperties: 2
           required:
             - distance
-            - field
     _common.query_dsl:GeoExecution:
       type: string
       enum:
@@ -37082,6 +38149,22 @@ components:
               $ref: '#/components/schemas/_common.query_dsl:GeoValidationMethod'
             ignore_unmapped:
               $ref: '#/components/schemas/_common.query_dsl:IgnoreUnmapped'
+    _common.query_dsl:GeoShape:
+      type: object
+      properties:
+        type:
+          type: string
+        coordinates:
+          type: array
+    _common.query_dsl:GeoShapeField:
+      type: object
+      properties:
+        shape:
+          $ref: '#/components/schemas/_common.query_dsl:GeoShape'
+        relation:
+          $ref: '#/components/schemas/_common:GeoShapeRelation'
+      required:
+        - shape
     _common.query_dsl:GeoShapeQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl:QueryBase'
@@ -37089,6 +38172,9 @@ components:
           properties:
             ignore_unmapped:
               $ref: '#/components/schemas/_common.query_dsl:IgnoreUnmapped'
+          additionalProperties:
+            $ref: '#/components/schemas/_common.query_dsl:GeoShapeField'
+          minProperties: 1
     _common.query_dsl:GeoValidationMethod:
       type: string
       enum:
@@ -37358,9 +38444,7 @@ components:
         version_type:
           $ref: '#/components/schemas/_common:VersionType'
     _common.query_dsl:MatchAllQuery:
-      allOf:
-        - $ref: '#/components/schemas/_common.query_dsl:QueryBase'
-        - type: object
+      $ref: '#/components/schemas/_common.query_dsl:QueryBase'
     _common.query_dsl:MatchBoolPrefixQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl:QueryBase'
@@ -37957,8 +39041,6 @@ components:
           $ref: '#/components/schemas/_common.query_dsl:ScriptQuery'
         script_score:
           $ref: '#/components/schemas/_common.query_dsl:ScriptScoreQuery'
-        shape:
-          $ref: '#/components/schemas/_common.query_dsl:ShapeQuery'
         simple_query_string:
           $ref: '#/components/schemas/_common.query_dsl:SimpleQueryStringQuery'
         span_containing:
@@ -37996,7 +39078,8 @@ components:
           minProperties: 1
           maxProperties: 1
         terms:
-          $ref: '#/components/schemas/_common.query_dsl:TermsQuery'
+          description: Returns documents that contain one or more exact terms in a provided field.
+          $ref: '#/components/schemas/_common.query_dsl:TermsQueryField'
         terms_set:
           description: |-
             Returns documents that contain a minimum number of exact terms in a provided field.
@@ -38013,6 +39096,8 @@ components:
             $ref: '#/components/schemas/_common.query_dsl:TextExpansionQuery'
           minProperties: 1
           maxProperties: 1
+        type:
+          $ref: '#/components/schemas/_common.query_dsl:TypeQuery'
         weighted_tokens:
           description: Supports returning text_expansion query results by sending in precomputed tokens with the query.
           type: object
@@ -38029,8 +39114,8 @@ components:
           maxProperties: 1
         wrapper:
           $ref: '#/components/schemas/_common.query_dsl:WrapperQuery'
-        type:
-          $ref: '#/components/schemas/_common.query_dsl:TypeQuery'
+        xy_shape:
+          $ref: '#/components/schemas/_common.query_dsl:XyShapeQuery'
       minProperties: 1
       maxProperties: 1
     _common.query_dsl:QueryStringQuery:
@@ -38262,13 +39347,6 @@ components:
           required:
             - query
             - script
-    _common.query_dsl:ShapeQuery:
-      allOf:
-        - $ref: '#/components/schemas/_common.query_dsl:QueryBase'
-        - type: object
-          properties:
-            ignore_unmapped:
-              $ref: '#/components/schemas/_common.query_dsl:IgnoreUnmapped'
     _common.query_dsl:SimpleQueryStringFlag:
       type: string
       enum:
@@ -38509,27 +39587,33 @@ components:
               type: boolean
           required:
             - value
-    _common.query_dsl:Terms:
-      oneOf:
-        - type: array
-          items:
-            type: string
-        - type: object
-          properties:
-            index:
-              $ref: '#/components/schemas/_common:IndexName'
-            id:
-              $ref: '#/components/schemas/_common:Id'
-            path:
-              $ref: '#/components/schemas/_common:Field'
-            routing:
-              $ref: '#/components/schemas/_common:Routing'
-          additionalProperties: true
-          description: Object for fetching terms.
-    _common.query_dsl:TermsQuery:
-      anyOf:
-        - $ref: '#/components/schemas/_common.query_dsl:QueryBase'
-        - $ref: '#/components/schemas/_common.query_dsl:Terms'
+    _common.query_dsl:TermsLookupField:
+      type: object
+      properties:
+        index:
+          $ref: '#/components/schemas/_common:IndexName'
+        id:
+          $ref: '#/components/schemas/_common:Id'
+        path:
+          $ref: '#/components/schemas/_common:Field'
+        routing:
+          $ref: '#/components/schemas/_common:Routing'
+    _common.query_dsl:TermsQueryField:
+      type: object
+      properties:
+        boost:
+          description: |-
+            A floating-point value that specifies the weight of this field toward the relevance score.
+            Values above 1.0 increase the field’s relevance. Values between 0.0 and 1.0 decrease the field’s relevance.
+            Default is 1.0.
+          type: number
+          format: float
+      additionalProperties:
+        oneOf:
+          - $ref: '#/components/schemas/_common.query_dsl:TermsLookupField'
+          - type: array
+            items:
+              type: string
     _common.query_dsl:TermsSetQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl:QueryBase'
@@ -38540,7 +39624,9 @@ components:
             minimum_should_match_script:
               $ref: '#/components/schemas/_common:Script'
             terms:
-              $ref: '#/components/schemas/_common.query_dsl:Terms'
+              type: array
+              items:
+                type: string
           required:
             - terms
     _common.query_dsl:TextExpansionQuery:
@@ -38631,6 +39717,31 @@ components:
               type: string
           required:
             - query
+    _common.query_dsl:XyShape:
+      type: object
+      properties:
+        type:
+          type: string
+        coordinates:
+          type: array
+    _common.query_dsl:XyShapeField:
+      type: object
+      properties:
+        shape:
+          $ref: '#/components/schemas/_common.query_dsl:XyShape'
+        relation:
+          $ref: '#/components/schemas/_common:GeoShapeRelation'
+      required:
+        - shape
+    _common.query_dsl:XyShapeQuery:
+      x-version-added: '2.4'
+      allOf:
+        - $ref: '#/components/schemas/_common.query_dsl:QueryBase'
+        - type: object
+          additionalProperties:
+            $ref: '#/components/schemas/_common.query_dsl:XyShapeField'
+          minProperties: 1
+          maxProperties: 1
     _common.query_dsl:ZeroTermsQuery:
       type: string
       enum:
@@ -38677,17 +39788,11 @@ components:
           type: integer
           format: int32
     _core.bulk:CreateOperation:
-      allOf:
-        - $ref: '#/components/schemas/_core.bulk:WriteOperation'
-        - type: object
+      $ref: '#/components/schemas/_core.bulk:WriteOperation'
     _core.bulk:DeleteOperation:
-      allOf:
-        - $ref: '#/components/schemas/_core.bulk:OperationBase'
-        - type: object
+      $ref: '#/components/schemas/_core.bulk:OperationBase'
     _core.bulk:IndexOperation:
-      allOf:
-        - $ref: '#/components/schemas/_core.bulk:WriteOperation'
-        - type: object
+      $ref: '#/components/schemas/_core.bulk:WriteOperation'
     _core.bulk:OperationBase:
       type: object
       properties:
@@ -40850,11 +41955,11 @@ components:
         files_fetched:
           type: string
         files_percent:
-          type: string
+          $ref: '#/components/schemas/_common:PercentageString'
         bytes_fetched:
           type: string
         bytes_percent:
-          type: string
+          $ref: '#/components/schemas/_common:PercentageString'
         start_time:
           type: string
         stop_time:
@@ -40935,7 +42040,7 @@ components:
         disk.percent:
           description: Total percentage of disk space in use. Calculated as `disk.used / disk.total`.
           oneOf:
-            - $ref: '#/components/schemas/_common:Percentage'
+            - $ref: '#/components/schemas/_common:PercentageString'
             - type: 'null'
         host:
           description: Network host for the node. Set using the `network.host` setting.
@@ -41038,7 +42143,7 @@ components:
           type: string
         active_shards_percent:
           description: active number of shards in percent
-          type: string
+          $ref: '#/components/schemas/_common:PercentageString'
         discovered_cluster_manager:
           description: cluster manager is discovered or not
           type: string
@@ -41818,12 +42923,12 @@ components:
         disk.avail:
           type: string
         disk.used_percent:
-          $ref: '#/components/schemas/_common:Percentage'
+          $ref: '#/components/schemas/_common:PercentageString'
         heap.current:
           description: The used heap.
           type: string
         heap.percent:
-          $ref: '#/components/schemas/_common:Percentage'
+          $ref: '#/components/schemas/_common:PercentageString'
         heap.max:
           description: The maximum configured heap.
           type: string
@@ -41831,7 +42936,7 @@ components:
           description: The used machine memory.
           type: string
         ram.percent:
-          $ref: '#/components/schemas/_common:Percentage'
+          $ref: '#/components/schemas/_common:PercentageString'
         ram.max:
           description: The total machine memory.
           type: string
@@ -41839,7 +42944,7 @@ components:
           description: The used file descriptors.
           type: string
         file_desc.percent:
-          $ref: '#/components/schemas/_common:Percentage'
+          $ref: '#/components/schemas/_common:PercentageString'
         file_desc.max:
           description: The maximum number of file descriptors.
           type: string
@@ -42173,7 +43278,7 @@ components:
           description: The files recovered.
           type: string
         files_percent:
-          $ref: '#/components/schemas/_common:Percentage'
+          $ref: '#/components/schemas/_common:PercentageString'
         files_total:
           description: The total number of files.
           type: string
@@ -42184,7 +43289,7 @@ components:
           description: The bytes recovered.
           type: string
         bytes_percent:
-          $ref: '#/components/schemas/_common:Percentage'
+          $ref: '#/components/schemas/_common:PercentageString'
         bytes_total:
           description: The total number of bytes.
           type: string
@@ -42195,7 +43300,7 @@ components:
           description: The translog operations recovered.
           type: string
         translog_ops_percent:
-          $ref: '#/components/schemas/_common:Percentage'
+          $ref: '#/components/schemas/_common:PercentageString'
     cat.repositories:RepositoriesRecord:
       type: object
       properties:
@@ -42243,7 +43348,7 @@ components:
             Also, OpenSearch creates extra deleted documents to internally track the recent history of operations on a shard.
           type: string
         size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         size.memory:
           type: string
         committed:
@@ -42957,7 +44062,7 @@ components:
         in_sync:
           type: boolean
         matching_size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         matching_sync_id:
           type: boolean
         store_exception:
@@ -42980,8 +44085,8 @@ components:
           type: object
           additionalProperties:
             oneOf:
-              - $ref: '#/components/schemas/_common:Bytes'
-              - $ref: '#/components/schemas/_common:StorageSize'
+              - $ref: '#/components/schemas/_common:ByteCount'
+              - $ref: '#/components/schemas/_common:HumanReadableByteCount'
         shard_data_set_sizes:
           type: object
           additionalProperties:
@@ -43037,21 +44142,21 @@ components:
         path:
           type: string
         total:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         total_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         used:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         used_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         free:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         free_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         free_disk_percent:
-          type: number
+          $ref: '#/components/schemas/_common:PercentageNumber'
         used_disk_percent:
-          type: number
+          $ref: '#/components/schemas/_common:PercentageNumber'
       required:
         - free_bytes
         - free_disk_percent
@@ -43197,8 +44302,10 @@ components:
         active_shards:
           description: The total number of active primary and replica shards.
           type: number
+        active_shards_percent:
+          $ref: '#/components/schemas/_common:PercentageString'
         active_shards_percent_as_number:
-          $ref: '#/components/schemas/_common:Percentage'
+          $ref: '#/components/schemas/_common:PercentageNumber'
         awareness_attributes:
           description: Cluster health information for each awareness attribute.
           type: object
@@ -43618,32 +44725,32 @@ components:
             Total number of bytes available to JVM in file stores across all selected nodes.
             Depending on operating system or process-level restrictions, this number may be less than `nodes.fs.free_in_byes`.
             This is the actual amount of free disk space the selected OpenSearch nodes can use.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         available_in_bytes:
           description: |-
             Total number of bytes available to JVM in file stores across all selected nodes.
             Depending on operating system or process-level restrictions, this number may be less than `nodes.fs.free_in_byes`.
             This is the actual amount of free disk space the selected OpenSearch nodes can use.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         free:
           description: Total number of unallocated bytes in file stores across all selected nodes.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         free_in_bytes:
           description: Total number of unallocated bytes in file stores across all selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         total:
           description: Total size, of all file stores across all selected nodes.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         total_in_bytes:
           description: Total size, in bytes, of all file stores across all selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         cache_reserved:
           description: Total size, of all cache reserved across all selected nodes.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
           x-version-added: '2.7'
         cache_reserved_in_bytes:
           description: Total size, in bytes, of all cache reserved across all selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
           x-version-added: '2.7'
       required:
         - available_in_bytes
@@ -43755,16 +44862,16 @@ components:
       properties:
         heap_max:
           description: Maximum amount of memory available for use by the heap across all selected nodes.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         heap_max_in_bytes:
           description: Maximum amount of memory, in bytes, available for use by the heap across all selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         heap_used:
           description: Memory currently in use by the heap across all selected nodes.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         heap_used_in_bytes:
           description: Memory, in bytes, currently in use by the heap across all selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - heap_max_in_bytes
         - heap_used_in_bytes
@@ -43997,7 +45104,7 @@ components:
           description: |-
             Percentage of CPU used across all selected nodes.
             Returns `-1` if not supported.
-          type: number
+          $ref: '#/components/schemas/_common:PercentageNumber'
       required:
         - percent
     cluster.stats:ClusterProcessOpenFileDescriptors:
@@ -44103,10 +45210,10 @@ components:
           description: Total number of fields in all non-system indices, accounting for mapping deduplication.
           type: number
         total_deduplicated_mapping_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         total_deduplicated_mapping_size_in_bytes:
           description: Total size of all mappings, in bytes, after deduplication and compression.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - field_types
     cluster.stats:IndexingPressure:
@@ -44122,7 +45229,7 @@ components:
         current:
           $ref: '#/components/schemas/cluster.stats:IndexingPressureMemorySummary'
         limit_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         total:
           $ref: '#/components/schemas/cluster.stats:IndexingPressureMemorySummary'
       required:
@@ -44133,19 +45240,19 @@ components:
       type: object
       properties:
         all_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         combined_coordinating_and_primary_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         coordinating_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         coordinating_rejections:
           type: number
         primary_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         primary_rejections:
           type: number
         replica_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         replica_rejections:
           type: number
       required:
@@ -44162,7 +45269,7 @@ components:
         primary_shard_count:
           type: number
         total_primary_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         version:
           $ref: '#/components/schemas/_common:VersionString'
       required:
@@ -44190,31 +45297,31 @@ components:
       properties:
         adjusted_total_in_bytes:
           description: Total amount, in bytes, of memory across all selected nodes, but using the value specified using the `es.total_memory_bytes` system property instead of measured total memory for those nodes where that system property was set.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         free:
           description: Amount, in bytes, of free physical memory across all selected nodes.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         free_in_bytes:
           description: Amount, in bytes, of free physical memory across all selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         free_percent:
           description: Percentage of free physical memory across all selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:PercentageNumber'
         total:
           description: Total amount of physical memory across all selected nodes.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         total_in_bytes:
           description: Total amount, in bytes, of physical memory across all selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         used:
           description: Amount of physical memory in use across all selected nodes.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         used_in_bytes:
           description: Amount, in bytes, of physical memory in use across all selected nodes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         used_percent:
           description: Percentage of physical memory in use across all selected nodes.
-          type: number
+          $ref: '#/components/schemas/_common:PercentageNumber'
       required:
         - free_in_bytes
         - free_percent
@@ -44344,6 +45451,539 @@ components:
         - index_name
         - index_uuid
         - node_ids
+    flow_framework.common:All:
+      description: The all parameter specifies whether the response should return all fields.
+      type: boolean
+      default: false
+    flow_framework.common:AllowDelete:
+      description: Required when deleting resources involves a high potential for data loss.
+      type: string
+    flow_framework.common:FlowFrameworkCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the workflow.
+        description:
+          type: string
+          description: A description of the workflow.
+        use_case:
+          type: string
+          description: A use case, which can be used with the Search Workflow API to find related workflows.
+        version:
+          $ref: '#/components/schemas/flow_framework.common:version'
+        workflows:
+          type: object
+          description: A map of workflows. Presently, only the provision key is supported. The value for the workflow key is a key-value map that includes fields for user_params and lists of nodes and edges.
+      required:
+        - name
+    flow_framework.common:FlowFrameworkDeleteResponse:
+      type: object
+      properties:
+        _index:
+          type: string
+          description: The name of the index where the document was stored.
+        _id:
+          type: string
+          description: The unique identifier of the deleted document.
+        _version:
+          type: integer
+          description: The version of the document after the deletion.
+        result:
+          type: string
+          description: The result of the deletion operation.
+          enum:
+            - deleted
+            - not_found
+        _shards:
+          $ref: '#/components/schemas/flow_framework.common:shards'
+        _seq_no:
+          type: integer
+          description: The sequence number assigned to the document after the deletion.
+        _primary_term:
+          type: integer
+          description: The primary term assigned to the document after the deletion.
+    flow_framework.common:FlowFrameworkGetResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        use_case:
+          type: string
+        workflows:
+          type: object
+        user:
+          $ref: '#/components/schemas/flow_framework.common:user'
+        created_time:
+          type: integer
+        last_updated_time:
+          type: integer
+    flow_framework.common:FlowFrameworkUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the workflow.
+        description:
+          type: string
+          description: A description of the workflow.
+        use_case:
+          type: string
+          description: A use case, which can be used with the Search Workflow API to find related workflows.
+        version:
+          $ref: '#/components/schemas/flow_framework.common:version'
+      minProperties: 1
+    flow_framework.common:hits:
+      type: object
+      properties:
+        total:
+          $ref: '#/components/schemas/flow_framework.common:total'
+        max_score:
+          type: number
+          format: float
+          description: The maximum score of the search hits.
+        hits:
+          type: array
+          items:
+            $ref: '#/components/schemas/flow_framework.common:itemsObject'
+    flow_framework.common:itemsObject:
+      type: object
+      properties:
+        _index:
+          type: string
+          description: The index name where the document resides.
+        _id:
+          type: string
+          description: The document ID.
+        _version:
+          type: integer
+          description: The version of the document.
+        _seq_no:
+          type: integer
+          description: The sequence number of the document.
+        _primary_term:
+          type: integer
+          description: The primary term of the document.
+        _score:
+          type: number
+          format: float
+          description: The score of the search hit.
+        _source:
+          $ref: '#/components/schemas/flow_framework.common:FlowFrameworkGetResponse'
+    flow_framework.common:Provision:
+      description: Provision the workflow as part of the request.
+      type: boolean
+      default: false
+    flow_framework.common:query:
+      type: object
+      description: The search query to match workflows. Use `match_all` to retrieve all workflows, or `match` to search by specific fields like `use_case`.
+      properties:
+        match:
+          type: object
+        match_all:
+          type: object
+    flow_framework.common:Reprovision:
+      type: boolean
+      default: false
+    flow_framework.common:SearchStateResponse:
+      type: object
+      properties:
+        workflow_id:
+          type: string
+        provisioning_progress:
+          type: string
+        state:
+          type: string
+        user:
+          $ref: '#/components/schemas/flow_framework.common:user'
+    flow_framework.common:SearchWorkflowRequest:
+      type: object
+      properties:
+        query:
+          $ref: '#/components/schemas/flow_framework.common:query'
+    flow_framework.common:shards:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The total number of shards involved in the deletion.
+        successful:
+          type: integer
+          description: The number of shards where the deletion was successful.
+        failed:
+          type: integer
+          description: The number of shards where the deletion failed.
+    flow_framework.common:StateHits:
+      type: object
+      properties:
+        total:
+          $ref: '#/components/schemas/flow_framework.common:total'
+        max_score:
+          type: number
+          format: float
+          description: The maximum score of the search hits.
+        hits:
+          type: array
+          items:
+            $ref: '#/components/schemas/flow_framework.common:StateItems'
+    flow_framework.common:StateItems:
+      type: object
+      properties:
+        _index:
+          type: string
+          description: The index name where the document resides.
+        _id:
+          type: string
+          description: The document ID.
+        _version:
+          type: integer
+          description: The version of the document.
+        _seq_no:
+          type: integer
+          description: The sequence number of the document.
+        _primary_term:
+          type: integer
+          description: The primary term of the document.
+        _score:
+          type: number
+          format: float
+          description: The score of the search hit.
+        _source:
+          $ref: '#/components/schemas/flow_framework.common:SearchStateResponse'
+    flow_framework.common:total:
+      type: object
+      properties:
+        value:
+          type: integer
+          description: Total number of matching documents.
+        relation:
+          type: string
+          description: The relation of the total hits.
+    flow_framework.common:UpdateFields:
+      description: Update only the fields included in the request body.
+      type: boolean
+      default: false
+    flow_framework.common:UseCase:
+      type: string
+    flow_framework.common:user:
+      type: object
+      properties:
+        name:
+          type: string
+        backend_roles:
+          type: array
+          items:
+            type: string
+        roles:
+          type: array
+          items:
+            type: string
+        custom_attribute_names:
+          type: array
+          items:
+            type: string
+        user_requested_tenant:
+          type: string
+          nullable: true
+    flow_framework.common:UserProvidedSubstitutionExpressions:
+      type: object
+      additionalProperties:
+        type: string
+        description: The value for the user-provided key. Keys represent substitution expressions.
+    flow_framework.common:Validation:
+      description: Validate the workflow. Valid values are all (validate the template) and none (do not validate the template). Default is all.
+      type: string
+      default: all
+    flow_framework.common:version:
+      type: object
+      description: A key-value map with two fields, template, which identifies the template version, and compatibility, which identifies a list of minimum required OpenSearch versions.
+      properties:
+        template:
+          type: string
+          description: The template version of the workflow.
+        compatibility:
+          type: array
+          items:
+            type: string
+          description: A list of minimum required OpenSearch versions.
+    flow_framework.common:WorkflowID:
+      type: string
+    flow_framework.common:WorkflowSearchResponse:
+      type: object
+      properties:
+        took:
+          type: integer
+          description: Time in milliseconds that the request took to complete.
+        timed_out:
+          type: boolean
+          description: Indicates if the request timed out.
+        _shards:
+          $ref: '#/components/schemas/flow_framework.common:shards'
+        hits:
+          $ref: '#/components/schemas/flow_framework.common:hits'
+    flow_framework.common:WorkflowSearchStateResponse:
+      type: object
+      properties:
+        took:
+          type: integer
+          description: Time in milliseconds that the request took to complete.
+        timed_out:
+          type: boolean
+          description: Indicates if the request timed out.
+        _shards:
+          $ref: '#/components/schemas/flow_framework.common:shards'
+        hits:
+          $ref: '#/components/schemas/flow_framework.common:StateHits'
+    flow_framework.common:WorkFlowStatusDefaultResponse:
+      type: object
+      properties:
+        workflow_id:
+          type: string
+          description: The ID of the workflow
+        error:
+          type: string
+          description: Any error state associated with the workflow
+          nullable: true
+        state:
+          type: string
+          description: The current state of the workflow
+        resources_created:
+          type: array
+          items:
+            type: string
+          description: A list of resources created by the workflow
+    flow_framework.common:WorkFlowStatusFullResponse:
+      type: object
+      properties:
+        workflow_id:
+          type: string
+          description: The ID of the workflow
+        error:
+          type: string
+          description: Any error state associated with the workflow
+          nullable: true
+        state:
+          type: string
+          description: The current state of the workflow
+          enum:
+            - COMPLETED
+            - FAILED
+            - NOT_STARTED
+            - PROVISIONING
+        resources_created:
+          type: array
+          items:
+            type: string
+          description: A list of resources created by the workflow
+        provisioning_progress:
+          type: string
+          description: The progress of the provisioning process
+          nullable: true
+        provision_start_time:
+          type: string
+          format: date-time
+          description: The start time of the provisioning process
+        provision_end_time:
+          type: string
+          format: date-time
+          description: The end time of the provisioning process
+        user:
+          $ref: '#/components/schemas/flow_framework.common:user'
+        user_outputs:
+          type: array
+          items:
+            type: string
+          description: Outputs generated by the user
+    flow_framework.common:WorkflowStep:
+      type: object
+      properties:
+        inputs:
+          type: array
+          items:
+            type: string
+          description: The list of required inputs for the workflow step
+        outputs:
+          type: array
+          items:
+            type: string
+          description: The list of outputs generated by the workflow step
+        required_plugins:
+          type: array
+          items:
+            type: string
+          description: The list of plugins required for the workflow step
+    flow_framework.common:WorkflowStepName:
+      type: string
+    flow_framework.errors:BadRequestError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message when the request body or parameters are invalid.
+          example: Invalid request body or query parameters.
+        status:
+          type: integer
+          description: HTTP status code for the error.
+          example: 400
+    flow_framework.errors:ConflictError:
+      content:
+        application/json:
+          type: object
+          properties:
+            message:
+              type: string
+              example: You cannot use both the 'provision_workflow' and 'update_workflow_fields' parameters in the same request.
+            status:
+              type: integer
+    flow_framework.errors:DeprovisioningError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Describes the deprovisioning error and identifies resources that were not deprovisioned
+          example: Failed to deprovision some resources [connector_id Lw7PX4wBfVtHp98y06wV].
+      required:
+        - error
+    flow_framework.errors:DeprovisioningForbiddenError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Describes the resources that require the allow_delete parameter for deprovisioning
+          example: These resources require the allow_delete parameter to deprovision [index_name my-index].
+      required:
+        - error
+    flow_framework.errors:DuplicateKeyError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message when a duplicate key is found in the request.
+        status:
+          type: integer
+          description: HTTP status code for the error.
+          example: 400
+    flow_framework.errors:FlowFrameworkAPIDisabledError:
+      content:
+        application/json:
+          type: object
+          properties:
+            message:
+              type: string
+              example: This API is disabled. To enable it, set [flow_framework.enabled] to true.
+            status:
+              type: integer
+    flow_framework.errors:InvalidParameterError:
+      content:
+        application/json:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Only the parameters [param1, param2] are permitted unless the provision parameter is set to true.
+            status:
+              type: integer
+    flow_framework.errors:InvalidRequestBodyFieldError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message when a request body field is not a string.
+        status:
+          type: integer
+          description: HTTP status code for the error.
+    flow_framework.errors:MaxWorkflowsLimitError:
+      content:
+        application/json:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Maximum workflows limit reached 50
+            code:
+              type: integer
+    flow_framework.errors:MissingParameterError:
+      content:
+        application/json:
+          type: object
+          properties:
+            message:
+              type: string
+              example: You cannot use the 'reprovision_workflow' parameter to create a new template.
+            status:
+              type: integer
+    flow_framework.errors:ParameterConflictError:
+      content:
+        application/json:
+          type: object
+          properties:
+            message:
+              type: string
+              example: You cannot use the 'reprovision_workflow' and 'use_case' parameters in the same request.
+            status:
+              type: integer
+    flow_framework.errors:RequestBodyParsingFailedError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message when request body parsing fails.
+        status:
+          type: integer
+          description: HTTP status code for the error.
+          example: 400
+    flow_framework.errors:RequestTimeoutError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message when the request times out.
+        status:
+          type: integer
+          description: HTTP status code for the error.
+          example: 408
+    flow_framework.errors:TemplateNotFoundError:
+      content:
+        application/json:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Failed to retrieve template (12345) from global context.
+            code:
+              type: integer
+    flow_framework.errors:WorkFlowIdNullError:
+      content:
+        application/json:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Workflow ID can not be null
+            status:
+              type: integer
+    flow_framework.errors:WorkflowSaveError:
+      content:
+        application/json:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Failed to save workflow state
+              status:
+                type: integer
+    flow_framework.errors:WorkflowStepsRetrieveError:
+      content:
+        application/json:
+          type: object
+          properties:
+            message:
+              type: string
+              example: Failed to retrieve workflow step json.
+            code:
+              type: integer
     indices._common:Alias:
       type: object
       properties:
@@ -44493,13 +46133,13 @@ components:
         max_docs:
           type: number
         min_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         max_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         min_primary_shard_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         max_primary_shard_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         min_primary_shard_docs:
           type: number
         max_primary_shard_docs:
@@ -45333,7 +46973,7 @@ components:
         durability:
           $ref: '#/components/schemas/indices._common:TranslogDurability'
         flush_threshold_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         retention:
           $ref: '#/components/schemas/indices._common:TranslogRetention'
     indices._common:TranslogDurability:
@@ -45345,7 +46985,7 @@ components:
       type: object
       properties:
         size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         age:
           $ref: '#/components/schemas/_common:Duration'
     indices.add_block:IndicesBlockOptions:
@@ -45508,10 +47148,10 @@ components:
         maximum_timestamp:
           $ref: '#/components/schemas/_common:EpochTimeUnitMillis'
         store_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         store_size_bytes:
           description: Total size, in bytes, of all shards for the data stream's backing indices.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - backing_indices
         - data_stream
@@ -45589,23 +47229,23 @@ components:
       type: object
       properties:
         percent:
-          $ref: '#/components/schemas/_common:Percentage'
+          $ref: '#/components/schemas/_common:PercentageString'
         recovered:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         recovered_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         recovered_from_snapshot:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         recovered_from_snapshot_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         reused:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         reused_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         total:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         total_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - percent
         - recovered_in_bytes
@@ -45619,7 +47259,7 @@ components:
           items:
             $ref: '#/components/schemas/indices.recovery:FileDetails'
         percent:
-          $ref: '#/components/schemas/_common:Percentage'
+          $ref: '#/components/schemas/_common:PercentageString'
         recovered:
           type: number
         reused:
@@ -45759,7 +47399,7 @@ components:
       type: object
       properties:
         percent:
-          $ref: '#/components/schemas/_common:Percentage'
+          $ref: '#/components/schemas/_common:PercentageString'
         recovered:
           type: number
         total:
@@ -45845,21 +47485,21 @@ components:
         max_docs:
           type: number
         max_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         max_size_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         min_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         min_size_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         max_primary_shard_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         max_primary_shard_size_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         min_primary_shard_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         min_primary_shard_size_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         max_primary_shard_docs:
           type: number
         min_primary_shard_docs:
@@ -45887,13 +47527,13 @@ components:
         deleted_docs:
           type: integer
         size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         memory:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         memory_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         committed:
           type: boolean
         search:
@@ -46133,15 +47773,15 @@ components:
         description:
           type: string
         size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         min_size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         max_size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         average_size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         count:
           type: number
       required:
@@ -47263,6 +48903,379 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/_common:ActionStatusOptions'
+    ism._common:Action:
+      type: object
+      description: An action to perform.
+      properties:
+        timeout:
+          $ref: '#/components/schemas/ism._common:ActionTimeout'
+        retry:
+          $ref: '#/components/schemas/ism._common:ActionRetry'
+        alias:
+          $ref: '#/components/schemas/ism._common:ActionAlias'
+        delete:
+          $ref: '#/components/schemas/ism._common:ActionDelete'
+        force_merge:
+          $ref: '#/components/schemas/ism._common:ActionForceMerge'
+        read_only:
+          $ref: '#/components/schemas/ism._common:ActionReadOnly'
+        read_write:
+          $ref: '#/components/schemas/ism._common:ActionReadWrite'
+        replica_count:
+          $ref: '#/components/schemas/ism._common:ActionReplicaCount'
+        index_priority:
+          $ref: '#/components/schemas/ism._common:ActionIndexPriority'
+        close:
+          $ref: '#/components/schemas/ism._common:ActionClose'
+        open:
+          $ref: '#/components/schemas/ism._common:ActionOpen'
+        snapshot:
+          $ref: '#/components/schemas/ism._common:ActionSnapshot'
+        rollover:
+          $ref: '#/components/schemas/ism._common:ActionRollover'
+        notification:
+          $ref: '#/components/schemas/ism._common:ActionNotification'
+        allocation:
+          $ref: '#/components/schemas/ism._common:ActionAllocation'
+        rollup:
+          $ref: '#/components/schemas/ism._common:ActionRollup'
+        transform:
+          $ref: '#/components/schemas/ism._common:ActionTransform'
+        shrink:
+          $ref: '#/components/schemas/ism._common:ActionShrink'
+        custom:
+          $ref: '#/components/schemas/ism._common:ActionCustom'
+    ism._common:ActionAlias:
+      type: object
+      properties:
+        actions:
+          type: object
+          additionalProperties: true
+    ism._common:ActionAllocation:
+      type: object
+      properties:
+        require:
+          type: object
+          additionalProperties: true
+        include:
+          type: object
+          additionalProperties: true
+        exclude:
+          type: object
+          additionalProperties: true
+        wait_for:
+          type: boolean
+    ism._common:ActionClose:
+      type: object
+    ism._common:ActionCustom:
+      type: object
+      additionalProperties: true
+    ism._common:ActionDelete:
+      type: object
+    ism._common:ActionForceMerge:
+      type: object
+      properties:
+        max_num_segments:
+          type: integer
+    ism._common:ActionIndexPriority:
+      type: object
+      properties:
+        priority:
+          type: number
+    ism._common:ActionNotification:
+      type: object
+      additionalProperties: true
+    ism._common:ActionOpen:
+      type: object
+    ism._common:ActionReadOnly:
+      type: object
+    ism._common:ActionReadWrite:
+      type: object
+    ism._common:ActionReplicaCount:
+      type: object
+      properties:
+        number_of_replicas:
+          type: number
+    ism._common:ActionRetry:
+      type: object
+      properties:
+        count:
+          type: integer
+        backoff:
+          type: string
+        delay:
+          type: string
+    ism._common:ActionRollover:
+      type: object
+      properties:
+        min_size:
+          type: number
+        min_index_age:
+          type: number
+        min_doc_count:
+          type: number
+        min_primary_shard_size:
+          type: number
+        copy_alias:
+          type: boolean
+    ism._common:ActionRollup:
+      type: object
+      additionalProperties: true
+    ism._common:ActionShrink:
+      type: object
+      additionalProperties: true
+    ism._common:ActionSnapshot:
+      type: object
+      properties:
+        repository:
+          type: string
+        snapshot:
+          type: string
+        include_global_state:
+          type: boolean
+    ism._common:ActionTimeout:
+      type: object
+      properties:
+        timeout:
+          type: object
+    ism._common:ActionTransform:
+      type: object
+      additionalProperties: true
+    ism._common:AddPolicyRequest:
+      type: object
+      properties:
+        policy_id:
+          type: string
+      required:
+        - policy_id
+    ism._common:AddPolicyResponse:
+      $ref: '#/components/schemas/ism._common:ChangePolicyResponse'
+    ism._common:ChangePolicyRequest:
+      type: object
+      properties:
+        policy_id:
+          type: string
+        state:
+          type: string
+        include:
+          type: array
+          items:
+            $ref: '#/components/schemas/ism._common:IncludeState'
+      required:
+        - policy_id
+    ism._common:ChangePolicyResponse:
+      type: object
+      properties:
+        updated_indices:
+          type: number
+        failures:
+          type: boolean
+        failed_indices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ism._common:FailedIndex'
+    ism._common:Channel:
+      type: object
+      properties:
+        id:
+          type: string
+    ism._common:DeletePolicyResponse:
+      $ref: '#/components/schemas/_common:WriteResponseBase'
+    ism._common:ErrorNotification:
+      type: object
+      properties:
+        destination:
+          $ref: '#/components/schemas/ism._common:ErrorNotificationDestination'
+        channel:
+          $ref: '#/components/schemas/ism._common:Channel'
+        message_template:
+          type: object
+          additionalProperties: true
+    ism._common:ErrorNotificationChime:
+      type: object
+      properties:
+        url:
+          type: string
+    ism._common:ErrorNotificationDestination:
+      type: object
+      properties:
+        name:
+          type: string
+        last_update_time:
+          type: integer
+      additionalProperties:
+        anyOf:
+          - $ref: '#/components/schemas/ism._common:ErrorNotificationChime'
+          - $ref: '#/components/schemas/ism._common:ErrorNotificationSlack'
+    ism._common:ErrorNotificationSlack:
+      type: object
+      properties:
+        url:
+          type: string
+        custom_webhook:
+          $ref: '#/components/schemas/ism._common:SlackCustomWebhook'
+    ism._common:ExplainIndexResponse:
+      type: object
+      properties:
+        total_managed_indices:
+          type: number
+      additionalProperties:
+        $ref: '#/components/schemas/ism._common:ExplainPolicy'
+    ism._common:ExplainPolicy:
+      type: object
+      properties:
+        index.plugins.index_state_management.policy_id:
+          type:
+            - 'null'
+            - string
+        index.opendistro.index_state_management.policy_id:
+          type:
+            - 'null'
+            - string
+        enabled:
+          type:
+            - boolean
+            - 'null'
+    ism._common:FailedIndex:
+      type: object
+      properties:
+        index_name:
+          type: string
+        index_uuid:
+          type: string
+        reason:
+          type: string
+    ism._common:GetPolicyResponse:
+      allOf:
+        - $ref: '#/components/schemas/ism._common:Metadata'
+        - $ref: '#/components/schemas/ism._common:PolicyEnvelope'
+    ism._common:IncludeState:
+      type: object
+      properties:
+        state:
+          type: string
+    ism._common:IsmTemplate:
+      type: object
+      properties:
+        index_patterns:
+          type: array
+          items:
+            type: string
+        priority:
+          type: number
+        last_updated_time:
+          type: integer
+    ism._common:Metadata:
+      type: object
+      properties:
+        _id:
+          $ref: '#/components/schemas/_common:Id'
+        _primary_term:
+          type: number
+        _seq_no:
+          $ref: '#/components/schemas/_common:SequenceNumber'
+        _version:
+          $ref: '#/components/schemas/_common:VersionNumber'
+    ism._common:Policy:
+      type: object
+      description: A policy defines how an index is managed throughout its lifetime.
+      properties:
+        policy_id:
+          type: string
+        description:
+          type: string
+        last_updated_time:
+          type: integer
+        schema_version:
+          type: number
+        error_notification:
+          oneOf:
+            - $ref: '#/components/schemas/ism._common:ErrorNotification'
+            - type: 'null'
+        default_state:
+          type: string
+          description: The default state an index is in.
+        states:
+          type: array
+          description: List of states for the index to transition between.
+          items:
+            $ref: '#/components/schemas/ism._common:States'
+        ism_template:
+          oneOf:
+            - $ref: '#/components/schemas/ism._common:IsmTemplate'
+            - type: 'null'
+            - type: array
+              items:
+                $ref: '#/components/schemas/ism._common:IsmTemplate'
+    ism._common:PolicyEnvelope:
+      type: object
+      properties:
+        policy:
+          $ref: '#/components/schemas/ism._common:Policy'
+    ism._common:PutPolicyRequest:
+      $ref: '#/components/schemas/ism._common:PolicyEnvelope'
+    ism._common:PutPolicyResponse:
+      allOf:
+        - $ref: '#/components/schemas/ism._common:Metadata'
+        - type: object
+          properties:
+            policy:
+              $ref: '#/components/schemas/ism._common:PolicyEnvelope'
+    ism._common:RemovePolicyResponse:
+      $ref: '#/components/schemas/ism._common:ChangePolicyResponse'
+    ism._common:SlackCustomWebhook:
+      type: object
+      properties:
+        url:
+          type: string
+        scheme:
+          type: string
+        host:
+          type: string
+        port:
+          type: integer
+        path:
+          type: string
+        query_params:
+          type: object
+          additionalProperties: true
+        header_params:
+          type: object
+          additionalProperties: true
+        username:
+          type: string
+        password:
+          type: string
+    ism._common:States:
+      type: object
+      description: |-
+        A list of actions to perform, and transitions to enter a new state. 
+        Once a managed index enters a state it will sequentially execute the actions 
+        in the same order listed in the policy. Once all actions have been successfully completed 
+        state transitions will be checked until a true condition is eventually met.
+        If you define multiple transitions in a state, the first one in the list that is true will be used.
+      properties:
+        name:
+          type: string
+        actions:
+          type: array
+          description: A list of actions to perform.
+          items:
+            $ref: '#/components/schemas/ism._common:Action'
+        transitions:
+          type: array
+          description: A list of transitions to enter a new state.
+          items:
+            $ref: '#/components/schemas/ism._common:Transition'
+    ism._common:Transition:
+      type: object
+      description: A transition into a new state.
+      properties:
+        state_name:
+          type: string
+        conditions:
+          type: object
+          additionalProperties: true
     knn._common:DefaultOperator:
       type: string
       description: The default operator for query string query (AND or OR).
@@ -47458,16 +49471,16 @@ components:
       properties:
         estimated_size:
           description: Estimated memory used for the operation.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         estimated_size_in_bytes:
           description: Estimated memory used, in bytes, for the operation.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         limit_size:
           description: Memory limit for the circuit breaker.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         limit_size_in_bytes:
           description: Memory limit, in bytes, for the circuit breaker.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         overhead:
           description: A constant that all estimates for the circuit breaker are multiplied with to calculate a final estimate.
           type: number
@@ -47559,7 +49572,7 @@ components:
           type: number
         request_size_bytes:
           description: Cumulative size in bytes of all requests from this client.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         x_opaque_id:
           description: |-
             Value from the client's `x-opaque-id` HTTP header.
@@ -47649,7 +49662,7 @@ components:
       type: object
       properties:
         percent:
-          type: number
+          $ref: '#/components/schemas/_common:PercentageNumber'
         sys:
           $ref: '#/components/schemas/_common:Duration'
         sys_in_millis:
@@ -47679,38 +49692,38 @@ components:
       properties:
         available:
           description: Total amount of disk space available to this Java virtual machine on this file store.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         available_in_bytes:
           description: Total number of bytes available to this Java virtual machine on this file store.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         cache_reserved:
           x-version-added: '2.7'
           description: Total number of cache bytes reserved available to this Java virtual machine on this file store.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         cache_reserved_in_bytes:
           x-version-added: '2.7'
           description: Total number of cache bytes reserved available to this Java virtual machine on this file store.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         disk_queue:
           type: string
         disk_reads:
           type: number
         disk_read_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         disk_read_size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         disk_writes:
           type: number
         disk_write_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         disk_write_size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         free:
           description: Total amount of unallocated disk space in the file store.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         free_in_bytes:
           description: Total number of unallocated bytes in the file store.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         mount:
           description: 'Mount point of the file store (for example: `/dev/sda2`).'
           type: string
@@ -47719,10 +49732,10 @@ components:
           type: string
         total:
           description: Total size of the file store.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         total_in_bytes:
           description: Total size of the file store in bytes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         type:
           description: 'Type of the file store (ex: ext4).'
           type: string
@@ -47755,10 +49768,10 @@ components:
           properties:
             free_percent:
               description: Percentage of free memory.
-              type: number
+              $ref: '#/components/schemas/_common:PercentageNumber'
             used_percent:
               description: Percentage of used memory.
-              type: number
+              $ref: '#/components/schemas/_common:PercentageNumber'
     nodes._common:FileSystem:
       type: object
       properties:
@@ -47784,33 +49797,33 @@ components:
             Total disk space available to this Java virtual machine on all file stores.
             Depending on OS or process level restrictions, this might appear less than `free`.
             This is the actual amount of free disk space the OpenSearch node can utilize.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         available_in_bytes:
           description: |-
             Total number of bytes available to this Java virtual machine on all file stores.
             Depending on OS or process level restrictions, this might appear less than `free_in_bytes`.
             This is the actual amount of free disk space the OpenSearch node can utilize.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         free:
           description: Total unallocated disk space in all file stores.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         free_in_bytes:
           description: Total number of unallocated bytes in all file stores.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         total:
           description: Total size of all file stores.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         total_in_bytes:
           description: Total size of all file stores in bytes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         cache_reserved:
           x-version-added: '2.7'
           description: Total size of cache bytes reserved in all file stores.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         cache_reserved_in_bytes:
           x-version-added: '2.7'
           description: Total size of cache bytes reserved in all file stores.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
     nodes._common:GarbageCollector:
       type: object
       properties:
@@ -47856,12 +49869,12 @@ components:
       type: object
       properties:
         limit:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         limit_in_bytes:
           description: |-
             Configured memory limit, in bytes, for the indexing requests.
             Replica requests have an automatic limit that is 1.5x this value.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         current:
           $ref: '#/components/schemas/nodes._common:PressureMemory'
         total:
@@ -47984,37 +49997,37 @@ components:
       properties:
         heap_used:
           description: Memory currently in use by the heap.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         heap_used_in_bytes:
           description: Memory, in bytes, currently in use by the heap.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         heap_used_percent:
           description: Percentage of memory currently in use by the heap.
-          type: number
+          $ref: '#/components/schemas/_common:PercentageNumber'
         heap_committed:
           description: Amount of memory available for use by the heap.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         heap_committed_in_bytes:
           description: Amount of memory, in bytes, available for use by the heap.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         heap_max:
           description: Maximum amount of memory available for use by the heap.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         heap_max_in_bytes:
           description: Maximum amount of memory, in bytes, available for use by the heap.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         non_heap_used:
           description: Non-heap memory used.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         non_heap_used_in_bytes:
           description: Non-heap memory used, in bytes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         non_heap_committed:
           description: Amount of non-heap memory available.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         non_heap_committed_in_bytes:
           description: Amount of non-heap memory available, in bytes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         pools:
           description: Contains statistics about heap memory usage for the node.
           type: object
@@ -48040,15 +50053,15 @@ components:
       type: object
       properties:
         used:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         used_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         max:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         max_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         usage_percent:
-          type: number
+          $ref: '#/components/schemas/_common:PercentageNumber'
     nodes._common:MemoryStats:
       type: object
       properties:
@@ -48056,37 +50069,37 @@ components:
           description: |-
             If the amount of physical memory has been overridden using the `es`.`total_memory_bytes` system property then this reports the overridden value in bytes.
             Otherwise it reports the same value as `total_in_bytes`.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         resident:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         resident_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         share:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         share_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         total_virtual:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         total_virtual_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         total:
           description: Total amount of physical memory.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         total_in_bytes:
           description: Total amount of physical memory in bytes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         free:
           description: Amount of free physical memory.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         free_in_bytes:
           description: Amount of free physical memory in bytes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         used:
           description: Amount of used physical memory.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         used_in_bytes:
           description: Amount of used physical memory in bytes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
     nodes._common:NodeBufferPool:
       type: object
       properties:
@@ -48095,16 +50108,16 @@ components:
           type: number
         total_capacity:
           description: Total capacity of buffer pools.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         total_capacity_in_bytes:
           description: Total capacity of buffer pools in bytes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         used:
           description: Size of buffer pools.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         used_in_bytes:
           description: Size of buffer pools in bytes.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
     nodes._common:NodeReloadError:
       type: object
       properties:
@@ -48141,28 +50154,28 @@ components:
       properties:
         used:
           description: Memory used by the heap.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         used_in_bytes:
           description: Memory, in bytes, used by the heap.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         max:
           description: Maximum amount of memory available for use by the heap.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         max_in_bytes:
           description: Maximum amount of memory, in bytes, available for use by the heap.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         peak_used:
           description: Largest amount of memory historically used by the heap.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         peak_used_in_bytes:
           description: Largest amount of memory, in bytes, historically used by the heap.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         peak_max:
           description: Largest amount of memory historically used by the heap.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         peak_max_in_bytes:
           description: Largest amount of memory, in bytes, historically used by the heap.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         last_gc_stats:
           description: Most recent GC cycle stats for a particular memory pool.
           $ref: '#/components/schemas/nodes._common:LastGcStats'
@@ -48170,32 +50183,32 @@ components:
       type: object
       properties:
         all:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         all_in_bytes:
           description: Memory consumed, in bytes, by indexing requests in the coordinating, primary, or replica stage.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         combined_coordinating_and_primary:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         combined_coordinating_and_primary_in_bytes:
           description: |-
             Memory consumed, in bytes, by indexing requests in the coordinating or primary stage.
             This value is not the sum of coordinating and primary as a node can reuse the coordinating memory if the primary stage is executed locally.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         coordinating:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         coordinating_in_bytes:
           description: Memory consumed, in bytes, by indexing requests in the coordinating stage.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         primary:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         primary_in_bytes:
           description: Memory consumed, in bytes, by indexing requests in the primary stage.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         replica:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         replica_in_bytes:
           description: Memory consumed, in bytes, by indexing requests in the replica stage.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         coordinating_rejections:
           description: Number of indexing requests rejected in the coordinating stage.
           type: number
@@ -48235,6 +50248,8 @@ components:
         failed:
           description: Number of failed operations for the processor.
           type: number
+        time:
+          $ref: '#/components/schemas/_common:Duration'
         time_in_millis:
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
     nodes._common:PublishedClusterStates:
@@ -48315,13 +50330,13 @@ components:
         count:
           type: number
         uncompressed_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         uncompressed_size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         compressed_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         compressed_size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
     nodes._common:ShardAdmissionControlStats:
       type: object
       properties:
@@ -48337,9 +50352,9 @@ components:
       type: object
       properties:
         size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         evictions:
           type: number
         hit_count:
@@ -48387,16 +50402,16 @@ components:
         timestamp:
           type: number
         cpu_utilization_percent:
-          $ref: '#/components/schemas/_common:Percentage'
+          $ref: '#/components/schemas/_common:PercentageString'
         memory_utilization_percent:
-          $ref: '#/components/schemas/_common:Percentage'
+          $ref: '#/components/schemas/_common:PercentageString'
         io_usage_stats:
           $ref: '#/components/schemas/nodes._common:ShardResourceUsageStatsIoUsageStats'
     nodes._common:ShardResourceUsageStatsIoUsageStats:
       type: object
       properties:
         max_io_utilization_percent:
-          $ref: '#/components/schemas/_common:Percentage'
+          $ref: '#/components/schemas/_common:PercentageString'
     nodes._common:ShardSearchBackpressureMode:
       type: string
       enum:
@@ -48420,7 +50435,7 @@ components:
         cancellation_limit_reached_count:
           type: number
         cancelled_task_percentage:
-          type: number
+          $ref: '#/components/schemas/_common:PercentageNumber'
         current_cancellation_eligible_tasks_count:
           type: number
     nodes._common:ShardSearchBackpressureTaskResourceTrackerCpuUsageTrackerStats:
@@ -48455,17 +50470,17 @@ components:
         cancellation_count:
           type: number
         current_max:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         current_max_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         current_avg:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         current_avg_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         rolling_avg:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         rolling_avg_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
     nodes._common:ShardSearchBackpressureTaskResourceTrackerStats:
       type: object
       properties:
@@ -48684,10 +50699,10 @@ components:
           type: number
         rx_size:
           description: Size of RX packets received by the node during internal cluster communication.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         rx_size_in_bytes:
           description: Size, in bytes, of RX packets received by the node during internal cluster communication.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         server_open:
           description: Current number of inbound TCP connections used for internal communication between nodes.
           type: number
@@ -48696,10 +50711,10 @@ components:
           type: number
         tx_size:
           description: Size of TX packets sent by the node during internal cluster communication.
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         tx_size_in_bytes:
           description: Size, in bytes, of TX packets sent by the node during internal cluster communication.
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         total_outbound_connections:
           description: |-
             The cumulative number of outbound transport connections that this node has opened since it started.
@@ -48801,7 +50816,7 @@ components:
           description: Total heap allowed to be used to hold recently indexed documents before they must be written to disk. This size is a shared pool across all shards on this node, and is controlled by Indexing Buffer settings.
           type: number
         total_indexing_buffer_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         transport:
           $ref: '#/components/schemas/nodes.info:NodeInfoTransport'
         transport_address:
@@ -48871,9 +50886,9 @@ components:
           items:
             type: string
         max_content_length:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         max_content_length_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         publish_address:
           type: string
       required:
@@ -48914,25 +50929,25 @@ components:
       type: object
       properties:
         direct_max:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         direct_max_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         heap_init:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         heap_init_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         heap_max:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         heap_max_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         non_heap_init:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         non_heap_init_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         non_heap_max:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         non_heap_max_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - direct_max_in_bytes
         - heap_init_in_bytes
@@ -48943,9 +50958,9 @@ components:
       type: object
       properties:
         total:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         total_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - total
         - total_in_bytes
@@ -48976,9 +50991,9 @@ components:
       type: object
       properties:
         cache_size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         cache_size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         cores_per_socket:
           type: number
         mhz:
@@ -51598,7 +53613,7 @@ components:
         file_count:
           type: number
         size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - file_count
         - size_in_bytes
@@ -51608,9 +53623,9 @@ components:
         shard_count:
           type: number
         size:
-          $ref: '#/components/schemas/_common:StorageSize'
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
         max_segments_per_shard:
           type: number
       required:
@@ -51714,7 +53729,7 @@ components:
         file_count:
           type: number
         size_in_bytes:
-          $ref: '#/components/schemas/_common:Bytes'
+          $ref: '#/components/schemas/_common:ByteCount'
       required:
         - file_count
         - size_in_bytes
