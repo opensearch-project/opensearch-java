@@ -6,6 +6,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Dependencies
 - Bumps `org.junit:junit-bom` from 5.10.3 to 5.11.0
+- Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.2.5 to 5.3
+- Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.2.5 to 5.3
 
 ### Changed
 
