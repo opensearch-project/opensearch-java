@@ -619,19 +619,19 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
         int result = 17;
         result = 31 * result + Integer.hashCode(this.batches);
         result = 31 * result + (canceled != null ? this.canceled.hashCode() : 0);
-        result = 31 * result + (created != null ? Long.hashCode(this.created) : 0);
+        result = 31 * result + Long.hashCode(this.created);
         result = 31 * result + Long.hashCode(this.deleted);
         result = 31 * result + Long.hashCode(this.noops);
         result = 31 * result + Float.hashCode(this.requestsPerSecond);
         result = 31 * result + this.retries.hashCode();
-        result = 31 * result + (sliceId != null ? Integer.hashCode(this.sliceId) : 0);
+        result = 31 * result + Integer.hashCode(this.sliceId);
         result = 31 * result + (slices != null ? this.slices.hashCode() : 0);
         result = 31 * result + (throttled != null ? this.throttled.hashCode() : 0);
         result = 31 * result + Long.hashCode(this.throttledMillis);
         result = 31 * result + (throttledUntil != null ? this.throttledUntil.hashCode() : 0);
         result = 31 * result + Long.hashCode(this.throttledUntilMillis);
         result = 31 * result + Long.hashCode(this.total);
-        result = 31 * result + (updated != null ? Long.hashCode(this.updated) : 0);
+        result = 31 * result + Long.hashCode(this.updated);
         result = 31 * result + Long.hashCode(this.versionConflicts);
         return result;
     }

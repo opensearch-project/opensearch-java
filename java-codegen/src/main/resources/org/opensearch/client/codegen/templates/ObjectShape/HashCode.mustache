@@ -1,22 +1,17 @@
     public int hashCode() {
         int result = 17;
         {{#fields}}
-        {{#isRequired}}
-        {{^isUnboxedPrimitive}}
-        result = 31 * result + this.{{name}}.hashCode();
-        {{/isUnboxedPrimitive}}
-        {{#isUnboxedPrimitive}}
-        result = 31 * result + {{getBoxedType}}.hashCode(this.{{name}});
-        {{/isUnboxedPrimitive}}
-        {{/isRequired}}
-        {{^isRequired}}
-        {{^isUnboxedPrimitive}}
-        result = 31 * result + ({{name}} != null ? this.{{name}}.hashCode() : 0);
-        {{/isUnboxedPrimitive}}
-        {{#isUnboxedPrimitive}}
-        result = 31 * result + ({{name}} != null ? {{getBoxedType}}.hashCode(this.{{name}}) : 0);
-        {{/isUnboxedPrimitive}}
-        {{/isRequired}}
+            {{#isUnboxedPrimitive}}
+                result = 31 * result + {{getBoxedType}}.hashCode(this.{{name}});
+            {{/isUnboxedPrimitive}}
+            {{^isUnboxedPrimitive}}
+                {{#isRequired}}
+                    result = 31 * result + this.{{name}}.hashCode();
+                {{/isRequired}}
+                {{^isRequired}}
+                    result = 31 * result + ({{name}} != null ? this.{{name}}.hashCode() : 0);
+                {{/isRequired}}
+            {{/isUnboxedPrimitive}}
         {{/fields}}
         return result;
     }

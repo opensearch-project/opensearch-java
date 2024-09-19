@@ -280,7 +280,7 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + (forcedRefresh != null ? Boolean.hashCode(this.forcedRefresh) : 0);
+        result = 31 * result + Boolean.hashCode(this.forcedRefresh);
         result = 31 * result + this.id.hashCode();
         result = 31 * result + this.index.hashCode();
         result = 31 * result + Long.hashCode(this.primaryTerm);

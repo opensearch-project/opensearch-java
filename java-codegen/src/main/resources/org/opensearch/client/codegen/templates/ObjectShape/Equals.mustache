@@ -1,21 +1,21 @@
     public boolean equals(Object o) {
         {{#extendsOtherShape}}
-        if(!super.equals(o)) {
-            return false;
-        }
+            if(!super.equals(o)) {
+                return false;
+            }
         {{/extendsOtherShape}}
         if(this == o) return true;
         if(this.getClass() != o.getClass()) return false;
         {{className}} other = ({{className}})o;
         {{#fields}}
-        {{#isUnboxedPrimitive}}
-        if(this.{{name}}() != other.{{name}}()) {
-        {{/isUnboxedPrimitive}}
-        {{^isUnboxedPrimitive}}
-        if(!this.{{name}}().equals(other.{{name}}())) {
-        {{/isUnboxedPrimitive}}
-            return false;
-        }
+            {{#isUnboxedPrimitive}}
+                if(this.{{name}}() != other.{{name}}()) {
+            {{/isUnboxedPrimitive}}
+            {{^isUnboxedPrimitive}}
+                if(!this.{{name}}().equals(other.{{name}}())) {
+            {{/isUnboxedPrimitive}}
+                    return false;
+                }
         {{/fields}}
         return true;
     }

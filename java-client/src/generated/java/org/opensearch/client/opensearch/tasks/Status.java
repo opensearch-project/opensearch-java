@@ -770,24 +770,24 @@ public class Status implements PlainJsonSerializable {
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + (batches != null ? Integer.hashCode(this.batches) : 0);
+        result = 31 * result + Integer.hashCode(this.batches);
         result = 31 * result + (canceled != null ? this.canceled.hashCode() : 0);
-        result = 31 * result + (created != null ? Long.hashCode(this.created) : 0);
-        result = 31 * result + (deleted != null ? Long.hashCode(this.deleted) : 0);
-        result = 31 * result + (noops != null ? Long.hashCode(this.noops) : 0);
+        result = 31 * result + Long.hashCode(this.created);
+        result = 31 * result + Long.hashCode(this.deleted);
+        result = 31 * result + Long.hashCode(this.noops);
         result = 31 * result + (phase != null ? this.phase.hashCode() : 0);
-        result = 31 * result + (requestsPerSecond != null ? Float.hashCode(this.requestsPerSecond) : 0);
+        result = 31 * result + Float.hashCode(this.requestsPerSecond);
         result = 31 * result + (retries != null ? this.retries.hashCode() : 0);
-        result = 31 * result + (sliceId != null ? Integer.hashCode(this.sliceId) : 0);
+        result = 31 * result + Integer.hashCode(this.sliceId);
         result = 31 * result + (slices != null ? this.slices.hashCode() : 0);
         result = 31 * result + (state != null ? this.state.hashCode() : 0);
         result = 31 * result + (throttled != null ? this.throttled.hashCode() : 0);
-        result = 31 * result + (throttledMillis != null ? Long.hashCode(this.throttledMillis) : 0);
+        result = 31 * result + Long.hashCode(this.throttledMillis);
         result = 31 * result + (throttledUntil != null ? this.throttledUntil.hashCode() : 0);
-        result = 31 * result + (throttledUntilMillis != null ? Long.hashCode(this.throttledUntilMillis) : 0);
-        result = 31 * result + (total != null ? Long.hashCode(this.total) : 0);
-        result = 31 * result + (updated != null ? Long.hashCode(this.updated) : 0);
-        result = 31 * result + (versionConflicts != null ? Long.hashCode(this.versionConflicts) : 0);
+        result = 31 * result + Long.hashCode(this.throttledUntilMillis);
+        result = 31 * result + Long.hashCode(this.total);
+        result = 31 * result + Long.hashCode(this.updated);
+        result = 31 * result + Long.hashCode(this.versionConflicts);
         result = 31 * result + (metadata != null ? this.metadata.hashCode() : 0);
         return result;
     }

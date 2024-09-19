@@ -483,7 +483,7 @@ public class TaskInfo implements PlainJsonSerializable {
         int result = 17;
         result = 31 * result + this.action.hashCode();
         result = 31 * result + Boolean.hashCode(this.cancellable);
-        result = 31 * result + (cancelled != null ? Boolean.hashCode(this.cancelled) : 0);
+        result = 31 * result + Boolean.hashCode(this.cancelled);
         result = 31 * result + (description != null ? this.description.hashCode() : 0);
         result = 31 * result + this.headers.hashCode();
         result = 31 * result + Long.hashCode(this.id);

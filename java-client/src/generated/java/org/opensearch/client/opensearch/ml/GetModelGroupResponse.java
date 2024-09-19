@@ -260,9 +260,9 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
     public int hashCode() {
         int result = 17;
         result = 31 * result + this.access.hashCode();
-        result = 31 * result + (createdTime != null ? Long.hashCode(this.createdTime) : 0);
+        result = 31 * result + Long.hashCode(this.createdTime);
         result = 31 * result + this.description.hashCode();
-        result = 31 * result + (lastUpdatedTime != null ? Long.hashCode(this.lastUpdatedTime) : 0);
+        result = 31 * result + Long.hashCode(this.lastUpdatedTime);
         result = 31 * result + Integer.hashCode(this.latestVersion);
         result = 31 * result + this.name.hashCode();
         return result;

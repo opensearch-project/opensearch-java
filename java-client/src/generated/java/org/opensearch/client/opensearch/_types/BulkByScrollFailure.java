@@ -321,7 +321,7 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
         result = 31 * result + (index != null ? this.index.hashCode() : 0);
         result = 31 * result + (node != null ? this.node.hashCode() : 0);
         result = 31 * result + (reason != null ? this.reason.hashCode() : 0);
-        result = 31 * result + (shard != null ? Integer.hashCode(this.shard) : 0);
+        result = 31 * result + Integer.hashCode(this.shard);
         result = 31 * result + Integer.hashCode(this.status);
         return result;
     }

@@ -395,11 +395,11 @@ public class GetTaskResponse implements PlainJsonSerializable {
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + (createTime != null ? Long.hashCode(this.createTime) : 0);
+        result = 31 * result + Long.hashCode(this.createTime);
         result = 31 * result + (error != null ? this.error.hashCode() : 0);
         result = 31 * result + (functionName != null ? this.functionName.hashCode() : 0);
-        result = 31 * result + (isAsync != null ? Boolean.hashCode(this.isAsync) : 0);
-        result = 31 * result + (lastUpdateTime != null ? Long.hashCode(this.lastUpdateTime) : 0);
+        result = 31 * result + Boolean.hashCode(this.isAsync);
+        result = 31 * result + Long.hashCode(this.lastUpdateTime);
         result = 31 * result + (modelId != null ? this.modelId.hashCode() : 0);
         result = 31 * result + this.state.hashCode();
         result = 31 * result + (taskId != null ? this.taskId.hashCode() : 0);
