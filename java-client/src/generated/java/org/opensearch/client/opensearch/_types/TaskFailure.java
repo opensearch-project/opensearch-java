@@ -206,4 +206,27 @@ public class TaskFailure implements PlainJsonSerializable {
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
         op.add(Builder::taskId, JsonpDeserializer.integerDeserializer(), "task_id");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.nodeId, this.reason, this.status, this.taskId);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        TaskFailure other = (TaskFailure) o;
+        if (!this.nodeId().equals(other.nodeId())) {
+            return false;
+        }
+        if (!this.reason().equals(other.reason())) {
+            return false;
+        }
+        if (!this.status().equals(other.status())) {
+            return false;
+        }
+        if (!this.taskId().equals(other.taskId())) {
+            return false;
+        }
+        return true;
+    }
 }

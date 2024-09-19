@@ -133,4 +133,18 @@ public class UndeployModelNode implements PlainJsonSerializable {
     protected static void setupUndeployModelNodeDeserializer(ObjectDeserializer<UndeployModelNode.Builder> op) {
         op.add(Builder::stats, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "stats");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.stats);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        UndeployModelNode other = (UndeployModelNode) o;
+        if (!this.stats().equals(other.stats())) {
+            return false;
+        }
+        return true;
+    }
 }

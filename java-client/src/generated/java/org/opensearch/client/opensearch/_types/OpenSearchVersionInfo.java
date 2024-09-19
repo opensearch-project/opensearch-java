@@ -351,4 +351,56 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         op.add(Builder::minimumWireCompatibilityVersion, JsonpDeserializer.stringDeserializer(), "minimum_wire_compatibility_version");
         op.add(Builder::number, JsonpDeserializer.stringDeserializer(), "number");
     }
+
+    public int hashCode() {
+        return Objects.hash(
+            this.buildDate,
+            this.buildFlavor,
+            this.buildHash,
+            this.buildSnapshot,
+            this.buildType,
+            this.distribution,
+            this.luceneVersion,
+            this.minimumIndexCompatibilityVersion,
+            this.minimumWireCompatibilityVersion,
+            this.number
+        );
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        OpenSearchVersionInfo other = (OpenSearchVersionInfo) o;
+        if (!this.buildDate().equals(other.buildDate())) {
+            return false;
+        }
+        if (!this.buildFlavor().equals(other.buildFlavor())) {
+            return false;
+        }
+        if (!this.buildHash().equals(other.buildHash())) {
+            return false;
+        }
+        if (!this.buildSnapshot().equals(other.buildSnapshot())) {
+            return false;
+        }
+        if (!this.buildType().equals(other.buildType())) {
+            return false;
+        }
+        if (!this.distribution().equals(other.distribution())) {
+            return false;
+        }
+        if (!this.luceneVersion().equals(other.luceneVersion())) {
+            return false;
+        }
+        if (!this.minimumIndexCompatibilityVersion().equals(other.minimumIndexCompatibilityVersion())) {
+            return false;
+        }
+        if (!this.minimumWireCompatibilityVersion().equals(other.minimumWireCompatibilityVersion())) {
+            return false;
+        }
+        if (!this.number().equals(other.number())) {
+            return false;
+        }
+        return true;
+    }
 }

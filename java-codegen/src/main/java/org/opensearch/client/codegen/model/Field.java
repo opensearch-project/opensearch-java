@@ -64,7 +64,9 @@ public class Field {
 
     @Nonnull
     public Type getType() {
+        this.
         return required ? type : type.getBoxed();
+
     }
 
     public boolean isRequired() {

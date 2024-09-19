@@ -153,4 +153,21 @@ public class Retries implements PlainJsonSerializable {
         op.add(Builder::bulk, JsonpDeserializer.longDeserializer(), "bulk");
         op.add(Builder::search, JsonpDeserializer.longDeserializer(), "search");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.bulk, this.search);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        Retries other = (Retries) o;
+        if (!this.bulk().equals(other.bulk())) {
+            return false;
+        }
+        if (!this.search().equals(other.search())) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -614,4 +614,80 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
         op.add(Builder::updated, JsonpDeserializer.longDeserializer(), "updated");
         op.add(Builder::versionConflicts, JsonpDeserializer.longDeserializer(), "version_conflicts");
     }
+
+    public int hashCode() {
+        return Objects.hash(
+            this.batches,
+            this.canceled,
+            this.created,
+            this.deleted,
+            this.noops,
+            this.requestsPerSecond,
+            this.retries,
+            this.sliceId,
+            this.slices,
+            this.throttled,
+            this.throttledMillis,
+            this.throttledUntil,
+            this.throttledUntilMillis,
+            this.total,
+            this.updated,
+            this.versionConflicts
+        );
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        BulkByScrollTaskStatus other = (BulkByScrollTaskStatus) o;
+        if (!this.batches().equals(other.batches())) {
+            return false;
+        }
+        if (!this.canceled().equals(other.canceled())) {
+            return false;
+        }
+        if (!this.created().equals(other.created())) {
+            return false;
+        }
+        if (!this.deleted().equals(other.deleted())) {
+            return false;
+        }
+        if (!this.noops().equals(other.noops())) {
+            return false;
+        }
+        if (!this.requestsPerSecond().equals(other.requestsPerSecond())) {
+            return false;
+        }
+        if (!this.retries().equals(other.retries())) {
+            return false;
+        }
+        if (!this.sliceId().equals(other.sliceId())) {
+            return false;
+        }
+        if (!this.slices().equals(other.slices())) {
+            return false;
+        }
+        if (!this.throttled().equals(other.throttled())) {
+            return false;
+        }
+        if (!this.throttledMillis().equals(other.throttledMillis())) {
+            return false;
+        }
+        if (!this.throttledUntil().equals(other.throttledUntil())) {
+            return false;
+        }
+        if (!this.throttledUntilMillis().equals(other.throttledUntilMillis())) {
+            return false;
+        }
+        if (!this.total().equals(other.total())) {
+            return false;
+        }
+        if (!this.updated().equals(other.updated())) {
+            return false;
+        }
+        if (!this.versionConflicts().equals(other.versionConflicts())) {
+            return false;
+        }
+        return true;
+    }
 }

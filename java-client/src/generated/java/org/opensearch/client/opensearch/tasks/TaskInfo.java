@@ -478,4 +478,68 @@ public class TaskInfo implements PlainJsonSerializable {
         op.add(AbstractBuilder::status, Status._DESERIALIZER, "status");
         op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "type");
     }
+
+    public int hashCode() {
+        return Objects.hash(
+            this.action,
+            this.cancellable,
+            this.cancelled,
+            this.description,
+            this.headers,
+            this.id,
+            this.node,
+            this.parentTaskId,
+            this.runningTime,
+            this.runningTimeInNanos,
+            this.startTimeInMillis,
+            this.status,
+            this.type
+        );
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        TaskInfo other = (TaskInfo) o;
+        if (!this.action().equals(other.action())) {
+            return false;
+        }
+        if (!this.cancellable().equals(other.cancellable())) {
+            return false;
+        }
+        if (!this.cancelled().equals(other.cancelled())) {
+            return false;
+        }
+        if (!this.description().equals(other.description())) {
+            return false;
+        }
+        if (!this.headers().equals(other.headers())) {
+            return false;
+        }
+        if (!this.id().equals(other.id())) {
+            return false;
+        }
+        if (!this.node().equals(other.node())) {
+            return false;
+        }
+        if (!this.parentTaskId().equals(other.parentTaskId())) {
+            return false;
+        }
+        if (!this.runningTime().equals(other.runningTime())) {
+            return false;
+        }
+        if (!this.runningTimeInNanos().equals(other.runningTimeInNanos())) {
+            return false;
+        }
+        if (!this.startTimeInMillis().equals(other.startTimeInMillis())) {
+            return false;
+        }
+        if (!this.status().equals(other.status())) {
+            return false;
+        }
+        if (!this.type().equals(other.type())) {
+            return false;
+        }
+        return true;
+    }
 }

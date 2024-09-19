@@ -140,4 +140,18 @@ public class UndeployModelResponse implements PlainJsonSerializable {
             builder.nodes.put(name, UndeployModelNode._DESERIALIZER.deserialize(parser, mapper));
         });
     }
+
+    public int hashCode() {
+        return Objects.hash(this.nodes);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        UndeployModelResponse other = (UndeployModelResponse) o;
+        if (!this.nodes().equals(other.nodes())) {
+            return false;
+        }
+        return true;
+    }
 }

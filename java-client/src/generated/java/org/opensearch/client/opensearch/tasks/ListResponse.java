@@ -96,4 +96,18 @@ public class ListResponse extends TaskListResponseBase {
     protected static void setupListResponseDeserializer(ObjectDeserializer<ListResponse.Builder> op) {
         TaskListResponseBase.setupTaskListResponseBaseDeserializer(op);
     }
+
+    public int hashCode() {
+        return Objects.hash(super.hashCode());
+    }
+
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        ListResponse other = (ListResponse) o;
+        return true;
+    }
 }

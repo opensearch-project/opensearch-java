@@ -162,4 +162,21 @@ public class TaskGroup extends TaskInfo {
         TaskInfo.setupTaskInfoDeserializer(op);
         op.add(Builder::children, JsonpDeserializer.arrayDeserializer(TaskGroup._DESERIALIZER), "children");
     }
+
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), this.children);
+    }
+
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        TaskGroup other = (TaskGroup) o;
+        if (!this.children().equals(other.children())) {
+            return false;
+        }
+        return true;
+    }
 }

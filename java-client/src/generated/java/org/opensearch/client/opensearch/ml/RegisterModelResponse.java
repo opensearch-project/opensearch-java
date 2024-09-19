@@ -129,4 +129,21 @@ public class RegisterModelResponse implements PlainJsonSerializable {
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
         op.add(Builder::taskId, JsonpDeserializer.stringDeserializer(), "task_id");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.status, this.taskId);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        RegisterModelResponse other = (RegisterModelResponse) o;
+        if (!this.status().equals(other.status())) {
+            return false;
+        }
+        if (!this.taskId().equals(other.taskId())) {
+            return false;
+        }
+        return true;
+    }
 }

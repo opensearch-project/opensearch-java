@@ -249,4 +249,30 @@ public class DanglingIndex implements PlainJsonSerializable {
         op.add(Builder::indexUuid, JsonpDeserializer.stringDeserializer(), "index_uuid");
         op.add(Builder::nodeIds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "node_ids");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.creationDate, this.creationDateMillis, this.indexName, this.indexUuid, this.nodeIds);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        DanglingIndex other = (DanglingIndex) o;
+        if (!this.creationDate().equals(other.creationDate())) {
+            return false;
+        }
+        if (!this.creationDateMillis().equals(other.creationDateMillis())) {
+            return false;
+        }
+        if (!this.indexName().equals(other.indexName())) {
+            return false;
+        }
+        if (!this.indexUuid().equals(other.indexUuid())) {
+            return false;
+        }
+        if (!this.nodeIds().equals(other.nodeIds())) {
+            return false;
+        }
+        return true;
+    }
 }

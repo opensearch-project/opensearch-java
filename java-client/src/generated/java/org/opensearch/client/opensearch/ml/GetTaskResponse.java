@@ -392,4 +392,56 @@ public class GetTaskResponse implements PlainJsonSerializable {
             "worker_node"
         );
     }
+
+    public int hashCode() {
+        return Objects.hash(
+            this.createTime,
+            this.error,
+            this.functionName,
+            this.isAsync,
+            this.lastUpdateTime,
+            this.modelId,
+            this.state,
+            this.taskId,
+            this.taskType,
+            this.workerNode
+        );
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        GetTaskResponse other = (GetTaskResponse) o;
+        if (!this.createTime().equals(other.createTime())) {
+            return false;
+        }
+        if (!this.error().equals(other.error())) {
+            return false;
+        }
+        if (!this.functionName().equals(other.functionName())) {
+            return false;
+        }
+        if (!this.isAsync().equals(other.isAsync())) {
+            return false;
+        }
+        if (!this.lastUpdateTime().equals(other.lastUpdateTime())) {
+            return false;
+        }
+        if (!this.modelId().equals(other.modelId())) {
+            return false;
+        }
+        if (!this.state().equals(other.state())) {
+            return false;
+        }
+        if (!this.taskId().equals(other.taskId())) {
+            return false;
+        }
+        if (!this.taskType().equals(other.taskType())) {
+            return false;
+        }
+        if (!this.workerNode().equals(other.workerNode())) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -255,4 +255,27 @@ public class NodeStatistics implements PlainJsonSerializable {
         op.add(Builder::successful, JsonpDeserializer.integerDeserializer(), "successful");
         op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.failed, this.failures, this.successful, this.total);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        NodeStatistics other = (NodeStatistics) o;
+        if (!this.failed().equals(other.failed())) {
+            return false;
+        }
+        if (!this.failures().equals(other.failures())) {
+            return false;
+        }
+        if (!this.successful().equals(other.successful())) {
+            return false;
+        }
+        if (!this.total().equals(other.total())) {
+            return false;
+        }
+        return true;
+    }
 }

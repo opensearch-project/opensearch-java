@@ -230,4 +230,30 @@ public class InfoResponse implements PlainJsonSerializable {
         op.add(Builder::tagline, JsonpDeserializer.stringDeserializer(), "tagline");
         op.add(Builder::version, OpenSearchVersionInfo._DESERIALIZER, "version");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.clusterName, this.clusterUuid, this.name, this.tagline, this.version);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        InfoResponse other = (InfoResponse) o;
+        if (!this.clusterName().equals(other.clusterName())) {
+            return false;
+        }
+        if (!this.clusterUuid().equals(other.clusterUuid())) {
+            return false;
+        }
+        if (!this.name().equals(other.name())) {
+            return false;
+        }
+        if (!this.tagline().equals(other.tagline())) {
+            return false;
+        }
+        if (!this.version().equals(other.version())) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -306,4 +306,27 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
         op.add(AbstractBuilder::taskFailures, JsonpDeserializer.arrayDeserializer(TaskFailure._DESERIALIZER), "task_failures");
         op.add(AbstractBuilder::tasks, TaskInfos._DESERIALIZER, "tasks");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.nodeFailures, this.nodes, this.taskFailures, this.tasks);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        TaskListResponseBase other = (TaskListResponseBase) o;
+        if (!this.nodeFailures().equals(other.nodeFailures())) {
+            return false;
+        }
+        if (!this.nodes().equals(other.nodes())) {
+            return false;
+        }
+        if (!this.taskFailures().equals(other.taskFailures())) {
+            return false;
+        }
+        if (!this.tasks().equals(other.tasks())) {
+            return false;
+        }
+        return true;
+    }
 }

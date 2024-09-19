@@ -256,4 +256,33 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
         op.add(Builder::latestVersion, JsonpDeserializer.integerDeserializer(), "latest_version");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.access, this.createdTime, this.description, this.lastUpdatedTime, this.latestVersion, this.name);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        GetModelGroupResponse other = (GetModelGroupResponse) o;
+        if (!this.access().equals(other.access())) {
+            return false;
+        }
+        if (!this.createdTime().equals(other.createdTime())) {
+            return false;
+        }
+        if (!this.description().equals(other.description())) {
+            return false;
+        }
+        if (!this.lastUpdatedTime().equals(other.lastUpdatedTime())) {
+            return false;
+        }
+        if (!this.latestVersion().equals(other.latestVersion())) {
+            return false;
+        }
+        if (!this.name().equals(other.name())) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -277,4 +277,40 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
         op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "_version");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.forcedRefresh, this.id, this.index, this.primaryTerm, this.result, this.seqNo, this.shards, this.version);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        o.
+        if (this.getClass() != o.getClass()) return false;
+        WriteResponseBase other = (WriteResponseBase) o;
+        if (!this.forcedRefresh().equals(other.forcedRefresh())) {
+            return false;
+        }
+        if (!this.id().equals(other.id())) {
+            return false;
+        }
+        if (!this.index().equals(other.index())) {
+            return false;
+        }
+        if (!this.primaryTerm().equals(other.primaryTerm())) {
+            return false;
+        }
+        if (!this.result().equals(other.result())) {
+            return false;
+        }
+        if (!this.seqNo().equals(other.seqNo())) {
+            return false;
+        }
+        if (!this.shards().equals(other.shards())) {
+            return false;
+        }
+        if (!this.version().equals(other.version())) {
+            return false;
+        }
+        return true;
+    }
 }

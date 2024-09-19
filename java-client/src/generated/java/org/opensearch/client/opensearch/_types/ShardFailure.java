@@ -245,4 +245,30 @@ public class ShardFailure implements PlainJsonSerializable {
         op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.index, this.node, this.reason, this.shard, this.status);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        ShardFailure other = (ShardFailure) o;
+        if (!this.index().equals(other.index())) {
+            return false;
+        }
+        if (!this.node().equals(other.node())) {
+            return false;
+        }
+        if (!this.reason().equals(other.reason())) {
+            return false;
+        }
+        if (!this.shard().equals(other.shard())) {
+            return false;
+        }
+        if (!this.status().equals(other.status())) {
+            return false;
+        }
+        return true;
+    }
 }

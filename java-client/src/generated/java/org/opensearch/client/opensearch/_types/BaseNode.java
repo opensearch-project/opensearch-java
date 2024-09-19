@@ -281,4 +281,33 @@ public abstract class BaseNode implements PlainJsonSerializable {
         op.add(AbstractBuilder::roles, JsonpDeserializer.arrayDeserializer(NodeRole._DESERIALIZER), "roles");
         op.add(AbstractBuilder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.attributes, this.host, this.ip, this.name, this.roles, this.transportAddress);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        BaseNode other = (BaseNode) o;
+        if (!this.attributes().equals(other.attributes())) {
+            return false;
+        }
+        if (!this.host().equals(other.host())) {
+            return false;
+        }
+        if (!this.ip().equals(other.ip())) {
+            return false;
+        }
+        if (!this.name().equals(other.name())) {
+            return false;
+        }
+        if (!this.roles().equals(other.roles())) {
+            return false;
+        }
+        if (!this.transportAddress().equals(other.transportAddress())) {
+            return false;
+        }
+        return true;
+    }
 }

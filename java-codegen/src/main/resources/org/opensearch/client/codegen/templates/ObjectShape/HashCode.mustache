@@ -1,0 +1,10 @@
+    public int hashCode() {
+        return Objects.hash(
+{{#extendsOtherShape}}
+                super.hashCode(){{#hasFieldsToSerialize}},{{/hasFieldsToSerialize}}
+{{/extendsOtherShape}}
+{{#fields}}
+                this.{{name}}{{^-last}},{{/-last}}
+{{/fields}}
+        );
+    }

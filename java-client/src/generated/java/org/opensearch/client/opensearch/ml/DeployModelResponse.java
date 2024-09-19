@@ -158,4 +158,24 @@ public class DeployModelResponse implements PlainJsonSerializable {
         op.add(Builder::taskId, JsonpDeserializer.stringDeserializer(), "task_id");
         op.add(Builder::taskType, JsonpDeserializer.stringDeserializer(), "task_type");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.status, this.taskId, this.taskType);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        DeployModelResponse other = (DeployModelResponse) o;
+        if (!this.status().equals(other.status())) {
+            return false;
+        }
+        if (!this.taskId().equals(other.taskId())) {
+            return false;
+        }
+        if (!this.taskType().equals(other.taskType())) {
+            return false;
+        }
+        return true;
+    }
 }

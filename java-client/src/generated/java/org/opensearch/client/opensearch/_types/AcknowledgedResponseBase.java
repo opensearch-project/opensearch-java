@@ -109,4 +109,18 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
     ) {
         op.add(AbstractBuilder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.acknowledged);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        AcknowledgedResponseBase other = (AcknowledgedResponseBase) o;
+        if (!this.acknowledged().equals(other.acknowledged())) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -1,0 +1,16 @@
+    public boolean equals(Object o) {
+        {{#extendsOtherShape}}
+        if(!super.equals(o)) {
+            return false;
+        }
+        {{/extendsOtherShape}}
+        if(this == o) return true;
+        if(this.getClass() != o.getClass()) return false;
+        {{className}} other = ({{className}})o;
+        {{#fields}}
+        if(!this.{{name}}().equals(other.{{name}}())) {
+            return false;
+        }
+        {{/fields}}
+        return true;
+    }

@@ -143,4 +143,21 @@ public class RegisterModelGroupResponse implements PlainJsonSerializable {
         op.add(Builder::modelGroupId, JsonpDeserializer.stringDeserializer(), "model_group_id");
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.modelGroupId, this.status);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        RegisterModelGroupResponse other = (RegisterModelGroupResponse) o;
+        if (!this.modelGroupId().equals(other.modelGroupId())) {
+            return false;
+        }
+        if (!this.status().equals(other.status())) {
+            return false;
+        }
+        return true;
+    }
 }

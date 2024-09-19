@@ -404,4 +404,36 @@ public class ErrorCause implements PlainJsonSerializable {
             builder.metadata.put(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
         });
     }
+
+    public int hashCode() {
+        return Objects.hash(this.causedBy, this.reason, this.rootCause, this.stackTrace, this.suppressed, this.type, this.metadata);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        ErrorCause other = (ErrorCause) o;
+        if (!this.causedBy().equals(other.causedBy())) {
+            return false;
+        }
+        if (!this.reason().equals(other.reason())) {
+            return false;
+        }
+        if (!this.rootCause().equals(other.rootCause())) {
+            return false;
+        }
+        if (!this.stackTrace().equals(other.stackTrace())) {
+            return false;
+        }
+        if (!this.suppressed().equals(other.suppressed())) {
+            return false;
+        }
+        if (!this.type().equals(other.type())) {
+            return false;
+        }
+        if (!this.metadata().equals(other.metadata())) {
+            return false;
+        }
+        return true;
+    }
 }

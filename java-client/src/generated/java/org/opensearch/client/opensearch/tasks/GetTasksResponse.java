@@ -232,4 +232,27 @@ public class GetTasksResponse implements PlainJsonSerializable {
         op.add(Builder::response, TaskResponse._DESERIALIZER, "response");
         op.add(Builder::task, TaskInfo._DESERIALIZER, "task");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.completed, this.error, this.response, this.task);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        GetTasksResponse other = (GetTasksResponse) o;
+        if (!this.completed().equals(other.completed())) {
+            return false;
+        }
+        if (!this.error().equals(other.error())) {
+            return false;
+        }
+        if (!this.response().equals(other.response())) {
+            return false;
+        }
+        if (!this.task().equals(other.task())) {
+            return false;
+        }
+        return true;
+    }
 }

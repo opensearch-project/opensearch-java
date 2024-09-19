@@ -73,4 +73,18 @@ public class DeleteTaskResponse extends WriteResponseBase {
     protected static void setupDeleteTaskResponseDeserializer(ObjectDeserializer<DeleteTaskResponse.Builder> op) {
         WriteResponseBase.setupWriteResponseBaseDeserializer(op);
     }
+
+    public int hashCode() {
+        return Objects.hash(super.hashCode());
+    }
+
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        DeleteTaskResponse other = (DeleteTaskResponse) o;
+        return true;
+    }
 }

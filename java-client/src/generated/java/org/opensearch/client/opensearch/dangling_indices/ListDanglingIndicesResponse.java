@@ -230,4 +230,24 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
         op.add(Builder::danglingIndices, JsonpDeserializer.arrayDeserializer(DanglingIndex._DESERIALIZER), "dangling_indices");
         op.add(Builder::nodes, NodeStatistics._DESERIALIZER, "_nodes");
     }
+
+    public int hashCode() {
+        return Objects.hash(this.clusterName, this.danglingIndices, this.nodes);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        ListDanglingIndicesResponse other = (ListDanglingIndicesResponse) o;
+        if (!this.clusterName().equals(other.clusterName())) {
+            return false;
+        }
+        if (!this.danglingIndices().equals(other.danglingIndices())) {
+            return false;
+        }
+        if (!this.nodes().equals(other.nodes())) {
+            return false;
+        }
+        return true;
+    }
 }

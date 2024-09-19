@@ -160,4 +160,21 @@ public class TaskExecutingNode extends BaseNode {
         BaseNode.setupBaseNodeDeserializer(op);
         op.add(Builder::tasks, JsonpDeserializer.stringMapDeserializer(TaskInfo._DESERIALIZER), "tasks");
     }
+
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), this.tasks);
+    }
+
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        TaskExecutingNode other = (TaskExecutingNode) o;
+        if (!this.tasks().equals(other.tasks())) {
+            return false;
+        }
+        return true;
+    }
 }

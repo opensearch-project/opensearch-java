@@ -101,4 +101,18 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
     protected static void setupDeleteDanglingIndexResponseDeserializer(ObjectDeserializer<DeleteDanglingIndexResponse.Builder> op) {
         AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
     }
+
+    public int hashCode() {
+        return Objects.hash(super.hashCode());
+    }
+
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        DeleteDanglingIndexResponse other = (DeleteDanglingIndexResponse) o;
+        return true;
+    }
 }
