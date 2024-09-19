@@ -284,7 +284,6 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        o.
         if (this.getClass() != o.getClass()) return false;
         WriteResponseBase other = (WriteResponseBase) o;
         if (!this.forcedRefresh().equals(other.forcedRefresh())) {
