@@ -145,7 +145,10 @@ public class RegisterModelGroupResponse implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(this.modelGroupId, this.status);
+        int result = 17;
+        result = 31 * result + this.modelGroupId.hashCode();
+        result = 31 * result + this.status.hashCode();
+        return result;
     }
 
     public boolean equals(Object o) {

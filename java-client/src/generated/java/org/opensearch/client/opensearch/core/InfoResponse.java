@@ -232,7 +232,13 @@ public class InfoResponse implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(this.clusterName, this.clusterUuid, this.name, this.tagline, this.version);
+        int result = 17;
+        result = 31 * result + this.clusterName.hashCode();
+        result = 31 * result + this.clusterUuid.hashCode();
+        result = 31 * result + this.name.hashCode();
+        result = 31 * result + this.tagline.hashCode();
+        result = 31 * result + this.version.hashCode();
+        return result;
     }
 
     public boolean equals(Object o) {

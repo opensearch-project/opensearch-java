@@ -232,7 +232,11 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(this.clusterName, this.danglingIndices, this.nodes);
+        int result = 17;
+        result = 31 * result + (clusterName != null ? this.clusterName.hashCode() : 0);
+        result = 31 * result + this.danglingIndices.hashCode();
+        result = 31 * result + (nodes != null ? this.nodes.hashCode() : 0);
+        return result;
     }
 
     public boolean equals(Object o) {

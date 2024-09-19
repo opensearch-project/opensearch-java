@@ -251,7 +251,13 @@ public class DanglingIndex implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(this.creationDate, this.creationDateMillis, this.indexName, this.indexUuid, this.nodeIds);
+        int result = 17;
+        result = 31 * result + (creationDate != null ? this.creationDate.hashCode() : 0);
+        result = 31 * result + Long.hashCode(this.creationDateMillis);
+        result = 31 * result + this.indexName.hashCode();
+        result = 31 * result + this.indexUuid.hashCode();
+        result = 31 * result + this.nodeIds.hashCode();
+        return result;
     }
 
     public boolean equals(Object o) {
@@ -261,7 +267,7 @@ public class DanglingIndex implements PlainJsonSerializable {
         if (!this.creationDate().equals(other.creationDate())) {
             return false;
         }
-        if (!this.creationDateMillis().equals(other.creationDateMillis())) {
+        if (this.creationDateMillis() != other.creationDateMillis()) {
             return false;
         }
         if (!this.indexName().equals(other.indexName())) {

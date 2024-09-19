@@ -1,10 +1,22 @@
     public int hashCode() {
-        return Objects.hash(
-{{#extendsOtherShape}}
-                super.hashCode(){{#hasFieldsToSerialize}},{{/hasFieldsToSerialize}}
-{{/extendsOtherShape}}
-{{#fields}}
-                this.{{name}}{{^-last}},{{/-last}}
-{{/fields}}
-        );
+        int result = 17;
+        {{#fields}}
+        {{#isRequired}}
+        {{^isUnboxedPrimitive}}
+        result = 31 * result + this.{{name}}.hashCode();
+        {{/isUnboxedPrimitive}}
+        {{#isUnboxedPrimitive}}
+        result = 31 * result + {{getBoxedType}}.hashCode(this.{{name}});
+        {{/isUnboxedPrimitive}}
+        {{/isRequired}}
+        {{^isRequired}}
+        {{^isUnboxedPrimitive}}
+        result = 31 * result + ({{name}} != null ? this.{{name}}.hashCode() : 0);
+        {{/isUnboxedPrimitive}}
+        {{#isUnboxedPrimitive}}
+        result = 31 * result + ({{name}} != null ? {{getBoxedType}}.hashCode(this.{{name}}) : 0);
+        {{/isUnboxedPrimitive}}
+        {{/isRequired}}
+        {{/fields}}
+        return result;
     }

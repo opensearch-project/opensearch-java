@@ -234,14 +234,19 @@ public class GetTasksResponse implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(this.completed, this.error, this.response, this.task);
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.completed);
+        result = 31 * result + (error != null ? this.error.hashCode() : 0);
+        result = 31 * result + (response != null ? this.response.hashCode() : 0);
+        result = 31 * result + this.task.hashCode();
+        return result;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         GetTasksResponse other = (GetTasksResponse) o;
-        if (!this.completed().equals(other.completed())) {
+        if (this.completed() != other.completed()) {
             return false;
         }
         if (!this.error().equals(other.error())) {

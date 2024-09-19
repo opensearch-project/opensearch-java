@@ -160,7 +160,11 @@ public class DeployModelResponse implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(this.status, this.taskId, this.taskType);
+        int result = 17;
+        result = 31 * result + this.status.hashCode();
+        result = 31 * result + this.taskId.hashCode();
+        result = 31 * result + (taskType != null ? this.taskType.hashCode() : 0);
+        return result;
     }
 
     public boolean equals(Object o) {

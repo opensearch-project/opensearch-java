@@ -769,58 +769,58 @@ public class Status implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(
-            this.batches,
-            this.canceled,
-            this.created,
-            this.deleted,
-            this.noops,
-            this.phase,
-            this.requestsPerSecond,
-            this.retries,
-            this.sliceId,
-            this.slices,
-            this.state,
-            this.throttled,
-            this.throttledMillis,
-            this.throttledUntil,
-            this.throttledUntilMillis,
-            this.total,
-            this.updated,
-            this.versionConflicts,
-            this.metadata
-        );
+        int result = 17;
+        result = 31 * result + (batches != null ? Integer.hashCode(this.batches) : 0);
+        result = 31 * result + (canceled != null ? this.canceled.hashCode() : 0);
+        result = 31 * result + (created != null ? Long.hashCode(this.created) : 0);
+        result = 31 * result + (deleted != null ? Long.hashCode(this.deleted) : 0);
+        result = 31 * result + (noops != null ? Long.hashCode(this.noops) : 0);
+        result = 31 * result + (phase != null ? this.phase.hashCode() : 0);
+        result = 31 * result + (requestsPerSecond != null ? Float.hashCode(this.requestsPerSecond) : 0);
+        result = 31 * result + (retries != null ? this.retries.hashCode() : 0);
+        result = 31 * result + (sliceId != null ? Integer.hashCode(this.sliceId) : 0);
+        result = 31 * result + (slices != null ? this.slices.hashCode() : 0);
+        result = 31 * result + (state != null ? this.state.hashCode() : 0);
+        result = 31 * result + (throttled != null ? this.throttled.hashCode() : 0);
+        result = 31 * result + (throttledMillis != null ? Long.hashCode(this.throttledMillis) : 0);
+        result = 31 * result + (throttledUntil != null ? this.throttledUntil.hashCode() : 0);
+        result = 31 * result + (throttledUntilMillis != null ? Long.hashCode(this.throttledUntilMillis) : 0);
+        result = 31 * result + (total != null ? Long.hashCode(this.total) : 0);
+        result = 31 * result + (updated != null ? Long.hashCode(this.updated) : 0);
+        result = 31 * result + (versionConflicts != null ? Long.hashCode(this.versionConflicts) : 0);
+        result = 31 * result + (metadata != null ? this.metadata.hashCode() : 0);
+        return result;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         Status other = (Status) o;
-        if (!this.batches().equals(other.batches())) {
+        if (this.batches() != other.batches()) {
             return false;
         }
         if (!this.canceled().equals(other.canceled())) {
             return false;
         }
-        if (!this.created().equals(other.created())) {
+        if (this.created() != other.created()) {
             return false;
         }
-        if (!this.deleted().equals(other.deleted())) {
+        if (this.deleted() != other.deleted()) {
             return false;
         }
-        if (!this.noops().equals(other.noops())) {
+        if (this.noops() != other.noops()) {
             return false;
         }
         if (!this.phase().equals(other.phase())) {
             return false;
         }
-        if (!this.requestsPerSecond().equals(other.requestsPerSecond())) {
+        if (this.requestsPerSecond() != other.requestsPerSecond()) {
             return false;
         }
         if (!this.retries().equals(other.retries())) {
             return false;
         }
-        if (!this.sliceId().equals(other.sliceId())) {
+        if (this.sliceId() != other.sliceId()) {
             return false;
         }
         if (!this.slices().equals(other.slices())) {
@@ -832,22 +832,22 @@ public class Status implements PlainJsonSerializable {
         if (!this.throttled().equals(other.throttled())) {
             return false;
         }
-        if (!this.throttledMillis().equals(other.throttledMillis())) {
+        if (this.throttledMillis() != other.throttledMillis()) {
             return false;
         }
         if (!this.throttledUntil().equals(other.throttledUntil())) {
             return false;
         }
-        if (!this.throttledUntilMillis().equals(other.throttledUntilMillis())) {
+        if (this.throttledUntilMillis() != other.throttledUntilMillis()) {
             return false;
         }
-        if (!this.total().equals(other.total())) {
+        if (this.total() != other.total()) {
             return false;
         }
-        if (!this.updated().equals(other.updated())) {
+        if (this.updated() != other.updated()) {
             return false;
         }
-        if (!this.versionConflicts().equals(other.versionConflicts())) {
+        if (this.versionConflicts() != other.versionConflicts()) {
             return false;
         }
         if (!this.metadata().equals(other.metadata())) {

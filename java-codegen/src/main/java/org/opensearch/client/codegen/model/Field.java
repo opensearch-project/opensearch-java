@@ -64,9 +64,7 @@ public class Field {
 
     @Nonnull
     public Type getType() {
-        this.
         return required ? type : type.getBoxed();
-
     }
 
     public boolean isRequired() {
@@ -85,5 +83,13 @@ public class Field {
     @Nullable
     public Deprecation getDeprecation() {
         return deprecation;
+    }
+
+    public boolean isUnboxedPrimitive() {
+        return type.isUnboxedPrimitive();
+    }
+
+    public Type getBoxedType() {
+        return type.getBoxed();
     }
 }

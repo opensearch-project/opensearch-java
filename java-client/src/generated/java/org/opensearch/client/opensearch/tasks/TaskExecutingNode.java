@@ -162,7 +162,9 @@ public class TaskExecutingNode extends BaseNode {
     }
 
     public int hashCode() {
-        return Objects.hash(super.hashCode(), this.tasks);
+        int result = 17;
+        result = 31 * result + this.tasks.hashCode();
+        return result;
     }
 
     public boolean equals(Object o) {

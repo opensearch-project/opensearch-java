@@ -135,7 +135,9 @@ public class UndeployModelNode implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(this.stats);
+        int result = 17;
+        result = 31 * result + (stats != null ? this.stats.hashCode() : 0);
+        return result;
     }
 
     public boolean equals(Object o) {

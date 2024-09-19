@@ -315,7 +315,15 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(this.cause, this.id, this.index, this.node, this.reason, this.shard, this.status);
+        int result = 17;
+        result = 31 * result + (cause != null ? this.cause.hashCode() : 0);
+        result = 31 * result + (id != null ? this.id.hashCode() : 0);
+        result = 31 * result + (index != null ? this.index.hashCode() : 0);
+        result = 31 * result + (node != null ? this.node.hashCode() : 0);
+        result = 31 * result + (reason != null ? this.reason.hashCode() : 0);
+        result = 31 * result + (shard != null ? Integer.hashCode(this.shard) : 0);
+        result = 31 * result + Integer.hashCode(this.status);
+        return result;
     }
 
     public boolean equals(Object o) {
@@ -337,10 +345,10 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
         if (!this.reason().equals(other.reason())) {
             return false;
         }
-        if (!this.shard().equals(other.shard())) {
+        if (this.shard() != other.shard()) {
             return false;
         }
-        if (!this.status().equals(other.status())) {
+        if (this.status() != other.status()) {
             return false;
         }
         return true;

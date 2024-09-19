@@ -480,21 +480,21 @@ public class TaskInfo implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(
-            this.action,
-            this.cancellable,
-            this.cancelled,
-            this.description,
-            this.headers,
-            this.id,
-            this.node,
-            this.parentTaskId,
-            this.runningTime,
-            this.runningTimeInNanos,
-            this.startTimeInMillis,
-            this.status,
-            this.type
-        );
+        int result = 17;
+        result = 31 * result + this.action.hashCode();
+        result = 31 * result + Boolean.hashCode(this.cancellable);
+        result = 31 * result + (cancelled != null ? Boolean.hashCode(this.cancelled) : 0);
+        result = 31 * result + (description != null ? this.description.hashCode() : 0);
+        result = 31 * result + this.headers.hashCode();
+        result = 31 * result + Long.hashCode(this.id);
+        result = 31 * result + this.node.hashCode();
+        result = 31 * result + (parentTaskId != null ? this.parentTaskId.hashCode() : 0);
+        result = 31 * result + (runningTime != null ? this.runningTime.hashCode() : 0);
+        result = 31 * result + Long.hashCode(this.runningTimeInNanos);
+        result = 31 * result + Long.hashCode(this.startTimeInMillis);
+        result = 31 * result + (status != null ? this.status.hashCode() : 0);
+        result = 31 * result + this.type.hashCode();
+        return result;
     }
 
     public boolean equals(Object o) {
@@ -504,10 +504,10 @@ public class TaskInfo implements PlainJsonSerializable {
         if (!this.action().equals(other.action())) {
             return false;
         }
-        if (!this.cancellable().equals(other.cancellable())) {
+        if (this.cancellable() != other.cancellable()) {
             return false;
         }
-        if (!this.cancelled().equals(other.cancelled())) {
+        if (this.cancelled() != other.cancelled()) {
             return false;
         }
         if (!this.description().equals(other.description())) {
@@ -516,7 +516,7 @@ public class TaskInfo implements PlainJsonSerializable {
         if (!this.headers().equals(other.headers())) {
             return false;
         }
-        if (!this.id().equals(other.id())) {
+        if (this.id() != other.id()) {
             return false;
         }
         if (!this.node().equals(other.node())) {
@@ -528,10 +528,10 @@ public class TaskInfo implements PlainJsonSerializable {
         if (!this.runningTime().equals(other.runningTime())) {
             return false;
         }
-        if (!this.runningTimeInNanos().equals(other.runningTimeInNanos())) {
+        if (this.runningTimeInNanos() != other.runningTimeInNanos()) {
             return false;
         }
-        if (!this.startTimeInMillis().equals(other.startTimeInMillis())) {
+        if (this.startTimeInMillis() != other.startTimeInMillis()) {
             return false;
         }
         if (!this.status().equals(other.status())) {

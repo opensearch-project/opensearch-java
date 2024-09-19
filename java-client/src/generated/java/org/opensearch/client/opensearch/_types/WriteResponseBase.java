@@ -279,14 +279,23 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(this.forcedRefresh, this.id, this.index, this.primaryTerm, this.result, this.seqNo, this.shards, this.version);
+        int result = 17;
+        result = 31 * result + (forcedRefresh != null ? Boolean.hashCode(this.forcedRefresh) : 0);
+        result = 31 * result + this.id.hashCode();
+        result = 31 * result + this.index.hashCode();
+        result = 31 * result + Long.hashCode(this.primaryTerm);
+        result = 31 * result + this.result.hashCode();
+        result = 31 * result + Long.hashCode(this.seqNo);
+        result = 31 * result + this.shards.hashCode();
+        result = 31 * result + Long.hashCode(this.version);
+        return result;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         WriteResponseBase other = (WriteResponseBase) o;
-        if (!this.forcedRefresh().equals(other.forcedRefresh())) {
+        if (this.forcedRefresh() != other.forcedRefresh()) {
             return false;
         }
         if (!this.id().equals(other.id())) {
@@ -295,19 +304,19 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         if (!this.index().equals(other.index())) {
             return false;
         }
-        if (!this.primaryTerm().equals(other.primaryTerm())) {
+        if (this.primaryTerm() != other.primaryTerm()) {
             return false;
         }
         if (!this.result().equals(other.result())) {
             return false;
         }
-        if (!this.seqNo().equals(other.seqNo())) {
+        if (this.seqNo() != other.seqNo()) {
             return false;
         }
         if (!this.shards().equals(other.shards())) {
             return false;
         }
-        if (!this.version().equals(other.version())) {
+        if (this.version() != other.version()) {
             return false;
         }
         return true;

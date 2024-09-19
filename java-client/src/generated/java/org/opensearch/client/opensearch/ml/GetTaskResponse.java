@@ -394,25 +394,25 @@ public class GetTaskResponse implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(
-            this.createTime,
-            this.error,
-            this.functionName,
-            this.isAsync,
-            this.lastUpdateTime,
-            this.modelId,
-            this.state,
-            this.taskId,
-            this.taskType,
-            this.workerNode
-        );
+        int result = 17;
+        result = 31 * result + (createTime != null ? Long.hashCode(this.createTime) : 0);
+        result = 31 * result + (error != null ? this.error.hashCode() : 0);
+        result = 31 * result + (functionName != null ? this.functionName.hashCode() : 0);
+        result = 31 * result + (isAsync != null ? Boolean.hashCode(this.isAsync) : 0);
+        result = 31 * result + (lastUpdateTime != null ? Long.hashCode(this.lastUpdateTime) : 0);
+        result = 31 * result + (modelId != null ? this.modelId.hashCode() : 0);
+        result = 31 * result + this.state.hashCode();
+        result = 31 * result + (taskId != null ? this.taskId.hashCode() : 0);
+        result = 31 * result + (taskType != null ? this.taskType.hashCode() : 0);
+        result = 31 * result + (workerNode != null ? this.workerNode.hashCode() : 0);
+        return result;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         GetTaskResponse other = (GetTaskResponse) o;
-        if (!this.createTime().equals(other.createTime())) {
+        if (this.createTime() != other.createTime()) {
             return false;
         }
         if (!this.error().equals(other.error())) {
@@ -421,10 +421,10 @@ public class GetTaskResponse implements PlainJsonSerializable {
         if (!this.functionName().equals(other.functionName())) {
             return false;
         }
-        if (!this.isAsync().equals(other.isAsync())) {
+        if (this.isAsync() != other.isAsync()) {
             return false;
         }
-        if (!this.lastUpdateTime().equals(other.lastUpdateTime())) {
+        if (this.lastUpdateTime() != other.lastUpdateTime()) {
             return false;
         }
         if (!this.modelId().equals(other.modelId())) {

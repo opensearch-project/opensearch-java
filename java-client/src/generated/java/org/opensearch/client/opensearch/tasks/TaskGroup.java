@@ -164,7 +164,9 @@ public class TaskGroup extends TaskInfo {
     }
 
     public int hashCode() {
-        return Objects.hash(super.hashCode(), this.children);
+        int result = 17;
+        result = 31 * result + (children != null ? this.children.hashCode() : 0);
+        return result;
     }
 
     public boolean equals(Object o) {

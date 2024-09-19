@@ -155,17 +155,20 @@ public class Retries implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(this.bulk, this.search);
+        int result = 17;
+        result = 31 * result + Long.hashCode(this.bulk);
+        result = 31 * result + Long.hashCode(this.search);
+        return result;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         Retries other = (Retries) o;
-        if (!this.bulk().equals(other.bulk())) {
+        if (this.bulk() != other.bulk()) {
             return false;
         }
-        if (!this.search().equals(other.search())) {
+        if (this.search() != other.search()) {
             return false;
         }
         return true;

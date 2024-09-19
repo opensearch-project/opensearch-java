@@ -257,23 +257,28 @@ public class NodeStatistics implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(this.failed, this.failures, this.successful, this.total);
+        int result = 17;
+        result = 31 * result + Integer.hashCode(this.failed);
+        result = 31 * result + (failures != null ? this.failures.hashCode() : 0);
+        result = 31 * result + Integer.hashCode(this.successful);
+        result = 31 * result + Integer.hashCode(this.total);
+        return result;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         NodeStatistics other = (NodeStatistics) o;
-        if (!this.failed().equals(other.failed())) {
+        if (this.failed() != other.failed()) {
             return false;
         }
         if (!this.failures().equals(other.failures())) {
             return false;
         }
-        if (!this.successful().equals(other.successful())) {
+        if (this.successful() != other.successful()) {
             return false;
         }
-        if (!this.total().equals(other.total())) {
+        if (this.total() != other.total()) {
             return false;
         }
         return true;

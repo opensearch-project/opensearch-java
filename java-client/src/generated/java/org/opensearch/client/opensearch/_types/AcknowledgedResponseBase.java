@@ -111,14 +111,16 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
     }
 
     public int hashCode() {
-        return Objects.hash(this.acknowledged);
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.acknowledged);
+        return result;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         AcknowledgedResponseBase other = (AcknowledgedResponseBase) o;
-        if (!this.acknowledged().equals(other.acknowledged())) {
+        if (this.acknowledged() != other.acknowledged()) {
             return false;
         }
         return true;

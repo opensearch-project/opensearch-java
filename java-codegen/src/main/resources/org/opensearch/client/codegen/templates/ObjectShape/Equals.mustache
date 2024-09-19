@@ -8,7 +8,12 @@
         if(this.getClass() != o.getClass()) return false;
         {{className}} other = ({{className}})o;
         {{#fields}}
+        {{#isUnboxedPrimitive}}
+        if(this.{{name}}() != other.{{name}}()) {
+        {{/isUnboxedPrimitive}}
+        {{^isUnboxedPrimitive}}
         if(!this.{{name}}().equals(other.{{name}}())) {
+        {{/isUnboxedPrimitive}}
             return false;
         }
         {{/fields}}

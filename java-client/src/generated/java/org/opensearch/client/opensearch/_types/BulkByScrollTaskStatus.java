@@ -616,52 +616,52 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(
-            this.batches,
-            this.canceled,
-            this.created,
-            this.deleted,
-            this.noops,
-            this.requestsPerSecond,
-            this.retries,
-            this.sliceId,
-            this.slices,
-            this.throttled,
-            this.throttledMillis,
-            this.throttledUntil,
-            this.throttledUntilMillis,
-            this.total,
-            this.updated,
-            this.versionConflicts
-        );
+        int result = 17;
+        result = 31 * result + Integer.hashCode(this.batches);
+        result = 31 * result + (canceled != null ? this.canceled.hashCode() : 0);
+        result = 31 * result + (created != null ? Long.hashCode(this.created) : 0);
+        result = 31 * result + Long.hashCode(this.deleted);
+        result = 31 * result + Long.hashCode(this.noops);
+        result = 31 * result + Float.hashCode(this.requestsPerSecond);
+        result = 31 * result + this.retries.hashCode();
+        result = 31 * result + (sliceId != null ? Integer.hashCode(this.sliceId) : 0);
+        result = 31 * result + (slices != null ? this.slices.hashCode() : 0);
+        result = 31 * result + (throttled != null ? this.throttled.hashCode() : 0);
+        result = 31 * result + Long.hashCode(this.throttledMillis);
+        result = 31 * result + (throttledUntil != null ? this.throttledUntil.hashCode() : 0);
+        result = 31 * result + Long.hashCode(this.throttledUntilMillis);
+        result = 31 * result + Long.hashCode(this.total);
+        result = 31 * result + (updated != null ? Long.hashCode(this.updated) : 0);
+        result = 31 * result + Long.hashCode(this.versionConflicts);
+        return result;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         BulkByScrollTaskStatus other = (BulkByScrollTaskStatus) o;
-        if (!this.batches().equals(other.batches())) {
+        if (this.batches() != other.batches()) {
             return false;
         }
         if (!this.canceled().equals(other.canceled())) {
             return false;
         }
-        if (!this.created().equals(other.created())) {
+        if (this.created() != other.created()) {
             return false;
         }
-        if (!this.deleted().equals(other.deleted())) {
+        if (this.deleted() != other.deleted()) {
             return false;
         }
-        if (!this.noops().equals(other.noops())) {
+        if (this.noops() != other.noops()) {
             return false;
         }
-        if (!this.requestsPerSecond().equals(other.requestsPerSecond())) {
+        if (this.requestsPerSecond() != other.requestsPerSecond()) {
             return false;
         }
         if (!this.retries().equals(other.retries())) {
             return false;
         }
-        if (!this.sliceId().equals(other.sliceId())) {
+        if (this.sliceId() != other.sliceId()) {
             return false;
         }
         if (!this.slices().equals(other.slices())) {
@@ -670,22 +670,22 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
         if (!this.throttled().equals(other.throttled())) {
             return false;
         }
-        if (!this.throttledMillis().equals(other.throttledMillis())) {
+        if (this.throttledMillis() != other.throttledMillis()) {
             return false;
         }
         if (!this.throttledUntil().equals(other.throttledUntil())) {
             return false;
         }
-        if (!this.throttledUntilMillis().equals(other.throttledUntilMillis())) {
+        if (this.throttledUntilMillis() != other.throttledUntilMillis()) {
             return false;
         }
-        if (!this.total().equals(other.total())) {
+        if (this.total() != other.total()) {
             return false;
         }
-        if (!this.updated().equals(other.updated())) {
+        if (this.updated() != other.updated()) {
             return false;
         }
-        if (!this.versionConflicts().equals(other.versionConflicts())) {
+        if (this.versionConflicts() != other.versionConflicts()) {
             return false;
         }
         return true;

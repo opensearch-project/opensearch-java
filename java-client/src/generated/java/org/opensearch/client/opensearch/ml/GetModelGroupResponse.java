@@ -258,7 +258,14 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(this.access, this.createdTime, this.description, this.lastUpdatedTime, this.latestVersion, this.name);
+        int result = 17;
+        result = 31 * result + this.access.hashCode();
+        result = 31 * result + (createdTime != null ? Long.hashCode(this.createdTime) : 0);
+        result = 31 * result + this.description.hashCode();
+        result = 31 * result + (lastUpdatedTime != null ? Long.hashCode(this.lastUpdatedTime) : 0);
+        result = 31 * result + Integer.hashCode(this.latestVersion);
+        result = 31 * result + this.name.hashCode();
+        return result;
     }
 
     public boolean equals(Object o) {
@@ -268,16 +275,16 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
         if (!this.access().equals(other.access())) {
             return false;
         }
-        if (!this.createdTime().equals(other.createdTime())) {
+        if (this.createdTime() != other.createdTime()) {
             return false;
         }
         if (!this.description().equals(other.description())) {
             return false;
         }
-        if (!this.lastUpdatedTime().equals(other.lastUpdatedTime())) {
+        if (this.lastUpdatedTime() != other.lastUpdatedTime()) {
             return false;
         }
-        if (!this.latestVersion().equals(other.latestVersion())) {
+        if (this.latestVersion() != other.latestVersion()) {
             return false;
         }
         if (!this.name().equals(other.name())) {

@@ -131,7 +131,10 @@ public class RegisterModelResponse implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(this.status, this.taskId);
+        int result = 17;
+        result = 31 * result + this.status.hashCode();
+        result = 31 * result + this.taskId.hashCode();
+        return result;
     }
 
     public boolean equals(Object o) {

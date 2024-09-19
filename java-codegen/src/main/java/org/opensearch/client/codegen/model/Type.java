@@ -157,6 +157,18 @@ public class Type {
         return PRIMITIVES.contains(name);
     }
 
+    public boolean isUnboxedPrimitive() {
+        return isPrimitive()
+            && !name.equals("String")
+            && !name.equals("Boolean")
+            && !name.equals("Character")
+            && !name.equals("Integer")
+            && !name.equals("Long")
+            && !name.equals("Float")
+            && !name.equals("Double")
+            && !name.equals("Number");
+    }
+
     public boolean isNumber() {
         return "Number".equals(name);
     }

@@ -208,7 +208,12 @@ public class TaskFailure implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(this.nodeId, this.reason, this.status, this.taskId);
+        int result = 17;
+        result = 31 * result + this.nodeId.hashCode();
+        result = 31 * result + this.reason.hashCode();
+        result = 31 * result + this.status.hashCode();
+        result = 31 * result + Integer.hashCode(this.taskId);
+        return result;
     }
 
     public boolean equals(Object o) {
@@ -224,7 +229,7 @@ public class TaskFailure implements PlainJsonSerializable {
         if (!this.status().equals(other.status())) {
             return false;
         }
-        if (!this.taskId().equals(other.taskId())) {
+        if (this.taskId() != other.taskId()) {
             return false;
         }
         return true;

@@ -353,18 +353,18 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
     }
 
     public int hashCode() {
-        return Objects.hash(
-            this.buildDate,
-            this.buildFlavor,
-            this.buildHash,
-            this.buildSnapshot,
-            this.buildType,
-            this.distribution,
-            this.luceneVersion,
-            this.minimumIndexCompatibilityVersion,
-            this.minimumWireCompatibilityVersion,
-            this.number
-        );
+        int result = 17;
+        result = 31 * result + this.buildDate.hashCode();
+        result = 31 * result + (buildFlavor != null ? this.buildFlavor.hashCode() : 0);
+        result = 31 * result + this.buildHash.hashCode();
+        result = 31 * result + Boolean.hashCode(this.buildSnapshot);
+        result = 31 * result + this.buildType.hashCode();
+        result = 31 * result + this.distribution.hashCode();
+        result = 31 * result + this.luceneVersion.hashCode();
+        result = 31 * result + this.minimumIndexCompatibilityVersion.hashCode();
+        result = 31 * result + this.minimumWireCompatibilityVersion.hashCode();
+        result = 31 * result + this.number.hashCode();
+        return result;
     }
 
     public boolean equals(Object o) {
@@ -380,7 +380,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         if (!this.buildHash().equals(other.buildHash())) {
             return false;
         }
-        if (!this.buildSnapshot().equals(other.buildSnapshot())) {
+        if (this.buildSnapshot() != other.buildSnapshot()) {
             return false;
         }
         if (!this.buildType().equals(other.buildType())) {

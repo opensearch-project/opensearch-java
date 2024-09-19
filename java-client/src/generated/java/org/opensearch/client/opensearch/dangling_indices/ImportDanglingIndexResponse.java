@@ -103,7 +103,8 @@ public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
     }
 
     public int hashCode() {
-        return Objects.hash(super.hashCode());
+        int result = 17;
+        return result;
     }
 
     public boolean equals(Object o) {
