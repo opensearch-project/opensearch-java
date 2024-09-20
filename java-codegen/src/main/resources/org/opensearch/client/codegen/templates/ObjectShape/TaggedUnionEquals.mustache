@@ -1,0 +1,6 @@
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(this.getClass() != o.getClass()) return false;
+        {{className}} other = ({{className}})o;
+        return this._kind().equals(other._kind()) && this._get().equals(other._get());
+    }
