@@ -98,7 +98,7 @@ public class ListResponse extends TaskListResponseBase {
     }
 
     public int hashCode() {
-        int result = 17;
+        int result = super.hashCode();
         return result;
     }
 

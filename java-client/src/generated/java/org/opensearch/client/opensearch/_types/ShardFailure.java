@@ -248,11 +248,11 @@ public class ShardFailure implements PlainJsonSerializable {
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + (index != null ? this.index.hashCode() : 0);
-        result = 31 * result + (node != null ? this.node.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.index);
+        result = 31 * result + java.util.Objects.hashCode(this.node);
         result = 31 * result + this.reason.hashCode();
         result = 31 * result + Integer.hashCode(this.shard);
-        result = 31 * result + (status != null ? this.status.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.status);
         return result;
     }
 

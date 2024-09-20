@@ -103,7 +103,7 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
     }
 
     public int hashCode() {
-        int result = 17;
+        int result = super.hashCode();
         return result;
     }
 

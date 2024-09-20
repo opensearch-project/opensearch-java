@@ -252,7 +252,7 @@ public class DanglingIndex implements PlainJsonSerializable {
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + (creationDate != null ? this.creationDate.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.creationDate);
         result = 31 * result + Long.hashCode(this.creationDateMillis);
         result = 31 * result + this.indexName.hashCode();
         result = 31 * result + this.indexUuid.hashCode();

@@ -407,13 +407,13 @@ public class ErrorCause implements PlainJsonSerializable {
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + (causedBy != null ? this.causedBy.hashCode() : 0);
-        result = 31 * result + (reason != null ? this.reason.hashCode() : 0);
-        result = 31 * result + (rootCause != null ? this.rootCause.hashCode() : 0);
-        result = 31 * result + (stackTrace != null ? this.stackTrace.hashCode() : 0);
-        result = 31 * result + (suppressed != null ? this.suppressed.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.causedBy);
+        result = 31 * result + java.util.Objects.hashCode(this.reason);
+        result = 31 * result + java.util.Objects.hashCode(this.rootCause);
+        result = 31 * result + java.util.Objects.hashCode(this.stackTrace);
+        result = 31 * result + java.util.Objects.hashCode(this.suppressed);
         result = 31 * result + this.type.hashCode();
-        result = 31 * result + (metadata != null ? this.metadata.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.metadata);
         return result;
     }
 

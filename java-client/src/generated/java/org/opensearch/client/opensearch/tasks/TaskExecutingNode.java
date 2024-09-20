@@ -162,7 +162,7 @@ public class TaskExecutingNode extends BaseNode {
     }
 
     public int hashCode() {
-        int result = 17;
+        int result = super.hashCode();
         result = 31 * result + this.tasks.hashCode();
         return result;
     }

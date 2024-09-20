@@ -309,10 +309,10 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + (nodeFailures != null ? this.nodeFailures.hashCode() : 0);
-        result = 31 * result + (nodes != null ? this.nodes.hashCode() : 0);
-        result = 31 * result + (taskFailures != null ? this.taskFailures.hashCode() : 0);
-        result = 31 * result + (tasks != null ? this.tasks.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.nodeFailures);
+        result = 31 * result + java.util.Objects.hashCode(this.nodes);
+        result = 31 * result + java.util.Objects.hashCode(this.taskFailures);
+        result = 31 * result + java.util.Objects.hashCode(this.tasks);
         return result;
     }
 

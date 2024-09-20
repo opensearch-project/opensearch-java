@@ -355,7 +355,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
     public int hashCode() {
         int result = 17;
         result = 31 * result + this.buildDate.hashCode();
-        result = 31 * result + (buildFlavor != null ? this.buildFlavor.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.buildFlavor);
         result = 31 * result + this.buildHash.hashCode();
         result = 31 * result + Boolean.hashCode(this.buildSnapshot);
         result = 31 * result + this.buildType.hashCode();

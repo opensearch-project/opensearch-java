@@ -164,8 +164,8 @@ public class TaskGroup extends TaskInfo {
     }
 
     public int hashCode() {
-        int result = 17;
-        result = 31 * result + (children != null ? this.children.hashCode() : 0);
+        int result = super.hashCode();
+        result = 31 * result + java.util.Objects.hashCode(this.children);
         return result;
     }
 

@@ -284,12 +284,12 @@ public abstract class BaseNode implements PlainJsonSerializable {
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + (attributes != null ? this.attributes.hashCode() : 0);
-        result = 31 * result + (host != null ? this.host.hashCode() : 0);
-        result = 31 * result + (ip != null ? this.ip.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.attributes);
+        result = 31 * result + java.util.Objects.hashCode(this.host);
+        result = 31 * result + java.util.Objects.hashCode(this.ip);
         result = 31 * result + this.name.hashCode();
-        result = 31 * result + (roles != null ? this.roles.hashCode() : 0);
-        result = 31 * result + (transportAddress != null ? this.transportAddress.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.roles);
+        result = 31 * result + java.util.Objects.hashCode(this.transportAddress);
         return result;
     }
 

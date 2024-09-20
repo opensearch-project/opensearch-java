@@ -267,7 +267,7 @@ public class ShardStatistics implements PlainJsonSerializable {
     public int hashCode() {
         int result = 17;
         result = 31 * result + Integer.hashCode(this.failed);
-        result = 31 * result + (failures != null ? this.failures.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.failures);
         result = 31 * result + Integer.hashCode(this.skipped);
         result = 31 * result + Integer.hashCode(this.successful);
         result = 31 * result + Integer.hashCode(this.total);

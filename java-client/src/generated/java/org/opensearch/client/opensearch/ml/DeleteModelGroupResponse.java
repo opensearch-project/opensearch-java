@@ -75,7 +75,7 @@ public class DeleteModelGroupResponse extends WriteResponseBase {
     }
 
     public int hashCode() {
-        int result = 17;
+        int result = super.hashCode();
         return result;
     }
 

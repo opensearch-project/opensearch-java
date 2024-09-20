@@ -722,7 +722,7 @@ public class TaskResponse implements PlainJsonSerializable {
     public int hashCode() {
         int result = 17;
         result = 31 * result + Integer.hashCode(this.batches);
-        result = 31 * result + (canceled != null ? this.canceled.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.canceled);
         result = 31 * result + Long.hashCode(this.created);
         result = 31 * result + Long.hashCode(this.deleted);
         result = 31 * result + this.failures.hashCode();
@@ -730,10 +730,10 @@ public class TaskResponse implements PlainJsonSerializable {
         result = 31 * result + Float.hashCode(this.requestsPerSecond);
         result = 31 * result + this.retries.hashCode();
         result = 31 * result + Integer.hashCode(this.sliceId);
-        result = 31 * result + (slices != null ? this.slices.hashCode() : 0);
-        result = 31 * result + (throttled != null ? this.throttled.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.slices);
+        result = 31 * result + java.util.Objects.hashCode(this.throttled);
         result = 31 * result + Long.hashCode(this.throttledMillis);
-        result = 31 * result + (throttledUntil != null ? this.throttledUntil.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.throttledUntil);
         result = 31 * result + Long.hashCode(this.throttledUntilMillis);
         result = 31 * result + Boolean.hashCode(this.timedOut);
         result = 31 * result + Long.hashCode(this.took);

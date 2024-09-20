@@ -484,15 +484,15 @@ public class TaskInfo implements PlainJsonSerializable {
         result = 31 * result + this.action.hashCode();
         result = 31 * result + Boolean.hashCode(this.cancellable);
         result = 31 * result + Boolean.hashCode(this.cancelled);
-        result = 31 * result + (description != null ? this.description.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.description);
         result = 31 * result + this.headers.hashCode();
         result = 31 * result + Long.hashCode(this.id);
         result = 31 * result + this.node.hashCode();
-        result = 31 * result + (parentTaskId != null ? this.parentTaskId.hashCode() : 0);
-        result = 31 * result + (runningTime != null ? this.runningTime.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.parentTaskId);
+        result = 31 * result + java.util.Objects.hashCode(this.runningTime);
         result = 31 * result + Long.hashCode(this.runningTimeInNanos);
         result = 31 * result + Long.hashCode(this.startTimeInMillis);
-        result = 31 * result + (status != null ? this.status.hashCode() : 0);
+        result = 31 * result + java.util.Objects.hashCode(this.status);
         result = 31 * result + this.type.hashCode();
         return result;
     }
