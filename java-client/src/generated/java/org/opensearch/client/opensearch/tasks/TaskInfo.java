@@ -501,18 +501,18 @@ public class TaskInfo implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         TaskInfo other = (TaskInfo) o;
-        return (this.action != null && this.action.equals(other.action))
+        return java.util.Objects.equals(this.action, other.action)
             && this.cancellable() == other.cancellable()
             && this.cancelled() == other.cancelled()
-            && (this.description != null && this.description.equals(other.description))
-            && (this.headers != null && this.headers.equals(other.headers))
+            && java.util.Objects.equals(this.description, other.description)
+            && java.util.Objects.equals(this.headers, other.headers)
             && this.id() == other.id()
-            && (this.node != null && this.node.equals(other.node))
-            && (this.parentTaskId != null && this.parentTaskId.equals(other.parentTaskId))
-            && (this.runningTime != null && this.runningTime.equals(other.runningTime))
+            && java.util.Objects.equals(this.node, other.node)
+            && java.util.Objects.equals(this.parentTaskId, other.parentTaskId)
+            && java.util.Objects.equals(this.runningTime, other.runningTime)
             && this.runningTimeInNanos() == other.runningTimeInNanos()
             && this.startTimeInMillis() == other.startTimeInMillis()
-            && (this.status != null && this.status.equals(other.status))
-            && (this.type != null && this.type.equals(other.type));
+            && java.util.Objects.equals(this.status, other.status)
+            && java.util.Objects.equals(this.type, other.type);
     }
 }

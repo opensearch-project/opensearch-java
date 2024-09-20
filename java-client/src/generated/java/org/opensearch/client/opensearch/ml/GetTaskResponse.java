@@ -413,14 +413,14 @@ public class GetTaskResponse implements PlainJsonSerializable {
         if (this.getClass() != o.getClass()) return false;
         GetTaskResponse other = (GetTaskResponse) o;
         return this.createTime() == other.createTime()
-            && (this.error != null && this.error.equals(other.error))
-            && (this.functionName != null && this.functionName.equals(other.functionName))
+            && java.util.Objects.equals(this.error, other.error)
+            && java.util.Objects.equals(this.functionName, other.functionName)
             && this.isAsync() == other.isAsync()
             && this.lastUpdateTime() == other.lastUpdateTime()
-            && (this.modelId != null && this.modelId.equals(other.modelId))
-            && (this.state != null && this.state.equals(other.state))
-            && (this.taskId != null && this.taskId.equals(other.taskId))
-            && (this.taskType != null && this.taskType.equals(other.taskType))
-            && (this.workerNode != null && this.workerNode.equals(other.workerNode));
+            && java.util.Objects.equals(this.modelId, other.modelId)
+            && java.util.Objects.equals(this.state, other.state)
+            && java.util.Objects.equals(this.taskId, other.taskId)
+            && java.util.Objects.equals(this.taskType, other.taskType)
+            && java.util.Objects.equals(this.workerNode, other.workerNode);
     }
 }

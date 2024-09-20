@@ -297,11 +297,11 @@ public abstract class BaseNode implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         BaseNode other = (BaseNode) o;
-        return (this.attributes != null && this.attributes.equals(other.attributes))
-            && (this.host != null && this.host.equals(other.host))
-            && (this.ip != null && this.ip.equals(other.ip))
-            && (this.name != null && this.name.equals(other.name))
-            && (this.roles != null && this.roles.equals(other.roles))
-            && (this.transportAddress != null && this.transportAddress.equals(other.transportAddress));
+        return java.util.Objects.equals(this.attributes, other.attributes)
+            && java.util.Objects.equals(this.host, other.host)
+            && java.util.Objects.equals(this.ip, other.ip)
+            && java.util.Objects.equals(this.name, other.name)
+            && java.util.Objects.equals(this.roles, other.roles)
+            && java.util.Objects.equals(this.transportAddress, other.transportAddress);
     }
 }

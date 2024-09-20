@@ -264,10 +264,10 @@ public class DanglingIndex implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         DanglingIndex other = (DanglingIndex) o;
-        return (this.creationDate != null && this.creationDate.equals(other.creationDate))
+        return java.util.Objects.equals(this.creationDate, other.creationDate)
             && this.creationDateMillis() == other.creationDateMillis()
-            && (this.indexName != null && this.indexName.equals(other.indexName))
-            && (this.indexUuid != null && this.indexUuid.equals(other.indexUuid))
-            && (this.nodeIds != null && this.nodeIds.equals(other.nodeIds));
+            && java.util.Objects.equals(this.indexName, other.indexName)
+            && java.util.Objects.equals(this.indexUuid, other.indexUuid)
+            && java.util.Objects.equals(this.nodeIds, other.nodeIds);
     }
 }

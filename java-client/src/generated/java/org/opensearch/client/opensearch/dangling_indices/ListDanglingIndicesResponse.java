@@ -243,8 +243,8 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         ListDanglingIndicesResponse other = (ListDanglingIndicesResponse) o;
-        return (this.clusterName != null && this.clusterName.equals(other.clusterName))
-            && (this.danglingIndices != null && this.danglingIndices.equals(other.danglingIndices))
-            && (this.nodes != null && this.nodes.equals(other.nodes));
+        return java.util.Objects.equals(this.clusterName, other.clusterName)
+            && java.util.Objects.equals(this.danglingIndices, other.danglingIndices)
+            && java.util.Objects.equals(this.nodes, other.nodes);
     }
 }

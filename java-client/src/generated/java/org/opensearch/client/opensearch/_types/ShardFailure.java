@@ -260,10 +260,10 @@ public class ShardFailure implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         ShardFailure other = (ShardFailure) o;
-        return (this.index != null && this.index.equals(other.index))
-            && (this.node != null && this.node.equals(other.node))
-            && (this.reason != null && this.reason.equals(other.reason))
+        return java.util.Objects.equals(this.index, other.index)
+            && java.util.Objects.equals(this.node, other.node)
+            && java.util.Objects.equals(this.reason, other.reason)
             && this.shard() == other.shard()
-            && (this.status != null && this.status.equals(other.status));
+            && java.util.Objects.equals(this.status, other.status);
     }
 }

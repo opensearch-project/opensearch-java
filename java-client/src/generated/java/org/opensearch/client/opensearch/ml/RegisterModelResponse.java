@@ -141,6 +141,6 @@ public class RegisterModelResponse implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         RegisterModelResponse other = (RegisterModelResponse) o;
-        return (this.status != null && this.status.equals(other.status)) && (this.taskId != null && this.taskId.equals(other.taskId));
+        return java.util.Objects.equals(this.status, other.status) && java.util.Objects.equals(this.taskId, other.taskId);
     }
 }

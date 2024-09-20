@@ -270,7 +270,7 @@ public class NodeStatistics implements PlainJsonSerializable {
         if (this.getClass() != o.getClass()) return false;
         NodeStatistics other = (NodeStatistics) o;
         return this.failed() == other.failed()
-            && (this.failures != null && this.failures.equals(other.failures))
+            && java.util.Objects.equals(this.failures, other.failures)
             && this.successful() == other.successful()
             && this.total() == other.total();
     }

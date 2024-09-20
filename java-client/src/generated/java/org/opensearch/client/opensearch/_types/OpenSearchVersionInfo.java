@@ -371,17 +371,15 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         OpenSearchVersionInfo other = (OpenSearchVersionInfo) o;
-        return (this.buildDate != null && this.buildDate.equals(other.buildDate))
-            && (this.buildFlavor != null && this.buildFlavor.equals(other.buildFlavor))
-            && (this.buildHash != null && this.buildHash.equals(other.buildHash))
+        return java.util.Objects.equals(this.buildDate, other.buildDate)
+            && java.util.Objects.equals(this.buildFlavor, other.buildFlavor)
+            && java.util.Objects.equals(this.buildHash, other.buildHash)
             && this.buildSnapshot() == other.buildSnapshot()
-            && (this.buildType != null && this.buildType.equals(other.buildType))
-            && (this.distribution != null && this.distribution.equals(other.distribution))
-            && (this.luceneVersion != null && this.luceneVersion.equals(other.luceneVersion))
-            && (this.minimumIndexCompatibilityVersion != null
-                && this.minimumIndexCompatibilityVersion.equals(other.minimumIndexCompatibilityVersion))
-            && (this.minimumWireCompatibilityVersion != null
-                && this.minimumWireCompatibilityVersion.equals(other.minimumWireCompatibilityVersion))
-            && (this.number != null && this.number.equals(other.number));
+            && java.util.Objects.equals(this.buildType, other.buildType)
+            && java.util.Objects.equals(this.distribution, other.distribution)
+            && java.util.Objects.equals(this.luceneVersion, other.luceneVersion)
+            && java.util.Objects.equals(this.minimumIndexCompatibilityVersion, other.minimumIndexCompatibilityVersion)
+            && java.util.Objects.equals(this.minimumWireCompatibilityVersion, other.minimumWireCompatibilityVersion)
+            && java.util.Objects.equals(this.number, other.number);
     }
 }

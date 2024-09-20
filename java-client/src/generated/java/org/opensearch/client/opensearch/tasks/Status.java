@@ -797,23 +797,23 @@ public class Status implements PlainJsonSerializable {
         if (this.getClass() != o.getClass()) return false;
         Status other = (Status) o;
         return this.batches() == other.batches()
-            && (this.canceled != null && this.canceled.equals(other.canceled))
+            && java.util.Objects.equals(this.canceled, other.canceled)
             && this.created() == other.created()
             && this.deleted() == other.deleted()
             && this.noops() == other.noops()
-            && (this.phase != null && this.phase.equals(other.phase))
+            && java.util.Objects.equals(this.phase, other.phase)
             && this.requestsPerSecond() == other.requestsPerSecond()
-            && (this.retries != null && this.retries.equals(other.retries))
+            && java.util.Objects.equals(this.retries, other.retries)
             && this.sliceId() == other.sliceId()
-            && (this.slices != null && this.slices.equals(other.slices))
-            && (this.state != null && this.state.equals(other.state))
-            && (this.throttled != null && this.throttled.equals(other.throttled))
+            && java.util.Objects.equals(this.slices, other.slices)
+            && java.util.Objects.equals(this.state, other.state)
+            && java.util.Objects.equals(this.throttled, other.throttled)
             && this.throttledMillis() == other.throttledMillis()
-            && (this.throttledUntil != null && this.throttledUntil.equals(other.throttledUntil))
+            && java.util.Objects.equals(this.throttledUntil, other.throttledUntil)
             && this.throttledUntilMillis() == other.throttledUntilMillis()
             && this.total() == other.total()
             && this.updated() == other.updated()
             && this.versionConflicts() == other.versionConflicts()
-            && (this.metadata != null && this.metadata.equals(other.metadata));
+            && java.util.Objects.equals(this.metadata, other.metadata);
     }
 }

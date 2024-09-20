@@ -247,8 +247,8 @@ public class GetTasksResponse implements PlainJsonSerializable {
         if (this.getClass() != o.getClass()) return false;
         GetTasksResponse other = (GetTasksResponse) o;
         return this.completed() == other.completed()
-            && (this.error != null && this.error.equals(other.error))
-            && (this.response != null && this.response.equals(other.response))
-            && (this.task != null && this.task.equals(other.task));
+            && java.util.Objects.equals(this.error, other.error)
+            && java.util.Objects.equals(this.response, other.response)
+            && java.util.Objects.equals(this.task, other.task);
     }
 }

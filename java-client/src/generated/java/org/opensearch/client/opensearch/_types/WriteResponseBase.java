@@ -296,12 +296,12 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         if (this.getClass() != o.getClass()) return false;
         WriteResponseBase other = (WriteResponseBase) o;
         return this.forcedRefresh() == other.forcedRefresh()
-            && (this.id != null && this.id.equals(other.id))
-            && (this.index != null && this.index.equals(other.index))
+            && java.util.Objects.equals(this.id, other.id)
+            && java.util.Objects.equals(this.index, other.index)
             && this.primaryTerm() == other.primaryTerm()
-            && (this.result != null && this.result.equals(other.result))
+            && java.util.Objects.equals(this.result, other.result)
             && this.seqNo() == other.seqNo()
-            && (this.shards != null && this.shards.equals(other.shards))
+            && java.util.Objects.equals(this.shards, other.shards)
             && this.version() == other.version();
     }
 }

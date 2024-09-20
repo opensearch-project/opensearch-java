@@ -279,7 +279,7 @@ public class ShardStatistics implements PlainJsonSerializable {
         if (this.getClass() != o.getClass()) return false;
         ShardStatistics other = (ShardStatistics) o;
         return this.failed() == other.failed()
-            && (this.failures != null && this.failures.equals(other.failures))
+            && java.util.Objects.equals(this.failures, other.failures)
             && this.skipped() == other.skipped()
             && this.successful() == other.successful()
             && this.total() == other.total();
