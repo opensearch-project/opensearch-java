@@ -290,4 +290,20 @@ public class DeleteDanglingIndexRequest extends RequestBase {
         false,
         DeleteDanglingIndexResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.acceptDataLoss);
+        result = 31 * result + java.util.Objects.hashCode(this.clusterManagerTimeout);
+        result = 31 * result + this.indexUuid.hashCode();
+        result = 31 * result + java.util.Objects.hashCode(this.masterTimeout);
+        result = 31 * result + java.util.Objects.hashCode(this.timeout);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

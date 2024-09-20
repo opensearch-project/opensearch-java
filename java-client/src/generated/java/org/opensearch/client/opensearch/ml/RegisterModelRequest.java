@@ -262,4 +262,25 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
         true,
         RegisterModelResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + java.util.Objects.hashCode(this.description);
+        result = 31 * result + this.modelFormat.hashCode();
+        result = 31 * result + java.util.Objects.hashCode(this.modelGroupId);
+        result = 31 * result + this.name.hashCode();
+        result = 31 * result + this.version.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        RegisterModelRequest other = (RegisterModelRequest) o;
+        return java.util.Objects.equals(this.description, other.description)
+            && java.util.Objects.equals(this.modelFormat, other.modelFormat)
+            && java.util.Objects.equals(this.modelGroupId, other.modelGroupId)
+            && java.util.Objects.equals(this.name, other.name)
+            && java.util.Objects.equals(this.version, other.version);
+    }
 }

@@ -294,4 +294,25 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
         true,
         RegisterModelGroupResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + java.util.Objects.hashCode(this.accessMode);
+        result = 31 * result + Boolean.hashCode(this.addAllBackendRoles);
+        result = 31 * result + java.util.Objects.hashCode(this.backendRoles);
+        result = 31 * result + java.util.Objects.hashCode(this.description);
+        result = 31 * result + this.name.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        RegisterModelGroupRequest other = (RegisterModelGroupRequest) o;
+        return java.util.Objects.equals(this.accessMode, other.accessMode)
+            && this.addAllBackendRoles() == other.addAllBackendRoles()
+            && java.util.Objects.equals(this.backendRoles, other.backendRoles)
+            && java.util.Objects.equals(this.description, other.description)
+            && java.util.Objects.equals(this.name, other.name);
+    }
 }

@@ -370,4 +370,22 @@ public class ListRequest extends RequestBase {
         false,
         ListResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + java.util.Objects.hashCode(this.actions);
+        result = 31 * result + Boolean.hashCode(this.detailed);
+        result = 31 * result + java.util.Objects.hashCode(this.groupBy);
+        result = 31 * result + java.util.Objects.hashCode(this.nodes);
+        result = 31 * result + java.util.Objects.hashCode(this.parentTaskId);
+        result = 31 * result + java.util.Objects.hashCode(this.timeout);
+        result = 31 * result + Boolean.hashCode(this.waitForCompletion);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

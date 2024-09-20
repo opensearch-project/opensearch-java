@@ -98,4 +98,16 @@ public class GetModelGroupRequest extends RequestBase {
         false,
         GetModelGroupResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.modelGroupId.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }
