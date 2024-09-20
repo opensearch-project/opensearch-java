@@ -655,8 +655,6 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
             && this.throttledUntilMillis() == other.throttledUntilMillis()
             && this.total() == other.total()
             && this.updated() == other.updated()
-            && this.versionConflicts() == other.versionConflicts()
-
-        ;
+            && this.versionConflicts() == other.versionConflicts();
     }
 }

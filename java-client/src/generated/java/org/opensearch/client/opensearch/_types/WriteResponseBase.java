@@ -302,8 +302,6 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
             && (this.result != null && this.result.equals(other.result))
             && this.seqNo() == other.seqNo()
             && (this.shards != null && this.shards.equals(other.shards))
-            && this.version() == other.version()
-
-        ;
+            && this.version() == other.version();
     }
 }

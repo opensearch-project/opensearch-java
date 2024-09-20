@@ -264,8 +264,6 @@ public class ShardFailure implements PlainJsonSerializable {
             && (this.node != null && this.node.equals(other.node))
             && (this.reason != null && this.reason.equals(other.reason))
             && this.shard() == other.shard()
-            && (this.status != null && this.status.equals(other.status))
-
-        ;
+            && (this.status != null && this.status.equals(other.status));
     }
 }

@@ -814,8 +814,6 @@ public class Status implements PlainJsonSerializable {
             && this.total() == other.total()
             && this.updated() == other.updated()
             && this.versionConflicts() == other.versionConflicts()
-            && (this.metadata != null && this.metadata.equals(other.metadata))
-
-        ;
+            && (this.metadata != null && this.metadata.equals(other.metadata));
     }
 }

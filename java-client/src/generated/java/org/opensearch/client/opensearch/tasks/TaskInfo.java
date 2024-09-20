@@ -513,8 +513,6 @@ public class TaskInfo implements PlainJsonSerializable {
             && this.runningTimeInNanos() == other.runningTimeInNanos()
             && this.startTimeInMillis() == other.startTimeInMillis()
             && (this.status != null && this.status.equals(other.status))
-            && (this.type != null && this.type.equals(other.type))
-
-        ;
+            && (this.type != null && this.type.equals(other.type));
     }
 }

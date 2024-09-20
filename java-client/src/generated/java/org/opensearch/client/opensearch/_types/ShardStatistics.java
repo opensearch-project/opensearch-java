@@ -282,8 +282,6 @@ public class ShardStatistics implements PlainJsonSerializable {
             && (this.failures != null && this.failures.equals(other.failures))
             && this.skipped() == other.skipped()
             && this.successful() == other.successful()
-            && this.total() == other.total()
-
-        ;
+            && this.total() == other.total();
     }
 }

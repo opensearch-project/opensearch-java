@@ -336,8 +336,6 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
             && (this.node != null && this.node.equals(other.node))
             && (this.reason != null && this.reason.equals(other.reason))
             && this.shard() == other.shard()
-            && this.status() == other.status()
-
-        ;
+            && this.status() == other.status();
     }
 }

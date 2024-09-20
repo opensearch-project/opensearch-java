@@ -765,8 +765,6 @@ public class TaskResponse implements PlainJsonSerializable {
             && this.took() == other.took()
             && this.total() == other.total()
             && this.updated() == other.updated()
-            && this.versionConflicts() == other.versionConflicts()
-
-        ;
+            && this.versionConflicts() == other.versionConflicts();
     }
 }

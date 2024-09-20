@@ -272,8 +272,6 @@ public class NodeStatistics implements PlainJsonSerializable {
         return this.failed() == other.failed()
             && (this.failures != null && this.failures.equals(other.failures))
             && this.successful() == other.successful()
-            && this.total() == other.total()
-
-        ;
+            && this.total() == other.total();
     }
 }

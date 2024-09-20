@@ -156,8 +156,6 @@ public class RegisterModelGroupResponse implements PlainJsonSerializable {
         if (this.getClass() != o.getClass()) return false;
         RegisterModelGroupResponse other = (RegisterModelGroupResponse) o;
         return (this.modelGroupId != null && this.modelGroupId.equals(other.modelGroupId))
-            && (this.status != null && this.status.equals(other.status))
-
-        ;
+            && (this.status != null && this.status.equals(other.status));
     }
 }

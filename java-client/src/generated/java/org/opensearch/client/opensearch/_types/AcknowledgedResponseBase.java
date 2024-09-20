@@ -120,8 +120,6 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         AcknowledgedResponseBase other = (AcknowledgedResponseBase) o;
-        return this.acknowledged() == other.acknowledged()
-
-        ;
+        return this.acknowledged() == other.acknowledged();
     }
 }

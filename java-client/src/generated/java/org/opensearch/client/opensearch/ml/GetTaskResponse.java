@@ -421,8 +421,6 @@ public class GetTaskResponse implements PlainJsonSerializable {
             && (this.state != null && this.state.equals(other.state))
             && (this.taskId != null && this.taskId.equals(other.taskId))
             && (this.taskType != null && this.taskType.equals(other.taskType))
-            && (this.workerNode != null && this.workerNode.equals(other.workerNode))
-
-        ;
+            && (this.workerNode != null && this.workerNode.equals(other.workerNode));
     }
 }

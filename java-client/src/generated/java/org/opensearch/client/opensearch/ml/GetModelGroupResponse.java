@@ -277,8 +277,6 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
             && (this.description != null && this.description.equals(other.description))
             && this.lastUpdatedTime() == other.lastUpdatedTime()
             && this.latestVersion() == other.latestVersion()
-            && (this.name != null && this.name.equals(other.name))
-
-        ;
+            && (this.name != null && this.name.equals(other.name));
     }
 }

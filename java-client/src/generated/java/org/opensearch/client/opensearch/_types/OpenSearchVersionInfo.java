@@ -382,8 +382,6 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
                 && this.minimumIndexCompatibilityVersion.equals(other.minimumIndexCompatibilityVersion))
             && (this.minimumWireCompatibilityVersion != null
                 && this.minimumWireCompatibilityVersion.equals(other.minimumWireCompatibilityVersion))
-            && (this.number != null && this.number.equals(other.number))
-
-        ;
+            && (this.number != null && this.number.equals(other.number));
     }
 }

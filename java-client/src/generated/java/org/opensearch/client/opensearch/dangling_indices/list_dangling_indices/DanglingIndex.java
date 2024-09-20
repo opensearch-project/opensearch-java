@@ -268,8 +268,6 @@ public class DanglingIndex implements PlainJsonSerializable {
             && this.creationDateMillis() == other.creationDateMillis()
             && (this.indexName != null && this.indexName.equals(other.indexName))
             && (this.indexUuid != null && this.indexUuid.equals(other.indexUuid))
-            && (this.nodeIds != null && this.nodeIds.equals(other.nodeIds))
-
-        ;
+            && (this.nodeIds != null && this.nodeIds.equals(other.nodeIds));
     }
 }

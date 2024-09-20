@@ -427,8 +427,6 @@ public class ErrorCause implements PlainJsonSerializable {
             && (this.stackTrace != null && this.stackTrace.equals(other.stackTrace))
             && (this.suppressed != null && this.suppressed.equals(other.suppressed))
             && (this.type != null && this.type.equals(other.type))
-            && (this.metadata != null && this.metadata.equals(other.metadata))
-
-        ;
+            && (this.metadata != null && this.metadata.equals(other.metadata));
     }
 }

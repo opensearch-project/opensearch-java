@@ -14,6 +14,9 @@
             {{/isUnboxedPrimitive}}
             {{^isUnboxedPrimitive}}
                 (this.{{name}} != null && this.{{name}}.equals(other.{{name}}))
-            {{/isUnboxedPrimitive}}{{^-last}} && {{/-last}}
+            {{/isUnboxedPrimitive}}
+            {{^-last}}
+             && 
+            {{/-last}}
         {{/fields}};
     }

@@ -249,8 +249,6 @@ public class InfoResponse implements PlainJsonSerializable {
             && (this.clusterUuid != null && this.clusterUuid.equals(other.clusterUuid))
             && (this.name != null && this.name.equals(other.name))
             && (this.tagline != null && this.tagline.equals(other.tagline))
-            && (this.version != null && this.version.equals(other.version))
-
-        ;
+            && (this.version != null && this.version.equals(other.version));
     }
 }

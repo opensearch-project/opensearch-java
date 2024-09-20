@@ -302,8 +302,6 @@ public abstract class BaseNode implements PlainJsonSerializable {
             && (this.ip != null && this.ip.equals(other.ip))
             && (this.name != null && this.name.equals(other.name))
             && (this.roles != null && this.roles.equals(other.roles))
-            && (this.transportAddress != null && this.transportAddress.equals(other.transportAddress))
-
-        ;
+            && (this.transportAddress != null && this.transportAddress.equals(other.transportAddress));
     }
 }

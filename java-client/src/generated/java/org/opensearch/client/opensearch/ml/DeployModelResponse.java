@@ -173,8 +173,6 @@ public class DeployModelResponse implements PlainJsonSerializable {
         DeployModelResponse other = (DeployModelResponse) o;
         return (this.status != null && this.status.equals(other.status))
             && (this.taskId != null && this.taskId.equals(other.taskId))
-            && (this.taskType != null && this.taskType.equals(other.taskType))
-
-        ;
+            && (this.taskType != null && this.taskType.equals(other.taskType));
     }
 }
