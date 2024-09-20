@@ -12,7 +12,7 @@
                 if(this.{{name}}() != other.{{name}}()) {
             {{/isUnboxedPrimitive}}
             {{^isUnboxedPrimitive}}
-                if(!this.{{name}}().equals(other.{{name}}())) {
+                if(!Objects.equals(this.{{name}}, other.{{name}})) {
             {{/isUnboxedPrimitive}}
                     return false;
                 }
