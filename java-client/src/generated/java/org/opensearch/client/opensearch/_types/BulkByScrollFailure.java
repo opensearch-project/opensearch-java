@@ -330,27 +330,14 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         BulkByScrollFailure other = (BulkByScrollFailure) o;
-        if (!this.cause().equals(other.cause())) {
-            return false;
-        }
-        if (!this.id().equals(other.id())) {
-            return false;
-        }
-        if (!this.index().equals(other.index())) {
-            return false;
-        }
-        if (!this.node().equals(other.node())) {
-            return false;
-        }
-        if (!this.reason().equals(other.reason())) {
-            return false;
-        }
-        if (this.shard() != other.shard()) {
-            return false;
-        }
-        if (this.status() != other.status()) {
-            return false;
-        }
-        return true;
+        return (this.cause != null && this.cause.equals(other.cause))
+            && (this.id != null && this.id.equals(other.id))
+            && (this.index != null && this.index.equals(other.index))
+            && (this.node != null && this.node.equals(other.node))
+            && (this.reason != null && this.reason.equals(other.reason))
+            && this.shard() == other.shard()
+            && this.status() == other.status()
+
+        ;
     }
 }

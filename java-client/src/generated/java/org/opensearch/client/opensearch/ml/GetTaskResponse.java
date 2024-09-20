@@ -412,36 +412,17 @@ public class GetTaskResponse implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         GetTaskResponse other = (GetTaskResponse) o;
-        if (this.createTime() != other.createTime()) {
-            return false;
-        }
-        if (!this.error().equals(other.error())) {
-            return false;
-        }
-        if (!this.functionName().equals(other.functionName())) {
-            return false;
-        }
-        if (this.isAsync() != other.isAsync()) {
-            return false;
-        }
-        if (this.lastUpdateTime() != other.lastUpdateTime()) {
-            return false;
-        }
-        if (!this.modelId().equals(other.modelId())) {
-            return false;
-        }
-        if (!this.state().equals(other.state())) {
-            return false;
-        }
-        if (!this.taskId().equals(other.taskId())) {
-            return false;
-        }
-        if (!this.taskType().equals(other.taskType())) {
-            return false;
-        }
-        if (!this.workerNode().equals(other.workerNode())) {
-            return false;
-        }
-        return true;
+        return this.createTime() == other.createTime()
+            && (this.error != null && this.error.equals(other.error))
+            && (this.functionName != null && this.functionName.equals(other.functionName))
+            && this.isAsync() == other.isAsync()
+            && this.lastUpdateTime() == other.lastUpdateTime()
+            && (this.modelId != null && this.modelId.equals(other.modelId))
+            && (this.state != null && this.state.equals(other.state))
+            && (this.taskId != null && this.taskId.equals(other.taskId))
+            && (this.taskType != null && this.taskType.equals(other.taskType))
+            && (this.workerNode != null && this.workerNode.equals(other.workerNode))
+
+        ;
     }
 }

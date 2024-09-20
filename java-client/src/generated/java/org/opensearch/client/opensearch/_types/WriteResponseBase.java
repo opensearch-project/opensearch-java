@@ -295,30 +295,15 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         WriteResponseBase other = (WriteResponseBase) o;
-        if (this.forcedRefresh() != other.forcedRefresh()) {
-            return false;
-        }
-        if (!this.id().equals(other.id())) {
-            return false;
-        }
-        if (!this.index().equals(other.index())) {
-            return false;
-        }
-        if (this.primaryTerm() != other.primaryTerm()) {
-            return false;
-        }
-        if (!this.result().equals(other.result())) {
-            return false;
-        }
-        if (this.seqNo() != other.seqNo()) {
-            return false;
-        }
-        if (!this.shards().equals(other.shards())) {
-            return false;
-        }
-        if (this.version() != other.version()) {
-            return false;
-        }
-        return true;
+        return this.forcedRefresh() == other.forcedRefresh()
+            && (this.id != null && this.id.equals(other.id))
+            && (this.index != null && this.index.equals(other.index))
+            && this.primaryTerm() == other.primaryTerm()
+            && (this.result != null && this.result.equals(other.result))
+            && this.seqNo() == other.seqNo()
+            && (this.shards != null && this.shards.equals(other.shards))
+            && this.version() == other.version()
+
+        ;
     }
 }

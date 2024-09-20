@@ -272,24 +272,13 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         GetModelGroupResponse other = (GetModelGroupResponse) o;
-        if (!this.access().equals(other.access())) {
-            return false;
-        }
-        if (this.createdTime() != other.createdTime()) {
-            return false;
-        }
-        if (!this.description().equals(other.description())) {
-            return false;
-        }
-        if (this.lastUpdatedTime() != other.lastUpdatedTime()) {
-            return false;
-        }
-        if (this.latestVersion() != other.latestVersion()) {
-            return false;
-        }
-        if (!this.name().equals(other.name())) {
-            return false;
-        }
-        return true;
+        return (this.access != null && this.access.equals(other.access))
+            && this.createdTime() == other.createdTime()
+            && (this.description != null && this.description.equals(other.description))
+            && this.lastUpdatedTime() == other.lastUpdatedTime()
+            && this.latestVersion() == other.latestVersion()
+            && (this.name != null && this.name.equals(other.name))
+
+        ;
     }
 }

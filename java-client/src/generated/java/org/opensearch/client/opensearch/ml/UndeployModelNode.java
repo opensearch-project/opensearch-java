@@ -144,9 +144,8 @@ public class UndeployModelNode implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         UndeployModelNode other = (UndeployModelNode) o;
-        if (!this.stats().equals(other.stats())) {
-            return false;
-        }
-        return true;
+        return (this.stats != null && this.stats.equals(other.stats))
+
+        ;
     }
 }

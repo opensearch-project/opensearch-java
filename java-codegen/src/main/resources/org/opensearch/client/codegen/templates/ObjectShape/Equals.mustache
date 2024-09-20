@@ -7,15 +7,13 @@
         if(this == o) return true;
         if(this.getClass() != o.getClass()) return false;
         {{className}} other = ({{className}})o;
+        return {{^hasFieldsToSerialize}}true{{/hasFieldsToSerialize}}
         {{#fields}}
             {{#isUnboxedPrimitive}}
-                if(this.{{name}}() != other.{{name}}()) {
+                this.{{name}}() == other.{{name}}()
             {{/isUnboxedPrimitive}}
             {{^isUnboxedPrimitive}}
-                if(!Objects.equals(this.{{name}}, other.{{name}})) {
-            {{/isUnboxedPrimitive}}
-                    return false;
-                }
-        {{/fields}}
-        return true;
+                (this.{{name}} != null && this.{{name}}.equals(other.{{name}}))
+            {{/isUnboxedPrimitive}}{{^-last}} && {{/-last}}
+        {{/fields}};
     }

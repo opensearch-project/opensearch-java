@@ -245,21 +245,12 @@ public class InfoResponse implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         InfoResponse other = (InfoResponse) o;
-        if (!this.clusterName().equals(other.clusterName())) {
-            return false;
-        }
-        if (!this.clusterUuid().equals(other.clusterUuid())) {
-            return false;
-        }
-        if (!this.name().equals(other.name())) {
-            return false;
-        }
-        if (!this.tagline().equals(other.tagline())) {
-            return false;
-        }
-        if (!this.version().equals(other.version())) {
-            return false;
-        }
-        return true;
+        return (this.clusterName != null && this.clusterName.equals(other.clusterName))
+            && (this.clusterUuid != null && this.clusterUuid.equals(other.clusterUuid))
+            && (this.name != null && this.name.equals(other.name))
+            && (this.tagline != null && this.tagline.equals(other.tagline))
+            && (this.version != null && this.version.equals(other.version))
+
+        ;
     }
 }

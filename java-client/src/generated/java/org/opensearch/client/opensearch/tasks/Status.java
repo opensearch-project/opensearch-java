@@ -796,63 +796,26 @@ public class Status implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         Status other = (Status) o;
-        if (this.batches() != other.batches()) {
-            return false;
-        }
-        if (!this.canceled().equals(other.canceled())) {
-            return false;
-        }
-        if (this.created() != other.created()) {
-            return false;
-        }
-        if (this.deleted() != other.deleted()) {
-            return false;
-        }
-        if (this.noops() != other.noops()) {
-            return false;
-        }
-        if (!this.phase().equals(other.phase())) {
-            return false;
-        }
-        if (this.requestsPerSecond() != other.requestsPerSecond()) {
-            return false;
-        }
-        if (!this.retries().equals(other.retries())) {
-            return false;
-        }
-        if (this.sliceId() != other.sliceId()) {
-            return false;
-        }
-        if (!this.slices().equals(other.slices())) {
-            return false;
-        }
-        if (!this.state().equals(other.state())) {
-            return false;
-        }
-        if (!this.throttled().equals(other.throttled())) {
-            return false;
-        }
-        if (this.throttledMillis() != other.throttledMillis()) {
-            return false;
-        }
-        if (!this.throttledUntil().equals(other.throttledUntil())) {
-            return false;
-        }
-        if (this.throttledUntilMillis() != other.throttledUntilMillis()) {
-            return false;
-        }
-        if (this.total() != other.total()) {
-            return false;
-        }
-        if (this.updated() != other.updated()) {
-            return false;
-        }
-        if (this.versionConflicts() != other.versionConflicts()) {
-            return false;
-        }
-        if (!this.metadata().equals(other.metadata())) {
-            return false;
-        }
-        return true;
+        return this.batches() == other.batches()
+            && (this.canceled != null && this.canceled.equals(other.canceled))
+            && this.created() == other.created()
+            && this.deleted() == other.deleted()
+            && this.noops() == other.noops()
+            && (this.phase != null && this.phase.equals(other.phase))
+            && this.requestsPerSecond() == other.requestsPerSecond()
+            && (this.retries != null && this.retries.equals(other.retries))
+            && this.sliceId() == other.sliceId()
+            && (this.slices != null && this.slices.equals(other.slices))
+            && (this.state != null && this.state.equals(other.state))
+            && (this.throttled != null && this.throttled.equals(other.throttled))
+            && this.throttledMillis() == other.throttledMillis()
+            && (this.throttledUntil != null && this.throttledUntil.equals(other.throttledUntil))
+            && this.throttledUntilMillis() == other.throttledUntilMillis()
+            && this.total() == other.total()
+            && this.updated() == other.updated()
+            && this.versionConflicts() == other.versionConflicts()
+            && (this.metadata != null && this.metadata.equals(other.metadata))
+
+        ;
     }
 }

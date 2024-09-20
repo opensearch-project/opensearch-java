@@ -176,9 +176,8 @@ public class TaskGroup extends TaskInfo {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         TaskGroup other = (TaskGroup) o;
-        if (!this.children().equals(other.children())) {
-            return false;
-        }
-        return true;
+        return (this.children != null && this.children.equals(other.children))
+
+        ;
     }
 }

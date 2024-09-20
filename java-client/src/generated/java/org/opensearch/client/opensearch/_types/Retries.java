@@ -165,12 +165,8 @@ public class Retries implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         Retries other = (Retries) o;
-        if (this.bulk() != other.bulk()) {
-            return false;
-        }
-        if (this.search() != other.search()) {
-            return false;
-        }
-        return true;
+        return this.bulk() == other.bulk() && this.search() == other.search()
+
+        ;
     }
 }

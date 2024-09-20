@@ -174,9 +174,8 @@ public class TaskExecutingNode extends BaseNode {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         TaskExecutingNode other = (TaskExecutingNode) o;
-        if (!this.tasks().equals(other.tasks())) {
-            return false;
-        }
-        return true;
+        return (this.tasks != null && this.tasks.equals(other.tasks))
+
+        ;
     }
 }

@@ -269,18 +269,11 @@ public class NodeStatistics implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         NodeStatistics other = (NodeStatistics) o;
-        if (this.failed() != other.failed()) {
-            return false;
-        }
-        if (!this.failures().equals(other.failures())) {
-            return false;
-        }
-        if (this.successful() != other.successful()) {
-            return false;
-        }
-        if (this.total() != other.total()) {
-            return false;
-        }
-        return true;
+        return this.failed() == other.failed()
+            && (this.failures != null && this.failures.equals(other.failures))
+            && this.successful() == other.successful()
+            && this.total() == other.total()
+
+        ;
     }
 }

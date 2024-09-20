@@ -371,36 +371,19 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         OpenSearchVersionInfo other = (OpenSearchVersionInfo) o;
-        if (!this.buildDate().equals(other.buildDate())) {
-            return false;
-        }
-        if (!this.buildFlavor().equals(other.buildFlavor())) {
-            return false;
-        }
-        if (!this.buildHash().equals(other.buildHash())) {
-            return false;
-        }
-        if (this.buildSnapshot() != other.buildSnapshot()) {
-            return false;
-        }
-        if (!this.buildType().equals(other.buildType())) {
-            return false;
-        }
-        if (!this.distribution().equals(other.distribution())) {
-            return false;
-        }
-        if (!this.luceneVersion().equals(other.luceneVersion())) {
-            return false;
-        }
-        if (!this.minimumIndexCompatibilityVersion().equals(other.minimumIndexCompatibilityVersion())) {
-            return false;
-        }
-        if (!this.minimumWireCompatibilityVersion().equals(other.minimumWireCompatibilityVersion())) {
-            return false;
-        }
-        if (!this.number().equals(other.number())) {
-            return false;
-        }
-        return true;
+        return (this.buildDate != null && this.buildDate.equals(other.buildDate))
+            && (this.buildFlavor != null && this.buildFlavor.equals(other.buildFlavor))
+            && (this.buildHash != null && this.buildHash.equals(other.buildHash))
+            && this.buildSnapshot() == other.buildSnapshot()
+            && (this.buildType != null && this.buildType.equals(other.buildType))
+            && (this.distribution != null && this.distribution.equals(other.distribution))
+            && (this.luceneVersion != null && this.luceneVersion.equals(other.luceneVersion))
+            && (this.minimumIndexCompatibilityVersion != null
+                && this.minimumIndexCompatibilityVersion.equals(other.minimumIndexCompatibilityVersion))
+            && (this.minimumWireCompatibilityVersion != null
+                && this.minimumWireCompatibilityVersion.equals(other.minimumWireCompatibilityVersion))
+            && (this.number != null && this.number.equals(other.number))
+
+        ;
     }
 }

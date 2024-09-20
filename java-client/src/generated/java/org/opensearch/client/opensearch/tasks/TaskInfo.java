@@ -501,45 +501,20 @@ public class TaskInfo implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         TaskInfo other = (TaskInfo) o;
-        if (!this.action().equals(other.action())) {
-            return false;
-        }
-        if (this.cancellable() != other.cancellable()) {
-            return false;
-        }
-        if (this.cancelled() != other.cancelled()) {
-            return false;
-        }
-        if (!this.description().equals(other.description())) {
-            return false;
-        }
-        if (!this.headers().equals(other.headers())) {
-            return false;
-        }
-        if (this.id() != other.id()) {
-            return false;
-        }
-        if (!this.node().equals(other.node())) {
-            return false;
-        }
-        if (!this.parentTaskId().equals(other.parentTaskId())) {
-            return false;
-        }
-        if (!this.runningTime().equals(other.runningTime())) {
-            return false;
-        }
-        if (this.runningTimeInNanos() != other.runningTimeInNanos()) {
-            return false;
-        }
-        if (this.startTimeInMillis() != other.startTimeInMillis()) {
-            return false;
-        }
-        if (!this.status().equals(other.status())) {
-            return false;
-        }
-        if (!this.type().equals(other.type())) {
-            return false;
-        }
-        return true;
+        return (this.action != null && this.action.equals(other.action))
+            && this.cancellable() == other.cancellable()
+            && this.cancelled() == other.cancelled()
+            && (this.description != null && this.description.equals(other.description))
+            && (this.headers != null && this.headers.equals(other.headers))
+            && this.id() == other.id()
+            && (this.node != null && this.node.equals(other.node))
+            && (this.parentTaskId != null && this.parentTaskId.equals(other.parentTaskId))
+            && (this.runningTime != null && this.runningTime.equals(other.runningTime))
+            && this.runningTimeInNanos() == other.runningTimeInNanos()
+            && this.startTimeInMillis() == other.startTimeInMillis()
+            && (this.status != null && this.status.equals(other.status))
+            && (this.type != null && this.type.equals(other.type))
+
+        ;
     }
 }

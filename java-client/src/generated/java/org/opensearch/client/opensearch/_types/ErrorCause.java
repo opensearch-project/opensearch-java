@@ -421,27 +421,14 @@ public class ErrorCause implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         ErrorCause other = (ErrorCause) o;
-        if (!this.causedBy().equals(other.causedBy())) {
-            return false;
-        }
-        if (!this.reason().equals(other.reason())) {
-            return false;
-        }
-        if (!this.rootCause().equals(other.rootCause())) {
-            return false;
-        }
-        if (!this.stackTrace().equals(other.stackTrace())) {
-            return false;
-        }
-        if (!this.suppressed().equals(other.suppressed())) {
-            return false;
-        }
-        if (!this.type().equals(other.type())) {
-            return false;
-        }
-        if (!this.metadata().equals(other.metadata())) {
-            return false;
-        }
-        return true;
+        return (this.causedBy != null && this.causedBy.equals(other.causedBy))
+            && (this.reason != null && this.reason.equals(other.reason))
+            && (this.rootCause != null && this.rootCause.equals(other.rootCause))
+            && (this.stackTrace != null && this.stackTrace.equals(other.stackTrace))
+            && (this.suppressed != null && this.suppressed.equals(other.suppressed))
+            && (this.type != null && this.type.equals(other.type))
+            && (this.metadata != null && this.metadata.equals(other.metadata))
+
+        ;
     }
 }

@@ -220,18 +220,11 @@ public class TaskFailure implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         TaskFailure other = (TaskFailure) o;
-        if (!this.nodeId().equals(other.nodeId())) {
-            return false;
-        }
-        if (!this.reason().equals(other.reason())) {
-            return false;
-        }
-        if (!this.status().equals(other.status())) {
-            return false;
-        }
-        if (this.taskId() != other.taskId()) {
-            return false;
-        }
-        return true;
+        return (this.nodeId != null && this.nodeId.equals(other.nodeId))
+            && (this.reason != null && this.reason.equals(other.reason))
+            && (this.status != null && this.status.equals(other.status))
+            && this.taskId() == other.taskId()
+
+        ;
     }
 }

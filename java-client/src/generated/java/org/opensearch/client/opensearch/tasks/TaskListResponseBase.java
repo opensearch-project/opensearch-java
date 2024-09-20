@@ -320,18 +320,11 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         TaskListResponseBase other = (TaskListResponseBase) o;
-        if (!this.nodeFailures().equals(other.nodeFailures())) {
-            return false;
-        }
-        if (!this.nodes().equals(other.nodes())) {
-            return false;
-        }
-        if (!this.taskFailures().equals(other.taskFailures())) {
-            return false;
-        }
-        if (!this.tasks().equals(other.tasks())) {
-            return false;
-        }
-        return true;
+        return (this.nodeFailures != null && this.nodeFailures.equals(other.nodeFailures))
+            && (this.nodes != null && this.nodes.equals(other.nodes))
+            && (this.taskFailures != null && this.taskFailures.equals(other.taskFailures))
+            && (this.tasks != null && this.tasks.equals(other.tasks))
+
+        ;
     }
 }
