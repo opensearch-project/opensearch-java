@@ -6,17 +6,22 @@
         {{/extendsOtherShape}}
         if(this == o) return true;
         if(this.getClass() != o.getClass()) return false;
-        {{className}} other = ({{className}})o;
-        return {{^hasFieldsToSerialize}}true{{/hasFieldsToSerialize}}
-        {{#fields}}
-            {{#isUnboxedPrimitive}}
-                this.{{name}}() == other.{{name}}()
-            {{/isUnboxedPrimitive}}
-            {{^isUnboxedPrimitive}}
-                java.util.Objects.equals(this.{{name}}, other.{{name}})
-            {{/isUnboxedPrimitive}}
-            {{^-last}}
-             && 
-            {{/-last}}
-        {{/fields}};
+        {{^hasFieldsToSerialize}}
+        return true;
+        {{/hasFieldsToSerialize}}
+        {{#hasFieldsToSerialize}}
+            {{className}} other = ({{className}})o;
+            return
+            {{#fields}}
+                {{#isUnboxedPrimitive}}
+                    this.{{name}}() == other.{{name}}()
+                {{/isUnboxedPrimitive}}
+                {{^isUnboxedPrimitive}}
+                    java.util.Objects.equals(this.{{name}}, other.{{name}})
+                {{/isUnboxedPrimitive}}
+                {{^-last}}
+                && 
+                {{/-last}}
+            {{/fields}};
+        {{/hasFieldsToSerialize}}
     }

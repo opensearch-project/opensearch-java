@@ -108,7 +108,6 @@ public class CancelResponse extends TaskListResponseBase {
         }
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
-        CancelResponse other = (CancelResponse) o;
         return true;
     }
 }

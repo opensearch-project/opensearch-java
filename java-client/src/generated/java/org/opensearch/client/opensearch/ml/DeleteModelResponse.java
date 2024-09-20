@@ -85,7 +85,6 @@ public class DeleteModelResponse extends WriteResponseBase {
         }
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
-        DeleteModelResponse other = (DeleteModelResponse) o;
         return true;
     }
 }

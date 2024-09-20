@@ -108,7 +108,6 @@ public class ListResponse extends TaskListResponseBase {
         }
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
-        ListResponse other = (ListResponse) o;
         return true;
     }
 }

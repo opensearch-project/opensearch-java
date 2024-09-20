@@ -113,7 +113,6 @@ public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
         }
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
-        ImportDanglingIndexResponse other = (ImportDanglingIndexResponse) o;
         return true;
     }
 }

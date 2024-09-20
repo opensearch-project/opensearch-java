@@ -85,7 +85,6 @@ public class DeleteModelGroupResponse extends WriteResponseBase {
         }
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
-        DeleteModelGroupResponse other = (DeleteModelGroupResponse) o;
         return true;
     }
 }

@@ -113,7 +113,6 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
         }
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
-        DeleteDanglingIndexResponse other = (DeleteDanglingIndexResponse) o;
         return true;
     }
 }
