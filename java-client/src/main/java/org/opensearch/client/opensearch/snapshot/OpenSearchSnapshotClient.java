@@ -60,39 +60,6 @@ public class OpenSearchSnapshotClient extends OpenSearchSnapshotClientBase<OpenS
         return new OpenSearchSnapshotClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: snapshot.cleanup_repository
-
-    /**
-     * Removes stale data from repository.
-     *
-     *
-     */
-
-    public CleanupRepositoryResponse cleanupRepository(CleanupRepositoryRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<CleanupRepositoryRequest, CleanupRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            CleanupRepositoryRequest,
-            CleanupRepositoryResponse,
-            ErrorResponse>) CleanupRepositoryRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Removes stale data from repository.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link CleanupRepositoryRequest}
-     *
-     */
-
-    public final CleanupRepositoryResponse cleanupRepository(
-        Function<CleanupRepositoryRequest.Builder, ObjectBuilder<CleanupRepositoryRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return cleanupRepository(fn.apply(new CleanupRepositoryRequest.Builder()).build());
-    }
-
     // ----- Endpoint: snapshot.clone
 
     /**

@@ -30,11 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -49,18 +54,18 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 /**
  * Removes stale data from repository.
- *
  */
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CleanupRepositoryRequest extends RequestBase {
-    @Deprecated
-    @Nullable
-    private final Time masterTimeout;
 
     @Nullable
     private final Time clusterManagerTimeout;
 
-    private final String name;
+    @Deprecated
+    @Nullable
+    private final Time masterTimeout;
+
+    private final String repository;
 
     @Nullable
     private final Time timeout;
@@ -68,22 +73,32 @@ public class CleanupRepositoryRequest extends RequestBase {
     // ---------------------------------------------------------------------------------------------
 
     private CleanupRepositoryRequest(Builder builder) {
-
-        this.masterTimeout = builder.masterTimeout;
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
-        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.masterTimeout = builder.masterTimeout;
+        this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
         this.timeout = builder.timeout;
-
     }
 
-    public static CleanupRepositoryRequest of(Function<Builder, ObjectBuilder<CleanupRepositoryRequest>> fn) {
+    public static CleanupRepositoryRequest of(Function<CleanupRepositoryRequest.Builder, ObjectBuilder<CleanupRepositoryRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Explicit operation timeout for connection to master node
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     * </p>
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
+
+    /**
+     * Period to wait for a connection to the master node.
      * <p>
      * API name: {@code master_timeout}
+     * </p>
      */
     @Deprecated
     @Nullable
@@ -92,28 +107,20 @@ public class CleanupRepositoryRequest extends RequestBase {
     }
 
     /**
-     * Explicit operation timeout for connection to cluster-manager node
-     * <p>
-     * API name: {@code cluster_manager_timeout}
-     */
-    @Nullable
-    public final Time clusterManagerTimeout() {
-        return this.clusterManagerTimeout;
-    }
-
-    /**
-     * Required - A repository name
+     * Required - Snapshot repository to clean up.
      * <p>
      * API name: {@code repository}
+     * </p>
      */
-    public final String name() {
-        return this.name;
+    public final String repository() {
+        return this.repository;
     }
 
     /**
-     * Explicit operation timeout
+     * Period to wait for a response.
      * <p>
      * API name: {@code timeout}
+     * </p>
      */
     @Nullable
     public final Time timeout() {
@@ -125,24 +132,41 @@ public class CleanupRepositoryRequest extends RequestBase {
     /**
      * Builder for {@link CleanupRepositoryRequest}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryRequest> {
-        @Deprecated
-        @Nullable
-        private Time masterTimeout;
-
         @Nullable
         private Time clusterManagerTimeout;
-
-        private String name;
-
+        @Nullable
+        private Time masterTimeout;
+        private String repository;
         @Nullable
         private Time timeout;
 
         /**
-         * Explicit operation timeout for connection to master node
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         * </p>
+         */
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
+
+        /**
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         * </p>
+         */
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * Period to wait for a connection to the master node.
          * <p>
          * API name: {@code master_timeout}
+         * </p>
          */
         @Deprecated
         public final Builder masterTimeout(@Nullable Time value) {
@@ -151,48 +175,32 @@ public class CleanupRepositoryRequest extends RequestBase {
         }
 
         /**
-         * Explicit operation timeout for connection to master node
+         * Period to wait for a connection to the master node.
          * <p>
          * API name: {@code master_timeout}
+         * </p>
          */
         @Deprecated
         public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.masterTimeout(fn.apply(new Time.Builder()).build());
+            return masterTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
-         * Explicit operation timeout for connection to cluster-manager node
-         * <p>
-         * API name: {@code cluster_manager_timeout}
-         */
-        public final Builder clusterManagerTimeout(@Nullable Time value) {
-            this.clusterManagerTimeout = value;
-            return this;
-        }
-
-        /**
-         * Explicit operation timeout for connection to cluster-manager node
-         * <p>
-         * API name: {@code cluster_manager_timeout}
-         */
-        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
-        }
-
-        /**
-         * Required - A repository name
+         * Required - Snapshot repository to clean up.
          * <p>
          * API name: {@code repository}
+         * </p>
          */
-        public final Builder name(String value) {
-            this.name = value;
+        public final Builder repository(String value) {
+            this.repository = value;
             return this;
         }
 
         /**
-         * Explicit operation timeout
+         * Period to wait for a response.
          * <p>
          * API name: {@code timeout}
+         * </p>
          */
         public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
@@ -200,19 +208,19 @@ public class CleanupRepositoryRequest extends RequestBase {
         }
 
         /**
-         * Explicit operation timeout
+         * Period to wait for a response.
          * <p>
          * API name: {@code timeout}
+         * </p>
          */
         public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.timeout(fn.apply(new Time.Builder()).build());
+            return timeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
          * Builds a {@link CleanupRepositoryRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public CleanupRepositoryRequest build() {
             _checkSingleUse();
@@ -227,47 +235,29 @@ public class CleanupRepositoryRequest extends RequestBase {
      * Endpoint "{@code snapshot.cleanup_repository}".
      */
     public static final Endpoint<CleanupRepositoryRequest, CleanupRepositoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "POST";
-
-        },
-
+        request -> "POST",
         // Request path
         request -> {
-            final int _name = 1 << 0;
-
-            int propsSet = 0;
-
-            propsSet |= _name;
-
-            if (propsSet == (_name)) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_snapshot");
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.name, buf);
-                buf.append("/_cleanup");
-                return buf.toString();
-            }
-            throw SimpleEndpoint.noPathTemplateFound("path");
-
+            StringBuilder buf = new StringBuilder();
+            buf.append("/_snapshot/");
+            SimpleEndpoint.pathEncode(request.repository, buf);
+            buf.append("/_cleanup");
+            return buf.toString();
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
             if (request.clusterManagerTimeout != null) {
                 params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
+            }
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
             }
             if (request.timeout != null) {
                 params.put("timeout", request.timeout._toJsonString());
             }
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         false,

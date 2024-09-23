@@ -54849,10 +54849,12 @@ components:
       properties:
         deleted_blobs:
           description: Number of binary large objects (blobs) removed during cleanup.
-          type: number
+          type: integer
+          format: int64
         deleted_bytes:
           description: Number of bytes freed by cleanup operations.
-          type: number
+          type: integer
+          format: int64
       required:
         - deleted_blobs
         - deleted_bytes

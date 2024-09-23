@@ -58,6 +58,27 @@ public abstract class OpenSearchSnapshotAsyncClientBase<Self extends OpenSearchS
         super(transport, transportOptions);
     }
 
+    // ----- Endpoint: snapshot.cleanup_repository
+
+    /**
+     * Removes stale data from repository.
+     */
+    public CompletableFuture<CleanupRepositoryResponse> cleanupRepository(CleanupRepositoryRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, CleanupRepositoryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Removes stale data from repository.
+     *
+     * @param fn a function that initializes a builder to create the {@link CleanupRepositoryRequest}
+     */
+    public final CompletableFuture<CleanupRepositoryResponse> cleanupRepository(
+        Function<CleanupRepositoryRequest.Builder, ObjectBuilder<CleanupRepositoryRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return cleanupRepository(fn.apply(new CleanupRepositoryRequest.Builder()).build());
+    }
+
     // ----- Endpoint: snapshot.verify_repository
 
     /**

@@ -46,3 +46,6 @@ After:
 
 ### VerifyRepositoryRequest property naming
 - The `name` field, getter and builder method have been renamed to `repository`.
+
+### CleanupRepositoryRequest property naming
+- The `name` field, getter and builder method have been renamed to `repository`.

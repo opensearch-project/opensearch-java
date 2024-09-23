@@ -30,10 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -48,18 +53,18 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: snapshot.cleanup_repository.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CleanupRepositoryResponse implements PlainJsonSerializable {
+
     private final CleanupRepositoryResults results;
 
     // ---------------------------------------------------------------------------------------------
 
     private CleanupRepositoryResponse(Builder builder) {
-
         this.results = ApiTypeHelper.requireNonNull(builder.results, this, "results");
-
     }
 
-    public static CleanupRepositoryResponse of(Function<Builder, ObjectBuilder<CleanupRepositoryResponse>> fn) {
+    public static CleanupRepositoryResponse of(Function<CleanupRepositoryResponse.Builder, ObjectBuilder<CleanupRepositoryResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -73,6 +78,7 @@ public class CleanupRepositoryResponse implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -80,10 +86,8 @@ public class CleanupRepositoryResponse implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("results");
         this.results.serialize(generator, mapper);
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -91,7 +95,6 @@ public class CleanupRepositoryResponse implements PlainJsonSerializable {
     /**
      * Builder for {@link CleanupRepositoryResponse}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryResponse> {
         private CleanupRepositoryResults results;
 
@@ -107,14 +110,13 @@ public class CleanupRepositoryResponse implements PlainJsonSerializable {
          * Required - API name: {@code results}
          */
         public final Builder results(Function<CleanupRepositoryResults.Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
-            return this.results(fn.apply(new CleanupRepositoryResults.Builder()).build());
+            return results(fn.apply(new CleanupRepositoryResults.Builder()).build());
         }
 
         /**
          * Builds a {@link CleanupRepositoryResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public CleanupRepositoryResponse build() {
             _checkSingleUse();
@@ -134,9 +136,6 @@ public class CleanupRepositoryResponse implements PlainJsonSerializable {
     );
 
     protected static void setupCleanupRepositoryResponseDeserializer(ObjectDeserializer<CleanupRepositoryResponse.Builder> op) {
-
         op.add(Builder::results, CleanupRepositoryResults._DESERIALIZER, "results");
-
     }
-
 }
