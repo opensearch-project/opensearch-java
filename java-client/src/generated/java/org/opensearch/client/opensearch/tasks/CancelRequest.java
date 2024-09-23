@@ -325,6 +325,11 @@ public class CancelRequest extends RequestBase {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
-        return true;
+        CancelRequest other = (CancelRequest) o;
+        return Objects.equals(this.actions, other.actions)
+            && Objects.equals(this.nodes, other.nodes)
+            && Objects.equals(this.parentTaskId, other.parentTaskId)
+            && Objects.equals(this.taskId, other.taskId)
+            && this.waitForCompletion() == other.waitForCompletion();
     }
 }

@@ -387,6 +387,13 @@ public class ListRequest extends RequestBase {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
-        return true;
+        ListRequest other = (ListRequest) o;
+        return Objects.equals(this.actions, other.actions)
+            && this.detailed() == other.detailed()
+            && Objects.equals(this.groupBy, other.groupBy)
+            && Objects.equals(this.nodes, other.nodes)
+            && Objects.equals(this.parentTaskId, other.parentTaskId)
+            && Objects.equals(this.timeout, other.timeout)
+            && this.waitForCompletion() == other.waitForCompletion();
     }
 }

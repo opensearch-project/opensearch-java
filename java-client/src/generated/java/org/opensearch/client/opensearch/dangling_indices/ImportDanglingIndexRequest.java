@@ -305,6 +305,11 @@ public class ImportDanglingIndexRequest extends RequestBase {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
-        return true;
+        ImportDanglingIndexRequest other = (ImportDanglingIndexRequest) o;
+        return this.acceptDataLoss() == other.acceptDataLoss()
+            && Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
+            && Objects.equals(this.indexUuid, other.indexUuid)
+            && Objects.equals(this.masterTimeout, other.masterTimeout)
+            && Objects.equals(this.timeout, other.timeout);
     }
 }

@@ -220,6 +220,9 @@ public class GetTasksRequest extends RequestBase {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
-        return true;
+        GetTasksRequest other = (GetTasksRequest) o;
+        return Objects.equals(this.taskId, other.taskId)
+            && Objects.equals(this.timeout, other.timeout)
+            && this.waitForCompletion() == other.waitForCompletion();
     }
 }

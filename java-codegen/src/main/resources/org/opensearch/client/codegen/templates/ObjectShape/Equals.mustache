@@ -6,10 +6,10 @@
         {{/extendsOtherShape}}
         if(this == o) return true;
         if(this.getClass() != o.getClass()) return false;
-        {{^hasFieldsToSerialize}}
+        {{^hasFields}}
         return true;
-        {{/hasFieldsToSerialize}}
-        {{#hasFieldsToSerialize}}
+        {{/hasFields}}
+        {{#hasFields}}
             {{className}} other = ({{className}})o;
             return
             {{#fields}}
@@ -23,5 +23,5 @@
                 && 
                 {{/-last}}
             {{/fields}};
-        {{/hasFieldsToSerialize}}
+        {{/hasFields}}
     }

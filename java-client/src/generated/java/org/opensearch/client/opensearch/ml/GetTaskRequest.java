@@ -12,6 +12,7 @@
 
 package org.opensearch.client.opensearch.ml;
 
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import org.opensearch.client.opensearch._types.ErrorResponse;
@@ -108,6 +109,7 @@ public class GetTaskRequest extends RequestBase {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
-        return true;
+        GetTaskRequest other = (GetTaskRequest) o;
+        return Objects.equals(this.taskId, other.taskId);
     }
 }

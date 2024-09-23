@@ -55,6 +55,10 @@ public class ObjectShape extends Shape {
         return !bodyFields.isEmpty() || additionalPropertiesField != null;
     }
 
+    public boolean hasFields() {
+        return !bodyFields.isEmpty() || additionalPropertiesField != null;
+    }
+
     public Collection<Type> getImplementsTypes() {
         return hasFieldsToSerialize() && !extendsOtherShape() ? List.of(Types.Client.Json.PlainJsonSerializable) : null;
     }
