@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -618,17 +619,17 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
     public int hashCode() {
         int result = 17;
         result = 31 * result + Integer.hashCode(this.batches);
-        result = 31 * result + java.util.Objects.hashCode(this.canceled);
+        result = 31 * result + Objects.hashCode(this.canceled);
         result = 31 * result + Long.hashCode(this.created);
         result = 31 * result + Long.hashCode(this.deleted);
         result = 31 * result + Long.hashCode(this.noops);
         result = 31 * result + Float.hashCode(this.requestsPerSecond);
         result = 31 * result + this.retries.hashCode();
         result = 31 * result + Integer.hashCode(this.sliceId);
-        result = 31 * result + java.util.Objects.hashCode(this.slices);
-        result = 31 * result + java.util.Objects.hashCode(this.throttled);
+        result = 31 * result + Objects.hashCode(this.slices);
+        result = 31 * result + Objects.hashCode(this.throttled);
         result = 31 * result + Long.hashCode(this.throttledMillis);
-        result = 31 * result + java.util.Objects.hashCode(this.throttledUntil);
+        result = 31 * result + Objects.hashCode(this.throttledUntil);
         result = 31 * result + Long.hashCode(this.throttledUntilMillis);
         result = 31 * result + Long.hashCode(this.total);
         result = 31 * result + Long.hashCode(this.updated);
@@ -641,17 +642,17 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
         if (this.getClass() != o.getClass()) return false;
         BulkByScrollTaskStatus other = (BulkByScrollTaskStatus) o;
         return this.batches() == other.batches()
-            && java.util.Objects.equals(this.canceled, other.canceled)
+            && Objects.equals(this.canceled, other.canceled)
             && this.created() == other.created()
             && this.deleted() == other.deleted()
             && this.noops() == other.noops()
             && this.requestsPerSecond() == other.requestsPerSecond()
-            && java.util.Objects.equals(this.retries, other.retries)
+            && Objects.equals(this.retries, other.retries)
             && this.sliceId() == other.sliceId()
-            && java.util.Objects.equals(this.slices, other.slices)
-            && java.util.Objects.equals(this.throttled, other.throttled)
+            && Objects.equals(this.slices, other.slices)
+            && Objects.equals(this.throttled, other.throttled)
             && this.throttledMillis() == other.throttledMillis()
-            && java.util.Objects.equals(this.throttledUntil, other.throttledUntil)
+            && Objects.equals(this.throttledUntil, other.throttledUntil)
             && this.throttledUntilMillis() == other.throttledUntilMillis()
             && this.total() == other.total()
             && this.updated() == other.updated()

@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -316,11 +317,11 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + java.util.Objects.hashCode(this.cause);
-        result = 31 * result + java.util.Objects.hashCode(this.id);
-        result = 31 * result + java.util.Objects.hashCode(this.index);
-        result = 31 * result + java.util.Objects.hashCode(this.node);
-        result = 31 * result + java.util.Objects.hashCode(this.reason);
+        result = 31 * result + Objects.hashCode(this.cause);
+        result = 31 * result + Objects.hashCode(this.id);
+        result = 31 * result + Objects.hashCode(this.index);
+        result = 31 * result + Objects.hashCode(this.node);
+        result = 31 * result + Objects.hashCode(this.reason);
         result = 31 * result + Integer.hashCode(this.shard);
         result = 31 * result + Integer.hashCode(this.status);
         return result;
@@ -330,11 +331,11 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         BulkByScrollFailure other = (BulkByScrollFailure) o;
-        return java.util.Objects.equals(this.cause, other.cause)
-            && java.util.Objects.equals(this.id, other.id)
-            && java.util.Objects.equals(this.index, other.index)
-            && java.util.Objects.equals(this.node, other.node)
-            && java.util.Objects.equals(this.reason, other.reason)
+        return Objects.equals(this.cause, other.cause)
+            && Objects.equals(this.id, other.id)
+            && Objects.equals(this.index, other.index)
+            && Objects.equals(this.node, other.node)
+            && Objects.equals(this.reason, other.reason)
             && this.shard() == other.shard()
             && this.status() == other.status();
     }

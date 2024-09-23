@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch.dangling_indices;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -294,10 +295,10 @@ public class DeleteDanglingIndexRequest extends RequestBase {
     public int hashCode() {
         int result = 17;
         result = 31 * result + Boolean.hashCode(this.acceptDataLoss);
-        result = 31 * result + java.util.Objects.hashCode(this.clusterManagerTimeout);
+        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
         result = 31 * result + this.indexUuid.hashCode();
-        result = 31 * result + java.util.Objects.hashCode(this.masterTimeout);
-        result = 31 * result + java.util.Objects.hashCode(this.timeout);
+        result = 31 * result + Objects.hashCode(this.masterTimeout);
+        result = 31 * result + Objects.hashCode(this.timeout);
         return result;
     }
 

@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -248,11 +249,11 @@ public class ShardFailure implements PlainJsonSerializable {
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + java.util.Objects.hashCode(this.index);
-        result = 31 * result + java.util.Objects.hashCode(this.node);
+        result = 31 * result + Objects.hashCode(this.index);
+        result = 31 * result + Objects.hashCode(this.node);
         result = 31 * result + this.reason.hashCode();
         result = 31 * result + Integer.hashCode(this.shard);
-        result = 31 * result + java.util.Objects.hashCode(this.status);
+        result = 31 * result + Objects.hashCode(this.status);
         return result;
     }
 
@@ -260,10 +261,10 @@ public class ShardFailure implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         ShardFailure other = (ShardFailure) o;
-        return java.util.Objects.equals(this.index, other.index)
-            && java.util.Objects.equals(this.node, other.node)
-            && java.util.Objects.equals(this.reason, other.reason)
+        return Objects.equals(this.index, other.index)
+            && Objects.equals(this.node, other.node)
+            && Objects.equals(this.reason, other.reason)
             && this.shard() == other.shard()
-            && java.util.Objects.equals(this.status, other.status);
+            && Objects.equals(this.status, other.status);
     }
 }

@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch.core;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -245,10 +246,10 @@ public class InfoResponse implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         InfoResponse other = (InfoResponse) o;
-        return java.util.Objects.equals(this.clusterName, other.clusterName)
-            && java.util.Objects.equals(this.clusterUuid, other.clusterUuid)
-            && java.util.Objects.equals(this.name, other.name)
-            && java.util.Objects.equals(this.tagline, other.tagline)
-            && java.util.Objects.equals(this.version, other.version);
+        return Objects.equals(this.clusterName, other.clusterName)
+            && Objects.equals(this.clusterUuid, other.clusterUuid)
+            && Objects.equals(this.name, other.name)
+            && Objects.equals(this.tagline, other.tagline)
+            && Objects.equals(this.version, other.version);
     }
 }

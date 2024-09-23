@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch.tasks;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -309,10 +310,10 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + java.util.Objects.hashCode(this.nodeFailures);
-        result = 31 * result + java.util.Objects.hashCode(this.nodes);
-        result = 31 * result + java.util.Objects.hashCode(this.taskFailures);
-        result = 31 * result + java.util.Objects.hashCode(this.tasks);
+        result = 31 * result + Objects.hashCode(this.nodeFailures);
+        result = 31 * result + Objects.hashCode(this.nodes);
+        result = 31 * result + Objects.hashCode(this.taskFailures);
+        result = 31 * result + Objects.hashCode(this.tasks);
         return result;
     }
 
@@ -320,9 +321,9 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         TaskListResponseBase other = (TaskListResponseBase) o;
-        return java.util.Objects.equals(this.nodeFailures, other.nodeFailures)
-            && java.util.Objects.equals(this.nodes, other.nodes)
-            && java.util.Objects.equals(this.taskFailures, other.taskFailures)
-            && java.util.Objects.equals(this.tasks, other.tasks);
+        return Objects.equals(this.nodeFailures, other.nodeFailures)
+            && Objects.equals(this.nodes, other.nodes)
+            && Objects.equals(this.taskFailures, other.taskFailures)
+            && Objects.equals(this.tasks, other.tasks);
     }
 }

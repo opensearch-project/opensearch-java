@@ -14,6 +14,7 @@ package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -136,7 +137,7 @@ public class UndeployModelNode implements PlainJsonSerializable {
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + java.util.Objects.hashCode(this.stats);
+        result = 31 * result + Objects.hashCode(this.stats);
         return result;
     }
 
@@ -144,6 +145,6 @@ public class UndeployModelNode implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         UndeployModelNode other = (UndeployModelNode) o;
-        return java.util.Objects.equals(this.stats, other.stats);
+        return Objects.equals(this.stats, other.stats);
     }
 }

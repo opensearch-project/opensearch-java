@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -141,6 +142,6 @@ public class RegisterModelResponse implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         RegisterModelResponse other = (RegisterModelResponse) o;
-        return java.util.Objects.equals(this.status, other.status) && java.util.Objects.equals(this.taskId, other.taskId);
+        return Objects.equals(this.status, other.status) && Objects.equals(this.taskId, other.taskId);
     }
 }

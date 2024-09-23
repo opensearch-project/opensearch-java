@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -272,11 +273,11 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         GetModelGroupResponse other = (GetModelGroupResponse) o;
-        return java.util.Objects.equals(this.access, other.access)
+        return Objects.equals(this.access, other.access)
             && this.createdTime() == other.createdTime()
-            && java.util.Objects.equals(this.description, other.description)
+            && Objects.equals(this.description, other.description)
             && this.lastUpdatedTime() == other.lastUpdatedTime()
             && this.latestVersion() == other.latestVersion()
-            && java.util.Objects.equals(this.name, other.name);
+            && Objects.equals(this.name, other.name);
     }
 }

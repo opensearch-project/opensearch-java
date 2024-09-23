@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -355,7 +356,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
     public int hashCode() {
         int result = 17;
         result = 31 * result + this.buildDate.hashCode();
-        result = 31 * result + java.util.Objects.hashCode(this.buildFlavor);
+        result = 31 * result + Objects.hashCode(this.buildFlavor);
         result = 31 * result + this.buildHash.hashCode();
         result = 31 * result + Boolean.hashCode(this.buildSnapshot);
         result = 31 * result + this.buildType.hashCode();
@@ -371,15 +372,15 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         OpenSearchVersionInfo other = (OpenSearchVersionInfo) o;
-        return java.util.Objects.equals(this.buildDate, other.buildDate)
-            && java.util.Objects.equals(this.buildFlavor, other.buildFlavor)
-            && java.util.Objects.equals(this.buildHash, other.buildHash)
+        return Objects.equals(this.buildDate, other.buildDate)
+            && Objects.equals(this.buildFlavor, other.buildFlavor)
+            && Objects.equals(this.buildHash, other.buildHash)
             && this.buildSnapshot() == other.buildSnapshot()
-            && java.util.Objects.equals(this.buildType, other.buildType)
-            && java.util.Objects.equals(this.distribution, other.distribution)
-            && java.util.Objects.equals(this.luceneVersion, other.luceneVersion)
-            && java.util.Objects.equals(this.minimumIndexCompatibilityVersion, other.minimumIndexCompatibilityVersion)
-            && java.util.Objects.equals(this.minimumWireCompatibilityVersion, other.minimumWireCompatibilityVersion)
-            && java.util.Objects.equals(this.number, other.number);
+            && Objects.equals(this.buildType, other.buildType)
+            && Objects.equals(this.distribution, other.distribution)
+            && Objects.equals(this.luceneVersion, other.luceneVersion)
+            && Objects.equals(this.minimumIndexCompatibilityVersion, other.minimumIndexCompatibilityVersion)
+            && Objects.equals(this.minimumWireCompatibilityVersion, other.minimumWireCompatibilityVersion)
+            && Objects.equals(this.number, other.number);
     }
 }

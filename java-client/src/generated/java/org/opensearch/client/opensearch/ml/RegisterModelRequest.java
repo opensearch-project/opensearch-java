@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -265,9 +266,9 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + java.util.Objects.hashCode(this.description);
+        result = 31 * result + Objects.hashCode(this.description);
         result = 31 * result + this.modelFormat.hashCode();
-        result = 31 * result + java.util.Objects.hashCode(this.modelGroupId);
+        result = 31 * result + Objects.hashCode(this.modelGroupId);
         result = 31 * result + this.name.hashCode();
         result = 31 * result + this.version.hashCode();
         return result;
@@ -277,10 +278,10 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         RegisterModelRequest other = (RegisterModelRequest) o;
-        return java.util.Objects.equals(this.description, other.description)
-            && java.util.Objects.equals(this.modelFormat, other.modelFormat)
-            && java.util.Objects.equals(this.modelGroupId, other.modelGroupId)
-            && java.util.Objects.equals(this.name, other.name)
-            && java.util.Objects.equals(this.version, other.version);
+        return Objects.equals(this.description, other.description)
+            && Objects.equals(this.modelFormat, other.modelFormat)
+            && Objects.equals(this.modelGroupId, other.modelGroupId)
+            && Objects.equals(this.name, other.name)
+            && Objects.equals(this.version, other.version);
     }
 }

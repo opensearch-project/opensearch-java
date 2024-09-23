@@ -14,6 +14,7 @@ package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -396,15 +397,15 @@ public class GetTaskResponse implements PlainJsonSerializable {
     public int hashCode() {
         int result = 17;
         result = 31 * result + Long.hashCode(this.createTime);
-        result = 31 * result + java.util.Objects.hashCode(this.error);
-        result = 31 * result + java.util.Objects.hashCode(this.functionName);
+        result = 31 * result + Objects.hashCode(this.error);
+        result = 31 * result + Objects.hashCode(this.functionName);
         result = 31 * result + Boolean.hashCode(this.isAsync);
         result = 31 * result + Long.hashCode(this.lastUpdateTime);
-        result = 31 * result + java.util.Objects.hashCode(this.modelId);
+        result = 31 * result + Objects.hashCode(this.modelId);
         result = 31 * result + this.state.hashCode();
-        result = 31 * result + java.util.Objects.hashCode(this.taskId);
-        result = 31 * result + java.util.Objects.hashCode(this.taskType);
-        result = 31 * result + java.util.Objects.hashCode(this.workerNode);
+        result = 31 * result + Objects.hashCode(this.taskId);
+        result = 31 * result + Objects.hashCode(this.taskType);
+        result = 31 * result + Objects.hashCode(this.workerNode);
         return result;
     }
 
@@ -413,14 +414,14 @@ public class GetTaskResponse implements PlainJsonSerializable {
         if (this.getClass() != o.getClass()) return false;
         GetTaskResponse other = (GetTaskResponse) o;
         return this.createTime() == other.createTime()
-            && java.util.Objects.equals(this.error, other.error)
-            && java.util.Objects.equals(this.functionName, other.functionName)
+            && Objects.equals(this.error, other.error)
+            && Objects.equals(this.functionName, other.functionName)
             && this.isAsync() == other.isAsync()
             && this.lastUpdateTime() == other.lastUpdateTime()
-            && java.util.Objects.equals(this.modelId, other.modelId)
-            && java.util.Objects.equals(this.state, other.state)
-            && java.util.Objects.equals(this.taskId, other.taskId)
-            && java.util.Objects.equals(this.taskType, other.taskType)
-            && java.util.Objects.equals(this.workerNode, other.workerNode);
+            && Objects.equals(this.modelId, other.modelId)
+            && Objects.equals(this.state, other.state)
+            && Objects.equals(this.taskId, other.taskId)
+            && Objects.equals(this.taskType, other.taskType)
+            && Objects.equals(this.workerNode, other.workerNode);
     }
 }

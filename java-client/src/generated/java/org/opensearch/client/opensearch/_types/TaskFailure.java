@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -220,9 +221,9 @@ public class TaskFailure implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         TaskFailure other = (TaskFailure) o;
-        return java.util.Objects.equals(this.nodeId, other.nodeId)
-            && java.util.Objects.equals(this.reason, other.reason)
-            && java.util.Objects.equals(this.status, other.status)
+        return Objects.equals(this.nodeId, other.nodeId)
+            && Objects.equals(this.reason, other.reason)
+            && Objects.equals(this.status, other.status)
             && this.taskId() == other.taskId();
     }
 }

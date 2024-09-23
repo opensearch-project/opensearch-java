@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch.tasks;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -211,7 +212,7 @@ public class GetTasksRequest extends RequestBase {
     public int hashCode() {
         int result = 17;
         result = 31 * result + this.taskId.hashCode();
-        result = 31 * result + java.util.Objects.hashCode(this.timeout);
+        result = 31 * result + Objects.hashCode(this.timeout);
         result = 31 * result + Boolean.hashCode(this.waitForCompletion);
         return result;
     }

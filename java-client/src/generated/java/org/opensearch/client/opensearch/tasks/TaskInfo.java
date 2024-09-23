@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch.tasks;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -484,15 +485,15 @@ public class TaskInfo implements PlainJsonSerializable {
         result = 31 * result + this.action.hashCode();
         result = 31 * result + Boolean.hashCode(this.cancellable);
         result = 31 * result + Boolean.hashCode(this.cancelled);
-        result = 31 * result + java.util.Objects.hashCode(this.description);
+        result = 31 * result + Objects.hashCode(this.description);
         result = 31 * result + this.headers.hashCode();
         result = 31 * result + Long.hashCode(this.id);
         result = 31 * result + this.node.hashCode();
-        result = 31 * result + java.util.Objects.hashCode(this.parentTaskId);
-        result = 31 * result + java.util.Objects.hashCode(this.runningTime);
+        result = 31 * result + Objects.hashCode(this.parentTaskId);
+        result = 31 * result + Objects.hashCode(this.runningTime);
         result = 31 * result + Long.hashCode(this.runningTimeInNanos);
         result = 31 * result + Long.hashCode(this.startTimeInMillis);
-        result = 31 * result + java.util.Objects.hashCode(this.status);
+        result = 31 * result + Objects.hashCode(this.status);
         result = 31 * result + this.type.hashCode();
         return result;
     }
@@ -501,18 +502,18 @@ public class TaskInfo implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         TaskInfo other = (TaskInfo) o;
-        return java.util.Objects.equals(this.action, other.action)
+        return Objects.equals(this.action, other.action)
             && this.cancellable() == other.cancellable()
             && this.cancelled() == other.cancelled()
-            && java.util.Objects.equals(this.description, other.description)
-            && java.util.Objects.equals(this.headers, other.headers)
+            && Objects.equals(this.description, other.description)
+            && Objects.equals(this.headers, other.headers)
             && this.id() == other.id()
-            && java.util.Objects.equals(this.node, other.node)
-            && java.util.Objects.equals(this.parentTaskId, other.parentTaskId)
-            && java.util.Objects.equals(this.runningTime, other.runningTime)
+            && Objects.equals(this.node, other.node)
+            && Objects.equals(this.parentTaskId, other.parentTaskId)
+            && Objects.equals(this.runningTime, other.runningTime)
             && this.runningTimeInNanos() == other.runningTimeInNanos()
             && this.startTimeInMillis() == other.startTimeInMillis()
-            && java.util.Objects.equals(this.status, other.status)
-            && java.util.Objects.equals(this.type, other.type);
+            && Objects.equals(this.status, other.status)
+            && Objects.equals(this.type, other.type);
     }
 }

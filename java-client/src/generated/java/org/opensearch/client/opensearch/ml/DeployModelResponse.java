@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -163,7 +164,7 @@ public class DeployModelResponse implements PlainJsonSerializable {
         int result = 17;
         result = 31 * result + this.status.hashCode();
         result = 31 * result + this.taskId.hashCode();
-        result = 31 * result + java.util.Objects.hashCode(this.taskType);
+        result = 31 * result + Objects.hashCode(this.taskType);
         return result;
     }
 
@@ -171,8 +172,8 @@ public class DeployModelResponse implements PlainJsonSerializable {
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         DeployModelResponse other = (DeployModelResponse) o;
-        return java.util.Objects.equals(this.status, other.status)
-            && java.util.Objects.equals(this.taskId, other.taskId)
-            && java.util.Objects.equals(this.taskType, other.taskType);
+        return Objects.equals(this.status, other.status)
+            && Objects.equals(this.taskId, other.taskId)
+            && Objects.equals(this.taskType, other.taskType);
     }
 }

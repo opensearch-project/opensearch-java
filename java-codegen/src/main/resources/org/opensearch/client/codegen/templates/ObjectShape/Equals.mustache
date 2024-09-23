@@ -17,7 +17,7 @@
                     this.{{name}}() == other.{{name}}()
                 {{/isUnboxedPrimitive}}
                 {{^isUnboxedPrimitive}}
-                    java.util.Objects.equals(this.{{name}}, other.{{name}})
+                    {{TYPES.Java.Util.Objects}}.equals(this.{{name}}, other.{{name}})
                 {{/isUnboxedPrimitive}}
                 {{^-last}}
                 && 

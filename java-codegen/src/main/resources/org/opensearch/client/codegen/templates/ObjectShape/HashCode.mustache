@@ -14,7 +14,7 @@
                     result = 31 * result + this.{{name}}.hashCode();
                 {{/isRequired}}
                 {{^isRequired}}
-                    result = 31 * result + java.util.Objects.hashCode(this.{{name}});
+                    result = 31 * result + {{TYPES.Java.Util.Objects}}.hashCode(this.{{name}});
                 {{/isRequired}}
             {{/isUnboxedPrimitive}}
         {{/fields}}

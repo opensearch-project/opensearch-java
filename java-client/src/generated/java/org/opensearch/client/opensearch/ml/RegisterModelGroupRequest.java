@@ -14,6 +14,7 @@ package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -297,10 +298,10 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + java.util.Objects.hashCode(this.accessMode);
+        result = 31 * result + Objects.hashCode(this.accessMode);
         result = 31 * result + Boolean.hashCode(this.addAllBackendRoles);
-        result = 31 * result + java.util.Objects.hashCode(this.backendRoles);
-        result = 31 * result + java.util.Objects.hashCode(this.description);
+        result = 31 * result + Objects.hashCode(this.backendRoles);
+        result = 31 * result + Objects.hashCode(this.description);
         result = 31 * result + this.name.hashCode();
         return result;
     }
@@ -309,10 +310,10 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
         if (this == o) return true;
         if (this.getClass() != o.getClass()) return false;
         RegisterModelGroupRequest other = (RegisterModelGroupRequest) o;
-        return java.util.Objects.equals(this.accessMode, other.accessMode)
+        return Objects.equals(this.accessMode, other.accessMode)
             && this.addAllBackendRoles() == other.addAllBackendRoles()
-            && java.util.Objects.equals(this.backendRoles, other.backendRoles)
-            && java.util.Objects.equals(this.description, other.description)
-            && java.util.Objects.equals(this.name, other.name);
+            && Objects.equals(this.backendRoles, other.backendRoles)
+            && Objects.equals(this.description, other.description)
+            && Objects.equals(this.name, other.name);
     }
 }
