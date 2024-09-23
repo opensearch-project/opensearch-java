@@ -15,6 +15,7 @@ package org.opensearch.client.opensearch.ml;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -232,5 +233,24 @@ public class ToolItems implements PlainJsonSerializable {
             }
             builder.metadata.put(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
         });
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.name);
+        result = 31 * result + Objects.hashCode(this.parameters);
+        result = 31 * result + Objects.hashCode(this.type);
+        result = 31 * result + Objects.hashCode(this.metadata);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        ToolItems other = (ToolItems) o;
+        return Objects.equals(this.name, other.name)
+            && Objects.equals(this.parameters, other.parameters)
+            && Objects.equals(this.type, other.type)
+            && Objects.equals(this.metadata, other.metadata);
     }
 }

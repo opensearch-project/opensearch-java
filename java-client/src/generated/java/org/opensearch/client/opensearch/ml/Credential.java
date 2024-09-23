@@ -15,6 +15,7 @@ package org.opensearch.client.opensearch.ml;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -213,5 +214,24 @@ public class Credential implements PlainJsonSerializable {
             }
             builder.metadata.put(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
         });
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.accessKey);
+        result = 31 * result + Objects.hashCode(this.secretKey);
+        result = 31 * result + Objects.hashCode(this.sessionToken);
+        result = 31 * result + Objects.hashCode(this.metadata);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        Credential other = (Credential) o;
+        return Objects.equals(this.accessKey, other.accessKey)
+            && Objects.equals(this.secretKey, other.secretKey)
+            && Objects.equals(this.sessionToken, other.sessionToken)
+            && Objects.equals(this.metadata, other.metadata);
     }
 }
