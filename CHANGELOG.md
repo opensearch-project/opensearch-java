@@ -10,6 +10,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `com.github.jk1.dependency-license-report` from 2.8 to 2.9
 - Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.2.5 to 5.3
 - Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.2.5 to 5.3
+- Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.3.1 to 5.4
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
