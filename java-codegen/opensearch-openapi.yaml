@@ -3737,7 +3737,7 @@ paths:
         - $ref: '#/components/parameters/_global::query.error_trace'
         - $ref: '#/components/parameters/_global::query.source'
         - $ref: '#/components/parameters/_global::query.filter_path'
-  /_plugins/_ism/add/{index}:
+  /_plugins/_ism/add:
     post:
       operationId: ism.add_policy.0
       x-operation-group: ism.add_policy
@@ -3745,7 +3745,7 @@ paths:
       externalDocs:
         url: https://opensearch.org/docs/latest/im-plugin/ism/api/#add-policy
       parameters:
-        - $ref: '#/components/parameters/ism.add_policy::path.index'
+        - $ref: '#/components/parameters/ism.add_policy::query.index'
         - $ref: '#/components/parameters/_global::query.pretty'
         - $ref: '#/components/parameters/_global::query.human'
         - $ref: '#/components/parameters/_global::query.error_trace'
@@ -3756,7 +3756,27 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ism.add_policy@200'
-  /_plugins/_ism/change_policy/{index}:
+  /_plugins/_ism/add/{index}:
+    post:
+      operationId: ism.add_policy.1
+      x-operation-group: ism.add_policy
+      description: Adds a policy to an index.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#add-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.add_policy::path.index'
+        - $ref: '#/components/parameters/ism.add_policy::query.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.add_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.add_policy@200'
+  /_plugins/_ism/change_policy:
     post:
       operationId: ism.change_policy.0
       x-operation-group: ism.change_policy
@@ -3764,7 +3784,7 @@ paths:
       externalDocs:
         url: https://opensearch.org/docs/latest/im-plugin/ism/api/#update-managed-index-policy
       parameters:
-        - $ref: '#/components/parameters/ism.change_policy::path.index'
+        - $ref: '#/components/parameters/ism.change_policy::query.index'
         - $ref: '#/components/parameters/_global::query.pretty'
         - $ref: '#/components/parameters/_global::query.human'
         - $ref: '#/components/parameters/_global::query.error_trace'
@@ -3775,15 +3795,126 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ism.change_policy@200'
+  /_plugins/_ism/change_policy/{index}:
+    post:
+      operationId: ism.change_policy.1
+      x-operation-group: ism.change_policy
+      description: Updates the managed index policy to a new policy.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#update-managed-index-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.change_policy::path.index'
+        - $ref: '#/components/parameters/ism.change_policy::query.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.change_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.change_policy@200'
+  /_plugins/_ism/explain:
+    get:
+      operationId: ism.explain_policy.0
+      x-operation-group: ism.explain_policy
+      description: Gets the currently applied policy on indices.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#explain-index
+      requestBody:
+        $ref: '#/components/requestBodies/ism.explain_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.explain_policy@200'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+    post:
+      operationId: ism.explain_policy.0
+      x-operation-group: ism.explain_policy
+      description: Gets the currently applied policy on indices.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#explain-index
+      requestBody:
+        $ref: '#/components/requestBodies/ism.explain_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.explain_policy@200'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
   /_plugins/_ism/explain/{index}:
     get:
-      operationId: ism.explain_index.0
-      x-operation-group: ism.explain_index
-      description: Gets the currently applied policy on an index.
+      operationId: ism.explain_policy.1
+      x-operation-group: ism.explain_policy
+      description: Gets the currently applied policy on indices.
       externalDocs:
         url: https://opensearch.org/docs/latest/im-plugin/ism/api/#explain-index
       parameters:
-        - $ref: '#/components/parameters/ism.explain_index::path.index'
+        - $ref: '#/components/parameters/ism.explain_policy::path.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.explain_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.explain_policy@200'
+    post:
+      operationId: ism.explain_policy.1
+      x-operation-group: ism.explain_policy
+      description: Gets the currently applied policy on indices.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#explain-index
+      parameters:
+        - $ref: '#/components/parameters/ism.explain_policy::path.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.explain_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.explain_policy@200'
+  /_plugins/_ism/policies:
+    get:
+      operationId: ism.get_policies.0
+      x-operation-group: ism.get_policies
+      description: Gets the policies.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#get-policy
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.get_policies@200'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+    put:
+      operationId: ism.put_policies.0
+      x-operation-group: ism.put_policies
+      description: Gets the policies.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#create-policy
+      requestBody:
+        $ref: '#/components/requestBodies/ism.put_policies'
+      parameters:
+        - $ref: '#/components/parameters/ism.put_policies::query.if_primary_term'
+        - $ref: '#/components/parameters/ism.put_policies::query.if_seq_no'
+        - $ref: '#/components/parameters/ism.put_policies::query.policyID'
         - $ref: '#/components/parameters/_global::query.pretty'
         - $ref: '#/components/parameters/_global::query.human'
         - $ref: '#/components/parameters/_global::query.error_trace'
@@ -3791,7 +3922,7 @@ paths:
         - $ref: '#/components/parameters/_global::query.filter_path'
       responses:
         '200':
-          $ref: '#/components/responses/ism.explain_index@200'
+          $ref: '#/components/responses/ism.put_policies@200'
   /_plugins/_ism/policies/{policy_id}:
     delete:
       operationId: ism.delete_policy.0
@@ -3812,9 +3943,9 @@ paths:
     get:
       operationId: ism.get_policy.0
       x-operation-group: ism.get_policy
-      description: Gets the policy.
+      description: Gets a policy.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#get-policy
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#put-policy
       parameters:
         - $ref: '#/components/parameters/ism.get_policy::path.policy_id'
         - $ref: '#/components/parameters/_global::query.pretty'
@@ -3825,6 +3956,24 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ism.get_policy@200'
+    head:
+      operationId: ism.exists_policy.0
+      x-operation-group: ism.exists_policy
+      description: Checks whether the policy exists.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#get-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.exists_policy::path.policy_id'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.exists_policy@200'
+        '404':
+          $ref: '#/components/responses/ism.exists_policy@404'
     put:
       operationId: ism.put_policy.0
       x-operation-group: ism.put_policy
@@ -3847,7 +3996,7 @@ paths:
           $ref: '#/components/responses/ism.put_policy@200'
         '201':
           $ref: '#/components/responses/ism.put_policy@201'
-  /_plugins/_ism/remove/{index}:
+  /_plugins/_ism/remove:
     post:
       operationId: ism.remove_policy.0
       x-operation-group: ism.remove_policy
@@ -3855,7 +4004,7 @@ paths:
       externalDocs:
         url: https://opensearch.org/docs/latest/im-plugin/ism/api/#remove-policy
       parameters:
-        - $ref: '#/components/parameters/ism.remove_policy::path.index'
+        - $ref: '#/components/parameters/ism.remove_policy::query.index'
         - $ref: '#/components/parameters/_global::query.pretty'
         - $ref: '#/components/parameters/_global::query.human'
         - $ref: '#/components/parameters/_global::query.error_trace'
@@ -3864,6 +4013,63 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ism.remove_policy@200'
+  /_plugins/_ism/remove/{index}:
+    post:
+      operationId: ism.remove_policy.1
+      x-operation-group: ism.remove_policy
+      description: Removes a policy from an index.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#remove-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.remove_policy::path.index'
+        - $ref: '#/components/parameters/ism.remove_policy::query.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.remove_policy@200'
+  /_plugins/_ism/retry:
+    post:
+      operationId: ism.retry_index.0
+      x-operation-group: ism.retry_index
+      description: Retry the failed action for an index.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#retry-failed-index
+      parameters:
+        - $ref: '#/components/parameters/ism.retry_index::query.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.retry_index'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.retry_index@200'
+  /_plugins/_ism/retry/{index}:
+    post:
+      operationId: ism.retry_index.1
+      x-operation-group: ism.retry_index
+      description: Retry the failed action for an index.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#retry-failed-index
+      parameters:
+        - $ref: '#/components/parameters/ism.retry_index::path.index'
+        - $ref: '#/components/parameters/ism.retry_index::query.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.retry_index'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.retry_index@200'
   /_plugins/_knn/{node_id}/stats:
     get:
       operationId: knn.stats.2
@@ -4155,6 +4361,68 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/knn.warmup@200'
+  /_plugins/_ml/agents/_register:
+    post:
+      operationId: ml.register_agents.0
+      x-operation-group: ml.register_agents
+      description: Register an agent.
+      requestBody:
+        $ref: '#/components/requestBodies/ml.register_agents'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.register_agents@200'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+  /_plugins/_ml/agents/{agent_id}:
+    delete:
+      operationId: ml.delete_agent.0
+      x-operation-group: ml.delete_agent
+      description: Delete an agent.
+      parameters:
+        - $ref: '#/components/parameters/ml.delete_agent::path.agent_id'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.delete_agent@200'
+  /_plugins/_ml/connectors/_create:
+    post:
+      operationId: ml.create_connector.0
+      x-operation-group: ml.create_connector
+      description: Creates a standalone connector.
+      requestBody:
+        $ref: '#/components/requestBodies/ml.create_connector'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.create_connector@200'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+  /_plugins/_ml/connectors/{connector_id}:
+    delete:
+      operationId: ml.delete_connector.0
+      x-operation-group: ml.delete_connector
+      description: Deletes a standalone connector.
+      parameters:
+        - $ref: '#/components/parameters/ml.delete_connector::path.connector_id'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.delete_connector@200'
   /_plugins/_ml/model_groups/_register:
     post:
       operationId: ml.register_model_group.0
@@ -4826,6 +5094,23 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/sql.settings@200'
+  /_plugins/_refresh_search_analyzers/{index}:
+    post:
+      operationId: ism.refresh_search_analyzers.0
+      x-operation-group: ism.refresh_search_analyzers
+      description: Refresh search analyzers in real time.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/refresh-analyzer/
+      parameters:
+        - $ref: '#/components/parameters/ism.refresh_search_analyzers::path.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.refresh_search_analyzers@200'
   /_plugins/_rollup/jobs/{id}:
     delete:
       operationId: rollups.delete.0
@@ -7334,6 +7619,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/put_script::path.id'
         - $ref: '#/components/parameters/put_script::query.cluster_manager_timeout'
+        - $ref: '#/components/parameters/put_script::query.context'
         - $ref: '#/components/parameters/put_script::query.master_timeout'
         - $ref: '#/components/parameters/put_script::query.timeout'
         - $ref: '#/components/parameters/_global::query.pretty'
@@ -7356,6 +7642,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/put_script::path.id'
         - $ref: '#/components/parameters/put_script::query.cluster_manager_timeout'
+        - $ref: '#/components/parameters/put_script::query.context'
         - $ref: '#/components/parameters/put_script::query.master_timeout'
         - $ref: '#/components/parameters/put_script::query.timeout'
         - $ref: '#/components/parameters/_global::query.pretty'
@@ -7380,6 +7667,7 @@ paths:
         - $ref: '#/components/parameters/put_script::path.context'
         - $ref: '#/components/parameters/put_script::path.id'
         - $ref: '#/components/parameters/put_script::query.cluster_manager_timeout'
+        - $ref: '#/components/parameters/put_script::query.context'
         - $ref: '#/components/parameters/put_script::query.master_timeout'
         - $ref: '#/components/parameters/put_script::query.timeout'
         - $ref: '#/components/parameters/_global::query.pretty'
@@ -7403,6 +7691,7 @@ paths:
         - $ref: '#/components/parameters/put_script::path.context'
         - $ref: '#/components/parameters/put_script::path.id'
         - $ref: '#/components/parameters/put_script::query.cluster_manager_timeout'
+        - $ref: '#/components/parameters/put_script::query.context'
         - $ref: '#/components/parameters/put_script::query.master_timeout'
         - $ref: '#/components/parameters/put_script::query.timeout'
         - $ref: '#/components/parameters/_global::query.pretty'
@@ -11482,7 +11771,7 @@ paths:
           $ref: '#/components/responses/asynchronous_search.delete@200'
       deprecated: true
       x-ignorable: true
-  /_opendistro/_ism/add/{index}:
+  /_opendistro/_ism/add:
     post:
       operationId: ism.add_policy.0_superseded
       x-operation-group: ism.add_policy
@@ -11490,7 +11779,7 @@ paths:
       externalDocs:
         url: https://opensearch.org/docs/latest/im-plugin/ism/api/#add-policy
       parameters:
-        - $ref: '#/components/parameters/ism.add_policy::path.index'
+        - $ref: '#/components/parameters/ism.add_policy::query.index'
         - $ref: '#/components/parameters/_global::query.pretty'
         - $ref: '#/components/parameters/_global::query.human'
         - $ref: '#/components/parameters/_global::query.error_trace'
@@ -11503,7 +11792,29 @@ paths:
           $ref: '#/components/responses/ism.add_policy@200'
       deprecated: true
       x-ignorable: true
-  /_opendistro/_ism/change_policy/{index}:
+  /_opendistro/_ism/add/{index}:
+    post:
+      operationId: ism.add_policy.1_superseded
+      x-operation-group: ism.add_policy
+      description: Adds a policy to an index.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#add-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.add_policy::path.index'
+        - $ref: '#/components/parameters/ism.add_policy::query.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.add_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.add_policy@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_ism/change_policy:
     post:
       operationId: ism.change_policy.0_superseded
       x-operation-group: ism.change_policy
@@ -11511,7 +11822,7 @@ paths:
       externalDocs:
         url: https://opensearch.org/docs/latest/im-plugin/ism/api/#update-managed-index-policy
       parameters:
-        - $ref: '#/components/parameters/ism.change_policy::path.index'
+        - $ref: '#/components/parameters/ism.change_policy::query.index'
         - $ref: '#/components/parameters/_global::query.pretty'
         - $ref: '#/components/parameters/_global::query.human'
         - $ref: '#/components/parameters/_global::query.error_trace'
@@ -11524,15 +11835,138 @@ paths:
           $ref: '#/components/responses/ism.change_policy@200'
       deprecated: true
       x-ignorable: true
+  /_opendistro/_ism/change_policy/{index}:
+    post:
+      operationId: ism.change_policy.1_superseded
+      x-operation-group: ism.change_policy
+      description: Updates the managed index policy to a new policy.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#update-managed-index-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.change_policy::path.index'
+        - $ref: '#/components/parameters/ism.change_policy::query.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.change_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.change_policy@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_ism/explain:
+    get:
+      operationId: ism.explain_policy.0_superseded
+      x-operation-group: ism.explain_policy
+      description: Gets the currently applied policy on indices.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#explain-index
+      requestBody:
+        $ref: '#/components/requestBodies/ism.explain_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.explain_policy@200'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      deprecated: true
+      x-ignorable: true
+    post:
+      operationId: ism.explain_policy.0_superseded
+      x-operation-group: ism.explain_policy
+      description: Gets the currently applied policy on indices.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#explain-index
+      requestBody:
+        $ref: '#/components/requestBodies/ism.explain_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.explain_policy@200'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      deprecated: true
+      x-ignorable: true
   /_opendistro/_ism/explain/{index}:
     get:
-      operationId: ism.explain_index.0_superseded
-      x-operation-group: ism.explain_index
-      description: Gets the currently applied policy on an index.
+      operationId: ism.explain_policy.1_superseded
+      x-operation-group: ism.explain_policy
+      description: Gets the currently applied policy on indices.
       externalDocs:
         url: https://opensearch.org/docs/latest/im-plugin/ism/api/#explain-index
       parameters:
-        - $ref: '#/components/parameters/ism.explain_index::path.index'
+        - $ref: '#/components/parameters/ism.explain_policy::path.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.explain_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.explain_policy@200'
+      deprecated: true
+      x-ignorable: true
+    post:
+      operationId: ism.explain_policy.1_superseded
+      x-operation-group: ism.explain_policy
+      description: Gets the currently applied policy on indices.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#explain-index
+      parameters:
+        - $ref: '#/components/parameters/ism.explain_policy::path.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.explain_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.explain_policy@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_ism/policies:
+    get:
+      operationId: ism.get_policies.0_superseded
+      x-operation-group: ism.get_policies
+      description: Gets the policies.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#get-policy
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.get_policies@200'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      deprecated: true
+      x-ignorable: true
+    put:
+      operationId: ism.put_policies.0_superseded
+      x-operation-group: ism.put_policies
+      description: Gets the policies.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#create-policy
+      requestBody:
+        $ref: '#/components/requestBodies/ism.put_policies'
+      parameters:
+        - $ref: '#/components/parameters/ism.put_policies::query.if_primary_term'
+        - $ref: '#/components/parameters/ism.put_policies::query.if_seq_no'
+        - $ref: '#/components/parameters/ism.put_policies::query.policyID'
         - $ref: '#/components/parameters/_global::query.pretty'
         - $ref: '#/components/parameters/_global::query.human'
         - $ref: '#/components/parameters/_global::query.error_trace'
@@ -11540,16 +11974,16 @@ paths:
         - $ref: '#/components/parameters/_global::query.filter_path'
       responses:
         '200':
-          $ref: '#/components/responses/ism.explain_index@200'
+          $ref: '#/components/responses/ism.put_policies@200'
       deprecated: true
       x-ignorable: true
   /_opendistro/_ism/policies/{policyID}:
     get:
       operationId: ism.get_policy.0_superseded
       x-operation-group: ism.get_policy
-      description: Gets the policy.
+      description: Gets a policy.
       externalDocs:
-        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#get-policy
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#put-policy
       parameters:
         - $ref: '#/components/parameters/ism.get_policy::path.policy_id'
         - $ref: '#/components/parameters/_global::query.pretty'
@@ -11560,6 +11994,26 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ism.get_policy@200'
+      deprecated: true
+      x-ignorable: true
+    head:
+      operationId: ism.exists_policy.0_superseded
+      x-operation-group: ism.exists_policy
+      description: Checks whether the policy exists.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#get-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.exists_policy::path.policy_id'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.exists_policy@200'
+        '404':
+          $ref: '#/components/responses/ism.exists_policy@404'
       deprecated: true
       x-ignorable: true
     put:
@@ -11604,7 +12058,7 @@ paths:
           $ref: '#/components/responses/ism.delete_policy@200'
       deprecated: true
       x-ignorable: true
-  /_opendistro/_ism/remove/{index}:
+  /_opendistro/_ism/remove:
     post:
       operationId: ism.remove_policy.0_superseded
       x-operation-group: ism.remove_policy
@@ -11612,7 +12066,7 @@ paths:
       externalDocs:
         url: https://opensearch.org/docs/latest/im-plugin/ism/api/#remove-policy
       parameters:
-        - $ref: '#/components/parameters/ism.remove_policy::path.index'
+        - $ref: '#/components/parameters/ism.remove_policy::query.index'
         - $ref: '#/components/parameters/_global::query.pretty'
         - $ref: '#/components/parameters/_global::query.human'
         - $ref: '#/components/parameters/_global::query.error_trace'
@@ -11621,6 +12075,69 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ism.remove_policy@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_ism/remove/{index}:
+    post:
+      operationId: ism.remove_policy.1_superseded
+      x-operation-group: ism.remove_policy
+      description: Removes a policy from an index.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#remove-policy
+      parameters:
+        - $ref: '#/components/parameters/ism.remove_policy::path.index'
+        - $ref: '#/components/parameters/ism.remove_policy::query.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.remove_policy@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_ism/retry:
+    post:
+      operationId: ism.retry_index.0_superseded
+      x-operation-group: ism.retry_index
+      description: Retry the failed action for an index.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#retry-failed-index
+      parameters:
+        - $ref: '#/components/parameters/ism.retry_index::query.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.retry_index'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.retry_index@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_ism/retry/{index}:
+    post:
+      operationId: ism.retry_index.1_superseded
+      x-operation-group: ism.retry_index
+      description: Retry the failed action for an index.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/ism/api/#retry-failed-index
+      parameters:
+        - $ref: '#/components/parameters/ism.retry_index::path.index'
+        - $ref: '#/components/parameters/ism.retry_index::query.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ism.retry_index'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.retry_index@200'
       deprecated: true
       x-ignorable: true
   /_opendistro/_knn/stats/{stat}:
@@ -11773,6 +12290,25 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ppl.post_stats@200'
+      deprecated: true
+      x-ignorable: true
+  /_opendistro/_refresh_search_analyzers/{index}:
+    post:
+      operationId: ism.refresh_search_analyzers.0_superseded
+      x-operation-group: ism.refresh_search_analyzers
+      description: Refresh search analyzers in real time.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/im-plugin/refresh-analyzer/
+      parameters:
+        - $ref: '#/components/parameters/ism.refresh_search_analyzers::path.index'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ism.refresh_search_analyzers@200'
       deprecated: true
       x-ignorable: true
   /_opendistro/_rollup/jobs/{rollupID}:
@@ -16111,7 +16647,11 @@ components:
       name: metric
       description: Limits the information returned to the specified metrics.
       schema:
-        $ref: '#/components/schemas/_common:Metrics'
+        oneOf:
+          - $ref: '#/components/schemas/cluster.reroute:Metric'
+          - type: array
+            items:
+              $ref: '#/components/schemas/cluster.reroute:Metric'
       style: form
     cluster.reroute::query.retry_failed:
       in: query
@@ -16411,10 +16951,7 @@ components:
       description: Comma-separated list of specific routing values.
       style: form
       schema:
-        type: array
-        items:
-          type: string
-        description: Comma-separated list of specific routing values.
+        $ref: '#/components/schemas/_common:Routing'
       explode: true
     create::path.id:
       in: path
@@ -19777,10 +20314,10 @@ components:
       description: List of shard health statuses used to limit the request.
       schema:
         oneOf:
-          - $ref: '#/components/schemas/indices.shard_stores:ShardStoreStatus'
+          - $ref: '#/components/schemas/indices.shard_stores:Status'
           - type: array
             items:
-              $ref: '#/components/schemas/indices.shard_stores:ShardStoreStatus'
+              $ref: '#/components/schemas/indices.shard_stores:Status'
       style: form
     indices.shrink::path.index:
       in: path
@@ -20039,7 +20576,11 @@ components:
       description: Limit the information returned the specific metrics.
       required: true
       schema:
-        $ref: '#/components/schemas/_common:Metrics'
+        oneOf:
+          - $ref: '#/components/schemas/indices.stats:Metric'
+          - type: array
+            items:
+              $ref: '#/components/schemas/indices.stats:Metric'
       style: simple
     indices.stats::query.completion_fields:
       in: query
@@ -20422,6 +20963,15 @@ components:
       schema:
         $ref: '#/components/schemas/_common:IndexName'
       style: simple
+    ism.add_policy::query.index:
+      name: index
+      in: query
+      description: |-
+        Comma-separated list of data streams, indices, and aliases.
+        Supports wildcards (`*`).
+      required: true
+      schema:
+        $ref: '#/components/schemas/_common:IndexName'
     ism.change_policy::path.index:
       name: index
       in: path
@@ -20432,13 +20982,28 @@ components:
       schema:
         $ref: '#/components/schemas/_common:IndexName'
       style: simple
+    ism.change_policy::query.index:
+      name: index
+      in: query
+      description: |-
+        Comma-separated list of data streams, indices, and aliases.
+        Supports wildcards (`*`).
+      required: true
+      schema:
+        $ref: '#/components/schemas/_common:IndexName'
     ism.delete_policy::path.policy_id:
       name: policy_id
       in: path
       required: true
       schema:
         type: string
-    ism.explain_index::path.index:
+    ism.exists_policy::path.policy_id:
+      name: policy_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ism.explain_policy::path.index:
       name: index
       in: path
       description: |-
@@ -20454,6 +21019,27 @@ components:
       required: true
       schema:
         type: string
+    ism.put_policies::query.if_primary_term:
+      name: if_primary_term
+      in: query
+      description: Only perform the operation if the document has this primary term.
+      schema:
+        type: number
+      style: form
+    ism.put_policies::query.if_seq_no:
+      name: if_seq_no
+      in: query
+      description: Only perform the operation if the document has this sequence number.
+      schema:
+        $ref: '#/components/schemas/_common:SequenceNumber'
+      style: form
+    ism.put_policies::query.policyID:
+      name: policyID
+      in: query
+      required: true
+      schema:
+        type: string
+      style: form
     ism.put_policy::path.policy_id:
       name: policy_id
       in: path
@@ -20474,6 +21060,16 @@ components:
       schema:
         $ref: '#/components/schemas/_common:SequenceNumber'
       style: form
+    ism.refresh_search_analyzers::path.index:
+      name: index
+      in: path
+      description: |-
+        Comma-separated list of data streams, indices, and aliases.
+        Supports wildcards (`*`).
+      required: true
+      schema:
+        $ref: '#/components/schemas/_common:IndexName'
+      style: simple
     ism.remove_policy::path.index:
       name: index
       in: path
@@ -20484,6 +21080,34 @@ components:
       schema:
         $ref: '#/components/schemas/_common:IndexName'
       style: simple
+    ism.remove_policy::query.index:
+      name: index
+      in: query
+      description: |-
+        Comma-separated list of data streams, indices, and aliases.
+        Supports wildcards (`*`).
+      required: true
+      schema:
+        $ref: '#/components/schemas/_common:IndexName'
+    ism.retry_index::path.index:
+      name: index
+      in: path
+      description: |-
+        Comma-separated list of data streams, indices, and aliases.
+        Supports wildcards (`*`).
+      required: true
+      schema:
+        $ref: '#/components/schemas/_common:IndexName'
+      style: simple
+    ism.retry_index::query.index:
+      name: index
+      in: query
+      description: |-
+        Comma-separated list of data streams, indices, and aliases.
+        Supports wildcards (`*`).
+      required: true
+      schema:
+        $ref: '#/components/schemas/_common:IndexName'
     knn.delete_model::path.model_id:
       name: model_id
       in: path
@@ -20700,10 +21324,7 @@ components:
       description: Comma-separated list of specific routing values.
       style: form
       schema:
-        type: array
-        items:
-          type: string
-        description: Comma-separated list of specific routing values.
+        $ref: '#/components/schemas/_common:Routing'
       explode: true
     knn.search_models::query.scroll:
       name: scroll
@@ -20986,6 +21607,18 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Fields'
       style: form
+    ml.delete_agent::path.agent_id:
+      name: agent_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.delete_connector::path.connector_id:
+      name: connector_id
+      in: path
+      required: true
+      schema:
+        type: string
     ml.delete_model_group::path.model_group_id:
       name: model_group_id
       in: path
@@ -21833,6 +22466,14 @@ components:
       schema:
         $ref: '#/components/schemas/_common:Duration'
       x-version-added: '2.0'
+    put_script::query.context:
+      name: context
+      in: query
+      description: |-
+        Context in which the script or search template should run.
+        To prevent errors, the API immediately compiles the script or template in this context.
+      schema:
+        type: string
     put_script::query.master_timeout:
       in: query
       name: master_timeout
@@ -21904,7 +22545,7 @@ components:
       name: search_type
       description: Search operation type
       schema:
-        type: string
+        $ref: '#/components/schemas/_common:SearchType'
       style: form
     reindex_rethrottle::path.task_id:
       in: path
@@ -24942,11 +25583,25 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ism._common:ChangePolicyRequest'
+    ism.explain_policy:
+      content:
+        application/json:
+          schema: {}
+    ism.put_policies:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:PutPolicyRequest'
     ism.put_policy:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ism._common:PutPolicyRequest'
+    ism.retry_index:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:RetryIndexRequest'
     knn.search_models:
       content:
         application/json:
@@ -24996,6 +25651,16 @@ components:
                 $ref: '#/components/schemas/_common:Ids'
             description: Document identifiers; can be either `docs` (containing full document information) or `ids` (when index is provided in the URL.
       required: true
+    ml.create_connector:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ml._common:CreateConnectorRequest'
+    ml.register_agents:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ml._common:RegisterAgentsRequest'
     ml.register_model:
       content:
         application/json:
@@ -26562,6 +27227,10 @@ components:
             - $ref: '#/components/schemas/flow_framework.errors:ParameterConflictError'
             - $ref: '#/components/schemas/flow_framework.errors:MaxWorkflowsLimitError'
             - $ref: '#/components/schemas/flow_framework.errors:WorkflowSaveError'
+            - $ref: '#/components/schemas/flow_framework.errors:WorkflowParsingError'
+            - $ref: '#/components/schemas/flow_framework.errors:UnsupportedFieldUpdateError'
+            - $ref: '#/components/schemas/flow_framework.errors:InvalidTemplateVersionError'
+            - $ref: '#/components/schemas/flow_framework.errors:TemplateNameRequiredError'
     flow_framework.create@403:
       content:
         application/json:
@@ -26704,6 +27373,9 @@ components:
             - $ref: '#/components/schemas/flow_framework.errors:ParameterConflictError'
             - $ref: '#/components/schemas/flow_framework.errors:MaxWorkflowsLimitError'
             - $ref: '#/components/schemas/flow_framework.errors:WorkflowSaveError'
+            - $ref: '#/components/schemas/flow_framework.errors:InvalidTemplateVersionError'
+            - $ref: '#/components/schemas/flow_framework.errors:UnsupportedFieldUpdateError'
+            - $ref: '#/components/schemas/flow_framework.errors:WorkflowParsingError'
     flow_framework.update@404:
       description: Template Not Found Error
       content:
@@ -27340,16 +28012,34 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ism._common:DeletePolicyResponse'
-    ism.explain_index@200:
+    ism.exists_policy@200:
+      content:
+        application/json:
+          schema: {}
+    ism.exists_policy@404:
+      content:
+        application/json:
+          schema: {}
+    ism.explain_policy@200:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ism._common:ExplainIndexResponse'
+    ism.get_policies@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:GetPoliciesResponse'
     ism.get_policy@200:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ism._common:GetPolicyResponse'
+    ism.put_policies@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:PutPolicyResponse'
     ism.put_policy@200:
       content:
         application/json:
@@ -27360,11 +28050,21 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ism._common:PutPolicyResponse'
+    ism.refresh_search_analyzers@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:RefreshSearchAnalyzersResponse'
     ism.remove_policy@200:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ism._common:RemovePolicyResponse'
+    ism.retry_index@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ism._common:RetryIndexResponse'
     knn.delete_model@200: {}
     knn.get_model@200: {}
     knn.search_models@200: {}
@@ -27383,6 +28083,24 @@ components:
                   $ref: '#/components/schemas/_core.mget:ResponseItem'
             required:
               - docs
+    ml.create_connector@200:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              connector_id:
+                type: string
+    ml.delete_agent@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common:WriteResponseBase'
+    ml.delete_connector@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common:WriteResponseBase'
     ml.delete_model_group@200:
       content:
         application/json:
@@ -27423,6 +28141,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ml._common:Task'
+    ml.register_agents@200:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              agent_id:
+                type: string
     ml.register_model_group@200:
       content:
         application/json:
@@ -29727,12 +30453,6 @@ components:
     _common:Metadata:
       type: object
       additionalProperties: true
-    _common:Metrics:
-      oneOf:
-        - type: string
-        - type: array
-          items:
-            type: string
     _common:MinimumShouldMatch:
       description: The minimum number of terms that should match as integer, percentage or range.
       oneOf:
@@ -30334,7 +31054,11 @@ components:
         - bulk
         - search
     _common:Routing:
-      type: string
+      oneOf:
+        - type: string
+        - type: array
+          items:
+            type: string
     _common:RrfRank:
       allOf:
         - $ref: '#/components/schemas/_common:RankBase'
@@ -44605,6 +45329,18 @@ components:
         - index
         - shard
         - to_node
+    cluster.reroute:Metric:
+      type: string
+      enum:
+        - _all
+        - blocks
+        - cluster_manager_node
+        - master_node
+        - metadata
+        - nodes
+        - routing_nodes
+        - routing_table
+        - version
     cluster.reroute:RerouteDecision:
       type: object
       properties:
@@ -45532,6 +46268,8 @@ components:
         use_case:
           type: string
           description: A use case, which can be used with the Search Workflow API to find related workflows.
+        workflows:
+          type: object
         version:
           $ref: '#/components/schemas/flow_framework.common:version'
       minProperties: 1
@@ -45832,7 +46570,7 @@ components:
         application/json:
           type: object
           properties:
-            message:
+            error:
               type: string
               example: You cannot use both the 'provision_workflow' and 'update_workflow_fields' parameters in the same request.
             status:
@@ -45870,7 +46608,7 @@ components:
         application/json:
           type: object
           properties:
-            message:
+            error:
               type: string
               example: This API is disabled. To enable it, set [flow_framework.enabled] to true.
             status:
@@ -45880,7 +46618,7 @@ components:
         application/json:
           type: object
           properties:
-            message:
+            error:
               type: string
               example: Only the parameters [param1, param2] are permitted unless the provision parameter is set to true.
             status:
@@ -45894,12 +46632,21 @@ components:
         status:
           type: integer
           description: HTTP status code for the error.
+    flow_framework.errors:InvalidTemplateVersionError:
+      content:
+        application/json:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message when the template version is invalid or missing.
+              example: Unable to parse field [version] in a version object.
     flow_framework.errors:MaxWorkflowsLimitError:
       content:
         application/json:
           type: object
           properties:
-            message:
+            error:
               type: string
               example: Maximum workflows limit reached 50
             code:
@@ -45909,7 +46656,7 @@ components:
         application/json:
           type: object
           properties:
-            message:
+            error:
               type: string
               example: You cannot use the 'reprovision_workflow' parameter to create a new template.
             status:
@@ -45919,7 +46666,7 @@ components:
         application/json:
           type: object
           properties:
-            message:
+            error:
               type: string
               example: You cannot use the 'reprovision_workflow' and 'use_case' parameters in the same request.
             status:
@@ -45944,32 +46691,56 @@ components:
           type: integer
           description: HTTP status code for the error.
           example: 408
+    flow_framework.errors:TemplateNameRequiredError:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message when the template name is missing.
     flow_framework.errors:TemplateNotFoundError:
       content:
         application/json:
           type: object
           properties:
-            message:
+            error:
               type: string
               example: Failed to retrieve template (12345) from global context.
             code:
               type: integer
+    flow_framework.errors:UnsupportedFieldUpdateError:
+      content:
+        application/json:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message when trying to update an unsupported field in a template.
+              example: You can not update the field [fieldName] without updating the whole template.
     flow_framework.errors:WorkFlowIdNullError:
       content:
         application/json:
           type: object
           properties:
-            message:
+            error:
               type: string
               example: Workflow ID can not be null
             status:
               type: integer
+    flow_framework.errors:WorkflowParsingError:
+      content:
+        application/json:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message when workflow parsing fails.
+              example: Unable to parse field [workflow] in a template object.
     flow_framework.errors:WorkflowSaveError:
       content:
         application/json:
           type: object
           properties:
-            message:
+            error:
               type: string
               example: Failed to save workflow state
               status:
@@ -45979,7 +46750,7 @@ components:
         application/json:
           type: object
           properties:
-            message:
+            error:
               type: string
               example: Failed to retrieve workflow step json.
             code:
@@ -47623,13 +48394,6 @@ components:
       required:
         - reason
         - type
-    indices.shard_stores:ShardStoreStatus:
-      type: string
-      enum:
-        - all
-        - green
-        - red
-        - yellow
     indices.shard_stores:ShardStoreWrapper:
       type: object
       properties:
@@ -47639,6 +48403,13 @@ components:
             $ref: '#/components/schemas/indices.shard_stores:ShardStore'
       required:
         - stores
+    indices.shard_stores:Status:
+      type: string
+      enum:
+        - all
+        - green
+        - red
+        - yellow
     indices.simulate_template:Overlapping:
       type: object
       properties:
@@ -47749,6 +48520,27 @@ components:
         - primaries
         - total
         - uuid
+    indices.stats:Metric:
+      type: string
+      enum:
+        - _all
+        - completion
+        - docs
+        - fielddata
+        - flush
+        - get
+        - indexing
+        - merge
+        - query_cache
+        - recovery
+        - refresh
+        - request_cache
+        - search
+        - segments
+        - store
+        - suggest
+        - translog
+        - warmer
     indices.stats:ShardCommit:
       type: object
       properties:
@@ -49064,6 +49856,8 @@ components:
       required:
         - policy_id
     ism._common:ChangePolicyResponse:
+      $ref: '#/components/schemas/ism._common:ChangeResponse'
+    ism._common:ChangeResponse:
       type: object
       properties:
         updated_indices:
@@ -49145,10 +49939,17 @@ components:
           type: string
         reason:
           type: string
+    ism._common:GetPoliciesResponse:
+      type: object
+      properties:
+        total_policies:
+          type: number
+        policies:
+          type: array
+          items:
+            $ref: '#/components/schemas/ism._common:PolicyWithMetadata'
     ism._common:GetPolicyResponse:
-      allOf:
-        - $ref: '#/components/schemas/ism._common:Metadata'
-        - $ref: '#/components/schemas/ism._common:PolicyEnvelope'
+      $ref: '#/components/schemas/ism._common:PolicyWithMetadata'
     ism._common:IncludeState:
       type: object
       properties:
@@ -49212,6 +50013,11 @@ components:
       properties:
         policy:
           $ref: '#/components/schemas/ism._common:Policy'
+    ism._common:PolicyWithMetadata:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ism._common:Metadata'
+        - $ref: '#/components/schemas/ism._common:PolicyEnvelope'
     ism._common:PutPolicyRequest:
       $ref: '#/components/schemas/ism._common:PolicyEnvelope'
     ism._common:PutPolicyResponse:
@@ -49221,8 +50027,35 @@ components:
           properties:
             policy:
               $ref: '#/components/schemas/ism._common:PolicyEnvelope'
+    ism._common:RefreshSearchAnalyzersResponse:
+      type: object
+      properties:
+        _shards:
+          $ref: '#/components/schemas/_common:ShardStatistics'
+        successful_refresh_details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ism._common:RefreshSearchAnalyzersResponseDetails'
+    ism._common:RefreshSearchAnalyzersResponseDetails:
+      type: object
+      properties:
+        index:
+          type: string
+        refreshed_analyzers:
+          type: array
+          items:
+            type: string
     ism._common:RemovePolicyResponse:
       $ref: '#/components/schemas/ism._common:ChangePolicyResponse'
+    ism._common:RetryIndexRequest:
+      type: object
+      properties:
+        state:
+          type: string
+      required:
+        - state
+    ism._common:RetryIndexResponse:
+      $ref: '#/components/schemas/ism._common:ChangeResponse'
     ism._common:SlackCustomWebhook:
       type: object
       properties:
@@ -49295,6 +50128,85 @@ components:
         - always
         - missing
         - popular
+    ml._common:Action:
+      type: object
+      properties:
+        action_type:
+          type: string
+        method:
+          type: string
+        headers:
+          $ref: '#/components/schemas/ml._common:Headers'
+        url:
+          type: string
+        request_body:
+          type: string
+        pre_process_function:
+          type: string
+        post_process_function:
+          type: string
+    ml._common:ClientConfig:
+      type: object
+      properties:
+        max_connection:
+          type: integer
+        connection_timeout:
+          type: integer
+        read_timeout:
+          type: integer
+        retry_backoff_policy:
+          type: string
+        max_retry_times:
+          type: integer
+        retry_backoff_millis:
+          type: integer
+        retry_timeout_seconds:
+          type: integer
+    ml._common:CreateConnectorRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        version:
+          type: integer
+        protocol:
+          type: string
+        credential:
+          $ref: '#/components/schemas/ml._common:Credential'
+        parameters:
+          $ref: '#/components/schemas/ml._common:Parameters'
+        client_config:
+          $ref: '#/components/schemas/ml._common:ClientConfig'
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ml._common:Action'
+      required:
+        - actions
+        - credential
+        - description
+        - name
+        - parameters
+        - protocol
+        - version
+    ml._common:Credential:
+      type: object
+      properties:
+        access_key:
+          type: string
+        secret_key:
+          type: string
+        session_token:
+          type: string
+      additionalProperties: true
+    ml._common:Headers:
+      type: object
+      properties:
+        content_type:
+          type: string
+      additionalProperties: true
     ml._common:HitsTotal:
       type: object
       properties:
@@ -49307,6 +50219,18 @@ components:
       required:
         - relation
         - value
+    ml._common:LLM:
+      type: object
+      properties:
+        model_id:
+          type: string
+        parameters:
+          $ref: '#/components/schemas/ml._common:Parameters'
+    ml._common:Memory:
+      type: object
+      properties:
+        type:
+          type: string
     ml._common:ModelGroup:
       type: object
       properties:
@@ -49345,6 +50269,33 @@ components:
       required:
         - model_group_id
         - status
+    ml._common:Parameters:
+      type: object
+      additionalProperties: true
+    ml._common:RegisterAgentsRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        tools:
+          type: array
+          items:
+            $ref: '#/components/schemas/ml._common:ToolItems'
+        parameters:
+          $ref: '#/components/schemas/ml._common:Parameters'
+        app_type:
+          type: string
+        memory:
+          $ref: '#/components/schemas/ml._common:Memory'
+        llm:
+          $ref: '#/components/schemas/ml._common:LLM'
+      required:
+        - name
+        - type
     ml._common:SearchModelsHits:
       type: object
       properties:
@@ -49431,6 +50382,16 @@ components:
           type: string
       required:
         - state
+    ml._common:ToolItems:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        parameters:
+          $ref: '#/components/schemas/ml._common:Parameters'
+      additionalProperties: true
     ml._common:UndeployModelNode:
       type: object
       properties:
