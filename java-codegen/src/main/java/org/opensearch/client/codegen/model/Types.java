@@ -75,7 +75,10 @@ public final class Types {
             public static final Type HashMap = Type.builder().withPackage(PACKAGE).withName("HashMap").build();
 
             public static Type Map(Type keyType, Type valueType) {
-                return Map.withTypeParams(keyType, valueType);
+                return Map.toBuilder()
+                    .withTypeParameters(keyType, valueType)
+                    .withTargetShape(valueType.getTargetShape().orElse(null))
+                    .build();
             }
 
             public static final Type Map = Type.builder().withPackage(PACKAGE).withName("Map").build();
@@ -85,7 +88,12 @@ public final class Types {
             }
 
             public static Type List(Type valueType) {
-                return Type.builder().withPackage(PACKAGE).withName("List").withTypeParameters(valueType).build();
+                return Type.builder()
+                    .withPackage(PACKAGE)
+                    .withName("List")
+                    .withTypeParameters(valueType)
+                    .withTargetShape(valueType.getTargetShape().orElse(null))
+                    .build();
             }
 
             public static final class Concurrent {
@@ -122,7 +130,7 @@ public final class Types {
         public static final String PACKAGE = "org.opensearch.client";
 
         public static Type ApiClient(Type transport, Type client) {
-            return ApiClient.withTypeParams(transport, client);
+            return ApiClient.withTypeParameters(transport, client);
         }
 
         public static final Type ApiClient = Type.builder().withPackage(PACKAGE).withName("ApiClient").build();
@@ -161,7 +169,7 @@ public final class Types {
             public static final Type Endpoint = Type.builder().withPackage(PACKAGE).withName("Endpoint").build();
 
             public static Type JsonEndpoint(Type requestType, Type responseType, Type errorType) {
-                return JsonEndpoint.withTypeParams(requestType, responseType, errorType);
+                return JsonEndpoint.withTypeParameters(requestType, responseType, errorType);
             }
 
             public static final Type JsonEndpoint = Type.builder().withPackage(PACKAGE).withName("JsonEndpoint").build();
@@ -179,14 +187,14 @@ public final class Types {
             public static final Type ApiTypeHelper = Type.builder().withPackage(PACKAGE).withName("ApiTypeHelper").build();
 
             public static Type ObjectBuilder(Type type) {
-                return ObjectBuilder.withTypeParams(type);
+                return ObjectBuilder.withTypeParameters(type);
             }
 
             public static final Type ObjectBuilder = Type.builder().withPackage(PACKAGE).withName("ObjectBuilder").build();
             public static final Type ObjectBuilderBase = Type.builder().withPackage(PACKAGE).withName("ObjectBuilderBase").build();
 
             public static Type TaggedUnion(Type tagType, Type baseType) {
-                return TaggedUnion.withTypeParams(tagType, baseType);
+                return TaggedUnion.withTypeParameters(tagType, baseType);
             }
 
             public static final Type TaggedUnion = Type.builder().withPackage(PACKAGE).withName("TaggedUnion").build();

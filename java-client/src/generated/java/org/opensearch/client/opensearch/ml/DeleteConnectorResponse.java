@@ -21,56 +21,56 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.WriteResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
 
-// typedef: ml.delete_model.Response
+// typedef: ml.delete_connector.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteModelResponse extends WriteResponseBase {
+public class DeleteConnectorResponse extends WriteResponseBase {
 
     // ---------------------------------------------------------------------------------------------
 
-    private DeleteModelResponse(Builder builder) {
+    private DeleteConnectorResponse(Builder builder) {
         super(builder);
     }
 
-    public static DeleteModelResponse of(Function<DeleteModelResponse.Builder, ObjectBuilder<DeleteModelResponse>> fn) {
+    public static DeleteConnectorResponse of(Function<DeleteConnectorResponse.Builder, ObjectBuilder<DeleteConnectorResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link DeleteModelResponse}.
+     * Builder for {@link DeleteConnectorResponse}.
      */
-    public static class Builder extends WriteResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteModelResponse> {
+    public static class Builder extends WriteResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteConnectorResponse> {
         @Override
         protected Builder self() {
             return this;
         }
 
         /**
-         * Builds a {@link DeleteModelResponse}.
+         * Builds a {@link DeleteConnectorResponse}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
-        public DeleteModelResponse build() {
+        public DeleteConnectorResponse build() {
             _checkSingleUse();
 
-            return new DeleteModelResponse(this);
+            return new DeleteConnectorResponse(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link DeleteModelResponse}
+     * Json deserializer for {@link DeleteConnectorResponse}
      */
-    public static final JsonpDeserializer<DeleteModelResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<DeleteConnectorResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        DeleteModelResponse::setupDeleteModelResponseDeserializer
+        DeleteConnectorResponse::setupDeleteConnectorResponseDeserializer
     );
 
-    protected static void setupDeleteModelResponseDeserializer(ObjectDeserializer<DeleteModelResponse.Builder> op) {
+    protected static void setupDeleteConnectorResponseDeserializer(ObjectDeserializer<DeleteConnectorResponse.Builder> op) {
         WriteResponseBase.setupWriteResponseBaseDeserializer(op);
     }
 }

@@ -17,9 +17,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -42,19 +40,70 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
         return new OpenSearchMlClient(this.transport, transportOptions);
     }
 
+    // ----- Endpoint: ml.create_connector
+
+    /**
+     * Creates a standalone connector.
+     */
+    public CreateConnectorResponse createConnector(CreateConnectorRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, CreateConnectorRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates a standalone connector.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreateConnectorRequest}
+     */
+    public final CreateConnectorResponse createConnector(Function<CreateConnectorRequest.Builder, ObjectBuilder<CreateConnectorRequest>> fn)
+        throws IOException, OpenSearchException {
+        return createConnector(fn.apply(new CreateConnectorRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.delete_agent
+
+    /**
+     * Delete an agent.
+     */
+    public DeleteAgentResponse deleteAgent(DeleteAgentRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, DeleteAgentRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Delete an agent.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteAgentRequest}
+     */
+    public final DeleteAgentResponse deleteAgent(Function<DeleteAgentRequest.Builder, ObjectBuilder<DeleteAgentRequest>> fn)
+        throws IOException, OpenSearchException {
+        return deleteAgent(fn.apply(new DeleteAgentRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.delete_connector
+
+    /**
+     * Deletes a standalone connector.
+     */
+    public DeleteConnectorResponse deleteConnector(DeleteConnectorRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, DeleteConnectorRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes a standalone connector.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteConnectorRequest}
+     */
+    public final DeleteConnectorResponse deleteConnector(Function<DeleteConnectorRequest.Builder, ObjectBuilder<DeleteConnectorRequest>> fn)
+        throws IOException, OpenSearchException {
+        return deleteConnector(fn.apply(new DeleteConnectorRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.delete_model
 
     /**
      * Deletes a model.
      */
     public DeleteModelResponse deleteModel(DeleteModelRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteModelRequest, DeleteModelResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteModelRequest,
-            DeleteModelResponse,
-            ErrorResponse>) DeleteModelRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+        return this.transport.performRequest(request, DeleteModelRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -73,13 +122,7 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
      * Deletes a model group.
      */
     public DeleteModelGroupResponse deleteModelGroup(DeleteModelGroupRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteModelGroupRequest, DeleteModelGroupResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteModelGroupRequest,
-            DeleteModelGroupResponse,
-            ErrorResponse>) DeleteModelGroupRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+        return this.transport.performRequest(request, DeleteModelGroupRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -99,13 +142,7 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
      * Deletes a task.
      */
     public DeleteTaskResponse deleteTask(DeleteTaskRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteTaskRequest, DeleteTaskResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteTaskRequest,
-            DeleteTaskResponse,
-            ErrorResponse>) DeleteTaskRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+        return this.transport.performRequest(request, DeleteTaskRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -124,13 +161,7 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
      * Deploys a model.
      */
     public DeployModelResponse deployModel(DeployModelRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeployModelRequest, DeployModelResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeployModelRequest,
-            DeployModelResponse,
-            ErrorResponse>) DeployModelRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+        return this.transport.performRequest(request, DeployModelRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -149,13 +180,7 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
      * Retrieves a model group.
      */
     public GetModelGroupResponse getModelGroup(GetModelGroupRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetModelGroupRequest, GetModelGroupResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetModelGroupRequest,
-            GetModelGroupResponse,
-            ErrorResponse>) GetModelGroupRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+        return this.transport.performRequest(request, GetModelGroupRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -174,13 +199,7 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
      * Retrieves a task.
      */
     public GetTaskResponse getTask(GetTaskRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetTaskRequest, GetTaskResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetTaskRequest,
-            GetTaskResponse,
-            ErrorResponse>) GetTaskRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+        return this.transport.performRequest(request, GetTaskRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -193,19 +212,32 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
         return getTask(fn.apply(new GetTaskRequest.Builder()).build());
     }
 
+    // ----- Endpoint: ml.register_agents
+
+    /**
+     * Register an agent.
+     */
+    public RegisterAgentsResponse registerAgents(RegisterAgentsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, RegisterAgentsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Register an agent.
+     *
+     * @param fn a function that initializes a builder to create the {@link RegisterAgentsRequest}
+     */
+    public final RegisterAgentsResponse registerAgents(Function<RegisterAgentsRequest.Builder, ObjectBuilder<RegisterAgentsRequest>> fn)
+        throws IOException, OpenSearchException {
+        return registerAgents(fn.apply(new RegisterAgentsRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.register_model
 
     /**
      * Registers a model.
      */
     public RegisterModelResponse registerModel(RegisterModelRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<RegisterModelRequest, RegisterModelResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            RegisterModelRequest,
-            RegisterModelResponse,
-            ErrorResponse>) RegisterModelRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+        return this.transport.performRequest(request, RegisterModelRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -224,13 +256,7 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
      * Registers a model group.
      */
     public RegisterModelGroupResponse registerModelGroup(RegisterModelGroupRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<RegisterModelGroupRequest, RegisterModelGroupResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            RegisterModelGroupRequest,
-            RegisterModelGroupResponse,
-            ErrorResponse>) RegisterModelGroupRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+        return this.transport.performRequest(request, RegisterModelGroupRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -250,13 +276,7 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
      * Undeploys a model.
      */
     public UndeployModelResponse undeployModel(UndeployModelRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<UndeployModelRequest, UndeployModelResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            UndeployModelRequest,
-            UndeployModelResponse,
-            ErrorResponse>) UndeployModelRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
+        return this.transport.performRequest(request, UndeployModelRequest._ENDPOINT, this.transportOptions);
     }
 
     /**

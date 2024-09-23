@@ -18,9 +18,20 @@ public enum OpenApiSchemaFormat {
     Double,
     Int32,
     Int64,
-    Binary;
+    Binary,
+    DateTime("date-time");
 
     private static final Map<String, OpenApiSchemaFormat> VALUES = Maps.createLookupOf(values(), OpenApiSchemaFormat::toString);
+
+    private final String format;
+
+    OpenApiSchemaFormat(String format) {
+        this.format = format;
+    }
+
+    OpenApiSchemaFormat() {
+        this.format = name().toLowerCase();
+    }
 
     @Nonnull
     public static OpenApiSchemaFormat from(@Nonnull String format) {
@@ -33,6 +44,6 @@ public enum OpenApiSchemaFormat {
 
     @Override
     public String toString() {
-        return name().toLowerCase();
+        return format;
     }
 }

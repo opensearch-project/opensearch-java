@@ -227,6 +227,7 @@ public class ShardFailure implements PlainJsonSerializable {
             return new ShardFailure(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

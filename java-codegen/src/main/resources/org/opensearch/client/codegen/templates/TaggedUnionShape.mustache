@@ -35,7 +35,7 @@
         switch (_kind) {
         {{#variants}}
             case {{#pascalCase}}{{name}}{{/pascalCase}}:
-                return {{#type.queryParamify}}this.{{name}}(){{/type.queryParamify}};
+                return {{#type.queryParamify}}this.{{#camelCase}}{{name}}{{/camelCase}}(){{/type.queryParamify}};
         {{/variants}}
             default:
                 throw new IllegalStateException("Unknown kind " + _kind);
@@ -56,7 +56,7 @@
      *
      * @throws IllegalStateException if the current variant is not the {@code {{name}}} kind.
      */
-    public {{type}} {{name}}() {
+    public {{type}} {{#camelCase}}{{name}}{{/camelCase}}() {
         return {{TYPES.Client.Util.TaggedUnionUtils}}.get(this, Kind.{{#pascalCase}}{{name}}{{/pascalCase}});
     }
 
@@ -84,15 +84,15 @@
         private Object _value;
 
         {{#variants}}
-        public {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{name}}({{type}} v) {
+        public {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{#camelCase}}{{name}}{{/camelCase}}({{type}} v) {
             this._kind = Kind.{{#pascalCase}}{{name}}{{/pascalCase}};
             this._value = v;
             return this;
         }
         {{#type.hasBuilder}}
 
-        public {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{name}}({{type.builderFnType}} fn) {
-            return this.{{name}}(fn.apply(new {{type.builderType}}()).build());
+        public {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{#camelCase}}{{name}}{{/camelCase}}({{type.builderFnType}} fn) {
+            return this.{{#camelCase}}{{name}}{{/camelCase}}(fn.apply(new {{type.builderType}}()).build());
         }
         {{/type.hasBuilder}}
 

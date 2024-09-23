@@ -15,7 +15,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class ObjectShape extends Shape {
-    protected Type extendsType;
     protected final Map<String, Field> bodyFields = new TreeMap<>();
     protected Field additionalPropertiesField;
 
@@ -25,6 +24,7 @@ public class ObjectShape extends Shape {
 
     public void addBodyField(Field field) {
         bodyFields.put(field.getName(), field);
+        tryAddReference(ReferenceKind.Field, field.getType());
     }
 
     public Collection<Field> getBodyFields() {
@@ -42,22 +42,13 @@ public class ObjectShape extends Shape {
 
     public void setAdditionalPropertiesField(Field field) {
         additionalPropertiesField = field;
+        if (field != null) {
+            tryAddReference(ReferenceKind.Field, field.getType());
+        }
     }
 
     public Field getAdditionalPropertiesField() {
         return additionalPropertiesField;
-    }
-
-    public void setExtendsType(Type extendsType) {
-        this.extendsType = extendsType;
-    }
-
-    public Type getExtendsType() {
-        return extendsType;
-    }
-
-    public boolean extendsOtherShape() {
-        return extendsType != null;
     }
 
     public boolean hasFieldsToSerialize() {
@@ -70,5 +61,9 @@ public class ObjectShape extends Shape {
 
     public Collection<Type> getAnnotations() {
         return (hasFieldsToSerialize() || extendsOtherShape()) && !isAbstract() ? List.of(Types.Client.Json.JsonpDeserializable) : null;
+    }
+
+    public static class BuilderModel {
+
     }
 }

@@ -4,16 +4,18 @@
      */
     public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.ObjectBuilderDeserializer}}.lazy(Builder::new, {{className}}::setup{{className}}Deserializer);
 
+{{/abstract}}
+{{^extendedByOtherShape}}
     protected static void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<{{type.builderType}}> op) {
-{{/abstract}}
-{{#abstract}}
+{{/extendedByOtherShape}}
+{{#extendedByOtherShape}}
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<BuilderT> op) {
-{{/abstract}}
+{{/extendedByOtherShape}}
     {{#extendsOtherShape}}
         {{extendsType}}.setup{{extendsType.name}}Deserializer(op);
     {{/extendsOtherShape}}
     {{#bodyFields}}
-        op.add({{#abstract}}Abstract{{/abstract}}Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{wireName}}{{/quoted}});
+        op.add({{#extendedByOtherShape}}Abstract{{/extendedByOtherShape}}Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{wireName}}{{/quoted}});
     {{/bodyFields}}
     {{#additionalPropertiesField}}
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {

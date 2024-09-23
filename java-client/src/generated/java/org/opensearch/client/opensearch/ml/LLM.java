@@ -28,29 +28,41 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: ml.UndeployModelNode
+// typedef: ml.LLM
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class UndeployModelNode implements PlainJsonSerializable {
+public class LLM implements PlainJsonSerializable {
 
-    private final Map<String, JsonData> stats;
+    @Nullable
+    private final String modelId;
+
+    private final Map<String, JsonData> parameters;
 
     // ---------------------------------------------------------------------------------------------
 
-    private UndeployModelNode(Builder builder) {
-        this.stats = ApiTypeHelper.unmodifiable(builder.stats);
+    private LLM(Builder builder) {
+        this.modelId = builder.modelId;
+        this.parameters = ApiTypeHelper.unmodifiable(builder.parameters);
     }
 
-    public static UndeployModelNode of(Function<UndeployModelNode.Builder, ObjectBuilder<UndeployModelNode>> fn) {
+    public static LLM of(Function<LLM.Builder, ObjectBuilder<LLM>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * API name: {@code stats}
+     * API name: {@code model_id}
      */
-    public final Map<String, JsonData> stats() {
-        return this.stats;
+    @Nullable
+    public final String modelId() {
+        return this.modelId;
+    }
+
+    /**
+     * API name: {@code parameters}
+     */
+    public final Map<String, JsonData> parameters() {
+        return this.parameters;
     }
 
     /**
@@ -64,10 +76,15 @@ public class UndeployModelNode implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (ApiTypeHelper.isDefined(this.stats)) {
-            generator.writeKey("stats");
+        if (this.modelId != null) {
+            generator.writeKey("model_id");
+            generator.write(this.modelId);
+        }
+
+        if (ApiTypeHelper.isDefined(this.parameters)) {
+            generator.writeKey("parameters");
             generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.stats.entrySet()) {
+            for (Map.Entry<String, JsonData> item0 : this.parameters.entrySet()) {
                 generator.writeKey(item0.getKey());
                 item0.getValue().serialize(generator, mapper);
             }
@@ -78,59 +95,67 @@ public class UndeployModelNode implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link UndeployModelNode}.
+     * Builder for {@link LLM}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UndeployModelNode> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LLM> {
         @Nullable
-        private Map<String, JsonData> stats;
+        private String modelId;
+        @Nullable
+        private Map<String, JsonData> parameters;
 
         /**
-         * API name: {@code stats}
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>stats</code>.
-         * </p>
+         * API name: {@code model_id}
          */
-        public final Builder stats(Map<String, JsonData> map) {
-            this.stats = _mapPutAll(this.stats, map);
+        public final Builder modelId(@Nullable String value) {
+            this.modelId = value;
             return this;
         }
 
         /**
-         * API name: {@code stats}
+         * API name: {@code parameters}
          *
          * <p>
-         * Adds an entry to <code>stats</code>.
+         * Adds all elements of <code>map</code> to <code>parameters</code>.
          * </p>
          */
-        public final Builder stats(String key, JsonData value) {
-            this.stats = _mapPut(this.stats, key, value);
+        public final Builder parameters(Map<String, JsonData> map) {
+            this.parameters = _mapPutAll(this.parameters, map);
             return this;
         }
 
         /**
-         * Builds a {@link UndeployModelNode}.
+         * API name: {@code parameters}
+         *
+         * <p>
+         * Adds an entry to <code>parameters</code>.
+         * </p>
+         */
+        public final Builder parameters(String key, JsonData value) {
+            this.parameters = _mapPut(this.parameters, key, value);
+            return this;
+        }
+
+        /**
+         * Builds a {@link LLM}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
-        public UndeployModelNode build() {
+        public LLM build() {
             _checkSingleUse();
 
-            return new UndeployModelNode(this);
+            return new LLM(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link UndeployModelNode}
+     * Json deserializer for {@link LLM}
      */
-    public static final JsonpDeserializer<UndeployModelNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        UndeployModelNode::setupUndeployModelNodeDeserializer
-    );
+    public static final JsonpDeserializer<LLM> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new, LLM::setupLLMDeserializer);
 
-    protected static void setupUndeployModelNodeDeserializer(ObjectDeserializer<UndeployModelNode.Builder> op) {
-        op.add(Builder::stats, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "stats");
+    protected static void setupLLMDeserializer(ObjectDeserializer<LLM.Builder> op) {
+        op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
+        op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "parameters");
     }
 }

@@ -21,56 +21,56 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.WriteResponseBase;
 import org.opensearch.client.util.ObjectBuilder;
 
-// typedef: ml.delete_model.Response
+// typedef: ml.delete_agent.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteModelResponse extends WriteResponseBase {
+public class DeleteAgentResponse extends WriteResponseBase {
 
     // ---------------------------------------------------------------------------------------------
 
-    private DeleteModelResponse(Builder builder) {
+    private DeleteAgentResponse(Builder builder) {
         super(builder);
     }
 
-    public static DeleteModelResponse of(Function<DeleteModelResponse.Builder, ObjectBuilder<DeleteModelResponse>> fn) {
+    public static DeleteAgentResponse of(Function<DeleteAgentResponse.Builder, ObjectBuilder<DeleteAgentResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link DeleteModelResponse}.
+     * Builder for {@link DeleteAgentResponse}.
      */
-    public static class Builder extends WriteResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteModelResponse> {
+    public static class Builder extends WriteResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteAgentResponse> {
         @Override
         protected Builder self() {
             return this;
         }
 
         /**
-         * Builds a {@link DeleteModelResponse}.
+         * Builds a {@link DeleteAgentResponse}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
-        public DeleteModelResponse build() {
+        public DeleteAgentResponse build() {
             _checkSingleUse();
 
-            return new DeleteModelResponse(this);
+            return new DeleteAgentResponse(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link DeleteModelResponse}
+     * Json deserializer for {@link DeleteAgentResponse}
      */
-    public static final JsonpDeserializer<DeleteModelResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<DeleteAgentResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        DeleteModelResponse::setupDeleteModelResponseDeserializer
+        DeleteAgentResponse::setupDeleteAgentResponseDeserializer
     );
 
-    protected static void setupDeleteModelResponseDeserializer(ObjectDeserializer<DeleteModelResponse.Builder> op) {
+    protected static void setupDeleteAgentResponseDeserializer(ObjectDeserializer<DeleteAgentResponse.Builder> op) {
         WriteResponseBase.setupWriteResponseBaseDeserializer(op);
     }
 }

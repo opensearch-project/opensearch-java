@@ -11,6 +11,7 @@ package org.opensearch.client.codegen.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -42,7 +43,6 @@ import org.opensearch.client.codegen.openapi.OpenApiSchema;
 import org.opensearch.client.codegen.openapi.OpenApiSchemaFormat;
 import org.opensearch.client.codegen.openapi.OpenApiSchemaType;
 import org.opensearch.client.codegen.openapi.OpenApiSpecification;
-import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Versions;
 
 public class SpecTransformer {
@@ -54,7 +54,7 @@ public class SpecTransformer {
     @Nonnull
     private final Namespace root = new Namespace();
     @Nonnull
-    private final Set<OpenApiSchema> visitedSchemas = new HashSet<>();
+    private final Map<OpenApiSchema, Shape> visitedSchemas = new ConcurrentHashMap<>();
     @Nonnull
     private final Map<OpenApiSchema, Type> schemaToType = new ConcurrentHashMap<>();
 
@@ -232,57 +232,74 @@ public class SpecTransformer {
         );
     }
 
-    private void visit(OpenApiSchema schema) {
+    private Shape visit(OpenApiSchema schema) {
         var namespace = schema.getNamespace().orElseThrow();
         var name = schema.getName().orElseThrow();
-        visit(root.child(namespace), name, namespace + "." + name, schema);
+        return visit(root.child(namespace), name, namespace + "." + name, schema);
     }
 
-    private void visit(Namespace parent, String className, String typedefName, OpenApiSchema schema) {
-        if (!visitedSchemas.add(schema)) {
-            return;
+    private Shape visit(Namespace parent, String className, String typedefName, OpenApiSchema schema) {
+        Shape shape = visitedSchemas.get(schema);
+
+        if (shape != null) {
+            return shape;
         }
 
         LOGGER.info("Visiting Schema: {}", schema);
 
-        Shape shape;
-
         var description = schema.getDescription().orElse(null);
+
+        var oneOf = schema.getOneOf();
 
         if (schema.isArray()) {
             shape = new ArrayShape(parent, className, mapType(schema), typedefName, description);
-        } else if (schema.determineSingleType().orElse(null) == OpenApiSchemaType.Object) {
-            var objShape = new ObjectShape(parent, className, typedefName, description);
-            visitInto(schema, objShape);
-            shape = objShape;
-        } else if (schema.isString() && schema.hasEnums()) {
-            var deprecatedEnums = schema.getDeprecatedEnums().orElseGet(Collections::emptySet);
-            shape = new EnumShape(
-                parent,
-                className,
-                Lists.map(schema.getEnums().orElseThrow(), v -> new EnumShape.Variant(v, deprecatedEnums.contains(v))),
-                typedefName,
-                description
-            );
-        } else if (schema.hasOneOf()) {
+            visitedSchemas.putIfAbsent(schema, shape);
+        } else if (schema.isStringEnum() || (oneOf.isPresent() && oneOf.get().stream().allMatch(OpenApiSchema::isStringEnum))) {
+            var variants = new ArrayList<EnumShape.Variant>();
+
+            if (oneOf.isPresent()) {
+                oneOf.get().forEach(s -> {
+                    var isDeprecated = s.getVersionDeprecated().isPresent();
+                    s.getEnums().orElseThrow().forEach(v -> variants.add(new EnumShape.Variant(v, isDeprecated)));
+                });
+            } else {
+                schema.getEnums().orElseThrow().forEach(v -> variants.add(new EnumShape.Variant(v, false)));
+            }
+
+            variants.sort(Comparator.comparing(EnumShape.Variant::getName));
+
+            shape = new EnumShape(parent, className, variants, typedefName, description);
+            visitedSchemas.putIfAbsent(schema, shape);
+        } else if (oneOf.isPresent()) {
             var taggedUnion = new TaggedUnionShape(parent, className, typedefName, description);
-            schema.getOneOf().orElseThrow().forEach(s -> {
+            shape = taggedUnion;
+            visitedSchemas.putIfAbsent(schema, shape);
+
+            oneOf.get().forEach(s -> {
                 var title = s.getTitle()
                     .orElseThrow(() -> new IllegalStateException("oneOf variant [" + s.getPointer() + "] is missing a `title` tag"));
                 taggedUnion.addVariant(title, mapType(s));
             });
-            shape = taggedUnion;
+        } else if (schema.determineSingleType().orElse(null) == OpenApiSchemaType.Object) {
+            var objShape = new ObjectShape(parent, className, typedefName, description);
+            shape = objShape;
+            visitedSchemas.putIfAbsent(schema, shape);
+
+            visitInto(schema, objShape);
         } else {
             throw new NotImplementedException("Unsupported schema: " + schema);
         }
 
         parent.addShape(shape);
+
+        return shape;
     }
 
     private void visitInto(OpenApiSchema schema, ObjectShape shape) {
         var allOf = schema.getAllOf();
         if (allOf.isPresent()) {
-            shape.setExtendsType(mapType(allOf.get().get(0)));
+            var baseSchema = allOf.get().get(0);
+            shape.setExtendsType(mapType(baseSchema));
             schema = allOf.get().get(1);
         }
 
@@ -392,13 +409,9 @@ public class SpecTransformer {
                 return mapType(schema);
             }
 
-            visit(schema);
+            var shape = visit(schema);
 
-            return Type.builder()
-                .withPackage(Types.Client.OpenSearch.PACKAGE + "." + schema.getNamespace().orElseThrow())
-                .withName(schema.getName().orElseThrow())
-                .isEnum(schema.hasEnums())
-                .build();
+            return shape.getType();
         }
 
         var oneOf = schema.getOneOf();
@@ -428,6 +441,7 @@ public class SpecTransformer {
             case Boolean:
                 return Types.Primitive.Boolean;
             case Integer:
+                return mapInteger(schema);
             case Number:
                 return mapNumber(schema);
         }
@@ -444,7 +458,9 @@ public class SpecTransformer {
 
         if (types.size() == 2
             && types.contains(OpenApiSchemaType.String)
-            && (types.contains(OpenApiSchemaType.Boolean) || types.contains(OpenApiSchemaType.Number))) {
+            && (types.contains(OpenApiSchemaType.Boolean)
+                || types.contains(OpenApiSchemaType.Integer)
+                || types.contains(OpenApiSchemaType.Number))) {
             return Types.Java.Lang.String;
         }
 
@@ -469,28 +485,40 @@ public class SpecTransformer {
         return Types.Java.Util.List(items);
     }
 
-    private Type mapNumber(OpenApiSchema schema) {
+    private Type mapInteger(OpenApiSchema schema) {
         var format = schema.getFormat().orElse(OpenApiSchemaFormat.Int32);
         switch (format) {
             case Int32:
                 return Types.Primitive.Int;
             case Int64:
                 return Types.Primitive.Long;
+            default:
+                throw new UnsupportedOperationException(
+                    "Can not get type name for integer [" + schema.getPointer() + "] with format: " + format
+                );
+        }
+    }
+
+    private Type mapNumber(OpenApiSchema schema) {
+        var format = schema.getFormat().orElse(OpenApiSchemaFormat.Float);
+        switch (format) {
             case Float:
                 return Types.Primitive.Float;
             case Double:
                 return Types.Primitive.Double;
             default:
-                throw new UnsupportedOperationException("Can not get type name for integer/number with format: " + format);
+                throw new UnsupportedOperationException(
+                    "Can not get type name for number [" + schema.getPointer() + "] with format: " + format
+                );
         }
     }
 
     private boolean shouldKeepRef(OpenApiSchema schema) {
-        if (schema.isNumber() || schema.isArray()) {
+        if (schema.isInteger() || schema.isNumber() || schema.isArray()) {
             return false;
         }
-        if (schema.isString() && schema.getEnums().isEmpty()) {
-            return false;
+        if (schema.isString()) {
+            return schema.hasEnums();
         }
         if (schema.isObject()
             && schema.getProperties().map(Map::isEmpty).orElse(true)
@@ -498,7 +526,8 @@ public class SpecTransformer {
             return false;
         }
         if (schema.getOneOf().isPresent()) {
-            return schema.getOneOf().orElseThrow().stream().allMatch(s -> s.getTitle().isPresent());
+            var oneOf = schema.getOneOf().orElseThrow();
+            return oneOf.stream().allMatch(s -> s.getTitle().isPresent()) || oneOf.stream().allMatch(OpenApiSchema::isStringEnum);
         }
         if (schema.getAllOf().isPresent()) {
             return schema.determineSingleType().orElse(null) == OpenApiSchemaType.Object;

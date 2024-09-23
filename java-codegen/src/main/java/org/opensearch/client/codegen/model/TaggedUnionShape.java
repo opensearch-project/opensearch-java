@@ -22,6 +22,7 @@ public class TaggedUnionShape extends ObjectShape {
 
     public void addVariant(String name, Type type) {
         variants.add(new Variant(name, type.getBoxed()));
+        tryAddReference(ReferenceKind.UnionVariant, type);
     }
 
     public Collection<Variant> getVariants() {

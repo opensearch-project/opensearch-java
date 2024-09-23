@@ -18,9 +18,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
-import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ObjectBuilder;
@@ -43,19 +41,75 @@ public class OpenSearchMlAsyncClient extends ApiClient<OpenSearchTransport, Open
         return new OpenSearchMlAsyncClient(this.transport, transportOptions);
     }
 
+    // ----- Endpoint: ml.create_connector
+
+    /**
+     * Creates a standalone connector.
+     */
+    public CompletableFuture<CreateConnectorResponse> createConnector(CreateConnectorRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, CreateConnectorRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates a standalone connector.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreateConnectorRequest}
+     */
+    public final CompletableFuture<CreateConnectorResponse> createConnector(
+        Function<CreateConnectorRequest.Builder, ObjectBuilder<CreateConnectorRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return createConnector(fn.apply(new CreateConnectorRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.delete_agent
+
+    /**
+     * Delete an agent.
+     */
+    public CompletableFuture<DeleteAgentResponse> deleteAgent(DeleteAgentRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteAgentRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Delete an agent.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteAgentRequest}
+     */
+    public final CompletableFuture<DeleteAgentResponse> deleteAgent(
+        Function<DeleteAgentRequest.Builder, ObjectBuilder<DeleteAgentRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteAgent(fn.apply(new DeleteAgentRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.delete_connector
+
+    /**
+     * Deletes a standalone connector.
+     */
+    public CompletableFuture<DeleteConnectorResponse> deleteConnector(DeleteConnectorRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteConnectorRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes a standalone connector.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteConnectorRequest}
+     */
+    public final CompletableFuture<DeleteConnectorResponse> deleteConnector(
+        Function<DeleteConnectorRequest.Builder, ObjectBuilder<DeleteConnectorRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteConnector(fn.apply(new DeleteConnectorRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.delete_model
 
     /**
      * Deletes a model.
      */
     public CompletableFuture<DeleteModelResponse> deleteModel(DeleteModelRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteModelRequest, DeleteModelResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteModelRequest,
-            DeleteModelResponse,
-            ErrorResponse>) DeleteModelRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(request, DeleteModelRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -76,13 +130,7 @@ public class OpenSearchMlAsyncClient extends ApiClient<OpenSearchTransport, Open
      */
     public CompletableFuture<DeleteModelGroupResponse> deleteModelGroup(DeleteModelGroupRequest request) throws IOException,
         OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteModelGroupRequest, DeleteModelGroupResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteModelGroupRequest,
-            DeleteModelGroupResponse,
-            ErrorResponse>) DeleteModelGroupRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(request, DeleteModelGroupRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -102,13 +150,7 @@ public class OpenSearchMlAsyncClient extends ApiClient<OpenSearchTransport, Open
      * Deletes a task.
      */
     public CompletableFuture<DeleteTaskResponse> deleteTask(DeleteTaskRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteTaskRequest, DeleteTaskResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteTaskRequest,
-            DeleteTaskResponse,
-            ErrorResponse>) DeleteTaskRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(request, DeleteTaskRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -127,13 +169,7 @@ public class OpenSearchMlAsyncClient extends ApiClient<OpenSearchTransport, Open
      * Deploys a model.
      */
     public CompletableFuture<DeployModelResponse> deployModel(DeployModelRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeployModelRequest, DeployModelResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeployModelRequest,
-            DeployModelResponse,
-            ErrorResponse>) DeployModelRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(request, DeployModelRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -153,13 +189,7 @@ public class OpenSearchMlAsyncClient extends ApiClient<OpenSearchTransport, Open
      * Retrieves a model group.
      */
     public CompletableFuture<GetModelGroupResponse> getModelGroup(GetModelGroupRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetModelGroupRequest, GetModelGroupResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetModelGroupRequest,
-            GetModelGroupResponse,
-            ErrorResponse>) GetModelGroupRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(request, GetModelGroupRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -179,13 +209,7 @@ public class OpenSearchMlAsyncClient extends ApiClient<OpenSearchTransport, Open
      * Retrieves a task.
      */
     public CompletableFuture<GetTaskResponse> getTask(GetTaskRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetTaskRequest, GetTaskResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetTaskRequest,
-            GetTaskResponse,
-            ErrorResponse>) GetTaskRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(request, GetTaskRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -198,19 +222,33 @@ public class OpenSearchMlAsyncClient extends ApiClient<OpenSearchTransport, Open
         return getTask(fn.apply(new GetTaskRequest.Builder()).build());
     }
 
+    // ----- Endpoint: ml.register_agents
+
+    /**
+     * Register an agent.
+     */
+    public CompletableFuture<RegisterAgentsResponse> registerAgents(RegisterAgentsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, RegisterAgentsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Register an agent.
+     *
+     * @param fn a function that initializes a builder to create the {@link RegisterAgentsRequest}
+     */
+    public final CompletableFuture<RegisterAgentsResponse> registerAgents(
+        Function<RegisterAgentsRequest.Builder, ObjectBuilder<RegisterAgentsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return registerAgents(fn.apply(new RegisterAgentsRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.register_model
 
     /**
      * Registers a model.
      */
     public CompletableFuture<RegisterModelResponse> registerModel(RegisterModelRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<RegisterModelRequest, RegisterModelResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            RegisterModelRequest,
-            RegisterModelResponse,
-            ErrorResponse>) RegisterModelRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(request, RegisterModelRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -231,13 +269,7 @@ public class OpenSearchMlAsyncClient extends ApiClient<OpenSearchTransport, Open
      */
     public CompletableFuture<RegisterModelGroupResponse> registerModelGroup(RegisterModelGroupRequest request) throws IOException,
         OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<RegisterModelGroupRequest, RegisterModelGroupResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            RegisterModelGroupRequest,
-            RegisterModelGroupResponse,
-            ErrorResponse>) RegisterModelGroupRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(request, RegisterModelGroupRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
@@ -257,13 +289,7 @@ public class OpenSearchMlAsyncClient extends ApiClient<OpenSearchTransport, Open
      * Undeploys a model.
      */
     public CompletableFuture<UndeployModelResponse> undeployModel(UndeployModelRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<UndeployModelRequest, UndeployModelResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            UndeployModelRequest,
-            UndeployModelResponse,
-            ErrorResponse>) UndeployModelRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+        return this.transport.performRequestAsync(request, UndeployModelRequest._ENDPOINT, this.transportOptions);
     }
 
     /**

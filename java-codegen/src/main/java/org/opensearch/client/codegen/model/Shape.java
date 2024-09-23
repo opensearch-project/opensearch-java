@@ -8,11 +8,17 @@
 
 package org.opensearch.client.codegen.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
+import javax.annotation.Nonnull;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.exceptions.RenderException;
@@ -20,11 +26,14 @@ import org.opensearch.client.codegen.utils.JavaClassKind;
 
 public abstract class Shape {
     private static final Logger LOGGER = LogManager.getLogger();
+    private final Set<Type> referencedTypes = new HashSet<>();
+    private final Map<ReferenceKind, List<Shape>> incomingReferences = new HashMap<>();
+    private final Map<ReferenceKind, List<Shape>> outgoingReferences = new HashMap<>();
     protected final Namespace parent;
     private final String className;
-    private final Set<Type> referencedTypes = new HashSet<>();
     private final String typedefName;
     private final String description;
+    private Type extendsType;
 
     public Shape(Namespace parent, String className, String typedefName, String description) {
         this.parent = parent;
@@ -46,7 +55,12 @@ public abstract class Shape {
     }
 
     public boolean isAbstract() {
-        return this.className.endsWith("Base") || this.className.startsWith("Base");
+        var refKinds = incomingReferences.entrySet()
+            .stream()
+            .filter(e -> !e.getValue().isEmpty())
+            .map(Map.Entry::getKey)
+            .collect(Collectors.toSet());
+        return !refKinds.isEmpty() && refKinds.stream().noneMatch(ReferenceKind::isConcreteUsage);
     }
 
     public String getTypedefName() {
@@ -66,15 +80,38 @@ public abstract class Shape {
     }
 
     public Type getExtendsType() {
-        return null;
+        return extendsType;
+    }
+
+    public void setExtendsType(Type extendsType) {
+        this.extendsType = extendsType;
+        tryAddReference(ReferenceKind.Extends, extendsType);
+    }
+
+    public boolean extendsOtherShape() {
+        return extendsType != null && extendsType.getTargetShape().isPresent();
+    }
+
+    public boolean extendedByOtherShape() {
+        return !incomingReferences.getOrDefault(ReferenceKind.Extends, Collections.emptyList()).isEmpty();
     }
 
     public Collection<Type> getImplementsTypes() {
         return Collections.emptyList();
     }
 
-    public Type getType() {
-        return Type.builder().withPackage(getPackageName()).withName(className).build();
+    protected void tryAddReference(ReferenceKind kind, Type to) {
+        if (to == null) return;
+        to.getTargetShape().ifPresent(s -> addReference(kind, s));
+    }
+
+    private void addReference(ReferenceKind kind, Shape to) {
+        outgoingReferences.computeIfAbsent(kind, k -> new ArrayList<>()).add(to);
+        to.incomingReferences.computeIfAbsent(kind, k -> new ArrayList<>()).add(this);
+    }
+
+    public @Nonnull Type getType() {
+        return Type.builder().withPackage(getPackageName()).withName(className).withTargetShape(this).build();
     }
 
     public Namespace getParent() {
