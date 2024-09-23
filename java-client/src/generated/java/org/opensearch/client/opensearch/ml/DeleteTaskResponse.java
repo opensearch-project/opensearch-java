@@ -59,6 +59,7 @@ public class DeleteTaskResponse extends WriteResponseBase {
             return new DeleteTaskResponse(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**

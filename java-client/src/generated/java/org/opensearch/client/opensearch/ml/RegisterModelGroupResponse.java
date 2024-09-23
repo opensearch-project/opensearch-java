@@ -128,6 +128,7 @@ public class RegisterModelGroupResponse implements PlainJsonSerializable {
             return new RegisterModelGroupResponse(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**
