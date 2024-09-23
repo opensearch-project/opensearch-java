@@ -35,7 +35,6 @@ package org.opensearch.client.opensearch.snapshot;
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.JsonEndpoint;
@@ -46,7 +45,7 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the snapshot namespace.
  */
-public class OpenSearchSnapshotClient extends ApiClient<OpenSearchTransport, OpenSearchSnapshotClient> {
+public class OpenSearchSnapshotClient extends OpenSearchSnapshotClientBase<OpenSearchSnapshotClient> {
 
     public OpenSearchSnapshotClient(OpenSearchTransport transport) {
         super(transport, null);
@@ -413,38 +412,4 @@ public class OpenSearchSnapshotClient extends ApiClient<OpenSearchTransport, Ope
             this.transportOptions
         );
     }
-
-    // ----- Endpoint: snapshot.verify_repository
-
-    /**
-     * Verifies a repository.
-     *
-     *
-     */
-
-    public VerifyRepositoryResponse verifyRepository(VerifyRepositoryRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            VerifyRepositoryRequest,
-            VerifyRepositoryResponse,
-            ErrorResponse>) VerifyRepositoryRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Verifies a repository.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link VerifyRepositoryRequest}
-     *
-     */
-
-    public final VerifyRepositoryResponse verifyRepository(
-        Function<VerifyRepositoryRequest.Builder, ObjectBuilder<VerifyRepositoryRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return verifyRepository(fn.apply(new VerifyRepositoryRequest.Builder()).build());
-    }
-
 }

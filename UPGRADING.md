@@ -43,3 +43,6 @@ After:
 
 ### GetTasksResponse response type
 - The type of `GetTasksResponse`'s `response` field has been changed from `tasks.Status` to `tasks.TaskResponse`.
+
+### VerifyRepositoryRequest property naming
+- The `name` field, getter and builder method have been renamed to `repository`.

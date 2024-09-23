@@ -30,11 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -49,18 +54,18 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: snapshot.verify_repository.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class VerifyRepositoryResponse implements PlainJsonSerializable {
+
     private final Map<String, CompactNodeInfo> nodes;
 
     // ---------------------------------------------------------------------------------------------
 
     private VerifyRepositoryResponse(Builder builder) {
-
         this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
-
     }
 
-    public static VerifyRepositoryResponse of(Function<Builder, ObjectBuilder<VerifyRepositoryResponse>> fn) {
+    public static VerifyRepositoryResponse of(Function<VerifyRepositoryResponse.Builder, ObjectBuilder<VerifyRepositoryResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -74,6 +79,7 @@ public class VerifyRepositoryResponse implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -81,19 +87,13 @@ public class VerifyRepositoryResponse implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.nodes)) {
-            generator.writeKey("nodes");
-            generator.writeStartObject();
-            for (Map.Entry<String, CompactNodeInfo> item0 : this.nodes.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("nodes");
+        generator.writeStartObject();
+        for (Map.Entry<String, CompactNodeInfo> item0 : this.nodes.entrySet()) {
+            generator.writeKey(item0.getKey());
+            item0.getValue().serialize(generator, mapper);
         }
-
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -101,14 +101,15 @@ public class VerifyRepositoryResponse implements PlainJsonSerializable {
     /**
      * Builder for {@link VerifyRepositoryResponse}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VerifyRepositoryResponse> {
         private Map<String, CompactNodeInfo> nodes;
 
         /**
          * Required - API name: {@code nodes}
+         *
          * <p>
-         * Adds all entries of <code>map</code> to <code>nodes</code>.
+         * Adds all elements of <code>map</code> to <code>nodes</code>.
+         * </p>
          */
         public final Builder nodes(Map<String, CompactNodeInfo> map) {
             this.nodes = _mapPutAll(this.nodes, map);
@@ -117,8 +118,10 @@ public class VerifyRepositoryResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code nodes}
+         *
          * <p>
          * Adds an entry to <code>nodes</code>.
+         * </p>
          */
         public final Builder nodes(String key, CompactNodeInfo value) {
             this.nodes = _mapPut(this.nodes, key, value);
@@ -127,8 +130,10 @@ public class VerifyRepositoryResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code nodes}
+         *
          * <p>
-         * Adds an entry to <code>nodes</code> using a builder lambda.
+         * Adds a value to <code>nodes</code> using a builder lambda.
+         * </p>
          */
         public final Builder nodes(String key, Function<CompactNodeInfo.Builder, ObjectBuilder<CompactNodeInfo>> fn) {
             return nodes(key, fn.apply(new CompactNodeInfo.Builder()).build());
@@ -137,8 +142,7 @@ public class VerifyRepositoryResponse implements PlainJsonSerializable {
         /**
          * Builds a {@link VerifyRepositoryResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public VerifyRepositoryResponse build() {
             _checkSingleUse();
@@ -158,9 +162,6 @@ public class VerifyRepositoryResponse implements PlainJsonSerializable {
     );
 
     protected static void setupVerifyRepositoryResponseDeserializer(ObjectDeserializer<VerifyRepositoryResponse.Builder> op) {
-
         op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(CompactNodeInfo._DESERIALIZER), "nodes");
-
     }
-
 }

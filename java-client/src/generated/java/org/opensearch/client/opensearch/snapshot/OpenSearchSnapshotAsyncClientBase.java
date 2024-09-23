@@ -34,55 +34,48 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch;
+package org.opensearch.client.opensearch.snapshot;
 
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch.core.InfoRequest;
-import org.opensearch.client.opensearch.core.InfoResponse;
-import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesClient;
-import org.opensearch.client.opensearch.ml.OpenSearchMlClient;
-import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotClient;
-import org.opensearch.client.opensearch.tasks.OpenSearchTasksClient;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.util.ObjectBuilder;
 
 /**
- * Client for the namespace.
+ * Client for the snapshot namespace.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Self>> extends ApiClient<OpenSearchTransport, Self> {
-    public OpenSearchClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+public abstract class OpenSearchSnapshotAsyncClientBase<Self extends OpenSearchSnapshotAsyncClientBase<Self>> extends ApiClient<
+    OpenSearchTransport,
+    Self> {
+    public OpenSearchSnapshotAsyncClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
     }
 
-    // ----- Child clients
-
-    public OpenSearchDanglingIndicesClient danglingIndices() {
-        return new OpenSearchDanglingIndicesClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchMlClient ml() {
-        return new OpenSearchMlClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchSnapshotClient snapshot() {
-        return new OpenSearchSnapshotClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchTasksClient tasks() {
-        return new OpenSearchTasksClient(this.transport, this.transportOptions);
-    }
-
-    // ----- Endpoint: info
+    // ----- Endpoint: snapshot.verify_repository
 
     /**
-     * Returns basic information about the cluster.
+     * Verifies a repository.
      */
-    public InfoResponse info() throws IOException, OpenSearchException {
-        return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
+    public CompletableFuture<VerifyRepositoryResponse> verifyRepository(VerifyRepositoryRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, VerifyRepositoryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Verifies a repository.
+     *
+     * @param fn a function that initializes a builder to create the {@link VerifyRepositoryRequest}
+     */
+    public final CompletableFuture<VerifyRepositoryResponse> verifyRepository(
+        Function<VerifyRepositoryRequest.Builder, ObjectBuilder<VerifyRepositoryRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return verifyRepository(fn.apply(new VerifyRepositoryRequest.Builder()).build());
     }
 }
