@@ -41,6 +41,68 @@ public class OpenSearchMlAsyncClient extends ApiClient<OpenSearchTransport, Open
         return new OpenSearchMlAsyncClient(this.transport, transportOptions);
     }
 
+    // ----- Endpoint: ml.create_connector
+
+    /**
+     * Creates a standalone connector.
+     */
+    public CompletableFuture<CreateConnectorResponse> createConnector(CreateConnectorRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, CreateConnectorRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates a standalone connector.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreateConnectorRequest}
+     */
+    public final CompletableFuture<CreateConnectorResponse> createConnector(
+        Function<CreateConnectorRequest.Builder, ObjectBuilder<CreateConnectorRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return createConnector(fn.apply(new CreateConnectorRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.delete_agent
+
+    /**
+     * Delete an agent.
+     */
+    public CompletableFuture<DeleteAgentResponse> deleteAgent(DeleteAgentRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteAgentRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Delete an agent.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteAgentRequest}
+     */
+    public final CompletableFuture<DeleteAgentResponse> deleteAgent(
+        Function<DeleteAgentRequest.Builder, ObjectBuilder<DeleteAgentRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteAgent(fn.apply(new DeleteAgentRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.delete_connector
+
+    /**
+     * Deletes a standalone connector.
+     */
+    public CompletableFuture<DeleteConnectorResponse> deleteConnector(DeleteConnectorRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteConnectorRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes a standalone connector.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteConnectorRequest}
+     */
+    public final CompletableFuture<DeleteConnectorResponse> deleteConnector(
+        Function<DeleteConnectorRequest.Builder, ObjectBuilder<DeleteConnectorRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteConnector(fn.apply(new DeleteConnectorRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.delete_model
 
     /**
@@ -158,6 +220,26 @@ public class OpenSearchMlAsyncClient extends ApiClient<OpenSearchTransport, Open
     public final CompletableFuture<GetTaskResponse> getTask(Function<GetTaskRequest.Builder, ObjectBuilder<GetTaskRequest>> fn)
         throws IOException, OpenSearchException {
         return getTask(fn.apply(new GetTaskRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.register_agents
+
+    /**
+     * Register an agent.
+     */
+    public CompletableFuture<RegisterAgentsResponse> registerAgents(RegisterAgentsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, RegisterAgentsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Register an agent.
+     *
+     * @param fn a function that initializes a builder to create the {@link RegisterAgentsRequest}
+     */
+    public final CompletableFuture<RegisterAgentsResponse> registerAgents(
+        Function<RegisterAgentsRequest.Builder, ObjectBuilder<RegisterAgentsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return registerAgents(fn.apply(new RegisterAgentsRequest.Builder()).build());
     }
 
     // ----- Endpoint: ml.register_model
