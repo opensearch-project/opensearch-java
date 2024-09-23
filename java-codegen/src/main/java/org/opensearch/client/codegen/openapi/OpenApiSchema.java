@@ -183,6 +183,10 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         return is(OpenApiSchemaType.Boolean);
     }
 
+    public boolean isInteger() {
+        return is(OpenApiSchemaType.Integer);
+    }
+
     public boolean isNumber() {
         return is(OpenApiSchemaType.Number);
     }
