@@ -30,12 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -55,19 +60,20 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: snapshot.clone.Request
 
 /**
- * Clones indices from one snapshot into another snapshot in the same
- * repository.
+ * Clones indices from one snapshot into another snapshot in the same repository.
  */
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerializable {
+
+    @Nullable
+    private final Time clusterManagerTimeout;
+
     private final String indices;
 
     @Deprecated
     @Nullable
     private final Time masterTimeout;
-
-    @Nullable
-    private final Time clusterManagerTimeout;
 
     private final String repository;
 
@@ -75,25 +81,30 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
 
     private final String targetSnapshot;
 
-    @Nullable
-    private final Time timeout;
-
     // ---------------------------------------------------------------------------------------------
 
     private CloneSnapshotRequest(Builder builder) {
-
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.indices = ApiTypeHelper.requireNonNull(builder.indices, this, "indices");
         this.masterTimeout = builder.masterTimeout;
-        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
         this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
         this.targetSnapshot = ApiTypeHelper.requireNonNull(builder.targetSnapshot, this, "targetSnapshot");
-        this.timeout = builder.timeout;
-
     }
 
-    public static CloneSnapshotRequest of(Function<Builder, ObjectBuilder<CloneSnapshotRequest>> fn) {
+    public static CloneSnapshotRequest of(Function<CloneSnapshotRequest.Builder, ObjectBuilder<CloneSnapshotRequest>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     * </p>
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
     }
 
     /**
@@ -107,26 +118,19 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
      * Explicit operation timeout for connection to master node
      * <p>
      * API name: {@code master_timeout}
+     * </p>
      */
+    @Deprecated
     @Nullable
     public final Time masterTimeout() {
         return this.masterTimeout;
     }
 
     /**
-     * Explicit operation timeout for connection to cluster-manager node
-     * <p>
-     * API name: {@code cluster_manager_timeout}
-     */
-    @Nullable
-    public final Time clusterManagerTimeout() {
-        return this.clusterManagerTimeout;
-    }
-
-    /**
      * Required - A repository name
      * <p>
      * API name: {@code repository}
+     * </p>
      */
     public final String repository() {
         return this.repository;
@@ -136,6 +140,7 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
      * Required - The name of the snapshot to clone from
      * <p>
      * API name: {@code snapshot}
+     * </p>
      */
     public final String snapshot() {
         return this.snapshot;
@@ -145,22 +150,16 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
      * Required - The name of the cloned snapshot to create
      * <p>
      * API name: {@code target_snapshot}
+     * </p>
      */
     public final String targetSnapshot() {
         return this.targetSnapshot;
     }
 
     /**
-     * API name: {@code timeout}
-     */
-    @Nullable
-    public final Time timeout() {
-        return this.timeout;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -168,36 +167,44 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("indices");
         generator.write(this.indices);
-
     }
-
     // ---------------------------------------------------------------------------------------------
 
     /**
      * Builder for {@link CloneSnapshotRequest}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloneSnapshotRequest> {
-        private String indices;
-
-        @Deprecated
-        @Nullable
-        private Time masterTimeout;
-
         @Nullable
         private Time clusterManagerTimeout;
-
+        private String indices;
+        @Nullable
+        private Time masterTimeout;
         private String repository;
-
         private String snapshot;
-
         private String targetSnapshot;
 
-        @Nullable
-        private Time timeout;
+        /**
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         * </p>
+         */
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
+
+        /**
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         * </p>
+         */
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
 
         /**
          * Required - API name: {@code indices}
@@ -211,6 +218,7 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
          * Explicit operation timeout for connection to master node
          * <p>
          * API name: {@code master_timeout}
+         * </p>
          */
         @Deprecated
         public final Builder masterTimeout(@Nullable Time value) {
@@ -222,35 +230,18 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
          * Explicit operation timeout for connection to master node
          * <p>
          * API name: {@code master_timeout}
+         * </p>
          */
         @Deprecated
         public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.masterTimeout(fn.apply(new Time.Builder()).build());
-        }
-
-        /**
-         * Explicit operation timeout for connection to cluster-manager node
-         * <p>
-         * API name: {@code cluster_manager_timeout}
-         */
-        public final Builder clusterManagerTimeout(@Nullable Time value) {
-            this.clusterManagerTimeout = value;
-            return this;
-        }
-
-        /**
-         * Explicit operation timeout for connection to cluster-manager node
-         * <p>
-         * API name: {@code cluster_manager_timeout}
-         */
-        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+            return masterTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
          * Required - A repository name
          * <p>
          * API name: {@code repository}
+         * </p>
          */
         public final Builder repository(String value) {
             this.repository = value;
@@ -261,6 +252,7 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
          * Required - The name of the snapshot to clone from
          * <p>
          * API name: {@code snapshot}
+         * </p>
          */
         public final Builder snapshot(String value) {
             this.snapshot = value;
@@ -271,6 +263,7 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
          * Required - The name of the cloned snapshot to create
          * <p>
          * API name: {@code target_snapshot}
+         * </p>
          */
         public final Builder targetSnapshot(String value) {
             this.targetSnapshot = value;
@@ -278,25 +271,9 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
         }
 
         /**
-         * API name: {@code timeout}
-         */
-        public final Builder timeout(@Nullable Time value) {
-            this.timeout = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code timeout}
-         */
-        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.timeout(fn.apply(new Time.Builder()).build());
-        }
-
-        /**
          * Builds a {@link CloneSnapshotRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public CloneSnapshotRequest build() {
             _checkSingleUse();
@@ -316,9 +293,7 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
     );
 
     protected static void setupCloneSnapshotRequestDeserializer(ObjectDeserializer<CloneSnapshotRequest.Builder> op) {
-
         op.add(Builder::indices, JsonpDeserializer.stringDeserializer(), "indices");
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -327,55 +302,29 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
      * Endpoint "{@code snapshot.clone}".
      */
     public static final Endpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "PUT";
-
-        },
-
+        request -> "PUT",
         // Request path
         request -> {
-            final int _targetSnapshot = 1 << 0;
-            final int _repository = 1 << 1;
-            final int _snapshot = 1 << 2;
-
-            int propsSet = 0;
-
-            propsSet |= _targetSnapshot;
-            propsSet |= _repository;
-            propsSet |= _snapshot;
-
-            if (propsSet == (_repository | _snapshot | _targetSnapshot)) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_snapshot");
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.repository, buf);
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.snapshot, buf);
-                buf.append("/_clone");
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.targetSnapshot, buf);
-                return buf.toString();
-            }
-            throw SimpleEndpoint.noPathTemplateFound("path");
-
+            StringBuilder buf = new StringBuilder();
+            buf.append("/_snapshot/");
+            SimpleEndpoint.pathEncode(request.repository, buf);
+            buf.append("/");
+            SimpleEndpoint.pathEncode(request.snapshot, buf);
+            buf.append("/_clone/");
+            SimpleEndpoint.pathEncode(request.targetSnapshot, buf);
+            return buf.toString();
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
             if (request.clusterManagerTimeout != null) {
                 params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
             }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
             }
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         true,

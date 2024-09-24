@@ -23,7 +23,7 @@ import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Namespace {
-    private static final Set<String> PARTIAL_NAMESPACES = Set.of("");
+    private static final Set<String> PARTIAL_NAMESPACES = Set.of("", "snapshot");
 
     private final Namespace parent;
     private final String name;

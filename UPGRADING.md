@@ -43,3 +43,12 @@ After:
 
 ### GetTasksResponse response type
 - The type of `GetTasksResponse`'s `response` field has been changed from `tasks.Status` to `tasks.TaskResponse`.
+
+### VerifyRepositoryRequest property naming
+- The `name` field, getter and builder method have been renamed to `repository`.
+
+### CleanupRepositoryRequest property naming
+- The `name` field, getter and builder method have been renamed to `repository`.
+
+### CloneSnapshotRequest timeout removal
+- The `timeout` field, getter and builder method have been removed from `CloneSnapshotRequest` as it is not supported by OpenSearch.

@@ -30,10 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot.cleanup_repository;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -47,7 +52,9 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: snapshot.cleanup_repository.CleanupRepositoryResults
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CleanupRepositoryResults implements PlainJsonSerializable {
+
     private final long deletedBlobs;
 
     private final long deletedBytes;
@@ -55,25 +62,29 @@ public class CleanupRepositoryResults implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private CleanupRepositoryResults(Builder builder) {
-
         this.deletedBlobs = ApiTypeHelper.requireNonNull(builder.deletedBlobs, this, "deletedBlobs");
         this.deletedBytes = ApiTypeHelper.requireNonNull(builder.deletedBytes, this, "deletedBytes");
-
     }
 
-    public static CleanupRepositoryResults of(Function<Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
+    public static CleanupRepositoryResults of(Function<CleanupRepositoryResults.Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code deleted_blobs}
+     * Required - Number of binary large objects (blobs) removed during cleanup.
+     * <p>
+     * API name: {@code deleted_blobs}
+     * </p>
      */
     public final long deletedBlobs() {
         return this.deletedBlobs;
     }
 
     /**
-     * Required - API name: {@code deleted_bytes}
+     * Required - Number of bytes freed by cleanup operations.
+     * <p>
+     * API name: {@code deleted_bytes}
+     * </p>
      */
     public final long deletedBytes() {
         return this.deletedBytes;
@@ -82,6 +93,7 @@ public class CleanupRepositoryResults implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -89,13 +101,11 @@ public class CleanupRepositoryResults implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("deleted_blobs");
         generator.write(this.deletedBlobs);
 
         generator.writeKey("deleted_bytes");
         generator.write(this.deletedBytes);
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -103,14 +113,15 @@ public class CleanupRepositoryResults implements PlainJsonSerializable {
     /**
      * Builder for {@link CleanupRepositoryResults}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryResults> {
         private Long deletedBlobs;
-
         private Long deletedBytes;
 
         /**
-         * Required - API name: {@code deleted_blobs}
+         * Required - Number of binary large objects (blobs) removed during cleanup.
+         * <p>
+         * API name: {@code deleted_blobs}
+         * </p>
          */
         public final Builder deletedBlobs(long value) {
             this.deletedBlobs = value;
@@ -118,7 +129,10 @@ public class CleanupRepositoryResults implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code deleted_bytes}
+         * Required - Number of bytes freed by cleanup operations.
+         * <p>
+         * API name: {@code deleted_bytes}
+         * </p>
          */
         public final Builder deletedBytes(long value) {
             this.deletedBytes = value;
@@ -128,8 +142,7 @@ public class CleanupRepositoryResults implements PlainJsonSerializable {
         /**
          * Builds a {@link CleanupRepositoryResults}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public CleanupRepositoryResults build() {
             _checkSingleUse();
@@ -149,10 +162,7 @@ public class CleanupRepositoryResults implements PlainJsonSerializable {
     );
 
     protected static void setupCleanupRepositoryResultsDeserializer(ObjectDeserializer<CleanupRepositoryResults.Builder> op) {
-
         op.add(Builder::deletedBlobs, JsonpDeserializer.longDeserializer(), "deleted_blobs");
         op.add(Builder::deletedBytes, JsonpDeserializer.longDeserializer(), "deleted_bytes");
-
     }
-
 }

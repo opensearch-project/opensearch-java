@@ -30,10 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot.verify_repository;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -47,18 +52,18 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: snapshot.verify_repository.CompactNodeInfo
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CompactNodeInfo implements PlainJsonSerializable {
+
     private final String name;
 
     // ---------------------------------------------------------------------------------------------
 
     private CompactNodeInfo(Builder builder) {
-
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-
     }
 
-    public static CompactNodeInfo of(Function<Builder, ObjectBuilder<CompactNodeInfo>> fn) {
+    public static CompactNodeInfo of(Function<CompactNodeInfo.Builder, ObjectBuilder<CompactNodeInfo>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -72,6 +77,7 @@ public class CompactNodeInfo implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -79,10 +85,8 @@ public class CompactNodeInfo implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("name");
         generator.write(this.name);
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -90,7 +94,6 @@ public class CompactNodeInfo implements PlainJsonSerializable {
     /**
      * Builder for {@link CompactNodeInfo}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompactNodeInfo> {
         private String name;
 
@@ -105,8 +108,7 @@ public class CompactNodeInfo implements PlainJsonSerializable {
         /**
          * Builds a {@link CompactNodeInfo}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public CompactNodeInfo build() {
             _checkSingleUse();
@@ -126,9 +128,6 @@ public class CompactNodeInfo implements PlainJsonSerializable {
     );
 
     protected static void setupCompactNodeInfoDeserializer(ObjectDeserializer<CompactNodeInfo.Builder> op) {
-
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-
     }
-
 }

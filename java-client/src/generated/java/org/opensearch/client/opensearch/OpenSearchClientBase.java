@@ -45,6 +45,7 @@ import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesClient;
 import org.opensearch.client.opensearch.ml.OpenSearchMlClient;
+import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotClient;
 import org.opensearch.client.opensearch.tasks.OpenSearchTasksClient;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
@@ -66,6 +67,10 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
 
     public OpenSearchMlClient ml() {
         return new OpenSearchMlClient(this.transport, this.transportOptions);
+    }
+
+    public OpenSearchSnapshotClient snapshot() {
+        return new OpenSearchSnapshotClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchTasksClient tasks() {
