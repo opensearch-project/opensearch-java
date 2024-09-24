@@ -49,3 +49,6 @@ After:
 
 ### CleanupRepositoryRequest property naming
 - The `name` field, getter and builder method have been renamed to `repository`.
+
+### CloneSnapshotRequest timeout removal
+- The `timeout` field, getter and builder method have been removed from `CloneSnapshotRequest` as it is not supported by OpenSearch.

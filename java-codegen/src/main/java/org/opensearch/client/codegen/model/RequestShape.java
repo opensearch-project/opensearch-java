@@ -169,6 +169,8 @@ public class RequestShape extends ObjectShape {
     private static String classBaseName(@Nonnull OperationGroup operationGroup) {
         Objects.requireNonNull(operationGroup, "operationGroup must not be null");
         switch (operationGroup.toString()) {
+            case "snapshot.clone":
+                return "CloneSnapshot";
             case "tasks.get":
                 return "GetTasks";
             default:

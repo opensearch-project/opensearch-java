@@ -44,7 +44,7 @@ public class CodeGenerator {
         and(namespace(""), named("info")),
         namespace("dangling_indices"),
         and(namespace("ml"), not(named("search_models"))), // TODO: search_models is complex and ideally should re-use the search structures
-        and(namespace("snapshot"), named("cleanup_repository", "verify_repository")),
+        and(namespace("snapshot"), named("cleanup_repository", "clone", "verify_repository")),
         and(namespace("tasks"))
     );
 
