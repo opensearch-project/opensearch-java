@@ -12,11 +12,15 @@ import static org.opensearch.client.codegen.model.Types.Client;
 import static org.opensearch.client.codegen.model.Types.Java;
 
 import com.samskivert.mustache.Mustache;
-import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import org.opensearch.client.codegen.renderer.lambdas.TypeIsDefinedLambda;
 import org.opensearch.client.codegen.renderer.lambdas.TypeQueryParamifyLambda;
 import org.opensearch.client.codegen.renderer.lambdas.TypeSerializerLambda;
+import org.opensearch.client.codegen.utils.ObjectBuilderBase;
+import org.opensearch.client.codegen.utils.Strings;
 
 public class Type {
     private static final Set<String> PRIMITIVES = Set.of(
@@ -36,44 +40,51 @@ public class Type {
         "float",
         "Float",
         "double",
-        "Double"
+        "Double",
+        "Number"
     );
 
+    @Nonnull
     public static Builder builder() {
         return new Builder();
     }
 
-    private final String pkg;
+    @Nullable
+    private final String packageName;
+    @Nonnull
     private final String name;
+    @Nullable
     private final Type[] typeParams;
-    private final boolean isEnum;
+    private final Shape targetShape;
 
     private Type(Builder builder) {
-        this.pkg = builder.pkg;
-        this.name = builder.name;
+        this.packageName = builder.packageName;
+        this.name = Strings.requireNonBlank(builder.name, "name must not be blank");
         this.typeParams = builder.typeParams;
-        this.isEnum = builder.isEnum;
+        this.targetShape = builder.targetShape;
     }
 
+    @Nonnull
     public Builder toBuilder() {
-        return new Builder().pkg(pkg).name(name).typeParams(typeParams).isEnum(isEnum);
+        return new Builder().withPackage(packageName).withName(name).withTypeParameters(typeParams).withTargetShape(targetShape);
     }
 
     @Override
     public String toString() {
-        String str = name;
-        if (typeParams != null && typeParams.length > 0) {
-            str += "<";
-            str += Arrays.stream(typeParams).map(Type::toString).collect(Collectors.joining(", "));
-            str += ">";
+        var out = new StringBuilder();
+        out.append(name);
+        if (typeParams != null) {
+            TypeParameterDiamond.builder().withParams(typeParams).build().toString(out);
         }
-        return str;
+        return out.toString();
     }
 
+    @Nonnull
     public String getName() {
         return name;
     }
 
+    @Nonnull
     public Type getBoxed() {
         switch (name) {
             case "char":
@@ -95,6 +106,11 @@ public class Type {
             default:
                 return this;
         }
+    }
+
+    @Nonnull
+    public Optional<Shape> getTargetShape() {
+        return Optional.ofNullable(targetShape);
     }
 
     public boolean isMap() {
@@ -141,8 +157,24 @@ public class Type {
         return PRIMITIVES.contains(name);
     }
 
+    public boolean isUnboxedPrimitive() {
+        return isPrimitive()
+            && !name.equals("String")
+            && !name.equals("Boolean")
+            && !name.equals("Character")
+            && !name.equals("Integer")
+            && !name.equals("Long")
+            && !name.equals("Float")
+            && !name.equals("Double")
+            && !name.equals("Number");
+    }
+
+    public boolean isNumber() {
+        return "Number".equals(name);
+    }
+
     public boolean isEnum() {
-        return isEnum;
+        return targetShape != null && targetShape instanceof EnumShape;
     }
 
     public boolean isTime() {
@@ -170,7 +202,7 @@ public class Type {
     }
 
     public Type getNestedType(String name) {
-        return builder().pkg(pkg).name(this.name + "." + name).build();
+        return builder().withPackage(packageName).withName(this.name + "." + name).build();
     }
 
     public Mustache.Lambda serializer() {
@@ -182,9 +214,9 @@ public class Type {
     }
 
     public void getRequiredImports(Set<String> imports, String currentPkg) {
-        if (pkg != null && !pkg.equals(Java.Lang.PACKAGE) && !pkg.equals(currentPkg)) {
+        if (packageName != null && !packageName.equals(Java.Lang.PACKAGE) && !packageName.equals(currentPkg)) {
             var dotIdx = name.indexOf('.');
-            imports.add(pkg + '.' + (dotIdx > 0 ? name.substring(0, dotIdx) : name));
+            imports.add(packageName + '.' + (dotIdx > 0 ? name.substring(0, dotIdx) : name));
         }
         if (typeParams != null) {
             for (Type arg : typeParams) {
@@ -193,42 +225,54 @@ public class Type {
         }
     }
 
-    public Type withTypeParams(Type... typeParams) {
-        return toBuilder().typeParams(typeParams).build();
+    public Type withTypeParameters(Type... typeParams) {
+        return toBuilder().withTypeParameters(typeParams).build();
     }
 
     public Mustache.Lambda queryParamify() {
         return new TypeQueryParamifyLambda(this);
     }
 
-    public static final class Builder {
-        private String pkg;
+    public Mustache.Lambda isDefined() {
+        return new TypeIsDefinedLambda(this);
+    }
+
+    public static final class Builder extends ObjectBuilderBase<Type, Builder> {
+        private String packageName;
         private String name;
         private Type[] typeParams;
-        private boolean isEnum;
+        private Shape targetShape;
 
-        public Builder pkg(String pkg) {
-            this.pkg = pkg;
+        private Builder() {}
+
+        @Nonnull
+        @Override
+        protected Type construct() {
+            return new Type(this);
+        }
+
+        @Nonnull
+        public Builder withPackage(@Nullable String packageName) {
+            this.packageName = packageName;
             return this;
         }
 
-        public Builder name(String name) {
-            this.name = name;
+        @Nonnull
+        public Builder withName(@Nonnull String name) {
+            this.name = Strings.requireNonBlank(name, "name must not be blank");
             return this;
         }
 
-        public Builder typeParams(Type... typeParams) {
+        @Nonnull
+        public Builder withTypeParameters(@Nullable Type... typeParams) {
             this.typeParams = typeParams;
             return this;
         }
 
-        public Builder isEnum(boolean isEnum) {
-            this.isEnum = isEnum;
+        @Nonnull
+        public Builder withTargetShape(Shape shape) {
+            this.targetShape = shape;
             return this;
-        }
-
-        public Type build() {
-            return new Type(this);
         }
     }
 }

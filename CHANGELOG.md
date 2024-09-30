@@ -3,9 +3,15 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.0]
 ### Dependencies
-- Bumps `org.junit:junit-bom` from 5.10.2 to 5.10.3
+- Bumps `org.junit:junit-bom` from 5.10.2 to 5.11.1
 - Bumps `org.owasp.dependencycheck` from 10.0.2 to 10.0.3
 - Bumps `org.eclipse.parsson:parsson` from 1.1.6 to 1.1.7
+- Bumps `org.hamcrest:hamcrest` from 2.2 to 3.0
+- Bumps `com.github.jk1.dependency-license-report` from 2.8 to 2.9
+- Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.2.5 to 5.3
+- Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.2.5 to 5.3
+- Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.3.1 to 5.4
+- Bumps `io.github.classgraph:classgraph` from 4.8.175 to 4.8.176
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
@@ -18,6 +24,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Migrate client transports to Apache HttpClient / Core 5.x ([#246](https://github.com/opensearch-project/opensearch-java/pull/246))
 - Changed SearchAfter of SearchRequest type to FieldValue instead of String ([#769](https://github.com/opensearch-project/opensearch-java/pull/769))
 - Changed type of `DanglingIndex`'s `creationDateMillis` field from `String` to `long` ([#1124](https://github.com/opensearch-project/opensearch-java/pull/1124))
+- Changed type of `ShardStatistics`'s `total`, `successful`, `failed` & `skipped` fields from `Number` to `int/Integer` ([#1158](https://github.com/opensearch-project/opensearch-java/pull/1158))
+- Unified `tasks.Info` and `tasks.State` classes into `tasks.TaskInfo` ([#1187](https://github.com/opensearch-project/opensearch-java/pull/1187))
 
 ### Deprecated
 - Deprecate RestClientTransport ([#536](https://github.com/opensearch-project/opensearch-java/pull/536))
@@ -26,28 +34,55 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
+- Fixed deserializing `tasks.ListResponse` when using `GroupBy.None` ([#1187](https://github.com/opensearch-project/opensearch-java/pull/1187))
 
 ### Security
 
 ## [Unreleased 2.x]
 
 ### Added
+- Add `hashCode` and `equals` implementations ([#312](https://github.com/opensearch-project/opensearch-java/pull/312)).
 
 ### Dependencies
+- Bumps `org.junit:junit-bom` from 5.10.3 to 5.11.0
 
 ### Changed
-- Changed URL path encoding to own implementation adapted from Apache HTTP Client 5's ([#1109](https://github.com/opensearch-project/opensearch-java/pull/1109))
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
-- Fixed error when deserializing a normalizer without 'type' ([#1111](https://github.com/opensearch-project/opensearch-java/pull/1111))
-- Fixed deserialization of SearchRequest when `_source` is an array ([#1117](https://github.com/opensearch-project/opensearch-java/pull/1117))
+- Fix queries not preserving boost and name when converted to builders ([#1181](https://github.com/opensearch-project/opensearch-java/pull/1181))
+- Remove required check on ShardStats.shards ([#1177](https://github.com/opensearch-project/opensearch-java/pull/1177))
 - Fixed `TextEmbeddingProcessor` returning the wrong processor kind ([#1127](https://github.com/opensearch-project/opensearch-java/pull/1127))
 
 ### Security
+
+## [2.14.0] - 08/27/2024
+### Added
+- Added `queryImage` (query_image) field to `NeuralQuery`, following definition in ([Neural Query](https://opensearch.org/docs/latest/query-dsl/specialized/neural/)) ([#1137](https://github.com/opensearch-project/opensearch-java/pull/1138))
+- Added `cancelAfterTimeInterval` to `SearchRequest` and `MsearchRequest` ([#1147](https://github.com/opensearch-project/opensearch-java/pull/1147))
+- Added the `ml` namespace operations ([#1158](https://github.com/opensearch-project/opensearch-java/pull/1158))
+- Added `IndexTemplateMapping.Builder#withJson`, `SourceField.Builder#withJson` and `IndexSettings.Builder#withJson` for streamlining deserialization ([#1148](https://github.com/opensearch-project/opensearch-java/pull/1148))
+
+### Dependencies
+- Bumps `commons-logging:commons-logging` from 1.3.3 to 1.3.4
+- Bumps `io.github.classgraph:classgraph` from 4.8.174 to 4.8.175
+
+### Fixed
+- Fixed handling of NodeInfo fields that are not returned by Amazon OpenSearch Service ([#1132](https://github.com/opensearch-project/opensearch-java/pull/1132))
+
+## [2.13.0] - 08/01/2024
+### Added
+- Added `searchAfterVals` to `SearchRequest` to allow passing arbitrary `FieldValue`s to `search_after` ([#1105](https://github.com/opensearch-project/opensearch-java/pull/1105))
+
+### Changed
+- Changed URL path encoding to own implementation adapted from Apache HTTP Client 5's ([#1109](https://github.com/opensearch-project/opensearch-java/pull/1109))
+
+### Fixed
+- Fixed error when deserializing a normalizer without 'type' ([#1111](https://github.com/opensearch-project/opensearch-java/pull/1111))
+- Fixed deserialization of SearchRequest when `_source` is an array ([#1117](https://github.com/opensearch-project/opensearch-java/pull/1117))
 
 ## [2.12.0] - 07/22/2024
 ### Added
@@ -497,7 +532,9 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.12.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.14.0...2.x
+[2.14.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.13.0...v2.14.0
+[2.13.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.12.0...v2.13.0
 [2.12.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.11.1...v2.12.0
 [2.11.1]: https://github.com/opensearch-project/opensearch-java/compare/v2.11.0...v2.11.1
 [2.11.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.10.4...v2.11.0

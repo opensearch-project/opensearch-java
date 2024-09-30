@@ -72,4 +72,15 @@ public class InfoRequest extends RequestBase {
         false,
         InfoResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

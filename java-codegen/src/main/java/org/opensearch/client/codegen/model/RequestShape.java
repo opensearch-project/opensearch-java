@@ -50,11 +50,6 @@ public class RequestShape extends ObjectShape {
         return operationGroup.getName();
     }
 
-    @Override
-    public boolean extendsOtherShape() {
-        return extendsType != Types.Client.OpenSearch._Types.RequestBase;
-    }
-
     public String getHttpMethod() {
         return Streams.sortedBy(httpMethods.stream(), m -> {
             switch (m) {
@@ -78,7 +73,7 @@ public class RequestShape extends ObjectShape {
     }
 
     public Type getResponseType() {
-        return Type.builder().pkg(getPackageName()).name(responseClassName(operationGroup)).build();
+        return Type.builder().withPackage(getPackageName()).withName(responseClassName(operationGroup)).build();
     }
 
     public boolean canBeSingleton() {
@@ -136,8 +131,15 @@ public class RequestShape extends ObjectShape {
         return pathParams.values();
     }
 
+    @Override
+    public void addBodyField(Field field) {
+        super.addBodyField(field);
+        addField(field);
+    }
+
     private void addField(Field field) {
         fields.put(field.getName(), field);
+        tryAddReference(ReferenceKind.Field, field.getType());
     }
 
     @Override
@@ -149,19 +151,34 @@ public class RequestShape extends ObjectShape {
         return fields.values().stream().anyMatch(Field::isRequired);
     }
 
+    public boolean hasFields() {
+        return !fields.isEmpty();
+    }
+
     public Type getJsonEndpointType() {
         return Types.Client.Transport.JsonEndpoint(getType(), getResponseType(), Types.Client.OpenSearch._Types.ErrorResponse);
     }
 
     @Nonnull
     private static String requestClassName(@Nonnull OperationGroup operationGroup) {
-        Objects.requireNonNull(operationGroup, "operationGroup must not be null");
-        return Strings.toPascalCase(operationGroup.getName()) + "Request";
+        return classBaseName(operationGroup) + "Request";
     }
 
     @Nonnull
     private static String responseClassName(@Nonnull OperationGroup operationGroup) {
+        return classBaseName(operationGroup) + "Response";
+    }
+
+    @Nonnull
+    private static String classBaseName(@Nonnull OperationGroup operationGroup) {
         Objects.requireNonNull(operationGroup, "operationGroup must not be null");
-        return Strings.toPascalCase(operationGroup.getName()) + "Response";
+        switch (operationGroup.toString()) {
+            case "snapshot.clone":
+                return "CloneSnapshot";
+            case "tasks.get":
+                return "GetTasks";
+            default:
+                return Strings.toPascalCase(operationGroup.getName());
+        }
     }
 }

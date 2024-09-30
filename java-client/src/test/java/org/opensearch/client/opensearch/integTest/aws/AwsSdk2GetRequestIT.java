@@ -13,7 +13,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch.OpenSearchClient;
-import org.opensearch.client.opensearch.core.*;
+import org.opensearch.client.opensearch.core.GetRequest;
+import org.opensearch.client.opensearch.core.GetResponse;
 
 public class AwsSdk2GetRequestIT extends AwsSdk2TransportTestCase {
     @Test

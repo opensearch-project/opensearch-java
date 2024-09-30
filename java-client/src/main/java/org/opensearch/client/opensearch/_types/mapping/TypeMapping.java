@@ -43,6 +43,7 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainDeserializable;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -363,7 +364,7 @@ public class TypeMapping implements PlainJsonSerializable {
      * Builder for {@link TypeMapping}.
      */
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TypeMapping> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TypeMapping>, PlainDeserializable<Builder> {
         @Nullable
         private AllField allField;
 
@@ -659,6 +660,11 @@ public class TypeMapping implements PlainJsonSerializable {
             _checkSingleUse();
 
             return new TypeMapping(this);
+        }
+
+        @Override
+        public Builder self() {
+            return this;
         }
     }
 

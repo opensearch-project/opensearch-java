@@ -61,7 +61,7 @@
                     int propsSet = 0;
 
                     {{#pathParams}}
-                    if ({{TYPES.Client.Util.ApiTypeHelper}}.isDefined(request.{{name}}())) propsSet |= _{{name}};
+                    {{^required}}if ({{#type.isDefined}}request.{{name}}(){{/type.isDefined}}) {{/required}}propsSet |= _{{name}};
                     {{/pathParams}}
 
                     {{#httpPaths}}
@@ -79,12 +79,7 @@
                 {{TYPES.Java.Util.Map}}<String, String> params = new {{TYPES.Java.Util.HashMap}}<>();
             {{#queryParams}}
             {{^required}}
-                {{#type.isListOrMap}}
-                if ({{TYPES.Client.Util.ApiTypeHelper}}.isDefined(request.{{name}})) {
-                {{/type.isListOrMap}}
-                {{^type.isListOrMap}}
-                if (request.{{name}} != null) {
-                {{/type.isListOrMap}}
+                if ({{#type.isDefined}}request.{{name}}{{/type.isDefined}}) {
             {{/required}}
                     params.put({{#quoted}}{{wireName}}{{/quoted}}, {{#type.queryParamify}}request.{{name}}{{/type.queryParamify}});
             {{^required}}
@@ -101,4 +96,8 @@
             {{hasRequestBody}},
             {{responseType}}._DESERIALIZER
     );
+
+    {{>ObjectShape/HashCode}}
+
+    {{>ObjectShape/Equals}}
 }

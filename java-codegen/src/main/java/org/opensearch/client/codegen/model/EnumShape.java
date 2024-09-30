@@ -43,9 +43,11 @@ public class EnumShape extends Shape {
 
     public static class Variant {
         private final String wireName;
+        private final boolean deprecated;
 
-        public Variant(String wireName) {
+        public Variant(String wireName, boolean deprecated) {
             this.wireName = wireName;
+            this.deprecated = deprecated;
         }
 
         public String getWireName() {
@@ -54,6 +56,10 @@ public class EnumShape extends Shape {
 
         public String getName() {
             return Strings.toPascalCase(wireName);
+        }
+
+        public boolean isDeprecated() {
+            return deprecated;
         }
     }
 }

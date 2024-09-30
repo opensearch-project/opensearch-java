@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch.dangling_indices;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -290,4 +291,25 @@ public class ImportDanglingIndexRequest extends RequestBase {
         false,
         ImportDanglingIndexResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.acceptDataLoss);
+        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
+        result = 31 * result + this.indexUuid.hashCode();
+        result = 31 * result + Objects.hashCode(this.masterTimeout);
+        result = 31 * result + Objects.hashCode(this.timeout);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        ImportDanglingIndexRequest other = (ImportDanglingIndexRequest) o;
+        return this.acceptDataLoss() == other.acceptDataLoss()
+            && Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
+            && Objects.equals(this.indexUuid, other.indexUuid)
+            && Objects.equals(this.masterTimeout, other.masterTimeout)
+            && Objects.equals(this.timeout, other.timeout);
+    }
 }

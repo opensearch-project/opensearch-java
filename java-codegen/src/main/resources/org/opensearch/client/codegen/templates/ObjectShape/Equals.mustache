@@ -1,0 +1,27 @@
+    public boolean equals(Object o) {
+        {{#extendsOtherShape}}
+            if(!super.equals(o)) {
+                return false;
+            }
+        {{/extendsOtherShape}}
+        if(this == o) return true;
+        if(this.getClass() != o.getClass()) return false;
+        {{^hasFields}}
+        return true;
+        {{/hasFields}}
+        {{#hasFields}}
+            {{className}} other = ({{className}})o;
+            return
+            {{#fields}}
+                {{#isUnboxedPrimitive}}
+                    this.{{name}}() == other.{{name}}()
+                {{/isUnboxedPrimitive}}
+                {{^isUnboxedPrimitive}}
+                    {{TYPES.Java.Util.Objects}}.equals(this.{{name}}, other.{{name}})
+                {{/isUnboxedPrimitive}}
+                {{^-last}}
+                && 
+                {{/-last}}
+            {{/fields}};
+        {{/hasFields}}
+    }

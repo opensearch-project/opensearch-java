@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -192,7 +193,6 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         if (this.buildFlavor != null) {
             generator.writeKey("build_flavor");
             generator.write(this.buildFlavor);
-
         }
 
         generator.writeKey("build_hash");
@@ -218,7 +218,6 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
 
         generator.writeKey("number");
         generator.write(this.number);
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -330,6 +329,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
             return new OpenSearchVersionInfo(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**
@@ -351,5 +351,36 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         op.add(Builder::minimumIndexCompatibilityVersion, JsonpDeserializer.stringDeserializer(), "minimum_index_compatibility_version");
         op.add(Builder::minimumWireCompatibilityVersion, JsonpDeserializer.stringDeserializer(), "minimum_wire_compatibility_version");
         op.add(Builder::number, JsonpDeserializer.stringDeserializer(), "number");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.buildDate.hashCode();
+        result = 31 * result + Objects.hashCode(this.buildFlavor);
+        result = 31 * result + this.buildHash.hashCode();
+        result = 31 * result + Boolean.hashCode(this.buildSnapshot);
+        result = 31 * result + this.buildType.hashCode();
+        result = 31 * result + this.distribution.hashCode();
+        result = 31 * result + this.luceneVersion.hashCode();
+        result = 31 * result + this.minimumIndexCompatibilityVersion.hashCode();
+        result = 31 * result + this.minimumWireCompatibilityVersion.hashCode();
+        result = 31 * result + this.number.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        OpenSearchVersionInfo other = (OpenSearchVersionInfo) o;
+        return Objects.equals(this.buildDate, other.buildDate)
+            && Objects.equals(this.buildFlavor, other.buildFlavor)
+            && Objects.equals(this.buildHash, other.buildHash)
+            && this.buildSnapshot() == other.buildSnapshot()
+            && Objects.equals(this.buildType, other.buildType)
+            && Objects.equals(this.distribution, other.distribution)
+            && Objects.equals(this.luceneVersion, other.luceneVersion)
+            && Objects.equals(this.minimumIndexCompatibilityVersion, other.minimumIndexCompatibilityVersion)
+            && Objects.equals(this.minimumWireCompatibilityVersion, other.minimumWireCompatibilityVersion)
+            && Objects.equals(this.number, other.number);
     }
 }

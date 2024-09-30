@@ -1,100 +1,41 @@
 {{^abstract}}
     /**
-     * Builder for {@link {{className}}}.
-     */
-    public static class Builder extends
-{{#extendsOtherShape}}
-        {{extendsType}}.AbstractBuilder<Builder>
-{{/extendsOtherShape}}
-{{^extendsOtherShape}}
-    {{TYPES.Client.Util.ObjectBuilderBase}}
-{{/extendsOtherShape}}
-        implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
+    * Builder for {@link {{className}}}.
+    */
     {{#extendsOtherShape}}
-        @Override
-        protected Builder self() {
-            return this;
+        public static class Builder extends {{extendsType}}.AbstractBuilder<Builder>
+                                    implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
+            {{>ObjectShape/Builder/SelfImpl}}
+
+            {{>ObjectShape/Builder/Fields}}
+
+            {{>ObjectShape/Builder/BuildImpl}}
         }
     {{/extendsOtherShape}}
+    {{^extendsOtherShape}}
+        {{#extendedByOtherShape}}
+            public static class Builder extends {{type}}.AbstractBuilder<Builder>
+                                        implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
+                {{>ObjectShape/Builder/SelfImpl}}
+
+                {{>ObjectShape/Builder/BuildImpl}}
+            }
+        {{/extendedByOtherShape}}
+        {{^extendedByOtherShape}}
+            public static class Builder extends {{TYPES.Client.Util.ObjectBuilderBase}}
+                                        implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
+                {{>ObjectShape/Builder/Fields}}
+
+                {{>ObjectShape/Builder/BuildImpl}}
+            }
+        {{/extendedByOtherShape}}
+    {{/extendsOtherShape}}
 {{/abstract}}
-{{#abstract}}
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends {{TYPES.Client.Util.ObjectBuilderBase}} {
-{{/abstract}}
-    {{#fields}}
-        {{^required}}@{{TYPES.Javax.Annotation.Nullable}} {{/required}}private {{type.boxed}} {{name}};
-    {{/fields}}
+{{#extendedByOtherShape}}
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+        extends {{#extendsOtherShape}}{{extendsType}}.AbstractBuilder<BuilderT>{{/extendsOtherShape}}{{^extendsOtherShape}}{{TYPES.Client.Util.ObjectBuilderBase}}{{/extendsOtherShape}} {
+        {{>ObjectShape/Builder/Fields}}
 
-    {{#fields}}
-        {{#type.isMap}}
-        {{>ObjectShape/FieldDoc/Basic}}
-        {{#deprecation}}@Deprecated{{/deprecation}}
-        public final Builder{{#abstract}}T{{/abstract}} {{name}}({{type}} map) {
-            this.{{name}} = _mapPutAll(this.{{name}}, map);
-            return {{^abstract}}this{{/abstract}}{{#abstract}}self(){{/abstract}};
-        }
-
-        {{>ObjectShape/FieldDoc/Basic}}
-        {{#deprecation}}@Deprecated{{/deprecation}}
-        public final Builder{{#abstract}}T{{/abstract}} {{name}}({{type.mapKeyType}} key, {{type.mapValueType}} value) {
-            this.{{name}} = _mapPut(this.{{name}}, key, value);
-            return {{^abstract}}this{{/abstract}}{{#abstract}}self(){{/abstract}};
-        }
-        {{/type.isMap}}
-        {{#type.isList}}
-        {{>ObjectShape/FieldDoc/ListAddAll}}
-        {{#deprecation}}@Deprecated{{/deprecation}}
-        public final Builder{{#abstract}}T{{/abstract}} {{name}}({{type}} list) {
-            this.{{name}} = _listAddAll(this.{{name}}, list);
-            return {{^abstract}}this{{/abstract}}{{#abstract}}self(){{/abstract}};
-        }
-
-        {{>ObjectShape/FieldDoc/ListAdd}}
-        {{#deprecation}}@Deprecated{{/deprecation}}
-        public final Builder{{#abstract}}T{{/abstract}} {{name}}({{type.listValueType}} value, {{type.listValueType}}... values) {
-            this.{{name}} = _listAdd(this.{{name}}, value, values);
-            return {{^abstract}}this{{/abstract}}{{#abstract}}self(){{/abstract}};
-        }
-        {{#type.listValueType.hasBuilder}}
-
-        {{>ObjectShape/FieldDoc/ListAddBuilderFn}}
-        {{#deprecation}}@Deprecated{{/deprecation}}
-        public final Builder{{#abstract}}T{{/abstract}} {{name}}({{type.listValueType.builderFnType}} fn) {
-            return {{name}}(fn.apply(new {{type.listValueType.builderType}}()).build());
-        }
-        {{/type.listValueType.hasBuilder}}
-        {{/type.isList}}
-        {{^type.isListOrMap}}
-        {{>ObjectShape/FieldDoc/Basic}}
-        {{#deprecation}}@Deprecated{{/deprecation}}
-        public final Builder{{#abstract}}T{{/abstract}} {{name}}({{^required}}@{{TYPES.Javax.Annotation.Nullable}} {{/required}}{{type}} value) {
-            this.{{name}} = value;
-            return {{^abstract}}this{{/abstract}}{{#abstract}}self(){{/abstract}};
-        }
-        {{#type.hasBuilder}}
-
-        {{>ObjectShape/FieldDoc/Basic}}
-        {{#deprecation}}@Deprecated{{/deprecation}}
-        public final Builder{{#abstract}}T{{/abstract}} {{name}}({{type.builderFnType}} fn) {
-            return {{name}}(fn.apply(new {{type.builderType}}()).build());
-        }
-        {{/type.hasBuilder}}
-        {{/type.isListOrMap}}
-
-    {{/fields}}
-    {{^abstract}}
-        /**
-         * Builds a {@link {{className}}}.
-         *
-         * @throws NullPointerException
-         *              if some of the required fields are null.
-         */
-        public {{className}} build() {
-            _checkSingleUse();
-
-            return new {{className}}(this);
-        }
-    {{/abstract}}
-    {{#abstract}}
         protected abstract BuilderT self();
-    {{/abstract}}
     }
+{{/extendedByOtherShape}}

@@ -87,6 +87,7 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
             return new DeleteDanglingIndexResponse(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**
@@ -99,5 +100,19 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
 
     protected static void setupDeleteDanglingIndexResponseDeserializer(ObjectDeserializer<DeleteDanglingIndexResponse.Builder> op) {
         AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+    }
+
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        return true;
     }
 }

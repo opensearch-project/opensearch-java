@@ -144,7 +144,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return new Builder().field(field)
+        return toBuilder(new Builder()).field(field)
             .minimumShouldMatchField(minimumShouldMatchField)
             .minimumShouldMatchScript(minimumShouldMatchScript)
             .terms(terms);

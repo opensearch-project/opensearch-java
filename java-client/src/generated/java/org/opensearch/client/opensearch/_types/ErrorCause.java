@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -148,7 +149,7 @@ public class ErrorCause implements PlainJsonSerializable {
     }
 
     /**
-     * Additional details about the error
+     * Additional details about the error.
      */
     public final Map<String, JsonData> metadata() {
         return this.metadata;
@@ -168,19 +169,15 @@ public class ErrorCause implements PlainJsonSerializable {
         for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
             generator.writeKey(item0.getKey());
             item0.getValue().serialize(generator, mapper);
-
         }
-
         if (this.causedBy != null) {
             generator.writeKey("caused_by");
             this.causedBy.serialize(generator, mapper);
-
         }
 
         if (this.reason != null) {
             generator.writeKey("reason");
             generator.write(this.reason);
-
         }
 
         if (ApiTypeHelper.isDefined(this.rootCause)) {
@@ -188,16 +185,13 @@ public class ErrorCause implements PlainJsonSerializable {
             generator.writeStartArray();
             for (ErrorCause item0 : this.rootCause) {
                 item0.serialize(generator, mapper);
-
             }
             generator.writeEnd();
-
         }
 
         if (this.stackTrace != null) {
             generator.writeKey("stack_trace");
             generator.write(this.stackTrace);
-
         }
 
         if (ApiTypeHelper.isDefined(this.suppressed)) {
@@ -205,15 +199,12 @@ public class ErrorCause implements PlainJsonSerializable {
             generator.writeStartArray();
             for (ErrorCause item0 : this.suppressed) {
                 item0.serialize(generator, mapper);
-
             }
             generator.writeEnd();
-
         }
 
         generator.writeKey("type");
         generator.write(this.type);
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -355,7 +346,11 @@ public class ErrorCause implements PlainJsonSerializable {
         }
 
         /**
-         * Additional details about the error
+         * Additional details about the error.
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>metadata</code>.
+         * </p>
          */
         public final Builder metadata(Map<String, JsonData> map) {
             this.metadata = _mapPutAll(this.metadata, map);
@@ -363,7 +358,11 @@ public class ErrorCause implements PlainJsonSerializable {
         }
 
         /**
-         * Additional details about the error
+         * Additional details about the error.
+         *
+         * <p>
+         * Adds an entry to <code>metadata</code>.
+         * </p>
          */
         public final Builder metadata(String key, JsonData value) {
             this.metadata = _mapPut(this.metadata, key, value);
@@ -381,6 +380,7 @@ public class ErrorCause implements PlainJsonSerializable {
             return new ErrorCause(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**
@@ -404,5 +404,30 @@ public class ErrorCause implements PlainJsonSerializable {
             }
             builder.metadata.put(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
         });
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.causedBy);
+        result = 31 * result + Objects.hashCode(this.reason);
+        result = 31 * result + Objects.hashCode(this.rootCause);
+        result = 31 * result + Objects.hashCode(this.stackTrace);
+        result = 31 * result + Objects.hashCode(this.suppressed);
+        result = 31 * result + this.type.hashCode();
+        result = 31 * result + Objects.hashCode(this.metadata);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        ErrorCause other = (ErrorCause) o;
+        return Objects.equals(this.causedBy, other.causedBy)
+            && Objects.equals(this.reason, other.reason)
+            && Objects.equals(this.rootCause, other.rootCause)
+            && Objects.equals(this.stackTrace, other.stackTrace)
+            && Objects.equals(this.suppressed, other.suppressed)
+            && Objects.equals(this.type, other.type)
+            && Objects.equals(this.metadata, other.metadata);
     }
 }

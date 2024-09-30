@@ -36,7 +36,6 @@ import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.JsonEndpoint;
@@ -47,7 +46,7 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the snapshot namespace.
  */
-public class OpenSearchSnapshotAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchSnapshotAsyncClient> {
+public class OpenSearchSnapshotAsyncClient extends OpenSearchSnapshotAsyncClientBase<OpenSearchSnapshotAsyncClient> {
 
     public OpenSearchSnapshotAsyncClient(OpenSearchTransport transport) {
         super(transport, null);
@@ -60,75 +59,6 @@ public class OpenSearchSnapshotAsyncClient extends ApiClient<OpenSearchTransport
     @Override
     public OpenSearchSnapshotAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
         return new OpenSearchSnapshotAsyncClient(this.transport, transportOptions);
-    }
-
-    // ----- Endpoint: snapshot.cleanup_repository
-
-    /**
-     * Removes stale data from repository.
-     *
-     *
-     */
-
-    public CompletableFuture<CleanupRepositoryResponse> cleanupRepository(CleanupRepositoryRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<CleanupRepositoryRequest, CleanupRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            CleanupRepositoryRequest,
-            CleanupRepositoryResponse,
-            ErrorResponse>) CleanupRepositoryRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Removes stale data from repository.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link CleanupRepositoryRequest}
-     *
-     */
-
-    public final CompletableFuture<CleanupRepositoryResponse> cleanupRepository(
-        Function<CleanupRepositoryRequest.Builder, ObjectBuilder<CleanupRepositoryRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return cleanupRepository(fn.apply(new CleanupRepositoryRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: snapshot.clone
-
-    /**
-     * Clones indices from one snapshot into another snapshot in the same
-     * repository.
-     *
-     *
-     */
-
-    public CompletableFuture<CloneSnapshotResponse> clone(CloneSnapshotRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            CloneSnapshotRequest,
-            CloneSnapshotResponse,
-            ErrorResponse>) CloneSnapshotRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Clones indices from one snapshot into another snapshot in the same
-     * repository.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link CloneSnapshotRequest}
-     *
-     */
-
-    public final CompletableFuture<CloneSnapshotResponse> clone(
-        Function<CloneSnapshotRequest.Builder, ObjectBuilder<CloneSnapshotRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return clone(fn.apply(new CloneSnapshotRequest.Builder()).build());
     }
 
     // ----- Endpoint: snapshot.create
@@ -422,39 +352,4 @@ public class OpenSearchSnapshotAsyncClient extends ApiClient<OpenSearchTransport
             this.transportOptions
         );
     }
-
-    // ----- Endpoint: snapshot.verify_repository
-
-    /**
-     * Verifies a repository.
-     *
-     *
-     */
-
-    public CompletableFuture<VerifyRepositoryResponse> verifyRepository(VerifyRepositoryRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            VerifyRepositoryRequest,
-            VerifyRepositoryResponse,
-            ErrorResponse>) VerifyRepositoryRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Verifies a repository.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link VerifyRepositoryRequest}
-     *
-     */
-
-    public final CompletableFuture<VerifyRepositoryResponse> verifyRepository(
-        Function<VerifyRepositoryRequest.Builder, ObjectBuilder<VerifyRepositoryRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return verifyRepository(fn.apply(new VerifyRepositoryRequest.Builder()).build());
-    }
-
 }

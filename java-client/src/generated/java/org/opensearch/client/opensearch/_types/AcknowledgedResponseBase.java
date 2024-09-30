@@ -81,7 +81,6 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeKey("acknowledged");
         generator.write(this.acknowledged);
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -102,11 +101,25 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
 
         protected abstract BuilderT self();
     }
+
     // ---------------------------------------------------------------------------------------------
 
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupAcknowledgedResponseBaseDeserializer(
         ObjectDeserializer<BuilderT> op
     ) {
         op.add(AbstractBuilder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.acknowledged);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        AcknowledgedResponseBase other = (AcknowledgedResponseBase) o;
+        return this.acknowledged() == other.acknowledged();
     }
 }

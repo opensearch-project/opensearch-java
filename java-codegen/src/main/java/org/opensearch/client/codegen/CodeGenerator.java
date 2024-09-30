@@ -8,6 +8,12 @@
 
 package org.opensearch.client.codegen;
 
+import static org.opensearch.client.codegen.model.OperationGroupMatcher.and;
+import static org.opensearch.client.codegen.model.OperationGroupMatcher.named;
+import static org.opensearch.client.codegen.model.OperationGroupMatcher.namespace;
+import static org.opensearch.client.codegen.model.OperationGroupMatcher.not;
+import static org.opensearch.client.codegen.model.OperationGroupMatcher.or;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,14 +32,21 @@ import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Namespace;
-import org.opensearch.client.codegen.model.OperationGroup;
+import org.opensearch.client.codegen.model.OperationGroupMatcher;
 import org.opensearch.client.codegen.model.ShapeRenderingContext;
 import org.opensearch.client.codegen.model.SpecTransformer;
+import org.opensearch.client.codegen.model.overrides.Overrides;
 import org.opensearch.client.codegen.openapi.OpenApiSpecification;
 
 public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final OperationGroup.Matcher OPERATION_MATCHER = OperationGroup.matcher().add(null, "info").add("dangling_indices");
+    private static final OperationGroupMatcher OPERATION_MATCHER = or(
+        and(namespace(""), named("info")),
+        namespace("dangling_indices"),
+        and(namespace("ml"), not(named("search_models"))), // TODO: search_models is complex and ideally should re-use the search structures
+        and(namespace("snapshot"), named("cleanup_repository", "clone", "verify_repository")),
+        and(namespace("tasks"))
+    );
 
     public static void main(String[] args) {
         var inputOpt = Option.builder("i")
@@ -111,7 +124,7 @@ public class CodeGenerator {
 
     private static Namespace parseSpec(URI location) throws ApiSpecificationParseException {
         var spec = OpenApiSpecification.retrieve(location);
-        var transformer = new SpecTransformer(OPERATION_MATCHER);
+        var transformer = new SpecTransformer(OPERATION_MATCHER, Overrides.OVERRIDES);
         transformer.visit(spec);
         return transformer.getRoot();
     }

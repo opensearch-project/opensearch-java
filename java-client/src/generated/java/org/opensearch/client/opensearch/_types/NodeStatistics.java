@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -135,10 +136,8 @@ public class NodeStatistics implements PlainJsonSerializable {
             generator.writeStartArray();
             for (ErrorCause item0 : this.failures) {
                 item0.serialize(generator, mapper);
-
             }
             generator.writeEnd();
-
         }
 
         generator.writeKey("successful");
@@ -146,7 +145,6 @@ public class NodeStatistics implements PlainJsonSerializable {
 
         generator.writeKey("total");
         generator.write(this.total);
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -241,6 +239,7 @@ public class NodeStatistics implements PlainJsonSerializable {
             return new NodeStatistics(this);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     /**
@@ -256,5 +255,24 @@ public class NodeStatistics implements PlainJsonSerializable {
         op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "failures");
         op.add(Builder::successful, JsonpDeserializer.integerDeserializer(), "successful");
         op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Integer.hashCode(this.failed);
+        result = 31 * result + Objects.hashCode(this.failures);
+        result = 31 * result + Integer.hashCode(this.successful);
+        result = 31 * result + Integer.hashCode(this.total);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        NodeStatistics other = (NodeStatistics) o;
+        return this.failed() == other.failed()
+            && Objects.equals(this.failures, other.failures)
+            && this.successful() == other.successful()
+            && this.total() == other.total();
     }
 }

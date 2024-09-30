@@ -40,7 +40,7 @@ buildscript {
         mavenLocal()
         maven(url = "https://aws.oss.sonatype.org/content/repositories/snapshots")
         mavenCentral()
-        maven(url = "https://plugins.gradle.org/m2/")
+        gradlePluginPortal()
     }
     dependencies {
         "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.0.0-SNAPSHOT")
@@ -51,9 +51,10 @@ plugins {
     java
     `java-library`
     `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "2.8"
-    id("org.owasp.dependencycheck") version "10.0.3"
-    id("com.diffplug.spotless") version "6.25.0"
+    id("com.github.jk1.dependency-license-report") version "2.9"
+    id("org.owasp.dependencycheck") version "10.0.4"
+
+    id("opensearch-java.spotless-conventions")
 }
 apply(plugin = "opensearch.repositories")
 apply(plugin = "org.owasp.dependencycheck")
@@ -177,19 +178,19 @@ dependencies {
     val jacksonDatabindVersion = "2.17.0"
 
     // Apache 2.0
-    api("commons-logging:commons-logging:1.3.3")
+    api("commons-logging:commons-logging:1.3.4")
     compileOnly("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
-    testImplementation("org.hamcrest:hamcrest:2.2")
+    testImplementation("org.hamcrest:hamcrest:3.0")
     testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.8.1") {
         exclude(group = "junit")
     }
     testImplementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
 
-    api("org.apache.httpcomponents.client5:httpclient5:5.3.1") {
+    api("org.apache.httpcomponents.client5:httpclient5:5.4") {
       exclude(group = "org.apache.httpcomponents.core5")
     }
-    api("org.apache.httpcomponents.core5:httpcore5:5.2.5")
-    api("org.apache.httpcomponents.core5:httpcore5-h2:5.2.5")
+    api("org.apache.httpcomponents.core5:httpcore5:5.3")
+    api("org.apache.httpcomponents.core5:httpcore5-h2:5.3")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
@@ -229,7 +230,7 @@ dependencies {
     implementation("org.eclipse", "yasson", "2.0.2")
 
     // https://github.com/classgraph/classgraph
-    testImplementation("io.github.classgraph:classgraph:4.8.174")
+    testImplementation("io.github.classgraph:classgraph:4.8.176")
 
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.13.2") {
@@ -296,31 +297,6 @@ tasks.withType<Jar> {
             "checksum"("algorithm" to "sha-256", "file" to archiveFile.get(), "fileext" to ".sha256")
             "checksum"("algorithm" to "sha-512", "file" to archiveFile.get(), "fileext" to ".sha512")
         }
-    }
-}
-
-spotless {
-    java {
-        target("**/*.java")
-
-        licenseHeaderFile("../LICENSE_HEADER.txt")
-            .named("PrimaryLicenseHeader")
-            .onlyIfContentMatches("^((?!Licensed to Elasticsearch)[\\s\\S])*$")
-            .delimiter("(package |//-----)")
-
-        licenseHeaderFile("../LICENSE_HEADER_FORKED.txt")
-            .named("ForkedLicenseHeader")
-            .onlyIfContentMatches("Licensed to Elasticsearch")
-            .delimiter("(package |//-----)")
-
-        // Use the default importOrder configuration
-        importOrder()
-        removeUnusedImports()
-
-        eclipse().configFile("../buildSrc/formatterConfig.xml")
-
-        trimTrailingWhitespace()
-        endWithNewline()
     }
 }
 

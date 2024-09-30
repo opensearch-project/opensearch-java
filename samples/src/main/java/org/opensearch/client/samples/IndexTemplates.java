@@ -13,7 +13,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch.cluster.PutComponentTemplateRequest;
-import org.opensearch.client.opensearch.indices.*;
+import org.opensearch.client.opensearch.indices.CreateIndexRequest;
+import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
+import org.opensearch.client.opensearch.indices.DeleteIndexTemplateRequest;
+import org.opensearch.client.opensearch.indices.GetIndicesSettingsRequest;
+import org.opensearch.client.opensearch.indices.GetIndicesSettingsResponse;
+import org.opensearch.client.opensearch.indices.GetMappingRequest;
+import org.opensearch.client.opensearch.indices.GetMappingResponse;
+import org.opensearch.client.opensearch.indices.PutIndexTemplateRequest;
 
 /**
  * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=IndexTemplates</c>

@@ -1,0 +1,22 @@
+    public int hashCode() {
+        {{#extendsOtherShape}}
+        int result = super.hashCode();
+        {{/extendsOtherShape}}
+        {{^extendsOtherShape}}
+        int result = 17;
+        {{/extendsOtherShape}}
+        {{#fields}}
+            {{#isUnboxedPrimitive}}
+                result = 31 * result + {{getBoxedType}}.hashCode(this.{{name}});
+            {{/isUnboxedPrimitive}}
+            {{^isUnboxedPrimitive}}
+                {{#isRequired}}
+                    result = 31 * result + this.{{name}}.hashCode();
+                {{/isRequired}}
+                {{^isRequired}}
+                    result = 31 * result + {{TYPES.Java.Util.Objects}}.hashCode(this.{{name}});
+                {{/isRequired}}
+            {{/isUnboxedPrimitive}}
+        {{/fields}}
+        return result;
+    }

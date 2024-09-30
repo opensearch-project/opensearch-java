@@ -22,11 +22,15 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Maps;
+import org.opensearch.client.codegen.utils.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.Sets;
+import org.opensearch.client.codegen.utils.Versions;
+import org.semver4j.Semver;
 
 public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     private static final JsonPointer ANONYMOUS = JsonPointer.of("<anonymous>");
 
+    public static final OpenApiSchema ANONYMOUS_UNTYPED = builder().withPointer(ANONYMOUS.append("untyped")).build();
     public static final OpenApiSchema ANONYMOUS_OBJECT = builder().withPointer(ANONYMOUS.append("object"))
         .withTypes(OpenApiSchemaType.Object)
         .build();
@@ -44,6 +48,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nullable
     private final List<OpenApiSchema> allOf;
     @Nullable
+    private final List<OpenApiSchema> anyOf;
+    @Nullable
     private final List<OpenApiSchema> oneOf;
     @Nullable
     private final List<String> enums;
@@ -59,6 +65,10 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     private final String title;
     @Nullable
     private final String pattern;
+    @Nullable
+    private final Semver versionRemoved;
+    @Nullable
+    private final Semver versionDeprecated;
 
     private OpenApiSchema(@Nonnull Builder builder) {
         super(builder.parent, Objects.requireNonNull(builder.pointer, "pointer must not be null"), builder.$ref, OpenApiSchema.class);
@@ -68,6 +78,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         types = builder.types;
         format = builder.format;
         allOf = builder.allOf;
+        anyOf = builder.anyOf;
         oneOf = builder.oneOf;
         enums = builder.enums;
         items = builder.items;
@@ -76,6 +87,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         required = builder.required;
         title = builder.title;
         pattern = builder.pattern;
+        versionRemoved = builder.versionRemoved;
+        versionDeprecated = builder.versionDeprecated;
     }
 
     protected OpenApiSchema(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer, @Nonnull Schema<?> schema) {
@@ -107,6 +120,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         format = ifNonnull(schema.getFormat(), OpenApiSchemaFormat::from);
 
         allOf = children("allOf", schema.getAllOf(), OpenApiSchema::new);
+        anyOf = children("anyOf", schema.getAnyOf(), OpenApiSchema::new);
         oneOf = children("oneOf", schema.getOneOf(), OpenApiSchema::new);
 
         enums = ifNonnull(schema.getEnum(), e -> Lists.map(e, String::valueOf));
@@ -121,6 +135,11 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         title = schema.getTitle();
 
         pattern = schema.getPattern();
+
+        var extensions = schema.getExtensions();
+
+        versionRemoved = Maps.tryGet(extensions, "x-version-removed").map(v -> Versions.coerce((String) v)).orElse(null);
+        versionDeprecated = Maps.tryGet(extensions, "x-version-deprecated").map(v -> Versions.coerce((String) v)).orElse(null);
     }
 
     @Nonnull
@@ -161,6 +180,10 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         return is(OpenApiSchemaType.Boolean);
     }
 
+    public boolean isInteger() {
+        return is(OpenApiSchemaType.Integer);
+    }
+
     public boolean isNumber() {
         return is(OpenApiSchemaType.Number);
     }
@@ -173,6 +196,10 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         return is(OpenApiSchemaType.String);
     }
 
+    public boolean isStringEnum() {
+        return isString() && hasEnums();
+    }
+
     public boolean hasAllOf() {
         return allOf != null && !allOf.isEmpty();
     }
@@ -180,6 +207,15 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nonnull
     public Optional<List<OpenApiSchema>> getAllOf() {
         return Lists.unmodifiableOpt(allOf);
+    }
+
+    public boolean hasAnyOf() {
+        return anyOf != null && !anyOf.isEmpty();
+    }
+
+    @Nonnull
+    public Optional<List<OpenApiSchema>> getAnyOf() {
+        return Lists.unmodifiableOpt(anyOf);
     }
 
     public boolean hasOneOf() {
@@ -231,23 +267,49 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     }
 
     @Nonnull
+    public Optional<Semver> getVersionRemoved() {
+        return Optional.ofNullable(versionRemoved);
+    }
+
+    @Nonnull
+    public Optional<Semver> getVersionDeprecated() {
+        return Optional.ofNullable(versionDeprecated);
+    }
+
+    public static Set<OpenApiSchemaType> determineTypes(List<OpenApiSchema> schemas) {
+        return schemas.stream().map(OpenApiSchema::determineTypes).flatMap(Set::stream).collect(Collectors.toSet());
+    }
+
+    private static String schemaTypeString(Set<OpenApiSchemaType> types) {
+        return types.stream().map(OpenApiSchemaType::toString).collect(Collectors.joining(", "));
+    }
+
+    @Nonnull
     public Set<OpenApiSchemaType> determineTypes() {
         if (types != null) {
             return Set.copyOf(types);
         } else if (has$ref()) {
             return resolve().determineTypes();
         } else if (allOf != null) {
-            var types = allOf.stream().map(OpenApiSchema::determineTypes).flatMap(Set::stream).collect(Collectors.toSet());
+            var types = determineTypes(allOf);
             if (types.size() > 1) {
-                var typeString = types.stream().map(OpenApiSchemaType::toString).collect(Collectors.joining(", "));
-                throw new IllegalStateException("allOf schema must have a uniform type [" + getPointer() + "]: " + typeString);
+                throw new IllegalStateException("allOf schema must have a uniform type [" + getPointer() + "]: " + schemaTypeString(types));
             }
             return types;
+        } else if (anyOf != null) {
+            return determineTypes(anyOf);
         } else if (oneOf != null) {
-            return oneOf.stream().map(OpenApiSchema::determineTypes).flatMap(Set::stream).collect(Collectors.toSet());
+            return determineTypes(oneOf);
         }
 
         throw new IllegalStateException("Cannot determine type for schema: " + getPointer());
+    }
+
+    @Nonnull
+    public Optional<OpenApiSchemaType> determineSingleType() {
+        var types = determineTypes();
+        if (types.size() != 1) return Optional.empty();
+        return Optional.of(types.iterator().next());
     }
 
     @Nonnull
@@ -255,7 +317,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         return new Builder();
     }
 
-    public static class Builder {
+    public static class Builder extends ObjectBuilderBase<OpenApiSchema, Builder> {
         @Nullable
         private OpenApiElement<?> parent;
         @Nullable
@@ -275,6 +337,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         @Nullable
         private List<OpenApiSchema> allOf;
         @Nullable
+        private List<OpenApiSchema> anyOf;
+        @Nullable
         private List<OpenApiSchema> oneOf;
         @Nullable
         private List<String> enums;
@@ -290,6 +354,18 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         private String title;
         @Nullable
         private String pattern;
+        @Nullable
+        private Semver versionRemoved;
+        @Nullable
+        private Semver versionDeprecated;
+
+        private Builder() {}
+
+        @Nonnull
+        @Override
+        protected OpenApiSchema construct() {
+            return new OpenApiSchema(this);
+        }
 
         @Nonnull
         public Builder withPointer(@Nonnull JsonPointer pointer) {
@@ -317,11 +393,6 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         public Builder withAllOf(@Nullable List<OpenApiSchema> allOf) {
             this.allOf = allOf;
             return this;
-        }
-
-        @Nonnull
-        public OpenApiSchema build() {
-            return new OpenApiSchema(this);
         }
     }
 }
