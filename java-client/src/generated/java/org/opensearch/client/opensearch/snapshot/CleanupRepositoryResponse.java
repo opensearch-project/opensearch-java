@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -137,5 +138,18 @@ public class CleanupRepositoryResponse implements PlainJsonSerializable {
 
     protected static void setupCleanupRepositoryResponseDeserializer(ObjectDeserializer<CleanupRepositoryResponse.Builder> op) {
         op.add(Builder::results, CleanupRepositoryResults._DESERIALIZER, "results");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.results.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        CleanupRepositoryResponse other = (CleanupRepositoryResponse) o;
+        return Objects.equals(this.results, other.results);
     }
 }

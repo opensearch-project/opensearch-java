@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -163,5 +164,18 @@ public class VerifyRepositoryResponse implements PlainJsonSerializable {
 
     protected static void setupVerifyRepositoryResponseDeserializer(ObjectDeserializer<VerifyRepositoryResponse.Builder> op) {
         op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(CompactNodeInfo._DESERIALIZER), "nodes");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.nodes.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        VerifyRepositoryResponse other = (VerifyRepositoryResponse) o;
+        return Objects.equals(this.nodes, other.nodes);
     }
 }

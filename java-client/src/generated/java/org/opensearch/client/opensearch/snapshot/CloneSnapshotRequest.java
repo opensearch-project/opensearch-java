@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch.snapshot;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -330,4 +331,27 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
         true,
         CloneSnapshotResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
+        result = 31 * result + this.indices.hashCode();
+        result = 31 * result + Objects.hashCode(this.masterTimeout);
+        result = 31 * result + this.repository.hashCode();
+        result = 31 * result + this.snapshot.hashCode();
+        result = 31 * result + this.targetSnapshot.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        CloneSnapshotRequest other = (CloneSnapshotRequest) o;
+        return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
+            && Objects.equals(this.indices, other.indices)
+            && Objects.equals(this.masterTimeout, other.masterTimeout)
+            && Objects.equals(this.repository, other.repository)
+            && Objects.equals(this.snapshot, other.snapshot)
+            && Objects.equals(this.targetSnapshot, other.targetSnapshot);
+    }
 }
