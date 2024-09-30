@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -278,5 +279,30 @@ public class ClientConfig implements PlainJsonSerializable {
         op.add(Builder::retryBackoffMillis, JsonpDeserializer.integerDeserializer(), "retry_backoff_millis");
         op.add(Builder::retryBackoffPolicy, JsonpDeserializer.stringDeserializer(), "retry_backoff_policy");
         op.add(Builder::retryTimeoutSeconds, JsonpDeserializer.integerDeserializer(), "retry_timeout_seconds");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Integer.hashCode(this.connectionTimeout);
+        result = 31 * result + Integer.hashCode(this.maxConnection);
+        result = 31 * result + Integer.hashCode(this.maxRetryTimes);
+        result = 31 * result + Integer.hashCode(this.readTimeout);
+        result = 31 * result + Integer.hashCode(this.retryBackoffMillis);
+        result = 31 * result + Objects.hashCode(this.retryBackoffPolicy);
+        result = 31 * result + Integer.hashCode(this.retryTimeoutSeconds);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        ClientConfig other = (ClientConfig) o;
+        return this.connectionTimeout() == other.connectionTimeout()
+            && this.maxConnection() == other.maxConnection()
+            && this.maxRetryTimes() == other.maxRetryTimes()
+            && this.readTimeout() == other.readTimeout()
+            && this.retryBackoffMillis() == other.retryBackoffMillis()
+            && Objects.equals(this.retryBackoffPolicy, other.retryBackoffPolicy)
+            && this.retryTimeoutSeconds() == other.retryTimeoutSeconds();
     }
 }

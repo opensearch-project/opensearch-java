@@ -72,6 +72,7 @@ public final class Types {
 
         public static final class Util {
             public static final String PACKAGE = Java.PACKAGE + ".util";
+            public static final Type Objects = Type.builder().withPackage(PACKAGE).withName("Objects").build();
             public static final Type HashMap = Type.builder().withPackage(PACKAGE).withName("HashMap").build();
 
             public static Type Map(Type keyType, Type valueType) {

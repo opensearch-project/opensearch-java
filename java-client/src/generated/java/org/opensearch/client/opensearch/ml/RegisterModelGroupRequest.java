@@ -14,6 +14,7 @@ package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -294,4 +295,25 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
         true,
         RegisterModelGroupResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.accessMode);
+        result = 31 * result + Boolean.hashCode(this.addAllBackendRoles);
+        result = 31 * result + Objects.hashCode(this.backendRoles);
+        result = 31 * result + Objects.hashCode(this.description);
+        result = 31 * result + this.name.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        RegisterModelGroupRequest other = (RegisterModelGroupRequest) o;
+        return Objects.equals(this.accessMode, other.accessMode)
+            && this.addAllBackendRoles() == other.addAllBackendRoles()
+            && Objects.equals(this.backendRoles, other.backendRoles)
+            && Objects.equals(this.description, other.description)
+            && Objects.equals(this.name, other.name);
+    }
 }

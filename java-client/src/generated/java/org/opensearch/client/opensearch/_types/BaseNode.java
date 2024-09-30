@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch._types;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -280,5 +281,28 @@ public abstract class BaseNode implements PlainJsonSerializable {
         op.add(AbstractBuilder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(AbstractBuilder::roles, JsonpDeserializer.arrayDeserializer(NodeRole._DESERIALIZER), "roles");
         op.add(AbstractBuilder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.attributes);
+        result = 31 * result + Objects.hashCode(this.host);
+        result = 31 * result + Objects.hashCode(this.ip);
+        result = 31 * result + this.name.hashCode();
+        result = 31 * result + Objects.hashCode(this.roles);
+        result = 31 * result + Objects.hashCode(this.transportAddress);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        BaseNode other = (BaseNode) o;
+        return Objects.equals(this.attributes, other.attributes)
+            && Objects.equals(this.host, other.host)
+            && Objects.equals(this.ip, other.ip)
+            && Objects.equals(this.name, other.name)
+            && Objects.equals(this.roles, other.roles)
+            && Objects.equals(this.transportAddress, other.transportAddress);
     }
 }

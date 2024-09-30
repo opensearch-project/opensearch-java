@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch.dangling_indices.list_dangling_indices;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -248,5 +249,26 @@ public class DanglingIndex implements PlainJsonSerializable {
         op.add(Builder::indexName, JsonpDeserializer.stringDeserializer(), "index_name");
         op.add(Builder::indexUuid, JsonpDeserializer.stringDeserializer(), "index_uuid");
         op.add(Builder::nodeIds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "node_ids");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.creationDate);
+        result = 31 * result + Long.hashCode(this.creationDateMillis);
+        result = 31 * result + this.indexName.hashCode();
+        result = 31 * result + this.indexUuid.hashCode();
+        result = 31 * result + this.nodeIds.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        DanglingIndex other = (DanglingIndex) o;
+        return Objects.equals(this.creationDate, other.creationDate)
+            && this.creationDateMillis() == other.creationDateMillis()
+            && Objects.equals(this.indexName, other.indexName)
+            && Objects.equals(this.indexUuid, other.indexUuid)
+            && Objects.equals(this.nodeIds, other.nodeIds);
     }
 }

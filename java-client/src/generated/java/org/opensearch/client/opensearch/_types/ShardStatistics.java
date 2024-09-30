@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -262,5 +263,26 @@ public class ShardStatistics implements PlainJsonSerializable {
         op.add(Builder::skipped, JsonpDeserializer.integerDeserializer(), "skipped");
         op.add(Builder::successful, JsonpDeserializer.integerDeserializer(), "successful");
         op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Integer.hashCode(this.failed);
+        result = 31 * result + Objects.hashCode(this.failures);
+        result = 31 * result + Integer.hashCode(this.skipped);
+        result = 31 * result + Integer.hashCode(this.successful);
+        result = 31 * result + Integer.hashCode(this.total);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        ShardStatistics other = (ShardStatistics) o;
+        return this.failed() == other.failed()
+            && Objects.equals(this.failures, other.failures)
+            && this.skipped() == other.skipped()
+            && this.successful() == other.successful()
+            && this.total() == other.total();
     }
 }

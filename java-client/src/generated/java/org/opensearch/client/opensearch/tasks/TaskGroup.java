@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch.tasks;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -161,5 +162,21 @@ public class TaskGroup extends TaskInfo {
     protected static void setupTaskGroupDeserializer(ObjectDeserializer<TaskGroup.Builder> op) {
         TaskInfo.setupTaskInfoDeserializer(op);
         op.add(Builder::children, JsonpDeserializer.arrayDeserializer(TaskGroup._DESERIALIZER), "children");
+    }
+
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.children);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        TaskGroup other = (TaskGroup) o;
+        return Objects.equals(this.children, other.children);
     }
 }

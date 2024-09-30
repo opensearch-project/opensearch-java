@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch.tasks;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -159,5 +160,21 @@ public class TaskExecutingNode extends BaseNode {
     protected static void setupTaskExecutingNodeDeserializer(ObjectDeserializer<TaskExecutingNode.Builder> op) {
         BaseNode.setupBaseNodeDeserializer(op);
         op.add(Builder::tasks, JsonpDeserializer.stringMapDeserializer(TaskInfo._DESERIALIZER), "tasks");
+    }
+
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + this.tasks.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        TaskExecutingNode other = (TaskExecutingNode) o;
+        return Objects.equals(this.tasks, other.tasks);
     }
 }

@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -766,5 +767,54 @@ public class Status implements PlainJsonSerializable {
             }
             builder.metadata.put(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
         });
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Integer.hashCode(this.batches);
+        result = 31 * result + Objects.hashCode(this.canceled);
+        result = 31 * result + Long.hashCode(this.created);
+        result = 31 * result + Long.hashCode(this.deleted);
+        result = 31 * result + Long.hashCode(this.noops);
+        result = 31 * result + Objects.hashCode(this.phase);
+        result = 31 * result + Float.hashCode(this.requestsPerSecond);
+        result = 31 * result + Objects.hashCode(this.retries);
+        result = 31 * result + Integer.hashCode(this.sliceId);
+        result = 31 * result + Objects.hashCode(this.slices);
+        result = 31 * result + Objects.hashCode(this.state);
+        result = 31 * result + Objects.hashCode(this.throttled);
+        result = 31 * result + Long.hashCode(this.throttledMillis);
+        result = 31 * result + Objects.hashCode(this.throttledUntil);
+        result = 31 * result + Long.hashCode(this.throttledUntilMillis);
+        result = 31 * result + Long.hashCode(this.total);
+        result = 31 * result + Long.hashCode(this.updated);
+        result = 31 * result + Long.hashCode(this.versionConflicts);
+        result = 31 * result + Objects.hashCode(this.metadata);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        Status other = (Status) o;
+        return this.batches() == other.batches()
+            && Objects.equals(this.canceled, other.canceled)
+            && this.created() == other.created()
+            && this.deleted() == other.deleted()
+            && this.noops() == other.noops()
+            && Objects.equals(this.phase, other.phase)
+            && this.requestsPerSecond() == other.requestsPerSecond()
+            && Objects.equals(this.retries, other.retries)
+            && this.sliceId() == other.sliceId()
+            && Objects.equals(this.slices, other.slices)
+            && Objects.equals(this.state, other.state)
+            && Objects.equals(this.throttled, other.throttled)
+            && this.throttledMillis() == other.throttledMillis()
+            && Objects.equals(this.throttledUntil, other.throttledUntil)
+            && this.throttledUntilMillis() == other.throttledUntilMillis()
+            && this.total() == other.total()
+            && this.updated() == other.updated()
+            && this.versionConflicts() == other.versionConflicts()
+            && Objects.equals(this.metadata, other.metadata);
     }
 }

@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -285,5 +286,30 @@ public class Action implements PlainJsonSerializable {
         op.add(Builder::preProcessFunction, JsonpDeserializer.stringDeserializer(), "pre_process_function");
         op.add(Builder::requestBody, JsonpDeserializer.stringDeserializer(), "request_body");
         op.add(Builder::url, JsonpDeserializer.stringDeserializer(), "url");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.actionType);
+        result = 31 * result + Objects.hashCode(this.headers);
+        result = 31 * result + Objects.hashCode(this.method);
+        result = 31 * result + Objects.hashCode(this.postProcessFunction);
+        result = 31 * result + Objects.hashCode(this.preProcessFunction);
+        result = 31 * result + Objects.hashCode(this.requestBody);
+        result = 31 * result + Objects.hashCode(this.url);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        Action other = (Action) o;
+        return Objects.equals(this.actionType, other.actionType)
+            && Objects.equals(this.headers, other.headers)
+            && Objects.equals(this.method, other.method)
+            && Objects.equals(this.postProcessFunction, other.postProcessFunction)
+            && Objects.equals(this.preProcessFunction, other.preProcessFunction)
+            && Objects.equals(this.requestBody, other.requestBody)
+            && Objects.equals(this.url, other.url);
     }
 }

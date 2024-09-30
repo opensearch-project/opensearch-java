@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch.tasks;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -310,4 +311,25 @@ public class CancelRequest extends RequestBase {
         false,
         CancelResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.actions);
+        result = 31 * result + Objects.hashCode(this.nodes);
+        result = 31 * result + Objects.hashCode(this.parentTaskId);
+        result = 31 * result + Objects.hashCode(this.taskId);
+        result = 31 * result + Boolean.hashCode(this.waitForCompletion);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        CancelRequest other = (CancelRequest) o;
+        return Objects.equals(this.actions, other.actions)
+            && Objects.equals(this.nodes, other.nodes)
+            && Objects.equals(this.parentTaskId, other.parentTaskId)
+            && Objects.equals(this.taskId, other.taskId)
+            && this.waitForCompletion() == other.waitForCompletion();
+    }
 }

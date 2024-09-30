@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch.tasks;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -231,5 +232,24 @@ public class GetTasksResponse implements PlainJsonSerializable {
         op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
         op.add(Builder::response, TaskResponse._DESERIALIZER, "response");
         op.add(Builder::task, TaskInfo._DESERIALIZER, "task");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.completed);
+        result = 31 * result + Objects.hashCode(this.error);
+        result = 31 * result + Objects.hashCode(this.response);
+        result = 31 * result + this.task.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        GetTasksResponse other = (GetTasksResponse) o;
+        return this.completed() == other.completed()
+            && Objects.equals(this.error, other.error)
+            && Objects.equals(this.response, other.response)
+            && Objects.equals(this.task, other.task);
     }
 }

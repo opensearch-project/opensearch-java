@@ -12,6 +12,7 @@
 
 package org.opensearch.client.opensearch.ml;
 
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import org.opensearch.client.opensearch._types.ErrorResponse;
@@ -99,4 +100,17 @@ public class UndeployModelRequest extends RequestBase {
         false,
         UndeployModelResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.modelId.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        UndeployModelRequest other = (UndeployModelRequest) o;
+        return Objects.equals(this.modelId, other.modelId);
+    }
 }

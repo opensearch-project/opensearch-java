@@ -101,4 +101,18 @@ public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
     protected static void setupImportDanglingIndexResponseDeserializer(ObjectDeserializer<ImportDanglingIndexResponse.Builder> op) {
         AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
     }
+
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

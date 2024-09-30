@@ -151,6 +151,10 @@ public class RequestShape extends ObjectShape {
         return fields.values().stream().anyMatch(Field::isRequired);
     }
 
+    public boolean hasFields() {
+        return !fields.isEmpty();
+    }
+
     public Type getJsonEndpointType() {
         return Types.Client.Transport.JsonEndpoint(getType(), getResponseType(), Types.Client.OpenSearch._Types.ErrorResponse);
     }

@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -255,5 +256,28 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
         op.add(Builder::lastUpdatedTime, JsonpDeserializer.longDeserializer(), "last_updated_time");
         op.add(Builder::latestVersion, JsonpDeserializer.integerDeserializer(), "latest_version");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.access.hashCode();
+        result = 31 * result + Long.hashCode(this.createdTime);
+        result = 31 * result + this.description.hashCode();
+        result = 31 * result + Long.hashCode(this.lastUpdatedTime);
+        result = 31 * result + Integer.hashCode(this.latestVersion);
+        result = 31 * result + this.name.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        GetModelGroupResponse other = (GetModelGroupResponse) o;
+        return Objects.equals(this.access, other.access)
+            && this.createdTime() == other.createdTime()
+            && Objects.equals(this.description, other.description)
+            && this.lastUpdatedTime() == other.lastUpdatedTime()
+            && this.latestVersion() == other.latestVersion()
+            && Objects.equals(this.name, other.name);
     }
 }

@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch.tasks;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -207,4 +208,21 @@ public class GetTasksRequest extends RequestBase {
         false,
         GetTasksResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.taskId.hashCode();
+        result = 31 * result + Objects.hashCode(this.timeout);
+        result = 31 * result + Boolean.hashCode(this.waitForCompletion);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        GetTasksRequest other = (GetTasksRequest) o;
+        return Objects.equals(this.taskId, other.taskId)
+            && Objects.equals(this.timeout, other.timeout)
+            && this.waitForCompletion() == other.waitForCompletion();
+    }
 }

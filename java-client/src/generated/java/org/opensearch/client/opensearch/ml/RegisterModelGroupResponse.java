@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -142,5 +143,19 @@ public class RegisterModelGroupResponse implements PlainJsonSerializable {
     protected static void setupRegisterModelGroupResponseDeserializer(ObjectDeserializer<RegisterModelGroupResponse.Builder> op) {
         op.add(Builder::modelGroupId, JsonpDeserializer.stringDeserializer(), "model_group_id");
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.modelGroupId.hashCode();
+        result = 31 * result + this.status.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        RegisterModelGroupResponse other = (RegisterModelGroupResponse) o;
+        return Objects.equals(this.modelGroupId, other.modelGroupId) && Objects.equals(this.status, other.status);
     }
 }

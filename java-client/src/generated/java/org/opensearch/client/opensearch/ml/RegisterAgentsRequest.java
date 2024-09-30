@@ -15,6 +15,7 @@ package org.opensearch.client.opensearch.ml;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -386,4 +387,31 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
         true,
         RegisterAgentsResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.appType);
+        result = 31 * result + Objects.hashCode(this.description);
+        result = 31 * result + Objects.hashCode(this.llm);
+        result = 31 * result + Objects.hashCode(this.memory);
+        result = 31 * result + this.name.hashCode();
+        result = 31 * result + Objects.hashCode(this.parameters);
+        result = 31 * result + Objects.hashCode(this.tools);
+        result = 31 * result + this.type.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        RegisterAgentsRequest other = (RegisterAgentsRequest) o;
+        return Objects.equals(this.appType, other.appType)
+            && Objects.equals(this.description, other.description)
+            && Objects.equals(this.llm, other.llm)
+            && Objects.equals(this.memory, other.memory)
+            && Objects.equals(this.name, other.name)
+            && Objects.equals(this.parameters, other.parameters)
+            && Objects.equals(this.tools, other.tools)
+            && Objects.equals(this.type, other.type);
+    }
 }

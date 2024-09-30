@@ -160,4 +160,19 @@ public class TaskInfos implements TaggedUnion<TaskInfos.Kind, Object>, PlainJson
     }
 
     public static final JsonpDeserializer<TaskInfos> _DESERIALIZER = JsonpDeserializer.lazy(TaskInfos::buildTaskInfosDeserializer);
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + _kind.hashCode();
+        result = 31 * result + _value.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        TaskInfos other = (TaskInfos) o;
+        return this._kind().equals(other._kind()) && this._get().equals(other._get());
+    }
+
 }

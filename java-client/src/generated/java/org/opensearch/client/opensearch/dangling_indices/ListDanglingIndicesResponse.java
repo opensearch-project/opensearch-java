@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch.dangling_indices;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -229,5 +230,22 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
         op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
         op.add(Builder::danglingIndices, JsonpDeserializer.arrayDeserializer(DanglingIndex._DESERIALIZER), "dangling_indices");
         op.add(Builder::nodes, NodeStatistics._DESERIALIZER, "_nodes");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.clusterName);
+        result = 31 * result + this.danglingIndices.hashCode();
+        result = 31 * result + Objects.hashCode(this.nodes);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        ListDanglingIndicesResponse other = (ListDanglingIndicesResponse) o;
+        return Objects.equals(this.clusterName, other.clusterName)
+            && Objects.equals(this.danglingIndices, other.danglingIndices)
+            && Objects.equals(this.nodes, other.nodes);
     }
 }

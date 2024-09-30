@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch.tasks;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -477,5 +478,42 @@ public class TaskInfo implements PlainJsonSerializable {
         op.add(AbstractBuilder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
         op.add(AbstractBuilder::status, Status._DESERIALIZER, "status");
         op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "type");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.action.hashCode();
+        result = 31 * result + Boolean.hashCode(this.cancellable);
+        result = 31 * result + Boolean.hashCode(this.cancelled);
+        result = 31 * result + Objects.hashCode(this.description);
+        result = 31 * result + this.headers.hashCode();
+        result = 31 * result + Long.hashCode(this.id);
+        result = 31 * result + this.node.hashCode();
+        result = 31 * result + Objects.hashCode(this.parentTaskId);
+        result = 31 * result + Objects.hashCode(this.runningTime);
+        result = 31 * result + Long.hashCode(this.runningTimeInNanos);
+        result = 31 * result + Long.hashCode(this.startTimeInMillis);
+        result = 31 * result + Objects.hashCode(this.status);
+        result = 31 * result + this.type.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        TaskInfo other = (TaskInfo) o;
+        return Objects.equals(this.action, other.action)
+            && this.cancellable() == other.cancellable()
+            && this.cancelled() == other.cancelled()
+            && Objects.equals(this.description, other.description)
+            && Objects.equals(this.headers, other.headers)
+            && this.id() == other.id()
+            && Objects.equals(this.node, other.node)
+            && Objects.equals(this.parentTaskId, other.parentTaskId)
+            && Objects.equals(this.runningTime, other.runningTime)
+            && this.runningTimeInNanos() == other.runningTimeInNanos()
+            && this.startTimeInMillis() == other.startTimeInMillis()
+            && Objects.equals(this.status, other.status)
+            && Objects.equals(this.type, other.type);
     }
 }
