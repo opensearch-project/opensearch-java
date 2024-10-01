@@ -41,6 +41,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -60,6 +61,7 @@ public class NodeStatistics implements PlainJsonSerializable {
 
     private final int failed;
 
+    @Nonnull
     private final List<ErrorCause> failures;
 
     private final int successful;
@@ -93,6 +95,7 @@ public class NodeStatistics implements PlainJsonSerializable {
     /**
      * API name: {@code failures}
      */
+    @Nonnull
     public final List<ErrorCause> failures() {
         return this.failures;
     }
@@ -268,11 +271,11 @@ public class NodeStatistics implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         NodeStatistics other = (NodeStatistics) o;
-        return this.failed() == other.failed()
+        return this.failed == other.failed
             && Objects.equals(this.failures, other.failures)
-            && this.successful() == other.successful()
-            && this.total() == other.total();
+            && this.successful == other.successful
+            && this.total == other.total;
     }
 }

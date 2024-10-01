@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -178,16 +179,15 @@ public class BulkByScrollTaskStatusOrException
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + _kind.hashCode();
-        result = 31 * result + _value.hashCode();
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
         return result;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         BulkByScrollTaskStatusOrException other = (BulkByScrollTaskStatusOrException) o;
-        return this._kind().equals(other._kind()) && this._get().equals(other._get());
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
     }
-
 }

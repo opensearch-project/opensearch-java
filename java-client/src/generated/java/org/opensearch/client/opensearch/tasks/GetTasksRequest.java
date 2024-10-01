@@ -41,6 +41,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -59,6 +60,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GetTasksRequest extends RequestBase {
 
+    @Nonnull
     private final String taskId;
 
     @Nullable
@@ -85,6 +87,7 @@ public class GetTasksRequest extends RequestBase {
      * API name: {@code task_id}
      * </p>
      */
+    @Nonnull
     public final String taskId() {
         return this.taskId;
     }
@@ -213,16 +216,16 @@ public class GetTasksRequest extends RequestBase {
         int result = 17;
         result = 31 * result + this.taskId.hashCode();
         result = 31 * result + Objects.hashCode(this.timeout);
-        result = 31 * result + Boolean.hashCode(this.waitForCompletion);
+        result = 31 * result + Objects.hashCode(this.waitForCompletion);
         return result;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         GetTasksRequest other = (GetTasksRequest) o;
-        return Objects.equals(this.taskId, other.taskId)
+        return this.taskId.equals(other.taskId)
             && Objects.equals(this.timeout, other.timeout)
-            && this.waitForCompletion() == other.waitForCompletion();
+            && Objects.equals(this.waitForCompletion, other.waitForCompletion);
     }
 }

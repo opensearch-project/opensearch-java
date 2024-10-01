@@ -43,6 +43,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -94,6 +95,7 @@ public class Status implements PlainJsonSerializable {
     @Nullable
     private final Integer sliceId;
 
+    @Nonnull
     private final List<BulkByScrollTaskStatusOrException> slices;
 
     @Nullable
@@ -120,6 +122,7 @@ public class Status implements PlainJsonSerializable {
     @Nullable
     private final Long versionConflicts;
 
+    @Nonnull
     private final Map<String, JsonData> metadata;
 
     // ---------------------------------------------------------------------------------------------
@@ -240,6 +243,7 @@ public class Status implements PlainJsonSerializable {
     /**
      * API name: {@code slices}
      */
+    @Nonnull
     public final List<BulkByScrollTaskStatusOrException> slices() {
         return this.slices;
     }
@@ -320,6 +324,7 @@ public class Status implements PlainJsonSerializable {
 
     /**
                                     */
+    @Nonnull
     public final Map<String, JsonData> metadata() {
         return this.metadata;
     }
@@ -771,50 +776,50 @@ public class Status implements PlainJsonSerializable {
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Integer.hashCode(this.batches);
+        result = 31 * result + Objects.hashCode(this.batches);
         result = 31 * result + Objects.hashCode(this.canceled);
-        result = 31 * result + Long.hashCode(this.created);
-        result = 31 * result + Long.hashCode(this.deleted);
-        result = 31 * result + Long.hashCode(this.noops);
+        result = 31 * result + Objects.hashCode(this.created);
+        result = 31 * result + Objects.hashCode(this.deleted);
+        result = 31 * result + Objects.hashCode(this.noops);
         result = 31 * result + Objects.hashCode(this.phase);
-        result = 31 * result + Float.hashCode(this.requestsPerSecond);
+        result = 31 * result + Objects.hashCode(this.requestsPerSecond);
         result = 31 * result + Objects.hashCode(this.retries);
-        result = 31 * result + Integer.hashCode(this.sliceId);
+        result = 31 * result + Objects.hashCode(this.sliceId);
         result = 31 * result + Objects.hashCode(this.slices);
         result = 31 * result + Objects.hashCode(this.state);
         result = 31 * result + Objects.hashCode(this.throttled);
-        result = 31 * result + Long.hashCode(this.throttledMillis);
+        result = 31 * result + Objects.hashCode(this.throttledMillis);
         result = 31 * result + Objects.hashCode(this.throttledUntil);
-        result = 31 * result + Long.hashCode(this.throttledUntilMillis);
-        result = 31 * result + Long.hashCode(this.total);
-        result = 31 * result + Long.hashCode(this.updated);
-        result = 31 * result + Long.hashCode(this.versionConflicts);
+        result = 31 * result + Objects.hashCode(this.throttledUntilMillis);
+        result = 31 * result + Objects.hashCode(this.total);
+        result = 31 * result + Objects.hashCode(this.updated);
+        result = 31 * result + Objects.hashCode(this.versionConflicts);
         result = 31 * result + Objects.hashCode(this.metadata);
         return result;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         Status other = (Status) o;
-        return this.batches() == other.batches()
+        return Objects.equals(this.batches, other.batches)
             && Objects.equals(this.canceled, other.canceled)
-            && this.created() == other.created()
-            && this.deleted() == other.deleted()
-            && this.noops() == other.noops()
+            && Objects.equals(this.created, other.created)
+            && Objects.equals(this.deleted, other.deleted)
+            && Objects.equals(this.noops, other.noops)
             && Objects.equals(this.phase, other.phase)
-            && this.requestsPerSecond() == other.requestsPerSecond()
+            && Objects.equals(this.requestsPerSecond, other.requestsPerSecond)
             && Objects.equals(this.retries, other.retries)
-            && this.sliceId() == other.sliceId()
+            && Objects.equals(this.sliceId, other.sliceId)
             && Objects.equals(this.slices, other.slices)
             && Objects.equals(this.state, other.state)
             && Objects.equals(this.throttled, other.throttled)
-            && this.throttledMillis() == other.throttledMillis()
+            && Objects.equals(this.throttledMillis, other.throttledMillis)
             && Objects.equals(this.throttledUntil, other.throttledUntil)
-            && this.throttledUntilMillis() == other.throttledUntilMillis()
-            && this.total() == other.total()
-            && this.updated() == other.updated()
-            && this.versionConflicts() == other.versionConflicts()
+            && Objects.equals(this.throttledUntilMillis, other.throttledUntilMillis)
+            && Objects.equals(this.total, other.total)
+            && Objects.equals(this.updated, other.updated)
+            && Objects.equals(this.versionConflicts, other.versionConflicts)
             && Objects.equals(this.metadata, other.metadata);
     }
 }

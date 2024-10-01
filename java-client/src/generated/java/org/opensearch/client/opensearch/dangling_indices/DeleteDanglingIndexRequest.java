@@ -41,6 +41,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -64,6 +65,7 @@ public class DeleteDanglingIndexRequest extends RequestBase {
     @Nullable
     private final Time clusterManagerTimeout;
 
+    @Nonnull
     private final String indexUuid;
 
     @Deprecated
@@ -116,6 +118,7 @@ public class DeleteDanglingIndexRequest extends RequestBase {
      * API name: {@code index_uuid}
      * </p>
      */
+    @Nonnull
     public final String indexUuid() {
         return this.indexUuid;
     }
@@ -304,11 +307,11 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         DeleteDanglingIndexRequest other = (DeleteDanglingIndexRequest) o;
-        return this.acceptDataLoss() == other.acceptDataLoss()
+        return this.acceptDataLoss == other.acceptDataLoss
             && Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
-            && Objects.equals(this.indexUuid, other.indexUuid)
+            && this.indexUuid.equals(other.indexUuid)
             && Objects.equals(this.masterTimeout, other.masterTimeout)
             && Objects.equals(this.timeout, other.timeout);
     }

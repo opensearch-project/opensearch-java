@@ -38,9 +38,9 @@ package org.opensearch.client.opensearch.tasks;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -56,6 +56,7 @@ import org.opensearch.client.util.ObjectBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class TaskExecutingNode extends BaseNode {
 
+    @Nonnull
     private final Map<String, TaskInfo> tasks;
 
     // ---------------------------------------------------------------------------------------------
@@ -72,6 +73,7 @@ public class TaskExecutingNode extends BaseNode {
     /**
      * Required - API name: {@code tasks}
      */
+    @Nonnull
     public final Map<String, TaskInfo> tasks() {
         return this.tasks;
     }
@@ -173,8 +175,8 @@ public class TaskExecutingNode extends BaseNode {
             return false;
         }
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         TaskExecutingNode other = (TaskExecutingNode) o;
-        return Objects.equals(this.tasks, other.tasks);
+        return this.tasks.equals(other.tasks);
     }
 }

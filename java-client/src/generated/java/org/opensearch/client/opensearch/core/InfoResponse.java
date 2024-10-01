@@ -37,9 +37,9 @@
 package org.opensearch.client.opensearch.core;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -57,14 +57,19 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class InfoResponse implements PlainJsonSerializable {
 
+    @Nonnull
     private final String clusterName;
 
+    @Nonnull
     private final String clusterUuid;
 
+    @Nonnull
     private final String name;
 
+    @Nonnull
     private final String tagline;
 
+    @Nonnull
     private final OpenSearchVersionInfo version;
 
     // ---------------------------------------------------------------------------------------------
@@ -84,6 +89,7 @@ public class InfoResponse implements PlainJsonSerializable {
     /**
      * Required - API name: {@code cluster_name}
      */
+    @Nonnull
     public final String clusterName() {
         return this.clusterName;
     }
@@ -91,6 +97,7 @@ public class InfoResponse implements PlainJsonSerializable {
     /**
      * Required - API name: {@code cluster_uuid}
      */
+    @Nonnull
     public final String clusterUuid() {
         return this.clusterUuid;
     }
@@ -98,6 +105,7 @@ public class InfoResponse implements PlainJsonSerializable {
     /**
      * Required - API name: {@code name}
      */
+    @Nonnull
     public final String name() {
         return this.name;
     }
@@ -105,6 +113,7 @@ public class InfoResponse implements PlainJsonSerializable {
     /**
      * Required - API name: {@code tagline}
      */
+    @Nonnull
     public final String tagline() {
         return this.tagline;
     }
@@ -112,6 +121,7 @@ public class InfoResponse implements PlainJsonSerializable {
     /**
      * Required - API name: {@code version}
      */
+    @Nonnull
     public final OpenSearchVersionInfo version() {
         return this.version;
     }
@@ -244,12 +254,12 @@ public class InfoResponse implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         InfoResponse other = (InfoResponse) o;
-        return Objects.equals(this.clusterName, other.clusterName)
-            && Objects.equals(this.clusterUuid, other.clusterUuid)
-            && Objects.equals(this.name, other.name)
-            && Objects.equals(this.tagline, other.tagline)
-            && Objects.equals(this.version, other.version);
+        return this.clusterName.equals(other.clusterName)
+            && this.clusterUuid.equals(other.clusterUuid)
+            && this.name.equals(other.name)
+            && this.tagline.equals(other.tagline)
+            && this.version.equals(other.version);
     }
 }

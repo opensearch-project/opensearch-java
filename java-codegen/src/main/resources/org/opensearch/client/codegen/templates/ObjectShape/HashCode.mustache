@@ -6,17 +6,18 @@
         int result = 17;
         {{/extendsOtherShape}}
         {{#fields}}
-            {{#isUnboxedPrimitive}}
-                result = 31 * result + {{getBoxedType}}.hashCode(this.{{name}});
-            {{/isUnboxedPrimitive}}
-            {{^isUnboxedPrimitive}}
-                {{#isRequired}}
-                    result = 31 * result + this.{{name}}.hashCode();
-                {{/isRequired}}
-                {{^isRequired}}
-                    result = 31 * result + {{TYPES.Java.Util.Objects}}.hashCode(this.{{name}});
-                {{/isRequired}}
-            {{/isUnboxedPrimitive}}
+            result = 31 * result +
+            {{#required}}
+                {{#type.isPrimitive}}
+                    {{type.boxed}}.hashCode(this.{{name}});
+                {{/type.isPrimitive}}
+                {{^type.isPrimitive}}
+                    this.{{name}}.hashCode();
+                {{/type.isPrimitive}}
+            {{/required}}
+            {{^required}}
+                {{TYPES.Java.Util.Objects}}.hashCode(this.{{name}});
+            {{/required}}
         {{/fields}}
         return result;
     }

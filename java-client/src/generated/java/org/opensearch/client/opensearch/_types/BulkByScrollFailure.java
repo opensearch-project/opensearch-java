@@ -322,21 +322,21 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
         result = 31 * result + Objects.hashCode(this.index);
         result = 31 * result + Objects.hashCode(this.node);
         result = 31 * result + Objects.hashCode(this.reason);
-        result = 31 * result + Integer.hashCode(this.shard);
+        result = 31 * result + Objects.hashCode(this.shard);
         result = 31 * result + Integer.hashCode(this.status);
         return result;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         BulkByScrollFailure other = (BulkByScrollFailure) o;
         return Objects.equals(this.cause, other.cause)
             && Objects.equals(this.id, other.id)
             && Objects.equals(this.index, other.index)
             && Objects.equals(this.node, other.node)
             && Objects.equals(this.reason, other.reason)
-            && this.shard() == other.shard()
-            && this.status() == other.status();
+            && Objects.equals(this.shard, other.shard)
+            && this.status == other.status;
     }
 }

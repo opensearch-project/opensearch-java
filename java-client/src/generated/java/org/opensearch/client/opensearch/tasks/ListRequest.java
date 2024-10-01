@@ -42,6 +42,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -60,6 +61,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ListRequest extends RequestBase {
 
+    @Nonnull
     private final List<String> actions;
 
     @Nullable
@@ -68,6 +70,7 @@ public class ListRequest extends RequestBase {
     @Nullable
     private final GroupBy groupBy;
 
+    @Nonnull
     private final List<String> nodes;
 
     @Nullable
@@ -101,6 +104,7 @@ public class ListRequest extends RequestBase {
      * API name: {@code actions}
      * </p>
      */
+    @Nonnull
     public final List<String> actions() {
         return this.actions;
     }
@@ -134,6 +138,7 @@ public class ListRequest extends RequestBase {
      * API name: {@code nodes}
      * </p>
      */
+    @Nonnull
     public final List<String> nodes() {
         return this.nodes;
     }
@@ -375,25 +380,25 @@ public class ListRequest extends RequestBase {
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.actions);
-        result = 31 * result + Boolean.hashCode(this.detailed);
+        result = 31 * result + Objects.hashCode(this.detailed);
         result = 31 * result + Objects.hashCode(this.groupBy);
         result = 31 * result + Objects.hashCode(this.nodes);
         result = 31 * result + Objects.hashCode(this.parentTaskId);
         result = 31 * result + Objects.hashCode(this.timeout);
-        result = 31 * result + Boolean.hashCode(this.waitForCompletion);
+        result = 31 * result + Objects.hashCode(this.waitForCompletion);
         return result;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         ListRequest other = (ListRequest) o;
         return Objects.equals(this.actions, other.actions)
-            && this.detailed() == other.detailed()
+            && Objects.equals(this.detailed, other.detailed)
             && Objects.equals(this.groupBy, other.groupBy)
             && Objects.equals(this.nodes, other.nodes)
             && Objects.equals(this.parentTaskId, other.parentTaskId)
             && Objects.equals(this.timeout, other.timeout)
-            && this.waitForCompletion() == other.waitForCompletion();
+            && Objects.equals(this.waitForCompletion, other.waitForCompletion);
     }
 }

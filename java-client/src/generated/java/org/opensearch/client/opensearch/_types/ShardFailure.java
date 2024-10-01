@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -63,6 +64,7 @@ public class ShardFailure implements PlainJsonSerializable {
     @Nullable
     private final String node;
 
+    @Nonnull
     private final ErrorCause reason;
 
     private final int shard;
@@ -103,6 +105,7 @@ public class ShardFailure implements PlainJsonSerializable {
     /**
      * Required - API name: {@code reason}
      */
+    @Nonnull
     public final ErrorCause reason() {
         return this.reason;
     }
@@ -259,12 +262,12 @@ public class ShardFailure implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         ShardFailure other = (ShardFailure) o;
         return Objects.equals(this.index, other.index)
             && Objects.equals(this.node, other.node)
-            && Objects.equals(this.reason, other.reason)
-            && this.shard() == other.shard()
+            && this.reason.equals(other.reason)
+            && this.shard == other.shard
             && Objects.equals(this.status, other.status);
     }
 }

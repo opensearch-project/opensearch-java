@@ -84,12 +84,4 @@ public class Field {
     public Deprecation getDeprecation() {
         return deprecation;
     }
-
-    public boolean isUnboxedPrimitive() {
-        return type.isUnboxedPrimitive();
-    }
-
-    public Type getBoxedType() {
-        return type.getBoxed();
-    }
 }

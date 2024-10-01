@@ -165,4 +165,18 @@ public class CleanupRepositoryResults implements PlainJsonSerializable {
         op.add(Builder::deletedBlobs, JsonpDeserializer.longDeserializer(), "deleted_blobs");
         op.add(Builder::deletedBytes, JsonpDeserializer.longDeserializer(), "deleted_bytes");
     }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Long.hashCode(this.deletedBlobs);
+        result = 31 * result + Long.hashCode(this.deletedBytes);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CleanupRepositoryResults other = (CleanupRepositoryResults) o;
+        return this.deletedBlobs == other.deletedBlobs && this.deletedBytes == other.deletedBytes;
+    }
 }

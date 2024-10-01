@@ -41,6 +41,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -59,6 +60,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class TaskInfo implements PlainJsonSerializable {
 
+    @Nonnull
     private final String action;
 
     private final boolean cancellable;
@@ -69,10 +71,12 @@ public class TaskInfo implements PlainJsonSerializable {
     @Nullable
     private final String description;
 
+    @Nonnull
     private final Map<String, String> headers;
 
     private final long id;
 
+    @Nonnull
     private final String node;
 
     @Nullable
@@ -88,6 +92,7 @@ public class TaskInfo implements PlainJsonSerializable {
     @Nullable
     private final Status status;
 
+    @Nonnull
     private final String type;
 
     // ---------------------------------------------------------------------------------------------
@@ -115,6 +120,7 @@ public class TaskInfo implements PlainJsonSerializable {
     /**
      * Required - API name: {@code action}
      */
+    @Nonnull
     public final String action() {
         return this.action;
     }
@@ -145,6 +151,7 @@ public class TaskInfo implements PlainJsonSerializable {
     /**
      * Required - API name: {@code headers}
      */
+    @Nonnull
     public final Map<String, String> headers() {
         return this.headers;
     }
@@ -159,6 +166,7 @@ public class TaskInfo implements PlainJsonSerializable {
     /**
      * Required - API name: {@code node}
      */
+    @Nonnull
     public final String node() {
         return this.node;
     }
@@ -204,6 +212,7 @@ public class TaskInfo implements PlainJsonSerializable {
     /**
      * Required - API name: {@code type}
      */
+    @Nonnull
     public final String type() {
         return this.type;
     }
@@ -484,7 +493,7 @@ public class TaskInfo implements PlainJsonSerializable {
         int result = 17;
         result = 31 * result + this.action.hashCode();
         result = 31 * result + Boolean.hashCode(this.cancellable);
-        result = 31 * result + Boolean.hashCode(this.cancelled);
+        result = 31 * result + Objects.hashCode(this.cancelled);
         result = 31 * result + Objects.hashCode(this.description);
         result = 31 * result + this.headers.hashCode();
         result = 31 * result + Long.hashCode(this.id);
@@ -500,20 +509,20 @@ public class TaskInfo implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         TaskInfo other = (TaskInfo) o;
-        return Objects.equals(this.action, other.action)
-            && this.cancellable() == other.cancellable()
-            && this.cancelled() == other.cancelled()
+        return this.action.equals(other.action)
+            && this.cancellable == other.cancellable
+            && Objects.equals(this.cancelled, other.cancelled)
             && Objects.equals(this.description, other.description)
-            && Objects.equals(this.headers, other.headers)
-            && this.id() == other.id()
-            && Objects.equals(this.node, other.node)
+            && this.headers.equals(other.headers)
+            && this.id == other.id
+            && this.node.equals(other.node)
             && Objects.equals(this.parentTaskId, other.parentTaskId)
             && Objects.equals(this.runningTime, other.runningTime)
-            && this.runningTimeInNanos() == other.runningTimeInNanos()
-            && this.startTimeInMillis() == other.startTimeInMillis()
+            && this.runningTimeInNanos == other.runningTimeInNanos
+            && this.startTimeInMillis == other.startTimeInMillis
             && Objects.equals(this.status, other.status)
-            && Objects.equals(this.type, other.type);
+            && this.type.equals(other.type);
     }
 }

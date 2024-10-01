@@ -84,7 +84,7 @@ public class DeleteTaskResponse extends WriteResponseBase {
             return false;
         }
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         return true;
     }
 }

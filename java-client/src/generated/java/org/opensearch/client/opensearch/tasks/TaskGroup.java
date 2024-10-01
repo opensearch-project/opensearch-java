@@ -41,6 +41,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -56,6 +57,7 @@ import org.opensearch.client.util.ObjectBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class TaskGroup extends TaskInfo {
 
+    @Nonnull
     private final List<TaskGroup> children;
 
     // ---------------------------------------------------------------------------------------------
@@ -72,6 +74,7 @@ public class TaskGroup extends TaskInfo {
     /**
      * API name: {@code children}
      */
+    @Nonnull
     public final List<TaskGroup> children() {
         return this.children;
     }
@@ -175,7 +178,7 @@ public class TaskGroup extends TaskInfo {
             return false;
         }
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         TaskGroup other = (TaskGroup) o;
         return Objects.equals(this.children, other.children);
     }

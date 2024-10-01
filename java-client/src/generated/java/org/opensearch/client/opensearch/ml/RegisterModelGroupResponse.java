@@ -13,9 +13,9 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -32,8 +32,10 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RegisterModelGroupResponse implements PlainJsonSerializable {
 
+    @Nonnull
     private final String modelGroupId;
 
+    @Nonnull
     private final String status;
 
     // ---------------------------------------------------------------------------------------------
@@ -55,6 +57,7 @@ public class RegisterModelGroupResponse implements PlainJsonSerializable {
      * API name: {@code model_group_id}
      * </p>
      */
+    @Nonnull
     public final String modelGroupId() {
         return this.modelGroupId;
     }
@@ -65,6 +68,7 @@ public class RegisterModelGroupResponse implements PlainJsonSerializable {
      * API name: {@code status}
      * </p>
      */
+    @Nonnull
     public final String status() {
         return this.status;
     }
@@ -154,8 +158,8 @@ public class RegisterModelGroupResponse implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         RegisterModelGroupResponse other = (RegisterModelGroupResponse) o;
-        return Objects.equals(this.modelGroupId, other.modelGroupId) && Objects.equals(this.status, other.status);
+        return this.modelGroupId.equals(other.modelGroupId) && this.status.equals(other.status);
     }
 }

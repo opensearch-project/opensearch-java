@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -57,6 +58,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class VerifyRepositoryResponse implements PlainJsonSerializable {
 
+    @Nonnull
     private final Map<String, CompactNodeInfo> nodes;
 
     // ---------------------------------------------------------------------------------------------
@@ -72,6 +74,7 @@ public class VerifyRepositoryResponse implements PlainJsonSerializable {
     /**
      * Required - API name: {@code nodes}
      */
+    @Nonnull
     public final Map<String, CompactNodeInfo> nodes() {
         return this.nodes;
     }
@@ -163,5 +166,18 @@ public class VerifyRepositoryResponse implements PlainJsonSerializable {
 
     protected static void setupVerifyRepositoryResponseDeserializer(ObjectDeserializer<VerifyRepositoryResponse.Builder> op) {
         op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(CompactNodeInfo._DESERIALIZER), "nodes");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.nodes.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        VerifyRepositoryResponse other = (VerifyRepositoryResponse) o;
+        return this.nodes.equals(other.nodes);
     }
 }

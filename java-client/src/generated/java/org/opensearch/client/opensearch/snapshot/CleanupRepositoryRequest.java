@@ -38,8 +38,10 @@ package org.opensearch.client.opensearch.snapshot;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -65,6 +67,7 @@ public class CleanupRepositoryRequest extends RequestBase {
     @Nullable
     private final Time masterTimeout;
 
+    @Nonnull
     private final String repository;
 
     @Nullable
@@ -112,6 +115,7 @@ public class CleanupRepositoryRequest extends RequestBase {
      * API name: {@code repository}
      * </p>
      */
+    @Nonnull
     public final String repository() {
         return this.repository;
     }
@@ -263,4 +267,23 @@ public class CleanupRepositoryRequest extends RequestBase {
         false,
         CleanupRepositoryResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
+        result = 31 * result + Objects.hashCode(this.masterTimeout);
+        result = 31 * result + this.repository.hashCode();
+        result = 31 * result + Objects.hashCode(this.timeout);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CleanupRepositoryRequest other = (CleanupRepositoryRequest) o;
+        return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
+            && Objects.equals(this.masterTimeout, other.masterTimeout)
+            && this.repository.equals(other.repository)
+            && Objects.equals(this.timeout, other.timeout);
+    }
 }
