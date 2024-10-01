@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -276,5 +277,32 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         op.add(AbstractBuilder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
         op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
         op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "_version");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.forcedRefresh);
+        result = 31 * result + this.id.hashCode();
+        result = 31 * result + this.index.hashCode();
+        result = 31 * result + Long.hashCode(this.primaryTerm);
+        result = 31 * result + this.result.hashCode();
+        result = 31 * result + Long.hashCode(this.seqNo);
+        result = 31 * result + this.shards.hashCode();
+        result = 31 * result + Long.hashCode(this.version);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        WriteResponseBase other = (WriteResponseBase) o;
+        return this.forcedRefresh() == other.forcedRefresh()
+            && Objects.equals(this.id, other.id)
+            && Objects.equals(this.index, other.index)
+            && this.primaryTerm() == other.primaryTerm()
+            && Objects.equals(this.result, other.result)
+            && this.seqNo() == other.seqNo()
+            && Objects.equals(this.shards, other.shards)
+            && this.version() == other.version();
     }
 }

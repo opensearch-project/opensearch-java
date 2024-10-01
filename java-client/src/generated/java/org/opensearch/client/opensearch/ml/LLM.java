@@ -14,6 +14,7 @@ package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -157,5 +158,19 @@ public class LLM implements PlainJsonSerializable {
     protected static void setupLLMDeserializer(ObjectDeserializer<LLM.Builder> op) {
         op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
         op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "parameters");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.modelId);
+        result = 31 * result + Objects.hashCode(this.parameters);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        LLM other = (LLM) o;
+        return Objects.equals(this.modelId, other.modelId) && Objects.equals(this.parameters, other.parameters);
     }
 }

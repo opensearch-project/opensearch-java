@@ -73,4 +73,18 @@ public class DeleteModelResponse extends WriteResponseBase {
     protected static void setupDeleteModelResponseDeserializer(ObjectDeserializer<DeleteModelResponse.Builder> op) {
         WriteResponseBase.setupWriteResponseBaseDeserializer(op);
     }
+
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

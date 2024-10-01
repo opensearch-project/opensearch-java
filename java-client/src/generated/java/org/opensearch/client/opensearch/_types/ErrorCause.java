@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -403,5 +404,30 @@ public class ErrorCause implements PlainJsonSerializable {
             }
             builder.metadata.put(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
         });
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.causedBy);
+        result = 31 * result + Objects.hashCode(this.reason);
+        result = 31 * result + Objects.hashCode(this.rootCause);
+        result = 31 * result + Objects.hashCode(this.stackTrace);
+        result = 31 * result + Objects.hashCode(this.suppressed);
+        result = 31 * result + this.type.hashCode();
+        result = 31 * result + Objects.hashCode(this.metadata);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        ErrorCause other = (ErrorCause) o;
+        return Objects.equals(this.causedBy, other.causedBy)
+            && Objects.equals(this.reason, other.reason)
+            && Objects.equals(this.rootCause, other.rootCause)
+            && Objects.equals(this.stackTrace, other.stackTrace)
+            && Objects.equals(this.suppressed, other.suppressed)
+            && Objects.equals(this.type, other.type)
+            && Objects.equals(this.metadata, other.metadata);
     }
 }

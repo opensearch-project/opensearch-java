@@ -15,6 +15,7 @@ package org.opensearch.client.opensearch.ml;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -365,4 +366,31 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
         true,
         CreateConnectorResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.actions.hashCode();
+        result = 31 * result + Objects.hashCode(this.clientConfig);
+        result = 31 * result + this.credential.hashCode();
+        result = 31 * result + this.description.hashCode();
+        result = 31 * result + this.name.hashCode();
+        result = 31 * result + this.parameters.hashCode();
+        result = 31 * result + this.protocol.hashCode();
+        result = 31 * result + Integer.hashCode(this.version);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        CreateConnectorRequest other = (CreateConnectorRequest) o;
+        return Objects.equals(this.actions, other.actions)
+            && Objects.equals(this.clientConfig, other.clientConfig)
+            && Objects.equals(this.credential, other.credential)
+            && Objects.equals(this.description, other.description)
+            && Objects.equals(this.name, other.name)
+            && Objects.equals(this.parameters, other.parameters)
+            && Objects.equals(this.protocol, other.protocol)
+            && this.version() == other.version();
+    }
 }

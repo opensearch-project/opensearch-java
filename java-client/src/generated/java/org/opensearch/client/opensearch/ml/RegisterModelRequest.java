@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -262,4 +263,25 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
         true,
         RegisterModelResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.description);
+        result = 31 * result + this.modelFormat.hashCode();
+        result = 31 * result + Objects.hashCode(this.modelGroupId);
+        result = 31 * result + this.name.hashCode();
+        result = 31 * result + this.version.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (this.getClass() != o.getClass()) return false;
+        RegisterModelRequest other = (RegisterModelRequest) o;
+        return Objects.equals(this.description, other.description)
+            && Objects.equals(this.modelFormat, other.modelFormat)
+            && Objects.equals(this.modelGroupId, other.modelGroupId)
+            && Objects.equals(this.name, other.name)
+            && Objects.equals(this.version, other.version);
+    }
 }
