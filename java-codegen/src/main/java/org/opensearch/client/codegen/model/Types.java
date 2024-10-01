@@ -72,6 +72,7 @@ public final class Types {
 
         public static final class Util {
             public static final String PACKAGE = Java.PACKAGE + ".util";
+            public static final Type Objects = Type.builder().withPackage(PACKAGE).withName("Objects").build();
             public static final Type HashMap = Type.builder().withPackage(PACKAGE).withName("HashMap").build();
 
             public static Type Map(Type keyType, Type valueType) {
@@ -122,6 +123,7 @@ public final class Types {
         public static final class Annotation {
             public static final String PACKAGE = Javax.PACKAGE + ".annotation";
             public static final Type Generated = Type.builder().withPackage(PACKAGE).withName("Generated").build();
+            public static final Type Nonnull = Type.builder().withPackage(PACKAGE).withName("Nonnull").build();
             public static final Type Nullable = Type.builder().withPackage(PACKAGE).withName("Nullable").build();
         }
     }

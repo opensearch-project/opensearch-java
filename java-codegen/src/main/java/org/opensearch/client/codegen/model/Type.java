@@ -23,25 +23,16 @@ import org.opensearch.client.codegen.utils.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Type {
-    private static final Set<String> PRIMITIVES = Set.of(
-        "String",
-        "boolean",
+    private static final Set<String> PRIMITIVES = Set.of("boolean", "char", "byte", "short", "int", "long", "float", "double");
+    private static final Set<String> BOXED_PRIMITIVES = Set.of(
         "Boolean",
-        "char",
         "Character",
-        "byte",
         "Byte",
-        "short",
         "Short",
-        "int",
         "Integer",
-        "long",
         "Long",
-        "float",
         "Float",
-        "double",
-        "Double",
-        "Number"
+        "Double"
     );
 
     @Nonnull
@@ -157,6 +148,14 @@ public class Type {
         return PRIMITIVES.contains(name);
     }
 
+    public boolean isBoxedPrimitive() {
+        return BOXED_PRIMITIVES.contains(name);
+    }
+
+    public boolean isPotentiallyBoxedPrimitive() {
+        return isPrimitive() || isBoxedPrimitive();
+    }
+
     public boolean isNumber() {
         return "Number".equals(name);
     }
@@ -170,7 +169,7 @@ public class Type {
     }
 
     public boolean isBuiltIn() {
-        return isListOrMap() || isPrimitive() || "JsonData".equals(name);
+        return isPrimitive() || (packageName != null && packageName.startsWith("java.")) || "JsonData".equals(name);
     }
 
     public boolean hasBuilder() {

@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -110,5 +111,18 @@ public class CreateConnectorResponse implements PlainJsonSerializable {
 
     protected static void setupCreateConnectorResponseDeserializer(ObjectDeserializer<CreateConnectorResponse.Builder> op) {
         op.add(Builder::connectorId, JsonpDeserializer.stringDeserializer(), "connector_id");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.connectorId);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CreateConnectorResponse other = (CreateConnectorResponse) o;
+        return Objects.equals(this.connectorId, other.connectorId);
     }
 }

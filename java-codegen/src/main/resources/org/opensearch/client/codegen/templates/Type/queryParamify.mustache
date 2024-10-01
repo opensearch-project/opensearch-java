@@ -6,10 +6,10 @@
         {{value}}.jsonValue()
     {{/type.isEnum}}
     {{^type.isEnum}}
-        {{#type.isPrimitive}}
+        {{#type.isPotentiallyBoxedPrimitive}}
             String.valueOf({{value}})
-        {{/type.isPrimitive}}
-        {{^type.isPrimitive}}
+        {{/type.isPotentiallyBoxedPrimitive}}
+        {{^type.isPotentiallyBoxedPrimitive}}
             {{#type.isList}}
                 {{#type.listValueType.isString}}
                     String.join(",", {{value}})
@@ -24,6 +24,6 @@
             {{^type.isList}}
                 {{value}}._toJsonString()
             {{/type.isList}}
-        {{/type.isPrimitive}}
+        {{/type.isPotentiallyBoxedPrimitive}}
     {{/type.isEnum}}
 {{/type.isString}}

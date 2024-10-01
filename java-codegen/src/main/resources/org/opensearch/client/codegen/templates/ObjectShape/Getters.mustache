@@ -2,11 +2,7 @@
 
     {{>ObjectShape/FieldDoc/Basic}}
     {{#deprecation}}@Deprecated{{/deprecation}}
-    {{^required}}
-    {{^type.isListOrMap}}
-    @{{TYPES.Javax.Annotation.Nullable}}
-    {{/type.isListOrMap}}
-    {{/required}}
+    {{>ObjectShape/FieldNullability}}
     public final {{type}} {{name}}() {
         return this.{{name}};
     }

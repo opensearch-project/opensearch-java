@@ -15,6 +15,7 @@ package org.opensearch.client.opensearch.ml;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -31,8 +32,10 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RegisterModelGroupResponse implements PlainJsonSerializable {
 
+    @Nonnull
     private final String modelGroupId;
 
+    @Nonnull
     private final String status;
 
     // ---------------------------------------------------------------------------------------------
@@ -54,6 +57,7 @@ public class RegisterModelGroupResponse implements PlainJsonSerializable {
      * API name: {@code model_group_id}
      * </p>
      */
+    @Nonnull
     public final String modelGroupId() {
         return this.modelGroupId;
     }
@@ -64,6 +68,7 @@ public class RegisterModelGroupResponse implements PlainJsonSerializable {
      * API name: {@code status}
      * </p>
      */
+    @Nonnull
     public final String status() {
         return this.status;
     }
@@ -142,5 +147,19 @@ public class RegisterModelGroupResponse implements PlainJsonSerializable {
     protected static void setupRegisterModelGroupResponseDeserializer(ObjectDeserializer<RegisterModelGroupResponse.Builder> op) {
         op.add(Builder::modelGroupId, JsonpDeserializer.stringDeserializer(), "model_group_id");
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.modelGroupId.hashCode();
+        result = 31 * result + this.status.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RegisterModelGroupResponse other = (RegisterModelGroupResponse) o;
+        return this.modelGroupId.equals(other.modelGroupId) && this.status.equals(other.status);
     }
 }

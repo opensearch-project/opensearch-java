@@ -14,6 +14,7 @@ package org.opensearch.client.opensearch.ml;
 
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -30,6 +31,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DeleteModelGroupRequest extends RequestBase {
 
+    @Nonnull
     private final String modelGroupId;
 
     // ---------------------------------------------------------------------------------------------
@@ -45,6 +47,7 @@ public class DeleteModelGroupRequest extends RequestBase {
     /**
      * Required - API name: {@code model_group_id}
      */
+    @Nonnull
     public final String modelGroupId() {
         return this.modelGroupId;
     }
@@ -98,4 +101,17 @@ public class DeleteModelGroupRequest extends RequestBase {
         false,
         DeleteModelGroupResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.modelGroupId.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        DeleteModelGroupRequest other = (DeleteModelGroupRequest) o;
+        return this.modelGroupId.equals(other.modelGroupId);
+    }
 }

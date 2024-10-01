@@ -1,7 +1,7 @@
-{{#isPrimitive}}
+{{#isPotentiallyBoxedPrimitive}}
     {{TYPES.Client.Json.JsonpDeserializer}}.{{#toLower}}{{boxed.name}}{{/toLower}}Deserializer()
-{{/isPrimitive}}
-{{^isPrimitive}}
+{{/isPotentiallyBoxedPrimitive}}
+{{^isPotentiallyBoxedPrimitive}}
     {{#isList}}
         {{TYPES.Client.Json.JsonpDeserializer}}.arrayDeserializer({{#listValueType}}{{>Type/deserializer}}{{/listValueType}})
     {{/isList}}
@@ -9,6 +9,16 @@
         {{TYPES.Client.Json.JsonpDeserializer}}.stringMapDeserializer({{#mapValueType}}{{>Type/deserializer}}{{/mapValueType}})
     {{/isMap}}
     {{^isListOrMap}}
-        {{name}}._DESERIALIZER
+        {{#isNumber}}
+            {{TYPES.Client.Json.JsonpDeserializer}}.numberDeserializer()
+        {{/isNumber}}
+        {{^isNumber}}
+            {{#isString}}
+                {{TYPES.Client.Json.JsonpDeserializer}}.stringDeserializer()
+            {{/isString}}
+            {{^isString}}
+                {{name}}._DESERIALIZER
+            {{/isString}}
+        {{/isNumber}}
     {{/isListOrMap}}
-{{/isPrimitive}}
+{{/isPotentiallyBoxedPrimitive}}

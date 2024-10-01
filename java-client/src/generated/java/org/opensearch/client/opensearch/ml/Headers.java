@@ -15,8 +15,10 @@ package org.opensearch.client.opensearch.ml;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -38,6 +40,7 @@ public class Headers implements PlainJsonSerializable {
     @Nullable
     private final String contentType;
 
+    @Nonnull
     private final Map<String, JsonData> metadata;
 
     // ---------------------------------------------------------------------------------------------
@@ -61,6 +64,7 @@ public class Headers implements PlainJsonSerializable {
 
     /**
                                     */
+    @Nonnull
     public final Map<String, JsonData> metadata() {
         return this.metadata;
     }
@@ -157,5 +161,19 @@ public class Headers implements PlainJsonSerializable {
             }
             builder.metadata.put(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
         });
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.contentType);
+        result = 31 * result + Objects.hashCode(this.metadata);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Headers other = (Headers) o;
+        return Objects.equals(this.contentType, other.contentType) && Objects.equals(this.metadata, other.metadata);
     }
 }

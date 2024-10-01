@@ -1,0 +1,13 @@
+{{#type.isListOrMap}}
+    @{{TYPES.Javax.Annotation.Nonnull}}
+{{/type.isListOrMap}}
+{{^type.isListOrMap}}
+    {{#required}}
+        {{^type.isPrimitive}}
+            @{{TYPES.Javax.Annotation.Nonnull}}
+        {{/type.isPrimitive}}
+    {{/required}}
+    {{^required}}
+        @{{TYPES.Javax.Annotation.Nullable}}
+    {{/required}}
+{{/type.isListOrMap}}

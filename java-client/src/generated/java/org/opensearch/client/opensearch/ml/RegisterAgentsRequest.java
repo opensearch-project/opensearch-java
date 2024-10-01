@@ -15,8 +15,10 @@ package org.opensearch.client.opensearch.ml;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -54,12 +56,16 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
     @Nullable
     private final Memory memory;
 
+    @Nonnull
     private final String name;
 
+    @Nonnull
     private final Map<String, JsonData> parameters;
 
+    @Nonnull
     private final List<ToolItems> tools;
 
+    @Nonnull
     private final String type;
 
     // ---------------------------------------------------------------------------------------------
@@ -114,6 +120,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
     /**
      * Required - API name: {@code name}
      */
+    @Nonnull
     public final String name() {
         return this.name;
     }
@@ -121,6 +128,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
     /**
      * API name: {@code parameters}
      */
+    @Nonnull
     public final Map<String, JsonData> parameters() {
         return this.parameters;
     }
@@ -128,6 +136,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
     /**
      * API name: {@code tools}
      */
+    @Nonnull
     public final List<ToolItems> tools() {
         return this.tools;
     }
@@ -135,6 +144,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
     /**
      * Required - API name: {@code type}
      */
+    @Nonnull
     public final String type() {
         return this.type;
     }
@@ -386,4 +396,31 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
         true,
         RegisterAgentsResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.appType);
+        result = 31 * result + Objects.hashCode(this.description);
+        result = 31 * result + Objects.hashCode(this.llm);
+        result = 31 * result + Objects.hashCode(this.memory);
+        result = 31 * result + this.name.hashCode();
+        result = 31 * result + Objects.hashCode(this.parameters);
+        result = 31 * result + Objects.hashCode(this.tools);
+        result = 31 * result + this.type.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RegisterAgentsRequest other = (RegisterAgentsRequest) o;
+        return Objects.equals(this.appType, other.appType)
+            && Objects.equals(this.description, other.description)
+            && Objects.equals(this.llm, other.llm)
+            && Objects.equals(this.memory, other.memory)
+            && this.name.equals(other.name)
+            && Objects.equals(this.parameters, other.parameters)
+            && Objects.equals(this.tools, other.tools)
+            && this.type.equals(other.type);
+    }
 }

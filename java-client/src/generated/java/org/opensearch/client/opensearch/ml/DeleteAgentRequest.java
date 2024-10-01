@@ -14,6 +14,7 @@ package org.opensearch.client.opensearch.ml;
 
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -30,6 +31,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DeleteAgentRequest extends RequestBase {
 
+    @Nonnull
     private final String agentId;
 
     // ---------------------------------------------------------------------------------------------
@@ -45,6 +47,7 @@ public class DeleteAgentRequest extends RequestBase {
     /**
      * Required - API name: {@code agent_id}
      */
+    @Nonnull
     public final String agentId() {
         return this.agentId;
     }
@@ -98,4 +101,17 @@ public class DeleteAgentRequest extends RequestBase {
         false,
         DeleteAgentResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.agentId.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        DeleteAgentRequest other = (DeleteAgentRequest) o;
+        return this.agentId.equals(other.agentId);
+    }
 }

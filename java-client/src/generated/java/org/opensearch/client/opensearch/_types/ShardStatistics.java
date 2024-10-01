@@ -38,8 +38,10 @@ package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -57,15 +59,19 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardStatistics implements PlainJsonSerializable {
 
+    @Nonnull
     private final Number failed;
 
+    @Nonnull
     private final List<ShardFailure> failures;
 
     @Nullable
     private final Number skipped;
 
+    @Nonnull
     private final Number successful;
 
+    @Nonnull
     private final Number total;
 
     // ---------------------------------------------------------------------------------------------
@@ -85,6 +91,7 @@ public class ShardStatistics implements PlainJsonSerializable {
     /**
      * Required - API name: {@code failed}
      */
+    @Nonnull
     public final Number failed() {
         return this.failed;
     }
@@ -92,6 +99,7 @@ public class ShardStatistics implements PlainJsonSerializable {
     /**
      * API name: {@code failures}
      */
+    @Nonnull
     public final List<ShardFailure> failures() {
         return this.failures;
     }
@@ -107,6 +115,7 @@ public class ShardStatistics implements PlainJsonSerializable {
     /**
      * Required - API name: {@code successful}
      */
+    @Nonnull
     public final Number successful() {
         return this.successful;
     }
@@ -114,6 +123,7 @@ public class ShardStatistics implements PlainJsonSerializable {
     /**
      * Required - API name: {@code total}
      */
+    @Nonnull
     public final Number total() {
         return this.total;
     }
@@ -262,5 +272,26 @@ public class ShardStatistics implements PlainJsonSerializable {
         op.add(Builder::skipped, JsonpDeserializer.numberDeserializer(), "skipped");
         op.add(Builder::successful, JsonpDeserializer.numberDeserializer(), "successful");
         op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.failed.hashCode();
+        result = 31 * result + Objects.hashCode(this.failures);
+        result = 31 * result + Objects.hashCode(this.skipped);
+        result = 31 * result + this.successful.hashCode();
+        result = 31 * result + this.total.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ShardStatistics other = (ShardStatistics) o;
+        return this.failed.equals(other.failed)
+            && Objects.equals(this.failures, other.failures)
+            && Objects.equals(this.skipped, other.skipped)
+            && this.successful.equals(other.successful)
+            && this.total.equals(other.total);
     }
 }

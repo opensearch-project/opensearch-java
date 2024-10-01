@@ -14,6 +14,7 @@ package org.opensearch.client.opensearch.ml;
 
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -30,6 +31,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DeleteTaskRequest extends RequestBase {
 
+    @Nonnull
     private final String taskId;
 
     // ---------------------------------------------------------------------------------------------
@@ -45,6 +47,7 @@ public class DeleteTaskRequest extends RequestBase {
     /**
      * Required - API name: {@code task_id}
      */
+    @Nonnull
     public final String taskId() {
         return this.taskId;
     }
@@ -98,4 +101,17 @@ public class DeleteTaskRequest extends RequestBase {
         false,
         DeleteTaskResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.taskId.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        DeleteTaskRequest other = (DeleteTaskRequest) o;
+        return this.taskId.equals(other.taskId);
+    }
 }

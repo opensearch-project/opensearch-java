@@ -111,4 +111,8 @@
     }
 
     public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.JsonpDeserializer}}.lazy({{className}}::build{{className}}Deserializer);
+
+    {{>TaggedUnionShape/HashCode}}
+
+    {{>TaggedUnionShape/Equals}}
 }

@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -110,5 +111,18 @@ public class Memory implements PlainJsonSerializable {
 
     protected static void setupMemoryDeserializer(ObjectDeserializer<Memory.Builder> op) {
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.type);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Memory other = (Memory) o;
+        return Objects.equals(this.type, other.type);
     }
 }

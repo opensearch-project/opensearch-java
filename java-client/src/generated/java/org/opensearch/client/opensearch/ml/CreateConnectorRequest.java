@@ -15,8 +15,10 @@ package org.opensearch.client.opensearch.ml;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -42,19 +44,25 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CreateConnectorRequest extends RequestBase implements PlainJsonSerializable {
 
+    @Nonnull
     private final List<Action> actions;
 
     @Nullable
     private final ClientConfig clientConfig;
 
+    @Nonnull
     private final Credential credential;
 
+    @Nonnull
     private final String description;
 
+    @Nonnull
     private final String name;
 
+    @Nonnull
     private final Map<String, JsonData> parameters;
 
+    @Nonnull
     private final String protocol;
 
     private final int version;
@@ -79,6 +87,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
     /**
      * Required - API name: {@code actions}
      */
+    @Nonnull
     public final List<Action> actions() {
         return this.actions;
     }
@@ -94,6 +103,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
     /**
      * Required - API name: {@code credential}
      */
+    @Nonnull
     public final Credential credential() {
         return this.credential;
     }
@@ -101,6 +111,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
     /**
      * Required - API name: {@code description}
      */
+    @Nonnull
     public final String description() {
         return this.description;
     }
@@ -108,6 +119,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
     /**
      * Required - API name: {@code name}
      */
+    @Nonnull
     public final String name() {
         return this.name;
     }
@@ -115,6 +127,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
     /**
      * Required - API name: {@code parameters}
      */
+    @Nonnull
     public final Map<String, JsonData> parameters() {
         return this.parameters;
     }
@@ -122,6 +135,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
     /**
      * Required - API name: {@code protocol}
      */
+    @Nonnull
     public final String protocol() {
         return this.protocol;
     }
@@ -365,4 +379,31 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
         true,
         CreateConnectorResponse._DESERIALIZER
     );
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.actions.hashCode();
+        result = 31 * result + Objects.hashCode(this.clientConfig);
+        result = 31 * result + this.credential.hashCode();
+        result = 31 * result + this.description.hashCode();
+        result = 31 * result + this.name.hashCode();
+        result = 31 * result + this.parameters.hashCode();
+        result = 31 * result + this.protocol.hashCode();
+        result = 31 * result + Integer.hashCode(this.version);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CreateConnectorRequest other = (CreateConnectorRequest) o;
+        return this.actions.equals(other.actions)
+            && Objects.equals(this.clientConfig, other.clientConfig)
+            && this.credential.equals(other.credential)
+            && this.description.equals(other.description)
+            && this.name.equals(other.name)
+            && this.parameters.equals(other.parameters)
+            && this.protocol.equals(other.protocol)
+            && this.version == other.version;
+    }
 }

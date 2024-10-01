@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
@@ -110,5 +111,18 @@ public class RegisterAgentsResponse implements PlainJsonSerializable {
 
     protected static void setupRegisterAgentsResponseDeserializer(ObjectDeserializer<RegisterAgentsResponse.Builder> op) {
         op.add(Builder::agentId, JsonpDeserializer.stringDeserializer(), "agent_id");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.agentId);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RegisterAgentsResponse other = (RegisterAgentsResponse) o;
+        return Objects.equals(this.agentId, other.agentId);
     }
 }

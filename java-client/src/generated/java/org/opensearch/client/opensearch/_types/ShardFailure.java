@@ -37,8 +37,10 @@
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -62,6 +64,7 @@ public class ShardFailure implements PlainJsonSerializable {
     @Nullable
     private final String node;
 
+    @Nonnull
     private final ErrorCause reason;
 
     private final int shard;
@@ -102,6 +105,7 @@ public class ShardFailure implements PlainJsonSerializable {
     /**
      * Required - API name: {@code reason}
      */
+    @Nonnull
     public final ErrorCause reason() {
         return this.reason;
     }
@@ -244,5 +248,26 @@ public class ShardFailure implements PlainJsonSerializable {
         op.add(Builder::reason, ErrorCause._DESERIALIZER, "reason");
         op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
+    }
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.index);
+        result = 31 * result + Objects.hashCode(this.node);
+        result = 31 * result + this.reason.hashCode();
+        result = 31 * result + Integer.hashCode(this.shard);
+        result = 31 * result + Objects.hashCode(this.status);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ShardFailure other = (ShardFailure) o;
+        return Objects.equals(this.index, other.index)
+            && Objects.equals(this.node, other.node)
+            && this.reason.equals(other.reason)
+            && this.shard == other.shard
+            && Objects.equals(this.status, other.status);
     }
 }
