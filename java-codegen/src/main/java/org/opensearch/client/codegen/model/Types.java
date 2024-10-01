@@ -123,6 +123,7 @@ public final class Types {
         public static final class Annotation {
             public static final String PACKAGE = Javax.PACKAGE + ".annotation";
             public static final Type Generated = Type.builder().withPackage(PACKAGE).withName("Generated").build();
+            public static final Type Nonnull = Type.builder().withPackage(PACKAGE).withName("Nonnull").build();
             public static final Type Nullable = Type.builder().withPackage(PACKAGE).withName("Nullable").build();
         }
     }

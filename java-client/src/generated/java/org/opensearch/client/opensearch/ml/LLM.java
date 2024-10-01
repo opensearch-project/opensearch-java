@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -38,6 +39,7 @@ public class LLM implements PlainJsonSerializable {
     @Nullable
     private final String modelId;
 
+    @Nonnull
     private final Map<String, JsonData> parameters;
 
     // ---------------------------------------------------------------------------------------------
@@ -62,6 +64,7 @@ public class LLM implements PlainJsonSerializable {
     /**
      * API name: {@code parameters}
      */
+    @Nonnull
     public final Map<String, JsonData> parameters() {
         return this.parameters;
     }
@@ -169,7 +172,7 @@ public class LLM implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         LLM other = (LLM) o;
         return Objects.equals(this.modelId, other.modelId) && Objects.equals(this.parameters, other.parameters);
     }

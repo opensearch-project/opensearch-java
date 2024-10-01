@@ -283,26 +283,26 @@ public class ClientConfig implements PlainJsonSerializable {
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Integer.hashCode(this.connectionTimeout);
-        result = 31 * result + Integer.hashCode(this.maxConnection);
-        result = 31 * result + Integer.hashCode(this.maxRetryTimes);
-        result = 31 * result + Integer.hashCode(this.readTimeout);
-        result = 31 * result + Integer.hashCode(this.retryBackoffMillis);
+        result = 31 * result + Objects.hashCode(this.connectionTimeout);
+        result = 31 * result + Objects.hashCode(this.maxConnection);
+        result = 31 * result + Objects.hashCode(this.maxRetryTimes);
+        result = 31 * result + Objects.hashCode(this.readTimeout);
+        result = 31 * result + Objects.hashCode(this.retryBackoffMillis);
         result = 31 * result + Objects.hashCode(this.retryBackoffPolicy);
-        result = 31 * result + Integer.hashCode(this.retryTimeoutSeconds);
+        result = 31 * result + Objects.hashCode(this.retryTimeoutSeconds);
         return result;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         ClientConfig other = (ClientConfig) o;
-        return this.connectionTimeout() == other.connectionTimeout()
-            && this.maxConnection() == other.maxConnection()
-            && this.maxRetryTimes() == other.maxRetryTimes()
-            && this.readTimeout() == other.readTimeout()
-            && this.retryBackoffMillis() == other.retryBackoffMillis()
+        return Objects.equals(this.connectionTimeout, other.connectionTimeout)
+            && Objects.equals(this.maxConnection, other.maxConnection)
+            && Objects.equals(this.maxRetryTimes, other.maxRetryTimes)
+            && Objects.equals(this.readTimeout, other.readTimeout)
+            && Objects.equals(this.retryBackoffMillis, other.retryBackoffMillis)
             && Objects.equals(this.retryBackoffPolicy, other.retryBackoffPolicy)
-            && this.retryTimeoutSeconds() == other.retryTimeoutSeconds();
+            && Objects.equals(this.retryTimeoutSeconds, other.retryTimeoutSeconds);
     }
 }

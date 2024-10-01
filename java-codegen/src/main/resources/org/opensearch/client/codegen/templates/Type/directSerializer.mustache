@@ -10,15 +10,20 @@
     }
 {{/type.isList}}
 {{^type.isListOrMap}}
-    {{#type.isPrimitive}}
+    {{#type.isPotentiallyBoxedPrimitive}}
+        generator.write({{value}});
+    {{/type.isPotentiallyBoxedPrimitive}}
+    {{^type.isPotentiallyBoxedPrimitive}}
         {{#type.isNumber}}
             generator.write({{value}}.doubleValue());
         {{/type.isNumber}}
         {{^type.isNumber}}
-            generator.write({{value}});
+            {{#type.isString}}
+                generator.write({{value}});
+            {{/type.isString}}
+            {{^type.isString}}
+                {{value}}.serialize(generator, mapper);
+            {{/type.isString}}
         {{/type.isNumber}}
-    {{/type.isPrimitive}}
-    {{^type.isPrimitive}}
-        {{value}}.serialize(generator, mapper);
-    {{/type.isPrimitive}}
+    {{/type.isPotentiallyBoxedPrimitive}}
 {{/type.isListOrMap}}

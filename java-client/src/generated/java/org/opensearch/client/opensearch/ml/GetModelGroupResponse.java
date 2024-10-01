@@ -16,6 +16,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -33,11 +34,13 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GetModelGroupResponse implements PlainJsonSerializable {
 
+    @Nonnull
     private final String access;
 
     @Nullable
     private final Long createdTime;
 
+    @Nonnull
     private final String description;
 
     @Nullable
@@ -45,6 +48,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
 
     private final int latestVersion;
 
+    @Nonnull
     private final String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -68,6 +72,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
      * API name: {@code access}
      * </p>
      */
+    @Nonnull
     public final String access() {
         return this.access;
     }
@@ -86,6 +91,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
      * API name: {@code description}
      * </p>
      */
+    @Nonnull
     public final String description() {
         return this.description;
     }
@@ -114,6 +120,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
      * API name: {@code name}
      * </p>
      */
+    @Nonnull
     public final String name() {
         return this.name;
     }
@@ -261,9 +268,9 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
     public int hashCode() {
         int result = 17;
         result = 31 * result + this.access.hashCode();
-        result = 31 * result + Long.hashCode(this.createdTime);
+        result = 31 * result + Objects.hashCode(this.createdTime);
         result = 31 * result + this.description.hashCode();
-        result = 31 * result + Long.hashCode(this.lastUpdatedTime);
+        result = 31 * result + Objects.hashCode(this.lastUpdatedTime);
         result = 31 * result + Integer.hashCode(this.latestVersion);
         result = 31 * result + this.name.hashCode();
         return result;
@@ -271,13 +278,13 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         GetModelGroupResponse other = (GetModelGroupResponse) o;
-        return Objects.equals(this.access, other.access)
-            && this.createdTime() == other.createdTime()
-            && Objects.equals(this.description, other.description)
-            && this.lastUpdatedTime() == other.lastUpdatedTime()
-            && this.latestVersion() == other.latestVersion()
-            && Objects.equals(this.name, other.name);
+        return this.access.equals(other.access)
+            && Objects.equals(this.createdTime, other.createdTime)
+            && this.description.equals(other.description)
+            && Objects.equals(this.lastUpdatedTime, other.lastUpdatedTime)
+            && this.latestVersion == other.latestVersion
+            && this.name.equals(other.name);
     }
 }
