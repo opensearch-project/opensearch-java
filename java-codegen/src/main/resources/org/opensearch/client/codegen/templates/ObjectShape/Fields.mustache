@@ -3,10 +3,6 @@
 
 {{/-first}}
     {{#deprecation}}@Deprecated{{/deprecation}}
-{{^required}}
-{{^type.isListOrMap}}
-    @{{TYPES.Javax.Annotation.Nullable}}
-{{/type.isListOrMap}}
-{{/required}}
+    {{>ObjectShape/FieldNullability}}
     private final {{type}} {{name}};
 {{/fields}}

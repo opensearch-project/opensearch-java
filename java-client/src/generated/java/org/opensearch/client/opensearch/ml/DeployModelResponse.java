@@ -16,6 +16,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -33,8 +34,10 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DeployModelResponse implements PlainJsonSerializable {
 
+    @Nonnull
     private final String status;
 
+    @Nonnull
     private final String taskId;
 
     @Nullable
@@ -55,6 +58,7 @@ public class DeployModelResponse implements PlainJsonSerializable {
     /**
      * Required - API name: {@code status}
      */
+    @Nonnull
     public final String status() {
         return this.status;
     }
@@ -62,6 +66,7 @@ public class DeployModelResponse implements PlainJsonSerializable {
     /**
      * Required - API name: {@code task_id}
      */
+    @Nonnull
     public final String taskId() {
         return this.taskId;
     }
@@ -170,10 +175,8 @@ public class DeployModelResponse implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         DeployModelResponse other = (DeployModelResponse) o;
-        return Objects.equals(this.status, other.status)
-            && Objects.equals(this.taskId, other.taskId)
-            && Objects.equals(this.taskType, other.taskType);
+        return this.status.equals(other.status) && this.taskId.equals(other.taskId) && Objects.equals(this.taskType, other.taskType);
     }
 }

@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -39,11 +40,13 @@ public class ToolItems implements PlainJsonSerializable {
     @Nullable
     private final String name;
 
+    @Nonnull
     private final Map<String, JsonData> parameters;
 
     @Nullable
     private final String type;
 
+    @Nonnull
     private final Map<String, JsonData> metadata;
 
     // ---------------------------------------------------------------------------------------------
@@ -70,6 +73,7 @@ public class ToolItems implements PlainJsonSerializable {
     /**
      * API name: {@code parameters}
      */
+    @Nonnull
     public final Map<String, JsonData> parameters() {
         return this.parameters;
     }
@@ -84,6 +88,7 @@ public class ToolItems implements PlainJsonSerializable {
 
     /**
                                     */
+    @Nonnull
     public final Map<String, JsonData> metadata() {
         return this.metadata;
     }
@@ -246,7 +251,7 @@ public class ToolItems implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         ToolItems other = (ToolItems) o;
         return Objects.equals(this.name, other.name)
             && Objects.equals(this.parameters, other.parameters)

@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -66,6 +67,7 @@ public class GetTasksResponse implements PlainJsonSerializable {
     @Nullable
     private final TaskResponse response;
 
+    @Nonnull
     private final TaskInfo task;
 
     // ---------------------------------------------------------------------------------------------
@@ -107,6 +109,7 @@ public class GetTasksResponse implements PlainJsonSerializable {
     /**
      * Required - API name: {@code task}
      */
+    @Nonnull
     public final TaskInfo task() {
         return this.task;
     }
@@ -245,11 +248,11 @@ public class GetTasksResponse implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         GetTasksResponse other = (GetTasksResponse) o;
-        return this.completed() == other.completed()
+        return this.completed == other.completed
             && Objects.equals(this.error, other.error)
             && Objects.equals(this.response, other.response)
-            && Objects.equals(this.task, other.task);
+            && this.task.equals(other.task);
     }
 }

@@ -1,0 +1,6 @@
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || this.getClass() != o.getClass()) return false;
+        {{className}} other = ({{className}})o;
+        return {{TYPES.Java.Util.Objects}}.equals(this._kind, other._kind) && {{TYPES.Java.Util.Objects}}.equals(this._value, other._value);
+    }

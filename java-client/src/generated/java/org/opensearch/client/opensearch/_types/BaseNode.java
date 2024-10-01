@@ -41,6 +41,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -54,6 +55,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class BaseNode implements PlainJsonSerializable {
 
+    @Nonnull
     private final Map<String, String> attributes;
 
     @Nullable
@@ -62,8 +64,10 @@ public abstract class BaseNode implements PlainJsonSerializable {
     @Nullable
     private final String ip;
 
+    @Nonnull
     private final String name;
 
+    @Nonnull
     private final List<NodeRole> roles;
 
     @Nullable
@@ -83,6 +87,7 @@ public abstract class BaseNode implements PlainJsonSerializable {
     /**
      * API name: {@code attributes}
      */
+    @Nonnull
     public final Map<String, String> attributes() {
         return this.attributes;
     }
@@ -106,6 +111,7 @@ public abstract class BaseNode implements PlainJsonSerializable {
     /**
      * Required - API name: {@code name}
      */
+    @Nonnull
     public final String name() {
         return this.name;
     }
@@ -113,6 +119,7 @@ public abstract class BaseNode implements PlainJsonSerializable {
     /**
      * API name: {@code roles}
      */
+    @Nonnull
     public final List<NodeRole> roles() {
         return this.roles;
     }
@@ -296,12 +303,12 @@ public abstract class BaseNode implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         BaseNode other = (BaseNode) o;
         return Objects.equals(this.attributes, other.attributes)
             && Objects.equals(this.host, other.host)
             && Objects.equals(this.ip, other.ip)
-            && Objects.equals(this.name, other.name)
+            && this.name.equals(other.name)
             && Objects.equals(this.roles, other.roles)
             && Objects.equals(this.transportAddress, other.transportAddress);
     }

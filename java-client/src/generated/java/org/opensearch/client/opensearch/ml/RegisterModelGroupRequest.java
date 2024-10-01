@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -47,11 +48,13 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
     @Nullable
     private final Boolean addAllBackendRoles;
 
+    @Nonnull
     private final List<String> backendRoles;
 
     @Nullable
     private final String description;
 
+    @Nonnull
     private final String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -96,6 +99,7 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
      * API name: {@code backend_roles}
      * </p>
      */
+    @Nonnull
     public final List<String> backendRoles() {
         return this.backendRoles;
     }
@@ -117,6 +121,7 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
      * API name: {@code name}
      * </p>
      */
+    @Nonnull
     public final String name() {
         return this.name;
     }
@@ -299,7 +304,7 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.accessMode);
-        result = 31 * result + Boolean.hashCode(this.addAllBackendRoles);
+        result = 31 * result + Objects.hashCode(this.addAllBackendRoles);
         result = 31 * result + Objects.hashCode(this.backendRoles);
         result = 31 * result + Objects.hashCode(this.description);
         result = 31 * result + this.name.hashCode();
@@ -308,12 +313,12 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         RegisterModelGroupRequest other = (RegisterModelGroupRequest) o;
         return Objects.equals(this.accessMode, other.accessMode)
-            && this.addAllBackendRoles() == other.addAllBackendRoles()
+            && Objects.equals(this.addAllBackendRoles, other.addAllBackendRoles)
             && Objects.equals(this.backendRoles, other.backendRoles)
             && Objects.equals(this.description, other.description)
-            && Objects.equals(this.name, other.name);
+            && this.name.equals(other.name);
     }
 }

@@ -37,9 +37,9 @@
 package org.opensearch.client.opensearch.snapshot.verify_repository;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -56,6 +56,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CompactNodeInfo implements PlainJsonSerializable {
 
+    @Nonnull
     private final String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -71,6 +72,7 @@ public class CompactNodeInfo implements PlainJsonSerializable {
     /**
      * Required - API name: {@code name}
      */
+    @Nonnull
     public final String name() {
         return this.name;
     }
@@ -140,8 +142,8 @@ public class CompactNodeInfo implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         CompactNodeInfo other = (CompactNodeInfo) o;
-        return Objects.equals(this.name, other.name);
+        return this.name.equals(other.name);
     }
 }

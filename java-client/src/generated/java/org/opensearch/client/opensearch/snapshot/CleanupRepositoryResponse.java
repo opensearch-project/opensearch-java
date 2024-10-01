@@ -37,9 +37,9 @@
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -57,6 +57,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CleanupRepositoryResponse implements PlainJsonSerializable {
 
+    @Nonnull
     private final CleanupRepositoryResults results;
 
     // ---------------------------------------------------------------------------------------------
@@ -72,6 +73,7 @@ public class CleanupRepositoryResponse implements PlainJsonSerializable {
     /**
      * Required - API name: {@code results}
      */
+    @Nonnull
     public final CleanupRepositoryResults results() {
         return this.results;
     }
@@ -148,8 +150,8 @@ public class CleanupRepositoryResponse implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         CleanupRepositoryResponse other = (CleanupRepositoryResponse) o;
-        return Objects.equals(this.results, other.results);
+        return this.results.equals(other.results);
     }
 }

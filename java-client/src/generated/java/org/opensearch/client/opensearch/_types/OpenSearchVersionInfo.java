@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -57,25 +58,33 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class OpenSearchVersionInfo implements PlainJsonSerializable {
 
+    @Nonnull
     private final String buildDate;
 
     @Nullable
     private final String buildFlavor;
 
+    @Nonnull
     private final String buildHash;
 
     private final boolean buildSnapshot;
 
+    @Nonnull
     private final String buildType;
 
+    @Nonnull
     private final String distribution;
 
+    @Nonnull
     private final String luceneVersion;
 
+    @Nonnull
     private final String minimumIndexCompatibilityVersion;
 
+    @Nonnull
     private final String minimumWireCompatibilityVersion;
 
+    @Nonnull
     private final String number;
 
     // ---------------------------------------------------------------------------------------------
@@ -108,6 +117,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
     /**
      * Required - API name: {@code build_date}
      */
+    @Nonnull
     public final String buildDate() {
         return this.buildDate;
     }
@@ -123,6 +133,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
     /**
      * Required - API name: {@code build_hash}
      */
+    @Nonnull
     public final String buildHash() {
         return this.buildHash;
     }
@@ -137,6 +148,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
     /**
      * Required - API name: {@code build_type}
      */
+    @Nonnull
     public final String buildType() {
         return this.buildType;
     }
@@ -144,6 +156,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
     /**
      * Required - API name: {@code distribution}
      */
+    @Nonnull
     public final String distribution() {
         return this.distribution;
     }
@@ -151,6 +164,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
     /**
      * Required - API name: {@code lucene_version}
      */
+    @Nonnull
     public final String luceneVersion() {
         return this.luceneVersion;
     }
@@ -158,6 +172,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
     /**
      * Required - API name: {@code minimum_index_compatibility_version}
      */
+    @Nonnull
     public final String minimumIndexCompatibilityVersion() {
         return this.minimumIndexCompatibilityVersion;
     }
@@ -165,6 +180,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
     /**
      * Required - API name: {@code minimum_wire_compatibility_version}
      */
+    @Nonnull
     public final String minimumWireCompatibilityVersion() {
         return this.minimumWireCompatibilityVersion;
     }
@@ -172,6 +188,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
     /**
      * Required - API name: {@code number}
      */
+    @Nonnull
     public final String number() {
         return this.number;
     }
@@ -370,17 +387,17 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         OpenSearchVersionInfo other = (OpenSearchVersionInfo) o;
-        return Objects.equals(this.buildDate, other.buildDate)
+        return this.buildDate.equals(other.buildDate)
             && Objects.equals(this.buildFlavor, other.buildFlavor)
-            && Objects.equals(this.buildHash, other.buildHash)
-            && this.buildSnapshot() == other.buildSnapshot()
-            && Objects.equals(this.buildType, other.buildType)
-            && Objects.equals(this.distribution, other.distribution)
-            && Objects.equals(this.luceneVersion, other.luceneVersion)
-            && Objects.equals(this.minimumIndexCompatibilityVersion, other.minimumIndexCompatibilityVersion)
-            && Objects.equals(this.minimumWireCompatibilityVersion, other.minimumWireCompatibilityVersion)
-            && Objects.equals(this.number, other.number);
+            && this.buildHash.equals(other.buildHash)
+            && this.buildSnapshot == other.buildSnapshot
+            && this.buildType.equals(other.buildType)
+            && this.distribution.equals(other.distribution)
+            && this.luceneVersion.equals(other.luceneVersion)
+            && this.minimumIndexCompatibilityVersion.equals(other.minimumIndexCompatibilityVersion)
+            && this.minimumWireCompatibilityVersion.equals(other.minimumWireCompatibilityVersion)
+            && this.number.equals(other.number);
     }
 }

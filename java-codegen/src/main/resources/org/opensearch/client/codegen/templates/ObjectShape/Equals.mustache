@@ -5,7 +5,7 @@
             }
         {{/extendsOtherShape}}
         if(this == o) return true;
-        if(this.getClass() != o.getClass()) return false;
+        if(o == null || this.getClass() != o.getClass()) return false;
         {{^hasFields}}
         return true;
         {{/hasFields}}
@@ -13,12 +13,17 @@
             {{className}} other = ({{className}})o;
             return
             {{#fields}}
-                {{#isUnboxedPrimitive}}
-                    this.{{name}}() == other.{{name}}()
-                {{/isUnboxedPrimitive}}
-                {{^isUnboxedPrimitive}}
+                {{#required}}
+                    {{#type.isPrimitive}}
+                        this.{{name}} == other.{{name}}
+                    {{/type.isPrimitive}}
+                    {{^type.isPrimitive}}
+                        this.{{name}}.equals(other.{{name}})
+                    {{/type.isPrimitive}}
+                {{/required}}
+                {{^required}}
                     {{TYPES.Java.Util.Objects}}.equals(this.{{name}}, other.{{name}})
-                {{/isUnboxedPrimitive}}
+                {{/required}}
                 {{^-last}}
                 && 
                 {{/-last}}

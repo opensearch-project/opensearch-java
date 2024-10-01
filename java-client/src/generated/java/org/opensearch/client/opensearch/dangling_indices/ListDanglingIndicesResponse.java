@@ -41,6 +41,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -63,6 +64,7 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
     @Nullable
     private final String clusterName;
 
+    @Nonnull
     private final List<DanglingIndex> danglingIndices;
 
     @Nullable
@@ -93,6 +95,7 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
     /**
      * Required - API name: {@code dangling_indices}
      */
+    @Nonnull
     public final List<DanglingIndex> danglingIndices() {
         return this.danglingIndices;
     }
@@ -242,10 +245,10 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         ListDanglingIndicesResponse other = (ListDanglingIndicesResponse) o;
         return Objects.equals(this.clusterName, other.clusterName)
-            && Objects.equals(this.danglingIndices, other.danglingIndices)
+            && this.danglingIndices.equals(other.danglingIndices)
             && Objects.equals(this.nodes, other.nodes);
     }
 }

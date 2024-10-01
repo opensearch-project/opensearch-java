@@ -42,6 +42,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -59,8 +60,10 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CancelRequest extends RequestBase {
 
+    @Nonnull
     private final List<String> actions;
 
+    @Nonnull
     private final List<String> nodes;
 
     @Nullable
@@ -92,6 +95,7 @@ public class CancelRequest extends RequestBase {
      * API name: {@code actions}
      * </p>
      */
+    @Nonnull
     public final List<String> actions() {
         return this.actions;
     }
@@ -102,6 +106,7 @@ public class CancelRequest extends RequestBase {
      * API name: {@code nodes}
      * </p>
      */
+    @Nonnull
     public final List<String> nodes() {
         return this.nodes;
     }
@@ -318,18 +323,18 @@ public class CancelRequest extends RequestBase {
         result = 31 * result + Objects.hashCode(this.nodes);
         result = 31 * result + Objects.hashCode(this.parentTaskId);
         result = 31 * result + Objects.hashCode(this.taskId);
-        result = 31 * result + Boolean.hashCode(this.waitForCompletion);
+        result = 31 * result + Objects.hashCode(this.waitForCompletion);
         return result;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         CancelRequest other = (CancelRequest) o;
         return Objects.equals(this.actions, other.actions)
             && Objects.equals(this.nodes, other.nodes)
             && Objects.equals(this.parentTaskId, other.parentTaskId)
             && Objects.equals(this.taskId, other.taskId)
-            && this.waitForCompletion() == other.waitForCompletion();
+            && Objects.equals(this.waitForCompletion, other.waitForCompletion);
     }
 }

@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -52,6 +53,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
     @Nullable
     private final String modelId;
 
+    @Nonnull
     private final String state;
 
     @Nullable
@@ -60,6 +62,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
     @Nullable
     private final String taskType;
 
+    @Nonnull
     private final List<List<String>> workerNode;
 
     // ---------------------------------------------------------------------------------------------
@@ -132,6 +135,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
     /**
      * Required - API name: {@code state}
      */
+    @Nonnull
     public final String state() {
         return this.state;
     }
@@ -158,6 +162,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
     /**
      * API name: {@code worker_node}
      */
+    @Nonnull
     public final List<List<String>> workerNode() {
         return this.workerNode;
     }
@@ -396,11 +401,11 @@ public class GetTaskResponse implements PlainJsonSerializable {
 
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Long.hashCode(this.createTime);
+        result = 31 * result + Objects.hashCode(this.createTime);
         result = 31 * result + Objects.hashCode(this.error);
         result = 31 * result + Objects.hashCode(this.functionName);
-        result = 31 * result + Boolean.hashCode(this.isAsync);
-        result = 31 * result + Long.hashCode(this.lastUpdateTime);
+        result = 31 * result + Objects.hashCode(this.isAsync);
+        result = 31 * result + Objects.hashCode(this.lastUpdateTime);
         result = 31 * result + Objects.hashCode(this.modelId);
         result = 31 * result + this.state.hashCode();
         result = 31 * result + Objects.hashCode(this.taskId);
@@ -411,15 +416,15 @@ public class GetTaskResponse implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         GetTaskResponse other = (GetTaskResponse) o;
-        return this.createTime() == other.createTime()
+        return Objects.equals(this.createTime, other.createTime)
             && Objects.equals(this.error, other.error)
             && Objects.equals(this.functionName, other.functionName)
-            && this.isAsync() == other.isAsync()
-            && this.lastUpdateTime() == other.lastUpdateTime()
+            && Objects.equals(this.isAsync, other.isAsync)
+            && Objects.equals(this.lastUpdateTime, other.lastUpdateTime)
             && Objects.equals(this.modelId, other.modelId)
-            && Objects.equals(this.state, other.state)
+            && this.state.equals(other.state)
             && Objects.equals(this.taskId, other.taskId)
             && Objects.equals(this.taskType, other.taskType)
             && Objects.equals(this.workerNode, other.workerNode);

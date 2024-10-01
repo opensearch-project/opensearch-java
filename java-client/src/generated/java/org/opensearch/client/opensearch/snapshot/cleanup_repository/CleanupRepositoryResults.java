@@ -175,8 +175,8 @@ public class CleanupRepositoryResults implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         CleanupRepositoryResults other = (CleanupRepositoryResults) o;
-        return this.deletedBlobs() == other.deletedBlobs() && this.deletedBytes() == other.deletedBytes();
+        return this.deletedBlobs == other.deletedBlobs && this.deletedBytes == other.deletedBytes;
     }
 }

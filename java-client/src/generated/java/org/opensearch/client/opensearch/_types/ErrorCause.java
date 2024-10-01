@@ -43,6 +43,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -67,15 +68,19 @@ public class ErrorCause implements PlainJsonSerializable {
     @Nullable
     private final String reason;
 
+    @Nonnull
     private final List<ErrorCause> rootCause;
 
     @Nullable
     private final String stackTrace;
 
+    @Nonnull
     private final List<ErrorCause> suppressed;
 
+    @Nonnull
     private final String type;
 
+    @Nonnull
     private final Map<String, JsonData> metadata;
 
     // ---------------------------------------------------------------------------------------------
@@ -116,6 +121,7 @@ public class ErrorCause implements PlainJsonSerializable {
     /**
      * API name: {@code root_cause}
      */
+    @Nonnull
     public final List<ErrorCause> rootCause() {
         return this.rootCause;
     }
@@ -134,6 +140,7 @@ public class ErrorCause implements PlainJsonSerializable {
     /**
      * API name: {@code suppressed}
      */
+    @Nonnull
     public final List<ErrorCause> suppressed() {
         return this.suppressed;
     }
@@ -144,6 +151,7 @@ public class ErrorCause implements PlainJsonSerializable {
      * API name: {@code type}
      * </p>
      */
+    @Nonnull
     public final String type() {
         return this.type;
     }
@@ -151,6 +159,7 @@ public class ErrorCause implements PlainJsonSerializable {
     /**
      * Additional details about the error.
      */
+    @Nonnull
     public final Map<String, JsonData> metadata() {
         return this.metadata;
     }
@@ -420,14 +429,14 @@ public class ErrorCause implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         ErrorCause other = (ErrorCause) o;
         return Objects.equals(this.causedBy, other.causedBy)
             && Objects.equals(this.reason, other.reason)
             && Objects.equals(this.rootCause, other.rootCause)
             && Objects.equals(this.stackTrace, other.stackTrace)
             && Objects.equals(this.suppressed, other.suppressed)
-            && Objects.equals(this.type, other.type)
+            && this.type.equals(other.type)
             && Objects.equals(this.metadata, other.metadata);
     }
 }

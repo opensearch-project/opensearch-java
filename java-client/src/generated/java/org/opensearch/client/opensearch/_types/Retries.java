@@ -163,8 +163,8 @@ public class Retries implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         Retries other = (Retries) o;
-        return this.bulk() == other.bulk() && this.search() == other.search();
+        return this.bulk == other.bulk && this.search == other.search;
     }
 }

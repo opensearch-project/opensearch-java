@@ -37,9 +37,9 @@
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -56,10 +56,13 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class TaskFailure implements PlainJsonSerializable {
 
+    @Nonnull
     private final String nodeId;
 
+    @Nonnull
     private final ErrorCause reason;
 
+    @Nonnull
     private final String status;
 
     private final int taskId;
@@ -80,6 +83,7 @@ public class TaskFailure implements PlainJsonSerializable {
     /**
      * Required - API name: {@code node_id}
      */
+    @Nonnull
     public final String nodeId() {
         return this.nodeId;
     }
@@ -87,6 +91,7 @@ public class TaskFailure implements PlainJsonSerializable {
     /**
      * Required - API name: {@code reason}
      */
+    @Nonnull
     public final ErrorCause reason() {
         return this.reason;
     }
@@ -94,6 +99,7 @@ public class TaskFailure implements PlainJsonSerializable {
     /**
      * Required - API name: {@code status}
      */
+    @Nonnull
     public final String status() {
         return this.status;
     }
@@ -219,11 +225,11 @@ public class TaskFailure implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         TaskFailure other = (TaskFailure) o;
-        return Objects.equals(this.nodeId, other.nodeId)
-            && Objects.equals(this.reason, other.reason)
-            && Objects.equals(this.status, other.status)
-            && this.taskId() == other.taskId();
+        return this.nodeId.equals(other.nodeId)
+            && this.reason.equals(other.reason)
+            && this.status.equals(other.status)
+            && this.taskId == other.taskId;
     }
 }

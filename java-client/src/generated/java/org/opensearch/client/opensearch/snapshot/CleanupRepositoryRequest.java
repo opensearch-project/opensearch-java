@@ -41,6 +41,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -66,6 +67,7 @@ public class CleanupRepositoryRequest extends RequestBase {
     @Nullable
     private final Time masterTimeout;
 
+    @Nonnull
     private final String repository;
 
     @Nullable
@@ -113,6 +115,7 @@ public class CleanupRepositoryRequest extends RequestBase {
      * API name: {@code repository}
      * </p>
      */
+    @Nonnull
     public final String repository() {
         return this.repository;
     }
@@ -276,11 +279,11 @@ public class CleanupRepositoryRequest extends RequestBase {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         CleanupRepositoryRequest other = (CleanupRepositoryRequest) o;
         return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
             && Objects.equals(this.masterTimeout, other.masterTimeout)
-            && Objects.equals(this.repository, other.repository)
+            && this.repository.equals(other.repository)
             && Objects.equals(this.timeout, other.timeout);
     }
 }

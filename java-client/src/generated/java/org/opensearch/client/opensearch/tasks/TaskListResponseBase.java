@@ -42,6 +42,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -58,10 +59,13 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class TaskListResponseBase implements PlainJsonSerializable {
 
+    @Nonnull
     private final List<ErrorCause> nodeFailures;
 
+    @Nonnull
     private final Map<String, TaskExecutingNode> nodes;
 
+    @Nonnull
     private final List<TaskFailure> taskFailures;
 
     @Nullable
@@ -79,6 +83,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
     /**
      * API name: {@code node_failures}
      */
+    @Nonnull
     public final List<ErrorCause> nodeFailures() {
         return this.nodeFailures;
     }
@@ -89,6 +94,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
      * API name: {@code nodes}
      * </p>
      */
+    @Nonnull
     public final Map<String, TaskExecutingNode> nodes() {
         return this.nodes;
     }
@@ -96,6 +102,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
     /**
      * API name: {@code task_failures}
      */
+    @Nonnull
     public final List<TaskFailure> taskFailures() {
         return this.taskFailures;
     }
@@ -319,7 +326,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         TaskListResponseBase other = (TaskListResponseBase) o;
         return Objects.equals(this.nodeFailures, other.nodeFailures)
             && Objects.equals(this.nodes, other.nodes)

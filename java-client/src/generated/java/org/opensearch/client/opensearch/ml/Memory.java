@@ -121,7 +121,7 @@ public class Memory implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         Memory other = (Memory) o;
         return Objects.equals(this.type, other.type);
     }

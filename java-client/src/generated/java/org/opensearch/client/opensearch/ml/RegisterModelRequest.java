@@ -16,6 +16,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -43,13 +44,16 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
     @Nullable
     private final String description;
 
+    @Nonnull
     private final String modelFormat;
 
     @Nullable
     private final String modelGroupId;
 
+    @Nonnull
     private final String name;
 
+    @Nonnull
     private final String version;
 
     // ---------------------------------------------------------------------------------------------
@@ -83,6 +87,7 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
      * API name: {@code model_format}
      * </p>
      */
+    @Nonnull
     public final String modelFormat() {
         return this.modelFormat;
     }
@@ -104,6 +109,7 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
      * API name: {@code name}
      * </p>
      */
+    @Nonnull
     public final String name() {
         return this.name;
     }
@@ -114,6 +120,7 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
      * API name: {@code version}
      * </p>
      */
+    @Nonnull
     public final String version() {
         return this.version;
     }
@@ -276,12 +283,12 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         RegisterModelRequest other = (RegisterModelRequest) o;
         return Objects.equals(this.description, other.description)
-            && Objects.equals(this.modelFormat, other.modelFormat)
+            && this.modelFormat.equals(other.modelFormat)
             && Objects.equals(this.modelGroupId, other.modelGroupId)
-            && Objects.equals(this.name, other.name)
-            && Objects.equals(this.version, other.version);
+            && this.name.equals(other.name)
+            && this.version.equals(other.version);
     }
 }

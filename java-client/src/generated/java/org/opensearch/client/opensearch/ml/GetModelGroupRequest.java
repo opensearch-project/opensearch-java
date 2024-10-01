@@ -12,9 +12,9 @@
 
 package org.opensearch.client.opensearch.ml;
 
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -31,6 +31,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GetModelGroupRequest extends RequestBase {
 
+    @Nonnull
     private final String modelGroupId;
 
     // ---------------------------------------------------------------------------------------------
@@ -46,6 +47,7 @@ public class GetModelGroupRequest extends RequestBase {
     /**
      * Required - API name: {@code model_group_id}
      */
+    @Nonnull
     public final String modelGroupId() {
         return this.modelGroupId;
     }
@@ -108,8 +110,8 @@ public class GetModelGroupRequest extends RequestBase {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         GetModelGroupRequest other = (GetModelGroupRequest) o;
-        return Objects.equals(this.modelGroupId, other.modelGroupId);
+        return this.modelGroupId.equals(other.modelGroupId);
     }
 }

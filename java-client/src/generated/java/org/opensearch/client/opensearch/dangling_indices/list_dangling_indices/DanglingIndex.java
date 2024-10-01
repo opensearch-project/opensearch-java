@@ -41,6 +41,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -63,10 +64,13 @@ public class DanglingIndex implements PlainJsonSerializable {
 
     private final long creationDateMillis;
 
+    @Nonnull
     private final String indexName;
 
+    @Nonnull
     private final String indexUuid;
 
+    @Nonnull
     private final List<String> nodeIds;
 
     // ---------------------------------------------------------------------------------------------
@@ -101,6 +105,7 @@ public class DanglingIndex implements PlainJsonSerializable {
     /**
      * Required - API name: {@code index_name}
      */
+    @Nonnull
     public final String indexName() {
         return this.indexName;
     }
@@ -108,6 +113,7 @@ public class DanglingIndex implements PlainJsonSerializable {
     /**
      * Required - API name: {@code index_uuid}
      */
+    @Nonnull
     public final String indexUuid() {
         return this.indexUuid;
     }
@@ -115,6 +121,7 @@ public class DanglingIndex implements PlainJsonSerializable {
     /**
      * Required - API name: {@code node_ids}
      */
+    @Nonnull
     public final List<String> nodeIds() {
         return this.nodeIds;
     }
@@ -263,12 +270,12 @@ public class DanglingIndex implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         DanglingIndex other = (DanglingIndex) o;
         return Objects.equals(this.creationDate, other.creationDate)
-            && this.creationDateMillis() == other.creationDateMillis()
-            && Objects.equals(this.indexName, other.indexName)
-            && Objects.equals(this.indexUuid, other.indexUuid)
-            && Objects.equals(this.nodeIds, other.nodeIds);
+            && this.creationDateMillis == other.creationDateMillis
+            && this.indexName.equals(other.indexName)
+            && this.indexUuid.equals(other.indexUuid)
+            && this.nodeIds.equals(other.nodeIds);
     }
 }

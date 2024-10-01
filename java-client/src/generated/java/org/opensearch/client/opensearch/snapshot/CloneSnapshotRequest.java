@@ -42,6 +42,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -70,16 +71,20 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
     @Nullable
     private final Time clusterManagerTimeout;
 
+    @Nonnull
     private final String indices;
 
     @Deprecated
     @Nullable
     private final Time masterTimeout;
 
+    @Nonnull
     private final String repository;
 
+    @Nonnull
     private final String snapshot;
 
+    @Nonnull
     private final String targetSnapshot;
 
     // ---------------------------------------------------------------------------------------------
@@ -111,6 +116,7 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
     /**
      * Required - API name: {@code indices}
      */
+    @Nonnull
     public final String indices() {
         return this.indices;
     }
@@ -133,6 +139,7 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
      * API name: {@code repository}
      * </p>
      */
+    @Nonnull
     public final String repository() {
         return this.repository;
     }
@@ -143,6 +150,7 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
      * API name: {@code snapshot}
      * </p>
      */
+    @Nonnull
     public final String snapshot() {
         return this.snapshot;
     }
@@ -153,6 +161,7 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
      * API name: {@code target_snapshot}
      * </p>
      */
+    @Nonnull
     public final String targetSnapshot() {
         return this.targetSnapshot;
     }
@@ -345,13 +354,13 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         CloneSnapshotRequest other = (CloneSnapshotRequest) o;
         return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
-            && Objects.equals(this.indices, other.indices)
+            && this.indices.equals(other.indices)
             && Objects.equals(this.masterTimeout, other.masterTimeout)
-            && Objects.equals(this.repository, other.repository)
-            && Objects.equals(this.snapshot, other.snapshot)
-            && Objects.equals(this.targetSnapshot, other.targetSnapshot);
+            && this.repository.equals(other.repository)
+            && this.snapshot.equals(other.snapshot)
+            && this.targetSnapshot.equals(other.targetSnapshot);
     }
 }

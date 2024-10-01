@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class UndeployModelResponse implements PlainJsonSerializable {
 
+    @Nonnull
     private final Map<String, UndeployModelNode> nodes;
 
     // ---------------------------------------------------------------------------------------------
@@ -49,6 +51,7 @@ public class UndeployModelResponse implements PlainJsonSerializable {
 
     /**
                                     */
+    @Nonnull
     public final Map<String, UndeployModelNode> nodes() {
         return this.nodes;
     }
@@ -150,7 +153,7 @@ public class UndeployModelResponse implements PlainJsonSerializable {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this.getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         UndeployModelResponse other = (UndeployModelResponse) o;
         return Objects.equals(this.nodes, other.nodes);
     }
