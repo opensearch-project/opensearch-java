@@ -12,10 +12,10 @@
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<BuilderT> op) {
 {{/extendedByOtherShape}}
     {{#extendsOtherShape}}
-        {{extendsType}}.setup{{extendsType.name}}Deserializer(op);
+        setup{{extendsType.name}}Deserializer(op{{#extendsType.typeParams}}, {{>Type/deserializer}}{{/extendsType.typeParams}});
     {{/extendsOtherShape}}
     {{#bodyFields}}
-        op.add({{#extendedByOtherShape}}Abstract{{/extendedByOtherShape}}Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{wireName}}{{/quoted}});
+        op.add({{#extendedByOtherShape}}Abstract{{/extendedByOtherShape}}Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{wireName}}{{/quoted}}{{#aliases}}, {{#quoted}}{{.}}{{/quoted}}{{/aliases}});
     {{/bodyFields}}
     {{#additionalPropertiesField}}
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
@@ -25,4 +25,8 @@
             builder.{{name}}.put(name, {{#type.mapValueType}}{{>Type/deserializer}}{{/type.mapValueType}}.deserialize(parser, mapper));
         });
     {{/additionalPropertiesField}}
+    {{#distinctDiscriminatorFieldValues}}
+
+        op.ignore({{#quoted}}{{key}}{{/quoted}});
+    {{/distinctDiscriminatorFieldValues}}
     }

@@ -16,8 +16,8 @@ import org.opensearch.client.codegen.renderer.JavaCodeFormatter;
 import org.opensearch.client.codegen.renderer.TemplateLoader;
 import org.opensearch.client.codegen.renderer.TemplateRenderer;
 import org.opensearch.client.codegen.renderer.TemplateValueFormatter;
-import org.opensearch.client.codegen.utils.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.Strings;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 
 public final class ShapeRenderingContext implements AutoCloseable {
     @Nonnull

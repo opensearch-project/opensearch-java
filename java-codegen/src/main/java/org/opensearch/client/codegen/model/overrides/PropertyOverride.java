@@ -8,24 +8,37 @@
 
 package org.opensearch.client.codegen.model.overrides;
 
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+import java.util.function.Function;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.model.Type;
-import org.opensearch.client.codegen.utils.MapBuilderBase;
-import org.opensearch.client.codegen.utils.ObjectBuilderBase;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilder;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
+import org.opensearch.client.codegen.utils.builder.ObjectMapBuilderBase;
+import org.opensearch.client.codegen.utils.builder.SetBuilder;
 
 public final class PropertyOverride {
     @Nullable
     private final Type mappedType;
+    @Nullable
+    private final Set<String> aliases;
 
     private PropertyOverride(Builder builder) {
         this.mappedType = builder.mappedType;
+        this.aliases = builder.aliases;
     }
 
     @Nonnull
     public Optional<Type> getMappedType() {
         return Optional.ofNullable(mappedType);
+    }
+
+    @Nonnull
+    public Optional<Set<String>> getAliases() {
+        return Optional.ofNullable(aliases);
     }
 
     @Nonnull
@@ -41,6 +54,8 @@ public final class PropertyOverride {
     public static final class Builder extends ObjectBuilderBase<PropertyOverride, Builder> {
         @Nullable
         private Type mappedType;
+        @Nullable
+        private Set<String> aliases;
 
         private Builder() {}
 
@@ -55,9 +70,21 @@ public final class PropertyOverride {
             this.mappedType = mappedType;
             return this;
         }
+
+        @Nonnull
+        public Builder withAliases(@Nullable Set<String> aliases) {
+            this.aliases = aliases;
+            return this;
+        }
+
+        @Nonnull
+        public Builder withAliases(@Nonnull Function<SetBuilder<String>, ObjectBuilder<Set<String>>> fn) {
+            this.aliases = Objects.requireNonNull(fn, "fn must not be null").apply(new SetBuilder<>()).build();
+            return this;
+        }
     }
 
-    public static final class MapBuilder extends MapBuilderBase<String, PropertyOverride, Builder, MapBuilder> {
+    public static final class MapBuilder extends ObjectMapBuilderBase<String, PropertyOverride, Builder, MapBuilder> {
         private MapBuilder() {}
 
         @Nonnull

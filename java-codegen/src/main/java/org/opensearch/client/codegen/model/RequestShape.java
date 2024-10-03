@@ -151,10 +151,6 @@ public class RequestShape extends ObjectShape {
         return fields.values().stream().anyMatch(Field::isRequired);
     }
 
-    public boolean hasFields() {
-        return !fields.isEmpty();
-    }
-
     public Type getJsonEndpointType() {
         return Types.Client.Transport.JsonEndpoint(getType(), getResponseType(), Types.Client.OpenSearch._Types.ErrorResponse);
     }
@@ -173,6 +169,10 @@ public class RequestShape extends ObjectShape {
     private static String classBaseName(@Nonnull OperationGroup operationGroup) {
         Objects.requireNonNull(operationGroup, "operationGroup must not be null");
         switch (operationGroup.toString()) {
+            case "indices.get":
+                return "GetIndex";
+            case "snapshot.clone":
+                return "CloneSnapshot";
             case "tasks.get":
                 return "GetTasks";
             default:

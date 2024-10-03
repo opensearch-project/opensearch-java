@@ -6,16 +6,28 @@
 {{#deprecated}}
     @Deprecated
 {{/deprecated}}
-    {{name}}({{#quoted}}{{wireName}}{{/quoted}}){{#-last}};{{/-last}}{{^-last}},{{/-last}}
+    {{name}}({{#quoted}}{{wireName}}{{/quoted}}{{#aliases}}, {{#quoted}}{{.}}{{/quoted}}{{/aliases}}){{#-last}};{{/-last}}{{^-last}},{{/-last}}
 {{/variants}}
 
     private final String jsonValue;
+{{#anyHasAliases}}
+    private final String[] aliases;
+{{/anyHasAliases}}
 
-    {{className}}(String jsonValue) {
+    {{className}}(String jsonValue{{#anyHasAliases}}, String... aliases{{/anyHasAliases}}) {
         this.jsonValue = jsonValue;
+{{#anyHasAliases}}
+        this.aliases = aliases;
+{{/anyHasAliases}}
     }
 
     public String jsonValue() { return this.jsonValue; }
+{{#anyHasAliases}}
+
+    public String[] aliases() {
+        return this.aliases;
+    }
+{{/anyHasAliases}}
 
     public static final JsonEnum.Deserializer<{{className}}> _DESERIALIZER = new JsonEnum.Deserializer<>({{className}}.values());
 }

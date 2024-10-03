@@ -43,6 +43,7 @@ public class DeleteModelGroupResponse extends WriteResponseBase {
      * Builder for {@link DeleteModelGroupResponse}.
      */
     public static class Builder extends WriteResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteModelGroupResponse> {
+
         @Override
         protected Builder self() {
             return this;
@@ -71,7 +72,7 @@ public class DeleteModelGroupResponse extends WriteResponseBase {
     );
 
     protected static void setupDeleteModelGroupResponseDeserializer(ObjectDeserializer<DeleteModelGroupResponse.Builder> op) {
-        WriteResponseBase.setupWriteResponseBaseDeserializer(op);
+        setupWriteResponseBaseDeserializer(op);
     }
 
     public int hashCode() {

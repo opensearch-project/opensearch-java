@@ -43,6 +43,7 @@ public class DeleteAgentResponse extends WriteResponseBase {
      * Builder for {@link DeleteAgentResponse}.
      */
     public static class Builder extends WriteResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteAgentResponse> {
+
         @Override
         protected Builder self() {
             return this;
@@ -71,7 +72,7 @@ public class DeleteAgentResponse extends WriteResponseBase {
     );
 
     protected static void setupDeleteAgentResponseDeserializer(ObjectDeserializer<DeleteAgentResponse.Builder> op) {
-        WriteResponseBase.setupWriteResponseBaseDeserializer(op);
+        setupWriteResponseBaseDeserializer(op);
     }
 
     public int hashCode() {

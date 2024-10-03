@@ -10,8 +10,8 @@ package org.opensearch.client.codegen.model;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.codegen.utils.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.Strings;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 
 public final class TypeParameterDefinition {
     @Nonnull

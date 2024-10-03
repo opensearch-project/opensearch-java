@@ -1,10 +1,26 @@
 {{>Partials/ClassDeclaration}} {
-    public enum Kind {
-        {{#variants}}{{#pascalCase}}{{name}}{{/pascalCase}}{{^-last}},{{/-last}}{{/variants}}
+    /**
+     * {@link {{className}}} variant kinds.
+     */
+    public enum Kind{{#discriminated}} implements {{TYPES.Client.Json.JsonEnum}}{{/discriminated}} {
+        {{#variants}}{{#pascalCase}}{{name}}{{/pascalCase}}{{#discriminated}}({{#quoted}}{{name}}{{/quoted}}){{/discriminated}}{{^-last}},{{/-last}}{{/variants}}
+        {{#discriminated}};
+
+        private final String jsonValue;
+
+        Kind(String jsonValue) {
+            this.jsonValue = jsonValue;
+        }
+
+        @Override
+        public String jsonValue() {
+            return jsonValue;
+        }
+        {{/discriminated}}
     }
 
     private final Kind _kind;
-    private final Object _value;
+    private final {{variantBaseType}} _value;
 
     @Override
     public final Kind _kind() {
@@ -12,14 +28,22 @@
     }
 
     @Override
-    public final Object _get() {
+    public final {{variantBaseType}} _get() {
         return _value;
     }
 
+{{#discriminated}}
+    public {{className}}({{variantBaseType}} value) {
+        this._kind = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(value._{{#camelCase}}{{className}}{{/camelCase}}Kind(), this, "<variant kind>");
+        this._value = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(value, this, "<variant value>");
+    }
+{{/discriminated}}
+{{^discriminated}}
     private {{className}}(Kind kind, Object value) {
         this._kind = kind;
         this._value = value;
     }
+{{/discriminated}}
 
     private {{className}}(Builder builder) {
         this._kind = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(builder._kind, builder, "<variant kind>");
@@ -30,7 +54,7 @@
         return fn.apply(new Builder()).build();
     }
 
-{{#false}}
+{{#canStringify}}
     public String _toJsonString() {
         switch (_kind) {
         {{#variants}}
@@ -42,7 +66,7 @@
         }
     }
 
-{{/false}}
+{{/canStringify}}
     {{#variants}}
     /**
      * Is this variant instance of kind {@code {{name}}}?
@@ -56,7 +80,7 @@
      *
      * @throws IllegalStateException if the current variant is not the {@code {{name}}} kind.
      */
-    public {{type}} {{#camelCase}}{{name}}{{/camelCase}}() {
+    public {{type}} {{#asFieldName}}{{name}}{{/asFieldName}}() {
         return {{TYPES.Client.Util.TaggedUnionUtils}}.get(this, Kind.{{#pascalCase}}{{name}}{{/pascalCase}});
     }
 
@@ -64,9 +88,13 @@
 
     @Override
     public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
+    {{#discriminated}}
+        mapper.serialize(_value, generator);
+    {{/discriminated}}
+    {{^discriminated}}
         if (_value instanceof {{TYPES.Client.Json.JsonpSerializable}}) {
             (({{TYPES.Client.Json.JsonpSerializable}}) _value).serialize(generator, mapper);
-        }{{#primitiveVariants}}{{#-first}} else {
+        }{{#nonShapeVariants}}{{#-first}} else {
             switch (_kind) {
         {{/-first}}
                 case {{#pascalCase}}{{name}}{{/pascalCase}}:
@@ -76,23 +104,24 @@
             }
         }
         {{/-last}}
-        {{/primitiveVariants}}
+        {{/nonShapeVariants}}
+    {{/discriminated}}
     }
 
     public static class Builder extends {{TYPES.Client.Util.ObjectBuilderBase}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
         private Kind _kind;
-        private Object _value;
+        private {{variantBaseType}} _value;
 
         {{#variants}}
-        public {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{#camelCase}}{{name}}{{/camelCase}}({{type}} v) {
+        public {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{#asFieldName}}{{name}}{{/asFieldName}}({{type}} v) {
             this._kind = Kind.{{#pascalCase}}{{name}}{{/pascalCase}};
             this._value = v;
             return this;
         }
         {{#type.hasBuilder}}
 
-        public {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{#camelCase}}{{name}}{{/camelCase}}({{type.builderFnType}} fn) {
-            return this.{{#camelCase}}{{name}}{{/camelCase}}(fn.apply(new {{type.builderType}}()).build());
+        public {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{#asFieldName}}{{name}}{{/asFieldName}}({{type.builderFnType}} fn) {
+            return this.{{#asFieldName}}{{name}}{{/asFieldName}}(fn.apply(new {{type.builderType}}()).build());
         }
         {{/type.hasBuilder}}
 
@@ -104,13 +133,26 @@
         }
     }
 
+{{#discriminated}}
+    protected static void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<Builder> op) {
+    {{#variants}}
+        op.add(Builder::{{#asFieldName}}{{name}}{{/asFieldName}}, {{type}}._DESERIALIZER, {{#quoted}}{{name}}{{/quoted}});
+    {{/variants}}
+
+        op.setTypeProperty({{#quoted}}{{discriminatingField}}{{/quoted}}, {{#defaultVariant}}Kind.{{#pascalCase}}{{name}}{{/pascalCase}}.jsonValue(){{/defaultVariant}}{{^defaultVariant}}null{{/defaultVariant}});
+    }
+
+    public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.ObjectBuilderDeserializer}}.lazy(Builder::new, {{className}}::setup{{className}}Deserializer, Builder::build);
+{{/discriminated}}
+{{^discriminated}}
     private static {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> build{{className}}Deserializer() {
-        return new {{TYPES.Client.Json.UnionDeserializer.builderType}}<{{className}}, Kind, Object>({{className}}::new, false)
+        return new {{TYPES.Client.Json.UnionDeserializer.builderType}}<{{className}}, Kind, Object>({{className}}::new, {{canStringify}})
             {{#variants}}.addMember(Kind.{{#pascalCase}}{{name}}{{/pascalCase}}, {{#type}}{{>Type/deserializer}}{{/type}}){{/variants}}
             .build();
     }
 
     public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.JsonpDeserializer}}.lazy({{className}}::build{{className}}Deserializer);
+{{/discriminated}}
 
     {{>TaggedUnionShape/HashCode}}
 

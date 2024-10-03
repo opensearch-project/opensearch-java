@@ -43,6 +43,7 @@ public class DeleteConnectorResponse extends WriteResponseBase {
      * Builder for {@link DeleteConnectorResponse}.
      */
     public static class Builder extends WriteResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteConnectorResponse> {
+
         @Override
         protected Builder self() {
             return this;
@@ -71,7 +72,7 @@ public class DeleteConnectorResponse extends WriteResponseBase {
     );
 
     protected static void setupDeleteConnectorResponseDeserializer(ObjectDeserializer<DeleteConnectorResponse.Builder> op) {
-        WriteResponseBase.setupWriteResponseBaseDeserializer(op);
+        setupWriteResponseBaseDeserializer(op);
     }
 
     public int hashCode() {

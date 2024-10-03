@@ -10,9 +10,13 @@ package org.opensearch.client.codegen.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
+import org.apache.commons.lang3.tuple.Pair;
 
 public class ObjectShape extends Shape {
     protected final Map<String, Field> bodyFields = new TreeMap<>();
@@ -28,7 +32,14 @@ public class ObjectShape extends Shape {
     }
 
     public Collection<Field> getBodyFields() {
-        return bodyFields.values();
+        var discriminatingFields = getReferencingDiscriminatedUnions().stream()
+            .map(ReferencingDiscriminatedUnion::getDiscriminatingField)
+            .collect(Collectors.toSet());
+        if (!discriminatingFields.isEmpty()) {
+            return bodyFields.values().stream().filter(f -> !discriminatingFields.contains(f.getWireName())).collect(Collectors.toList());
+        } else {
+            return bodyFields.values();
+        }
     }
 
     public Collection<Field> getFields() {
@@ -55,19 +66,67 @@ public class ObjectShape extends Shape {
         return !bodyFields.isEmpty() || additionalPropertiesField != null;
     }
 
-    public boolean hasFields() {
-        return !bodyFields.isEmpty() || additionalPropertiesField != null;
+    public Collection<ReferencingDiscriminatedUnion> getReferencingDiscriminatedUnions() {
+        return getIncomingReference(ReferenceKind.UnionVariant).stream()
+            .map(s -> (TaggedUnionShape) s)
+            .filter(TaggedUnionShape::isDiscriminated)
+            .sorted(Comparator.comparing(Shape::getClassName))
+            .map(u -> {
+                var discriminatorValue = u.getVariants()
+                    .stream()
+                    .filter(v -> v.getType().equals(getType()))
+                    .findFirst()
+                    .orElseThrow()
+                    .getName();
+
+                return new ReferencingDiscriminatedUnion(u, discriminatorValue);
+            })
+            .collect(Collectors.toList());
+    }
+
+    public Set<Pair<String, String>> getDistinctDiscriminatorFieldValues() {
+        return getReferencingDiscriminatedUnions().stream()
+            .map(u -> Pair.of(u.getDiscriminatingField(), u.getDiscriminatorValue()))
+            .collect(Collectors.toSet());
     }
 
     public Collection<Type> getImplementsTypes() {
-        return hasFieldsToSerialize() && !extendsOtherShape() ? List.of(Types.Client.Json.PlainJsonSerializable) : null;
+        var types = new ArrayList<Type>(2);
+
+        for (var union : getReferencingDiscriminatedUnions()) {
+            types.add(union.getUnion().getVariantBaseType());
+        }
+
+        if (hasFieldsToSerialize() && !extendsOtherShape()) {
+            types.add(Types.Client.Json.PlainJsonSerializable);
+        }
+
+        return types;
     }
 
     public Collection<Type> getAnnotations() {
         return (hasFieldsToSerialize() || extendsOtherShape()) && !isAbstract() ? List.of(Types.Client.Json.JsonpDeserializable) : null;
     }
 
-    public static class BuilderModel {
+    public static class ReferencingDiscriminatedUnion {
+        private final TaggedUnionShape union;
+        private final String discriminatorValue;
 
+        public ReferencingDiscriminatedUnion(TaggedUnionShape union, String discriminatorValue) {
+            this.union = union;
+            this.discriminatorValue = discriminatorValue;
+        }
+
+        public TaggedUnionShape getUnion() {
+            return union;
+        }
+
+        public String getDiscriminatingField() {
+            return union.getDiscriminatingField();
+        }
+
+        public String getDiscriminatorValue() {
+            return discriminatorValue;
+        }
     }
 }

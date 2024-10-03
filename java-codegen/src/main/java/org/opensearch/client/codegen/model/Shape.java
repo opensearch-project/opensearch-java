@@ -19,10 +19,12 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.utils.JavaClassKind;
+import org.opensearch.client.codegen.utils.Markdown;
 
 public abstract class Shape {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -39,7 +41,7 @@ public abstract class Shape {
         this.parent = parent;
         this.className = className;
         this.typedefName = typedefName;
-        this.description = description;
+        this.description = description != null ? Markdown.toJavaDocHtml(description) : null;
     }
 
     public String getPackageName() {
@@ -110,6 +112,11 @@ public abstract class Shape {
         to.incomingReferences.computeIfAbsent(kind, k -> new ArrayList<>()).add(this);
     }
 
+    protected Collection<Shape> getIncomingReference(ReferenceKind kind) {
+        var refs = incomingReferences.get(kind);
+        return refs != null ? Collections.unmodifiableList(refs) : Collections.emptyList();
+    }
+
     public @Nonnull Type getType() {
         return Type.builder().withPackage(getPackageName()).withName(className).withTargetShape(this).build();
     }
@@ -128,6 +135,10 @@ public abstract class Shape {
         renderer.renderJava(this, outFile);
     }
 
+    public String getTemplateName() {
+        return getClass().getSimpleName();
+    }
+
     public Set<String> getImports() {
         var imports = new TreeSet<String>();
         for (var type : referencedTypes) {
@@ -137,6 +148,17 @@ public abstract class Shape {
     }
 
     public boolean needsLegacyLicense() {
+        if ("analysis".equals(parent.getName()) && (className.startsWith("Cjk") || className.startsWith("Smartcn"))) {
+            return false;
+        }
         return !"ml".equals(parent.getName());
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).append("className", className)
+            .append("parent", parent)
+            .append("extendsType", extendsType)
+            .toString();
     }
 }
