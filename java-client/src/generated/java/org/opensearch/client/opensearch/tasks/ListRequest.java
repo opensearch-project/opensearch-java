@@ -110,7 +110,7 @@ public class ListRequest extends RequestBase {
     }
 
     /**
-     * If `true`, the response includes detailed information about shard recoveries.
+     * If <code>true</code>, the response includes detailed information about shard recoveries.
      * <p>
      * API name: {@code detailed}
      * </p>
@@ -132,8 +132,8 @@ public class ListRequest extends RequestBase {
     }
 
     /**
-     * Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're
-     * connecting to, leave empty to get information from all nodes.
+     * Comma-separated list of node IDs or names to limit the returned information; use <code>_local</code> to return information from the
+     * node you're connecting to, leave empty to get information from all nodes.
      * <p>
      * API name: {@code nodes}
      * </p>
@@ -144,7 +144,7 @@ public class ListRequest extends RequestBase {
     }
 
     /**
-     * Parent task ID used to limit returned information. To return all tasks, omit this parameter or use a value of `-1`.
+     * Parent task ID used to limit returned information. To return all tasks, omit this parameter or use a value of <code>-1</code>.
      * <p>
      * API name: {@code parent_task_id}
      * </p>
@@ -166,7 +166,7 @@ public class ListRequest extends RequestBase {
     }
 
     /**
-     * If `true`, the request blocks until the operation is complete.
+     * If <code>true</code>, the request blocks until the operation is complete.
      * <p>
      * API name: {@code wait_for_completion}
      * </p>
@@ -228,7 +228,7 @@ public class ListRequest extends RequestBase {
         }
 
         /**
-         * If `true`, the response includes detailed information about shard recoveries.
+         * If <code>true</code>, the response includes detailed information about shard recoveries.
          * <p>
          * API name: {@code detailed}
          * </p>
@@ -250,8 +250,8 @@ public class ListRequest extends RequestBase {
         }
 
         /**
-         * Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node
-         * you're connecting to, leave empty to get information from all nodes.
+         * Comma-separated list of node IDs or names to limit the returned information; use <code>_local</code> to return information from
+         * the node you're connecting to, leave empty to get information from all nodes.
          * <p>
          * API name: {@code nodes}
          * </p>
@@ -266,8 +266,8 @@ public class ListRequest extends RequestBase {
         }
 
         /**
-         * Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node
-         * you're connecting to, leave empty to get information from all nodes.
+         * Comma-separated list of node IDs or names to limit the returned information; use <code>_local</code> to return information from
+         * the node you're connecting to, leave empty to get information from all nodes.
          * <p>
          * API name: {@code nodes}
          * </p>
@@ -282,7 +282,7 @@ public class ListRequest extends RequestBase {
         }
 
         /**
-         * Parent task ID used to limit returned information. To return all tasks, omit this parameter or use a value of `-1`.
+         * Parent task ID used to limit returned information. To return all tasks, omit this parameter or use a value of <code>-1</code>.
          * <p>
          * API name: {@code parent_task_id}
          * </p>
@@ -314,7 +314,7 @@ public class ListRequest extends RequestBase {
         }
 
         /**
-         * If `true`, the request blocks until the operation is complete.
+         * If <code>true</code>, the request blocks until the operation is complete.
          * <p>
          * API name: {@code wait_for_completion}
          * </p>

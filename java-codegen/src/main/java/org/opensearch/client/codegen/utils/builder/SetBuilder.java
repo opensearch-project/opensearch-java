@@ -6,11 +6,8 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.codegen.utils;
+package org.opensearch.client.codegen.utils.builder;
 
-import javax.annotation.Nonnull;
-
-public interface ObjectBuilder<T> {
-    @Nonnull
-    T build();
+public final class SetBuilder<V> extends SetBuilderBase<V, SetBuilder<V>> {
+    public SetBuilder() {}
 }

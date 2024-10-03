@@ -104,7 +104,7 @@ public class GetTasksRequest extends RequestBase {
     }
 
     /**
-     * If `true`, the request blocks until the task has completed.
+     * If <code>true</code>, the request blocks until the task has completed.
      * <p>
      * API name: {@code wait_for_completion}
      * </p>
@@ -159,7 +159,7 @@ public class GetTasksRequest extends RequestBase {
         }
 
         /**
-         * If `true`, the request blocks until the task has completed.
+         * If <code>true</code>, the request blocks until the task has completed.
          * <p>
          * API name: {@code wait_for_completion}
          * </p>

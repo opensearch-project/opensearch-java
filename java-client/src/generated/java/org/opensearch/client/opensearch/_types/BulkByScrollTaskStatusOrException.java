@@ -60,9 +60,12 @@ public class BulkByScrollTaskStatusOrException
     implements
         TaggedUnion<BulkByScrollTaskStatusOrException.Kind, Object>,
         PlainJsonSerializable {
+    /**
+     * {@link BulkByScrollTaskStatusOrException} variant kinds.
+     */
     public enum Kind {
-        Status,
-        Exception
+        Exception,
+        Status
     }
 
     private final Kind _kind;
@@ -95,22 +98,6 @@ public class BulkByScrollTaskStatusOrException
     }
 
     /**
-     * Is this variant instance of kind {@code status}?
-     */
-    public boolean isStatus() {
-        return _kind == Kind.Status;
-    }
-
-    /**
-     * Get the {@code status} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code status} kind.
-     */
-    public BulkByScrollTaskStatus status() {
-        return TaggedUnionUtils.get(this, Kind.Status);
-    }
-
-    /**
      * Is this variant instance of kind {@code exception}?
      */
     public boolean isException() {
@@ -126,6 +113,22 @@ public class BulkByScrollTaskStatusOrException
         return TaggedUnionUtils.get(this, Kind.Exception);
     }
 
+    /**
+     * Is this variant instance of kind {@code status}?
+     */
+    public boolean isStatus() {
+        return _kind == Kind.Status;
+    }
+
+    /**
+     * Get the {@code status} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code status} kind.
+     */
+    public BulkByScrollTaskStatus status() {
+        return TaggedUnionUtils.get(this, Kind.Status);
+    }
+
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         if (_value instanceof JsonpSerializable) {
@@ -136,6 +139,16 @@ public class BulkByScrollTaskStatusOrException
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkByScrollTaskStatusOrException> {
         private Kind _kind;
         private Object _value;
+
+        public ObjectBuilder<BulkByScrollTaskStatusOrException> exception(ErrorCause v) {
+            this._kind = Kind.Exception;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<BulkByScrollTaskStatusOrException> exception(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+            return this.exception(fn.apply(new ErrorCause.Builder()).build());
+        }
 
         public ObjectBuilder<BulkByScrollTaskStatusOrException> status(BulkByScrollTaskStatus v) {
             this._kind = Kind.Status;
@@ -149,16 +162,6 @@ public class BulkByScrollTaskStatusOrException
             return this.status(fn.apply(new BulkByScrollTaskStatus.Builder()).build());
         }
 
-        public ObjectBuilder<BulkByScrollTaskStatusOrException> exception(ErrorCause v) {
-            this._kind = Kind.Exception;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<BulkByScrollTaskStatusOrException> exception(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-            return this.exception(fn.apply(new ErrorCause.Builder()).build());
-        }
-
         @Override
         public BulkByScrollTaskStatusOrException build() {
             _checkSingleUse();
@@ -168,8 +171,8 @@ public class BulkByScrollTaskStatusOrException
 
     private static JsonpDeserializer<BulkByScrollTaskStatusOrException> buildBulkByScrollTaskStatusOrExceptionDeserializer() {
         return new UnionDeserializer.Builder<BulkByScrollTaskStatusOrException, Kind, Object>(BulkByScrollTaskStatusOrException::new, false)
-            .addMember(Kind.Status, BulkByScrollTaskStatus._DESERIALIZER)
             .addMember(Kind.Exception, ErrorCause._DESERIALIZER)
+            .addMember(Kind.Status, BulkByScrollTaskStatus._DESERIALIZER)
             .build();
     }
 

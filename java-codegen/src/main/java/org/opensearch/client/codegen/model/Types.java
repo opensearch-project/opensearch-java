@@ -76,10 +76,7 @@ public final class Types {
             public static final Type HashMap = Type.builder().withPackage(PACKAGE).withName("HashMap").build();
 
             public static Type Map(Type keyType, Type valueType) {
-                return Map.toBuilder()
-                    .withTypeParameters(keyType, valueType)
-                    .withTargetShape(valueType.getTargetShape().orElse(null))
-                    .build();
+                return Map.toBuilder().withTypeParameters(keyType, valueType).build();
             }
 
             public static final Type Map = Type.builder().withPackage(PACKAGE).withName("Map").build();
@@ -89,12 +86,7 @@ public final class Types {
             }
 
             public static Type List(Type valueType) {
-                return Type.builder()
-                    .withPackage(PACKAGE)
-                    .withName("List")
-                    .withTypeParameters(valueType)
-                    .withTargetShape(valueType.getTargetShape().orElse(null))
-                    .build();
+                return Type.builder().withPackage(PACKAGE).withName("List").withTypeParameters(valueType).build();
             }
 
             public static final class Concurrent {
@@ -180,6 +172,12 @@ public final class Types {
 
             public static final class Endpoints {
                 public static final String PACKAGE = Transport.PACKAGE + ".endpoints";
+
+                public static Type DictionaryResponse(Type keyType, Type valueType) {
+                    return DictionaryResponse.withTypeParameters(keyType, valueType);
+                }
+
+                public static final Type DictionaryResponse = Type.builder().withPackage(PACKAGE).withName("DictionaryResponse").build();
                 public static final Type SimpleEndpoint = Type.builder().withPackage(PACKAGE).withName("SimpleEndpoint").build();
             }
         }

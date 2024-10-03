@@ -66,6 +66,7 @@ public class CancelResponse extends TaskListResponseBase {
      * Builder for {@link CancelResponse}.
      */
     public static class Builder extends TaskListResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<CancelResponse> {
+
         @Override
         protected Builder self() {
             return this;
@@ -94,7 +95,7 @@ public class CancelResponse extends TaskListResponseBase {
     );
 
     protected static void setupCancelResponseDeserializer(ObjectDeserializer<CancelResponse.Builder> op) {
-        TaskListResponseBase.setupTaskListResponseBaseDeserializer(op);
+        setupTaskListResponseBaseDeserializer(op);
     }
 
     public int hashCode() {

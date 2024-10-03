@@ -17,8 +17,8 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Nonnull;
 import org.apache.commons.io.IOUtils;
-import org.opensearch.client.codegen.utils.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.Strings;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 
 public final class TemplateLoader implements Mustache.TemplateLoader {
     private static final ConcurrentHashMap<String, String> CACHE = new ConcurrentHashMap<>();

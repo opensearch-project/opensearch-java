@@ -23,7 +23,7 @@ import javax.annotation.Nonnull;
 import org.opensearch.client.codegen.exceptions.JavaFormatterException;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Shape;
-import org.opensearch.client.codegen.utils.ObjectBuilderBase;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 
 public final class TemplateRenderer {
     @Nonnull
@@ -47,7 +47,8 @@ public final class TemplateRenderer {
 
     public void render(String templateName, Object context, Writer out) throws RenderException {
         try {
-            templateCache.computeIfAbsent(templateName, compiler::loadTemplate).execute(context, this.context, out);
+            var template = templateCache.computeIfAbsent(templateName, compiler::loadTemplate);
+            template.execute(context, this.context, out);
         } catch (MustacheException e) {
             throw new RenderException("Failed to render: " + context, e);
         }
@@ -60,7 +61,7 @@ public final class TemplateRenderer {
     }
 
     public void renderJava(Shape shape, File outputFile) throws RenderException {
-        var classBody = render(shape.getClass().getSimpleName(), shape);
+        var classBody = render(shape.getTemplateName(), shape);
         var classHeader = render("Partials/ClassHeader", shape);
 
         try (Writer fileWriter = new FileWriter(outputFile)) {

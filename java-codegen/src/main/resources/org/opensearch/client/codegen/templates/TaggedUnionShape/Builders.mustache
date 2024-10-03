@@ -1,0 +1,12 @@
+{{>Partials/ClassDeclaration}} {
+    private {{className}}() {}
+
+{{#variants}}
+    /**
+     * Creates a builder for the {@link {{type.name}} {{name}}} {@code {{unionClassName}}} variant.
+     */
+    public static {{type.builderType}} {{#asFieldName}}{{name}}{{/asFieldName}}() {
+        return new {{type.builderType}}();
+    }
+{{/variants}}
+}

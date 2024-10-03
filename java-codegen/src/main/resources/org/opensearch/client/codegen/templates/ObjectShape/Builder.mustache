@@ -5,9 +5,9 @@
     {{#extendsOtherShape}}
         public static class Builder extends {{extendsType}}.AbstractBuilder<Builder>
                                     implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
-            {{>ObjectShape/Builder/SelfImpl}}
-
             {{>ObjectShape/Builder/Fields}}
+
+            {{>ObjectShape/Builder/SelfImpl}}
 
             {{>ObjectShape/Builder/BuildImpl}}
         }
@@ -35,7 +35,9 @@
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
         extends {{#extendsOtherShape}}{{extendsType}}.AbstractBuilder<BuilderT>{{/extendsOtherShape}}{{^extendsOtherShape}}{{TYPES.Client.Util.ObjectBuilderBase}}{{/extendsOtherShape}} {
         {{>ObjectShape/Builder/Fields}}
+    {{^extendsOtherShape}}
 
         protected abstract BuilderT self();
+    {{/extendsOtherShape}}
     }
 {{/extendedByOtherShape}}
