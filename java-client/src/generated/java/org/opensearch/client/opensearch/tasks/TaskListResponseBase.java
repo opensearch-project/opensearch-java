@@ -89,7 +89,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
     }
 
     /**
-     * Task information grouped by node, if `group_by` was set to `node` (the default).
+     * Task information grouped by node, if <code>group_by</code> was set to <code>node</code> (the default).
      * <p>
      * API name: {@code nodes}
      * </p>
@@ -208,7 +208,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
         }
 
         /**
-         * Task information grouped by node, if `group_by` was set to `node` (the default).
+         * Task information grouped by node, if <code>group_by</code> was set to <code>node</code> (the default).
          * <p>
          * API name: {@code nodes}
          * </p>
@@ -223,7 +223,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
         }
 
         /**
-         * Task information grouped by node, if `group_by` was set to `node` (the default).
+         * Task information grouped by node, if <code>group_by</code> was set to <code>node</code> (the default).
          * <p>
          * API name: {@code nodes}
          * </p>
@@ -238,7 +238,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
         }
 
         /**
-         * Task information grouped by node, if `group_by` was set to `node` (the default).
+         * Task information grouped by node, if <code>group_by</code> was set to <code>node</code> (the default).
          * <p>
          * API name: {@code nodes}
          * </p>

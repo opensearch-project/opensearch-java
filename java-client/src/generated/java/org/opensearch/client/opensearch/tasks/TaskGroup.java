@@ -97,11 +97,6 @@ public class TaskGroup extends TaskInfo {
      * Builder for {@link TaskGroup}.
      */
     public static class Builder extends TaskInfo.AbstractBuilder<Builder> implements ObjectBuilder<TaskGroup> {
-        @Override
-        protected Builder self() {
-            return this;
-        }
-
         @Nullable
         private List<TaskGroup> children;
 
@@ -140,6 +135,11 @@ public class TaskGroup extends TaskInfo {
             return children(fn.apply(new TaskGroup.Builder()).build());
         }
 
+        @Override
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * Builds a {@link TaskGroup}.
          *
@@ -163,7 +163,7 @@ public class TaskGroup extends TaskInfo {
     );
 
     protected static void setupTaskGroupDeserializer(ObjectDeserializer<TaskGroup.Builder> op) {
-        TaskInfo.setupTaskInfoDeserializer(op);
+        setupTaskInfoDeserializer(op);
         op.add(Builder::children, JsonpDeserializer.arrayDeserializer(TaskGroup._DESERIALIZER), "children");
     }
 

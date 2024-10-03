@@ -67,6 +67,7 @@ public class CloneSnapshotResponse extends AcknowledgedResponseBase {
      * Builder for {@link CloneSnapshotResponse}.
      */
     public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<CloneSnapshotResponse> {
+
         @Override
         protected Builder self() {
             return this;
@@ -95,7 +96,7 @@ public class CloneSnapshotResponse extends AcknowledgedResponseBase {
     );
 
     protected static void setupCloneSnapshotResponseDeserializer(ObjectDeserializer<CloneSnapshotResponse.Builder> op) {
-        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+        setupAcknowledgedResponseBaseDeserializer(op);
     }
 
     public int hashCode() {

@@ -13,7 +13,8 @@ import javax.annotation.Nonnull;
 
 public enum JavaClassKind {
     Class,
-    Enum;
+    Enum,
+    Interface;
 
     private static final Map<String, JavaClassKind> VALUES = Maps.createLookupOf(values(), JavaClassKind::toString);
 

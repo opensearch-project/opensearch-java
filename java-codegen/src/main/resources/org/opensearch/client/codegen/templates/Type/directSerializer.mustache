@@ -1,7 +1,16 @@
 {{#type.isMap}}
     for ({{type.mapEntryType}} item{{depth}} : {{value}}.entrySet()) {
         generator.writeKey(item{{depth}}.getKey());
-        {{#type.mapValueType.serializer}}item{{depth}}.getValue(){{/type.mapValueType.serializer}}
+        {{#type.mapValueType.isList}}
+            generator.writeStartArray();
+            if (item{{depth}}.getValue() != null) {
+                {{#type.mapValueType.directSerializer}}item{{depth}}.getValue(){{/type.mapValueType.directSerializer}}
+            }
+            generator.writeEnd();
+        {{/type.mapValueType.isList}}
+        {{^type.mapValueType.isList}}
+            {{#type.mapValueType.serializer}}item{{depth}}.getValue(){{/type.mapValueType.serializer}}
+        {{/type.mapValueType.isList}}
     }
 {{/type.isMap}}
 {{#type.isList}}

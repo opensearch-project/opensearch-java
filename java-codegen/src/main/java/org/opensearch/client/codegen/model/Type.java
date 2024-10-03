@@ -16,11 +16,13 @@ import java.util.Optional;
 import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.opensearch.client.codegen.renderer.lambdas.TypeIsDefinedLambda;
 import org.opensearch.client.codegen.renderer.lambdas.TypeQueryParamifyLambda;
 import org.opensearch.client.codegen.renderer.lambdas.TypeSerializerLambda;
-import org.opensearch.client.codegen.utils.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.Strings;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 
 public class Type {
     private static final Set<String> PRIMITIVES = Set.of("boolean", "char", "byte", "short", "int", "long", "float", "double");
@@ -70,9 +72,37 @@ public class Type {
         return out.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Type type = (Type) o;
+
+        return new EqualsBuilder().append(packageName, type.packageName)
+            .append(name, type.name)
+            .append(typeParams, type.typeParams)
+            .append(targetShape, type.targetShape)
+            .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(packageName).append(name).append(typeParams).append(targetShape).toHashCode();
+    }
+
     @Nonnull
     public String getName() {
         return name;
+    }
+
+    public Type[] getTypeParams() {
+        return typeParams;
+    }
+
+    public boolean isInsidePackage(String pkg) {
+        return packageName != null && packageName.startsWith(pkg);
     }
 
     @Nonnull

@@ -59,6 +59,9 @@ import org.opensearch.client.util.TaggedUnionUtils;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class TaskInfos implements TaggedUnion<TaskInfos.Kind, Object>, PlainJsonSerializable {
+    /**
+     * {@link TaskInfos} variant kinds.
+     */
     public enum Kind {
         GroupedByNone,
         GroupedByParents
@@ -127,6 +130,24 @@ public class TaskInfos implements TaggedUnion<TaskInfos.Kind, Object>, PlainJson
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         if (_value instanceof JsonpSerializable) {
             ((JsonpSerializable) _value).serialize(generator, mapper);
+        } else {
+            switch (_kind) {
+                case GroupedByNone:
+                    generator.writeStartArray();
+                    for (TaskInfo item0 : ((List<TaskInfo>) this._value)) {
+                        item0.serialize(generator, mapper);
+                    }
+                    generator.writeEnd();
+                    break;
+                case GroupedByParents:
+                    generator.writeStartObject();
+                    for (Map.Entry<String, TaskGroup> item0 : ((Map<String, TaskGroup>) this._value).entrySet()) {
+                        generator.writeKey(item0.getKey());
+                        item0.getValue().serialize(generator, mapper);
+                    }
+                    generator.writeEnd();
+                    break;
+            }
         }
     }
 

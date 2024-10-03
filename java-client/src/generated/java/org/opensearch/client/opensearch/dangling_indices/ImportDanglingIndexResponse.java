@@ -71,6 +71,7 @@ public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
     public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
         implements
             ObjectBuilder<ImportDanglingIndexResponse> {
+
         @Override
         protected Builder self() {
             return this;
@@ -99,7 +100,7 @@ public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
     );
 
     protected static void setupImportDanglingIndexResponseDeserializer(ObjectDeserializer<ImportDanglingIndexResponse.Builder> op) {
-        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+        setupAcknowledgedResponseBaseDeserializer(op);
     }
 
     public int hashCode() {

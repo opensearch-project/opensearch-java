@@ -95,11 +95,6 @@ public class TaskExecutingNode extends BaseNode {
      * Builder for {@link TaskExecutingNode}.
      */
     public static class Builder extends BaseNode.AbstractBuilder<Builder> implements ObjectBuilder<TaskExecutingNode> {
-        @Override
-        protected Builder self() {
-            return this;
-        }
-
         private Map<String, TaskInfo> tasks;
 
         /**
@@ -137,6 +132,11 @@ public class TaskExecutingNode extends BaseNode {
             return tasks(key, fn.apply(new TaskInfo.Builder()).build());
         }
 
+        @Override
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * Builds a {@link TaskExecutingNode}.
          *
@@ -160,7 +160,7 @@ public class TaskExecutingNode extends BaseNode {
     );
 
     protected static void setupTaskExecutingNodeDeserializer(ObjectDeserializer<TaskExecutingNode.Builder> op) {
-        BaseNode.setupBaseNodeDeserializer(op);
+        setupBaseNodeDeserializer(op);
         op.add(Builder::tasks, JsonpDeserializer.stringMapDeserializer(TaskInfo._DESERIALIZER), "tasks");
     }
 

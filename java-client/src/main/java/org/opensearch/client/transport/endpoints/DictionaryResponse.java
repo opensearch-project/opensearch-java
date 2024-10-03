@@ -36,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -161,5 +162,20 @@ public abstract class DictionaryResponse<TKey, TValue> implements PlainJsonSeria
         op.setUnknownFieldHandler(
             (builder, name, parser, params) -> { builder.putResult(name, tValueParser.deserialize(parser, params)); }
         );
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(result);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DictionaryResponse<?, ?> other = (DictionaryResponse<?, ?>) o;
+        return Objects.equals(this.result, other.result);
     }
 }

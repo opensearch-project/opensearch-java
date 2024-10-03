@@ -4,7 +4,16 @@
     // ---------------------------------------------------------------------------------------------
 
     {{>ObjectShape/Constructor}}
+{{#referencingDiscriminatedUnions}}
 
+    /**
+     * {@link {{union.className}}} variant kind.
+     */
+    @Override
+    public {{union.type}}.Kind _{{#camelCase}}{{union.className}}{{/camelCase}}Kind() {
+        return {{union.type}}.Kind.{{#pascalCase}}{{discriminatorValue}}{{/pascalCase}};
+    }
+{{/referencingDiscriminatedUnions}}
     {{>ObjectShape/Getters}}
 
 {{#hasFieldsToSerialize}}

@@ -127,7 +127,7 @@ public class ErrorCause implements PlainJsonSerializable {
     }
 
     /**
-     * The server stack trace. Present only if the `error_trace=true` parameter was sent with the request.
+     * The server stack trace. Present only if the <code>error_trace=true</code> parameter was sent with the request.
      * <p>
      * API name: {@code stack_trace}
      * </p>
@@ -298,7 +298,7 @@ public class ErrorCause implements PlainJsonSerializable {
         }
 
         /**
-         * The server stack trace. Present only if the `error_trace=true` parameter was sent with the request.
+         * The server stack trace. Present only if the <code>error_trace=true</code> parameter was sent with the request.
          * <p>
          * API name: {@code stack_trace}
          * </p>

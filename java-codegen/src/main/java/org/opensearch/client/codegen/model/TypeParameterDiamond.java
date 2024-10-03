@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
 import org.opensearch.client.codegen.utils.Either;
-import org.opensearch.client.codegen.utils.ObjectBuilderBase;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 
 public final class TypeParameterDiamond {
     @Nonnull

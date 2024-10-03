@@ -23,7 +23,7 @@ import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Namespace {
-    private static final Set<String> PARTIAL_NAMESPACES = Set.of("", "snapshot");
+    private static final Set<String> PARTIAL_NAMESPACES = Set.of("", "snapshot", "indices");
 
     private final Namespace parent;
     private final String name;
@@ -102,6 +102,11 @@ public class Namespace {
 
     private Type getClientType(boolean async) {
         return Type.builder().withPackage(getPackageName()).withName(getClientClassName(async, false)).build();
+    }
+
+    @Override
+    public String toString() {
+        return getPackageName();
     }
 
     private static class Client extends Shape {

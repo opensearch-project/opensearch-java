@@ -22,9 +22,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Maps;
-import org.opensearch.client.codegen.utils.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.Sets;
 import org.opensearch.client.codegen.utils.Versions;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 import org.semver4j.Semver;
 
 public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
@@ -66,6 +66,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nullable
     private final String pattern;
     @Nullable
+    private final OpenApiDiscriminator discriminator;
+    @Nullable
     private final Semver versionRemoved;
     @Nullable
     private final Semver versionDeprecated;
@@ -87,6 +89,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         required = builder.required;
         title = builder.title;
         pattern = builder.pattern;
+        discriminator = builder.discriminator;
         versionRemoved = builder.versionRemoved;
         versionDeprecated = builder.versionDeprecated;
     }
@@ -98,7 +101,10 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
             var key = pointer.getLastKey().orElseThrow();
             var colonIdx = key.indexOf(':');
             if (colonIdx >= 0) {
-                namespace = key.substring(0, colonIdx).replaceAll("\\._common", "").replaceAll("^_common", "_types");
+                namespace = key.substring(0, colonIdx)
+                    .replaceAll("\\._common", "")
+                    .replaceAll("^_common", "_types")
+                    .replaceAll("^_core", "core");
                 name = key.substring(colonIdx + 1);
             } else {
                 namespace = null;
@@ -135,6 +141,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         title = schema.getTitle();
 
         pattern = schema.getPattern();
+
+        discriminator = child("discriminator", schema.getDiscriminator(), OpenApiDiscriminator::new);
 
         var extensions = schema.getExtensions();
 
@@ -256,6 +264,10 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         return Sets.unmodifiableOpt(required);
     }
 
+    public boolean hasTitle() {
+        return title != null;
+    }
+
     @Nonnull
     public Optional<String> getTitle() {
         return Optional.ofNullable(title);
@@ -264,6 +276,11 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nonnull
     public Optional<String> getPattern() {
         return Optional.ofNullable(pattern);
+    }
+
+    @Nonnull
+    public Optional<OpenApiDiscriminator> getDiscriminator() {
+        return Optional.ofNullable(discriminator);
     }
 
     @Nonnull
@@ -354,6 +371,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         private String title;
         @Nullable
         private String pattern;
+        @Nullable
+        private OpenApiDiscriminator discriminator;
         @Nullable
         private Semver versionRemoved;
         @Nullable

@@ -6,21 +6,25 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.codegen;
+package org.opensearch.client.codegen.utils;
 
-import java.util.HashSet;
 import java.util.Set;
 import javax.annotation.Nonnull;
-import org.opensearch.client.codegen.utils.Strings;
 
 public class NameSanitizer {
-    private static final Set<String> reservedWords = new HashSet<>() {
-        {
-            add("default");
-            add("native");
-            add("transient");
-        }
-    };
+    private static final Set<String> reservedWords = Set.of(
+        "default",
+        "native",
+        "transient",
+        "boolean",
+        "char",
+        "byte",
+        "short",
+        "int",
+        "long",
+        "float",
+        "double"
+    );
 
     @Nonnull
     public static String wireNameToField(@Nonnull String wireName) {

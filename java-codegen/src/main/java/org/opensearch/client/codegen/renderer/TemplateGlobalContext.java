@@ -17,8 +17,9 @@ import javax.annotation.Nullable;
 import org.apache.commons.text.StringEscapeUtils;
 import org.opensearch.client.codegen.model.Types;
 import org.opensearch.client.codegen.renderer.lambdas.TemplateStringLambda;
-import org.opensearch.client.codegen.utils.ObjectBuilderBase;
+import org.opensearch.client.codegen.utils.NameSanitizer;
 import org.opensearch.client.codegen.utils.Strings;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 
 public final class TemplateGlobalContext implements Mustache.CustomContext {
     @Nonnull
@@ -47,6 +48,7 @@ public final class TemplateGlobalContext implements Mustache.CustomContext {
         return new Builder().withLambda("quoted", s -> '\"' + StringEscapeUtils.escapeJava(s) + '\"')
             .withLambda("camelCase", Strings::toCamelCase)
             .withLambda("pascalCase", Strings::toPascalCase)
+            .withLambda("asFieldName", NameSanitizer::wireNameToField)
             .withLambda("toLower", s -> s.toLowerCase())
             .withLambda("ERROR", s -> {
                 throw new RuntimeException(s);

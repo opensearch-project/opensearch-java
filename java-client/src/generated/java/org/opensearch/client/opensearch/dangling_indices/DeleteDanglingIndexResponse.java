@@ -71,6 +71,7 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
     public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
         implements
             ObjectBuilder<DeleteDanglingIndexResponse> {
+
         @Override
         protected Builder self() {
             return this;
@@ -99,7 +100,7 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
     );
 
     protected static void setupDeleteDanglingIndexResponseDeserializer(ObjectDeserializer<DeleteDanglingIndexResponse.Builder> op) {
-        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+        setupAcknowledgedResponseBaseDeserializer(op);
     }
 
     public int hashCode() {
