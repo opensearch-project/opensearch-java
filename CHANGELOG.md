@@ -10,7 +10,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.2.5 to 5.3
 - Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.2.5 to 5.3
 - Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.3.1 to 5.4
-- Bumps `io.github.classgraph:classgraph` from 4.8.175 to 4.8.176
+- Bumps `io.github.classgraph:classgraph` from 4.8.175 to 4.8.177
 
 ### Changed
 
