@@ -30,26 +30,32 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch._types.mapping;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
+package org.opensearch.client.opensearch._types;
+
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.BuiltinScriptLanguage
+
 @JsonpDeserializable
-public enum DynamicMapping implements JsonEnum {
-    Strict("strict"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum BuiltinScriptLanguage implements JsonEnum {
+    Expression("expression"),
 
-    Runtime("runtime"),
+    Java("java"),
 
-    True("true"),
+    Mustache("mustache"),
 
-    False("false"),
-
-    ;
+    Painless("painless");
 
     private final String jsonValue;
 
-    DynamicMapping(String jsonValue) {
+    BuiltinScriptLanguage(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -57,5 +63,7 @@ public enum DynamicMapping implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<DynamicMapping> _DESERIALIZER = new JsonEnum.Deserializer<>(DynamicMapping.values());
+    public static final JsonEnum.Deserializer<BuiltinScriptLanguage> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        BuiltinScriptLanguage.values()
+    );
 }

@@ -30,28 +30,32 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch._types.mapping;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
-import org.opensearch.client.json.JsonEnum;
-import org.opensearch.client.json.JsonpDeserializable;
+package org.opensearch.client.opensearch._types;
 
-@JsonpDeserializable
-public enum MatchType implements JsonEnum {
-    Simple("simple"),
+import javax.annotation.Generated;
 
-    Regex("regex"),
+/**
+ * Builders for {@link Script} variants.
+ */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ScriptBuilders {
+    private ScriptBuilders() {}
 
-    ;
-
-    private final String jsonValue;
-
-    MatchType(String jsonValue) {
-        this.jsonValue = jsonValue;
+    /**
+     * Creates a builder for the {@link InlineScript inline} {@code Script} variant.
+     */
+    public static InlineScript.Builder inline() {
+        return new InlineScript.Builder();
     }
 
-    public String jsonValue() {
-        return this.jsonValue;
+    /**
+     * Creates a builder for the {@link StoredScriptId stored} {@code Script} variant.
+     */
+    public static StoredScriptId.Builder stored() {
+        return new StoredScriptId.Builder();
     }
-
-    public static final JsonEnum.Deserializer<MatchType> _DESERIALIZER = new JsonEnum.Deserializer<>(MatchType.values());
 }

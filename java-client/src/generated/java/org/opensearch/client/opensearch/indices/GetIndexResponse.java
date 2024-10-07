@@ -30,9 +30,14 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -43,15 +48,15 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: indices.get.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GetIndexResponse extends DictionaryResponse<String, IndexState> {
     // ---------------------------------------------------------------------------------------------
 
     private GetIndexResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static GetIndexResponse of(Function<Builder, ObjectBuilder<GetIndexResponse>> fn) {
+    public static GetIndexResponse of(Function<GetIndexResponse.Builder, ObjectBuilder<GetIndexResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -60,7 +65,6 @@ public class GetIndexResponse extends DictionaryResponse<String, IndexState> {
     /**
      * Builder for {@link GetIndexResponse}.
      */
-
     public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexState, Builder>
         implements
             ObjectBuilder<GetIndexResponse> {
@@ -72,8 +76,7 @@ public class GetIndexResponse extends DictionaryResponse<String, IndexState> {
         /**
          * Builds a {@link GetIndexResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public GetIndexResponse build() {
             _checkSingleUse();
@@ -95,8 +98,6 @@ public class GetIndexResponse extends DictionaryResponse<String, IndexState> {
     );
 
     protected static void setupGetIndexResponseDeserializer(ObjectDeserializer<GetIndexResponse.Builder> op) {
-        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), IndexState._DESERIALIZER);
-
+        setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), IndexState._DESERIALIZER);
     }
-
 }

@@ -30,27 +30,38 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch._types;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
-/**
- * Builders for {@link Script} variants.
- */
-public class ScriptBuilders {
-    private ScriptBuilders() {}
+package org.opensearch.client.opensearch._types.mapping;
 
-    /**
-     * Creates a builder for the {@link InlineScript inline} {@code Script} variant.
-     */
-    public static InlineScript.Builder inline() {
-        return new InlineScript.Builder();
+import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
+
+// typedef: _types.mapping.DynamicMapping
+
+@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum DynamicMapping implements JsonEnum {
+    False("false"),
+
+    Strict("strict"),
+
+    StrictAllowTemplates("strict_allow_templates"),
+
+    True("true");
+
+    private final String jsonValue;
+
+    DynamicMapping(String jsonValue) {
+        this.jsonValue = jsonValue;
     }
 
-    /**
-     * Creates a builder for the {@link StoredScriptId stored} {@code Script}
-     * variant.
-     */
-    public static StoredScriptId.Builder stored() {
-        return new StoredScriptId.Builder();
+    public String jsonValue() {
+        return this.jsonValue;
     }
 
+    public static final JsonEnum.Deserializer<DynamicMapping> _DESERIALIZER = new JsonEnum.Deserializer<>(DynamicMapping.values());
 }

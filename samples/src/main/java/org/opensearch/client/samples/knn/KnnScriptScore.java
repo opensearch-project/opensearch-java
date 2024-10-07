@@ -12,6 +12,7 @@ import java.util.Arrays;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.json.JsonData;
+import org.opensearch.client.opensearch._types.ScriptLanguage;
 import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.samples.SampleClient;
 import org.opensearch.client.samples.util.RandUtil;
@@ -67,7 +68,7 @@ public class KnnScriptScore {
                                 .script(
                                     sss -> sss.inline(
                                         i -> i.source("knn_score")
-                                            .lang("knn")
+                                            .lang(l -> l.custom("knn"))
                                             .params("field", JsonData.of("values"))
                                             .params("query_value", JsonData.of(searchVector))
                                             .params("space_type", JsonData.of("cosinesimil"))

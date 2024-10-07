@@ -30,10 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.mapping;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -44,21 +49,21 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _types.mapping.FieldNamesField
+// typedef: _types.mapping.DataStreamTimestamp
 
 @JsonpDeserializable
-public class FieldNamesField implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class DataStreamTimestamp implements PlainJsonSerializable {
+
     private final boolean enabled;
 
     // ---------------------------------------------------------------------------------------------
 
-    private FieldNamesField(Builder builder) {
-
+    private DataStreamTimestamp(Builder builder) {
         this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
-
     }
 
-    public static FieldNamesField of(Function<Builder, ObjectBuilder<FieldNamesField>> fn) {
+    public static DataStreamTimestamp of(Function<DataStreamTimestamp.Builder, ObjectBuilder<DataStreamTimestamp>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -72,6 +77,7 @@ public class FieldNamesField implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -79,19 +85,16 @@ public class FieldNamesField implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("enabled");
         generator.write(this.enabled);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link FieldNamesField}.
+     * Builder for {@link DataStreamTimestamp}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldNamesField> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStreamTimestamp> {
         private Boolean enabled;
 
         /**
@@ -103,32 +106,41 @@ public class FieldNamesField implements PlainJsonSerializable {
         }
 
         /**
-         * Builds a {@link FieldNamesField}.
+         * Builds a {@link DataStreamTimestamp}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public FieldNamesField build() {
+        public DataStreamTimestamp build() {
             _checkSingleUse();
 
-            return new FieldNamesField(this);
+            return new DataStreamTimestamp(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link FieldNamesField}
+     * Json deserializer for {@link DataStreamTimestamp}
      */
-    public static final JsonpDeserializer<FieldNamesField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<DataStreamTimestamp> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        FieldNamesField::setupFieldNamesFieldDeserializer
+        DataStreamTimestamp::setupDataStreamTimestampDeserializer
     );
 
-    protected static void setupFieldNamesFieldDeserializer(ObjectDeserializer<FieldNamesField.Builder> op) {
-
+    protected static void setupDataStreamTimestampDeserializer(ObjectDeserializer<DataStreamTimestamp.Builder> op) {
         op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-
     }
 
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.enabled);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        DataStreamTimestamp other = (DataStreamTimestamp) o;
+        return this.enabled == other.enabled;
+    }
 }

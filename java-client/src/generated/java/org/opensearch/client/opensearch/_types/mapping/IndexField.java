@@ -30,10 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.mapping;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -44,34 +49,35 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _types.mapping.RoutingField
+// typedef: _types.mapping.IndexField
 
 @JsonpDeserializable
-public class RoutingField implements PlainJsonSerializable {
-    private final boolean required;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class IndexField implements PlainJsonSerializable {
+
+    private final boolean enabled;
 
     // ---------------------------------------------------------------------------------------------
 
-    private RoutingField(Builder builder) {
-
-        this.required = ApiTypeHelper.requireNonNull(builder.required, this, "required");
-
+    private IndexField(Builder builder) {
+        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
     }
 
-    public static RoutingField of(Function<Builder, ObjectBuilder<RoutingField>> fn) {
+    public static IndexField of(Function<IndexField.Builder, ObjectBuilder<IndexField>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code required}
+     * Required - API name: {@code enabled}
      */
-    public final boolean required() {
-        return this.required;
+    public final boolean enabled() {
+        return this.enabled;
     }
 
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -79,56 +85,62 @@ public class RoutingField implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.writeKey("required");
-        generator.write(this.required);
-
+        generator.writeKey("enabled");
+        generator.write(this.enabled);
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link RoutingField}.
+     * Builder for {@link IndexField}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoutingField> {
-        private Boolean required;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexField> {
+        private Boolean enabled;
 
         /**
-         * Required - API name: {@code required}
+         * Required - API name: {@code enabled}
          */
-        public final Builder required(boolean value) {
-            this.required = value;
+        public final Builder enabled(boolean value) {
+            this.enabled = value;
             return this;
         }
 
         /**
-         * Builds a {@link RoutingField}.
+         * Builds a {@link IndexField}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public RoutingField build() {
+        public IndexField build() {
             _checkSingleUse();
 
-            return new RoutingField(this);
+            return new IndexField(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link RoutingField}
+     * Json deserializer for {@link IndexField}
      */
-    public static final JsonpDeserializer<RoutingField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<IndexField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        RoutingField::setupRoutingFieldDeserializer
+        IndexField::setupIndexFieldDeserializer
     );
 
-    protected static void setupRoutingFieldDeserializer(ObjectDeserializer<RoutingField.Builder> op) {
-
-        op.add(Builder::required, JsonpDeserializer.booleanDeserializer(), "required");
-
+    protected static void setupIndexFieldDeserializer(ObjectDeserializer<IndexField.Builder> op) {
+        op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
     }
 
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.enabled);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        IndexField other = (IndexField) o;
+        return this.enabled == other.enabled;
+    }
 }

@@ -26,6 +26,7 @@ import org.opensearch.client.opensearch._types.InlineScript;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.opensearch._types.ScriptField;
+import org.opensearch.client.opensearch._types.ScriptLanguage;
 import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.SortOrder;
 import org.opensearch.client.opensearch._types.query_dsl.FieldAndFormat;
@@ -208,7 +209,7 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
             new ScriptField.Builder().script(
                 Script.of(
                     s -> s.inline(
-                        new InlineScript.Builder().lang("painless")
+                        new InlineScript.Builder().lang(ScriptLanguage.Painless)
                             .source("doc['quantity'].value + params.inc")
                             .params("inc", JsonData.of(1))
                             .build()
