@@ -179,7 +179,7 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
         assertEquals(1, response.responses().size());
         assertEquals(3, response.responses().get(0).result().hits().hits().size());
 
-        List<String> sorts = response.responses().get(0).result().hits().hits().get(1).sort();
+        List<FieldValue> sorts = response.responses().get(0).result().hits().hits().get(1).sort();
         RequestItem sortedAfterItemsQuery = createMSearchSortedFuzzyRequest(b -> b.searchAfter(sorts));
 
         MsearchResponse<ShopItem> response2 = sendMSearchRequest(index, List.of(sortedAfterItemsQuery));
