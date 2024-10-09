@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -46,6 +47,7 @@ import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch.core.explain.Explanation;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -98,7 +100,7 @@ public class Hit<TDocument> implements PlainJsonSerializable {
     @Nullable
     private final Long version;
 
-    private final List<String> sort;
+    private final List<FieldValue> sort;
 
     @Nullable
     private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -265,8 +267,19 @@ public class Hit<TDocument> implements PlainJsonSerializable {
 
     /**
      * API name: {@code sort}
+     *
+     * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will instead return a {@code List<FieldValue>}.</b></p>
      */
     public final List<String> sort() {
+        return this.sort.stream().map(FieldValue::_toJsonString).collect(Collectors.toList());
+    }
+
+    /**
+     * API name: {@code sort}
+     *
+     * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will be renamed to replace {@link #sort()}.</b></p>
+     */
+    public final List<FieldValue> sortVals() {
         return this.sort;
     }
 
@@ -404,8 +417,8 @@ public class Hit<TDocument> implements PlainJsonSerializable {
         if (ApiTypeHelper.isDefined(this.sort)) {
             generator.writeKey("sort");
             generator.writeStartArray();
-            for (String item0 : this.sort) {
-                generator.write(item0);
+            for (FieldValue item0 : this.sort) {
+                item0.serialize(generator, mapper);
 
             }
             generator.writeEnd();
@@ -474,7 +487,7 @@ public class Hit<TDocument> implements PlainJsonSerializable {
         private Long version;
 
         @Nullable
-        private List<String> sort;
+        private List<FieldValue> sort;
 
         @Nullable
         private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -702,8 +715,34 @@ public class Hit<TDocument> implements PlainJsonSerializable {
          * API name: {@code sort}
          * <p>
          * Adds all elements of <code>list</code> to <code>sort</code>.
+         *
+         * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will instead accept a {@code List<FieldValue>}.</b></p>
          */
         public final Builder<TDocument> sort(List<String> list) {
+            this.sort = _listAddAll(this.sort, FieldValue::of, list);
+            return this;
+        }
+
+        /**
+         * API name: {@code sort}
+         * <p>
+         * Adds one or more values to <code>sort</code>.
+         *
+         * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will instead accept a {@code List<FieldValue>}.</b></p>
+         */
+        public final Builder<TDocument> sort(String value, String... values) {
+            this.sort = _listAdd(this.sort, FieldValue::of, value, values);
+            return this;
+        }
+
+        /**
+         * API name: {@code sort}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>sort</code>.
+         *
+         * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will be renamed to replace {@link #sort(List)}.</b></p>
+         */
+        public final Builder<TDocument> sortVals(List<FieldValue> list) {
             this.sort = _listAddAll(this.sort, list);
             return this;
         }
@@ -712,8 +751,10 @@ public class Hit<TDocument> implements PlainJsonSerializable {
          * API name: {@code sort}
          * <p>
          * Adds one or more values to <code>sort</code>.
+         *
+         * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will be renamed to replace {@link #sort(String, String...)}.</b></p>
          */
-        public final Builder<TDocument> sort(String value, String... values) {
+        public final Builder<TDocument> sortVals(FieldValue value, FieldValue... values) {
             this.sort = _listAdd(this.sort, value, values);
             return this;
         }
@@ -778,7 +819,7 @@ public class Hit<TDocument> implements PlainJsonSerializable {
         op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
         op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
         op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
-        op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringOrNullDeserializer()), "sort");
+        op.add(Builder::sortVals, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "sort");
 
     }
 

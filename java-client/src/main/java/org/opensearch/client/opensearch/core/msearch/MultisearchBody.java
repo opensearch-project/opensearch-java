@@ -36,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -44,6 +45,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.ScriptField;
 import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
@@ -77,7 +79,7 @@ public class MultisearchBody implements PlainJsonSerializable {
     @Nullable
     private final Query postFilter;
 
-    private final List<String> searchAfter;
+    private final List<FieldValue> searchAfter;
 
     @Nullable
     private final Integer size;
@@ -201,8 +203,19 @@ public class MultisearchBody implements PlainJsonSerializable {
 
     /**
      * API name: {@code search_after}
+     *
+     * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will instead return a {@code List<FieldValue>}.</b></p>
      */
     public final List<String> searchAfter() {
+        return this.searchAfter.stream().map(FieldValue::_toJsonString).collect(Collectors.toList());
+    }
+
+    /**
+     * API name: {@code search_after}
+     *
+     * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will be renamed to replace {@link #searchAfter()}.</b></p>
+     */
+    public final List<FieldValue> searchAfterVals() {
         return this.searchAfter;
     }
 
@@ -407,8 +420,8 @@ public class MultisearchBody implements PlainJsonSerializable {
         if (ApiTypeHelper.isDefined(this.searchAfter)) {
             generator.writeKey("search_after");
             generator.writeStartArray();
-            for (String item0 : this.searchAfter) {
-                generator.write(item0);
+            for (FieldValue item0 : this.searchAfter) {
+                item0.serialize(generator, mapper);
 
             }
             generator.writeEnd();
@@ -578,7 +591,7 @@ public class MultisearchBody implements PlainJsonSerializable {
         private Query postFilter;
 
         @Nullable
-        private List<String> searchAfter;
+        private List<FieldValue> searchAfter;
 
         @Nullable
         private Integer size;
@@ -715,8 +728,34 @@ public class MultisearchBody implements PlainJsonSerializable {
          * API name: {@code search_after}
          * <p>
          * Adds all elements of <code>list</code> to <code>searchAfter</code>.
+         *
+         * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will instead accept a {@code List<FieldValue>}.</b></p>
          */
         public final Builder searchAfter(List<String> list) {
+            this.searchAfter = _listAddAll(this.searchAfter, FieldValue::of, list);
+            return this;
+        }
+
+        /**
+         * API name: {@code search_after}
+         * <p>
+         * Adds one or more values to <code>searchAfter</code>.
+         *
+         * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will instead accept values of type {@code FieldValue}.</b></p>
+         */
+        public final Builder searchAfter(String value, String... values) {
+            this.searchAfter = _listAdd(this.searchAfter, FieldValue::of, value, values);
+            return this;
+        }
+
+        /**
+         * API name: {@code search_after}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>searchAfter</code>.
+         *
+         * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will be renamed to replace {@link #searchAfter(List)}.</b></p>
+         */
+        public final Builder searchAfterVals(List<FieldValue> list) {
             this.searchAfter = _listAddAll(this.searchAfter, list);
             return this;
         }
@@ -725,8 +764,10 @@ public class MultisearchBody implements PlainJsonSerializable {
          * API name: {@code search_after}
          * <p>
          * Adds one or more values to <code>searchAfter</code>.
+         *
+         * <p><b>NOTE: In version 3.0.0 of opensearch-java, this method will be renamed to replace {@link #searchAfter(String, String...)}.</b></p>
          */
-        public final Builder searchAfter(String value, String... values) {
+        public final Builder searchAfterVals(FieldValue value, FieldValue... values) {
             this.searchAfter = _listAdd(this.searchAfter, value, values);
             return this;
         }
@@ -1092,7 +1133,7 @@ public class MultisearchBody implements PlainJsonSerializable {
         op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
         op.add(Builder::minScore, JsonpDeserializer.doubleDeserializer(), "min_score");
         op.add(Builder::postFilter, Query._DESERIALIZER, "post_filter");
-        op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "search_after");
+        op.add(Builder::searchAfterVals, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "search_after");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
         op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
         op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");
