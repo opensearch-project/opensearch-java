@@ -20,13 +20,13 @@ import java.util.Map;
 import java.util.function.Function;
 import org.junit.Test;
 import org.opensearch.client.json.JsonData;
+import org.opensearch.client.opensearch._types.BuiltinScriptLanguage;
 import org.opensearch.client.opensearch._types.FieldSort;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.InlineScript;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.opensearch._types.ScriptField;
-import org.opensearch.client.opensearch._types.ScriptLanguage;
 import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.SortOrder;
 import org.opensearch.client.opensearch._types.query_dsl.FieldAndFormat;
@@ -209,7 +209,7 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
             new ScriptField.Builder().script(
                 Script.of(
                     s -> s.inline(
-                        new InlineScript.Builder().lang(ScriptLanguage.Painless)
+                        new InlineScript.Builder().lang(l -> l.builtin(BuiltinScriptLanguage.Painless))
                             .source("doc['quantity'].value + params.inc")
                             .params("inc", JsonData.of(1))
                             .build()
