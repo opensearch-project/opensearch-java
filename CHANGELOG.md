@@ -3,7 +3,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
-- Add `hashCode` and `equals` implementations ([#312](https://github.com/opensearch-project/opensearch-java/pull/312)).
+- Added `hashCode` and `equals` implementations ([#312](https://github.com/opensearch-project/opensearch-java/pull/312))
+- Added `sortVals` to `Hit` to allow retrieving non-string sort values ([#1224](https://github.com/opensearch-project/opensearch-java/pull/1224))
 
 ### Dependencies
 - Bumps `org.junit:junit-bom` from 5.10.3 to 5.11.1
