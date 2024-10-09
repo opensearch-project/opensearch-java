@@ -39,12 +39,20 @@ public final class Types {
         return map;
     }
 
+    private static Type type(String name) {
+        return Type.builder().withName(name).build();
+    }
+
+    private static Type type(String packageName, String name) {
+        return Type.builder().withPackage(packageName).withName(name).build();
+    }
+
     public static final class Primitive {
-        public static final Type Boolean = Type.builder().withName("boolean").build();
-        public static final Type Int = Type.builder().withName("int").build();
-        public static final Type Long = Type.builder().withName("long").build();
-        public static final Type Float = Type.builder().withName("float").build();
-        public static final Type Double = Type.builder().withName("double").build();
+        public static final Type Boolean = type("boolean");
+        public static final Type Int = type("int");
+        public static final Type Long = type("long");
+        public static final Type Float = type("float");
+        public static final Type Double = type("double");
     }
 
     public static final class Java {
@@ -52,59 +60,65 @@ public final class Types {
 
         public static final class Io {
             public static final String PACKAGE = Java.PACKAGE + ".io";
-            public static final Type IOException = Type.builder().withPackage(PACKAGE).withName("IOException").build();
+            public static final Type IOException = type(PACKAGE, "IOException");
         }
 
         public static final class Lang {
             public static final String PACKAGE = Java.PACKAGE + ".lang";
-            public static final Type String = Type.builder().withPackage(PACKAGE).withName("String").build();
-            public static final Type Character = Type.builder().withPackage(PACKAGE).withName("Character").build();
-            public static final Type Boolean = Type.builder().withPackage(PACKAGE).withName("Boolean").build();
-            public static final Type Byte = Type.builder().withPackage(PACKAGE).withName("Byte").build();
-            public static final Type Short = Type.builder().withPackage(PACKAGE).withName("Short").build();
-            public static final Type Integer = Type.builder().withPackage(PACKAGE).withName("Integer").build();
-            public static final Type Long = Type.builder().withPackage(PACKAGE).withName("Long").build();
-            public static final Type Float = Type.builder().withPackage(PACKAGE).withName("Float").build();
-            public static final Type Double = Type.builder().withPackage(PACKAGE).withName("Double").build();
-            public static final Type Object = Type.builder().withPackage(PACKAGE).withName("Object").build();
-            public static final Type Number = Type.builder().withPackage(PACKAGE).withName("Number").build();
+            public static final Type String = type(PACKAGE, "String");
+            public static final Type Character = type(PACKAGE, "Character");
+            public static final Type Boolean = type(PACKAGE, "Boolean");
+            public static final Type Byte = type(PACKAGE, "Byte");
+            public static final Type Short = type(PACKAGE, "Short");
+            public static final Type Integer = type(PACKAGE, "Integer");
+            public static final Type Long = type(PACKAGE, "Long");
+            public static final Type Float = type(PACKAGE, "Float");
+            public static final Type Double = type(PACKAGE, "Double");
+            public static final Type Object = type(PACKAGE, "Object");
+            public static final Type Number = type(PACKAGE, "Number");
         }
 
         public static final class Util {
             public static final String PACKAGE = Java.PACKAGE + ".util";
-            public static final Type Objects = Type.builder().withPackage(PACKAGE).withName("Objects").build();
-            public static final Type HashMap = Type.builder().withPackage(PACKAGE).withName("HashMap").build();
+            public static final Type Objects = type(PACKAGE, "Objects");
+            public static final Type HashMap = type(PACKAGE, "HashMap");
 
             public static Type Map(Type keyType, Type valueType) {
-                return Map.toBuilder().withTypeParameters(keyType, valueType).build();
+                return Map.withTypeParameters(keyType, valueType);
             }
 
-            public static final Type Map = Type.builder().withPackage(PACKAGE).withName("Map").build();
+            public static final Type Map = type(PACKAGE, "Map");
 
             public static Type MapEntry(Type keyType, Type valueType) {
-                return Type.builder().withPackage(PACKAGE).withName("Map.Entry").withTypeParameters(keyType, valueType).build();
+                return MapEntry.withTypeParameters(keyType, valueType);
             }
 
+            public static final Type MapEntry = type(PACKAGE, "Map.Entry");
+
             public static Type List(Type valueType) {
-                return Type.builder().withPackage(PACKAGE).withName("List").withTypeParameters(valueType).build();
+                return List.withTypeParameters(valueType);
             }
+
+            public static final Type List = type(PACKAGE, "List");
 
             public static final class Concurrent {
                 public static final String PACKAGE = Util.PACKAGE + ".concurrent";
-                public static final Type CompletableFuture = Type.builder().withPackage(PACKAGE).withName("CompletableFuture").build();
+                public static final Type CompletableFuture = type(PACKAGE, "CompletableFuture");
             }
 
             public static final class Function {
                 public static final String PACKAGE = Util.PACKAGE + ".function";
 
                 public static Type Function(Type argType, Type returnType) {
-                    return Type.builder().withPackage(PACKAGE).withName("Function").withTypeParameters(argType, returnType).build();
+                    return Function.withTypeParameters(argType, returnType);
                 }
+
+                public static final Type Function = type(PACKAGE, "Function");
             }
 
             public static final class Stream {
                 public static final String PACKAGE = Util.PACKAGE + ".stream";
-                public static final Type Collectors = Type.builder().withPackage(PACKAGE).withName("Collectors").build();
+                public static final Type Collectors = type(PACKAGE, "Collectors");
             }
         }
     }
@@ -114,9 +128,9 @@ public final class Types {
 
         public static final class Annotation {
             public static final String PACKAGE = Javax.PACKAGE + ".annotation";
-            public static final Type Generated = Type.builder().withPackage(PACKAGE).withName("Generated").build();
-            public static final Type Nonnull = Type.builder().withPackage(PACKAGE).withName("Nonnull").build();
-            public static final Type Nullable = Type.builder().withPackage(PACKAGE).withName("Nullable").build();
+            public static final Type Generated = type(PACKAGE, "Generated");
+            public static final Type Nonnull = type(PACKAGE, "Nonnull");
+            public static final Type Nullable = type(PACKAGE, "Nullable");
         }
     }
 
@@ -127,24 +141,21 @@ public final class Types {
             return ApiClient.withTypeParameters(transport, client);
         }
 
-        public static final Type ApiClient = Type.builder().withPackage(PACKAGE).withName("ApiClient").build();
+        public static final Type ApiClient = type(PACKAGE, "ApiClient");
 
         public static final class Json {
             public static final String PACKAGE = Client.PACKAGE + ".json";
-            public static final Type JsonData = Type.builder().withPackage(PACKAGE).withName("JsonData").build();
-            public static final Type JsonpDeserializable = Type.builder().withPackage(PACKAGE).withName("JsonpDeserializable").build();
-            public static final Type JsonpDeserializer = Type.builder().withPackage(PACKAGE).withName("JsonpDeserializer").build();
-            public static final Type JsonEnum = Type.builder().withPackage(PACKAGE).withName("JsonEnum").build();
-            public static final Type JsonpMapper = Type.builder().withPackage(PACKAGE).withName("JsonpMapper").build();
-            public static final Type JsonpSerializable = Type.builder().withPackage(PACKAGE).withName("JsonpSerializable").build();
-            public static final Type ObjectBuilderDeserializer = Type.builder()
-                .withPackage(PACKAGE)
-                .withName("ObjectBuilderDeserializer")
-                .build();
-            public static final Type ObjectDeserializer = Type.builder().withPackage(PACKAGE).withName("ObjectDeserializer").build();
-            public static final Type PlainDeserializable = Type.builder().withPackage(PACKAGE).withName("PlainDeserializable").build();
-            public static final Type PlainJsonSerializable = Type.builder().withPackage(PACKAGE).withName("PlainJsonSerializable").build();
-            public static final Type UnionDeserializer = Type.builder().withPackage(PACKAGE).withName("UnionDeserializer").build();
+            public static final Type JsonData = type(PACKAGE, "JsonData");
+            public static final Type JsonpDeserializable = type(PACKAGE, "JsonpDeserializable");
+            public static final Type JsonpDeserializer = type(PACKAGE, "JsonpDeserializer");
+            public static final Type JsonEnum = type(PACKAGE, "JsonEnum");
+            public static final Type JsonpMapper = type(PACKAGE, "JsonpMapper");
+            public static final Type JsonpSerializable = type(PACKAGE, "JsonpSerializable");
+            public static final Type ObjectBuilderDeserializer = type(PACKAGE, "ObjectBuilderDeserializer");
+            public static final Type ObjectDeserializer = type(PACKAGE, "ObjectDeserializer");
+            public static final Type PlainDeserializable = type(PACKAGE, "PlainDeserializable");
+            public static final Type PlainJsonSerializable = type(PACKAGE, "PlainJsonSerializable");
+            public static final Type UnionDeserializer = type(PACKAGE, "UnionDeserializer");
         }
 
         public static final class OpenSearch {
@@ -152,54 +163,57 @@ public final class Types {
 
             public static final class _Types {
                 public static final String PACKAGE = OpenSearch.PACKAGE + "._types";
-                public static final Type ErrorResponse = Type.builder().withPackage(PACKAGE).withName("ErrorResponse").build();
-                public static final Type OpenSearchException = Type.builder().withPackage(PACKAGE).withName("OpenSearchException").build();
-                public static final Type RequestBase = Type.builder().withPackage(PACKAGE).withName("RequestBase").build();
-                public static final Type Time = Type.builder().withPackage(PACKAGE).withName("Time").build();
+                public static final Type ErrorResponse = type(PACKAGE, "ErrorResponse");
+                public static final Type OpenSearchException = type(PACKAGE, "OpenSearchException");
+                public static final Type RequestBase = type(PACKAGE, "RequestBase");
+                public static final Type Time = type(PACKAGE, "Time");
             }
         }
 
         public static final class Transport {
             public static final String PACKAGE = Client.PACKAGE + ".transport";
-            public static final Type Endpoint = Type.builder().withPackage(PACKAGE).withName("Endpoint").build();
+            public static final Type Endpoint = type(PACKAGE, "Endpoint");
 
             public static Type JsonEndpoint(Type requestType, Type responseType, Type errorType) {
                 return JsonEndpoint.withTypeParameters(requestType, responseType, errorType);
             }
 
-            public static final Type JsonEndpoint = Type.builder().withPackage(PACKAGE).withName("JsonEndpoint").build();
-            public static final Type OpenSearchTransport = Type.builder().withPackage(PACKAGE).withName("OpenSearchTransport").build();
-            public static final Type TransportOptions = Type.builder().withPackage(PACKAGE).withName("TransportOptions").build();
+            public static final Type JsonEndpoint = type(PACKAGE, "JsonEndpoint");
+            public static final Type OpenSearchTransport = type(PACKAGE, "OpenSearchTransport");
+            public static final Type TransportOptions = type(PACKAGE, "TransportOptions");
 
             public static final class Endpoints {
                 public static final String PACKAGE = Transport.PACKAGE + ".endpoints";
+
+                public static final Type BooleanEndpoint = type(PACKAGE, "BooleanEndpoint");
+                public static final Type BooleanResponse = type(PACKAGE, "BooleanResponse");
 
                 public static Type DictionaryResponse(Type keyType, Type valueType) {
                     return DictionaryResponse.withTypeParameters(keyType, valueType);
                 }
 
-                public static final Type DictionaryResponse = Type.builder().withPackage(PACKAGE).withName("DictionaryResponse").build();
-                public static final Type SimpleEndpoint = Type.builder().withPackage(PACKAGE).withName("SimpleEndpoint").build();
+                public static final Type DictionaryResponse = type(PACKAGE, "DictionaryResponse");
+                public static final Type SimpleEndpoint = type(PACKAGE, "SimpleEndpoint");
             }
         }
 
         public static final class Util {
             public static final String PACKAGE = Client.PACKAGE + ".util";
-            public static final Type ApiTypeHelper = Type.builder().withPackage(PACKAGE).withName("ApiTypeHelper").build();
+            public static final Type ApiTypeHelper = type(PACKAGE, "ApiTypeHelper");
 
             public static Type ObjectBuilder(Type type) {
                 return ObjectBuilder.withTypeParameters(type);
             }
 
-            public static final Type ObjectBuilder = Type.builder().withPackage(PACKAGE).withName("ObjectBuilder").build();
-            public static final Type ObjectBuilderBase = Type.builder().withPackage(PACKAGE).withName("ObjectBuilderBase").build();
+            public static final Type ObjectBuilder = type(PACKAGE, "ObjectBuilder");
+            public static final Type ObjectBuilderBase = type(PACKAGE, "ObjectBuilderBase");
 
             public static Type TaggedUnion(Type tagType, Type baseType) {
                 return TaggedUnion.withTypeParameters(tagType, baseType);
             }
 
-            public static final Type TaggedUnion = Type.builder().withPackage(PACKAGE).withName("TaggedUnion").build();
-            public static final Type TaggedUnionUtils = Type.builder().withPackage(PACKAGE).withName("TaggedUnionUtils").build();
+            public static final Type TaggedUnion = type(PACKAGE, "TaggedUnion");
+            public static final Type TaggedUnionUtils = type(PACKAGE, "TaggedUnionUtils");
         }
     }
 
@@ -211,7 +225,7 @@ public final class Types {
 
             public static final class Stream {
                 public static final String PACKAGE = Json.PACKAGE + ".stream";
-                public static final Type JsonGenerator = Type.builder().withPackage(PACKAGE).withName("JsonGenerator").build();
+                public static final Type JsonGenerator = type(PACKAGE, "JsonGenerator");
             }
         }
     }
