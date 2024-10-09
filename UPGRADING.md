@@ -52,3 +52,12 @@ After:
 
 ### CloneSnapshotRequest timeout removal
 - The `timeout` field, getter and builder method have been removed from `CloneSnapshotRequest` as it is not supported by OpenSearch.
+
+### indices.Alias
+- The `indexRouting`, `routing` and `searchRouting` properties now accept a `List<String>` instead of a `String`.
+
+### InlineScript
+- The `lang` property now accepts a `ScriptLanguage` enum instead of a `String`.
+
+### DynamicMapping
+- Removed the `Runtime` variant from the `DynamicMapping` enum as it is not supported by OpenSearch.

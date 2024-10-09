@@ -120,7 +120,6 @@ import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
 import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
 import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.opensearch.features.OpenSearchFeaturesAsyncClient;
-import org.opensearch.client.opensearch.indices.OpenSearchIndicesAsyncClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestAsyncClient;
 import org.opensearch.client.opensearch.nodes.OpenSearchNodesAsyncClient;
 import org.opensearch.client.opensearch.shutdown.OpenSearchShutdownAsyncClient;
@@ -161,10 +160,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
 
     public OpenSearchFeaturesAsyncClient features() {
         return new OpenSearchFeaturesAsyncClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchIndicesAsyncClient indices() {
-        return new OpenSearchIndicesAsyncClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchIngestAsyncClient ingest() {

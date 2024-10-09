@@ -30,51 +30,32 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
-import org.opensearch.client.json.JsonEnum;
-import org.opensearch.client.json.JsonpDeserializable;
+import javax.annotation.Generated;
 
-@JsonpDeserializable
-public enum ExpandWildcard implements JsonEnum {
-    /**
-     * Match any data stream or index, including hidden ones.
-     */
-    All("all"),
-
-    /**
-     * Match open, non-hidden indices. Also matches any non-hidden data stream.
-     */
-    Open("open"),
+/**
+ * Builders for {@link Script} variants.
+ */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ScriptBuilders {
+    private ScriptBuilders() {}
 
     /**
-     * Match closed, non-hidden indices. Also matches any non-hidden data stream.
-     * Data streams cannot be closed.
+     * Creates a builder for the {@link InlineScript inline} {@code Script} variant.
      */
-    Closed("closed"),
-
-    /**
-     * Match hidden data streams and hidden indices. Must be combined with open,
-     * closed, or both.
-     */
-    Hidden("hidden"),
-
-    /**
-     * Wildcard expressions are not accepted.
-     */
-    None("none"),
-
-    ;
-
-    private final String jsonValue;
-
-    ExpandWildcard(String jsonValue) {
-        this.jsonValue = jsonValue;
+    public static InlineScript.Builder inline() {
+        return new InlineScript.Builder();
     }
 
-    public String jsonValue() {
-        return this.jsonValue;
+    /**
+     * Creates a builder for the {@link StoredScriptId stored} {@code Script} variant.
+     */
+    public static StoredScriptId.Builder stored() {
+        return new StoredScriptId.Builder();
     }
-
-    public static final JsonEnum.Deserializer<ExpandWildcard> _DESERIALIZER = new JsonEnum.Deserializer<>(ExpandWildcard.values());
 }

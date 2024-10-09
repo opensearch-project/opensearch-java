@@ -30,10 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.mapping;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -44,21 +49,21 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _types.mapping.SizeField
+// typedef: _types.mapping.FieldNamesField
 
 @JsonpDeserializable
-public class SizeField implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class FieldNamesField implements PlainJsonSerializable {
+
     private final boolean enabled;
 
     // ---------------------------------------------------------------------------------------------
 
-    private SizeField(Builder builder) {
-
+    private FieldNamesField(Builder builder) {
         this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
-
     }
 
-    public static SizeField of(Function<Builder, ObjectBuilder<SizeField>> fn) {
+    public static FieldNamesField of(Function<FieldNamesField.Builder, ObjectBuilder<FieldNamesField>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -72,6 +77,7 @@ public class SizeField implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -79,19 +85,16 @@ public class SizeField implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("enabled");
         generator.write(this.enabled);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link SizeField}.
+     * Builder for {@link FieldNamesField}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SizeField> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldNamesField> {
         private Boolean enabled;
 
         /**
@@ -103,32 +106,41 @@ public class SizeField implements PlainJsonSerializable {
         }
 
         /**
-         * Builds a {@link SizeField}.
+         * Builds a {@link FieldNamesField}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public SizeField build() {
+        public FieldNamesField build() {
             _checkSingleUse();
 
-            return new SizeField(this);
+            return new FieldNamesField(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link SizeField}
+     * Json deserializer for {@link FieldNamesField}
      */
-    public static final JsonpDeserializer<SizeField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<FieldNamesField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        SizeField::setupSizeFieldDeserializer
+        FieldNamesField::setupFieldNamesFieldDeserializer
     );
 
-    protected static void setupSizeFieldDeserializer(ObjectDeserializer<SizeField.Builder> op) {
-
+    protected static void setupFieldNamesFieldDeserializer(ObjectDeserializer<FieldNamesField.Builder> op) {
         op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-
     }
 
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.enabled);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        FieldNamesField other = (FieldNamesField) o;
+        return this.enabled == other.enabled;
+    }
 }

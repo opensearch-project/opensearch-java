@@ -35,7 +35,6 @@ package org.opensearch.client.opensearch.indices;
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.JsonEndpoint;
@@ -47,7 +46,7 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the indices namespace.
  */
-public class OpenSearchIndicesClient extends ApiClient<OpenSearchTransport, OpenSearchIndicesClient> {
+public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSearchIndicesClient> {
 
     public OpenSearchIndicesClient(OpenSearchTransport transport) {
         super(transport, null);
@@ -489,38 +488,6 @@ public class OpenSearchIndicesClient extends ApiClient<OpenSearchTransport, Open
         return diskUsage(fn.apply(new DiskUsageRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.exists
-
-    /**
-     * Returns information about whether a particular index exists.
-     *
-     *
-     */
-
-    public BooleanResponse exists(ExistsRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ExistsRequest,
-            BooleanResponse,
-            ErrorResponse>) ExistsRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about whether a particular index exists.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ExistsRequest}
-     *
-     */
-
-    public final BooleanResponse exists(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn) throws IOException,
-        OpenSearchException {
-        return exists(fn.apply(new ExistsRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.exists_alias
 
     /**
@@ -700,38 +667,6 @@ public class OpenSearchIndicesClient extends ApiClient<OpenSearchTransport, Open
 
     public ForcemergeResponse forcemerge() throws IOException, OpenSearchException {
         return this.transport.performRequest(new ForcemergeRequest.Builder().build(), ForcemergeRequest._ENDPOINT, this.transportOptions);
-    }
-
-    // ----- Endpoint: indices.get
-
-    /**
-     * Returns information about one or more indices.
-     *
-     *
-     */
-
-    public GetIndexResponse get(GetIndexRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetIndexRequest, GetIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetIndexRequest,
-            GetIndexResponse,
-            ErrorResponse>) GetIndexRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about one or more indices.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetIndexRequest}
-     *
-     */
-
-    public final GetIndexResponse get(Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn) throws IOException,
-        OpenSearchException {
-        return get(fn.apply(new GetIndexRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.get_data_stream

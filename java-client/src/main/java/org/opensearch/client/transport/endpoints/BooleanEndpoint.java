@@ -39,6 +39,15 @@ import org.opensearch.client.json.JsonpDeserializer;
 public class BooleanEndpoint<RequestT> extends SimpleEndpoint<RequestT, BooleanResponse> {
 
     public BooleanEndpoint(
+        Function<RequestT, String> method,
+        Function<RequestT, String> requestUrl,
+        Function<RequestT, Map<String, String>> queryParameters,
+        Function<RequestT, Map<String, String>> headers
+    ) {
+        super(method, requestUrl, queryParameters, headers, false, null);
+    }
+
+    public BooleanEndpoint(
         String id,
         Function<RequestT, String> method,
         Function<RequestT, String> requestUrl,

@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -45,35 +51,35 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: _types.StoredScriptId
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class StoredScriptId extends ScriptBase {
+
+    @Nonnull
     private final String id;
 
     // ---------------------------------------------------------------------------------------------
 
     private StoredScriptId(Builder builder) {
         super(builder);
-
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-
     }
 
-    public static StoredScriptId of(Function<Builder, ObjectBuilder<StoredScriptId>> fn) {
+    public static StoredScriptId of(Function<StoredScriptId.Builder, ObjectBuilder<StoredScriptId>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code id}
      */
+    @Nonnull
     public final String id() {
         return this.id;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
         generator.writeKey("id");
         generator.write(this.id);
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -81,7 +87,6 @@ public class StoredScriptId extends ScriptBase {
     /**
      * Builder for {@link StoredScriptId}.
      */
-
     public static class Builder extends ScriptBase.AbstractBuilder<Builder> implements ObjectBuilder<StoredScriptId> {
         private String id;
 
@@ -101,8 +106,7 @@ public class StoredScriptId extends ScriptBase {
         /**
          * Builds a {@link StoredScriptId}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public StoredScriptId build() {
             _checkSingleUse();
@@ -122,9 +126,23 @@ public class StoredScriptId extends ScriptBase {
     );
 
     protected static void setupStoredScriptIdDeserializer(ObjectDeserializer<StoredScriptId.Builder> op) {
-        ScriptBase.setupScriptBaseDeserializer(op);
+        setupScriptBaseDeserializer(op);
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-
     }
 
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + this.id.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        StoredScriptId other = (StoredScriptId) o;
+        return this.id.equals(other.id);
+    }
 }

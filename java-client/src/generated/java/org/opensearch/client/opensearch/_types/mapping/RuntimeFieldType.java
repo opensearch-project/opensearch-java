@@ -30,12 +30,20 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.mapping;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.mapping.RuntimeFieldType
+
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum RuntimeFieldType implements JsonEnum {
     Boolean("boolean"),
 
@@ -51,7 +59,7 @@ public enum RuntimeFieldType implements JsonEnum {
 
     Long("long"),
 
-    ;
+    Lookup("lookup");
 
     private final String jsonValue;
 
