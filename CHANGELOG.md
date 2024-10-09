@@ -26,8 +26,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Changed type of `DanglingIndex`'s `creationDateMillis` field from `String` to `long` ([#1124](https://github.com/opensearch-project/opensearch-java/pull/1124))
 - Changed type of `ShardStatistics`'s `total`, `successful`, `failed` & `skipped` fields from `Number` to `int/Integer` ([#1158](https://github.com/opensearch-project/opensearch-java/pull/1158))
 - Unified `tasks.Info` and `tasks.State` classes into `tasks.TaskInfo` ([#1187](https://github.com/opensearch-project/opensearch-java/pull/1187))
-- Changed type of `Hit`'s `sort` field from `List<String>` to `List<FieldValue>` ([]())
-- Changed type of `MultisearchBody`'s `searchAfter` field from `List<String>` to `List<FieldValue>` ([]())
+- Changed type of `Hit`'s `sort` field from `List<String>` to `List<FieldValue>` ([#1225](https://github.com/opensearch-project/opensearch-java/pull/1225))
+- Changed type of `MultisearchBody`'s `searchAfter` field from `List<String>` to `List<FieldValue>` ([#1225](https://github.com/opensearch-project/opensearch-java/pull/1225))
 
 ### Deprecated
 - Deprecate RestClientTransport ([#536](https://github.com/opensearch-project/opensearch-java/pull/536))
