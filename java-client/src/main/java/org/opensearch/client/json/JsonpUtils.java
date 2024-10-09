@@ -43,10 +43,13 @@ import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.util.AbstractMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
+
+import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.client.util.ObjectBuilder;
 
 public class JsonpUtils {
@@ -273,4 +276,14 @@ public class JsonpUtils {
             generator.write(value);
         }
     }
+
+    public static String toJson(JsonpSerializable obj) {
+        StringWriter stringWriter = new StringWriter();
+        JsonbJsonpMapper mapper = new JsonbJsonpMapper();
+        JsonGenerator generator = mapper.jsonProvider().createGenerator(stringWriter);
+        mapper.serialize(obj, generator);
+        generator.close();
+        return stringWriter.toString();
+    }
+
 }
