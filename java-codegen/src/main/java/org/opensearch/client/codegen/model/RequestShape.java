@@ -180,6 +180,8 @@ public class RequestShape extends ObjectShape {
     private static String classBaseName(@Nonnull OperationGroup operationGroup) {
         Objects.requireNonNull(operationGroup, "operationGroup must not be null");
         switch (operationGroup.toString()) {
+            case "indices.create":
+                return "CreateIndex";
             case "indices.get":
                 return "GetIndex";
             case "snapshot.clone":
