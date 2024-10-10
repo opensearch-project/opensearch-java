@@ -77,6 +77,25 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return create(fn.apply(new CreateIndexRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.delete
+
+    /**
+     * Deletes an index.
+     */
+    public DeleteIndexResponse delete(DeleteIndexRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, DeleteIndexRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes an index.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteIndexRequest}
+     */
+    public final DeleteIndexResponse delete(Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn) throws IOException,
+        OpenSearchException {
+        return delete(fn.apply(new DeleteIndexRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.exists
 
     /**
