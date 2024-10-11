@@ -96,6 +96,26 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return delete(fn.apply(new DeleteIndexRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.delete_index_template
+
+    /**
+     * Deletes an index template.
+     */
+    public DeleteIndexTemplateResponse deleteIndexTemplate(DeleteIndexTemplateRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, DeleteIndexTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes an index template.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteIndexTemplateRequest}
+     */
+    public final DeleteIndexTemplateResponse deleteIndexTemplate(
+        Function<DeleteIndexTemplateRequest.Builder, ObjectBuilder<DeleteIndexTemplateRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteIndexTemplate(fn.apply(new DeleteIndexTemplateRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.exists
 
     /**
@@ -115,6 +135,26 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return exists(fn.apply(new ExistsRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.exists_index_template
+
+    /**
+     * Returns information about whether a particular index template exists.
+     */
+    public BooleanResponse existsIndexTemplate(ExistsIndexTemplateRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ExistsIndexTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about whether a particular index template exists.
+     *
+     * @param fn a function that initializes a builder to create the {@link ExistsIndexTemplateRequest}
+     */
+    public final BooleanResponse existsIndexTemplate(
+        Function<ExistsIndexTemplateRequest.Builder, ObjectBuilder<ExistsIndexTemplateRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return existsIndexTemplate(fn.apply(new ExistsIndexTemplateRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.get
 
     /**
@@ -132,5 +172,73 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
     public final GetIndexResponse get(Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn) throws IOException,
         OpenSearchException {
         return get(fn.apply(new GetIndexRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.get_index_template
+
+    /**
+     * Returns an index template.
+     */
+    public GetIndexTemplateResponse getIndexTemplate(GetIndexTemplateRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, GetIndexTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns an index template.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetIndexTemplateRequest}
+     */
+    public final GetIndexTemplateResponse getIndexTemplate(
+        Function<GetIndexTemplateRequest.Builder, ObjectBuilder<GetIndexTemplateRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return getIndexTemplate(fn.apply(new GetIndexTemplateRequest.Builder()).build());
+    }
+
+    /**
+     * Returns an index template.
+     */
+    public final GetIndexTemplateResponse getIndexTemplate() throws IOException, OpenSearchException {
+        return getIndexTemplate(new GetIndexTemplateRequest.Builder().build());
+    }
+
+    // ----- Endpoint: indices.put_index_template
+
+    /**
+     * Creates or updates an index template.
+     */
+    public PutIndexTemplateResponse putIndexTemplate(PutIndexTemplateRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, PutIndexTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates or updates an index template.
+     *
+     * @param fn a function that initializes a builder to create the {@link PutIndexTemplateRequest}
+     */
+    public final PutIndexTemplateResponse putIndexTemplate(
+        Function<PutIndexTemplateRequest.Builder, ObjectBuilder<PutIndexTemplateRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return putIndexTemplate(fn.apply(new PutIndexTemplateRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.simulate_index_template
+
+    /**
+     * Simulate matching the given index name against the index templates in the system.
+     */
+    public SimulateIndexTemplateResponse simulateIndexTemplate(SimulateIndexTemplateRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequest(request, SimulateIndexTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Simulate matching the given index name against the index templates in the system.
+     *
+     * @param fn a function that initializes a builder to create the {@link SimulateIndexTemplateRequest}
+     */
+    public final SimulateIndexTemplateResponse simulateIndexTemplate(
+        Function<SimulateIndexTemplateRequest.Builder, ObjectBuilder<SimulateIndexTemplateRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return simulateIndexTemplate(fn.apply(new SimulateIndexTemplateRequest.Builder()).build());
     }
 }

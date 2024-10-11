@@ -1,4 +1,15 @@
 {{>Partials/ClassDeclaration}} {
+{{#canBeSingleton}}
+    public {{className}}() {}
+
+    /**
+    * Singleton instance for {@link {{className}}}.
+    */
+    public static final {{className}} _INSTANCE = new {{className}}();
+
+    public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.JsonpDeserializer}}.fixedValue({{className}}._INSTANCE);
+{{/canBeSingleton}}
+{{^canBeSingleton}}
     {{>ObjectShape/Fields}}
 
     // ---------------------------------------------------------------------------------------------
@@ -28,6 +39,7 @@
     // ---------------------------------------------------------------------------------------------
 
     {{>ObjectShape/Deserialize}}
+{{/canBeSingleton}}
 
     {{>ObjectShape/HashCode}}
 

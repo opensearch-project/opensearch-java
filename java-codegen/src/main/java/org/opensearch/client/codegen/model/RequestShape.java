@@ -93,6 +93,7 @@ public class RequestShape extends ObjectShape {
             : Types.Client.Transport.Endpoints.BooleanResponse;
     }
 
+    @Override
     public boolean canBeSingleton() {
         return !hasRequestBody() && !hasQueryParams() && hasSinglePath() && !getFirstPath().hasParams();
     }

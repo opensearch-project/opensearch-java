@@ -1,13 +1,13 @@
 {{>Partials/ClassDeclaration}} {
-    {{#canBeSingleton}}
+{{#canBeSingleton}}
     public {{className}}() {}
 
     /**
      * Singleton instance for {@link {{className}}}.
      */
     public static final {{className}} _INSTANCE = new {{className}}();
-    {{/canBeSingleton}}
-    {{^canBeSingleton}}
+{{/canBeSingleton}}
+{{^canBeSingleton}}
     {{>ObjectShape/Fields}}
 
     // ---------------------------------------------------------------------------------------------
@@ -16,19 +16,21 @@
 
     {{>ObjectShape/Getters}}
 
-    {{#hasRequestBody}}
+{{#hasRequestBody}}
     {{>ObjectShape/Serialize}}
-    {{/hasRequestBody}}
+{{/hasRequestBody}}
 
     // ---------------------------------------------------------------------------------------------
 
     {{>ObjectShape/Builder}}
-    {{#hasRequestBody}}
+{{#hasRequestBody}}
 
     // ---------------------------------------------------------------------------------------------
 
-    {{>ObjectShape/Deserialize}}{{/hasRequestBody}}
-    {{/canBeSingleton}}
+    {{>ObjectShape/Deserialize}}
+
+{{/hasRequestBody}}
+{{/canBeSingleton}}
 
     // ---------------------------------------------------------------------------------------------
 

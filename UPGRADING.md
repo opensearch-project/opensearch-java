@@ -83,3 +83,16 @@ After:
 
 ### PropertyBase
 - The `name` and `localMetadata` fields, getters and builder methods have been removed from `PropertyBase` as they are not supported by OpenSearch.
+
+### IndexTemplate
+- `IndexTemplate` has been moved from the `org.opensearch.client.opensearch.indices.get_index_template` package to the `org.opensearch.client.opensearch.indices` package.
+- The `dataStream` property is now of type `IndexTemplateDataStreamConfiguration` instead of `Map<String, JsonData>`.
+
+### IndexTemplateSummary
+- `IndexTemplateSummary` has been moved from the `org.opensearch.client.opensearch.indices.get_index_template` package to the `org.opensearch.client.opensearch.indices` package.
+- The `settings` property is now of type `IndexSettings` instead of `Map<String, JsonData>`.
+
+### DataStream renamed to IndexTemplateDataStreamConfiguration
+- The `DataStream` class has been renamed to `IndexTemplateDataStreamConfiguration`, this affects:
+  - `PutIndexTemplateRequest`'s `dataStream` field.
+  - `SimulateIndexTemplateRequest`'s `dataStream` field.

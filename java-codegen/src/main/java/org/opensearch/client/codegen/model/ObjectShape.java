@@ -119,7 +119,11 @@ public class ObjectShape extends Shape {
     }
 
     public boolean shouldImplementPlainDeserializable() {
-        return Set.of("SourceField", "TypeMapping").contains(getClassName());
+        return Set.of("IndexTemplateMapping", "SourceField", "TypeMapping").contains(getClassName());
+    }
+
+    public boolean canBeSingleton() {
+        return bodyFields.isEmpty() && additionalPropertiesField == null && !extendsOtherShape();
     }
 
     public static class ReferencingDiscriminatedUnion {

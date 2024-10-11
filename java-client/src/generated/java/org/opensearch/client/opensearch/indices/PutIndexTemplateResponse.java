@@ -30,9 +30,14 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -43,15 +48,16 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: indices.put_index_template.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class PutIndexTemplateResponse extends AcknowledgedResponseBase {
+
     // ---------------------------------------------------------------------------------------------
 
     private PutIndexTemplateResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static PutIndexTemplateResponse of(Function<Builder, ObjectBuilder<PutIndexTemplateResponse>> fn) {
+    public static PutIndexTemplateResponse of(Function<PutIndexTemplateResponse.Builder, ObjectBuilder<PutIndexTemplateResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -60,10 +66,10 @@ public class PutIndexTemplateResponse extends AcknowledgedResponseBase {
     /**
      * Builder for {@link PutIndexTemplateResponse}.
      */
-
     public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
         implements
             ObjectBuilder<PutIndexTemplateResponse> {
+
         @Override
         protected Builder self() {
             return this;
@@ -72,8 +78,7 @@ public class PutIndexTemplateResponse extends AcknowledgedResponseBase {
         /**
          * Builds a {@link PutIndexTemplateResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public PutIndexTemplateResponse build() {
             _checkSingleUse();
@@ -93,8 +98,22 @@ public class PutIndexTemplateResponse extends AcknowledgedResponseBase {
     );
 
     protected static void setupPutIndexTemplateResponseDeserializer(ObjectDeserializer<PutIndexTemplateResponse.Builder> op) {
-        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-
+        setupAcknowledgedResponseBaseDeserializer(op);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }
