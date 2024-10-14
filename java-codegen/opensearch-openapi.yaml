@@ -337,6 +337,67 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/bulk@200'
+  /_bulk/stream:
+    post:
+      operationId: bulk_stream.0
+      x-operation-group: bulk_stream
+      x-version-added: '2.17'
+      description: Allows to perform multiple index/update/delete operations using request response streaming.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/api-reference/document-apis/bulk-streaming/
+      parameters:
+        - $ref: '#/components/parameters/bulk_stream::query._source'
+        - $ref: '#/components/parameters/bulk_stream::query._source_excludes'
+        - $ref: '#/components/parameters/bulk_stream::query._source_includes'
+        - $ref: '#/components/parameters/bulk_stream::query.batch_interval'
+        - $ref: '#/components/parameters/bulk_stream::query.batch_size'
+        - $ref: '#/components/parameters/bulk_stream::query.pipeline'
+        - $ref: '#/components/parameters/bulk_stream::query.refresh'
+        - $ref: '#/components/parameters/bulk_stream::query.require_alias'
+        - $ref: '#/components/parameters/bulk_stream::query.routing'
+        - $ref: '#/components/parameters/bulk_stream::query.timeout'
+        - $ref: '#/components/parameters/bulk_stream::query.type'
+        - $ref: '#/components/parameters/bulk_stream::query.wait_for_active_shards'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/bulk_stream'
+      responses:
+        '200':
+          $ref: '#/components/responses/bulk_stream@200'
+    put:
+      operationId: bulk_stream.1
+      x-operation-group: bulk_stream
+      x-version-added: '2.17'
+      description: Allows to perform multiple index/update/delete operations using request response streaming.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/api-reference/document-apis/bulk-streaming/
+      parameters:
+        - $ref: '#/components/parameters/bulk_stream::query._source'
+        - $ref: '#/components/parameters/bulk_stream::query._source_excludes'
+        - $ref: '#/components/parameters/bulk_stream::query._source_includes'
+        - $ref: '#/components/parameters/bulk_stream::query.batch_interval'
+        - $ref: '#/components/parameters/bulk_stream::query.batch_size'
+        - $ref: '#/components/parameters/bulk_stream::query.pipeline'
+        - $ref: '#/components/parameters/bulk_stream::query.refresh'
+        - $ref: '#/components/parameters/bulk_stream::query.require_alias'
+        - $ref: '#/components/parameters/bulk_stream::query.routing'
+        - $ref: '#/components/parameters/bulk_stream::query.timeout'
+        - $ref: '#/components/parameters/bulk_stream::query.type'
+        - $ref: '#/components/parameters/bulk_stream::query.wait_for_active_shards'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/bulk_stream'
+      responses:
+        '200':
+          $ref: '#/components/responses/bulk_stream@200'
   /_cache/clear:
     post:
       operationId: indices.clear_cache.0
@@ -4620,6 +4681,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/notifications.get_configs::query.chime.url'
         - $ref: '#/components/parameters/notifications.get_configs::query.chime.url.keyword'
+        - $ref: '#/components/parameters/notifications.get_configs::query.config_id'
+        - $ref: '#/components/parameters/notifications.get_configs::query.config_id_list'
         - $ref: '#/components/parameters/notifications.get_configs::query.config_type'
         - $ref: '#/components/parameters/notifications.get_configs::query.created_time_ms'
         - $ref: '#/components/parameters/notifications.get_configs::query.description'
@@ -9187,6 +9250,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/indices.delete@200'
+        '404':
+          $ref: '#/components/responses/indices.delete@404'
     get:
       operationId: indices.get.0
       x-operation-group: indices.get
@@ -9639,6 +9704,69 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/bulk@200'
+  /{index}/_bulk/stream:
+    post:
+      operationId: bulk_stream.2
+      x-operation-group: bulk_stream
+      x-version-added: '2.17'
+      description: Allows to perform multiple index/update/delete operations using request response streaming.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/api-reference/document-apis/bulk-streaming/
+      parameters:
+        - $ref: '#/components/parameters/bulk_stream::path.index'
+        - $ref: '#/components/parameters/bulk_stream::query._source'
+        - $ref: '#/components/parameters/bulk_stream::query._source_excludes'
+        - $ref: '#/components/parameters/bulk_stream::query._source_includes'
+        - $ref: '#/components/parameters/bulk_stream::query.batch_interval'
+        - $ref: '#/components/parameters/bulk_stream::query.batch_size'
+        - $ref: '#/components/parameters/bulk_stream::query.pipeline'
+        - $ref: '#/components/parameters/bulk_stream::query.refresh'
+        - $ref: '#/components/parameters/bulk_stream::query.require_alias'
+        - $ref: '#/components/parameters/bulk_stream::query.routing'
+        - $ref: '#/components/parameters/bulk_stream::query.timeout'
+        - $ref: '#/components/parameters/bulk_stream::query.type'
+        - $ref: '#/components/parameters/bulk_stream::query.wait_for_active_shards'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/bulk_stream'
+      responses:
+        '200':
+          $ref: '#/components/responses/bulk_stream@200'
+    put:
+      operationId: bulk_stream.3
+      x-operation-group: bulk_stream
+      x-version-added: '2.17'
+      description: Allows to perform multiple index/update/delete operations using request response streaming.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/api-reference/document-apis/bulk-streaming/
+      parameters:
+        - $ref: '#/components/parameters/bulk_stream::path.index'
+        - $ref: '#/components/parameters/bulk_stream::query._source'
+        - $ref: '#/components/parameters/bulk_stream::query._source_excludes'
+        - $ref: '#/components/parameters/bulk_stream::query._source_includes'
+        - $ref: '#/components/parameters/bulk_stream::query.batch_interval'
+        - $ref: '#/components/parameters/bulk_stream::query.batch_size'
+        - $ref: '#/components/parameters/bulk_stream::query.pipeline'
+        - $ref: '#/components/parameters/bulk_stream::query.refresh'
+        - $ref: '#/components/parameters/bulk_stream::query.require_alias'
+        - $ref: '#/components/parameters/bulk_stream::query.routing'
+        - $ref: '#/components/parameters/bulk_stream::query.timeout'
+        - $ref: '#/components/parameters/bulk_stream::query.type'
+        - $ref: '#/components/parameters/bulk_stream::query.wait_for_active_shards'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/bulk_stream'
+      responses:
+        '200':
+          $ref: '#/components/responses/bulk_stream@200'
   /{index}/_cache/clear:
     post:
       operationId: indices.clear_cache.1
@@ -9985,6 +10113,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/delete@200'
+        '404':
+          $ref: '#/components/responses/delete@404'
     get:
       operationId: get.0
       x-operation-group: get
@@ -10013,6 +10143,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/get@200'
+        '404':
+          $ref: '#/components/responses/get@404'
     head:
       operationId: exists.0
       x-operation-group: exists
@@ -14213,6 +14345,108 @@ components:
       description: The amount of time that you plan to wait for the results.
       schema:
         type: string
+    bulk_stream::path.index:
+      in: path
+      name: index
+      description: Name of the data stream, index, or index alias to perform bulk actions on.
+      required: true
+      schema:
+        $ref: '#/components/schemas/_common:IndexName'
+      style: simple
+    bulk_stream::query._source:
+      in: query
+      name: _source
+      description: '`true` or `false` to return the `_source` field or not, or a list of fields to return.'
+      schema:
+        $ref: '#/components/schemas/_core.search:SourceConfigParam'
+      style: form
+    bulk_stream::query._source_excludes:
+      in: query
+      name: _source_excludes
+      description: A comma-separated list of source fields to exclude from the response.
+      schema:
+        $ref: '#/components/schemas/_common:Fields'
+      style: form
+    bulk_stream::query._source_includes:
+      in: query
+      name: _source_includes
+      description: A comma-separated list of source fields to include in the response.
+      schema:
+        $ref: '#/components/schemas/_common:Fields'
+      style: form
+    bulk_stream::query.batch_interval:
+      in: query
+      name: batch_interval
+      description: Specifies for how long bulk operations should be accumulated into a batch before sending the batch to data nodes.
+      schema:
+        $ref: '#/components/schemas/_common:Duration'
+      style: form
+    bulk_stream::query.batch_size:
+      in: query
+      name: batch_size
+      description: Specifies how many bulk operations should be accumulated into a batch before sending the batch to data nodes.
+      schema:
+        $ref: '#/components/schemas/_common:BatchSize'
+      style: form
+      x-default: 1
+    bulk_stream::query.pipeline:
+      in: query
+      name: pipeline
+      description: |-
+        ID of the pipeline to use to preprocess incoming documents.
+        If the index has a default ingest pipeline specified, then setting the value to `_none` disables the default ingest pipeline for this request.
+        If a final pipeline is configured it will always run, regardless of the value of this parameter.
+      schema:
+        type: string
+      style: form
+    bulk_stream::query.refresh:
+      in: query
+      name: refresh
+      description: |-
+        If `true`, OpenSearch refreshes the affected shards to make this operation visible to search, if `wait_for` then wait for a refresh to make this operation visible to search, if `false` do nothing with refreshes.
+        Valid values: `true`, `false`, `wait_for`.
+      schema:
+        $ref: '#/components/schemas/_common:Refresh'
+      style: form
+    bulk_stream::query.require_alias:
+      in: query
+      name: require_alias
+      description: If `true`, the request's actions must target an index alias.
+      schema:
+        type: boolean
+        default: false
+      style: form
+    bulk_stream::query.routing:
+      in: query
+      name: routing
+      description: Custom value used to route operations to a specific shard.
+      schema:
+        $ref: '#/components/schemas/_common:Routing'
+      style: form
+    bulk_stream::query.timeout:
+      in: query
+      name: timeout
+      description: 'Period each action waits for the following operations: automatic index creation, dynamic mapping updates, waiting for active shards.'
+      schema:
+        $ref: '#/components/schemas/_common:Duration'
+      style: form
+    bulk_stream::query.type:
+      name: type
+      in: query
+      description: Default document type for items which don't provide one.
+      schema:
+        type: string
+        description: Default document type for items which don't provide one.
+    bulk_stream::query.wait_for_active_shards:
+      in: query
+      name: wait_for_active_shards
+      description: |-
+        The number of shard copies that must be active before proceeding with the operation.
+        Set to all or any positive integer up to the total number of shards in the index (`number_of_replicas+1`).
+      schema:
+        $ref: '#/components/schemas/_common:WaitForActiveShards'
+      style: form
+      x-default: '1'
     bulk::path.index:
       in: path
       name: index
@@ -16873,6 +17107,7 @@ components:
       description: Sets the minimum `_score` value that documents must have to be included in the result.
       schema:
         type: number
+        format: float
       style: form
     count::query.preference:
       in: query
@@ -16906,7 +17141,8 @@ components:
         If a query reaches this limit, OpenSearch terminates the query early.
         OpenSearch collects documents before sorting.
       schema:
-        type: number
+        type: integer
+        format: int32
       style: form
     create_pit::path.index:
       name: index
@@ -17125,6 +17361,7 @@ components:
       description: The throttle for this request in sub-requests per second.
       schema:
         type: number
+        format: float
       style: form
     delete_by_query::path.index:
       in: path
@@ -17231,7 +17468,8 @@ components:
       name: from
       description: Starting offset.
       schema:
-        type: number
+        type: integer
+        format: int32
         default: 0
       style: form
     delete_by_query::query.ignore_unavailable:
@@ -17255,7 +17493,8 @@ components:
         Maximum number of documents to process.
         Defaults to all documents.
       schema:
-        type: number
+        type: integer
+        format: int32
       style: form
     delete_by_query::query.preference:
       in: query
@@ -17296,6 +17535,7 @@ components:
       description: The throttle for this request in sub-requests per second.
       schema:
         type: number
+        format: float
         default: 0
       style: form
     delete_by_query::query.routing:
@@ -17317,7 +17557,8 @@ components:
       name: scroll_size
       description: Size of the scroll request that powers the operation.
       schema:
-        type: number
+        type: integer
+        format: int32
         default: 100
       style: form
     delete_by_query::query.search_timeout:
@@ -17384,7 +17625,8 @@ components:
         When possible, let OpenSearch perform early termination automatically.
         Avoid specifying this parameter for requests that target data streams with backing indices across multiple data tiers.
       schema:
-        type: number
+        type: integer
+        format: int32
       style: form
     delete_by_query::query.timeout:
       in: query
@@ -17476,7 +17718,8 @@ components:
       name: if_primary_term
       description: Only perform the operation if the document has this primary term.
       schema:
-        type: number
+        type: integer
+        format: int64
       style: form
     delete::query.if_seq_no:
       in: query
@@ -18207,7 +18450,8 @@ components:
       name: if_primary_term
       description: Only perform the operation if the document has this primary term.
       schema:
-        type: number
+        type: integer
+        format: int64
       style: form
     index::query.if_seq_no:
       in: query
@@ -21685,7 +21929,8 @@ components:
       name: max_concurrent_searches
       description: Maximum number of concurrent searches the API can run.
       schema:
-        type: number
+        type: integer
+        format: int32
       style: form
     msearch_template::query.rest_total_hits_as_int:
       in: query
@@ -21734,14 +21979,16 @@ components:
       name: max_concurrent_searches
       description: Maximum number of concurrent searches the multi search API can execute.
       schema:
-        type: number
+        type: integer
+        format: int32
       style: form
     msearch::query.max_concurrent_shard_requests:
       in: query
       name: max_concurrent_shard_requests
       description: Maximum number of concurrent shard requests that each sub-search request executes per node.
       schema:
-        type: number
+        type: integer
+        format: int32
         default: 5
       style: form
     msearch::query.pre_filter_shard_size:
@@ -21749,7 +21996,8 @@ components:
       name: pre_filter_shard_size
       description: Defines a threshold that enforces a pre-filter roundtrip to prefilter search shards based on query rewriting if the number of shards the search request expands to exceeds the threshold. This filter roundtrip can limit the number of shards significantly if for instance a shard can not match any documents based on its rewrite method i.e., if date filters are mandatory to match but the shard bounds and the query are disjoint.
       schema:
-        type: number
+        type: integer
+        format: int32
       style: form
     msearch::query.rest_total_hits_as_int:
       in: query
@@ -22152,6 +22400,20 @@ components:
       in: query
       schema:
         type: string
+    notifications.get_configs::query.config_id:
+      name: config_id
+      in: query
+      description: Notification configuration ID.
+      schema:
+        type: string
+    notifications.get_configs::query.config_id_list:
+      name: config_id_list
+      in: query
+      description: Notification configuration IDs.
+      schema:
+        type: array
+        items:
+          type: string
     notifications.get_configs::query.config_type:
       name: config_type
       in: query
@@ -22561,6 +22823,7 @@ components:
       description: The throttle for this request in sub-requests per second.
       schema:
         type: number
+        format: float
       style: form
     reindex::query.max_docs:
       name: max_docs
@@ -22585,6 +22848,7 @@ components:
         Defaults to no throttle.
       schema:
         type: number
+        format: float
         default: 0
       style: form
     reindex::query.scroll:
@@ -23067,7 +23331,8 @@ components:
         The number of shard results that should be reduced at once on the coordinating node.
         This value should be used as a protection mechanism to reduce the memory overhead per search request if the potential number of shards in the request can be large.
       schema:
-        type: number
+        type: integer
+        format: int32
         default: 512
       style: form
     search::query.cancel_after_time_interval:
@@ -23138,7 +23403,8 @@ components:
         By default, you cannot page through more than 10,000 hits using the `from` and `size` parameters.
         To page through more hits, use the `search_after` parameter.
       schema:
-        type: number
+        type: integer
+        format: int32
         default: 0
       style: form
     search::query.ignore_throttled:
@@ -23179,7 +23445,8 @@ components:
         Defines the number of concurrent shard requests per node this search executes concurrently.
         This value should be used to limit the impact of the search on the cluster in order to limit the number of concurrent shard requests.
       schema:
-        type: number
+        type: integer
+        format: int32
         default: 5
       style: form
     search::query.phase_took:
@@ -23201,7 +23468,8 @@ components:
         the request targets one or more read-only index;
         the primary sort of the query targets an indexed field.
       schema:
-        type: number
+        type: integer
+        format: int32
       style: form
     search::query.preference:
       in: query
@@ -23291,7 +23559,8 @@ components:
         By default, you cannot page through more than 10,000 hits using the `from` and `size` parameters.
         To page through more hits, use the `search_after` parameter.
       schema:
-        type: number
+        type: integer
+        format: int32
         default: 10
       style: form
     search::query.sort:
@@ -23348,7 +23617,8 @@ components:
         Number of suggestions to return.
         This parameter can only be used when the `suggest_field` and `suggest_text` query string parameters are specified.
       schema:
-        type: number
+        type: integer
+        format: int32
       style: form
     search::query.suggest_text:
       in: query
@@ -23372,7 +23642,8 @@ components:
         Avoid specifying this parameter for requests that target data streams with backing indices across multiple data tiers.
         If set to `0` (default), the query does not terminate early.
       schema:
-        type: number
+        type: integer
+        format: int32
       style: form
     search::query.timeout:
       in: query
@@ -24537,6 +24808,7 @@ components:
       description: The throttle for this request in sub-requests per second.
       schema:
         type: number
+        format: float
       style: form
     update_by_query::path.index:
       in: path
@@ -24644,7 +24916,8 @@ components:
       name: from
       description: Starting offset.
       schema:
-        type: number
+        type: integer
+        format: int32
         default: 0
       style: form
     update_by_query::query.ignore_unavailable:
@@ -24668,7 +24941,8 @@ components:
         Maximum number of documents to process.
         Defaults to all documents.
       schema:
-        type: number
+        type: integer
+        format: int32
       style: form
     update_by_query::query.pipeline:
       in: query
@@ -24717,6 +24991,7 @@ components:
       description: The throttle for this request in sub-requests per second.
       schema:
         type: number
+        format: float
         default: 0
       style: form
     update_by_query::query.routing:
@@ -24738,7 +25013,8 @@ components:
       name: scroll_size
       description: Size of the scroll request that powers the operation.
       schema:
-        type: number
+        type: integer
+        format: int32
         default: 100
       style: form
     update_by_query::query.search_timeout:
@@ -24801,7 +25077,8 @@ components:
         When possible, let OpenSearch perform early termination automatically.
         Avoid specifying this parameter for requests that target data streams with backing indices across multiple data tiers.
       schema:
-        type: number
+        type: integer
+        format: int32
       style: form
     update_by_query::query.timeout:
       in: query
@@ -24880,7 +25157,8 @@ components:
       name: if_primary_term
       description: Only perform the operation if the document has this primary term.
       schema:
-        type: number
+        type: integer
+        format: int64
       style: form
     update::query.if_seq_no:
       in: query
@@ -24920,7 +25198,8 @@ components:
       name: retry_on_conflict
       description: Specify how many times should the operation be retried when a conflict occurs.
       schema:
-        type: number
+        type: integer
+        format: int32
         default: 0
       style: form
     update::query.routing:
@@ -24958,6 +25237,18 @@ components:
           schema:
             $ref: '#/components/schemas/asynchronous_search._common:Search'
     bulk:
+      content:
+        application/x-ndjson:
+          schema:
+            type: array
+            items:
+              anyOf:
+                - $ref: '#/components/schemas/_core.bulk:OperationContainer'
+                - $ref: '#/components/schemas/_core.bulk:UpdateAction'
+                - type: object
+            description: The operation definition and data (action-data pairs), separated by newlines
+      required: true
+    bulk_stream:
       content:
         application/x-ndjson:
           schema:
@@ -25091,7 +25382,8 @@ components:
             properties:
               max_docs:
                 description: The maximum number of documents to delete.
-                type: number
+                type: integer
+                format: int32
               query:
                 $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
               slice:
@@ -25628,11 +25920,16 @@ components:
                 format: int32
               description:
                 type: string
+              mode:
+                type: string
+              compression_level:
+                type: string
               method:
+                type: string
+              spaceType:
                 type: string
             required:
               - dimension
-              - method
               - training_field
               - training_index
       required: true
@@ -25878,11 +26175,13 @@ components:
                 $ref: '#/components/schemas/_core.reindex:Destination'
               max_docs:
                 description: The maximum number of documents to reindex.
-                type: number
+                type: integer
+                format: int32
               script:
                 $ref: '#/components/schemas/_common:Script'
               size:
-                type: number
+                type: integer
+                format: int32
               source:
                 $ref: '#/components/schemas/_core.reindex:Source'
             required:
@@ -25993,7 +26292,8 @@ components:
                   Needs to be non-negative.
                   By default, you cannot page through more than 10,000 hits using the `from` and `size` parameters.
                   To page through more hits, use the `search_after` parameter.
-                type: number
+                type: integer
+                format: int32
               highlight:
                 $ref: '#/components/schemas/_core.search:Highlight'
               track_total_hits:
@@ -26005,6 +26305,7 @@ components:
                   type: object
                   additionalProperties:
                     type: number
+                    format: float
               docvalue_fields:
                 description: |-
                   Array of wildcard (`*`) patterns.
@@ -26019,6 +26320,7 @@ components:
                   Minimum `_score` for matching documents.
                   Documents with a lower `_score` are not included in the search results.
                 type: number
+                format: float
               post_filter:
                 $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
               profile:
@@ -26047,7 +26349,8 @@ components:
                   The number of hits to return.
                   By default, you cannot page through more than 10,000 hits using the `from` and `size` parameters.
                   To page through more hits, use the `search_after` parameter.
-                type: number
+                type: integer
+                format: int32
               slice:
                 $ref: '#/components/schemas/_common:SlicedScroll'
               sort:
@@ -26073,7 +26376,8 @@ components:
                   When possible, let OpenSearch perform early termination automatically.
                   Avoid specifying this parameter for requests that target data streams with backing indices across multiple data tiers.
                   If set to `0` (default), the query does not terminate early.
-                type: number
+                type: integer
+                format: int32
               timeout:
                 description: |-
                   Specifies the period of time to wait for a response from each shard.
@@ -26527,7 +26831,8 @@ components:
             properties:
               max_docs:
                 description: The maximum number of documents to update.
-                type: number
+                type: integer
+                format: int32
               query:
                 $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
               script:
@@ -26561,6 +26866,32 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/asynchronous_search._common:StatsResponse'
+    bulk_stream@200:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: boolean
+              items:
+                type: array
+                items:
+                  type: object
+                  additionalProperties:
+                    $ref: '#/components/schemas/_core.bulk:ResponseItem'
+                  minProperties: 1
+                  maxProperties: 1
+              took:
+                type: integer
+                format: int64
+              ingest_took:
+                type: integer
+                format: int64
+            required:
+              - errors
+              - items
+              - took
     bulk@200:
       content:
         application/json:
@@ -26578,9 +26909,11 @@ components:
                   minProperties: 1
                   maxProperties: 1
               took:
-                type: number
+                type: integer
+                format: int64
               ingest_took:
-                type: number
+                type: integer
+                format: int64
             required:
               - errors
               - items
@@ -26836,7 +27169,8 @@ components:
               succeeded:
                 type: boolean
               num_freed:
-                type: number
+                type: integer
+                format: int32
             required:
               - num_freed
               - succeeded
@@ -27067,7 +27401,8 @@ components:
               terminated_early:
                 type: boolean
               count:
-                type: number
+                type: integer
+                format: int64
               _shards:
                 $ref: '#/components/schemas/_common:ShardStatistics'
             required:
@@ -27158,6 +27493,11 @@ components:
           schema:
             $ref: '#/components/schemas/_common:AcknowledgedResponseBase'
     delete@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common:WriteResponseBase'
+    delete@404:
       content:
         application/json:
           schema:
@@ -27445,6 +27785,11 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/_core.get:GetResult'
+    get@404:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_core.get:GetResult'
     index@200:
       content:
         application/json:
@@ -27600,6 +27945,11 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/_common:IndicesResponseBase'
+    indices.delete@404:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/indices._common:IndexErrorCause'
     indices.exists_alias@200:
       content:
         application/json: {}
@@ -28069,7 +28419,16 @@ components:
     knn.get_model@200: {}
     knn.search_models@200: {}
     knn.stats@200: {}
-    knn.train_model@200: {}
+    knn.train_model@200:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              model_id:
+                type: string
+            required:
+              - model_id
     knn.warmup@200: {}
     mget@200:
       content:
@@ -28474,6 +28833,7 @@ components:
               metric_score:
                 description: The overall evaluation quality calculated by the defined metric
                 type: number
+                format: double
               details:
                 description: The details section contains one entry for every query in the original requests section, keyed by the search request id
                 type: object
@@ -28627,7 +28987,8 @@ components:
             type: object
             properties:
               took:
-                type: number
+                type: integer
+                format: int64
               timed_out:
                 type: boolean
               _shards:
@@ -28646,8 +29007,10 @@ components:
                   type: object
               max_score:
                 type: number
+                format: float
               num_reduce_phases:
-                type: number
+                type: integer
+                format: int32
               profile:
                 $ref: '#/components/schemas/_core.search:Profile'
               pit_id:
@@ -29372,23 +29735,12 @@ components:
           schema:
             type: object
             properties:
-              responses:
-                type: array
-                items:
-                  $ref: '#/components/schemas/snapshot.get:SnapshotResponseItem'
               snapshots:
                 type: array
                 items:
                   $ref: '#/components/schemas/snapshot._common:SnapshotInfo'
-              total:
-                description: The total number of snapshots that match the request when ignoring size limit or after query parameter.
-                type: number
-              remaining:
-                description: The number of remaining snapshots that were not returned due to size limits and that can be fetched by additional requests using the next field value.
-                type: number
             required:
-              - remaining
-              - total
+              - snapshots
     snapshot.restore@200:
       content:
         application/json:
@@ -29501,7 +29853,8 @@ components:
                 additionalProperties:
                   $ref: '#/components/schemas/_core.termvectors:TermVector'
               took:
-                type: number
+                type: integer
+                format: int64
               _version:
                 $ref: '#/components/schemas/_common:VersionNumber'
             required:
@@ -29608,6 +29961,16 @@ components:
           $ref: '#/components/schemas/_common:TransportAddress'
       required:
         - name
+    _common:BatchSize:
+      type: integer
+      format: int64
+    _common:BuiltinScriptLanguage:
+      type: string
+      enum:
+        - expression
+        - java
+        - mustache
+        - painless
     _common:BulkByScrollFailure:
       anyOf:
         - $ref: '#/components/schemas/_common:BulkItemResponseFailure'
@@ -29641,7 +30004,7 @@ components:
           type: integer
           format: int64
         updated:
-          description: The number of documents that were successfully updated, for example, a document with same ID already existed prior to reindex updating it.
+          description: The number of documents that were successfully updated after the reindex operation.
           type: integer
           format: int64
         created:
@@ -29653,11 +30016,11 @@ components:
           type: integer
           format: int64
         batches:
-          description: The number of scroll responses pulled back by the reindex.
+          description: The number of scroll responses pulled back by the reindex operation.
           type: integer
           format: int32
         version_conflicts:
-          description: The number of version conflicts that reindex hits.
+          description: The number of version conflicts encountered by the reindex operation.
           type: integer
           format: int64
         noops:
@@ -29671,7 +30034,7 @@ components:
         throttled:
           $ref: '#/components/schemas/_common:Duration'
         requests_per_second:
-          description: The number of requests per second effectively executed during the reindex.
+          description: The number of requests per second effectively executed during the reindex operation.
           type: number
           format: float
         canceled:
@@ -29794,7 +30157,7 @@ components:
       type: object
       properties:
         size_in_bytes:
-          description: Total amount, in bytes, of memory used for completion across all shards assigned to selected nodes.
+          description: The total amount, in bytes, of memory used for completion across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:ByteCount'
         size:
           $ref: '#/components/schemas/_common:HumanReadableByteCount'
@@ -29814,12 +30177,16 @@ components:
       properties:
         top:
           type: number
+          format: double
         bottom:
           type: number
+          format: double
         left:
           type: number
+          format: double
         right:
           type: number
+          format: double
       required:
         - bottom
         - left
@@ -29839,8 +30206,8 @@ components:
       type: string
     _common:DateTime:
       description: |-
-        A date and time, either as a string whose format can depend on the context (defaulting to ISO 8601), or a
-        number of milliseconds since the Epoch. OpenSearch accepts both as input, but will generally output a string
+        A date and time, either as a string whose format depends on the context (defaulting to ISO_8601) or the
+        number of milliseconds since the epoch. OpenSearch accepts both as an input but will generally output a string.
         representation.
       oneOf:
         - type: string
@@ -29856,7 +30223,7 @@ components:
       enum:
         - b
         - l
-        - no
+        - 'no'
     _common:DFRBasicModel:
       type: string
       enum:
@@ -29886,19 +30253,19 @@ components:
       properties:
         count:
           description: |-
-            Total number of non-deleted documents across all primary shards assigned to selected nodes.
+            The total number of non-deleted documents across all primary shards assigned to the selected nodes.
             This number is based on documents in Lucene segments and may include documents from nested fields.
           type: number
         deleted:
           description: |-
-            Total number of deleted documents across all primary shards assigned to selected nodes.
-            This number is based on documents in Lucene segments.
-            OpenSearch reclaims the disk space of deleted Lucene documents when a segment is merged.
+            The total number of deleted documents across all primary shards assigned to the selected nodes.
+            This number is based on the number of documents stored in Lucene segments.
+            OpenSearch reclaims the disk space previously occupied by the deleted Lucene documents when a segment is merged.
           type: number
       required:
         - count
     _common:DocStatus:
-      description: Item level REST category class codes during indexing.
+      description: The item level REST category class codes during indexing.
       type: object
       properties:
         1xx:
@@ -29918,7 +30285,7 @@ components:
       pattern: ^([0-9\.]+)(?:d|h|m|s|ms|micros|nanos)$
       type: string
     _common:DurationLarge:
-      description: 'A date histogram interval. Similar to `Duration` with additional units: `w` (week), `M` (month), `q` (quarter) and `y` (year).'
+      description: 'A date histogram interval, similar to `Duration`, with support for additional units: `w` (week), `M` (month), `q` (quarter), and `y` (year).'
       type: string
     _common:DurationValueUnitMillis:
       allOf:
@@ -29938,13 +30305,13 @@ components:
       type: object
       properties:
         type:
-          description: The type of error
+          description: The type of error.
           type: string
         reason:
-          description: A human-readable explanation of the error, in english
+          description: A human-readable explanation of the error, in English.
           type: string
         stack_trace:
-          description: The server stack trace. Present only if the `error_trace=true` parameter was sent with the request.
+          description: The server stack trace, present only if the `error_trace=true` parameter was sent with the request.
           type: string
         caused_by:
           $ref: '#/components/schemas/_common:ErrorCause'
@@ -29960,7 +30327,7 @@ components:
         - type
       additionalProperties:
         title: metadata
-        description: Additional details about the error.
+        description: Any additional information about the error.
     _common:ErrorResponseBase:
       type: object
       properties:
@@ -29972,13 +30339,22 @@ components:
         - error
         - status
     _common:ExpandWildcard:
-      type: string
-      enum:
-        - all
-        - closed
-        - hidden
-        - none
-        - open
+      oneOf:
+        - type: string
+          const: all
+          description: Match any index, including hidden ones.
+        - type: string
+          const: closed
+          description: Match closed, non-hidden indices.
+        - type: string
+          const: hidden
+          description: Match hidden indices. Must be combined with open, closed, or both.
+        - type: string
+          const: none
+          description: Wildcard expressions are not accepted.
+        - type: string
+          const: open
+          description: Match open, non-hidden indices.
     _common:ExpandWildcards:
       oneOf:
         - $ref: '#/components/schemas/_common:ExpandWildcard'
@@ -29986,7 +30362,7 @@ components:
           items:
             $ref: '#/components/schemas/_common:ExpandWildcard'
     _common:Field:
-      description: Path to field or array of paths. Some API's support wildcards in the path to select multiple fields.
+      description: The path to a field or an array of paths. Some APIs support wildcards in the path, which allows you to select multiple fields.
       type: string
     _common:FielddataStats:
       type: object
@@ -30060,16 +30436,20 @@ components:
         - type: number
     _common:GeoBounds:
       description: |-
-        A geo bounding box. It can be represented in various ways:
-        - as 4 top/bottom/left/right coordinates
-        - as 2 top_left / bottom_right points
-        - as 2 top_right / bottom_left points
-        - as a WKT bounding box.
+        A geo-bounding box. It can be represented in the following ways:
+        - As 4 top/bottom/left/right coordinates.
+        - As 2 top_left/bottom_right points.
+        - As 2 top_right/bottom_left points.
+        - As a Well Known Text (WKT) bounding box.
       oneOf:
-        - $ref: '#/components/schemas/_common:CoordsGeoBounds'
-        - $ref: '#/components/schemas/_common:TopLeftBottomRightGeoBounds'
-        - $ref: '#/components/schemas/_common:TopRightBottomLeftGeoBounds'
-        - $ref: '#/components/schemas/_common:WktGeoBounds'
+        - title: coords
+          $ref: '#/components/schemas/_common:CoordsGeoBounds'
+        - title: tlbr
+          $ref: '#/components/schemas/_common:TopLeftBottomRightGeoBounds'
+        - title: trbl
+          $ref: '#/components/schemas/_common:TopRightBottomLeftGeoBounds'
+        - title: wkt
+          $ref: '#/components/schemas/_common:WktGeoBounds'
     _common:GeoDistanceSort:
       type: object
       properties:
@@ -30098,7 +30478,7 @@ components:
       required:
         - geohash
     _common:GeoHashPrecision:
-      description: A precision that can be expressed as a geohash length between 1 and 12, or a distance measure like "1km", "10m".
+      description: The level of geohash precision, which can be expressed as a geohash length between 1 and 12 or as a distance measure, such as "1km" or "10m".
       oneOf:
         - type: number
         - type: string
@@ -30112,7 +30492,7 @@ components:
           description: Always `"LineString"`
           type: string
         coordinates:
-          description: Array of `[lon, lat]` coordinates
+          description: An array of `[lon, lat]` coordinates.
           type: array
           items:
             type: array
@@ -30123,18 +30503,23 @@ components:
         - type
     _common:GeoLocation:
       description: |-
-        A latitude/longitude as a 2 dimensional point. It can be represented in various ways:
-        - as a `{lat, long}` object
-        - as a geo hash value
-        - as a `[lon, lat]` array
-        - as a string in `"<lat>, <lon>"` or WKT point formats.
+        A latitude/longitude as a two-dimensional point. It can be represented in the following ways:
+        - As a `{lat, long}` object.
+        - As a geohash value.
+        - As a `[lon, lat]` array.
+        - As a string in `"<lat>, <lon>"` or WKT point format.
       oneOf:
-        - $ref: '#/components/schemas/_common:LatLonGeoLocation'
-        - $ref: '#/components/schemas/_common:GeoHashLocation'
-        - type: array
+        - title: latlon
+          $ref: '#/components/schemas/_common:LatLonGeoLocation'
+        - title: geohash
+          $ref: '#/components/schemas/_common:GeoHashLocation'
+        - title: coords
+          type: array
           items:
             type: number
-        - type: string
+            format: double
+        - title: text
+          type: string
     _common:GeoShapeRelation:
       type: string
       enum:
@@ -30339,21 +30724,24 @@ components:
       required:
         - found
     _common:InlineScript:
-      allOf:
-        - $ref: '#/components/schemas/_common:ScriptBase'
-        - type: object
-          properties:
-            lang:
-              $ref: '#/components/schemas/_common:ScriptLanguage'
-            options:
-              type: object
-              additionalProperties:
-                type: string
-            source:
-              description: The script source.
-              type: string
-          required:
-            - source
+      oneOf:
+        - title: source
+          type: string
+        - allOf:
+            - $ref: '#/components/schemas/_common:ScriptBase'
+            - type: object
+              properties:
+                lang:
+                  $ref: '#/components/schemas/_common:ScriptLanguage'
+                options:
+                  type: object
+                  additionalProperties:
+                    type: string
+                source:
+                  description: The script source.
+                  type: string
+              required:
+                - source
     _common:Ip:
       type: string
     _common:KnnField:
@@ -30362,26 +30750,36 @@ components:
         vector:
           $ref: '#/components/schemas/_common:QueryVector'
         k:
-          description: The final number of nearest neighbors to return as top hits.
+          description: The total number of nearest neighbors to return as top hits.
           type: number
         min_score:
-          description: The minimum similarity score for a neighbor to be considered a hit.
+          description: The minimum similarity score required in order for a neighbor to be considered a hit.
           type: number
           x-version-added: '2.14'
         max_distance:
-          description: The maximum physical distance in vector space for a neighbor to be considered a hit.
+          description: The maximum physical vector space distance required in order for a neighbor to be considered a hit.
           type: number
           x-version-added: '2.14'
         filter:
-          description: Filters for the kNN search query.
+          description: The filters for the k-NN search query.
           oneOf:
             - $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
             - type: array
               items:
                 $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
         boost:
-          description: Boost value to apply to kNN scores
+          description: The boost value applied to k-NN scores.
           type: number
+        method_parameters:
+          type: object
+          x-version-added: '2.16'
+          additionalProperties:
+            type: number
+        rescore:
+          type: object
+          x-version-added: '2.17'
+          additionalProperties:
+            type: number
       required:
         - vector
     _common:LatLonGeoLocation:
@@ -30390,9 +30788,11 @@ components:
         lat:
           description: Latitude
           type: number
+          format: double
         lon:
           description: Longitude
           type: number
+          format: double
       required:
         - lat
         - lon
@@ -30454,7 +30854,7 @@ components:
       type: object
       additionalProperties: true
     _common:MinimumShouldMatch:
-      description: The minimum number of terms that should match as integer, percentage or range.
+      description: The minimum number of terms that should match as an integer, percentage, or range.
       oneOf:
         - type: number
         - type: string
@@ -30481,7 +30881,7 @@ components:
         filter:
           $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
         max_children:
-          type: number
+          type: integer
         nested:
           $ref: '#/components/schemas/_common:NestedSortValue'
         path:
@@ -30545,7 +30945,7 @@ components:
             - master
           deprecated: true
           x-version-deprecated: '2.0'
-          x-deprecation-message: To promote inclusive language, use 'cluster_manager' instead.
+          x-deprecation-message: Use 'cluster_manager' instead.
         - type: string
           enum:
             - cluster_manager
@@ -30597,26 +30997,18 @@ components:
           items:
             $ref: '#/components/schemas/_common:ErrorCause'
         total:
-          description: Total number of nodes selected by the request.
+          description: The total number of nodes selected by the request.
           type: integer
         successful:
-          description: Number of nodes that responded successfully to the request.
+          description: The number of nodes that responded successfully to the request.
           type: integer
         failed:
-          description: Number of nodes that rejected the request or failed to respond. If this value is not 0, a reason for the rejection or failure is included in the response.
+          description: The number of nodes that rejected the request or failed to respond. If this value is not 0, then a reason for the rejection or failure is included in the response.
           type: integer
       required:
         - failed
         - successful
         - total
-    _common:Normalization:
-      type: string
-      enum:
-        - h1
-        - h2
-        - h3
-        - no
-        - z
     _common:OpenSearchVersionInfo:
       type: object
       properties:
@@ -30688,8 +31080,8 @@ components:
       type: string
     _common:PipeSeparatedFlagsSimpleQueryStringFlag:
       description: |-
-        A set of flags that can be represented as a single enum value or a set of values that are encoded
-        as a pipe-separated string
+        A set of flags represented as a single enum value or a set of values that are encoded
+        as a pipe-separated string.
 
         Depending on the target language, code generators can use this hint to generate language specific
         flags enum constructs and the corresponding (de-)serialization code.
@@ -30737,28 +31129,28 @@ components:
       properties:
         cache_count:
           description: |-
-            Total number of entries added to the query cache across all shards assigned to selected nodes.
-            This number includes current and evicted entries.
+            The total number of entries added to the query cache across all shards assigned to the selected nodes.
+            This number includes all current and evicted entries.
           type: number
         cache_size:
-          description: Total number of entries currently in the query cache across all shards assigned to selected nodes.
+          description: The total number of entries currently stored in the query cache across all shards assigned to the selected nodes.
           type: number
         evictions:
-          description: Total number of query cache evictions across all shards assigned to selected nodes.
+          description: The total number of query cache evictions across all shards assigned to the selected nodes.
           type: number
         hit_count:
-          description: Total count of query cache hits across all shards assigned to selected nodes.
+          description: The total number of query cache hits across all shards assigned to the selected nodes.
           type: number
         memory_size:
           $ref: '#/components/schemas/_common:HumanReadableByteCount'
         memory_size_in_bytes:
-          description: Total amount, in bytes, of memory used for the query cache across all shards assigned to selected nodes.
+          description: The total amount, in bytes, of memory used for the query cache across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:ByteCount'
         miss_count:
-          description: Total count of query cache misses across all shards assigned to selected nodes.
+          description: The total number of query cache misses across all shards assigned to the selected nodes.
           type: number
         total_count:
-          description: Total count of hits and misses in the query cache across all shards assigned to selected nodes.
+          description: The total number of hits and misses stored in the query cache across all shards assigned to the selected nodes.
           type: number
       required:
         - cache_count
@@ -30839,10 +31231,10 @@ components:
       description: Statistics related to downloads to the remote segment store.
       properties:
         total_download_size:
-          description: The total amount of data download from the remote segment store.
+          description: The total amount of data downloaded from the remote segment store.
           $ref: '#/components/schemas/_common:RemoteStoreUploadDownloadStats'
         total_time_spent:
-          description: The total duration, spent on downloads from the remote segment store.
+          description: The total amount of time spent on downloads from the remote segment store.
           $ref: '#/components/schemas/_common:Duration'
         total_time_spent_in_millis:
           description: The total duration, in milliseconds, spent on downloads from the remote segment store.
@@ -30852,7 +31244,7 @@ components:
         - total_time_spent_in_millis
     _common:RemoteStoreStats:
       type: object
-      description: Statistics about remote segment store operations.
+      description: Statistics related to remote segment store operations.
       properties:
         upload:
           $ref: '#/components/schemas/_common:RemoteStoreUploadStats'
@@ -30927,10 +31319,10 @@ components:
       description: The amount of data, in bytes, uploaded or downloaded to/from the remote segment store.
       properties:
         failed:
-          description: The number of bytes that failed to upload/upload to/from the remote segment store.
+          description: The number of bytes that failed to upload to/from the remote segment store.
           $ref: '#/components/schemas/_common:HumanReadableByteCount'
         failed_bytes:
-          description: The number of bytes that failed to upload/upload to/from the remote segment store.
+          description: The number of bytes that failed to upload to/from the remote segment store.
           $ref: '#/components/schemas/_common:ByteCount'
         started:
           description: The number of bytes to upload/download to/from the remote segment store after the upload/download has started.
@@ -30991,7 +31383,7 @@ components:
         refresh_size_lag:
           $ref: '#/components/schemas/_common:RemoteStoreUploadRefreshSizeLagStats'
         total_time_spent:
-          description: The total amount of time, spent on uploads to the remote segment store.
+          description: The total amount of time spent on uploads to the remote segment store.
           $ref: '#/components/schemas/_common:Duration'
         total_time_spent_in_millis:
           description: The total amount of time, in milliseconds, spent on uploads to the remote segment store.
@@ -31033,6 +31425,10 @@ components:
           type: number
         total:
           type: number
+    _common:ResourceType:
+      type: string
+      enum:
+        - index_or_alias
     _common:Result:
       type: string
       enum:
@@ -31065,10 +31461,10 @@ components:
         - type: object
           properties:
             rank_constant:
-              description: How much influence documents in individual result sets per query have over the final ranked result set
+              description: To what degree documents found in individual result sets per query influence the final ranked result set.
               type: number
             window_size:
-              description: Size of the individual result sets per query
+              description: The size of the individual result sets per query.
               type: number
     _common:ScheduleTimeOfDay:
       description: A time of day, expressed either as `hh:mm`, `noon`, `midnight`, or an hour/minutes structure.
@@ -31082,15 +31478,17 @@ components:
           $ref: '#/components/schemas/_common:SortOrder'
     _common:Script:
       oneOf:
-        - $ref: '#/components/schemas/_common:InlineScript'
-        - $ref: '#/components/schemas/_common:StoredScriptId'
+        - title: inline
+          $ref: '#/components/schemas/_common:InlineScript'
+        - title: stored
+          $ref: '#/components/schemas/_common:StoredScriptId'
     _common:ScriptBase:
       type: object
       properties:
         params:
           description: |-
-            Specifies any named parameters that are passed into the script as variables.
-            Use parameters instead of hard-coded values to decrease compile time.
+            Specifies any named parameters that are passed into the script as variables. 
+            Use parameters instead of hard-coded values to decrease compilation time. 
           type: object
           additionalProperties: true
     _common:ScriptField:
@@ -31103,12 +31501,11 @@ components:
       required:
         - script
     _common:ScriptLanguage:
-      type: string
-      enum:
-        - expression
-        - java
-        - mustache
-        - painless
+      anyOf:
+        - title: builtin
+          $ref: '#/components/schemas/_common:BuiltinScriptLanguage'
+        - title: custom
+          type: string
     _common:ScriptSort:
       type: object
       properties:
@@ -31163,39 +31560,39 @@ components:
           description: The number of open search contexts.
           type: number
         query_current:
-          description: The number of shard query operations that are currently running.
+          description: The number of currently running shard query operations.
           type: number
         query_time:
-          description: The total amount of time for all shard query operations.
+          description: The total amount of time taken to complete all shard query operations.
           $ref: '#/components/schemas/_common:Duration'
         query_time_in_millis:
-          description: The total amount of time for all shard query operations, in milliseconds.
+          description: The total amount of time taken to complete all shard query operations, in milliseconds.
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         query_total:
           description: The total number of shard query operations.
           type: number
         concurrent_query_total:
-          description: The total number of query operations that use concurrent segment search.
+          description: The total number of query operations using concurrent segment search.
           type: number
         concurrent_query_time:
           $ref: '#/components/schemas/_common:Duration'
         concurrent_query_time_in_millis:
-          description: The total amount of time taken by all query operations that use concurrent segment search, in milliseconds.
+          description: The total amount of time taken by all query operations using concurrent segment search, in milliseconds.
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         concurrent_query_current:
-          description: The number of currently running query operations that use concurrent segment search.
+          description: The number of currently running query operations using concurrent segment search.
           type: number
         concurrent_avg_slice_count:
           description: The average slice count of all search requests. This is computed as the total slice count divided by the total number of concurrent search requests.
           type: number
         fetch_current:
-          description: The number of shard fetch operations that are currently running.
+          description: The number of currently running shard fetch operations.
           type: number
         fetch_time:
-          description: The total amount of time for all shard fetch operations.
+          description: The total amount of time taken to complete all shard fetch operations.
           $ref: '#/components/schemas/_common:Duration'
         fetch_time_in_millis:
-          description: The total amount of time for all shard fetch operations, in milliseconds.
+          description: The total amount of time taken to complete all shard fetch operations, in milliseconds.
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         fetch_total:
           description: The total number of shard fetch operations.
@@ -31204,16 +31601,16 @@ components:
           description: The number of shard scroll operations that are currently running.
           type: number
         scroll_time:
-          description: The total amount of time for all shard scroll operations.
+          description: The total amount of time taken to complete all shard scroll operations.
           $ref: '#/components/schemas/_common:Duration'
         scroll_time_in_millis:
-          description: The total amount of time for all shard scroll operations, in milliseconds.
+          description: The total amount of time taken to complete all shard scroll operations, in milliseconds.
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         scroll_total:
           description: The total number of shard scroll operations.
           type: number
         point_in_time_total:
-          description: The total number of shard Point in Time (PIT) contexts that have been created (completed and active) since the node last restarted.
+          description: The total number of shard Point in Time (PIT) contexts created (completed and active) since the node last restarted.
           type: number
         point_in_time_time:
           $ref: '#/components/schemas/_common:Duration'
@@ -31221,16 +31618,16 @@ components:
           description: The amount of time that shard PIT contexts have been held open since the node last restarted, in milliseconds.
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         point_in_time_current:
-          description: The number of shard PIT contexts currently open.
+          description: The number of currently open shard PIT contexts.
           type: number
         suggest_current:
-          description: The number of shard suggest operations that are currently running.
+          description: The number of currently running shard suggest operations.
           type: number
         suggest_time:
-          description: The total amount of time for all shard suggest operations.
+          description: The total amount of time take to complete all shard suggest operations.
           $ref: '#/components/schemas/_common:Duration'
         suggest_time_in_millis:
-          description: The total amount of time for all shard suggest operations, in milliseconds.
+          description: The total amount of time taken to complete all shard suggest operations, in milliseconds.
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
         suggest_total:
           description: The total number of shard suggest operations.
@@ -31239,7 +31636,7 @@ components:
           type: number
         request:
           type: object
-          description: Statistics about coordinator search operations for the node.
+          description: Statistics related to coordinator search operations for the node.
           additionalProperties:
             $ref: '#/components/schemas/_common:RequestStats'
         groups:
@@ -31281,12 +31678,12 @@ components:
       type: object
       properties:
         count:
-          description: Total number of segments across all shards assigned to selected nodes.
+          description: The total number of segments across all shards assigned to the selected nodes.
           type: number
         doc_values_memory:
           $ref: '#/components/schemas/_common:HumanReadableByteCount'
         doc_values_memory_in_bytes:
-          description: Total amount, in bytes, of memory used for doc values across all shards assigned to selected nodes.
+          description: The total amount, in bytes, of memory used for document values across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:ByteCount'
         file_sizes:
           description: |-
@@ -31298,59 +31695,59 @@ components:
         fixed_bit_set:
           $ref: '#/components/schemas/_common:HumanReadableByteCount'
         fixed_bit_set_memory_in_bytes:
-          description: Total amount of memory, in bytes, used by fixed bit sets across all shards assigned to selected nodes.
+          description: The total amount of memory, in bytes, used by fixed bit sets across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:ByteCount'
         index_writer_memory:
           $ref: '#/components/schemas/_common:HumanReadableByteCount'
         index_writer_max_memory_in_bytes:
           $ref: '#/components/schemas/_common:ByteCount'
         index_writer_memory_in_bytes:
-          description: Total amount, in bytes, of memory used by all index writers across all shards assigned to selected nodes.
+          description: The total amount, in bytes, of memory used by all index writers across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:ByteCount'
         max_unsafe_auto_id_timestamp:
-          description: Unix timestamp, in milliseconds, of the most recently retried indexing request.
+          description: The Unix timestamp, in milliseconds, of the most recently retried indexing request.
           type: number
         memory:
-          description: Total amount, of memory used for segments across all shards assigned to selected nodes.
+          description: The total amount of memory used for segments across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:HumanReadableByteCount'
         memory_in_bytes:
-          description: Total amount, in bytes, of memory used for segments across all shards assigned to selected nodes.
+          description: The total amount, in bytes, of memory used for segments across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:ByteCount'
         norms_memory:
-          description: Total amount of memory used for normalization factors across all shards assigned to selected nodes.
+          description: The total amount of memory used for normalization factors across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:HumanReadableByteCount'
         norms_memory_in_bytes:
-          description: Total amount, in bytes, of memory used for normalization factors across all shards assigned to selected nodes.
+          description: The total amount, in bytes, of memory used for normalization factors across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:ByteCount'
         points_memory:
-          description: Total amount of memory used for points across all shards assigned to selected nodes.
+          description: The total amount of memory used for points across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:HumanReadableByteCount'
         points_memory_in_bytes:
-          description: Total amount, in bytes, of memory used for points across all shards assigned to selected nodes.
+          description: The total amount, in bytes, of memory used for points across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:ByteCount'
         stored_fields_memory:
-          description: Total amount of memory used for stored fields across all shards assigned to selected nodes.
+          description: The total amount of memory used for stored fields across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:HumanReadableByteCount'
         stored_fields_memory_in_bytes:
-          description: Total amount, in bytes, of memory used for stored fields across all shards assigned to selected nodes.
+          description: The total amount, in bytes, of memory used for stored fields across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:ByteCount'
         terms_memory:
-          description: Total amount of memory used for terms across all shards assigned to selected nodes.
+          description: The total amount of memory used for terms across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:HumanReadableByteCount'
         terms_memory_in_bytes:
-          description: Total amount, in bytes, of memory used for terms across all shards assigned to selected nodes.
+          description: The total amount, in bytes, of memory used for terms across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:ByteCount'
         term_vectors_memory:
-          description: Total amount of memory used for term vectors across all shards assigned to selected nodes.
+          description: The total amount of memory used for term vectors across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:HumanReadableByteCount'
         term_vectors_memory_in_bytes:
-          description: Total amount, in bytes, of memory used for term vectors across all shards assigned to selected nodes.
+          description: The total amount, in bytes, of memory used for term vectors across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:ByteCount'
         version_map_memory:
-          description: Total amount of memory used by all version maps across all shards assigned to selected nodes.
+          description: The total amount of memory used by all version maps across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:HumanReadableByteCount'
         version_map_memory_in_bytes:
-          description: Total amount, in bytes, of memory used by all version maps across all shards assigned to selected nodes.
+          description: The total amount, in bytes, of memory used by all version maps across all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:ByteCount'
         remote_store:
           $ref: '#/components/schemas/_common:RemoteStoreStats'
@@ -31430,7 +31827,7 @@ components:
         - id
         - max
     _common:Slices:
-      description: Slices configuration used to parallelize a process.
+      description: The slice configuration used to parallelize a process.
       oneOf:
         - type: number
         - $ref: '#/components/schemas/_common:SlicesCalculation'
@@ -31446,9 +31843,12 @@ components:
             $ref: '#/components/schemas/_common:SortCombinations'
     _common:SortCombinations:
       oneOf:
-        - $ref: '#/components/schemas/_common:Field'
-        - $ref: '#/components/schemas/_common:FieldWithOrder'
-        - $ref: '#/components/schemas/_common:SortOptions'
+        - title: field
+          $ref: '#/components/schemas/_common:Field'
+        - title: field_with_order
+          $ref: '#/components/schemas/_common:FieldWithOrder'
+        - title: options
+          $ref: '#/components/schemas/_common:SortOptions'
     _common:SortMode:
       type: string
       enum:
@@ -31509,7 +31909,7 @@ components:
         size:
           $ref: '#/components/schemas/_common:HumanReadableByteCount'
         size_in_bytes:
-          description: Total size, in bytes, of all shards assigned to selected nodes.
+          description: The total size, in bytes, of all shards assigned to the selected nodes.
           $ref: '#/components/schemas/_common:ByteCount'
         reserved:
           $ref: '#/components/schemas/_common:HumanReadableByteCount'
@@ -31521,8 +31921,8 @@ components:
         - size_in_bytes
     _common:Stringifiedboolean:
       description: |-
-        Some APIs will return values such as numbers also as a string (notably epoch timestamps). This behavior
-        is used to capture this behavior while keeping the semantics of the field type.
+        Certain APIs may return values, including numbers such as epoch timestamps, as strings. This setting captures
+        this behavior while keeping the semantics of the field type.
 
         Depending on the target language, code generators can keep the union or remove it and leniently parse
         strings to the target type.
@@ -31531,8 +31931,8 @@ components:
         - type: string
     _common:StringifiedEpochTimeUnitMillis:
       description: |-
-        Some APIs will return values such as numbers also as a string (notably epoch timestamps). This behavior
-        is used to capture this behavior while keeping the semantics of the field type.
+        Certain APIs may return values, including numbers such as epoch timestamps, as strings. This setting captures
+        this behavior while keeping the semantics of the field type.
 
         Depending on the target language, code generators can keep the union or remove it and leniently parse
         strings to the target type.
@@ -31541,8 +31941,8 @@ components:
         - type: string
     _common:StringifiedEpochTimeUnitSeconds:
       description: |-
-        Some APIs will return values such as numbers also as a string (notably epoch timestamps). This behavior
-        is used to capture this behavior while keeping the semantics of the field type.
+        Certain APIs may return values, including numbers such as epoch timestamps, as strings. This setting captures
+        this behavior while keeping the semantics of the field type.
 
         Depending on the target language, code generators can keep the union or remove it and leniently parse
         strings to the target type.
@@ -31551,18 +31951,18 @@ components:
         - type: string
     _common:Stringifiedinteger:
       description: |-
-        Some APIs will return values such as numbers also as a string (notably epoch timestamps). This behavior
-        is used to capture this behavior while keeping the semantics of the field type.
+        Certain APIs may return values, including numbers such as epoch timestamps, as strings. This setting captures
+        this behavior while keeping the semantics of the field type.
 
         Depending on the target language, code generators can keep the union or remove it and leniently parse
         strings to the target type.
       oneOf:
-        - type: number
+        - type: integer
         - type: string
     _common:StringifiedVersionNumber:
       description: |-
-        Some APIs will return values such as numbers also as a string (notably epoch timestamps). This behavior
-        is used to capture this behavior while keeping the semantics of the field type.
+        Certain APIs may return values, including numbers such as epoch timestamps, as strings. This setting captures
+        this behavior while keeping the semantics of the field type.
 
         Depending on the target language, code generators can keep the union or remove it and leniently parse
         strings to the target type.
@@ -31595,6 +31995,14 @@ components:
       oneOf:
         - type: string
         - type: number
+    _common:TermFrequencyNormalization:
+      type: string
+      enum:
+        - h1
+        - h2
+        - h3
+        - 'no'
+        - z
     _common:TimeOfDay:
       description: Time of day, expressed as HH:MM:SS.
       type: string
@@ -31665,7 +32073,7 @@ components:
     _common:ulong:
       type: number
     _common:UnitMillis:
-      description: Time unit for milliseconds.
+      description: The time unit for milliseconds.
       type: integer
       format: int64
     _common:UnitNanos:
@@ -31674,7 +32082,8 @@ components:
       format: int64
     _common:UnitSeconds:
       description: Time unit for seconds.
-      type: number
+      type: integer
+      format: int64
     _common:Username:
       type: string
     _common:Uuid:
@@ -31695,8 +32104,8 @@ components:
       description: |-
         The absence of any type. This is commonly used in APIs that don't return a body.
 
-        Although "void" is generally used for the unit type that has only one value, this is to be interpreted as
-        the bottom type that has no value at all. Most languages have a unit type, but few have a bottom type.
+        Although "void" is generally used for a unit type that has only one value, this is interpreted as
+        the bottom type, which has no value. Most languages have a unit type, but few have a bottom type.
 
         See https://en.m.wikipedia.org/wiki/Unit_type and https://en.m.wikipedia.org/wiki/Bottom_type.
       type: object
@@ -31777,25 +32186,28 @@ components:
         x:
           description: The x coordinate.
           type: number
-        y:
+        'y':
           description: The y coordinate.
           type: number
       required:
         - x
-        - y
+        - 'y'
     _common:XyLocation:
       x-version-added: '2.4'
       description: |-
-        A two-dimensional Cartesian point specified by x and y coordinates. It can be represented in various ways:
-        - as a `{x, y}` object
-        - as a `[x, y]` array
-        - as a string in `"x, y"` or WKT point formats.
+        A two-dimensional Cartesian point specified by x and y coordinates. It can be represented in the following ways:
+         - As an `{x, y}` object.
+         - As an `[x, y]` array.
+         - As a string in `"x, y"` or WKT point format.
       oneOf:
-        - $ref: '#/components/schemas/_common:XyCartesianCoordinates'
-        - type: array
+        - title: cartesian
+          $ref: '#/components/schemas/_common:XyCartesianCoordinates'
+        - title: coords
+          type: array
           items:
             type: number
-        - type: string
+        - title: text
+          type: string
     _common.aggregations:AdjacencyMatrixAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations:MultiBucketAggregateBaseAdjacencyMatrixBucket'
@@ -31822,7 +32234,7 @@ components:
           required:
             - key
     _common.aggregations:Aggregate:
-      oneOf:
+      anyOf:
         - $ref: '#/components/schemas/_common.aggregations:CardinalityAggregate'
         - $ref: '#/components/schemas/_common.aggregations:HdrPercentilesAggregate'
         - $ref: '#/components/schemas/_common.aggregations:HdrPercentileRanksAggregate'
@@ -34298,6 +34710,9 @@ components:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations:SingleBucketAggregateBase'
         - type: object
+          properties:
+            doc_count:
+              type: number
     _common.aggregations:NestedAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations:BucketAggregationBase'
@@ -35409,6 +35824,8 @@ components:
         - $ref: '#/components/schemas/_common.analysis:KuromojiAnalyzer'
         - $ref: '#/components/schemas/_common.analysis:SnowballAnalyzer'
         - $ref: '#/components/schemas/_common.analysis:DutchAnalyzer'
+        - $ref: '#/components/schemas/_common.analysis:SmartcnAnalyzer'
+        - $ref: '#/components/schemas/_common.analysis:CjkAnalyzer'
     _common.analysis:AsciiFoldingTokenFilter:
       allOf:
         - $ref: '#/components/schemas/_common.analysis:TokenFilterBase'
@@ -35424,8 +35841,10 @@ components:
             - type
     _common.analysis:CharFilter:
       oneOf:
-        - type: string
-        - $ref: '#/components/schemas/_common.analysis:CharFilterDefinition'
+        - title: name
+          type: string
+        - title: definition
+          $ref: '#/components/schemas/_common.analysis:CharFilterDefinition'
     _common.analysis:CharFilterBase:
       type: object
       properties:
@@ -35455,10 +35874,21 @@ components:
               items:
                 type: string
             max_token_length:
-              type: number
+              type: integer
           required:
             - tokenize_on_chars
             - type
+    _common.analysis:CjkAnalyzer:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - cjk
+        stopwords:
+          $ref: '#/components/schemas/_common.analysis:StopWords'
+        stopwords_path:
+          type: string
     _common.analysis:CommonGramsTokenFilter:
       allOf:
         - $ref: '#/components/schemas/_common.analysis:TokenFilterBase'
@@ -35488,11 +35918,11 @@ components:
             hyphenation_patterns_path:
               type: string
             max_subword_size:
-              type: number
+              type: integer
             min_subword_size:
-              type: number
+              type: integer
             min_word_size:
-              type: number
+              type: integer
             only_longest_match:
               type: boolean
             word_list:
@@ -35536,9 +35966,9 @@ components:
           items:
             type: string
         position_increment_gap:
-          type: number
+          type: integer
         position_offset_gap:
-          type: number
+          type: integer
         tokenizer:
           type: string
       required:
@@ -35619,9 +36049,9 @@ components:
               enum:
                 - edge_ngram
             max_gram:
-              type: number
+              type: integer
             min_gram:
-              type: number
+              type: integer
             side:
               $ref: '#/components/schemas/_common.analysis:EdgeNGramSide'
             preserve_original:
@@ -35640,9 +36070,9 @@ components:
             custom_token_chars:
               type: string
             max_gram:
-              type: number
+              type: integer
             min_gram:
-              type: number
+              type: integer
             token_chars:
               type: array
               items:
@@ -35681,7 +36111,7 @@ components:
         version:
           $ref: '#/components/schemas/_common:VersionString'
         max_output_size:
-          type: number
+          type: integer
         preserve_original:
           type: boolean
         separator:
@@ -35705,7 +36135,7 @@ components:
               enum:
                 - fingerprint
             max_output_size:
-              type: number
+              type: integer
             separator:
               type: string
           required:
@@ -35780,8 +36210,8 @@ components:
     _common.analysis:IcuCollationDecomposition:
       type: string
       enum:
-        - identical
-        - no
+        - canonical
+        - 'no'
     _common.analysis:IcuCollationStrength:
       type: string
       enum:
@@ -35997,7 +36427,7 @@ components:
               enum:
                 - keyword
             buffer_size:
-              type: number
+              type: integer
           required:
             - buffer_size
             - type
@@ -36083,7 +36513,7 @@ components:
               enum:
                 - kuromoji_stemmer
             minimum_length:
-              type: number
+              type: integer
           required:
             - minimum_length
             - type
@@ -36107,7 +36537,7 @@ components:
             mode:
               $ref: '#/components/schemas/_common.analysis:KuromojiTokenizationMode'
             nbest_cost:
-              type: number
+              type: integer
             nbest_examples:
               type: string
             user_dictionary:
@@ -36191,9 +36621,9 @@ components:
               enum:
                 - length
             max:
-              type: number
+              type: integer
             min:
-              type: number
+              type: integer
           required:
             - type
     _common.analysis:LetterTokenizer:
@@ -36300,9 +36730,9 @@ components:
               enum:
                 - ngram
             max_gram:
-              type: number
+              type: integer
             min_gram:
-              type: number
+              type: integer
             preserve_original:
               $ref: '#/components/schemas/_common:Stringifiedboolean'
           required:
@@ -36319,9 +36749,9 @@ components:
             custom_token_chars:
               type: string
             max_gram:
-              type: number
+              type: integer
             min_gram:
-              type: number
+              type: integer
             token_chars:
               type: array
               items:
@@ -36512,9 +36942,20 @@ components:
             flags:
               type: string
             group:
-              type: number
+              type: integer
             pattern:
               type: string
+          required:
+            - type
+    _common.analysis:PersianStemTokenFilter:
+      allOf:
+        - $ref: '#/components/schemas/_common.analysis:TokenFilterBase'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - persian_stem
           required:
             - type
     _common.analysis:PhoneticEncoder:
@@ -36574,7 +37015,7 @@ components:
               items:
                 $ref: '#/components/schemas/_common.analysis:PhoneticLanguage'
             max_code_len:
-              type: number
+              type: integer
             name_type:
               $ref: '#/components/schemas/_common.analysis:PhoneticNameType'
             replace:
@@ -36672,6 +37113,35 @@ components:
           $ref: '#/components/schemas/_common:VersionString'
       required:
         - type
+    _common.analysis:SmartcnAnalyzer:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - smartcn
+    _common.analysis:SmartcnStopTokenFilter:
+      allOf:
+        - $ref: '#/components/schemas/_common.analysis:TokenFilterBase'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - smartcn_stop
+          required:
+            - type
+    _common.analysis:SmartcnTokenizer:
+      allOf:
+        - $ref: '#/components/schemas/_common.analysis:TokenizerBase'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - smartcn_tokenizer
+          required:
+            - type
     _common.analysis:SnowballAnalyzer:
       type: object
       properties:
@@ -36735,7 +37205,7 @@ components:
           enum:
             - standard
         max_token_length:
-          type: number
+          type: integer
         stopwords:
           $ref: '#/components/schemas/_common.analysis:StopWords'
       required:
@@ -36750,7 +37220,7 @@ components:
               enum:
                 - standard
             max_token_length:
-              type: number
+              type: integer
           required:
             - type
     _common.analysis:StemmerOverrideTokenFilter:
@@ -36897,8 +37367,10 @@ components:
         - whitespace
     _common.analysis:TokenFilter:
       oneOf:
-        - type: string
-        - $ref: '#/components/schemas/_common.analysis:TokenFilterDefinition'
+        - title: name
+          type: string
+        - title: definition
+          $ref: '#/components/schemas/_common.analysis:TokenFilterDefinition'
     _common.analysis:TokenFilterBase:
       type: object
       properties:
@@ -36930,6 +37402,7 @@ components:
         - $ref: '#/components/schemas/_common.analysis:NoriPartOfSpeechTokenFilter'
         - $ref: '#/components/schemas/_common.analysis:PatternCaptureTokenFilter'
         - $ref: '#/components/schemas/_common.analysis:PatternReplaceTokenFilter'
+        - $ref: '#/components/schemas/_common.analysis:PersianStemTokenFilter'
         - $ref: '#/components/schemas/_common.analysis:PorterStemTokenFilter'
         - $ref: '#/components/schemas/_common.analysis:PredicateTokenFilter'
         - $ref: '#/components/schemas/_common.analysis:RemoveDuplicatesTokenFilter'
@@ -36957,10 +37430,13 @@ components:
         - $ref: '#/components/schemas/_common.analysis:IcuTransformTokenFilter'
         - $ref: '#/components/schemas/_common.analysis:PhoneticTokenFilter'
         - $ref: '#/components/schemas/_common.analysis:DictionaryDecompounderTokenFilter'
+        - $ref: '#/components/schemas/_common.analysis:SmartcnStopTokenFilter'
     _common.analysis:Tokenizer:
       oneOf:
-        - type: string
-        - $ref: '#/components/schemas/_common.analysis:TokenizerDefinition'
+        - title: name
+          type: string
+        - title: definition
+          $ref: '#/components/schemas/_common.analysis:TokenizerDefinition'
     _common.analysis:TokenizerBase:
       type: object
       properties:
@@ -36985,6 +37461,7 @@ components:
         - $ref: '#/components/schemas/_common.analysis:KuromojiTokenizer'
         - $ref: '#/components/schemas/_common.analysis:PatternTokenizer'
         - $ref: '#/components/schemas/_common.analysis:IcuTokenizer'
+        - $ref: '#/components/schemas/_common.analysis:SmartcnTokenizer'
     _common.analysis:TrimTokenFilter:
       allOf:
         - $ref: '#/components/schemas/_common.analysis:TokenFilterBase'
@@ -37006,7 +37483,7 @@ components:
               enum:
                 - truncate
             length:
-              type: number
+              type: integer
           required:
             - type
     _common.analysis:UaxEmailUrlTokenizer:
@@ -37019,7 +37496,7 @@ components:
               enum:
                 - uax_url_email
             max_token_length:
-              type: number
+              type: integer
           required:
             - type
     _common.analysis:UniqueTokenFilter:
@@ -37067,7 +37544,7 @@ components:
               enum:
                 - whitespace
             max_token_length:
-              type: number
+              type: integer
           required:
             - type
     _common.analysis:WordDelimiterGraphTokenFilter:
@@ -37229,6 +37706,7 @@ components:
           properties:
             boost:
               type: number
+              format: double
             fielddata:
               $ref: '#/components/schemas/indices._common:NumericFielddata'
             index:
@@ -37266,7 +37744,7 @@ components:
               items:
                 $ref: '#/components/schemas/_common.mapping:SuggestContext'
             max_input_length:
-              type: number
+              type: integer
             preserve_position_increments:
               type: boolean
             preserve_separators:
@@ -37284,8 +37762,7 @@ components:
         - $ref: '#/components/schemas/_common.mapping:PropertyBase'
         - type: object
           properties:
-            value:
-              type: object
+            value: {}
             type:
               type: string
               enum:
@@ -37317,6 +37794,7 @@ components:
           properties:
             boost:
               type: number
+              format: double
             format:
               type: string
             ignore_malformed:
@@ -37326,7 +37804,7 @@ components:
             null_value:
               $ref: '#/components/schemas/_common:DateTime'
             precision_step:
-              type: number
+              type: integer
             type:
               type: string
               enum:
@@ -37340,6 +37818,7 @@ components:
           properties:
             boost:
               type: number
+              format: double
             fielddata:
               $ref: '#/components/schemas/indices._common:NumericFielddata'
             format:
@@ -37351,7 +37830,7 @@ components:
             null_value:
               $ref: '#/components/schemas/_common:DateTime'
             precision_step:
-              type: number
+              type: integer
             locale:
               type: string
             type:
@@ -37424,6 +37903,7 @@ components:
                 - double
             null_value:
               type: number
+              format: double
           required:
             - type
     _common.mapping:DoubleRangeProperty:
@@ -37444,61 +37924,6 @@ components:
         - strict
         - strict_allow_templates
         - 'true'
-    _common.mapping:DynamicProperty:
-      allOf:
-        - $ref: '#/components/schemas/_common.mapping:DocValuesPropertyBase'
-        - type: object
-          properties:
-            type:
-              type: string
-              enum:
-                - '{dynamic_property}'
-            enabled:
-              type: boolean
-            null_value:
-              $ref: '#/components/schemas/_common:FieldValue'
-            boost:
-              type: number
-            coerce:
-              type: boolean
-            script:
-              $ref: '#/components/schemas/_common:Script'
-            on_script_error:
-              $ref: '#/components/schemas/_common.mapping:OnScriptError'
-            ignore_malformed:
-              type: boolean
-            time_series_metric:
-              $ref: '#/components/schemas/_common.mapping:TimeSeriesMetricType'
-            analyzer:
-              type: string
-            eager_global_ordinals:
-              type: boolean
-            index:
-              type: boolean
-            index_options:
-              $ref: '#/components/schemas/_common.mapping:IndexOptions'
-            index_phrases:
-              type: boolean
-            index_prefixes:
-              $ref: '#/components/schemas/_common.mapping:TextIndexPrefixes'
-            norms:
-              type: boolean
-            position_increment_gap:
-              type: number
-            search_analyzer:
-              type: string
-            search_quote_analyzer:
-              type: string
-            term_vector:
-              $ref: '#/components/schemas/_common.mapping:TermVectorOption'
-            format:
-              type: string
-            precision_step:
-              type: number
-            locale:
-              type: string
-          required:
-            - type
     _common.mapping:DynamicTemplate:
       type: object
       properties:
@@ -37557,6 +37982,7 @@ components:
           properties:
             boost:
               type: number
+              format: double
             depth_limit:
               type: number
             doc_values:
@@ -37590,6 +38016,7 @@ components:
                 - float
             null_value:
               type: number
+              format: float
           required:
             - type
     _common.mapping:FloatRangeProperty:
@@ -37604,10 +38031,21 @@ components:
           required:
             - type
     _common.mapping:GeoOrientation:
-      type: string
-      enum:
-        - left
-        - right
+      oneOf:
+        - title: left
+          type: string
+          enum:
+            - LEFT
+            - clockwise
+            - cw
+            - left
+        - title: right
+          type: string
+          enum:
+            - RIGHT
+            - ccw
+            - counterclockwise
+            - right
     _common.mapping:GeoPointProperty:
       allOf:
         - $ref: '#/components/schemas/_common.mapping:DocValuesPropertyBase'
@@ -37643,6 +38081,7 @@ components:
               deprecated: true
             distance_error_pct:
               type: number
+              format: double
               deprecated: true
             type:
               type: string
@@ -37666,6 +38105,7 @@ components:
                 - half_float
             null_value:
               type: number
+              format: float
           required:
             - type
     _common.mapping:HistogramProperty:
@@ -37705,7 +38145,7 @@ components:
               enum:
                 - integer
             null_value:
-              type: number
+              type: integer
           required:
             - type
     _common.mapping:IntegerRangeProperty:
@@ -37726,6 +38166,7 @@ components:
           properties:
             boost:
               type: number
+              format: double
             index:
               type: boolean
             ignore_malformed:
@@ -37784,6 +38225,7 @@ components:
           properties:
             boost:
               type: number
+              format: double
             eager_global_ordinals:
               type: boolean
             index:
@@ -37818,30 +38260,35 @@ components:
           type: string
         parameters:
           type: object
-          additionalProperties:
-            type: object
+          additionalProperties: {}
       required:
         - name
     _common.mapping:KnnVectorProperty:
       allOf:
-        - $ref: '#/components/schemas/_common.mapping:KnnVectorPropertyBase'
+        - $ref: '#/components/schemas/_common.mapping:DocValuesPropertyBase'
         - type: object
           properties:
             type:
               type: string
               enum:
                 - knn_vector
+            dimension:
+              type: integer
+            space_type:
+              type: string
+            data_type:
+              type: string
+            mode:
+              type: string
+            compression_level:
+              type: string
+            method:
+              $ref: '#/components/schemas/_common.mapping:KnnVectorMethod'
+            model_id:
+              type: string
           required:
+            - dimension
             - type
-    _common.mapping:KnnVectorPropertyBase:
-      type: object
-      properties:
-        dimension:
-          type: number
-        method:
-          $ref: '#/components/schemas/_common.mapping:KnnVectorMethod'
-      required:
-        - dimension
     _common.mapping:LongNumberProperty:
       allOf:
         - $ref: '#/components/schemas/_common.mapping:NumberPropertyBase'
@@ -37852,7 +38299,8 @@ components:
               enum:
                 - long
             null_value:
-              type: number
+              type: integer
+              format: int64
           required:
             - type
     _common.mapping:LongRangeProperty:
@@ -37929,6 +38377,7 @@ components:
           properties:
             boost:
               type: number
+              format: double
             coerce:
               type: boolean
             ignore_malformed:
@@ -37978,7 +38427,6 @@ components:
       oneOf:
         - $ref: '#/components/schemas/_common.mapping:BinaryProperty'
         - $ref: '#/components/schemas/_common.mapping:BooleanProperty'
-        - $ref: '#/components/schemas/_common.mapping:DynamicProperty'
         - $ref: '#/components/schemas/_common.mapping:JoinProperty'
         - $ref: '#/components/schemas/_common.mapping:KeywordProperty'
         - $ref: '#/components/schemas/_common.mapping:MatchOnlyTextProperty'
@@ -38037,7 +38485,7 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/_common.mapping:Property'
         ignore_above:
-          type: number
+          type: integer
         dynamic:
           $ref: '#/components/schemas/_common.mapping:DynamicMapping'
         fields:
@@ -38051,6 +38499,7 @@ components:
           properties:
             boost:
               type: number
+              format: double
             coerce:
               type: boolean
             index:
@@ -38144,8 +38593,10 @@ components:
                 - scaled_float
             null_value:
               type: number
+              format: double
             scaling_factor:
               type: number
+              format: double
           required:
             - type
     _common.mapping:SearchAsYouTypeProperty:
@@ -38160,7 +38611,7 @@ components:
             index_options:
               $ref: '#/components/schemas/_common.mapping:IndexOptions'
             max_shingle_size:
-              type: number
+              type: integer
             norms:
               type: boolean
             search_analyzer:
@@ -38250,20 +38701,20 @@ components:
     _common.mapping:TermVectorOption:
       type: string
       enum:
-        - no
+        - 'no'
         - with_offsets
         - with_positions
         - with_positions_offsets
         - with_positions_offsets_payloads
         - with_positions_payloads
-        - yes
+        - 'yes'
     _common.mapping:TextIndexPrefixes:
       type: object
       properties:
         max_chars:
-          type: number
+          type: integer
         min_chars:
-          type: number
+          type: integer
       required:
         - max_chars
         - min_chars
@@ -38276,6 +38727,7 @@ components:
               type: string
             boost:
               type: number
+              format: double
             eager_global_ordinals:
               type: boolean
             fielddata:
@@ -38293,7 +38745,7 @@ components:
             norms:
               type: boolean
             position_increment_gap:
-              type: number
+              type: integer
             search_analyzer:
               type: string
             search_quote_analyzer:
@@ -38323,10 +38775,12 @@ components:
               type: string
             boost:
               type: number
+              format: double
             index:
               type: boolean
             null_value:
               type: number
+              format: double
             enable_position_increments:
               type: boolean
             type:
@@ -38502,6 +38956,7 @@ components:
             negative_boost:
               description: Floating point number between 0 and 1.0 used to decrease the relevance scores of documents matching the `negative` query.
               type: number
+              format: float
             negative:
               $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
             positive:
@@ -38564,6 +39019,7 @@ components:
               type: string
             cutoff_frequency:
               type: number
+              format: float
             high_freq_operator:
               $ref: '#/components/schemas/_common.query_dsl:Operator'
             low_freq_operator:
@@ -38642,6 +39098,7 @@ components:
             tie_breaker:
               description: Floating point number between 0 and 1.0 used to increase the relevance scores of documents matching multiple query clauses.
               type: number
+              format: float
           required:
             - queries
     _common.query_dsl:DistanceFeatureQuery:
@@ -38720,11 +39177,13 @@ components:
         factor:
           description: Optional factor to multiply the field value with.
           type: number
+          format: float
         missing:
           description: |-
             Value used if the document doesn't have that field.
             The modifier and factor are still applied to it as though it were read from the document.
           type: number
+          format: double
         modifier:
           $ref: '#/components/schemas/_common.query_dsl:FieldValueFactorModifier'
       required:
@@ -38746,6 +39205,7 @@ components:
               $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
             weight:
               type: number
+              format: float
         - type: object
           properties:
             exp:
@@ -38786,9 +39246,11 @@ components:
             max_boost:
               description: Restricts the new score to not exceed the provided limit.
               type: number
+              format: float
             min_score:
               description: Excludes documents that do not meet the provided score threshold.
               type: number
+              format: float
             query:
               $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
             score_mode:
@@ -38800,10 +39262,12 @@ components:
           properties:
             max_expansions:
               description: Maximum number of variations created.
-              type: number
+              type: integer
+              format: int32
             prefix_length:
               description: Number of beginning characters left unchanged when creating expansions.
-              type: number
+              type: integer
+              format: int32
             rewrite:
               $ref: '#/components/schemas/_common:MultiTermQueryRewrite'
             transpositions:
@@ -38919,12 +39383,14 @@ components:
               description: |-
                 Maximum number of child documents that match the query allowed for a returned parent document.
                 If the parent document exceeds this limit, it is excluded from the search results.
-              type: number
+              type: integer
+              format: int32
             min_children:
               description: |-
                 Minimum number of child documents that match the query required to match the query for a returned parent document.
                 If the parent document does not meet this limit, it is excluded from the search results.
-              type: number
+              type: integer
+              format: int32
             query:
               $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
             score_mode:
@@ -38981,7 +39447,8 @@ components:
           description: |-
             Maximum number of positions between the matching terms.
             Intervals produced by the rules further apart than this are not considered matches.
-          type: number
+          type: integer
+          format: int32
         ordered:
           description: If `true`, intervals produced by the rules should appear in the order in which they are specified.
           type: boolean
@@ -39051,7 +39518,8 @@ components:
           $ref: '#/components/schemas/_common:Fuzziness'
         prefix_length:
           description: Number of beginning characters left unchanged when creating expansions.
-          type: number
+          type: integer
+          format: int32
         term:
           description: The term to match.
           type: string
@@ -39072,7 +39540,8 @@ components:
           description: |-
             Maximum number of positions between the matching terms.
             Terms further apart than this are not considered matches.
-          type: number
+          type: integer
+          format: int32
         ordered:
           description: If `true`, matching terms must appear in their specified order.
           type: boolean
@@ -39190,7 +39659,8 @@ components:
               description: |-
                 Maximum number of terms to which the query will expand.
                 Can be applied to the term subqueries constructed for all terms but the final term.
-              type: number
+              type: integer
+              format: int32
             minimum_should_match:
               $ref: '#/components/schemas/_common:MinimumShouldMatch'
             operator:
@@ -39199,7 +39669,8 @@ components:
               description: |-
                 Number of beginning characters left unchanged for fuzzy matching.
                 Can be applied to the term subqueries constructed for all terms but the final term.
-              type: number
+              type: integer
+              format: int32
             query:
               description: |-
                 Terms you wish to find in the provided field.
@@ -39221,13 +39692,15 @@ components:
               type: string
             max_expansions:
               description: Maximum number of terms to which the last provided term of the query value will expand.
-              type: number
+              type: integer
+              format: int32
             query:
               description: Text you wish to find in the provided field.
               type: string
             slop:
               description: Maximum number of positions allowed between matching tokens.
-              type: number
+              type: integer
+              format: int32
             zero_terms_query:
               $ref: '#/components/schemas/_common.query_dsl:ZeroTermsQuery'
           required:
@@ -39245,7 +39718,8 @@ components:
               type: string
             slop:
               description: Maximum number of positions allowed between matching tokens.
-              type: number
+              type: integer
+              format: int32
             zero_terms_query:
               $ref: '#/components/schemas/_common.query_dsl:ZeroTermsQuery'
           required:
@@ -39264,6 +39738,7 @@ components:
             cutoff_frequency:
               deprecated: true
               type: number
+              format: float
             fuzziness:
               $ref: '#/components/schemas/_common:Fuzziness'
             fuzzy_rewrite:
@@ -39276,14 +39751,16 @@ components:
               type: boolean
             max_expansions:
               description: Maximum number of terms to which the query will expand.
-              type: number
+              type: integer
+              format: int32
             minimum_should_match:
               $ref: '#/components/schemas/_common:MinimumShouldMatch'
             operator:
               $ref: '#/components/schemas/_common.query_dsl:Operator'
             prefix_length:
               description: Number of beginning characters left unchanged for fuzzy matching.
-              type: number
+              type: integer
+              format: int32
             query:
               description: Text, number, boolean value or date you wish to find in the provided field.
               oneOf:
@@ -39310,6 +39787,7 @@ components:
                 This sets the boost factor to use when using this feature.
                 Defaults to deactivated (0).
               type: number
+              format: float
             fail_on_unsupported_field:
               description: Controls whether the query should fail (throw an exception) if any of the specified fields are not of the supported types (`text` or `keyword`).
               type: boolean
@@ -39332,26 +39810,32 @@ components:
                     $ref: '#/components/schemas/_common.query_dsl:Like'
             max_doc_freq:
               description: The maximum document frequency above which the terms are ignored from the input document.
-              type: number
+              type: integer
+              format: int32
             max_query_terms:
               description: The maximum number of query terms that can be selected.
-              type: number
+              type: integer
+              format: int32
             max_word_length:
               description: |-
                 The maximum word length above which the terms are ignored.
                 Defaults to unbounded (`0`).
-              type: number
+              type: integer
+              format: int32
             min_doc_freq:
               description: The minimum document frequency below which the terms are ignored from the input document.
-              type: number
+              type: integer
+              format: int32
             minimum_should_match:
               $ref: '#/components/schemas/_common:MinimumShouldMatch'
             min_term_freq:
               description: The minimum term frequency below which the terms are ignored from the input document.
-              type: number
+              type: integer
+              format: int32
             min_word_length:
               description: The minimum word length below which the terms are ignored.
-              type: number
+              type: integer
+              format: int32
             per_field_analyzer:
               description: Overrides the default analyzer.
               type: object
@@ -39388,6 +39872,7 @@ components:
             cutoff_frequency:
               deprecated: true
               type: number
+              format: float
             fields:
               $ref: '#/components/schemas/_common:Fields'
             fuzziness:
@@ -39404,23 +39889,27 @@ components:
               type: boolean
             max_expansions:
               description: Maximum number of terms to which the query will expand.
-              type: number
+              type: integer
+              format: int32
             minimum_should_match:
               $ref: '#/components/schemas/_common:MinimumShouldMatch'
             operator:
               $ref: '#/components/schemas/_common.query_dsl:Operator'
             prefix_length:
               description: Number of beginning characters left unchanged for fuzzy matching.
-              type: number
+              type: integer
+              format: int32
             query:
               description: Text, number, boolean value or date you wish to find in the provided field.
               type: string
             slop:
               description: Maximum number of positions allowed between matching tokens.
-              type: number
+              type: integer
+              format: int32
             tie_breaker:
               description: Determines how scores for each per-term blended query and scores across groups are combined.
               type: number
+              format: float
             type:
               $ref: '#/components/schemas/_common.query_dsl:TextQueryType'
             zero_terms_query:
@@ -39473,8 +39962,10 @@ components:
           type: integer
         min_score:
           type: number
+          format: float
         max_distance:
           type: number
+          format: float
         filter:
           $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
     _common.query_dsl:NumberRangeQuery:
@@ -39621,6 +40112,7 @@ components:
             A boost value between 0 and 1.0 decreases the relevance score.
             A value greater than 1.0 increases the relevance score.
           type: number
+          format: float
         _name:
           type: string
     _common.query_dsl:QueryContainer:
@@ -39877,10 +40369,12 @@ components:
               $ref: '#/components/schemas/_common:Fuzziness'
             fuzzy_max_expansions:
               description: Maximum number of terms to which the query expands for fuzzy matching.
-              type: number
+              type: integer
+              format: int32
             fuzzy_prefix_length:
               description: Number of beginning characters left unchanged for fuzzy matching.
-              type: number
+              type: integer
+              format: int32
             fuzzy_rewrite:
               $ref: '#/components/schemas/_common:MultiTermQueryRewrite'
             fuzzy_transpositions:
@@ -39891,12 +40385,14 @@ components:
               type: boolean
             max_determinized_states:
               description: Maximum number of automaton states required for the query.
-              type: number
+              type: integer
+              format: int32
             minimum_should_match:
               $ref: '#/components/schemas/_common:MinimumShouldMatch'
             phrase_slop:
               description: Maximum number of positions allowed between matching tokens for phrases.
-              type: number
+              type: integer
+              format: int32
             query:
               description: Query string you wish to parse and use for search.
               type: string
@@ -39915,6 +40411,7 @@ components:
             tie_breaker:
               description: How to combine the queries generated from the individual search terms in the resulting `dis_max` query.
               type: number
+              format: float
             time_zone:
               $ref: '#/components/schemas/_common:TimeZone'
             type:
@@ -39928,7 +40425,8 @@ components:
           $ref: '#/components/schemas/_common:Field'
         seed:
           oneOf:
-            - type: number
+            - type: integer
+              format: int32
             - type: string
     _common.query_dsl:RangeQuery:
       oneOf:
@@ -39961,6 +40459,7 @@ components:
             scaling_factor:
               description: Configurable scaling factor.
               type: number
+              format: float
           required:
             - scaling_factor
     _common.query_dsl:RankFeatureFunctionSaturation:
@@ -39971,6 +40470,7 @@ components:
             pivot:
               description: Configurable pivot value so that the result will be less than 0.5.
               type: number
+              format: float
     _common.query_dsl:RankFeatureFunctionSigmoid:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl:RankFeatureFunction'
@@ -39979,9 +40479,11 @@ components:
             pivot:
               description: Configurable pivot value so that the result will be less than 0.5.
               type: number
+              format: float
             exponent:
               description: Configurable Exponent.
               type: number
+              format: float
           required:
             - exponent
             - pivot
@@ -40017,7 +40519,8 @@ components:
               type: string
             max_determinized_states:
               description: Maximum number of automaton states required for the query.
-              type: number
+              type: integer
+              format: int32
             rewrite:
               $ref: '#/components/schemas/_common:MultiTermQueryRewrite'
             value:
@@ -40064,6 +40567,7 @@ components:
             min_score:
               description: Documents with a score lower than this floating point number are excluded from the search results.
               type: number
+              format: float
             query:
               $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
             script:
@@ -40120,10 +40624,12 @@ components:
               $ref: '#/components/schemas/_common.query_dsl:SimpleQueryStringFlags'
             fuzzy_max_expansions:
               description: Maximum number of terms to which the query expands for fuzzy matching.
-              type: number
+              type: integer
+              format: int32
             fuzzy_prefix_length:
               description: Number of beginning characters left unchanged for fuzzy matching.
-              type: number
+              type: integer
+              format: int32
             fuzzy_transpositions:
               description: If `true`, edits for fuzzy matching include transpositions of two adjacent characters (for example, `ab` to `ba`).
               type: boolean
@@ -40171,7 +40677,8 @@ components:
           properties:
             end:
               description: Controls the maximum end position permitted in a match.
-              type: number
+              type: integer
+              format: int32
             match:
               $ref: '#/components/schemas/_common.query_dsl:SpanQuery'
           required:
@@ -40208,7 +40715,8 @@ components:
               type: boolean
             slop:
               description: Controls the maximum number of intervening unmatched positions permitted.
-              type: number
+              type: integer
+              format: int32
           required:
             - clauses
     _common.query_dsl:SpanNotQuery:
@@ -40220,17 +40728,20 @@ components:
               description: |-
                 The number of tokens from within the include span that can't have overlap with the exclude span.
                 Equivalent to setting both `pre` and `post`.
-              type: number
+              type: integer
+              format: int32
             exclude:
               $ref: '#/components/schemas/_common.query_dsl:SpanQuery'
             include:
               $ref: '#/components/schemas/_common.query_dsl:SpanQuery'
             post:
               description: The number of tokens after the include span that can't have overlap with the exclude span.
-              type: number
+              type: integer
+              format: int32
             pre:
               description: The number of tokens before the include span that can't have overlap with the exclude span.
-              type: number
+              type: integer
+              format: int32
           required:
             - exclude
             - include
@@ -40561,8 +41072,8 @@ components:
             - string
         _index:
           description: |-
-            Name of the index associated with the operation.
-            If the operation targeted a data stream, this is the backing index into which the document was written.
+            The name of the index associated with the operation.
+            If the operation targets a data stream, this is the backing index into which the document was written.
           type: string
         status:
           description: HTTP status code returned for the operation.
@@ -40595,19 +41106,19 @@ components:
       properties:
         detect_noop:
           description: |-
-            Set to false to disable setting 'result' in the response
+            When `false` disables the setting 'result' in the response
             to 'noop' if no change to the document occurred.
           type: boolean
         doc:
           description: A partial update to an existing document.
           type: object
         doc_as_upsert:
-          description: Set to true to use the contents of 'doc' as the value of 'upsert'
+          description: When `true`, uses the contents of 'doc' as the value of 'upsert'.
           type: boolean
         script:
           $ref: '#/components/schemas/_common:Script'
         scripted_upsert:
-          description: Set to true to execute the script whether or not the document exists.
+          description: When `true`, executes the script whether or not the document exists.
           type: boolean
         _source:
           $ref: '#/components/schemas/_core.search:SourceConfig'
@@ -40622,7 +41133,7 @@ components:
         - type: object
           properties:
             require_alias:
-              description: If `true`, the request's actions must target an index alias.
+              description: When `true`, the request's actions must target an index alias.
               type: boolean
             retry_on_conflict:
               type: number
@@ -40634,7 +41145,6 @@ components:
             dynamic_templates:
               description: |-
                 A map from the full name of fields to the name of dynamic templates.
-                Defaults to an empty map.
                 If a name matches a dynamic template, then that template will be applied regardless of other match predicates defined in the template.
                 If a field is already defined in the mapping, then this parameter won't be used.
               type: object
@@ -40642,12 +41152,12 @@ components:
                 type: string
             pipeline:
               description: |-
-                ID of the pipeline to use to preprocess incoming documents.
-                If the index has a default ingest pipeline specified, then setting the value to `_none` disables the default ingest pipeline for this request.
-                If a final pipeline is configured it will always run, regardless of the value of this parameter.
+                The pipeline ID for preprocessing documents.
+                When the index has a default ingest pipeline specified, then setting the value to `_none` disables the default ingest pipeline for this request.
+                When a final pipeline is configured, that pipeline will always run, regardless of the value of this parameter.
               type: string
             require_alias:
-              description: If `true`, the request's actions must target an index alias.
+              description: When `true`, require that all actions target an index alias rather than an index. Default is `false`.
               type: boolean
     _core.explain:Explanation:
       type: object
@@ -40682,7 +41192,7 @@ components:
       type: object
       properties:
         aggregatable:
-          description: Whether this field can be aggregated on all indices.
+          description: Whether this field can be aggregated on all indexes.
           type: boolean
         indices:
           $ref: '#/components/schemas/_common:Indices'
@@ -40693,7 +41203,7 @@ components:
         non_searchable_indices:
           $ref: '#/components/schemas/_common:Indices'
         searchable:
-          description: Whether this field is indexed for search on all indices.
+          description: Whether this field is indexed for search on all indexes.
           type: boolean
         type:
           type: string
@@ -40707,15 +41217,15 @@ components:
           $ref: '#/components/schemas/_common.mapping:TimeSeriesMetricType'
         non_dimension_indices:
           description: |-
-            If this list is present in response then some indices have the
-            field marked as a dimension and other indices, the ones in this list, do not.
+            If this list is present in the response, then indexes not contained in the list have the
+            field marked as a dimension. Any indexes contained in the list are not marked as a dimension.
           type: array
           items:
             $ref: '#/components/schemas/_common:IndexName'
         metric_conflicts_indices:
           description: |-
-            The list of indices where this field is present if these indices
-            don't have the same `time_series_metric` value for this field.
+            The list of indexes in which this field is present if the indexes
+            don't have the same `time_series_metric` value for the field.
           type: array
           items:
             $ref: '#/components/schemas/_common:IndexName'
@@ -40845,25 +41355,25 @@ components:
       type: object
       properties:
         explain:
-          description: If `true`, returns detailed information about score calculation as part of each hit.
+          description: When `true`, returns detailed information about score calculations as part of each hit.
           type: boolean
         id:
           $ref: '#/components/schemas/_common:Id'
         params:
           description: |-
-            Key-value pairs used to replace Mustache variables in the template.
+            The key-value pairs used to replace any Mustache variables in the template.
             The key is the variable name.
             The value is the variable value.
           type: object
           additionalProperties:
             type: object
         profile:
-          description: If `true`, the query execution is profiled.
+          description: When `true`, provides a profile for the query execution.
           type: boolean
         source:
           description: |-
-            An inline search template. Supports the same parameters as the search API's
-            request body. Also supports Mustache variables. If no id is specified, this
+            An inline search template that supports the same parameters as the search API's
+            request body. Also supports Mustache variables. When no template ID is specified, this
             parameter is required.
           type: string
     _core.msearch:MultisearchBody:
@@ -40889,8 +41399,8 @@ components:
           $ref: '#/components/schemas/_common:Fields'
         docvalue_fields:
           description: |-
-            Array of wildcard (*) patterns. The request returns doc values for field
-            names matching these patterns in the hits.fields property of the response.
+            An array of wildcard (*) patterns. The request returns document values for field
+            names matching these patterns in the `hits.fields` property of the response.
           type: array
           items:
             $ref: '#/components/schemas/_common.query_dsl:FieldAndFormat'
@@ -40903,14 +41413,14 @@ components:
                 $ref: '#/components/schemas/_common.query_dsl:KnnQuery'
         from:
           description: |-
-            Starting document offset. By default, you cannot page through more than 10,000
+            The starting document offset. By default, you cannot page through more than 10,000
             hits using the from and size parameters. To page through more hits, use the
-            search_after parameter.
+            `search_after` parameter.
           type: number
         highlight:
           $ref: '#/components/schemas/_core.search:Highlight'
         indices_boost:
-          description: Boosts the _score of documents from specified indices.
+          description: Boosts the `_score` of documents from specified indexes.
           type: array
           items:
             type: object
@@ -40918,8 +41428,8 @@ components:
               type: number
         min_score:
           description: |-
-            Minimum _score for matching documents. Documents with a lower _score are
-            not included in the search results.
+            The minimum `_score` for document matching. Documents with a lower `_score` than the minimum
+            are not included in the search results.
           type: number
         post_filter:
           $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
@@ -40950,22 +41460,22 @@ components:
           $ref: '#/components/schemas/_core.search:SourceConfig'
         fields:
           description: |-
-            Array of wildcard (*) patterns. The request returns values for field names
-            matching these patterns in the hits.fields property of the response.
+            An array of wildcard (*) patterns. The request returns values for field names
+            matching these patterns in the `hits.fields` property of the response.
           type: array
           items:
             $ref: '#/components/schemas/_common.query_dsl:FieldAndFormat'
         terminate_after:
           description: |-
-            Maximum number of documents to collect for each shard. If a query reaches this
-            limit, OpenSearch terminates the query early. OpenSearch collects documents
-            before sorting. Defaults to 0, which does not terminate query execution early.
+            The maximum number of documents to collect for each shard. If a query reaches this
+            limit, OpenSearch stops the query early. OpenSearch collects documents
+            before sorting. Default is `0`, which does not terminate query execution early.
           type: number
         stats:
           description: |-
-            Stats groups to associate with the search. Each group maintains a statistics
-            aggregation for its associated searches. You can retrieve these stats using
-            the indices stats API.
+            The statistics groups to associate with the search. Each group maintains a statistics
+            aggregation for its associated searches. You can retrieve these statistics using
+            the Index Stats API.
           type: array
           items:
             type: string
@@ -40973,21 +41483,21 @@ components:
           description: |-
             Specifies the period of time to wait for a response from each shard. If no response
             is received before the timeout expires, the request fails and returns an error.
-            Defaults to no timeout.
+            Default is no timeout.
           type: string
         track_scores:
-          description: If true, calculate and return document scores, even if the scores are not used for sorting.
+          description: When true, calculates and returns all document scores, even if the scores are not used for sorting.
           type: boolean
         track_total_hits:
           $ref: '#/components/schemas/_core.search:TrackHits'
         version:
-          description: If true, returns document version as part of a hit.
+          description: When true, returns the document version as part of the hit.
           type: boolean
         runtime_mappings:
           $ref: '#/components/schemas/_common.mapping:RuntimeFields'
         seq_no_primary_term:
           description: |-
-            If true, returns sequence number and primary term of the last modification
+            When true, returns the sequence number and primary term of the last modification
             of each hit. See Optimistic concurrency control.
           type: boolean
         pit:
@@ -41059,23 +41569,23 @@ components:
         fields:
           $ref: '#/components/schemas/_common:Fields'
         field_statistics:
-          description: If `true`, the response includes the document count, sum of document frequencies, and sum of total term frequencies.
+          description: When `true`, the response includes the document count, the sum of document frequencies, and the sum of term frequencies.
           type: boolean
         filter:
           $ref: '#/components/schemas/_core.termvectors:Filter'
         offsets:
-          description: If `true`, the response includes term offsets.
+          description: When `true`, the response includes term offsets.
           type: boolean
         payloads:
-          description: If `true`, the response includes term payloads.
+          description: When `true`, the response includes term payloads.
           type: boolean
         positions:
-          description: If `true`, the response includes term positions.
+          description: When `true`, the response includes term positions.
           type: boolean
         routing:
           $ref: '#/components/schemas/_common:Routing'
         term_statistics:
-          description: If true, the response includes term frequency and document frequency.
+          description: When `true`, the response includes the term frequency and the document frequency.
           type: boolean
         version:
           $ref: '#/components/schemas/_common:VersionNumber'
@@ -41591,6 +42101,12 @@ components:
         - chars
         - sentence
         - word
+    _core.search:BuiltinHighlighterType:
+      type: string
+      enum:
+        - fvh
+        - plain
+        - unified
     _core.search:Collector:
       type: object
       properties:
@@ -41721,9 +42237,7 @@ components:
                 $ref: '#/components/schemas/_core.search:InnerHits'
         max_concurrent_group_searches:
           description: The number of concurrent requests allowed to retrieve the inner_hits per group
-          type: number
-        collapse:
-          $ref: '#/components/schemas/_core.search:FieldCollapse'
+          type: integer
       required:
         - field
     _core.search:Highlight:
@@ -41841,11 +42355,11 @@ components:
       enum:
         - styled
     _core.search:HighlighterType:
-      type: string
-      enum:
-        - fvh
-        - plain
-        - unified
+      oneOf:
+        - title: builtin
+          $ref: '#/components/schemas/_core.search:BuiltinHighlighterType'
+        - title: custom
+          type: string
     _core.search:HighlightField:
       allOf:
         - $ref: '#/components/schemas/_core.search:HighlightBase'
@@ -41948,10 +42462,10 @@ components:
           $ref: '#/components/schemas/_common:Name'
         size:
           description: The maximum number of hits to return per `inner_hits`.
-          type: number
+          type: integer
         from:
           description: Inner hit starting document offset.
-          type: number
+          type: integer
         collapse:
           $ref: '#/components/schemas/_core.search:FieldCollapse'
         docvalue_fields:
@@ -42242,11 +42756,14 @@ components:
     _core.search:SourceConfig:
       description: Defines how to fetch a source. Fetching can be disabled entirely, or the source can be filtered.
       oneOf:
-        - type: boolean
-        - type: array
+        - title: fetch
+          type: boolean
+        - title: includes
+          type: array
           items:
             $ref: '#/components/schemas/_common:Field'
-        - $ref: '#/components/schemas/_core.search:SourceFilter'
+        - title: filter
+          $ref: '#/components/schemas/_core.search:SourceFilter'
     _core.search:SourceConfigParam:
       description: |-
         Defines how to fetch a source. Fetching can be disabled entirely, or the source can be filtered.
@@ -44754,8 +45271,6 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/indices._common:AliasDefinition'
-        lifecycle:
-          $ref: '#/components/schemas/indices._common:DataStreamLifecycleWithRollover'
     cluster.allocation_explain:AllocationDecision:
       type: object
       properties:
@@ -44773,9 +45288,9 @@ components:
       type: string
       enum:
         - ALWAYS
-        - NO
+        - 'NO'
         - THROTTLE
-        - YES
+        - 'YES'
     cluster.allocation_explain:AllocationStore:
       type: object
       properties:
@@ -44854,12 +45369,12 @@ components:
       enum:
         - allocation_delayed
         - awaiting_info
-        - no
+        - 'no'
         - no_attempt
         - no_valid_shard_copy
         - throttled
         - worse_balance
-        - yes
+        - 'yes'
     cluster.allocation_explain:DiskUsage:
       type: object
       properties:
@@ -46800,13 +47315,6 @@ components:
             If `true`, the alias is hidden.
             All indices for the alias must have the same `is_hidden` value.
           type: boolean
-    indices._common:CacheQueries:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-      required:
-        - enabled
     indices._common:DataStream:
       type: object
       properties:
@@ -46835,8 +47343,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/indices._common:DataStreamIndex'
-        lifecycle:
-          $ref: '#/components/schemas/indices._common:DataStreamLifecycleWithRollover'
         name:
           $ref: '#/components/schemas/_common:DataStreamName'
         replicated:
@@ -46875,55 +47381,6 @@ components:
       required:
         - index_name
         - index_uuid
-    indices._common:DataStreamLifecycle:
-      type: object
-      properties:
-        data_retention:
-          $ref: '#/components/schemas/_common:Duration'
-        downsampling:
-          $ref: '#/components/schemas/indices._common:DataStreamLifecycleDownsampling'
-    indices._common:DataStreamLifecycleDownsampling:
-      type: object
-      properties:
-        rounds:
-          description: The list of downsampling rounds to execute as part of this downsampling configuration
-          type: array
-          items:
-            $ref: '#/components/schemas/indices._common:DownsamplingRound'
-      required:
-        - rounds
-    indices._common:DataStreamLifecycleRolloverConditions:
-      type: object
-      properties:
-        min_age:
-          $ref: '#/components/schemas/_common:Duration'
-        max_age:
-          type: string
-        min_docs:
-          type: number
-        max_docs:
-          type: number
-        min_size:
-          $ref: '#/components/schemas/_common:HumanReadableByteCount'
-        max_size:
-          $ref: '#/components/schemas/_common:HumanReadableByteCount'
-        min_primary_shard_size:
-          $ref: '#/components/schemas/_common:HumanReadableByteCount'
-        max_primary_shard_size:
-          $ref: '#/components/schemas/_common:HumanReadableByteCount'
-        min_primary_shard_docs:
-          type: number
-        max_primary_shard_docs:
-          type: number
-    indices._common:DataStreamLifecycleWithRollover:
-      type: object
-      properties:
-        data_retention:
-          $ref: '#/components/schemas/_common:Duration'
-        downsampling:
-          $ref: '#/components/schemas/indices._common:DataStreamLifecycleDownsampling'
-        rollover:
-          $ref: '#/components/schemas/indices._common:DataStreamLifecycleRolloverConditions'
     indices._common:DataStreamTimestampField:
       type: object
       properties:
@@ -46931,32 +47388,17 @@ components:
           $ref: '#/components/schemas/_common:Field'
       required:
         - name
-    indices._common:DownsampleConfig:
-      type: object
-      properties:
-        fixed_interval:
-          $ref: '#/components/schemas/_common:DurationLarge'
-      required:
-        - fixed_interval
-    indices._common:DownsamplingRound:
-      type: object
-      properties:
-        after:
-          $ref: '#/components/schemas/_common:Duration'
-        config:
-          $ref: '#/components/schemas/indices._common:DownsampleConfig'
-      required:
-        - after
-        - config
     indices._common:FielddataFrequencyFilter:
       type: object
       properties:
         max:
           type: number
+          format: double
         min:
           type: number
+          format: double
         min_segment_size:
-          type: number
+          type: integer
       required:
         - max
         - min
@@ -46967,6 +47409,32 @@ components:
         - checksum
         - 'false'
         - 'true'
+    indices._common:IndexErrorCause:
+      type: object
+      properties:
+        type:
+          description: The type of error
+          type: string
+        reason:
+          description: A human-readable explanation of the error, in english
+          type: string
+        root_cause:
+          type: array
+          items:
+            $ref: '#/components/schemas/indices._common:IndexErrorCause'
+        index:
+          $ref: '#/components/schemas/_common:IndexName'
+        index_uuid:
+          $ref: '#/components/schemas/_common:Uuid'
+        resource.id:
+          $ref: '#/components/schemas/_common:IndexName'
+        resource.type:
+          $ref: '#/components/schemas/_common:ResourceType'
+      required:
+        - type
+      additionalProperties:
+        title: metadata
+        description: Additional details about the error.
     indices._common:IndexingPressure:
       type: object
       properties:
@@ -46982,14 +47450,17 @@ components:
             Number of outstanding bytes that may be consumed by indexing requests. When this limit is reached or exceeded,
             the node will reject new coordinating and primary operations. When replica operations consume 1.5x this limit,
             the node will reject new replica operations. Defaults to 10% of the heap.
-          type: number
-    indices._common:IndexingSlowlogSettings:
+          oneOf:
+            - type: string
+            - type: integer
+              format: int64
+    indices._common:IndexingSlowlog:
       type: object
       properties:
         level:
           type: string
         source:
-          type: number
+          type: integer
         reformat:
           type: boolean
         threshold:
@@ -47021,9 +47492,7 @@ components:
       type: object
       properties:
         threshold_enabled:
-          oneOf:
-            - type: boolean
-            - type: string
+          $ref: '#/components/schemas/_common:Stringifiedboolean'
     indices._common:IndexRoutingAllocationInclude:
       type: object
       properties:
@@ -47109,18 +47578,20 @@ components:
                 type: string
         soft_deletes:
           $ref: '#/components/schemas/indices._common:SoftDeletes'
+        soft_deletes.retention_lease.period:
+          $ref: '#/components/schemas/_common:Duration'
         sort:
           $ref: '#/components/schemas/indices._common:IndexSegmentSort'
         number_of_shards:
           oneOf:
-            - type: number
+            - type: integer
             - type: string
         number_of_replicas:
           oneOf:
-            - type: number
+            - type: integer
             - type: string
         number_of_routing_shards:
-          type: number
+          type: integer
         check_on_startup:
           $ref: '#/components/schemas/indices._common:IndexCheckOnStartup'
         codec:
@@ -47130,43 +47601,59 @@ components:
         load_fixed_bitset_filters_eagerly:
           type: boolean
         hidden:
-          oneOf:
-            - type: boolean
-            - type: string
+          $ref: '#/components/schemas/_common:Stringifiedboolean'
         auto_expand_replicas:
           type: string
         merge:
-          $ref: '#/components/schemas/indices._common:Merge'
+          $ref: '#/components/schemas/indices._common:IndexSettingsMerge'
+        merge.scheduler.max_thread_count:
+          $ref: '#/components/schemas/_common:Stringifiedinteger'
         search:
-          $ref: '#/components/schemas/indices._common:SettingsSearch'
+          $ref: '#/components/schemas/indices._common:IndexSettingsSearch'
+        search.idle.after:
+          $ref: '#/components/schemas/_common:Duration'
         refresh_interval:
           $ref: '#/components/schemas/_common:Duration'
         max_result_window:
-          type: number
+          type: integer
         max_inner_result_window:
-          type: number
+          type: integer
         max_rescore_window:
-          type: number
+          type: integer
         max_docvalue_fields_search:
-          type: number
+          type: integer
         max_script_fields:
-          type: number
+          type: integer
         max_ngram_diff:
-          type: number
+          type: integer
         max_shingle_diff:
-          type: number
+          type: integer
         blocks:
           $ref: '#/components/schemas/indices._common:IndexSettingBlocks'
+        blocks.read_only:
+          $ref: '#/components/schemas/_common:Stringifiedboolean'
+        blocks.read_only_allow_delete:
+          $ref: '#/components/schemas/_common:Stringifiedboolean'
+        blocks.read:
+          $ref: '#/components/schemas/_common:Stringifiedboolean'
+        blocks.write:
+          $ref: '#/components/schemas/_common:Stringifiedboolean'
+        blocks.metadata:
+          $ref: '#/components/schemas/_common:Stringifiedboolean'
         max_refresh_listeners:
-          type: number
+          type: integer
         analyze:
-          $ref: '#/components/schemas/indices._common:SettingsAnalyze'
+          $ref: '#/components/schemas/indices._common:IndexSettingsAnalyze'
+        analyze.max_token_count:
+          $ref: '#/components/schemas/_common:Stringifiedinteger'
         highlight:
-          $ref: '#/components/schemas/indices._common:SettingsHighlight'
+          $ref: '#/components/schemas/indices._common:IndexSettingsHighlight'
+        highlight.max_analyzed_offset:
+          type: integer
         max_terms_count:
-          type: number
+          type: integer
         max_regex_length:
-          type: number
+          type: integer
         routing:
           $ref: '#/components/schemas/indices._common:IndexRouting'
         gc_deletes:
@@ -47177,6 +47664,8 @@ components:
           $ref: '#/components/schemas/_common:PipelineName'
         lifecycle:
           $ref: '#/components/schemas/indices._common:IndexSettingsLifecycle'
+        lifecycle.name:
+          $ref: '#/components/schemas/_common:Name'
         provided_name:
           $ref: '#/components/schemas/_common:Name'
         creation_date:
@@ -47188,25 +47677,29 @@ components:
         version:
           $ref: '#/components/schemas/indices._common:IndexVersioning'
         verified_before_close:
-          oneOf:
-            - type: boolean
-            - type: string
+          $ref: '#/components/schemas/_common:Stringifiedboolean'
         format:
           oneOf:
             - type: string
             - type: number
         max_slices_per_scroll:
-          type: number
+          type: integer
         translog:
           $ref: '#/components/schemas/indices._common:Translog'
+        translog.durability:
+          $ref: '#/components/schemas/indices._common:TranslogDurability'
+        translog.flush_threshold_size:
+          $ref: '#/components/schemas/_common:HumanReadableByteCount'
         query_string:
-          $ref: '#/components/schemas/indices._common:SettingsQueryString'
+          $ref: '#/components/schemas/indices._common:IndexSettingsQueryString'
+        query_string.lenient:
+          $ref: '#/components/schemas/_common:Stringifiedboolean'
         priority:
           oneOf:
             - type: number
             - type: string
         top_metrics_max_size:
-          type: number
+          type: integer
         analysis:
           $ref: '#/components/schemas/indices._common:IndexSettingsAnalysis'
         settings:
@@ -47214,18 +47707,23 @@ components:
         time_series:
           $ref: '#/components/schemas/indices._common:IndexSettingsTimeSeries'
         queries:
-          $ref: '#/components/schemas/indices._common:Queries'
+          $ref: '#/components/schemas/indices._common:IndexSettingsQueries'
         similarity:
-          $ref: '#/components/schemas/indices._common:SettingsSimilarity'
+          $ref: '#/components/schemas/indices._common:IndexSettingsSimilarity'
         mapping:
-          $ref: '#/components/schemas/indices._common:MappingLimitSettings'
-        indexing.slowlog:
-          $ref: '#/components/schemas/indices._common:IndexingSlowlogSettings'
+          $ref: '#/components/schemas/indices._common:IndexSettingsMapping'
+        indexing:
+          $ref: '#/components/schemas/indices._common:IndexSettingsIndexing'
         indexing_pressure:
           $ref: '#/components/schemas/indices._common:IndexingPressure'
         store:
-          $ref: '#/components/schemas/indices._common:Storage'
-      additionalProperties: {}
+          $ref: '#/components/schemas/indices._common:IndexSettingsStore'
+        knn:
+          type: boolean
+        knn.algo_param.ef_search:
+          type: integer
+      additionalProperties:
+        title: custom_settings
     indices._common:IndexSettingsAnalysis:
       type: object
       properties:
@@ -47249,6 +47747,21 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/_common.analysis:Tokenizer'
+    indices._common:IndexSettingsAnalyze:
+      type: object
+      properties:
+        max_token_count:
+          $ref: '#/components/schemas/_common:Stringifiedinteger'
+    indices._common:IndexSettingsHighlight:
+      type: object
+      properties:
+        max_analyzed_offset:
+          type: integer
+    indices._common:IndexSettingsIndexing:
+      type: object
+      properties:
+        slowlog:
+          $ref: '#/components/schemas/indices._common:IndexingSlowlog'
     indices._common:IndexSettingsLifecycle:
       type: object
       properties:
@@ -47261,7 +47774,7 @@ components:
             If specified, this is the timestamp used to calculate the index age for its phase transitions. Use this setting
             if you create a new index that contains old data and want to use the original creation date to calculate the index
             age. Specified as a Unix epoch value in milliseconds.
-          type: number
+          $ref: '#/components/schemas/_common:StringifiedEpochTimeUnitMillis'
         parse_origination_date:
           description: |-
             Set to true to parse the origination date from the index name. This origination date is used to calculate the index age
@@ -47284,6 +47797,255 @@ components:
       properties:
         wait_time_threshold:
           $ref: '#/components/schemas/_common:Duration'
+    indices._common:IndexSettingsMapping:
+      type: object
+      properties:
+        coerce:
+          type: boolean
+        total_fields:
+          $ref: '#/components/schemas/indices._common:IndexSettingsMappingLimitTotalFields'
+        depth:
+          $ref: '#/components/schemas/indices._common:IndexSettingsMappingLimitDepth'
+        nested_fields:
+          $ref: '#/components/schemas/indices._common:IndexSettingsMappingLimitNestedFields'
+        nested_objects:
+          $ref: '#/components/schemas/indices._common:IndexSettingsMappingLimitNestedObjects'
+        field_name_length:
+          $ref: '#/components/schemas/indices._common:IndexSettingsMappingLimitFieldNameLength'
+        dimension_fields:
+          $ref: '#/components/schemas/indices._common:IndexSettingsMappingLimitDimensionFields'
+        ignore_malformed:
+          type: boolean
+    indices._common:IndexSettingsMappingLimitDepth:
+      type: object
+      properties:
+        limit:
+          description: |-
+            The maximum depth for a field, which is measured as the number of inner objects. For instance, if all fields are defined
+            at the root object level, then the depth is 1. If there is one object mapping, then the depth is 2, etc.
+          type: integer
+          format: int64
+    indices._common:IndexSettingsMappingLimitDimensionFields:
+      type: object
+      properties:
+        limit:
+          description: |-
+            [preview] This functionality is in technical preview and may be changed or removed in a future release.
+            OpenSearch will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.
+          type: integer
+          format: int64
+    indices._common:IndexSettingsMappingLimitFieldNameLength:
+      type: object
+      properties:
+        limit:
+          description: |-
+            Setting for the maximum length of a field name. This setting isn't really something that addresses mappings explosion but
+            might still be useful if you want to limit the field length. It usually shouldn't be necessary to set this setting. The
+            default is okay unless a user starts to add a huge number of fields with really long names. Default is `Long.MAX_VALUE` (no limit).
+          type: integer
+          format: int64
+    indices._common:IndexSettingsMappingLimitNestedFields:
+      type: object
+      properties:
+        limit:
+          description: |-
+            The maximum number of distinct nested mappings in an index. The nested type should only be used in special cases, when
+            arrays of objects need to be queried independently of each other. To safeguard against poorly designed mappings, this
+            setting limits the number of unique nested types per index.
+          type: integer
+          format: int64
+    indices._common:IndexSettingsMappingLimitNestedObjects:
+      type: object
+      properties:
+        limit:
+          description: |-
+            The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps
+            to prevent out of memory errors when a document contains too many nested objects.
+          type: integer
+          format: int64
+    indices._common:IndexSettingsMappingLimitTotalFields:
+      type: object
+      properties:
+        limit:
+          description: |-
+            The maximum number of fields in an index. Field and object mappings, as well as field aliases count towards this limit.
+            The limit is in place to prevent mappings and searches from becoming too large. Higher values can lead to performance
+            degradations and memory issues, especially in clusters with a high load or few resources.
+          type: integer
+          format: int64
+    indices._common:IndexSettingsMerge:
+      type: object
+      properties:
+        scheduler:
+          $ref: '#/components/schemas/indices._common:IndexSettingsMergeScheduler'
+    indices._common:IndexSettingsMergeScheduler:
+      type: object
+      properties:
+        max_thread_count:
+          $ref: '#/components/schemas/_common:Stringifiedinteger'
+        max_merge_count:
+          $ref: '#/components/schemas/_common:Stringifiedinteger'
+    indices._common:IndexSettingsQueries:
+      type: object
+      properties:
+        cache:
+          $ref: '#/components/schemas/indices._common:IndexSettingsQueriesCache'
+    indices._common:IndexSettingsQueriesCache:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+      required:
+        - enabled
+    indices._common:IndexSettingsQueryString:
+      type: object
+      properties:
+        lenient:
+          $ref: '#/components/schemas/_common:Stringifiedboolean'
+    indices._common:IndexSettingsSearch:
+      type: object
+      properties:
+        idle:
+          $ref: '#/components/schemas/indices._common:SearchIdle'
+        slowlog:
+          $ref: '#/components/schemas/indices._common:SearchSlowlog'
+    indices._common:IndexSettingsSimilarity:
+      type: object
+      properties:
+        bm25:
+          $ref: '#/components/schemas/indices._common:IndexSettingsSimilarityBm25'
+        dfi:
+          $ref: '#/components/schemas/indices._common:IndexSettingsSimilarityDfi'
+        dfr:
+          $ref: '#/components/schemas/indices._common:IndexSettingsSimilarityDfr'
+        ib:
+          $ref: '#/components/schemas/indices._common:IndexSettingsSimilarityIb'
+        lmd:
+          $ref: '#/components/schemas/indices._common:IndexSettingsSimilarityLmd'
+        lmj:
+          $ref: '#/components/schemas/indices._common:IndexSettingsSimilarityLmj'
+        scripted_tfidf:
+          $ref: '#/components/schemas/indices._common:IndexSettingsSimilarityScriptedTfidf'
+    indices._common:IndexSettingsSimilarityBm25:
+      type: object
+      properties:
+        b:
+          type: number
+          format: float
+        discount_overlaps:
+          type: boolean
+        k1:
+          type: number
+          format: float
+        type:
+          type: string
+          enum:
+            - BM25
+      required:
+        - b
+        - discount_overlaps
+        - k1
+        - type
+    indices._common:IndexSettingsSimilarityDfi:
+      type: object
+      properties:
+        independence_measure:
+          $ref: '#/components/schemas/_common:DFIIndependenceMeasure'
+        type:
+          type: string
+          enum:
+            - DFI
+      required:
+        - independence_measure
+        - type
+    indices._common:IndexSettingsSimilarityDfr:
+      type: object
+      properties:
+        after_effect:
+          $ref: '#/components/schemas/_common:DFRAfterEffect'
+        basic_model:
+          $ref: '#/components/schemas/_common:DFRBasicModel'
+        normalization:
+          $ref: '#/components/schemas/_common:TermFrequencyNormalization'
+        type:
+          type: string
+          enum:
+            - DFR
+      required:
+        - after_effect
+        - basic_model
+        - normalization
+        - type
+    indices._common:IndexSettingsSimilarityIb:
+      type: object
+      properties:
+        distribution:
+          $ref: '#/components/schemas/_common:IBDistribution'
+        lambda:
+          $ref: '#/components/schemas/_common:IBLambda'
+        normalization:
+          $ref: '#/components/schemas/_common:TermFrequencyNormalization'
+        type:
+          type: string
+          enum:
+            - IB
+      required:
+        - distribution
+        - lambda
+        - normalization
+        - type
+    indices._common:IndexSettingsSimilarityLmd:
+      type: object
+      properties:
+        mu:
+          type: number
+          format: float
+        type:
+          type: string
+          enum:
+            - LMDirichlet
+      required:
+        - mu
+        - type
+    indices._common:IndexSettingsSimilarityLmj:
+      type: object
+      properties:
+        lambda:
+          type: number
+          format: float
+        type:
+          type: string
+          enum:
+            - LMJelinekMercer
+      required:
+        - lambda
+        - type
+    indices._common:IndexSettingsSimilarityScriptedTfidf:
+      type: object
+      properties:
+        script:
+          $ref: '#/components/schemas/_common:Script'
+        type:
+          type: string
+          enum:
+            - scripted
+      required:
+        - script
+        - type
+    indices._common:IndexSettingsStore:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/indices._common:StorageType'
+        allow_mmap:
+          description: |-
+            You can restrict the use of the mmapfs and the related hybridfs store type via the setting node.store.allow_mmap.
+            This is a boolean setting indicating whether or not memory-mapping is allowed. The default is to allow it. This
+            setting is useful, for example, if you are in an environment where you can not control the ability to create a lot
+            of memory maps so you need disable the ability to use memory-mapping.
+          type: boolean
+      required:
+        - type
     indices._common:IndexSettingsTimeSeries:
       type: object
       properties:
@@ -47306,8 +48068,6 @@ components:
           $ref: '#/components/schemas/indices._common:IndexSettings'
         data_stream:
           $ref: '#/components/schemas/_common:DataStreamName'
-        lifecycle:
-          $ref: '#/components/schemas/indices._common:DataStreamLifecycle'
     indices._common:IndexTemplate:
       type: object
       properties:
@@ -47367,8 +48127,6 @@ components:
           $ref: '#/components/schemas/_common.mapping:TypeMapping'
         settings:
           $ref: '#/components/schemas/indices._common:IndexSettings'
-        lifecycle:
-          $ref: '#/components/schemas/indices._common:DataStreamLifecycleWithRollover'
     indices._common:IndexVersioning:
       type: object
       properties:
@@ -47382,88 +48140,6 @@ components:
         - Data stream lifecycle
         - Index Lifecycle Management
         - Unmanaged
-    indices._common:MappingLimitSettings:
-      type: object
-      properties:
-        coerce:
-          type: boolean
-        total_fields:
-          $ref: '#/components/schemas/indices._common:MappingLimitSettingsTotalFields'
-        depth:
-          $ref: '#/components/schemas/indices._common:MappingLimitSettingsDepth'
-        nested_fields:
-          $ref: '#/components/schemas/indices._common:MappingLimitSettingsNestedFields'
-        nested_objects:
-          $ref: '#/components/schemas/indices._common:MappingLimitSettingsNestedObjects'
-        field_name_length:
-          $ref: '#/components/schemas/indices._common:MappingLimitSettingsFieldNameLength'
-        dimension_fields:
-          $ref: '#/components/schemas/indices._common:MappingLimitSettingsDimensionFields'
-        ignore_malformed:
-          type: boolean
-    indices._common:MappingLimitSettingsDepth:
-      type: object
-      properties:
-        limit:
-          description: |-
-            The maximum depth for a field, which is measured as the number of inner objects. For instance, if all fields are defined
-            at the root object level, then the depth is 1. If there is one object mapping, then the depth is 2, etc.
-          type: number
-    indices._common:MappingLimitSettingsDimensionFields:
-      type: object
-      properties:
-        limit:
-          description: |-
-            [preview] This functionality is in technical preview and may be changed or removed in a future release.
-            OpenSearch will work to fix any issues, but features in technical preview are not subject to the support SLA of official GA features.
-          type: number
-    indices._common:MappingLimitSettingsFieldNameLength:
-      type: object
-      properties:
-        limit:
-          description: |-
-            Setting for the maximum length of a field name. This setting isn't really something that addresses mappings explosion but
-            might still be useful if you want to limit the field length. It usually shouldn't be necessary to set this setting. The
-            default is okay unless a user starts to add a huge number of fields with really long names. Default is `Long.MAX_VALUE` (no limit).
-          type: number
-    indices._common:MappingLimitSettingsNestedFields:
-      type: object
-      properties:
-        limit:
-          description: |-
-            The maximum number of distinct nested mappings in an index. The nested type should only be used in special cases, when
-            arrays of objects need to be queried independently of each other. To safeguard against poorly designed mappings, this
-            setting limits the number of unique nested types per index.
-          type: number
-    indices._common:MappingLimitSettingsNestedObjects:
-      type: object
-      properties:
-        limit:
-          description: |-
-            The maximum number of nested JSON objects that a single document can contain across all nested types. This limit helps
-            to prevent out of memory errors when a document contains too many nested objects.
-          type: number
-    indices._common:MappingLimitSettingsTotalFields:
-      type: object
-      properties:
-        limit:
-          description: |-
-            The maximum number of fields in an index. Field and object mappings, as well as field aliases count towards this limit.
-            The limit is in place to prevent mappings and searches from becoming too large. Higher values can lead to performance
-            degradations and memory issues, especially in clusters with a high load or few resources.
-          type: number
-    indices._common:Merge:
-      type: object
-      properties:
-        scheduler:
-          $ref: '#/components/schemas/indices._common:MergeScheduler'
-    indices._common:MergeScheduler:
-      type: object
-      properties:
-        max_thread_count:
-          $ref: '#/components/schemas/_common:Stringifiedinteger'
-        max_merge_count:
-          $ref: '#/components/schemas/_common:Stringifiedinteger'
     indices._common:NumericFielddata:
       type: object
       properties:
@@ -47476,11 +48152,6 @@ components:
       enum:
         - array
         - disabled
-    indices._common:Queries:
-      type: object
-      properties:
-        cache:
-          $ref: '#/components/schemas/indices._common:CacheQueries'
     indices._common:RetentionLease:
       type: object
       properties:
@@ -47493,6 +48164,22 @@ components:
       properties:
         after:
           $ref: '#/components/schemas/_common:Duration'
+    indices._common:SearchSlowlog:
+      type: object
+      properties:
+        level:
+          type: string
+        reformat:
+          type: boolean
+        threshold:
+          $ref: '#/components/schemas/indices._common:SearchSlowlogThresholds'
+    indices._common:SearchSlowlogThresholds:
+      type: object
+      properties:
+        query:
+          $ref: '#/components/schemas/indices._common:SlowlogThresholdLevels'
+        fetch:
+          $ref: '#/components/schemas/indices._common:SlowlogThresholdLevels'
     indices._common:SegmentSortMissing:
       type: string
       enum:
@@ -47508,160 +48195,6 @@ components:
       enum:
         - asc
         - desc
-    indices._common:SettingsAnalyze:
-      type: object
-      properties:
-        max_token_count:
-          $ref: '#/components/schemas/_common:Stringifiedinteger'
-    indices._common:SettingsHighlight:
-      type: object
-      properties:
-        max_analyzed_offset:
-          type: number
-    indices._common:SettingsQueryString:
-      type: object
-      properties:
-        lenient:
-          $ref: '#/components/schemas/_common:Stringifiedboolean'
-      required:
-        - lenient
-    indices._common:SettingsSearch:
-      type: object
-      properties:
-        idle:
-          $ref: '#/components/schemas/indices._common:SearchIdle'
-        slowlog:
-          $ref: '#/components/schemas/indices._common:SlowlogSettings'
-    indices._common:SettingsSimilarity:
-      type: object
-      properties:
-        bm25:
-          $ref: '#/components/schemas/indices._common:SettingsSimilarityBm25'
-        dfi:
-          $ref: '#/components/schemas/indices._common:SettingsSimilarityDfi'
-        dfr:
-          $ref: '#/components/schemas/indices._common:SettingsSimilarityDfr'
-        ib:
-          $ref: '#/components/schemas/indices._common:SettingsSimilarityIb'
-        lmd:
-          $ref: '#/components/schemas/indices._common:SettingsSimilarityLmd'
-        lmj:
-          $ref: '#/components/schemas/indices._common:SettingsSimilarityLmj'
-        scripted_tfidf:
-          $ref: '#/components/schemas/indices._common:SettingsSimilarityScriptedTfidf'
-    indices._common:SettingsSimilarityBm25:
-      type: object
-      properties:
-        b:
-          type: number
-        discount_overlaps:
-          type: boolean
-        k1:
-          type: number
-        type:
-          type: string
-          enum:
-            - BM25
-      required:
-        - b
-        - discount_overlaps
-        - k1
-        - type
-    indices._common:SettingsSimilarityDfi:
-      type: object
-      properties:
-        independence_measure:
-          $ref: '#/components/schemas/_common:DFIIndependenceMeasure'
-        type:
-          type: string
-          enum:
-            - DFI
-      required:
-        - independence_measure
-        - type
-    indices._common:SettingsSimilarityDfr:
-      type: object
-      properties:
-        after_effect:
-          $ref: '#/components/schemas/_common:DFRAfterEffect'
-        basic_model:
-          $ref: '#/components/schemas/_common:DFRBasicModel'
-        normalization:
-          $ref: '#/components/schemas/_common:Normalization'
-        type:
-          type: string
-          enum:
-            - DFR
-      required:
-        - after_effect
-        - basic_model
-        - normalization
-        - type
-    indices._common:SettingsSimilarityIb:
-      type: object
-      properties:
-        distribution:
-          $ref: '#/components/schemas/_common:IBDistribution'
-        lambda:
-          $ref: '#/components/schemas/_common:IBLambda'
-        normalization:
-          $ref: '#/components/schemas/_common:Normalization'
-        type:
-          type: string
-          enum:
-            - IB
-      required:
-        - distribution
-        - lambda
-        - normalization
-        - type
-    indices._common:SettingsSimilarityLmd:
-      type: object
-      properties:
-        mu:
-          type: number
-        type:
-          type: string
-          enum:
-            - LMDirichlet
-      required:
-        - mu
-        - type
-    indices._common:SettingsSimilarityLmj:
-      type: object
-      properties:
-        lambda:
-          type: number
-        type:
-          type: string
-          enum:
-            - LMJelinekMercer
-      required:
-        - lambda
-        - type
-    indices._common:SettingsSimilarityScriptedTfidf:
-      type: object
-      properties:
-        script:
-          $ref: '#/components/schemas/_common:Script'
-        type:
-          type: string
-          enum:
-            - scripted
-      required:
-        - script
-        - type
-    indices._common:SlowlogSettings:
-      type: object
-      properties:
-        level:
-          type: string
-        source:
-          type: number
-        reformat:
-          type: boolean
-        threshold:
-          $ref: '#/components/schemas/indices._common:SlowlogThresholds'
     indices._common:SlowlogThresholdLevels:
       type: object
       properties:
@@ -47673,13 +48206,6 @@ components:
           $ref: '#/components/schemas/_common:Duration'
         trace:
           $ref: '#/components/schemas/_common:Duration'
-    indices._common:SlowlogThresholds:
-      type: object
-      properties:
-        query:
-          $ref: '#/components/schemas/indices._common:SlowlogThresholdLevels'
-        fetch:
-          $ref: '#/components/schemas/indices._common:SlowlogThresholdLevels'
     indices._common:SoftDeletes:
       type: object
       properties:
@@ -47688,20 +48214,6 @@ components:
           type: boolean
         retention_lease:
           $ref: '#/components/schemas/indices._common:RetentionLease'
-    indices._common:Storage:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/indices._common:StorageType'
-        allow_mmap:
-          description: |-
-            You can restrict the use of the mmapfs and the related hybridfs store type via the setting node.store.allow_mmap.
-            This is a boolean setting indicating whether or not memory-mapping is allowed. The default is to allow it. This
-            setting is useful, for example, if you are in an environment where you can not control the ability to create a lot
-            of memory maps so you need disable the ability to use memory-mapping.
-          type: boolean
-      required:
-        - type
     indices._common:StorageType:
       type: string
       enum:
@@ -47750,6 +48262,8 @@ components:
     indices._common:TranslogDurability:
       type: string
       enum:
+        - ASYNC
+        - REQUEST
         - async
         - request
     indices._common:TranslogRetention:
@@ -47981,8 +48495,6 @@ components:
           $ref: '#/components/schemas/_common.mapping:TypeMapping'
         settings:
           $ref: '#/components/schemas/indices._common:IndexSettings'
-        lifecycle:
-          $ref: '#/components/schemas/indices._common:DataStreamLifecycle'
     indices.recovery:FileDetails:
       type: object
       properties:
@@ -52730,23 +53242,14 @@ components:
     notifications._common:RestStatus:
       type: string
       enum:
-        - accepted
-        - continue
-        - created
-        - found
-        - moved_permanently
-        - multi_status
-        - multiple_choices
-        - no_content
-        - non_authoritative_information
-        - not_modified
-        - ok
-        - partial_content
-        - reset_content
-        - see_other
-        - switching_protocols
-        - temporary_redirect
-        - use_proxy
+        - ACCEPTED
+        - CREATED
+        - MULTI_STATUS
+        - NON_AUTHORITATIVE_INFORMATION
+        - NO_CONTENT
+        - OK
+        - PARTIAL_CONTENT
+        - RESET_CONTENT
     notifications._common:SesAccount:
       type: object
       properties:
@@ -53034,7 +53537,7 @@ components:
           type: string
         x:
           type: integer
-        y:
+        'y':
           type: integer
         w:
           type: integer
@@ -53046,7 +53549,7 @@ components:
         - savedVisualizationId
         - w
         - x
-        - y
+        - 'y'
     query._common:Credentials:
       type: object
       properties:
@@ -54578,31 +55081,6 @@ components:
       required:
         - file_count
         - size_in_bytes
-    snapshot._common:IndexDetails:
-      type: object
-      properties:
-        shard_count:
-          type: number
-        size:
-          $ref: '#/components/schemas/_common:HumanReadableByteCount'
-        size_in_bytes:
-          $ref: '#/components/schemas/_common:ByteCount'
-        max_segments_per_shard:
-          type: number
-      required:
-        - max_segments_per_shard
-        - shard_count
-        - size_in_bytes
-    snapshot._common:InfoFeatureState:
-      type: object
-      properties:
-        feature_name:
-          type: string
-        indices:
-          $ref: '#/components/schemas/_common:Indices'
-      required:
-        - feature_name
-        - indices
     snapshot._common:Repository:
       type: object
       properties:
@@ -54734,16 +55212,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/_common:IndexName'
-        index_details:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/snapshot._common:IndexDetails'
         metadata:
           $ref: '#/components/schemas/_common:Metadata'
+        pinned_timestamp:
+          $ref: '#/components/schemas/_common:EpochTimeUnitMillis'
         reason:
           type: string
-        repository:
-          $ref: '#/components/schemas/_common:Name'
+        remote_store_index_shallow_copy:
+          type: boolean
         snapshot:
           $ref: '#/components/schemas/_common:Name'
         shards:
@@ -54760,10 +55236,6 @@ components:
           $ref: '#/components/schemas/_common:VersionString'
         version_id:
           $ref: '#/components/schemas/_common:VersionNumber'
-        feature_states:
-          type: array
-          items:
-            $ref: '#/components/schemas/snapshot._common:InfoFeatureState'
       required:
         - data_streams
         - snapshot
@@ -54858,19 +55330,6 @@ components:
       required:
         - deleted_blobs
         - deleted_bytes
-    snapshot.get:SnapshotResponseItem:
-      type: object
-      properties:
-        repository:
-          $ref: '#/components/schemas/_common:Name'
-        snapshots:
-          type: array
-          items:
-            $ref: '#/components/schemas/snapshot._common:SnapshotInfo'
-        error:
-          $ref: '#/components/schemas/_common:ErrorCause'
-      required:
-        - repository
     snapshot.restore:SnapshotRestore:
       type: object
       properties:
