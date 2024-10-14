@@ -175,7 +175,7 @@ dependencies {
     implementation("org.commonmark", "commonmark", "0.23.0")
 
     // EPL-2.0
-    testImplementation(platform("org.junit:junit-bom:5.11.1"))
+    testImplementation(platform("org.junit:junit-bom:5.11.2"))
     testImplementation("org.junit.jupiter", "junit-jupiter")
     testRuntimeOnly("org.junit.platform", "junit-platform-launcher")
 }
