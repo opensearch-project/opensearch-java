@@ -154,7 +154,7 @@ public class Status implements PlainJsonSerializable {
     }
 
     /**
-     * The number of scroll responses pulled back by the reindex.
+     * The number of scroll responses pulled back by the reindex operation.
      * <p>
      * API name: {@code batches}
      * </p>
@@ -214,7 +214,7 @@ public class Status implements PlainJsonSerializable {
     }
 
     /**
-     * The number of requests per second effectively executed during the reindex.
+     * The number of requests per second effectively executed during the reindex operation.
      * <p>
      * API name: {@code requests_per_second}
      * </p>
@@ -300,8 +300,7 @@ public class Status implements PlainJsonSerializable {
     }
 
     /**
-     * The number of documents that were successfully updated, for example, a document with same ID already existed prior to reindex
-     * updating it.
+     * The number of documents that were successfully updated after the reindex operation.
      * <p>
      * API name: {@code updated}
      * </p>
@@ -312,7 +311,7 @@ public class Status implements PlainJsonSerializable {
     }
 
     /**
-     * The number of version conflicts that reindex hits.
+     * The number of version conflicts encountered by the reindex operation.
      * <p>
      * API name: {@code version_conflicts}
      * </p>
@@ -485,7 +484,7 @@ public class Status implements PlainJsonSerializable {
         private Map<String, JsonData> metadata;
 
         /**
-         * The number of scroll responses pulled back by the reindex.
+         * The number of scroll responses pulled back by the reindex operation.
          * <p>
          * API name: {@code batches}
          * </p>
@@ -545,7 +544,7 @@ public class Status implements PlainJsonSerializable {
         }
 
         /**
-         * The number of requests per second effectively executed during the reindex.
+         * The number of requests per second effectively executed during the reindex operation.
          * <p>
          * API name: {@code requests_per_second}
          * </p>
@@ -681,8 +680,7 @@ public class Status implements PlainJsonSerializable {
         }
 
         /**
-         * The number of documents that were successfully updated, for example, a document with same ID already existed prior to reindex
-         * updating it.
+         * The number of documents that were successfully updated after the reindex operation.
          * <p>
          * API name: {@code updated}
          * </p>
@@ -693,7 +691,7 @@ public class Status implements PlainJsonSerializable {
         }
 
         /**
-         * The number of version conflicts that reindex hits.
+         * The number of version conflicts encountered by the reindex operation.
          * <p>
          * API name: {@code version_conflicts}
          * </p>

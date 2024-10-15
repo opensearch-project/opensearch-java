@@ -82,8 +82,8 @@ public class NodeStatistics implements PlainJsonSerializable {
     }
 
     /**
-     * Required - Number of nodes that rejected the request or failed to respond. If this value is not 0, a reason for the rejection or
-     * failure is included in the response.
+     * Required - The number of nodes that rejected the request or failed to respond. If this value is not 0, then a reason for the
+     * rejection or failure is included in the response.
      * <p>
      * API name: {@code failed}
      * </p>
@@ -101,7 +101,7 @@ public class NodeStatistics implements PlainJsonSerializable {
     }
 
     /**
-     * Required - Number of nodes that responded successfully to the request.
+     * Required - The number of nodes that responded successfully to the request.
      * <p>
      * API name: {@code successful}
      * </p>
@@ -111,7 +111,7 @@ public class NodeStatistics implements PlainJsonSerializable {
     }
 
     /**
-     * Required - Total number of nodes selected by the request.
+     * Required - The total number of nodes selected by the request.
      * <p>
      * API name: {@code total}
      * </p>
@@ -163,8 +163,8 @@ public class NodeStatistics implements PlainJsonSerializable {
         private Integer total;
 
         /**
-         * Required - Number of nodes that rejected the request or failed to respond. If this value is not 0, a reason for the rejection or
-         * failure is included in the response.
+         * Required - The number of nodes that rejected the request or failed to respond. If this value is not 0, then a reason for the
+         * rejection or failure is included in the response.
          * <p>
          * API name: {@code failed}
          * </p>
@@ -210,7 +210,7 @@ public class NodeStatistics implements PlainJsonSerializable {
         }
 
         /**
-         * Required - Number of nodes that responded successfully to the request.
+         * Required - The number of nodes that responded successfully to the request.
          * <p>
          * API name: {@code successful}
          * </p>
@@ -221,7 +221,7 @@ public class NodeStatistics implements PlainJsonSerializable {
         }
 
         /**
-         * Required - Total number of nodes selected by the request.
+         * Required - The total number of nodes selected by the request.
          * <p>
          * API name: {@code total}
          * </p>

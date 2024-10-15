@@ -108,7 +108,7 @@ public class ErrorCause implements PlainJsonSerializable {
     }
 
     /**
-     * A human-readable explanation of the error, in english
+     * A human-readable explanation of the error, in English.
      * <p>
      * API name: {@code reason}
      * </p>
@@ -127,7 +127,7 @@ public class ErrorCause implements PlainJsonSerializable {
     }
 
     /**
-     * The server stack trace. Present only if the <code>error_trace=true</code> parameter was sent with the request.
+     * The server stack trace, present only if the <code>error_trace=true</code> parameter was sent with the request.
      * <p>
      * API name: {@code stack_trace}
      * </p>
@@ -146,7 +146,7 @@ public class ErrorCause implements PlainJsonSerializable {
     }
 
     /**
-     * Required - The type of error
+     * Required - The type of error.
      * <p>
      * API name: {@code type}
      * </p>
@@ -157,7 +157,7 @@ public class ErrorCause implements PlainJsonSerializable {
     }
 
     /**
-     * Additional details about the error.
+     * Any additional information about the error.
      */
     @Nonnull
     public final Map<String, JsonData> metadata() {
@@ -252,7 +252,7 @@ public class ErrorCause implements PlainJsonSerializable {
         }
 
         /**
-         * A human-readable explanation of the error, in english
+         * A human-readable explanation of the error, in English.
          * <p>
          * API name: {@code reason}
          * </p>
@@ -298,7 +298,7 @@ public class ErrorCause implements PlainJsonSerializable {
         }
 
         /**
-         * The server stack trace. Present only if the <code>error_trace=true</code> parameter was sent with the request.
+         * The server stack trace, present only if the <code>error_trace=true</code> parameter was sent with the request.
          * <p>
          * API name: {@code stack_trace}
          * </p>
@@ -344,7 +344,7 @@ public class ErrorCause implements PlainJsonSerializable {
         }
 
         /**
-         * Required - The type of error
+         * Required - The type of error.
          * <p>
          * API name: {@code type}
          * </p>
@@ -355,7 +355,7 @@ public class ErrorCause implements PlainJsonSerializable {
         }
 
         /**
-         * Additional details about the error.
+         * Any additional information about the error.
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>metadata</code>.
@@ -367,7 +367,7 @@ public class ErrorCause implements PlainJsonSerializable {
         }
 
         /**
-         * Additional details about the error.
+         * Any additional information about the error.
          *
          * <p>
          * Adds an entry to <code>metadata</code>.

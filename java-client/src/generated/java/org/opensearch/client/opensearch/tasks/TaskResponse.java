@@ -139,7 +139,7 @@ public class TaskResponse implements PlainJsonSerializable {
     }
 
     /**
-     * Required - The number of scroll responses pulled back by the reindex.
+     * Required - The number of scroll responses pulled back by the reindex operation.
      * <p>
      * API name: {@code batches}
      * </p>
@@ -196,7 +196,7 @@ public class TaskResponse implements PlainJsonSerializable {
     }
 
     /**
-     * Required - The number of requests per second effectively executed during the reindex.
+     * Required - The number of requests per second effectively executed during the reindex operation.
      * <p>
      * API name: {@code requests_per_second}
      * </p>
@@ -284,8 +284,7 @@ public class TaskResponse implements PlainJsonSerializable {
     }
 
     /**
-     * The number of documents that were successfully updated, for example, a document with same ID already existed prior to reindex
-     * updating it.
+     * The number of documents that were successfully updated after the reindex operation.
      * <p>
      * API name: {@code updated}
      * </p>
@@ -296,7 +295,7 @@ public class TaskResponse implements PlainJsonSerializable {
     }
 
     /**
-     * Required - The number of version conflicts that reindex hits.
+     * Required - The number of version conflicts encountered by the reindex operation.
      * <p>
      * API name: {@code version_conflicts}
      * </p>
@@ -430,7 +429,7 @@ public class TaskResponse implements PlainJsonSerializable {
         private Long versionConflicts;
 
         /**
-         * Required - The number of scroll responses pulled back by the reindex.
+         * Required - The number of scroll responses pulled back by the reindex operation.
          * <p>
          * API name: {@code batches}
          * </p>
@@ -517,7 +516,7 @@ public class TaskResponse implements PlainJsonSerializable {
         }
 
         /**
-         * Required - The number of requests per second effectively executed during the reindex.
+         * Required - The number of requests per second effectively executed during the reindex operation.
          * <p>
          * API name: {@code requests_per_second}
          * </p>
@@ -661,8 +660,7 @@ public class TaskResponse implements PlainJsonSerializable {
         }
 
         /**
-         * The number of documents that were successfully updated, for example, a document with same ID already existed prior to reindex
-         * updating it.
+         * The number of documents that were successfully updated after the reindex operation.
          * <p>
          * API name: {@code updated}
          * </p>
@@ -673,7 +671,7 @@ public class TaskResponse implements PlainJsonSerializable {
         }
 
         /**
-         * Required - The number of version conflicts that reindex hits.
+         * Required - The number of version conflicts encountered by the reindex operation.
          * <p>
          * API name: {@code version_conflicts}
          * </p>
