@@ -3,7 +3,22 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
-- Added `hashCode` and `equals` implementations ([#312](https://github.com/opensearch-project/opensearch-java/pull/312))
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.15.0] - 10/17/2024
+### Added
+- Added `hashCode` and `equals` implementations to generated code ([#312](https://github.com/opensearch-project/opensearch-java/pull/312))
 - Added `sortVals` to `Hit` to allow retrieving non-string sort values ([#1224](https://github.com/opensearch-project/opensearch-java/pull/1224))
 - Added `searchAfterVals` to `MultisearchBody` to allow passing arbitrary `FieldValue`s to `search_after` ([#1224](https://github.com/opensearch-project/opensearch-java/pull/1224))
 
@@ -14,18 +29,10 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.3.1 to 5.4
 - Bumps `io.github.classgraph:classgraph` from 4.8.175 to 4.8.177
 
-### Changed
-
-### Deprecated
-
-### Removed
-
 ### Fixed
 - Fix queries not preserving boost and name when converted to builders ([#1181](https://github.com/opensearch-project/opensearch-java/pull/1181))
 - Remove required check on ShardStats.shards ([#1177](https://github.com/opensearch-project/opensearch-java/pull/1177))
 - Fixed `TextEmbeddingProcessor` returning the wrong processor kind ([#1127](https://github.com/opensearch-project/opensearch-java/pull/1127))
-
-### Security
 
 ## [2.14.0] - 08/27/2024
 ### Added
@@ -492,7 +499,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
  
 ### Security
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.14.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.15.0...2.x
+[2.15.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.14.0...v2.15.0
 [2.14.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.13.0...v2.14.0
 [2.13.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.12.0...v2.13.0
 [2.12.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.11.1...v2.12.0
