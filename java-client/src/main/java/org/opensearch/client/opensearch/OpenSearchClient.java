@@ -120,7 +120,6 @@ import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
 import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.opensearch.features.OpenSearchFeaturesClient;
 import org.opensearch.client.opensearch.generic.OpenSearchGenericClient;
-import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestClient;
 import org.opensearch.client.opensearch.nodes.OpenSearchNodesClient;
 import org.opensearch.client.opensearch.shutdown.OpenSearchShutdownClient;
@@ -164,10 +163,6 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
 
     public OpenSearchFeaturesClient features() {
         return new OpenSearchFeaturesClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchIndicesClient indices() {
-        return new OpenSearchIndicesClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchIngestClient ingest() {

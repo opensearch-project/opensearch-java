@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.mapping;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -41,35 +48,39 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _types.mapping.RuntimeField
+// typedef: _types.mapping.RuntimeFieldFetchFields
 
 @JsonpDeserializable
-public class RuntimeField implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class RuntimeFieldFetchFields implements PlainJsonSerializable {
+
+    @Nonnull
+    private final String field;
+
     @Nullable
     private final String format;
 
-    @Nullable
-    private final Script script;
-
-    private final RuntimeFieldType type;
-
     // ---------------------------------------------------------------------------------------------
 
-    private RuntimeField(Builder builder) {
-
+    private RuntimeFieldFetchFields(Builder builder) {
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
         this.format = builder.format;
-        this.script = builder.script;
-        this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-
     }
 
-    public static RuntimeField of(Function<Builder, ObjectBuilder<RuntimeField>> fn) {
+    public static RuntimeFieldFetchFields of(Function<RuntimeFieldFetchFields.Builder, ObjectBuilder<RuntimeFieldFetchFields>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * Required - API name: {@code field}
+     */
+    @Nonnull
+    public final String field() {
+        return this.field;
     }
 
     /**
@@ -81,23 +92,9 @@ public class RuntimeField implements PlainJsonSerializable {
     }
 
     /**
-     * API name: {@code script}
-     */
-    @Nullable
-    public final Script script() {
-        return this.script;
-    }
-
-    /**
-     * Required - API name: {@code type}
-     */
-    public final RuntimeFieldType type() {
-        return this.type;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -105,36 +102,32 @@ public class RuntimeField implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeKey("field");
+        generator.write(this.field);
 
         if (this.format != null) {
             generator.writeKey("format");
             generator.write(this.format);
-
         }
-        if (this.script != null) {
-            generator.writeKey("script");
-            this.script.serialize(generator, mapper);
-
-        }
-        generator.writeKey("type");
-        this.type.serialize(generator, mapper);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link RuntimeField}.
+     * Builder for {@link RuntimeFieldFetchFields}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RuntimeField> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RuntimeFieldFetchFields> {
+        private String field;
         @Nullable
         private String format;
 
-        @Nullable
-        private Script script;
-
-        private RuntimeFieldType type;
+        /**
+         * Required - API name: {@code field}
+         */
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
 
         /**
          * API name: {@code format}
@@ -145,57 +138,43 @@ public class RuntimeField implements PlainJsonSerializable {
         }
 
         /**
-         * API name: {@code script}
-         */
-        public final Builder script(@Nullable Script value) {
-            this.script = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code script}
-         */
-        public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-            return this.script(fn.apply(new Script.Builder()).build());
-        }
-
-        /**
-         * Required - API name: {@code type}
-         */
-        public final Builder type(RuntimeFieldType value) {
-            this.type = value;
-            return this;
-        }
-
-        /**
-         * Builds a {@link RuntimeField}.
+         * Builds a {@link RuntimeFieldFetchFields}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public RuntimeField build() {
+        public RuntimeFieldFetchFields build() {
             _checkSingleUse();
 
-            return new RuntimeField(this);
+            return new RuntimeFieldFetchFields(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link RuntimeField}
+     * Json deserializer for {@link RuntimeFieldFetchFields}
      */
-    public static final JsonpDeserializer<RuntimeField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<RuntimeFieldFetchFields> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        RuntimeField::setupRuntimeFieldDeserializer
+        RuntimeFieldFetchFields::setupRuntimeFieldFetchFieldsDeserializer
     );
 
-    protected static void setupRuntimeFieldDeserializer(ObjectDeserializer<RuntimeField.Builder> op) {
-
+    protected static void setupRuntimeFieldFetchFieldsDeserializer(ObjectDeserializer<RuntimeFieldFetchFields.Builder> op) {
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-        op.add(Builder::script, Script._DESERIALIZER, "script");
-        op.add(Builder::type, RuntimeFieldType._DESERIALIZER, "type");
-
     }
 
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.field.hashCode();
+        result = 31 * result + Objects.hashCode(this.format);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RuntimeFieldFetchFields other = (RuntimeFieldFetchFields) o;
+        return this.field.equals(other.field) && Objects.equals(this.format, other.format);
+    }
 }

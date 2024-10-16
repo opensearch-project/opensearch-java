@@ -30,11 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -47,26 +54,28 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: _types.InlineScript
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class InlineScript extends ScriptBase {
-    @Nullable
-    private final String lang;
 
+    @Nullable
+    private final ScriptLanguage lang;
+
+    @Nonnull
     private final Map<String, String> options;
 
+    @Nonnull
     private final String source;
 
     // ---------------------------------------------------------------------------------------------
 
     private InlineScript(Builder builder) {
         super(builder);
-
         this.lang = builder.lang;
         this.options = ApiTypeHelper.unmodifiable(builder.options);
         this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
-
     }
 
-    public static InlineScript of(Function<Builder, ObjectBuilder<InlineScript>> fn) {
+    public static InlineScript of(Function<InlineScript.Builder, ObjectBuilder<InlineScript>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -74,46 +83,48 @@ public class InlineScript extends ScriptBase {
      * API name: {@code lang}
      */
     @Nullable
-    public final String lang() {
+    public final ScriptLanguage lang() {
         return this.lang;
     }
 
     /**
      * API name: {@code options}
      */
+    @Nonnull
     public final Map<String, String> options() {
         return this.options;
     }
 
     /**
-     * Required - API name: {@code source}
+     * Required - The script source.
+     * <p>
+     * API name: {@code source}
+     * </p>
      */
+    @Nonnull
     public final String source() {
         return this.source;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
         if (this.lang != null) {
             generator.writeKey("lang");
-            generator.write(this.lang);
-
+            this.lang.serialize(generator, mapper);
         }
+
         if (ApiTypeHelper.isDefined(this.options)) {
             generator.writeKey("options");
             generator.writeStartObject();
             for (Map.Entry<String, String> item0 : this.options.entrySet()) {
                 generator.writeKey(item0.getKey());
                 generator.write(item0.getValue());
-
             }
             generator.writeEnd();
-
         }
+
         generator.writeKey("source");
         generator.write(this.source);
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -121,28 +132,34 @@ public class InlineScript extends ScriptBase {
     /**
      * Builder for {@link InlineScript}.
      */
-
     public static class Builder extends ScriptBase.AbstractBuilder<Builder> implements ObjectBuilder<InlineScript> {
         @Nullable
-        private String lang;
-
+        private ScriptLanguage lang;
         @Nullable
         private Map<String, String> options;
-
         private String source;
 
         /**
          * API name: {@code lang}
          */
-        public final Builder lang(@Nullable String value) {
+        public final Builder lang(@Nullable ScriptLanguage value) {
             this.lang = value;
             return this;
         }
 
         /**
+         * API name: {@code lang}
+         */
+        public final Builder lang(Function<ScriptLanguage.Builder, ObjectBuilder<ScriptLanguage>> fn) {
+            return lang(fn.apply(new ScriptLanguage.Builder()).build());
+        }
+
+        /**
          * API name: {@code options}
+         *
          * <p>
-         * Adds all entries of <code>map</code> to <code>options</code>.
+         * Adds all elements of <code>map</code> to <code>options</code>.
+         * </p>
          */
         public final Builder options(Map<String, String> map) {
             this.options = _mapPutAll(this.options, map);
@@ -151,8 +168,10 @@ public class InlineScript extends ScriptBase {
 
         /**
          * API name: {@code options}
+         *
          * <p>
          * Adds an entry to <code>options</code>.
+         * </p>
          */
         public final Builder options(String key, String value) {
             this.options = _mapPut(this.options, key, value);
@@ -160,7 +179,10 @@ public class InlineScript extends ScriptBase {
         }
 
         /**
-         * Required - API name: {@code source}
+         * Required - The script source.
+         * <p>
+         * API name: {@code source}
+         * </p>
          */
         public final Builder source(String value) {
             this.source = value;
@@ -175,8 +197,7 @@ public class InlineScript extends ScriptBase {
         /**
          * Builds a {@link InlineScript}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public InlineScript build() {
             _checkSingleUse();
@@ -196,13 +217,29 @@ public class InlineScript extends ScriptBase {
     );
 
     protected static void setupInlineScriptDeserializer(ObjectDeserializer<InlineScript.Builder> op) {
-        ScriptBase.setupScriptBaseDeserializer(op);
-        op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
+        setupScriptBaseDeserializer(op);
+        op.add(Builder::lang, ScriptLanguage._DESERIALIZER, "lang");
         op.add(Builder::options, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "options");
         op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
         op.shortcutProperty("source");
-
     }
 
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.lang);
+        result = 31 * result + Objects.hashCode(this.options);
+        result = 31 * result + this.source.hashCode();
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        InlineScript other = (InlineScript) o;
+        return Objects.equals(this.lang, other.lang) && Objects.equals(this.options, other.options) && this.source.equals(other.source);
+    }
 }

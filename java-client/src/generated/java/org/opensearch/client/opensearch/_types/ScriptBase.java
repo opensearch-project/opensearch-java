@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
+import java.util.Objects;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -45,20 +52,26 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.ScriptBase
 
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class ScriptBase implements PlainJsonSerializable {
+
+    @Nonnull
     private final Map<String, JsonData> params;
 
     // ---------------------------------------------------------------------------------------------
 
     protected ScriptBase(AbstractBuilder<?> builder) {
-
         this.params = ApiTypeHelper.unmodifiable(builder.params);
-
     }
 
     /**
+     * Specifies any named parameters that are passed into the script as variables. Use parameters instead of hard-coded values to decrease
+     * compilation time.
+     * <p>
      * API name: {@code params}
+     * </p>
      */
+    @Nonnull
     public final Map<String, JsonData> params() {
         return this.params;
     }
@@ -66,6 +79,7 @@ public abstract class ScriptBase implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -73,29 +87,33 @@ public abstract class ScriptBase implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (ApiTypeHelper.isDefined(this.params)) {
             generator.writeKey("params");
             generator.writeStartObject();
             for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
                 generator.writeKey(item0.getKey());
                 item0.getValue().serialize(generator, mapper);
-
             }
             generator.writeEnd();
-
         }
-
     }
+
+    // ---------------------------------------------------------------------------------------------
 
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         @Nullable
         private Map<String, JsonData> params;
 
         /**
-         * API name: {@code params}
+         * Specifies any named parameters that are passed into the script as variables. Use parameters instead of hard-coded values to
+         * decrease compilation time.
          * <p>
-         * Adds all entries of <code>map</code> to <code>params</code>.
+         * API name: {@code params}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>params</code>.
+         * </p>
          */
         public final BuilderT params(Map<String, JsonData> map) {
             this.params = _mapPutAll(this.params, map);
@@ -103,9 +121,15 @@ public abstract class ScriptBase implements PlainJsonSerializable {
         }
 
         /**
+         * Specifies any named parameters that are passed into the script as variables. Use parameters instead of hard-coded values to
+         * decrease compilation time.
+         * <p>
          * API name: {@code params}
+         * </p>
+         *
          * <p>
          * Adds an entry to <code>params</code>.
+         * </p>
          */
         public final BuilderT params(String key, JsonData value) {
             this.params = _mapPut(this.params, key, value);
@@ -113,14 +137,24 @@ public abstract class ScriptBase implements PlainJsonSerializable {
         }
 
         protected abstract BuilderT self();
-
     }
 
     // ---------------------------------------------------------------------------------------------
+
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupScriptBaseDeserializer(ObjectDeserializer<BuilderT> op) {
-
         op.add(AbstractBuilder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
-
     }
 
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.params);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ScriptBase other = (ScriptBase) o;
+        return Objects.equals(this.params, other.params);
+    }
 }

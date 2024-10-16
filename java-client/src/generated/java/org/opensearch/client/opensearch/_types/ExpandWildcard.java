@@ -30,32 +30,49 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch._types.mapping;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
+package org.opensearch.client.opensearch._types;
+
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.ExpandWildcard
+
 @JsonpDeserializable
-public enum RuntimeFieldType implements JsonEnum {
-    Boolean("boolean"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum ExpandWildcard implements JsonEnum {
+    /**
+     * Match any index, including hidden ones.
+     */
+    All("all"),
 
-    Date("date"),
+    /**
+     * Match closed, non-hidden indices.
+     */
+    Closed("closed"),
 
-    Double("double"),
+    /**
+     * Match hidden indices. Must be combined with open, closed, or both.
+     */
+    Hidden("hidden"),
 
-    GeoPoint("geo_point"),
+    /**
+     * Wildcard expressions are not accepted.
+     */
+    None("none"),
 
-    Ip("ip"),
-
-    Keyword("keyword"),
-
-    Long("long"),
-
-    ;
+    /**
+     * Match open, non-hidden indices.
+     */
+    Open("open");
 
     private final String jsonValue;
 
-    RuntimeFieldType(String jsonValue) {
+    ExpandWildcard(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -63,5 +80,5 @@ public enum RuntimeFieldType implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<RuntimeFieldType> _DESERIALIZER = new JsonEnum.Deserializer<>(RuntimeFieldType.values());
+    public static final JsonEnum.Deserializer<ExpandWildcard> _DESERIALIZER = new JsonEnum.Deserializer<>(ExpandWildcard.values());
 }

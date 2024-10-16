@@ -14421,7 +14421,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     bulk_stream::query.timeout:
       in: query
@@ -14508,7 +14508,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     bulk::query.timeout:
       in: query
@@ -17131,7 +17131,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     count::query.terminate_after:
       in: query
@@ -17187,7 +17187,7 @@ components:
       description: Comma-separated list of specific routing values.
       style: form
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       explode: true
     create::path.id:
       in: path
@@ -17232,7 +17232,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     create::query.timeout:
       in: query
@@ -17543,7 +17543,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     delete_by_query::query.scroll:
       in: query
@@ -17742,7 +17742,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     delete::query.timeout:
       in: query
@@ -17845,7 +17845,7 @@ components:
       name: routing
       description: Target the specified primary shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     exists_source::query.version:
       in: query
@@ -17931,7 +17931,7 @@ components:
       name: routing
       description: Target the specified primary shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     exists::query.stored_fields:
       in: query
@@ -18059,7 +18059,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     explain::query.stored_fields:
       in: query
@@ -18323,7 +18323,7 @@ components:
       name: routing
       description: Target the specified primary shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     get_source::query.version:
       in: query
@@ -18403,7 +18403,7 @@ components:
       name: routing
       description: Target the specified primary shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     get::query.stored_fields:
       in: query
@@ -18505,7 +18505,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     index::query.timeout:
       in: query
@@ -21568,7 +21568,7 @@ components:
       description: Comma-separated list of specific routing values.
       style: form
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       explode: true
     knn.search_models::query.scroll:
       name: scroll
@@ -21842,7 +21842,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     mget::query.stored_fields:
       in: query
@@ -22102,7 +22102,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     mtermvectors::query.term_statistics:
       in: query
@@ -23125,7 +23125,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     search_template::path.index:
       in: path
@@ -23217,7 +23217,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     search_template::query.scroll:
       in: query
@@ -23518,7 +23518,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     search::query.scroll:
       in: query
@@ -24666,7 +24666,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     termvectors::query.term_statistics:
       in: query
@@ -24999,7 +24999,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     update_by_query::query.scroll:
       in: query
@@ -25207,7 +25207,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     update::query.timeout:
       in: query
@@ -25587,14 +25587,14 @@ components:
               template:
                 $ref: '#/components/schemas/indices.put_index_template:IndexTemplateMapping'
               data_stream:
-                $ref: '#/components/schemas/indices._common:IndexTemplateDataStreamConfiguration'
+                $ref: '#/components/schemas/indices._common:DataStream'
               priority:
                 description: |-
                   Priority to determine index template precedence when a new data stream or index is created.
                   The index template with the highest priority is chosen.
                   If no priority is specified the template is treated as though it is of priority 0 (lowest priority).
                   This number is not automatically generated by OpenSearch.
-                type: number
+                type: integer
               version:
                 $ref: '#/components/schemas/_common:VersionNumber'
               _meta:
@@ -25769,14 +25769,14 @@ components:
               template:
                 $ref: '#/components/schemas/indices.put_index_template:IndexTemplateMapping'
               data_stream:
-                $ref: '#/components/schemas/indices._common:IndexTemplateDataStreamConfiguration'
+                $ref: '#/components/schemas/indices._common:DataStream'
               priority:
                 description: |-
                   Priority to determine index template precedence when a new data stream or index is created.
                   The index template with the highest priority is chosen.
                   If no priority is specified the template is treated as though it is of priority 0 (lowest priority).
                   This number is not automatically generated by OpenSearch.
-                type: number
+                type: integer
               version:
                 $ref: '#/components/schemas/_common:VersionNumber'
               _meta:
@@ -25786,7 +25786,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/indices._common:IndexTemplate'
+            $ref: '#/components/schemas/indices.get_index_template:IndexTemplate'
     indices.split:
       content:
         application/json:
@@ -28005,7 +28005,7 @@ components:
               data_streams:
                 type: array
                 items:
-                  $ref: '#/components/schemas/indices._common:DataStream'
+                  $ref: '#/components/schemas/indices._common:DataStreamInfo'
             required:
               - data_streams
     indices.get_field_mapping@200:
@@ -30131,17 +30131,23 @@ components:
       type: object
       properties:
         skipped:
-          type: number
+          type: integer
+          format: int32
         successful:
-          type: number
+          type: integer
+          format: int32
         total:
-          type: number
+          type: integer
+          format: int32
         running:
-          type: number
+          type: integer
+          format: int32
         partial:
-          type: number
+          type: integer
+          format: int32
         failed:
-          type: number
+          type: integer
+          format: int32
         details:
           type: object
           additionalProperties:
@@ -30269,15 +30275,20 @@ components:
       type: object
       properties:
         1xx:
-          type: number
+          type: integer
+          format: int32
         2xx:
-          type: number
+          type: integer
+          format: int32
         3xx:
-          type: number
+          type: integer
+          format: int32
         4xx:
-          type: number
+          type: integer
+          format: int32
         5xx:
-          type: number
+          type: integer
+          format: int32
     _common:Duration:
       description: |-
         A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and
@@ -30433,7 +30444,8 @@ components:
     _common:Fuzziness:
       oneOf:
         - type: string
-        - type: number
+        - type: integer
+          format: int32
     _common:GeoBounds:
       description: |-
         A geo-bounding box. It can be represented in the following ways:
@@ -30480,7 +30492,8 @@ components:
     _common:GeoHashPrecision:
       description: The level of geohash precision, which can be expressed as a geohash length between 1 and 12 or as a distance measure, such as "1km" or "10m".
       oneOf:
-        - type: number
+        - type: integer
+          format: int32
         - type: string
     _common:GeoHexCell:
       description: A map hex cell (H3) reference.
@@ -30498,6 +30511,7 @@ components:
             type: array
             items:
               type: number
+              format: double
       required:
         - coordinates
         - type
@@ -30715,7 +30729,8 @@ components:
         _seq_no:
           $ref: '#/components/schemas/_common:SequenceNumber'
         _primary_term:
-          type: number
+          type: integer
+          format: int32
         _routing:
           $ref: '#/components/schemas/_common:Routing'
         _source:
@@ -30751,14 +30766,17 @@ components:
           $ref: '#/components/schemas/_common:QueryVector'
         k:
           description: The total number of nearest neighbors to return as top hits.
-          type: number
+          type: integer
+          format: int32
         min_score:
           description: The minimum similarity score required in order for a neighbor to be considered a hit.
           type: number
+          format: float
           x-version-added: '2.14'
         max_distance:
           description: The maximum physical vector space distance required in order for a neighbor to be considered a hit.
           type: number
+          format: float
           x-version-added: '2.14'
         filter:
           description: The filters for the k-NN search query.
@@ -30770,16 +30788,19 @@ components:
         boost:
           description: The boost value applied to k-NN scores.
           type: number
+          format: float
         method_parameters:
           type: object
           x-version-added: '2.16'
           additionalProperties:
-            type: number
+            type: integer
+            format: int32
         rescore:
           type: object
           x-version-added: '2.17'
           additionalProperties:
             type: number
+            format: float
       required:
         - vector
     _common:LatLonGeoLocation:
@@ -30856,7 +30877,8 @@ components:
     _common:MinimumShouldMatch:
       description: The minimum number of terms that should match as an integer, percentage, or range.
       oneOf:
-        - type: number
+        - type: integer
+          format: int32
         - type: string
     _common:MultiTermQueryRewrite:
       type: string
@@ -30882,6 +30904,7 @@ components:
           $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
         max_children:
           type: integer
+          format: int32
         nested:
           $ref: '#/components/schemas/_common:NestedSortValue'
         path:
@@ -31051,6 +31074,7 @@ components:
       type: string
     _common:PercentageNumber:
       type: number
+      format: double
     _common:PercentageString:
       type: string
       pattern: \d+(\.\d+)?
@@ -31164,6 +31188,7 @@ components:
       type: array
       items:
         type: number
+        format: float
     _common:RankBase:
       type: object
     _common:RankContainer:
@@ -31450,6 +31475,8 @@ components:
         - bulk
         - search
     _common:Routing:
+      type: string
+    _common:RoutingInQueryString:
       oneOf:
         - type: string
         - type: array
@@ -31822,7 +31849,8 @@ components:
         id:
           $ref: '#/components/schemas/_common:Id'
         max:
-          type: number
+          type: integer
+          format: int32
       required:
         - id
         - max
@@ -32116,8 +32144,10 @@ components:
         - index-setting
     _common:WaitForActiveShards:
       oneOf:
-        - type: number
-        - $ref: '#/components/schemas/_common:WaitForActiveShardOptions'
+        - title: count
+          type: integer
+        - title: option
+          $ref: '#/components/schemas/_common:WaitForActiveShardOptions'
     _common:WaitForEvents:
       type: string
       enum:
@@ -32186,9 +32216,11 @@ components:
         x:
           description: The x coordinate.
           type: number
+          format: double
         'y':
           description: The y coordinate.
           type: number
+          format: double
       required:
         - x
         - 'y'
@@ -32206,6 +32238,7 @@ components:
           type: array
           items:
             type: number
+            format: double
         - title: text
           type: string
     _common.aggregations:AdjacencyMatrixAggregate:
@@ -40688,7 +40721,8 @@ components:
       description: Can only be used as a clause in a span_near query.
       type: object
       additionalProperties:
-        type: number
+        type: integer
+        format: int32
       minProperties: 1
       maxProperties: 1
     _common.query_dsl:SpanMultiTermQuery:
@@ -41038,7 +41072,8 @@ components:
         routing:
           $ref: '#/components/schemas/_common:Routing'
         if_primary_term:
-          type: number
+          type: integer
+          format: int64
         if_seq_no:
           $ref: '#/components/schemas/_common:SequenceNumber'
         version:
@@ -41077,12 +41112,14 @@ components:
           type: string
         status:
           description: HTTP status code returned for the operation.
-          type: number
+          type: integer
+          format: int32
         error:
           $ref: '#/components/schemas/_common:ErrorCause'
         _primary_term:
           description: The primary term assigned to the document for the operation.
-          type: number
+          type: integer
+          format: int64
         result:
           description: |-
             Result of the operation.
@@ -41136,7 +41173,8 @@ components:
               description: When `true`, the request's actions must target an index alias.
               type: boolean
             retry_on_conflict:
-              type: number
+              type: integer
+              format: int32
     _core.bulk:WriteOperation:
       allOf:
         - $ref: '#/components/schemas/_core.bulk:OperationBase'
@@ -41169,7 +41207,15 @@ components:
           items:
             $ref: '#/components/schemas/_core.explain:ExplanationDetail'
         value:
-          type: number
+          oneOf:
+            - type: integer
+              format: int32
+            - type: integer
+              format: int64
+            - type: number
+              format: float
+            - type: number
+              format: double
       required:
         - description
         - details
@@ -41184,7 +41230,15 @@ components:
           items:
             $ref: '#/components/schemas/_core.explain:ExplanationDetail'
         value:
-          type: number
+          oneOf:
+            - type: integer
+              format: int32
+            - type: integer
+              format: int64
+            - type: number
+              format: float
+            - type: number
+              format: double
       required:
         - description
         - value
@@ -41965,29 +42019,41 @@ components:
       type: object
       properties:
         build_aggregation:
-          type: number
+          type: integer
+          format: int64
         build_aggregation_count:
-          type: number
+          type: integer
+          format: int64
         build_leaf_collector:
-          type: number
+          type: integer
+          format: int64
         build_leaf_collector_count:
-          type: number
+          type: integer
+          format: int64
         collect:
-          type: number
+          type: integer
+          format: int64
         collect_count:
-          type: number
+          type: integer
+          format: int64
         initialize:
-          type: number
+          type: integer
+          format: int64
         initialize_count:
-          type: number
+          type: integer
+          format: int64
         post_collection:
-          type: number
+          type: integer
+          format: int64
         post_collection_count:
-          type: number
+          type: integer
+          format: int64
         reduce:
-          type: number
+          type: integer
+          format: int64
         reduce_count:
-          type: number
+          type: integer
+          format: int64
       required:
         - build_aggregation
         - build_aggregation_count
@@ -42025,15 +42091,19 @@ components:
       type: object
       properties:
         segments_with_multi_valued_ords:
-          type: number
+          type: integer
+          format: int32
         collection_strategy:
           type: string
         segments_with_single_valued_ords:
-          type: number
+          type: integer
+          format: int32
         total_buckets:
-          type: number
+          type: integer
+          format: int32
         built_buckets:
-          type: number
+          type: integer
+          format: int32
         result_strategy:
           type: string
         has_filter:
@@ -42043,58 +42113,76 @@ components:
         delegate_debug:
           $ref: '#/components/schemas/_core.search:AggregationProfileDebug'
         chars_fetched:
-          type: number
+          type: integer
+          format: int32
         extract_count:
-          type: number
+          type: integer
+          format: int32
         extract_ns:
-          type: number
+          type: integer
+          format: int32
         values_fetched:
-          type: number
+          type: integer
+          format: int32
         collect_analyzed_ns:
-          type: number
+          type: integer
+          format: int32
         collect_analyzed_count:
-          type: number
+          type: integer
+          format: int32
         surviving_buckets:
-          type: number
+          type: integer
+          format: int32
         ordinals_collectors_used:
-          type: number
+          type: integer
+          format: int32
         ordinals_collectors_overhead_too_high:
-          type: number
+          type: integer
+          format: int32
         string_hashing_collectors_used:
-          type: number
+          type: integer
+          format: int32
         numeric_collectors_used:
-          type: number
+          type: integer
+          format: int32
         empty_collectors_used:
-          type: number
+          type: integer
+          format: int32
         deferred_aggregators:
           type: array
           items:
             type: string
         segments_with_doc_count_field:
-          type: number
+          type: integer
+          format: int32
         segments_with_deleted_docs:
-          type: number
+          type: integer
+          format: int32
         filters:
           type: array
           items:
             $ref: '#/components/schemas/_core.search:AggregationProfileDelegateDebugFilter'
         segments_counted:
-          type: number
+          type: integer
+          format: int32
         segments_collected:
-          type: number
+          type: integer
+          format: int32
         map_reducer:
           type: string
     _core.search:AggregationProfileDelegateDebugFilter:
       type: object
       properties:
         results_from_metadata:
-          type: number
+          type: integer
+          format: int32
         query:
           type: string
         specialized_for:
           type: string
         segments_counted_in_constant_time:
-          type: number
+          type: integer
+          format: int32
     _core.search:BoundaryScanner:
       type: string
       enum:
@@ -42160,12 +42248,14 @@ components:
           $ref: '#/components/schemas/_common:Routing'
         _score:
           type: number
+          format: float
         _source:
           type: object
         text:
           type: string
         score:
           type: number
+          format: float
       required:
         - text
     _core.search:Context:
@@ -42203,17 +42293,23 @@ components:
         load_source_count:
           type: number
         load_stored_fields:
-          type: number
+          type: integer
+          format: int32
         load_stored_fields_count:
-          type: number
+          type: integer
+          format: int32
         next_reader:
-          type: number
+          type: integer
+          format: int32
         next_reader_count:
-          type: number
+          type: integer
+          format: int32
         process_count:
-          type: number
+          type: integer
+          format: int32
         process:
-          type: number
+          type: integer
+          format: int32
     _core.search:FetchProfileDebug:
       type: object
       properties:
@@ -42222,7 +42318,8 @@ components:
           items:
             type: string
         fast_path:
-          type: number
+          type: integer
+          format: int32
     _core.search:FieldCollapse:
       type: object
       properties:
@@ -42263,7 +42360,8 @@ components:
           type: string
         boundary_max_scan:
           description: How far to scan for boundary characters.
-          type: number
+          type: integer
+          format: int32
         boundary_scanner:
           $ref: '#/components/schemas/_core.search:BoundaryScanner'
         boundary_scanner_locale:
@@ -42278,22 +42376,26 @@ components:
           $ref: '#/components/schemas/_core.search:HighlighterFragmenter'
         fragment_size:
           description: The size of the highlighted fragment in characters.
-          type: number
+          type: integer
+          format: int32
         highlight_filter:
           type: boolean
         highlight_query:
           $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
         max_fragment_length:
-          type: number
+          type: integer
+          format: int32
         max_analyzed_offset:
           description: |-
             If set to a non-negative value, highlighting stops at this defined maximum limit.
             The rest of the text is not processed, thus not highlighted and no error is returned
             The `max_analyzed_offset` query setting does not override the `index.highlight.max_analyzed_offset` setting, which prevails when it's set to lower value than the query setting.
-          type: number
+          type: integer
+          format: int32
         no_match_size:
           description: The amount of text you want to return from the beginning of the field if there are no matching fragments to highlight.
-          type: number
+          type: integer
+          format: int32
         number_of_fragments:
           description: |-
             The maximum number of fragments to return.
@@ -42301,7 +42403,8 @@ components:
             Instead, the entire field contents are highlighted and returned.
             This can be handy when you need to highlight short texts such as a title or address, but fragmentation is not required.
             If `number_of_fragments` is `0`, `fragment_size` is ignored.
-          type: number
+          type: integer
+          format: int32
         options:
           type: object
           additionalProperties:
@@ -42314,7 +42417,8 @@ components:
             Prevents the `fvh` highlighter from analyzing too many phrases and consuming too much memory.
             When using `matched_fields`, `phrase_limit` phrases per matched field are considered. Raising the limit increases query time and consumes more memory.
             Only supported by the `fvh` highlighter.
-          type: number
+          type: integer
+          format: int32
         post_tags:
           description: |-
             Use in conjunction with `pre_tags` to define the HTML tags to use for the highlighted text.
@@ -42366,7 +42470,8 @@ components:
         - type: object
           properties:
             fragment_offset:
-              type: number
+              type: integer
+              format: int32
             matched_fields:
               $ref: '#/components/schemas/_common:Fields'
             analyzer:
@@ -42428,7 +42533,8 @@ components:
         _seq_no:
           $ref: '#/components/schemas/_common:SequenceNumber'
         _primary_term:
-          type: number
+          type: integer
+          format: int64
         _version:
           $ref: '#/components/schemas/_common:VersionNumber'
         sort:
@@ -42443,7 +42549,8 @@ components:
           description: Total hit count information, present only if `track_total_hits` wasn't `false` in the search request.
           oneOf:
             - $ref: '#/components/schemas/_core.search:TotalHits'
-            - type: number
+            - type: integer
+              format: int64
         hits:
           type: array
           items:
@@ -42463,9 +42570,11 @@ components:
         size:
           description: The maximum number of hits to return per `inner_hits`.
           type: integer
+          format: int32
         from:
           description: Inner hit starting document offset.
           type: integer
+          format: int32
         collapse:
           $ref: '#/components/schemas/_core.search:FieldCollapse'
         docvalue_fields:
@@ -42509,7 +42618,8 @@ components:
         field:
           $ref: '#/components/schemas/_common:Field'
         offset:
-          type: number
+          type: integer
+          format: int32
         _nested:
           $ref: '#/components/schemas/_core.search:NestedIdentity'
       required:
@@ -42535,6 +42645,7 @@ components:
           type: string
         score:
           type: number
+          format: float
         highlighted:
           type: string
         collate_match:
@@ -42564,41 +42675,59 @@ components:
       type: object
       properties:
         advance:
-          type: number
+          type: integer
+          format: int64
         advance_count:
-          type: number
+          type: integer
+          format: int64
         build_scorer:
-          type: number
+          type: integer
+          format: int64
         build_scorer_count:
-          type: number
+          type: integer
+          format: int64
         create_weight:
-          type: number
+          type: integer
+          format: int64
         create_weight_count:
-          type: number
+          type: integer
+          format: int64
         match:
-          type: number
+          type: integer
+          format: int64
         match_count:
-          type: number
+          type: integer
+          format: int64
         shallow_advance:
-          type: number
+          type: integer
+          format: int64
         shallow_advance_count:
-          type: number
+          type: integer
+          format: int64
         next_doc:
-          type: number
+          type: integer
+          format: int64
         next_doc_count:
-          type: number
+          type: integer
+          format: int64
         score:
-          type: number
+          type: integer
+          format: int64
         score_count:
-          type: number
+          type: integer
+          format: int64
         compute_max_score:
-          type: number
+          type: integer
+          format: int64
         compute_max_score_count:
-          type: number
+          type: integer
+          format: int64
         set_min_competitive_score:
-          type: number
+          type: integer
+          format: int64
         set_min_competitive_score_count:
-          type: number
+          type: integer
+          format: int64
       required:
         - advance
         - advance_count
@@ -42644,7 +42773,8 @@ components:
         query:
           $ref: '#/components/schemas/_core.search:RescoreQuery'
         window_size:
-          type: number
+          type: integer
+          format: int32
       required:
         - query
     _core.search:RescoreQuery:
@@ -42655,9 +42785,11 @@ components:
         query_weight:
           description: Relative importance of the original query versus the rescore query.
           type: number
+          format: float
         rescore_query_weight:
           description: Relative importance of the rescore query versus the original query.
           type: number
+          format: float
         score_mode:
           $ref: '#/components/schemas/_core.search:ScoreMode'
       required:
@@ -42666,7 +42798,8 @@ components:
       type: object
       properties:
         took:
-          type: number
+          type: integer
+          format: int64
         timed_out:
           type: boolean
         _shards:
@@ -42688,8 +42821,10 @@ components:
             type: object
         max_score:
           type: number
+          format: float
         num_reduce_phases:
-          type: number
+          type: integer
+          format: int32
         profile:
           $ref: '#/components/schemas/_core.search:Profile'
         pit_id:
@@ -42729,7 +42864,8 @@ components:
           items:
             $ref: '#/components/schemas/_core.search:QueryProfile'
         rewrite_time:
-          type: number
+          type: integer
+          format: int64
       required:
         - collector
         - query
@@ -42787,9 +42923,11 @@ components:
       type: object
       properties:
         length:
-          type: number
+          type: integer
+          format: int32
         offset:
-          type: number
+          type: integer
+          format: int32
         text:
           type: string
       required:
@@ -42822,8 +42960,10 @@ components:
           type: string
         score:
           type: number
+          format: float
         freq:
           type: number
+          format: double
         highlighted:
           type: string
         collate_match:
@@ -42838,7 +42978,8 @@ components:
         relation:
           $ref: '#/components/schemas/_core.search:TotalHitsRelation'
         value:
-          type: number
+          type: integer
+          format: int64
       required:
         - relation
         - value
@@ -42855,7 +42996,8 @@ components:
         Defaults to 10,000 hits.
       oneOf:
         - type: boolean
-        - type: number
+        - type: integer
+          format: int32
     _core.termvectors:FieldStatistics:
       type: object
       properties:
@@ -43097,7 +43239,8 @@ components:
             When possible, let OpenSearch perform early termination automatically.
             Avoid specifying this parameter for requests that target data streams with backing indices across multiple data tiers.
             If set to `0` (default), the query does not terminate early.
-          type: number
+          type: integer
+          format: int32
         timeout:
           description: |-
             Specifies the period of time to wait for a response from each shard.
@@ -47318,6 +47461,34 @@ components:
     indices._common:DataStream:
       type: object
       properties:
+        hidden:
+          description: If true, the data stream is hidden.
+          type: boolean
+        allow_custom_routing:
+          description: If true, the data stream supports custom routing.
+          type: boolean
+        timestamp_field:
+          $ref: '#/components/schemas/indices._common:DataStreamTimestampField'
+    indices._common:DataStreamIndexInfo:
+      type: object
+      properties:
+        index_name:
+          $ref: '#/components/schemas/_common:IndexName'
+        index_uuid:
+          $ref: '#/components/schemas/_common:Uuid'
+        ilm_policy:
+          $ref: '#/components/schemas/_common:Name'
+        managed_by:
+          $ref: '#/components/schemas/indices._common:ManagedBy'
+        prefer_ilm:
+          description: Indicates if ILM should take precedence over DSL in case both are configured to manage this index.
+          type: boolean
+      required:
+        - index_name
+        - index_uuid
+    indices._common:DataStreamInfo:
+      type: object
+      properties:
         _meta:
           $ref: '#/components/schemas/_common:Metadata'
         allow_custom_routing:
@@ -47342,7 +47513,7 @@ components:
             The last item in this array contains information about the stream's current write index.
           type: array
           items:
-            $ref: '#/components/schemas/indices._common:DataStreamIndex'
+            $ref: '#/components/schemas/indices._common:DataStreamIndexInfo'
         name:
           $ref: '#/components/schemas/_common:DataStreamName'
         replicated:
@@ -47364,23 +47535,6 @@ components:
         - status
         - template
         - timestamp_field
-    indices._common:DataStreamIndex:
-      type: object
-      properties:
-        index_name:
-          $ref: '#/components/schemas/_common:IndexName'
-        index_uuid:
-          $ref: '#/components/schemas/_common:Uuid'
-        ilm_policy:
-          $ref: '#/components/schemas/_common:Name'
-        managed_by:
-          $ref: '#/components/schemas/indices._common:ManagedBy'
-        prefer_ilm:
-          description: Indicates if ILM should take precedence over DSL in case both are configured to manage this index.
-          type: boolean
-      required:
-        - index_name
-        - index_uuid
     indices._common:DataStreamTimestampField:
       type: object
       properties:
@@ -48068,65 +48222,6 @@ components:
           $ref: '#/components/schemas/indices._common:IndexSettings'
         data_stream:
           $ref: '#/components/schemas/_common:DataStreamName'
-    indices._common:IndexTemplate:
-      type: object
-      properties:
-        index_patterns:
-          $ref: '#/components/schemas/_common:Names'
-        composed_of:
-          description: |-
-            An ordered list of component template names.
-            Component templates are merged in the order specified, meaning that the last component template specified has the highest precedence.
-          type: array
-          items:
-            $ref: '#/components/schemas/_common:Name'
-        template:
-          $ref: '#/components/schemas/indices._common:IndexTemplateSummary'
-        version:
-          $ref: '#/components/schemas/_common:VersionNumber'
-        priority:
-          description: |-
-            Priority to determine index template precedence when a new data stream or index is created.
-            The index template with the highest priority is chosen.
-            If no priority is specified the template is treated as though it is of priority 0 (lowest priority).
-            This number is not automatically generated by OpenSearch.
-          type: number
-        _meta:
-          $ref: '#/components/schemas/_common:Metadata'
-        allow_auto_create:
-          type: boolean
-        data_stream:
-          $ref: '#/components/schemas/indices._common:IndexTemplateDataStreamConfiguration'
-      required:
-        - index_patterns
-      description: New index template definition to be simulated, if no index template name is specified.
-    indices._common:IndexTemplateDataStreamConfiguration:
-      type: object
-      properties:
-        hidden:
-          description: If true, the data stream is hidden.
-          type: boolean
-        allow_custom_routing:
-          description: If true, the data stream supports custom routing.
-          type: boolean
-        timestamp_field:
-          $ref: '#/components/schemas/indices._common:DataStreamTimestampField'
-    indices._common:IndexTemplateSummary:
-      type: object
-      properties:
-        aliases:
-          description: |-
-            Aliases to add.
-            If the index template includes a `data_stream` object, these are data stream aliases.
-            Otherwise, these are index aliases.
-            Data stream aliases ignore the `index_routing`, `routing`, and `search_routing` options.
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/indices._common:Alias'
-        mappings:
-          $ref: '#/components/schemas/_common.mapping:TypeMapping'
-        settings:
-          $ref: '#/components/schemas/indices._common:IndexSettings'
     indices._common:IndexVersioning:
       type: object
       properties:
@@ -48460,16 +48555,65 @@ components:
             $ref: '#/components/schemas/_common.mapping:FieldMapping'
       required:
         - mappings
+    indices.get_index_template:IndexTemplate:
+      type: object
+      properties:
+        index_patterns:
+          $ref: '#/components/schemas/_common:Names'
+        composed_of:
+          description: |-
+            An ordered list of component template names.
+            Component templates are merged in the order specified, meaning that the last component template specified has the highest precedence.
+          type: array
+          items:
+            $ref: '#/components/schemas/_common:Name'
+        template:
+          $ref: '#/components/schemas/indices.get_index_template:IndexTemplateSummary'
+        version:
+          $ref: '#/components/schemas/_common:VersionNumber'
+        priority:
+          description: |-
+            Priority to determine index template precedence when a new data stream or index is created.
+            The index template with the highest priority is chosen.
+            If no priority is specified the template is treated as though it is of priority 0 (lowest priority).
+            This number is not automatically generated by OpenSearch.
+          type: integer
+          format: int64
+        _meta:
+          $ref: '#/components/schemas/_common:Metadata'
+        allow_auto_create:
+          type: boolean
+        data_stream:
+          $ref: '#/components/schemas/indices._common:DataStream'
+      required:
+        - index_patterns
+      description: New index template definition to be simulated, if no index template name is specified.
     indices.get_index_template:IndexTemplateItem:
       type: object
       properties:
         name:
           $ref: '#/components/schemas/_common:Name'
         index_template:
-          $ref: '#/components/schemas/indices._common:IndexTemplate'
+          $ref: '#/components/schemas/indices.get_index_template:IndexTemplate'
       required:
         - index_template
         - name
+    indices.get_index_template:IndexTemplateSummary:
+      type: object
+      properties:
+        aliases:
+          description: |-
+            Aliases to add.
+            If the index template includes a `data_stream` object, these are data stream aliases.
+            Otherwise, these are index aliases.
+            Data stream aliases ignore the `index_routing`, `routing`, and `search_routing` options.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/indices._common:Alias'
+        mappings:
+          $ref: '#/components/schemas/_common.mapping:TypeMapping'
+        settings:
+          $ref: '#/components/schemas/indices._common:IndexSettings'
     indices.get_mapping:IndexMappingRecord:
       type: object
       properties:

@@ -29,4 +29,8 @@
 
         op.ignore({{#quoted}}{{key}}{{/quoted}});
     {{/distinctDiscriminatorFieldValues}}
+    {{#shortcutProperty}}
+
+        op.shortcutProperty({{#quoted}}{{.}}{{/quoted}});
+    {{/shortcutProperty}}
     }

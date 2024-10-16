@@ -30,14 +30,21 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.json.UnionDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -48,12 +55,14 @@ import org.opensearch.client.util.TaggedUnionUtils;
 // typedef: _types.Script
 
 @JsonpDeserializable
-public class Script implements TaggedUnion<Script.Kind, Object>, JsonpSerializable {
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class Script implements TaggedUnion<Script.Kind, Object>, PlainJsonSerializable {
+    /**
+     * {@link Script} variant kinds.
+     */
     public enum Kind {
         Inline,
         Stored
-
     }
 
     private final Kind _kind;
@@ -75,13 +84,11 @@ public class Script implements TaggedUnion<Script.Kind, Object>, JsonpSerializab
     }
 
     private Script(Builder builder) {
-
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
     }
 
-    public static Script of(Function<Builder, ObjectBuilder<Script>> fn) {
+    public static Script of(Function<Script.Builder, ObjectBuilder<Script>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -95,8 +102,7 @@ public class Script implements TaggedUnion<Script.Kind, Object>, JsonpSerializab
     /**
      * Get the {@code inline} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code inline} kind.
+     * @throws IllegalStateException if the current variant is not the {@code inline} kind.
      */
     public InlineScript inline() {
         return TaggedUnionUtils.get(this, Kind.Inline);
@@ -112,8 +118,7 @@ public class Script implements TaggedUnion<Script.Kind, Object>, JsonpSerializab
     /**
      * Get the {@code stored} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code stored} kind.
+     * @throws IllegalStateException if the current variant is not the {@code stored} kind.
      */
     public StoredScriptId stored() {
         return TaggedUnionUtils.get(this, Kind.Stored);
@@ -124,7 +129,6 @@ public class Script implements TaggedUnion<Script.Kind, Object>, JsonpSerializab
         if (_value instanceof JsonpSerializable) {
             ((JsonpSerializable) _value).serialize(generator, mapper);
         }
-
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Script> {
@@ -151,11 +155,11 @@ public class Script implements TaggedUnion<Script.Kind, Object>, JsonpSerializab
             return this.stored(fn.apply(new StoredScriptId.Builder()).build());
         }
 
+        @Override
         public Script build() {
             _checkSingleUse();
             return new Script(this);
         }
-
     }
 
     private static JsonpDeserializer<Script> buildScriptDeserializer() {
@@ -165,4 +169,18 @@ public class Script implements TaggedUnion<Script.Kind, Object>, JsonpSerializab
     }
 
     public static final JsonpDeserializer<Script> _DESERIALIZER = JsonpDeserializer.lazy(Script::buildScriptDeserializer);
+
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        return result;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Script other = (Script) o;
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
 }
