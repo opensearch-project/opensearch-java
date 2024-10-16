@@ -281,6 +281,7 @@ public class ClientConfig implements PlainJsonSerializable {
         op.add(Builder::retryTimeoutSeconds, JsonpDeserializer.integerDeserializer(), "retry_timeout_seconds");
     }
 
+    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.connectionTimeout);
@@ -293,6 +294,7 @@ public class ClientConfig implements PlainJsonSerializable {
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;

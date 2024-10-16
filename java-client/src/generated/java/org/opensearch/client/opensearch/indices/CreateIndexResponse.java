@@ -180,6 +180,7 @@ public class CreateIndexResponse implements PlainJsonSerializable {
         op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
     }
 
+    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Boolean.hashCode(this.acknowledged);
@@ -188,6 +189,7 @@ public class CreateIndexResponse implements PlainJsonSerializable {
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;

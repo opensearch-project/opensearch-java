@@ -345,6 +345,7 @@ public class AllField implements PlainJsonSerializable {
         op.add(Builder::storeTermVectors, JsonpDeserializer.booleanDeserializer(), "store_term_vectors");
     }
 
+    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + this.analyzer.hashCode();
@@ -360,6 +361,7 @@ public class AllField implements PlainJsonSerializable {
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;

@@ -297,6 +297,7 @@ public class Alias implements PlainJsonSerializable {
         op.add(Builder::searchRouting, JsonpDeserializer.stringDeserializer(), "search_routing");
     }
 
+    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.filter);
@@ -308,6 +309,7 @@ public class Alias implements PlainJsonSerializable {
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;

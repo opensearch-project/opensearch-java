@@ -131,12 +131,14 @@ public class RoutingField implements PlainJsonSerializable {
         op.add(Builder::required, JsonpDeserializer.booleanDeserializer(), "required");
     }
 
+    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Boolean.hashCode(this.required);
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;

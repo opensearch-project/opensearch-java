@@ -164,12 +164,14 @@ public class TaskExecutingNode extends BaseNode {
         op.add(Builder::tasks, JsonpDeserializer.stringMapDeserializer(TaskInfo._DESERIALIZER), "tasks");
     }
 
+    @Override
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + this.tasks.hashCode();
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (!super.equals(o)) {
             return false;

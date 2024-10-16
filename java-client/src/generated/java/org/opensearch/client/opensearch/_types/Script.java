@@ -170,6 +170,7 @@ public class Script implements TaggedUnion<Script.Kind, Object>, PlainJsonSerial
 
     public static final JsonpDeserializer<Script> _DESERIALIZER = JsonpDeserializer.lazy(Script::buildScriptDeserializer);
 
+    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this._kind);
@@ -177,6 +178,7 @@ public class Script implements TaggedUnion<Script.Kind, Object>, PlainJsonSerial
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;

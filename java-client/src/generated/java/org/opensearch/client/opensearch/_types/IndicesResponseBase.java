@@ -109,12 +109,14 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
         op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
     }
 
+    @Override
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + Objects.hashCode(this.shards);
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (!super.equals(o)) {
             return false;
