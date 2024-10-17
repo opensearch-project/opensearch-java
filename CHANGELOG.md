@@ -8,10 +8,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.eclipse.parsson:parsson` from 1.1.6 to 1.1.7
 - Bumps `org.hamcrest:hamcrest` from 2.2 to 3.0
 - Bumps `com.github.jk1.dependency-license-report` from 2.8 to 2.9
-- Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.2.5 to 5.3
-- Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.2.5 to 5.3
-- Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.3.1 to 5.4
-- Bumps `io.github.classgraph:classgraph` from 4.8.175 to 4.8.177
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
@@ -41,10 +37,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ## [Unreleased 2.x]
 
 ### Added
-- Add `hashCode` and `equals` implementations ([#312](https://github.com/opensearch-project/opensearch-java/pull/312)).
 
 ### Dependencies
-- Bumps `org.junit:junit-bom` from 5.10.3 to 5.11.0
 
 ### Changed
 
@@ -53,11 +47,26 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
+
+### Security
+
+## [2.15.0] - 10/17/2024
+### Added
+- Added `hashCode` and `equals` implementations to generated code ([#312](https://github.com/opensearch-project/opensearch-java/pull/312))
+- Added `sortVals` to `Hit` to allow retrieving non-string sort values ([#1224](https://github.com/opensearch-project/opensearch-java/pull/1224))
+- Added `searchAfterVals` to `MultisearchBody` to allow passing arbitrary `FieldValue`s to `search_after` ([#1224](https://github.com/opensearch-project/opensearch-java/pull/1224))
+
+### Dependencies
+- Bumps `org.junit:junit-bom` from 5.10.3 to 5.11.1
+- Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.2.5 to 5.3
+- Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.2.5 to 5.3
+- Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.3.1 to 5.4
+- Bumps `io.github.classgraph:classgraph` from 4.8.175 to 4.8.177
+
+### Fixed
 - Fix queries not preserving boost and name when converted to builders ([#1181](https://github.com/opensearch-project/opensearch-java/pull/1181))
 - Remove required check on ShardStats.shards ([#1177](https://github.com/opensearch-project/opensearch-java/pull/1177))
 - Fixed `TextEmbeddingProcessor` returning the wrong processor kind ([#1127](https://github.com/opensearch-project/opensearch-java/pull/1127))
-
-### Security
 
 ## [2.14.0] - 08/27/2024
 ### Added
@@ -532,7 +541,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.14.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.15.0...2.x
+[2.15.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.14.0...v2.15.0
 [2.14.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.13.0...v2.14.0
 [2.13.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.12.0...v2.13.0
 [2.12.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.11.1...v2.12.0
