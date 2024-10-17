@@ -154,6 +154,7 @@ public class Retries implements PlainJsonSerializable {
         op.add(Builder::search, JsonpDeserializer.longDeserializer(), "search");
     }
 
+    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Long.hashCode(this.bulk);
@@ -161,6 +162,7 @@ public class Retries implements PlainJsonSerializable {
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;

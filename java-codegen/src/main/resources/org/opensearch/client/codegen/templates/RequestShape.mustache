@@ -35,7 +35,7 @@
     /**
      * Endpoint "{@code {{operationGroup}}}".
      */
-    public static final {{TYPES.Client.Transport.Endpoint}}<{{className}}, {{responseType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}> _ENDPOINT = new {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}<>(
+    public static final {{TYPES.Client.Transport.Endpoint}}<{{className}}, {{responseType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}> _ENDPOINT = new {{#isBooleanRequest}}{{TYPES.Client.Transport.Endpoints.BooleanEndpoint}}{{/isBooleanRequest}}{{^isBooleanRequest}}{{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}{{/isBooleanRequest}}<>(
             // Request method
             request -> {{#quoted}}{{httpMethod}}{{/quoted}},
             // Request path
@@ -92,9 +92,12 @@
             {{^hasQueryParams}}
             {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}.emptyMap(),
             {{/hasQueryParams}}
-            {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}.emptyMap(),
+            {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}.emptyMap()
+        {{^isBooleanRequest}}
+            ,
             {{hasRequestBody}},
             {{responseType}}._DESERIALIZER
+        {{/isBooleanRequest}}
     );
 
     {{>ObjectShape/HashCode}}

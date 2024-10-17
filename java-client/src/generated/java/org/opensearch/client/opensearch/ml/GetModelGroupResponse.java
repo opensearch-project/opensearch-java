@@ -265,6 +265,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
     }
 
+    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + this.access.hashCode();
@@ -276,6 +277,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;

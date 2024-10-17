@@ -67,7 +67,7 @@ public class KnnScriptScore {
                                 .script(
                                     sss -> sss.inline(
                                         i -> i.source("knn_score")
-                                            .lang("knn")
+                                            .lang(l -> l.custom("knn"))
                                             .params("field", JsonData.of("values"))
                                             .params("query_value", JsonData.of(searchVector))
                                             .params("space_type", JsonData.of("cosinesimil"))

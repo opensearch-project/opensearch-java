@@ -235,6 +235,7 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
         op.add(Builder::nodes, NodeStatistics._DESERIALIZER, "_nodes");
     }
 
+    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.clusterName);
@@ -243,6 +244,7 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;

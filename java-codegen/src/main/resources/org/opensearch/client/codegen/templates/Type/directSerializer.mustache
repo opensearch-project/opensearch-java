@@ -15,7 +15,16 @@
 {{/type.isMap}}
 {{#type.isList}}
     for ({{type.listValueType}} item{{depth}} : {{value}}) {
-        {{#type.listValueType.serializer}}item{{depth}}{{/type.listValueType.serializer}}
+        {{#type.listValueType.isMap}}
+            generator.writeStartObject();
+            if (item{{depth}} != null) {
+                {{#type.listValueType.directSerializer}}item{{depth}}{{/type.listValueType.directSerializer}}
+            }
+            generator.writeEnd();
+        {{/type.listValueType.isMap}}
+        {{^type.listValueType.isMap}}
+            {{#type.listValueType.serializer}}item{{depth}}{{/type.listValueType.serializer}}
+        {{/type.listValueType.isMap}}
     }
 {{/type.isList}}
 {{^type.isListOrMap}}

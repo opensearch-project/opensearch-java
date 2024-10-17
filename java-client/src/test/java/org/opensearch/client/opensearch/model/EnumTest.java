@@ -61,8 +61,8 @@ public class EnumTest extends ModelTestCase {
         DynamicMapping booleanAsString = fromJson("\"true\"", DynamicMapping.class);
         assertEquals(booleanAsString, DynamicMapping.True);
 
-        DynamicMapping nonBooleanEnumValue = fromJson("\"runtime\"", DynamicMapping.class);
-        assertEquals(nonBooleanEnumValue, DynamicMapping.Runtime);
+        DynamicMapping nonBooleanEnumValue = fromJson("\"strict\"", DynamicMapping.class);
+        assertEquals(nonBooleanEnumValue, DynamicMapping.Strict);
 
         DynamicMapping booleanPrimitive = fromJson("false", DynamicMapping.class);
         assertEquals(booleanPrimitive, DynamicMapping.False);
