@@ -26,7 +26,12 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
     private final String field;
     private final String queryText;
     private final String queryImage;
-    private final int k;
+    @Nullable
+    private final Integer k;
+    @Nullable
+    private final Float minScore;
+    @Nullable
+    private final Float maxDistance;
     @Nullable
     private final String modelId;
     @Nullable
@@ -41,7 +46,9 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
         }
         this.queryText = builder.queryText;
         this.queryImage = builder.queryImage;
-        this.k = ApiTypeHelper.requireNonNull(builder.k, this, "k");
+        this.k = builder.k;
+        this.minScore = builder.minScore;
+        this.maxDistance = builder.maxDistance;
         this.modelId = builder.modelId;
         this.filter = builder.filter;
     }
@@ -90,17 +97,34 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
     }
 
     /**
-     * Required - The number of neighbors to return.
+     * Optional - The number of neighbors to return.
      *
      * @return The number of neighbors to return.
      */
-    public final int k() {
+    @Nullable
+    public final Integer k() {
         return this.k;
     }
 
     /**
-     * Builder for {@link NeuralQuery}.
+     * Optional - The minimum score threshold for the search results
+     *
+     * @return The minimum score threshold for the search results
      */
+    @Nullable
+    public final Float minScore() {
+        return this.minScore;
+    }
+
+    /**
+     * Optional - The maximum distance threshold for the search results
+     *
+     * @return The maximum distance threshold for the search results
+     */
+    @Nullable
+    public final Float maxDistance() {
+        return this.maxDistance;
+    }
 
     /**
      * Optional - The model_id field if the default model for the index or field is set.
@@ -141,7 +165,17 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
             generator.write("model_id", this.modelId);
         }
 
-        generator.write("k", this.k);
+        if (this.k != null) {
+            generator.write("k", this.k);
+        }
+
+        if (this.minScore != null) {
+            generator.write("min_score", this.minScore);
+        }
+
+        if (this.maxDistance != null) {
+            generator.write("max_distance", this.maxDistance);
+        }
 
         if (this.filter != null) {
             generator.writeKey("filter");
@@ -152,7 +186,14 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return toBuilder(new Builder()).field(field).queryText(queryText).queryImage(queryImage).k(k).modelId(modelId).filter(filter);
+        return toBuilder(new Builder()).field(field)
+            .queryText(queryText)
+            .queryImage(queryImage)
+            .k(k)
+            .minScore(minScore)
+            .maxDistance(maxDistance)
+            .modelId(modelId)
+            .filter(filter);
     }
 
     /**
@@ -162,7 +203,12 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
         private String field;
         private String queryText;
         private String queryImage;
+        @Nullable
         private Integer k;
+        @Nullable
+        private Float minScore;
+        @Nullable
+        private Float maxDistance;
         @Nullable
         private String modelId;
         @Nullable
@@ -216,13 +262,35 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
         }
 
         /**
-         * Required - The number of neighbors to return.
+         * Optional - The number of neighbors to return.
          *
          * @param k The number of neighbors to return.
          * @return This builder.
          */
         public NeuralQuery.Builder k(@Nullable Integer k) {
             this.k = k;
+            return this;
+        }
+
+        /**
+         * Optional - The minimum score threshold for the search results
+         *
+         * @param minScore The minimum score threshold for the search results
+         * @return This builder.
+         */
+        public NeuralQuery.Builder minScore(@Nullable Float minScore) {
+            this.minScore = minScore;
+            return this;
+        }
+
+        /**
+         * Optional - The maximum distance threshold for the search results
+         *
+         * @param maxDistance The maximum distance threshold for the search results
+         * @return This builder.
+         */
+        public NeuralQuery.Builder maxDistance(@Nullable Float maxDistance) {
+            this.maxDistance = maxDistance;
             return this;
         }
 
@@ -267,6 +335,8 @@ public class NeuralQuery extends QueryBase implements QueryVariant {
         op.add(NeuralQuery.Builder::queryImage, JsonpDeserializer.stringDeserializer(), "query_image");
         op.add(NeuralQuery.Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
         op.add(NeuralQuery.Builder::k, JsonpDeserializer.integerDeserializer(), "k");
+        op.add(NeuralQuery.Builder::minScore, JsonpDeserializer.floatDeserializer(), "min_score");
+        op.add(NeuralQuery.Builder::maxDistance, JsonpDeserializer.floatDeserializer(), "max_distance");
         op.add(NeuralQuery.Builder::filter, Query._DESERIALIZER, "filter");
 
         op.setKey(NeuralQuery.Builder::field, JsonpDeserializer.stringDeserializer());
