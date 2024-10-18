@@ -23,7 +23,12 @@ import org.opensearch.client.util.ObjectBuilder;
 public class KnnQuery extends QueryBase implements QueryVariant {
     private final String field;
     private final float[] vector;
-    private final int k;
+    @Nullable
+    private final Integer k;
+    @Nullable
+    private final Float minScore;
+    @Nullable
+    private final Float maxDistance;
     @Nullable
     private final Query filter;
 
@@ -32,7 +37,9 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
         this.vector = ApiTypeHelper.requireNonNull(builder.vector, this, "vector");
-        this.k = ApiTypeHelper.requireNonNull(builder.k, this, "k");
+        this.k = builder.k;
+        this.minScore = builder.minScore;
+        this.maxDistance = builder.maxDistance;
         this.filter = builder.filter;
     }
 
@@ -66,11 +73,32 @@ public class KnnQuery extends QueryBase implements QueryVariant {
     }
 
     /**
-     * Required - The number of neighbors the search of each graph will return.
+     * Optional - The number of neighbors the search of each graph will return.
      * @return The number of neighbors to return.
      */
-    public final int k() {
+    @Nullable
+    public final Integer k() {
         return this.k;
+    }
+
+    /**
+     * Optional - The minimum score threshold for the search results
+     *
+     * @return The minimum score threshold for the search results
+     */
+    @Nullable
+    public final Float minScore() {
+        return this.minScore;
+    }
+
+    /**
+     * Optional - The maximum distance threshold for the search results
+     *
+     * @return The maximum distance threshold for the search results
+     */
+    @Nullable
+    public final Float maxDistance() {
+        return this.maxDistance;
     }
 
     /**
@@ -88,8 +116,6 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 
         super.serializeInternal(generator, mapper);
 
-        // TODO: Implement the rest of the serialization.
-
         generator.writeKey("vector");
         generator.writeStartArray();
         for (float value : this.vector) {
@@ -97,7 +123,17 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         }
         generator.writeEnd();
 
-        generator.write("k", this.k);
+        if (this.k != null) {
+            generator.write("k", this.k);
+        }
+
+        if (this.minScore != null) {
+            generator.write("min_score", this.minScore);
+        }
+
+        if (this.maxDistance != null) {
+            generator.write("max_distance", this.maxDistance);
+        }
 
         if (this.filter != null) {
             generator.writeKey("filter");
@@ -108,7 +144,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return toBuilder(new Builder()).field(field).vector(vector).k(k).filter(filter);
+        return toBuilder(new Builder()).field(field).vector(vector).k(k).minScore(minScore).maxDistance(maxDistance).filter(filter);
     }
 
     /**
@@ -121,6 +157,10 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         private float[] vector;
         @Nullable
         private Integer k;
+        @Nullable
+        private Float minScore;
+        @Nullable
+        private Float maxDistance;
         @Nullable
         private Query filter;
 
@@ -146,13 +186,35 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         }
 
         /**
-         * Required - The number of neighbors the search of each graph will return.
+         * Optional - The number of neighbors to return.
          *
          * @param k The number of neighbors to return.
          * @return This builder.
          */
         public Builder k(@Nullable Integer k) {
             this.k = k;
+            return this;
+        }
+
+        /**
+         * Optional - The minimum score threshold for the search results
+         *
+         * @param minScore The minimum score threshold for the search results
+         * @return This builder.
+         */
+        public Builder minScore(@Nullable Float minScore) {
+            this.minScore = minScore;
+            return this;
+        }
+
+        /**
+         * Optional - The maximum distance threshold for the search results
+         *
+         * @param maxDistance The maximum distance threshold for the search results
+         * @return This builder.
+         */
+        public Builder maxDistance(@Nullable Float maxDistance) {
+            this.maxDistance = maxDistance;
             return this;
         }
 
@@ -201,6 +263,8 @@ public class KnnQuery extends QueryBase implements QueryVariant {
             b.vector(vector);
         }, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.floatDeserializer()), "vector");
         op.add(Builder::k, JsonpDeserializer.integerDeserializer(), "k");
+        op.add(Builder::minScore, JsonpDeserializer.floatDeserializer(), "min_score");
+        op.add(Builder::maxDistance, JsonpDeserializer.floatDeserializer(), "max_distance");
         op.add(Builder::filter, Query._DESERIALIZER, "filter");
 
         op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
