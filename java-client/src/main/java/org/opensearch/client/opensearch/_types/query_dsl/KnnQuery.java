@@ -76,6 +76,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
      * Optional - The number of neighbors the search of each graph will return.
      * @return The number of neighbors to return.
      */
+    @Nullable
     public final Integer k() {
         return this.k;
     }
@@ -84,6 +85,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
      * Optional - The minimum score allowed for the returned search results.
      * @return The minimum score allowed for the returned search results.
      */
+    @Nullable
     private final Float minScore() {
         return this.minScore;
     }
@@ -92,6 +94,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
      * Optional - The maximum distance allowed between the vector and each of the returned search results.
      * @return The maximum distance allowed between the vector and each ofthe returned search results.
      */
+    @Nullable
     private final Float maxDistance() {
         return this.maxDistance;
     }
@@ -110,8 +113,6 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         generator.writeStartObject(this.field);
 
         super.serializeInternal(generator, mapper);
-
-        // TODO: Implement the rest of the serialization.
 
         generator.writeKey("vector");
         generator.writeStartArray();
@@ -183,7 +184,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         }
 
         /**
-         * Required - The number of neighbors the search of each graph will return.
+         * Optional - The number of neighbors to return.
          *
          * @param k The number of neighbors to return.
          * @return This builder.
