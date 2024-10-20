@@ -221,7 +221,7 @@ public class VariantsTest extends ModelTestCase {
         assertEquals("passage_embedding", searchRequest.query().neural().field());
         assertEquals("Hi world", searchRequest.query().neural().queryText());
         assertEquals("bQ1J8ooBpBj3wT4HVUsb", searchRequest.query().neural().modelId());
-        assertEquals(100, searchRequest.query().neural().k());
+        assertEquals((Integer) 100, searchRequest.query().neural().k());
     }
 
     @Test
@@ -251,7 +251,7 @@ public class VariantsTest extends ModelTestCase {
             searchRequest.query().neural().queryImage()
         );
         assertEquals("bQ1J8ooBpBj3wT4HVUsb", searchRequest.query().neural().modelId());
-        assertEquals(100, searchRequest.query().neural().k());
+        assertEquals((Integer) 100, searchRequest.query().neural().k());
     }
 
     @Test
@@ -279,10 +279,10 @@ public class VariantsTest extends ModelTestCase {
         assertEquals("passage_embedding", searchRequest.query().hybrid().queries().get(1).neural().field());
         assertEquals("Hi world", searchRequest.query().hybrid().queries().get(1).neural().queryText());
         assertEquals("bQ1J8ooBpBj3wT4HVUsb", searchRequest.query().hybrid().queries().get(1).neural().modelId());
-        assertEquals(100, searchRequest.query().hybrid().queries().get(1).neural().k());
+        assertEquals((Integer) 100, searchRequest.query().hybrid().queries().get(1).neural().k());
         assertEquals("passage_embedding", searchRequest.query().hybrid().queries().get(2).knn().field());
         assertEquals(2, searchRequest.query().hybrid().queries().get(2).knn().vector().length);
-        assertEquals(Integer.valueOf(2), searchRequest.query().hybrid().queries().get(2).knn().k());
+        assertEquals((Integer) 2, searchRequest.query().hybrid().queries().get(2).knn().k());
     }
 
     @Test
@@ -301,9 +301,9 @@ public class VariantsTest extends ModelTestCase {
         assertEquals("passage_embedding", searchRequest.query().hybrid().queries().get(1).neural().field());
         assertEquals("Hi world", searchRequest.query().hybrid().queries().get(1).neural().queryText());
         assertEquals("bQ1J8ooBpBj3wT4HVUsb", searchRequest.query().hybrid().queries().get(1).neural().modelId());
-        assertEquals(100, searchRequest.query().hybrid().queries().get(1).neural().k());
+        assertEquals((Integer) 100, searchRequest.query().hybrid().queries().get(1).neural().k());
         assertEquals("passage_embedding", searchRequest.query().hybrid().queries().get(2).knn().field());
         assertEquals(2, searchRequest.query().hybrid().queries().get(2).knn().vector().length);
-        assertEquals(Integer.valueOf(2), searchRequest.query().hybrid().queries().get(2).knn().k());
+        assertEquals((Integer) 2, searchRequest.query().hybrid().queries().get(2).knn().k());
     }
 }
