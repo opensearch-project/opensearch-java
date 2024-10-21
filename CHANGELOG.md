@@ -47,6 +47,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
+- Fixed deserializing `GeoBoundsAggregate` when `bounds` is not returned by OpenSearch ([#]())
 
 ### Security
 
