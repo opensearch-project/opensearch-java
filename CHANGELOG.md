@@ -47,7 +47,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
-- Fixed deserializing `GeoBoundsAggregate` when `bounds` is not returned by OpenSearch ([#]())
+- Fixed deserializing `GeoBoundsAggregate` when `bounds` is not returned by OpenSearch ([#1238](https://github.com/opensearch-project/opensearch-java/pull/1238))
 
 ### Security
 
