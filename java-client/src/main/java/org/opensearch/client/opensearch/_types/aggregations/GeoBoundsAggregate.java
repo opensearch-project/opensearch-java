@@ -34,19 +34,20 @@ package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.GeoBounds;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 
 // typedef: _types.aggregations.GeoBoundsAggregate
 
 @JsonpDeserializable
 public class GeoBoundsAggregate extends AggregateBase implements AggregateVariant {
+    @Nullable
     private final GeoBounds bounds;
 
     // ---------------------------------------------------------------------------------------------
@@ -54,7 +55,7 @@ public class GeoBoundsAggregate extends AggregateBase implements AggregateVarian
     private GeoBoundsAggregate(Builder builder) {
         super(builder);
 
-        this.bounds = ApiTypeHelper.requireNonNull(builder.bounds, this, "bounds");
+        this.bounds = builder.bounds;
 
     }
 
@@ -71,18 +72,20 @@ public class GeoBoundsAggregate extends AggregateBase implements AggregateVarian
     }
 
     /**
-     * Required - API name: {@code bounds}
+     * API name: {@code bounds}
      */
+    @Nullable
     public final GeoBounds bounds() {
         return this.bounds;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
-        generator.writeKey("bounds");
-        this.bounds.serialize(generator, mapper);
 
+        if (this.bounds != null) {
+            generator.writeKey("bounds");
+            this.bounds.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -92,18 +95,19 @@ public class GeoBoundsAggregate extends AggregateBase implements AggregateVarian
      */
 
     public static class Builder extends AggregateBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoBoundsAggregate> {
+        @Nullable
         private GeoBounds bounds;
 
         /**
-         * Required - API name: {@code bounds}
+         * API name: {@code bounds}
          */
-        public final Builder bounds(GeoBounds value) {
+        public final Builder bounds(@Nullable GeoBounds value) {
             this.bounds = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code bounds}
+         * API name: {@code bounds}
          */
         public final Builder bounds(Function<GeoBounds.Builder, ObjectBuilder<GeoBounds>> fn) {
             return this.bounds(fn.apply(new GeoBounds.Builder()).build());
@@ -140,7 +144,5 @@ public class GeoBoundsAggregate extends AggregateBase implements AggregateVarian
     protected static void setupGeoBoundsAggregateDeserializer(ObjectDeserializer<GeoBoundsAggregate.Builder> op) {
         setupAggregateBaseDeserializer(op);
         op.add(Builder::bounds, GeoBounds._DESERIALIZER, "bounds");
-
     }
-
 }
