@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import org.junit.Test;
+import org.opensearch.Version;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.mapping.Property;
@@ -89,6 +90,14 @@ public abstract class AbstractSearchTemplateRequestIT extends OpenSearchJavaClie
 
     @Test
     public void testMultiSearchTemplate() throws Exception {
+        Integer expectedSuccessStatus = null;
+        Integer expectedFailureStatus = null;
+
+        if (getServerVersion().onOrAfter(Version.fromString("2.18.0"))) {
+            expectedSuccessStatus = 200;
+            expectedFailureStatus = 404;
+        }
+
         var index = "test-msearch-template";
         createDocuments(index);
 
@@ -120,11 +129,11 @@ public abstract class AbstractSearchTemplateRequestIT extends OpenSearchJavaClie
         assertEquals(2, searchResponse.responses().size());
         var response = searchResponse.responses().get(0);
         assertTrue(response.isResult());
-        assertNull(response.result().status());
+        assertEquals(expectedSuccessStatus, response.result().status());
         assertEquals(4, response.result().hits().hits().size());
         var failureResponse = searchResponse.responses().get(1);
         assertTrue(failureResponse.isFailure());
-        assertNull(failureResponse.failure().status());
+        assertEquals(expectedFailureStatus, failureResponse.failure().status());
     }
 
     private SearchTemplateResponse<SimpleDoc> sendTemplateRequest(String index, String title, boolean suggs, boolean aggs)
