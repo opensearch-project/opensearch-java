@@ -39,6 +39,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Added
 - Added `minScore` and `maxDistance` to `KnnQuery` ([#1166](https://github.com/opensearch-project/opensearch-java/pull/1166))
+- Added `minScore` and `maxDistance` to `NeuralQuery` ([#1235](https://github.com/opensearch-project/opensearch-java/pull/1235))
 
 ### Dependencies
 
