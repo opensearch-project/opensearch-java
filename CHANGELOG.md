@@ -3,11 +3,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
-- Added `minScore` and `maxDistance` to `KnnQuery` ([#1166](https://github.com/opensearch-project/opensearch-java/pull/1166))
-- Added `minScore` and `maxDistance` to `NeuralQuery` ([#1235](https://github.com/opensearch-project/opensearch-java/pull/1235))
 
 ### Dependencies
-- Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.2.2 to 5.3.0
 
 ### Changed
 
@@ -16,9 +13,19 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
-- Fixed deserializing `GeoBoundsAggregate` when `bounds` is not returned by OpenSearch ([#1238](https://github.com/opensearch-project/opensearch-java/pull/1238))
 
 ### Security
+
+## [2.16.0] - 10/22/2024
+### Added
+- Added `minScore` and `maxDistance` to `KnnQuery` ([#1166](https://github.com/opensearch-project/opensearch-java/pull/1166))
+- Added `minScore` and `maxDistance` to `NeuralQuery` ([#1235](https://github.com/opensearch-project/opensearch-java/pull/1235))
+
+### Dependencies
+- Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.2.2 to 5.3.0
+
+### Fixed
+- Fixed deserializing `GeoBoundsAggregate` when `bounds` is not returned by OpenSearch ([#1238](https://github.com/opensearch-project/opensearch-java/pull/1238))
 
 ## [2.15.0] - 10/17/2024
 ### Added
@@ -503,7 +510,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
  
 ### Security
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.15.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.16.0...2.x
+[2.16.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.15.0...v2.16.0
 [2.15.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.14.0...v2.15.0
 [2.14.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.13.0...v2.14.0
 [2.13.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.12.0...v2.13.0
