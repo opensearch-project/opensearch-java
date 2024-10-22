@@ -93,7 +93,7 @@ public abstract class AbstractSearchTemplateRequestIT extends OpenSearchJavaClie
         Integer expectedSuccessStatus = null;
         Integer expectedFailureStatus = null;
 
-        if (getServerVersion().onOrAfter(Version.V_2_18_0)) {
+        if (getServerVersion().onOrAfter(Version.fromString("2.18.0"))) {
             expectedSuccessStatus = 200;
             expectedFailureStatus = 404;
         }
