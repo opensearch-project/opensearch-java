@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: OpenSearch API Specification
-  version: 1.0.0
+  version: 0.1.0
   x-api-version: 2.16.0
 paths:
   /:
@@ -14421,7 +14421,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     bulk_stream::query.timeout:
       in: query
@@ -14508,7 +14508,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     bulk::query.timeout:
       in: query
@@ -17131,7 +17131,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     count::query.terminate_after:
       in: query
@@ -17187,7 +17187,7 @@ components:
       description: Comma-separated list of specific routing values.
       style: form
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       explode: true
     create::path.id:
       in: path
@@ -17232,7 +17232,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     create::query.timeout:
       in: query
@@ -17543,7 +17543,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     delete_by_query::query.scroll:
       in: query
@@ -17742,7 +17742,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     delete::query.timeout:
       in: query
@@ -17845,7 +17845,7 @@ components:
       name: routing
       description: Target the specified primary shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     exists_source::query.version:
       in: query
@@ -17931,7 +17931,7 @@ components:
       name: routing
       description: Target the specified primary shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     exists::query.stored_fields:
       in: query
@@ -18059,7 +18059,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     explain::query.stored_fields:
       in: query
@@ -18323,7 +18323,7 @@ components:
       name: routing
       description: Target the specified primary shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     get_source::query.version:
       in: query
@@ -18403,7 +18403,7 @@ components:
       name: routing
       description: Target the specified primary shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     get::query.stored_fields:
       in: query
@@ -18505,7 +18505,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     index::query.timeout:
       in: query
@@ -21568,7 +21568,7 @@ components:
       description: Comma-separated list of specific routing values.
       style: form
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       explode: true
     knn.search_models::query.scroll:
       name: scroll
@@ -21842,7 +21842,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     mget::query.stored_fields:
       in: query
@@ -22102,7 +22102,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     mtermvectors::query.term_statistics:
       in: query
@@ -23125,7 +23125,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     search_template::path.index:
       in: path
@@ -23217,7 +23217,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     search_template::query.scroll:
       in: query
@@ -23518,7 +23518,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     search::query.scroll:
       in: query
@@ -24666,7 +24666,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     termvectors::query.term_statistics:
       in: query
@@ -24999,7 +24999,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     update_by_query::query.scroll:
       in: query
@@ -25207,7 +25207,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common:Routing'
+        $ref: '#/components/schemas/_common:RoutingInQueryString'
       style: form
     update::query.timeout:
       in: query
@@ -25422,8 +25422,6 @@ components:
                 $ref: '#/components/schemas/_common:Fields'
               index_filter:
                 $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
-              runtime_mappings:
-                $ref: '#/components/schemas/_common.mapping:RuntimeFields'
             description: An index filter specified with the Query DSL
     flow_framework.create:
       content:
@@ -25652,8 +25650,6 @@ components:
                 $ref: '#/components/schemas/_common.mapping:RoutingField'
               _source:
                 $ref: '#/components/schemas/_common.mapping:SourceField'
-              runtime:
-                $ref: '#/components/schemas/_common.mapping:RuntimeFields'
             description: The mapping definition
       required: true
     indices.put_settings:
@@ -26397,8 +26393,6 @@ components:
                 $ref: '#/components/schemas/_common:Fields'
               pit:
                 $ref: '#/components/schemas/_core.search:PointInTimeReference'
-              runtime_mappings:
-                $ref: '#/components/schemas/_common.mapping:RuntimeFields'
               stats:
                 description: |-
                   Stats groups to associate with the search.
@@ -29708,7 +29702,7 @@ components:
             type: object
             properties:
               accepted:
-                description: Equals `true` if the snapshot was accepted. Present when the request had `wait_for_completion` set to `false`
+                description: Returns `true` if the snapshot was accepted. Present when the request had `wait_for_completion` set to `false`.
                 type: boolean
               snapshot:
                 $ref: '#/components/schemas/snapshot._common:SnapshotInfo'
@@ -29747,10 +29741,11 @@ components:
           schema:
             type: object
             properties:
+              accepted:
+                description: Returns `true` if the restore was accepted. Present when the request had `wait_for_completion` set to `false`.
+                type: boolean
               snapshot:
                 $ref: '#/components/schemas/snapshot.restore:SnapshotRestore'
-            required:
-              - snapshot
     snapshot.status@200:
       content:
         application/json:
@@ -30131,17 +30126,23 @@ components:
       type: object
       properties:
         skipped:
-          type: number
+          type: integer
+          format: int32
         successful:
-          type: number
+          type: integer
+          format: int32
         total:
-          type: number
+          type: integer
+          format: int32
         running:
-          type: number
+          type: integer
+          format: int32
         partial:
-          type: number
+          type: integer
+          format: int32
         failed:
-          type: number
+          type: integer
+          format: int32
         details:
           type: object
           additionalProperties:
@@ -30269,15 +30270,20 @@ components:
       type: object
       properties:
         1xx:
-          type: number
+          type: integer
+          format: int32
         2xx:
-          type: number
+          type: integer
+          format: int32
         3xx:
-          type: number
+          type: integer
+          format: int32
         4xx:
-          type: number
+          type: integer
+          format: int32
         5xx:
-          type: number
+          type: integer
+          format: int32
     _common:Duration:
       description: |-
         A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and
@@ -30433,7 +30439,8 @@ components:
     _common:Fuzziness:
       oneOf:
         - type: string
-        - type: number
+        - type: integer
+          format: int32
     _common:GeoBounds:
       description: |-
         A geo-bounding box. It can be represented in the following ways:
@@ -30480,7 +30487,8 @@ components:
     _common:GeoHashPrecision:
       description: The level of geohash precision, which can be expressed as a geohash length between 1 and 12 or as a distance measure, such as "1km" or "10m".
       oneOf:
-        - type: number
+        - type: integer
+          format: int32
         - type: string
     _common:GeoHexCell:
       description: A map hex cell (H3) reference.
@@ -30498,6 +30506,7 @@ components:
             type: array
             items:
               type: number
+              format: double
       required:
         - coordinates
         - type
@@ -30715,7 +30724,8 @@ components:
         _seq_no:
           $ref: '#/components/schemas/_common:SequenceNumber'
         _primary_term:
-          type: number
+          type: integer
+          format: int32
         _routing:
           $ref: '#/components/schemas/_common:Routing'
         _source:
@@ -30751,14 +30761,17 @@ components:
           $ref: '#/components/schemas/_common:QueryVector'
         k:
           description: The total number of nearest neighbors to return as top hits.
-          type: number
+          type: integer
+          format: int32
         min_score:
           description: The minimum similarity score required in order for a neighbor to be considered a hit.
           type: number
+          format: float
           x-version-added: '2.14'
         max_distance:
           description: The maximum physical vector space distance required in order for a neighbor to be considered a hit.
           type: number
+          format: float
           x-version-added: '2.14'
         filter:
           description: The filters for the k-NN search query.
@@ -30770,16 +30783,19 @@ components:
         boost:
           description: The boost value applied to k-NN scores.
           type: number
+          format: float
         method_parameters:
           type: object
           x-version-added: '2.16'
           additionalProperties:
-            type: number
+            type: integer
+            format: int32
         rescore:
           type: object
           x-version-added: '2.17'
           additionalProperties:
             type: number
+            format: float
       required:
         - vector
     _common:LatLonGeoLocation:
@@ -30856,7 +30872,8 @@ components:
     _common:MinimumShouldMatch:
       description: The minimum number of terms that should match as an integer, percentage, or range.
       oneOf:
-        - type: number
+        - type: integer
+          format: int32
         - type: string
     _common:MultiTermQueryRewrite:
       type: string
@@ -30882,6 +30899,7 @@ components:
           $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
         max_children:
           type: integer
+          format: int32
         nested:
           $ref: '#/components/schemas/_common:NestedSortValue'
         path:
@@ -31051,6 +31069,7 @@ components:
       type: string
     _common:PercentageNumber:
       type: number
+      format: double
     _common:PercentageString:
       type: string
       pattern: \d+(\.\d+)?
@@ -31164,6 +31183,7 @@ components:
       type: array
       items:
         type: number
+        format: float
     _common:RankBase:
       type: object
     _common:RankContainer:
@@ -31450,6 +31470,8 @@ components:
         - bulk
         - search
     _common:Routing:
+      type: string
+    _common:RoutingInQueryString:
       oneOf:
         - type: string
         - type: array
@@ -31822,7 +31844,8 @@ components:
         id:
           $ref: '#/components/schemas/_common:Id'
         max:
-          type: number
+          type: integer
+          format: int32
       required:
         - id
         - max
@@ -32116,8 +32139,10 @@ components:
         - index-setting
     _common:WaitForActiveShards:
       oneOf:
-        - type: number
-        - $ref: '#/components/schemas/_common:WaitForActiveShardOptions'
+        - title: count
+          type: integer
+        - title: option
+          $ref: '#/components/schemas/_common:WaitForActiveShardOptions'
     _common:WaitForEvents:
       type: string
       enum:
@@ -32186,9 +32211,11 @@ components:
         x:
           description: The x coordinate.
           type: number
+          format: double
         'y':
           description: The y coordinate.
           type: number
+          format: double
       required:
         - x
         - 'y'
@@ -32206,6 +32233,7 @@ components:
           type: array
           items:
             type: number
+            format: double
         - title: text
           type: string
     _common.aggregations:AdjacencyMatrixAggregate:
@@ -34708,7 +34736,7 @@ components:
           type: boolean
     _common.aggregations:NestedAggregate:
       allOf:
-        - $ref: '#/components/schemas/_common.aggregations:SingleBucketAggregateBase'
+        - $ref: '#/components/schemas/_common.aggregations:AggregateBase'
         - type: object
           properties:
             doc_count:
@@ -38535,53 +38563,6 @@ components:
           type: boolean
       required:
         - required
-    _common.mapping:RuntimeField:
-      type: object
-      properties:
-        fetch_fields:
-          description: For type `lookup`
-          type: array
-          items:
-            $ref: '#/components/schemas/_common.mapping:RuntimeFieldFetchFields'
-        format:
-          description: A custom format for `date` type runtime fields.
-          type: string
-        input_field:
-          $ref: '#/components/schemas/_common:Field'
-        target_field:
-          $ref: '#/components/schemas/_common:Field'
-        target_index:
-          $ref: '#/components/schemas/_common:IndexName'
-        script:
-          $ref: '#/components/schemas/_common:Script'
-        type:
-          $ref: '#/components/schemas/_common.mapping:RuntimeFieldType'
-      required:
-        - type
-    _common.mapping:RuntimeFieldFetchFields:
-      type: object
-      properties:
-        field:
-          $ref: '#/components/schemas/_common:Field'
-        format:
-          type: string
-      required:
-        - field
-    _common.mapping:RuntimeFields:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/_common.mapping:RuntimeField'
-    _common.mapping:RuntimeFieldType:
-      type: string
-      enum:
-        - boolean
-        - date
-        - double
-        - geo_point
-        - ip
-        - keyword
-        - long
-        - lookup
     _common.mapping:ScaledFloatNumberProperty:
       allOf:
         - $ref: '#/components/schemas/_common.mapping:NumberPropertyBase'
@@ -38826,10 +38807,6 @@ components:
           $ref: '#/components/schemas/_common.mapping:SizeField'
         _source:
           $ref: '#/components/schemas/_common.mapping:SourceField'
-        runtime:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/_common.mapping:RuntimeField'
         enabled:
           type: boolean
         _data_stream_timestamp:
@@ -40688,7 +40665,8 @@ components:
       description: Can only be used as a clause in a span_near query.
       type: object
       additionalProperties:
-        type: number
+        type: integer
+        format: int32
       minProperties: 1
       maxProperties: 1
     _common.query_dsl:SpanMultiTermQuery:
@@ -41038,7 +41016,8 @@ components:
         routing:
           $ref: '#/components/schemas/_common:Routing'
         if_primary_term:
-          type: number
+          type: integer
+          format: int64
         if_seq_no:
           $ref: '#/components/schemas/_common:SequenceNumber'
         version:
@@ -41077,12 +41056,14 @@ components:
           type: string
         status:
           description: HTTP status code returned for the operation.
-          type: number
+          type: integer
+          format: int32
         error:
           $ref: '#/components/schemas/_common:ErrorCause'
         _primary_term:
           description: The primary term assigned to the document for the operation.
-          type: number
+          type: integer
+          format: int64
         result:
           description: |-
             Result of the operation.
@@ -41136,7 +41117,8 @@ components:
               description: When `true`, the request's actions must target an index alias.
               type: boolean
             retry_on_conflict:
-              type: number
+              type: integer
+              format: int32
     _core.bulk:WriteOperation:
       allOf:
         - $ref: '#/components/schemas/_core.bulk:OperationBase'
@@ -41169,7 +41151,15 @@ components:
           items:
             $ref: '#/components/schemas/_core.explain:ExplanationDetail'
         value:
-          type: number
+          oneOf:
+            - type: integer
+              format: int32
+            - type: integer
+              format: int64
+            - type: number
+              format: float
+            - type: number
+              format: double
       required:
         - description
         - details
@@ -41184,7 +41174,15 @@ components:
           items:
             $ref: '#/components/schemas/_core.explain:ExplanationDetail'
         value:
-          type: number
+          oneOf:
+            - type: integer
+              format: int32
+            - type: integer
+              format: int64
+            - type: number
+              format: float
+            - type: number
+              format: double
       required:
         - description
         - value
@@ -41355,13 +41353,13 @@ components:
       type: object
       properties:
         explain:
-          description: When `true`, returns detailed information about score calculations as part of each hit.
+          description: When `true`, returns detailed information about score calculation as part of each hit.
           type: boolean
         id:
           $ref: '#/components/schemas/_common:Id'
         params:
           description: |-
-            The key-value pairs used to replace any Mustache variables in the template.
+            The key-value pairs used to replace Mustache variables in the template.
             The key is the variable name.
             The value is the variable value.
           type: object
@@ -41372,8 +41370,8 @@ components:
           type: boolean
         source:
           description: |-
-            An inline search template that supports the same parameters as the search API's
-            request body. Also supports Mustache variables. When no template ID is specified, this
+            An inline search template that supports the same parameters as the Search API's
+            request body and Mustache variables. If no `id` is specified, this
             parameter is required.
           type: string
     _core.msearch:MultisearchBody:
@@ -41388,10 +41386,10 @@ components:
         query:
           $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
         explain:
-          description: If true, returns detailed information about score computation as part of a hit.
+          description: When `true`, returns detailed information about score computation as part of a hit.
           type: boolean
         ext:
-          description: Configuration of search extensions defined by OpenSearch plugins.
+          description: The configuration of search extensions defined by OpenSearch plugins.
           type: object
           additionalProperties:
             type: object
@@ -41414,13 +41412,13 @@ components:
         from:
           description: |-
             The starting document offset. By default, you cannot page through more than 10,000
-            hits using the from and size parameters. To page through more hits, use the
+            hits using the `from` and `size` parameters. To page through more than 10,000 hits, use the
             `search_after` parameter.
           type: number
         highlight:
           $ref: '#/components/schemas/_core.search:Highlight'
         indices_boost:
-          description: Boosts the `_score` of documents from specified indexes.
+          description: Boosts the `_score` of documents from the specified indexes.
           type: array
           items:
             type: object
@@ -41442,7 +41440,7 @@ components:
               items:
                 $ref: '#/components/schemas/_core.search:Rescore'
         script_fields:
-          description: Retrieve a script evaluation (based on different fields) for each hit.
+          description: Retrieves a script evaluation (based on different fields) for each hit.
           type: object
           additionalProperties:
             $ref: '#/components/schemas/_common:ScriptField'
@@ -41451,8 +41449,8 @@ components:
         size:
           description: |-
             The number of hits to return. By default, you cannot page through more
-            than 10,000 hits using the from and size parameters. To page through more
-            hits, use the search_after parameter.
+            than 10,000 hits using the `from` and `size` parameters. To page through more
+            hits, use the `search_after` parameter.
           type: number
         sort:
           $ref: '#/components/schemas/_common:Sort'
@@ -41486,18 +41484,16 @@ components:
             Default is no timeout.
           type: string
         track_scores:
-          description: When true, calculates and returns all document scores, even if the scores are not used for sorting.
+          description: When `true`, calculates and returns all document scores, even if the scores are not used for sorting.
           type: boolean
         track_total_hits:
           $ref: '#/components/schemas/_core.search:TrackHits'
         version:
-          description: When true, returns the document version as part of the hit.
+          description: When `true`, returns the document version as part of the hit.
           type: boolean
-        runtime_mappings:
-          $ref: '#/components/schemas/_common.mapping:RuntimeFields'
         seq_no_primary_term:
           description: |-
-            When true, returns the sequence number and primary term of the last modification
+            When `true`, returns the sequence number and primary term of the last modification.
             of each hit. See Optimistic concurrency control.
           type: boolean
         pit:
@@ -41564,23 +41560,23 @@ components:
         _index:
           $ref: '#/components/schemas/_common:IndexName'
         doc:
-          description: An artificial document (a document not present in the index) for which you want to retrieve term vectors.
+          description: An artificial document for which you want to retrieve term vectors.
           type: object
         fields:
           $ref: '#/components/schemas/_common:Fields'
         field_statistics:
-          description: When `true`, the response includes the document count, the sum of document frequencies, and the sum of term frequencies.
+          description: When `true`, the response includes the document count, the sum of the document frequencies, and the sum of the term frequencies.
           type: boolean
         filter:
           $ref: '#/components/schemas/_core.termvectors:Filter'
         offsets:
-          description: When `true`, the response includes term offsets.
+          description: When `true`, the response includes the term offsets.
           type: boolean
         payloads:
-          description: When `true`, the response includes term payloads.
+          description: When `true`, the response includes the term payloads.
           type: boolean
         positions:
-          description: When `true`, the response includes term positions.
+          description: When `true`, the response includes the term positions.
           type: boolean
         routing:
           $ref: '#/components/schemas/_common:Routing'
@@ -41623,7 +41619,7 @@ components:
         _index:
           $ref: '#/components/schemas/_common:IndexName'
         rating:
-          description: The document's relevance with regard to this search request.
+          description: The document's relevance with regard to the specified search request.
           type: number
       required:
         - _id
@@ -41671,26 +41667,26 @@ components:
       type: object
       properties:
         k:
-          description: Sets the maximum number of documents retrieved per query. This value will act in place of the usual size parameter in the query.
+          description: Sets the maximum number of documents retrieved per query. This value replaces the usual `size` parameter in the query.
           type: number
     _core.rank_eval:RankEvalMetricDetail:
       type: object
       properties:
         metric_score:
-          description: The metric_score in the details section shows the contribution of this query to the global quality metric score
+          description: The `metric_score`, found in the `metric_details` section, shows the contribution of this query to the global quality metric score.
           type: number
         unrated_docs:
-          description: The unrated_docs section contains an _index and _id entry for each document in the search result for this query that didn't have a ratings value. This can be used to ask the user to supply ratings for these documents
+          description: The `unrated_docs` section contains an `_index` and `_id` entry for each document that didn't have a ratings value. This can be used to ask the user to supply ratings for these documents.
           type: array
           items:
             $ref: '#/components/schemas/_core.rank_eval:UnratedDocument'
         hits:
-          description: The hits section shows a grouping of the search results with their supplied ratings
+          description: The `hits` section shows a grouping of the search results with their supplied ratings
           type: array
           items:
             $ref: '#/components/schemas/_core.rank_eval:RankEvalHitItem'
         metric_details:
-          description: The metric_details give additional information about the calculated quality metric (e.g. how many of the retrieved documents were relevant). The content varies for each metric but allows for better interpretation of the results
+          description: The `metric_details` section gives additional information about the calculated quality metric, in other words, how many of the retrieved documents were relevant. The content varies for each metric but allows for better interpretation of the results.
           type: object
           additionalProperties:
             type: object
@@ -41707,7 +41703,7 @@ components:
         - type: object
           properties:
             normalize:
-              description: If set to true, this metric will calculate the Normalized DCG (https://en.wikipedia.org/wiki/Discounted_cumulative_gain#Normalized_DCG).
+              description: When `true`, this metric calculates the Normalized DCG (https://en.wikipedia.org/wiki/Discounted_cumulative_gain#Normalized_DCG).
               type: boolean
     _core.rank_eval:RankEvalMetricExpectedReciprocalRank:
       allOf:
@@ -41729,7 +41725,7 @@ components:
         - type: object
           properties:
             ignore_unlabeled:
-              description: Controls how unlabeled documents in the search results are counted. If set to true, unlabeled documents are ignored and neither count as relevant or irrelevant. Set to false (the default), they are treated as irrelevant.
+              description: Controls how unlabeled documents in the search results are counted. When `true`, unlabeled documents are ignored and do not count as relevant or irrelevant. When `false`, unlabeled documents are treated as irrelevant.
               type: boolean
     _core.rank_eval:RankEvalMetricRatingThreshold:
       allOf:
@@ -41737,7 +41733,7 @@ components:
         - type: object
           properties:
             relevant_rating_threshold:
-              description: Sets the rating threshold above which documents are considered to be "relevant".
+              description: Sets the rating threshold above which documents are considered to be relevant.
               type: number
     _core.rank_eval:RankEvalMetricRecall:
       allOf:
@@ -41760,7 +41756,7 @@ components:
         request:
           $ref: '#/components/schemas/_core.rank_eval:RankEvalQuery'
         ratings:
-          description: List of document ratings
+          description: A list of document ratings.
           type: array
           items:
             $ref: '#/components/schemas/_core.rank_eval:DocumentRating'
@@ -41934,8 +41930,6 @@ components:
           $ref: '#/components/schemas/_common:Sort'
         _source:
           $ref: '#/components/schemas/_common:Fields'
-        runtime_mappings:
-          $ref: '#/components/schemas/_common.mapping:RuntimeFields'
       required:
         - index
     _core.scripts_painless_execute:PainlessContextSetup:
@@ -41965,29 +41959,41 @@ components:
       type: object
       properties:
         build_aggregation:
-          type: number
+          type: integer
+          format: int64
         build_aggregation_count:
-          type: number
+          type: integer
+          format: int64
         build_leaf_collector:
-          type: number
+          type: integer
+          format: int64
         build_leaf_collector_count:
-          type: number
+          type: integer
+          format: int64
         collect:
-          type: number
+          type: integer
+          format: int64
         collect_count:
-          type: number
+          type: integer
+          format: int64
         initialize:
-          type: number
+          type: integer
+          format: int64
         initialize_count:
-          type: number
+          type: integer
+          format: int64
         post_collection:
-          type: number
+          type: integer
+          format: int64
         post_collection_count:
-          type: number
+          type: integer
+          format: int64
         reduce:
-          type: number
+          type: integer
+          format: int64
         reduce_count:
-          type: number
+          type: integer
+          format: int64
       required:
         - build_aggregation
         - build_aggregation_count
@@ -42025,15 +42031,19 @@ components:
       type: object
       properties:
         segments_with_multi_valued_ords:
-          type: number
+          type: integer
+          format: int32
         collection_strategy:
           type: string
         segments_with_single_valued_ords:
-          type: number
+          type: integer
+          format: int32
         total_buckets:
-          type: number
+          type: integer
+          format: int32
         built_buckets:
-          type: number
+          type: integer
+          format: int32
         result_strategy:
           type: string
         has_filter:
@@ -42043,58 +42053,76 @@ components:
         delegate_debug:
           $ref: '#/components/schemas/_core.search:AggregationProfileDebug'
         chars_fetched:
-          type: number
+          type: integer
+          format: int32
         extract_count:
-          type: number
+          type: integer
+          format: int32
         extract_ns:
-          type: number
+          type: integer
+          format: int32
         values_fetched:
-          type: number
+          type: integer
+          format: int32
         collect_analyzed_ns:
-          type: number
+          type: integer
+          format: int32
         collect_analyzed_count:
-          type: number
+          type: integer
+          format: int32
         surviving_buckets:
-          type: number
+          type: integer
+          format: int32
         ordinals_collectors_used:
-          type: number
+          type: integer
+          format: int32
         ordinals_collectors_overhead_too_high:
-          type: number
+          type: integer
+          format: int32
         string_hashing_collectors_used:
-          type: number
+          type: integer
+          format: int32
         numeric_collectors_used:
-          type: number
+          type: integer
+          format: int32
         empty_collectors_used:
-          type: number
+          type: integer
+          format: int32
         deferred_aggregators:
           type: array
           items:
             type: string
         segments_with_doc_count_field:
-          type: number
+          type: integer
+          format: int32
         segments_with_deleted_docs:
-          type: number
+          type: integer
+          format: int32
         filters:
           type: array
           items:
             $ref: '#/components/schemas/_core.search:AggregationProfileDelegateDebugFilter'
         segments_counted:
-          type: number
+          type: integer
+          format: int32
         segments_collected:
-          type: number
+          type: integer
+          format: int32
         map_reducer:
           type: string
     _core.search:AggregationProfileDelegateDebugFilter:
       type: object
       properties:
         results_from_metadata:
-          type: number
+          type: integer
+          format: int32
         query:
           type: string
         specialized_for:
           type: string
         segments_counted_in_constant_time:
-          type: number
+          type: integer
+          format: int32
     _core.search:BoundaryScanner:
       type: string
       enum:
@@ -42160,12 +42188,14 @@ components:
           $ref: '#/components/schemas/_common:Routing'
         _score:
           type: number
+          format: float
         _source:
           type: object
         text:
           type: string
         score:
           type: number
+          format: float
       required:
         - text
     _core.search:Context:
@@ -42203,17 +42233,23 @@ components:
         load_source_count:
           type: number
         load_stored_fields:
-          type: number
+          type: integer
+          format: int32
         load_stored_fields_count:
-          type: number
+          type: integer
+          format: int32
         next_reader:
-          type: number
+          type: integer
+          format: int32
         next_reader_count:
-          type: number
+          type: integer
+          format: int32
         process_count:
-          type: number
+          type: integer
+          format: int32
         process:
-          type: number
+          type: integer
+          format: int32
     _core.search:FetchProfileDebug:
       type: object
       properties:
@@ -42222,7 +42258,8 @@ components:
           items:
             type: string
         fast_path:
-          type: number
+          type: integer
+          format: int32
     _core.search:FieldCollapse:
       type: object
       properties:
@@ -42263,7 +42300,8 @@ components:
           type: string
         boundary_max_scan:
           description: How far to scan for boundary characters.
-          type: number
+          type: integer
+          format: int32
         boundary_scanner:
           $ref: '#/components/schemas/_core.search:BoundaryScanner'
         boundary_scanner_locale:
@@ -42278,22 +42316,26 @@ components:
           $ref: '#/components/schemas/_core.search:HighlighterFragmenter'
         fragment_size:
           description: The size of the highlighted fragment in characters.
-          type: number
+          type: integer
+          format: int32
         highlight_filter:
           type: boolean
         highlight_query:
           $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
         max_fragment_length:
-          type: number
+          type: integer
+          format: int32
         max_analyzed_offset:
           description: |-
             If set to a non-negative value, highlighting stops at this defined maximum limit.
             The rest of the text is not processed, thus not highlighted and no error is returned
             The `max_analyzed_offset` query setting does not override the `index.highlight.max_analyzed_offset` setting, which prevails when it's set to lower value than the query setting.
-          type: number
+          type: integer
+          format: int32
         no_match_size:
           description: The amount of text you want to return from the beginning of the field if there are no matching fragments to highlight.
-          type: number
+          type: integer
+          format: int32
         number_of_fragments:
           description: |-
             The maximum number of fragments to return.
@@ -42301,7 +42343,8 @@ components:
             Instead, the entire field contents are highlighted and returned.
             This can be handy when you need to highlight short texts such as a title or address, but fragmentation is not required.
             If `number_of_fragments` is `0`, `fragment_size` is ignored.
-          type: number
+          type: integer
+          format: int32
         options:
           type: object
           additionalProperties:
@@ -42314,7 +42357,8 @@ components:
             Prevents the `fvh` highlighter from analyzing too many phrases and consuming too much memory.
             When using `matched_fields`, `phrase_limit` phrases per matched field are considered. Raising the limit increases query time and consumes more memory.
             Only supported by the `fvh` highlighter.
-          type: number
+          type: integer
+          format: int32
         post_tags:
           description: |-
             Use in conjunction with `pre_tags` to define the HTML tags to use for the highlighted text.
@@ -42366,7 +42410,8 @@ components:
         - type: object
           properties:
             fragment_offset:
-              type: number
+              type: integer
+              format: int32
             matched_fields:
               $ref: '#/components/schemas/_common:Fields'
             analyzer:
@@ -42428,7 +42473,8 @@ components:
         _seq_no:
           $ref: '#/components/schemas/_common:SequenceNumber'
         _primary_term:
-          type: number
+          type: integer
+          format: int64
         _version:
           $ref: '#/components/schemas/_common:VersionNumber'
         sort:
@@ -42443,7 +42489,8 @@ components:
           description: Total hit count information, present only if `track_total_hits` wasn't `false` in the search request.
           oneOf:
             - $ref: '#/components/schemas/_core.search:TotalHits'
-            - type: number
+            - type: integer
+              format: int64
         hits:
           type: array
           items:
@@ -42463,9 +42510,11 @@ components:
         size:
           description: The maximum number of hits to return per `inner_hits`.
           type: integer
+          format: int32
         from:
           description: Inner hit starting document offset.
           type: integer
+          format: int32
         collapse:
           $ref: '#/components/schemas/_core.search:FieldCollapse'
         docvalue_fields:
@@ -42509,7 +42558,8 @@ components:
         field:
           $ref: '#/components/schemas/_common:Field'
         offset:
-          type: number
+          type: integer
+          format: int32
         _nested:
           $ref: '#/components/schemas/_core.search:NestedIdentity'
       required:
@@ -42535,6 +42585,7 @@ components:
           type: string
         score:
           type: number
+          format: float
         highlighted:
           type: string
         collate_match:
@@ -42564,41 +42615,59 @@ components:
       type: object
       properties:
         advance:
-          type: number
+          type: integer
+          format: int64
         advance_count:
-          type: number
+          type: integer
+          format: int64
         build_scorer:
-          type: number
+          type: integer
+          format: int64
         build_scorer_count:
-          type: number
+          type: integer
+          format: int64
         create_weight:
-          type: number
+          type: integer
+          format: int64
         create_weight_count:
-          type: number
+          type: integer
+          format: int64
         match:
-          type: number
+          type: integer
+          format: int64
         match_count:
-          type: number
+          type: integer
+          format: int64
         shallow_advance:
-          type: number
+          type: integer
+          format: int64
         shallow_advance_count:
-          type: number
+          type: integer
+          format: int64
         next_doc:
-          type: number
+          type: integer
+          format: int64
         next_doc_count:
-          type: number
+          type: integer
+          format: int64
         score:
-          type: number
+          type: integer
+          format: int64
         score_count:
-          type: number
+          type: integer
+          format: int64
         compute_max_score:
-          type: number
+          type: integer
+          format: int64
         compute_max_score_count:
-          type: number
+          type: integer
+          format: int64
         set_min_competitive_score:
-          type: number
+          type: integer
+          format: int64
         set_min_competitive_score_count:
-          type: number
+          type: integer
+          format: int64
       required:
         - advance
         - advance_count
@@ -42644,7 +42713,8 @@ components:
         query:
           $ref: '#/components/schemas/_core.search:RescoreQuery'
         window_size:
-          type: number
+          type: integer
+          format: int32
       required:
         - query
     _core.search:RescoreQuery:
@@ -42655,9 +42725,11 @@ components:
         query_weight:
           description: Relative importance of the original query versus the rescore query.
           type: number
+          format: float
         rescore_query_weight:
           description: Relative importance of the rescore query versus the original query.
           type: number
+          format: float
         score_mode:
           $ref: '#/components/schemas/_core.search:ScoreMode'
       required:
@@ -42666,7 +42738,8 @@ components:
       type: object
       properties:
         took:
-          type: number
+          type: integer
+          format: int64
         timed_out:
           type: boolean
         _shards:
@@ -42688,8 +42761,10 @@ components:
             type: object
         max_score:
           type: number
+          format: float
         num_reduce_phases:
-          type: number
+          type: integer
+          format: int32
         profile:
           $ref: '#/components/schemas/_core.search:Profile'
         pit_id:
@@ -42729,7 +42804,8 @@ components:
           items:
             $ref: '#/components/schemas/_core.search:QueryProfile'
         rewrite_time:
-          type: number
+          type: integer
+          format: int64
       required:
         - collector
         - query
@@ -42787,9 +42863,11 @@ components:
       type: object
       properties:
         length:
-          type: number
+          type: integer
+          format: int32
         offset:
-          type: number
+          type: integer
+          format: int32
         text:
           type: string
       required:
@@ -42822,8 +42900,10 @@ components:
           type: string
         score:
           type: number
+          format: float
         freq:
           type: number
+          format: double
         highlighted:
           type: string
         collate_match:
@@ -42838,7 +42918,8 @@ components:
         relation:
           $ref: '#/components/schemas/_core.search:TotalHitsRelation'
         value:
-          type: number
+          type: integer
+          format: int64
       required:
         - relation
         - value
@@ -42855,7 +42936,8 @@ components:
         Defaults to 10,000 hits.
       oneOf:
         - type: boolean
-        - type: number
+        - type: integer
+          format: int32
     _core.termvectors:FieldStatistics:
       type: object
       properties:
@@ -43097,7 +43179,8 @@ components:
             When possible, let OpenSearch perform early termination automatically.
             Avoid specifying this parameter for requests that target data streams with backing indices across multiple data tiers.
             If set to `0` (default), the query does not terminate early.
-          type: number
+          type: integer
+          format: int32
         timeout:
           description: |-
             Specifies the period of time to wait for a response from each shard.
@@ -43117,8 +43200,6 @@ components:
           $ref: '#/components/schemas/_common:Fields'
         pit:
           $ref: '#/components/schemas/_core.search:PointInTimeReference'
-        runtime_mappings:
-          $ref: '#/components/schemas/_common.mapping:RuntimeFields'
         stats:
           description: |-
             Stats groups to associate with the search.
@@ -46449,11 +46530,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/cluster.stats:FieldTypes'
-        runtime_field_types:
-          description: Contains statistics about runtime field data types used in selected nodes.
-          type: array
-          items:
-            $ref: '#/components/schemas/cluster.stats:RuntimeFieldTypes'
         total_field_count:
           description: Total number of fields in all non-system indices.
           type: number
@@ -46579,67 +46655,6 @@ components:
         - total_in_bytes
         - used_in_bytes
         - used_percent
-    cluster.stats:RuntimeFieldTypes:
-      type: object
-      properties:
-        chars_max:
-          description: Maximum number of characters for a single runtime field script.
-          type: number
-        chars_total:
-          description: Total number of characters for the scripts that define the current runtime field data type.
-          type: number
-        count:
-          description: Number of runtime fields mapped to the field data type in selected nodes.
-          type: number
-        doc_max:
-          description: Maximum number of accesses to doc_values for a single runtime field script
-          type: number
-        doc_total:
-          description: Total number of accesses to doc_values for the scripts that define the current runtime field data type.
-          type: number
-        index_count:
-          description: Number of indices containing a mapping of the runtime field data type in selected nodes.
-          type: number
-        lang:
-          description: Script languages used for the runtime fields scripts.
-          type: array
-          items:
-            type: string
-        lines_max:
-          description: Maximum number of lines for a single runtime field script.
-          type: number
-        lines_total:
-          description: Total number of lines for the scripts that define the current runtime field data type.
-          type: number
-        name:
-          $ref: '#/components/schemas/_common:Name'
-        scriptless_count:
-          description: Number of runtime fields that don't declare a script.
-          type: number
-        shadowed_count:
-          description: Number of runtime fields that shadow an indexed field.
-          type: number
-        source_max:
-          description: Maximum number of accesses to _source for a single runtime field script.
-          type: number
-        source_total:
-          description: Total number of accesses to _source for the scripts that define the current runtime field data type.
-          type: number
-      required:
-        - chars_max
-        - chars_total
-        - count
-        - doc_max
-        - doc_total
-        - index_count
-        - lang
-        - lines_max
-        - lines_total
-        - name
-        - scriptless_count
-        - shadowed_count
-        - source_max
-        - source_total
     cluster.stats:StatsResponseBase:
       allOf:
         - $ref: '#/components/schemas/nodes._common:NodesResponseBase'
@@ -48608,6 +48623,18 @@ components:
           $ref: '#/components/schemas/_common:Uuid'
         index:
           $ref: '#/components/schemas/_common:IndexName'
+        isSearchableSnapshot:
+          type: boolean
+        remoteStoreIndexShallowCopy:
+          type: boolean
+        sourceRemoteStoreRepository:
+          type:
+            - 'null'
+            - string
+        sourceRemoteTranslogRepository:
+          type:
+            - 'null'
+            - string
     indices.recovery:RecoveryStartStatus:
       type: object
       properties:

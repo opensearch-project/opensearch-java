@@ -237,6 +237,7 @@ public class GetTasksResponse implements PlainJsonSerializable {
         op.add(Builder::task, TaskInfo._DESERIALIZER, "task");
     }
 
+    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Boolean.hashCode(this.completed);
@@ -246,6 +247,7 @@ public class GetTasksResponse implements PlainJsonSerializable {
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;

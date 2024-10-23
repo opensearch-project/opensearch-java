@@ -110,12 +110,14 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
         op.add(AbstractBuilder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
     }
 
+    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Boolean.hashCode(this.acknowledged);
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;

@@ -167,12 +167,14 @@ public class TaskGroup extends TaskInfo {
         op.add(Builder::children, JsonpDeserializer.arrayDeserializer(TaskGroup._DESERIALIZER), "children");
     }
 
+    @Override
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + Objects.hashCode(this.children);
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (!super.equals(o)) {
             return false;
