@@ -46,6 +46,7 @@ import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch.core.explain.Explanation;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -98,7 +99,7 @@ public class Hit<TDocument> implements PlainJsonSerializable {
     @Nullable
     private final Long version;
 
-    private final List<String> sort;
+    private final List<FieldValue> sort;
 
     @Nullable
     private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -266,7 +267,7 @@ public class Hit<TDocument> implements PlainJsonSerializable {
     /**
      * API name: {@code sort}
      */
-    public final List<String> sort() {
+    public final List<FieldValue> sort() {
         return this.sort;
     }
 
@@ -404,8 +405,8 @@ public class Hit<TDocument> implements PlainJsonSerializable {
         if (ApiTypeHelper.isDefined(this.sort)) {
             generator.writeKey("sort");
             generator.writeStartArray();
-            for (String item0 : this.sort) {
-                generator.write(item0);
+            for (FieldValue item0 : this.sort) {
+                item0.serialize(generator, mapper);
 
             }
             generator.writeEnd();
@@ -474,7 +475,7 @@ public class Hit<TDocument> implements PlainJsonSerializable {
         private Long version;
 
         @Nullable
-        private List<String> sort;
+        private List<FieldValue> sort;
 
         @Nullable
         private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -703,7 +704,7 @@ public class Hit<TDocument> implements PlainJsonSerializable {
          * <p>
          * Adds all elements of <code>list</code> to <code>sort</code>.
          */
-        public final Builder<TDocument> sort(List<String> list) {
+        public final Builder<TDocument> sort(List<FieldValue> list) {
             this.sort = _listAddAll(this.sort, list);
             return this;
         }
@@ -713,7 +714,7 @@ public class Hit<TDocument> implements PlainJsonSerializable {
          * <p>
          * Adds one or more values to <code>sort</code>.
          */
-        public final Builder<TDocument> sort(String value, String... values) {
+        public final Builder<TDocument> sort(FieldValue value, FieldValue... values) {
             this.sort = _listAdd(this.sort, value, values);
             return this;
         }
@@ -778,7 +779,7 @@ public class Hit<TDocument> implements PlainJsonSerializable {
         op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
         op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
         op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
-        op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringOrNullDeserializer()), "sort");
+        op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "sort");
 
     }
 
