@@ -59,6 +59,25 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         super(transport, transportOptions);
     }
 
+    // ----- Endpoint: indices.create
+
+    /**
+     * Creates an index with optional settings and mappings.
+     */
+    public CompletableFuture<CreateIndexResponse> create(CreateIndexRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, CreateIndexRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates an index with optional settings and mappings.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreateIndexRequest}
+     */
+    public final CompletableFuture<CreateIndexResponse> create(Function<CreateIndexRequest.Builder, ObjectBuilder<CreateIndexRequest>> fn)
+        throws IOException, OpenSearchException {
+        return create(fn.apply(new CreateIndexRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.exists
 
     /**

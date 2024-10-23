@@ -43,7 +43,7 @@ public class CodeGenerator {
     private static final OperationGroupMatcher OPERATION_MATCHER = or(
         and(namespace(""), named("info")),
         namespace("dangling_indices"),
-        and(namespace("indices"), named("exists", "get")),
+        and(namespace("indices"), named("create", "exists", "get")),
         and(namespace("ml"), not(named("search_models"))), // TODO: search_models is complex and ideally should re-use the search structures
         and(namespace("snapshot"), named("cleanup_repository", "clone", "verify_repository")),
         and(namespace("tasks"))
