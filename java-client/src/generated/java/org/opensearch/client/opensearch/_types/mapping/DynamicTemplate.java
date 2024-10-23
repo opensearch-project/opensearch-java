@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.mapping;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -47,7 +53,9 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _types.mapping.DynamicTemplate
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DynamicTemplate implements PlainJsonSerializable {
+
     @Nullable
     private final Property mapping;
 
@@ -72,7 +80,6 @@ public class DynamicTemplate implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private DynamicTemplate(Builder builder) {
-
         this.mapping = builder.mapping;
         this.match = builder.match;
         this.matchMappingType = builder.matchMappingType;
@@ -80,10 +87,9 @@ public class DynamicTemplate implements PlainJsonSerializable {
         this.pathMatch = builder.pathMatch;
         this.pathUnmatch = builder.pathUnmatch;
         this.unmatch = builder.unmatch;
-
     }
 
-    public static DynamicTemplate of(Function<Builder, ObjectBuilder<DynamicTemplate>> fn) {
+    public static DynamicTemplate of(Function<DynamicTemplate.Builder, ObjectBuilder<DynamicTemplate>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -146,6 +152,7 @@ public class DynamicTemplate implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -153,42 +160,40 @@ public class DynamicTemplate implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (this.mapping != null) {
             generator.writeKey("mapping");
             this.mapping.serialize(generator, mapper);
-
         }
+
         if (this.match != null) {
             generator.writeKey("match");
             generator.write(this.match);
-
         }
+
         if (this.matchMappingType != null) {
             generator.writeKey("match_mapping_type");
             generator.write(this.matchMappingType);
-
         }
+
         if (this.matchPattern != null) {
             generator.writeKey("match_pattern");
             this.matchPattern.serialize(generator, mapper);
         }
+
         if (this.pathMatch != null) {
             generator.writeKey("path_match");
             generator.write(this.pathMatch);
-
         }
+
         if (this.pathUnmatch != null) {
             generator.writeKey("path_unmatch");
             generator.write(this.pathUnmatch);
-
         }
+
         if (this.unmatch != null) {
             generator.writeKey("unmatch");
             generator.write(this.unmatch);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -196,26 +201,19 @@ public class DynamicTemplate implements PlainJsonSerializable {
     /**
      * Builder for {@link DynamicTemplate}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DynamicTemplate> {
         @Nullable
         private Property mapping;
-
         @Nullable
         private String match;
-
         @Nullable
         private String matchMappingType;
-
         @Nullable
         private MatchType matchPattern;
-
         @Nullable
         private String pathMatch;
-
         @Nullable
         private String pathUnmatch;
-
         @Nullable
         private String unmatch;
 
@@ -231,7 +229,7 @@ public class DynamicTemplate implements PlainJsonSerializable {
          * API name: {@code mapping}
          */
         public final Builder mapping(Function<Property.Builder, ObjectBuilder<Property>> fn) {
-            return this.mapping(fn.apply(new Property.Builder()).build());
+            return mapping(fn.apply(new Property.Builder()).build());
         }
 
         /**
@@ -285,8 +283,7 @@ public class DynamicTemplate implements PlainJsonSerializable {
         /**
          * Builds a {@link DynamicTemplate}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public DynamicTemplate build() {
             _checkSingleUse();
@@ -306,7 +303,6 @@ public class DynamicTemplate implements PlainJsonSerializable {
     );
 
     protected static void setupDynamicTemplateDeserializer(ObjectDeserializer<DynamicTemplate.Builder> op) {
-
         op.add(Builder::mapping, Property._DESERIALIZER, "mapping");
         op.add(Builder::match, JsonpDeserializer.stringDeserializer(), "match");
         op.add(Builder::matchMappingType, JsonpDeserializer.stringDeserializer(), "match_mapping_type");
@@ -314,7 +310,32 @@ public class DynamicTemplate implements PlainJsonSerializable {
         op.add(Builder::pathMatch, JsonpDeserializer.stringDeserializer(), "path_match");
         op.add(Builder::pathUnmatch, JsonpDeserializer.stringDeserializer(), "path_unmatch");
         op.add(Builder::unmatch, JsonpDeserializer.stringDeserializer(), "unmatch");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.mapping);
+        result = 31 * result + Objects.hashCode(this.match);
+        result = 31 * result + Objects.hashCode(this.matchMappingType);
+        result = 31 * result + Objects.hashCode(this.matchPattern);
+        result = 31 * result + Objects.hashCode(this.pathMatch);
+        result = 31 * result + Objects.hashCode(this.pathUnmatch);
+        result = 31 * result + Objects.hashCode(this.unmatch);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        DynamicTemplate other = (DynamicTemplate) o;
+        return Objects.equals(this.mapping, other.mapping)
+            && Objects.equals(this.match, other.match)
+            && Objects.equals(this.matchMappingType, other.matchMappingType)
+            && Objects.equals(this.matchPattern, other.matchPattern)
+            && Objects.equals(this.pathMatch, other.pathMatch)
+            && Objects.equals(this.pathUnmatch, other.pathUnmatch)
+            && Objects.equals(this.unmatch, other.unmatch);
+    }
 }

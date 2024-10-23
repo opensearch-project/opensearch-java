@@ -24,19 +24,22 @@ import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.builder.ObjectMapBuilderBase;
 
 public final class SchemaOverride {
-    private final boolean skipGeneration;
+    private final ShouldGenerate shouldGenerate;
     @Nonnull
     private final Map<String, PropertyOverride> properties;
     @Nullable
     private final Function<String, Set<String>> aliasProvider;
     @Nullable
     private final String className;
+    @Nullable
+    private final Type mappedType;
 
     private SchemaOverride(Builder builder) {
-        this.skipGeneration = builder.skipGeneration;
+        this.shouldGenerate = builder.shouldGenerate;
         this.properties = builder.properties != null ? Collections.unmodifiableMap(builder.properties) : Collections.emptyMap();
         this.aliasProvider = builder.aliasProvider;
         this.className = builder.className;
+        this.mappedType = builder.mappedType;
     }
 
     @Nonnull
@@ -63,13 +66,18 @@ public final class SchemaOverride {
         return PropertyOverride.builder().withMappedType(mappedType).withAliases(aliases).build();
     }
 
-    public boolean shouldSkipGeneration() {
-        return skipGeneration;
+    public ShouldGenerate shouldGenerate() {
+        return shouldGenerate;
     }
 
     @Nonnull
     public Optional<String> getClassName() {
         return Optional.ofNullable(className);
+    }
+
+    @Nonnull
+    public Optional<Type> getMappedType() {
+        return Optional.ofNullable(mappedType);
     }
 
     @Nonnull
@@ -83,13 +91,16 @@ public final class SchemaOverride {
     }
 
     public static final class Builder extends ObjectBuilderBase<SchemaOverride, Builder> {
-        private boolean skipGeneration;
+        @Nonnull
+        private ShouldGenerate shouldGenerate = ShouldGenerate.IfNeeded;
         @Nullable
         private Map<String, PropertyOverride> properties;
         @Nullable
         private Function<String, Set<String>> aliasProvider;
         @Nullable
         private String className;
+        @Nullable
+        private Type mappedType;
 
         private Builder() {}
 
@@ -100,8 +111,8 @@ public final class SchemaOverride {
         }
 
         @Nonnull
-        public Builder withSkipGeneration(boolean skipGeneration) {
-            this.skipGeneration = skipGeneration;
+        public Builder withShouldGenerate(ShouldGenerate shouldGenerate) {
+            this.shouldGenerate = Objects.requireNonNull(shouldGenerate, "shouldGenerate must not be null");
             return this;
         }
 
@@ -120,6 +131,18 @@ public final class SchemaOverride {
         @Nonnull
         public Builder withClassName(@Nullable String className) {
             this.className = className;
+            return this;
+        }
+
+        @Nonnull
+        public Builder withMappedType(@Nullable Type mappedType) {
+            this.mappedType = mappedType;
+            return this;
+        }
+
+        @Nonnull
+        public Builder withMappedType(@Nonnull Function<Type.Builder, ObjectBuilder<Type>> fn) {
+            this.mappedType = Objects.requireNonNull(fn, "fn must not be null").apply(Type.builder()).build();
             return this;
         }
     }

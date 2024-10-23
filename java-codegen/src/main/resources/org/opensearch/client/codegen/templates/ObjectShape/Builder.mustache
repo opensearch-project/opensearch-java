@@ -4,7 +4,7 @@
     */
     {{#extendsOtherShape}}
         public static class Builder extends {{extendsType}}.AbstractBuilder<Builder>
-                                    implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
+                                    implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{#shouldImplementPlainDeserializable}}, {{TYPES.Client.Json.PlainDeserializable}}<Builder>{{/shouldImplementPlainDeserializable}} {
             {{>ObjectShape/Builder/Fields}}
 
             {{>ObjectShape/Builder/SelfImpl}}
@@ -15,7 +15,8 @@
     {{^extendsOtherShape}}
         {{#extendedByOtherShape}}
             public static class Builder extends {{type}}.AbstractBuilder<Builder>
-                                        implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
+                                        implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{#shouldImplementPlainDeserializable}}, {{TYPES.Client.Json.PlainDeserializable}}<Builder>{{/shouldImplementPlainDeserializable}}
+            {
                 {{>ObjectShape/Builder/SelfImpl}}
 
                 {{>ObjectShape/Builder/BuildImpl}}
@@ -23,7 +24,12 @@
         {{/extendedByOtherShape}}
         {{^extendedByOtherShape}}
             public static class Builder extends {{TYPES.Client.Util.ObjectBuilderBase}}
-                                        implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
+                                        implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{#shouldImplementPlainDeserializable}}, {{TYPES.Client.Json.PlainDeserializable}}<Builder>{{/shouldImplementPlainDeserializable}}
+            {
+            {{#shouldImplementPlainDeserializable}}
+                {{>ObjectShape/Builder/SelfImpl}}
+
+            {{/shouldImplementPlainDeserializable}}
                 {{>ObjectShape/Builder/Fields}}
 
                 {{>ObjectShape/Builder/BuildImpl}}

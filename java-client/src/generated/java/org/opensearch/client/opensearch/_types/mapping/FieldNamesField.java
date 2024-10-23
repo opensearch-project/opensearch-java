@@ -30,10 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.mapping;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -47,18 +52,18 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _types.mapping.FieldNamesField
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class FieldNamesField implements PlainJsonSerializable {
+
     private final boolean enabled;
 
     // ---------------------------------------------------------------------------------------------
 
     private FieldNamesField(Builder builder) {
-
         this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
-
     }
 
-    public static FieldNamesField of(Function<Builder, ObjectBuilder<FieldNamesField>> fn) {
+    public static FieldNamesField of(Function<FieldNamesField.Builder, ObjectBuilder<FieldNamesField>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -72,6 +77,7 @@ public class FieldNamesField implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -79,10 +85,8 @@ public class FieldNamesField implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("enabled");
         generator.write(this.enabled);
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -90,7 +94,6 @@ public class FieldNamesField implements PlainJsonSerializable {
     /**
      * Builder for {@link FieldNamesField}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldNamesField> {
         private Boolean enabled;
 
@@ -105,8 +108,7 @@ public class FieldNamesField implements PlainJsonSerializable {
         /**
          * Builds a {@link FieldNamesField}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public FieldNamesField build() {
             _checkSingleUse();
@@ -126,9 +128,21 @@ public class FieldNamesField implements PlainJsonSerializable {
     );
 
     protected static void setupFieldNamesFieldDeserializer(ObjectDeserializer<FieldNamesField.Builder> op) {
-
         op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.enabled);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        FieldNamesField other = (FieldNamesField) o;
+        return this.enabled == other.enabled;
+    }
 }
