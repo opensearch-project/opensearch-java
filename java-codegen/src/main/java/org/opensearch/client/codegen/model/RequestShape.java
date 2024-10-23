@@ -35,6 +35,7 @@ public class RequestShape extends ObjectShape {
     private final Map<String, Field> pathParams = new TreeMap<>();
     @Nonnull
     private final Map<String, Field> fields = new TreeMap<>();
+    private boolean isBooleanRequest;
 
     public RequestShape(@Nonnull Namespace parent, @Nonnull OperationGroup operationGroup, @Nullable String description) {
         super(parent, requestClassName(operationGroup), operationGroup.asTypedefPrefix() + ".Request", description);
@@ -72,8 +73,18 @@ public class RequestShape extends ObjectShape {
         httpMethods.add(method);
     }
 
+    public void setIsBooleanRequest() {
+        isBooleanRequest = true;
+    }
+
+    public boolean isBooleanRequest() {
+        return isBooleanRequest;
+    }
+
     public Type getResponseType() {
-        return Type.builder().withPackage(getPackageName()).withName(responseClassName(operationGroup)).build();
+        return !isBooleanRequest
+            ? Type.builder().withPackage(getPackageName()).withName(responseClassName(operationGroup)).build()
+            : Types.Client.Transport.Endpoints.BooleanResponse;
     }
 
     public boolean canBeSingleton() {

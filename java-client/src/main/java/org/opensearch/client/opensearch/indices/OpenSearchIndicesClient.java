@@ -488,38 +488,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return diskUsage(fn.apply(new DiskUsageRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.exists
-
-    /**
-     * Returns information about whether a particular index exists.
-     *
-     *
-     */
-
-    public BooleanResponse exists(ExistsRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ExistsRequest,
-            BooleanResponse,
-            ErrorResponse>) ExistsRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about whether a particular index exists.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ExistsRequest}
-     *
-     */
-
-    public final BooleanResponse exists(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn) throws IOException,
-        OpenSearchException {
-        return exists(fn.apply(new ExistsRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.exists_alias
 
     /**
