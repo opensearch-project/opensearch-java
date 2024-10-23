@@ -138,12 +138,14 @@ public class UndeployModelNode implements PlainJsonSerializable {
         op.add(Builder::stats, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "stats");
     }
 
+    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.stats);
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;

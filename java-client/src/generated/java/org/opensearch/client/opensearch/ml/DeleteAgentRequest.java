@@ -102,12 +102,14 @@ public class DeleteAgentRequest extends RequestBase {
         DeleteAgentResponse._DESERIALIZER
     );
 
+    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + this.agentId.hashCode();
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
