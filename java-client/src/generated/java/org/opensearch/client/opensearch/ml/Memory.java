@@ -113,12 +113,14 @@ public class Memory implements PlainJsonSerializable {
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
     }
 
+    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.type);
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;

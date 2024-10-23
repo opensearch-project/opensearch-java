@@ -168,12 +168,14 @@ public class VerifyRepositoryResponse implements PlainJsonSerializable {
         op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(CompactNodeInfo._DESERIALIZER), "nodes");
     }
 
+    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + this.nodes.hashCode();
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;

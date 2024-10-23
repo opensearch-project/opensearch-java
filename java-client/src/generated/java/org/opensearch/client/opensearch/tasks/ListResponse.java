@@ -98,11 +98,13 @@ public class ListResponse extends TaskListResponseBase {
         setupTaskListResponseBaseDeserializer(op);
     }
 
+    @Override
     public int hashCode() {
         int result = super.hashCode();
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (!super.equals(o)) {
             return false;
