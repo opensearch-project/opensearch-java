@@ -123,10 +123,14 @@ public class SpecTransformer {
                     return OpenApiSchema.builder().withPointer(s.getPointer()).withAllOf(s, OpenApiSchema.ANONYMOUS_OBJECT).build();
                 }
                 return s.resolve();
-            })
-            .orElse(OpenApiSchema.ANONYMOUS_OBJECT);
+            });
 
-        visit(parent, requestShape.getResponseType().getName(), group + ".Response", responseSchema);
+        if (responseSchema.isEmpty() && !requestShape.hasRequestBody()) {
+            requestShape.setIsBooleanRequest();
+            return;
+        }
+
+        visit(parent, requestShape.getResponseType().getName(), group + ".Response", responseSchema.orElse(OpenApiSchema.ANONYMOUS_OBJECT));
     }
 
     @Nonnull
@@ -204,7 +208,7 @@ public class SpecTransformer {
             .map(this::visit)
             .forEachOrdered(shape::addQueryParam);
 
-        var bodySchema = variants.stream()
+        variants.stream()
             .map(OpenApiOperation::getRequestBody)
             .flatMap(Optional::stream)
             .findFirst()
@@ -213,9 +217,7 @@ public class SpecTransformer {
             .flatMap(c -> c.get(MimeType.Json))
             .flatMap(OpenApiMediaType::getSchema)
             .map(OpenApiSchema::resolve)
-            .orElse(OpenApiSchema.ANONYMOUS_OBJECT);
-
-        visitInto(bodySchema, shape);
+            .ifPresent(s -> visitInto(s, shape));
 
         if (shape.getExtendsType() == null) {
             shape.setExtendsType(Types.Client.OpenSearch._Types.RequestBase);

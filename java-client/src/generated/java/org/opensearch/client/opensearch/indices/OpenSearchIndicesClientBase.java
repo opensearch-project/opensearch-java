@@ -44,6 +44,7 @@ import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.util.ObjectBuilder;
 
 /**
@@ -55,6 +56,25 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
     Self> {
     public OpenSearchIndicesClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
+    }
+
+    // ----- Endpoint: indices.exists
+
+    /**
+     * Returns information about whether a particular index exists.
+     */
+    public BooleanResponse exists(ExistsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ExistsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about whether a particular index exists.
+     *
+     * @param fn a function that initializes a builder to create the {@link ExistsRequest}
+     */
+    public final BooleanResponse exists(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn) throws IOException,
+        OpenSearchException {
+        return exists(fn.apply(new ExistsRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.get
