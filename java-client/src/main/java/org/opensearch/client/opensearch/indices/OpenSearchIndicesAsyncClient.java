@@ -248,38 +248,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return close(fn.apply(new CloseIndexRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.create
-
-    /**
-     * Creates an index with optional settings and mappings.
-     *
-     *
-     */
-
-    public CompletableFuture<CreateIndexResponse> create(CreateIndexRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            CreateIndexRequest,
-            CreateIndexResponse,
-            ErrorResponse>) CreateIndexRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Creates an index with optional settings and mappings.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link CreateIndexRequest}
-     *
-     */
-
-    public final CompletableFuture<CreateIndexResponse> create(Function<CreateIndexRequest.Builder, ObjectBuilder<CreateIndexRequest>> fn)
-        throws IOException, OpenSearchException {
-        return create(fn.apply(new CreateIndexRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.create_data_stream
 
     /**

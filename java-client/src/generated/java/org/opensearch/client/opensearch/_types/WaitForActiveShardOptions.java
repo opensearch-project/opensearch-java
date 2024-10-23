@@ -30,17 +30,36 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
-/**
- * Builders for {@link WaitForActiveShards} variants.
- * <p>
- * Variants <code>option</code>, <code>count</code> are not available here as
- * they don't have a dedicated class. Use {@link WaitForActiveShards}'s builder
- * for these.
- *
- */
-public class WaitForActiveShardsBuilders {
-    private WaitForActiveShardsBuilders() {}
+import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.WaitForActiveShardOptions
+
+@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum WaitForActiveShardOptions implements JsonEnum {
+    All("all"),
+
+    IndexSetting("index-setting");
+
+    private final String jsonValue;
+
+    WaitForActiveShardOptions(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
+
+    public String jsonValue() {
+        return this.jsonValue;
+    }
+
+    public static final JsonEnum.Deserializer<WaitForActiveShardOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        WaitForActiveShardOptions.values()
+    );
 }

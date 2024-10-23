@@ -72,7 +72,21 @@ public class TaggedUnionShape extends Shape {
     }
 
     public boolean canStringify() {
-        return !isDiscriminated() && getVariants().stream().allMatch(v -> v.getType().isString() || v.getType().isEnum());
+        return !isDiscriminated() && getVariants().stream().allMatch(v -> {
+            var t = v.getType();
+            return t.isPotentiallyBoxedPrimitive() || t.isString() || t.isEnum();
+        });
+    }
+
+    public boolean hasAmbiguities() {
+        if (isDiscriminated()) {
+            return false;
+        }
+
+        return getVariants().stream().filter(v -> {
+            var t = v.getType();
+            return t.isString() || t.isEnum();
+        }).count() > 1;
     }
 
     @Override

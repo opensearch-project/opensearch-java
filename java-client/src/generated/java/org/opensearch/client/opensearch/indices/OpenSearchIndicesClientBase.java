@@ -58,6 +58,25 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         super(transport, transportOptions);
     }
 
+    // ----- Endpoint: indices.create
+
+    /**
+     * Creates an index with optional settings and mappings.
+     */
+    public CreateIndexResponse create(CreateIndexRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, CreateIndexRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates an index with optional settings and mappings.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreateIndexRequest}
+     */
+    public final CreateIndexResponse create(Function<CreateIndexRequest.Builder, ObjectBuilder<CreateIndexRequest>> fn) throws IOException,
+        OpenSearchException {
+        return create(fn.apply(new CreateIndexRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.exists
 
     /**
