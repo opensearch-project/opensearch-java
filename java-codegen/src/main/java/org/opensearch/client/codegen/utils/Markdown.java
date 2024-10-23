@@ -8,6 +8,7 @@
 
 package org.opensearch.client.codegen.utils;
 
+import javax.annotation.Nonnull;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 
@@ -17,7 +18,8 @@ public final class Markdown {
     private static final Parser PARSER = Parser.builder().build();
     private static final HtmlRenderer RENDERER = HtmlRenderer.builder().omitSingleParagraphP(true).build();
 
-    public static String toJavaDocHtml(String markdown) {
+    @Nonnull
+    public static String toJavaDocHtml(@Nonnull String markdown) {
         return RENDERER.render(PARSER.parse(markdown)).strip();
     }
 }

@@ -30,10 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.mapping;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -44,34 +49,35 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _types.mapping.SizeField
+// typedef: _types.mapping.RoutingField
 
 @JsonpDeserializable
-public class SizeField implements PlainJsonSerializable {
-    private final boolean enabled;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class RoutingField implements PlainJsonSerializable {
+
+    private final boolean required;
 
     // ---------------------------------------------------------------------------------------------
 
-    private SizeField(Builder builder) {
-
-        this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
-
+    private RoutingField(Builder builder) {
+        this.required = ApiTypeHelper.requireNonNull(builder.required, this, "required");
     }
 
-    public static SizeField of(Function<Builder, ObjectBuilder<SizeField>> fn) {
+    public static RoutingField of(Function<RoutingField.Builder, ObjectBuilder<RoutingField>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code enabled}
+     * Required - API name: {@code required}
      */
-    public final boolean enabled() {
-        return this.enabled;
+    public final boolean required() {
+        return this.required;
     }
 
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -79,56 +85,64 @@ public class SizeField implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.writeKey("enabled");
-        generator.write(this.enabled);
-
+        generator.writeKey("required");
+        generator.write(this.required);
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link SizeField}.
+     * Builder for {@link RoutingField}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SizeField> {
-        private Boolean enabled;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoutingField> {
+        private Boolean required;
 
         /**
-         * Required - API name: {@code enabled}
+         * Required - API name: {@code required}
          */
-        public final Builder enabled(boolean value) {
-            this.enabled = value;
+        public final Builder required(boolean value) {
+            this.required = value;
             return this;
         }
 
         /**
-         * Builds a {@link SizeField}.
+         * Builds a {@link RoutingField}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public SizeField build() {
+        public RoutingField build() {
             _checkSingleUse();
 
-            return new SizeField(this);
+            return new RoutingField(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link SizeField}
+     * Json deserializer for {@link RoutingField}
      */
-    public static final JsonpDeserializer<SizeField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<RoutingField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        SizeField::setupSizeFieldDeserializer
+        RoutingField::setupRoutingFieldDeserializer
     );
 
-    protected static void setupSizeFieldDeserializer(ObjectDeserializer<SizeField.Builder> op) {
-
-        op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-
+    protected static void setupRoutingFieldDeserializer(ObjectDeserializer<RoutingField.Builder> op) {
+        op.add(Builder::required, JsonpDeserializer.booleanDeserializer(), "required");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.required);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RoutingField other = (RoutingField) o;
+        return this.required == other.required;
+    }
 }

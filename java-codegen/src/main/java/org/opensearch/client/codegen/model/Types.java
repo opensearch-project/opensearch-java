@@ -142,6 +142,7 @@ public final class Types {
                 .withName("ObjectBuilderDeserializer")
                 .build();
             public static final Type ObjectDeserializer = Type.builder().withPackage(PACKAGE).withName("ObjectDeserializer").build();
+            public static final Type PlainDeserializable = Type.builder().withPackage(PACKAGE).withName("PlainDeserializable").build();
             public static final Type PlainJsonSerializable = Type.builder().withPackage(PACKAGE).withName("PlainJsonSerializable").build();
             public static final Type UnionDeserializer = Type.builder().withPackage(PACKAGE).withName("UnionDeserializer").build();
         }

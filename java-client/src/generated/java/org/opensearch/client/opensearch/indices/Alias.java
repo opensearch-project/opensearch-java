@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -45,10 +51,12 @@ import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: indices._types.Alias
+// typedef: indices.Alias
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class Alias implements PlainJsonSerializable {
+
     @Nullable
     private final Query filter;
 
@@ -70,17 +78,15 @@ public class Alias implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private Alias(Builder builder) {
-
         this.filter = builder.filter;
         this.indexRouting = builder.indexRouting;
         this.isHidden = builder.isHidden;
         this.isWriteIndex = builder.isWriteIndex;
         this.routing = builder.routing;
         this.searchRouting = builder.searchRouting;
-
     }
 
-    public static Alias of(Function<Builder, ObjectBuilder<Alias>> fn) {
+    public static Alias of(Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -101,7 +107,10 @@ public class Alias implements PlainJsonSerializable {
     }
 
     /**
+     * If <code>true</code>, the alias is hidden. All indices for the alias must have the same <code>is_hidden</code> value.
+     * <p>
      * API name: {@code is_hidden}
+     * </p>
      */
     @Nullable
     public final Boolean isHidden() {
@@ -109,7 +118,10 @@ public class Alias implements PlainJsonSerializable {
     }
 
     /**
+     * If <code>true</code>, the index is the write index for the alias.
+     * <p>
      * API name: {@code is_write_index}
+     * </p>
      */
     @Nullable
     public final Boolean isWriteIndex() {
@@ -135,6 +147,7 @@ public class Alias implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -142,38 +155,35 @@ public class Alias implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (this.filter != null) {
             generator.writeKey("filter");
             this.filter.serialize(generator, mapper);
-
         }
+
         if (this.indexRouting != null) {
             generator.writeKey("index_routing");
             generator.write(this.indexRouting);
-
         }
+
         if (this.isHidden != null) {
             generator.writeKey("is_hidden");
             generator.write(this.isHidden);
-
         }
+
         if (this.isWriteIndex != null) {
             generator.writeKey("is_write_index");
             generator.write(this.isWriteIndex);
-
         }
+
         if (this.routing != null) {
             generator.writeKey("routing");
             generator.write(this.routing);
-
         }
+
         if (this.searchRouting != null) {
             generator.writeKey("search_routing");
             generator.write(this.searchRouting);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -181,23 +191,17 @@ public class Alias implements PlainJsonSerializable {
     /**
      * Builder for {@link Alias}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Alias> {
         @Nullable
         private Query filter;
-
         @Nullable
         private String indexRouting;
-
         @Nullable
         private Boolean isHidden;
-
         @Nullable
         private Boolean isWriteIndex;
-
         @Nullable
         private String routing;
-
         @Nullable
         private String searchRouting;
 
@@ -213,7 +217,7 @@ public class Alias implements PlainJsonSerializable {
          * API name: {@code filter}
          */
         public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-            return this.filter(fn.apply(new Query.Builder()).build());
+            return filter(fn.apply(new Query.Builder()).build());
         }
 
         /**
@@ -225,7 +229,10 @@ public class Alias implements PlainJsonSerializable {
         }
 
         /**
+         * If <code>true</code>, the alias is hidden. All indices for the alias must have the same <code>is_hidden</code> value.
+         * <p>
          * API name: {@code is_hidden}
+         * </p>
          */
         public final Builder isHidden(@Nullable Boolean value) {
             this.isHidden = value;
@@ -233,7 +240,10 @@ public class Alias implements PlainJsonSerializable {
         }
 
         /**
+         * If <code>true</code>, the index is the write index for the alias.
+         * <p>
          * API name: {@code is_write_index}
+         * </p>
          */
         public final Builder isWriteIndex(@Nullable Boolean value) {
             this.isWriteIndex = value;
@@ -259,8 +269,7 @@ public class Alias implements PlainJsonSerializable {
         /**
          * Builds a {@link Alias}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public Alias build() {
             _checkSingleUse();
@@ -280,14 +289,36 @@ public class Alias implements PlainJsonSerializable {
     );
 
     protected static void setupAliasDeserializer(ObjectDeserializer<Alias.Builder> op) {
-
         op.add(Builder::filter, Query._DESERIALIZER, "filter");
         op.add(Builder::indexRouting, JsonpDeserializer.stringDeserializer(), "index_routing");
         op.add(Builder::isHidden, JsonpDeserializer.booleanDeserializer(), "is_hidden");
         op.add(Builder::isWriteIndex, JsonpDeserializer.booleanDeserializer(), "is_write_index");
         op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
         op.add(Builder::searchRouting, JsonpDeserializer.stringDeserializer(), "search_routing");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.filter);
+        result = 31 * result + Objects.hashCode(this.indexRouting);
+        result = 31 * result + Objects.hashCode(this.isHidden);
+        result = 31 * result + Objects.hashCode(this.isWriteIndex);
+        result = 31 * result + Objects.hashCode(this.routing);
+        result = 31 * result + Objects.hashCode(this.searchRouting);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Alias other = (Alias) o;
+        return Objects.equals(this.filter, other.filter)
+            && Objects.equals(this.indexRouting, other.indexRouting)
+            && Objects.equals(this.isHidden, other.isHidden)
+            && Objects.equals(this.isWriteIndex, other.isWriteIndex)
+            && Objects.equals(this.routing, other.routing)
+            && Objects.equals(this.searchRouting, other.searchRouting);
+    }
 }

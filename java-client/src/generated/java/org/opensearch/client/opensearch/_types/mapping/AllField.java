@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.mapping;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -47,15 +53,20 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _types.mapping.AllField
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class AllField implements PlainJsonSerializable {
+
+    @Nonnull
     private final String analyzer;
 
     private final boolean enabled;
 
     private final boolean omitNorms;
 
+    @Nonnull
     private final String searchAnalyzer;
 
+    @Nonnull
     private final String similarity;
 
     private final boolean store;
@@ -71,7 +82,6 @@ public class AllField implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private AllField(Builder builder) {
-
         this.analyzer = ApiTypeHelper.requireNonNull(builder.analyzer, this, "analyzer");
         this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
         this.omitNorms = ApiTypeHelper.requireNonNull(builder.omitNorms, this, "omitNorms");
@@ -82,16 +92,16 @@ public class AllField implements PlainJsonSerializable {
         this.storeTermVectorPayloads = ApiTypeHelper.requireNonNull(builder.storeTermVectorPayloads, this, "storeTermVectorPayloads");
         this.storeTermVectorPositions = ApiTypeHelper.requireNonNull(builder.storeTermVectorPositions, this, "storeTermVectorPositions");
         this.storeTermVectors = ApiTypeHelper.requireNonNull(builder.storeTermVectors, this, "storeTermVectors");
-
     }
 
-    public static AllField of(Function<Builder, ObjectBuilder<AllField>> fn) {
+    public static AllField of(Function<AllField.Builder, ObjectBuilder<AllField>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code analyzer}
      */
+    @Nonnull
     public final String analyzer() {
         return this.analyzer;
     }
@@ -113,6 +123,7 @@ public class AllField implements PlainJsonSerializable {
     /**
      * Required - API name: {@code search_analyzer}
      */
+    @Nonnull
     public final String searchAnalyzer() {
         return this.searchAnalyzer;
     }
@@ -120,6 +131,7 @@ public class AllField implements PlainJsonSerializable {
     /**
      * Required - API name: {@code similarity}
      */
+    @Nonnull
     public final String similarity() {
         return this.similarity;
     }
@@ -162,6 +174,7 @@ public class AllField implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -169,7 +182,6 @@ public class AllField implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("analyzer");
         generator.write(this.analyzer);
 
@@ -199,7 +211,6 @@ public class AllField implements PlainJsonSerializable {
 
         generator.writeKey("store_term_vectors");
         generator.write(this.storeTermVectors);
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -207,26 +218,16 @@ public class AllField implements PlainJsonSerializable {
     /**
      * Builder for {@link AllField}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllField> {
         private String analyzer;
-
         private Boolean enabled;
-
         private Boolean omitNorms;
-
         private String searchAnalyzer;
-
         private String similarity;
-
         private Boolean store;
-
         private Boolean storeTermVectorOffsets;
-
         private Boolean storeTermVectorPayloads;
-
         private Boolean storeTermVectorPositions;
-
         private Boolean storeTermVectors;
 
         /**
@@ -312,8 +313,7 @@ public class AllField implements PlainJsonSerializable {
         /**
          * Builds a {@link AllField}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public AllField build() {
             _checkSingleUse();
@@ -333,7 +333,6 @@ public class AllField implements PlainJsonSerializable {
     );
 
     protected static void setupAllFieldDeserializer(ObjectDeserializer<AllField.Builder> op) {
-
         op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
         op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
         op.add(Builder::omitNorms, JsonpDeserializer.booleanDeserializer(), "omit_norms");
@@ -344,7 +343,38 @@ public class AllField implements PlainJsonSerializable {
         op.add(Builder::storeTermVectorPayloads, JsonpDeserializer.booleanDeserializer(), "store_term_vector_payloads");
         op.add(Builder::storeTermVectorPositions, JsonpDeserializer.booleanDeserializer(), "store_term_vector_positions");
         op.add(Builder::storeTermVectors, JsonpDeserializer.booleanDeserializer(), "store_term_vectors");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.analyzer.hashCode();
+        result = 31 * result + Boolean.hashCode(this.enabled);
+        result = 31 * result + Boolean.hashCode(this.omitNorms);
+        result = 31 * result + this.searchAnalyzer.hashCode();
+        result = 31 * result + this.similarity.hashCode();
+        result = 31 * result + Boolean.hashCode(this.store);
+        result = 31 * result + Boolean.hashCode(this.storeTermVectorOffsets);
+        result = 31 * result + Boolean.hashCode(this.storeTermVectorPayloads);
+        result = 31 * result + Boolean.hashCode(this.storeTermVectorPositions);
+        result = 31 * result + Boolean.hashCode(this.storeTermVectors);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        AllField other = (AllField) o;
+        return this.analyzer.equals(other.analyzer)
+            && this.enabled == other.enabled
+            && this.omitNorms == other.omitNorms
+            && this.searchAnalyzer.equals(other.searchAnalyzer)
+            && this.similarity.equals(other.similarity)
+            && this.store == other.store
+            && this.storeTermVectorOffsets == other.storeTermVectorOffsets
+            && this.storeTermVectorPayloads == other.storeTermVectorPayloads
+            && this.storeTermVectorPositions == other.storeTermVectorPositions
+            && this.storeTermVectors == other.storeTermVectors;
+    }
 }
