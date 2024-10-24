@@ -30,22 +30,49 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch._types.mapping;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
+package org.opensearch.client.opensearch._types;
+
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.ExpandWildcard
+
 @JsonpDeserializable
-public enum MatchType implements JsonEnum {
-    Simple("simple"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum ExpandWildcard implements JsonEnum {
+    /**
+     * Match any index, including hidden ones.
+     */
+    All("all"),
 
-    Regex("regex"),
+    /**
+     * Match closed, non-hidden indices.
+     */
+    Closed("closed"),
 
-    ;
+    /**
+     * Match hidden indices. Must be combined with open, closed, or both.
+     */
+    Hidden("hidden"),
+
+    /**
+     * Wildcard expressions are not accepted.
+     */
+    None("none"),
+
+    /**
+     * Match open, non-hidden indices.
+     */
+    Open("open");
 
     private final String jsonValue;
 
-    MatchType(String jsonValue) {
+    ExpandWildcard(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -53,5 +80,5 @@ public enum MatchType implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<MatchType> _DESERIALIZER = new JsonEnum.Deserializer<>(MatchType.values());
+    public static final JsonEnum.Deserializer<ExpandWildcard> _DESERIALIZER = new JsonEnum.Deserializer<>(ExpandWildcard.values());
 }

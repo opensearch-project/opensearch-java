@@ -36,7 +36,6 @@ import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.JsonEndpoint;
@@ -48,7 +47,7 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the indices namespace.
  */
-public class OpenSearchIndicesAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchIndicesAsyncClient> {
+public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBase<OpenSearchIndicesAsyncClient> {
 
     public OpenSearchIndicesAsyncClient(OpenSearchTransport transport) {
         super(transport, null);
@@ -249,38 +248,6 @@ public class OpenSearchIndicesAsyncClient extends ApiClient<OpenSearchTransport,
         return close(fn.apply(new CloseIndexRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.create
-
-    /**
-     * Creates an index with optional settings and mappings.
-     *
-     *
-     */
-
-    public CompletableFuture<CreateIndexResponse> create(CreateIndexRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            CreateIndexRequest,
-            CreateIndexResponse,
-            ErrorResponse>) CreateIndexRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Creates an index with optional settings and mappings.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link CreateIndexRequest}
-     *
-     */
-
-    public final CompletableFuture<CreateIndexResponse> create(Function<CreateIndexRequest.Builder, ObjectBuilder<CreateIndexRequest>> fn)
-        throws IOException, OpenSearchException {
-        return create(fn.apply(new CreateIndexRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.create_data_stream
 
     /**
@@ -309,38 +276,6 @@ public class OpenSearchIndicesAsyncClient extends ApiClient<OpenSearchTransport,
         Function<CreateDataStreamRequest.Builder, ObjectBuilder<CreateDataStreamRequest>> fn
     ) throws IOException, OpenSearchException {
         return createDataStream(fn.apply(new CreateDataStreamRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: indices.delete
-
-    /**
-     * Deletes an index.
-     *
-     *
-     */
-
-    public CompletableFuture<DeleteIndexResponse> delete(DeleteIndexRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteIndexRequest, DeleteIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteIndexRequest,
-            DeleteIndexResponse,
-            ErrorResponse>) DeleteIndexRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Deletes an index.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteIndexRequest}
-     *
-     */
-
-    public final CompletableFuture<DeleteIndexResponse> delete(Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn)
-        throws IOException, OpenSearchException {
-        return delete(fn.apply(new DeleteIndexRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.delete_data_stream
@@ -505,38 +440,6 @@ public class OpenSearchIndicesAsyncClient extends ApiClient<OpenSearchTransport,
     public final CompletableFuture<DiskUsageResponse> diskUsage(Function<DiskUsageRequest.Builder, ObjectBuilder<DiskUsageRequest>> fn)
         throws IOException, OpenSearchException {
         return diskUsage(fn.apply(new DiskUsageRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: indices.exists
-
-    /**
-     * Returns information about whether a particular index exists.
-     *
-     *
-     */
-
-    public CompletableFuture<BooleanResponse> exists(ExistsRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ExistsRequest,
-            BooleanResponse,
-            ErrorResponse>) ExistsRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about whether a particular index exists.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ExistsRequest}
-     *
-     */
-
-    public final CompletableFuture<BooleanResponse> exists(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn)
-        throws IOException, OpenSearchException {
-        return exists(fn.apply(new ExistsRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.exists_alias
@@ -724,38 +627,6 @@ public class OpenSearchIndicesAsyncClient extends ApiClient<OpenSearchTransport,
             ForcemergeRequest._ENDPOINT,
             this.transportOptions
         );
-    }
-
-    // ----- Endpoint: indices.get
-
-    /**
-     * Returns information about one or more indices.
-     *
-     *
-     */
-
-    public CompletableFuture<GetIndexResponse> get(GetIndexRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetIndexRequest, GetIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetIndexRequest,
-            GetIndexResponse,
-            ErrorResponse>) GetIndexRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about one or more indices.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetIndexRequest}
-     *
-     */
-
-    public final CompletableFuture<GetIndexResponse> get(Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn)
-        throws IOException, OpenSearchException {
-        return get(fn.apply(new GetIndexRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.get_data_stream

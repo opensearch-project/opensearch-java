@@ -30,17 +30,36 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch._types;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
-/**
- * Builders for {@link WaitForActiveShards} variants.
- * <p>
- * Variants <code>option</code>, <code>count</code> are not available here as
- * they don't have a dedicated class. Use {@link WaitForActiveShards}'s builder
- * for these.
- *
- */
-public class WaitForActiveShardsBuilders {
-    private WaitForActiveShardsBuilders() {}
+package org.opensearch.client.opensearch._types.mapping;
 
+import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
+
+// typedef: _types.mapping.SourceFieldMode
+
+@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum SourceFieldMode implements JsonEnum {
+    Disabled("disabled"),
+
+    Stored("stored"),
+
+    Synthetic("synthetic");
+
+    private final String jsonValue;
+
+    SourceFieldMode(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
+
+    public String jsonValue() {
+        return this.jsonValue;
+    }
+
+    public static final JsonEnum.Deserializer<SourceFieldMode> _DESERIALIZER = new JsonEnum.Deserializer<>(SourceFieldMode.values());
 }

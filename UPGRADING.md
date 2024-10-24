@@ -52,3 +52,9 @@ After:
 
 ### CloneSnapshotRequest timeout removal
 - The `timeout` field, getter and builder method have been removed from `CloneSnapshotRequest` as it is not supported by OpenSearch.
+
+### DynamicMapping
+- Removed the `Runtime` variant from the `DynamicMapping` enum as it is not supported by OpenSearch.
+
+### TypeMapping
+- Removed the `runtime` field, getter and builder methods from `TypeMapping` as it is not supported by OpenSearch.

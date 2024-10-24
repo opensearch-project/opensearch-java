@@ -146,7 +146,7 @@
 {{/discriminated}}
 {{^discriminated}}
     private static {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> build{{className}}Deserializer() {
-        return new {{TYPES.Client.Json.UnionDeserializer.builderType}}<{{className}}, Kind, Object>({{className}}::new, {{canStringify}})
+        return new {{TYPES.Client.Json.UnionDeserializer.builderType}}<{{className}}, Kind, Object>({{className}}::new, {{hasAmbiguities}})
             {{#variants}}.addMember(Kind.{{#pascalCase}}{{name}}{{/pascalCase}}, {{#type}}{{>Type/deserializer}}{{/type}}){{/variants}}
             .build();
     }
