@@ -30,13 +30,20 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
@@ -52,18 +59,23 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 /**
  * Deletes an index.
- *
  */
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DeleteIndexRequest extends RequestBase {
+
     @Nullable
     private final Boolean allowNoIndices;
 
+    @Nullable
+    private final Time clusterManagerTimeout;
+
+    @Nonnull
     private final List<ExpandWildcard> expandWildcards;
 
     @Nullable
     private final Boolean ignoreUnavailable;
 
+    @Nonnull
     private final List<String> index;
 
     @Deprecated
@@ -71,34 +83,30 @@ public class DeleteIndexRequest extends RequestBase {
     private final Time masterTimeout;
 
     @Nullable
-    private final Time clusterManagerTimeout;
-
-    @Nullable
     private final Time timeout;
 
     // ---------------------------------------------------------------------------------------------
 
     private DeleteIndexRequest(Builder builder) {
-
         this.allowNoIndices = builder.allowNoIndices;
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.ignoreUnavailable = builder.ignoreUnavailable;
         this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
         this.masterTimeout = builder.masterTimeout;
-        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.timeout = builder.timeout;
-
     }
 
-    public static DeleteIndexRequest of(Function<Builder, ObjectBuilder<DeleteIndexRequest>> fn) {
+    public static DeleteIndexRequest of(Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Ignore if a wildcard expression resolves to no concrete indices (default:
-     * false)
+     * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets only
+     * missing or closed indices. This behavior applies even if the request targets other open indices.
      * <p>
      * API name: {@code allow_no_indices}
+     * </p>
      */
     @Nullable
     public final Boolean allowNoIndices() {
@@ -106,19 +114,34 @@ public class DeleteIndexRequest extends RequestBase {
     }
 
     /**
-     * Whether wildcard expressions should get expanded to open, closed, or hidden
-     * indices
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     * </p>
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
+
+    /**
+     * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
+     * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>. Valid values are:
+     * <code>all</code>, <code>open</code>, <code>closed</code>, <code>hidden</code>, <code>none</code>.
      * <p>
      * API name: {@code expand_wildcards}
+     * </p>
      */
+    @Nonnull
     public final List<ExpandWildcard> expandWildcards() {
         return this.expandWildcards;
     }
 
     /**
-     * Ignore unavailable indexes (default: false)
+     * If <code>false</code>, the request returns an error if it targets a missing or closed index.
      * <p>
      * API name: {@code ignore_unavailable}
+     * </p>
      */
     @Nullable
     public final Boolean ignoreUnavailable() {
@@ -126,19 +149,24 @@ public class DeleteIndexRequest extends RequestBase {
     }
 
     /**
-     * Required - A comma-separated list of indices to delete; use <code>_all</code>
-     * or <code>*</code> string to delete all indices
+     * Required - Comma-separated list of indices to delete. You cannot specify index aliases. By default, this parameter does not support
+     * wildcards (<code>*</code>) or <code>_all</code>. To use wildcards or <code>_all</code>, set the
+     * <code>action.destructive_requires_name</code> cluster setting to <code>false</code>.
      * <p>
      * API name: {@code index}
+     * </p>
      */
+    @Nonnull
     public final List<String> index() {
         return this.index;
     }
 
     /**
-     * Specify timeout for connection to master
+     * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
+     * returns an error.
      * <p>
      * API name: {@code master_timeout}
+     * </p>
      */
     @Deprecated
     @Nullable
@@ -147,19 +175,10 @@ public class DeleteIndexRequest extends RequestBase {
     }
 
     /**
-     * Specify timeout for connection to cluster-manager
-     * <p>
-     * API name: {@code cluster_manager_timeout}
-     */
-    @Nullable
-    public final Time clusterManagerTimeout() {
-        return this.clusterManagerTimeout;
-    }
-
-    /**
-     * Explicit operation timeout
+     * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
      * <p>
      * API name: {@code timeout}
+     * </p>
      */
     @Nullable
     public final Time timeout() {
@@ -171,34 +190,27 @@ public class DeleteIndexRequest extends RequestBase {
     /**
      * Builder for {@link DeleteIndexRequest}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteIndexRequest> {
         @Nullable
         private Boolean allowNoIndices;
-
-        @Nullable
-        private List<ExpandWildcard> expandWildcards;
-
-        @Nullable
-        private Boolean ignoreUnavailable;
-
-        private List<String> index;
-
-        @Deprecated
-        @Nullable
-        private Time masterTimeout;
-
         @Nullable
         private Time clusterManagerTimeout;
-
+        @Nullable
+        private List<ExpandWildcard> expandWildcards;
+        @Nullable
+        private Boolean ignoreUnavailable;
+        private List<String> index;
+        @Nullable
+        private Time masterTimeout;
         @Nullable
         private Time timeout;
 
         /**
-         * Ignore if a wildcard expression resolves to no concrete indices (default:
-         * false)
+         * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets
+         * only missing or closed indices. This behavior applies even if the request targets other open indices.
          * <p>
          * API name: {@code allow_no_indices}
+         * </p>
          */
         public final Builder allowNoIndices(@Nullable Boolean value) {
             this.allowNoIndices = value;
@@ -206,12 +218,37 @@ public class DeleteIndexRequest extends RequestBase {
         }
 
         /**
-         * Whether wildcard expressions should get expanded to open, closed, or hidden
-         * indices
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         * </p>
+         */
+        public final Builder clusterManagerTimeout(@Nullable Time value) {
+            this.clusterManagerTimeout = value;
+            return this;
+        }
+
+        /**
+         * Operation timeout for connection to cluster-manager node.
+         * <p>
+         * API name: {@code cluster_manager_timeout}
+         * </p>
+         */
+        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
+         * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>. Valid values are:
+         * <code>all</code>, <code>open</code>, <code>closed</code>, <code>hidden</code>, <code>none</code>.
          * <p>
          * API name: {@code expand_wildcards}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+         * </p>
          */
         public final Builder expandWildcards(List<ExpandWildcard> list) {
             this.expandWildcards = _listAddAll(this.expandWildcards, list);
@@ -219,12 +256,16 @@ public class DeleteIndexRequest extends RequestBase {
         }
 
         /**
-         * Whether wildcard expressions should get expanded to open, closed, or hidden
-         * indices
+         * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
+         * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>. Valid values are:
+         * <code>all</code>, <code>open</code>, <code>closed</code>, <code>hidden</code>, <code>none</code>.
          * <p>
          * API name: {@code expand_wildcards}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>expandWildcards</code>.
+         * </p>
          */
         public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
             this.expandWildcards = _listAdd(this.expandWildcards, value, values);
@@ -232,9 +273,10 @@ public class DeleteIndexRequest extends RequestBase {
         }
 
         /**
-         * Ignore unavailable indexes (default: false)
+         * If <code>false</code>, the request returns an error if it targets a missing or closed index.
          * <p>
          * API name: {@code ignore_unavailable}
+         * </p>
          */
         public final Builder ignoreUnavailable(@Nullable Boolean value) {
             this.ignoreUnavailable = value;
@@ -242,12 +284,16 @@ public class DeleteIndexRequest extends RequestBase {
         }
 
         /**
-         * Required - A comma-separated list of indices to delete; use <code>_all</code>
-         * or <code>*</code> string to delete all indices
+         * Required - Comma-separated list of indices to delete. You cannot specify index aliases. By default, this parameter does not
+         * support wildcards (<code>*</code>) or <code>_all</code>. To use wildcards or <code>_all</code>, set the
+         * <code>action.destructive_requires_name</code> cluster setting to <code>false</code>.
          * <p>
          * API name: {@code index}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>index</code>.
+         * </p>
          */
         public final Builder index(List<String> list) {
             this.index = _listAddAll(this.index, list);
@@ -255,12 +301,16 @@ public class DeleteIndexRequest extends RequestBase {
         }
 
         /**
-         * Required - A comma-separated list of indices to delete; use <code>_all</code>
-         * or <code>*</code> string to delete all indices
+         * Required - Comma-separated list of indices to delete. You cannot specify index aliases. By default, this parameter does not
+         * support wildcards (<code>*</code>) or <code>_all</code>. To use wildcards or <code>_all</code>, set the
+         * <code>action.destructive_requires_name</code> cluster setting to <code>false</code>.
          * <p>
          * API name: {@code index}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>index</code>.
+         * </p>
          */
         public final Builder index(String value, String... values) {
             this.index = _listAdd(this.index, value, values);
@@ -268,9 +318,11 @@ public class DeleteIndexRequest extends RequestBase {
         }
 
         /**
-         * Specify timeout for connection to master
+         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
+         * returns an error.
          * <p>
          * API name: {@code master_timeout}
+         * </p>
          */
         @Deprecated
         public final Builder masterTimeout(@Nullable Time value) {
@@ -279,38 +331,22 @@ public class DeleteIndexRequest extends RequestBase {
         }
 
         /**
-         * Specify timeout for connection to master
+         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
+         * returns an error.
          * <p>
          * API name: {@code master_timeout}
+         * </p>
          */
         @Deprecated
         public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.masterTimeout(fn.apply(new Time.Builder()).build());
+            return masterTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
-         * Specify timeout for connection to cluster-manager
-         * <p>
-         * API name: {@code cluster_manager_timeout}
-         */
-        public final Builder clusterManagerTimeout(@Nullable Time value) {
-            this.clusterManagerTimeout = value;
-            return this;
-        }
-
-        /**
-         * Specify timeout for connection to cluster-manager
-         * <p>
-         * API name: {@code cluster_manager_timeout}
-         */
-        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
-        }
-
-        /**
-         * Explicit operation timeout
+         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
          * <p>
          * API name: {@code timeout}
+         * </p>
          */
         public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
@@ -318,19 +354,19 @@ public class DeleteIndexRequest extends RequestBase {
         }
 
         /**
-         * Explicit operation timeout
+         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
          * <p>
          * API name: {@code timeout}
+         * </p>
          */
         public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.timeout(fn.apply(new Time.Builder()).build());
+            return timeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
          * Builds a {@link DeleteIndexRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public DeleteIndexRequest build() {
             _checkSingleUse();
@@ -345,36 +381,20 @@ public class DeleteIndexRequest extends RequestBase {
      * Endpoint "{@code indices.delete}".
      */
     public static final Endpoint<DeleteIndexRequest, DeleteIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "DELETE";
-
-        },
-
+        request -> "DELETE",
         // Request path
         request -> {
-            final int _index = 1 << 0;
-
-            int propsSet = 0;
-
-            propsSet |= _index;
-
-            if (propsSet == (_index)) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-                return buf.toString();
-            }
-            throw SimpleEndpoint.noPathTemplateFound("path");
-
+            StringBuilder buf = new StringBuilder();
+            buf.append("/");
+            SimpleEndpoint.pathEncode(String.join(",", request.index), buf);
+            return buf.toString();
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
+            if (request.allowNoIndices != null) {
+                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
             }
             if (request.clusterManagerTimeout != null) {
                 params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
@@ -385,17 +405,43 @@ public class DeleteIndexRequest extends RequestBase {
             if (request.ignoreUnavailable != null) {
                 params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
             }
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
             }
             if (request.timeout != null) {
                 params.put("timeout", request.timeout._toJsonString());
             }
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         false,
         DeleteIndexResponse._DESERIALIZER
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.allowNoIndices);
+        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
+        result = 31 * result + Objects.hashCode(this.expandWildcards);
+        result = 31 * result + Objects.hashCode(this.ignoreUnavailable);
+        result = 31 * result + this.index.hashCode();
+        result = 31 * result + Objects.hashCode(this.masterTimeout);
+        result = 31 * result + Objects.hashCode(this.timeout);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        DeleteIndexRequest other = (DeleteIndexRequest) o;
+        return Objects.equals(this.allowNoIndices, other.allowNoIndices)
+            && Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
+            && Objects.equals(this.expandWildcards, other.expandWildcards)
+            && Objects.equals(this.ignoreUnavailable, other.ignoreUnavailable)
+            && this.index.equals(other.index)
+            && Objects.equals(this.masterTimeout, other.masterTimeout)
+            && Objects.equals(this.timeout, other.timeout);
+    }
 }

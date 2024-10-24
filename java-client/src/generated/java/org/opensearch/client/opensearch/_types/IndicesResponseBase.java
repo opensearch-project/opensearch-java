@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
@@ -41,7 +47,9 @@ import org.opensearch.client.util.ObjectBuilder;
 
 // typedef: _types.IndicesResponseBase
 
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
+
     @Nullable
     private final ShardStatistics shards;
 
@@ -49,9 +57,7 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 
     protected IndicesResponseBase(AbstractBuilder<?> builder) {
         super(builder);
-
         this.shards = builder.shards;
-
     }
 
     /**
@@ -63,15 +69,14 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
         if (this.shards != null) {
             generator.writeKey("_shards");
             this.shards.serialize(generator, mapper);
-
         }
-
     }
+
+    // ---------------------------------------------------------------------------------------------
 
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends
         AcknowledgedResponseBase.AbstractBuilder<BuilderT> {
@@ -90,18 +95,35 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
          * API name: {@code _shards}
          */
         public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-            return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+            return shards(fn.apply(new ShardStatistics.Builder()).build());
         }
 
     }
 
     // ---------------------------------------------------------------------------------------------
+
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupIndicesResponseBaseDeserializer(
         ObjectDeserializer<BuilderT> op
     ) {
         setupAcknowledgedResponseBaseDeserializer(op);
         op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.shards);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        IndicesResponseBase other = (IndicesResponseBase) o;
+        return Objects.equals(this.shards, other.shards);
+    }
 }
