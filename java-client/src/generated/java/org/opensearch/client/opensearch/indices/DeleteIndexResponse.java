@@ -30,9 +30,14 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -43,15 +48,16 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: indices.delete.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DeleteIndexResponse extends IndicesResponseBase {
+
     // ---------------------------------------------------------------------------------------------
 
     private DeleteIndexResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static DeleteIndexResponse of(Function<Builder, ObjectBuilder<DeleteIndexResponse>> fn) {
+    public static DeleteIndexResponse of(Function<DeleteIndexResponse.Builder, ObjectBuilder<DeleteIndexResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -60,8 +66,8 @@ public class DeleteIndexResponse extends IndicesResponseBase {
     /**
      * Builder for {@link DeleteIndexResponse}.
      */
-
     public static class Builder extends IndicesResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteIndexResponse> {
+
         @Override
         protected Builder self() {
             return this;
@@ -70,8 +76,7 @@ public class DeleteIndexResponse extends IndicesResponseBase {
         /**
          * Builds a {@link DeleteIndexResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public DeleteIndexResponse build() {
             _checkSingleUse();
@@ -91,8 +96,22 @@ public class DeleteIndexResponse extends IndicesResponseBase {
     );
 
     protected static void setupDeleteIndexResponseDeserializer(ObjectDeserializer<DeleteIndexResponse.Builder> op) {
-        IndicesResponseBase.setupIndicesResponseBaseDeserializer(op);
-
+        setupIndicesResponseBaseDeserializer(op);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

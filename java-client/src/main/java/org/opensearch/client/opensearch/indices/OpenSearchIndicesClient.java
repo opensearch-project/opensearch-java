@@ -264,38 +264,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return createDataStream(fn.apply(new CreateDataStreamRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.delete
-
-    /**
-     * Deletes an index.
-     *
-     *
-     */
-
-    public DeleteIndexResponse delete(DeleteIndexRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteIndexRequest, DeleteIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteIndexRequest,
-            DeleteIndexResponse,
-            ErrorResponse>) DeleteIndexRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Deletes an index.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteIndexRequest}
-     *
-     */
-
-    public final DeleteIndexResponse delete(Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn) throws IOException,
-        OpenSearchException {
-        return delete(fn.apply(new DeleteIndexRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.delete_data_stream
 
     /**

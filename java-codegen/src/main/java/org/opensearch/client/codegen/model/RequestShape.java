@@ -182,6 +182,8 @@ public class RequestShape extends ObjectShape {
         switch (operationGroup.toString()) {
             case "indices.create":
                 return "CreateIndex";
+            case "indices.delete":
+                return "DeleteIndex";
             case "indices.get":
                 return "GetIndex";
             case "snapshot.clone":
