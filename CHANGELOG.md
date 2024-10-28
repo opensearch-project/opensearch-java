@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
+- Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.3 to 5.3.1
 
 ### Changed
 
