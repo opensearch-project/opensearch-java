@@ -68,6 +68,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nullable
     private final OpenApiDiscriminator discriminator;
     @Nullable
+    private final Object constValue;
+    @Nullable
     private final Semver versionRemoved;
     @Nullable
     private final Semver versionDeprecated;
@@ -90,6 +92,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         title = builder.title;
         pattern = builder.pattern;
         discriminator = builder.discriminator;
+        constValue = builder.constValue;
         versionRemoved = builder.versionRemoved;
         versionDeprecated = builder.versionDeprecated;
     }
@@ -143,6 +146,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         pattern = schema.getPattern();
 
         discriminator = child("discriminator", schema.getDiscriminator(), OpenApiDiscriminator::new);
+
+        constValue = schema.getConst();
 
         var extensions = schema.getExtensions();
 
@@ -202,10 +207,6 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
 
     public boolean isString() {
         return is(OpenApiSchemaType.String);
-    }
-
-    public boolean isStringEnum() {
-        return isString() && hasEnums();
     }
 
     public boolean hasAllOf() {
@@ -281,6 +282,15 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nonnull
     public Optional<OpenApiDiscriminator> getDiscriminator() {
         return Optional.ofNullable(discriminator);
+    }
+
+    public boolean hasConst() {
+        return constValue != null;
+    }
+
+    @Nonnull
+    public Optional<Object> getConst() {
+        return Optional.ofNullable(constValue);
     }
 
     @Nonnull
@@ -373,6 +383,8 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         private String pattern;
         @Nullable
         private OpenApiDiscriminator discriminator;
+        @Nullable
+        private Object constValue;
         @Nullable
         private Semver versionRemoved;
         @Nullable

@@ -1,4 +1,4 @@
 @Override
-protected Builder self() {
+{{#shouldImplementPlainDeserializable}}public{{/shouldImplementPlainDeserializable}}{{^shouldImplementPlainDeserializable}}protected{{/shouldImplementPlainDeserializable}} Builder self() {
     return this;
 }

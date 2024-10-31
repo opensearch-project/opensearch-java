@@ -36,10 +36,6 @@ public class TaggedUnionShape extends Shape {
         return variants.values();
     }
 
-    public Collection<Variant> getShapeVariants() {
-        return Lists.filter(getVariants(), v -> v.getType().isInsidePackage("org.opensearch") && !v.getType().isEnum());
-    }
-
     public Collection<Variant> getNonShapeVariants() {
         return Lists.filter(getVariants(), v -> !v.getType().isInsidePackage("org.opensearch"));
     }
@@ -76,14 +72,29 @@ public class TaggedUnionShape extends Shape {
     }
 
     public boolean canStringify() {
-        return !isDiscriminated() && getVariants().stream().allMatch(v -> v.getType().isString() || v.getType().isEnum());
+        return !isDiscriminated() && getVariants().stream().allMatch(v -> {
+            var t = v.getType();
+            return t.isPotentiallyBoxedPrimitive() || t.isString() || t.isEnum();
+        });
+    }
+
+    public boolean hasAmbiguities() {
+        if (isDiscriminated()) {
+            return false;
+        }
+
+        return getVariants().stream().filter(v -> {
+            var t = v.getType();
+            return t.isString() || t.isEnum();
+        }).count() > 1;
     }
 
     @Override
     public void render(ShapeRenderingContext ctx) throws RenderException {
         super.render(ctx);
-        if (!getShapeVariants().isEmpty()) {
-            new Builders(this).render(ctx);
+        var buildableVariants = Lists.filter(getVariants(), v -> v.getType().hasBuilder());
+        if (!buildableVariants.isEmpty()) {
+            new Builders(this, buildableVariants).render(ctx);
         }
         if (isDiscriminated()) {
             new VariantInterface(this).render(ctx);
@@ -130,9 +141,9 @@ public class TaggedUnionShape extends Shape {
         private final String unionClassName;
         private final Collection<Variant> variants;
 
-        private Builders(TaggedUnionShape union) {
+        private Builders(TaggedUnionShape union, Collection<Variant> variants) {
             super(union.getParent(), union.getClassName() + "Builders", null, buildDescription(union));
-            variants = union.getShapeVariants();
+            this.variants = variants;
             unionClassName = union.getClassName();
         }
 

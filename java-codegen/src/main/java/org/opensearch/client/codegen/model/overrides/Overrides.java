@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -25,20 +24,16 @@ public class Overrides {
     private static final JsonPointer SCHEMAS = JsonPointer.of("components", "schemas");
 
     public static final Overrides OVERRIDES = builder().withSchemas(
-        s -> s.with(SCHEMAS.append("_common.query_dsl:QueryContainer"), so -> so.withClassName("Query"))
-            .with(SCHEMAS.append("indices._common:IndexSettings"), so -> so.withAliasProvider((k) -> {
-                switch (k) {
-                    case "index":
-                    case "indexing":
-                    case "mapping":
-                    case "search":
-                    case "settings":
-                    case "top_metrics_max_size":
-                        return null;
-                    default:
-                        return Set.of("index." + k);
-                }
-            }))
+        s -> s
+            // TODO: Remove this to generate property mapping types
+            .with(SCHEMAS.append("_common.mapping:Property"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            // TODO: Remove this to generate query types
+            .with(
+                SCHEMAS.append("_common.query_dsl:QueryContainer"),
+                so -> so.withMappedType(t -> t.withPackage(Types.Client.OpenSearch._Types.PACKAGE + ".query_dsl").withName("Query"))
+            )
+            // TODO: Remove this to generate index settings types
+            .with(SCHEMAS.append("indices._common:IndexSettings"), so -> so.withShouldGenerate(ShouldGenerate.Never))
             .with(
                 SCHEMAS.append("_common:ShardStatistics"),
                 b -> b.withProperties(
