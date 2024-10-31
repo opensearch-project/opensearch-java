@@ -75,9 +75,6 @@ public class SourceField implements PlainJsonSerializable {
     @Nonnull
     private final List<String> includes;
 
-    @Nullable
-    private final SourceFieldMode mode;
-
     // ---------------------------------------------------------------------------------------------
 
     private SourceField(Builder builder) {
@@ -86,7 +83,6 @@ public class SourceField implements PlainJsonSerializable {
         this.enabled = builder.enabled;
         this.excludes = ApiTypeHelper.unmodifiable(builder.excludes);
         this.includes = ApiTypeHelper.unmodifiable(builder.includes);
-        this.mode = builder.mode;
     }
 
     public static SourceField of(Function<SourceField.Builder, ObjectBuilder<SourceField>> fn) {
@@ -134,14 +130,6 @@ public class SourceField implements PlainJsonSerializable {
     }
 
     /**
-     * API name: {@code mode}
-     */
-    @Nullable
-    public final SourceFieldMode mode() {
-        return this.mode;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
     @Override
@@ -184,11 +172,6 @@ public class SourceField implements PlainJsonSerializable {
             }
             generator.writeEnd();
         }
-
-        if (this.mode != null) {
-            generator.writeKey("mode");
-            this.mode.serialize(generator, mapper);
-        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -212,8 +195,6 @@ public class SourceField implements PlainJsonSerializable {
         private List<String> excludes;
         @Nullable
         private List<String> includes;
-        @Nullable
-        private SourceFieldMode mode;
 
         /**
          * API name: {@code compress}
@@ -288,14 +269,6 @@ public class SourceField implements PlainJsonSerializable {
         }
 
         /**
-         * API name: {@code mode}
-         */
-        public final Builder mode(@Nullable SourceFieldMode value) {
-            this.mode = value;
-            return this;
-        }
-
-        /**
          * Builds a {@link SourceField}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -323,7 +296,6 @@ public class SourceField implements PlainJsonSerializable {
         op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
         op.add(Builder::excludes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "excludes");
         op.add(Builder::includes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "includes");
-        op.add(Builder::mode, SourceFieldMode._DESERIALIZER, "mode");
     }
 
     @Override
@@ -334,7 +306,6 @@ public class SourceField implements PlainJsonSerializable {
         result = 31 * result + Objects.hashCode(this.enabled);
         result = 31 * result + Objects.hashCode(this.excludes);
         result = 31 * result + Objects.hashCode(this.includes);
-        result = 31 * result + Objects.hashCode(this.mode);
         return result;
     }
 
@@ -347,7 +318,6 @@ public class SourceField implements PlainJsonSerializable {
             && Objects.equals(this.compressThreshold, other.compressThreshold)
             && Objects.equals(this.enabled, other.enabled)
             && Objects.equals(this.excludes, other.excludes)
-            && Objects.equals(this.includes, other.includes)
-            && Objects.equals(this.mode, other.mode);
+            && Objects.equals(this.includes, other.includes);
     }
 }
