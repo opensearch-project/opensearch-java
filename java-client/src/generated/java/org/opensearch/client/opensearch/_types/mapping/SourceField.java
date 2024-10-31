@@ -30,11 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.mapping;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -50,7 +57,9 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _types.mapping.SourceField
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class SourceField implements PlainJsonSerializable {
+
     @Nullable
     private final Boolean compress;
 
@@ -60,23 +69,23 @@ public class SourceField implements PlainJsonSerializable {
     @Nullable
     private final Boolean enabled;
 
+    @Nonnull
     private final List<String> excludes;
 
+    @Nonnull
     private final List<String> includes;
 
     // ---------------------------------------------------------------------------------------------
 
     private SourceField(Builder builder) {
-
         this.compress = builder.compress;
         this.compressThreshold = builder.compressThreshold;
         this.enabled = builder.enabled;
         this.excludes = ApiTypeHelper.unmodifiable(builder.excludes);
         this.includes = ApiTypeHelper.unmodifiable(builder.includes);
-
     }
 
-    public static SourceField of(Function<Builder, ObjectBuilder<SourceField>> fn) {
+    public static SourceField of(Function<SourceField.Builder, ObjectBuilder<SourceField>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -107,6 +116,7 @@ public class SourceField implements PlainJsonSerializable {
     /**
      * API name: {@code excludes}
      */
+    @Nonnull
     public final List<String> excludes() {
         return this.excludes;
     }
@@ -114,6 +124,7 @@ public class SourceField implements PlainJsonSerializable {
     /**
      * API name: {@code includes}
      */
+    @Nonnull
     public final List<String> includes() {
         return this.includes;
     }
@@ -121,6 +132,7 @@ public class SourceField implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -128,43 +140,38 @@ public class SourceField implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (this.compress != null) {
             generator.writeKey("compress");
             generator.write(this.compress);
-
         }
+
         if (this.compressThreshold != null) {
             generator.writeKey("compress_threshold");
             generator.write(this.compressThreshold);
-
         }
+
         if (this.enabled != null) {
             generator.writeKey("enabled");
             generator.write(this.enabled);
-
         }
+
         if (ApiTypeHelper.isDefined(this.excludes)) {
             generator.writeKey("excludes");
             generator.writeStartArray();
             for (String item0 : this.excludes) {
                 generator.write(item0);
-
             }
             generator.writeEnd();
-
         }
+
         if (ApiTypeHelper.isDefined(this.includes)) {
             generator.writeKey("includes");
             generator.writeStartArray();
             for (String item0 : this.includes) {
                 generator.write(item0);
-
             }
             generator.writeEnd();
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -172,20 +179,20 @@ public class SourceField implements PlainJsonSerializable {
     /**
      * Builder for {@link SourceField}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SourceField>, PlainDeserializable<Builder> {
+        @Override
+        public Builder self() {
+            return this;
+        }
+
         @Nullable
         private Boolean compress;
-
         @Nullable
         private String compressThreshold;
-
         @Nullable
         private Boolean enabled;
-
         @Nullable
         private List<String> excludes;
-
         @Nullable
         private List<String> includes;
 
@@ -215,8 +222,10 @@ public class SourceField implements PlainJsonSerializable {
 
         /**
          * API name: {@code excludes}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>excludes</code>.
+         * </p>
          */
         public final Builder excludes(List<String> list) {
             this.excludes = _listAddAll(this.excludes, list);
@@ -225,8 +234,10 @@ public class SourceField implements PlainJsonSerializable {
 
         /**
          * API name: {@code excludes}
+         *
          * <p>
          * Adds one or more values to <code>excludes</code>.
+         * </p>
          */
         public final Builder excludes(String value, String... values) {
             this.excludes = _listAdd(this.excludes, value, values);
@@ -235,8 +246,10 @@ public class SourceField implements PlainJsonSerializable {
 
         /**
          * API name: {@code includes}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>includes</code>.
+         * </p>
          */
         public final Builder includes(List<String> list) {
             this.includes = _listAddAll(this.includes, list);
@@ -245,8 +258,10 @@ public class SourceField implements PlainJsonSerializable {
 
         /**
          * API name: {@code includes}
+         *
          * <p>
          * Adds one or more values to <code>includes</code>.
+         * </p>
          */
         public final Builder includes(String value, String... values) {
             this.includes = _listAdd(this.includes, value, values);
@@ -256,18 +271,12 @@ public class SourceField implements PlainJsonSerializable {
         /**
          * Builds a {@link SourceField}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public SourceField build() {
             _checkSingleUse();
 
             return new SourceField(this);
-        }
-
-        @Override
-        public Builder self() {
-            return this;
         }
     }
 
@@ -282,13 +291,33 @@ public class SourceField implements PlainJsonSerializable {
     );
 
     protected static void setupSourceFieldDeserializer(ObjectDeserializer<SourceField.Builder> op) {
-
         op.add(Builder::compress, JsonpDeserializer.booleanDeserializer(), "compress");
         op.add(Builder::compressThreshold, JsonpDeserializer.stringDeserializer(), "compress_threshold");
         op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
         op.add(Builder::excludes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "excludes");
         op.add(Builder::includes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "includes");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.compress);
+        result = 31 * result + Objects.hashCode(this.compressThreshold);
+        result = 31 * result + Objects.hashCode(this.enabled);
+        result = 31 * result + Objects.hashCode(this.excludes);
+        result = 31 * result + Objects.hashCode(this.includes);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SourceField other = (SourceField) o;
+        return Objects.equals(this.compress, other.compress)
+            && Objects.equals(this.compressThreshold, other.compressThreshold)
+            && Objects.equals(this.enabled, other.enabled)
+            && Objects.equals(this.excludes, other.excludes)
+            && Objects.equals(this.includes, other.includes);
+    }
 }

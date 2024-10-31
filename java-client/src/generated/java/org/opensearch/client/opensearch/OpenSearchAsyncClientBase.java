@@ -45,6 +45,7 @@ import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesAsyncClient;
+import org.opensearch.client.opensearch.indices.OpenSearchIndicesAsyncClient;
 import org.opensearch.client.opensearch.ml.OpenSearchMlAsyncClient;
 import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotAsyncClient;
 import org.opensearch.client.opensearch.tasks.OpenSearchTasksAsyncClient;
@@ -64,6 +65,10 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
 
     public OpenSearchDanglingIndicesAsyncClient danglingIndices() {
         return new OpenSearchDanglingIndicesAsyncClient(this.transport, this.transportOptions);
+    }
+
+    public OpenSearchIndicesAsyncClient indices() {
+        return new OpenSearchIndicesAsyncClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchMlAsyncClient ml() {

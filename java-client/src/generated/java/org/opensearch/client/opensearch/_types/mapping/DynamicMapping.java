@@ -30,20 +30,38 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch.indices;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
-import org.opensearch.client.json.JsonpDeserializer;
+package org.opensearch.client.opensearch._types.mapping;
 
-// typedef: indices.exists.Response
+import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
 
-public class ExistsResponse {
-    public ExistsResponse() {}
+// typedef: _types.mapping.DynamicMapping
 
-    /**
-     * Singleton instance for {@link ExistsResponse}.
-     */
-    public static final ExistsResponse _INSTANCE = new ExistsResponse();
+@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum DynamicMapping implements JsonEnum {
+    False("false"),
 
-    public static final JsonpDeserializer<ExistsResponse> _DESERIALIZER = JsonpDeserializer.fixedValue(ExistsResponse._INSTANCE);
+    Strict("strict"),
 
+    StrictAllowTemplates("strict_allow_templates"),
+
+    True("true");
+
+    private final String jsonValue;
+
+    DynamicMapping(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
+
+    public String jsonValue() {
+        return this.jsonValue;
+    }
+
+    public static final JsonEnum.Deserializer<DynamicMapping> _DESERIALIZER = new JsonEnum.Deserializer<>(DynamicMapping.values());
 }

@@ -13,7 +13,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
+import javax.annotation.Nullable;
 import org.opensearch.client.codegen.utils.JavaClassKind;
+import org.opensearch.client.codegen.utils.Markdown;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class EnumShape extends Shape {
@@ -38,14 +40,17 @@ public class EnumShape extends Shape {
         return List.of(Types.Client.Json.JsonEnum);
     }
 
-    public void addVariant(String value, boolean deprecated) {
+    public void addVariant(String value, String description, boolean deprecated) {
         var variant = variants.get(value.toLowerCase());
         if (variant == null) {
-            variant = new Variant(value, deprecated);
+            variant = new Variant(value, description, deprecated);
             variants.put(value.toLowerCase(), variant);
         } else {
             variant.addAlias(value);
             variant.setDeprecated(variant.isDeprecated() || deprecated);
+            if (description != null) {
+                variant.setDescription(description);
+            }
         }
     }
 
@@ -61,14 +66,24 @@ public class EnumShape extends Shape {
         private final String wireName;
         private final Set<String> aliases = new HashSet<>();
         private boolean deprecated;
+        private String description;
 
-        public Variant(String wireName, boolean deprecated) {
+        public Variant(String wireName, String description, boolean deprecated) {
             this.wireName = wireName;
+            setDescription(description);
             this.deprecated = deprecated;
         }
 
         public String getWireName() {
             return wireName;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(@Nullable String description) {
+            this.description = description != null ? Markdown.toJavaDocHtml(description) : null;
         }
 
         public Set<String> getAliases() {

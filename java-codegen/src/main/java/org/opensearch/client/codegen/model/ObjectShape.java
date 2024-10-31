@@ -21,6 +21,7 @@ import org.apache.commons.lang3.tuple.Pair;
 public class ObjectShape extends Shape {
     protected final Map<String, Field> bodyFields = new TreeMap<>();
     protected Field additionalPropertiesField;
+    private String shortcutProperty;
 
     public ObjectShape(Namespace parent, String className, String typedefName, String description) {
         super(parent, className, typedefName, description);
@@ -60,6 +61,14 @@ public class ObjectShape extends Shape {
 
     public Field getAdditionalPropertiesField() {
         return additionalPropertiesField;
+    }
+
+    public String getShortcutProperty() {
+        return shortcutProperty;
+    }
+
+    public void setShortcutProperty(String shortcutProperty) {
+        this.shortcutProperty = shortcutProperty;
     }
 
     public boolean hasFieldsToSerialize() {
@@ -106,6 +115,10 @@ public class ObjectShape extends Shape {
 
     public Collection<Type> getAnnotations() {
         return (hasFieldsToSerialize() || extendsOtherShape()) && !isAbstract() ? List.of(Types.Client.Json.JsonpDeserializable) : null;
+    }
+
+    public boolean shouldImplementPlainDeserializable() {
+        return Set.of("SourceField", "TypeMapping").contains(getClassName());
     }
 
     public static class ReferencingDiscriminatedUnion {

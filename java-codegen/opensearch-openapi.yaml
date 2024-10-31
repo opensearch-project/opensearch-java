@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: OpenSearch API Specification
-  version: 0.1.0
+  version: 0.1.1
   x-api-version: 2.16.0
 paths:
   /:
@@ -2768,6 +2768,22 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ingest.processor_grok@200'
+  /_insights/top_queries:
+    get:
+      operationId: insights.top_queries.0
+      x-operation-group: insights.top_queries
+      x-version-added: '1.0'
+      description: Retrieves the top queries based on the given metric type (latency, CPU, or memory).
+      parameters:
+        - $ref: '#/components/parameters/insights.top_queries::query.type'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/insights.top_queries@200'
   /_mapping:
     get:
       operationId: indices.get_mapping.0
@@ -9171,6 +9187,85 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/indices.validate_query@200'
+  /_wlm/query_group:
+    get:
+      operationId: wlm.get_query_group.0
+      x-operation-group: wlm.get_query_group
+      x-version-added: '2.17'
+      description: Gets the specified QueryGroup or get all if no name is provided.
+      responses:
+        '200':
+          $ref: '#/components/responses/wlm.get_query_group@200'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+    put:
+      operationId: wlm.create_query_group.0
+      x-operation-group: wlm.create_query_group
+      x-version-added: '2.17'
+      description: Creates the specified query group.
+      requestBody:
+        $ref: '#/components/requestBodies/wlm.create_query_group'
+      responses:
+        '200':
+          $ref: '#/components/responses/wlm.create_query_group@200'
+      parameters:
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+  /_wlm/query_group/{name}:
+    delete:
+      operationId: wlm.delete_query_group.0
+      x-operation-group: wlm.delete_query_group
+      x-version-added: '2.17'
+      description: Deletes the specified QueryGroup.
+      parameters:
+        - $ref: '#/components/parameters/wlm.delete_query_group::path.name'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/wlm.delete_query_group@200'
+    get:
+      operationId: wlm.get_query_group.1
+      x-operation-group: wlm.get_query_group
+      x-version-added: '2.17'
+      description: Gets the specified QueryGroup or get all if no name is provided.
+      parameters:
+        - $ref: '#/components/parameters/wlm.get_query_group::path.name'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/wlm.get_query_group@200'
+    put:
+      operationId: wlm.update_query_group.0
+      x-operation-group: wlm.update_query_group
+      x-version-added: '2.17'
+      description: Updates the specified query group.
+      parameters:
+        - $ref: '#/components/parameters/wlm.update_query_group::path.name'
+        - $ref: '#/components/parameters/_global::query.pretty'
+        - $ref: '#/components/parameters/_global::query.human'
+        - $ref: '#/components/parameters/_global::query.error_trace'
+        - $ref: '#/components/parameters/_global::query.source'
+        - $ref: '#/components/parameters/_global::query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/wlm.update_query_group'
+      responses:
+        '200':
+          $ref: '#/components/responses/wlm.update_query_group@200'
   /{alias}/_rollover:
     post:
       operationId: indices.rollover.0
@@ -21197,6 +21292,17 @@ components:
         type: boolean
         default: false
       style: form
+    insights.top_queries::query.type:
+      name: type
+      in: query
+      required: true
+      description: Get top n queries by a specific metric.
+      schema:
+        type: string
+        enum:
+          - cpu
+          - latency
+          - memory
     ism.add_policy::path.index:
       name: index
       in: path
@@ -25230,6 +25336,27 @@ components:
         $ref: '#/components/schemas/_common:WaitForActiveShards'
       style: form
       x-default: '1'
+    wlm.delete_query_group::path.name:
+      name: name
+      in: path
+      description: QueryGroup name.
+      schema:
+        type: string
+      required: true
+    wlm.get_query_group::path.name:
+      name: name
+      in: path
+      description: QueryGroup name.
+      schema:
+        type: string
+      required: true
+    wlm.update_query_group::path.name:
+      name: name
+      in: path
+      description: QueryGroup name.
+      schema:
+        type: string
+      required: true
   requestBodies:
     asynchronous_search.search:
       content:
@@ -26836,6 +26963,18 @@ components:
               conflicts:
                 $ref: '#/components/schemas/_common:Conflicts'
             description: The search definition using the Query DSL
+    wlm.create_query_group:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/wlm._common:QueryGroupCreate'
+      required: true
+    wlm.update_query_group:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/wlm._common:QueryGroupUpdate'
+      required: true
   responses:
     asynchronous_search.delete@200:
       content:
@@ -28341,6 +28480,11 @@ components:
                   $ref: '#/components/schemas/ingest.simulate:PipelineSimulation'
             required:
               - docs
+    insights.top_queries@200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/insights._common:TopQueriesResponse'
     ism.add_policy@200:
       content:
         application/json:
@@ -28410,7 +28554,11 @@ components:
           schema:
             $ref: '#/components/schemas/ism._common:RetryIndexResponse'
     knn.delete_model@200: {}
-    knn.get_model@200: {}
+    knn.get_model@200:
+      content:
+        application/json:
+          schema:
+            type: object
     knn.search_models@200: {}
     knn.stats@200: {}
     knn.train_model@200:
@@ -29921,6 +30069,38 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/_core.update:UpdateWriteResponseBase'
+    wlm.create_query_group@200:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/wlm._common:QueryGroupResponse'
+    wlm.delete_query_group@200:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              acknowledged:
+                type: boolean
+    wlm.get_query_group@200:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              query_groups:
+                type: array
+                items:
+                  $ref: '#/components/schemas/wlm._common:QueryGroupResponse'
+    wlm.update_query_group@200:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/wlm._common:QueryGroupResponse'
   schemas:
     _common:AcknowledgedResponseBase:
       type: object
@@ -38644,14 +38824,6 @@ components:
           type: array
           items:
             type: string
-        mode:
-          $ref: '#/components/schemas/_common.mapping:SourceFieldMode'
-    _common.mapping:SourceFieldMode:
-      type: string
-      enum:
-        - disabled
-        - stored
-        - synthetic
     _common.mapping:SparseVectorProperty:
       allOf:
         - $ref: '#/components/schemas/_common.mapping:PropertyBase'
@@ -38925,6 +39097,13 @@ components:
                 - type: array
                   items:
                     $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
+            adjust_pure_negative:
+              description: |-
+                Ensures correct behavior when a query contains only must_not clauses.
+                By default set to true, OpenSearch adds a match-all clause to ensure results are returned from Lucene, with the must_not conditions applied as filters.
+                If set to false, the query may return no results, as Lucene typically requires at least one positive condition.
+              type: boolean
+              default: true
     _common.query_dsl:BoostingQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl:QueryBase'
@@ -41667,7 +41846,7 @@ components:
       type: object
       properties:
         k:
-          description: Sets the maximum number of documents retrieved per query. This value replaces the usual `size` parameter in the query.
+          description: Sets the maximum number of documents retrieved per query. This value replaces the `size` parameter in the query.
           type: number
     _core.rank_eval:RankEvalMetricDetail:
       type: object
@@ -41676,17 +41855,17 @@ components:
           description: The `metric_score`, found in the `metric_details` section, shows the contribution of this query to the global quality metric score.
           type: number
         unrated_docs:
-          description: The `unrated_docs` section contains an `_index` and `_id` entry for each document that didn't have a ratings value. This can be used to ask the user to supply ratings for these documents.
+          description: The `unrated_docs` section contains an `_index` and `_id` entry for each document that didn't have a `ratings` value. This can be used to ask the user to supply ratings for these documents.
           type: array
           items:
             $ref: '#/components/schemas/_core.rank_eval:UnratedDocument'
         hits:
-          description: The `hits` section shows a grouping of the search results with their supplied ratings
+          description: The `hits` section provides a grouping of the search results with their supplied ratings.
           type: array
           items:
             $ref: '#/components/schemas/_core.rank_eval:RankEvalHitItem'
         metric_details:
-          description: The `metric_details` section gives additional information about the calculated quality metric, in other words, how many of the retrieved documents were relevant. The content varies for each metric but allows for better interpretation of the results.
+          description: The `metric_details` section provides additional information about the calculated quality metric indicating the number of relevant retrieved documents. The content varies for each metric but allows for better interpretation of the results.
           type: object
           additionalProperties:
             type: object
@@ -41703,7 +41882,7 @@ components:
         - type: object
           properties:
             normalize:
-              description: When `true`, this metric calculates the Normalized DCG (https://en.wikipedia.org/wiki/Discounted_cumulative_gain#Normalized_DCG).
+              description: When `true`, calculates the [normalized discounted cumulative gain (nDCG)](https://en.wikipedia.org/wiki/Discounted_cumulative_gain#Normalized_DCG).
               type: boolean
     _core.rank_eval:RankEvalMetricExpectedReciprocalRank:
       allOf:
@@ -41711,7 +41890,7 @@ components:
         - type: object
           properties:
             maximum_relevance:
-              description: The highest relevance grade used in the user-supplied relevance judgments.
+              description: The highest relevance grade used in user-supplied relevance judgments.
               type: number
           required:
             - maximum_relevance
@@ -41725,7 +41904,7 @@ components:
         - type: object
           properties:
             ignore_unlabeled:
-              description: Controls how unlabeled documents in the search results are counted. When `true`, unlabeled documents are ignored and do not count as relevant or irrelevant. When `false`, unlabeled documents are treated as irrelevant.
+              description: Controls how unlabeled documents in the search results are counted. When `true`, unlabeled documents are ignored and are not treated as relevant or irrelevant. When `false`, unlabeled documents are treated as irrelevant.
               type: boolean
     _core.rank_eval:RankEvalMetricRatingThreshold:
       allOf:
@@ -41795,7 +41974,7 @@ components:
       type: object
       properties:
         batches:
-          description: The number of scroll responses pulled back by the reindex.
+          description: The number of scroll responses shown by the reindex.
           type: number
         created:
           description: The number of documents that were successfully created.
@@ -41804,10 +41983,10 @@ components:
           description: The number of documents that were successfully deleted.
           type: number
         noops:
-          description: The number of documents that were ignored because the script used for the reindex returned a `noop` value for `ctx.op`.
+          description: The number of documents that were ignored because the script used for the reindex operation returned a `noop` value for `ctx.op`.
           type: number
         requests_per_second:
-          description: The number of requests per second effectively executed during the reindex.
+          description: The number of successful requests per second during the reindex operation.
           type: number
         retries:
           $ref: '#/components/schemas/_common:Retries'
@@ -41823,7 +42002,7 @@ components:
           description: The number of documents that were successfully processed.
           type: number
         updated:
-          description: The number of documents that were successfully updated, for example, a document with same ID already existed prior to reindex updating it.
+          description: The number of documents that were successfully updated.
           type: number
         version_conflicts:
           description: The number of version conflicts that reindex hits.
@@ -41922,7 +42101,7 @@ components:
         size:
           description: |-
             The number of documents to index per batch.
-            Use when indexing from remote to ensure that the batches fit within the on-heap buffer, which defaults to a maximum size of 100 MB.
+            Use the `size` setting when indexing from a remote cluster. This ensures that batches fit in the on-heap buffer. The buffer defaults to a maximum size of `100MB`.
           type: number
         slice:
           $ref: '#/components/schemas/_common:SlicedScroll'
@@ -41936,7 +42115,7 @@ components:
       type: object
       properties:
         document:
-          description: Document that's temporarily indexed in-memory and accessible from the script.
+          description: A document temporarily indexed in-memory and accessible from the Painless script.
           type: object
         index:
           $ref: '#/components/schemas/_common:IndexName'
@@ -42266,14 +42445,14 @@ components:
         field:
           $ref: '#/components/schemas/_common:Field'
         inner_hits:
-          description: The number of inner hits and their sort order
+          description: The number of inner hits and their sort order.
           oneOf:
             - $ref: '#/components/schemas/_core.search:InnerHits'
             - type: array
               items:
                 $ref: '#/components/schemas/_core.search:InnerHits'
         max_concurrent_group_searches:
-          description: The number of concurrent requests allowed to retrieve the inner_hits per group
+          description: The number of concurrent requests that are allowed to be retrieved by the `inner_hits` parameter per group.
           type: integer
       required:
         - field
@@ -42307,7 +42486,7 @@ components:
         boundary_scanner_locale:
           description: |-
             Controls which locale is used to search for sentence and word boundaries.
-            This parameter takes a form of a language tag, for example: `"en-US"`, `"fr-FR"`, `"ja-JP"`.
+            This parameter takes the form of a language tag, for example, `"en-US"`, `"fr-FR"`, or `"ja-JP"`.
           type: string
         force_source:
           deprecated: true
@@ -42328,8 +42507,8 @@ components:
         max_analyzed_offset:
           description: |-
             If set to a non-negative value, highlighting stops at this defined maximum limit.
-            The rest of the text is not processed, thus not highlighted and no error is returned
-            The `max_analyzed_offset` query setting does not override the `index.highlight.max_analyzed_offset` setting, which prevails when it's set to lower value than the query setting.
+            The rest of the text is not processed or highlighted, and no error is returned.
+            The `max_analyzed_offset` query setting does not override the `index.highlight.max_analyzed_offset` setting, which takes precedence when it is set to a lower value than the query setting.
           type: integer
           format: int32
         no_match_size:
@@ -42339,10 +42518,10 @@ components:
         number_of_fragments:
           description: |-
             The maximum number of fragments to return.
-            If the number of fragments is set to `0`, no fragments are returned.
-            Instead, the entire field contents are highlighted and returned.
-            This can be handy when you need to highlight short texts such as a title or address, but fragmentation is not required.
-            If `number_of_fragments` is `0`, `fragment_size` is ignored.
+            When the number of fragments is set to `0`, no fragments are returned.
+            Instead, the entirety of a field's contents are highlighted and returned.
+            This is useful when you need to highlight short texts, such as a title or address, in which fragmentation is not required.
+            If `number_of_fragments` is set to `0`, the `fragment_size` is ignored.
           type: integer
           format: int32
         options:
@@ -42354,21 +42533,21 @@ components:
         phrase_limit:
           description: |-
             Controls the number of matching phrases in a document that are considered.
-            Prevents the `fvh` highlighter from analyzing too many phrases and consuming too much memory.
-            When using `matched_fields`, `phrase_limit` phrases per matched field are considered. Raising the limit increases query time and consumes more memory.
-            Only supported by the `fvh` highlighter.
+            This prevents the `fvh` highlighter from analyzing too many phrases and consuming too much memory.
+            When using `matched_fields`, phrase-limited phrases per matched field are considered. Raising the limit increases the query time and consumes more memory.
+            This setting is only supported by the `fvh` highlighter.
           type: integer
           format: int32
         post_tags:
           description: |-
-            Use in conjunction with `pre_tags` to define the HTML tags to use for the highlighted text.
+            When used in conjunction with `pre_tags`, defines the HTML tags to use for the highlighted text.
             By default, highlighted text is wrapped in `<em>` and `</em>` tags.
           type: array
           items:
             type: string
         pre_tags:
           description: |-
-            Use in conjunction with `post_tags` to define the HTML tags to use for the highlighted text.
+            When used in conjunction with `post_tags`, defines the HTML tags to use for the highlighted text.
             By default, highlighted text is wrapped in `<em>` and `</em>` tags.
           type: array
           items:
@@ -42486,7 +42665,7 @@ components:
       type: object
       properties:
         total:
-          description: Total hit count information, present only if `track_total_hits` wasn't `false` in the search request.
+          description: The total number of hits, present only if `track_total_hits` is not set to `false` in the search request.
           oneOf:
             - $ref: '#/components/schemas/_core.search:TotalHits'
             - type: integer
@@ -42512,7 +42691,7 @@ components:
           type: integer
           format: int32
         from:
-          description: Inner hit starting document offset.
+          description: The inner hit that initiates document offset.
           type: integer
           format: int32
         collapse:
@@ -42723,11 +42902,11 @@ components:
         rescore_query:
           $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
         query_weight:
-          description: Relative importance of the original query versus the rescore query.
+          description: The relative importance of the original query as compared to the rescore query.
           type: number
           format: float
         rescore_query_weight:
-          description: Relative importance of the rescore query versus the original query.
+          description: The relative importance of the rescore query as compared to the original query.
           type: number
           format: float
         score_mode:
@@ -42843,7 +43022,7 @@ components:
     _core.search:SourceConfigParam:
       description: |-
         Defines how to fetch a source. Fetching can be disabled entirely, or the source can be filtered.
-        Used as a query parameter along with the `_source_includes` and `_source_excludes` parameters.
+        Use this setting with the `_source_includes` and `_source_excludes` parameters.
       oneOf:
         - type: boolean
         - $ref: '#/components/schemas/_common:Fields'
@@ -42878,7 +43057,7 @@ components:
       type: object
       properties:
         text:
-          description: Global suggest text, to avoid repetition when the same text is used in several suggesters
+          description: The global suggest text, which avoids repetition when the same text is used in several suggesters.
           type: string
     _core.search:TermSuggest:
       allOf:
@@ -42930,10 +43109,10 @@ components:
         - gte
     _core.search:TrackHits:
       description: |-
-        Number of hits matching the query to count accurately. If true, the exact
-        number of hits is returned at the cost of some performance. If false, the
+        The number of hits matching the query. When `true`, the exact
+        number of hits is returned at the cost of some performance. When `false`, the
         response does not include the total number of hits matching the query.
-        Defaults to 10,000 hits.
+        Default is `10,000` hits.
       oneOf:
         - type: boolean
         - type: integer
@@ -42956,21 +43135,21 @@ components:
       properties:
         max_doc_freq:
           description: |-
-            Ignore words which occur in more than this many docs.
-            Defaults to unbounded.
+            Ignores words that appear in more than the specified number of documents.
+            Default is `unbounded`.
           type: number
         max_num_terms:
-          description: Maximum number of terms that must be returned per field.
+          description: The maximum number of terms that should be returned per field.
           type: number
         max_term_freq:
           description: |-
             Ignore words with more than this frequency in the source doc.
-            Defaults to unbounded.
+            Default is `unbounded`.
           type: number
         max_word_length:
           description: |-
             The maximum word length above which words will be ignored.
-            Defaults to unbounded.
+            Default is `unbounded`.
           type: number
         min_doc_freq:
           description: Ignore terms which do not occur in at least this many docs.
@@ -50234,6 +50413,225 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/_common:ActionStatusOptions'
+    insights._common:Measurement:
+      type: object
+      properties:
+        number:
+          type: integer
+        count:
+          type: integer
+        aggregationType:
+          type: string
+    insights._common:Measurements:
+      type: object
+      properties:
+        latency:
+          type: object
+          $ref: '#/components/schemas/insights._common:Measurement'
+        cpu:
+          type: object
+          $ref: '#/components/schemas/insights._common:Measurement'
+        memory:
+          type: object
+          $ref: '#/components/schemas/insights._common:Measurement'
+    insights._common:Source:
+      type: object
+      properties:
+        aggregations:
+          description: Defines the aggregations that are run as part of the search request.
+          type: object
+        collapse:
+          $ref: '#/components/schemas/_core.search:FieldCollapse'
+        explain:
+          description: If true, returns detailed information about score computation as part of a hit.
+          type: boolean
+        ext:
+          description: Configuration of search extensions defined by OpenSearch plugins.
+          type: object
+          additionalProperties:
+            type: object
+        from:
+          description: |-
+            Starting document offset.
+            Needs to be non-negative.
+            By default, you cannot page through more than 10,000 hits using the `from` and `size` parameters.
+            To page through more hits, use the `search_after` parameter.
+          type: number
+        highlight:
+          $ref: '#/components/schemas/_core.search:Highlight'
+        track_total_hits:
+          $ref: '#/components/schemas/_core.search:TrackHits'
+        indices_boost:
+          description: Boosts the _score of documents from specified indices.
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: number
+        docvalue_fields:
+          description: |-
+            Array of wildcard (`*`) patterns.
+            The request returns doc values for field names matching these patterns in the `hits.fields` property of the response.
+          type: array
+          items:
+            $ref: '#/components/schemas/_common.query_dsl:FieldAndFormat'
+        min_score:
+          description: |-
+            Minimum `_score` for matching documents.
+            Documents with a lower `_score` are not included in the search results.
+          type: number
+        post_filter:
+          $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
+        profile:
+          description: |-
+            Set to `true` to return detailed timing information about the execution of individual components in a search request.
+            NOTE: This is a debugging tool and adds significant overhead to search execution.
+          type: boolean
+        query:
+          $ref: '#/components/schemas/_common.query_dsl:QueryContainer'
+        script_fields:
+          description: Retrieve a script evaluation (based on different fields) for each hit.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/_common:ScriptField'
+        search_after:
+          $ref: '#/components/schemas/_common:SortResults'
+        size:
+          description: |-
+            The number of hits to return.
+            By default, you cannot page through more than 10,000 hits using the `from` and `size` parameters.
+            To page through more hits, use the `search_after` parameter.
+          type: number
+        slice:
+          $ref: '#/components/schemas/_common:SlicedScroll'
+        sort:
+          $ref: '#/components/schemas/_common:Sort'
+        _source:
+          $ref: '#/components/schemas/_core.search:SourceConfig'
+        fields:
+          description: |-
+            Array of wildcard (`*`) patterns.
+            The request returns values for field names matching these patterns in the `hits.fields` property of the response.
+          type: array
+          items:
+            $ref: '#/components/schemas/_common.query_dsl:FieldAndFormat'
+        suggest:
+          $ref: '#/components/schemas/_core.search:Suggester'
+        terminate_after:
+          description: |-
+            Maximum number of documents to collect for each shard.
+            If a query reaches this limit, OpenSearch terminates the query early.
+            OpenSearch collects documents before sorting.
+            Use with caution.
+            OpenSearch applies this parameter to each shard handling the request.
+            When possible, let OpenSearch perform early termination automatically.
+            Avoid specifying this parameter for requests that target data streams with backing indices across multiple data tiers.
+            If set to `0` (default), the query does not terminate early.
+          type: integer
+          format: int32
+        timeout:
+          description: |-
+            Specifies the period of time to wait for a response from each shard.
+            If no response is received before the timeout expires, the request fails and returns an error.
+            Defaults to no timeout.
+          type: string
+        track_scores:
+          description: If true, calculate and return document scores, even if the scores are not used for sorting.
+          type: boolean
+        version:
+          description: If true, returns document version as part of a hit.
+          type: boolean
+        seq_no_primary_term:
+          description: If `true`, returns sequence number and primary term of the last modification of each hit.
+          type: boolean
+        stored_fields:
+          $ref: '#/components/schemas/_common:Fields'
+        pit:
+          $ref: '#/components/schemas/_core.search:PointInTimeReference'
+        stats:
+          description: |-
+            Stats groups to associate with the search.
+            Each group maintains a statistics aggregation for its associated searches.
+            You can retrieve these stats using the indices stats API.
+          type: array
+          items:
+            type: string
+    insights._common:TaskResourceUsage:
+      type: object
+      properties:
+        cpu_time_in_nanos:
+          type: integer
+          description: The CPU time used in nanoseconds.
+        memory_in_bytes:
+          type: integer
+          description: The memory usage in bytes.
+    insights._common:TaskResourceUsages:
+      type: object
+      properties:
+        action:
+          type: string
+          description: The action type of the task.
+        taskId:
+          type: integer
+          description: The task ID.
+        parentTaskId:
+          type: integer
+          description: The parent task ID.
+        nodeId:
+          type: string
+          description: The node ID where the task was executed.
+        taskResourceUsage:
+          type: object
+          $ref: '#/components/schemas/insights._common:TaskResourceUsage'
+    insights._common:TopQueriesResponse:
+      type: object
+      properties:
+        top_queries:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/insights._common:TopQuery'
+      required:
+        - top_queries
+    insights._common:TopQuery:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          description: The timestamp of the query execution.
+        total_shards:
+          type: integer
+          description: The total number of shards involved in the query.
+        task_resource_usages:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/insights._common:TaskResourceUsages'
+        query_hashcode:
+          type: string
+          description: The hash code of the query.
+        labels:
+          type: object
+          description: Additional labels for the query.
+        search_type:
+          type: string
+          description: The search query type (e.g., query_then_fetch).
+        source:
+          type: object
+          $ref: '#/components/schemas/insights._common:Source'
+        node_id:
+          type: string
+          description: The node ID associated with the query.
+        indices:
+          type: array
+          items:
+            type: string
+          description: The indices involved in the query.
+        phase_latency_map:
+          type: object
+        measurements:
+          type: object
+          $ref: '#/components/schemas/insights._common:Measurements'
     ism._common:Action:
       type: object
       description: An action to perform.
@@ -51775,6 +52173,12 @@ components:
           $ref: '#/components/schemas/_common:Duration'
         cumulative_execution_time_millis:
           $ref: '#/components/schemas/_common:DurationValueUnitMillis'
+    nodes._common:RemoteStoreStats:
+      type: object
+      properties:
+        last_successful_fetch_of_pinned_timestamps:
+          description: Timestamp for the last successful fetch of pinned timestamps.
+          $ref: '#/components/schemas/_common:StringifiedEpochTimeUnitSeconds'
     nodes._common:SampleType:
       type: string
       description: The type to sample.
@@ -52135,6 +52539,8 @@ components:
           $ref: '#/components/schemas/nodes._common:ShardSearchPipelineStats'
         segment_replication_backpressure:
           $ref: '#/components/schemas/nodes._common:ShardSegmentReplicationBackpressureStats'
+        remote_store:
+          $ref: '#/components/schemas/nodes._common:RemoteStoreStats'
         repositories:
           $ref: '#/components/schemas/nodes._common:ShardRepositoriesStats'
         admission_control:
@@ -55862,3 +56268,104 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/transforms._common:TransformEntity'
+    wlm._common:QueryGroupCreate:
+      type: object
+      properties:
+        name:
+          type: string
+        resiliency_mode:
+          type: string
+          enum:
+            - enforced
+            - monitor
+            - soft
+        resource_limits:
+          anyOf:
+            - type: object
+              properties:
+                memory:
+                  type: number
+                  format: double
+                cpu:
+                  type: number
+                  format: double
+              required:
+                - memory
+            - type: object
+              properties:
+                memory:
+                  type: number
+                  format: double
+                cpu:
+                  type: number
+                  format: double
+              required:
+                - cpu
+      required:
+        - name
+        - resiliency_mode
+        - resource_limits
+    wlm._common:QueryGroupResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        resiliency_mode:
+          type: string
+          enum:
+            - enforced
+            - monitor
+            - soft
+        updated_at:
+          type: integer
+          format: int64
+        resource_limits:
+          anyOf:
+            - type: object
+              properties:
+                memory:
+                  type: number
+                  format: double
+                cpu:
+                  type: number
+                  format: double
+              required:
+                - memory
+            - type: object
+              properties:
+                memory:
+                  type: number
+                  format: double
+                cpu:
+                  type: number
+                  format: double
+              required:
+                - cpu
+      required:
+        - _id
+        - name
+        - resiliency_mode
+        - resource_limits
+        - updated_at
+    wlm._common:QueryGroupUpdate:
+      type: object
+      properties:
+        resiliency_mode:
+          type: string
+          enum:
+            - enforced
+            - monitor
+            - soft
+        resource_limits:
+          $ref: '#/components/schemas/wlm._common:ResourceLimitsSchema'
+    wlm._common:ResourceLimitsSchema:
+      type: object
+      properties:
+        memory:
+          type: number
+          format: double
+        cpu:
+          type: number
+          format: double

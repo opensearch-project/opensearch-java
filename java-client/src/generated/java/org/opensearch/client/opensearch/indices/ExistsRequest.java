@@ -30,35 +30,48 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.transport.endpoints.BooleanEndpoint;
+import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: indices.get.Request
+// typedef: indices.exists.Request
 
 /**
- * Returns information about one or more indices.
- *
+ * Returns information about whether a particular index exists.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ExistsRequest extends RequestBase {
 
-public class GetIndexRequest extends RequestBase {
     @Nullable
     private final Boolean allowNoIndices;
 
+    @Nullable
+    private final Time clusterManagerTimeout;
+
+    @Nonnull
     private final List<ExpandWildcard> expandWildcards;
 
     @Nullable
@@ -70,43 +83,35 @@ public class GetIndexRequest extends RequestBase {
     @Nullable
     private final Boolean includeDefaults;
 
+    @Nonnull
     private final List<String> index;
 
     @Nullable
     private final Boolean local;
 
-    @Deprecated
-    @Nullable
-    private final Time masterTimeout;
-
-    @Nullable
-    private final Time clusterManagerTimeout;
-
     // ---------------------------------------------------------------------------------------------
 
-    private GetIndexRequest(Builder builder) {
-
+    private ExistsRequest(Builder builder) {
         this.allowNoIndices = builder.allowNoIndices;
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.flatSettings = builder.flatSettings;
         this.ignoreUnavailable = builder.ignoreUnavailable;
         this.includeDefaults = builder.includeDefaults;
         this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
         this.local = builder.local;
-        this.masterTimeout = builder.masterTimeout;
-        this.clusterManagerTimeout = builder.clusterManagerTimeout;
-
     }
 
-    public static GetIndexRequest of(Function<Builder, ObjectBuilder<GetIndexRequest>> fn) {
+    public static ExistsRequest of(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Ignore if a wildcard expression resolves to no concrete indices (default:
-     * false)
+     * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets only
+     * missing or closed indices. This behavior applies even if the request targets other open indices.
      * <p>
      * API name: {@code allow_no_indices}
+     * </p>
      */
     @Nullable
     public final Boolean allowNoIndices() {
@@ -114,20 +119,34 @@ public class GetIndexRequest extends RequestBase {
     }
 
     /**
-     * Type of index that wildcard expressions can match. If the request can target
-     * data streams, this argument determines whether wildcard expressions match
-     * hidden data streams. Supports comma-separated values, such as open,hidden.
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     * </p>
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
+
+    /**
+     * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
+     * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>. Valid values are:
+     * <code>all</code>, <code>open</code>, <code>closed</code>, <code>hidden</code>, <code>none</code>.
      * <p>
      * API name: {@code expand_wildcards}
+     * </p>
      */
+    @Nonnull
     public final List<ExpandWildcard> expandWildcards() {
         return this.expandWildcards;
     }
 
     /**
-     * If true, returns settings in flat format.
+     * If <code>true</code>, returns settings in flat format.
      * <p>
      * API name: {@code flat_settings}
+     * </p>
      */
     @Nullable
     public final Boolean flatSettings() {
@@ -135,9 +154,10 @@ public class GetIndexRequest extends RequestBase {
     }
 
     /**
-     * If false, requests that target a missing index return an error.
+     * If <code>false</code>, the request returns an error if it targets a missing or closed index.
      * <p>
      * API name: {@code ignore_unavailable}
+     * </p>
      */
     @Nullable
     public final Boolean ignoreUnavailable() {
@@ -145,9 +165,10 @@ public class GetIndexRequest extends RequestBase {
     }
 
     /**
-     * If true, return all default settings in the response.
+     * If <code>true</code>, return all default settings in the response.
      * <p>
      * API name: {@code include_defaults}
+     * </p>
      */
     @Nullable
     public final Boolean includeDefaults() {
@@ -155,88 +176,55 @@ public class GetIndexRequest extends RequestBase {
     }
 
     /**
-     * Required - Comma-separated list of data streams, indices, and index aliases
-     * used to limit the request. Wildcard expressions (*) are supported.
+     * Required - Comma-separated list of data streams, indices, and aliases. Supports wildcards (<code>*</code>).
      * <p>
      * API name: {@code index}
+     * </p>
      */
+    @Nonnull
     public final List<String> index() {
         return this.index;
     }
 
     /**
-     * If true, the request retrieves information from the local node only. Defaults
-     * to false, which means information is retrieved from the cluster-manager node.
+     * If <code>true</code>, the request retrieves information from the local node only.
      * <p>
      * API name: {@code local}
+     * </p>
      */
     @Nullable
     public final Boolean local() {
         return this.local;
     }
 
-    /**
-     * Period to wait for a connection to the master node. If no response is
-     * received before the timeout expires, the request fails and returns an error.
-     * <p>
-     * API name: {@code master_timeout}
-     */
-    @Deprecated
-    @Nullable
-    public final Time masterTimeout() {
-        return this.masterTimeout;
-    }
-
-    /**
-     * Period to wait for a connection to the cluster-manager node. If no response is
-     * received before the timeout expires, the request fails and returns an error.
-     * <p>
-     * API name: {@code cluster_manager_timeout}
-     */
-    @Nullable
-    public final Time clusterManagerTimeout() {
-        return this.clusterManagerTimeout;
-    }
-
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link GetIndexRequest}.
+     * Builder for {@link ExistsRequest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetIndexRequest> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsRequest> {
         @Nullable
         private Boolean allowNoIndices;
-
+        @Nullable
+        private Time clusterManagerTimeout;
         @Nullable
         private List<ExpandWildcard> expandWildcards;
-
         @Nullable
         private Boolean flatSettings;
-
         @Nullable
         private Boolean ignoreUnavailable;
-
         @Nullable
         private Boolean includeDefaults;
-
         private List<String> index;
-
         @Nullable
         private Boolean local;
 
-        @Deprecated
-        @Nullable
-        private Time masterTimeout;
-
-        @Nullable
-        private Time clusterManagerTimeout;
-
         /**
-         * Ignore if a wildcard expression resolves to no concrete indices (default:
-         * false)
+         * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets
+         * only missing or closed indices. This behavior applies even if the request targets other open indices.
          * <p>
          * API name: {@code allow_no_indices}
+         * </p>
          */
         public final Builder allowNoIndices(@Nullable Boolean value) {
             this.allowNoIndices = value;
@@ -244,128 +232,10 @@ public class GetIndexRequest extends RequestBase {
         }
 
         /**
-         * Type of index that wildcard expressions can match. If the request can target
-         * data streams, this argument determines whether wildcard expressions match
-         * hidden data streams. Supports comma-separated values, such as open,hidden.
-         * <p>
-         * API name: {@code expand_wildcards}
-         * <p>
-         * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
-         */
-        public final Builder expandWildcards(List<ExpandWildcard> list) {
-            this.expandWildcards = _listAddAll(this.expandWildcards, list);
-            return this;
-        }
-
-        /**
-         * Type of index that wildcard expressions can match. If the request can target
-         * data streams, this argument determines whether wildcard expressions match
-         * hidden data streams. Supports comma-separated values, such as open,hidden.
-         * <p>
-         * API name: {@code expand_wildcards}
-         * <p>
-         * Adds one or more values to <code>expandWildcards</code>.
-         */
-        public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
-            this.expandWildcards = _listAdd(this.expandWildcards, value, values);
-            return this;
-        }
-
-        /**
-         * If true, returns settings in flat format.
-         * <p>
-         * API name: {@code flat_settings}
-         */
-        public final Builder flatSettings(@Nullable Boolean value) {
-            this.flatSettings = value;
-            return this;
-        }
-
-        /**
-         * If false, requests that target a missing index return an error.
-         * <p>
-         * API name: {@code ignore_unavailable}
-         */
-        public final Builder ignoreUnavailable(@Nullable Boolean value) {
-            this.ignoreUnavailable = value;
-            return this;
-        }
-
-        /**
-         * If true, return all default settings in the response.
-         * <p>
-         * API name: {@code include_defaults}
-         */
-        public final Builder includeDefaults(@Nullable Boolean value) {
-            this.includeDefaults = value;
-            return this;
-        }
-
-        /**
-         * Required - Comma-separated list of data streams, indices, and index aliases
-         * used to limit the request. Wildcard expressions (*) are supported.
-         * <p>
-         * API name: {@code index}
-         * <p>
-         * Adds all elements of <code>list</code> to <code>index</code>.
-         */
-        public final Builder index(List<String> list) {
-            this.index = _listAddAll(this.index, list);
-            return this;
-        }
-
-        /**
-         * Required - Comma-separated list of data streams, indices, and index aliases
-         * used to limit the request. Wildcard expressions (*) are supported.
-         * <p>
-         * API name: {@code index}
-         * <p>
-         * Adds one or more values to <code>index</code>.
-         */
-        public final Builder index(String value, String... values) {
-            this.index = _listAdd(this.index, value, values);
-            return this;
-        }
-
-        /**
-         * If true, the request retrieves information from the local node only. Defaults
-         * to false, which means information is retrieved from the cluster-manager node.
-         * <p>
-         * API name: {@code local}
-         */
-        public final Builder local(@Nullable Boolean value) {
-            this.local = value;
-            return this;
-        }
-
-        /**
-         * Period to wait for a connection to the master node. If no response is
-         * received before the timeout expires, the request fails and returns an error.
-         * <p>
-         * API name: {@code master_timeout}
-         */
-        @Deprecated
-        public final Builder masterTimeout(@Nullable Time value) {
-            this.masterTimeout = value;
-            return this;
-        }
-
-        /**
-         * Period to wait for a connection to the master node. If no response is
-         * received before the timeout expires, the request fails and returns an error.
-         * <p>
-         * API name: {@code master_timeout}
-         */
-        @Deprecated
-        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.masterTimeout(fn.apply(new Time.Builder()).build());
-        }
-
-        /**
-         * Period to wait for a connection to the cluster-manager node. If no response is
-         * received before the timeout expires, the request fails and returns an error.
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
@@ -373,79 +243,167 @@ public class GetIndexRequest extends RequestBase {
         }
 
         /**
-         * Period to wait for a connection to the cluster-manager node. If no response is
-         * received before the timeout expires, the request fails and returns an error.
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+            return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
-         * Builds a {@link GetIndexRequest}.
+         * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
+         * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>. Valid values are:
+         * <code>all</code>, <code>open</code>, <code>closed</code>, <code>hidden</code>, <code>none</code>.
+         * <p>
+         * API name: {@code expand_wildcards}
+         * </p>
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * <p>
+         * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+         * </p>
          */
-        public GetIndexRequest build() {
+        public final Builder expandWildcards(List<ExpandWildcard> list) {
+            this.expandWildcards = _listAddAll(this.expandWildcards, list);
+            return this;
+        }
+
+        /**
+         * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
+         * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>. Valid values are:
+         * <code>all</code>, <code>open</code>, <code>closed</code>, <code>hidden</code>, <code>none</code>.
+         * <p>
+         * API name: {@code expand_wildcards}
+         * </p>
+         *
+         * <p>
+         * Adds one or more values to <code>expandWildcards</code>.
+         * </p>
+         */
+        public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+            this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+            return this;
+        }
+
+        /**
+         * If <code>true</code>, returns settings in flat format.
+         * <p>
+         * API name: {@code flat_settings}
+         * </p>
+         */
+        public final Builder flatSettings(@Nullable Boolean value) {
+            this.flatSettings = value;
+            return this;
+        }
+
+        /**
+         * If <code>false</code>, the request returns an error if it targets a missing or closed index.
+         * <p>
+         * API name: {@code ignore_unavailable}
+         * </p>
+         */
+        public final Builder ignoreUnavailable(@Nullable Boolean value) {
+            this.ignoreUnavailable = value;
+            return this;
+        }
+
+        /**
+         * If <code>true</code>, return all default settings in the response.
+         * <p>
+         * API name: {@code include_defaults}
+         * </p>
+         */
+        public final Builder includeDefaults(@Nullable Boolean value) {
+            this.includeDefaults = value;
+            return this;
+        }
+
+        /**
+         * Required - Comma-separated list of data streams, indices, and aliases. Supports wildcards (<code>*</code>).
+         * <p>
+         * API name: {@code index}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>index</code>.
+         * </p>
+         */
+        public final Builder index(List<String> list) {
+            this.index = _listAddAll(this.index, list);
+            return this;
+        }
+
+        /**
+         * Required - Comma-separated list of data streams, indices, and aliases. Supports wildcards (<code>*</code>).
+         * <p>
+         * API name: {@code index}
+         * </p>
+         *
+         * <p>
+         * Adds one or more values to <code>index</code>.
+         * </p>
+         */
+        public final Builder index(String value, String... values) {
+            this.index = _listAdd(this.index, value, values);
+            return this;
+        }
+
+        /**
+         * If <code>true</code>, the request retrieves information from the local node only.
+         * <p>
+         * API name: {@code local}
+         * </p>
+         */
+        public final Builder local(@Nullable Boolean value) {
+            this.local = value;
+            return this;
+        }
+
+        /**
+         * Builds a {@link ExistsRequest}.
+         *
+         * @throws NullPointerException if some of the required fields are null.
+         */
+        public ExistsRequest build() {
             _checkSingleUse();
 
-            return new GetIndexRequest(this);
+            return new ExistsRequest(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Endpoint "{@code indices.get}".
+     * Endpoint "{@code indices.exists}".
      */
-    public static final Endpoint<GetIndexRequest, GetIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
+    public static final Endpoint<ExistsRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
         // Request method
-        request -> {
-            return "GET";
-
-        },
-
+        request -> "HEAD",
         // Request path
         request -> {
-            final int _index = 1 << 0;
-
-            int propsSet = 0;
-
-            propsSet |= _index;
-
-            if (propsSet == (_index)) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-                return buf.toString();
-            }
-            throw SimpleEndpoint.noPathTemplateFound("path");
-
+            StringBuilder buf = new StringBuilder();
+            buf.append("/");
+            SimpleEndpoint.pathEncode(String.join(",", request.index), buf);
+            return buf.toString();
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
+            if (request.allowNoIndices != null) {
+                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
             }
             if (request.clusterManagerTimeout != null) {
                 params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
             }
-            if (request.flatSettings != null) {
-                params.put("flat_settings", String.valueOf(request.flatSettings));
-            }
             if (ApiTypeHelper.isDefined(request.expandWildcards)) {
                 params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
             }
+            if (request.flatSettings != null) {
+                params.put("flat_settings", String.valueOf(request.flatSettings));
+            }
             if (request.ignoreUnavailable != null) {
                 params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
             }
             if (request.includeDefaults != null) {
                 params.put("include_defaults", String.valueOf(request.includeDefaults));
@@ -454,10 +412,36 @@ public class GetIndexRequest extends RequestBase {
                 params.put("local", String.valueOf(request.local));
             }
             return params;
-
         },
-        SimpleEndpoint.emptyMap(),
-        false,
-        GetIndexResponse._DESERIALIZER
+        SimpleEndpoint.emptyMap()
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.allowNoIndices);
+        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
+        result = 31 * result + Objects.hashCode(this.expandWildcards);
+        result = 31 * result + Objects.hashCode(this.flatSettings);
+        result = 31 * result + Objects.hashCode(this.ignoreUnavailable);
+        result = 31 * result + Objects.hashCode(this.includeDefaults);
+        result = 31 * result + this.index.hashCode();
+        result = 31 * result + Objects.hashCode(this.local);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ExistsRequest other = (ExistsRequest) o;
+        return Objects.equals(this.allowNoIndices, other.allowNoIndices)
+            && Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
+            && Objects.equals(this.expandWildcards, other.expandWildcards)
+            && Objects.equals(this.flatSettings, other.flatSettings)
+            && Objects.equals(this.ignoreUnavailable, other.ignoreUnavailable)
+            && Objects.equals(this.includeDefaults, other.includeDefaults)
+            && this.index.equals(other.index)
+            && Objects.equals(this.local, other.local);
+    }
 }

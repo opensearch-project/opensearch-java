@@ -30,11 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
-import javax.annotation.Nullable;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -48,31 +53,39 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: indices.create.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CreateIndexResponse implements PlainJsonSerializable {
+
+    private final boolean acknowledged;
+
+    @Nonnull
     private final String index;
 
     private final boolean shardsAcknowledged;
 
-    @Nullable
-    private final Boolean acknowledged;
-
     // ---------------------------------------------------------------------------------------------
 
     private CreateIndexResponse(Builder builder) {
-
+        this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
-        this.acknowledged = builder.acknowledged;
-
     }
 
-    public static CreateIndexResponse of(Function<Builder, ObjectBuilder<CreateIndexResponse>> fn) {
+    public static CreateIndexResponse of(Function<CreateIndexResponse.Builder, ObjectBuilder<CreateIndexResponse>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * Required - API name: {@code acknowledged}
+     */
+    public final boolean acknowledged() {
+        return this.acknowledged;
     }
 
     /**
      * Required - API name: {@code index}
      */
+    @Nonnull
     public final String index() {
         return this.index;
     }
@@ -85,16 +98,9 @@ public class CreateIndexResponse implements PlainJsonSerializable {
     }
 
     /**
-     * API name: {@code acknowledged}
-     */
-    @Nullable
-    public final Boolean acknowledged() {
-        return this.acknowledged;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -102,19 +108,14 @@ public class CreateIndexResponse implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeKey("acknowledged");
+        generator.write(this.acknowledged);
 
         generator.writeKey("index");
         generator.write(this.index);
 
         generator.writeKey("shards_acknowledged");
         generator.write(this.shardsAcknowledged);
-
-        if (this.acknowledged != null) {
-            generator.writeKey("acknowledged");
-            generator.write(this.acknowledged);
-
-        }
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -122,14 +123,18 @@ public class CreateIndexResponse implements PlainJsonSerializable {
     /**
      * Builder for {@link CreateIndexResponse}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateIndexResponse> {
+        private Boolean acknowledged;
         private String index;
-
         private Boolean shardsAcknowledged;
 
-        @Nullable
-        private Boolean acknowledged;
+        /**
+         * Required - API name: {@code acknowledged}
+         */
+        public final Builder acknowledged(boolean value) {
+            this.acknowledged = value;
+            return this;
+        }
 
         /**
          * Required - API name: {@code index}
@@ -148,18 +153,9 @@ public class CreateIndexResponse implements PlainJsonSerializable {
         }
 
         /**
-         * API name: {@code acknowledged}
-         */
-        public final Builder acknowledged(@Nullable Boolean value) {
-            this.acknowledged = value;
-            return this;
-        }
-
-        /**
          * Builds a {@link CreateIndexResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public CreateIndexResponse build() {
             _checkSingleUse();
@@ -179,11 +175,27 @@ public class CreateIndexResponse implements PlainJsonSerializable {
     );
 
     protected static void setupCreateIndexResponseDeserializer(ObjectDeserializer<CreateIndexResponse.Builder> op) {
-
+        op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
         op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
-        op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.acknowledged);
+        result = 31 * result + this.index.hashCode();
+        result = 31 * result + Boolean.hashCode(this.shardsAcknowledged);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CreateIndexResponse other = (CreateIndexResponse) o;
+        return this.acknowledged == other.acknowledged
+            && this.index.equals(other.index)
+            && this.shardsAcknowledged == other.shardsAcknowledged;
+    }
 }

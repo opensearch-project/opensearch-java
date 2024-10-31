@@ -30,10 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.mapping;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -44,21 +49,21 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _types.mapping.IndexField
+// typedef: _types.mapping.SizeField
 
 @JsonpDeserializable
-public class IndexField implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SizeField implements PlainJsonSerializable {
+
     private final boolean enabled;
 
     // ---------------------------------------------------------------------------------------------
 
-    private IndexField(Builder builder) {
-
+    private SizeField(Builder builder) {
         this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
-
     }
 
-    public static IndexField of(Function<Builder, ObjectBuilder<IndexField>> fn) {
+    public static SizeField of(Function<SizeField.Builder, ObjectBuilder<SizeField>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -72,6 +77,7 @@ public class IndexField implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -79,19 +85,16 @@ public class IndexField implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("enabled");
         generator.write(this.enabled);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link IndexField}.
+     * Builder for {@link SizeField}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexField> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SizeField> {
         private Boolean enabled;
 
         /**
@@ -103,32 +106,43 @@ public class IndexField implements PlainJsonSerializable {
         }
 
         /**
-         * Builds a {@link IndexField}.
+         * Builds a {@link SizeField}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public IndexField build() {
+        public SizeField build() {
             _checkSingleUse();
 
-            return new IndexField(this);
+            return new SizeField(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link IndexField}
+     * Json deserializer for {@link SizeField}
      */
-    public static final JsonpDeserializer<IndexField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<SizeField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        IndexField::setupIndexFieldDeserializer
+        SizeField::setupSizeFieldDeserializer
     );
 
-    protected static void setupIndexFieldDeserializer(ObjectDeserializer<IndexField.Builder> op) {
-
+    protected static void setupSizeFieldDeserializer(ObjectDeserializer<SizeField.Builder> op) {
         op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.enabled);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SizeField other = (SizeField) o;
+        return this.enabled == other.enabled;
+    }
 }
