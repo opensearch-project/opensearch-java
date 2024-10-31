@@ -23,6 +23,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.exceptions.RenderException;
+import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.JavaClassKind;
 import org.opensearch.client.codegen.utils.Markdown;
 
@@ -35,13 +36,15 @@ public abstract class Shape {
     private final String className;
     private final String typedefName;
     private final String description;
+    private final ShouldGenerate shouldGenerate;
     private Type extendsType;
 
-    public Shape(Namespace parent, String className, String typedefName, String description) {
+    public Shape(Namespace parent, String className, String typedefName, String description, ShouldGenerate shouldGenerate) {
         this.parent = parent;
         this.className = className;
         this.typedefName = typedefName;
         this.description = description != null ? Markdown.toJavaDocHtml(description) : null;
+        this.shouldGenerate = shouldGenerate;
     }
 
     public String getPackageName() {
@@ -105,6 +108,12 @@ public abstract class Shape {
     protected void tryAddReference(ReferenceKind kind, Type to) {
         if (to == null) return;
         to.getTargetShape().ifPresent(s -> addReference(kind, s));
+        var typeParams = to.getTypeParams();
+        if (typeParams != null) {
+            for (var typeParam : typeParams) {
+                tryAddReference(ReferenceKind.TypeParameter, typeParam);
+            }
+        }
     }
 
     private void addReference(ReferenceKind kind, Shape to) {
@@ -125,8 +134,33 @@ public abstract class Shape {
         return this.parent;
     }
 
+    private boolean shouldGenerate(Set<Shape> visited) {
+        switch (shouldGenerate) {
+            case Always:
+                return true;
+            case Never:
+                return false;
+            case IfNeeded:
+                if (visited.contains(this)) {
+                    return false;
+                }
+                visited.add(this);
+                return incomingReferences.values().stream().flatMap(List::stream).anyMatch(s -> s.shouldGenerate(visited));
+            default:
+                throw new IllegalStateException("Unknown ShouldGenerate: " + shouldGenerate);
+        }
+    }
+
+    public boolean shouldGenerate() {
+        return shouldGenerate(new HashSet<>());
+    }
+
     public void render(ShapeRenderingContext ctx) throws RenderException {
         var outFile = ctx.getOutputFile(className + ".java");
+        if (!shouldGenerate()) {
+            LOGGER.info("Skipping: {}", outFile);
+            return;
+        }
         LOGGER.info("Rendering: {}", outFile);
         var renderer = ctx.getTemplateRenderer(b -> b.withFormatter(Type.class, t -> {
             referencedTypes.add(t);

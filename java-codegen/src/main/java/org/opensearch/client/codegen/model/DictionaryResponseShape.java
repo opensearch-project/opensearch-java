@@ -10,6 +10,7 @@ package org.opensearch.client.codegen.model;
 
 import java.util.Collection;
 import java.util.List;
+import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 
 public class DictionaryResponseShape extends Shape {
     private final Type keyType;
@@ -21,9 +22,10 @@ public class DictionaryResponseShape extends Shape {
         String typedefName,
         String description,
         Type keyType,
-        Type valueType
+        Type valueType,
+        ShouldGenerate shouldGenerate
     ) {
-        super(parent, className, typedefName, description);
+        super(parent, className, typedefName, description, shouldGenerate);
         this.keyType = keyType;
         this.valueType = valueType;
         setExtendsType(Types.Client.Transport.Endpoints.DictionaryResponse(keyType, valueType));

@@ -11,7 +11,8 @@ package org.opensearch.client.codegen.model;
 public enum ReferenceKind {
     Extends(false),
     Field(true),
-    UnionVariant(true);
+    UnionVariant(true),
+    TypeParameter(true);
 
     private final boolean isConcreteUsage;
 

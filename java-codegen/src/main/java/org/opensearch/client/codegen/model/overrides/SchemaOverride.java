@@ -24,6 +24,7 @@ import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.builder.ObjectMapBuilderBase;
 
 public final class SchemaOverride {
+    @Nonnull
     private final ShouldGenerate shouldGenerate;
     @Nonnull
     private final Map<String, PropertyOverride> properties;
@@ -66,6 +67,7 @@ public final class SchemaOverride {
         return PropertyOverride.builder().withMappedType(mappedType).withAliases(aliases).build();
     }
 
+    @Nonnull
     public ShouldGenerate shouldGenerate() {
         return shouldGenerate;
     }
@@ -111,7 +113,7 @@ public final class SchemaOverride {
         }
 
         @Nonnull
-        public Builder withShouldGenerate(ShouldGenerate shouldGenerate) {
+        public Builder withShouldGenerate(@Nonnull ShouldGenerate shouldGenerate) {
             this.shouldGenerate = Objects.requireNonNull(shouldGenerate, "shouldGenerate must not be null");
             return this;
         }

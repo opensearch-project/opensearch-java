@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.mapping;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,7 +49,10 @@ import org.opensearch.client.util.ApiTypeHelper;
 
 // typedef: _types.mapping.CorePropertyBase
 
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class CorePropertyBase extends PropertyBase {
+
+    @Nonnull
     private final List<String> copyTo;
 
     @Nullable
@@ -55,16 +65,15 @@ public abstract class CorePropertyBase extends PropertyBase {
 
     protected CorePropertyBase(AbstractBuilder<?> builder) {
         super(builder);
-
         this.copyTo = ApiTypeHelper.unmodifiable(builder.copyTo);
         this.similarity = builder.similarity;
         this.store = builder.store;
-
     }
 
     /**
      * API name: {@code copy_to}
      */
+    @Nonnull
     public final List<String> copyTo() {
         return this.copyTo;
     }
@@ -86,46 +95,44 @@ public abstract class CorePropertyBase extends PropertyBase {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
         if (ApiTypeHelper.isDefined(this.copyTo)) {
             generator.writeKey("copy_to");
             generator.writeStartArray();
             for (String item0 : this.copyTo) {
                 generator.write(item0);
-
             }
             generator.writeEnd();
-
         }
+
         if (this.similarity != null) {
             generator.writeKey("similarity");
             generator.write(this.similarity);
-
         }
+
         if (this.store != null) {
             generator.writeKey("store");
             generator.write(this.store);
-
         }
-
     }
+
+    // ---------------------------------------------------------------------------------------------
 
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends PropertyBase.AbstractBuilder<
         BuilderT> {
         @Nullable
         private List<String> copyTo;
-
         @Nullable
         private String similarity;
-
         @Nullable
         private Boolean store;
 
         /**
          * API name: {@code copy_to}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>copyTo</code>.
+         * </p>
          */
         public final BuilderT copyTo(List<String> list) {
             this.copyTo = _listAddAll(this.copyTo, list);
@@ -134,8 +141,10 @@ public abstract class CorePropertyBase extends PropertyBase {
 
         /**
          * API name: {@code copy_to}
+         *
          * <p>
          * Adds one or more values to <code>copyTo</code>.
+         * </p>
          */
         public final BuilderT copyTo(String value, String... values) {
             this.copyTo = _listAdd(this.copyTo, value, values);
@@ -161,12 +170,33 @@ public abstract class CorePropertyBase extends PropertyBase {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupCorePropertyBaseDeserializer(ObjectDeserializer<BuilderT> op) {
-        PropertyBase.setupPropertyBaseDeserializer(op);
+        setupPropertyBaseDeserializer(op);
         op.add(AbstractBuilder::copyTo, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "copy_to");
         op.add(AbstractBuilder::similarity, JsonpDeserializer.stringDeserializer(), "similarity");
         op.add(AbstractBuilder::store, JsonpDeserializer.booleanDeserializer(), "store");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.copyTo);
+        result = 31 * result + Objects.hashCode(this.similarity);
+        result = 31 * result + Objects.hashCode(this.store);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CorePropertyBase other = (CorePropertyBase) o;
+        return Objects.equals(this.copyTo, other.copyTo)
+            && Objects.equals(this.similarity, other.similarity)
+            && Objects.equals(this.store, other.store);
+    }
 }
