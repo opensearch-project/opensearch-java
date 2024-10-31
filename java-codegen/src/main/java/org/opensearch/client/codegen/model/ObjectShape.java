@@ -17,14 +17,15 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.tuple.Pair;
+import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 
 public class ObjectShape extends Shape {
     protected final Map<String, Field> bodyFields = new TreeMap<>();
     protected Field additionalPropertiesField;
     private String shortcutProperty;
 
-    public ObjectShape(Namespace parent, String className, String typedefName, String description) {
-        super(parent, className, typedefName, description);
+    public ObjectShape(Namespace parent, String className, String typedefName, String description, ShouldGenerate shouldGenerate) {
+        super(parent, className, typedefName, description, shouldGenerate);
     }
 
     public void addBodyField(Field field) {

@@ -8,7 +8,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.eclipse.parsson:parsson` from 1.1.6 to 1.1.7
 - Bumps `org.hamcrest:hamcrest` from 2.2 to 3.0
 - Bumps `com.github.jk1.dependency-license-report` from 2.8 to 2.9
-- Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.2.2 to 5.3.0
 - Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.3 to 5.3.1
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
@@ -41,8 +40,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ## [Unreleased 2.x]
 
 ### Added
-- Added `minScore` and `maxDistance` to `KnnQuery` ([#1166](https://github.com/opensearch-project/opensearch-java/pull/1166))
-- Added `minScore` and `maxDistance` to `NeuralQuery` ([#1235](https://github.com/opensearch-project/opensearch-java/pull/1235))
+- Added support for `KnnVectorProperty`'s `compression_level`, `data_type`, `mode` & `space_type` properties ([#]())
 
 ### Dependencies
 
@@ -53,9 +51,19 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
-- Fixed deserializing `GeoBoundsAggregate` when `bounds` is not returned by OpenSearch ([#1238](https://github.com/opensearch-project/opensearch-java/pull/1238))
 
 ### Security
+
+## [2.16.0] - 10/22/2024
+### Added
+- Added `minScore` and `maxDistance` to `KnnQuery` ([#1166](https://github.com/opensearch-project/opensearch-java/pull/1166))
+- Added `minScore` and `maxDistance` to `NeuralQuery` ([#1235](https://github.com/opensearch-project/opensearch-java/pull/1235))
+
+### Dependencies
+- Bumps `org.ajoberstar.grgit:grgit-gradle` from 5.2.2 to 5.3.0
+
+### Fixed
+- Fixed deserializing `GeoBoundsAggregate` when `bounds` is not returned by OpenSearch ([#1238](https://github.com/opensearch-project/opensearch-java/pull/1238))
 
 ## [2.15.0] - 10/17/2024
 ### Added
@@ -548,7 +556,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.15.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.16.0...2.x
+[2.16.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.15.0...v2.16.0
 [2.15.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.14.0...v2.15.0
 [2.14.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.13.0...v2.14.0
 [2.13.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.12.0...v2.13.0

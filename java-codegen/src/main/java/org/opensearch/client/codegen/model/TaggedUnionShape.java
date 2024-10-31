@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.opensearch.client.codegen.exceptions.RenderException;
+import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.JavaClassKind;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
@@ -22,8 +23,8 @@ public class TaggedUnionShape extends Shape {
     private final Map<String, Variant> variants = new TreeMap<>();
     private final String discriminatingField;
 
-    public TaggedUnionShape(Namespace parent, String className, String typedefName, String description, String discriminatingField) {
-        super(parent, className, typedefName, description);
+    public TaggedUnionShape(Namespace parent, String className, String typedefName, String description, String discriminatingField, ShouldGenerate shouldGenerate) {
+        super(parent, className, typedefName, description, shouldGenerate);
         this.discriminatingField = discriminatingField;
     }
 
@@ -91,13 +92,16 @@ public class TaggedUnionShape extends Shape {
 
     @Override
     public void render(ShapeRenderingContext ctx) throws RenderException {
+        if (!shouldGenerate()) {
+            return;
+        }
         super.render(ctx);
         var buildableVariants = Lists.filter(getVariants(), v -> v.getType().hasBuilder());
         if (!buildableVariants.isEmpty()) {
-            new Builders(this, buildableVariants).render(ctx);
+            new Builders(this, buildableVariants, ShouldGenerate.Always).render(ctx);
         }
         if (isDiscriminated()) {
-            new VariantInterface(this).render(ctx);
+            new VariantInterface(this, ShouldGenerate.Always).render(ctx);
         }
     }
 
@@ -141,8 +145,8 @@ public class TaggedUnionShape extends Shape {
         private final String unionClassName;
         private final Collection<Variant> variants;
 
-        private Builders(TaggedUnionShape union, Collection<Variant> variants) {
-            super(union.getParent(), union.getClassName() + "Builders", null, buildDescription(union));
+        private Builders(TaggedUnionShape union, Collection<Variant> variants, ShouldGenerate shouldGenerate) {
+            super(union.getParent(), union.getClassName() + "Builders", null, buildDescription(union), shouldGenerate);
             this.variants = variants;
             unionClassName = union.getClassName();
         }
@@ -169,12 +173,13 @@ public class TaggedUnionShape extends Shape {
     public static class VariantInterface extends Shape {
         private final String unionClassName;
 
-        private VariantInterface(TaggedUnionShape union) {
+        private VariantInterface(TaggedUnionShape union, ShouldGenerate shouldGenerate) {
             super(
                 union.getParent(),
                 union.getClassName() + "Variant",
                 null,
-                "Base interface for {@link " + union.getClassName() + "} variants."
+                "Base interface for {@link " + union.getClassName() + "} variants.",
+                shouldGenerate
             );
             unionClassName = union.getClassName();
             setExtendsType(Types.Client.Json.JsonpSerializable);

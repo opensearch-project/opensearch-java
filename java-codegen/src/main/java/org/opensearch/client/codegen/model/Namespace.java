@@ -19,6 +19,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.opensearch.client.codegen.exceptions.RenderException;
+import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
 
@@ -115,7 +116,7 @@ public class Namespace {
         private final Collection<RequestShape> operations;
 
         private Client(Namespace parent, boolean async, boolean base, Collection<RequestShape> operations) {
-            super(parent, parent.getClientClassName(async, base), null, "Client for the " + parent.name + " namespace.");
+            super(parent, parent.getClientClassName(async, base), null, "Client for the " + parent.name + " namespace.", ShouldGenerate.Always);
             this.async = async;
             this.base = base;
             this.operations = operations;
