@@ -8,10 +8,9 @@
 
 package org.opensearch.client.codegen.model;
 
-import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
-
 import java.util.Collection;
 import java.util.List;
+import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 
 public class DictionaryResponseShape extends Shape {
     private final Type keyType;

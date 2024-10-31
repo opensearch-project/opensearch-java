@@ -137,7 +137,13 @@ public class SpecTransformer {
             return;
         }
 
-        visit(parent, requestShape.getResponseType().getName(), group + ".Response", responseSchema.orElse(OpenApiSchema.ANONYMOUS_OBJECT), ShouldGenerate.Always);
+        visit(
+            parent,
+            requestShape.getResponseType().getName(),
+            group + ".Response",
+            responseSchema.orElse(OpenApiSchema.ANONYMOUS_OBJECT),
+            ShouldGenerate.Always
+        );
     }
 
     @Nonnull

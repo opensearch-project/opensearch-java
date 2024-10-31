@@ -23,7 +23,14 @@ public class TaggedUnionShape extends Shape {
     private final Map<String, Variant> variants = new TreeMap<>();
     private final String discriminatingField;
 
-    public TaggedUnionShape(Namespace parent, String className, String typedefName, String description, String discriminatingField, ShouldGenerate shouldGenerate) {
+    public TaggedUnionShape(
+        Namespace parent,
+        String className,
+        String typedefName,
+        String description,
+        String discriminatingField,
+        ShouldGenerate shouldGenerate
+    ) {
         super(parent, className, typedefName, description, shouldGenerate);
         this.discriminatingField = discriminatingField;
     }

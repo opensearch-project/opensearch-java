@@ -145,9 +145,7 @@ public abstract class Shape {
                     return false;
                 }
                 visited.add(this);
-                return incomingReferences.values().stream()
-                    .flatMap(List::stream)
-                    .anyMatch(s -> s.shouldGenerate(visited));
+                return incomingReferences.values().stream().flatMap(List::stream).anyMatch(s -> s.shouldGenerate(visited));
             default:
                 throw new IllegalStateException("Unknown ShouldGenerate: " + shouldGenerate);
         }

@@ -8,15 +8,21 @@
 
 package org.opensearch.client.codegen.model;
 
-import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
-
 import java.util.Collection;
 import java.util.List;
+import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 
 public class ArrayShape extends ObjectShape {
     private final Field valueBodyField;
 
-    public ArrayShape(Namespace parent, String className, Type arrayType, String typedefName, String description, ShouldGenerate shouldGenerate) {
+    public ArrayShape(
+        Namespace parent,
+        String className,
+        Type arrayType,
+        String typedefName,
+        String description,
+        ShouldGenerate shouldGenerate
+    ) {
         super(parent, className, typedefName, description, shouldGenerate);
         this.valueBodyField = new Field("_value_body", arrayType, true, "Response value.", null);
     }

@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
 import javax.annotation.Nullable;
-
 import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.JavaClassKind;
 import org.opensearch.client.codegen.utils.Markdown;

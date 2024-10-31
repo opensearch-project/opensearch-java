@@ -38,7 +38,12 @@ public class RequestShape extends ObjectShape {
     private final Map<String, Field> fields = new TreeMap<>();
     private boolean isBooleanRequest;
 
-    public RequestShape(@Nonnull Namespace parent, @Nonnull OperationGroup operationGroup, @Nullable String description, @Nonnull ShouldGenerate shouldGenerate) {
+    public RequestShape(
+        @Nonnull Namespace parent,
+        @Nonnull OperationGroup operationGroup,
+        @Nullable String description,
+        @Nonnull ShouldGenerate shouldGenerate
+    ) {
         super(parent, requestClassName(operationGroup), operationGroup.asTypedefPrefix() + ".Request", description, shouldGenerate);
         this.operationGroup = operationGroup;
     }
