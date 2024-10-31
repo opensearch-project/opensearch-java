@@ -40,7 +40,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ## [Unreleased 2.x]
 
 ### Added
-- Added support for `KnnVectorProperty`'s `compression_level`, `data_type`, `mode` & `space_type` properties ([#]())
+- Added support for `KnnVectorProperty`'s `compression_level`, `data_type`, `mode` & `space_type` properties ([#1255](https://github.com/opensearch-project/opensearch-java/pull/1255))
 
 ### Dependencies
 
