@@ -19,6 +19,7 @@ import java.net.SocketTimeoutException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
+import java.time.Clock;
 import java.util.AbstractMap;
 import java.util.Collection;
 import java.util.Map;
@@ -26,7 +27,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.function.Supplier;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 import javax.annotation.CheckForNull;
@@ -36,6 +37,7 @@ import javax.net.ssl.SSLHandshakeException;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
+import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.ErrorCause;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
@@ -52,18 +54,19 @@ import org.opensearch.client.util.MissingRequiredPropertyException;
 import org.opensearch.client.util.OpenSearchRequestBodyBuffer;
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
-import software.amazon.awssdk.auth.signer.Aws4Signer;
-import software.amazon.awssdk.auth.signer.params.Aws4SignerParams;
 import software.amazon.awssdk.http.AbortableInputStream;
+import software.amazon.awssdk.http.ContentStreamProvider;
 import software.amazon.awssdk.http.Header;
 import software.amazon.awssdk.http.HttpExecuteRequest;
 import software.amazon.awssdk.http.HttpExecuteResponse;
 import software.amazon.awssdk.http.SdkHttpClient;
 import software.amazon.awssdk.http.SdkHttpFullRequest;
 import software.amazon.awssdk.http.SdkHttpMethod;
+import software.amazon.awssdk.http.SdkHttpRequest;
 import software.amazon.awssdk.http.SdkHttpResponse;
 import software.amazon.awssdk.http.async.AsyncExecuteRequest;
 import software.amazon.awssdk.http.async.SdkAsyncHttpClient;
+import software.amazon.awssdk.http.auth.aws.signer.AwsV4HttpSigner;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.utils.IoUtils;
 import software.amazon.awssdk.utils.SdkAutoCloseable;
@@ -81,6 +84,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
     private static final byte[] NO_BYTES = new byte[0];
     private final SdkAutoCloseable httpClient;
+    private final boolean isApacheHttpClient;
     private final String host;
     private final String signingServiceName;
     private final Region signingRegion;
@@ -118,6 +122,10 @@ public class AwsSdk2Transport implements OpenSearchTransport {
      * @param options Options that apply to all requests. Can be null. Create with
      *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
      *                compression options, etc.
+     *
+     * @apiNote Using {@code software.amazon.awssdk.http.apache.ApacheHttpClient} is discouraged as it does not support request bodies on GET or DELETE requests.
+     *          This leads to incorrect handling of requests such as {@link OpenSearchClient#clearScroll(org.opensearch.client.opensearch.core.ClearScrollRequest)} and {@link OpenSearchClient#deletePit(org.opensearch.client.opensearch.core.pit.DeletePitRequest)}.
+     *          As such {@link #performRequest(Object, Endpoint, TransportOptions)} & {@link #performRequestAsync(Object, Endpoint, TransportOptions)} will throw a {@link TransportException} if an unsupported request is encountered while using {@code ApacheHttpClient}.
      */
     public AwsSdk2Transport(
         @CheckForNull SdkHttpClient syncHttpClient,
@@ -162,6 +170,10 @@ public class AwsSdk2Transport implements OpenSearchTransport {
      * @param options Options that apply to all requests. Can be null. Create with
      *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
      *                compression options, etc.
+     *
+     * @apiNote Using {@code software.amazon.awssdk.http.apache.ApacheHttpClient} is discouraged as it does not support request bodies on GET or DELETE requests.
+     *          This leads to incorrect handling of requests such as {@link OpenSearchClient#clearScroll(org.opensearch.client.opensearch.core.ClearScrollRequest)} and {@link OpenSearchClient#deletePit(org.opensearch.client.opensearch.core.pit.DeletePitRequest)}.
+     *          As such {@link #performRequest(Object, Endpoint, TransportOptions)} & {@link #performRequestAsync(Object, Endpoint, TransportOptions)} will throw a {@link TransportException} if an unsupported request is encountered while using {@code ApacheHttpClient}.
      */
     public AwsSdk2Transport(
         @CheckForNull SdkHttpClient syncHttpClient,
@@ -182,6 +194,8 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     ) {
         Objects.requireNonNull(host, "Target OpenSearch service host must not be null");
         this.httpClient = httpClient;
+        this.isApacheHttpClient = httpClient instanceof SdkHttpClient
+            && httpClient.getClass().getName().equals("software.amazon.awssdk.http.apache.ApacheHttpClient");
         this.host = host;
         this.signingServiceName = signingServiceName;
         this.signingRegion = signingRegion;
@@ -195,12 +209,11 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         Endpoint<RequestT, ResponseT, ErrorT> endpoint,
         @Nullable TransportOptions options
     ) throws IOException {
-
         OpenSearchRequestBodyBuffer requestBody = prepareRequestBody(request, endpoint, options);
-        SdkHttpFullRequest clientReq = prepareRequest(request, endpoint, options, requestBody);
+        SdkHttpRequest clientReq = prepareRequest(request, endpoint, options, requestBody);
 
         if (httpClient instanceof SdkHttpClient) {
-            return executeSync((SdkHttpClient) httpClient, clientReq, endpoint, options);
+            return executeSync((SdkHttpClient) httpClient, clientReq, requestBody, endpoint, options);
         } else if (httpClient instanceof SdkAsyncHttpClient) {
             try {
                 return executeAsync((SdkAsyncHttpClient) httpClient, clientReq, requestBody, endpoint, options).get();
@@ -229,11 +242,11 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     ) {
         try {
             OpenSearchRequestBodyBuffer requestBody = prepareRequestBody(request, endpoint, options);
-            SdkHttpFullRequest clientReq = prepareRequest(request, endpoint, options, requestBody);
+            SdkHttpRequest clientReq = prepareRequest(request, endpoint, options, requestBody);
             if (httpClient instanceof SdkAsyncHttpClient) {
                 return executeAsync((SdkAsyncHttpClient) httpClient, clientReq, requestBody, endpoint, options);
             } else if (httpClient instanceof SdkHttpClient) {
-                ResponseT result = executeSync((SdkHttpClient) httpClient, clientReq, endpoint, options);
+                ResponseT result = executeSync((SdkHttpClient) httpClient, clientReq, requestBody, endpoint, options);
                 return CompletableFuture.completedFuture(result);
             } else {
                 throw new IOException("invalid httpClient: " + httpClient);
@@ -265,16 +278,12 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         TransportOptions options
     ) throws IOException {
         if (endpoint.hasRequestBody()) {
-            final JsonpMapper mapper = Optional.ofNullable(options)
-                .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-                .map(AwsSdk2TransportOptions::mapper)
-                .orElse(defaultMapper);
-            final int maxUncompressedSize = or(
-                Optional.ofNullable(options)
-                    .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-                    .map(AwsSdk2TransportOptions::requestCompressionSize),
-                () -> Optional.ofNullable(transportOptions.requestCompressionSize())
-            ).orElse(DEFAULT_REQUEST_COMPRESSION_SIZE);
+            final JsonpMapper mapper = Optional.ofNullable(
+                options instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) options) : null
+            ).map(AwsSdk2TransportOptions::mapper).orElse(defaultMapper);
+            final int maxUncompressedSize = getOption(options, AwsSdk2TransportOptions::requestCompressionSize).orElse(
+                DEFAULT_REQUEST_COMPRESSION_SIZE
+            );
 
             OpenSearchRequestBodyBuffer buffer = new OpenSearchRequestBodyBuffer(mapper, maxUncompressedSize);
             buffer.addContent(request);
@@ -284,13 +293,31 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         return null;
     }
 
-    private <RequestT> SdkHttpFullRequest prepareRequest(
+    private <RequestT> SdkHttpRequest prepareRequest(
         RequestT request,
         Endpoint<RequestT, ?, ?> endpoint,
         @CheckForNull TransportOptions options,
         @CheckForNull OpenSearchRequestBodyBuffer body
-    ) throws UnsupportedEncodingException {
-        SdkHttpFullRequest.Builder req = SdkHttpFullRequest.builder().method(SdkHttpMethod.fromValue(endpoint.method(request)));
+    ) throws UnsupportedEncodingException, TransportException {
+        SdkHttpMethod method = SdkHttpMethod.fromValue(endpoint.method(request));
+
+        // AWS Apache Http Client only supports request bodies on PATCH, POST & PUT requests.
+        // See:
+        // https://github.com/aws/aws-sdk-java-v2/blob/master/http-clients/apache-client/src/main/java/software/amazon/awssdk/http/apache/internal/impl/ApacheHttpRequestFactory.java#L118-L137
+        if (isApacheHttpClient
+            && method != SdkHttpMethod.PATCH
+            && method != SdkHttpMethod.POST
+            && method != SdkHttpMethod.PUT
+            && body != null
+            && body.getContentLength() > 0) {
+            throw new TransportException(
+                "AWS SDK's ApacheHttpClient does not support request bodies for HTTP method `"
+                    + method
+                    + "`. Please use a different SdkHttpClient implementation."
+            );
+        }
+
+        SdkHttpFullRequest.Builder req = SdkHttpFullRequest.builder().method(method);
 
         StringBuilder url = new StringBuilder();
         url.append("https://").append(host);
@@ -315,46 +342,57 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         } catch (URISyntaxException e) {
             throw new IllegalArgumentException("Invalid request URI: " + url.toString());
         }
+
+        ContentStreamProvider bodyProvider = body != null ? ContentStreamProvider.fromByteArrayUnsafe(body.getByteArray()) : null;
+
+        applyHeadersPreSigning(req, options, body);
+
+        final AwsCredentialsProvider credentials = getOption(options, AwsSdk2TransportOptions::credentials).orElseGet(
+            DefaultCredentialsProvider::create
+        );
+
+        final Clock signingClock = getOption(options, AwsSdk2TransportOptions::signingClock).orElse(null);
+
+        SdkHttpRequest.Builder signedReq = AwsV4HttpSigner.create()
+            .sign(
+                b -> b.identity(credentials.resolveCredentials())
+                    .request(req.build())
+                    .payload(bodyProvider)
+                    .putProperty(AwsV4HttpSigner.SERVICE_SIGNING_NAME, this.signingServiceName)
+                    .putProperty(AwsV4HttpSigner.REGION_NAME, this.signingRegion.id())
+                    .putProperty(AwsV4HttpSigner.SIGNING_CLOCK, signingClock)
+            )
+            .request()
+            .toBuilder();
+
+        applyHeadersPostSigning(signedReq, body);
+
+        return signedReq.build();
+    }
+
+    private void applyHeadersPreSigning(SdkHttpRequest.Builder req, TransportOptions options, OpenSearchRequestBodyBuffer body) {
         applyOptionsHeaders(req, transportOptions);
         applyOptionsHeaders(req, options);
-        if (endpoint.hasRequestBody() && body != null) {
+
+        if (body != null) {
             req.putHeader("Content-Type", body.getContentType());
             String encoding = body.getContentEncoding();
             if (encoding != null) {
                 req.putHeader("Content-Encoding", encoding);
             }
-            req.putHeader("Content-Length", String.valueOf(body.getContentLength()));
-            req.contentStreamProvider(body::getInputStream);
-            // To add the "X-Amz-Content-Sha256" header, it needs to set as required.
-            // It is a required header for Amazon OpenSearch Serverless.
-            req.putHeader("x-amz-content-sha256", "required");
         }
 
-        boolean responseCompression = or(
-            Optional.ofNullable(options)
-                .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-                .map(AwsSdk2TransportOptions::responseCompression),
-            () -> Optional.ofNullable(transportOptions.responseCompression())
-        ).orElse(Boolean.TRUE);
-        if (responseCompression) {
+        if (getOption(options, AwsSdk2TransportOptions::responseCompression).orElse(Boolean.TRUE)) {
             req.putHeader("Accept-Encoding", "gzip");
         } else {
             req.removeHeader("Accept-Encoding");
         }
+    }
 
-        final AwsCredentialsProvider credentials = or(
-            Optional.ofNullable(options)
-                .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-                .map(AwsSdk2TransportOptions::credentials),
-            () -> Optional.ofNullable(transportOptions.credentials())
-        ).orElse(DefaultCredentialsProvider.create());
-
-        Aws4SignerParams signerParams = Aws4SignerParams.builder()
-            .awsCredentials(credentials.resolveCredentials())
-            .signingName(this.signingServiceName)
-            .signingRegion(signingRegion)
-            .build();
-        return Aws4Signer.create().sign(req.build(), signerParams);
+    private void applyHeadersPostSigning(SdkHttpRequest.Builder req, OpenSearchRequestBodyBuffer body) {
+        if (body != null) {
+            req.putHeader("Content-Length", String.valueOf(body.getContentLength()));
+        }
     }
 
     private void applyOptionsParams(StringBuilder url, TransportOptions options) throws UnsupportedEncodingException {
@@ -372,7 +410,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         }
     }
 
-    private void applyOptionsHeaders(SdkHttpFullRequest.Builder builder, TransportOptions options) {
+    private void applyOptionsHeaders(SdkHttpRequest.Builder builder, TransportOptions options) {
         if (options == null) {
             return;
         }
@@ -386,14 +424,14 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
     private <ResponseT> ResponseT executeSync(
         SdkHttpClient syncHttpClient,
-        SdkHttpFullRequest httpRequest,
+        SdkHttpRequest httpRequest,
+        OpenSearchRequestBodyBuffer requestBody,
         Endpoint<?, ResponseT, ?> endpoint,
         TransportOptions options
     ) throws IOException {
-
         HttpExecuteRequest.Builder executeRequest = HttpExecuteRequest.builder().request(httpRequest);
-        if (httpRequest.contentStreamProvider().isPresent()) {
-            executeRequest.contentStreamProvider(httpRequest.contentStreamProvider().get());
+        if (requestBody != null) {
+            executeRequest.contentStreamProvider(ContentStreamProvider.fromByteArrayUnsafe(requestBody.getByteArray()));
         }
         HttpExecuteResponse executeResponse = syncHttpClient.prepareRequest(executeRequest.build()).call();
         AbortableInputStream bodyStream = null;
@@ -418,13 +456,12 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
     private <ResponseT> CompletableFuture<ResponseT> executeAsync(
         SdkAsyncHttpClient asyncHttpClient,
-        SdkHttpFullRequest httpRequest,
+        SdkHttpRequest httpRequest,
         @CheckForNull OpenSearchRequestBodyBuffer requestBody,
         Endpoint<?, ResponseT, ?> endpoint,
         TransportOptions options
     ) {
         byte[] requestBodyArray = requestBody == null ? NO_BYTES : requestBody.getByteArray();
-
         final AsyncCapturingResponseHandler responseHandler = new AsyncCapturingResponseHandler();
         AsyncExecuteRequest.Builder executeRequest = AsyncExecuteRequest.builder()
             .request(httpRequest)
@@ -463,10 +500,9 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         @Nonnull Endpoint<?, ResponseT, ErrorT> endpoint,
         @CheckForNull TransportOptions options
     ) throws IOException {
-        final JsonpMapper mapper = Optional.ofNullable(options)
-            .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-            .map(AwsSdk2TransportOptions::mapper)
-            .orElse(defaultMapper);
+        final JsonpMapper mapper = Optional.ofNullable(
+            options instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) options) : null
+        ).map(AwsSdk2TransportOptions::mapper).orElse(defaultMapper);
 
         int statusCode = httpResponse.statusCode();
         boolean isZipped = httpResponse.firstMatchingHeader("Content-Encoding").map(enc -> enc.contains("gzip")).orElse(Boolean.FALSE);
@@ -625,16 +661,15 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         }
     }
 
-    private static <T> Optional<T> or(Optional<T> opt, Supplier<? extends Optional<? extends T>> supplier) {
-        Objects.requireNonNull(opt);
-        Objects.requireNonNull(supplier);
-        if (opt.isPresent()) {
-            return opt;
-        } else {
-            @SuppressWarnings("unchecked")
-            Optional<T> r = (Optional<T>) supplier.get();
-            return Objects.requireNonNull(r);
-        }
+    private <T> Optional<T> getOption(@Nullable TransportOptions options, @Nonnull Function<AwsSdk2TransportOptions, T> getter) {
+        Objects.requireNonNull(getter, "getter must not be null");
+
+        Function<AwsSdk2TransportOptions, Optional<T>> optGetter = o -> Optional.ofNullable(getter.apply(o));
+
+        Optional<T> opt = Optional.ofNullable(options instanceof AwsSdk2TransportOptions ? (AwsSdk2TransportOptions) options : null)
+            .flatMap(optGetter);
+
+        return opt.isPresent() ? opt : optGetter.apply(transportOptions);
     }
 
     private static ByteArrayInputStream toByteArrayInputStream(InputStream is) throws IOException {
