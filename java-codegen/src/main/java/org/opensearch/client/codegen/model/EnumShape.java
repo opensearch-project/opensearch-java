@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
 import javax.annotation.Nullable;
+import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.JavaClassKind;
 import org.opensearch.client.codegen.utils.Markdown;
 import org.opensearch.client.codegen.utils.Strings;
@@ -21,8 +22,8 @@ import org.opensearch.client.codegen.utils.Strings;
 public class EnumShape extends Shape {
     private final TreeMap<String, Variant> variants = new TreeMap<>();
 
-    public EnumShape(Namespace parent, String className, String typedefName, String description) {
-        super(parent, className, typedefName, description);
+    public EnumShape(Namespace parent, String className, String typedefName, String description, ShouldGenerate shouldGenerate) {
+        super(parent, className, typedefName, description, shouldGenerate);
     }
 
     @Override

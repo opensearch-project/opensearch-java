@@ -95,6 +95,13 @@ public class SpecTransformer {
             });
 
         groupedOperations.forEach(this::visit);
+
+        overrides.getSchemas().forEach((pointer, schemaOverride) -> {
+            if (schemaOverride.shouldGenerate() != ShouldGenerate.Always) {
+                return;
+            }
+            visit(spec.getElement(pointer, OpenApiSchema.class));
+        });
     }
 
     private void visit(@Nonnull OperationGroup group, @Nonnull List<OpenApiOperation> variants) {
@@ -130,7 +137,13 @@ public class SpecTransformer {
             return;
         }
 
-        visit(parent, requestShape.getResponseType().getName(), group + ".Response", responseSchema.orElse(OpenApiSchema.ANONYMOUS_OBJECT));
+        visit(
+            parent,
+            requestShape.getResponseType().getName(),
+            group + ".Response",
+            responseSchema.orElse(OpenApiSchema.ANONYMOUS_OBJECT),
+            ShouldGenerate.Always
+        );
     }
 
     @Nonnull
@@ -143,7 +156,7 @@ public class SpecTransformer {
 
         var description = variants.stream().map(OpenApiOperation::getDescription).flatMap(Optional::stream).findFirst().orElse(null);
 
-        var shape = new RequestShape(parent, group, description);
+        var shape = new RequestShape(parent, group, description, ShouldGenerate.Always);
 
         for (var variant : variants) {
             shape.addSupportedHttpMethod(variant.getHttpMethod().toString().toUpperCase());
@@ -240,11 +253,13 @@ public class SpecTransformer {
     private Shape visit(OpenApiSchema schema) {
         var namespace = schema.getNamespace().orElseThrow();
         var name = schema.getName().orElseThrow();
-        var className = overrides.getSchema(schema.getPointer()).flatMap(SchemaOverride::getClassName).orElse(name);
-        return visit(root.child(namespace), className, namespace + "." + name, schema);
+        var schemaOverrides = overrides.getSchema(schema.getPointer());
+        var className = schemaOverrides.flatMap(SchemaOverride::getClassName).orElse(name);
+        var shouldGenerate = schemaOverrides.map(SchemaOverride::shouldGenerate).orElse(ShouldGenerate.IfNeeded);
+        return visit(root.child(namespace), className, namespace + "." + name, schema, shouldGenerate);
     }
 
-    private Shape visit(Namespace parent, String className, String typedefName, OpenApiSchema schema) {
+    private Shape visit(Namespace parent, String className, String typedefName, OpenApiSchema schema, ShouldGenerate shouldGenerate) {
         Shape shape = visitedSchemas.get(schema);
 
         if (shape != null) {
@@ -259,17 +274,17 @@ public class SpecTransformer {
         var isShortcutPropertyObject = isShortcutPropertyObject(schema);
 
         if (schema.isArray()) {
-            shape = new ArrayShape(parent, className, mapType(schema), typedefName, description);
+            shape = new ArrayShape(parent, className, mapType(schema), typedefName, description, shouldGenerate);
             visitedSchemas.putIfAbsent(schema, shape);
         } else if (isEnum(schema)) {
-            var enumShape = new EnumShape(parent, className, typedefName, description);
+            var enumShape = new EnumShape(parent, className, typedefName, description, shouldGenerate);
             shape = enumShape;
             visitedSchemas.putIfAbsent(schema, shape);
 
             visitInto(schema, enumShape);
         } else if (isTaggedUnion) {
             var discriminatingField = schema.getDiscriminator().flatMap(OpenApiDiscriminator::getPropertyName).orElse(null);
-            var taggedUnion = new TaggedUnionShape(parent, className, typedefName, description, discriminatingField);
+            var taggedUnion = new TaggedUnionShape(parent, className, typedefName, description, discriminatingField, shouldGenerate);
             shape = taggedUnion;
             visitedSchemas.putIfAbsent(schema, shape);
 
@@ -304,11 +319,12 @@ public class SpecTransformer {
                     typedefName,
                     description,
                     Types.Java.Lang.String,
-                    mapType(schema.getAdditionalProperties().orElseThrow())
+                    mapType(schema.getAdditionalProperties().orElseThrow()),
+                    shouldGenerate
                 );
                 visitedSchemas.putIfAbsent(schema, shape);
             } else {
-                var objShape = new ObjectShape(parent, className, typedefName, description);
+                var objShape = new ObjectShape(parent, className, typedefName, description, shouldGenerate);
                 shape = objShape;
                 visitedSchemas.putIfAbsent(schema, shape);
 
@@ -469,8 +485,7 @@ public class SpecTransformer {
         if (schema.has$ref()) {
             schema = schema.resolve();
 
-            var schemaOverrides = overrides.getSchema(schema.getPointer());
-            var overriddenMappedType = schemaOverrides.flatMap(SchemaOverride::getMappedType);
+            var overriddenMappedType = overrides.getSchema(schema.getPointer()).flatMap(SchemaOverride::getMappedType);
 
             if (overriddenMappedType.isPresent()) {
                 return overriddenMappedType.get();
@@ -478,15 +493,6 @@ public class SpecTransformer {
 
             if (!shouldKeepRef(schema)) {
                 return mapType(schema);
-            }
-
-            var shouldGenerate = schemaOverrides.map(SchemaOverride::shouldGenerate).orElse(ShouldGenerate.IfNeeded);
-
-            if (shouldGenerate == ShouldGenerate.Never) {
-                return Type.builder()
-                    .withPackage(Types.Client.OpenSearch.PACKAGE + "." + schema.getNamespace().orElseThrow())
-                    .withName(schema.getName().orElseThrow())
-                    .build();
             }
 
             var shape = visit(schema);

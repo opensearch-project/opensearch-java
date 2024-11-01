@@ -97,6 +97,7 @@ public class Type {
         return name;
     }
 
+    @Nullable
     public Type[] getTypeParams() {
         return typeParams;
     }

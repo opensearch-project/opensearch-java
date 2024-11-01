@@ -27,6 +27,8 @@ public class Overrides {
         s -> s
             // TODO: Remove this to generate property mapping types
             .with(SCHEMAS.append("_common.mapping:Property"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(SCHEMAS.append("_common.mapping:PropertyBase"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(SCHEMAS.append("_common.mapping:KnnVectorProperty"), so -> so.withShouldGenerate(ShouldGenerate.Always))
             // TODO: Remove this to generate query types
             .with(
                 SCHEMAS.append("_common.query_dsl:QueryContainer"),
@@ -41,6 +43,11 @@ public class Overrides {
 
     private Overrides(Builder builder) {
         this.schemas = builder.schemas != null ? Collections.unmodifiableMap(builder.schemas) : Collections.emptyMap();
+    }
+
+    @Nonnull
+    public Map<JsonPointer, SchemaOverride> getSchemas() {
+        return schemas;
     }
 
     @Nonnull

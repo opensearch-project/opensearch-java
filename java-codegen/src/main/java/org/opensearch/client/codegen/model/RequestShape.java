@@ -19,6 +19,7 @@ import java.util.TreeMap;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang3.tuple.Pair;
+import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.Streams;
 import org.opensearch.client.codegen.utils.Strings;
 
@@ -37,8 +38,13 @@ public class RequestShape extends ObjectShape {
     private final Map<String, Field> fields = new TreeMap<>();
     private boolean isBooleanRequest;
 
-    public RequestShape(@Nonnull Namespace parent, @Nonnull OperationGroup operationGroup, @Nullable String description) {
-        super(parent, requestClassName(operationGroup), operationGroup.asTypedefPrefix() + ".Request", description);
+    public RequestShape(
+        @Nonnull Namespace parent,
+        @Nonnull OperationGroup operationGroup,
+        @Nullable String description,
+        @Nonnull ShouldGenerate shouldGenerate
+    ) {
+        super(parent, requestClassName(operationGroup), operationGroup.asTypedefPrefix() + ".Request", description, shouldGenerate);
         this.operationGroup = operationGroup;
     }
 
