@@ -48,8 +48,8 @@ plugins {
     java
     `java-library`
     `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "2.8"
-    id("org.owasp.dependencycheck") version "10.0.2"
+    id("com.github.jk1.dependency-license-report") version "2.9"
+    id("org.owasp.dependencycheck") version "11.1.0"
 
     id("opensearch-java.spotless-conventions")
 }
