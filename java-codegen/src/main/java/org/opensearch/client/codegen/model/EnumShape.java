@@ -9,17 +9,21 @@
 package org.opensearch.client.codegen.model;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeMap;
+import javax.annotation.Nullable;
+import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.JavaClassKind;
+import org.opensearch.client.codegen.utils.Markdown;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class EnumShape extends Shape {
-    private final List<Variant> variants;
+    private final TreeMap<String, Variant> variants = new TreeMap<>();
 
-    public EnumShape(Namespace parent, String className, List<Variant> variants, String typedefName, String description) {
-        super(parent, className, typedefName, description);
-        this.variants = variants;
+    public EnumShape(Namespace parent, String className, String typedefName, String description, ShouldGenerate shouldGenerate) {
+        super(parent, className, typedefName, description, shouldGenerate);
     }
 
     @Override
@@ -37,21 +41,58 @@ public class EnumShape extends Shape {
         return List.of(Types.Client.Json.JsonEnum);
     }
 
+    public void addVariant(String value, String description, boolean deprecated) {
+        var variant = variants.get(value.toLowerCase());
+        if (variant == null) {
+            variant = new Variant(value, description, deprecated);
+            variants.put(value.toLowerCase(), variant);
+        } else {
+            variant.addAlias(value);
+            variant.setDeprecated(variant.isDeprecated() || deprecated);
+            if (description != null) {
+                variant.setDescription(description);
+            }
+        }
+    }
+
     public Collection<Variant> getVariants() {
-        return Collections.unmodifiableCollection(variants);
+        return variants.values();
+    }
+
+    public boolean anyHasAliases() {
+        return variants.values().stream().anyMatch(v -> !v.getAliases().isEmpty());
     }
 
     public static class Variant {
         private final String wireName;
-        private final boolean deprecated;
+        private final Set<String> aliases = new HashSet<>();
+        private boolean deprecated;
+        private String description;
 
-        public Variant(String wireName, boolean deprecated) {
+        public Variant(String wireName, String description, boolean deprecated) {
             this.wireName = wireName;
+            setDescription(description);
             this.deprecated = deprecated;
         }
 
         public String getWireName() {
             return wireName;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(@Nullable String description) {
+            this.description = description != null ? Markdown.toJavaDocHtml(description) : null;
+        }
+
+        public Set<String> getAliases() {
+            return aliases;
+        }
+
+        public void addAlias(String alias) {
+            aliases.add(alias);
         }
 
         public String getName() {
@@ -60,6 +101,10 @@ public class EnumShape extends Shape {
 
         public boolean isDeprecated() {
             return deprecated;
+        }
+
+        public void setDeprecated(boolean deprecated) {
+            this.deprecated = deprecated;
         }
     }
 }

@@ -84,7 +84,7 @@ public class OpenApiSpecification extends OpenApiElement<OpenApiSpecification> {
     }
 
     @Nonnull
-    <T extends OpenApiElement<T>> T getElement(@Nonnull JsonPointer pointer, @Nonnull Class<T> type) {
+    public <T extends OpenApiElement<T>> T getElement(@Nonnull JsonPointer pointer, @Nonnull Class<T> type) {
         Objects.requireNonNull(pointer, "pointer must not be null");
         Objects.requireNonNull(type, "type must not be null");
         return Optional.ofNullable(elementCache.get(type))

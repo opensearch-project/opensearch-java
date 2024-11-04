@@ -19,6 +19,7 @@ import java.util.TreeMap;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang3.tuple.Pair;
+import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.Streams;
 import org.opensearch.client.codegen.utils.Strings;
 
@@ -35,9 +36,15 @@ public class RequestShape extends ObjectShape {
     private final Map<String, Field> pathParams = new TreeMap<>();
     @Nonnull
     private final Map<String, Field> fields = new TreeMap<>();
+    private boolean isBooleanRequest;
 
-    public RequestShape(@Nonnull Namespace parent, @Nonnull OperationGroup operationGroup, @Nullable String description) {
-        super(parent, requestClassName(operationGroup), operationGroup.asTypedefPrefix() + ".Request", description);
+    public RequestShape(
+        @Nonnull Namespace parent,
+        @Nonnull OperationGroup operationGroup,
+        @Nullable String description,
+        @Nonnull ShouldGenerate shouldGenerate
+    ) {
+        super(parent, requestClassName(operationGroup), operationGroup.asTypedefPrefix() + ".Request", description, shouldGenerate);
         this.operationGroup = operationGroup;
     }
 
@@ -72,8 +79,18 @@ public class RequestShape extends ObjectShape {
         httpMethods.add(method);
     }
 
+    public void setIsBooleanRequest() {
+        isBooleanRequest = true;
+    }
+
+    public boolean isBooleanRequest() {
+        return isBooleanRequest;
+    }
+
     public Type getResponseType() {
-        return Type.builder().withPackage(getPackageName()).withName(responseClassName(operationGroup)).build();
+        return !isBooleanRequest
+            ? Type.builder().withPackage(getPackageName()).withName(responseClassName(operationGroup)).build()
+            : Types.Client.Transport.Endpoints.BooleanResponse;
     }
 
     public boolean canBeSingleton() {
@@ -151,10 +168,6 @@ public class RequestShape extends ObjectShape {
         return fields.values().stream().anyMatch(Field::isRequired);
     }
 
-    public boolean hasFields() {
-        return !fields.isEmpty();
-    }
-
     public Type getJsonEndpointType() {
         return Types.Client.Transport.JsonEndpoint(getType(), getResponseType(), Types.Client.OpenSearch._Types.ErrorResponse);
     }
@@ -173,6 +186,14 @@ public class RequestShape extends ObjectShape {
     private static String classBaseName(@Nonnull OperationGroup operationGroup) {
         Objects.requireNonNull(operationGroup, "operationGroup must not be null");
         switch (operationGroup.toString()) {
+            case "indices.create":
+                return "CreateIndex";
+            case "indices.delete":
+                return "DeleteIndex";
+            case "indices.get":
+                return "GetIndex";
+            case "snapshot.clone":
+                return "CloneSnapshot";
             case "tasks.get":
                 return "GetTasks";
             default:

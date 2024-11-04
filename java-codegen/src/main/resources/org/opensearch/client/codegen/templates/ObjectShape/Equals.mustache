@@ -1,3 +1,4 @@
+    @Override
     public boolean equals(Object o) {
         {{#extendsOtherShape}}
             if(!super.equals(o)) {
@@ -6,27 +7,28 @@
         {{/extendsOtherShape}}
         if(this == o) return true;
         if(o == null || this.getClass() != o.getClass()) return false;
-        {{^hasFields}}
-        return true;
-        {{/hasFields}}
-        {{#hasFields}}
+        {{#fields}}
+            {{#-first}}
             {{className}} other = ({{className}})o;
             return
-            {{#fields}}
-                {{#required}}
-                    {{#type.isPrimitive}}
-                        this.{{name}} == other.{{name}}
-                    {{/type.isPrimitive}}
-                    {{^type.isPrimitive}}
-                        this.{{name}}.equals(other.{{name}})
-                    {{/type.isPrimitive}}
-                {{/required}}
-                {{^required}}
-                    {{TYPES.Java.Util.Objects}}.equals(this.{{name}}, other.{{name}})
-                {{/required}}
-                {{^-last}}
-                && 
-                {{/-last}}
-            {{/fields}};
-        {{/hasFields}}
+            {{/-first}}
+            {{^-first}}
+                &&
+            {{/-first}}
+            {{#required}}
+                {{#type.isPrimitive}}
+                    this.{{name}} == other.{{name}}
+                {{/type.isPrimitive}}
+                {{^type.isPrimitive}}
+                    this.{{name}}.equals(other.{{name}})
+                {{/type.isPrimitive}}
+            {{/required}}
+            {{^required}}
+                {{TYPES.Java.Util.Objects}}.equals(this.{{name}}, other.{{name}})
+            {{/required}}
+        {{/fields}}
+        {{^fields}}
+            return true
+        {{/fields}}
+        ;
     }

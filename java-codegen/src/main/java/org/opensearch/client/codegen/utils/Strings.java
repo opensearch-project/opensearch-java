@@ -8,10 +8,13 @@
 
 package org.opensearch.client.codegen.utils;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.text.CaseUtils;
@@ -72,5 +75,14 @@ public final class Strings {
     @Nonnull
     public static String toPascalCase(@Nonnull String str) {
         return toCamelCase(str, true);
+    }
+
+    @Nonnull
+    public static <T> String join(@Nonnull Collection<T> items, @Nonnull String delimiter, @Nonnull Function<T, String> mapper) {
+        Objects.requireNonNull(items, "items must not be null");
+        Objects.requireNonNull(delimiter, "delimiter must not be null");
+        Objects.requireNonNull(mapper, "mapper must not be null");
+
+        return items.stream().map(mapper).collect(Collectors.joining(delimiter));
     }
 }

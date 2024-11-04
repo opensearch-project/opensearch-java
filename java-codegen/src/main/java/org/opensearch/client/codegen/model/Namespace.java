@@ -19,11 +19,12 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.opensearch.client.codegen.exceptions.RenderException;
+import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Namespace {
-    private static final Set<String> PARTIAL_NAMESPACES = Set.of("");
+    private static final Set<String> PARTIAL_NAMESPACES = Set.of("", "snapshot", "indices");
 
     private final Namespace parent;
     private final String name;
@@ -104,13 +105,24 @@ public class Namespace {
         return Type.builder().withPackage(getPackageName()).withName(getClientClassName(async, false)).build();
     }
 
+    @Override
+    public String toString() {
+        return getPackageName();
+    }
+
     private static class Client extends Shape {
         private final boolean async;
         private final boolean base;
         private final Collection<RequestShape> operations;
 
         private Client(Namespace parent, boolean async, boolean base, Collection<RequestShape> operations) {
-            super(parent, parent.getClientClassName(async, base), null, "Client for the " + parent.name + " namespace.");
+            super(
+                parent,
+                parent.getClientClassName(async, base),
+                null,
+                "Client for the " + parent.name + " namespace.",
+                ShouldGenerate.Always
+            );
             this.async = async;
             this.base = base;
             this.operations = operations;

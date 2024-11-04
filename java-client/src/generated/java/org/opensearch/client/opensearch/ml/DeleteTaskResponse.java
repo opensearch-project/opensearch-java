@@ -43,6 +43,7 @@ public class DeleteTaskResponse extends WriteResponseBase {
      * Builder for {@link DeleteTaskResponse}.
      */
     public static class Builder extends WriteResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteTaskResponse> {
+
         @Override
         protected Builder self() {
             return this;
@@ -71,14 +72,16 @@ public class DeleteTaskResponse extends WriteResponseBase {
     );
 
     protected static void setupDeleteTaskResponseDeserializer(ObjectDeserializer<DeleteTaskResponse.Builder> op) {
-        WriteResponseBase.setupWriteResponseBaseDeserializer(op);
+        setupWriteResponseBaseDeserializer(op);
     }
 
+    @Override
     public int hashCode() {
         int result = super.hashCode();
         return result;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (!super.equals(o)) {
             return false;

@@ -6,11 +6,10 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.codegen.utils;
+package org.opensearch.client.codegen.model.overrides;
 
-import javax.annotation.Nonnull;
-
-public interface ObjectBuilder<T> {
-    @Nonnull
-    T build();
+public enum ShouldGenerate {
+    Always,
+    IfNeeded,
+    Never
 }

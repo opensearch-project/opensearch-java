@@ -30,9 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.mapping;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -40,7 +46,9 @@ import org.opensearch.client.json.ObjectDeserializer;
 
 // typedef: _types.mapping.DocValuesPropertyBase
 
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class DocValuesPropertyBase extends CorePropertyBase {
+
     @Nullable
     private final Boolean docValues;
 
@@ -48,9 +56,7 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
 
     protected DocValuesPropertyBase(AbstractBuilder<?> builder) {
         super(builder);
-
         this.docValues = builder.docValues;
-
     }
 
     /**
@@ -62,15 +68,14 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
         if (this.docValues != null) {
             generator.writeKey("doc_values");
             generator.write(this.docValues);
-
         }
-
     }
+
+    // ---------------------------------------------------------------------------------------------
 
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends CorePropertyBase.AbstractBuilder<
         BuilderT> {
@@ -88,12 +93,29 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
     }
 
     // ---------------------------------------------------------------------------------------------
+
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDocValuesPropertyBaseDeserializer(
         ObjectDeserializer<BuilderT> op
     ) {
         setupCorePropertyBaseDeserializer(op);
         op.add(AbstractBuilder::docValues, JsonpDeserializer.booleanDeserializer(), "doc_values");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.docValues);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        DocValuesPropertyBase other = (DocValuesPropertyBase) o;
+        return Objects.equals(this.docValues, other.docValues);
+    }
 }

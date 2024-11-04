@@ -8,10 +8,13 @@
 
 package org.opensearch.client.codegen.model;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.codegen.NameSanitizer;
+import org.opensearch.client.codegen.utils.Markdown;
+import org.opensearch.client.codegen.utils.NameSanitizer;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Field {
@@ -25,6 +28,7 @@ public class Field {
     @Nullable
     private final Deprecation deprecation;
     private final boolean isAdditionalProperties;
+    private final Set<String> aliases = new HashSet<>();
 
     public Field(
         @Nonnull String wireName,
@@ -47,7 +51,7 @@ public class Field {
         this.wireName = Strings.requireNonBlank(wireName, "wireName must not be null");
         this.type = Objects.requireNonNull(type, "type must not be null");
         this.required = required;
-        this.description = description;
+        this.description = description != null ? Markdown.toJavaDocHtml(description) : null;
         this.deprecation = deprecation;
         this.isAdditionalProperties = isAdditionalProperties;
     }
@@ -83,5 +87,9 @@ public class Field {
     @Nullable
     public Deprecation getDeprecation() {
         return deprecation;
+    }
+
+    public void addAlias(String alias) {
+        aliases.add(alias);
     }
 }

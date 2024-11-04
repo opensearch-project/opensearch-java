@@ -25,7 +25,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 import org.opensearch.client.codegen.exceptions.JavaFormatterException;
 import org.opensearch.client.codegen.utils.MavenArtifactResolver;
-import org.opensearch.client.codegen.utils.ObjectBuilderBase;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 
 public class JavaCodeFormatter implements AutoCloseable {
     private final Formatter formatter;

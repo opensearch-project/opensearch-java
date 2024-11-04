@@ -17,20 +17,34 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.model.Types;
 import org.opensearch.client.codegen.openapi.JsonPointer;
-import org.opensearch.client.codegen.utils.ObjectBuilder;
-import org.opensearch.client.codegen.utils.ObjectBuilderBase;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilder;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 
 public class Overrides {
+    private static final JsonPointer SCHEMAS = JsonPointer.of("components", "schemas");
+
     public static final Overrides OVERRIDES = builder().withSchemas(
-        s -> s.with(
-            JsonPointer.parse("/components/schemas/_common:ShardStatistics"),
-            b -> b.withProperties(
-                p -> p.with("failed", pb -> pb.withMappedType(Types.Java.Lang.Number))
-                    .with("skipped", pb -> pb.withMappedType(Types.Java.Lang.Number))
-                    .with("successful", pb -> pb.withMappedType(Types.Java.Lang.Number))
-                    .with("total", pb -> pb.withMappedType(Types.Java.Lang.Number))
+        s -> s
+            // TODO: Remove this to generate property mapping types
+            .with(SCHEMAS.append("_common.mapping:Property"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(SCHEMAS.append("_common.mapping:PropertyBase"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(SCHEMAS.append("_common.mapping:KnnVectorProperty"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+            // TODO: Remove this to generate query types
+            .with(
+                SCHEMAS.append("_common.query_dsl:QueryContainer"),
+                so -> so.withMappedType(t -> t.withPackage(Types.Client.OpenSearch._Types.PACKAGE + ".query_dsl").withName("Query"))
             )
-        )
+            // TODO: Remove this to generate index settings types
+            .with(SCHEMAS.append("indices._common:IndexSettings"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(
+                SCHEMAS.append("_common:ShardStatistics"),
+                b -> b.withProperties(
+                    p -> p.with("failed", pb -> pb.withMappedType(Types.Java.Lang.Number))
+                        .with("skipped", pb -> pb.withMappedType(Types.Java.Lang.Number))
+                        .with("successful", pb -> pb.withMappedType(Types.Java.Lang.Number))
+                        .with("total", pb -> pb.withMappedType(Types.Java.Lang.Number))
+                )
+            )
     ).build();
 
     @Nonnull
@@ -38,6 +52,11 @@ public class Overrides {
 
     private Overrides(Builder builder) {
         this.schemas = builder.schemas != null ? Collections.unmodifiableMap(builder.schemas) : Collections.emptyMap();
+    }
+
+    @Nonnull
+    public Map<JsonPointer, SchemaOverride> getSchemas() {
+        return schemas;
     }
 
     @Nonnull
