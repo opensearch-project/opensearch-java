@@ -3,11 +3,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
-- Added support for `KnnVectorProperty`'s `compression_level`, `data_type`, `mode` & `space_type` properties ([#1255](https://github.com/opensearch-project/opensearch-java/pull/1255))
 
 ### Dependencies
-- Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.3 to 5.3.1
-- Bumps `org.owasp.dependencycheck` from 10.0.2 to 11.1.0
 
 ### Changed
 
@@ -16,9 +13,19 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
-- Fixed `UndeployModelResponse` deserialization ([#1257](https://github.com/opensearch-project/opensearch-java/pull/1257))
 
 ### Security
+
+## [2.17.0] - 11/05/2024
+### Added
+- Added support for `KnnVectorProperty`'s `compression_level`, `data_type`, `mode` & `space_type` properties ([#1255](https://github.com/opensearch-project/opensearch-java/pull/1255))
+
+### Dependencies
+- Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.3 to 5.3.1
+- Bumps `org.owasp.dependencycheck` from 10.0.2 to 11.1.0
+
+### Fixed
+- Fixed `UndeployModelResponse` deserialization ([#1257](https://github.com/opensearch-project/opensearch-java/pull/1257))
 
 ## [2.16.0] - 10/22/2024
 ### Added
@@ -514,7 +521,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
  
 ### Security
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.16.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.17.0...2.x
+[2.17.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.16.0...v2.17.0
 [2.16.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.15.0...v2.16.0
 [2.15.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.14.0...v2.15.0
 [2.14.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.13.0...v2.14.0
