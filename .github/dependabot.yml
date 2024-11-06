@@ -1,18 +1,27 @@
 updates:
   - directory: /
-    open-pull-requests-limit: 1
     package-ecosystem: gradle
+    open-pull-requests-limit: 3
     schedule:
       interval: weekly
     labels:
       - "dependabot"
       - "dependencies"
   - directory: /java-client/
-    open-pull-requests-limit: 1
     package-ecosystem: gradle
+    open-pull-requests-limit: 3
     schedule:
       interval: weekly
     labels:
       - "dependabot"
       - "dependencies"
+  - directory: /
+    package-ecosystem: github-actions
+    open-pull-requests-limit: 3
+    schedule:
+      interval: weekly
+    labels:
+      - "dependabot"
+      - "dependencies"
+      - "github-actions"
 version: 2
