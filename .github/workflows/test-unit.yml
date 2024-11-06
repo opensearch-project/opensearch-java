@@ -22,6 +22,14 @@ jobs:
 
       - name: Run Unit Test
         run: ./gradlew clean unitTest
+
+      - name: Upload Reports
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports-java${{ matrix.java }}-${{ runner.os }}
+          path: java-client/build/reports/
+          retention-days: 7
   
   test-java8:
     runs-on: ${{ matrix.os }}
@@ -48,3 +56,11 @@ jobs:
 
       - name: Run Unit Test
         run: ./gradlew clean unitTest -D"runtime.java=8"
+
+      - name: Upload Reports
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports-java8-${{ runner.os }}
+          path: java-client/build/reports/
+          retention-days: 7
