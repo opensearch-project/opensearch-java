@@ -51,7 +51,7 @@ jobs:
           sed -i "s/systemProp.version = $CURRENT_VERSION/systemProp.version = $NEXT_VERSION/g" gradle.properties
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ steps.github_app_token.outputs.token }}
           base: ${{ env.BASE_X }}
