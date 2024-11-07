@@ -7,6 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.eclipse.parsson:parsson` from 1.1.6 to 1.1.7
 - Bumps `org.hamcrest:hamcrest` from 2.2 to 3.0
 - Bumps `com.github.jk1.dependency-license-report` from 2.8 to 2.9
+- Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.4 to 5.4.1
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
