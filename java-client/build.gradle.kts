@@ -190,7 +190,7 @@ dependencies {
       exclude(group = "org.apache.httpcomponents.core5")
     }
     api("org.apache.httpcomponents.core5:httpcore5:5.3.1")
-    api("org.apache.httpcomponents.core5:httpcore5-h2:5.3.1.1")
+    api("org.apache.httpcomponents.core5:httpcore5-h2:5.3.1")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
