@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
+- Bumps `org.junit:junit-bom` from 5.10.2 to 5.11.3
 
 ### Changed
 
