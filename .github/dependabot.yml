@@ -24,4 +24,5 @@ updates:
       - "dependabot"
       - "dependencies"
       - "github-actions"
+      - "skip-changelog"
 version: 2
