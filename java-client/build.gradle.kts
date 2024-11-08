@@ -105,7 +105,13 @@ tasks.withType<ProcessResources> {
 
 tasks.withType<Javadoc>().configureEach{
     options {
+        this as StandardJavadocDocletOptions
         encoding = "UTF-8"
+        addMultilineStringsOption("tag").setValue(listOf(
+            "apiNote:a:API Note:",
+            "implSpec:a:Implementation Requirements:",
+            "implNote:a:Implementation Note:",
+        ))
     }
 }
 

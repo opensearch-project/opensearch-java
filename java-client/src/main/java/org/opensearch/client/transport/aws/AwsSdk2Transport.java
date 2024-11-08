@@ -123,9 +123,9 @@ public class AwsSdk2Transport implements OpenSearchTransport {
      *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
      *                compression options, etc.
      *
-     * @apiNote Using {@code software.amazon.awssdk.http.apache.ApacheHttpClient} is discouraged as it does not support request bodies on GET or DELETE requests.
-     *          This leads to incorrect handling of requests such as {@link OpenSearchClient#clearScroll(org.opensearch.client.opensearch.core.ClearScrollRequest)} and {@link OpenSearchClient#deletePit(org.opensearch.client.opensearch.core.pit.DeletePitRequest)}.
-     *          As such {@link #performRequest(Object, Endpoint, TransportOptions)} & {@link #performRequestAsync(Object, Endpoint, TransportOptions)} will throw a {@link TransportException} if an unsupported request is encountered while using {@code ApacheHttpClient}.
+     * @implNote Using {@code software.amazon.awssdk.http.apache.ApacheHttpClient} is discouraged as it does not support request bodies on GET or DELETE requests.
+     *           This leads to incorrect handling of requests such as {@link OpenSearchClient#clearScroll(org.opensearch.client.opensearch.core.ClearScrollRequest)} and {@link OpenSearchClient#deletePit(org.opensearch.client.opensearch.core.pit.DeletePitRequest)}.
+     *           As such {@link #performRequest(Object, Endpoint, TransportOptions)} &amp; {@link #performRequestAsync(Object, Endpoint, TransportOptions)} will throw a {@link TransportException} if an unsupported request is encountered while using {@code ApacheHttpClient}.
      */
     public AwsSdk2Transport(
         @CheckForNull SdkHttpClient syncHttpClient,
@@ -171,9 +171,9 @@ public class AwsSdk2Transport implements OpenSearchTransport {
      *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
      *                compression options, etc.
      *
-     * @apiNote Using {@code software.amazon.awssdk.http.apache.ApacheHttpClient} is discouraged as it does not support request bodies on GET or DELETE requests.
-     *          This leads to incorrect handling of requests such as {@link OpenSearchClient#clearScroll(org.opensearch.client.opensearch.core.ClearScrollRequest)} and {@link OpenSearchClient#deletePit(org.opensearch.client.opensearch.core.pit.DeletePitRequest)}.
-     *          As such {@link #performRequest(Object, Endpoint, TransportOptions)} & {@link #performRequestAsync(Object, Endpoint, TransportOptions)} will throw a {@link TransportException} if an unsupported request is encountered while using {@code ApacheHttpClient}.
+     * @implNote Using {@code software.amazon.awssdk.http.apache.ApacheHttpClient} is discouraged as it does not support request bodies on GET or DELETE requests.
+     *           This leads to incorrect handling of requests such as {@link OpenSearchClient#clearScroll(org.opensearch.client.opensearch.core.ClearScrollRequest)} and {@link OpenSearchClient#deletePit(org.opensearch.client.opensearch.core.pit.DeletePitRequest)}.
+     *           As such {@link #performRequest(Object, Endpoint, TransportOptions)} &amp; {@link #performRequestAsync(Object, Endpoint, TransportOptions)} will throw a {@link TransportException} if an unsupported request is encountered while using {@code ApacheHttpClient}.
      */
     public AwsSdk2Transport(
         @CheckForNull SdkHttpClient syncHttpClient,
