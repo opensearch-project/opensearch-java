@@ -68,16 +68,18 @@ import software.amazon.awssdk.http.crt.AwsCrtAsyncHttpClient;
 import software.amazon.awssdk.http.crt.AwsCrtHttpClient;
 import software.amazon.awssdk.http.nio.netty.NettyNioAsyncHttpClient;
 import software.amazon.awssdk.http.nio.netty.ProxyConfiguration;
+import software.amazon.awssdk.http.urlconnection.UrlConnectionHttpClient;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.utils.AttributeMap;
 
 @RunWith(Parameterized.class)
 public class AwsSdk2TransportTests {
     public enum SdkHttpClientType {
+        APACHE,
         AWS_CRT,
         AWS_CRT_ASYNC,
-        APACHE,
-        NETTY_NIO_ASYNC
+        NETTY_NIO_ASYNC,
+        URL_CONNECTION
     }
 
     private static final String[] TEST_SERVICE_NAMES = { "aoss", "es", "arbitrary" };
@@ -254,9 +256,18 @@ public class AwsSdk2TransportTests {
                 .build();
         }
 
+        URI proxyEndpoint = new URI("http://localhost:" + proxy.getPort());
+
         SdkHttpClient sdkHttpClient = null;
         SdkAsyncHttpClient sdkAsyncHttpClient = null;
         switch (sdkHttpClientType) {
+            case APACHE:
+                software.amazon.awssdk.http.apache.ProxyConfiguration proxyConfig = software.amazon.awssdk.http.apache.ProxyConfiguration
+                    .builder()
+                    .endpoint(proxyEndpoint)
+                    .build();
+                sdkHttpClient = ApacheHttpClient.builder().proxyConfiguration(proxyConfig).buildWithDefaults(sdkHttpClientConfig);
+                break;
             case AWS_CRT:
                 sdkHttpClient = AwsCrtHttpClient.builder()
                     .proxyConfiguration(p -> p.scheme("http").host("localhost").port(proxy.getPort()))
@@ -267,13 +278,6 @@ public class AwsSdk2TransportTests {
                     .proxyConfiguration(p -> p.scheme("http").host("localhost").port(proxy.getPort()))
                     .buildWithDefaults(sdkHttpClientConfig);
                 break;
-            case APACHE:
-                software.amazon.awssdk.http.apache.ProxyConfiguration proxyConfig = software.amazon.awssdk.http.apache.ProxyConfiguration
-                    .builder()
-                    .endpoint(new URI("http://localhost:" + proxy.getPort()))
-                    .build();
-                sdkHttpClient = ApacheHttpClient.builder().proxyConfiguration(proxyConfig).buildWithDefaults(sdkHttpClientConfig);
-                break;
             case NETTY_NIO_ASYNC:
                 ProxyConfiguration nettyProxyConfig = software.amazon.awssdk.http.nio.netty.ProxyConfiguration.builder()
                     .scheme("http")
@@ -283,6 +287,11 @@ public class AwsSdk2TransportTests {
                 sdkAsyncHttpClient = NettyNioAsyncHttpClient.builder()
                     .proxyConfiguration(nettyProxyConfig)
                     .buildWithDefaults(sdkHttpClientConfig);
+                break;
+            case URL_CONNECTION:
+                sdkHttpClient = UrlConnectionHttpClient.builder()
+                        .proxyConfiguration(p -> p.endpoint(proxyEndpoint))
+                        .buildWithDefaults(sdkHttpClientConfig);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown SdkHttpClientType: " + sdkHttpClientType);
@@ -417,8 +426,8 @@ public class AwsSdk2TransportTests {
 
         String expectedContentLength = String.valueOf(contentLength);
         if (contentLength == 0
-            && (sdkHttpClientType == SdkHttpClientType.AWS_CRT || sdkHttpClientType == SdkHttpClientType.NETTY_NIO_ASYNC)) {
-            // AWS CRT and Netty NIO Async clients do not set content-length for empty bodies
+            && (sdkHttpClientType == SdkHttpClientType.AWS_CRT || sdkHttpClientType == SdkHttpClientType.NETTY_NIO_ASYNC || sdkHttpClientType == SdkHttpClientType.URL_CONNECTION)) {
+            // AWS CRT, Netty NIO and URLConnection clients do not set content-length for empty bodies
             expectedContentLength = null;
         }
 
