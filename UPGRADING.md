@@ -58,3 +58,19 @@ After:
 
 ### TypeMapping
 - Removed the `runtime` field, getter and builder methods from `TypeMapping` as it is not supported by OpenSearch.
+
+### InlineScript
+- The `lang` property now accepts a `ScriptLanguage` enum instead of a `String`.
+
+### IcuCollationDecomposition enum variants
+- The `IcuCollationDecomposition.Identical` variant has been corrected to be `IcuCollationDecomposition.Canonical`.
+
+### IcuCollationTokenFilter property name casing
+- The following fields, getters and builder methods on `IcuCollationTokenFilter` have had their casing corrected:
+  - `casefirst` -> `caseFirst`
+  - `caselevel` -> `caseLevel`
+  - `hiraganaquaternarymode` -> `hiraganaQuaternaryMode`
+  - `variabletop` -> `variableTop`
+
+### TokenFilterDefinition
+- The `smartcn_stop` Builder method has been renamed to `smartcnStop`.
