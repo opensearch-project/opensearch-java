@@ -8,6 +8,7 @@
 
 package org.opensearch.client.transport.aws;
 
+import java.time.Clock;
 import java.util.List;
 import java.util.function.Function;
 import org.opensearch.client.json.JsonpMapper;
@@ -71,6 +72,18 @@ public interface AwsSdk2TransportOptions extends TransportOptions {
      */
     JsonpMapper mapper();
 
+    /**
+     * Get the clock used for signing requests.
+     * <p>
+     * If this is null, then a default will be used -- either a value specified
+     * in a more general {@link AwsSdk2TransportOptions} that applies to the request, or
+     * {@link Clock#systemUTC()} if there is none.
+     * </P>
+     *
+     * @return A clock or null
+     */
+    Clock signingClock();
+
     AwsSdk2TransportOptions.Builder toBuilder();
 
     static AwsSdk2TransportOptions.Builder builder() {
@@ -92,6 +105,8 @@ public interface AwsSdk2TransportOptions extends TransportOptions {
 
         Builder setMapper(JsonpMapper mapper);
 
+        Builder setSigningClock(Clock clock);
+
         AwsSdk2TransportOptions build();
     }
 
@@ -101,6 +116,7 @@ public interface AwsSdk2TransportOptions extends TransportOptions {
         protected Integer requestCompressionSize;
         protected Boolean responseCompression;
         protected JsonpMapper mapper;
+        protected Clock signingClock;
 
         public BuilderImpl() {}
 
@@ -110,6 +126,7 @@ public interface AwsSdk2TransportOptions extends TransportOptions {
             requestCompressionSize = src.requestCompressionSize();
             responseCompression = src.responseCompression();
             mapper = src.mapper();
+            signingClock = src.signingClock();
         }
 
         @Override
@@ -155,6 +172,12 @@ public interface AwsSdk2TransportOptions extends TransportOptions {
         }
 
         @Override
+        public Builder setSigningClock(Clock clock) {
+            this.signingClock = clock;
+            return this;
+        }
+
+        @Override
         public AwsSdk2TransportOptions build() {
             return new DefaultImpl(this);
         }
@@ -162,10 +185,11 @@ public interface AwsSdk2TransportOptions extends TransportOptions {
 
     class DefaultImpl extends TransportOptions.DefaultImpl implements AwsSdk2TransportOptions {
 
-        private AwsCredentialsProvider credentials;
-        private Integer requestCompressionSize;
-        private Boolean responseCompression;
-        private JsonpMapper mapper;
+        private final AwsCredentialsProvider credentials;
+        private final Integer requestCompressionSize;
+        private final Boolean responseCompression;
+        private final JsonpMapper mapper;
+        private final Clock signingClock;
 
         DefaultImpl(AwsSdk2TransportOptions.BuilderImpl builder) {
             super(builder);
@@ -173,6 +197,7 @@ public interface AwsSdk2TransportOptions extends TransportOptions {
             requestCompressionSize = builder.requestCompressionSize;
             responseCompression = builder.responseCompression;
             mapper = builder.mapper;
+            signingClock = builder.signingClock;
         }
 
         @Override
@@ -193,6 +218,11 @@ public interface AwsSdk2TransportOptions extends TransportOptions {
         @Override
         public JsonpMapper mapper() {
             return mapper;
+        }
+
+        @Override
+        public Clock signingClock() {
+            return signingClock;
         }
 
         @Override
