@@ -67,6 +67,7 @@ import software.amazon.awssdk.http.SdkHttpResponse;
 import software.amazon.awssdk.http.async.AsyncExecuteRequest;
 import software.amazon.awssdk.http.async.SdkAsyncHttpClient;
 import software.amazon.awssdk.http.auth.aws.signer.AwsV4HttpSigner;
+import software.amazon.awssdk.http.auth.spi.signer.SignedRequest;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.utils.IoUtils;
 import software.amazon.awssdk.utils.SdkAutoCloseable;
@@ -210,10 +211,10 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         @Nullable TransportOptions options
     ) throws IOException {
         OpenSearchRequestBodyBuffer requestBody = prepareRequestBody(request, endpoint, options);
-        SdkHttpRequest clientReq = prepareRequest(request, endpoint, options, requestBody);
+        SignedRequest clientReq = prepareRequest(request, endpoint, options, requestBody);
 
         if (httpClient instanceof SdkHttpClient) {
-            return executeSync((SdkHttpClient) httpClient, clientReq, requestBody, endpoint, options);
+            return executeSync((SdkHttpClient) httpClient, clientReq, endpoint, options);
         } else if (httpClient instanceof SdkAsyncHttpClient) {
             try {
                 return executeAsync((SdkAsyncHttpClient) httpClient, clientReq, requestBody, endpoint, options).get();
@@ -242,11 +243,11 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     ) {
         try {
             OpenSearchRequestBodyBuffer requestBody = prepareRequestBody(request, endpoint, options);
-            SdkHttpRequest clientReq = prepareRequest(request, endpoint, options, requestBody);
+            SignedRequest clientReq = prepareRequest(request, endpoint, options, requestBody);
             if (httpClient instanceof SdkAsyncHttpClient) {
                 return executeAsync((SdkAsyncHttpClient) httpClient, clientReq, requestBody, endpoint, options);
             } else if (httpClient instanceof SdkHttpClient) {
-                ResponseT result = executeSync((SdkHttpClient) httpClient, clientReq, requestBody, endpoint, options);
+                ResponseT result = executeSync((SdkHttpClient) httpClient, clientReq, endpoint, options);
                 return CompletableFuture.completedFuture(result);
             } else {
                 throw new IOException("invalid httpClient: " + httpClient);
@@ -293,7 +294,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         return null;
     }
 
-    private <RequestT> SdkHttpRequest prepareRequest(
+    private <RequestT> SignedRequest prepareRequest(
         RequestT request,
         Endpoint<RequestT, ?, ?> endpoint,
         @CheckForNull TransportOptions options,
@@ -353,7 +354,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
         final Clock signingClock = getOption(options, AwsSdk2TransportOptions::signingClock).orElse(null);
 
-        SdkHttpRequest.Builder signedReq = AwsV4HttpSigner.create()
+        SignedRequest signedReq = AwsV4HttpSigner.create()
             .sign(
                 b -> b.identity(credentials.resolveCredentials())
                     .request(req.build())
@@ -361,13 +362,13 @@ public class AwsSdk2Transport implements OpenSearchTransport {
                     .putProperty(AwsV4HttpSigner.SERVICE_SIGNING_NAME, this.signingServiceName)
                     .putProperty(AwsV4HttpSigner.REGION_NAME, this.signingRegion.id())
                     .putProperty(AwsV4HttpSigner.SIGNING_CLOCK, signingClock)
-            )
-            .request()
-            .toBuilder();
+            );
 
-        applyHeadersPostSigning(signedReq, body);
+        SdkHttpRequest.Builder httpRequest = signedReq.request().toBuilder();
 
-        return signedReq.build();
+        applyHeadersPostSigning(httpRequest, body);
+
+        return signedReq.toBuilder().request(httpRequest.build()).build();
     }
 
     private void applyHeadersPreSigning(SdkHttpRequest.Builder req, TransportOptions options, OpenSearchRequestBodyBuffer body) {
@@ -424,15 +425,13 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
     private <ResponseT> ResponseT executeSync(
         SdkHttpClient syncHttpClient,
-        SdkHttpRequest httpRequest,
-        OpenSearchRequestBodyBuffer requestBody,
+        SignedRequest signedRequest,
         Endpoint<?, ResponseT, ?> endpoint,
         TransportOptions options
     ) throws IOException {
+        SdkHttpRequest httpRequest = signedRequest.request();
         HttpExecuteRequest.Builder executeRequest = HttpExecuteRequest.builder().request(httpRequest);
-        if (requestBody != null) {
-            executeRequest.contentStreamProvider(ContentStreamProvider.fromByteArrayUnsafe(requestBody.getByteArray()));
-        }
+        signedRequest.payload().ifPresent(executeRequest::contentStreamProvider);
         HttpExecuteResponse executeResponse = syncHttpClient.prepareRequest(executeRequest.build()).call();
         AbortableInputStream bodyStream = null;
         try {
@@ -456,11 +455,12 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
     private <ResponseT> CompletableFuture<ResponseT> executeAsync(
         SdkAsyncHttpClient asyncHttpClient,
-        SdkHttpRequest httpRequest,
+        SignedRequest signedRequest,
         @CheckForNull OpenSearchRequestBodyBuffer requestBody,
         Endpoint<?, ResponseT, ?> endpoint,
         TransportOptions options
     ) {
+        SdkHttpRequest httpRequest = signedRequest.request();
         byte[] requestBodyArray = requestBody == null ? NO_BYTES : requestBody.getByteArray();
         final AsyncCapturingResponseHandler responseHandler = new AsyncCapturingResponseHandler();
         AsyncExecuteRequest.Builder executeRequest = AsyncExecuteRequest.builder()
