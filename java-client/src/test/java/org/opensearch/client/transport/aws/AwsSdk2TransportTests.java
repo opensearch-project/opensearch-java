@@ -56,6 +56,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.opensearch.client.opensearch.OpenSearchClient;
+import org.opensearch.client.opensearch.generic.Requests;
 import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.util.FunnellingHttpsProxy;
 import org.opensearch.client.transport.util.SelfSignedCertificateAuthority;
@@ -152,28 +153,26 @@ public class AwsSdk2TransportTests {
         server = ServerBootstrap.bootstrap()
             .setRequestRouter(
                 RequestRouter.<HttpRequestHandler>builder()
+                    .addRoute(RequestRouter.LOCAL_AUTHORITY, "/", hardcodedJsonHandler("{}"))
                     .addRoute(
                         RequestRouter.LOCAL_AUTHORITY,
                         "/" + TEST_INDEX,
-                        hardcodedJsonHandler(
-                            "PUT",
-                            "{\"acknowledged\": true,\"shards_acknowledged\": true,\"index\": \"" + TEST_INDEX + "\"}"
-                        )
+                        hardcodedJsonHandler("{\"acknowledged\": true,\"shards_acknowledged\": true,\"index\": \"" + TEST_INDEX + "\"}")
                     )
                     .addRoute(
                         RequestRouter.LOCAL_AUTHORITY,
                         "/" + TEST_INDEX + "/_refresh",
-                        hardcodedJsonHandler("POST", "{\"_shards\":{\"failed\":0,\"successful\":1,\"total\":1}}")
+                        hardcodedJsonHandler("{\"_shards\":{\"failed\":0,\"successful\":1,\"total\":1}}")
                     )
                     .addRoute(
                         RequestRouter.LOCAL_AUTHORITY,
                         "/_search/scroll",
-                        hardcodedJsonHandler("DELETE", "{\"succeeded\": true,\"num_freed\": 1}")
+                        hardcodedJsonHandler("{\"succeeded\": true,\"num_freed\": 1}")
                     )
                     .addRoute(
                         RequestRouter.LOCAL_AUTHORITY,
                         "/_search/point_in_time",
-                        hardcodedJsonHandler("DELETE", "{\"pits\": [{\"pit_id\": \"pit1\", \"successful\": true}]}")
+                        hardcodedJsonHandler("{\"pits\": [{\"pit_id\": \"pit1\", \"successful\": true}]}")
                     )
                     .resolveAuthority(RequestRouter.LOCAL_AUTHORITY_RESOLVER)
                     .build()
@@ -214,16 +213,10 @@ public class AwsSdk2TransportTests {
         }
     }
 
-    private HttpRequestHandler hardcodedJsonHandler(String method, String json) {
+    private HttpRequestHandler hardcodedJsonHandler(String json) {
         byte[] jsonBytes = json.getBytes(StandardCharsets.UTF_8);
         return (request, response, context) -> {
             receivedRequests.add(new ReceivedRequest(request));
-
-            if (!request.getMethod().equals(method)) {
-                response.setCode(405);
-                return;
-            }
-
             response.setCode(200);
             response.setEntity(new BasicHttpEntity(new ByteArrayInputStream(jsonBytes), jsonBytes.length, APPLICATION_JSON));
         };
@@ -373,6 +366,38 @@ public class AwsSdk2TransportTests {
                 "6955ebe7d39f5e885c544dc9945a20ba2bc293200abe7ffce43d8288a0e0a606",
                 "aab646c6a8be1fe42b25469c057bf07c99445fff5a9cf889b5768054b4fe8f00",
                 "5b28f6020340454f6c9a0ef7ed056095f54f4083d066e80b42af2a2ff77aea80"
+            )
+        );
+    }
+
+    @Test
+    public void testHeadWithBody() throws Exception {
+        assertSigV4Request(
+            c -> c.generic().execute(Requests.builder().method("HEAD").endpoint("/").json("{}").build()),
+            "HEAD",
+            "/",
+            2,
+            "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            selectExpectedSignature(
+                "547492a6aab72cdb687697ea291c35ae350e9fc0b7f96d1906efaeafa3e2b3c7",
+                "4e94a0a1048e252d3f46bda799886d726e4972286fa79ee80c2d7e5529c86948",
+                "6a4c0801c89b6cbc8f786a68bf51f18589ef77bdd5c01eb49a227fa19391a333"
+            )
+        );
+    }
+
+    @Test
+    public void testOptionsWithBody() throws Exception {
+        assertSigV4Request(
+            c -> c.generic().execute(Requests.builder().method("OPTIONS").endpoint("/").json("{}").build()),
+            "OPTIONS",
+            "/",
+            2,
+            "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            selectExpectedSignature(
+                "087c8fd96bc338d0dd680610967dd3c2d3f265a40158c1db4bfed83afaaf5246",
+                "e01b953a36d725d3e54565277a3aea6014961ce14c1c47b5930f6d75bc47f43b",
+                "2c3b08c49f0e45906f99cef144b3ba780c5c0d38cb9e2bcc75d34087172a254f"
             )
         );
     }
