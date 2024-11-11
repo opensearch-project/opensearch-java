@@ -290,8 +290,8 @@ public class AwsSdk2TransportTests {
                 break;
             case URL_CONNECTION:
                 sdkHttpClient = UrlConnectionHttpClient.builder()
-                        .proxyConfiguration(p -> p.endpoint(proxyEndpoint))
-                        .buildWithDefaults(sdkHttpClientConfig);
+                    .proxyConfiguration(p -> p.endpoint(proxyEndpoint))
+                    .buildWithDefaults(sdkHttpClientConfig);
                 break;
             default:
                 throw new IllegalArgumentException("Unknown SdkHttpClientType: " + sdkHttpClientType);
@@ -426,7 +426,9 @@ public class AwsSdk2TransportTests {
 
         String expectedContentLength = String.valueOf(contentLength);
         if (contentLength == 0
-            && (sdkHttpClientType == SdkHttpClientType.AWS_CRT || sdkHttpClientType == SdkHttpClientType.NETTY_NIO_ASYNC || sdkHttpClientType == SdkHttpClientType.URL_CONNECTION)) {
+            && (sdkHttpClientType == SdkHttpClientType.AWS_CRT
+                || sdkHttpClientType == SdkHttpClientType.NETTY_NIO_ASYNC
+                || sdkHttpClientType == SdkHttpClientType.URL_CONNECTION)) {
             // AWS CRT, Netty NIO and URLConnection clients do not set content-length for empty bodies
             expectedContentLength = null;
         }
