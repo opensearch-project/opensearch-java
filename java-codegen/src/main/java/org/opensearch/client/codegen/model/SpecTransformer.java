@@ -447,6 +447,7 @@ public class SpecTransformer {
     }
 
     private void visitInto(OpenApiSchema schema, EnumShape shape) {
+        var title = schema.getTitle();
         var isDeprecated = schema.getVersionDeprecated().isPresent();
 
         if (schema.hasOneOf()) {
@@ -454,10 +455,10 @@ public class SpecTransformer {
         } else if (schema.hasEnums()) {
             var enums = schema.getEnums().orElseThrow();
             var description = enums.size() == 1 ? schema.getDescription().orElse(null) : null;
-            enums.forEach(v -> shape.addVariant(v, description, isDeprecated));
+            enums.forEach(v -> shape.addVariant(title.orElse(v), v, description, isDeprecated));
         } else if (schema.hasConst()) {
             var value = (String) schema.getConst().orElseThrow();
-            shape.addVariant(value, schema.getDescription().orElse(null), isDeprecated);
+            shape.addVariant(title.orElse(value), value, schema.getDescription().orElse(null), isDeprecated);
         }
     }
 
