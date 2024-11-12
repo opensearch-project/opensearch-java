@@ -24,8 +24,7 @@ public class Overrides {
     private static final JsonPointer SCHEMAS = JsonPointer.of("components", "schemas");
 
     public static final Overrides OVERRIDES = builder().withSchemas(
-        s -> s
-            .with(SCHEMAS.append("_common.analysis:TokenFilter"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+        s -> s.with(SCHEMAS.append("_common.analysis:TokenFilter"), so -> so.withShouldGenerate(ShouldGenerate.Always))
 
             // TODO: Remove this to generate property mapping types
             .with(SCHEMAS.append("_common.mapping:Property"), so -> so.withShouldGenerate(ShouldGenerate.Never))
