@@ -30,22 +30,92 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.analysis.Language
+
 @JsonpDeserializable
-public enum IcuNormalizationMode implements JsonEnum {
-    Decompose("decompose"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum Language implements JsonEnum {
+    Arabic("Arabic"),
 
-    Compose("compose"),
+    Armenian("Armenian"),
 
-    ;
+    Basque("Basque"),
+
+    Brazilian("Brazilian"),
+
+    Bulgarian("Bulgarian"),
+
+    Catalan("Catalan"),
+
+    Chinese("Chinese"),
+
+    Cjk("Cjk"),
+
+    Czech("Czech"),
+
+    Danish("Danish"),
+
+    Dutch("Dutch"),
+
+    English("English"),
+
+    Estonian("Estonian"),
+
+    Finnish("Finnish"),
+
+    French("French"),
+
+    Galician("Galician"),
+
+    German("German"),
+
+    Greek("Greek"),
+
+    Hindi("Hindi"),
+
+    Hungarian("Hungarian"),
+
+    Indonesian("Indonesian"),
+
+    Irish("Irish"),
+
+    Italian("Italian"),
+
+    Latvian("Latvian"),
+
+    Norwegian("Norwegian"),
+
+    Persian("Persian"),
+
+    Portuguese("Portuguese"),
+
+    Romanian("Romanian"),
+
+    Russian("Russian"),
+
+    Sorani("Sorani"),
+
+    Spanish("Spanish"),
+
+    Swedish("Swedish"),
+
+    Thai("Thai"),
+
+    Turkish("Turkish");
 
     private final String jsonValue;
 
-    IcuNormalizationMode(String jsonValue) {
+    Language(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -53,7 +123,5 @@ public enum IcuNormalizationMode implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<IcuNormalizationMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-        IcuNormalizationMode.values()
-    );
+    public static final JsonEnum.Deserializer<Language> _DESERIALIZER = new JsonEnum.Deserializer<>(Language.values());
 }

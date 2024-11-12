@@ -30,97 +30,72 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _types.analysis.PatternAnalyzer
+// typedef: _types.analysis.StandardAnalyzer
 
 @JsonpDeserializable
-public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
-    @Nullable
-    private final String version;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class StandardAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
 
     @Nullable
-    private final String flags;
+    private final Integer maxTokenLength;
 
-    @Nullable
-    private final Boolean lowercase;
-
-    private final String pattern;
-
+    @Nonnull
     private final List<String> stopwords;
 
     // ---------------------------------------------------------------------------------------------
 
-    private PatternAnalyzer(Builder builder) {
-
-        this.version = builder.version;
-        this.flags = builder.flags;
-        this.lowercase = builder.lowercase;
-        this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+    private StandardAnalyzer(Builder builder) {
+        this.maxTokenLength = builder.maxTokenLength;
         this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
-
     }
 
-    public static PatternAnalyzer of(Function<Builder, ObjectBuilder<PatternAnalyzer>> fn) {
+    public static StandardAnalyzer of(Function<StandardAnalyzer.Builder, ObjectBuilder<StandardAnalyzer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Analyzer variant kind.
+     * {@link Analyzer} variant kind.
      */
     @Override
     public Analyzer.Kind _analyzerKind() {
-        return Analyzer.Kind.Pattern;
+        return Analyzer.Kind.Standard;
     }
 
     /**
-     * API name: {@code version}
+     * API name: {@code max_token_length}
      */
     @Nullable
-    public final String version() {
-        return this.version;
-    }
-
-    /**
-     * API name: {@code flags}
-     */
-    @Nullable
-    public final String flags() {
-        return this.flags;
-    }
-
-    /**
-     * API name: {@code lowercase}
-     */
-    @Nullable
-    public final Boolean lowercase() {
-        return this.lowercase;
-    }
-
-    /**
-     * Required - API name: {@code pattern}
-     */
-    public final String pattern() {
-        return this.pattern;
+    public final Integer maxTokenLength() {
+        return this.maxTokenLength;
     }
 
     /**
      * API name: {@code stopwords}
      */
+    @Nonnull
     public final List<String> stopwords() {
         return this.stopwords;
     }
@@ -128,6 +103,7 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -135,97 +111,47 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.write("type", "pattern");
-
-        if (this.version != null) {
-            generator.writeKey("version");
-            generator.write(this.version);
-
+        generator.write("type", "standard");
+        if (this.maxTokenLength != null) {
+            generator.writeKey("max_token_length");
+            generator.write(this.maxTokenLength);
         }
-        if (this.flags != null) {
-            generator.writeKey("flags");
-            generator.write(this.flags);
-
-        }
-        if (this.lowercase != null) {
-            generator.writeKey("lowercase");
-            generator.write(this.lowercase);
-
-        }
-        generator.writeKey("pattern");
-        generator.write(this.pattern);
 
         if (ApiTypeHelper.isDefined(this.stopwords)) {
             generator.writeKey("stopwords");
             generator.writeStartArray();
             for (String item0 : this.stopwords) {
                 generator.write(item0);
-
             }
             generator.writeEnd();
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link PatternAnalyzer}.
+     * Builder for {@link StandardAnalyzer}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PatternAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StandardAnalyzer> {
         @Nullable
-        private String version;
-
-        @Nullable
-        private String flags;
-
-        @Nullable
-        private Boolean lowercase;
-
-        private String pattern;
-
+        private Integer maxTokenLength;
         @Nullable
         private List<String> stopwords;
 
         /**
-         * API name: {@code version}
+         * API name: {@code max_token_length}
          */
-        public final Builder version(@Nullable String value) {
-            this.version = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code flags}
-         */
-        public final Builder flags(@Nullable String value) {
-            this.flags = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code lowercase}
-         */
-        public final Builder lowercase(@Nullable Boolean value) {
-            this.lowercase = value;
-            return this;
-        }
-
-        /**
-         * Required - API name: {@code pattern}
-         */
-        public final Builder pattern(String value) {
-            this.pattern = value;
+        public final Builder maxTokenLength(@Nullable Integer value) {
+            this.maxTokenLength = value;
             return this;
         }
 
         /**
          * API name: {@code stopwords}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>stopwords</code>.
+         * </p>
          */
         public final Builder stopwords(List<String> list) {
             this.stopwords = _listAddAll(this.stopwords, list);
@@ -234,8 +160,10 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
         /**
          * API name: {@code stopwords}
+         *
          * <p>
          * Adds one or more values to <code>stopwords</code>.
+         * </p>
          */
         public final Builder stopwords(String value, String... values) {
             this.stopwords = _listAdd(this.stopwords, value, values);
@@ -243,37 +171,47 @@ public class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable {
         }
 
         /**
-         * Builds a {@link PatternAnalyzer}.
+         * Builds a {@link StandardAnalyzer}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public PatternAnalyzer build() {
+        public StandardAnalyzer build() {
             _checkSingleUse();
 
-            return new PatternAnalyzer(this);
+            return new StandardAnalyzer(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link PatternAnalyzer}
+     * Json deserializer for {@link StandardAnalyzer}
      */
-    public static final JsonpDeserializer<PatternAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<StandardAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        PatternAnalyzer::setupPatternAnalyzerDeserializer
+        StandardAnalyzer::setupStandardAnalyzerDeserializer
     );
 
-    protected static void setupPatternAnalyzerDeserializer(ObjectDeserializer<PatternAnalyzer.Builder> op) {
-
-        op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
-        op.add(Builder::flags, JsonpDeserializer.stringDeserializer(), "flags");
-        op.add(Builder::lowercase, JsonpDeserializer.booleanDeserializer(), "lowercase");
-        op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");
+    protected static void setupStandardAnalyzerDeserializer(ObjectDeserializer<StandardAnalyzer.Builder> op) {
+        op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
         op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stopwords");
 
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.maxTokenLength);
+        result = 31 * result + Objects.hashCode(this.stopwords);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        StandardAnalyzer other = (StandardAnalyzer) o;
+        return Objects.equals(this.maxTokenLength, other.maxTokenLength) && Objects.equals(this.stopwords, other.stopwords);
+    }
 }

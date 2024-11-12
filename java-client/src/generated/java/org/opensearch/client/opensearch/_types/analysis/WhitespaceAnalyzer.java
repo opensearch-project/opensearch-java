@@ -30,45 +30,51 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _types.analysis.KeywordAnalyzer
+// typedef: _types.analysis.WhitespaceAnalyzer
 
 @JsonpDeserializable
-public class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class WhitespaceAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
+
     @Nullable
     private final String version;
 
     // ---------------------------------------------------------------------------------------------
 
-    private KeywordAnalyzer(Builder builder) {
-
+    private WhitespaceAnalyzer(Builder builder) {
         this.version = builder.version;
-
     }
 
-    public static KeywordAnalyzer of(Function<Builder, ObjectBuilder<KeywordAnalyzer>> fn) {
+    public static WhitespaceAnalyzer of(Function<WhitespaceAnalyzer.Builder, ObjectBuilder<WhitespaceAnalyzer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Analyzer variant kind.
+     * {@link Analyzer} variant kind.
      */
     @Override
     public Analyzer.Kind _analyzerKind() {
-        return Analyzer.Kind.Keyword;
+        return Analyzer.Kind.Whitespace;
     }
 
     /**
@@ -82,6 +88,7 @@ public class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -89,24 +96,19 @@ public class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.write("type", "keyword");
-
+        generator.write("type", "whitespace");
         if (this.version != null) {
             generator.writeKey("version");
             generator.write(this.version);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link KeywordAnalyzer}.
+     * Builder for {@link WhitespaceAnalyzer}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KeywordAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WhitespaceAnalyzer> {
         @Nullable
         private String version;
 
@@ -119,33 +121,45 @@ public class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable {
         }
 
         /**
-         * Builds a {@link KeywordAnalyzer}.
+         * Builds a {@link WhitespaceAnalyzer}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public KeywordAnalyzer build() {
+        public WhitespaceAnalyzer build() {
             _checkSingleUse();
 
-            return new KeywordAnalyzer(this);
+            return new WhitespaceAnalyzer(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link KeywordAnalyzer}
+     * Json deserializer for {@link WhitespaceAnalyzer}
      */
-    public static final JsonpDeserializer<KeywordAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<WhitespaceAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        KeywordAnalyzer::setupKeywordAnalyzerDeserializer
+        WhitespaceAnalyzer::setupWhitespaceAnalyzerDeserializer
     );
 
-    protected static void setupKeywordAnalyzerDeserializer(ObjectDeserializer<KeywordAnalyzer.Builder> op) {
-
+    protected static void setupWhitespaceAnalyzerDeserializer(ObjectDeserializer<WhitespaceAnalyzer.Builder> op) {
         op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.version);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        WhitespaceAnalyzer other = (WhitespaceAnalyzer) o;
+        return Objects.equals(this.version, other.version);
+    }
 }

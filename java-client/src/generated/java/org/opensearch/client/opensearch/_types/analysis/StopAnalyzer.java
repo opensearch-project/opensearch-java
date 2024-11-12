@@ -30,97 +30,68 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _types.analysis.FingerprintAnalyzer
+// typedef: _types.analysis.StopAnalyzer
 
 @JsonpDeserializable
-public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
-    @Nullable
-    private final String version;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class StopAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
 
-    private final int maxOutputSize;
-
-    private final boolean preserveOriginal;
-
-    private final String separator;
-
+    @Nonnull
     private final List<String> stopwords;
 
     @Nullable
     private final String stopwordsPath;
 
+    @Nullable
+    private final String version;
+
     // ---------------------------------------------------------------------------------------------
 
-    private FingerprintAnalyzer(Builder builder) {
-
-        this.version = builder.version;
-        this.maxOutputSize = ApiTypeHelper.requireNonNull(builder.maxOutputSize, this, "maxOutputSize");
-        this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
-        this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
+    private StopAnalyzer(Builder builder) {
         this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
         this.stopwordsPath = builder.stopwordsPath;
-
+        this.version = builder.version;
     }
 
-    public static FingerprintAnalyzer of(Function<Builder, ObjectBuilder<FingerprintAnalyzer>> fn) {
+    public static StopAnalyzer of(Function<StopAnalyzer.Builder, ObjectBuilder<StopAnalyzer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Analyzer variant kind.
+     * {@link Analyzer} variant kind.
      */
     @Override
     public Analyzer.Kind _analyzerKind() {
-        return Analyzer.Kind.Fingerprint;
-    }
-
-    /**
-     * API name: {@code version}
-     */
-    @Nullable
-    public final String version() {
-        return this.version;
-    }
-
-    /**
-     * Required - API name: {@code max_output_size}
-     */
-    public final int maxOutputSize() {
-        return this.maxOutputSize;
-    }
-
-    /**
-     * Required - API name: {@code preserve_original}
-     */
-    public final boolean preserveOriginal() {
-        return this.preserveOriginal;
-    }
-
-    /**
-     * Required - API name: {@code separator}
-     */
-    public final String separator() {
-        return this.separator;
+        return Analyzer.Kind.Stop;
     }
 
     /**
      * API name: {@code stopwords}
      */
+    @Nonnull
     public final List<String> stopwords() {
         return this.stopwords;
     }
@@ -134,8 +105,17 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
     }
 
     /**
+     * API name: {@code version}
+     */
+    @Nullable
+    public final String version() {
+        return this.version;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -143,99 +123,46 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.write("type", "fingerprint");
-
-        if (this.version != null) {
-            generator.writeKey("version");
-            generator.write(this.version);
-
-        }
-        generator.writeKey("max_output_size");
-        generator.write(this.maxOutputSize);
-
-        generator.writeKey("preserve_original");
-        generator.write(this.preserveOriginal);
-
-        generator.writeKey("separator");
-        generator.write(this.separator);
-
+        generator.write("type", "stop");
         if (ApiTypeHelper.isDefined(this.stopwords)) {
             generator.writeKey("stopwords");
             generator.writeStartArray();
             for (String item0 : this.stopwords) {
                 generator.write(item0);
-
             }
             generator.writeEnd();
-
         }
+
         if (this.stopwordsPath != null) {
             generator.writeKey("stopwords_path");
             generator.write(this.stopwordsPath);
-
         }
 
+        if (this.version != null) {
+            generator.writeKey("version");
+            generator.write(this.version);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link FingerprintAnalyzer}.
+     * Builder for {@link StopAnalyzer}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FingerprintAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopAnalyzer> {
+        @Nullable
+        private List<String> stopwords;
+        @Nullable
+        private String stopwordsPath;
         @Nullable
         private String version;
 
-        private Integer maxOutputSize;
-
-        private Boolean preserveOriginal;
-
-        private String separator;
-
-        @Nullable
-        private List<String> stopwords;
-
-        @Nullable
-        private String stopwordsPath;
-
-        /**
-         * API name: {@code version}
-         */
-        public final Builder version(@Nullable String value) {
-            this.version = value;
-            return this;
-        }
-
-        /**
-         * Required - API name: {@code max_output_size}
-         */
-        public final Builder maxOutputSize(int value) {
-            this.maxOutputSize = value;
-            return this;
-        }
-
-        /**
-         * Required - API name: {@code preserve_original}
-         */
-        public final Builder preserveOriginal(boolean value) {
-            this.preserveOriginal = value;
-            return this;
-        }
-
-        /**
-         * Required - API name: {@code separator}
-         */
-        public final Builder separator(String value) {
-            this.separator = value;
-            return this;
-        }
-
         /**
          * API name: {@code stopwords}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>stopwords</code>.
+         * </p>
          */
         public final Builder stopwords(List<String> list) {
             this.stopwords = _listAddAll(this.stopwords, list);
@@ -244,8 +171,10 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
         /**
          * API name: {@code stopwords}
+         *
          * <p>
          * Adds one or more values to <code>stopwords</code>.
+         * </p>
          */
         public final Builder stopwords(String value, String... values) {
             this.stopwords = _listAdd(this.stopwords, value, values);
@@ -261,38 +190,59 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
         }
 
         /**
-         * Builds a {@link FingerprintAnalyzer}.
-         *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * API name: {@code version}
          */
-        public FingerprintAnalyzer build() {
+        public final Builder version(@Nullable String value) {
+            this.version = value;
+            return this;
+        }
+
+        /**
+         * Builds a {@link StopAnalyzer}.
+         *
+         * @throws NullPointerException if some of the required fields are null.
+         */
+        public StopAnalyzer build() {
             _checkSingleUse();
 
-            return new FingerprintAnalyzer(this);
+            return new StopAnalyzer(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link FingerprintAnalyzer}
+     * Json deserializer for {@link StopAnalyzer}
      */
-    public static final JsonpDeserializer<FingerprintAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<StopAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        FingerprintAnalyzer::setupFingerprintAnalyzerDeserializer
+        StopAnalyzer::setupStopAnalyzerDeserializer
     );
 
-    protected static void setupFingerprintAnalyzerDeserializer(ObjectDeserializer<FingerprintAnalyzer.Builder> op) {
-
-        op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
-        op.add(Builder::maxOutputSize, JsonpDeserializer.integerDeserializer(), "max_output_size");
-        op.add(Builder::preserveOriginal, JsonpDeserializer.booleanDeserializer(), "preserve_original");
-        op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
+    protected static void setupStopAnalyzerDeserializer(ObjectDeserializer<StopAnalyzer.Builder> op) {
         op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stopwords");
         op.add(Builder::stopwordsPath, JsonpDeserializer.stringDeserializer(), "stopwords_path");
+        op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.stopwords);
+        result = 31 * result + Objects.hashCode(this.stopwordsPath);
+        result = 31 * result + Objects.hashCode(this.version);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        StopAnalyzer other = (StopAnalyzer) o;
+        return Objects.equals(this.stopwords, other.stopwords)
+            && Objects.equals(this.stopwordsPath, other.stopwordsPath)
+            && Objects.equals(this.version, other.version);
+    }
 }

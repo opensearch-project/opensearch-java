@@ -30,53 +30,51 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _types.analysis.SnowballAnalyzer
+// typedef: _types.analysis.KeywordAnalyzer
 
 @JsonpDeserializable
-public class SnowballAnalyzer implements AnalyzerVariant, JsonpSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class KeywordAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
+
     @Nullable
     private final String version;
 
-    private final SnowballLanguage language;
-
-    private final List<String> stopwords;
-
     // ---------------------------------------------------------------------------------------------
 
-    private SnowballAnalyzer(Builder builder) {
-
+    private KeywordAnalyzer(Builder builder) {
         this.version = builder.version;
-        this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
-        this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
-
     }
 
-    public static SnowballAnalyzer of(Function<Builder, ObjectBuilder<SnowballAnalyzer>> fn) {
+    public static KeywordAnalyzer of(Function<KeywordAnalyzer.Builder, ObjectBuilder<KeywordAnalyzer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Analyzer variant kind.
+     * {@link Analyzer} variant kind.
      */
     @Override
     public Analyzer.Kind _analyzerKind() {
-        return Analyzer.Kind.Snowball;
+        return Analyzer.Kind.Keyword;
     }
 
     /**
@@ -88,22 +86,9 @@ public class SnowballAnalyzer implements AnalyzerVariant, JsonpSerializable {
     }
 
     /**
-     * Required - API name: {@code language}
-     */
-    public final SnowballLanguage language() {
-        return this.language;
-    }
-
-    /**
-     * API name: {@code stopwords}
-     */
-    public final List<String> stopwords() {
-        return this.stopwords;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -111,43 +96,21 @@ public class SnowballAnalyzer implements AnalyzerVariant, JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.write("type", "snowball");
-
+        generator.write("type", "keyword");
         if (this.version != null) {
             generator.writeKey("version");
             generator.write(this.version);
-
         }
-        generator.writeKey("language");
-        this.language.serialize(generator, mapper);
-        if (ApiTypeHelper.isDefined(this.stopwords)) {
-            generator.writeKey("stopwords");
-            generator.writeStartArray();
-            for (String item0 : this.stopwords) {
-                generator.write(item0);
-
-            }
-            generator.writeEnd();
-
-        }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link SnowballAnalyzer}.
+     * Builder for {@link KeywordAnalyzer}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnowballAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KeywordAnalyzer> {
         @Nullable
         private String version;
-
-        private SnowballLanguage language;
-
-        @Nullable
-        private List<String> stopwords;
 
         /**
          * API name: {@code version}
@@ -158,63 +121,45 @@ public class SnowballAnalyzer implements AnalyzerVariant, JsonpSerializable {
         }
 
         /**
-         * Required - API name: {@code language}
-         */
-        public final Builder language(SnowballLanguage value) {
-            this.language = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code stopwords}
-         * <p>
-         * Adds all elements of <code>list</code> to <code>stopwords</code>.
-         */
-        public final Builder stopwords(List<String> list) {
-            this.stopwords = _listAddAll(this.stopwords, list);
-            return this;
-        }
-
-        /**
-         * API name: {@code stopwords}
-         * <p>
-         * Adds one or more values to <code>stopwords</code>.
-         */
-        public final Builder stopwords(String value, String... values) {
-            this.stopwords = _listAdd(this.stopwords, value, values);
-            return this;
-        }
-
-        /**
-         * Builds a {@link SnowballAnalyzer}.
+         * Builds a {@link KeywordAnalyzer}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public SnowballAnalyzer build() {
+        public KeywordAnalyzer build() {
             _checkSingleUse();
 
-            return new SnowballAnalyzer(this);
+            return new KeywordAnalyzer(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link SnowballAnalyzer}
+     * Json deserializer for {@link KeywordAnalyzer}
      */
-    public static final JsonpDeserializer<SnowballAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<KeywordAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        SnowballAnalyzer::setupSnowballAnalyzerDeserializer
+        KeywordAnalyzer::setupKeywordAnalyzerDeserializer
     );
 
-    protected static void setupSnowballAnalyzerDeserializer(ObjectDeserializer<SnowballAnalyzer.Builder> op) {
-
+    protected static void setupKeywordAnalyzerDeserializer(ObjectDeserializer<KeywordAnalyzer.Builder> op) {
         op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
-        op.add(Builder::language, SnowballLanguage._DESERIALIZER, "language");
-        op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stopwords");
 
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.version);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        KeywordAnalyzer other = (KeywordAnalyzer) o;
+        return Objects.equals(this.version, other.version);
+    }
 }

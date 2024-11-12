@@ -30,19 +30,36 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
-import org.opensearch.client.json.JsonpSerializable;
+import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- * Base interface for {@link Analyzer} variants.
- */
-public interface AnalyzerVariant extends JsonpSerializable {
+// typedef: _types.analysis.IcuNormalizationMode
 
-    Analyzer.Kind _analyzerKind();
+@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum IcuNormalizationMode implements JsonEnum {
+    Compose("compose"),
 
-    default Analyzer _toAnalyzer() {
-        return new Analyzer(this);
+    Decompose("decompose");
+
+    private final String jsonValue;
+
+    IcuNormalizationMode(String jsonValue) {
+        this.jsonValue = jsonValue;
     }
 
+    public String jsonValue() {
+        return this.jsonValue;
+    }
+
+    public static final JsonEnum.Deserializer<IcuNormalizationMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        IcuNormalizationMode.values()
+    );
 }

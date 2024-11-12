@@ -30,63 +30,60 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _types.analysis.StandardAnalyzer
+// typedef: _types.analysis.DutchAnalyzer
 
 @JsonpDeserializable
-public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
-    @Nullable
-    private final Integer maxTokenLength;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class DutchAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
 
+    @Nonnull
     private final List<String> stopwords;
 
     // ---------------------------------------------------------------------------------------------
 
-    private StandardAnalyzer(Builder builder) {
-
-        this.maxTokenLength = builder.maxTokenLength;
+    private DutchAnalyzer(Builder builder) {
         this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
-
     }
 
-    public static StandardAnalyzer of(Function<Builder, ObjectBuilder<StandardAnalyzer>> fn) {
+    public static DutchAnalyzer of(Function<DutchAnalyzer.Builder, ObjectBuilder<DutchAnalyzer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Analyzer variant kind.
+     * {@link Analyzer} variant kind.
      */
     @Override
     public Analyzer.Kind _analyzerKind() {
-        return Analyzer.Kind.Standard;
-    }
-
-    /**
-     * API name: {@code max_token_length}
-     */
-    @Nullable
-    public final Integer maxTokenLength() {
-        return this.maxTokenLength;
+        return Analyzer.Kind.Dutch;
     }
 
     /**
      * API name: {@code stopwords}
      */
+    @Nonnull
     public final List<String> stopwords() {
         return this.stopwords;
     }
@@ -94,6 +91,7 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -101,52 +99,32 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.write("type", "standard");
-
-        if (this.maxTokenLength != null) {
-            generator.writeKey("max_token_length");
-            generator.write(this.maxTokenLength);
-
-        }
+        generator.write("type", "dutch");
         if (ApiTypeHelper.isDefined(this.stopwords)) {
             generator.writeKey("stopwords");
             generator.writeStartArray();
             for (String item0 : this.stopwords) {
                 generator.write(item0);
-
             }
             generator.writeEnd();
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link StandardAnalyzer}.
+     * Builder for {@link DutchAnalyzer}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StandardAnalyzer> {
-        @Nullable
-        private Integer maxTokenLength;
-
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DutchAnalyzer> {
         @Nullable
         private List<String> stopwords;
 
         /**
-         * API name: {@code max_token_length}
-         */
-        public final Builder maxTokenLength(@Nullable Integer value) {
-            this.maxTokenLength = value;
-            return this;
-        }
-
-        /**
          * API name: {@code stopwords}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>stopwords</code>.
+         * </p>
          */
         public final Builder stopwords(List<String> list) {
             this.stopwords = _listAddAll(this.stopwords, list);
@@ -155,8 +133,10 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
         /**
          * API name: {@code stopwords}
+         *
          * <p>
          * Adds one or more values to <code>stopwords</code>.
+         * </p>
          */
         public final Builder stopwords(String value, String... values) {
             this.stopwords = _listAdd(this.stopwords, value, values);
@@ -164,34 +144,45 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
         }
 
         /**
-         * Builds a {@link StandardAnalyzer}.
+         * Builds a {@link DutchAnalyzer}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public StandardAnalyzer build() {
+        public DutchAnalyzer build() {
             _checkSingleUse();
 
-            return new StandardAnalyzer(this);
+            return new DutchAnalyzer(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link StandardAnalyzer}
+     * Json deserializer for {@link DutchAnalyzer}
      */
-    public static final JsonpDeserializer<StandardAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<DutchAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        StandardAnalyzer::setupStandardAnalyzerDeserializer
+        DutchAnalyzer::setupDutchAnalyzerDeserializer
     );
 
-    protected static void setupStandardAnalyzerDeserializer(ObjectDeserializer<StandardAnalyzer.Builder> op) {
-
-        op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
+    protected static void setupDutchAnalyzerDeserializer(ObjectDeserializer<DutchAnalyzer.Builder> op) {
         op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stopwords");
 
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.stopwords);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        DutchAnalyzer other = (DutchAnalyzer) o;
+        return Objects.equals(this.stopwords, other.stopwords);
+    }
 }

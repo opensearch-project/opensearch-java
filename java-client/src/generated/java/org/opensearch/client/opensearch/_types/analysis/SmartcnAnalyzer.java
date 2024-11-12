@@ -6,36 +6,40 @@
  * compatible open source license.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _types.analysis.LanguageAnalyzer
+// typedef: _types.analysis.SmartcnAnalyzer
 
 @JsonpDeserializable
-public class SmartcnAnalyzer implements AnalyzerVariant, JsonpSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SmartcnAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
-    private SmartcnAnalyzer(Builder builder) {
+    private SmartcnAnalyzer(Builder builder) {}
 
-    }
-
-    public static SmartcnAnalyzer of(Function<Builder, ObjectBuilder<SmartcnAnalyzer>> fn) {
+    public static SmartcnAnalyzer of(Function<SmartcnAnalyzer.Builder, ObjectBuilder<SmartcnAnalyzer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Analyzer variant kind.
+     * {@link Analyzer} variant kind.
      */
     @Override
     public Analyzer.Kind _analyzerKind() {
@@ -45,6 +49,7 @@ public class SmartcnAnalyzer implements AnalyzerVariant, JsonpSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -52,9 +57,7 @@ public class SmartcnAnalyzer implements AnalyzerVariant, JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.write("type", Analyzer.Kind.Smartcn.jsonValue());
-
+        generator.write("type", "smartcn");
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -62,14 +65,12 @@ public class SmartcnAnalyzer implements AnalyzerVariant, JsonpSerializable {
     /**
      * Builder for {@link SmartcnAnalyzer}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SmartcnAnalyzer> {
 
         /**
          * Builds a {@link SmartcnAnalyzer}.
          *
-         * @throws NullPointerException
-         *             if some required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public SmartcnAnalyzer build() {
             _checkSingleUse();
@@ -85,12 +86,24 @@ public class SmartcnAnalyzer implements AnalyzerVariant, JsonpSerializable {
      */
     public static final JsonpDeserializer<SmartcnAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        SmartcnAnalyzer::setupLanguageAnalyzerDeserializer
+        SmartcnAnalyzer::setupSmartcnAnalyzerDeserializer
     );
 
-    protected static void setupLanguageAnalyzerDeserializer(ObjectDeserializer<SmartcnAnalyzer.Builder> op) {
+    protected static void setupSmartcnAnalyzerDeserializer(ObjectDeserializer<SmartcnAnalyzer.Builder> op) {
 
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

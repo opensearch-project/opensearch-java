@@ -6,53 +6,36 @@
  * compatible open source license.
  */
 
-/*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
-/*
- * Modifications Copyright OpenSearch Contributors. See
- * GitHub history for details.
- */
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: _types.analysis.StopAnalyzer
+// typedef: _types.analysis.CjkAnalyzer
 
 @JsonpDeserializable
-public class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
-    @Nullable
-    private final String version;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class CjkAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
 
+    @Nonnull
     private final List<String> stopwords;
 
     @Nullable
@@ -60,37 +43,27 @@ public class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
-    private StopAnalyzer(Builder builder) {
-
-        this.version = builder.version;
+    private CjkAnalyzer(Builder builder) {
         this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
         this.stopwordsPath = builder.stopwordsPath;
-
     }
 
-    public static StopAnalyzer of(Function<Builder, ObjectBuilder<StopAnalyzer>> fn) {
+    public static CjkAnalyzer of(Function<CjkAnalyzer.Builder, ObjectBuilder<CjkAnalyzer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Analyzer variant kind.
+     * {@link Analyzer} variant kind.
      */
     @Override
     public Analyzer.Kind _analyzerKind() {
-        return Analyzer.Kind.Stop;
-    }
-
-    /**
-     * API name: {@code version}
-     */
-    @Nullable
-    public final String version() {
-        return this.version;
+        return Analyzer.Kind.Cjk;
     }
 
     /**
      * API name: {@code stopwords}
      */
+    @Nonnull
     public final List<String> stopwords() {
         return this.stopwords;
     }
@@ -106,6 +79,7 @@ public class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -113,60 +87,39 @@ public class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.write("type", "stop");
-
-        if (this.version != null) {
-            generator.writeKey("version");
-            generator.write(this.version);
-
-        }
+        generator.write("type", "cjk");
         if (ApiTypeHelper.isDefined(this.stopwords)) {
             generator.writeKey("stopwords");
             generator.writeStartArray();
             for (String item0 : this.stopwords) {
                 generator.write(item0);
-
             }
             generator.writeEnd();
-
         }
+
         if (this.stopwordsPath != null) {
             generator.writeKey("stopwords_path");
             generator.write(this.stopwordsPath);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link StopAnalyzer}.
+     * Builder for {@link CjkAnalyzer}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopAnalyzer> {
-        @Nullable
-        private String version;
-
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CjkAnalyzer> {
         @Nullable
         private List<String> stopwords;
-
         @Nullable
         private String stopwordsPath;
 
         /**
-         * API name: {@code version}
-         */
-        public final Builder version(@Nullable String value) {
-            this.version = value;
-            return this;
-        }
-
-        /**
          * API name: {@code stopwords}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>stopwords</code>.
+         * </p>
          */
         public final Builder stopwords(List<String> list) {
             this.stopwords = _listAddAll(this.stopwords, list);
@@ -175,8 +128,10 @@ public class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
         /**
          * API name: {@code stopwords}
+         *
          * <p>
          * Adds one or more values to <code>stopwords</code>.
+         * </p>
          */
         public final Builder stopwords(String value, String... values) {
             this.stopwords = _listAdd(this.stopwords, value, values);
@@ -192,35 +147,47 @@ public class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
         }
 
         /**
-         * Builds a {@link StopAnalyzer}.
+         * Builds a {@link CjkAnalyzer}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public StopAnalyzer build() {
+        public CjkAnalyzer build() {
             _checkSingleUse();
 
-            return new StopAnalyzer(this);
+            return new CjkAnalyzer(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link StopAnalyzer}
+     * Json deserializer for {@link CjkAnalyzer}
      */
-    public static final JsonpDeserializer<StopAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<CjkAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        StopAnalyzer::setupStopAnalyzerDeserializer
+        CjkAnalyzer::setupCjkAnalyzerDeserializer
     );
 
-    protected static void setupStopAnalyzerDeserializer(ObjectDeserializer<StopAnalyzer.Builder> op) {
-
-        op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+    protected static void setupCjkAnalyzerDeserializer(ObjectDeserializer<CjkAnalyzer.Builder> op) {
         op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stopwords");
         op.add(Builder::stopwordsPath, JsonpDeserializer.stringDeserializer(), "stopwords_path");
 
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.stopwords);
+        result = 31 * result + Objects.hashCode(this.stopwordsPath);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CjkAnalyzer other = (CjkAnalyzer) o;
+        return Objects.equals(this.stopwords, other.stopwords) && Objects.equals(this.stopwordsPath, other.stopwordsPath);
+    }
 }

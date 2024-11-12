@@ -30,65 +30,72 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
+
+import javax.annotation.Generated;
 
 /**
  * Builders for {@link Analyzer} variants.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class AnalyzerBuilders {
     private AnalyzerBuilders() {}
 
     /**
-     * Creates a builder for the {@link CustomAnalyzer custom} {@code Analyzer}
-     * variant.
+     * Creates a builder for the {@link CjkAnalyzer cjk} {@code Analyzer} variant.
+     */
+    public static CjkAnalyzer.Builder cjk() {
+        return new CjkAnalyzer.Builder();
+    }
+
+    /**
+     * Creates a builder for the {@link CustomAnalyzer custom} {@code Analyzer} variant.
      */
     public static CustomAnalyzer.Builder custom() {
         return new CustomAnalyzer.Builder();
     }
 
     /**
-     * Creates a builder for the {@link DutchAnalyzer dutch} {@code Analyzer}
-     * variant.
+     * Creates a builder for the {@link DutchAnalyzer dutch} {@code Analyzer} variant.
      */
     public static DutchAnalyzer.Builder dutch() {
         return new DutchAnalyzer.Builder();
     }
 
     /**
-     * Creates a builder for the {@link FingerprintAnalyzer fingerprint}
-     * {@code Analyzer} variant.
+     * Creates a builder for the {@link FingerprintAnalyzer fingerprint} {@code Analyzer} variant.
      */
     public static FingerprintAnalyzer.Builder fingerprint() {
         return new FingerprintAnalyzer.Builder();
     }
 
     /**
-     * Creates a builder for the {@link IcuAnalyzer icu_analyzer} {@code Analyzer}
-     * variant.
+     * Creates a builder for the {@link IcuAnalyzer icu_analyzer} {@code Analyzer} variant.
      */
     public static IcuAnalyzer.Builder icuAnalyzer() {
         return new IcuAnalyzer.Builder();
     }
 
     /**
-     * Creates a builder for the {@link KeywordAnalyzer keyword} {@code Analyzer}
-     * variant.
+     * Creates a builder for the {@link KeywordAnalyzer keyword} {@code Analyzer} variant.
      */
     public static KeywordAnalyzer.Builder keyword() {
         return new KeywordAnalyzer.Builder();
     }
 
     /**
-     * Creates a builder for the {@link KuromojiAnalyzer kuromoji} {@code Analyzer}
-     * variant.
+     * Creates a builder for the {@link KuromojiAnalyzer kuromoji} {@code Analyzer} variant.
      */
     public static KuromojiAnalyzer.Builder kuromoji() {
         return new KuromojiAnalyzer.Builder();
     }
 
     /**
-     * Creates a builder for the {@link LanguageAnalyzer language} {@code Analyzer}
-     * variant.
+     * Creates a builder for the {@link LanguageAnalyzer language} {@code Analyzer} variant.
      */
     public static LanguageAnalyzer.Builder language() {
         return new LanguageAnalyzer.Builder();
@@ -102,32 +109,35 @@ public class AnalyzerBuilders {
     }
 
     /**
-     * Creates a builder for the {@link PatternAnalyzer pattern} {@code Analyzer}
-     * variant.
+     * Creates a builder for the {@link PatternAnalyzer pattern} {@code Analyzer} variant.
      */
     public static PatternAnalyzer.Builder pattern() {
         return new PatternAnalyzer.Builder();
     }
 
     /**
-     * Creates a builder for the {@link SimpleAnalyzer simple} {@code Analyzer}
-     * variant.
+     * Creates a builder for the {@link SimpleAnalyzer simple} {@code Analyzer} variant.
      */
     public static SimpleAnalyzer.Builder simple() {
         return new SimpleAnalyzer.Builder();
     }
 
     /**
-     * Creates a builder for the {@link SnowballAnalyzer snowball} {@code Analyzer}
-     * variant.
+     * Creates a builder for the {@link SmartcnAnalyzer smartcn} {@code Analyzer} variant.
+     */
+    public static SmartcnAnalyzer.Builder smartcn() {
+        return new SmartcnAnalyzer.Builder();
+    }
+
+    /**
+     * Creates a builder for the {@link SnowballAnalyzer snowball} {@code Analyzer} variant.
      */
     public static SnowballAnalyzer.Builder snowball() {
         return new SnowballAnalyzer.Builder();
     }
 
     /**
-     * Creates a builder for the {@link StandardAnalyzer standard} {@code Analyzer}
-     * variant.
+     * Creates a builder for the {@link StandardAnalyzer standard} {@code Analyzer} variant.
      */
     public static StandardAnalyzer.Builder standard() {
         return new StandardAnalyzer.Builder();
@@ -141,11 +151,9 @@ public class AnalyzerBuilders {
     }
 
     /**
-     * Creates a builder for the {@link WhitespaceAnalyzer whitespace}
-     * {@code Analyzer} variant.
+     * Creates a builder for the {@link WhitespaceAnalyzer whitespace} {@code Analyzer} variant.
      */
     public static WhitespaceAnalyzer.Builder whitespace() {
         return new WhitespaceAnalyzer.Builder();
     }
-
 }

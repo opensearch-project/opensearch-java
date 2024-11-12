@@ -30,17 +30,23 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -50,49 +56,28 @@ import org.opensearch.client.util.TaggedUnionUtils;
 // typedef: _types.analysis.Analyzer
 
 @JsonpDeserializable
-public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, JsonpSerializable {
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, PlainJsonSerializable {
     /**
      * {@link Analyzer} variant kinds.
      */
-    /**
-     * {@link Analyzer} variant kinds.
-     */
-
     public enum Kind implements JsonEnum {
-        Custom("custom"),
-
-        Dutch("dutch"),
-
-        Fingerprint("fingerprint"),
-
-        IcuAnalyzer("icu_analyzer"),
-
-        Keyword("keyword"),
-
-        Kuromoji("kuromoji"),
-
-        Language("language"),
-
-        Nori("nori"),
-
-        Pattern("pattern"),
-
-        Simple("simple"),
-
-        Snowball("snowball"),
-
-        Standard("standard"),
-
-        Stop("stop"),
-
-        Whitespace("whitespace"),
-
-        Smartcn("smartcn"),
-
         Cjk("cjk"),
-
-        ;
+        Custom("custom"),
+        Dutch("dutch"),
+        Fingerprint("fingerprint"),
+        IcuAnalyzer("icu_analyzer"),
+        Keyword("keyword"),
+        Kuromoji("kuromoji"),
+        Language("language"),
+        Nori("nori"),
+        Pattern("pattern"),
+        Simple("simple"),
+        Smartcn("smartcn"),
+        Snowball("snowball"),
+        Standard("standard"),
+        Stop("stop"),
+        Whitespace("whitespace");
 
         private final String jsonValue;
 
@@ -100,10 +85,10 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
             this.jsonValue = jsonValue;
         }
 
+        @Override
         public String jsonValue() {
-            return this.jsonValue;
+            return jsonValue;
         }
-
     }
 
     private final Kind _kind;
@@ -120,21 +105,33 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     }
 
     public Analyzer(AnalyzerVariant value) {
-
         this._kind = ApiTypeHelper.requireNonNull(value._analyzerKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
-
     }
 
     private Analyzer(Builder builder) {
-
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
     }
 
-    public static Analyzer of(Function<Builder, ObjectBuilder<Analyzer>> fn) {
+    public static Analyzer of(Function<Analyzer.Builder, ObjectBuilder<Analyzer>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * Is this variant instance of kind {@code cjk}?
+     */
+    public boolean isCjk() {
+        return _kind == Kind.Cjk;
+    }
+
+    /**
+     * Get the {@code cjk} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code cjk} kind.
+     */
+    public CjkAnalyzer cjk() {
+        return TaggedUnionUtils.get(this, Kind.Cjk);
     }
 
     /**
@@ -147,8 +144,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     /**
      * Get the {@code custom} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code custom} kind.
+     * @throws IllegalStateException if the current variant is not the {@code custom} kind.
      */
     public CustomAnalyzer custom() {
         return TaggedUnionUtils.get(this, Kind.Custom);
@@ -164,8 +160,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     /**
      * Get the {@code dutch} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code dutch} kind.
+     * @throws IllegalStateException if the current variant is not the {@code dutch} kind.
      */
     public DutchAnalyzer dutch() {
         return TaggedUnionUtils.get(this, Kind.Dutch);
@@ -181,8 +176,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     /**
      * Get the {@code fingerprint} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code fingerprint} kind.
+     * @throws IllegalStateException if the current variant is not the {@code fingerprint} kind.
      */
     public FingerprintAnalyzer fingerprint() {
         return TaggedUnionUtils.get(this, Kind.Fingerprint);
@@ -198,8 +192,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     /**
      * Get the {@code icu_analyzer} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code icu_analyzer} kind.
+     * @throws IllegalStateException if the current variant is not the {@code icu_analyzer} kind.
      */
     public IcuAnalyzer icuAnalyzer() {
         return TaggedUnionUtils.get(this, Kind.IcuAnalyzer);
@@ -215,8 +208,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     /**
      * Get the {@code keyword} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code keyword} kind.
+     * @throws IllegalStateException if the current variant is not the {@code keyword} kind.
      */
     public KeywordAnalyzer keyword() {
         return TaggedUnionUtils.get(this, Kind.Keyword);
@@ -232,8 +224,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     /**
      * Get the {@code kuromoji} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code kuromoji} kind.
+     * @throws IllegalStateException if the current variant is not the {@code kuromoji} kind.
      */
     public KuromojiAnalyzer kuromoji() {
         return TaggedUnionUtils.get(this, Kind.Kuromoji);
@@ -249,8 +240,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     /**
      * Get the {@code language} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code language} kind.
+     * @throws IllegalStateException if the current variant is not the {@code language} kind.
      */
     public LanguageAnalyzer language() {
         return TaggedUnionUtils.get(this, Kind.Language);
@@ -266,8 +256,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     /**
      * Get the {@code nori} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code nori} kind.
+     * @throws IllegalStateException if the current variant is not the {@code nori} kind.
      */
     public NoriAnalyzer nori() {
         return TaggedUnionUtils.get(this, Kind.Nori);
@@ -283,8 +272,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     /**
      * Get the {@code pattern} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code pattern} kind.
+     * @throws IllegalStateException if the current variant is not the {@code pattern} kind.
      */
     public PatternAnalyzer pattern() {
         return TaggedUnionUtils.get(this, Kind.Pattern);
@@ -300,11 +288,26 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     /**
      * Get the {@code simple} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code simple} kind.
+     * @throws IllegalStateException if the current variant is not the {@code simple} kind.
      */
     public SimpleAnalyzer simple() {
         return TaggedUnionUtils.get(this, Kind.Simple);
+    }
+
+    /**
+     * Is this variant instance of kind {@code smartcn}?
+     */
+    public boolean isSmartcn() {
+        return _kind == Kind.Smartcn;
+    }
+
+    /**
+     * Get the {@code smartcn} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code smartcn} kind.
+     */
+    public SmartcnAnalyzer smartcn() {
+        return TaggedUnionUtils.get(this, Kind.Smartcn);
     }
 
     /**
@@ -317,8 +320,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     /**
      * Get the {@code snowball} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code snowball} kind.
+     * @throws IllegalStateException if the current variant is not the {@code snowball} kind.
      */
     public SnowballAnalyzer snowball() {
         return TaggedUnionUtils.get(this, Kind.Snowball);
@@ -334,8 +336,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     /**
      * Get the {@code standard} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code standard} kind.
+     * @throws IllegalStateException if the current variant is not the {@code standard} kind.
      */
     public StandardAnalyzer standard() {
         return TaggedUnionUtils.get(this, Kind.Standard);
@@ -351,8 +352,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     /**
      * Get the {@code stop} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code stop} kind.
+     * @throws IllegalStateException if the current variant is not the {@code stop} kind.
      */
     public StopAnalyzer stop() {
         return TaggedUnionUtils.get(this, Kind.Stop);
@@ -368,57 +368,30 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
     /**
      * Get the {@code whitespace} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code whitespace} kind.
+     * @throws IllegalStateException if the current variant is not the {@code whitespace} kind.
      */
     public WhitespaceAnalyzer whitespace() {
         return TaggedUnionUtils.get(this, Kind.Whitespace);
     }
 
-    /**
-     * Is this variant instance of kind {@code cjk}?
-     */
-    public boolean isSmartcn() {
-        return _kind == Kind.Smartcn;
-    }
-
-    /**
-     * Get the {@code cjk} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code cjk} kind.
-     */
-    public SmartcnAnalyzer smartcn() {
-        return TaggedUnionUtils.get(this, Kind.Smartcn);
-    }
-
-    /**
-     * Is this variant instance of kind {@code cjk}?
-     */
-    public boolean isCjk() {
-        return _kind == Kind.Cjk;
-    }
-
-    /**
-     * Get the {@code cjk} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code cjk} kind.
-     */
-    public CjkAnalyzer cjk() {
-        return TaggedUnionUtils.get(this, Kind.Cjk);
-    }
-
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-
         mapper.serialize(_value, generator);
-
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Analyzer> {
         private Kind _kind;
         private AnalyzerVariant _value;
+
+        public ObjectBuilder<Analyzer> cjk(CjkAnalyzer v) {
+            this._kind = Kind.Cjk;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Analyzer> cjk(Function<CjkAnalyzer.Builder, ObjectBuilder<CjkAnalyzer>> fn) {
+            return this.cjk(fn.apply(new CjkAnalyzer.Builder()).build());
+        }
 
         public ObjectBuilder<Analyzer> custom(CustomAnalyzer v) {
             this._kind = Kind.Custom;
@@ -520,6 +493,16 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
             return this.simple(fn.apply(new SimpleAnalyzer.Builder()).build());
         }
 
+        public ObjectBuilder<Analyzer> smartcn(SmartcnAnalyzer v) {
+            this._kind = Kind.Smartcn;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Analyzer> smartcn(Function<SmartcnAnalyzer.Builder, ObjectBuilder<SmartcnAnalyzer>> fn) {
+            return this.smartcn(fn.apply(new SmartcnAnalyzer.Builder()).build());
+        }
+
         public ObjectBuilder<Analyzer> snowball(SnowballAnalyzer v) {
             this._kind = Kind.Snowball;
             this._value = v;
@@ -560,35 +543,15 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
             return this.whitespace(fn.apply(new WhitespaceAnalyzer.Builder()).build());
         }
 
-        public ObjectBuilder<Analyzer> smartcn(SmartcnAnalyzer v) {
-            this._kind = Kind.Smartcn;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<Analyzer> smartcn() {
-            return this.smartcn(new SmartcnAnalyzer.Builder().build());
-        }
-
-        public ObjectBuilder<Analyzer> cjk(CjkAnalyzer v) {
-            this._kind = Kind.Cjk;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<Analyzer> cjk(Function<CjkAnalyzer.Builder, ObjectBuilder<CjkAnalyzer>> fn) {
-            return this.cjk(fn.apply(new CjkAnalyzer.Builder()).build());
-        }
-
+        @Override
         public Analyzer build() {
             _checkSingleUse();
             return new Analyzer(this);
         }
-
     }
 
     protected static void setupAnalyzerDeserializer(ObjectDeserializer<Builder> op) {
-
+        op.add(Builder::cjk, CjkAnalyzer._DESERIALIZER, "cjk");
         op.add(Builder::custom, CustomAnalyzer._DESERIALIZER, "custom");
         op.add(Builder::dutch, DutchAnalyzer._DESERIALIZER, "dutch");
         op.add(Builder::fingerprint, FingerprintAnalyzer._DESERIALIZER, "fingerprint");
@@ -599,15 +562,13 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         op.add(Builder::nori, NoriAnalyzer._DESERIALIZER, "nori");
         op.add(Builder::pattern, PatternAnalyzer._DESERIALIZER, "pattern");
         op.add(Builder::simple, SimpleAnalyzer._DESERIALIZER, "simple");
+        op.add(Builder::smartcn, SmartcnAnalyzer._DESERIALIZER, "smartcn");
         op.add(Builder::snowball, SnowballAnalyzer._DESERIALIZER, "snowball");
         op.add(Builder::standard, StandardAnalyzer._DESERIALIZER, "standard");
         op.add(Builder::stop, StopAnalyzer._DESERIALIZER, "stop");
         op.add(Builder::whitespace, WhitespaceAnalyzer._DESERIALIZER, "whitespace");
-        op.add(Builder::smartcn, SmartcnAnalyzer._DESERIALIZER, Kind.Smartcn.jsonValue());
-        op.add(Builder::cjk, CjkAnalyzer._DESERIALIZER, Kind.Cjk.jsonValue());
 
         op.setTypeProperty("type", Kind.Custom.jsonValue());
-
     }
 
     public static final JsonpDeserializer<Analyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
@@ -615,4 +576,20 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
         Analyzer::setupAnalyzerDeserializer,
         Builder::build
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Analyzer other = (Analyzer) o;
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
 }

@@ -126,7 +126,7 @@ public class ParsingTests extends ModelTestCase {
 
     @Test
     public void testSmartcn_Analyzer() {
-        final Analyzer analyzer = new Analyzer.Builder().smartcn().build();
+        final Analyzer analyzer = new Analyzer.Builder().smartcn(s -> s).build();
 
         assertTrue(analyzer.isSmartcn());
 
