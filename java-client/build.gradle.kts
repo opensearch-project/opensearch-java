@@ -102,7 +102,13 @@ tasks.withType<ProcessResources> {
 
 tasks.withType<Javadoc>().configureEach{
     options {
+        this as StandardJavadocDocletOptions
         encoding = "UTF-8"
+        addMultilineStringsOption("tag").setValue(listOf(
+            "apiNote:a:API Note:",
+            "implSpec:a:Implementation Requirements:",
+            "implNote:a:Implementation Note:",
+        ))
     }
 }
 
@@ -170,7 +176,6 @@ val integrationTest = task<Test>("integrationTest") {
 val opensearchVersion = "2.12.0"
 
 dependencies {
-
     val jacksonVersion = "2.17.0"
     val jacksonDatabindVersion = "2.17.0"
 
@@ -200,7 +205,6 @@ dependencies {
     implementation("jakarta.annotation", "jakarta.annotation-api", "1.3.5")
 
     // Apache 2.0
-
     implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
     implementation("com.fasterxml.jackson.core", "jackson-databind", jacksonDatabindVersion)
     testImplementation("com.fasterxml.jackson.datatype", "jackson-datatype-jakarta-jsonp", jacksonVersion)
@@ -213,16 +217,21 @@ dependencies {
     implementation("org.apache.httpcomponents.core5", "httpcore5-h2", "5.3.1")
 
     // For AwsSdk2Transport
-    "awsSdk2SupportCompileOnly"("software.amazon.awssdk","sdk-core","[2.15,3.0)")
-    "awsSdk2SupportCompileOnly"("software.amazon.awssdk","auth","[2.15,3.0)")
-    testImplementation("software.amazon.awssdk","sdk-core","[2.15,3.0)")
-    testImplementation("software.amazon.awssdk","auth","[2.15,3.0)")
-    testImplementation("software.amazon.awssdk","aws-crt-client","[2.15,3.0)")
-    testImplementation("software.amazon.awssdk","apache-client","[2.15,3.0)")
-    testImplementation("software.amazon.awssdk","sts","[2.15,3.0)")
+    "awsSdk2SupportCompileOnly"("software.amazon.awssdk", "sdk-core", "[2.21,3.0)")
+    "awsSdk2SupportCompileOnly"("software.amazon.awssdk", "auth", "[2.21,3.0)")
+    "awsSdk2SupportCompileOnly"("software.amazon.awssdk", "http-auth-aws", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "sdk-core", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "auth", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "http-auth-aws", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "aws-crt-client", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "apache-client", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "netty-nio-client", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "url-connection-client", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "sts", "[2.21,3.0)")
+
     testImplementation("org.apache.logging.log4j", "log4j-api","[2.17.1,3.0)")
     testImplementation("org.apache.logging.log4j", "log4j-core","[2.17.1,3.0)")
-    
+
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/
     implementation("org.eclipse", "yasson", "2.0.2")
@@ -234,6 +243,10 @@ dependencies {
     testImplementation("junit", "junit" , "4.13.2") {
         exclude(group = "org.hamcrest")
     }
+
+    // The Bouncy Castle License (MIT): https://www.bouncycastle.org/licence.html
+    testImplementation("org.bouncycastle", "bcprov-lts8on", "2.73.6")
+    testImplementation("org.bouncycastle", "bcpkix-lts8on", "2.73.6")
 }
 
 licenseReport {
