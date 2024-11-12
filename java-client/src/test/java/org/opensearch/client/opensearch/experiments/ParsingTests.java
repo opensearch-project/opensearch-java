@@ -149,7 +149,7 @@ public class ParsingTests extends ModelTestCase {
 
     @Test
     public void testSmartcn_StopFilter() {
-        final TokenFilterDefinition analyzer = new TokenFilterDefinition.Builder().smartcn_stop(b -> b).build();
+        final TokenFilterDefinition analyzer = new TokenFilterDefinition.Builder().smartcnStop(b -> b).build();
 
         String str = toJson(analyzer);
         assertEquals("{\"type\":\"smartcn_stop\"}", str);
