@@ -126,7 +126,7 @@ public class ParsingTests extends ModelTestCase {
 
     @Test
     public void testSmartcn_Analyzer() {
-        final Analyzer analyzer = new Analyzer.Builder().smartcn().build();
+        final Analyzer analyzer = new Analyzer.Builder().smartcn(s -> s).build();
 
         assertTrue(analyzer.isSmartcn());
 
@@ -139,7 +139,7 @@ public class ParsingTests extends ModelTestCase {
 
     @Test
     public void testSmartcn_Tokenizer() {
-        final TokenizerDefinition tokenizerDefinition = TokenizerBuilders.definition().smartcn(b -> b).build();
+        final TokenizerDefinition tokenizerDefinition = TokenizerBuilders.definition().smartcnTokenizer(b -> b).build();
 
         String str = toJson(tokenizerDefinition);
         assertEquals("{\"type\":\"smartcn_tokenizer\"}", str);

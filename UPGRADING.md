@@ -74,3 +74,6 @@ After:
 
 ### TokenFilterDefinition
 - The `smartcn_stop` Builder method has been renamed to `smartcnStop`.
+
+### TokenizerDefinition
+- The `smartcn` Builder method has been renamed to `smartcnTokenizer`.
