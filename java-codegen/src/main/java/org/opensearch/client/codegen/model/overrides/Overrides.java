@@ -33,6 +33,7 @@ public class Overrides {
             .with(schema("_common", "StringifiedEpochTimeUnitMillis"), so -> so.withMappedType(Types.Primitive.Long))
 
             .with(schema("_common.analysis", "Analyzer"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+            .with(schema("_common.analysis", "CharFilter"), so -> so.withShouldGenerate(ShouldGenerate.Always))
             .with(schema("_common.analysis", "TokenFilter"), so -> so.withShouldGenerate(ShouldGenerate.Always))
             .with(schema("_common.analysis", "Tokenizer"), so -> so.withShouldGenerate(ShouldGenerate.Always))
 

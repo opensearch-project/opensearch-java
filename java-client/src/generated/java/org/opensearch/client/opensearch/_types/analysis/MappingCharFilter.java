@@ -30,11 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -47,7 +54,10 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: _types.analysis.MappingCharFilter
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class MappingCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
+
+    @Nonnull
     private final List<String> mappings;
 
     @Nullable
@@ -57,18 +67,16 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 
     private MappingCharFilter(Builder builder) {
         super(builder);
-
-        this.mappings = ApiTypeHelper.unmodifiableRequired(builder.mappings, this, "mappings");
+        this.mappings = ApiTypeHelper.unmodifiable(builder.mappings);
         this.mappingsPath = builder.mappingsPath;
-
     }
 
-    public static MappingCharFilter of(Function<Builder, ObjectBuilder<MappingCharFilter>> fn) {
+    public static MappingCharFilter of(Function<MappingCharFilter.Builder, ObjectBuilder<MappingCharFilter>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * CharFilterDefinition variant kind.
+     * {@link CharFilterDefinition} variant kind.
      */
     @Override
     public CharFilterDefinition.Kind _charFilterDefinitionKind() {
@@ -76,8 +84,9 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
     }
 
     /**
-     * Required - API name: {@code mappings}
+     * API name: {@code mappings}
      */
+    @Nonnull
     public final List<String> mappings() {
         return this.mappings;
     }
@@ -91,7 +100,6 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.write("type", "mapping");
         super.serializeInternal(generator, mapper);
         if (ApiTypeHelper.isDefined(this.mappings)) {
@@ -99,17 +107,14 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
             generator.writeStartArray();
             for (String item0 : this.mappings) {
                 generator.write(item0);
-
             }
             generator.writeEnd();
-
         }
+
         if (this.mappingsPath != null) {
             generator.writeKey("mappings_path");
             generator.write(this.mappingsPath);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -117,17 +122,18 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
     /**
      * Builder for {@link MappingCharFilter}.
      */
-
     public static class Builder extends CharFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<MappingCharFilter> {
+        @Nullable
         private List<String> mappings;
-
         @Nullable
         private String mappingsPath;
 
         /**
-         * Required - API name: {@code mappings}
+         * API name: {@code mappings}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>mappings</code>.
+         * </p>
          */
         public final Builder mappings(List<String> list) {
             this.mappings = _listAddAll(this.mappings, list);
@@ -135,9 +141,11 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
         }
 
         /**
-         * Required - API name: {@code mappings}
+         * API name: {@code mappings}
+         *
          * <p>
          * Adds one or more values to <code>mappings</code>.
+         * </p>
          */
         public final Builder mappings(String value, String... values) {
             this.mappings = _listAdd(this.mappings, value, values);
@@ -160,8 +168,7 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
         /**
          * Builds a {@link MappingCharFilter}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public MappingCharFilter build() {
             _checkSingleUse();
@@ -188,4 +195,22 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.mappings);
+        result = 31 * result + Objects.hashCode(this.mappingsPath);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        MappingCharFilter other = (MappingCharFilter) o;
+        return Objects.equals(this.mappings, other.mappings) && Objects.equals(this.mappingsPath, other.mappingsPath);
+    }
 }

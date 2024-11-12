@@ -30,24 +30,30 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
+import javax.annotation.Generated;
+
 /**
- * Builders for {@link CharFilter} variants.
  * <p>
- * Variants <code>name</code> are not available here as they don't have a
- * dedicated class. Use {@link CharFilter}'s builder for these.
- *
+ * Builders for {@link CharFilter} variants.
+ * </p>
+ * <p>
+ * Variants <code>name</code> are not available here as they don't have a dedicated class. Use {@link CharFilter}'s builder for these.
+ * </p>
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CharFilterBuilders {
     private CharFilterBuilders() {}
 
     /**
-     * Creates a builder for the {@link CharFilterDefinition definition}
-     * {@code CharFilter} variant.
+     * Creates a builder for the {@link CharFilterDefinition definition} {@code CharFilter} variant.
      */
     public static CharFilterDefinition.Builder definition() {
         return new CharFilterDefinition.Builder();
     }
-
 }

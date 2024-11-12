@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -45,7 +51,9 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: _types.analysis.IcuNormalizationCharFilter
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IcuNormalizationCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
+
     @Nullable
     private final IcuNormalizationMode mode;
 
@@ -56,18 +64,18 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 
     private IcuNormalizationCharFilter(Builder builder) {
         super(builder);
-
         this.mode = builder.mode;
         this.name = builder.name;
-
     }
 
-    public static IcuNormalizationCharFilter of(Function<Builder, ObjectBuilder<IcuNormalizationCharFilter>> fn) {
+    public static IcuNormalizationCharFilter of(
+        Function<IcuNormalizationCharFilter.Builder, ObjectBuilder<IcuNormalizationCharFilter>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * CharFilterDefinition variant kind.
+     * {@link CharFilterDefinition} variant kind.
      */
     @Override
     public CharFilterDefinition.Kind _charFilterDefinitionKind() {
@@ -91,18 +99,17 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.write("type", "icu_normalizer");
         super.serializeInternal(generator, mapper);
         if (this.mode != null) {
             generator.writeKey("mode");
             this.mode.serialize(generator, mapper);
         }
+
         if (this.name != null) {
             generator.writeKey("name");
             this.name.serialize(generator, mapper);
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -110,11 +117,9 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
     /**
      * Builder for {@link IcuNormalizationCharFilter}.
      */
-
     public static class Builder extends CharFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<IcuNormalizationCharFilter> {
         @Nullable
         private IcuNormalizationMode mode;
-
         @Nullable
         private IcuNormalizationType name;
 
@@ -142,8 +147,7 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
         /**
          * Builds a {@link IcuNormalizationCharFilter}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public IcuNormalizationCharFilter build() {
             _checkSingleUse();
@@ -170,4 +174,22 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.mode);
+        result = 31 * result + Objects.hashCode(this.name);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        IcuNormalizationCharFilter other = (IcuNormalizationCharFilter) o;
+        return Objects.equals(this.mode, other.mode) && Objects.equals(this.name, other.name);
+    }
 }

@@ -30,10 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -45,7 +50,9 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: _types.analysis.KuromojiIterationMarkCharFilter
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class KuromojiIterationMarkCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
+
     private final boolean normalizeKana;
 
     private final boolean normalizeKanji;
@@ -54,18 +61,18 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
 
     private KuromojiIterationMarkCharFilter(Builder builder) {
         super(builder);
-
         this.normalizeKana = ApiTypeHelper.requireNonNull(builder.normalizeKana, this, "normalizeKana");
         this.normalizeKanji = ApiTypeHelper.requireNonNull(builder.normalizeKanji, this, "normalizeKanji");
-
     }
 
-    public static KuromojiIterationMarkCharFilter of(Function<Builder, ObjectBuilder<KuromojiIterationMarkCharFilter>> fn) {
+    public static KuromojiIterationMarkCharFilter of(
+        Function<KuromojiIterationMarkCharFilter.Builder, ObjectBuilder<KuromojiIterationMarkCharFilter>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * CharFilterDefinition variant kind.
+     * {@link CharFilterDefinition} variant kind.
      */
     @Override
     public CharFilterDefinition.Kind _charFilterDefinitionKind() {
@@ -87,7 +94,6 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.write("type", "kuromoji_iteration_mark");
         super.serializeInternal(generator, mapper);
         generator.writeKey("normalize_kana");
@@ -95,7 +101,6 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
 
         generator.writeKey("normalize_kanji");
         generator.write(this.normalizeKanji);
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -103,10 +108,8 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
     /**
      * Builder for {@link KuromojiIterationMarkCharFilter}.
      */
-
     public static class Builder extends CharFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<KuromojiIterationMarkCharFilter> {
         private Boolean normalizeKana;
-
         private Boolean normalizeKanji;
 
         /**
@@ -133,8 +136,7 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
         /**
          * Builds a {@link KuromojiIterationMarkCharFilter}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public KuromojiIterationMarkCharFilter build() {
             _checkSingleUse();
@@ -154,11 +156,29 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
     );
 
     protected static void setupKuromojiIterationMarkCharFilterDeserializer(ObjectDeserializer<KuromojiIterationMarkCharFilter.Builder> op) {
-        CharFilterBase.setupCharFilterBaseDeserializer(op);
+        setupCharFilterBaseDeserializer(op);
         op.add(Builder::normalizeKana, JsonpDeserializer.booleanDeserializer(), "normalize_kana");
         op.add(Builder::normalizeKanji, JsonpDeserializer.booleanDeserializer(), "normalize_kanji");
 
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Boolean.hashCode(this.normalizeKana);
+        result = 31 * result + Boolean.hashCode(this.normalizeKanji);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        KuromojiIterationMarkCharFilter other = (KuromojiIterationMarkCharFilter) o;
+        return this.normalizeKana == other.normalizeKana && this.normalizeKanji == other.normalizeKanji;
+    }
 }

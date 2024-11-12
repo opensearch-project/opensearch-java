@@ -30,19 +30,23 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpSerializable;
 
 /**
  * Base interface for {@link CharFilterDefinition} variants.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public interface CharFilterDefinitionVariant extends JsonpSerializable {
-
     CharFilterDefinition.Kind _charFilterDefinitionKind();
 
     default CharFilterDefinition _toCharFilterDefinition() {
         return new CharFilterDefinition(this);
     }
-
 }

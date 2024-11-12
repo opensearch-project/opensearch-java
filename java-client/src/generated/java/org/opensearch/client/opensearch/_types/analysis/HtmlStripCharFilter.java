@@ -30,10 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -44,20 +49,21 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: _types.analysis.HtmlStripCharFilter
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
+
     // ---------------------------------------------------------------------------------------------
 
     private HtmlStripCharFilter(Builder builder) {
         super(builder);
-
     }
 
-    public static HtmlStripCharFilter of(Function<Builder, ObjectBuilder<HtmlStripCharFilter>> fn) {
+    public static HtmlStripCharFilter of(Function<HtmlStripCharFilter.Builder, ObjectBuilder<HtmlStripCharFilter>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * CharFilterDefinition variant kind.
+     * {@link CharFilterDefinition} variant kind.
      */
     @Override
     public CharFilterDefinition.Kind _charFilterDefinitionKind() {
@@ -65,10 +71,8 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDef
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.write("type", "html_strip");
         super.serializeInternal(generator, mapper);
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -76,8 +80,8 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDef
     /**
      * Builder for {@link HtmlStripCharFilter}.
      */
-
     public static class Builder extends CharFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<HtmlStripCharFilter> {
+
         @Override
         protected Builder self() {
             return this;
@@ -86,8 +90,7 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDef
         /**
          * Builds a {@link HtmlStripCharFilter}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public HtmlStripCharFilter build() {
             _checkSingleUse();
@@ -112,4 +115,19 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDef
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

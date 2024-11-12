@@ -30,17 +30,23 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -50,27 +56,17 @@ import org.opensearch.client.util.TaggedUnionUtils;
 // typedef: _types.analysis.CharFilterDefinition
 
 @JsonpDeserializable
-public class CharFilterDefinition implements TaggedUnion<CharFilterDefinition.Kind, CharFilterDefinitionVariant>, JsonpSerializable {
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class CharFilterDefinition implements TaggedUnion<CharFilterDefinition.Kind, CharFilterDefinitionVariant>, PlainJsonSerializable {
     /**
      * {@link CharFilterDefinition} variant kinds.
      */
-    /**
-     * {@link CharFilterDefinition} variant kinds.
-     */
-
     public enum Kind implements JsonEnum {
         HtmlStrip("html_strip"),
-
         IcuNormalizer("icu_normalizer"),
-
         KuromojiIterationMark("kuromoji_iteration_mark"),
-
         Mapping("mapping"),
-
-        PatternReplace("pattern_replace"),
-
-        ;
+        PatternReplace("pattern_replace");
 
         private final String jsonValue;
 
@@ -78,10 +74,10 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinition.Ki
             this.jsonValue = jsonValue;
         }
 
+        @Override
         public String jsonValue() {
-            return this.jsonValue;
+            return jsonValue;
         }
-
     }
 
     private final Kind _kind;
@@ -98,20 +94,16 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinition.Ki
     }
 
     public CharFilterDefinition(CharFilterDefinitionVariant value) {
-
         this._kind = ApiTypeHelper.requireNonNull(value._charFilterDefinitionKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
-
     }
 
     private CharFilterDefinition(Builder builder) {
-
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
     }
 
-    public static CharFilterDefinition of(Function<Builder, ObjectBuilder<CharFilterDefinition>> fn) {
+    public static CharFilterDefinition of(Function<CharFilterDefinition.Builder, ObjectBuilder<CharFilterDefinition>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -125,8 +117,7 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinition.Ki
     /**
      * Get the {@code html_strip} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code html_strip} kind.
+     * @throws IllegalStateException if the current variant is not the {@code html_strip} kind.
      */
     public HtmlStripCharFilter htmlStrip() {
         return TaggedUnionUtils.get(this, Kind.HtmlStrip);
@@ -142,8 +133,7 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinition.Ki
     /**
      * Get the {@code icu_normalizer} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code icu_normalizer} kind.
+     * @throws IllegalStateException if the current variant is not the {@code icu_normalizer} kind.
      */
     public IcuNormalizationCharFilter icuNormalizer() {
         return TaggedUnionUtils.get(this, Kind.IcuNormalizer);
@@ -159,9 +149,7 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinition.Ki
     /**
      * Get the {@code kuromoji_iteration_mark} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the
-     *             {@code kuromoji_iteration_mark} kind.
+     * @throws IllegalStateException if the current variant is not the {@code kuromoji_iteration_mark} kind.
      */
     public KuromojiIterationMarkCharFilter kuromojiIterationMark() {
         return TaggedUnionUtils.get(this, Kind.KuromojiIterationMark);
@@ -177,8 +165,7 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinition.Ki
     /**
      * Get the {@code mapping} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code mapping} kind.
+     * @throws IllegalStateException if the current variant is not the {@code mapping} kind.
      */
     public MappingCharFilter mapping() {
         return TaggedUnionUtils.get(this, Kind.Mapping);
@@ -194,9 +181,7 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinition.Ki
     /**
      * Get the {@code pattern_replace} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code pattern_replace}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code pattern_replace} kind.
      */
     public PatternReplaceCharFilter patternReplace() {
         return TaggedUnionUtils.get(this, Kind.PatternReplace);
@@ -204,9 +189,7 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinition.Ki
 
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-
         mapper.serialize(_value, generator);
-
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CharFilterDefinition> {
@@ -269,15 +252,14 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinition.Ki
             return this.patternReplace(fn.apply(new PatternReplaceCharFilter.Builder()).build());
         }
 
+        @Override
         public CharFilterDefinition build() {
             _checkSingleUse();
             return new CharFilterDefinition(this);
         }
-
     }
 
     protected static void setupCharFilterDefinitionDeserializer(ObjectDeserializer<Builder> op) {
-
         op.add(Builder::htmlStrip, HtmlStripCharFilter._DESERIALIZER, "html_strip");
         op.add(Builder::icuNormalizer, IcuNormalizationCharFilter._DESERIALIZER, "icu_normalizer");
         op.add(Builder::kuromojiIterationMark, KuromojiIterationMarkCharFilter._DESERIALIZER, "kuromoji_iteration_mark");
@@ -285,7 +267,6 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinition.Ki
         op.add(Builder::patternReplace, PatternReplaceCharFilter._DESERIALIZER, "pattern_replace");
 
         op.setTypeProperty("type", null);
-
     }
 
     public static final JsonpDeserializer<CharFilterDefinition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
@@ -293,4 +274,20 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinition.Ki
         CharFilterDefinition::setupCharFilterDefinitionDeserializer,
         Builder::build
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CharFilterDefinition other = (CharFilterDefinition) o;
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
 }
