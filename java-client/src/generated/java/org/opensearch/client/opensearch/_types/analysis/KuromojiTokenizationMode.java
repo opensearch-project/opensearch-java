@@ -30,24 +30,38 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
-/**
- * Builders for {@link Tokenizer} variants.
- * <p>
- * Variants <code>name</code> are not available here as they don't have a
- * dedicated class. Use {@link Tokenizer}'s builder for these.
- *
- */
-public class TokenizerBuilders {
-    private TokenizerBuilders() {}
+import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
 
-    /**
-     * Creates a builder for the {@link TokenizerDefinition definition}
-     * {@code Tokenizer} variant.
-     */
-    public static TokenizerDefinition.Builder definition() {
-        return new TokenizerDefinition.Builder();
+// typedef: _types.analysis.KuromojiTokenizationMode
+
+@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum KuromojiTokenizationMode implements JsonEnum {
+    Extended("extended"),
+
+    Normal("normal"),
+
+    Search("search");
+
+    private final String jsonValue;
+
+    KuromojiTokenizationMode(String jsonValue) {
+        this.jsonValue = jsonValue;
     }
 
+    public String jsonValue() {
+        return this.jsonValue;
+    }
+
+    public static final JsonEnum.Deserializer<KuromojiTokenizationMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        KuromojiTokenizationMode.values()
+    );
 }

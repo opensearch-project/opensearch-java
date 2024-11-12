@@ -30,11 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -47,7 +54,9 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: _types.analysis.NoriTokenizer
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+
     @Nullable
     private final NoriDecompoundMode decompoundMode;
 
@@ -57,26 +66,25 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
     @Nullable
     private final String userDictionary;
 
+    @Nonnull
     private final List<String> userDictionaryRules;
 
     // ---------------------------------------------------------------------------------------------
 
     private NoriTokenizer(Builder builder) {
         super(builder);
-
         this.decompoundMode = builder.decompoundMode;
         this.discardPunctuation = builder.discardPunctuation;
         this.userDictionary = builder.userDictionary;
         this.userDictionaryRules = ApiTypeHelper.unmodifiable(builder.userDictionaryRules);
-
     }
 
-    public static NoriTokenizer of(Function<Builder, ObjectBuilder<NoriTokenizer>> fn) {
+    public static NoriTokenizer of(Function<NoriTokenizer.Builder, ObjectBuilder<NoriTokenizer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * TokenizerDefinition variant kind.
+     * {@link TokenizerDefinition} variant kind.
      */
     @Override
     public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
@@ -110,39 +118,37 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
     /**
      * API name: {@code user_dictionary_rules}
      */
+    @Nonnull
     public final List<String> userDictionaryRules() {
         return this.userDictionaryRules;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.write("type", "nori_tokenizer");
         super.serializeInternal(generator, mapper);
         if (this.decompoundMode != null) {
             generator.writeKey("decompound_mode");
             this.decompoundMode.serialize(generator, mapper);
         }
+
         if (this.discardPunctuation != null) {
             generator.writeKey("discard_punctuation");
             generator.write(this.discardPunctuation);
-
         }
+
         if (this.userDictionary != null) {
             generator.writeKey("user_dictionary");
             generator.write(this.userDictionary);
-
         }
+
         if (ApiTypeHelper.isDefined(this.userDictionaryRules)) {
             generator.writeKey("user_dictionary_rules");
             generator.writeStartArray();
             for (String item0 : this.userDictionaryRules) {
                 generator.write(item0);
-
             }
             generator.writeEnd();
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -150,17 +156,13 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
     /**
      * Builder for {@link NoriTokenizer}.
      */
-
     public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<NoriTokenizer> {
         @Nullable
         private NoriDecompoundMode decompoundMode;
-
         @Nullable
         private Boolean discardPunctuation;
-
         @Nullable
         private String userDictionary;
-
         @Nullable
         private List<String> userDictionaryRules;
 
@@ -190,8 +192,10 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
 
         /**
          * API name: {@code user_dictionary_rules}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>userDictionaryRules</code>.
+         * </p>
          */
         public final Builder userDictionaryRules(List<String> list) {
             this.userDictionaryRules = _listAddAll(this.userDictionaryRules, list);
@@ -200,8 +204,10 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
 
         /**
          * API name: {@code user_dictionary_rules}
+         *
          * <p>
          * Adds one or more values to <code>userDictionaryRules</code>.
+         * </p>
          */
         public final Builder userDictionaryRules(String value, String... values) {
             this.userDictionaryRules = _listAdd(this.userDictionaryRules, value, values);
@@ -216,8 +222,7 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
         /**
          * Builds a {@link NoriTokenizer}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public NoriTokenizer build() {
             _checkSingleUse();
@@ -237,7 +242,7 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
     );
 
     protected static void setupNoriTokenizerDeserializer(ObjectDeserializer<NoriTokenizer.Builder> op) {
-        TokenizerBase.setupTokenizerBaseDeserializer(op);
+        setupTokenizerBaseDeserializer(op);
         op.add(Builder::decompoundMode, NoriDecompoundMode._DESERIALIZER, "decompound_mode");
         op.add(Builder::discardPunctuation, JsonpDeserializer.booleanDeserializer(), "discard_punctuation");
         op.add(Builder::userDictionary, JsonpDeserializer.stringDeserializer(), "user_dictionary");
@@ -250,4 +255,27 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.decompoundMode);
+        result = 31 * result + Objects.hashCode(this.discardPunctuation);
+        result = 31 * result + Objects.hashCode(this.userDictionary);
+        result = 31 * result + Objects.hashCode(this.userDictionaryRules);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        NoriTokenizer other = (NoriTokenizer) o;
+        return Objects.equals(this.decompoundMode, other.decompoundMode)
+            && Objects.equals(this.discardPunctuation, other.discardPunctuation)
+            && Objects.equals(this.userDictionary, other.userDictionary)
+            && Objects.equals(this.userDictionaryRules, other.userDictionaryRules);
+    }
 }

@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,32 +48,32 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-// typedef: _types.analysis.StandardTokenizer
+// typedef: _types.analysis.UaxEmailUrlTokenizer
 
 @JsonpDeserializable
-public class StandardTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+
     @Nullable
     private final Integer maxTokenLength;
 
     // ---------------------------------------------------------------------------------------------
 
-    private StandardTokenizer(Builder builder) {
+    private UaxEmailUrlTokenizer(Builder builder) {
         super(builder);
-
         this.maxTokenLength = builder.maxTokenLength;
-
     }
 
-    public static StandardTokenizer of(Function<Builder, ObjectBuilder<StandardTokenizer>> fn) {
+    public static UaxEmailUrlTokenizer of(Function<UaxEmailUrlTokenizer.Builder, ObjectBuilder<UaxEmailUrlTokenizer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * TokenizerDefinition variant kind.
+     * {@link TokenizerDefinition} variant kind.
      */
     @Override
     public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
-        return TokenizerDefinition.Kind.Standard;
+        return TokenizerDefinition.Kind.UaxUrlEmail;
     }
 
     /**
@@ -79,24 +85,20 @@ public class StandardTokenizer extends TokenizerBase implements TokenizerDefinit
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.write("type", "standard");
+        generator.write("type", "uax_url_email");
         super.serializeInternal(generator, mapper);
         if (this.maxTokenLength != null) {
             generator.writeKey("max_token_length");
             generator.write(this.maxTokenLength);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link StandardTokenizer}.
+     * Builder for {@link UaxEmailUrlTokenizer}.
      */
-
-    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<StandardTokenizer> {
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<UaxEmailUrlTokenizer> {
         @Nullable
         private Integer maxTokenLength;
 
@@ -114,33 +116,49 @@ public class StandardTokenizer extends TokenizerBase implements TokenizerDefinit
         }
 
         /**
-         * Builds a {@link StandardTokenizer}.
+         * Builds a {@link UaxEmailUrlTokenizer}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public StandardTokenizer build() {
+        public UaxEmailUrlTokenizer build() {
             _checkSingleUse();
 
-            return new StandardTokenizer(this);
+            return new UaxEmailUrlTokenizer(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link StandardTokenizer}
+     * Json deserializer for {@link UaxEmailUrlTokenizer}
      */
-    public static final JsonpDeserializer<StandardTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<UaxEmailUrlTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        StandardTokenizer::setupStandardTokenizerDeserializer
+        UaxEmailUrlTokenizer::setupUaxEmailUrlTokenizerDeserializer
     );
 
-    protected static void setupStandardTokenizerDeserializer(ObjectDeserializer<StandardTokenizer.Builder> op) {
-        TokenizerBase.setupTokenizerBaseDeserializer(op);
+    protected static void setupUaxEmailUrlTokenizerDeserializer(ObjectDeserializer<UaxEmailUrlTokenizer.Builder> op) {
+        setupTokenizerBaseDeserializer(op);
         op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
 
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.maxTokenLength);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        UaxEmailUrlTokenizer other = (UaxEmailUrlTokenizer) o;
+        return Objects.equals(this.maxTokenLength, other.maxTokenLength);
+    }
 }

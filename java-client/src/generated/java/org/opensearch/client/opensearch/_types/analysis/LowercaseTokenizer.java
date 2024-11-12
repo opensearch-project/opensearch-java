@@ -30,11 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
-import javax.annotation.Nullable;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,71 +46,41 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-// typedef: _types.analysis.WhitespaceTokenizer
+// typedef: _types.analysis.LowercaseTokenizer
 
 @JsonpDeserializable
-public class WhitespaceTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
-    @Nullable
-    private final Integer maxTokenLength;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class LowercaseTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 
     // ---------------------------------------------------------------------------------------------
 
-    private WhitespaceTokenizer(Builder builder) {
+    private LowercaseTokenizer(Builder builder) {
         super(builder);
-
-        this.maxTokenLength = builder.maxTokenLength;
-
     }
 
-    public static WhitespaceTokenizer of(Function<Builder, ObjectBuilder<WhitespaceTokenizer>> fn) {
+    public static LowercaseTokenizer of(Function<LowercaseTokenizer.Builder, ObjectBuilder<LowercaseTokenizer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * TokenizerDefinition variant kind.
+     * {@link TokenizerDefinition} variant kind.
      */
     @Override
     public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
-        return TokenizerDefinition.Kind.Whitespace;
-    }
-
-    /**
-     * API name: {@code max_token_length}
-     */
-    @Nullable
-    public final Integer maxTokenLength() {
-        return this.maxTokenLength;
+        return TokenizerDefinition.Kind.Lowercase;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.write("type", "whitespace");
+        generator.write("type", "lowercase");
         super.serializeInternal(generator, mapper);
-        if (this.maxTokenLength != null) {
-            generator.writeKey("max_token_length");
-            generator.write(this.maxTokenLength);
-
-        }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link WhitespaceTokenizer}.
+     * Builder for {@link LowercaseTokenizer}.
      */
-
-    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<WhitespaceTokenizer> {
-        @Nullable
-        private Integer maxTokenLength;
-
-        /**
-         * API name: {@code max_token_length}
-         */
-        public final Builder maxTokenLength(@Nullable Integer value) {
-            this.maxTokenLength = value;
-            return this;
-        }
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<LowercaseTokenizer> {
 
         @Override
         protected Builder self() {
@@ -114,33 +88,46 @@ public class WhitespaceTokenizer extends TokenizerBase implements TokenizerDefin
         }
 
         /**
-         * Builds a {@link WhitespaceTokenizer}.
+         * Builds a {@link LowercaseTokenizer}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public WhitespaceTokenizer build() {
+        public LowercaseTokenizer build() {
             _checkSingleUse();
 
-            return new WhitespaceTokenizer(this);
+            return new LowercaseTokenizer(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link WhitespaceTokenizer}
+     * Json deserializer for {@link LowercaseTokenizer}
      */
-    public static final JsonpDeserializer<WhitespaceTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<LowercaseTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        WhitespaceTokenizer::setupWhitespaceTokenizerDeserializer
+        LowercaseTokenizer::setupLowercaseTokenizerDeserializer
     );
 
-    protected static void setupWhitespaceTokenizerDeserializer(ObjectDeserializer<WhitespaceTokenizer.Builder> op) {
+    protected static void setupLowercaseTokenizerDeserializer(ObjectDeserializer<LowercaseTokenizer.Builder> op) {
         setupTokenizerBaseDeserializer(op);
-        op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
 
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

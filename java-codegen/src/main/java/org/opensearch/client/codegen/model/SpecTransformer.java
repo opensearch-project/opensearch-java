@@ -475,13 +475,6 @@ public class SpecTransformer {
     }
 
     private Type mapTypeInner(OpenApiSchema schema) {
-        if (schema.getPointer().isDirectChildOf(JsonPointer.of("components", "schemas"))) {
-            var type = mapTypeComponentsSchemas(schema);
-            if (type != null) {
-                return type;
-            }
-        }
-
         if (schema.has$ref()) {
             schema = schema.resolve();
 
@@ -532,22 +525,6 @@ public class SpecTransformer {
         }
 
         throw new UnsupportedOperationException("Can not get type name for: " + types);
-    }
-
-    private Type mapTypeComponentsSchemas(OpenApiSchema schema) {
-        var key = schema.getPointer().getLastKey().orElseThrow();
-        switch (key) {
-            case "_common:Duration":
-                return Types.Client.OpenSearch._Types.Time;
-            case "_common:Stringifiedinteger":
-                return Types.Primitive.Int;
-            case "_common:Stringifiedboolean":
-                return Types.Primitive.Boolean;
-            case "_common:StringifiedEpochTimeUnitMillis":
-                return Types.Primitive.Long;
-            default:
-                return null;
-        }
     }
 
     private Type mapOneOf(List<OpenApiSchema> oneOf) {

@@ -30,19 +30,23 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpSerializable;
 
 /**
  * Base interface for {@link TokenizerDefinition} variants.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public interface TokenizerDefinitionVariant extends JsonpSerializable {
-
     TokenizerDefinition.Kind _tokenizerDefinitionKind();
 
     default TokenizerDefinition _toTokenizerDefinition() {
         return new TokenizerDefinition(this);
     }
-
 }

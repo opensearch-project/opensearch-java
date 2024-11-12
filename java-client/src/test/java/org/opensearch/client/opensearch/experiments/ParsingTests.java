@@ -139,7 +139,7 @@ public class ParsingTests extends ModelTestCase {
 
     @Test
     public void testSmartcn_Tokenizer() {
-        final TokenizerDefinition tokenizerDefinition = TokenizerBuilders.definition().smartcn(b -> b).build();
+        final TokenizerDefinition tokenizerDefinition = TokenizerBuilders.definition().smartcnTokenizer(b -> b).build();
 
         String str = toJson(tokenizerDefinition);
         assertEquals("{\"type\":\"smartcn_tokenizer\"}", str);

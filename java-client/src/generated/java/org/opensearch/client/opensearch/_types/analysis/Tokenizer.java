@@ -30,14 +30,21 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.json.UnionDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -48,12 +55,14 @@ import org.opensearch.client.util.TaggedUnionUtils;
 // typedef: _types.analysis.Tokenizer
 
 @JsonpDeserializable
-public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSerializable {
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, PlainJsonSerializable {
+    /**
+     * {@link Tokenizer} variant kinds.
+     */
     public enum Kind {
         Definition,
         Name
-
     }
 
     private final Kind _kind;
@@ -75,13 +84,11 @@ public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSeri
     }
 
     private Tokenizer(Builder builder) {
-
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
     }
 
-    public static Tokenizer of(Function<Builder, ObjectBuilder<Tokenizer>> fn) {
+    public static Tokenizer of(Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -95,8 +102,7 @@ public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSeri
     /**
      * Get the {@code definition} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code definition} kind.
+     * @throws IllegalStateException if the current variant is not the {@code definition} kind.
      */
     public TokenizerDefinition definition() {
         return TaggedUnionUtils.get(this, Kind.Definition);
@@ -112,8 +118,7 @@ public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSeri
     /**
      * Get the {@code name} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code name} kind.
+     * @throws IllegalStateException if the current variant is not the {@code name} kind.
      */
     public String name() {
         return TaggedUnionUtils.get(this, Kind.Name);
@@ -127,11 +132,9 @@ public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSeri
             switch (_kind) {
                 case Name:
                     generator.write(((String) this._value));
-
                     break;
             }
         }
-
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Tokenizer> {
@@ -154,11 +157,11 @@ public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSeri
             return this;
         }
 
+        @Override
         public Tokenizer build() {
             _checkSingleUse();
             return new Tokenizer(this);
         }
-
     }
 
     private static JsonpDeserializer<Tokenizer> buildTokenizerDeserializer() {
@@ -169,4 +172,20 @@ public class Tokenizer implements TaggedUnion<Tokenizer.Kind, Object>, JsonpSeri
     }
 
     public static final JsonpDeserializer<Tokenizer> _DESERIALIZER = JsonpDeserializer.lazy(Tokenizer::buildTokenizerDeserializer);
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Tokenizer other = (Tokenizer) o;
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
 }
