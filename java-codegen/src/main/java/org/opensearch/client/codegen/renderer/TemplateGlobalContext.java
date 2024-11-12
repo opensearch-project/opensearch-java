@@ -53,7 +53,7 @@ public final class TemplateGlobalContext implements Mustache.CustomContext {
             .withLambda("ERROR", s -> {
                 throw new RuntimeException(s);
             })
-            .withValue("TYPES", Types.TYPES_MAP);
+            .withValue("TYPES", Types.asMap());
     }
 
     public static final class Builder extends ObjectBuilderBase<TemplateGlobalContext, Builder> {

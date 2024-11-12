@@ -28,6 +28,8 @@ import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 import org.semver4j.Semver;
 
 public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
+    public static final String NAMESPACE_NAME_SEPARATOR = "___";
+    public static final JsonPointer COMPONENTS_SCHEMAS = JsonPointer.of("components", "schemas");
     private static final JsonPointer ANONYMOUS = JsonPointer.of("<anonymous>");
 
     public static final OpenApiSchema ANONYMOUS_UNTYPED = builder().withPointer(ANONYMOUS.append("untyped")).build();
@@ -102,13 +104,13 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
 
         if (pointer.isDirectChildOf(JsonPointer.of("components", "schemas"))) {
             var key = pointer.getLastKey().orElseThrow();
-            var colonIdx = key.indexOf(':');
-            if (colonIdx >= 0) {
-                namespace = key.substring(0, colonIdx)
+            var separatorIndex = key.indexOf(NAMESPACE_NAME_SEPARATOR);
+            if (separatorIndex >= 0) {
+                namespace = key.substring(0, separatorIndex)
                     .replaceAll("\\._common", "")
                     .replaceAll("^_common", "_types")
                     .replaceAll("^_core", "core");
-                name = key.substring(colonIdx + 1);
+                name = key.substring(separatorIndex + NAMESPACE_NAME_SEPARATOR.length());
             } else {
                 namespace = null;
                 name = key;
