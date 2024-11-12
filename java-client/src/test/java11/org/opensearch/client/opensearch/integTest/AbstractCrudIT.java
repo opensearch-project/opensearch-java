@@ -16,6 +16,7 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.opensearch.client.json.JsonData;
+import org.opensearch.client.opensearch._types.BuiltinScriptLanguage;
 import org.opensearch.client.opensearch._types.InlineScript;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.Refresh;
@@ -340,7 +341,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
                 .script(
                     Script.of(
                         s -> s.inline(
-                            new InlineScript.Builder().lang("painless")
+                            new InlineScript.Builder().lang(l -> l.builtin(BuiltinScriptLanguage.Painless))
                                 .source("ctx._source.intValue += params.inc")
                                 .params("inc", JsonData.of(1))
                                 .build()
@@ -374,7 +375,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
                 .script(
                     Script.of(
                         s -> s.inline(
-                            new InlineScript.Builder().lang("painless")
+                            new InlineScript.Builder().lang(l -> l.builtin(BuiltinScriptLanguage.Painless))
                                 .source("ctx._source.intValue += params.inc")
                                 .params("inc", JsonData.of(1))
                                 .build()
@@ -411,7 +412,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
                 .script(
                     Script.of(
                         s -> s.inline(
-                            new InlineScript.Builder().lang("painless")
+                            new InlineScript.Builder().lang(l -> l.builtin(BuiltinScriptLanguage.Painless))
                                 .source("ctx._source.intValue = ctx?._source?.intValue == null ? 7777 : 9999")
                                 .build()
                         )
@@ -441,7 +442,7 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
                 .script(
                     Script.of(
                         s -> s.inline(
-                            new InlineScript.Builder().lang("painless")
+                            new InlineScript.Builder().lang(l -> l.builtin(BuiltinScriptLanguage.Painless))
                                 .source("ctx._source.intValue = ctx?._source?.intValue == null ? 7777 : 9999")
                                 .build()
                         )
