@@ -30,28 +30,32 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
+
+import javax.annotation.Generated;
 
 /**
  * Builders for {@link Normalizer} variants.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NormalizerBuilders {
     private NormalizerBuilders() {}
 
     /**
-     * Creates a builder for the {@link CustomNormalizer custom} {@code Normalizer}
-     * variant.
+     * Creates a builder for the {@link CustomNormalizer custom} {@code Normalizer} variant.
      */
     public static CustomNormalizer.Builder custom() {
         return new CustomNormalizer.Builder();
     }
 
     /**
-     * Creates a builder for the {@link LowercaseNormalizer lowercase}
-     * {@code Normalizer} variant.
+     * Creates a builder for the {@link LowercaseNormalizer lowercase} {@code Normalizer} variant.
      */
     public static LowercaseNormalizer.Builder lowercase() {
         return new LowercaseNormalizer.Builder();
     }
-
 }

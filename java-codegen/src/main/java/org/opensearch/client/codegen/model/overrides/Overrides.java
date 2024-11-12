@@ -32,11 +32,6 @@ public class Overrides {
             .with(schema("_common", "Stringifiedboolean"), so -> so.withMappedType(Types.Primitive.Boolean))
             .with(schema("_common", "StringifiedEpochTimeUnitMillis"), so -> so.withMappedType(Types.Primitive.Long))
 
-            .with(schema("_common.analysis", "Analyzer"), so -> so.withShouldGenerate(ShouldGenerate.Always))
-            .with(schema("_common.analysis", "CharFilter"), so -> so.withShouldGenerate(ShouldGenerate.Always))
-            .with(schema("_common.analysis", "TokenFilter"), so -> so.withShouldGenerate(ShouldGenerate.Always))
-            .with(schema("_common.analysis", "Tokenizer"), so -> so.withShouldGenerate(ShouldGenerate.Always))
-
             // TODO: Remove this to generate property mapping types
             .with(schema("_common.mapping", "Property"), so -> so.withShouldGenerate(ShouldGenerate.Never))
             .with(schema("_common.mapping", "PropertyBase"), so -> so.withShouldGenerate(ShouldGenerate.Never))
@@ -50,6 +45,7 @@ public class Overrides {
 
             // TODO: Remove this to generate index settings types
             .with(schema("indices._common", "IndexSettings"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(schema("indices._common", "IndexSettingsAnalysis"), so -> so.withShouldGenerate(ShouldGenerate.Always))
     ).build();
 
     @Nonnull

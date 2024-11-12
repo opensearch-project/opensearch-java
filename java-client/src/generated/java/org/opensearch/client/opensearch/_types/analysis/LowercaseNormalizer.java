@@ -30,35 +30,40 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.analysis.LowercaseNormalizer
 
 @JsonpDeserializable
-public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class LowercaseNormalizer implements NormalizerVariant, PlainJsonSerializable {
+
     // ---------------------------------------------------------------------------------------------
 
-    private LowercaseNormalizer(Builder builder) {
+    private LowercaseNormalizer(Builder builder) {}
 
-    }
-
-    public static LowercaseNormalizer of(Function<Builder, ObjectBuilder<LowercaseNormalizer>> fn) {
+    public static LowercaseNormalizer of(Function<LowercaseNormalizer.Builder, ObjectBuilder<LowercaseNormalizer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Normalizer variant kind.
+     * {@link Normalizer} variant kind.
      */
     @Override
     public Normalizer.Kind _normalizerKind() {
@@ -68,6 +73,7 @@ public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -75,9 +81,7 @@ public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.write("type", "lowercase");
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -85,14 +89,12 @@ public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable
     /**
      * Builder for {@link LowercaseNormalizer}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LowercaseNormalizer> {
 
         /**
          * Builds a {@link LowercaseNormalizer}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public LowercaseNormalizer build() {
             _checkSingleUse();
@@ -116,4 +118,16 @@ public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }
