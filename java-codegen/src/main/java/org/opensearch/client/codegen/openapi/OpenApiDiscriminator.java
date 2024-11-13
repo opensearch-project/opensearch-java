@@ -9,11 +9,10 @@
 package org.opensearch.client.codegen.openapi;
 
 import io.swagger.v3.oas.models.media.Discriminator;
-import org.opensearch.client.codegen.utils.Maps;
-
 import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.codegen.utils.Maps;
 
 public class OpenApiDiscriminator extends OpenApiElement<OpenApiDiscriminator> {
     @Nullable

@@ -285,7 +285,15 @@ public class SpecTransformer {
         } else if (isTaggedUnion) {
             var discriminatingField = schema.getDiscriminator().flatMap(OpenApiDiscriminator::getPropertyName).orElse(null);
             var defaultVariant = schema.getDiscriminator().flatMap(OpenApiDiscriminator::getDefaultValue).orElse(null);
-            var taggedUnion = new TaggedUnionShape(parent, className, typedefName, description, discriminatingField, defaultVariant, shouldGenerate);
+            var taggedUnion = new TaggedUnionShape(
+                parent,
+                className,
+                typedefName,
+                description,
+                discriminatingField,
+                defaultVariant,
+                shouldGenerate
+            );
             shape = taggedUnion;
             visitedSchemas.putIfAbsent(schema, shape);
 
