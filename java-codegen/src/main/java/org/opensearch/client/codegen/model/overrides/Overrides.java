@@ -32,11 +32,6 @@ public class Overrides {
             .with(schema("_common", "Stringifiedboolean"), so -> so.withMappedType(Types.Primitive.Boolean))
             .with(schema("_common", "StringifiedEpochTimeUnitMillis"), so -> so.withMappedType(Types.Primitive.Long))
 
-            // TODO: Remove this to generate property mapping types
-            .with(schema("_common.mapping", "Property"), so -> so.withShouldGenerate(ShouldGenerate.Never))
-            .with(schema("_common.mapping", "PropertyBase"), so -> so.withShouldGenerate(ShouldGenerate.Never))
-            .with(schema("_common.mapping", "KnnVectorProperty"), so -> so.withShouldGenerate(ShouldGenerate.Always))
-
             // TODO: Remove this to generate query types
             .with(
                 schema("_common.query_dsl", "QueryContainer"),

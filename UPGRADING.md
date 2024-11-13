@@ -77,3 +77,9 @@ After:
 
 ### TokenizerDefinition
 - The `smartcn` Builder method has been renamed to `smartcnTokenizer`.
+
+### PointProperty
+- `PointProperty` has been removed and is replaced by `XyPointProperty`.
+
+### PropertyBase
+- The `name` and `localMetadata` fields, getters and builder methods have been removed from `PropertyBase` as they are not supported by OpenSearch.

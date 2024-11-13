@@ -9,7 +9,7 @@
 package org.opensearch.client.codegen.model;
 
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
@@ -41,11 +41,12 @@ public class EnumShape extends Shape {
         return List.of(Types.Client.Json.JsonEnum);
     }
 
-    public void addVariant(String value, String description, boolean deprecated) {
-        var variant = variants.get(value.toLowerCase());
+    public void addVariant(String name, String value, String description, boolean deprecated) {
+        name = name.toLowerCase();
+        var variant = variants.get(name);
         if (variant == null) {
             variant = new Variant(value, description, deprecated);
-            variants.put(value.toLowerCase(), variant);
+            variants.put(name, variant);
         } else {
             variant.addAlias(value);
             variant.setDeprecated(variant.isDeprecated() || deprecated);
@@ -65,7 +66,7 @@ public class EnumShape extends Shape {
 
     public static class Variant {
         private final String wireName;
-        private final Set<String> aliases = new HashSet<>();
+        private final Set<String> aliases = new LinkedHashSet<>();
         private boolean deprecated;
         private String description;
 
