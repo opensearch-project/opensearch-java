@@ -449,6 +449,7 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
 
     protected static void setupCreateIndexRequestDeserializer(ObjectDeserializer<CreateIndexRequest.Builder> op) {
         op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
         op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
         op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
     }

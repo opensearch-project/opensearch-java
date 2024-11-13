@@ -20,7 +20,7 @@
 {{#additionalPropertiesField}}
     {{#type.directSerializer}}this.{{name}}{{/type.directSerializer}}
 {{/additionalPropertiesField}}
-{{#bodyFields}}
+{{#fieldsToSerialize}}
 {{^required}}
         if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) {
 {{/required}}
@@ -32,5 +32,5 @@
 {{^-last}}
 
 {{/-last}}
-{{/bodyFields}}
+{{/fieldsToSerialize}}
     }

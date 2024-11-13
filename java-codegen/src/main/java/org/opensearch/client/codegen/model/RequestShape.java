@@ -98,6 +98,13 @@ public class RequestShape extends ObjectShape {
         return !hasRequestBody() && !hasQueryParams() && hasSinglePath() && !getFirstPath().hasParams();
     }
 
+    @Override
+    public Collection<Field> getFieldsToDeserialize() {
+        var fields = new TreeMap<>(bodyFields);
+        fields.putAll(pathParams);
+        return fields.values();
+    }
+
     public boolean hasRequestBody() {
         return !getBodyFields().isEmpty();
     }

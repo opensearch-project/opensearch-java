@@ -625,6 +625,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
         op.add(Builder::dataStream, IndexTemplateDataStreamConfiguration._DESERIALIZER, "data_stream");
         op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index_patterns");
         op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority");
         op.add(Builder::template, IndexTemplateMapping._DESERIALIZER, "template");
         op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");

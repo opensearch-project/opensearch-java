@@ -72,8 +72,16 @@ public class ObjectShape extends Shape {
         this.shortcutProperty = shortcutProperty;
     }
 
+    public Collection<Field> getFieldsToSerialize() {
+        return getBodyFields();
+    }
+
     public boolean hasFieldsToSerialize() {
         return !bodyFields.isEmpty() || additionalPropertiesField != null;
+    }
+
+    public Collection<Field> getFieldsToDeserialize() {
+        return getBodyFields();
     }
 
     public Collection<ReferencingDiscriminatedUnion> getReferencingDiscriminatedUnions() {
