@@ -1420,7 +1420,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
         op.add(Builder::xyPoint, XyPointProperty._DESERIALIZER, "xy_point");
         op.add(Builder::xyShape, XyShapeProperty._DESERIALIZER, "xy_shape");
 
-        op.setTypeProperty("type", null);
+        op.setTypeProperty("type", Kind.Object.jsonValue());
     }
 
     public static final JsonpDeserializer<Property> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
