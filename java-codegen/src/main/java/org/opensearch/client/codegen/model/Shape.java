@@ -182,10 +182,14 @@ public abstract class Shape {
     }
 
     public boolean needsLegacyLicense() {
-        if ("analysis".equals(parent.getName()) && (className.startsWith("Cjk") || className.startsWith("Smartcn"))) {
+        var parentName = parent.getName();
+        if ("analysis".equals(parentName) && (className.startsWith("Cjk") || className.startsWith("Smartcn"))) {
             return false;
         }
-        return !"ml".equals(parent.getName());
+        if (className.startsWith("Xy")) {
+            return false;
+        }
+        return !"ml".equals(parentName);
     }
 
     @Override
