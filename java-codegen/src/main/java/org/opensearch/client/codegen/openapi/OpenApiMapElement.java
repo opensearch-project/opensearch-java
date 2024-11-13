@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 
 public abstract class OpenApiMapElement<TSelf extends OpenApiMapElement<TSelf, TKey, TValue>, TKey, TValue extends OpenApiElement<TValue>>
@@ -39,5 +40,10 @@ public abstract class OpenApiMapElement<TSelf extends OpenApiMapElement<TSelf, T
     @Nonnull
     public Optional<TValue> get(@Nonnull TKey key) {
         return Optional.ofNullable(value.get(Objects.requireNonNull(key, "key must not be null")));
+    }
+
+    @Nonnull
+    public Stream<Map.Entry<TKey, TValue>> entries() {
+        return value.entrySet().stream();
     }
 }

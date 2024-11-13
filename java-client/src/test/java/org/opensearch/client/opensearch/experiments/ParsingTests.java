@@ -51,7 +51,7 @@ import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.opensearch.indices.IndexSettingsIndexing;
 import org.opensearch.client.opensearch.indices.IndexSettingsMapping;
 import org.opensearch.client.opensearch.indices.IndexSettingsSearch;
-import org.opensearch.client.opensearch.indices.Translog;
+import org.opensearch.client.opensearch.indices.TranslogDurability;
 import org.opensearch.client.opensearch.indices.get_field_mapping.TypeFieldMappings;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 
@@ -78,12 +78,12 @@ public class ParsingTests extends ModelTestCase {
 
         final IndexSettings indexSettings = IndexSettings.of(
             _1 -> _1.translog(
-                Translog.of(tr -> tr.syncInterval(Time.of(t -> t.time("10s"))).durability("async").flushThresholdSize("256mb"))
+                tr -> tr.syncInterval(Time.of(t -> t.time("10s"))).durability(TranslogDurability.Async).flushThresholdSize("256mb")
             )
         );
 
         final String str = toJson(indexSettings);
-        assertEquals("{\"translog\":{\"durability\":\"async\",\"flush_threshold_size\":\"256mb\"," + "\"sync_interval\":\"10s\"}}", str);
+        assertEquals("{\"translog\":{\"durability\":\"ASYNC\",\"flush_threshold_size\":\"256mb\",\"sync_interval\":\"10s\"}}", str);
 
         IndexSettings deserialized = fromJson(str, IndexSettings._DESERIALIZER);
         assertEquals(indexSettings.translog().syncInterval().time(), deserialized.translog().syncInterval().time());
@@ -94,8 +94,8 @@ public class ParsingTests extends ModelTestCase {
             + ".flush_threshold_size\":\"256mb\"}";
         IndexSettings deprecatedDeserialized = fromJson(deprecatedForm, IndexSettings._DESERIALIZER);
         assertEquals(indexSettings.translog().syncInterval().time(), deprecatedDeserialized.translog().syncInterval().time());
-        assertEquals(indexSettings.translog().durability(), deprecatedDeserialized.translog().durability());
-        assertEquals(indexSettings.translog().flushThresholdSize(), deprecatedDeserialized.translog().flushThresholdSize());
+        assertEquals(indexSettings.translog().durability(), deprecatedDeserialized.translogDurability());
+        assertEquals(indexSettings.translog().flushThresholdSize(), deprecatedDeserialized.translogFlushThresholdSize());
     }
 
     @Test
@@ -111,8 +111,7 @@ public class ParsingTests extends ModelTestCase {
 
         final String str = toJson(mapping);
         assertEquals(
-            "{\"total_fields\":{\"limit\":1},\"depth\":{\"limit\":2},\"nested_fields\":{\"limit\":3},"
-                + "\"nested_objects\":{\"limit\":4},\"field_name_length\":{\"limit\":5}}",
+            "{\"depth\":{\"limit\":2},\"field_name_length\":{\"limit\":5},\"nested_fields\":{\"limit\":3},\"nested_objects\":{\"limit\":4},\"total_fields\":{\"limit\":1}}",
             str
         );
 
@@ -297,8 +296,7 @@ public class ParsingTests extends ModelTestCase {
 
         final String str = toJson(indexing);
         assertEquals(
-            "{\"slowlog\":{\"level\":\"info\",\"source\":0,\"threshold\":{\"index\":{"
-                + "\"warn\":\"5000ms\",\"info\":\"1000ms\",\"debug\":\"500ms\",\"trace\":\"200ms\"}}}}",
+            "{\"slowlog\":{\"level\":\"info\",\"source\":0,\"threshold\":{\"index\":{\"debug\":\"500ms\",\"info\":\"1000ms\",\"trace\":\"200ms\",\"warn\":\"5000ms\"}}}}",
             str
         );
 
@@ -337,10 +335,7 @@ public class ParsingTests extends ModelTestCase {
 
         final String str = toJson(search);
         assertEquals(
-            "{\"idle\":{\"after\":\"5s\"},\"slowlog\":{\"level\":\"info\","
-                + "\"threshold\":{\"query\":{\"warn\":\"5000ms\",\"info\":\"1000ms\",\"debug\":\"500ms\","
-                + "\"trace\":\"200ms\"},\"fetch\":{\"warn\":\"50ms\",\"info\":\"10ms\",\"debug\":\"5ms\","
-                + "\"trace\":\"2ms\"}}}}",
+            "{\"idle\":{\"after\":\"5s\"},\"slowlog\":{\"level\":\"info\",\"threshold\":{\"fetch\":{\"debug\":\"5ms\",\"info\":\"10ms\",\"trace\":\"2ms\",\"warn\":\"50ms\"},\"query\":{\"debug\":\"500ms\",\"info\":\"1000ms\",\"trace\":\"200ms\",\"warn\":\"5000ms\"}}}}",
             str
         );
 

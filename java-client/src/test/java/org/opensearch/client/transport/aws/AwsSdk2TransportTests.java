@@ -307,16 +307,16 @@ public class AwsSdk2TransportTests {
                     b -> b.index("sample-index1")
                         .aliases("sample-alias1", a -> a)
                         .mappings(m -> m.properties("age", p -> p.integer(i -> i)))
-                        .settings(s -> s.index(i -> i.numberOfReplicas("1").numberOfShards("2")))
+                        .settings(s -> s.index(i -> i.numberOfReplicas(1).numberOfShards(2)))
                 ),
             "PUT",
             "/" + TEST_INDEX,
-            156,
-            "381bb92a04d397cab611362eb3ac3e075db11ac08272d64763de2279e2b5604d",
+            152,
+            "d74f84822e2dfce88bcfd16e5092a42989396019c82fde62fa0e9ac4e34d9350",
             selectExpectedSignature(
-                "29123ccbcbd9af71fce384a1ed6d64b8c70f660e55a16de05405cac5fbebf18b",
-                "ff12e7b3e5e0f96fa25f13b3e95606dd18e3f1314dea6b7d6a9159f0aa51c21c",
-                "dbddbed28a34c0c380cd31567491a240294ef58755f9370e237d66f10d20d2df"
+                "cee95989c4e6007d840ae598ccc0bccef238826dba068a84951041c8484aa704",
+                "7ad70d59f92bd59fbe1a977ee014f15a3f793488b4869f62aa64375a5755850b",
+                "bb6c080d9ff3f6f29ae86936afc465a2c519b3cc3bf73e8cba2bc4c54d4701ad"
             )
         );
     }

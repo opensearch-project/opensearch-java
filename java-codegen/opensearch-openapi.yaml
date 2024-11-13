@@ -2166,8 +2166,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
       responses:
-        '200':
-          $ref: '#/components/responses/dangling_indices.delete_dangling_index___200'
+        '202':
+          $ref: '#/components/responses/dangling_indices.delete_dangling_index___202'
     post:
       operationId: dangling_indices.import_dangling_index.0
       x-operation-group: dangling_indices.import_dangling_index
@@ -2187,8 +2187,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
       responses:
-        '200':
-          $ref: '#/components/responses/dangling_indices.import_dangling_index___200'
+        '202':
+          $ref: '#/components/responses/dangling_indices.import_dangling_index___202'
   /_data_stream:
     get:
       operationId: indices.get_data_stream.0
@@ -28409,13 +28409,13 @@ components:
           schema:
             $ref: '#/components/schemas/_common___WriteResponseBase'
       description: ''
-    dangling_indices.delete_dangling_index___200:
+    dangling_indices.delete_dangling_index___202:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
       description: ''
-    dangling_indices.import_dangling_index___200:
+    dangling_indices.import_dangling_index___202:
       content:
         application/json:
           schema:

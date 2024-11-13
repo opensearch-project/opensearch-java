@@ -24,7 +24,7 @@ public class PlainDeserializableTest {
     public void testWithJsonPutIndexTemplateRequest() {
 
         String stringTemplate =
-            "{\"mappings\":{\"properties\":{\"age\":{\"type\":\"integer\"}}},\"settings\":{\"number_of_shards\":\"2\",\"number_of_replicas\":\"1\"}}";
+            "{\"mappings\":{\"properties\":{\"age\":{\"type\":\"integer\"}}},\"settings\":{\"number_of_replicas\":1,\"number_of_shards\":2}}";
         InputStream inputStream = new ByteArrayInputStream(stringTemplate.getBytes(StandardCharsets.UTF_8));
 
         PutIndexTemplateRequest indexTemplateRequest = new PutIndexTemplateRequest.Builder().name("My index")
@@ -34,7 +34,7 @@ public class PlainDeserializableTest {
 
         String expectedName = "My index";
         List<String> expectedIndexPatterns = Arrays.asList("index_pattern1");
-        String expectedNumberOfShards = "2";
+        Integer expectedNumberOfShards = 2;
 
         assertEquals(indexTemplateRequest.name(), expectedName);
         assertEquals(expectedIndexPatterns, indexTemplateRequest.indexPatterns());

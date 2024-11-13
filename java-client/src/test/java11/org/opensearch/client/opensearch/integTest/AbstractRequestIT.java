@@ -91,7 +91,6 @@ import org.opensearch.client.opensearch.indices.GetMappingResponse;
 import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.opensearch.indices.IndexSettingsAnalysis;
 import org.opensearch.client.opensearch.indices.IndexState;
-import org.opensearch.client.opensearch.indices.Translog;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 
 public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
@@ -131,7 +130,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
             .create(
                 r -> r.index("test-settings")
                     .settings(
-                        s -> s.translog(Translog.of(tl -> tl.syncInterval(Time.of(t -> t.time("10s")))))
+                        s -> s.translog(tl -> tl.syncInterval(t -> t.time("10s")))
                             .mapping(
                                 m -> m.fieldNameLength(f -> f.limit(300L))
                                     .totalFields(f -> f.limit(30L))
@@ -146,10 +145,10 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
                                         .reformat(false)
                                         .threshold(
                                             th -> th.index(
-                                                in -> in.trace(Time.of(t -> t.time("5s")))
-                                                    .debug(Time.of(t -> t.time("10s")))
-                                                    .info(Time.of(t -> t.time("20s")))
-                                                    .warn(Time.of(t -> t.time("30s")))
+                                                in -> in.trace(t -> t.time("5s"))
+                                                    .debug(t -> t.time("10s"))
+                                                    .info(t -> t.time("20s"))
+                                                    .warn(t -> t.time("30s"))
                                             )
                                         )
                                 )
@@ -159,16 +158,16 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
                                     sl -> sl.level("info")
                                         .threshold(
                                             th -> th.query(
-                                                in -> in.trace(Time.of(t -> t.time("5s")))
-                                                    .debug(Time.of(t -> t.time("10s")))
-                                                    .info(Time.of(t -> t.time("20s")))
-                                                    .warn(Time.of(t -> t.time("30s")))
+                                                in -> in.trace(t -> t.time("5s"))
+                                                    .debug(t -> t.time("10s"))
+                                                    .info(t -> t.time("20s"))
+                                                    .warn(t -> t.time("30s"))
                                             )
                                                 .fetch(
-                                                    in -> in.trace(Time.of(t -> t.time("5s")))
-                                                        .debug(Time.of(t -> t.time("10s")))
-                                                        .info(Time.of(t -> t.time("20s")))
-                                                        .warn(Time.of(t -> t.time("30s")))
+                                                    in -> in.trace(t -> t.time("5s"))
+                                                        .debug(t -> t.time("10s"))
+                                                        .info(t -> t.time("20s"))
+                                                        .warn(t -> t.time("30s"))
                                                 )
                                         )
                                 ).idle(id -> id.after(a -> a.time("120s")))
@@ -233,7 +232,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
             .putSettings(
                 r -> r.index("test-settings")
                     .settings(
-                        s -> s.translog(Translog.of(tl -> tl.syncInterval(Time.of(t -> t.time("5s")))))
+                        s -> s.translog(tl -> tl.syncInterval(Time.of(t -> t.time("5s"))))
                             .mapping(
                                 m -> m.fieldNameLength(f -> f.limit(400L))
                                     .totalFields(f -> f.limit(130L))
