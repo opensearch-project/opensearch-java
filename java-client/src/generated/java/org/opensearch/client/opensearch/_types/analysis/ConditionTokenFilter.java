@@ -48,13 +48,18 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.ConditionTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ConditionTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class ConditionTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<ConditionTokenFilter.Builder, ConditionTokenFilter> {
 
     @Nonnull
     private final List<String> filter;
@@ -114,12 +119,49 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ConditionTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<ConditionTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ConditionTokenFilter> {
         private List<String> filter;
         private Script script;
+
+        public Builder() {}
+
+        private Builder(ConditionTokenFilter o) {
+            super(o);
+            this.filter = _listCopy(o.filter);
+            this.script = o.script;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.filter = _listCopy(o.filter);
+            this.script = o.script;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code filter}
@@ -128,6 +170,7 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
          * Adds all elements of <code>list</code> to <code>filter</code>.
          * </p>
          */
+        @Nonnull
         public final Builder filter(List<String> list) {
             this.filter = _listAddAll(this.filter, list);
             return this;
@@ -140,6 +183,7 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
          * Adds one or more values to <code>filter</code>.
          * </p>
          */
+        @Nonnull
         public final Builder filter(String value, String... values) {
             this.filter = _listAdd(this.filter, value, values);
             return this;
@@ -148,6 +192,7 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
         /**
          * Required - API name: {@code script}
          */
+        @Nonnull
         public final Builder script(Script value) {
             this.script = value;
             return this;
@@ -156,13 +201,9 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
         /**
          * Required - API name: {@code script}
          */
+        @Nonnull
         public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
             return script(fn.apply(new Script.Builder()).build());
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -170,6 +211,8 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ConditionTokenFilter build() {
             _checkSingleUse();
 

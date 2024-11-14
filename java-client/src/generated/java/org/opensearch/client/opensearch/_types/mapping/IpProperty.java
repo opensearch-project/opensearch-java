@@ -40,19 +40,22 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.IpProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IpProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class IpProperty extends DocValuesPropertyBase implements PropertyVariant, ToCopyableBuilder<IpProperty.Builder, IpProperty> {
 
     @Nullable
     private final Double boost;
@@ -146,10 +149,21 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IpProperty}.
      */
-    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<IpProperty> {
+    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, IpProperty> {
         @Nullable
         private Double boost;
         @Nullable
@@ -159,9 +173,40 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
         @Nullable
         private String nullValue;
 
+        public Builder() {}
+
+        private Builder(IpProperty o) {
+            super(o);
+            this.boost = o.boost;
+            this.ignoreMalformed = o.ignoreMalformed;
+            this.index = o.index;
+            this.nullValue = o.nullValue;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.boost = o.boost;
+            this.ignoreMalformed = o.ignoreMalformed;
+            this.index = o.index;
+            this.nullValue = o.nullValue;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code boost}
          */
+        @Nonnull
         public final Builder boost(@Nullable Double value) {
             this.boost = value;
             return this;
@@ -170,6 +215,7 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
         /**
          * API name: {@code ignore_malformed}
          */
+        @Nonnull
         public final Builder ignoreMalformed(@Nullable Boolean value) {
             this.ignoreMalformed = value;
             return this;
@@ -178,6 +224,7 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
         /**
          * API name: {@code index}
          */
+        @Nonnull
         public final Builder index(@Nullable Boolean value) {
             this.index = value;
             return this;
@@ -186,13 +233,9 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
         /**
          * API name: {@code null_value}
          */
+        @Nonnull
         public final Builder nullValue(@Nullable String value) {
             this.nullValue = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -201,6 +244,8 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IpProperty build() {
             _checkSingleUse();
 

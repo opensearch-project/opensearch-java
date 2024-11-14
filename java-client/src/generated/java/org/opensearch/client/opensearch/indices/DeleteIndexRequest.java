@@ -52,8 +52,10 @@ import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.delete.Request
 
@@ -61,7 +63,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  * Deletes an index.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteIndexRequest extends RequestBase {
+public class DeleteIndexRequest extends RequestBase implements ToCopyableBuilder<DeleteIndexRequest.Builder, DeleteIndexRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
@@ -162,8 +164,8 @@ public class DeleteIndexRequest extends RequestBase {
     }
 
     /**
-     * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-     * returns an error.
+     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
+     * and returns an error.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -187,10 +189,21 @@ public class DeleteIndexRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DeleteIndexRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteIndexRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DeleteIndexRequest> {
         @Nullable
         private Boolean allowNoIndices;
         @Nullable
@@ -205,6 +218,34 @@ public class DeleteIndexRequest extends RequestBase {
         @Nullable
         private Time timeout;
 
+        public Builder() {}
+
+        private Builder(DeleteIndexRequest o) {
+            this.allowNoIndices = o.allowNoIndices;
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.expandWildcards = _listCopy(o.expandWildcards);
+            this.ignoreUnavailable = o.ignoreUnavailable;
+            this.index = _listCopy(o.index);
+            this.masterTimeout = o.masterTimeout;
+            this.timeout = o.timeout;
+        }
+
+        private Builder(Builder o) {
+            this.allowNoIndices = o.allowNoIndices;
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.expandWildcards = _listCopy(o.expandWildcards);
+            this.ignoreUnavailable = o.ignoreUnavailable;
+            this.index = _listCopy(o.index);
+            this.masterTimeout = o.masterTimeout;
+            this.timeout = o.timeout;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets
          * only missing or closed indexes. This behavior applies even if the request targets other open indexes.
@@ -212,6 +253,7 @@ public class DeleteIndexRequest extends RequestBase {
          * API name: {@code allow_no_indices}
          * </p>
          */
+        @Nonnull
         public final Builder allowNoIndices(@Nullable Boolean value) {
             this.allowNoIndices = value;
             return this;
@@ -223,6 +265,7 @@ public class DeleteIndexRequest extends RequestBase {
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
@@ -234,6 +277,7 @@ public class DeleteIndexRequest extends RequestBase {
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
@@ -250,6 +294,7 @@ public class DeleteIndexRequest extends RequestBase {
          * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
          * </p>
          */
+        @Nonnull
         public final Builder expandWildcards(List<ExpandWildcard> list) {
             this.expandWildcards = _listAddAll(this.expandWildcards, list);
             return this;
@@ -267,6 +312,7 @@ public class DeleteIndexRequest extends RequestBase {
          * Adds one or more values to <code>expandWildcards</code>.
          * </p>
          */
+        @Nonnull
         public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
             this.expandWildcards = _listAdd(this.expandWildcards, value, values);
             return this;
@@ -278,6 +324,7 @@ public class DeleteIndexRequest extends RequestBase {
          * API name: {@code ignore_unavailable}
          * </p>
          */
+        @Nonnull
         public final Builder ignoreUnavailable(@Nullable Boolean value) {
             this.ignoreUnavailable = value;
             return this;
@@ -295,6 +342,7 @@ public class DeleteIndexRequest extends RequestBase {
          * Adds all elements of <code>list</code> to <code>index</code>.
          * </p>
          */
+        @Nonnull
         public final Builder index(List<String> list) {
             this.index = _listAddAll(this.index, list);
             return this;
@@ -312,32 +360,35 @@ public class DeleteIndexRequest extends RequestBase {
          * Adds one or more values to <code>index</code>.
          * </p>
          */
+        @Nonnull
         public final Builder index(String value, String... values) {
             this.index = _listAdd(this.index, value, values);
             return this;
         }
 
         /**
-         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-         * returns an error.
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(@Nullable Time value) {
             this.masterTimeout = value;
             return this;
         }
 
         /**
-         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-         * returns an error.
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return masterTimeout(fn.apply(new Time.Builder()).build());
         }
@@ -348,6 +399,7 @@ public class DeleteIndexRequest extends RequestBase {
          * API name: {@code timeout}
          * </p>
          */
+        @Nonnull
         public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
             return this;
@@ -359,6 +411,7 @@ public class DeleteIndexRequest extends RequestBase {
          * API name: {@code timeout}
          * </p>
          */
+        @Nonnull
         public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return timeout(fn.apply(new Time.Builder()).build());
         }
@@ -368,6 +421,8 @@ public class DeleteIndexRequest extends RequestBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DeleteIndexRequest build() {
             _checkSingleUse();
 

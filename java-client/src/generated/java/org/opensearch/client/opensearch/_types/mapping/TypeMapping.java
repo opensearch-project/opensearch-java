@@ -53,14 +53,16 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainDeserializable;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.TypeMapping
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class TypeMapping implements PlainJsonSerializable {
+public class TypeMapping implements PlainJsonSerializable, ToCopyableBuilder<TypeMapping.Builder, TypeMapping> {
 
     @Nullable
     private final AllField allField;
@@ -365,15 +367,21 @@ public class TypeMapping implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link TypeMapping}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TypeMapping>, PlainDeserializable<Builder> {
-        @Override
-        public Builder self() {
-            return this;
-        }
-
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TypeMapping>, PlainDeserializable<Builder> {
         @Nullable
         private AllField allField;
         @Nullable
@@ -405,9 +413,60 @@ public class TypeMapping implements PlainJsonSerializable {
         @Nullable
         private SourceField source;
 
+        public Builder() {}
+
+        private Builder(TypeMapping o) {
+            this.allField = o.allField;
+            this.dataStreamTimestamp = o.dataStreamTimestamp;
+            this.dateDetection = o.dateDetection;
+            this.dynamic = o.dynamic;
+            this.dynamicDateFormats = _listCopy(o.dynamicDateFormats);
+            this.dynamicTemplates = _listCopy(o.dynamicTemplates);
+            this.enabled = o.enabled;
+            this.fieldNames = o.fieldNames;
+            this.indexField = o.indexField;
+            this.meta = _mapCopy(o.meta);
+            this.numericDetection = o.numericDetection;
+            this.properties = _mapCopy(o.properties);
+            this.routing = o.routing;
+            this.size = o.size;
+            this.source = o.source;
+        }
+
+        private Builder(Builder o) {
+            this.allField = o.allField;
+            this.dataStreamTimestamp = o.dataStreamTimestamp;
+            this.dateDetection = o.dateDetection;
+            this.dynamic = o.dynamic;
+            this.dynamicDateFormats = _listCopy(o.dynamicDateFormats);
+            this.dynamicTemplates = _listCopy(o.dynamicTemplates);
+            this.enabled = o.enabled;
+            this.fieldNames = o.fieldNames;
+            this.indexField = o.indexField;
+            this.meta = _mapCopy(o.meta);
+            this.numericDetection = o.numericDetection;
+            this.properties = _mapCopy(o.properties);
+            this.routing = o.routing;
+            this.size = o.size;
+            this.source = o.source;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        public Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code all_field}
          */
+        @Nonnull
         public final Builder allField(@Nullable AllField value) {
             this.allField = value;
             return this;
@@ -416,6 +475,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code all_field}
          */
+        @Nonnull
         public final Builder allField(Function<AllField.Builder, ObjectBuilder<AllField>> fn) {
             return allField(fn.apply(new AllField.Builder()).build());
         }
@@ -423,6 +483,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code _data_stream_timestamp}
          */
+        @Nonnull
         public final Builder dataStreamTimestamp(@Nullable DataStreamTimestamp value) {
             this.dataStreamTimestamp = value;
             return this;
@@ -431,6 +492,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code _data_stream_timestamp}
          */
+        @Nonnull
         public final Builder dataStreamTimestamp(Function<DataStreamTimestamp.Builder, ObjectBuilder<DataStreamTimestamp>> fn) {
             return dataStreamTimestamp(fn.apply(new DataStreamTimestamp.Builder()).build());
         }
@@ -438,6 +500,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code date_detection}
          */
+        @Nonnull
         public final Builder dateDetection(@Nullable Boolean value) {
             this.dateDetection = value;
             return this;
@@ -446,6 +509,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code dynamic}
          */
+        @Nonnull
         public final Builder dynamic(@Nullable DynamicMapping value) {
             this.dynamic = value;
             return this;
@@ -458,6 +522,7 @@ public class TypeMapping implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>dynamicDateFormats</code>.
          * </p>
          */
+        @Nonnull
         public final Builder dynamicDateFormats(List<String> list) {
             this.dynamicDateFormats = _listAddAll(this.dynamicDateFormats, list);
             return this;
@@ -470,6 +535,7 @@ public class TypeMapping implements PlainJsonSerializable {
          * Adds one or more values to <code>dynamicDateFormats</code>.
          * </p>
          */
+        @Nonnull
         public final Builder dynamicDateFormats(String value, String... values) {
             this.dynamicDateFormats = _listAdd(this.dynamicDateFormats, value, values);
             return this;
@@ -482,6 +548,7 @@ public class TypeMapping implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>dynamicTemplates</code>.
          * </p>
          */
+        @Nonnull
         public final Builder dynamicTemplates(List<Map<String, DynamicTemplate>> list) {
             this.dynamicTemplates = _listAddAll(this.dynamicTemplates, list);
             return this;
@@ -494,6 +561,7 @@ public class TypeMapping implements PlainJsonSerializable {
          * Adds one or more values to <code>dynamicTemplates</code>.
          * </p>
          */
+        @Nonnull
         public final Builder dynamicTemplates(Map<String, DynamicTemplate> value, Map<String, DynamicTemplate>... values) {
             this.dynamicTemplates = _listAdd(this.dynamicTemplates, value, values);
             return this;
@@ -502,6 +570,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code enabled}
          */
+        @Nonnull
         public final Builder enabled(@Nullable Boolean value) {
             this.enabled = value;
             return this;
@@ -510,6 +579,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code _field_names}
          */
+        @Nonnull
         public final Builder fieldNames(@Nullable FieldNamesField value) {
             this.fieldNames = value;
             return this;
@@ -518,6 +588,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code _field_names}
          */
+        @Nonnull
         public final Builder fieldNames(Function<FieldNamesField.Builder, ObjectBuilder<FieldNamesField>> fn) {
             return fieldNames(fn.apply(new FieldNamesField.Builder()).build());
         }
@@ -525,6 +596,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code index_field}
          */
+        @Nonnull
         public final Builder indexField(@Nullable IndexField value) {
             this.indexField = value;
             return this;
@@ -533,6 +605,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code index_field}
          */
+        @Nonnull
         public final Builder indexField(Function<IndexField.Builder, ObjectBuilder<IndexField>> fn) {
             return indexField(fn.apply(new IndexField.Builder()).build());
         }
@@ -544,6 +617,7 @@ public class TypeMapping implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>meta</code>.
          * </p>
          */
+        @Nonnull
         public final Builder meta(Map<String, JsonData> map) {
             this.meta = _mapPutAll(this.meta, map);
             return this;
@@ -556,6 +630,7 @@ public class TypeMapping implements PlainJsonSerializable {
          * Adds an entry to <code>meta</code>.
          * </p>
          */
+        @Nonnull
         public final Builder meta(String key, JsonData value) {
             this.meta = _mapPut(this.meta, key, value);
             return this;
@@ -564,6 +639,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code numeric_detection}
          */
+        @Nonnull
         public final Builder numericDetection(@Nullable Boolean value) {
             this.numericDetection = value;
             return this;
@@ -576,6 +652,7 @@ public class TypeMapping implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>properties</code>.
          * </p>
          */
+        @Nonnull
         public final Builder properties(Map<String, Property> map) {
             this.properties = _mapPutAll(this.properties, map);
             return this;
@@ -588,6 +665,7 @@ public class TypeMapping implements PlainJsonSerializable {
          * Adds an entry to <code>properties</code>.
          * </p>
          */
+        @Nonnull
         public final Builder properties(String key, Property value) {
             this.properties = _mapPut(this.properties, key, value);
             return this;
@@ -600,6 +678,7 @@ public class TypeMapping implements PlainJsonSerializable {
          * Adds a value to <code>properties</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder properties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
             return properties(key, fn.apply(new Property.Builder()).build());
         }
@@ -607,6 +686,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code _routing}
          */
+        @Nonnull
         public final Builder routing(@Nullable RoutingField value) {
             this.routing = value;
             return this;
@@ -615,6 +695,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code _routing}
          */
+        @Nonnull
         public final Builder routing(Function<RoutingField.Builder, ObjectBuilder<RoutingField>> fn) {
             return routing(fn.apply(new RoutingField.Builder()).build());
         }
@@ -622,6 +703,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code _size}
          */
+        @Nonnull
         public final Builder size(@Nullable SizeField value) {
             this.size = value;
             return this;
@@ -630,6 +712,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code _size}
          */
+        @Nonnull
         public final Builder size(Function<SizeField.Builder, ObjectBuilder<SizeField>> fn) {
             return size(fn.apply(new SizeField.Builder()).build());
         }
@@ -637,6 +720,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code _source}
          */
+        @Nonnull
         public final Builder source(@Nullable SourceField value) {
             this.source = value;
             return this;
@@ -645,6 +729,7 @@ public class TypeMapping implements PlainJsonSerializable {
         /**
          * API name: {@code _source}
          */
+        @Nonnull
         public final Builder source(Function<SourceField.Builder, ObjectBuilder<SourceField>> fn) {
             return source(fn.apply(new SourceField.Builder()).build());
         }
@@ -654,6 +739,8 @@ public class TypeMapping implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public TypeMapping build() {
             _checkSingleUse();
 

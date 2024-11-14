@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.AsciiFoldingTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class AsciiFoldingTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<AsciiFoldingTokenFilter.Builder, AsciiFoldingTokenFilter> {
 
     @Nullable
     private final Boolean preserveOriginal;
@@ -95,23 +101,56 @@ public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFil
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link AsciiFoldingTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<AsciiFoldingTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, AsciiFoldingTokenFilter> {
         @Nullable
         private Boolean preserveOriginal;
+
+        public Builder() {}
+
+        private Builder(AsciiFoldingTokenFilter o) {
+            super(o);
+            this.preserveOriginal = o.preserveOriginal;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.preserveOriginal = o.preserveOriginal;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code preserve_original}
          */
+        @Nonnull
         public final Builder preserveOriginal(@Nullable Boolean value) {
             this.preserveOriginal = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -120,6 +159,8 @@ public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFil
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public AsciiFoldingTokenFilter build() {
             _checkSingleUse();
 

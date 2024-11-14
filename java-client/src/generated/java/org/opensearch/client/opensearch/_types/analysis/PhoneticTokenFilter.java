@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.PhoneticTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class PhoneticTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<PhoneticTokenFilter.Builder, PhoneticTokenFilter> {
 
     @Nonnull
     private final PhoneticEncoder encoder;
@@ -179,10 +184,21 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PhoneticTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<PhoneticTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PhoneticTokenFilter> {
         private PhoneticEncoder encoder;
         private List<PhoneticLanguage> languageset;
         @Nullable
@@ -192,9 +208,44 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
         private Boolean replace;
         private PhoneticRuleType ruleType;
 
+        public Builder() {}
+
+        private Builder(PhoneticTokenFilter o) {
+            super(o);
+            this.encoder = o.encoder;
+            this.languageset = _listCopy(o.languageset);
+            this.maxCodeLen = o.maxCodeLen;
+            this.nameType = o.nameType;
+            this.replace = o.replace;
+            this.ruleType = o.ruleType;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.encoder = o.encoder;
+            this.languageset = _listCopy(o.languageset);
+            this.maxCodeLen = o.maxCodeLen;
+            this.nameType = o.nameType;
+            this.replace = o.replace;
+            this.ruleType = o.ruleType;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * Required - API name: {@code encoder}
          */
+        @Nonnull
         public final Builder encoder(PhoneticEncoder value) {
             this.encoder = value;
             return this;
@@ -207,6 +258,7 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
          * Adds all elements of <code>list</code> to <code>languageset</code>.
          * </p>
          */
+        @Nonnull
         public final Builder languageset(List<PhoneticLanguage> list) {
             this.languageset = _listAddAll(this.languageset, list);
             return this;
@@ -219,6 +271,7 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
          * Adds one or more values to <code>languageset</code>.
          * </p>
          */
+        @Nonnull
         public final Builder languageset(PhoneticLanguage value, PhoneticLanguage... values) {
             this.languageset = _listAdd(this.languageset, value, values);
             return this;
@@ -227,6 +280,7 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
         /**
          * API name: {@code max_code_len}
          */
+        @Nonnull
         public final Builder maxCodeLen(@Nullable Integer value) {
             this.maxCodeLen = value;
             return this;
@@ -235,6 +289,7 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
         /**
          * Required - API name: {@code name_type}
          */
+        @Nonnull
         public final Builder nameType(PhoneticNameType value) {
             this.nameType = value;
             return this;
@@ -243,6 +298,7 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
         /**
          * API name: {@code replace}
          */
+        @Nonnull
         public final Builder replace(@Nullable Boolean value) {
             this.replace = value;
             return this;
@@ -251,13 +307,9 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
         /**
          * Required - API name: {@code rule_type}
          */
+        @Nonnull
         public final Builder ruleType(PhoneticRuleType value) {
             this.ruleType = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -266,6 +318,8 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PhoneticTokenFilter build() {
             _checkSingleUse();
 

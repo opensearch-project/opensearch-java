@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.StemmerOverrideTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class StemmerOverrideTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class StemmerOverrideTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<StemmerOverrideTokenFilter.Builder, StemmerOverrideTokenFilter> {
 
     @Nonnull
     private final List<String> rules;
@@ -121,14 +126,53 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link StemmerOverrideTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<StemmerOverrideTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, StemmerOverrideTokenFilter> {
         @Nullable
         private List<String> rules;
         @Nullable
         private String rulesPath;
+
+        public Builder() {}
+
+        private Builder(StemmerOverrideTokenFilter o) {
+            super(o);
+            this.rules = _listCopy(o.rules);
+            this.rulesPath = o.rulesPath;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.rules = _listCopy(o.rules);
+            this.rulesPath = o.rulesPath;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code rules}
@@ -137,6 +181,7 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
          * Adds all elements of <code>list</code> to <code>rules</code>.
          * </p>
          */
+        @Nonnull
         public final Builder rules(List<String> list) {
             this.rules = _listAddAll(this.rules, list);
             return this;
@@ -149,6 +194,7 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
          * Adds one or more values to <code>rules</code>.
          * </p>
          */
+        @Nonnull
         public final Builder rules(String value, String... values) {
             this.rules = _listAdd(this.rules, value, values);
             return this;
@@ -157,13 +203,9 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
         /**
          * API name: {@code rules_path}
          */
+        @Nonnull
         public final Builder rulesPath(@Nullable String value) {
             this.rulesPath = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -172,6 +214,8 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public StemmerOverrideTokenFilter build() {
             _checkSingleUse();
 

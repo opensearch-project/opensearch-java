@@ -56,8 +56,10 @@ import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.clone.Request
 
@@ -66,7 +68,10 @@ import org.opensearch.client.util.ObjectBuilderBase;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerializable {
+public class CloneSnapshotRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<CloneSnapshotRequest.Builder, CloneSnapshotRequest> {
 
     @Nullable
     private final Time clusterManagerTimeout;
@@ -122,7 +127,7 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
     }
 
     /**
-     * Explicit operation timeout for connection to master node
+     * Explicit operation timeout for connection to cluster-manager node
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -182,10 +187,21 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
     }
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CloneSnapshotRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloneSnapshotRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CloneSnapshotRequest> {
         @Nullable
         private Time clusterManagerTimeout;
         private String indices;
@@ -195,12 +211,39 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
         private String snapshot;
         private String targetSnapshot;
 
+        public Builder() {}
+
+        private Builder(CloneSnapshotRequest o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.indices = o.indices;
+            this.masterTimeout = o.masterTimeout;
+            this.repository = o.repository;
+            this.snapshot = o.snapshot;
+            this.targetSnapshot = o.targetSnapshot;
+        }
+
+        private Builder(Builder o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.indices = o.indices;
+            this.masterTimeout = o.masterTimeout;
+            this.repository = o.repository;
+            this.snapshot = o.snapshot;
+            this.targetSnapshot = o.targetSnapshot;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
@@ -212,6 +255,7 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
@@ -219,30 +263,33 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
         /**
          * Required - API name: {@code indices}
          */
+        @Nonnull
         public final Builder indices(String value) {
             this.indices = value;
             return this;
         }
 
         /**
-         * Explicit operation timeout for connection to master node
+         * Explicit operation timeout for connection to cluster-manager node
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(@Nullable Time value) {
             this.masterTimeout = value;
             return this;
         }
 
         /**
-         * Explicit operation timeout for connection to master node
+         * Explicit operation timeout for connection to cluster-manager node
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return masterTimeout(fn.apply(new Time.Builder()).build());
         }
@@ -253,6 +300,7 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
          * API name: {@code repository}
          * </p>
          */
+        @Nonnull
         public final Builder repository(String value) {
             this.repository = value;
             return this;
@@ -264,6 +312,7 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
          * API name: {@code snapshot}
          * </p>
          */
+        @Nonnull
         public final Builder snapshot(String value) {
             this.snapshot = value;
             return this;
@@ -275,6 +324,7 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
          * API name: {@code target_snapshot}
          * </p>
          */
+        @Nonnull
         public final Builder targetSnapshot(String value) {
             this.targetSnapshot = value;
             return this;
@@ -285,6 +335,8 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CloneSnapshotRequest build() {
             _checkSingleUse();
 

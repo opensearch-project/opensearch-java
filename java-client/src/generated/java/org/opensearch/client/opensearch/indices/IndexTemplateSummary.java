@@ -51,14 +51,16 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexTemplateSummary
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IndexTemplateSummary implements PlainJsonSerializable {
+public class IndexTemplateSummary implements PlainJsonSerializable, ToCopyableBuilder<IndexTemplateSummary.Builder, IndexTemplateSummary> {
 
     @Nonnull
     private final Map<String, Alias> aliases;
@@ -144,16 +146,47 @@ public class IndexTemplateSummary implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IndexTemplateSummary}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexTemplateSummary> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IndexTemplateSummary> {
         @Nullable
         private Map<String, Alias> aliases;
         @Nullable
         private TypeMapping mappings;
         @Nullable
         private IndexSettings settings;
+
+        public Builder() {}
+
+        private Builder(IndexTemplateSummary o) {
+            this.aliases = _mapCopy(o.aliases);
+            this.mappings = o.mappings;
+            this.settings = o.settings;
+        }
+
+        private Builder(Builder o) {
+            this.aliases = _mapCopy(o.aliases);
+            this.mappings = o.mappings;
+            this.settings = o.settings;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise, these
@@ -167,6 +200,7 @@ public class IndexTemplateSummary implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>aliases</code>.
          * </p>
          */
+        @Nonnull
         public final Builder aliases(Map<String, Alias> map) {
             this.aliases = _mapPutAll(this.aliases, map);
             return this;
@@ -184,6 +218,7 @@ public class IndexTemplateSummary implements PlainJsonSerializable {
          * Adds an entry to <code>aliases</code>.
          * </p>
          */
+        @Nonnull
         public final Builder aliases(String key, Alias value) {
             this.aliases = _mapPut(this.aliases, key, value);
             return this;
@@ -201,6 +236,7 @@ public class IndexTemplateSummary implements PlainJsonSerializable {
          * Adds a value to <code>aliases</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
             return aliases(key, fn.apply(new Alias.Builder()).build());
         }
@@ -208,6 +244,7 @@ public class IndexTemplateSummary implements PlainJsonSerializable {
         /**
          * API name: {@code mappings}
          */
+        @Nonnull
         public final Builder mappings(@Nullable TypeMapping value) {
             this.mappings = value;
             return this;
@@ -216,6 +253,7 @@ public class IndexTemplateSummary implements PlainJsonSerializable {
         /**
          * API name: {@code mappings}
          */
+        @Nonnull
         public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
             return mappings(fn.apply(new TypeMapping.Builder()).build());
         }
@@ -223,6 +261,7 @@ public class IndexTemplateSummary implements PlainJsonSerializable {
         /**
          * API name: {@code settings}
          */
+        @Nonnull
         public final Builder settings(@Nullable IndexSettings value) {
             this.settings = value;
             return this;
@@ -231,6 +270,7 @@ public class IndexTemplateSummary implements PlainJsonSerializable {
         /**
          * API name: {@code settings}
          */
+        @Nonnull
         public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
             return settings(fn.apply(new IndexSettings.Builder()).build());
         }
@@ -240,6 +280,8 @@ public class IndexTemplateSummary implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IndexTemplateSummary build() {
             _checkSingleUse();
 

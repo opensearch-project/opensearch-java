@@ -49,8 +49,10 @@ import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.delete_index_template.Request
 
@@ -58,7 +60,9 @@ import org.opensearch.client.util.ObjectBuilderBase;
  * Deletes an index template.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteIndexTemplateRequest extends RequestBase {
+public class DeleteIndexTemplateRequest extends RequestBase
+    implements
+        ToCopyableBuilder<DeleteIndexTemplateRequest.Builder, DeleteIndexTemplateRequest> {
 
     @Nullable
     private final Time clusterManagerTimeout;
@@ -100,8 +104,8 @@ public class DeleteIndexTemplateRequest extends RequestBase {
     }
 
     /**
-     * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-     * returns an error.
+     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
+     * and returns an error.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -136,10 +140,21 @@ public class DeleteIndexTemplateRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DeleteIndexTemplateRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteIndexTemplateRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DeleteIndexTemplateRequest> {
         @Nullable
         private Time clusterManagerTimeout;
         @Nullable
@@ -148,12 +163,35 @@ public class DeleteIndexTemplateRequest extends RequestBase {
         @Nullable
         private Time timeout;
 
+        public Builder() {}
+
+        private Builder(DeleteIndexTemplateRequest o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.masterTimeout = o.masterTimeout;
+            this.name = o.name;
+            this.timeout = o.timeout;
+        }
+
+        private Builder(Builder o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.masterTimeout = o.masterTimeout;
+            this.name = o.name;
+            this.timeout = o.timeout;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
@@ -165,31 +203,34 @@ public class DeleteIndexTemplateRequest extends RequestBase {
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
-         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-         * returns an error.
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(@Nullable Time value) {
             this.masterTimeout = value;
             return this;
         }
 
         /**
-         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-         * returns an error.
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return masterTimeout(fn.apply(new Time.Builder()).build());
         }
@@ -200,6 +241,7 @@ public class DeleteIndexTemplateRequest extends RequestBase {
          * API name: {@code name}
          * </p>
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -211,6 +253,7 @@ public class DeleteIndexTemplateRequest extends RequestBase {
          * API name: {@code timeout}
          * </p>
          */
+        @Nonnull
         public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
             return this;
@@ -222,6 +265,7 @@ public class DeleteIndexTemplateRequest extends RequestBase {
          * API name: {@code timeout}
          * </p>
          */
+        @Nonnull
         public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return timeout(fn.apply(new Time.Builder()).build());
         }
@@ -231,6 +275,8 @@ public class DeleteIndexTemplateRequest extends RequestBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DeleteIndexTemplateRequest build() {
             _checkSingleUse();
 

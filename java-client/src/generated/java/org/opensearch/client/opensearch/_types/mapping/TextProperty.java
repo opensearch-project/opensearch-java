@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -47,13 +48,15 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch.indices.FielddataFrequencyFilter;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.TextProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class TextProperty extends CorePropertyBase implements PropertyVariant {
+public class TextProperty extends CorePropertyBase implements PropertyVariant, ToCopyableBuilder<TextProperty.Builder, TextProperty> {
 
     @Nullable
     private final String analyzer;
@@ -317,10 +320,21 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link TextProperty}.
      */
-    public static class Builder extends CorePropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<TextProperty> {
+    public static class Builder extends CorePropertyBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, TextProperty> {
         @Nullable
         private String analyzer;
         @Nullable
@@ -350,9 +364,60 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         @Nullable
         private TermVectorOption termVector;
 
+        public Builder() {}
+
+        private Builder(TextProperty o) {
+            super(o);
+            this.analyzer = o.analyzer;
+            this.boost = o.boost;
+            this.eagerGlobalOrdinals = o.eagerGlobalOrdinals;
+            this.fielddata = o.fielddata;
+            this.fielddataFrequencyFilter = o.fielddataFrequencyFilter;
+            this.index = o.index;
+            this.indexOptions = o.indexOptions;
+            this.indexPhrases = o.indexPhrases;
+            this.indexPrefixes = o.indexPrefixes;
+            this.norms = o.norms;
+            this.positionIncrementGap = o.positionIncrementGap;
+            this.searchAnalyzer = o.searchAnalyzer;
+            this.searchQuoteAnalyzer = o.searchQuoteAnalyzer;
+            this.termVector = o.termVector;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.analyzer = o.analyzer;
+            this.boost = o.boost;
+            this.eagerGlobalOrdinals = o.eagerGlobalOrdinals;
+            this.fielddata = o.fielddata;
+            this.fielddataFrequencyFilter = o.fielddataFrequencyFilter;
+            this.index = o.index;
+            this.indexOptions = o.indexOptions;
+            this.indexPhrases = o.indexPhrases;
+            this.indexPrefixes = o.indexPrefixes;
+            this.norms = o.norms;
+            this.positionIncrementGap = o.positionIncrementGap;
+            this.searchAnalyzer = o.searchAnalyzer;
+            this.searchQuoteAnalyzer = o.searchQuoteAnalyzer;
+            this.termVector = o.termVector;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code analyzer}
          */
+        @Nonnull
         public final Builder analyzer(@Nullable String value) {
             this.analyzer = value;
             return this;
@@ -361,6 +426,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         /**
          * API name: {@code boost}
          */
+        @Nonnull
         public final Builder boost(@Nullable Double value) {
             this.boost = value;
             return this;
@@ -369,6 +435,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         /**
          * API name: {@code eager_global_ordinals}
          */
+        @Nonnull
         public final Builder eagerGlobalOrdinals(@Nullable Boolean value) {
             this.eagerGlobalOrdinals = value;
             return this;
@@ -377,6 +444,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         /**
          * API name: {@code fielddata}
          */
+        @Nonnull
         public final Builder fielddata(@Nullable Boolean value) {
             this.fielddata = value;
             return this;
@@ -385,6 +453,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         /**
          * API name: {@code fielddata_frequency_filter}
          */
+        @Nonnull
         public final Builder fielddataFrequencyFilter(@Nullable FielddataFrequencyFilter value) {
             this.fielddataFrequencyFilter = value;
             return this;
@@ -393,6 +462,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         /**
          * API name: {@code fielddata_frequency_filter}
          */
+        @Nonnull
         public final Builder fielddataFrequencyFilter(
             Function<FielddataFrequencyFilter.Builder, ObjectBuilder<FielddataFrequencyFilter>> fn
         ) {
@@ -402,6 +472,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         /**
          * API name: {@code index}
          */
+        @Nonnull
         public final Builder index(@Nullable Boolean value) {
             this.index = value;
             return this;
@@ -410,6 +481,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         /**
          * API name: {@code index_options}
          */
+        @Nonnull
         public final Builder indexOptions(@Nullable IndexOptions value) {
             this.indexOptions = value;
             return this;
@@ -418,6 +490,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         /**
          * API name: {@code index_phrases}
          */
+        @Nonnull
         public final Builder indexPhrases(@Nullable Boolean value) {
             this.indexPhrases = value;
             return this;
@@ -426,6 +499,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         /**
          * API name: {@code index_prefixes}
          */
+        @Nonnull
         public final Builder indexPrefixes(@Nullable TextIndexPrefixes value) {
             this.indexPrefixes = value;
             return this;
@@ -434,6 +508,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         /**
          * API name: {@code index_prefixes}
          */
+        @Nonnull
         public final Builder indexPrefixes(Function<TextIndexPrefixes.Builder, ObjectBuilder<TextIndexPrefixes>> fn) {
             return indexPrefixes(fn.apply(new TextIndexPrefixes.Builder()).build());
         }
@@ -441,6 +516,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         /**
          * API name: {@code norms}
          */
+        @Nonnull
         public final Builder norms(@Nullable Boolean value) {
             this.norms = value;
             return this;
@@ -449,6 +525,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         /**
          * API name: {@code position_increment_gap}
          */
+        @Nonnull
         public final Builder positionIncrementGap(@Nullable Integer value) {
             this.positionIncrementGap = value;
             return this;
@@ -457,6 +534,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         /**
          * API name: {@code search_analyzer}
          */
+        @Nonnull
         public final Builder searchAnalyzer(@Nullable String value) {
             this.searchAnalyzer = value;
             return this;
@@ -465,6 +543,7 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         /**
          * API name: {@code search_quote_analyzer}
          */
+        @Nonnull
         public final Builder searchQuoteAnalyzer(@Nullable String value) {
             this.searchQuoteAnalyzer = value;
             return this;
@@ -473,13 +552,9 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
         /**
          * API name: {@code term_vector}
          */
+        @Nonnull
         public final Builder termVector(@Nullable TermVectorOption value) {
             this.termVector = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -488,6 +563,8 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public TextProperty build() {
             _checkSingleUse();
 

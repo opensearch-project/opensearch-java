@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.EdgeNGramTokenizer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+public class EdgeNGramTokenizer extends TokenizerBase
+    implements
+        TokenizerDefinitionVariant,
+        ToCopyableBuilder<EdgeNGramTokenizer.Builder, EdgeNGramTokenizer> {
 
     @Nullable
     private final String customTokenChars;
@@ -143,19 +148,61 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link EdgeNGramTokenizer}.
      */
-    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<EdgeNGramTokenizer> {
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, EdgeNGramTokenizer> {
         @Nullable
         private String customTokenChars;
         private Integer maxGram;
         private Integer minGram;
         private List<TokenChar> tokenChars;
 
+        public Builder() {}
+
+        private Builder(EdgeNGramTokenizer o) {
+            super(o);
+            this.customTokenChars = o.customTokenChars;
+            this.maxGram = o.maxGram;
+            this.minGram = o.minGram;
+            this.tokenChars = _listCopy(o.tokenChars);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.customTokenChars = o.customTokenChars;
+            this.maxGram = o.maxGram;
+            this.minGram = o.minGram;
+            this.tokenChars = _listCopy(o.tokenChars);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code custom_token_chars}
          */
+        @Nonnull
         public final Builder customTokenChars(@Nullable String value) {
             this.customTokenChars = value;
             return this;
@@ -164,6 +211,7 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
         /**
          * Required - API name: {@code max_gram}
          */
+        @Nonnull
         public final Builder maxGram(int value) {
             this.maxGram = value;
             return this;
@@ -172,6 +220,7 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
         /**
          * Required - API name: {@code min_gram}
          */
+        @Nonnull
         public final Builder minGram(int value) {
             this.minGram = value;
             return this;
@@ -184,6 +233,7 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
          * Adds all elements of <code>list</code> to <code>tokenChars</code>.
          * </p>
          */
+        @Nonnull
         public final Builder tokenChars(List<TokenChar> list) {
             this.tokenChars = _listAddAll(this.tokenChars, list);
             return this;
@@ -196,13 +246,9 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
          * Adds one or more values to <code>tokenChars</code>.
          * </p>
          */
+        @Nonnull
         public final Builder tokenChars(TokenChar value, TokenChar... values) {
             this.tokenChars = _listAdd(this.tokenChars, value, values);
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -211,6 +257,8 @@ public class EdgeNGramTokenizer extends TokenizerBase implements TokenizerDefini
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public EdgeNGramTokenizer build() {
             _checkSingleUse();
 

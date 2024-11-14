@@ -40,19 +40,22 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.ObjectProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ObjectProperty extends CorePropertyBase implements PropertyVariant {
+public class ObjectProperty extends CorePropertyBase implements PropertyVariant, ToCopyableBuilder<ObjectProperty.Builder, ObjectProperty> {
 
     @Nullable
     private final Boolean enabled;
@@ -95,23 +98,54 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ObjectProperty}.
      */
-    public static class Builder extends CorePropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<ObjectProperty> {
+    public static class Builder extends CorePropertyBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ObjectProperty> {
         @Nullable
         private Boolean enabled;
+
+        public Builder() {}
+
+        private Builder(ObjectProperty o) {
+            super(o);
+            this.enabled = o.enabled;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.enabled = o.enabled;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code enabled}
          */
+        @Nonnull
         public final Builder enabled(@Nullable Boolean value) {
             this.enabled = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -120,6 +154,8 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ObjectProperty build() {
             _checkSingleUse();
 

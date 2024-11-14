@@ -16,6 +16,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -23,14 +24,16 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.Memory
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class Memory implements PlainJsonSerializable {
+public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.Builder, Memory> {
 
     @Nullable
     private final String type;
@@ -72,16 +75,44 @@ public class Memory implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link Memory}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Memory> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Memory> {
         @Nullable
         private String type;
+
+        public Builder() {}
+
+        private Builder(Memory o) {
+            this.type = o.type;
+        }
+
+        private Builder(Builder o) {
+            this.type = o.type;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * API name: {@code type}
          */
+        @Nonnull
         public final Builder type(@Nullable String value) {
             this.type = value;
             return this;
@@ -92,6 +123,8 @@ public class Memory implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public Memory build() {
             _checkSingleUse();
 

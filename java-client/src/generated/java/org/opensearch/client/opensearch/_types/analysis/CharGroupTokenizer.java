@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.CharGroupTokenizer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+public class CharGroupTokenizer extends TokenizerBase
+    implements
+        TokenizerDefinitionVariant,
+        ToCopyableBuilder<CharGroupTokenizer.Builder, CharGroupTokenizer> {
 
     @Nullable
     private final Integer maxTokenLength;
@@ -117,17 +122,55 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefini
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CharGroupTokenizer}.
      */
-    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<CharGroupTokenizer> {
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, CharGroupTokenizer> {
         @Nullable
         private Integer maxTokenLength;
         private List<String> tokenizeOnChars;
 
+        public Builder() {}
+
+        private Builder(CharGroupTokenizer o) {
+            super(o);
+            this.maxTokenLength = o.maxTokenLength;
+            this.tokenizeOnChars = _listCopy(o.tokenizeOnChars);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.maxTokenLength = o.maxTokenLength;
+            this.tokenizeOnChars = _listCopy(o.tokenizeOnChars);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code max_token_length}
          */
+        @Nonnull
         public final Builder maxTokenLength(@Nullable Integer value) {
             this.maxTokenLength = value;
             return this;
@@ -140,6 +183,7 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefini
          * Adds all elements of <code>list</code> to <code>tokenizeOnChars</code>.
          * </p>
          */
+        @Nonnull
         public final Builder tokenizeOnChars(List<String> list) {
             this.tokenizeOnChars = _listAddAll(this.tokenizeOnChars, list);
             return this;
@@ -152,13 +196,9 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefini
          * Adds one or more values to <code>tokenizeOnChars</code>.
          * </p>
          */
+        @Nonnull
         public final Builder tokenizeOnChars(String value, String... values) {
             this.tokenizeOnChars = _listAdd(this.tokenizeOnChars, value, values);
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -167,6 +207,8 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefini
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CharGroupTokenizer build() {
             _checkSingleUse();
 

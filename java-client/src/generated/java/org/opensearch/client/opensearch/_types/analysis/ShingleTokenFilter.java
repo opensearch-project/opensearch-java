@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.ShingleTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class ShingleTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<ShingleTokenFilter.Builder, ShingleTokenFilter> {
 
     @Nullable
     private final String fillerToken;
@@ -180,10 +186,21 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ShingleTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<ShingleTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ShingleTokenFilter> {
         @Nullable
         private String fillerToken;
         @Nullable
@@ -197,9 +214,44 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
         @Nullable
         private String tokenSeparator;
 
+        public Builder() {}
+
+        private Builder(ShingleTokenFilter o) {
+            super(o);
+            this.fillerToken = o.fillerToken;
+            this.maxShingleSize = o.maxShingleSize;
+            this.minShingleSize = o.minShingleSize;
+            this.outputUnigrams = o.outputUnigrams;
+            this.outputUnigramsIfNoShingles = o.outputUnigramsIfNoShingles;
+            this.tokenSeparator = o.tokenSeparator;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.fillerToken = o.fillerToken;
+            this.maxShingleSize = o.maxShingleSize;
+            this.minShingleSize = o.minShingleSize;
+            this.outputUnigrams = o.outputUnigrams;
+            this.outputUnigramsIfNoShingles = o.outputUnigramsIfNoShingles;
+            this.tokenSeparator = o.tokenSeparator;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code filler_token}
          */
+        @Nonnull
         public final Builder fillerToken(@Nullable String value) {
             this.fillerToken = value;
             return this;
@@ -208,6 +260,7 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
         /**
          * API name: {@code max_shingle_size}
          */
+        @Nonnull
         public final Builder maxShingleSize(@Nullable String value) {
             this.maxShingleSize = value;
             return this;
@@ -216,6 +269,7 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
         /**
          * API name: {@code min_shingle_size}
          */
+        @Nonnull
         public final Builder minShingleSize(@Nullable String value) {
             this.minShingleSize = value;
             return this;
@@ -224,6 +278,7 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
         /**
          * API name: {@code output_unigrams}
          */
+        @Nonnull
         public final Builder outputUnigrams(@Nullable Boolean value) {
             this.outputUnigrams = value;
             return this;
@@ -232,6 +287,7 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
         /**
          * API name: {@code output_unigrams_if_no_shingles}
          */
+        @Nonnull
         public final Builder outputUnigramsIfNoShingles(@Nullable Boolean value) {
             this.outputUnigramsIfNoShingles = value;
             return this;
@@ -240,13 +296,9 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
         /**
          * API name: {@code token_separator}
          */
+        @Nonnull
         public final Builder tokenSeparator(@Nullable String value) {
             this.tokenSeparator = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -255,6 +307,8 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ShingleTokenFilter build() {
             _checkSingleUse();
 

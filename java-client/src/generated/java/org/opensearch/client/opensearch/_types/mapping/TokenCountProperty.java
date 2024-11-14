@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.TokenCountProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class TokenCountProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class TokenCountProperty extends DocValuesPropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<TokenCountProperty.Builder, TokenCountProperty> {
 
     @Nullable
     private final String analyzer;
@@ -163,10 +169,23 @@ public class TokenCountProperty extends DocValuesPropertyBase implements Propert
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link TokenCountProperty}.
      */
-    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<TokenCountProperty> {
+    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, TokenCountProperty> {
         @Nullable
         private String analyzer;
         @Nullable
@@ -178,9 +197,42 @@ public class TokenCountProperty extends DocValuesPropertyBase implements Propert
         @Nullable
         private Double nullValue;
 
+        public Builder() {}
+
+        private Builder(TokenCountProperty o) {
+            super(o);
+            this.analyzer = o.analyzer;
+            this.boost = o.boost;
+            this.enablePositionIncrements = o.enablePositionIncrements;
+            this.index = o.index;
+            this.nullValue = o.nullValue;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.analyzer = o.analyzer;
+            this.boost = o.boost;
+            this.enablePositionIncrements = o.enablePositionIncrements;
+            this.index = o.index;
+            this.nullValue = o.nullValue;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code analyzer}
          */
+        @Nonnull
         public final Builder analyzer(@Nullable String value) {
             this.analyzer = value;
             return this;
@@ -189,6 +241,7 @@ public class TokenCountProperty extends DocValuesPropertyBase implements Propert
         /**
          * API name: {@code boost}
          */
+        @Nonnull
         public final Builder boost(@Nullable Double value) {
             this.boost = value;
             return this;
@@ -197,6 +250,7 @@ public class TokenCountProperty extends DocValuesPropertyBase implements Propert
         /**
          * API name: {@code enable_position_increments}
          */
+        @Nonnull
         public final Builder enablePositionIncrements(@Nullable Boolean value) {
             this.enablePositionIncrements = value;
             return this;
@@ -205,6 +259,7 @@ public class TokenCountProperty extends DocValuesPropertyBase implements Propert
         /**
          * API name: {@code index}
          */
+        @Nonnull
         public final Builder index(@Nullable Boolean value) {
             this.index = value;
             return this;
@@ -213,13 +268,9 @@ public class TokenCountProperty extends DocValuesPropertyBase implements Propert
         /**
          * API name: {@code null_value}
          */
+        @Nonnull
         public final Builder nullValue(@Nullable Double value) {
             this.nullValue = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -228,6 +279,8 @@ public class TokenCountProperty extends DocValuesPropertyBase implements Propert
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public TokenCountProperty build() {
             _checkSingleUse();
 

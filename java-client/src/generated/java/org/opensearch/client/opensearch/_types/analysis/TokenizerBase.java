@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch._types.analysis;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -91,15 +92,28 @@ public abstract class TokenizerBase implements PlainJsonSerializable {
         @Nullable
         private String version;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(TokenizerBase o) {
+            this.version = o.version;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            this.version = o.version;
+        }
+
+        @Nonnull
+        protected abstract BuilderT self();
+
         /**
          * API name: {@code version}
          */
+        @Nonnull
         public final BuilderT version(@Nullable String value) {
             this.version = value;
             return self();
         }
 
-        protected abstract BuilderT self();
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.SearchAsYouTypeProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SearchAsYouTypeProperty extends CorePropertyBase implements PropertyVariant {
+public class SearchAsYouTypeProperty extends CorePropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<SearchAsYouTypeProperty.Builder, SearchAsYouTypeProperty> {
 
     @Nullable
     private final String analyzer;
@@ -214,10 +220,23 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SearchAsYouTypeProperty}.
      */
-    public static class Builder extends CorePropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<SearchAsYouTypeProperty> {
+    public static class Builder extends CorePropertyBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, SearchAsYouTypeProperty> {
         @Nullable
         private String analyzer;
         @Nullable
@@ -235,9 +254,48 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
         @Nullable
         private TermVectorOption termVector;
 
+        public Builder() {}
+
+        private Builder(SearchAsYouTypeProperty o) {
+            super(o);
+            this.analyzer = o.analyzer;
+            this.index = o.index;
+            this.indexOptions = o.indexOptions;
+            this.maxShingleSize = o.maxShingleSize;
+            this.norms = o.norms;
+            this.searchAnalyzer = o.searchAnalyzer;
+            this.searchQuoteAnalyzer = o.searchQuoteAnalyzer;
+            this.termVector = o.termVector;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.analyzer = o.analyzer;
+            this.index = o.index;
+            this.indexOptions = o.indexOptions;
+            this.maxShingleSize = o.maxShingleSize;
+            this.norms = o.norms;
+            this.searchAnalyzer = o.searchAnalyzer;
+            this.searchQuoteAnalyzer = o.searchQuoteAnalyzer;
+            this.termVector = o.termVector;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code analyzer}
          */
+        @Nonnull
         public final Builder analyzer(@Nullable String value) {
             this.analyzer = value;
             return this;
@@ -246,6 +304,7 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
         /**
          * API name: {@code index}
          */
+        @Nonnull
         public final Builder index(@Nullable Boolean value) {
             this.index = value;
             return this;
@@ -254,6 +313,7 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
         /**
          * API name: {@code index_options}
          */
+        @Nonnull
         public final Builder indexOptions(@Nullable IndexOptions value) {
             this.indexOptions = value;
             return this;
@@ -262,6 +322,7 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
         /**
          * API name: {@code max_shingle_size}
          */
+        @Nonnull
         public final Builder maxShingleSize(@Nullable Integer value) {
             this.maxShingleSize = value;
             return this;
@@ -270,6 +331,7 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
         /**
          * API name: {@code norms}
          */
+        @Nonnull
         public final Builder norms(@Nullable Boolean value) {
             this.norms = value;
             return this;
@@ -278,6 +340,7 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
         /**
          * API name: {@code search_analyzer}
          */
+        @Nonnull
         public final Builder searchAnalyzer(@Nullable String value) {
             this.searchAnalyzer = value;
             return this;
@@ -286,6 +349,7 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
         /**
          * API name: {@code search_quote_analyzer}
          */
+        @Nonnull
         public final Builder searchQuoteAnalyzer(@Nullable String value) {
             this.searchQuoteAnalyzer = value;
             return this;
@@ -294,13 +358,9 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
         /**
          * API name: {@code term_vector}
          */
+        @Nonnull
         public final Builder termVector(@Nullable TermVectorOption value) {
             this.termVector = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -309,6 +369,8 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SearchAsYouTypeProperty build() {
             _checkSingleUse();
 

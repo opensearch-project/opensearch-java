@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.HistogramProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class HistogramProperty extends PropertyBase implements PropertyVariant {
+public class HistogramProperty extends PropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<HistogramProperty.Builder, HistogramProperty> {
 
     @Nullable
     private final Boolean ignoreMalformed;
@@ -95,23 +101,54 @@ public class HistogramProperty extends PropertyBase implements PropertyVariant {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link HistogramProperty}.
      */
-    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<HistogramProperty> {
+    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, HistogramProperty> {
         @Nullable
         private Boolean ignoreMalformed;
+
+        public Builder() {}
+
+        private Builder(HistogramProperty o) {
+            super(o);
+            this.ignoreMalformed = o.ignoreMalformed;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.ignoreMalformed = o.ignoreMalformed;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code ignore_malformed}
          */
+        @Nonnull
         public final Builder ignoreMalformed(@Nullable Boolean value) {
             this.ignoreMalformed = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -120,6 +157,8 @@ public class HistogramProperty extends PropertyBase implements PropertyVariant {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public HistogramProperty build() {
             _checkSingleUse();
 

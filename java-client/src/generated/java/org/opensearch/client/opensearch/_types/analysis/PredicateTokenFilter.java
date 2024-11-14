@@ -47,13 +47,18 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.PredicateTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PredicateTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class PredicateTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<PredicateTokenFilter.Builder, PredicateTokenFilter> {
 
     @Nonnull
     private final Script script;
@@ -94,15 +99,51 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PredicateTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<PredicateTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PredicateTokenFilter> {
         private Script script;
+
+        public Builder() {}
+
+        private Builder(PredicateTokenFilter o) {
+            super(o);
+            this.script = o.script;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.script = o.script;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code script}
          */
+        @Nonnull
         public final Builder script(Script value) {
             this.script = value;
             return this;
@@ -111,13 +152,9 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
         /**
          * Required - API name: {@code script}
          */
+        @Nonnull
         public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
             return script(fn.apply(new Script.Builder()).build());
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -125,6 +162,8 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PredicateTokenFilter build() {
             _checkSingleUse();
 

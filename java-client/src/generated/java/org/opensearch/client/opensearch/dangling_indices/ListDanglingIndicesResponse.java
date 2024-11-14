@@ -52,14 +52,19 @@ import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.NodeStatistics;
 import org.opensearch.client.opensearch.dangling_indices.list_dangling_indices.DanglingIndex;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: dangling_indices.list_dangling_indices.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ListDanglingIndicesResponse implements PlainJsonSerializable {
+public class ListDanglingIndicesResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<ListDanglingIndicesResponse.Builder, ListDanglingIndicesResponse> {
 
     @Nullable
     private final String clusterName;
@@ -139,19 +144,51 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ListDanglingIndicesResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ListDanglingIndicesResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ListDanglingIndicesResponse> {
         @Nullable
         private String clusterName;
         private List<DanglingIndex> danglingIndices;
         @Nullable
         private NodeStatistics nodes;
 
+        public Builder() {}
+
+        private Builder(ListDanglingIndicesResponse o) {
+            this.clusterName = o.clusterName;
+            this.danglingIndices = _listCopy(o.danglingIndices);
+            this.nodes = o.nodes;
+        }
+
+        private Builder(Builder o) {
+            this.clusterName = o.clusterName;
+            this.danglingIndices = _listCopy(o.danglingIndices);
+            this.nodes = o.nodes;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code cluster_name}
          */
+        @Nonnull
         public final Builder clusterName(@Nullable String value) {
             this.clusterName = value;
             return this;
@@ -164,6 +201,7 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>danglingIndices</code>.
          * </p>
          */
+        @Nonnull
         public final Builder danglingIndices(List<DanglingIndex> list) {
             this.danglingIndices = _listAddAll(this.danglingIndices, list);
             return this;
@@ -176,6 +214,7 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
          * Adds one or more values to <code>danglingIndices</code>.
          * </p>
          */
+        @Nonnull
         public final Builder danglingIndices(DanglingIndex value, DanglingIndex... values) {
             this.danglingIndices = _listAdd(this.danglingIndices, value, values);
             return this;
@@ -188,6 +227,7 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
          * Adds a value to <code>danglingIndices</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder danglingIndices(Function<DanglingIndex.Builder, ObjectBuilder<DanglingIndex>> fn) {
             return danglingIndices(fn.apply(new DanglingIndex.Builder()).build());
         }
@@ -195,6 +235,7 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
         /**
          * API name: {@code _nodes}
          */
+        @Nonnull
         public final Builder nodes(@Nullable NodeStatistics value) {
             this.nodes = value;
             return this;
@@ -203,6 +244,7 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
         /**
          * API name: {@code _nodes}
          */
+        @Nonnull
         public final Builder nodes(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
             return nodes(fn.apply(new NodeStatistics.Builder()).build());
         }
@@ -212,6 +254,8 @@ public class ListDanglingIndicesResponse implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ListDanglingIndicesResponse build() {
             _checkSingleUse();
 

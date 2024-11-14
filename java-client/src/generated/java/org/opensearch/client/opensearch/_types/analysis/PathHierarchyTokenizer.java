@@ -48,13 +48,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.PathHierarchyTokenizer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+public class PathHierarchyTokenizer extends TokenizerBase
+    implements
+        TokenizerDefinitionVariant,
+        ToCopyableBuilder<PathHierarchyTokenizer.Builder, PathHierarchyTokenizer> {
 
     private final int bufferSize;
 
@@ -151,10 +156,21 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PathHierarchyTokenizer}.
      */
-    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<PathHierarchyTokenizer> {
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PathHierarchyTokenizer> {
         private Integer bufferSize;
         private String delimiter;
         @Nullable
@@ -162,9 +178,42 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
         private Boolean reverse;
         private Integer skip;
 
+        public Builder() {}
+
+        private Builder(PathHierarchyTokenizer o) {
+            super(o);
+            this.bufferSize = o.bufferSize;
+            this.delimiter = o.delimiter;
+            this.replacement = o.replacement;
+            this.reverse = o.reverse;
+            this.skip = o.skip;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.bufferSize = o.bufferSize;
+            this.delimiter = o.delimiter;
+            this.replacement = o.replacement;
+            this.reverse = o.reverse;
+            this.skip = o.skip;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * Required - API name: {@code buffer_size}
          */
+        @Nonnull
         public final Builder bufferSize(int value) {
             this.bufferSize = value;
             return this;
@@ -173,6 +222,7 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
         /**
          * Required - API name: {@code delimiter}
          */
+        @Nonnull
         public final Builder delimiter(String value) {
             this.delimiter = value;
             return this;
@@ -181,6 +231,7 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
         /**
          * API name: {@code replacement}
          */
+        @Nonnull
         public final Builder replacement(@Nullable String value) {
             this.replacement = value;
             return this;
@@ -189,6 +240,7 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
         /**
          * Required - API name: {@code reverse}
          */
+        @Nonnull
         public final Builder reverse(boolean value) {
             this.reverse = value;
             return this;
@@ -197,13 +249,9 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
         /**
          * Required - API name: {@code skip}
          */
+        @Nonnull
         public final Builder skip(int value) {
             this.skip = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -212,6 +260,8 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PathHierarchyTokenizer build() {
             _checkSingleUse();
 

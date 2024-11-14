@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch._types.mapping;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -46,14 +47,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.FieldNamesField
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class FieldNamesField implements PlainJsonSerializable {
+public class FieldNamesField implements PlainJsonSerializable, ToCopyableBuilder<FieldNamesField.Builder, FieldNamesField> {
 
     private final boolean enabled;
 
@@ -91,15 +94,43 @@ public class FieldNamesField implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link FieldNamesField}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldNamesField> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, FieldNamesField> {
         private Boolean enabled;
+
+        public Builder() {}
+
+        private Builder(FieldNamesField o) {
+            this.enabled = o.enabled;
+        }
+
+        private Builder(Builder o) {
+            this.enabled = o.enabled;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code enabled}
          */
+        @Nonnull
         public final Builder enabled(boolean value) {
             this.enabled = value;
             return this;
@@ -110,6 +141,8 @@ public class FieldNamesField implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public FieldNamesField build() {
             _checkSingleUse();
 

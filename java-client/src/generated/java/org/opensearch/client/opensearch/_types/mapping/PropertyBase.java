@@ -190,9 +190,31 @@ public abstract class PropertyBase implements PlainJsonSerializable {
         @Nullable
         private Map<String, Property> properties;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(PropertyBase o) {
+            this.dynamic = o.dynamic;
+            this.fields = _mapCopy(o.fields);
+            this.ignoreAbove = o.ignoreAbove;
+            this.meta = _mapCopy(o.meta);
+            this.properties = _mapCopy(o.properties);
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            this.dynamic = o.dynamic;
+            this.fields = _mapCopy(o.fields);
+            this.ignoreAbove = o.ignoreAbove;
+            this.meta = _mapCopy(o.meta);
+            this.properties = _mapCopy(o.properties);
+        }
+
+        @Nonnull
+        protected abstract BuilderT self();
+
         /**
          * API name: {@code dynamic}
          */
+        @Nonnull
         public final BuilderT dynamic(@Nullable DynamicMapping value) {
             this.dynamic = value;
             return self();
@@ -205,6 +227,7 @@ public abstract class PropertyBase implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>fields</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT fields(Map<String, Property> map) {
             this.fields = _mapPutAll(this.fields, map);
             return self();
@@ -217,6 +240,7 @@ public abstract class PropertyBase implements PlainJsonSerializable {
          * Adds an entry to <code>fields</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT fields(String key, Property value) {
             this.fields = _mapPut(this.fields, key, value);
             return self();
@@ -229,6 +253,7 @@ public abstract class PropertyBase implements PlainJsonSerializable {
          * Adds a value to <code>fields</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final BuilderT fields(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
             return fields(key, fn.apply(new Property.Builder()).build());
         }
@@ -236,6 +261,7 @@ public abstract class PropertyBase implements PlainJsonSerializable {
         /**
          * API name: {@code ignore_above}
          */
+        @Nonnull
         public final BuilderT ignoreAbove(@Nullable Integer value) {
             this.ignoreAbove = value;
             return self();
@@ -251,6 +277,7 @@ public abstract class PropertyBase implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>meta</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT meta(Map<String, String> map) {
             this.meta = _mapPutAll(this.meta, map);
             return self();
@@ -266,6 +293,7 @@ public abstract class PropertyBase implements PlainJsonSerializable {
          * Adds an entry to <code>meta</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT meta(String key, String value) {
             this.meta = _mapPut(this.meta, key, value);
             return self();
@@ -278,6 +306,7 @@ public abstract class PropertyBase implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>properties</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT properties(Map<String, Property> map) {
             this.properties = _mapPutAll(this.properties, map);
             return self();
@@ -290,6 +319,7 @@ public abstract class PropertyBase implements PlainJsonSerializable {
          * Adds an entry to <code>properties</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT properties(String key, Property value) {
             this.properties = _mapPut(this.properties, key, value);
             return self();
@@ -302,11 +332,11 @@ public abstract class PropertyBase implements PlainJsonSerializable {
          * Adds a value to <code>properties</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final BuilderT properties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
             return properties(key, fn.apply(new Property.Builder()).build());
         }
 
-        protected abstract BuilderT self();
     }
 
     // ---------------------------------------------------------------------------------------------

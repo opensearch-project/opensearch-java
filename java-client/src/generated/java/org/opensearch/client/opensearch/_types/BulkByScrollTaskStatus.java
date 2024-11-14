@@ -50,14 +50,19 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.BulkByScrollTaskStatus
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class BulkByScrollTaskStatus implements PlainJsonSerializable {
+public class BulkByScrollTaskStatus
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<BulkByScrollTaskStatus.Builder, BulkByScrollTaskStatus> {
 
     private final int batches;
 
@@ -348,10 +353,21 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link BulkByScrollTaskStatus}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkByScrollTaskStatus> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, BulkByScrollTaskStatus> {
         private Integer batches;
         @Nullable
         private String canceled;
@@ -376,12 +392,59 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
         private Long updated;
         private Long versionConflicts;
 
+        public Builder() {}
+
+        private Builder(BulkByScrollTaskStatus o) {
+            this.batches = o.batches;
+            this.canceled = o.canceled;
+            this.created = o.created;
+            this.deleted = o.deleted;
+            this.noops = o.noops;
+            this.requestsPerSecond = o.requestsPerSecond;
+            this.retries = o.retries;
+            this.sliceId = o.sliceId;
+            this.slices = _listCopy(o.slices);
+            this.throttled = o.throttled;
+            this.throttledMillis = o.throttledMillis;
+            this.throttledUntil = o.throttledUntil;
+            this.throttledUntilMillis = o.throttledUntilMillis;
+            this.total = o.total;
+            this.updated = o.updated;
+            this.versionConflicts = o.versionConflicts;
+        }
+
+        private Builder(Builder o) {
+            this.batches = o.batches;
+            this.canceled = o.canceled;
+            this.created = o.created;
+            this.deleted = o.deleted;
+            this.noops = o.noops;
+            this.requestsPerSecond = o.requestsPerSecond;
+            this.retries = o.retries;
+            this.sliceId = o.sliceId;
+            this.slices = _listCopy(o.slices);
+            this.throttled = o.throttled;
+            this.throttledMillis = o.throttledMillis;
+            this.throttledUntil = o.throttledUntil;
+            this.throttledUntilMillis = o.throttledUntilMillis;
+            this.total = o.total;
+            this.updated = o.updated;
+            this.versionConflicts = o.versionConflicts;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - The number of scroll responses pulled back by the reindex operation.
          * <p>
          * API name: {@code batches}
          * </p>
          */
+        @Nonnull
         public final Builder batches(int value) {
             this.batches = value;
             return this;
@@ -390,6 +453,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
         /**
          * API name: {@code canceled}
          */
+        @Nonnull
         public final Builder canceled(@Nullable String value) {
             this.canceled = value;
             return this;
@@ -401,6 +465,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
          * API name: {@code created}
          * </p>
          */
+        @Nonnull
         public final Builder created(@Nullable Long value) {
             this.created = value;
             return this;
@@ -412,6 +477,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
          * API name: {@code deleted}
          * </p>
          */
+        @Nonnull
         public final Builder deleted(long value) {
             this.deleted = value;
             return this;
@@ -423,6 +489,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
          * API name: {@code noops}
          * </p>
          */
+        @Nonnull
         public final Builder noops(long value) {
             this.noops = value;
             return this;
@@ -434,6 +501,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
          * API name: {@code requests_per_second}
          * </p>
          */
+        @Nonnull
         public final Builder requestsPerSecond(float value) {
             this.requestsPerSecond = value;
             return this;
@@ -442,6 +510,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
         /**
          * Required - API name: {@code retries}
          */
+        @Nonnull
         public final Builder retries(Retries value) {
             this.retries = value;
             return this;
@@ -450,6 +519,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
         /**
          * Required - API name: {@code retries}
          */
+        @Nonnull
         public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
             return retries(fn.apply(new Retries.Builder()).build());
         }
@@ -457,6 +527,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
         /**
          * API name: {@code slice_id}
          */
+        @Nonnull
         public final Builder sliceId(@Nullable Integer value) {
             this.sliceId = value;
             return this;
@@ -469,6 +540,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>slices</code>.
          * </p>
          */
+        @Nonnull
         public final Builder slices(List<BulkByScrollTaskStatusOrException> list) {
             this.slices = _listAddAll(this.slices, list);
             return this;
@@ -481,6 +553,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
          * Adds one or more values to <code>slices</code>.
          * </p>
          */
+        @Nonnull
         public final Builder slices(BulkByScrollTaskStatusOrException value, BulkByScrollTaskStatusOrException... values) {
             this.slices = _listAdd(this.slices, value, values);
             return this;
@@ -493,6 +566,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
          * Adds a value to <code>slices</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder slices(
             Function<BulkByScrollTaskStatusOrException.Builder, ObjectBuilder<BulkByScrollTaskStatusOrException>> fn
         ) {
@@ -502,6 +576,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
         /**
          * API name: {@code throttled}
          */
+        @Nonnull
         public final Builder throttled(@Nullable Time value) {
             this.throttled = value;
             return this;
@@ -510,6 +585,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
         /**
          * API name: {@code throttled}
          */
+        @Nonnull
         public final Builder throttled(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return throttled(fn.apply(new Time.Builder()).build());
         }
@@ -517,6 +593,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
         /**
          * Required - API name: {@code throttled_millis}
          */
+        @Nonnull
         public final Builder throttledMillis(long value) {
             this.throttledMillis = value;
             return this;
@@ -525,6 +602,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
         /**
          * API name: {@code throttled_until}
          */
+        @Nonnull
         public final Builder throttledUntil(@Nullable Time value) {
             this.throttledUntil = value;
             return this;
@@ -533,6 +611,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
         /**
          * API name: {@code throttled_until}
          */
+        @Nonnull
         public final Builder throttledUntil(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return throttledUntil(fn.apply(new Time.Builder()).build());
         }
@@ -540,6 +619,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
         /**
          * Required - API name: {@code throttled_until_millis}
          */
+        @Nonnull
         public final Builder throttledUntilMillis(long value) {
             this.throttledUntilMillis = value;
             return this;
@@ -551,6 +631,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
          * API name: {@code total}
          * </p>
          */
+        @Nonnull
         public final Builder total(long value) {
             this.total = value;
             return this;
@@ -562,6 +643,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
          * API name: {@code updated}
          * </p>
          */
+        @Nonnull
         public final Builder updated(@Nullable Long value) {
             this.updated = value;
             return this;
@@ -573,6 +655,7 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
          * API name: {@code version_conflicts}
          * </p>
          */
+        @Nonnull
         public final Builder versionConflicts(long value) {
             this.versionConflicts = value;
             return this;
@@ -583,6 +666,8 @@ public class BulkByScrollTaskStatus implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public BulkByScrollTaskStatus build() {
             _checkSingleUse();
 

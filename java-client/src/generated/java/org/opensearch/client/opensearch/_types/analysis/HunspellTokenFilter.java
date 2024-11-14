@@ -48,13 +48,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.HunspellTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class HunspellTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<HunspellTokenFilter.Builder, HunspellTokenFilter> {
 
     @Nullable
     private final Boolean dedup;
@@ -146,10 +151,21 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link HunspellTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<HunspellTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, HunspellTokenFilter> {
         @Nullable
         private Boolean dedup;
         @Nullable
@@ -158,9 +174,40 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
         @Nullable
         private Boolean longestOnly;
 
+        public Builder() {}
+
+        private Builder(HunspellTokenFilter o) {
+            super(o);
+            this.dedup = o.dedup;
+            this.dictionary = o.dictionary;
+            this.locale = o.locale;
+            this.longestOnly = o.longestOnly;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.dedup = o.dedup;
+            this.dictionary = o.dictionary;
+            this.locale = o.locale;
+            this.longestOnly = o.longestOnly;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code dedup}
          */
+        @Nonnull
         public final Builder dedup(@Nullable Boolean value) {
             this.dedup = value;
             return this;
@@ -169,6 +216,7 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
         /**
          * API name: {@code dictionary}
          */
+        @Nonnull
         public final Builder dictionary(@Nullable String value) {
             this.dictionary = value;
             return this;
@@ -177,6 +225,7 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
         /**
          * Required - API name: {@code locale}
          */
+        @Nonnull
         public final Builder locale(String value) {
             this.locale = value;
             return this;
@@ -185,13 +234,9 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
         /**
          * API name: {@code longest_only}
          */
+        @Nonnull
         public final Builder longestOnly(@Nullable Boolean value) {
             this.longestOnly = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -200,6 +245,8 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public HunspellTokenFilter build() {
             _checkSingleUse();
 

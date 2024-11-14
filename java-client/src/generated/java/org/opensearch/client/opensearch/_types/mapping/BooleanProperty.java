@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -47,13 +48,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch.indices.NumericFielddata;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.BooleanProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class BooleanProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class BooleanProperty extends DocValuesPropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<BooleanProperty.Builder, BooleanProperty> {
 
     @Nullable
     private final Double boost;
@@ -147,10 +153,23 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link BooleanProperty}.
      */
-    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<BooleanProperty> {
+    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, BooleanProperty> {
         @Nullable
         private Double boost;
         @Nullable
@@ -160,9 +179,40 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
         @Nullable
         private Boolean nullValue;
 
+        public Builder() {}
+
+        private Builder(BooleanProperty o) {
+            super(o);
+            this.boost = o.boost;
+            this.fielddata = o.fielddata;
+            this.index = o.index;
+            this.nullValue = o.nullValue;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.boost = o.boost;
+            this.fielddata = o.fielddata;
+            this.index = o.index;
+            this.nullValue = o.nullValue;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code boost}
          */
+        @Nonnull
         public final Builder boost(@Nullable Double value) {
             this.boost = value;
             return this;
@@ -171,6 +221,7 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
         /**
          * API name: {@code fielddata}
          */
+        @Nonnull
         public final Builder fielddata(@Nullable NumericFielddata value) {
             this.fielddata = value;
             return this;
@@ -179,6 +230,7 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
         /**
          * API name: {@code fielddata}
          */
+        @Nonnull
         public final Builder fielddata(Function<NumericFielddata.Builder, ObjectBuilder<NumericFielddata>> fn) {
             return fielddata(fn.apply(new NumericFielddata.Builder()).build());
         }
@@ -186,6 +238,7 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
         /**
          * API name: {@code index}
          */
+        @Nonnull
         public final Builder index(@Nullable Boolean value) {
             this.index = value;
             return this;
@@ -194,13 +247,9 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
         /**
          * API name: {@code null_value}
          */
+        @Nonnull
         public final Builder nullValue(@Nullable Boolean value) {
             this.nullValue = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -209,6 +258,8 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public BooleanProperty build() {
             _checkSingleUse();
 

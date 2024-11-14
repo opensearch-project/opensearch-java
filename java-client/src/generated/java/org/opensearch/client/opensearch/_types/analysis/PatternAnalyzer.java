@@ -50,14 +50,20 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.PatternAnalyzer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PatternAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
+public class PatternAnalyzer
+    implements
+        AnalyzerVariant,
+        PlainJsonSerializable,
+        ToCopyableBuilder<PatternAnalyzer.Builder, PatternAnalyzer> {
 
     @Nullable
     private final String flags;
@@ -178,10 +184,21 @@ public class PatternAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PatternAnalyzer}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PatternAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PatternAnalyzer> {
         @Nullable
         private String flags;
         @Nullable
@@ -192,9 +209,34 @@ public class PatternAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
         @Nullable
         private String version;
 
+        public Builder() {}
+
+        private Builder(PatternAnalyzer o) {
+            this.flags = o.flags;
+            this.lowercase = o.lowercase;
+            this.pattern = o.pattern;
+            this.stopwords = _listCopy(o.stopwords);
+            this.version = o.version;
+        }
+
+        private Builder(Builder o) {
+            this.flags = o.flags;
+            this.lowercase = o.lowercase;
+            this.pattern = o.pattern;
+            this.stopwords = _listCopy(o.stopwords);
+            this.version = o.version;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code flags}
          */
+        @Nonnull
         public final Builder flags(@Nullable String value) {
             this.flags = value;
             return this;
@@ -203,6 +245,7 @@ public class PatternAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
         /**
          * API name: {@code lowercase}
          */
+        @Nonnull
         public final Builder lowercase(@Nullable Boolean value) {
             this.lowercase = value;
             return this;
@@ -211,6 +254,7 @@ public class PatternAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
         /**
          * Required - API name: {@code pattern}
          */
+        @Nonnull
         public final Builder pattern(String value) {
             this.pattern = value;
             return this;
@@ -223,6 +267,7 @@ public class PatternAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>stopwords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stopwords(List<String> list) {
             this.stopwords = _listAddAll(this.stopwords, list);
             return this;
@@ -235,6 +280,7 @@ public class PatternAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          * Adds one or more values to <code>stopwords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stopwords(String value, String... values) {
             this.stopwords = _listAdd(this.stopwords, value, values);
             return this;
@@ -243,6 +289,7 @@ public class PatternAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
         /**
          * API name: {@code version}
          */
+        @Nonnull
         public final Builder version(@Nullable String value) {
             this.version = value;
             return this;
@@ -253,6 +300,8 @@ public class PatternAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PatternAnalyzer build() {
             _checkSingleUse();
 

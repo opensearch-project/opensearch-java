@@ -52,8 +52,10 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexTemplate
 
@@ -62,7 +64,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IndexTemplate implements PlainJsonSerializable {
+public class IndexTemplate implements PlainJsonSerializable, ToCopyableBuilder<IndexTemplate.Builder, IndexTemplate> {
 
     @Nullable
     private final Boolean allowAutoCreate;
@@ -243,10 +245,21 @@ public class IndexTemplate implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IndexTemplate}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexTemplate> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IndexTemplate> {
         @Nullable
         private Boolean allowAutoCreate;
         @Nullable
@@ -263,9 +276,40 @@ public class IndexTemplate implements PlainJsonSerializable {
         @Nullable
         private Long version;
 
+        public Builder() {}
+
+        private Builder(IndexTemplate o) {
+            this.allowAutoCreate = o.allowAutoCreate;
+            this.composedOf = _listCopy(o.composedOf);
+            this.dataStream = o.dataStream;
+            this.indexPatterns = _listCopy(o.indexPatterns);
+            this.meta = _mapCopy(o.meta);
+            this.priority = o.priority;
+            this.template = o.template;
+            this.version = o.version;
+        }
+
+        private Builder(Builder o) {
+            this.allowAutoCreate = o.allowAutoCreate;
+            this.composedOf = _listCopy(o.composedOf);
+            this.dataStream = o.dataStream;
+            this.indexPatterns = _listCopy(o.indexPatterns);
+            this.meta = _mapCopy(o.meta);
+            this.priority = o.priority;
+            this.template = o.template;
+            this.version = o.version;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code allow_auto_create}
          */
+        @Nonnull
         public final Builder allowAutoCreate(@Nullable Boolean value) {
             this.allowAutoCreate = value;
             return this;
@@ -282,6 +326,7 @@ public class IndexTemplate implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>composedOf</code>.
          * </p>
          */
+        @Nonnull
         public final Builder composedOf(List<String> list) {
             this.composedOf = _listAddAll(this.composedOf, list);
             return this;
@@ -298,6 +343,7 @@ public class IndexTemplate implements PlainJsonSerializable {
          * Adds one or more values to <code>composedOf</code>.
          * </p>
          */
+        @Nonnull
         public final Builder composedOf(String value, String... values) {
             this.composedOf = _listAdd(this.composedOf, value, values);
             return this;
@@ -306,6 +352,7 @@ public class IndexTemplate implements PlainJsonSerializable {
         /**
          * API name: {@code data_stream}
          */
+        @Nonnull
         public final Builder dataStream(@Nullable IndexTemplateDataStreamConfiguration value) {
             this.dataStream = value;
             return this;
@@ -314,6 +361,7 @@ public class IndexTemplate implements PlainJsonSerializable {
         /**
          * API name: {@code data_stream}
          */
+        @Nonnull
         public final Builder dataStream(
             Function<IndexTemplateDataStreamConfiguration.Builder, ObjectBuilder<IndexTemplateDataStreamConfiguration>> fn
         ) {
@@ -327,6 +375,7 @@ public class IndexTemplate implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
          * </p>
          */
+        @Nonnull
         public final Builder indexPatterns(List<String> list) {
             this.indexPatterns = _listAddAll(this.indexPatterns, list);
             return this;
@@ -339,6 +388,7 @@ public class IndexTemplate implements PlainJsonSerializable {
          * Adds one or more values to <code>indexPatterns</code>.
          * </p>
          */
+        @Nonnull
         public final Builder indexPatterns(String value, String... values) {
             this.indexPatterns = _listAdd(this.indexPatterns, value, values);
             return this;
@@ -351,6 +401,7 @@ public class IndexTemplate implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>meta</code>.
          * </p>
          */
+        @Nonnull
         public final Builder meta(Map<String, JsonData> map) {
             this.meta = _mapPutAll(this.meta, map);
             return this;
@@ -363,6 +414,7 @@ public class IndexTemplate implements PlainJsonSerializable {
          * Adds an entry to <code>meta</code>.
          * </p>
          */
+        @Nonnull
         public final Builder meta(String key, JsonData value) {
             this.meta = _mapPut(this.meta, key, value);
             return this;
@@ -376,6 +428,7 @@ public class IndexTemplate implements PlainJsonSerializable {
          * API name: {@code priority}
          * </p>
          */
+        @Nonnull
         public final Builder priority(@Nullable Long value) {
             this.priority = value;
             return this;
@@ -384,6 +437,7 @@ public class IndexTemplate implements PlainJsonSerializable {
         /**
          * API name: {@code template}
          */
+        @Nonnull
         public final Builder template(@Nullable IndexTemplateSummary value) {
             this.template = value;
             return this;
@@ -392,6 +446,7 @@ public class IndexTemplate implements PlainJsonSerializable {
         /**
          * API name: {@code template}
          */
+        @Nonnull
         public final Builder template(Function<IndexTemplateSummary.Builder, ObjectBuilder<IndexTemplateSummary>> fn) {
             return template(fn.apply(new IndexTemplateSummary.Builder()).build());
         }
@@ -399,6 +454,7 @@ public class IndexTemplate implements PlainJsonSerializable {
         /**
          * API name: {@code version}
          */
+        @Nonnull
         public final Builder version(@Nullable Long value) {
             this.version = value;
             return this;
@@ -409,6 +465,8 @@ public class IndexTemplate implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IndexTemplate build() {
             _checkSingleUse();
 

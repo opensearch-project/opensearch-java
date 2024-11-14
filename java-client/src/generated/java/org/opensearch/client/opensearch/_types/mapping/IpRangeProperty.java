@@ -39,18 +39,24 @@ package org.opensearch.client.opensearch._types.mapping;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.IpRangeProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IpRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class IpRangeProperty extends RangePropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<IpRangeProperty.Builder, IpRangeProperty> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -77,12 +83,40 @@ public class IpRangeProperty extends RangePropertyBase implements PropertyVarian
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IpRangeProperty}.
      */
-    public static class Builder extends RangePropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<IpRangeProperty> {
+    public static class Builder extends RangePropertyBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, IpRangeProperty> {
+
+        public Builder() {}
+
+        private Builder(IpRangeProperty o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -92,6 +126,8 @@ public class IpRangeProperty extends RangePropertyBase implements PropertyVarian
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IpRangeProperty build() {
             _checkSingleUse();
 

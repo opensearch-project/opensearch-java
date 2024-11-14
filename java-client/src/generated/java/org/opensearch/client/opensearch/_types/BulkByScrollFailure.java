@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -48,14 +49,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.BulkByScrollFailure
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class BulkByScrollFailure implements PlainJsonSerializable {
+public class BulkByScrollFailure implements PlainJsonSerializable, ToCopyableBuilder<BulkByScrollFailure.Builder, BulkByScrollFailure> {
 
     @Nullable
     private final ErrorCause cause;
@@ -195,10 +198,21 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link BulkByScrollFailure}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkByScrollFailure> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, BulkByScrollFailure> {
         @Nullable
         private ErrorCause cause;
         @Nullable
@@ -213,9 +227,38 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
         private Integer shard;
         private Integer status;
 
+        public Builder() {}
+
+        private Builder(BulkByScrollFailure o) {
+            this.cause = o.cause;
+            this.id = o.id;
+            this.index = o.index;
+            this.node = o.node;
+            this.reason = o.reason;
+            this.shard = o.shard;
+            this.status = o.status;
+        }
+
+        private Builder(Builder o) {
+            this.cause = o.cause;
+            this.id = o.id;
+            this.index = o.index;
+            this.node = o.node;
+            this.reason = o.reason;
+            this.shard = o.shard;
+            this.status = o.status;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code cause}
          */
+        @Nonnull
         public final Builder cause(@Nullable ErrorCause value) {
             this.cause = value;
             return this;
@@ -224,6 +267,7 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
         /**
          * API name: {@code cause}
          */
+        @Nonnull
         public final Builder cause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return cause(fn.apply(new ErrorCause.Builder()).build());
         }
@@ -231,6 +275,7 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
         /**
          * API name: {@code id}
          */
+        @Nonnull
         public final Builder id(@Nullable String value) {
             this.id = value;
             return this;
@@ -239,6 +284,7 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
         /**
          * API name: {@code index}
          */
+        @Nonnull
         public final Builder index(@Nullable String value) {
             this.index = value;
             return this;
@@ -247,6 +293,7 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
         /**
          * API name: {@code node}
          */
+        @Nonnull
         public final Builder node(@Nullable String value) {
             this.node = value;
             return this;
@@ -255,6 +302,7 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
         /**
          * API name: {@code reason}
          */
+        @Nonnull
         public final Builder reason(@Nullable ErrorCause value) {
             this.reason = value;
             return this;
@@ -263,6 +311,7 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
         /**
          * API name: {@code reason}
          */
+        @Nonnull
         public final Builder reason(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return reason(fn.apply(new ErrorCause.Builder()).build());
         }
@@ -270,6 +319,7 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
         /**
          * API name: {@code shard}
          */
+        @Nonnull
         public final Builder shard(@Nullable Integer value) {
             this.shard = value;
             return this;
@@ -278,6 +328,7 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
         /**
          * Required - API name: {@code status}
          */
+        @Nonnull
         public final Builder status(int value) {
             this.status = value;
             return this;
@@ -288,6 +339,8 @@ public class BulkByScrollFailure implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public BulkByScrollFailure build() {
             _checkSingleUse();
 

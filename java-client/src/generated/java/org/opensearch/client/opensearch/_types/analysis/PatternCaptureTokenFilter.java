@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.PatternCaptureTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class PatternCaptureTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<PatternCaptureTokenFilter.Builder, PatternCaptureTokenFilter> {
 
     @Nonnull
     private final List<String> patterns;
@@ -117,13 +122,52 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PatternCaptureTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<PatternCaptureTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, PatternCaptureTokenFilter> {
         private List<String> patterns;
         @Nullable
         private Boolean preserveOriginal;
+
+        public Builder() {}
+
+        private Builder(PatternCaptureTokenFilter o) {
+            super(o);
+            this.patterns = _listCopy(o.patterns);
+            this.preserveOriginal = o.preserveOriginal;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.patterns = _listCopy(o.patterns);
+            this.preserveOriginal = o.preserveOriginal;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code patterns}
@@ -132,6 +176,7 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
          * Adds all elements of <code>list</code> to <code>patterns</code>.
          * </p>
          */
+        @Nonnull
         public final Builder patterns(List<String> list) {
             this.patterns = _listAddAll(this.patterns, list);
             return this;
@@ -144,6 +189,7 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
          * Adds one or more values to <code>patterns</code>.
          * </p>
          */
+        @Nonnull
         public final Builder patterns(String value, String... values) {
             this.patterns = _listAdd(this.patterns, value, values);
             return this;
@@ -152,13 +198,9 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
         /**
          * API name: {@code preserve_original}
          */
+        @Nonnull
         public final Builder preserveOriginal(@Nullable Boolean value) {
             this.preserveOriginal = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -167,6 +209,8 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PatternCaptureTokenFilter build() {
             _checkSingleUse();
 

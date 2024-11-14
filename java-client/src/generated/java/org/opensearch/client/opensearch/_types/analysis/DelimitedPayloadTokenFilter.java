@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.DelimitedPayloadTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DelimitedPayloadTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class DelimitedPayloadTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<DelimitedPayloadTokenFilter.Builder, DelimitedPayloadTokenFilter> {
 
     @Nullable
     private final String delimiter;
@@ -114,18 +120,58 @@ public class DelimitedPayloadTokenFilter extends TokenFilterBase implements Toke
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DelimitedPayloadTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<DelimitedPayloadTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, DelimitedPayloadTokenFilter> {
         @Nullable
         private String delimiter;
         @Nullable
         private DelimitedPayloadEncoding encoding;
 
+        public Builder() {}
+
+        private Builder(DelimitedPayloadTokenFilter o) {
+            super(o);
+            this.delimiter = o.delimiter;
+            this.encoding = o.encoding;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.delimiter = o.delimiter;
+            this.encoding = o.encoding;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code delimiter}
          */
+        @Nonnull
         public final Builder delimiter(@Nullable String value) {
             this.delimiter = value;
             return this;
@@ -134,13 +180,9 @@ public class DelimitedPayloadTokenFilter extends TokenFilterBase implements Toke
         /**
          * API name: {@code encoding}
          */
+        @Nonnull
         public final Builder encoding(@Nullable DelimitedPayloadEncoding value) {
             this.encoding = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -149,6 +191,8 @@ public class DelimitedPayloadTokenFilter extends TokenFilterBase implements Toke
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DelimitedPayloadTokenFilter build() {
             _checkSingleUse();
 

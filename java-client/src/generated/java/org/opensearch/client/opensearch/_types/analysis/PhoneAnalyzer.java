@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -47,14 +48,16 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.PhoneAnalyzer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PhoneAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
+public class PhoneAnalyzer implements AnalyzerVariant, PlainJsonSerializable, ToCopyableBuilder<PhoneAnalyzer.Builder, PhoneAnalyzer> {
 
     @Nullable
     private final String phoneRegion;
@@ -108,12 +111,39 @@ public class PhoneAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PhoneAnalyzer}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PhoneAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PhoneAnalyzer> {
         @Nullable
         private String phoneRegion;
+
+        public Builder() {}
+
+        private Builder(PhoneAnalyzer o) {
+            this.phoneRegion = o.phoneRegion;
+        }
+
+        private Builder(Builder o) {
+            this.phoneRegion = o.phoneRegion;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Optional ISO 3166 country code, defaults to &quot;ZZ&quot; (unknown region).
@@ -121,6 +151,7 @@ public class PhoneAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          * API name: {@code phone-region}
          * </p>
          */
+        @Nonnull
         public final Builder phoneRegion(@Nullable String value) {
             this.phoneRegion = value;
             return this;
@@ -131,6 +162,8 @@ public class PhoneAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PhoneAnalyzer build() {
             _checkSingleUse();
 

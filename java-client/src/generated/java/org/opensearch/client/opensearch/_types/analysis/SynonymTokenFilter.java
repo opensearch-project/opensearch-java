@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.SynonymTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class SynonymTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<SynonymTokenFilter.Builder, SynonymTokenFilter> {
 
     @Nullable
     private final Boolean expand;
@@ -204,10 +209,21 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SynonymTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<SynonymTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, SynonymTokenFilter> {
         @Nullable
         private Boolean expand;
         @Nullable
@@ -223,9 +239,46 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
         @Nullable
         private Boolean updateable;
 
+        public Builder() {}
+
+        private Builder(SynonymTokenFilter o) {
+            super(o);
+            this.expand = o.expand;
+            this.format = o.format;
+            this.lenient = o.lenient;
+            this.synonyms = _listCopy(o.synonyms);
+            this.synonymsPath = o.synonymsPath;
+            this.tokenizer = o.tokenizer;
+            this.updateable = o.updateable;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.expand = o.expand;
+            this.format = o.format;
+            this.lenient = o.lenient;
+            this.synonyms = _listCopy(o.synonyms);
+            this.synonymsPath = o.synonymsPath;
+            this.tokenizer = o.tokenizer;
+            this.updateable = o.updateable;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code expand}
          */
+        @Nonnull
         public final Builder expand(@Nullable Boolean value) {
             this.expand = value;
             return this;
@@ -234,6 +287,7 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
         /**
          * API name: {@code format}
          */
+        @Nonnull
         public final Builder format(@Nullable SynonymFormat value) {
             this.format = value;
             return this;
@@ -242,6 +296,7 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
         /**
          * API name: {@code lenient}
          */
+        @Nonnull
         public final Builder lenient(@Nullable Boolean value) {
             this.lenient = value;
             return this;
@@ -254,6 +309,7 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
          * Adds all elements of <code>list</code> to <code>synonyms</code>.
          * </p>
          */
+        @Nonnull
         public final Builder synonyms(List<String> list) {
             this.synonyms = _listAddAll(this.synonyms, list);
             return this;
@@ -266,6 +322,7 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
          * Adds one or more values to <code>synonyms</code>.
          * </p>
          */
+        @Nonnull
         public final Builder synonyms(String value, String... values) {
             this.synonyms = _listAdd(this.synonyms, value, values);
             return this;
@@ -274,6 +331,7 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
         /**
          * API name: {@code synonyms_path}
          */
+        @Nonnull
         public final Builder synonymsPath(@Nullable String value) {
             this.synonymsPath = value;
             return this;
@@ -282,6 +340,7 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
         /**
          * API name: {@code tokenizer}
          */
+        @Nonnull
         public final Builder tokenizer(@Nullable String value) {
             this.tokenizer = value;
             return this;
@@ -290,13 +349,9 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
         /**
          * API name: {@code updateable}
          */
+        @Nonnull
         public final Builder updateable(@Nullable Boolean value) {
             this.updateable = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -305,6 +360,8 @@ public class SynonymTokenFilter extends TokenFilterBase implements TokenFilterDe
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SynonymTokenFilter build() {
             _checkSingleUse();
 

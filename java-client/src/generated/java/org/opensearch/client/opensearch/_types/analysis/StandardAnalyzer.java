@@ -50,14 +50,20 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.StandardAnalyzer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class StandardAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
+public class StandardAnalyzer
+    implements
+        AnalyzerVariant,
+        PlainJsonSerializable,
+        ToCopyableBuilder<StandardAnalyzer.Builder, StandardAnalyzer> {
 
     @Nullable
     private final Integer maxTokenLength;
@@ -129,18 +135,48 @@ public class StandardAnalyzer implements AnalyzerVariant, PlainJsonSerializable 
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link StandardAnalyzer}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StandardAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, StandardAnalyzer> {
         @Nullable
         private Integer maxTokenLength;
         @Nullable
         private List<String> stopwords;
 
+        public Builder() {}
+
+        private Builder(StandardAnalyzer o) {
+            this.maxTokenLength = o.maxTokenLength;
+            this.stopwords = _listCopy(o.stopwords);
+        }
+
+        private Builder(Builder o) {
+            this.maxTokenLength = o.maxTokenLength;
+            this.stopwords = _listCopy(o.stopwords);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code max_token_length}
          */
+        @Nonnull
         public final Builder maxTokenLength(@Nullable Integer value) {
             this.maxTokenLength = value;
             return this;
@@ -153,6 +189,7 @@ public class StandardAnalyzer implements AnalyzerVariant, PlainJsonSerializable 
          * Adds all elements of <code>list</code> to <code>stopwords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stopwords(List<String> list) {
             this.stopwords = _listAddAll(this.stopwords, list);
             return this;
@@ -165,6 +202,7 @@ public class StandardAnalyzer implements AnalyzerVariant, PlainJsonSerializable 
          * Adds one or more values to <code>stopwords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stopwords(String value, String... values) {
             this.stopwords = _listAdd(this.stopwords, value, values);
             return this;
@@ -175,6 +213,8 @@ public class StandardAnalyzer implements AnalyzerVariant, PlainJsonSerializable 
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public StandardAnalyzer build() {
             _checkSingleUse();
 

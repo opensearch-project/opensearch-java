@@ -49,8 +49,10 @@ import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: dangling_indices.import_dangling_index.Request
 
@@ -58,7 +60,9 @@ import org.opensearch.client.util.ObjectBuilderBase;
  * Imports the specified dangling index.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ImportDanglingIndexRequest extends RequestBase {
+public class ImportDanglingIndexRequest extends RequestBase
+    implements
+        ToCopyableBuilder<ImportDanglingIndexRequest.Builder, ImportDanglingIndexRequest> {
 
     private final boolean acceptDataLoss;
 
@@ -92,7 +96,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
     }
 
     /**
-     * Required - Must be set to true in order to import the dangling index
+     * Required - Must be set to true in order to import the dangling index.
      * <p>
      * API name: {@code accept_data_loss}
      * </p>
@@ -113,7 +117,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
     }
 
     /**
-     * Required - The UUID of the dangling index
+     * Required - The UUID of the dangling index.
      * <p>
      * API name: {@code index_uuid}
      * </p>
@@ -124,7 +128,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
     }
 
     /**
-     * Specify timeout for connection to master
+     * Specify timeout for connection to cluster manager.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -136,7 +140,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
     }
 
     /**
-     * Explicit operation timeout
+     * Explicit operation timeout.
      * <p>
      * API name: {@code timeout}
      * </p>
@@ -148,10 +152,21 @@ public class ImportDanglingIndexRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ImportDanglingIndexRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ImportDanglingIndexRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ImportDanglingIndexRequest> {
         private Boolean acceptDataLoss;
         @Nullable
         private Time clusterManagerTimeout;
@@ -161,12 +176,37 @@ public class ImportDanglingIndexRequest extends RequestBase {
         @Nullable
         private Time timeout;
 
+        public Builder() {}
+
+        private Builder(ImportDanglingIndexRequest o) {
+            this.acceptDataLoss = o.acceptDataLoss;
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.indexUuid = o.indexUuid;
+            this.masterTimeout = o.masterTimeout;
+            this.timeout = o.timeout;
+        }
+
+        private Builder(Builder o) {
+            this.acceptDataLoss = o.acceptDataLoss;
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.indexUuid = o.indexUuid;
+            this.masterTimeout = o.masterTimeout;
+            this.timeout = o.timeout;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
-         * Required - Must be set to true in order to import the dangling index
+         * Required - Must be set to true in order to import the dangling index.
          * <p>
          * API name: {@code accept_data_loss}
          * </p>
          */
+        @Nonnull
         public final Builder acceptDataLoss(boolean value) {
             this.acceptDataLoss = value;
             return this;
@@ -178,6 +218,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
@@ -189,61 +230,67 @@ public class ImportDanglingIndexRequest extends RequestBase {
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
-         * Required - The UUID of the dangling index
+         * Required - The UUID of the dangling index.
          * <p>
          * API name: {@code index_uuid}
          * </p>
          */
+        @Nonnull
         public final Builder indexUuid(String value) {
             this.indexUuid = value;
             return this;
         }
 
         /**
-         * Specify timeout for connection to master
+         * Specify timeout for connection to cluster manager.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(@Nullable Time value) {
             this.masterTimeout = value;
             return this;
         }
 
         /**
-         * Specify timeout for connection to master
+         * Specify timeout for connection to cluster manager.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return masterTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
-         * Explicit operation timeout
+         * Explicit operation timeout.
          * <p>
          * API name: {@code timeout}
          * </p>
          */
+        @Nonnull
         public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
             return this;
         }
 
         /**
-         * Explicit operation timeout
+         * Explicit operation timeout.
          * <p>
          * API name: {@code timeout}
          * </p>
          */
+        @Nonnull
         public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return timeout(fn.apply(new Time.Builder()).build());
         }
@@ -253,6 +300,8 @@ public class ImportDanglingIndexRequest extends RequestBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ImportDanglingIndexRequest build() {
             _checkSingleUse();
 

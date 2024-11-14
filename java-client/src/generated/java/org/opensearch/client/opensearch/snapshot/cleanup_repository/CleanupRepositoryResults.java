@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch.snapshot.cleanup_repository;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -46,14 +47,19 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.cleanup_repository.CleanupRepositoryResults
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CleanupRepositoryResults implements PlainJsonSerializable {
+public class CleanupRepositoryResults
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<CleanupRepositoryResults.Builder, CleanupRepositoryResults> {
 
     private final long deletedBlobs;
 
@@ -110,12 +116,41 @@ public class CleanupRepositoryResults implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CleanupRepositoryResults}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryResults> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CleanupRepositoryResults> {
         private Long deletedBlobs;
         private Long deletedBytes;
+
+        public Builder() {}
+
+        private Builder(CleanupRepositoryResults o) {
+            this.deletedBlobs = o.deletedBlobs;
+            this.deletedBytes = o.deletedBytes;
+        }
+
+        private Builder(Builder o) {
+            this.deletedBlobs = o.deletedBlobs;
+            this.deletedBytes = o.deletedBytes;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - Number of binary large objects (blobs) removed during cleanup.
@@ -123,6 +158,7 @@ public class CleanupRepositoryResults implements PlainJsonSerializable {
          * API name: {@code deleted_blobs}
          * </p>
          */
+        @Nonnull
         public final Builder deletedBlobs(long value) {
             this.deletedBlobs = value;
             return this;
@@ -134,6 +170,7 @@ public class CleanupRepositoryResults implements PlainJsonSerializable {
          * API name: {@code deleted_bytes}
          * </p>
          */
+        @Nonnull
         public final Builder deletedBytes(long value) {
             this.deletedBytes = value;
             return this;
@@ -144,6 +181,8 @@ public class CleanupRepositoryResults implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CleanupRepositoryResults build() {
             _checkSingleUse();
 

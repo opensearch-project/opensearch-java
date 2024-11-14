@@ -39,18 +39,24 @@ package org.opensearch.client.opensearch._types.mapping;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.IntegerRangeProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IntegerRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class IntegerRangeProperty extends RangePropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<IntegerRangeProperty.Builder, IntegerRangeProperty> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -77,12 +83,42 @@ public class IntegerRangeProperty extends RangePropertyBase implements PropertyV
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IntegerRangeProperty}.
      */
-    public static class Builder extends RangePropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<IntegerRangeProperty> {
+    public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, IntegerRangeProperty> {
+
+        public Builder() {}
+
+        private Builder(IntegerRangeProperty o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -92,6 +128,8 @@ public class IntegerRangeProperty extends RangePropertyBase implements PropertyV
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IntegerRangeProperty build() {
             _checkSingleUse();
 

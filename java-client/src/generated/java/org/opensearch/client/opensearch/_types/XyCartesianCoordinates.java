@@ -15,6 +15,7 @@ package org.opensearch.client.opensearch._types;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -22,14 +23,19 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.XyCartesianCoordinates
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class XyCartesianCoordinates implements PlainJsonSerializable {
+public class XyCartesianCoordinates
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<XyCartesianCoordinates.Builder, XyCartesianCoordinates> {
 
     private final double x;
 
@@ -86,12 +92,41 @@ public class XyCartesianCoordinates implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link XyCartesianCoordinates}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<XyCartesianCoordinates> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, XyCartesianCoordinates> {
         private Double x;
         private Double y;
+
+        public Builder() {}
+
+        private Builder(XyCartesianCoordinates o) {
+            this.x = o.x;
+            this.y = o.y;
+        }
+
+        private Builder(Builder o) {
+            this.x = o.x;
+            this.y = o.y;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - The x coordinate.
@@ -99,6 +134,7 @@ public class XyCartesianCoordinates implements PlainJsonSerializable {
          * API name: {@code x}
          * </p>
          */
+        @Nonnull
         public final Builder x(double value) {
             this.x = value;
             return this;
@@ -110,6 +146,7 @@ public class XyCartesianCoordinates implements PlainJsonSerializable {
          * API name: {@code y}
          * </p>
          */
+        @Nonnull
         public final Builder y(double value) {
             this.y = value;
             return this;
@@ -120,6 +157,8 @@ public class XyCartesianCoordinates implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public XyCartesianCoordinates build() {
             _checkSingleUse();
 

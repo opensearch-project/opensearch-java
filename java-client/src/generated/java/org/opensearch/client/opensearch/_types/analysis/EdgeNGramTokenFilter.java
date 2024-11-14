@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.EdgeNGramTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class EdgeNGramTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<EdgeNGramTokenFilter.Builder, EdgeNGramTokenFilter> {
 
     @Nullable
     private final Integer maxGram;
@@ -146,10 +152,21 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link EdgeNGramTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<EdgeNGramTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, EdgeNGramTokenFilter> {
         @Nullable
         private Integer maxGram;
         @Nullable
@@ -159,9 +176,40 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
         @Nullable
         private EdgeNGramSide side;
 
+        public Builder() {}
+
+        private Builder(EdgeNGramTokenFilter o) {
+            super(o);
+            this.maxGram = o.maxGram;
+            this.minGram = o.minGram;
+            this.preserveOriginal = o.preserveOriginal;
+            this.side = o.side;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.maxGram = o.maxGram;
+            this.minGram = o.minGram;
+            this.preserveOriginal = o.preserveOriginal;
+            this.side = o.side;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code max_gram}
          */
+        @Nonnull
         public final Builder maxGram(@Nullable Integer value) {
             this.maxGram = value;
             return this;
@@ -170,6 +218,7 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
         /**
          * API name: {@code min_gram}
          */
+        @Nonnull
         public final Builder minGram(@Nullable Integer value) {
             this.minGram = value;
             return this;
@@ -178,6 +227,7 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
         /**
          * API name: {@code preserve_original}
          */
+        @Nonnull
         public final Builder preserveOriginal(@Nullable Boolean value) {
             this.preserveOriginal = value;
             return this;
@@ -186,13 +236,9 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
         /**
          * API name: {@code side}
          */
+        @Nonnull
         public final Builder side(@Nullable EdgeNGramSide value) {
             this.side = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -201,6 +247,8 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public EdgeNGramTokenFilter build() {
             _checkSingleUse();
 

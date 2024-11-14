@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -47,13 +48,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.GeoLocation;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.GeoPointProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GeoPointProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class GeoPointProperty extends DocValuesPropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<GeoPointProperty.Builder, GeoPointProperty> {
 
     @Nullable
     private final Boolean ignoreMalformed;
@@ -130,10 +136,23 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GeoPointProperty}.
      */
-    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoPointProperty> {
+    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, GeoPointProperty> {
         @Nullable
         private Boolean ignoreMalformed;
         @Nullable
@@ -141,9 +160,38 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
         @Nullable
         private GeoLocation nullValue;
 
+        public Builder() {}
+
+        private Builder(GeoPointProperty o) {
+            super(o);
+            this.ignoreMalformed = o.ignoreMalformed;
+            this.ignoreZValue = o.ignoreZValue;
+            this.nullValue = o.nullValue;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.ignoreMalformed = o.ignoreMalformed;
+            this.ignoreZValue = o.ignoreZValue;
+            this.nullValue = o.nullValue;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code ignore_malformed}
          */
+        @Nonnull
         public final Builder ignoreMalformed(@Nullable Boolean value) {
             this.ignoreMalformed = value;
             return this;
@@ -152,6 +200,7 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
         /**
          * API name: {@code ignore_z_value}
          */
+        @Nonnull
         public final Builder ignoreZValue(@Nullable Boolean value) {
             this.ignoreZValue = value;
             return this;
@@ -160,6 +209,7 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
         /**
          * API name: {@code null_value}
          */
+        @Nonnull
         public final Builder nullValue(@Nullable GeoLocation value) {
             this.nullValue = value;
             return this;
@@ -168,13 +218,9 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
         /**
          * API name: {@code null_value}
          */
+        @Nonnull
         public final Builder nullValue(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
             return nullValue(fn.apply(new GeoLocation.Builder()).build());
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -182,6 +228,8 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GeoPointProperty build() {
             _checkSingleUse();
 

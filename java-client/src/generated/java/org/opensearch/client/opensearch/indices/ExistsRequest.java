@@ -54,8 +54,10 @@ import org.opensearch.client.transport.endpoints.BooleanEndpoint;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.exists.Request
 
@@ -63,7 +65,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  * Returns information about whether a particular index exists.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ExistsRequest extends RequestBase {
+public class ExistsRequest extends RequestBase implements ToCopyableBuilder<ExistsRequest.Builder, ExistsRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
@@ -199,10 +201,21 @@ public class ExistsRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ExistsRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ExistsRequest> {
         @Nullable
         private Boolean allowNoIndices;
         @Nullable
@@ -219,6 +232,36 @@ public class ExistsRequest extends RequestBase {
         @Nullable
         private Boolean local;
 
+        public Builder() {}
+
+        private Builder(ExistsRequest o) {
+            this.allowNoIndices = o.allowNoIndices;
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.expandWildcards = _listCopy(o.expandWildcards);
+            this.flatSettings = o.flatSettings;
+            this.ignoreUnavailable = o.ignoreUnavailable;
+            this.includeDefaults = o.includeDefaults;
+            this.index = _listCopy(o.index);
+            this.local = o.local;
+        }
+
+        private Builder(Builder o) {
+            this.allowNoIndices = o.allowNoIndices;
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.expandWildcards = _listCopy(o.expandWildcards);
+            this.flatSettings = o.flatSettings;
+            this.ignoreUnavailable = o.ignoreUnavailable;
+            this.includeDefaults = o.includeDefaults;
+            this.index = _listCopy(o.index);
+            this.local = o.local;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets
          * only missing or closed indexes. This behavior applies even if the request targets other open indexes.
@@ -226,6 +269,7 @@ public class ExistsRequest extends RequestBase {
          * API name: {@code allow_no_indices}
          * </p>
          */
+        @Nonnull
         public final Builder allowNoIndices(@Nullable Boolean value) {
             this.allowNoIndices = value;
             return this;
@@ -237,6 +281,7 @@ public class ExistsRequest extends RequestBase {
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
@@ -248,6 +293,7 @@ public class ExistsRequest extends RequestBase {
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
@@ -264,6 +310,7 @@ public class ExistsRequest extends RequestBase {
          * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
          * </p>
          */
+        @Nonnull
         public final Builder expandWildcards(List<ExpandWildcard> list) {
             this.expandWildcards = _listAddAll(this.expandWildcards, list);
             return this;
@@ -281,6 +328,7 @@ public class ExistsRequest extends RequestBase {
          * Adds one or more values to <code>expandWildcards</code>.
          * </p>
          */
+        @Nonnull
         public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
             this.expandWildcards = _listAdd(this.expandWildcards, value, values);
             return this;
@@ -292,6 +340,7 @@ public class ExistsRequest extends RequestBase {
          * API name: {@code flat_settings}
          * </p>
          */
+        @Nonnull
         public final Builder flatSettings(@Nullable Boolean value) {
             this.flatSettings = value;
             return this;
@@ -303,6 +352,7 @@ public class ExistsRequest extends RequestBase {
          * API name: {@code ignore_unavailable}
          * </p>
          */
+        @Nonnull
         public final Builder ignoreUnavailable(@Nullable Boolean value) {
             this.ignoreUnavailable = value;
             return this;
@@ -314,6 +364,7 @@ public class ExistsRequest extends RequestBase {
          * API name: {@code include_defaults}
          * </p>
          */
+        @Nonnull
         public final Builder includeDefaults(@Nullable Boolean value) {
             this.includeDefaults = value;
             return this;
@@ -329,6 +380,7 @@ public class ExistsRequest extends RequestBase {
          * Adds all elements of <code>list</code> to <code>index</code>.
          * </p>
          */
+        @Nonnull
         public final Builder index(List<String> list) {
             this.index = _listAddAll(this.index, list);
             return this;
@@ -344,6 +396,7 @@ public class ExistsRequest extends RequestBase {
          * Adds one or more values to <code>index</code>.
          * </p>
          */
+        @Nonnull
         public final Builder index(String value, String... values) {
             this.index = _listAdd(this.index, value, values);
             return this;
@@ -355,6 +408,7 @@ public class ExistsRequest extends RequestBase {
          * API name: {@code local}
          * </p>
          */
+        @Nonnull
         public final Builder local(@Nullable Boolean value) {
             this.local = value;
             return this;
@@ -365,6 +419,8 @@ public class ExistsRequest extends RequestBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ExistsRequest build() {
             _checkSingleUse();
 

@@ -56,8 +56,10 @@ import org.opensearch.client.opensearch._types.BulkByScrollTaskStatusOrException
 import org.opensearch.client.opensearch._types.Retries;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: tasks.Status
 
@@ -66,7 +68,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class Status implements PlainJsonSerializable {
+public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.Builder, Status> {
 
     @Nullable
     private final Integer batches;
@@ -440,10 +442,21 @@ public class Status implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link Status}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Status> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Status> {
         @Nullable
         private Integer batches;
         @Nullable
@@ -483,12 +496,65 @@ public class Status implements PlainJsonSerializable {
         @Nullable
         private Map<String, JsonData> metadata;
 
+        public Builder() {}
+
+        private Builder(Status o) {
+            this.batches = o.batches;
+            this.canceled = o.canceled;
+            this.created = o.created;
+            this.deleted = o.deleted;
+            this.noops = o.noops;
+            this.phase = o.phase;
+            this.requestsPerSecond = o.requestsPerSecond;
+            this.retries = o.retries;
+            this.sliceId = o.sliceId;
+            this.slices = _listCopy(o.slices);
+            this.state = o.state;
+            this.throttled = o.throttled;
+            this.throttledMillis = o.throttledMillis;
+            this.throttledUntil = o.throttledUntil;
+            this.throttledUntilMillis = o.throttledUntilMillis;
+            this.total = o.total;
+            this.updated = o.updated;
+            this.versionConflicts = o.versionConflicts;
+            this.metadata = _mapCopy(o.metadata);
+        }
+
+        private Builder(Builder o) {
+            this.batches = o.batches;
+            this.canceled = o.canceled;
+            this.created = o.created;
+            this.deleted = o.deleted;
+            this.noops = o.noops;
+            this.phase = o.phase;
+            this.requestsPerSecond = o.requestsPerSecond;
+            this.retries = o.retries;
+            this.sliceId = o.sliceId;
+            this.slices = _listCopy(o.slices);
+            this.state = o.state;
+            this.throttled = o.throttled;
+            this.throttledMillis = o.throttledMillis;
+            this.throttledUntil = o.throttledUntil;
+            this.throttledUntilMillis = o.throttledUntilMillis;
+            this.total = o.total;
+            this.updated = o.updated;
+            this.versionConflicts = o.versionConflicts;
+            this.metadata = _mapCopy(o.metadata);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * The number of scroll responses pulled back by the reindex operation.
          * <p>
          * API name: {@code batches}
          * </p>
          */
+        @Nonnull
         public final Builder batches(@Nullable Integer value) {
             this.batches = value;
             return this;
@@ -497,6 +563,7 @@ public class Status implements PlainJsonSerializable {
         /**
          * API name: {@code canceled}
          */
+        @Nonnull
         public final Builder canceled(@Nullable String value) {
             this.canceled = value;
             return this;
@@ -508,6 +575,7 @@ public class Status implements PlainJsonSerializable {
          * API name: {@code created}
          * </p>
          */
+        @Nonnull
         public final Builder created(@Nullable Long value) {
             this.created = value;
             return this;
@@ -519,6 +587,7 @@ public class Status implements PlainJsonSerializable {
          * API name: {@code deleted}
          * </p>
          */
+        @Nonnull
         public final Builder deleted(@Nullable Long value) {
             this.deleted = value;
             return this;
@@ -530,6 +599,7 @@ public class Status implements PlainJsonSerializable {
          * API name: {@code noops}
          * </p>
          */
+        @Nonnull
         public final Builder noops(@Nullable Long value) {
             this.noops = value;
             return this;
@@ -538,6 +608,7 @@ public class Status implements PlainJsonSerializable {
         /**
          * API name: {@code phase}
          */
+        @Nonnull
         public final Builder phase(@Nullable String value) {
             this.phase = value;
             return this;
@@ -549,6 +620,7 @@ public class Status implements PlainJsonSerializable {
          * API name: {@code requests_per_second}
          * </p>
          */
+        @Nonnull
         public final Builder requestsPerSecond(@Nullable Float value) {
             this.requestsPerSecond = value;
             return this;
@@ -557,6 +629,7 @@ public class Status implements PlainJsonSerializable {
         /**
          * API name: {@code retries}
          */
+        @Nonnull
         public final Builder retries(@Nullable Retries value) {
             this.retries = value;
             return this;
@@ -565,6 +638,7 @@ public class Status implements PlainJsonSerializable {
         /**
          * API name: {@code retries}
          */
+        @Nonnull
         public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
             return retries(fn.apply(new Retries.Builder()).build());
         }
@@ -572,6 +646,7 @@ public class Status implements PlainJsonSerializable {
         /**
          * API name: {@code slice_id}
          */
+        @Nonnull
         public final Builder sliceId(@Nullable Integer value) {
             this.sliceId = value;
             return this;
@@ -584,6 +659,7 @@ public class Status implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>slices</code>.
          * </p>
          */
+        @Nonnull
         public final Builder slices(List<BulkByScrollTaskStatusOrException> list) {
             this.slices = _listAddAll(this.slices, list);
             return this;
@@ -596,6 +672,7 @@ public class Status implements PlainJsonSerializable {
          * Adds one or more values to <code>slices</code>.
          * </p>
          */
+        @Nonnull
         public final Builder slices(BulkByScrollTaskStatusOrException value, BulkByScrollTaskStatusOrException... values) {
             this.slices = _listAdd(this.slices, value, values);
             return this;
@@ -608,6 +685,7 @@ public class Status implements PlainJsonSerializable {
          * Adds a value to <code>slices</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder slices(
             Function<BulkByScrollTaskStatusOrException.Builder, ObjectBuilder<BulkByScrollTaskStatusOrException>> fn
         ) {
@@ -617,6 +695,7 @@ public class Status implements PlainJsonSerializable {
         /**
          * API name: {@code state}
          */
+        @Nonnull
         public final Builder state(@Nullable String value) {
             this.state = value;
             return this;
@@ -625,6 +704,7 @@ public class Status implements PlainJsonSerializable {
         /**
          * API name: {@code throttled}
          */
+        @Nonnull
         public final Builder throttled(@Nullable Time value) {
             this.throttled = value;
             return this;
@@ -633,6 +713,7 @@ public class Status implements PlainJsonSerializable {
         /**
          * API name: {@code throttled}
          */
+        @Nonnull
         public final Builder throttled(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return throttled(fn.apply(new Time.Builder()).build());
         }
@@ -640,6 +721,7 @@ public class Status implements PlainJsonSerializable {
         /**
          * API name: {@code throttled_millis}
          */
+        @Nonnull
         public final Builder throttledMillis(@Nullable Long value) {
             this.throttledMillis = value;
             return this;
@@ -648,6 +730,7 @@ public class Status implements PlainJsonSerializable {
         /**
          * API name: {@code throttled_until}
          */
+        @Nonnull
         public final Builder throttledUntil(@Nullable Time value) {
             this.throttledUntil = value;
             return this;
@@ -656,6 +739,7 @@ public class Status implements PlainJsonSerializable {
         /**
          * API name: {@code throttled_until}
          */
+        @Nonnull
         public final Builder throttledUntil(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return throttledUntil(fn.apply(new Time.Builder()).build());
         }
@@ -663,6 +747,7 @@ public class Status implements PlainJsonSerializable {
         /**
          * API name: {@code throttled_until_millis}
          */
+        @Nonnull
         public final Builder throttledUntilMillis(@Nullable Long value) {
             this.throttledUntilMillis = value;
             return this;
@@ -674,6 +759,7 @@ public class Status implements PlainJsonSerializable {
          * API name: {@code total}
          * </p>
          */
+        @Nonnull
         public final Builder total(@Nullable Long value) {
             this.total = value;
             return this;
@@ -685,6 +771,7 @@ public class Status implements PlainJsonSerializable {
          * API name: {@code updated}
          * </p>
          */
+        @Nonnull
         public final Builder updated(@Nullable Long value) {
             this.updated = value;
             return this;
@@ -696,6 +783,7 @@ public class Status implements PlainJsonSerializable {
          * API name: {@code version_conflicts}
          * </p>
          */
+        @Nonnull
         public final Builder versionConflicts(@Nullable Long value) {
             this.versionConflicts = value;
             return this;
@@ -707,6 +795,7 @@ public class Status implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>metadata</code>.
          * </p>
          */
+        @Nonnull
         public final Builder metadata(Map<String, JsonData> map) {
             this.metadata = _mapPutAll(this.metadata, map);
             return this;
@@ -718,6 +807,7 @@ public class Status implements PlainJsonSerializable {
          * Adds an entry to <code>metadata</code>.
          * </p>
          */
+        @Nonnull
         public final Builder metadata(String key, JsonData value) {
             this.metadata = _mapPut(this.metadata, key, value);
             return this;
@@ -728,6 +818,8 @@ public class Status implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public Status build() {
             _checkSingleUse();
 

@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.KeywordMarkerTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class KeywordMarkerTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<KeywordMarkerTokenFilter.Builder, KeywordMarkerTokenFilter> {
 
     @Nullable
     private final Boolean ignoreCase;
@@ -153,10 +158,23 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link KeywordMarkerTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<KeywordMarkerTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, KeywordMarkerTokenFilter> {
         @Nullable
         private Boolean ignoreCase;
         @Nullable
@@ -166,9 +184,40 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
         @Nullable
         private String keywordsPattern;
 
+        public Builder() {}
+
+        private Builder(KeywordMarkerTokenFilter o) {
+            super(o);
+            this.ignoreCase = o.ignoreCase;
+            this.keywords = _listCopy(o.keywords);
+            this.keywordsPath = o.keywordsPath;
+            this.keywordsPattern = o.keywordsPattern;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.ignoreCase = o.ignoreCase;
+            this.keywords = _listCopy(o.keywords);
+            this.keywordsPath = o.keywordsPath;
+            this.keywordsPattern = o.keywordsPattern;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code ignore_case}
          */
+        @Nonnull
         public final Builder ignoreCase(@Nullable Boolean value) {
             this.ignoreCase = value;
             return this;
@@ -181,6 +230,7 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
          * Adds all elements of <code>list</code> to <code>keywords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder keywords(List<String> list) {
             this.keywords = _listAddAll(this.keywords, list);
             return this;
@@ -193,6 +243,7 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
          * Adds one or more values to <code>keywords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder keywords(String value, String... values) {
             this.keywords = _listAdd(this.keywords, value, values);
             return this;
@@ -201,6 +252,7 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
         /**
          * API name: {@code keywords_path}
          */
+        @Nonnull
         public final Builder keywordsPath(@Nullable String value) {
             this.keywordsPath = value;
             return this;
@@ -209,13 +261,9 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
         /**
          * API name: {@code keywords_pattern}
          */
+        @Nonnull
         public final Builder keywordsPattern(@Nullable String value) {
             this.keywordsPattern = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -224,6 +272,8 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public KeywordMarkerTokenFilter build() {
             _checkSingleUse();
 

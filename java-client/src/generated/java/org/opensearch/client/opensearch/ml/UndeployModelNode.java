@@ -27,14 +27,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.UndeployModelNode
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class UndeployModelNode implements PlainJsonSerializable {
+public class UndeployModelNode implements PlainJsonSerializable, ToCopyableBuilder<UndeployModelNode.Builder, UndeployModelNode> {
 
     @Nonnull
     private final Map<String, JsonData> stats;
@@ -81,12 +83,39 @@ public class UndeployModelNode implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link UndeployModelNode}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UndeployModelNode> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, UndeployModelNode> {
         @Nullable
         private Map<String, JsonData> stats;
+
+        public Builder() {}
+
+        private Builder(UndeployModelNode o) {
+            this.stats = _mapCopy(o.stats);
+        }
+
+        private Builder(Builder o) {
+            this.stats = _mapCopy(o.stats);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * API name: {@code stats}
@@ -95,6 +124,7 @@ public class UndeployModelNode implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>stats</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stats(Map<String, JsonData> map) {
             this.stats = _mapPutAll(this.stats, map);
             return this;
@@ -107,6 +137,7 @@ public class UndeployModelNode implements PlainJsonSerializable {
          * Adds an entry to <code>stats</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stats(String key, JsonData value) {
             this.stats = _mapPut(this.stats, key, value);
             return this;
@@ -117,6 +148,8 @@ public class UndeployModelNode implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public UndeployModelNode build() {
             _checkSingleUse();
 

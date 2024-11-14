@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -47,13 +48,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.KnnVectorProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class KnnVectorProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class KnnVectorProperty extends DocValuesPropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<KnnVectorProperty.Builder, KnnVectorProperty> {
 
     @Nullable
     private final String compressionLevel;
@@ -194,10 +200,23 @@ public class KnnVectorProperty extends DocValuesPropertyBase implements Property
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link KnnVectorProperty}.
      */
-    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<KnnVectorProperty> {
+    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, KnnVectorProperty> {
         @Nullable
         private String compressionLevel;
         @Nullable
@@ -212,9 +231,46 @@ public class KnnVectorProperty extends DocValuesPropertyBase implements Property
         @Nullable
         private String spaceType;
 
+        public Builder() {}
+
+        private Builder(KnnVectorProperty o) {
+            super(o);
+            this.compressionLevel = o.compressionLevel;
+            this.dataType = o.dataType;
+            this.dimension = o.dimension;
+            this.method = o.method;
+            this.mode = o.mode;
+            this.modelId = o.modelId;
+            this.spaceType = o.spaceType;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.compressionLevel = o.compressionLevel;
+            this.dataType = o.dataType;
+            this.dimension = o.dimension;
+            this.method = o.method;
+            this.mode = o.mode;
+            this.modelId = o.modelId;
+            this.spaceType = o.spaceType;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code compression_level}
          */
+        @Nonnull
         public final Builder compressionLevel(@Nullable String value) {
             this.compressionLevel = value;
             return this;
@@ -223,6 +279,7 @@ public class KnnVectorProperty extends DocValuesPropertyBase implements Property
         /**
          * API name: {@code data_type}
          */
+        @Nonnull
         public final Builder dataType(@Nullable String value) {
             this.dataType = value;
             return this;
@@ -231,6 +288,7 @@ public class KnnVectorProperty extends DocValuesPropertyBase implements Property
         /**
          * Required - API name: {@code dimension}
          */
+        @Nonnull
         public final Builder dimension(int value) {
             this.dimension = value;
             return this;
@@ -239,6 +297,7 @@ public class KnnVectorProperty extends DocValuesPropertyBase implements Property
         /**
          * API name: {@code method}
          */
+        @Nonnull
         public final Builder method(@Nullable KnnVectorMethod value) {
             this.method = value;
             return this;
@@ -247,6 +306,7 @@ public class KnnVectorProperty extends DocValuesPropertyBase implements Property
         /**
          * API name: {@code method}
          */
+        @Nonnull
         public final Builder method(Function<KnnVectorMethod.Builder, ObjectBuilder<KnnVectorMethod>> fn) {
             return method(fn.apply(new KnnVectorMethod.Builder()).build());
         }
@@ -254,6 +314,7 @@ public class KnnVectorProperty extends DocValuesPropertyBase implements Property
         /**
          * API name: {@code mode}
          */
+        @Nonnull
         public final Builder mode(@Nullable String value) {
             this.mode = value;
             return this;
@@ -262,6 +323,7 @@ public class KnnVectorProperty extends DocValuesPropertyBase implements Property
         /**
          * API name: {@code model_id}
          */
+        @Nonnull
         public final Builder modelId(@Nullable String value) {
             this.modelId = value;
             return this;
@@ -270,13 +332,9 @@ public class KnnVectorProperty extends DocValuesPropertyBase implements Property
         /**
          * API name: {@code space_type}
          */
+        @Nonnull
         public final Builder spaceType(@Nullable String value) {
             this.spaceType = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -285,6 +343,8 @@ public class KnnVectorProperty extends DocValuesPropertyBase implements Property
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public KnnVectorProperty build() {
             _checkSingleUse();
 

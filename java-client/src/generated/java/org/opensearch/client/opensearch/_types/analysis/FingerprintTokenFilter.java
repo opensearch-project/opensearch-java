@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.FingerprintTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class FingerprintTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<FingerprintTokenFilter.Builder, FingerprintTokenFilter> {
 
     @Nullable
     private final Integer maxOutputSize;
@@ -112,18 +118,58 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link FingerprintTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<FingerprintTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, FingerprintTokenFilter> {
         @Nullable
         private Integer maxOutputSize;
         @Nullable
         private String separator;
 
+        public Builder() {}
+
+        private Builder(FingerprintTokenFilter o) {
+            super(o);
+            this.maxOutputSize = o.maxOutputSize;
+            this.separator = o.separator;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.maxOutputSize = o.maxOutputSize;
+            this.separator = o.separator;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code max_output_size}
          */
+        @Nonnull
         public final Builder maxOutputSize(@Nullable Integer value) {
             this.maxOutputSize = value;
             return this;
@@ -132,13 +178,9 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
         /**
          * API name: {@code separator}
          */
+        @Nonnull
         public final Builder separator(@Nullable String value) {
             this.separator = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -147,6 +189,8 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public FingerprintTokenFilter build() {
             _checkSingleUse();
 

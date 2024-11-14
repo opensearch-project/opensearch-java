@@ -50,8 +50,10 @@ import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: tasks.list.Request
 
@@ -59,7 +61,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  * Returns a list of tasks.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ListRequest extends RequestBase {
+public class ListRequest extends RequestBase implements ToCopyableBuilder<ListRequest.Builder, ListRequest> {
 
     @Nonnull
     private final List<String> actions;
@@ -178,10 +180,21 @@ public class ListRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ListRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ListRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ListRequest> {
         @Nullable
         private List<String> actions;
         @Nullable
@@ -197,6 +210,34 @@ public class ListRequest extends RequestBase {
         @Nullable
         private Boolean waitForCompletion;
 
+        public Builder() {}
+
+        private Builder(ListRequest o) {
+            this.actions = _listCopy(o.actions);
+            this.detailed = o.detailed;
+            this.groupBy = o.groupBy;
+            this.nodes = _listCopy(o.nodes);
+            this.parentTaskId = o.parentTaskId;
+            this.timeout = o.timeout;
+            this.waitForCompletion = o.waitForCompletion;
+        }
+
+        private Builder(Builder o) {
+            this.actions = _listCopy(o.actions);
+            this.detailed = o.detailed;
+            this.groupBy = o.groupBy;
+            this.nodes = _listCopy(o.nodes);
+            this.parentTaskId = o.parentTaskId;
+            this.timeout = o.timeout;
+            this.waitForCompletion = o.waitForCompletion;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Comma-separated list or wildcard expression of actions used to limit the request.
          * <p>
@@ -207,6 +248,7 @@ public class ListRequest extends RequestBase {
          * Adds all elements of <code>list</code> to <code>actions</code>.
          * </p>
          */
+        @Nonnull
         public final Builder actions(List<String> list) {
             this.actions = _listAddAll(this.actions, list);
             return this;
@@ -222,6 +264,7 @@ public class ListRequest extends RequestBase {
          * Adds one or more values to <code>actions</code>.
          * </p>
          */
+        @Nonnull
         public final Builder actions(String value, String... values) {
             this.actions = _listAdd(this.actions, value, values);
             return this;
@@ -233,6 +276,7 @@ public class ListRequest extends RequestBase {
          * API name: {@code detailed}
          * </p>
          */
+        @Nonnull
         public final Builder detailed(@Nullable Boolean value) {
             this.detailed = value;
             return this;
@@ -244,6 +288,7 @@ public class ListRequest extends RequestBase {
          * API name: {@code group_by}
          * </p>
          */
+        @Nonnull
         public final Builder groupBy(@Nullable GroupBy value) {
             this.groupBy = value;
             return this;
@@ -260,6 +305,7 @@ public class ListRequest extends RequestBase {
          * Adds all elements of <code>list</code> to <code>nodes</code>.
          * </p>
          */
+        @Nonnull
         public final Builder nodes(List<String> list) {
             this.nodes = _listAddAll(this.nodes, list);
             return this;
@@ -276,6 +322,7 @@ public class ListRequest extends RequestBase {
          * Adds one or more values to <code>nodes</code>.
          * </p>
          */
+        @Nonnull
         public final Builder nodes(String value, String... values) {
             this.nodes = _listAdd(this.nodes, value, values);
             return this;
@@ -287,6 +334,7 @@ public class ListRequest extends RequestBase {
          * API name: {@code parent_task_id}
          * </p>
          */
+        @Nonnull
         public final Builder parentTaskId(@Nullable String value) {
             this.parentTaskId = value;
             return this;
@@ -298,6 +346,7 @@ public class ListRequest extends RequestBase {
          * API name: {@code timeout}
          * </p>
          */
+        @Nonnull
         public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
             return this;
@@ -309,6 +358,7 @@ public class ListRequest extends RequestBase {
          * API name: {@code timeout}
          * </p>
          */
+        @Nonnull
         public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return timeout(fn.apply(new Time.Builder()).build());
         }
@@ -319,6 +369,7 @@ public class ListRequest extends RequestBase {
          * API name: {@code wait_for_completion}
          * </p>
          */
+        @Nonnull
         public final Builder waitForCompletion(@Nullable Boolean value) {
             this.waitForCompletion = value;
             return this;
@@ -329,6 +380,8 @@ public class ListRequest extends RequestBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ListRequest build() {
             _checkSingleUse();
 

@@ -49,14 +49,19 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.indices.get_index_template.IndexTemplateItem;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.get_index_template.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GetIndexTemplateResponse implements PlainJsonSerializable {
+public class GetIndexTemplateResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<GetIndexTemplateResponse.Builder, GetIndexTemplateResponse> {
 
     @Nonnull
     private final List<IndexTemplateItem> indexTemplates;
@@ -100,11 +105,38 @@ public class GetIndexTemplateResponse implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GetIndexTemplateResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetIndexTemplateResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetIndexTemplateResponse> {
         private List<IndexTemplateItem> indexTemplates;
+
+        public Builder() {}
+
+        private Builder(GetIndexTemplateResponse o) {
+            this.indexTemplates = _listCopy(o.indexTemplates);
+        }
+
+        private Builder(Builder o) {
+            this.indexTemplates = _listCopy(o.indexTemplates);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code index_templates}
@@ -113,6 +145,7 @@ public class GetIndexTemplateResponse implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>indexTemplates</code>.
          * </p>
          */
+        @Nonnull
         public final Builder indexTemplates(List<IndexTemplateItem> list) {
             this.indexTemplates = _listAddAll(this.indexTemplates, list);
             return this;
@@ -125,6 +158,7 @@ public class GetIndexTemplateResponse implements PlainJsonSerializable {
          * Adds one or more values to <code>indexTemplates</code>.
          * </p>
          */
+        @Nonnull
         public final Builder indexTemplates(IndexTemplateItem value, IndexTemplateItem... values) {
             this.indexTemplates = _listAdd(this.indexTemplates, value, values);
             return this;
@@ -137,6 +171,7 @@ public class GetIndexTemplateResponse implements PlainJsonSerializable {
          * Adds a value to <code>indexTemplates</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder indexTemplates(Function<IndexTemplateItem.Builder, ObjectBuilder<IndexTemplateItem>> fn) {
             return indexTemplates(fn.apply(new IndexTemplateItem.Builder()).build());
         }
@@ -146,6 +181,8 @@ public class GetIndexTemplateResponse implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GetIndexTemplateResponse build() {
             _checkSingleUse();
 

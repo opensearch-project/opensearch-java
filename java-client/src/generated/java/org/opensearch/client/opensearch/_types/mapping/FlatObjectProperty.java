@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.FlatObjectProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class FlatObjectProperty extends PropertyBase implements PropertyVariant {
+public class FlatObjectProperty extends PropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<FlatObjectProperty.Builder, FlatObjectProperty> {
 
     @Nullable
     private final Boolean aggregatable;
@@ -112,18 +118,56 @@ public class FlatObjectProperty extends PropertyBase implements PropertyVariant 
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link FlatObjectProperty}.
      */
-    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<FlatObjectProperty> {
+    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, FlatObjectProperty> {
         @Nullable
         private Boolean aggregatable;
         @Nullable
         private Boolean searchable;
 
+        public Builder() {}
+
+        private Builder(FlatObjectProperty o) {
+            super(o);
+            this.aggregatable = o.aggregatable;
+            this.searchable = o.searchable;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.aggregatable = o.aggregatable;
+            this.searchable = o.searchable;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code aggregatable}
          */
+        @Nonnull
         public final Builder aggregatable(@Nullable Boolean value) {
             this.aggregatable = value;
             return this;
@@ -132,13 +176,9 @@ public class FlatObjectProperty extends PropertyBase implements PropertyVariant 
         /**
          * API name: {@code searchable}
          */
+        @Nonnull
         public final Builder searchable(@Nullable Boolean value) {
             this.searchable = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -147,6 +187,8 @@ public class FlatObjectProperty extends PropertyBase implements PropertyVariant 
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public FlatObjectProperty build() {
             _checkSingleUse();
 

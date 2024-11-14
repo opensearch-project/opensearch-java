@@ -47,14 +47,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.AllField
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class AllField implements PlainJsonSerializable {
+public class AllField implements PlainJsonSerializable, ToCopyableBuilder<AllField.Builder, AllField> {
 
     @Nonnull
     private final String analyzer;
@@ -215,10 +217,21 @@ public class AllField implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link AllField}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllField> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AllField> {
         private String analyzer;
         private Boolean enabled;
         private Boolean omitNorms;
@@ -230,9 +243,44 @@ public class AllField implements PlainJsonSerializable {
         private Boolean storeTermVectorPositions;
         private Boolean storeTermVectors;
 
+        public Builder() {}
+
+        private Builder(AllField o) {
+            this.analyzer = o.analyzer;
+            this.enabled = o.enabled;
+            this.omitNorms = o.omitNorms;
+            this.searchAnalyzer = o.searchAnalyzer;
+            this.similarity = o.similarity;
+            this.store = o.store;
+            this.storeTermVectorOffsets = o.storeTermVectorOffsets;
+            this.storeTermVectorPayloads = o.storeTermVectorPayloads;
+            this.storeTermVectorPositions = o.storeTermVectorPositions;
+            this.storeTermVectors = o.storeTermVectors;
+        }
+
+        private Builder(Builder o) {
+            this.analyzer = o.analyzer;
+            this.enabled = o.enabled;
+            this.omitNorms = o.omitNorms;
+            this.searchAnalyzer = o.searchAnalyzer;
+            this.similarity = o.similarity;
+            this.store = o.store;
+            this.storeTermVectorOffsets = o.storeTermVectorOffsets;
+            this.storeTermVectorPayloads = o.storeTermVectorPayloads;
+            this.storeTermVectorPositions = o.storeTermVectorPositions;
+            this.storeTermVectors = o.storeTermVectors;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - API name: {@code analyzer}
          */
+        @Nonnull
         public final Builder analyzer(String value) {
             this.analyzer = value;
             return this;
@@ -241,6 +289,7 @@ public class AllField implements PlainJsonSerializable {
         /**
          * Required - API name: {@code enabled}
          */
+        @Nonnull
         public final Builder enabled(boolean value) {
             this.enabled = value;
             return this;
@@ -249,6 +298,7 @@ public class AllField implements PlainJsonSerializable {
         /**
          * Required - API name: {@code omit_norms}
          */
+        @Nonnull
         public final Builder omitNorms(boolean value) {
             this.omitNorms = value;
             return this;
@@ -257,6 +307,7 @@ public class AllField implements PlainJsonSerializable {
         /**
          * Required - API name: {@code search_analyzer}
          */
+        @Nonnull
         public final Builder searchAnalyzer(String value) {
             this.searchAnalyzer = value;
             return this;
@@ -265,6 +316,7 @@ public class AllField implements PlainJsonSerializable {
         /**
          * Required - API name: {@code similarity}
          */
+        @Nonnull
         public final Builder similarity(String value) {
             this.similarity = value;
             return this;
@@ -273,6 +325,7 @@ public class AllField implements PlainJsonSerializable {
         /**
          * Required - API name: {@code store}
          */
+        @Nonnull
         public final Builder store(boolean value) {
             this.store = value;
             return this;
@@ -281,6 +334,7 @@ public class AllField implements PlainJsonSerializable {
         /**
          * Required - API name: {@code store_term_vector_offsets}
          */
+        @Nonnull
         public final Builder storeTermVectorOffsets(boolean value) {
             this.storeTermVectorOffsets = value;
             return this;
@@ -289,6 +343,7 @@ public class AllField implements PlainJsonSerializable {
         /**
          * Required - API name: {@code store_term_vector_payloads}
          */
+        @Nonnull
         public final Builder storeTermVectorPayloads(boolean value) {
             this.storeTermVectorPayloads = value;
             return this;
@@ -297,6 +352,7 @@ public class AllField implements PlainJsonSerializable {
         /**
          * Required - API name: {@code store_term_vector_positions}
          */
+        @Nonnull
         public final Builder storeTermVectorPositions(boolean value) {
             this.storeTermVectorPositions = value;
             return this;
@@ -305,6 +361,7 @@ public class AllField implements PlainJsonSerializable {
         /**
          * Required - API name: {@code store_term_vectors}
          */
+        @Nonnull
         public final Builder storeTermVectors(boolean value) {
             this.storeTermVectors = value;
             return this;
@@ -315,6 +372,8 @@ public class AllField implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public AllField build() {
             _checkSingleUse();
 
