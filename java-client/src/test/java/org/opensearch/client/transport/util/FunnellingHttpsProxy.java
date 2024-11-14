@@ -28,7 +28,7 @@ import javax.annotation.Nonnull;
 import org.apache.hc.core5.http.impl.EnglishReasonPhraseCatalog;
 
 public class FunnellingHttpsProxy implements Closeable {
-    private static final int SO_TIMEOUT = 5000;
+    private static final int SO_TIMEOUT = 10000;
 
     @Nonnull
     private final ServerSocket serverSocket;

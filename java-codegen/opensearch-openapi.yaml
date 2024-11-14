@@ -10210,8 +10210,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/create'
       responses:
-        '200':
-          $ref: '#/components/responses/create___200'
+        '201':
+          $ref: '#/components/responses/create___201'
     put:
       operationId: create.1
       x-operation-group: create
@@ -10240,8 +10240,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/create'
       responses:
-        '200':
-          $ref: '#/components/responses/create___200'
+        '201':
+          $ref: '#/components/responses/create___201'
   /{index}/_delete_by_query:
     post:
       operationId: delete_by_query.0
@@ -10415,6 +10415,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/exists___200'
+        '404':
+          $ref: '#/components/responses/exists___404'
     post:
       operationId: index.1
       x-operation-group: index
@@ -28037,7 +28039,7 @@ components:
                 type: integer
                 format: int64
       description: ''
-    create___200:
+    create___201:
       content:
         application/json:
           schema:
@@ -28134,6 +28136,10 @@ components:
         application/json: {}
       description: ''
     exists___200:
+      content:
+        application/json: {}
+      description: ''
+    exists___404:
       content:
         application/json: {}
       description: ''
@@ -39274,6 +39280,12 @@ components:
             strength:
               $ref: '#/components/schemas/_common.analysis___IcuCollationStrength'
             variable_top:
+              type: string
+            country:
+              type: string
+            language:
+              type: string
+            variant:
               type: string
           required:
             - type

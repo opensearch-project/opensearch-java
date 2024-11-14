@@ -30,9 +30,14 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -43,15 +48,18 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: indices.delete_index_template.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DeleteIndexTemplateResponse extends AcknowledgedResponseBase {
+
     // ---------------------------------------------------------------------------------------------
 
     private DeleteIndexTemplateResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static DeleteIndexTemplateResponse of(Function<Builder, ObjectBuilder<DeleteIndexTemplateResponse>> fn) {
+    public static DeleteIndexTemplateResponse of(
+        Function<DeleteIndexTemplateResponse.Builder, ObjectBuilder<DeleteIndexTemplateResponse>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
@@ -60,10 +68,10 @@ public class DeleteIndexTemplateResponse extends AcknowledgedResponseBase {
     /**
      * Builder for {@link DeleteIndexTemplateResponse}.
      */
-
     public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
         implements
             ObjectBuilder<DeleteIndexTemplateResponse> {
+
         @Override
         protected Builder self() {
             return this;
@@ -72,8 +80,7 @@ public class DeleteIndexTemplateResponse extends AcknowledgedResponseBase {
         /**
          * Builds a {@link DeleteIndexTemplateResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public DeleteIndexTemplateResponse build() {
             _checkSingleUse();
@@ -93,8 +100,22 @@ public class DeleteIndexTemplateResponse extends AcknowledgedResponseBase {
     );
 
     protected static void setupDeleteIndexTemplateResponseDeserializer(ObjectDeserializer<DeleteIndexTemplateResponse.Builder> op) {
-        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-
+        setupAcknowledgedResponseBaseDeserializer(op);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

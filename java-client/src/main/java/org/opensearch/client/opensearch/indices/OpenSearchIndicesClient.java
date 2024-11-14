@@ -327,39 +327,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.delete_index_template
-
-    /**
-     * Deletes an index template.
-     *
-     *
-     */
-
-    public DeleteIndexTemplateResponse deleteIndexTemplate(DeleteIndexTemplateRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteIndexTemplateRequest,
-            DeleteIndexTemplateResponse,
-            ErrorResponse>) DeleteIndexTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Deletes an index template.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteIndexTemplateRequest}
-     *
-     */
-
-    public final DeleteIndexTemplateResponse deleteIndexTemplate(
-        Function<DeleteIndexTemplateRequest.Builder, ObjectBuilder<DeleteIndexTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return deleteIndexTemplate(fn.apply(new DeleteIndexTemplateRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.delete_template
 
     /**
@@ -454,39 +421,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
     public final BooleanResponse existsAlias(Function<ExistsAliasRequest.Builder, ObjectBuilder<ExistsAliasRequest>> fn) throws IOException,
         OpenSearchException {
         return existsAlias(fn.apply(new ExistsAliasRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: indices.exists_index_template
-
-    /**
-     * Returns information about whether a particular index template exists.
-     *
-     *
-     */
-
-    public BooleanResponse existsIndexTemplate(ExistsIndexTemplateRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ExistsIndexTemplateRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ExistsIndexTemplateRequest,
-            BooleanResponse,
-            ErrorResponse>) ExistsIndexTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about whether a particular index template exists.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ExistsIndexTemplateRequest}
-     *
-     */
-
-    public final BooleanResponse existsIndexTemplate(
-        Function<ExistsIndexTemplateRequest.Builder, ObjectBuilder<ExistsIndexTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return existsIndexTemplate(fn.apply(new ExistsIndexTemplateRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.exists_template
@@ -725,53 +659,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.get_index_template
-
-    /**
-     * Returns an index template.
-     *
-     *
-     */
-
-    public GetIndexTemplateResponse getIndexTemplate(GetIndexTemplateRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetIndexTemplateRequest,
-            GetIndexTemplateResponse,
-            ErrorResponse>) GetIndexTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns an index template.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetIndexTemplateRequest}
-     *
-     */
-
-    public final GetIndexTemplateResponse getIndexTemplate(
-        Function<GetIndexTemplateRequest.Builder, ObjectBuilder<GetIndexTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return getIndexTemplate(fn.apply(new GetIndexTemplateRequest.Builder()).build());
-    }
-
-    /**
-     * Returns an index template.
-     *
-     *
-     */
-
-    public GetIndexTemplateResponse getIndexTemplate() throws IOException, OpenSearchException {
-        return this.transport.performRequest(
-            new GetIndexTemplateRequest.Builder().build(),
-            GetIndexTemplateRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
     // ----- Endpoint: indices.get_mapping
 
     /**
@@ -1006,39 +893,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
     public final PutAliasResponse putAlias(Function<PutAliasRequest.Builder, ObjectBuilder<PutAliasRequest>> fn) throws IOException,
         OpenSearchException {
         return putAlias(fn.apply(new PutAliasRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: indices.put_index_template
-
-    /**
-     * Creates or updates an index template.
-     *
-     *
-     */
-
-    public PutIndexTemplateResponse putIndexTemplate(PutIndexTemplateRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            PutIndexTemplateRequest,
-            PutIndexTemplateResponse,
-            ErrorResponse>) PutIndexTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Creates or updates an index template.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link PutIndexTemplateRequest}
-     *
-     */
-
-    public final PutIndexTemplateResponse putIndexTemplate(
-        Function<PutIndexTemplateRequest.Builder, ObjectBuilder<PutIndexTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return putIndexTemplate(fn.apply(new PutIndexTemplateRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.put_mapping
@@ -1416,42 +1270,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
     public final ShrinkResponse shrink(Function<ShrinkRequest.Builder, ObjectBuilder<ShrinkRequest>> fn) throws IOException,
         OpenSearchException {
         return shrink(fn.apply(new ShrinkRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: indices.simulate_index_template
-
-    /**
-     * Simulate matching the given index name against the index templates in the
-     * system
-     *
-     *
-     */
-
-    public SimulateIndexTemplateResponse simulateIndexTemplate(SimulateIndexTemplateRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            SimulateIndexTemplateRequest,
-            SimulateIndexTemplateResponse,
-            ErrorResponse>) SimulateIndexTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Simulate matching the given index name against the index templates in the
-     * system
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link SimulateIndexTemplateRequest}
-     *
-     */
-
-    public final SimulateIndexTemplateResponse simulateIndexTemplate(
-        Function<SimulateIndexTemplateRequest.Builder, ObjectBuilder<SimulateIndexTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return simulateIndexTemplate(fn.apply(new SimulateIndexTemplateRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.simulate_template

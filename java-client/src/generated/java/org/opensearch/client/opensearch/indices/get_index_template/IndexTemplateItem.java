@@ -30,16 +30,23 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices.get_index_template;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch.indices.IndexTemplate;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -47,41 +54,46 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: indices.get_index_template.IndexTemplateItem
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexTemplateItem implements PlainJsonSerializable {
-    private final String name;
 
+    @Nonnull
     private final IndexTemplate indexTemplate;
+
+    @Nonnull
+    private final String name;
 
     // ---------------------------------------------------------------------------------------------
 
     private IndexTemplateItem(Builder builder) {
-
-        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.indexTemplate = ApiTypeHelper.requireNonNull(builder.indexTemplate, this, "indexTemplate");
-
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
     }
 
-    public static IndexTemplateItem of(Function<Builder, ObjectBuilder<IndexTemplateItem>> fn) {
+    public static IndexTemplateItem of(Function<IndexTemplateItem.Builder, ObjectBuilder<IndexTemplateItem>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * Required - API name: {@code name}
-     */
-    public final String name() {
-        return this.name;
     }
 
     /**
      * Required - API name: {@code index_template}
      */
+    @Nonnull
     public final IndexTemplate indexTemplate() {
         return this.indexTemplate;
     }
 
     /**
+     * Required - API name: {@code name}
+     */
+    @Nonnull
+    public final String name() {
+        return this.name;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -89,13 +101,11 @@ public class IndexTemplateItem implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.writeKey("name");
-        generator.write(this.name);
-
         generator.writeKey("index_template");
         this.indexTemplate.serialize(generator, mapper);
 
+        generator.writeKey("name");
+        generator.write(this.name);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -103,19 +113,9 @@ public class IndexTemplateItem implements PlainJsonSerializable {
     /**
      * Builder for {@link IndexTemplateItem}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexTemplateItem> {
-        private String name;
-
         private IndexTemplate indexTemplate;
-
-        /**
-         * Required - API name: {@code name}
-         */
-        public final Builder name(String value) {
-            this.name = value;
-            return this;
-        }
+        private String name;
 
         /**
          * Required - API name: {@code index_template}
@@ -129,14 +129,21 @@ public class IndexTemplateItem implements PlainJsonSerializable {
          * Required - API name: {@code index_template}
          */
         public final Builder indexTemplate(Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {
-            return this.indexTemplate(fn.apply(new IndexTemplate.Builder()).build());
+            return indexTemplate(fn.apply(new IndexTemplate.Builder()).build());
+        }
+
+        /**
+         * Required - API name: {@code name}
+         */
+        public final Builder name(String value) {
+            this.name = value;
+            return this;
         }
 
         /**
          * Builds a {@link IndexTemplateItem}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public IndexTemplateItem build() {
             _checkSingleUse();
@@ -156,10 +163,23 @@ public class IndexTemplateItem implements PlainJsonSerializable {
     );
 
     protected static void setupIndexTemplateItemDeserializer(ObjectDeserializer<IndexTemplateItem.Builder> op) {
-
-        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::indexTemplate, IndexTemplate._DESERIALIZER, "index_template");
-
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.indexTemplate.hashCode();
+        result = 31 * result + this.name.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        IndexTemplateItem other = (IndexTemplateItem) o;
+        return this.indexTemplate.equals(other.indexTemplate) && this.name.equals(other.name);
+    }
 }

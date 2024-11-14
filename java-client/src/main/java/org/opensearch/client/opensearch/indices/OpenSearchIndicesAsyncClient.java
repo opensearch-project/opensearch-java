@@ -343,40 +343,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.delete_index_template
-
-    /**
-     * Deletes an index template.
-     *
-     *
-     */
-
-    public CompletableFuture<DeleteIndexTemplateResponse> deleteIndexTemplate(DeleteIndexTemplateRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteIndexTemplateRequest,
-            DeleteIndexTemplateResponse,
-            ErrorResponse>) DeleteIndexTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Deletes an index template.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteIndexTemplateRequest}
-     *
-     */
-
-    public final CompletableFuture<DeleteIndexTemplateResponse> deleteIndexTemplate(
-        Function<DeleteIndexTemplateRequest.Builder, ObjectBuilder<DeleteIndexTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return deleteIndexTemplate(fn.apply(new DeleteIndexTemplateRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.delete_template
 
     /**
@@ -472,40 +438,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
     public final CompletableFuture<BooleanResponse> existsAlias(Function<ExistsAliasRequest.Builder, ObjectBuilder<ExistsAliasRequest>> fn)
         throws IOException, OpenSearchException {
         return existsAlias(fn.apply(new ExistsAliasRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: indices.exists_index_template
-
-    /**
-     * Returns information about whether a particular index template exists.
-     *
-     *
-     */
-
-    public CompletableFuture<BooleanResponse> existsIndexTemplate(ExistsIndexTemplateRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ExistsIndexTemplateRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ExistsIndexTemplateRequest,
-            BooleanResponse,
-            ErrorResponse>) ExistsIndexTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about whether a particular index template exists.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ExistsIndexTemplateRequest}
-     *
-     */
-
-    public final CompletableFuture<BooleanResponse> existsIndexTemplate(
-        Function<ExistsIndexTemplateRequest.Builder, ObjectBuilder<ExistsIndexTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return existsIndexTemplate(fn.apply(new ExistsIndexTemplateRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.exists_template
@@ -750,54 +682,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         Function<GetFieldMappingRequest.Builder, ObjectBuilder<GetFieldMappingRequest>> fn
     ) throws IOException, OpenSearchException {
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: indices.get_index_template
-
-    /**
-     * Returns an index template.
-     *
-     *
-     */
-
-    public CompletableFuture<GetIndexTemplateResponse> getIndexTemplate(GetIndexTemplateRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetIndexTemplateRequest,
-            GetIndexTemplateResponse,
-            ErrorResponse>) GetIndexTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns an index template.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetIndexTemplateRequest}
-     *
-     */
-
-    public final CompletableFuture<GetIndexTemplateResponse> getIndexTemplate(
-        Function<GetIndexTemplateRequest.Builder, ObjectBuilder<GetIndexTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return getIndexTemplate(fn.apply(new GetIndexTemplateRequest.Builder()).build());
-    }
-
-    /**
-     * Returns an index template.
-     *
-     *
-     */
-
-    public CompletableFuture<GetIndexTemplateResponse> getIndexTemplate() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new GetIndexTemplateRequest.Builder().build(),
-            GetIndexTemplateRequest._ENDPOINT,
-            this.transportOptions
-        );
     }
 
     // ----- Endpoint: indices.get_mapping
@@ -1049,40 +933,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
     public final CompletableFuture<PutAliasResponse> putAlias(Function<PutAliasRequest.Builder, ObjectBuilder<PutAliasRequest>> fn)
         throws IOException, OpenSearchException {
         return putAlias(fn.apply(new PutAliasRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: indices.put_index_template
-
-    /**
-     * Creates or updates an index template.
-     *
-     *
-     */
-
-    public CompletableFuture<PutIndexTemplateResponse> putIndexTemplate(PutIndexTemplateRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            PutIndexTemplateRequest,
-            PutIndexTemplateResponse,
-            ErrorResponse>) PutIndexTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Creates or updates an index template.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link PutIndexTemplateRequest}
-     *
-     */
-
-    public final CompletableFuture<PutIndexTemplateResponse> putIndexTemplate(
-        Function<PutIndexTemplateRequest.Builder, ObjectBuilder<PutIndexTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return putIndexTemplate(fn.apply(new PutIndexTemplateRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.put_mapping
@@ -1468,42 +1318,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
     public final CompletableFuture<ShrinkResponse> shrink(Function<ShrinkRequest.Builder, ObjectBuilder<ShrinkRequest>> fn)
         throws IOException, OpenSearchException {
         return shrink(fn.apply(new ShrinkRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: indices.simulate_index_template
-
-    /**
-     * Simulate matching the given index name against the index templates in the
-     * system
-     *
-     *
-     */
-
-    public CompletableFuture<SimulateIndexTemplateResponse> simulateIndexTemplate(SimulateIndexTemplateRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            SimulateIndexTemplateRequest,
-            SimulateIndexTemplateResponse,
-            ErrorResponse>) SimulateIndexTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Simulate matching the given index name against the index templates in the
-     * system
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link SimulateIndexTemplateRequest}
-     *
-     */
-
-    public final CompletableFuture<SimulateIndexTemplateResponse> simulateIndexTemplate(
-        Function<SimulateIndexTemplateRequest.Builder, ObjectBuilder<SimulateIndexTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return simulateIndexTemplate(fn.apply(new SimulateIndexTemplateRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.simulate_template

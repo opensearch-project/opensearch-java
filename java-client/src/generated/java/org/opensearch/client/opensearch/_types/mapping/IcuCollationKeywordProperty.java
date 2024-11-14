@@ -68,6 +68,9 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
     private final Boolean caseLevel;
 
     @Nullable
+    private final String country;
+
+    @Nullable
     private final IcuCollationDecomposition decomposition;
 
     @Nullable
@@ -75,6 +78,9 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
 
     @Nullable
     private final Boolean index;
+
+    @Nullable
+    private final String language;
 
     @Nullable
     private final String nullValue;
@@ -88,6 +94,9 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
     @Nullable
     private final String variableTop;
 
+    @Nullable
+    private final String variant;
+
     // ---------------------------------------------------------------------------------------------
 
     private IcuCollationKeywordProperty(Builder builder) {
@@ -95,13 +104,16 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         this.alternate = builder.alternate;
         this.caseFirst = builder.caseFirst;
         this.caseLevel = builder.caseLevel;
+        this.country = builder.country;
         this.decomposition = builder.decomposition;
         this.hiraganaQuaternaryMode = builder.hiraganaQuaternaryMode;
         this.index = builder.index;
+        this.language = builder.language;
         this.nullValue = builder.nullValue;
         this.numeric = builder.numeric;
         this.strength = builder.strength;
         this.variableTop = builder.variableTop;
+        this.variant = builder.variant;
     }
 
     public static IcuCollationKeywordProperty of(
@@ -143,6 +155,14 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
     }
 
     /**
+     * API name: {@code country}
+     */
+    @Nullable
+    public final String country() {
+        return this.country;
+    }
+
+    /**
      * API name: {@code decomposition}
      */
     @Nullable
@@ -164,6 +184,14 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
     @Nullable
     public final Boolean index() {
         return this.index;
+    }
+
+    /**
+     * API name: {@code language}
+     */
+    @Nullable
+    public final String language() {
+        return this.language;
     }
 
     /**
@@ -198,6 +226,14 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         return this.variableTop;
     }
 
+    /**
+     * API name: {@code variant}
+     */
+    @Nullable
+    public final String variant() {
+        return this.variant;
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.write("type", "icu_collation_keyword");
         super.serializeInternal(generator, mapper);
@@ -216,6 +252,11 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
             generator.write(this.caseLevel);
         }
 
+        if (this.country != null) {
+            generator.writeKey("country");
+            generator.write(this.country);
+        }
+
         if (this.decomposition != null) {
             generator.writeKey("decomposition");
             this.decomposition.serialize(generator, mapper);
@@ -229,6 +270,11 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         if (this.index != null) {
             generator.writeKey("index");
             generator.write(this.index);
+        }
+
+        if (this.language != null) {
+            generator.writeKey("language");
+            generator.write(this.language);
         }
 
         if (this.nullValue != null) {
@@ -250,6 +296,11 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
             generator.writeKey("variable_top");
             generator.write(this.variableTop);
         }
+
+        if (this.variant != null) {
+            generator.writeKey("variant");
+            generator.write(this.variant);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -267,11 +318,15 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         @Nullable
         private Boolean caseLevel;
         @Nullable
+        private String country;
+        @Nullable
         private IcuCollationDecomposition decomposition;
         @Nullable
         private Boolean hiraganaQuaternaryMode;
         @Nullable
         private Boolean index;
+        @Nullable
+        private String language;
         @Nullable
         private String nullValue;
         @Nullable
@@ -280,6 +335,8 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         private IcuCollationStrength strength;
         @Nullable
         private String variableTop;
+        @Nullable
+        private String variant;
 
         /**
          * API name: {@code alternate}
@@ -306,6 +363,14 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         }
 
         /**
+         * API name: {@code country}
+         */
+        public final Builder country(@Nullable String value) {
+            this.country = value;
+            return this;
+        }
+
+        /**
          * API name: {@code decomposition}
          */
         public final Builder decomposition(@Nullable IcuCollationDecomposition value) {
@@ -326,6 +391,14 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
          */
         public final Builder index(@Nullable Boolean value) {
             this.index = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code language}
+         */
+        public final Builder language(@Nullable String value) {
+            this.language = value;
             return this;
         }
 
@@ -361,6 +434,14 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
             return this;
         }
 
+        /**
+         * API name: {@code variant}
+         */
+        public final Builder variant(@Nullable String value) {
+            this.variant = value;
+            return this;
+        }
+
         @Override
         protected Builder self() {
             return this;
@@ -393,13 +474,16 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         op.add(Builder::alternate, IcuCollationAlternate._DESERIALIZER, "alternate");
         op.add(Builder::caseFirst, IcuCollationCaseFirst._DESERIALIZER, "case_first");
         op.add(Builder::caseLevel, JsonpDeserializer.booleanDeserializer(), "case_level");
+        op.add(Builder::country, JsonpDeserializer.stringDeserializer(), "country");
         op.add(Builder::decomposition, IcuCollationDecomposition._DESERIALIZER, "decomposition");
         op.add(Builder::hiraganaQuaternaryMode, JsonpDeserializer.booleanDeserializer(), "hiragana_quaternary_mode");
         op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
+        op.add(Builder::language, JsonpDeserializer.stringDeserializer(), "language");
         op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
         op.add(Builder::numeric, JsonpDeserializer.booleanDeserializer(), "numeric");
         op.add(Builder::strength, IcuCollationStrength._DESERIALIZER, "strength");
         op.add(Builder::variableTop, JsonpDeserializer.stringDeserializer(), "variable_top");
+        op.add(Builder::variant, JsonpDeserializer.stringDeserializer(), "variant");
 
         op.ignore("type");
     }
@@ -410,13 +494,16 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         result = 31 * result + Objects.hashCode(this.alternate);
         result = 31 * result + Objects.hashCode(this.caseFirst);
         result = 31 * result + Objects.hashCode(this.caseLevel);
+        result = 31 * result + Objects.hashCode(this.country);
         result = 31 * result + Objects.hashCode(this.decomposition);
         result = 31 * result + Objects.hashCode(this.hiraganaQuaternaryMode);
         result = 31 * result + Objects.hashCode(this.index);
+        result = 31 * result + Objects.hashCode(this.language);
         result = 31 * result + Objects.hashCode(this.nullValue);
         result = 31 * result + Objects.hashCode(this.numeric);
         result = 31 * result + Objects.hashCode(this.strength);
         result = 31 * result + Objects.hashCode(this.variableTop);
+        result = 31 * result + Objects.hashCode(this.variant);
         return result;
     }
 
@@ -431,12 +518,15 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         return Objects.equals(this.alternate, other.alternate)
             && Objects.equals(this.caseFirst, other.caseFirst)
             && Objects.equals(this.caseLevel, other.caseLevel)
+            && Objects.equals(this.country, other.country)
             && Objects.equals(this.decomposition, other.decomposition)
             && Objects.equals(this.hiraganaQuaternaryMode, other.hiraganaQuaternaryMode)
             && Objects.equals(this.index, other.index)
+            && Objects.equals(this.language, other.language)
             && Objects.equals(this.nullValue, other.nullValue)
             && Objects.equals(this.numeric, other.numeric)
             && Objects.equals(this.strength, other.strength)
-            && Objects.equals(this.variableTop, other.variableTop);
+            && Objects.equals(this.variableTop, other.variableTop)
+            && Objects.equals(this.variant, other.variant);
     }
 }

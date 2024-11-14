@@ -30,12 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonpDeserializer;
 
 // typedef: indices.simulate_index_template.Response
 
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class SimulateIndexTemplateResponse {
     public SimulateIndexTemplateResponse() {}
 
@@ -48,4 +54,16 @@ public class SimulateIndexTemplateResponse {
         SimulateIndexTemplateResponse._INSTANCE
     );
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

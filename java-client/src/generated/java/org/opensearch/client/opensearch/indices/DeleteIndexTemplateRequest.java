@@ -34,9 +34,8 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.snapshot;
+package org.opensearch.client.opensearch.indices;
 
-import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -44,12 +43,6 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonpDeserializable;
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.ObjectBuilderDeserializer;
-import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -59,46 +52,39 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
-// typedef: snapshot.clone.Request
+// typedef: indices.delete_index_template.Request
 
 /**
- * Clones indices from one snapshot into another snapshot in the same repository.
+ * Deletes an index template.
  */
-@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerializable {
+public class DeleteIndexTemplateRequest extends RequestBase {
 
     @Nullable
     private final Time clusterManagerTimeout;
-
-    @Nonnull
-    private final String indices;
 
     @Deprecated
     @Nullable
     private final Time masterTimeout;
 
     @Nonnull
-    private final String repository;
+    private final String name;
 
-    @Nonnull
-    private final String snapshot;
-
-    @Nonnull
-    private final String targetSnapshot;
+    @Nullable
+    private final Time timeout;
 
     // ---------------------------------------------------------------------------------------------
 
-    private CloneSnapshotRequest(Builder builder) {
+    private DeleteIndexTemplateRequest(Builder builder) {
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
-        this.indices = ApiTypeHelper.requireNonNull(builder.indices, this, "indices");
         this.masterTimeout = builder.masterTimeout;
-        this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
-        this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
-        this.targetSnapshot = ApiTypeHelper.requireNonNull(builder.targetSnapshot, this, "targetSnapshot");
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.timeout = builder.timeout;
     }
 
-    public static CloneSnapshotRequest of(Function<CloneSnapshotRequest.Builder, ObjectBuilder<CloneSnapshotRequest>> fn) {
+    public static DeleteIndexTemplateRequest of(
+        Function<DeleteIndexTemplateRequest.Builder, ObjectBuilder<DeleteIndexTemplateRequest>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
@@ -114,15 +100,8 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
     }
 
     /**
-     * Required - API name: {@code indices}
-     */
-    @Nonnull
-    public final String indices() {
-        return this.indices;
-    }
-
-    /**
-     * Explicit operation timeout for connection to master node
+     * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
+     * returns an error.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -134,66 +113,40 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
     }
 
     /**
-     * Required - A repository name
+     * Required - Name of the index template to delete. Wildcard (*) expressions are supported.
      * <p>
-     * API name: {@code repository}
+     * API name: {@code name}
      * </p>
      */
     @Nonnull
-    public final String repository() {
-        return this.repository;
+    public final String name() {
+        return this.name;
     }
 
     /**
-     * Required - The name of the snapshot to clone from
+     * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
      * <p>
-     * API name: {@code snapshot}
+     * API name: {@code timeout}
      * </p>
      */
-    @Nonnull
-    public final String snapshot() {
-        return this.snapshot;
+    @Nullable
+    public final Time timeout() {
+        return this.timeout;
     }
 
-    /**
-     * Required - The name of the cloned snapshot to create
-     * <p>
-     * API name: {@code target_snapshot}
-     * </p>
-     */
-    @Nonnull
-    public final String targetSnapshot() {
-        return this.targetSnapshot;
-    }
-
-    /**
-     * Serialize this object to JSON.
-     */
-    @Override
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        serializeInternal(generator, mapper);
-        generator.writeEnd();
-    }
-
-    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("indices");
-        generator.write(this.indices);
-    }
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link CloneSnapshotRequest}.
+     * Builder for {@link DeleteIndexTemplateRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloneSnapshotRequest> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteIndexTemplateRequest> {
         @Nullable
         private Time clusterManagerTimeout;
-        private String indices;
         @Nullable
         private Time masterTimeout;
-        private String repository;
-        private String snapshot;
-        private String targetSnapshot;
+        private String name;
+        @Nullable
+        private Time timeout;
 
         /**
          * Operation timeout for connection to cluster-manager node.
@@ -217,15 +170,8 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
         }
 
         /**
-         * Required - API name: {@code indices}
-         */
-        public final Builder indices(String value) {
-            this.indices = value;
-            return this;
-        }
-
-        /**
-         * Explicit operation timeout for connection to master node
+         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
+         * returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -237,7 +183,8 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
         }
 
         /**
-         * Explicit operation timeout for connection to master node
+         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
+         * returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -248,84 +195,62 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
         }
 
         /**
-         * Required - A repository name
+         * Required - Name of the index template to delete. Wildcard (*) expressions are supported.
          * <p>
-         * API name: {@code repository}
+         * API name: {@code name}
          * </p>
          */
-        public final Builder repository(String value) {
-            this.repository = value;
+        public final Builder name(String value) {
+            this.name = value;
             return this;
         }
 
         /**
-         * Required - The name of the snapshot to clone from
+         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
          * <p>
-         * API name: {@code snapshot}
+         * API name: {@code timeout}
          * </p>
          */
-        public final Builder snapshot(String value) {
-            this.snapshot = value;
+        public final Builder timeout(@Nullable Time value) {
+            this.timeout = value;
             return this;
         }
 
         /**
-         * Required - The name of the cloned snapshot to create
+         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
          * <p>
-         * API name: {@code target_snapshot}
+         * API name: {@code timeout}
          * </p>
          */
-        public final Builder targetSnapshot(String value) {
-            this.targetSnapshot = value;
-            return this;
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return timeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
-         * Builds a {@link CloneSnapshotRequest}.
+         * Builds a {@link DeleteIndexTemplateRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
-        public CloneSnapshotRequest build() {
+        public DeleteIndexTemplateRequest build() {
             _checkSingleUse();
 
-            return new CloneSnapshotRequest(this);
+            return new DeleteIndexTemplateRequest(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link CloneSnapshotRequest}
+     * Endpoint "{@code indices.delete_index_template}".
      */
-    public static final JsonpDeserializer<CloneSnapshotRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        CloneSnapshotRequest::setupCloneSnapshotRequestDeserializer
-    );
-
-    protected static void setupCloneSnapshotRequestDeserializer(ObjectDeserializer<CloneSnapshotRequest.Builder> op) {
-        op.add(Builder::indices, JsonpDeserializer.stringDeserializer(), "indices");
-        op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
-        op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
-        op.add(Builder::targetSnapshot, JsonpDeserializer.stringDeserializer(), "target_snapshot");
-    }
-
-    // ---------------------------------------------------------------------------------------------
-
-    /**
-     * Endpoint "{@code snapshot.clone}".
-     */
-    public static final Endpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final Endpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
         // Request method
-        request -> "PUT",
+        request -> "DELETE",
         // Request path
         request -> {
             StringBuilder buf = new StringBuilder();
-            buf.append("/_snapshot/");
-            SimpleEndpoint.pathEncode(request.repository, buf);
-            buf.append("/");
-            SimpleEndpoint.pathEncode(request.snapshot, buf);
-            buf.append("/_clone/");
-            SimpleEndpoint.pathEncode(request.targetSnapshot, buf);
+            buf.append("/_index_template/");
+            SimpleEndpoint.pathEncode(request.name, buf);
             return buf.toString();
         },
         // Request parameters
@@ -337,22 +262,23 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
             if (request.masterTimeout != null) {
                 params.put("master_timeout", request.masterTimeout._toJsonString());
             }
+            if (request.timeout != null) {
+                params.put("timeout", request.timeout._toJsonString());
+            }
             return params;
         },
         SimpleEndpoint.emptyMap(),
-        true,
-        CloneSnapshotResponse._DESERIALIZER
+        false,
+        DeleteIndexTemplateResponse._DESERIALIZER
     );
 
     @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
-        result = 31 * result + this.indices.hashCode();
         result = 31 * result + Objects.hashCode(this.masterTimeout);
-        result = 31 * result + this.repository.hashCode();
-        result = 31 * result + this.snapshot.hashCode();
-        result = 31 * result + this.targetSnapshot.hashCode();
+        result = 31 * result + this.name.hashCode();
+        result = 31 * result + Objects.hashCode(this.timeout);
         return result;
     }
 
@@ -360,12 +286,10 @@ public class CloneSnapshotRequest extends RequestBase implements PlainJsonSerial
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        CloneSnapshotRequest other = (CloneSnapshotRequest) o;
+        DeleteIndexTemplateRequest other = (DeleteIndexTemplateRequest) o;
         return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
-            && this.indices.equals(other.indices)
             && Objects.equals(this.masterTimeout, other.masterTimeout)
-            && this.repository.equals(other.repository)
-            && this.snapshot.equals(other.snapshot)
-            && this.targetSnapshot.equals(other.targetSnapshot);
+            && this.name.equals(other.name)
+            && Objects.equals(this.timeout, other.timeout);
     }
 }

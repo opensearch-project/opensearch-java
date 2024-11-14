@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -49,24 +55,26 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: indices.get_index_template.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GetIndexTemplateResponse implements PlainJsonSerializable {
+
+    @Nonnull
     private final List<IndexTemplateItem> indexTemplates;
 
     // ---------------------------------------------------------------------------------------------
 
     private GetIndexTemplateResponse(Builder builder) {
-
         this.indexTemplates = ApiTypeHelper.unmodifiableRequired(builder.indexTemplates, this, "indexTemplates");
-
     }
 
-    public static GetIndexTemplateResponse of(Function<Builder, ObjectBuilder<GetIndexTemplateResponse>> fn) {
+    public static GetIndexTemplateResponse of(Function<GetIndexTemplateResponse.Builder, ObjectBuilder<GetIndexTemplateResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code index_templates}
      */
+    @Nonnull
     public final List<IndexTemplateItem> indexTemplates() {
         return this.indexTemplates;
     }
@@ -74,6 +82,7 @@ public class GetIndexTemplateResponse implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -81,18 +90,12 @@ public class GetIndexTemplateResponse implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.indexTemplates)) {
-            generator.writeKey("index_templates");
-            generator.writeStartArray();
-            for (IndexTemplateItem item0 : this.indexTemplates) {
-                item0.serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("index_templates");
+        generator.writeStartArray();
+        for (IndexTemplateItem item0 : this.indexTemplates) {
+            item0.serialize(generator, mapper);
         }
-
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -100,14 +103,15 @@ public class GetIndexTemplateResponse implements PlainJsonSerializable {
     /**
      * Builder for {@link GetIndexTemplateResponse}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetIndexTemplateResponse> {
         private List<IndexTemplateItem> indexTemplates;
 
         /**
          * Required - API name: {@code index_templates}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>indexTemplates</code>.
+         * </p>
          */
         public final Builder indexTemplates(List<IndexTemplateItem> list) {
             this.indexTemplates = _listAddAll(this.indexTemplates, list);
@@ -116,8 +120,10 @@ public class GetIndexTemplateResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code index_templates}
+         *
          * <p>
          * Adds one or more values to <code>indexTemplates</code>.
+         * </p>
          */
         public final Builder indexTemplates(IndexTemplateItem value, IndexTemplateItem... values) {
             this.indexTemplates = _listAdd(this.indexTemplates, value, values);
@@ -126,8 +132,10 @@ public class GetIndexTemplateResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code index_templates}
+         *
          * <p>
          * Adds a value to <code>indexTemplates</code> using a builder lambda.
+         * </p>
          */
         public final Builder indexTemplates(Function<IndexTemplateItem.Builder, ObjectBuilder<IndexTemplateItem>> fn) {
             return indexTemplates(fn.apply(new IndexTemplateItem.Builder()).build());
@@ -136,8 +144,7 @@ public class GetIndexTemplateResponse implements PlainJsonSerializable {
         /**
          * Builds a {@link GetIndexTemplateResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public GetIndexTemplateResponse build() {
             _checkSingleUse();
@@ -157,9 +164,21 @@ public class GetIndexTemplateResponse implements PlainJsonSerializable {
     );
 
     protected static void setupGetIndexTemplateResponseDeserializer(ObjectDeserializer<GetIndexTemplateResponse.Builder> op) {
-
         op.add(Builder::indexTemplates, JsonpDeserializer.arrayDeserializer(IndexTemplateItem._DESERIALIZER), "index_templates");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.indexTemplates.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        GetIndexTemplateResponse other = (GetIndexTemplateResponse) o;
+        return this.indexTemplates.equals(other.indexTemplates);
+    }
 }
