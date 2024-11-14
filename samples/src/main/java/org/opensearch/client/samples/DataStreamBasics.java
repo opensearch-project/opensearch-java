@@ -11,7 +11,6 @@ package org.opensearch.client.samples;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.opensearch.indices.CreateDataStreamRequest;
-import org.opensearch.client.opensearch.indices.DataStream;
 import org.opensearch.client.opensearch.indices.DataStreamsStatsRequest;
 import org.opensearch.client.opensearch.indices.DataStreamsStatsResponse;
 import org.opensearch.client.opensearch.indices.DeleteDataStreamRequest;
@@ -40,7 +39,7 @@ public class DataStreamBasics {
             // Create an index template which configures data stream
             PutIndexTemplateRequest putIndexTemplateRequest = new PutIndexTemplateRequest.Builder().name(dataStreamIndexTemplateName)
                 .indexPatterns(namePattern)
-                .dataStream(new DataStream.Builder().timestampField(t -> t.name(timestampFieldName)).build())
+                .dataStream(ds -> ds.timestampField(t -> t.name(timestampFieldName)))
                 .build();
             client.indices().putIndexTemplate(putIndexTemplateRequest);
 
