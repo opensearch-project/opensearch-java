@@ -88,8 +88,12 @@ public interface JsonpMapper {
 
     /**
      * Create a new mapper with a named attribute that delegates to this one.
+     *
+     * @implNote The default implementation will be removed in a future release, and inheritors will be required to implement it themselves.
+     *           See {@link org.opensearch.client.json.jsonb.JsonbJsonpMapper#withAttribute(String, Object)} and {@link org.opensearch.client.json.jackson.JacksonJsonpMapper#withAttribute(String, Object)} for examples.
      */
     default <T> JsonpMapper withAttribute(String name, T value) {
+        //noinspection deprecation
         return new AttributedJsonpMapper(this, name, value);
     }
 }

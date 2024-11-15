@@ -36,9 +36,46 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.Nullable;
 
 public abstract class JsonpMapperBase implements JsonpMapper {
+    @Nullable
+    private Map<String, Object> attributes;
+
+    protected JsonpMapperBase() {
+    }
+
+    protected JsonpMapperBase(JsonpMapperBase o) {
+        this.attributes = o.attributes; // We always copy in `setAttribute` so no need to copy here.
+    }
+
+    @Override
+    public <T> T attribute(String name) {
+        //noinspection unchecked
+        return attributes == null ? null : (T) attributes.get(name);
+    }
+
+    /**
+     * Updates attributes to a copy of the current ones with an additional key/value pair.
+     * Mutates the current mapper, intended to be used in implementations of {@link #withAttribute(String, Object)}
+     */
+    protected JsonpMapperBase addAttribute(String name, Object value) {
+        if (attributes == null) {
+            this.attributes = Collections.singletonMap(name, value);
+        } else {
+            // Copy the map to avoid modifying the original in case it was shared.
+            // We're generally only ever called from implementations' `withAttribute` methods which are intended
+            // to construct new instances rather than modify existing ones.
+            Map<String, Object> attributes = new HashMap<>(this.attributes.size() + 1);
+            attributes.putAll(this.attributes);
+            attributes.put(name, value);
+            this.attributes = attributes;
+        }
+        return this;
+    }
 
     /** Get a serializer when none of the builtin ones are applicable */
     protected abstract <T> JsonpDeserializer<T> getDefaultDeserializer(Class<T> clazz);

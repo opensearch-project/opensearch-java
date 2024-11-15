@@ -48,7 +48,6 @@ import org.opensearch.client.json.JsonpMapperBase;
 import org.opensearch.client.json.JsonpSerializer;
 
 public class JacksonJsonpMapper extends JsonpMapperBase {
-
     private final JacksonJsonProvider provider;
     private final ObjectMapper objectMapper;
 
@@ -66,6 +65,17 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
         this(
             new ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, false).setSerializationInclusion(JsonInclude.Include.NON_NULL)
         );
+    }
+
+    private JacksonJsonpMapper(JacksonJsonpMapper o) {
+        super(o);
+        this.provider = o.provider;
+        this.objectMapper = o.objectMapper;
+    }
+
+    @Override
+    public <T> JsonpMapper withAttribute(String name, T value) {
+        return new JacksonJsonpMapper(this).addAttribute(name, value);
     }
 
     /**
