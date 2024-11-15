@@ -45,8 +45,7 @@ public abstract class JsonpMapperBase implements JsonpMapper {
     @Nullable
     private Map<String, Object> attributes;
 
-    protected JsonpMapperBase() {
-    }
+    protected JsonpMapperBase() {}
 
     protected JsonpMapperBase(JsonpMapperBase o) {
         this.attributes = o.attributes; // We always copy in `setAttribute` so no need to copy here.
@@ -54,7 +53,7 @@ public abstract class JsonpMapperBase implements JsonpMapper {
 
     @Override
     public <T> T attribute(String name) {
-        //noinspection unchecked
+        // noinspection unchecked
         return attributes == null ? null : (T) attributes.get(name);
     }
 

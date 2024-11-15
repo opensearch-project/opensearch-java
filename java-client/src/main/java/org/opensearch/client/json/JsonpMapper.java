@@ -93,7 +93,7 @@ public interface JsonpMapper {
      *           See {@link org.opensearch.client.json.jsonb.JsonbJsonpMapper#withAttribute(String, Object)} and {@link org.opensearch.client.json.jackson.JacksonJsonpMapper#withAttribute(String, Object)} for examples.
      */
     default <T> JsonpMapper withAttribute(String name, T value) {
-        //noinspection deprecation
+        // noinspection deprecation
         return new AttributedJsonpMapper(this, name, value);
     }
 }
