@@ -99,6 +99,25 @@ public abstract class OpenSearchSnapshotAsyncClientBase<Self extends OpenSearchS
         return clone(fn.apply(new CloneSnapshotRequest.Builder()).build());
     }
 
+    // ----- Endpoint: snapshot.get
+
+    /**
+     * Returns information about a snapshot.
+     */
+    public CompletableFuture<GetSnapshotResponse> get(GetSnapshotRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, GetSnapshotRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about a snapshot.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetSnapshotRequest}
+     */
+    public final CompletableFuture<GetSnapshotResponse> get(Function<GetSnapshotRequest.Builder, ObjectBuilder<GetSnapshotRequest>> fn)
+        throws IOException, OpenSearchException {
+        return get(fn.apply(new GetSnapshotRequest.Builder()).build());
+    }
+
     // ----- Endpoint: snapshot.verify_repository
 
     /**
