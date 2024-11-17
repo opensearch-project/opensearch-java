@@ -39,6 +39,7 @@ import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 
 public abstract class JsonpMapperBase implements JsonpMapper {
@@ -62,17 +63,28 @@ public abstract class JsonpMapperBase implements JsonpMapper {
      * Mutates the current mapper, intended to be used in implementations of {@link #withAttribute(String, Object)}
      */
     protected JsonpMapperBase addAttribute(String name, Object value) {
-        if (attributes == null) {
-            this.attributes = Collections.singletonMap(name, value);
-        } else {
-            // Copy the map to avoid modifying the original in case it was shared.
-            // We're generally only ever called from implementations' `withAttribute` methods which are intended
-            // to construct new instances rather than modify existing ones.
-            Map<String, Object> attributes = new HashMap<>(this.attributes.size() + 1);
-            attributes.putAll(this.attributes);
-            attributes.put(name, value);
-            this.attributes = attributes;
+        if (this.attributes == null) {
+            // Don't bother creating a map if the value is null, as we don't distinguish between explicit null and missing on retrieval.
+            if (value != null) {
+                this.attributes = Collections.singletonMap(name, value);
+            }
+            return this;
         }
+
+        Object existingValue = this.attributes.get(name);
+
+        if (Objects.equals(existingValue, value)) {
+            return this;
+        }
+
+        // Copy the map to avoid modifying the original in case it was shared.
+        // We're generally only ever called from implementations' `withAttribute` methods which are intended
+        // to construct new instances rather than modify existing ones.
+        Map<String, Object> attributes = new HashMap<>(this.attributes.size() + (!this.attributes.containsKey(name) ? 1 : 0));
+        attributes.putAll(this.attributes);
+        attributes.put(name, value);
+        this.attributes = attributes;
+
         return this;
     }
 
@@ -139,5 +151,4 @@ public abstract class JsonpMapperBase implements JsonpMapper {
         protected static final JsonpSerializer<?> INSTANCE = new JsonpValueSerializer();
 
     }
-
 }
