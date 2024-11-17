@@ -171,6 +171,9 @@ public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVa
          * API name: {@code batch_size}
          */
         public final Builder batchSize(@Nullable Integer value) {
+            if (value != null && value <= 0) {
+                throw new IllegalArgumentException("batchSize must be a positive integer");
+            }
             this.batchSize = value;
             return this;
         }
