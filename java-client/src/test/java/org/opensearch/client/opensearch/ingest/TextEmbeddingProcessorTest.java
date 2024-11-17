@@ -73,4 +73,21 @@ public class TextEmbeddingProcessorTest extends ModelTestCase {
         assertEquals("some-tag", deserialized.tag());
         assertNull(deserialized.batchSize());
     }
+
+    @Test
+    public void testInvalidBatchSizeThrowsException() {
+        IllegalArgumentException exceptionWhenBatchSizeIsZero = assertThrows(IllegalArgumentException.class, () -> {
+            new Processor.Builder().textEmbedding(
+                    baseTextEmbeddingProcessor().batchSize(0).build()
+            ).build();
+        });
+        assertEquals("batchSize must be a positive integer", exceptionWhenBatchSizeIsZero.getMessage());
+
+        IllegalArgumentException exceptionWhenBatchSizeIsNegative = assertThrows(IllegalArgumentException.class, () -> {
+            new Processor.Builder().textEmbedding(
+                    baseTextEmbeddingProcessor().batchSize(-1).build()
+            ).build();
+        });
+        assertEquals("batchSize must be a positive integer", exceptionWhenBatchSizeIsNegative.getMessage());
+    }
 }
