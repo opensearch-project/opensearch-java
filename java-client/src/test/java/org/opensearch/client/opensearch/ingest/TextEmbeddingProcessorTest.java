@@ -25,7 +25,41 @@ public class TextEmbeddingProcessorTest extends ModelTestCase {
     }
 
     @Test
-    public void testJsonRoundtripWithDescription() {
+    public void testJsonRoundtripWithDescriptionAndBatchSize() {
+        Processor processor = new Processor.Builder().textEmbedding(
+            baseTextEmbeddingProcessor().description("processor-description").batchSize(1).build()
+        ).build();
+        String json =
+            "{\"text_embedding\":{\"tag\":\"some-tag\",\"model_id\":\"modelId\",\"field_map\":{\"input_field\":\"vector_field\"},\"description\":\"processor-description\",\"batch_size\":1}}";
+        TextEmbeddingProcessor deserialized = checkJsonRoundtrip(processor, json).textEmbedding();
+
+        assertEquals("modelId", deserialized.modelId());
+        assertEquals(baseFieldMap, deserialized.fieldMap());
+        assertEquals("processor-description", deserialized.description());
+        assertEquals("some-tag", deserialized.tag());
+        assert deserialized.batchSize() != null;
+        assertEquals(1, deserialized.batchSize().intValue());
+    }
+
+    @Test
+    public void testJsonRoundtripWithoutDescription() {
+        Processor processor = new Processor.Builder().textEmbedding(
+            baseTextEmbeddingProcessor().batchSize(1).build()
+        ).build();
+        String json =
+            "{\"text_embedding\":{\"tag\":\"some-tag\",\"model_id\":\"modelId\",\"field_map\":{\"input_field\":\"vector_field\"},\"batch_size\":1}}";
+        TextEmbeddingProcessor deserialized = checkJsonRoundtrip(processor, json).textEmbedding();
+
+        assertEquals("modelId", deserialized.modelId());
+        assertEquals(baseFieldMap, deserialized.fieldMap());
+        assertNull(deserialized.description());
+        assertEquals("some-tag", deserialized.tag());
+        assert deserialized.batchSize() != null;
+        assertEquals(1, deserialized.batchSize().intValue());
+    }
+
+    @Test
+    public void testJsonRoundtripWithoutBatchSize() {
         Processor processor = new Processor.Builder().textEmbedding(
             baseTextEmbeddingProcessor().description("processor-description").build()
         ).build();
@@ -37,18 +71,6 @@ public class TextEmbeddingProcessorTest extends ModelTestCase {
         assertEquals(baseFieldMap, deserialized.fieldMap());
         assertEquals("processor-description", deserialized.description());
         assertEquals("some-tag", deserialized.tag());
-    }
-
-    @Test
-    public void testJsonRoundtripWithoutDescription() {
-        Processor processor = new Processor.Builder().textEmbedding(baseTextEmbeddingProcessor().build()).build();
-        String json =
-            "{\"text_embedding\":{\"tag\":\"some-tag\",\"model_id\":\"modelId\",\"field_map\":{\"input_field\":\"vector_field\"}}}";
-        TextEmbeddingProcessor deserialized = checkJsonRoundtrip(processor, json).textEmbedding();
-
-        assertEquals("modelId", deserialized.modelId());
-        assertEquals(baseFieldMap, deserialized.fieldMap());
-        assertNull(deserialized.description());
-        assertEquals("some-tag", deserialized.tag());
+        assertNull(deserialized.batchSize());
     }
 }
