@@ -24,6 +24,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bumps `org.apache.httpcomponents.core5:httpcore5-h2` from 5.3 to 5.3.1
 - Bumps `org.owasp.dependencycheck` from 10.0.2 to 11.1.0
+- Bump `io.github.classgraph:classgraph` from 4.8.177 to 4.8.179 ([#1302](https://github.com/opensearch-project/opensearch-java/pull/1302))
 
 ### Fixed
 - Fixed `UndeployModelResponse` deserialization ([#1257](https://github.com/opensearch-project/opensearch-java/pull/1257))
