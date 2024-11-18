@@ -32,9 +32,12 @@
 
 package org.opensearch.client.opensearch.model;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import java.util.ArrayList;
 import java.util.Collections;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapperAttributes;
 import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.AvgAggregate;
 import org.opensearch.client.opensearch._types.aggregations.StringTermsAggregate;
@@ -112,5 +115,18 @@ public class TypedKeysTest extends ModelTestCase {
         assertEquals(1.0, foo.buckets().array().get(0).aggregations().get("bar").avg().value(), 0.01);
         assertEquals("key_2", foo.buckets().array().get(1).key());
         assertEquals(2.0, foo.buckets().array().get(1).aggregations().get("bar").avg().value(), 0.01);
+    }
+
+    @Test
+    public void testDisablingSerializeTypedKeys() {
+        SearchResponse<ObjectNode> resp = new SearchResponse.Builder<ObjectNode>().aggregations(
+            "aggKey",
+            v -> v.lterms(lv -> lv.buckets(b -> b.array(new ArrayList<>())).sumOtherDocCount(0))
+        ).took(0).timedOut(false).shards(s -> s.failed(0).successful(1).total(1)).hits(h -> h.hits(new ArrayList<>())).build();
+
+        String json =
+            "{\"took\":0,\"timed_out\":false,\"_shards\":{\"failed\":0.0,\"successful\":1.0,\"total\":1.0},\"hits\":{\"hits\":[]},\"aggregations\":{\"aggKey\":{\"buckets\":[],\"sum_other_doc_count\":0}}}";
+
+        assertEquals(json, toJson(resp, mapper.withAttribute(JsonpMapperAttributes.SERIALIZE_TYPED_KEYS, false)));
     }
 }
