@@ -58,7 +58,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: indices.get.Request
 
 /**
- * Returns information about one or more indices.
+ * Returns information about one or more indexes.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GetIndexRequest extends RequestBase {
@@ -110,8 +110,8 @@ public class GetIndexRequest extends RequestBase {
     }
 
     /**
-     * If false, the request returns an error if any wildcard expression, index alias, or _all value targets only missing or closed indices.
-     * This behavior applies even if the request targets other open indices. For example, a request targeting foo*,bar* returns an error if
+     * If false, the request returns an error if any wildcard expression, index alias, or _all value targets only missing or closed indexes.
+     * This behavior applies even if the request targets other open indexes. For example, a request targeting foo*,bar* returns an error if
      * an index starts with foo but no index starts with bar.
      * <p>
      * API name: {@code allow_no_indices}
@@ -179,7 +179,7 @@ public class GetIndexRequest extends RequestBase {
     }
 
     /**
-     * Required - Comma-separated list of data streams, indices, and index aliases used to limit the request. Wildcard expressions (*) are
+     * Required - Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*) are
      * supported.
      * <p>
      * API name: {@code index}
@@ -241,7 +241,7 @@ public class GetIndexRequest extends RequestBase {
 
         /**
          * If false, the request returns an error if any wildcard expression, index alias, or _all value targets only missing or closed
-         * indices. This behavior applies even if the request targets other open indices. For example, a request targeting foo*,bar* returns
+         * indexes. This behavior applies even if the request targets other open indexes. For example, a request targeting foo*,bar* returns
          * an error if an index starts with foo but no index starts with bar.
          * <p>
          * API name: {@code allow_no_indices}
@@ -339,7 +339,7 @@ public class GetIndexRequest extends RequestBase {
         }
 
         /**
-         * Required - Comma-separated list of data streams, indices, and index aliases used to limit the request. Wildcard expressions (*)
+         * Required - Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*)
          * are supported.
          * <p>
          * API name: {@code index}
@@ -355,7 +355,7 @@ public class GetIndexRequest extends RequestBase {
         }
 
         /**
-         * Required - Comma-separated list of data streams, indices, and index aliases used to limit the request. Wildcard expressions (*)
+         * Required - Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*)
          * are supported.
          * <p>
          * API name: {@code index}

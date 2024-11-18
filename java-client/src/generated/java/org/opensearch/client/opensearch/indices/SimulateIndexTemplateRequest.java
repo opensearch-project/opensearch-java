@@ -137,8 +137,8 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
 
     /**
      * This setting overrides the value of the <code>action.auto_create_index</code> cluster setting. If set to <code>true</code> in a
-     * template, then indices can be automatically created using that template even if auto-creation of indices is disabled via
-     * <code>actions.auto_create_index</code>. If set to <code>false</code>, then indices or data streams matching the template must always
+     * template, then indexes can be automatically created using that template even if auto-creation of indexes is disabled using
+     * <code>actions.auto_create_index</code>. If set to <code>false</code>, then indexes or data streams matching the template must always
      * be explicitly created, and may never be automatically created.
      * <p>
      * API name: {@code allow_auto_create}
@@ -371,8 +371,8 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
 
         /**
          * This setting overrides the value of the <code>action.auto_create_index</code> cluster setting. If set to <code>true</code> in a
-         * template, then indices can be automatically created using that template even if auto-creation of indices is disabled via
-         * <code>actions.auto_create_index</code>. If set to <code>false</code>, then indices or data streams matching the template must
+         * template, then indexes can be automatically created using that template even if auto-creation of indexes is disabled using
+         * <code>actions.auto_create_index</code>. If set to <code>false</code>, then indexes or data streams matching the template must
          * always be explicitly created, and may never be automatically created.
          * <p>
          * API name: {@code allow_auto_create}

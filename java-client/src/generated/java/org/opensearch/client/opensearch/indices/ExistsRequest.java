@@ -108,7 +108,7 @@ public class ExistsRequest extends RequestBase {
 
     /**
      * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets only
-     * missing or closed indices. This behavior applies even if the request targets other open indices.
+     * missing or closed indexes. This behavior applies even if the request targets other open indexes.
      * <p>
      * API name: {@code allow_no_indices}
      * </p>
@@ -176,7 +176,7 @@ public class ExistsRequest extends RequestBase {
     }
 
     /**
-     * Required - Comma-separated list of data streams, indices, and aliases. Supports wildcards (<code>*</code>).
+     * Required - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (<code>*</code>).
      * <p>
      * API name: {@code index}
      * </p>
@@ -221,7 +221,7 @@ public class ExistsRequest extends RequestBase {
 
         /**
          * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets
-         * only missing or closed indices. This behavior applies even if the request targets other open indices.
+         * only missing or closed indexes. This behavior applies even if the request targets other open indexes.
          * <p>
          * API name: {@code allow_no_indices}
          * </p>
@@ -320,7 +320,7 @@ public class ExistsRequest extends RequestBase {
         }
 
         /**
-         * Required - Comma-separated list of data streams, indices, and aliases. Supports wildcards (<code>*</code>).
+         * Required - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (<code>*</code>).
          * <p>
          * API name: {@code index}
          * </p>
@@ -335,7 +335,7 @@ public class ExistsRequest extends RequestBase {
         }
 
         /**
-         * Required - Comma-separated list of data streams, indices, and aliases. Supports wildcards (<code>*</code>).
+         * Required - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (<code>*</code>).
          * <p>
          * API name: {@code index}
          * </p>
