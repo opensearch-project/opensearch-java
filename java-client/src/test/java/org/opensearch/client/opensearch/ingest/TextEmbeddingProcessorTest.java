@@ -37,7 +37,7 @@ public class TextEmbeddingProcessorTest extends ModelTestCase {
         assertEquals(baseFieldMap, deserialized.fieldMap());
         assertEquals("processor-description", deserialized.description());
         assertEquals("some-tag", deserialized.tag());
-        assert deserialized.batchSize() != null;
+        assertNotNull(deserialized.batchSize());
         assertEquals(1, deserialized.batchSize().intValue());
     }
 
@@ -54,7 +54,7 @@ public class TextEmbeddingProcessorTest extends ModelTestCase {
         assertEquals(baseFieldMap, deserialized.fieldMap());
         assertNull(deserialized.description());
         assertEquals("some-tag", deserialized.tag());
-        assert deserialized.batchSize() != null;
+        assertNotNull(deserialized.batchSize());
         assertEquals(1, deserialized.batchSize().intValue());
     }
 
