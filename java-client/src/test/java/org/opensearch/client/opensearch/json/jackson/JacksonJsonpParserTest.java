@@ -32,18 +32,12 @@
 
 package org.opensearch.client.opensearch.json.jackson;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import java.io.StringReader;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import javax.annotation.Nullable;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpMapperBase;
 import org.opensearch.client.json.jackson.JacksonJsonProvider;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.core.MsearchResponse;
@@ -176,7 +170,7 @@ public class JacksonJsonpParserTest extends ModelTestCase {
             + "  ]\n"
             + "}\n";
 
-        JsonpMapper mapper = new AttributedJacksonJsonpMapper().withAttribute(
+        JsonpMapper mapper = new JacksonJsonpMapper().withAttribute(
             "org.opensearch.client:Deserializer:_global.msearch.TDocument",
             JsonpDeserializer.of(Foo.class)
         );
@@ -187,46 +181,6 @@ public class JacksonJsonpParserTest extends ModelTestCase {
         assertEquals(2, response.responses().size());
         assertEquals(404, response.responses().get(0).failure().status().intValue());
         assertEquals((Integer) 200, response.responses().get(1).result().status());
-    }
-
-    public static class AttributedJacksonJsonpMapper extends JacksonJsonpMapper {
-        private Map<String, Object> attributes;
-
-        public AttributedJacksonJsonpMapper() {
-            super();
-        }
-
-        public AttributedJacksonJsonpMapper(ObjectMapper objectMapper) {
-            super(objectMapper);
-        }
-
-        @Nullable
-        @Override
-        @SuppressWarnings("unchecked")
-        public <T> T attribute(String name) {
-            return attributes == null ? null : (T) attributes.get(name);
-        }
-
-        /**
-         * Updates attributes to a copy of the current ones with an additional key/value pair.
-         * Mutates the current mapper, intended to be used in implementations of {@link #withAttribute(String, Object)}
-         */
-        protected JsonpMapperBase addAttribute(String name, Object value) {
-            if (attributes == null) {
-                this.attributes = Collections.singletonMap(name, value);
-            } else {
-                Map<String, Object> newAttrs = new HashMap<>(attributes.size() + 1);
-                newAttrs.putAll(attributes);
-                newAttrs.put(name, value);
-                this.attributes = newAttrs;
-            }
-            return this;
-        }
-
-        @Override
-        public <T> JsonpMapper withAttribute(String name, T value) {
-            return new AttributedJacksonJsonpMapper(objectMapper()).addAttribute(name, value);
-        }
     }
 
     public static class Foo {
