@@ -158,14 +158,14 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
     // ----- Endpoint: indices.get
 
     /**
-     * Returns information about one or more indices.
+     * Returns information about one or more indexes.
      */
     public GetIndexResponse get(GetIndexRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequest(request, GetIndexRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Returns information about one or more indices.
+     * Returns information about one or more indexes.
      *
      * @param fn a function that initializes a builder to create the {@link GetIndexRequest}
      */

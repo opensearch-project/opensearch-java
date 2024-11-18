@@ -72,6 +72,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Pl
         Language("language"),
         Nori("nori"),
         Pattern("pattern"),
+        Phone("phone"),
         Simple("simple"),
         Smartcn("smartcn"),
         Snowball("snowball"),
@@ -279,6 +280,22 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Pl
     }
 
     /**
+     * Is this variant instance of kind {@code phone}?
+     */
+    public boolean isPhone() {
+        return _kind == Kind.Phone;
+    }
+
+    /**
+     * Get the {@code phone} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code phone} kind.
+     */
+    public PhoneAnalyzer phone() {
+        return TaggedUnionUtils.get(this, Kind.Phone);
+    }
+
+    /**
      * Is this variant instance of kind {@code simple}?
      */
     public boolean isSimple() {
@@ -483,6 +500,16 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Pl
             return this.pattern(fn.apply(new PatternAnalyzer.Builder()).build());
         }
 
+        public ObjectBuilder<Analyzer> phone(PhoneAnalyzer v) {
+            this._kind = Kind.Phone;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Analyzer> phone(Function<PhoneAnalyzer.Builder, ObjectBuilder<PhoneAnalyzer>> fn) {
+            return this.phone(fn.apply(new PhoneAnalyzer.Builder()).build());
+        }
+
         public ObjectBuilder<Analyzer> simple(SimpleAnalyzer v) {
             this._kind = Kind.Simple;
             this._value = v;
@@ -561,6 +588,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Pl
         op.add(Builder::language, LanguageAnalyzer._DESERIALIZER, "language");
         op.add(Builder::nori, NoriAnalyzer._DESERIALIZER, "nori");
         op.add(Builder::pattern, PatternAnalyzer._DESERIALIZER, "pattern");
+        op.add(Builder::phone, PhoneAnalyzer._DESERIALIZER, "phone");
         op.add(Builder::simple, SimpleAnalyzer._DESERIALIZER, "simple");
         op.add(Builder::smartcn, SmartcnAnalyzer._DESERIALIZER, "smartcn");
         op.add(Builder::snowball, SnowballAnalyzer._DESERIALIZER, "snowball");

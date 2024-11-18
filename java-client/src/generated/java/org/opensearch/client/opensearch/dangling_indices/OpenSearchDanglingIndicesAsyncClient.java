@@ -110,7 +110,7 @@ public class OpenSearchDanglingIndicesAsyncClient extends ApiClient<OpenSearchTr
     // ----- Endpoint: dangling_indices.list_dangling_indices
 
     /**
-     * Returns all dangling indices.
+     * Returns all dangling indexes.
      */
     public CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices() throws IOException, OpenSearchException {
         return this.transport.performRequestAsync(

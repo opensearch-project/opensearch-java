@@ -107,7 +107,7 @@ public class OpenSearchDanglingIndicesClient extends ApiClient<OpenSearchTranspo
     // ----- Endpoint: dangling_indices.list_dangling_indices
 
     /**
-     * Returns all dangling indices.
+     * Returns all dangling indexes.
      */
     public ListDanglingIndicesResponse listDanglingIndices() throws IOException, OpenSearchException {
         return this.transport.performRequest(

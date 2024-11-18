@@ -51,12 +51,12 @@ public enum ExpandWildcard implements JsonEnum {
     All("all"),
 
     /**
-     * Match closed, non-hidden indices.
+     * Match closed, non-hidden indexes.
      */
     Closed("closed"),
 
     /**
-     * Match hidden indices. Must be combined with open, closed, or both.
+     * Match hidden indexes. Must be combined with open, closed, or both.
      */
     Hidden("hidden"),
 
@@ -66,7 +66,7 @@ public enum ExpandWildcard implements JsonEnum {
     None("none"),
 
     /**
-     * Match open, non-hidden indices.
+     * Match open, non-hidden indexes.
      */
     Open("open");
 

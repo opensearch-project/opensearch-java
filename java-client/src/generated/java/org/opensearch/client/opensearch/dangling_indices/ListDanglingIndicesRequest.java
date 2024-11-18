@@ -45,7 +45,7 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 // typedef: dangling_indices.list_dangling_indices.Request
 
 /**
- * Returns all dangling indices.
+ * Returns all dangling indexes.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ListDanglingIndicesRequest extends RequestBase {
