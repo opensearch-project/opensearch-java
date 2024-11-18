@@ -125,7 +125,7 @@ public class TypedKeysTest extends ModelTestCase {
         ).took(0).timedOut(false).shards(s -> s.failed(0).successful(1).total(1)).hits(h -> h.hits(new ArrayList<>())).build();
 
         String json =
-            "{\"took\":0,\"timed_out\":false,\"_shards\":{\"failed\":0,\"successful\":1,\"total\":1},\"hits\":{\"hits\":[]},\"aggregations\":{\"aggKey\":{\"buckets\":[],\"sum_other_doc_count\":0}}}";
+            "{\"took\":0,\"timed_out\":false,\"_shards\":{\"failed\":0.0,\"successful\":1.0,\"total\":1.0},\"hits\":{\"hits\":[]},\"aggregations\":{\"aggKey\":{\"buckets\":[],\"sum_other_doc_count\":0}}}";
 
         assertEquals(json, toJson(resp, mapper.withAttribute(JsonpMapperAttributes.SERIALIZE_TYPED_KEYS, false)));
     }
