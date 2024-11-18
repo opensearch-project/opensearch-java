@@ -43,9 +43,7 @@ public class TextEmbeddingProcessorTest extends ModelTestCase {
 
     @Test
     public void testJsonRoundtripWithoutDescription() {
-        Processor processor = new Processor.Builder().textEmbedding(
-            baseTextEmbeddingProcessor().batchSize(1).build()
-        ).build();
+        Processor processor = new Processor.Builder().textEmbedding(baseTextEmbeddingProcessor().batchSize(1).build()).build();
         String json =
             "{\"text_embedding\":{\"tag\":\"some-tag\",\"model_id\":\"modelId\",\"field_map\":{\"input_field\":\"vector_field\"},\"batch_size\":1}}";
         TextEmbeddingProcessor deserialized = checkJsonRoundtrip(processor, json).textEmbedding();
@@ -77,16 +75,12 @@ public class TextEmbeddingProcessorTest extends ModelTestCase {
     @Test
     public void testInvalidBatchSizeThrowsException() {
         IllegalArgumentException exceptionWhenBatchSizeIsZero = assertThrows(IllegalArgumentException.class, () -> {
-            new Processor.Builder().textEmbedding(
-                    baseTextEmbeddingProcessor().batchSize(0).build()
-            ).build();
+            new Processor.Builder().textEmbedding(baseTextEmbeddingProcessor().batchSize(0).build()).build();
         });
         assertEquals("batchSize must be a positive integer", exceptionWhenBatchSizeIsZero.getMessage());
 
         IllegalArgumentException exceptionWhenBatchSizeIsNegative = assertThrows(IllegalArgumentException.class, () -> {
-            new Processor.Builder().textEmbedding(
-                    baseTextEmbeddingProcessor().batchSize(-1).build()
-            ).build();
+            new Processor.Builder().textEmbedding(baseTextEmbeddingProcessor().batchSize(-1).build()).build();
         });
         assertEquals("batchSize must be a positive integer", exceptionWhenBatchSizeIsNegative.getMessage());
     }
