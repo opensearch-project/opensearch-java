@@ -107,7 +107,7 @@ public class Alias implements PlainJsonSerializable {
     }
 
     /**
-     * If <code>true</code>, the alias is hidden. All indices for the alias must have the same <code>is_hidden</code> value.
+     * If <code>true</code>, the alias is hidden. All indexes for the alias must have the same <code>is_hidden</code> value.
      * <p>
      * API name: {@code is_hidden}
      * </p>
@@ -229,7 +229,7 @@ public class Alias implements PlainJsonSerializable {
         }
 
         /**
-         * If <code>true</code>, the alias is hidden. All indices for the alias must have the same <code>is_hidden</code> value.
+         * If <code>true</code>, the alias is hidden. All indexes for the alias must have the same <code>is_hidden</code> value.
          * <p>
          * API name: {@code is_hidden}
          * </p>

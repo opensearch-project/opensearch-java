@@ -406,7 +406,7 @@ paths:
       x-distributions-excluded:
         - amazon-managed
         - amazon-serverless
-      description: Clears all or specific caches for one or more indices.
+      description: Clears all or specific caches for one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/index-apis/clear-index-cache/
       parameters:
@@ -449,7 +449,7 @@ paths:
       operationId: cat.aliases.0
       x-operation-group: cat.aliases
       x-version-added: '1.0'
-      description: Shows information about currently configured aliases to indices including filter and routing infos.
+      description: Shows information about currently configured aliases to indexes including filter and routing info.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-aliases/
       parameters:
@@ -473,7 +473,7 @@ paths:
       operationId: cat.aliases.1
       x-operation-group: cat.aliases
       x-version-added: '1.0'
-      description: Shows information about currently configured aliases to indices including filter and routing infos.
+      description: Shows information about currently configured aliases to indexes including filter and routing info.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-aliases/
       parameters:
@@ -576,7 +576,7 @@ paths:
       operationId: cat.count.0
       x-operation-group: cat.count
       x-version-added: '1.0'
-      description: Provides quick access to the document count of the entire cluster, or individual indices.
+      description: Provides quick access to the document count of the entire cluster, or individual indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-count/
       parameters:
@@ -598,7 +598,7 @@ paths:
       operationId: cat.count.1
       x-operation-group: cat.count
       x-version-added: '1.0'
-      description: Provides quick access to the document count of the entire cluster, or individual indices.
+      description: Provides quick access to the document count of the entire cluster, or individual indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-count/
       parameters:
@@ -694,7 +694,7 @@ paths:
       operationId: cat.indices.0
       x-operation-group: cat.indices
       x-version-added: '1.0'
-      description: 'Returns information about indices: number of primaries and replicas, document counts, disk size, ...'
+      description: 'Returns information about indexes: number of primaries and replicas, document counts, disk size, ...'
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-indices/
       parameters:
@@ -725,7 +725,7 @@ paths:
       operationId: cat.indices.1
       x-operation-group: cat.indices
       x-version-added: '1.0'
-      description: 'Returns information about indices: number of primaries and replicas, document counts, disk size, ...'
+      description: 'Returns information about indexes: number of primaries and replicas, document counts, disk size, ...'
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-indices/
       parameters:
@@ -1837,6 +1837,49 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/cluster.stats___200'
+  /_cluster/stats/{metric}/{index_metric}/nodes/{node_id}:
+    get:
+      operationId: cluster.stats.3
+      x-operation-group: cluster.stats
+      x-version-added: '2.18'
+      description: Returns high-level overview of cluster statistics.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/
+      parameters:
+        - $ref: '#/components/parameters/cluster.stats___path.index_metric'
+        - $ref: '#/components/parameters/cluster.stats___path.metric'
+        - $ref: '#/components/parameters/cluster.stats___path.node_id'
+        - $ref: '#/components/parameters/cluster.stats___query.flat_settings'
+        - $ref: '#/components/parameters/cluster.stats___query.timeout'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/cluster.stats___200'
+  /_cluster/stats/{metric}/nodes/{node_id}:
+    get:
+      operationId: cluster.stats.2
+      x-operation-group: cluster.stats
+      x-version-added: '2.18'
+      description: Returns high-level overview of cluster statistics.
+      externalDocs:
+        url: https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/
+      parameters:
+        - $ref: '#/components/parameters/cluster.stats___path.metric'
+        - $ref: '#/components/parameters/cluster.stats___path.node_id'
+        - $ref: '#/components/parameters/cluster.stats___query.flat_settings'
+        - $ref: '#/components/parameters/cluster.stats___query.timeout'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/cluster.stats___200'
   /_cluster/stats/nodes/{node_id}:
     get:
       operationId: cluster.stats.1
@@ -2091,7 +2134,7 @@ paths:
       operationId: dangling_indices.list_dangling_indices.0
       x-operation-group: dangling_indices.list_dangling_indices
       x-version-added: '1.0'
-      description: Returns all dangling indices.
+      description: Returns all dangling indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/index-apis/dangling-index/
       parameters:
@@ -2276,7 +2319,7 @@ paths:
       operationId: field_caps.0
       x-operation-group: field_caps
       x-version-added: '1.0'
-      description: Returns the information about the capabilities of fields among multiple indices.
+      description: Returns the information about the capabilities of fields among multiple indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/field-types/supported-field-types/alias/#using-aliases-in-field-capabilities-api-operations
       parameters:
@@ -2299,7 +2342,7 @@ paths:
       operationId: field_caps.1
       x-operation-group: field_caps
       x-version-added: '1.0'
-      description: Returns the information about the capabilities of fields among multiple indices.
+      description: Returns the information about the capabilities of fields among multiple indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/field-types/supported-field-types/alias/#using-aliases-in-field-capabilities-api-operations
       parameters:
@@ -2323,7 +2366,7 @@ paths:
       operationId: indices.flush.0
       x-operation-group: indices.flush
       x-version-added: '1.0'
-      description: Performs the flush operation on one or more indices.
+      description: Performs the flush operation on one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -2344,7 +2387,7 @@ paths:
       operationId: indices.flush.1
       x-operation-group: indices.flush
       x-version-added: '1.0'
-      description: Performs the flush operation on one or more indices.
+      description: Performs the flush operation on one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -2369,7 +2412,7 @@ paths:
       x-distributions-excluded:
         - amazon-managed
         - amazon-serverless
-      description: Performs the force merge operation on one or more indices.
+      description: Performs the force merge operation on one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -2936,7 +2979,7 @@ paths:
       operationId: indices.get_mapping.0
       x-operation-group: indices.get_mapping
       x-version-added: '1.0'
-      description: Returns mappings for one or more indices.
+      description: Returns mappings for one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/field-types/index/#get-a-mapping
       parameters:
@@ -5714,7 +5757,7 @@ paths:
       x-distributions-excluded:
         - amazon-managed
         - amazon-serverless
-      description: Creates or replaces the allowlisted APIs. Accessible via Super Admin certificate or REST API permission.
+      description: Creates or replaces the permitted APIs. Accessible using Super Admin certificate or REST API permission.
       externalDocs:
         url: https://opensearch.org/docs/latest/security/access-control/api/#access-control-for-the-api
       requestBody:
@@ -7545,7 +7588,7 @@ paths:
       operationId: indices.refresh.0
       x-operation-group: indices.refresh
       x-version-added: '1.0'
-      description: Performs the refresh operation in one or more indices.
+      description: Performs the refresh operation in one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/tuning-your-cluster/availability-and-recovery/remote-store/index/#refresh-level-and-request-level-durability
       parameters:
@@ -7564,7 +7607,7 @@ paths:
       operationId: indices.refresh.1
       x-operation-group: indices.refresh
       x-version-added: '1.0'
-      description: Performs the refresh operation in one or more indices.
+      description: Performs the refresh operation in one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/tuning-your-cluster/availability-and-recovery/remote-store/index/#refresh-level-and-request-level-durability
       parameters:
@@ -7747,7 +7790,7 @@ paths:
       operationId: indices.resolve_index.0
       x-operation-group: indices.resolve_index
       x-version-added: '1.0'
-      description: Returns information about any matching indices, aliases, and data streams.
+      description: Returns information about any matching indexes, aliases, and data streams.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -8109,7 +8152,7 @@ paths:
       operationId: search_shards.0
       x-operation-group: search_shards
       x-version-added: '1.0'
-      description: Returns information about the indices and shards that a search request would be executed against.
+      description: Returns information about the indexes and shards that a search request would be executed against.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -8131,7 +8174,7 @@ paths:
       operationId: search_shards.1
       x-operation-group: search_shards
       x-version-added: '1.0'
-      description: Returns information about the indices and shards that a search request would be executed against.
+      description: Returns information about the indexes and shards that a search request would be executed against.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -8501,7 +8544,7 @@ paths:
       x-distributions-excluded:
         - amazon-managed
         - amazon-serverless
-      description: Returns settings for one or more indices.
+      description: Returns settings for one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/index-apis/get-settings/
       parameters:
@@ -8552,7 +8595,7 @@ paths:
       operationId: indices.get_settings.1
       x-operation-group: indices.get_settings
       x-version-added: '1.0'
-      description: Returns settings for one or more indices.
+      description: Returns settings for one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/index-apis/get-settings/
       parameters:
@@ -8578,7 +8621,7 @@ paths:
       operationId: indices.shard_stores.0
       x-operation-group: indices.shard_stores
       x-version-added: '1.0'
-      description: Provides store information for shard copies of indices.
+      description: Provides store information for shard copies of indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -8878,7 +8921,7 @@ paths:
       operationId: snapshot.clone.0
       x-operation-group: snapshot.clone
       x-version-added: '1.0'
-      description: Clones indices from one snapshot into another snapshot in the same repository.
+      description: Clones indexes from one snapshot into another snapshot in the same repository.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -9339,7 +9382,7 @@ paths:
       operationId: wlm.get_query_group.0
       x-operation-group: wlm.get_query_group
       x-version-added: '2.17'
-      description: Gets the specified QueryGroup or get all if no name is provided.
+      description: Retrieves the specified query group. If no query group is specified, all query groups in the cluster are retrieved.
       responses:
         '200':
           $ref: '#/components/responses/wlm.get_query_group___200'
@@ -9353,7 +9396,7 @@ paths:
       operationId: wlm.create_query_group.0
       x-operation-group: wlm.create_query_group
       x-version-added: '2.17'
-      description: Creates the specified query group.
+      description: Creates a new query group and sets the resource limits for the new query group.
       requestBody:
         $ref: '#/components/requestBodies/wlm.create_query_group'
       responses:
@@ -9370,7 +9413,7 @@ paths:
       operationId: wlm.delete_query_group.0
       x-operation-group: wlm.delete_query_group
       x-version-added: '2.17'
-      description: Deletes the specified QueryGroup.
+      description: Deletes the specified query group.
       parameters:
         - $ref: '#/components/parameters/wlm.delete_query_group___path.name'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -9385,7 +9428,7 @@ paths:
       operationId: wlm.get_query_group.1
       x-operation-group: wlm.get_query_group
       x-version-added: '2.17'
-      description: Gets the specified QueryGroup or get all if no name is provided.
+      description: Retrieves the specified query group. If no query group is specified, all query groups in the cluster are retrieved.
       parameters:
         - $ref: '#/components/parameters/wlm.get_query_group___path.name'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -9498,7 +9541,7 @@ paths:
       operationId: indices.get.0
       x-operation-group: indices.get
       x-version-added: '1.0'
-      description: Returns information about one or more indices.
+      description: Returns information about one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/index-apis/get-index/
       parameters:
@@ -10014,7 +10057,7 @@ paths:
       operationId: indices.clear_cache.1
       x-operation-group: indices.clear_cache
       x-version-added: '1.0'
-      description: Clears all or specific caches for one or more indices.
+      description: Clears all or specific caches for one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/index-apis/clear-index-cache/
       parameters:
@@ -10553,7 +10596,7 @@ paths:
       operationId: field_caps.2
       x-operation-group: field_caps
       x-version-added: '1.0'
-      description: Returns the information about the capabilities of fields among multiple indices.
+      description: Returns the information about the capabilities of fields among multiple indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/field-types/supported-field-types/alias/#using-aliases-in-field-capabilities-api-operations
       parameters:
@@ -10577,7 +10620,7 @@ paths:
       operationId: field_caps.3
       x-operation-group: field_caps
       x-version-added: '1.0'
-      description: Returns the information about the capabilities of fields among multiple indices.
+      description: Returns the information about the capabilities of fields among multiple indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/field-types/supported-field-types/alias/#using-aliases-in-field-capabilities-api-operations
       parameters:
@@ -10602,7 +10645,7 @@ paths:
       operationId: indices.flush.2
       x-operation-group: indices.flush
       x-version-added: '1.0'
-      description: Performs the flush operation on one or more indices.
+      description: Performs the flush operation on one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -10624,7 +10667,7 @@ paths:
       operationId: indices.flush.3
       x-operation-group: indices.flush
       x-version-added: '1.0'
-      description: Performs the flush operation on one or more indices.
+      description: Performs the flush operation on one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -10647,7 +10690,7 @@ paths:
       operationId: indices.forcemerge.1
       x-operation-group: indices.forcemerge
       x-version-added: '1.0'
-      description: Performs the force merge operation on one or more indices.
+      description: Performs the force merge operation on one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -10673,7 +10716,7 @@ paths:
       operationId: indices.get_mapping.1
       x-operation-group: indices.get_mapping
       x-version-added: '1.0'
-      description: Returns mappings for one or more indices.
+      description: Returns mappings for one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/field-types/index/#get-a-mapping
       parameters:
@@ -11088,7 +11131,7 @@ paths:
       operationId: indices.refresh.2
       x-operation-group: indices.refresh
       x-version-added: '1.0'
-      description: Performs the refresh operation in one or more indices.
+      description: Performs the refresh operation in one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/tuning-your-cluster/availability-and-recovery/remote-store/index/#refresh-level-and-request-level-durability
       parameters:
@@ -11108,7 +11151,7 @@ paths:
       operationId: indices.refresh.3
       x-operation-group: indices.refresh
       x-version-added: '1.0'
-      description: Performs the refresh operation in one or more indices.
+      description: Performs the refresh operation in one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/tuning-your-cluster/availability-and-recovery/remote-store/index/#refresh-level-and-request-level-durability
       parameters:
@@ -11268,7 +11311,7 @@ paths:
       operationId: search_shards.2
       x-operation-group: search_shards
       x-version-added: '1.0'
-      description: Returns information about the indices and shards that a search request would be executed against.
+      description: Returns information about the indexes and shards that a search request would be executed against.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -11291,7 +11334,7 @@ paths:
       operationId: search_shards.3
       x-operation-group: search_shards
       x-version-added: '1.0'
-      description: Returns information about the indices and shards that a search request would be executed against.
+      description: Returns information about the indexes and shards that a search request would be executed against.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -11428,7 +11471,7 @@ paths:
       operationId: indices.get_settings.2
       x-operation-group: indices.get_settings
       x-version-added: '1.0'
-      description: Returns settings for one or more indices.
+      description: Returns settings for one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/index-apis/get-settings/
       parameters:
@@ -11481,7 +11524,7 @@ paths:
       operationId: indices.get_settings.3
       x-operation-group: indices.get_settings
       x-version-added: '1.0'
-      description: Returns settings for one or more indices.
+      description: Returns settings for one or more indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/index-apis/get-settings/
       parameters:
@@ -11508,7 +11551,7 @@ paths:
       operationId: indices.shard_stores.1
       x-operation-group: indices.shard_stores
       x-version-added: '1.0'
-      description: Provides store information for shard copies of indices.
+      description: Provides store information for shard copies of indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -14046,7 +14089,7 @@ paths:
       x-distributions-excluded:
         - amazon-managed
         - amazon-serverless
-      description: Creates or replaces the allowlisted APIs. Accessible via Super Admin certificate or REST API permission.
+      description: Creates or replaces the permitted APIs. Accessible using Super Admin certificate or REST API permission.
       externalDocs:
         url: https://opensearch.org/docs/latest/security/access-control/api/#access-control-for-the-api
       requestBody:
@@ -14791,7 +14834,7 @@ components:
     cat.aliases___query.expand_wildcards:
       in: query
       name: expand_wildcards
-      description: Whether to expand wildcard expression to concrete indices that are open, closed or both.
+      description: Whether to expand wildcard expression to concrete indexes that are open, closed or both.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
       style: form
@@ -15056,8 +15099,8 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases used to limit the request.
-        Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
+        Comma-separated list of data streams, indexes, and aliases used to limit the request.
+        Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -15240,8 +15283,8 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases used to limit the request.
-        Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
+        Comma-separated list of data streams, indexes, and aliases used to limit the request.
+        Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -15288,7 +15331,7 @@ components:
     cat.indices___query.health:
       in: query
       name: health
-      description: The health status used to limit returned indices. By default, the response includes indices of any health status.
+      description: The health status used to limit returned indexes. By default, the response includes indexes of any health status.
       schema:
         $ref: '#/components/schemas/_common___HealthStatus'
       style: form
@@ -15791,8 +15834,8 @@ components:
       in: path
       name: index
       description: |-
-        A comma-separated list of data streams, indices, and aliases used to limit the request.
-        Supports wildcards (`*`). To target all data streams and indices, omit this parameter or use `*` or `_all`.
+        A comma-separated list of data streams, indexes, and aliases used to limit the request.
+        Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -15972,10 +16015,10 @@ components:
     cat.segment_replication___query.allow_no_indices:
       name: allow_no_indices
       in: query
-      description: Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified).
+      description: Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
       schema:
         type: boolean
-        description: Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified).
+        description: Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
     cat.segment_replication___query.bytes:
       name: bytes
       in: query
@@ -16001,7 +16044,7 @@ components:
     cat.segment_replication___query.expand_wildcards:
       name: expand_wildcards
       in: query
-      description: Whether to expand wildcard expression to concrete indices that are open, closed or both.
+      description: Whether to expand wildcard expression to concrete indexes that are open, closed or both.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
     cat.segment_replication___query.format:
@@ -16033,17 +16076,17 @@ components:
     cat.segment_replication___query.ignore_throttled:
       name: ignore_throttled
       in: query
-      description: Whether specified concrete, expanded or aliased indices should be ignored when throttled.
+      description: Whether specified concrete, expanded or aliased indexes should be ignored when throttled.
       schema:
         type: boolean
-        description: Whether specified concrete, expanded or aliased indices should be ignored when throttled.
+        description: Whether specified concrete, expanded or aliased indexes should be ignored when throttled.
     cat.segment_replication___query.ignore_unavailable:
       name: ignore_unavailable
       in: query
-      description: Whether specified concrete indices should be ignored when unavailable (missing or closed).
+      description: Whether specified concrete indexes should be ignored when unavailable (missing or closed).
       schema:
         type: boolean
-        description: Whether specified concrete indices should be ignored when unavailable (missing or closed).
+        description: Whether specified concrete indexes should be ignored when unavailable (missing or closed).
     cat.segment_replication___query.index:
       name: index
       in: query
@@ -16101,9 +16144,9 @@ components:
       in: path
       name: index
       description: |-
-        A comma-separated list of data streams, indices, and aliases used to limit the request.
+        A comma-separated list of data streams, indexes, and aliases used to limit the request.
         Supports wildcards (`*`).
-        To target all data streams and indices, omit this parameter or use `*` or `_all`.
+        To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -16180,9 +16223,9 @@ components:
       in: path
       name: index
       description: |-
-        A comma-separated list of data streams, indices, and aliases used to limit the request.
+        A comma-separated list of data streams, indexes, and aliases used to limit the request.
         Supports wildcards (`*`).
-        To target all data streams and indices, omit this parameter or use `*` or `_all`.
+        To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -16829,7 +16872,7 @@ components:
     cluster.health___path.index:
       in: path
       name: index
-      description: Comma-separated list of data streams, indices, and index aliases used to limit the request. Wildcard expressions (*) are supported. To target all data streams and indices in a cluster, omit this parameter or use `_all` or `*`.
+      description: Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*) are supported. To target all data streams and indexes in a cluster, omit this parameter or use `_all` or `*`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -16851,14 +16894,14 @@ components:
     cluster.health___query.expand_wildcards:
       in: query
       name: expand_wildcards
-      description: Whether to expand wildcard expression to concrete indices that are open, closed or both.
+      description: Whether to expand wildcard expression to concrete indexes that are open, closed or both.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
       style: form
     cluster.health___query.level:
       in: query
       name: level
-      description: Can be one of cluster, indices or shards. Controls the details level of the health information returned.
+      description: Can be one of cluster, indexes or shards. Controls the details level of the health information returned.
       schema:
         $ref: '#/components/schemas/cluster.health___Level'
       style: form
@@ -16995,7 +17038,7 @@ components:
       description: |-
         Name of the component template to create.
         OpenSearch includes the following built-in component templates: `logs-mappings`; 'logs-settings`; `metrics-mappings`; `metrics-settings`;`synthetics-mapping`; `synthetics-settings`.
-        OpenSearch Agent uses these templates to configure backing indices for its data streams.
+        OpenSearch Agent uses these templates to configure backing indexes for its data streams.
         If you use OpenSearch Agent and want to overwrite one of these templates, set the `version` for your replacement template higher than the current version.
         If you don't use OpenSearch Agent and want to disable all built-in component and index templates, set `stack.templates.enabled` to `false` using the cluster update settings API.
       required: true
@@ -17150,7 +17193,7 @@ components:
     cluster.state___path.index:
       in: path
       name: index
-      description: A comma-separated list of index names; use `_all` or empty string to perform the operation on all indices
+      description: A comma-separated list of index names; use `_all` or empty string to perform the operation on all indexes
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -17168,7 +17211,7 @@ components:
     cluster.state___query.allow_no_indices:
       in: query
       name: allow_no_indices
-      description: Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified)
+      description: Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified)
       schema:
         type: boolean
       style: form
@@ -17182,7 +17225,7 @@ components:
     cluster.state___query.expand_wildcards:
       in: query
       name: expand_wildcards
-      description: Whether to expand wildcard expression to concrete indices that are open, closed or both.
+      description: Whether to expand wildcard expression to concrete indexes that are open, closed or both.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
       style: form
@@ -17197,7 +17240,7 @@ components:
     cluster.state___query.ignore_unavailable:
       in: query
       name: ignore_unavailable
-      description: Whether specified concrete indices should be ignored when unavailable (missing or closed)
+      description: Whether specified concrete indexes should be ignored when unavailable (missing or closed)
       schema:
         type: boolean
       style: form
@@ -17233,6 +17276,26 @@ components:
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
+    cluster.stats___path.index_metric:
+      in: path
+      name: index_metric
+      description: Limit the information returned for indexes metric to the specific index metrics. It can be used only if indexes (or all) metric is specified.
+      required: true
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/cluster.stats___IndexMetric'
+      style: simple
+    cluster.stats___path.metric:
+      in: path
+      name: metric
+      description: Limit the information returned to the specified metrics
+      required: true
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/cluster.stats___Metric'
+      style: simple
     cluster.stats___path.node_id:
       in: path
       name: node_id
@@ -17263,9 +17326,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases to search.
+        Comma-separated list of data streams, indexes, and aliases to search.
         Supports wildcards (`*`).
-        To search all data streams and indices, omit this parameter or use `*` or `_all`.
+        To search all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -17274,8 +17337,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
       schema:
         type: boolean
       style: form
@@ -17329,7 +17392,7 @@ components:
     count___query.ignore_throttled:
       in: query
       name: ignore_throttled
-      description: If `true`, concrete, expanded or aliased indices are ignored when frozen.
+      description: If `true`, concrete, expanded or aliased indexes are ignored when frozen.
       schema:
         type: boolean
       style: form
@@ -17393,10 +17456,10 @@ components:
     create_pit___path.index:
       name: index
       in: path
-      description: Comma-separated list of indices; use `_all` or empty string to perform the operation on all indices.
+      description: Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
       schema:
         type: array
-        description: Comma-separated list of indices; use `_all` or empty string to perform the operation on all indices.
+        description: Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
         items:
           type: string
       required: true
@@ -17410,7 +17473,7 @@ components:
     create_pit___query.expand_wildcards:
       name: expand_wildcards
       in: query
-      description: Whether to expand wildcard expression to concrete indices that are open, closed or both.
+      description: Whether to expand wildcard expression to concrete indexes that are open, closed or both.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
     create_pit___query.keep_alive:
@@ -17613,9 +17676,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases to search.
+        Comma-separated list of data streams, indexes, and aliases to search.
         Supports wildcards (`*`).
-        To search all data streams or indices, omit this parameter or use `*` or `_all`.
+        To search all data streams or indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -17657,8 +17720,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
         For example, a request targeting `foo*,bar*` returns an error if an index starts with `foo` but no index starts with `bar`.
       schema:
         type: boolean
@@ -17869,7 +17932,7 @@ components:
         Use with caution.
         OpenSearch applies this parameter to each shard handling the request.
         When possible, let OpenSearch perform early termination automatically.
-        Avoid specifying this parameter for requests that target data streams with backing indices across multiple data tiers.
+        Avoid specifying this parameter for requests that target data streams with backing indexes across multiple data tiers.
       schema:
         type: integer
         format: int32
@@ -18035,7 +18098,7 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases.
+        Comma-separated list of data streams, indexes, and aliases.
         Supports wildcards (`*`).
       required: true
       schema:
@@ -18121,7 +18184,7 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases.
+        Comma-separated list of data streams, indexes, and aliases.
         Supports wildcards (`*`).
       required: true
       schema:
@@ -18317,7 +18380,7 @@ components:
     field_caps___path.index:
       in: path
       name: index
-      description: Comma-separated list of data streams, indices, and aliases used to limit the request. Supports wildcards (*). To target all data streams and indices, omit this parameter or use * or _all.
+      description: Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (*). To target all data streams and indexes, omit this parameter or use * or _all.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -18327,7 +18390,7 @@ components:
       name: allow_no_indices
       description: |-
         If false, the request returns an error if any wildcard expression, index alias,
-        or `_all` value targets only missing or closed indices. This behavior applies even if the request targets other open indices. For example, a request
+        or `_all` value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes. For example, a request
         targeting `foo*,bar*` returns an error if an index starts with foo but no index starts with bar.
       schema:
         type: boolean
@@ -18349,7 +18412,7 @@ components:
     field_caps___query.ignore_unavailable:
       in: query
       name: ignore_unavailable
-      description: If `true`, missing or closed indices are not included in the response.
+      description: If `true`, missing or closed indexes are not included in the response.
       schema:
         type: boolean
       style: form
@@ -18792,7 +18855,7 @@ components:
     indices.add_block___path.index:
       in: path
       name: index
-      description: A comma separated list of indices to add a block to
+      description: A comma separated list of indexes to add a block to
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -18800,7 +18863,7 @@ components:
     indices.add_block___query.allow_no_indices:
       in: query
       name: allow_no_indices
-      description: Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified)
+      description: Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified)
       schema:
         type: boolean
       style: form
@@ -18814,14 +18877,14 @@ components:
     indices.add_block___query.expand_wildcards:
       in: query
       name: expand_wildcards
-      description: Whether to expand wildcard expression to concrete indices that are open, closed or both.
+      description: Whether to expand wildcard expression to concrete indexes that are open, closed or both.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
       style: form
     indices.add_block___query.ignore_unavailable:
       in: query
       name: ignore_unavailable
-      description: Whether specified concrete indices should be ignored when unavailable (missing or closed)
+      description: Whether specified concrete indexes should be ignored when unavailable (missing or closed)
       schema:
         type: boolean
       style: form
@@ -18864,9 +18927,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases used to limit the request.
+        Comma-separated list of data streams, indexes, and aliases used to limit the request.
         Supports wildcards (`*`).
-        To target all data streams and indices, omit this parameter or use `*` or `_all`.
+        To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -18875,8 +18938,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
       schema:
         type: boolean
       style: form
@@ -18926,13 +18989,13 @@ components:
     indices.clear_cache___query.index:
       name: index
       in: query
-      description: Comma-separated list of indices; use `_all` or empty string to perform the operation on all indices.
+      description: Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of indices; use `_all` or empty string to perform the operation on all indices.
+        description: Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
       explode: true
     indices.clear_cache___query.query:
       in: query
@@ -19028,8 +19091,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
       schema:
         type: boolean
       style: form
@@ -19162,7 +19225,7 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams or indices used to limit the request.
+        Comma-separated list of data streams or indexes used to limit the request.
         Supports wildcards (`*`).
       required: true
       schema:
@@ -19288,7 +19351,7 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of indices to delete.
+        Comma-separated list of indexes to delete.
         You cannot specify index aliases.
         By default, this parameter does not support wildcards (`*`) or `_all`.
         To use wildcards or `_all`, set the `action.destructive_requires_name` cluster setting to `false`.
@@ -19300,8 +19363,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
       schema:
         type: boolean
         default: false
@@ -19357,8 +19420,8 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams or indices used to limit the request. Supports wildcards (`*`).
-        To target all data streams and indices, omit this parameter or use `*` or `_all`.
+        Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (`*`).
+        To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -19375,8 +19438,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
       schema:
         type: boolean
       style: form
@@ -19394,7 +19457,7 @@ components:
     indices.exists_alias___query.ignore_unavailable:
       in: query
       name: ignore_unavailable
-      description: If `false`, requests that include a missing data stream or index in the target indices or data streams return an error.
+      description: If `false`, requests that include a missing data stream or index in the target indexes or data streams return an error.
       schema:
         type: boolean
       style: form
@@ -19491,7 +19554,7 @@ components:
     indices.exists___path.index:
       in: path
       name: index
-      description: Comma-separated list of data streams, indices, and aliases. Supports wildcards (`*`).
+      description: Comma-separated list of data streams, indexes, and aliases. Supports wildcards (`*`).
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -19500,8 +19563,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
       schema:
         type: boolean
         default: false
@@ -19560,9 +19623,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases to flush.
+        Comma-separated list of data streams, indexes, and aliases to flush.
         Supports wildcards (`*`).
-        To flush all data streams and indices, omit this parameter or use `*` or `_all`.
+        To flush all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -19571,8 +19634,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
       schema:
         type: boolean
       style: form
@@ -19614,7 +19677,7 @@ components:
     indices.forcemerge___path.index:
       in: path
       name: index
-      description: A comma-separated list of index names; use `_all` or empty string to perform the operation on all indices
+      description: A comma-separated list of index names; use `_all` or empty string to perform the operation on all indexes
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -19622,14 +19685,14 @@ components:
     indices.forcemerge___query.allow_no_indices:
       in: query
       name: allow_no_indices
-      description: Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified)
+      description: Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified)
       schema:
         type: boolean
       style: form
     indices.forcemerge___query.expand_wildcards:
       in: query
       name: expand_wildcards
-      description: Whether to expand wildcard expression to concrete indices that are open, closed or both.
+      description: Whether to expand wildcard expression to concrete indexes that are open, closed or both.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
       style: form
@@ -19644,7 +19707,7 @@ components:
     indices.forcemerge___query.ignore_unavailable:
       in: query
       name: ignore_unavailable
-      description: Whether specified concrete indices should be ignored when unavailable (missing or closed)
+      description: Whether specified concrete indexes should be ignored when unavailable (missing or closed)
       schema:
         type: boolean
       style: form
@@ -19687,9 +19750,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams or indices used to limit the request.
+        Comma-separated list of data streams or indexes used to limit the request.
         Supports wildcards (`*`).
-        To target all data streams and indices, omit this parameter or use `*` or `_all`.
+        To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -19709,8 +19772,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
       schema:
         type: boolean
       style: form
@@ -19762,9 +19825,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases used to limit the request.
+        Comma-separated list of data streams, indexes, and aliases used to limit the request.
         Supports wildcards (`*`).
-        To target all data streams and indices, omit this parameter or use `*` or `_all`.
+        To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -19773,8 +19836,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
       schema:
         type: boolean
       style: form
@@ -19856,9 +19919,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases used to limit the request.
+        Comma-separated list of data streams, indexes, and aliases used to limit the request.
         Supports wildcards (`*`).
-        To target all data streams and indices, omit this parameter or use `*` or `_all`.
+        To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -19867,8 +19930,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
       schema:
         type: boolean
       style: form
@@ -19901,9 +19964,9 @@ components:
       in: query
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases used to limit the request.
+        Comma-separated list of data streams, indexes, and aliases used to limit the request.
         Supports wildcards (`*`).
-        To target all data streams and indices, omit this parameter or use `*` or `_all`.
+        To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       schema:
         $ref: '#/components/schemas/_common___Indices'
       style: form
@@ -19931,9 +19994,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases used to limit
+        Comma-separated list of data streams, indexes, and aliases used to limit
         the request. Supports wildcards (`*`). To target all data streams and
-        indices, omit this parameter or use `*` or `_all`.
+        indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -19951,8 +20014,8 @@ components:
       name: allow_no_indices
       description: |-
         If `false`, the request returns an error if any wildcard expression, index
-        alias, or `_all` value targets only missing or closed indices. This
-        behavior applies even if the request targets other open indices. For
+        alias, or `_all` value targets only missing or closed indexes. This
+        behavior applies even if the request targets other open indexes. For
         example, a request targeting `foo*,bar*` returns an error if an index
         starts with foo but no index starts with `bar`.
       schema:
@@ -20070,38 +20133,38 @@ components:
     indices.get_upgrade___path.index:
       name: index
       in: path
-      description: Comma-separated list of indices; use `_all` or empty string to perform the operation on all indices.
+      description: Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
       schema:
         type: array
-        description: Comma-separated list of indices; use `_all` or empty string to perform the operation on all indices.
+        description: Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
         items:
           type: string
       required: true
     indices.get_upgrade___query.allow_no_indices:
       name: allow_no_indices
       in: query
-      description: Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified).
+      description: Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
       schema:
         type: boolean
-        description: Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified).
+        description: Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
     indices.get_upgrade___query.expand_wildcards:
       name: expand_wildcards
       in: query
-      description: Whether to expand wildcard expression to concrete indices that are open, closed or both.
+      description: Whether to expand wildcard expression to concrete indexes that are open, closed or both.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
     indices.get_upgrade___query.ignore_unavailable:
       name: ignore_unavailable
       in: query
-      description: Whether specified concrete indices should be ignored when unavailable (missing or closed).
+      description: Whether specified concrete indexes should be ignored when unavailable (missing or closed).
       schema:
         type: boolean
-        description: Whether specified concrete indices should be ignored when unavailable (missing or closed).
+        description: Whether specified concrete indexes should be ignored when unavailable (missing or closed).
     indices.get___path.index:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and index aliases used to limit the request.
+        Comma-separated list of data streams, indexes, and index aliases used to limit the request.
         Wildcard expressions (*) are supported.
       required: true
       schema:
@@ -20112,7 +20175,7 @@ components:
       name: allow_no_indices
       description: |-
         If false, the request returns an error if any wildcard expression, index alias, or _all value targets only
-        missing or closed indices. This behavior applies even if the request targets other open indices. For example,
+        missing or closed indexes. This behavior applies even if the request targets other open indexes. For example,
         a request targeting foo*,bar* returns an error if an index starts with foo but no index starts with bar.
       schema:
         type: boolean
@@ -20181,9 +20244,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases used to limit the request.
+        Comma-separated list of data streams, indexes, and aliases used to limit the request.
         Supports wildcards (`*`).
-        By default, you must explicitly name the indices you using to limit the request.
+        By default, you must explicitly name the indexes you using to limit the request.
         To limit a request using `_all`, `*`, or other wildcard expressions, change the `action.destructive_requires_name` setting to false.
         You can update this setting in the `opensearch.yml` file or using the cluster update settings API.
       required: true
@@ -20194,8 +20257,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
       schema:
         type: boolean
       style: form
@@ -20273,9 +20336,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams or indices to add.
+        Comma-separated list of data streams or indexes to add.
         Supports wildcards (`*`).
-        Wildcard patterns that match both data streams and indices return an error.
+        Wildcard patterns that match both data streams and indexes return an error.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -20362,7 +20425,7 @@ components:
     indices.put_mapping___path.index:
       in: path
       name: index
-      description: A comma-separated list of index names the mapping should be added to (supports wildcards); use `_all` or omit to add the mapping on all indices.
+      description: A comma-separated list of index names the mapping should be added to (supports wildcards); use `_all` or omit to add the mapping on all indexes.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -20371,8 +20434,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
       schema:
         type: boolean
       style: form
@@ -20434,9 +20497,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases used to limit
+        Comma-separated list of data streams, indexes, and aliases used to limit
         the request. Supports wildcards (`*`). To target all data streams and
-        indices, omit this parameter or use `*` or `_all`.
+        indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -20446,8 +20509,8 @@ components:
       name: allow_no_indices
       description: |-
         If `false`, the request returns an error if any wildcard expression, index
-        alias, or `_all` value targets only missing or closed indices. This
-        behavior applies even if the request targets other open indices. For
+        alias, or `_all` value targets only missing or closed indexes. This
+        behavior applies even if the request targets other open indexes. For
         example, a request targeting `foo*,bar*` returns an error if an index
         starts with `foo` but no index starts with `bar`.
       schema:
@@ -20482,7 +20545,7 @@ components:
     indices.put_settings___query.ignore_unavailable:
       in: query
       name: ignore_unavailable
-      description: Whether specified concrete indices should be ignored when unavailable (missing or closed).
+      description: Whether specified concrete indexes should be ignored when unavailable (missing or closed).
       schema:
         type: boolean
       style: form
@@ -20567,9 +20630,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases used to limit the request.
+        Comma-separated list of data streams, indexes, and aliases used to limit the request.
         Supports wildcards (`*`).
-        To target all data streams and indices, omit this parameter or use `*` or `_all`.
+        To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -20594,9 +20657,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases used to limit the request.
+        Comma-separated list of data streams, indexes, and aliases used to limit the request.
         Supports wildcards (`*`).
-        To target all data streams and indices, omit this parameter or use `*` or `_all`.
+        To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -20605,8 +20668,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
       schema:
         type: boolean
       style: form
@@ -20632,7 +20695,7 @@ components:
       in: path
       name: name
       description: |-
-        Comma-separated name(s) or index pattern(s) of the indices, aliases, and data streams to resolve.
+        Comma-separated name(s) or index pattern(s) of the indexes, aliases, and data streams to resolve.
         Resources on remote clusters can be specified using the `<cluster>`:`<name>` syntax.
       required: true
       schema:
@@ -20717,9 +20780,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases used to limit the request.
+        Comma-separated list of data streams, indexes, and aliases used to limit the request.
         Supports wildcards (`*`).
-        To target all data streams and indices, omit this parameter or use `*` or `_all`.
+        To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -20728,8 +20791,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
       schema:
         type: boolean
       style: form
@@ -20762,7 +20825,7 @@ components:
     indices.shard_stores___path.index:
       in: path
       name: index
-      description: List of data streams, indices, and aliases used to limit the request.
+      description: List of data streams, indexes, and aliases used to limit the request.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -20772,8 +20835,8 @@ components:
       name: allow_no_indices
       description: |-
         If false, the request returns an error if any wildcard expression, index alias, or _all
-        value targets only missing or closed indices. This behavior applies even if the request
-        targets other open indices.
+        value targets only missing or closed indexes. This behavior applies even if the request
+        targets other open indexes.
       schema:
         type: boolean
       style: form
@@ -20789,7 +20852,7 @@ components:
     indices.shard_stores___query.ignore_unavailable:
       in: query
       name: ignore_unavailable
-      description: If true, missing or closed indices are not included in the response.
+      description: If true, missing or closed indexes are not included in the response.
       schema:
         type: boolean
       style: form
@@ -21050,7 +21113,7 @@ components:
     indices.stats___path.index:
       in: path
       name: index
-      description: A comma-separated list of index names; use `_all` or empty string to perform the operation on all indices
+      description: A comma-separated list of index names; use `_all` or empty string to perform the operation on all indexes
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -21101,7 +21164,7 @@ components:
     indices.stats___query.forbid_closed_indices:
       in: query
       name: forbid_closed_indices
-      description: If true, statistics are not collected from closed indices.
+      description: If true, statistics are not collected from closed indexes.
       schema:
         type: boolean
         default: true
@@ -21171,33 +21234,33 @@ components:
     indices.upgrade___path.index:
       name: index
       in: path
-      description: Comma-separated list of indices; use `_all` or empty string to perform the operation on all indices.
+      description: Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
       schema:
         type: array
-        description: Comma-separated list of indices; use `_all` or empty string to perform the operation on all indices.
+        description: Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
         items:
           type: string
       required: true
     indices.upgrade___query.allow_no_indices:
       name: allow_no_indices
       in: query
-      description: Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified).
+      description: Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
       schema:
         type: boolean
-        description: Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified).
+        description: Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
     indices.upgrade___query.expand_wildcards:
       name: expand_wildcards
       in: query
-      description: Whether to expand wildcard expression to concrete indices that are open, closed or both.
+      description: Whether to expand wildcard expression to concrete indexes that are open, closed or both.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
     indices.upgrade___query.ignore_unavailable:
       name: ignore_unavailable
       in: query
-      description: Whether specified concrete indices should be ignored when unavailable (missing or closed).
+      description: Whether specified concrete indexes should be ignored when unavailable (missing or closed).
       schema:
         type: boolean
-        description: Whether specified concrete indices should be ignored when unavailable (missing or closed).
+        description: Whether specified concrete indexes should be ignored when unavailable (missing or closed).
     indices.upgrade___query.only_ancient_segments:
       name: only_ancient_segments
       in: query
@@ -21218,9 +21281,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases to search.
+        Comma-separated list of data streams, indexes, and aliases to search.
         Supports wildcards (`*`).
-        To search all data streams or indices, omit this parameter or use `*` or `_all`.
+        To search all data streams or indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -21236,8 +21299,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
       schema:
         type: boolean
       style: form
@@ -21453,7 +21516,7 @@ components:
       name: index
       in: path
       description: |-
-        Comma-separated list of data streams, indices, and aliases.
+        Comma-separated list of data streams, indexes, and aliases.
         Supports wildcards (`*`).
       required: true
       schema:
@@ -21463,7 +21526,7 @@ components:
       name: index
       in: query
       description: |-
-        Comma-separated list of data streams, indices, and aliases.
+        Comma-separated list of data streams, indexes, and aliases.
         Supports wildcards (`*`).
       required: true
       schema:
@@ -21472,7 +21535,7 @@ components:
       name: index
       in: path
       description: |-
-        Comma-separated list of data streams, indices, and aliases.
+        Comma-separated list of data streams, indexes, and aliases.
         Supports wildcards (`*`).
       required: true
       schema:
@@ -21482,7 +21545,7 @@ components:
       name: index
       in: query
       description: |-
-        Comma-separated list of data streams, indices, and aliases.
+        Comma-separated list of data streams, indexes, and aliases.
         Supports wildcards (`*`).
       required: true
       schema:
@@ -21503,7 +21566,7 @@ components:
       name: index
       in: path
       description: |-
-        Comma-separated list of data streams, indices, and aliases.
+        Comma-separated list of data streams, indexes, and aliases.
         Supports wildcards (`*`).
       required: true
       schema:
@@ -21560,7 +21623,7 @@ components:
       name: index
       in: path
       description: |-
-        Comma-separated list of data streams, indices, and aliases.
+        Comma-separated list of data streams, indexes, and aliases.
         Supports wildcards (`*`).
       required: true
       schema:
@@ -21570,7 +21633,7 @@ components:
       name: index
       in: path
       description: |-
-        Comma-separated list of data streams, indices, and aliases.
+        Comma-separated list of data streams, indexes, and aliases.
         Supports wildcards (`*`).
       required: true
       schema:
@@ -21580,7 +21643,7 @@ components:
       name: index
       in: query
       description: |-
-        Comma-separated list of data streams, indices, and aliases.
+        Comma-separated list of data streams, indexes, and aliases.
         Supports wildcards (`*`).
       required: true
       schema:
@@ -21589,7 +21652,7 @@ components:
       name: index
       in: path
       description: |-
-        Comma-separated list of data streams, indices, and aliases.
+        Comma-separated list of data streams, indexes, and aliases.
         Supports wildcards (`*`).
       required: true
       schema:
@@ -21599,7 +21662,7 @@ components:
       name: index
       in: query
       description: |-
-        Comma-separated list of data streams, indices, and aliases.
+        Comma-separated list of data streams, indexes, and aliases.
         Supports wildcards (`*`).
       required: true
       schema:
@@ -21656,10 +21719,10 @@ components:
     knn.search_models___query.allow_no_indices:
       name: allow_no_indices
       in: query
-      description: Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified).
+      description: Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
       schema:
         type: boolean
-        description: Whether to ignore if a wildcard indices expression resolves into no concrete indices. (This includes `_all` string or when no indices have been specified).
+        description: Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
     knn.search_models___query.allow_partial_search_results:
       name: allow_partial_search_results
       in: query
@@ -21727,7 +21790,7 @@ components:
     knn.search_models___query.expand_wildcards:
       name: expand_wildcards
       in: query
-      description: Whether to expand wildcard expression to concrete indices that are open, closed or both.
+      description: Whether to expand wildcard expression to concrete indexes that are open, closed or both.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
     knn.search_models___query.explain:
@@ -21749,17 +21812,17 @@ components:
     knn.search_models___query.ignore_throttled:
       name: ignore_throttled
       in: query
-      description: Whether specified concrete, expanded or aliased indices should be ignored when throttled.
+      description: Whether specified concrete, expanded or aliased indexes should be ignored when throttled.
       schema:
         type: boolean
-        description: Whether specified concrete, expanded or aliased indices should be ignored when throttled.
+        description: Whether specified concrete, expanded or aliased indexes should be ignored when throttled.
     knn.search_models___query.ignore_unavailable:
       name: ignore_unavailable
       in: query
-      description: Whether specified concrete indices should be ignored when unavailable (missing or closed).
+      description: Whether specified concrete indexes should be ignored when unavailable (missing or closed).
       schema:
         type: boolean
-        description: Whether specified concrete indices should be ignored when unavailable (missing or closed).
+        description: Whether specified concrete indexes should be ignored when unavailable (missing or closed).
     knn.search_models___query.lenient:
       name: lenient
       in: query
@@ -22026,10 +22089,10 @@ components:
     knn.warmup___path.index:
       name: index
       in: path
-      description: Comma-separated list of indices; use `_all` or empty string to perform the operation on all indices.
+      description: Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
       schema:
         type: array
-        description: Comma-separated list of indices; use `_all` or empty string to perform the operation on all indices.
+        description: Comma-separated list of indexes; use `_all` or empty string to perform the operation on all indexes.
         items:
           type: string
       required: true
@@ -22427,9 +22490,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases to search.
+        Comma-separated list of data streams, indexes, and aliases to search.
         Supports wildcards (`*`).
-        To search all data streams and indices, omit this parameter or use `*`.
+        To search all data streams and indexes, omit this parameter or use `*`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -22479,7 +22542,7 @@ components:
     msearch___path.index:
       in: path
       name: index
-      description: Comma-separated list of data streams, indices, and index aliases to search.
+      description: Comma-separated list of data streams, indexes, and index aliases to search.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -22767,7 +22830,7 @@ components:
     nodes.stats___path.index_metric:
       in: path
       name: index_metric
-      description: Limit the information returned for indices metric to the specific index metrics. It can be used only if indices (or all) metric is specified.
+      description: Limit the information returned for indexes metric to the specific index metrics. It can be used only if indexes (or all) metric is specified.
       required: true
       schema:
         type: array
@@ -23293,8 +23356,8 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and index aliases used to limit the request. Wildcard (`*`) expressions are supported.
-        To target all data streams and indices in a cluster, omit this parameter or use `_all` or `*`.
+        Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard (`*`) expressions are supported.
+        To target all data streams and indexes in a cluster, omit this parameter or use `_all` or `*`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -23302,21 +23365,21 @@ components:
     rank_eval___query.allow_no_indices:
       in: query
       name: allow_no_indices
-      description: If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices. This behavior applies even if the request targets other open indices. For example, a request targeting `foo*,bar*` returns an error if an index starts with `foo` but no index starts with `bar`.
+      description: If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes. This behavior applies even if the request targets other open indexes. For example, a request targeting `foo*,bar*` returns an error if an index starts with `foo` but no index starts with `bar`.
       schema:
         type: boolean
       style: form
     rank_eval___query.expand_wildcards:
       in: query
       name: expand_wildcards
-      description: Whether to expand wildcard expression to concrete indices that are open, closed or both.
+      description: Whether to expand wildcard expression to concrete indexes that are open, closed or both.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
       style: form
     rank_eval___query.ignore_unavailable:
       in: query
       name: ignore_unavailable
-      description: If `true`, missing or closed indices are not included in the response.
+      description: If `true`, missing or closed indexes are not included in the response.
       schema:
         type: boolean
       style: form
@@ -23588,7 +23651,7 @@ components:
     search_shards___path.index:
       in: path
       name: index
-      description: Returns the indices and shards that a search request would be executed against.
+      description: Returns the indexes and shards that a search request would be executed against.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -23597,8 +23660,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
         For example, a request targeting `foo*,bar*` returns an error if an index starts with `foo` but no index starts with `bar`.
       schema:
         type: boolean
@@ -23650,7 +23713,7 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices,
+        Comma-separated list of data streams, indexes,
         and aliases to search. Supports wildcards (*).
       required: true
       schema:
@@ -23660,8 +23723,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
         For example, a request targeting `foo*,bar*` returns an error if an index starts with `foo` but no index starts with `bar`.
       schema:
         type: boolean
@@ -23695,7 +23758,7 @@ components:
     search_template___query.ignore_throttled:
       in: query
       name: ignore_throttled
-      description: If `true`, specified concrete, expanded, or aliased indices are not included in the response when throttled.
+      description: If `true`, specified concrete, expanded, or aliased indexes are not included in the response when throttled.
       schema:
         type: boolean
       style: form
@@ -23765,9 +23828,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases to search.
+        Comma-separated list of data streams, indexes, and aliases to search.
         Supports wildcards (`*`).
-        To search all data streams and indices, omit this parameter or use `*` or `_all`.
+        To search all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -23810,8 +23873,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
         For example, a request targeting `foo*,bar*` returns an error if an index starts with `foo` but no index starts with `bar`.
       schema:
         type: boolean
@@ -23929,7 +23992,7 @@ components:
     search___query.ignore_throttled:
       in: query
       name: ignore_throttled
-      description: If `true`, concrete, expanded or aliased indices will be ignored when frozen.
+      description: If `true`, concrete, expanded or aliased indexes will be ignored when frozen.
       schema:
         type: boolean
       style: form
@@ -24158,7 +24221,7 @@ components:
         Use with caution.
         OpenSearch applies this parameter to each shard handling the request.
         When possible, let OpenSearch perform early termination automatically.
-        Avoid specifying this parameter for requests that target data streams with backing indices across multiple data tiers.
+        Avoid specifying this parameter for requests that target data streams with backing indexes across multiple data tiers.
         If set to `0` (default), the query does not terminate early.
       schema:
         type: integer
@@ -25333,9 +25396,9 @@ components:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indices, and aliases to search.
+        Comma-separated list of data streams, indexes, and aliases to search.
         Supports wildcards (`*`).
-        To search all data streams or indices, omit this parameter or use `*` or `_all`.
+        To search all data streams or indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -25377,8 +25440,8 @@ components:
       in: query
       name: allow_no_indices
       description: |-
-        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indices.
-        This behavior applies even if the request targets other open indices.
+        If `false`, the request returns an error if any wildcard expression, index alias, or `_all` value targets only missing or closed indexes.
+        This behavior applies even if the request targets other open indexes.
         For example, a request targeting `foo*,bar*` returns an error if an index starts with `foo` but no index starts with `bar`.
       schema:
         type: boolean
@@ -25594,7 +25657,7 @@ components:
         Use with caution.
         OpenSearch applies this parameter to each shard handling the request.
         When possible, let OpenSearch perform early termination automatically.
-        Avoid specifying this parameter for requests that target data streams with backing indices across multiple data tiers.
+        Avoid specifying this parameter for requests that target data streams with backing indexes across multiple data tiers.
       schema:
         type: integer
         format: int32
@@ -25752,21 +25815,21 @@ components:
     wlm.delete_query_group___path.name:
       name: name
       in: path
-      description: QueryGroup name.
+      description: The name of the query group.
       schema:
         type: string
       required: true
     wlm.get_query_group___path.name:
       name: name
       in: path
-      description: QueryGroup name.
+      description: The name of the query group.
       schema:
         type: string
       required: true
     wlm.update_query_group___path.name:
       name: name
       in: path
-      description: QueryGroup name.
+      description: The name of the query group.
       schema:
         type: string
       required: true
@@ -25820,7 +25883,7 @@ components:
             properties:
               scroll_id:
                 $ref: '#/components/schemas/_common___ScrollIds'
-            description: Comma-separated list of scroll IDs to clear if none was specified via the scroll_id parameter
+            description: Comma-separated list of scroll IDs to clear if none was specified using the `scroll_id` parameter
     cluster.allocation_explain:
       content:
         application/json:
@@ -25853,8 +25916,8 @@ components:
               allow_auto_create:
                 description: |-
                   This setting overrides the value of the `action.auto_create_index` cluster setting.
-                  If set to `true` in a template, then indices can be automatically created using that
-                  template even if auto-creation of indices is disabled via `actions.auto_create_index`.
+                  If set to `true` in a template, then indexes can be automatically created using that
+                  template even if auto-creation of indexes is disabled using `actions.auto_create_index`.
                   If set to `false` then data streams matching the template must always be explicitly created.
                 type: boolean
               template:
@@ -26093,7 +26156,7 @@ components:
               is_write_index:
                 description: |-
                   If `true`, sets the write index or data stream for the alias.
-                  If an alias points to multiple indices or data streams and `is_write_index` isn't set, the alias rejects write requests.
+                  If an alias points to multiple indexes or data streams and `is_write_index` isn't set, the alias rejects write requests.
                   If an index alias points to one index and `is_write_index` isn't set, the index automatically acts as the write index.
                   Data stream aliases don't automatically set a write data stream, even if the alias points to one data stream.
                 type: boolean
@@ -26212,7 +26275,7 @@ components:
               index_patterns:
                 description: |-
                   Array of wildcard expressions used to match the names
-                  of indices during creation.
+                  of indexes during creation.
                 oneOf:
                   - type: string
                   - type: array
@@ -26290,8 +26353,8 @@ components:
               allow_auto_create:
                 description: |-
                   This setting overrides the value of the `action.auto_create_index` cluster setting.
-                  If set to `true` in a template, then indices can be automatically created using that template even if auto-creation of indices is disabled via `actions.auto_create_index`.
-                  If set to `false`, then indices or data streams matching the template must always be explicitly created, and may never be automatically created.
+                  If set to `true` in a template, then indexes can be automatically created using that template even if auto-creation of indexes is disabled using `actions.auto_create_index`.
+                  If set to `false`, then indexes or data streams matching the template must always be explicitly created, and may never be automatically created.
                 type: boolean
               index_patterns:
                 $ref: '#/components/schemas/_common___Indices'
@@ -26835,7 +26898,7 @@ components:
               track_total_hits:
                 $ref: '#/components/schemas/_core.search___TrackHits'
               indices_boost:
-                description: Boosts the _score of documents from specified indices.
+                description: Boosts the `_score` of documents from specified indexes.
                 type: array
                 items:
                   type: object
@@ -26910,7 +26973,7 @@ components:
                   Use with caution.
                   OpenSearch applies this parameter to each shard handling the request.
                   When possible, let OpenSearch perform early termination automatically.
-                  Avoid specifying this parameter for requests that target data streams with backing indices across multiple data tiers.
+                  Avoid specifying this parameter for requests that target data streams with backing indexes across multiple data tiers.
                   If set to `0` (default), the query does not terminate early.
                 type: integer
                 format: int32
@@ -26937,7 +27000,7 @@ components:
                 description: |-
                   Stats groups to associate with the search.
                   Each group maintains a statistics aggregation for its associated searches.
-                  You can retrieve these stats using the indices stats API.
+                  You can retrieve these stats using the indexes stats API.
                 type: array
                 items:
                   type: string
@@ -27196,22 +27259,22 @@ components:
             type: object
             properties:
               ignore_unavailable:
-                description: If `true`, the request ignores data streams and indices in `indices` that are missing or closed. If `false`, the request returns an error for any data stream or index that is missing or closed.
+                description: If `true`, the request ignores data streams and indexes in `indices` that are missing or closed. If `false`, the request returns an error for any data stream or index that is missing or closed.
                 type: boolean
               include_global_state:
-                description: If `true`, the current cluster state is included in the snapshot. The cluster state includes persistent cluster settings, composable index templates, legacy index templates, ingest pipelines, and ILM policies. It also includes data stored in system indices, such as Watches and task records (configurable via `feature_states`).
+                description: If `true`, the current cluster state is included in the snapshot. The cluster state includes persistent cluster settings, composable index templates, legacy index templates, ingest pipelines, and ILM policies. It also includes data stored in system indexes, such as Watches and task records (configurable with `feature_states`).
                 type: boolean
               indices:
                 $ref: '#/components/schemas/_common___Indices'
               feature_states:
-                description: Feature states to include in the snapshot. Each feature state includes one or more system indices containing related data. You can view a list of eligible features using the get features API. If `include_global_state` is `true`, all current feature states are included by default. If `include_global_state` is `false`, no feature states are included by default.
+                description: Feature states to include in the snapshot. Each feature state includes one or more system indexes containing related data. You can view a list of eligible features using the get features API. If `include_global_state` is `true`, all current feature states are included by default. If `include_global_state` is `false`, no feature states are included by default.
                 type: array
                 items:
                   type: string
               metadata:
                 $ref: '#/components/schemas/_common___Metadata'
               partial:
-                description: If `true`, allows restoring a partial snapshot of indices with unavailable shards. Only shards that were successfully included in the snapshot will be restored. All missing shards will be recreated as empty. If `false`, the entire restore operation will fail if one or more indices included in the snapshot do not have all primary shards available.
+                description: If `true`, allows restoring a partial snapshot of indexes with unavailable shards. Only shards that were successfully included in the snapshot will be restored. All missing shards will be recreated as empty. If `false`, the entire restore operation will fail if one or more indexes included in the snapshot do not have all primary shards available.
                 type: boolean
             description: The snapshot definition
     snapshot.create_repository:
@@ -28607,7 +28670,7 @@ components:
               _shards:
                 $ref: '#/components/schemas/_common___ShardStatistics'
               backing_indices:
-                description: Total number of backing indices for the selected data streams.
+                description: Total number of backing indexes for the selected data streams.
                 type: number
               data_stream_count:
                 description: Total number of selected data streams.
@@ -31551,16 +31614,16 @@ components:
           description: Match any index, including hidden ones.
         - type: string
           const: closed
-          description: Match closed, non-hidden indices.
+          description: Match closed, non-hidden indexes.
         - type: string
           const: hidden
-          description: Match hidden indices. Must be combined with open, closed, or both.
+          description: Match hidden indexes. Must be combined with open, closed, or both.
         - type: string
           const: none
           description: Wildcard expressions are not accepted.
         - type: string
           const: open
-          description: Match open, non-hidden indices.
+          description: Match open, non-hidden indexes.
     _common___ExpandWildcards:
       oneOf:
         - $ref: '#/components/schemas/_common___ExpandWildcard'
@@ -37007,6 +37070,7 @@ components:
         - $ref: '#/components/schemas/_common.analysis___DutchAnalyzer'
         - $ref: '#/components/schemas/_common.analysis___SmartcnAnalyzer'
         - $ref: '#/components/schemas/_common.analysis___CjkAnalyzer'
+        - $ref: '#/components/schemas/_common.analysis___PhoneAnalyzer'
     _common.analysis___AsciiFoldingTokenFilter:
       allOf:
         - $ref: '#/components/schemas/_common.analysis___TokenFilterBase'
@@ -38139,6 +38203,17 @@ components:
                 - persian_stem
           required:
             - type
+    _common.analysis___PhoneAnalyzer:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - phone
+            - phone-search
+        phone-region:
+          type: string
+          description: Optional ISO 3166 country code, defaults to "ZZ" (unknown region).
     _common.analysis___PhoneticEncoder:
       type: string
       enum:
@@ -44182,7 +44257,7 @@ components:
         track_total_hits:
           $ref: '#/components/schemas/_core.search___TrackHits'
         indices_boost:
-          description: Boosts the _score of documents from specified indices.
+          description: Boosts the `_score` of documents from specified indexes.
           type: array
           items:
             type: object
@@ -44247,7 +44322,7 @@ components:
             Use with caution.
             OpenSearch applies this parameter to each shard handling the request.
             When possible, let OpenSearch perform early termination automatically.
-            Avoid specifying this parameter for requests that target data streams with backing indices across multiple data tiers.
+            Avoid specifying this parameter for requests that target data streams with backing indexes across multiple data tiers.
             If set to `0` (default), the query does not terminate early.
           type: integer
           format: int32
@@ -44274,7 +44349,7 @@ components:
           description: |-
             Stats groups to associate with the search.
             Each group maintains a statistics aggregation for its associated searches.
-            You can retrieve these stats using the indices stats API.
+            You can retrieve these stats using the indexes stats API.
           type: array
           items:
             type: string
@@ -46229,7 +46304,7 @@ components:
         duration:
           $ref: '#/components/schemas/_common___Duration'
         indices:
-          description: The number of indices in the snapshot.
+          description: The number of indexes in the snapshot.
           type: string
         successful_shards:
           description: The number of successful shards in the snapshot.
@@ -47150,7 +47225,7 @@ components:
         completion:
           $ref: '#/components/schemas/_common___CompletionStats'
         count:
-          description: Total number of indices with shards assigned to selected nodes.
+          description: Total number of indexes with shards assigned to selected nodes.
           type: number
         docs:
           $ref: '#/components/schemas/_common___DocStats'
@@ -47171,17 +47246,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/cluster.stats___IndicesVersions'
-      required:
-        - analysis
-        - completion
-        - count
-        - docs
-        - fielddata
-        - mappings
-        - query_cache
-        - segments
-        - shards
-        - store
     cluster.stats___ClusterIndicesShards:
       type: object
       properties:
@@ -47388,18 +47452,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/_common___VersionString'
-      required:
-        - count
-        - discovery_types
-        - fs
-        - ingest
-        - jvm
-        - network_types
-        - os
-        - packaging_types
-        - plugins
-        - process
-        - versions
     cluster.stats___ClusterOperatingSystem:
       type: object
       properties:
@@ -47551,7 +47603,7 @@ components:
           description: The number of occurrences of the field type in selected nodes.
           type: number
         index_count:
-          description: The number of indices containing the field type in selected nodes.
+          description: The number of indexes containing the field type in selected nodes.
           type: number
         indexed_vector_count:
           description: For dense_vector field types, number of indexed vector types in selected nodes.
@@ -47581,7 +47633,7 @@ components:
           description: Total number of fields in all non-system indices.
           type: number
         total_deduplicated_field_count:
-          description: Total number of fields in all non-system indices, accounting for mapping deduplication.
+          description: Total number of fields in all non-system indexes, accounting for mapping deduplication.
           type: number
         total_deduplicated_mapping_size:
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
@@ -47634,6 +47686,19 @@ components:
         - coordinating_in_bytes
         - primary_in_bytes
         - replica_in_bytes
+    cluster.stats___IndexMetric:
+      type: string
+      enum:
+        - _all
+        - analysis
+        - completion
+        - docs
+        - fielddata
+        - mappings
+        - query_cache
+        - segments
+        - shards
+        - store
     cluster.stats___IndicesVersions:
       type: object
       properties:
@@ -47650,6 +47715,20 @@ components:
         - primary_shard_count
         - total_primary_bytes
         - version
+    cluster.stats___Metric:
+      type: string
+      enum:
+        - _all
+        - discovery_type
+        - fs
+        - indices
+        - ingest
+        - jvm
+        - network_types
+        - os
+        - packaging_types
+        - plugins
+        - process
     cluster.stats___NodePackagingType:
       type: object
       properties:
@@ -47713,8 +47792,6 @@ components:
           required:
             - cluster_name
             - cluster_uuid
-            - indices
-            - nodes
             - status
             - timestamp
     cluster.weighted_routing___Weights:
@@ -48309,7 +48386,7 @@ components:
         is_hidden:
           description: |-
             If `true`, the alias is hidden.
-            All indices for the alias must have the same `is_hidden` value.
+            All indexes for the alias must have the same `is_hidden` value.
           type: boolean
         is_write_index:
           description: If `true`, the index is the write index for the alias.
@@ -48342,7 +48419,7 @@ components:
         is_hidden:
           description: |-
             If `true`, the alias is hidden.
-            All indices for the alias must have the same `is_hidden` value.
+            All indexes for the alias must have the same `is_hidden` value.
           type: boolean
     indices._common___DataStream:
       type: object
@@ -48367,7 +48444,7 @@ components:
           type: boolean
         indices:
           description: |-
-            Array of objects containing information about the data stream's backing indices.
+            Array of objects containing information about the data stream's backing indexes.
             The last item in this array contains information about the stream's current write index.
           type: array
           items:
@@ -48818,7 +48895,7 @@ components:
           description: |-
             The index alias to update when the index rolls over. Specify when using a policy that contains a rollover action.
             When the index rolls over, the alias is updated to reflect that the index is no longer the write index. For more
-            information about rolling indices, see Rollover.
+            information about rolling indexes, see Rollover.
           type: string
       required:
         - name
@@ -49069,7 +49146,7 @@ components:
           $ref: '#/components/schemas/indices._common___StorageType'
         allow_mmap:
           description: |-
-            You can restrict the use of the mmapfs and the related hybridfs store type via the setting node.store.allow_mmap.
+            You can restrict the use of the `mmapfs` and the related `hybridfs` store types with the setting `node.store.allow_mmap`.
             This is a boolean setting indicating whether or not memory-mapping is allowed. The default is to allow it. This
             setting is useful, for example, if you are in an environment where you can not control the ability to create a lot
             of memory maps so you need disable the ability to use memory-mapping.
@@ -49450,7 +49527,7 @@ components:
       type: object
       properties:
         backing_indices:
-          description: Current number of backing indices for the data stream.
+          description: Current number of backing indexes for the data stream.
           type: number
         data_stream:
           $ref: '#/components/schemas/_common___Name'
@@ -51291,7 +51368,7 @@ components:
         track_total_hits:
           $ref: '#/components/schemas/_core.search___TrackHits'
         indices_boost:
-          description: Boosts the _score of documents from specified indices.
+          description: Boosts the `_score` of documents from specified indexes.
           type: array
           items:
             type: object
@@ -51354,7 +51431,7 @@ components:
             Use with caution.
             OpenSearch applies this parameter to each shard handling the request.
             When possible, let OpenSearch perform early termination automatically.
-            Avoid specifying this parameter for requests that target data streams with backing indices across multiple data tiers.
+            Avoid specifying this parameter for requests that target data streams with backing indexes across multiple data tiers.
             If set to `0` (default), the query does not terminate early.
           type: integer
           format: int32
@@ -51381,7 +51458,7 @@ components:
           description: |-
             Stats groups to associate with the search.
             Each group maintains a statistics aggregation for its associated searches.
-            You can retrieve these stats using the indices stats API.
+            You can retrieve these stats using the indexes stats API.
           type: array
           items:
             type: string
@@ -51455,7 +51532,7 @@ components:
           type: array
           items:
             type: string
-          description: The indices involved in the query.
+          description: The indexes involved in the query.
         phase_latency_map:
           type: object
         measurements:
@@ -51978,6 +52055,7 @@ components:
       properties:
         value:
           type: integer
+          format: int64
           description: The total number of hits.
         relation:
           type: string
@@ -51997,6 +52075,22 @@ components:
       properties:
         type:
           type: string
+    ml._common___ModelConfig:
+      type: object
+      properties:
+        all_config:
+          type: string
+          description: The all config.
+        model_type:
+          type: string
+          description: The model type.
+        embedding_dimension:
+          type: integer
+          format: int64
+          description: The embedding dimension.
+        framework_type:
+          type: string
+          description: The framework type.
     ml._common___ModelGroup:
       type: object
       properties:
@@ -52071,24 +52165,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ml._common___SearchModelsHitsHit'
+        max_score:
+          type: number
+          format: float
+          description: The maximum score.
       required:
         - hits
         - total
     ml._common___SearchModelsHitsHit:
       type: object
       properties:
+        _version:
+          $ref: '#/components/schemas/_common___VersionNumber'
+        _seq_no:
+          $ref: '#/components/schemas/_common___SequenceNumber'
+        _primary_term:
+          type: integer
+          description: The primary term.
         _index:
-          type: string
-          description: The index.
+          $ref: '#/components/schemas/_common___IndexName'
         _id:
-          type: string
-          description: The hit ID.
+          $ref: '#/components/schemas/_common___Id'
+        _score:
+          type: number
+          format: float
+          description: The score.
+        _source:
+          $ref: '#/components/schemas/ml._common___Source'
         model_id:
-          type: string
-          description: The model ID.
+          $ref: '#/components/schemas/_common___Name'
       required:
-        - _id
-        - model_id
+        - _score
     ml._common___SearchModelsQuery:
       type: object
       properties:
@@ -52104,10 +52211,115 @@ components:
     ml._common___SearchModelsResponse:
       type: object
       properties:
+        took:
+          type: integer
+          description: The time taken to execute the search.
+        timed_out:
+          type: boolean
+          description: Whether the search timed out.
+        _shards:
+          $ref: '#/components/schemas/_common___ShardStatistics'
         hits:
           $ref: '#/components/schemas/ml._common___SearchModelsHits'
       required:
         - hits
+    ml._common___Source:
+      type: object
+      properties:
+        last_deployed_time:
+          type: integer
+          format: int64
+          description: The last deployed time.
+        model_version:
+          type: string
+          description: The model version.
+        version:
+          $ref: '#/components/schemas/_common___VersionString'
+        created_time:
+          type: integer
+          format: int64
+          description: The created time.
+        chunk_number:
+          type: integer
+          format: int64
+          description: The chunk number.
+        deploy_to_all_nodes:
+          type: boolean
+          description: Whether to deploy to all nodes.
+        is_hidden:
+          type: boolean
+          description: Whether the model is hidden.
+        model_id:
+          $ref: '#/components/schemas/_common___Name'
+        description:
+          type: string
+          description: The model description.
+        model_state:
+          type: string
+          description: The model state.
+          enum:
+            - DEPLOYED
+            - DEPLOYING
+            - DEPLOY_FAILED
+            - PARTIALLY_DEPLOYED
+            - REGISTERED
+            - REGISTERING
+        model_content_size_in_bytes:
+          type: integer
+          format: int64
+          description: The model content size in bytes.
+        model_content_hash_value:
+          type: string
+          description: The model content hash value.
+        planning_worker_node_count:
+          type: number
+          description: The planning worker node count.
+        model_config:
+          $ref: '#/components/schemas/ml._common___ModelConfig'
+        model_format:
+          type: string
+          description: The model format.
+        model_task_type:
+          type: string
+          description: The model task type.
+        last_updated_time:
+          type: integer
+          format: int64
+          description: The last updated time.
+        last_registered_time:
+          type: integer
+          format: int64
+          description: The last registered time.
+        auto_redeploy_retry_times:
+          type: integer
+          format: int64
+          description: The auto redeploy retry times.
+        name:
+          type: string
+          description: The model name.
+        connector_id:
+          type: string
+          description: The connector ID.
+        current_worker_node_count:
+          type: number
+          description: The current worker node count.
+        model_group_id:
+          type: string
+          description: The model group ID.
+        planning_worker_nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/_common___NodeIds'
+        total_chunks:
+          type: integer
+          format: int64
+          description: The total chunks.
+        algorithm:
+          type: string
+          description: The algorithm.
+        url:
+          type: string
+          description: The model URL.
     ml._common___Task:
       type: object
       properties:
@@ -57075,19 +57287,24 @@ components:
       type: object
       properties:
         _id:
+          description: The ID of the query group, which can be used to associate query requests with the group and enforce the group's resource limits.
           type: string
         name:
+          description: The name of the query group.
           type: string
         resiliency_mode:
+          description: The resiliency mode of the query group.
           type: string
           enum:
             - enforced
             - monitor
             - soft
         updated_at:
+          description: The time at which the query group was last updated.
           type: integer
           format: int64
         resource_limits:
+          description: The resource limits for query requests in the query group.
           anyOf:
             - type: object
               properties:

@@ -62,7 +62,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: snapshot.clone.Request
 
 /**
- * Clones indices from one snapshot into another snapshot in the same repository.
+ * Clones indexes from one snapshot into another snapshot in the same repository.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")

@@ -103,7 +103,7 @@ public class DeleteIndexRequest extends RequestBase {
 
     /**
      * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets only
-     * missing or closed indices. This behavior applies even if the request targets other open indices.
+     * missing or closed indexes. This behavior applies even if the request targets other open indexes.
      * <p>
      * API name: {@code allow_no_indices}
      * </p>
@@ -149,7 +149,7 @@ public class DeleteIndexRequest extends RequestBase {
     }
 
     /**
-     * Required - Comma-separated list of indices to delete. You cannot specify index aliases. By default, this parameter does not support
+     * Required - Comma-separated list of indexes to delete. You cannot specify index aliases. By default, this parameter does not support
      * wildcards (<code>*</code>) or <code>_all</code>. To use wildcards or <code>_all</code>, set the
      * <code>action.destructive_requires_name</code> cluster setting to <code>false</code>.
      * <p>
@@ -207,7 +207,7 @@ public class DeleteIndexRequest extends RequestBase {
 
         /**
          * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets
-         * only missing or closed indices. This behavior applies even if the request targets other open indices.
+         * only missing or closed indexes. This behavior applies even if the request targets other open indexes.
          * <p>
          * API name: {@code allow_no_indices}
          * </p>
@@ -284,7 +284,7 @@ public class DeleteIndexRequest extends RequestBase {
         }
 
         /**
-         * Required - Comma-separated list of indices to delete. You cannot specify index aliases. By default, this parameter does not
+         * Required - Comma-separated list of indexes to delete. You cannot specify index aliases. By default, this parameter does not
          * support wildcards (<code>*</code>) or <code>_all</code>. To use wildcards or <code>_all</code>, set the
          * <code>action.destructive_requires_name</code> cluster setting to <code>false</code>.
          * <p>
@@ -301,7 +301,7 @@ public class DeleteIndexRequest extends RequestBase {
         }
 
         /**
-         * Required - Comma-separated list of indices to delete. You cannot specify index aliases. By default, this parameter does not
+         * Required - Comma-separated list of indexes to delete. You cannot specify index aliases. By default, this parameter does not
          * support wildcards (<code>*</code>) or <code>_all</code>. To use wildcards or <code>_all</code>, set the
          * <code>action.destructive_requires_name</code> cluster setting to <code>false</code>.
          * <p>

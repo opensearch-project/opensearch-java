@@ -36,6 +36,7 @@ import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
+@Deprecated
 class AttributedJsonpMapper implements JsonpMapper {
 
     private final JsonpMapper mapper;
