@@ -42,6 +42,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Added
 - Added support for disabling typed keys serialization ([#1296](https://github.com/opensearch-project/opensearch-java/pull/1296))
+- Added support for the `batch_size` param on the `text_embedding` processor ([#1298](https://github.com/opensearch-project/opensearch-java/pull/1298))
 
 ### Dependencies
 
