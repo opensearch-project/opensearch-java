@@ -25,7 +25,39 @@ public class TextEmbeddingProcessorTest extends ModelTestCase {
     }
 
     @Test
-    public void testJsonRoundtripWithDescription() {
+    public void testJsonRoundtripWithDescriptionAndBatchSize() {
+        Processor processor = new Processor.Builder().textEmbedding(
+            baseTextEmbeddingProcessor().description("processor-description").batchSize(1).build()
+        ).build();
+        String json =
+            "{\"text_embedding\":{\"tag\":\"some-tag\",\"model_id\":\"modelId\",\"field_map\":{\"input_field\":\"vector_field\"},\"description\":\"processor-description\",\"batch_size\":1}}";
+        TextEmbeddingProcessor deserialized = checkJsonRoundtrip(processor, json).textEmbedding();
+
+        assertEquals("modelId", deserialized.modelId());
+        assertEquals(baseFieldMap, deserialized.fieldMap());
+        assertEquals("processor-description", deserialized.description());
+        assertEquals("some-tag", deserialized.tag());
+        assertNotNull(deserialized.batchSize());
+        assertEquals(1, deserialized.batchSize().intValue());
+    }
+
+    @Test
+    public void testJsonRoundtripWithoutDescription() {
+        Processor processor = new Processor.Builder().textEmbedding(baseTextEmbeddingProcessor().batchSize(1).build()).build();
+        String json =
+            "{\"text_embedding\":{\"tag\":\"some-tag\",\"model_id\":\"modelId\",\"field_map\":{\"input_field\":\"vector_field\"},\"batch_size\":1}}";
+        TextEmbeddingProcessor deserialized = checkJsonRoundtrip(processor, json).textEmbedding();
+
+        assertEquals("modelId", deserialized.modelId());
+        assertEquals(baseFieldMap, deserialized.fieldMap());
+        assertNull(deserialized.description());
+        assertEquals("some-tag", deserialized.tag());
+        assertNotNull(deserialized.batchSize());
+        assertEquals(1, deserialized.batchSize().intValue());
+    }
+
+    @Test
+    public void testJsonRoundtripWithoutBatchSize() {
         Processor processor = new Processor.Builder().textEmbedding(
             baseTextEmbeddingProcessor().description("processor-description").build()
         ).build();
@@ -37,18 +69,19 @@ public class TextEmbeddingProcessorTest extends ModelTestCase {
         assertEquals(baseFieldMap, deserialized.fieldMap());
         assertEquals("processor-description", deserialized.description());
         assertEquals("some-tag", deserialized.tag());
+        assertNull(deserialized.batchSize());
     }
 
     @Test
-    public void testJsonRoundtripWithoutDescription() {
-        Processor processor = new Processor.Builder().textEmbedding(baseTextEmbeddingProcessor().build()).build();
-        String json =
-            "{\"text_embedding\":{\"tag\":\"some-tag\",\"model_id\":\"modelId\",\"field_map\":{\"input_field\":\"vector_field\"}}}";
-        TextEmbeddingProcessor deserialized = checkJsonRoundtrip(processor, json).textEmbedding();
+    public void testInvalidBatchSizeThrowsException() {
+        IllegalArgumentException exceptionWhenBatchSizeIsZero = assertThrows(IllegalArgumentException.class, () -> {
+            new Processor.Builder().textEmbedding(baseTextEmbeddingProcessor().batchSize(0).build()).build();
+        });
+        assertEquals("batchSize must be a positive integer", exceptionWhenBatchSizeIsZero.getMessage());
 
-        assertEquals("modelId", deserialized.modelId());
-        assertEquals(baseFieldMap, deserialized.fieldMap());
-        assertNull(deserialized.description());
-        assertEquals("some-tag", deserialized.tag());
+        IllegalArgumentException exceptionWhenBatchSizeIsNegative = assertThrows(IllegalArgumentException.class, () -> {
+            new Processor.Builder().textEmbedding(baseTextEmbeddingProcessor().batchSize(-1).build()).build();
+        });
+        assertEquals("batchSize must be a positive integer", exceptionWhenBatchSizeIsNegative.getMessage());
     }
 }

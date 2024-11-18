@@ -31,6 +31,9 @@ public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVa
     @Nullable
     private final String description;
 
+    @Nullable
+    private final Integer batchSize;
+
     // ---------------------------------------------------------------------------------------------
 
     private TextEmbeddingProcessor(Builder builder) {
@@ -39,7 +42,7 @@ public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVa
         this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
         this.fieldMap = ApiTypeHelper.unmodifiableRequired(builder.fieldMap, this, "fieldMap");
         this.description = builder.description;
-
+        this.batchSize = builder.batchSize;
     }
 
     public static TextEmbeddingProcessor of(Function<Builder, ObjectBuilder<TextEmbeddingProcessor>> fn) {
@@ -76,6 +79,14 @@ public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVa
         return this.description;
     }
 
+    /**
+     * API name: {@code batch_size}
+     */
+    @Nullable
+    public final Integer batchSize() {
+        return this.batchSize;
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
         super.serializeInternal(generator, mapper);
@@ -96,7 +107,10 @@ public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVa
             generator.writeKey("description");
             generator.write(this.description);
         }
-
+        if (this.batchSize != null) {
+            generator.writeKey("batch_size");
+            generator.write(this.batchSize);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -113,6 +127,9 @@ public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVa
 
         @Nullable
         private String description;
+
+        @Nullable
+        private Integer batchSize;
 
         /**
          * Required - API name: {@code model_id}
@@ -150,6 +167,17 @@ public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVa
             return this;
         }
 
+        /**
+         * API name: {@code batch_size}
+         */
+        public final Builder batchSize(@Nullable Integer value) {
+            if (value != null && value <= 0) {
+                throw new IllegalArgumentException("batchSize must be a positive integer");
+            }
+            this.batchSize = value;
+            return this;
+        }
+
         @Override
         protected Builder self() {
             return this;
@@ -183,6 +211,7 @@ public class TextEmbeddingProcessor extends ProcessorBase implements ProcessorVa
         op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
         op.add(Builder::fieldMap, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "field_map");
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+        op.add(Builder::batchSize, JsonpDeserializer.integerDeserializer(), "batch_size");
     }
 
 }
