@@ -51,6 +51,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
+- Fixed don't invoke the mapper's serialize method for the RangeQuery JsonData raw value [#1309](https://github.com/opensearch-project/opensearch-java/pull/1309)
 
 ### Security
 
