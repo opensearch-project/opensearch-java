@@ -19,4 +19,11 @@ public class KnnQueryTest extends ModelTestCase {
 
         assertEquals(toJson(copied), toJson(origin));
     }
+
+    @Test
+    public void toBuilderPrecision() {
+        KnnQuery origin = new KnnQuery.Builder().field("field").vector(new float[] { 0.1f, 0.4f }).k(1).build();
+
+        assertEquals(toJson(origin), "{\"field\":{\"vector\":[0.1,0.4],\"k\":1}}");
+    }
 }

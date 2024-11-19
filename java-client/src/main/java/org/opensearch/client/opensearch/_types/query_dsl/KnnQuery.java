@@ -8,7 +8,10 @@
 
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import static java.math.RoundingMode.HALF_UP;
+
 import jakarta.json.stream.JsonGenerator;
+import java.math.BigDecimal;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -117,7 +120,9 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         generator.writeKey("vector");
         generator.writeStartArray();
         for (float value : this.vector) {
-            generator.write(value);
+            BigDecimal b = new BigDecimal(value);
+            double T = b.setScale(6, HALF_UP).doubleValue();
+            generator.write(T);
         }
         generator.writeEnd();
 

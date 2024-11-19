@@ -33,6 +33,7 @@
 package org.opensearch.client.opensearch.model;
 
 import org.junit.Test;
+import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.client.opensearch.core.SearchRequest;
 
@@ -60,5 +61,21 @@ public class RequestEncodingTest extends ModelTestCase {
         assertEquals("foo", request.query().type().value());
         assertNull(request.q());
 
+    }
+
+    @Test
+    public void testKnnVectorPrecision() {
+
+        float[] vector = { 0.4f, 0.3f };
+        SearchRequest request = new SearchRequest.Builder().q("knn").query(q -> q.knn(k -> k.field("values").vector(vector).k(1))).build();
+
+        JacksonJsonpMapper mapper = new JacksonJsonpMapper();
+        String str = toJson(request, mapper);
+        assertEquals("{\"query\":{\"knn\":{\"values\":{\"vector\":[0.4,0.3],\"k\":1}}}}", str);
+
+        request = fromJson(str, SearchRequest.class, mapper);
+
+        assertTrue(request.query().isKnn());
+        assertNull(request.q());
     }
 }
