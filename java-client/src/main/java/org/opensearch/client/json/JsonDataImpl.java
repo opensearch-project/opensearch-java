@@ -109,6 +109,12 @@ class JsonDataImpl implements JsonData {
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         if (value instanceof JsonValue) {
             generator.write((JsonValue) value);
+        } else if (value instanceof String) {
+            generator.write((String) value);
+        } else if (value instanceof Integer) {
+            generator.write((Integer) value);
+        } else if (value instanceof Double) {
+            generator.write((Double) value);
         } else {
             // Mapper provided at creation time has precedence
             (this.mapper != null ? this.mapper : mapper).serialize(value, generator);

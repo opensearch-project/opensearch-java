@@ -247,21 +247,21 @@ public class JsonpMapperTest extends Assert {
     public void testRangeQuery() {
 
         String expectedStringValue =
-                "{\"aggregations\":{},\"query\":{\"range\":{\"rangeField\":{\"gte\":10.5,\"lte\":30,\"from\":\"2024-01-01T00:00:00Z\",\"format\":\"strict_date_optional_time\"}}},\"terminate_after\":5}";
+            "{\"aggregations\":{},\"query\":{\"range\":{\"rangeField\":{\"gte\":10.5,\"lte\":30,\"from\":\"2024-01-01T00:00:00Z\",\"format\":\"strict_date_optional_time\"}}},\"terminate_after\":5}";
 
         SearchRequest searchRequest = SearchRequest.of(
-                request -> request.index("index1", "index2")
-                        .aggregations(Collections.emptyMap())
-                        .terminateAfter(5L)
-                        .query(
-                                q -> q.range(
-                                        r -> r.field("rangeField")
-                                                .gte(JsonData.of(10.5))
-                                                .lte(JsonData.of(30))
-                                                .from(JsonData.of("2024-01-01T00:00:00Z"))
-                                                .format("strict_date_optional_time")
-                                )
-                        )
+            request -> request.index("index1", "index2")
+                .aggregations(Collections.emptyMap())
+                .terminateAfter(5L)
+                .query(
+                    q -> q.range(
+                        r -> r.field("rangeField")
+                            .gte(JsonData.of(10.5))
+                            .lte(JsonData.of(30))
+                            .from(JsonData.of("2024-01-01T00:00:00Z"))
+                            .format("strict_date_optional_time")
+                    )
+                )
         );
         String searchRequestString = searchRequest.toJsonString();
         assertEquals(expectedStringValue, searchRequestString);
