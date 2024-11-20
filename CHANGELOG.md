@@ -51,6 +51,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
+- Fixed `GetSnapshotResponse` deserialization ([#1299](https://github.com/opensearch-project/opensearch-java/pull/1299))
 
 ### Security
 
