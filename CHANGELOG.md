@@ -3,6 +3,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
+- Added support for `IcuCollationKeywordProperty`'s `country`, `language` and `variant` properties ([#]())
 
 ### Dependencies
 - Bumps `org.junit:junit-bom` from 5.10.2 to 5.11.3
@@ -14,6 +15,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fixed `IcuCollationDecomposition`'s variants to align with those supported by OpenSearch ([#]())
 
 ### Security
 

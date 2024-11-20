@@ -35,6 +35,7 @@ public class Overrides {
             // TODO: Remove this to generate property mapping types
             .with(schema("_common.mapping", "Property"), so -> so.withShouldGenerate(ShouldGenerate.Never))
             .with(schema("_common.mapping", "PropertyBase"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(schema("_common.mapping", "IcuCollationKeywordProperty"), so -> so.withShouldGenerate(ShouldGenerate.Always))
             .with(schema("_common.mapping", "KnnVectorProperty"), so -> so.withShouldGenerate(ShouldGenerate.Always))
 
             // TODO: Remove this to generate query types
