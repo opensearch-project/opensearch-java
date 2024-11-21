@@ -203,9 +203,34 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
         @Nullable
         private String wordListPath;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(CompoundWordTokenFilterBase o) {
+            super(o);
+            this.hyphenationPatternsPath = o.hyphenationPatternsPath;
+            this.maxSubwordSize = o.maxSubwordSize;
+            this.minSubwordSize = o.minSubwordSize;
+            this.minWordSize = o.minWordSize;
+            this.onlyLongestMatch = o.onlyLongestMatch;
+            this.wordList = _listCopy(o.wordList);
+            this.wordListPath = o.wordListPath;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            super(o);
+            this.hyphenationPatternsPath = o.hyphenationPatternsPath;
+            this.maxSubwordSize = o.maxSubwordSize;
+            this.minSubwordSize = o.minSubwordSize;
+            this.minWordSize = o.minWordSize;
+            this.onlyLongestMatch = o.onlyLongestMatch;
+            this.wordList = _listCopy(o.wordList);
+            this.wordListPath = o.wordListPath;
+        }
+
         /**
          * API name: {@code hyphenation_patterns_path}
          */
+        @Nonnull
         public final BuilderT hyphenationPatternsPath(@Nullable String value) {
             this.hyphenationPatternsPath = value;
             return self();
@@ -214,6 +239,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
         /**
          * API name: {@code max_subword_size}
          */
+        @Nonnull
         public final BuilderT maxSubwordSize(@Nullable Integer value) {
             this.maxSubwordSize = value;
             return self();
@@ -222,6 +248,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
         /**
          * API name: {@code min_subword_size}
          */
+        @Nonnull
         public final BuilderT minSubwordSize(@Nullable Integer value) {
             this.minSubwordSize = value;
             return self();
@@ -230,6 +257,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
         /**
          * API name: {@code min_word_size}
          */
+        @Nonnull
         public final BuilderT minWordSize(@Nullable Integer value) {
             this.minWordSize = value;
             return self();
@@ -238,6 +266,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
         /**
          * API name: {@code only_longest_match}
          */
+        @Nonnull
         public final BuilderT onlyLongestMatch(@Nullable Boolean value) {
             this.onlyLongestMatch = value;
             return self();
@@ -250,6 +279,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
          * Adds all elements of <code>list</code> to <code>wordList</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT wordList(List<String> list) {
             this.wordList = _listAddAll(this.wordList, list);
             return self();
@@ -262,6 +292,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
          * Adds one or more values to <code>wordList</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT wordList(String value, String... values) {
             this.wordList = _listAdd(this.wordList, value, values);
             return self();
@@ -270,6 +301,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
         /**
          * API name: {@code word_list_path}
          */
+        @Nonnull
         public final BuilderT wordListPath(@Nullable String value) {
             this.wordListPath = value;
             return self();

@@ -48,13 +48,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.PatternReplaceTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class PatternReplaceTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<PatternReplaceTokenFilter.Builder, PatternReplaceTokenFilter> {
 
     @Nullable
     private final Boolean all;
@@ -146,10 +151,23 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PatternReplaceTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<PatternReplaceTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, PatternReplaceTokenFilter> {
         @Nullable
         private Boolean all;
         @Nullable
@@ -158,9 +176,40 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
         @Nullable
         private String replacement;
 
+        public Builder() {}
+
+        private Builder(PatternReplaceTokenFilter o) {
+            super(o);
+            this.all = o.all;
+            this.flags = o.flags;
+            this.pattern = o.pattern;
+            this.replacement = o.replacement;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.all = o.all;
+            this.flags = o.flags;
+            this.pattern = o.pattern;
+            this.replacement = o.replacement;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code all}
          */
+        @Nonnull
         public final Builder all(@Nullable Boolean value) {
             this.all = value;
             return this;
@@ -169,6 +218,7 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
         /**
          * API name: {@code flags}
          */
+        @Nonnull
         public final Builder flags(@Nullable String value) {
             this.flags = value;
             return this;
@@ -177,6 +227,7 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
         /**
          * Required - API name: {@code pattern}
          */
+        @Nonnull
         public final Builder pattern(String value) {
             this.pattern = value;
             return this;
@@ -185,13 +236,9 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
         /**
          * API name: {@code replacement}
          */
+        @Nonnull
         public final Builder replacement(@Nullable String value) {
             this.replacement = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -200,6 +247,8 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PatternReplaceTokenFilter build() {
             _checkSingleUse();
 

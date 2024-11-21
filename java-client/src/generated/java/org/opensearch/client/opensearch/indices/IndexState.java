@@ -51,14 +51,16 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexState
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IndexState implements PlainJsonSerializable {
+public class IndexState implements PlainJsonSerializable, ToCopyableBuilder<IndexState.Builder, IndexState> {
 
     @Nonnull
     private final Map<String, Alias> aliases;
@@ -173,10 +175,21 @@ public class IndexState implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IndexState}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexState> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IndexState> {
         @Nullable
         private Map<String, Alias> aliases;
         @Nullable
@@ -188,6 +201,30 @@ public class IndexState implements PlainJsonSerializable {
         @Nullable
         private IndexSettings settings;
 
+        public Builder() {}
+
+        private Builder(IndexState o) {
+            this.aliases = _mapCopy(o.aliases);
+            this.dataStream = o.dataStream;
+            this.defaults = o.defaults;
+            this.mappings = o.mappings;
+            this.settings = o.settings;
+        }
+
+        private Builder(Builder o) {
+            this.aliases = _mapCopy(o.aliases);
+            this.dataStream = o.dataStream;
+            this.defaults = o.defaults;
+            this.mappings = o.mappings;
+            this.settings = o.settings;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code aliases}
          *
@@ -195,6 +232,7 @@ public class IndexState implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>aliases</code>.
          * </p>
          */
+        @Nonnull
         public final Builder aliases(Map<String, Alias> map) {
             this.aliases = _mapPutAll(this.aliases, map);
             return this;
@@ -207,6 +245,7 @@ public class IndexState implements PlainJsonSerializable {
          * Adds an entry to <code>aliases</code>.
          * </p>
          */
+        @Nonnull
         public final Builder aliases(String key, Alias value) {
             this.aliases = _mapPut(this.aliases, key, value);
             return this;
@@ -219,6 +258,7 @@ public class IndexState implements PlainJsonSerializable {
          * Adds a value to <code>aliases</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
             return aliases(key, fn.apply(new Alias.Builder()).build());
         }
@@ -226,6 +266,7 @@ public class IndexState implements PlainJsonSerializable {
         /**
          * API name: {@code data_stream}
          */
+        @Nonnull
         public final Builder dataStream(@Nullable String value) {
             this.dataStream = value;
             return this;
@@ -234,6 +275,7 @@ public class IndexState implements PlainJsonSerializable {
         /**
          * API name: {@code defaults}
          */
+        @Nonnull
         public final Builder defaults(@Nullable IndexSettings value) {
             this.defaults = value;
             return this;
@@ -242,6 +284,7 @@ public class IndexState implements PlainJsonSerializable {
         /**
          * API name: {@code defaults}
          */
+        @Nonnull
         public final Builder defaults(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
             return defaults(fn.apply(new IndexSettings.Builder()).build());
         }
@@ -249,6 +292,7 @@ public class IndexState implements PlainJsonSerializable {
         /**
          * API name: {@code mappings}
          */
+        @Nonnull
         public final Builder mappings(@Nullable TypeMapping value) {
             this.mappings = value;
             return this;
@@ -257,6 +301,7 @@ public class IndexState implements PlainJsonSerializable {
         /**
          * API name: {@code mappings}
          */
+        @Nonnull
         public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
             return mappings(fn.apply(new TypeMapping.Builder()).build());
         }
@@ -264,6 +309,7 @@ public class IndexState implements PlainJsonSerializable {
         /**
          * API name: {@code settings}
          */
+        @Nonnull
         public final Builder settings(@Nullable IndexSettings value) {
             this.settings = value;
             return this;
@@ -272,6 +318,7 @@ public class IndexState implements PlainJsonSerializable {
         /**
          * API name: {@code settings}
          */
+        @Nonnull
         public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
             return settings(fn.apply(new IndexSettings.Builder()).build());
         }
@@ -281,6 +328,8 @@ public class IndexState implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IndexState build() {
             _checkSingleUse();
 

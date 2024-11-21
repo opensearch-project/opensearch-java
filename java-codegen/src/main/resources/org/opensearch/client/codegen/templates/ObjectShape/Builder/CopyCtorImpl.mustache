@@ -1,0 +1,16 @@
+{{#extendsOtherShape}}
+    super(o);
+{{/extendsOtherShape}}
+{{#fields}}
+    {{#type.isList}}
+        this.{{name}} = _listCopy(o.{{name}});
+    {{/type.isList}}
+    {{^type.isList}}
+        {{#type.isMap}}
+            this.{{name}} = _mapCopy(o.{{name}});
+        {{/type.isMap}}
+        {{^type.isMap}}
+            this.{{name}} = o.{{name}};
+        {{/type.isMap}}
+    {{/type.isList}}
+{{/fields}}

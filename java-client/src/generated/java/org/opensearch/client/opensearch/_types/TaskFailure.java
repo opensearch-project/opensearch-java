@@ -47,14 +47,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.TaskFailure
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class TaskFailure implements PlainJsonSerializable {
+public class TaskFailure implements PlainJsonSerializable, ToCopyableBuilder<TaskFailure.Builder, TaskFailure> {
 
     @Nonnull
     private final String nodeId;
@@ -137,18 +139,52 @@ public class TaskFailure implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link TaskFailure}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TaskFailure> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TaskFailure> {
         private String nodeId;
         private ErrorCause reason;
         private String status;
         private Integer taskId;
 
+        public Builder() {}
+
+        private Builder(TaskFailure o) {
+            this.nodeId = o.nodeId;
+            this.reason = o.reason;
+            this.status = o.status;
+            this.taskId = o.taskId;
+        }
+
+        private Builder(Builder o) {
+            this.nodeId = o.nodeId;
+            this.reason = o.reason;
+            this.status = o.status;
+            this.taskId = o.taskId;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - API name: {@code node_id}
          */
+        @Nonnull
         public final Builder nodeId(String value) {
             this.nodeId = value;
             return this;
@@ -157,6 +193,7 @@ public class TaskFailure implements PlainJsonSerializable {
         /**
          * Required - API name: {@code reason}
          */
+        @Nonnull
         public final Builder reason(ErrorCause value) {
             this.reason = value;
             return this;
@@ -165,6 +202,7 @@ public class TaskFailure implements PlainJsonSerializable {
         /**
          * Required - API name: {@code reason}
          */
+        @Nonnull
         public final Builder reason(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return reason(fn.apply(new ErrorCause.Builder()).build());
         }
@@ -172,6 +210,7 @@ public class TaskFailure implements PlainJsonSerializable {
         /**
          * Required - API name: {@code status}
          */
+        @Nonnull
         public final Builder status(String value) {
             this.status = value;
             return this;
@@ -180,6 +219,7 @@ public class TaskFailure implements PlainJsonSerializable {
         /**
          * Required - API name: {@code task_id}
          */
+        @Nonnull
         public final Builder taskId(int value) {
             this.taskId = value;
             return this;
@@ -190,6 +230,8 @@ public class TaskFailure implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public TaskFailure build() {
             _checkSingleUse();
 

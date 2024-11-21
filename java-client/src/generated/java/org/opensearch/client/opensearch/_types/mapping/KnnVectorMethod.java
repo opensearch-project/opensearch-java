@@ -51,14 +51,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.KnnVectorMethod
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class KnnVectorMethod implements PlainJsonSerializable {
+public class KnnVectorMethod implements PlainJsonSerializable, ToCopyableBuilder<KnnVectorMethod.Builder, KnnVectorMethod> {
 
     @Nullable
     private final String engine;
@@ -154,10 +156,21 @@ public class KnnVectorMethod implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link KnnVectorMethod}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KnnVectorMethod> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, KnnVectorMethod> {
         @Nullable
         private String engine;
         private String name;
@@ -166,9 +179,32 @@ public class KnnVectorMethod implements PlainJsonSerializable {
         @Nullable
         private String spaceType;
 
+        public Builder() {}
+
+        private Builder(KnnVectorMethod o) {
+            this.engine = o.engine;
+            this.name = o.name;
+            this.parameters = _mapCopy(o.parameters);
+            this.spaceType = o.spaceType;
+        }
+
+        private Builder(Builder o) {
+            this.engine = o.engine;
+            this.name = o.name;
+            this.parameters = _mapCopy(o.parameters);
+            this.spaceType = o.spaceType;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code engine}
          */
+        @Nonnull
         public final Builder engine(@Nullable String value) {
             this.engine = value;
             return this;
@@ -177,6 +213,7 @@ public class KnnVectorMethod implements PlainJsonSerializable {
         /**
          * Required - API name: {@code name}
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -189,6 +226,7 @@ public class KnnVectorMethod implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>parameters</code>.
          * </p>
          */
+        @Nonnull
         public final Builder parameters(Map<String, JsonData> map) {
             this.parameters = _mapPutAll(this.parameters, map);
             return this;
@@ -201,6 +239,7 @@ public class KnnVectorMethod implements PlainJsonSerializable {
          * Adds an entry to <code>parameters</code>.
          * </p>
          */
+        @Nonnull
         public final Builder parameters(String key, JsonData value) {
             this.parameters = _mapPut(this.parameters, key, value);
             return this;
@@ -209,6 +248,7 @@ public class KnnVectorMethod implements PlainJsonSerializable {
         /**
          * API name: {@code space_type}
          */
+        @Nonnull
         public final Builder spaceType(@Nullable String value) {
             this.spaceType = value;
             return this;
@@ -219,6 +259,8 @@ public class KnnVectorMethod implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public KnnVectorMethod build() {
             _checkSingleUse();
 

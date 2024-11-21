@@ -14,18 +14,21 @@ package org.opensearch.client.opensearch.ml;
 
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.WriteResponseBase;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.delete_agent.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteAgentResponse extends WriteResponseBase {
+public class DeleteAgentResponse extends WriteResponseBase implements ToCopyableBuilder<DeleteAgentResponse.Builder, DeleteAgentResponse> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -39,12 +42,42 @@ public class DeleteAgentResponse extends WriteResponseBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DeleteAgentResponse}.
      */
-    public static class Builder extends WriteResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteAgentResponse> {
+    public static class Builder extends WriteResponseBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, DeleteAgentResponse> {
+
+        public Builder() {}
+
+        private Builder(DeleteAgentResponse o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -54,6 +87,8 @@ public class DeleteAgentResponse extends WriteResponseBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DeleteAgentResponse build() {
             _checkSingleUse();
 

@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
@@ -83,9 +84,22 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
         @Nullable
         private ShardStatistics shards;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(IndicesResponseBase o) {
+            super(o);
+            this.shards = o.shards;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            super(o);
+            this.shards = o.shards;
+        }
+
         /**
          * API name: {@code _shards}
          */
+        @Nonnull
         public final BuilderT shards(@Nullable ShardStatistics value) {
             this.shards = value;
             return self();
@@ -94,6 +108,7 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
         /**
          * API name: {@code _shards}
          */
+        @Nonnull
         public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
             return shards(fn.apply(new ShardStatistics.Builder()).build());
         }

@@ -15,18 +15,24 @@ package org.opensearch.client.opensearch._types.analysis;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.SmartcnTokenizer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SmartcnTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+public class SmartcnTokenizer extends TokenizerBase
+    implements
+        TokenizerDefinitionVariant,
+        ToCopyableBuilder<SmartcnTokenizer.Builder, SmartcnTokenizer> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -53,12 +59,40 @@ public class SmartcnTokenizer extends TokenizerBase implements TokenizerDefiniti
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SmartcnTokenizer}.
      */
-    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<SmartcnTokenizer> {
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, SmartcnTokenizer> {
+
+        public Builder() {}
+
+        private Builder(SmartcnTokenizer o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -68,6 +102,8 @@ public class SmartcnTokenizer extends TokenizerBase implements TokenizerDefiniti
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SmartcnTokenizer build() {
             _checkSingleUse();
 

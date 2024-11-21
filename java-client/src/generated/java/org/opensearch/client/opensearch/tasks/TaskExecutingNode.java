@@ -48,13 +48,15 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.BaseNode;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: tasks.TaskExecutingNode
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class TaskExecutingNode extends BaseNode {
+public class TaskExecutingNode extends BaseNode implements ToCopyableBuilder<TaskExecutingNode.Builder, TaskExecutingNode> {
 
     @Nonnull
     private final Map<String, TaskInfo> tasks;
@@ -91,11 +93,46 @@ public class TaskExecutingNode extends BaseNode {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link TaskExecutingNode}.
      */
-    public static class Builder extends BaseNode.AbstractBuilder<Builder> implements ObjectBuilder<TaskExecutingNode> {
+    public static class Builder extends BaseNode.AbstractBuilder<Builder> implements CopyableBuilder<Builder, TaskExecutingNode> {
         private Map<String, TaskInfo> tasks;
+
+        public Builder() {}
+
+        private Builder(TaskExecutingNode o) {
+            super(o);
+            this.tasks = _mapCopy(o.tasks);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.tasks = _mapCopy(o.tasks);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code tasks}
@@ -104,6 +141,7 @@ public class TaskExecutingNode extends BaseNode {
          * Adds all elements of <code>map</code> to <code>tasks</code>.
          * </p>
          */
+        @Nonnull
         public final Builder tasks(Map<String, TaskInfo> map) {
             this.tasks = _mapPutAll(this.tasks, map);
             return this;
@@ -116,6 +154,7 @@ public class TaskExecutingNode extends BaseNode {
          * Adds an entry to <code>tasks</code>.
          * </p>
          */
+        @Nonnull
         public final Builder tasks(String key, TaskInfo value) {
             this.tasks = _mapPut(this.tasks, key, value);
             return this;
@@ -128,13 +167,9 @@ public class TaskExecutingNode extends BaseNode {
          * Adds a value to <code>tasks</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder tasks(String key, Function<TaskInfo.Builder, ObjectBuilder<TaskInfo>> fn) {
             return tasks(key, fn.apply(new TaskInfo.Builder()).build());
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -142,6 +177,8 @@ public class TaskExecutingNode extends BaseNode {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public TaskExecutingNode build() {
             _checkSingleUse();
 

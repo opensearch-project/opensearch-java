@@ -38,18 +38,23 @@ package org.opensearch.client.opensearch.dangling_indices;
 
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: dangling_indices.delete_dangling_index.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
+public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase
+    implements
+        ToCopyableBuilder<DeleteDanglingIndexResponse.Builder, DeleteDanglingIndexResponse> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -65,14 +70,42 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DeleteDanglingIndexResponse}.
      */
     public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
         implements
-            ObjectBuilder<DeleteDanglingIndexResponse> {
+            CopyableBuilder<Builder, DeleteDanglingIndexResponse> {
+
+        public Builder() {}
+
+        private Builder(DeleteDanglingIndexResponse o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -82,6 +115,8 @@ public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DeleteDanglingIndexResponse build() {
             _checkSingleUse();
 

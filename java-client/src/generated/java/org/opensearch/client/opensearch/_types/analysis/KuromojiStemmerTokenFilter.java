@@ -39,19 +39,25 @@ package org.opensearch.client.opensearch._types.analysis;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.KuromojiStemmerTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class KuromojiStemmerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class KuromojiStemmerTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<KuromojiStemmerTokenFilter.Builder, KuromojiStemmerTokenFilter> {
 
     private final int minimumLength;
 
@@ -92,22 +98,55 @@ public class KuromojiStemmerTokenFilter extends TokenFilterBase implements Token
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link KuromojiStemmerTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<KuromojiStemmerTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, KuromojiStemmerTokenFilter> {
         private Integer minimumLength;
+
+        public Builder() {}
+
+        private Builder(KuromojiStemmerTokenFilter o) {
+            super(o);
+            this.minimumLength = o.minimumLength;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.minimumLength = o.minimumLength;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code minimum_length}
          */
+        @Nonnull
         public final Builder minimumLength(int value) {
             this.minimumLength = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -116,6 +155,8 @@ public class KuromojiStemmerTokenFilter extends TokenFilterBase implements Token
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public KuromojiStemmerTokenFilter build() {
             _checkSingleUse();
 

@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.ElisionTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class ElisionTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<ElisionTokenFilter.Builder, ElisionTokenFilter> {
 
     @Nonnull
     private final List<String> articles;
@@ -136,16 +141,55 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ElisionTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<ElisionTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ElisionTokenFilter> {
         @Nullable
         private List<String> articles;
         @Nullable
         private Boolean articlesCase;
         @Nullable
         private String articlesPath;
+
+        public Builder() {}
+
+        private Builder(ElisionTokenFilter o) {
+            super(o);
+            this.articles = _listCopy(o.articles);
+            this.articlesCase = o.articlesCase;
+            this.articlesPath = o.articlesPath;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.articles = _listCopy(o.articles);
+            this.articlesCase = o.articlesCase;
+            this.articlesPath = o.articlesPath;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code articles}
@@ -154,6 +198,7 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
          * Adds all elements of <code>list</code> to <code>articles</code>.
          * </p>
          */
+        @Nonnull
         public final Builder articles(List<String> list) {
             this.articles = _listAddAll(this.articles, list);
             return this;
@@ -166,6 +211,7 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
          * Adds one or more values to <code>articles</code>.
          * </p>
          */
+        @Nonnull
         public final Builder articles(String value, String... values) {
             this.articles = _listAdd(this.articles, value, values);
             return this;
@@ -174,6 +220,7 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
         /**
          * API name: {@code articles_case}
          */
+        @Nonnull
         public final Builder articlesCase(@Nullable Boolean value) {
             this.articlesCase = value;
             return this;
@@ -182,13 +229,9 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
         /**
          * API name: {@code articles_path}
          */
+        @Nonnull
         public final Builder articlesPath(@Nullable String value) {
             this.articlesPath = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -197,6 +240,8 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ElisionTokenFilter build() {
             _checkSingleUse();
 

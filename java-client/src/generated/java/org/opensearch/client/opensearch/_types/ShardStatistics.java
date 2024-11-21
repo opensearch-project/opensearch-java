@@ -50,14 +50,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.ShardStatistics
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ShardStatistics implements PlainJsonSerializable {
+public class ShardStatistics implements PlainJsonSerializable, ToCopyableBuilder<ShardStatistics.Builder, ShardStatistics> {
 
     private final int failed;
 
@@ -159,10 +161,21 @@ public class ShardStatistics implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ShardStatistics}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStatistics> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardStatistics> {
         private Integer failed;
         @Nullable
         private List<ShardFailure> failures;
@@ -171,9 +184,34 @@ public class ShardStatistics implements PlainJsonSerializable {
         private Integer successful;
         private Integer total;
 
+        public Builder() {}
+
+        private Builder(ShardStatistics o) {
+            this.failed = o.failed;
+            this.failures = _listCopy(o.failures);
+            this.skipped = o.skipped;
+            this.successful = o.successful;
+            this.total = o.total;
+        }
+
+        private Builder(Builder o) {
+            this.failed = o.failed;
+            this.failures = _listCopy(o.failures);
+            this.skipped = o.skipped;
+            this.successful = o.successful;
+            this.total = o.total;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - API name: {@code failed}
          */
+        @Nonnull
         public final Builder failed(int value) {
             this.failed = value;
             return this;
@@ -186,6 +224,7 @@ public class ShardStatistics implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>failures</code>.
          * </p>
          */
+        @Nonnull
         public final Builder failures(List<ShardFailure> list) {
             this.failures = _listAddAll(this.failures, list);
             return this;
@@ -198,6 +237,7 @@ public class ShardStatistics implements PlainJsonSerializable {
          * Adds one or more values to <code>failures</code>.
          * </p>
          */
+        @Nonnull
         public final Builder failures(ShardFailure value, ShardFailure... values) {
             this.failures = _listAdd(this.failures, value, values);
             return this;
@@ -210,6 +250,7 @@ public class ShardStatistics implements PlainJsonSerializable {
          * Adds a value to <code>failures</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
             return failures(fn.apply(new ShardFailure.Builder()).build());
         }
@@ -217,6 +258,7 @@ public class ShardStatistics implements PlainJsonSerializable {
         /**
          * API name: {@code skipped}
          */
+        @Nonnull
         public final Builder skipped(@Nullable Integer value) {
             this.skipped = value;
             return this;
@@ -225,6 +267,7 @@ public class ShardStatistics implements PlainJsonSerializable {
         /**
          * Required - API name: {@code successful}
          */
+        @Nonnull
         public final Builder successful(int value) {
             this.successful = value;
             return this;
@@ -233,6 +276,7 @@ public class ShardStatistics implements PlainJsonSerializable {
         /**
          * Required - API name: {@code total}
          */
+        @Nonnull
         public final Builder total(int value) {
             this.total = value;
             return this;
@@ -243,6 +287,8 @@ public class ShardStatistics implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ShardStatistics build() {
             _checkSingleUse();
 

@@ -49,14 +49,20 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.KuromojiAnalyzer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class KuromojiAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
+public class KuromojiAnalyzer
+    implements
+        AnalyzerVariant,
+        PlainJsonSerializable,
+        ToCopyableBuilder<KuromojiAnalyzer.Builder, KuromojiAnalyzer> {
 
     @Nonnull
     private final KuromojiTokenizationMode mode;
@@ -122,17 +128,47 @@ public class KuromojiAnalyzer implements AnalyzerVariant, PlainJsonSerializable 
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link KuromojiAnalyzer}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KuromojiAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, KuromojiAnalyzer> {
         private KuromojiTokenizationMode mode;
         @Nullable
         private String userDictionary;
 
+        public Builder() {}
+
+        private Builder(KuromojiAnalyzer o) {
+            this.mode = o.mode;
+            this.userDictionary = o.userDictionary;
+        }
+
+        private Builder(Builder o) {
+            this.mode = o.mode;
+            this.userDictionary = o.userDictionary;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - API name: {@code mode}
          */
+        @Nonnull
         public final Builder mode(KuromojiTokenizationMode value) {
             this.mode = value;
             return this;
@@ -141,6 +177,7 @@ public class KuromojiAnalyzer implements AnalyzerVariant, PlainJsonSerializable 
         /**
          * API name: {@code user_dictionary}
          */
+        @Nonnull
         public final Builder userDictionary(@Nullable String value) {
             this.userDictionary = value;
             return this;
@@ -151,6 +188,8 @@ public class KuromojiAnalyzer implements AnalyzerVariant, PlainJsonSerializable 
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public KuromojiAnalyzer build() {
             _checkSingleUse();
 

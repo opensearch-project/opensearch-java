@@ -104,6 +104,19 @@ public abstract class ScriptBase implements PlainJsonSerializable {
         @Nullable
         private Map<String, JsonData> params;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(ScriptBase o) {
+            this.params = _mapCopy(o.params);
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            this.params = _mapCopy(o.params);
+        }
+
+        @Nonnull
+        protected abstract BuilderT self();
+
         /**
          * Specifies any named parameters that are passed into the script as variables. Use parameters instead of hard-coded values to
          * decrease compilation time.
@@ -115,6 +128,7 @@ public abstract class ScriptBase implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>params</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT params(Map<String, JsonData> map) {
             this.params = _mapPutAll(this.params, map);
             return self();
@@ -131,12 +145,12 @@ public abstract class ScriptBase implements PlainJsonSerializable {
          * Adds an entry to <code>params</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT params(String key, JsonData value) {
             this.params = _mapPut(this.params, key, value);
             return self();
         }
 
-        protected abstract BuilderT self();
     }
 
     // ---------------------------------------------------------------------------------------------

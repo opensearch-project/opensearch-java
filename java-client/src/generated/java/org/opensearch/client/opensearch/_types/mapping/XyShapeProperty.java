@@ -16,19 +16,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.XyShapeProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class XyShapeProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class XyShapeProperty extends DocValuesPropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<XyShapeProperty.Builder, XyShapeProperty> {
 
     @Nullable
     private final Boolean coerce;
@@ -122,10 +128,23 @@ public class XyShapeProperty extends DocValuesPropertyBase implements PropertyVa
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link XyShapeProperty}.
      */
-    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<XyShapeProperty> {
+    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, XyShapeProperty> {
         @Nullable
         private Boolean coerce;
         @Nullable
@@ -135,9 +154,40 @@ public class XyShapeProperty extends DocValuesPropertyBase implements PropertyVa
         @Nullable
         private GeoOrientation orientation;
 
+        public Builder() {}
+
+        private Builder(XyShapeProperty o) {
+            super(o);
+            this.coerce = o.coerce;
+            this.ignoreMalformed = o.ignoreMalformed;
+            this.ignoreZValue = o.ignoreZValue;
+            this.orientation = o.orientation;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.coerce = o.coerce;
+            this.ignoreMalformed = o.ignoreMalformed;
+            this.ignoreZValue = o.ignoreZValue;
+            this.orientation = o.orientation;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code coerce}
          */
+        @Nonnull
         public final Builder coerce(@Nullable Boolean value) {
             this.coerce = value;
             return this;
@@ -146,6 +196,7 @@ public class XyShapeProperty extends DocValuesPropertyBase implements PropertyVa
         /**
          * API name: {@code ignore_malformed}
          */
+        @Nonnull
         public final Builder ignoreMalformed(@Nullable Boolean value) {
             this.ignoreMalformed = value;
             return this;
@@ -154,6 +205,7 @@ public class XyShapeProperty extends DocValuesPropertyBase implements PropertyVa
         /**
          * API name: {@code ignore_z_value}
          */
+        @Nonnull
         public final Builder ignoreZValue(@Nullable Boolean value) {
             this.ignoreZValue = value;
             return this;
@@ -162,13 +214,9 @@ public class XyShapeProperty extends DocValuesPropertyBase implements PropertyVa
         /**
          * API name: {@code orientation}
          */
+        @Nonnull
         public final Builder orientation(@Nullable GeoOrientation value) {
             this.orientation = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -177,6 +225,8 @@ public class XyShapeProperty extends DocValuesPropertyBase implements PropertyVa
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public XyShapeProperty build() {
             _checkSingleUse();
 

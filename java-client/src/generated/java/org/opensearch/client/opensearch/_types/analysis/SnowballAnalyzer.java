@@ -50,14 +50,20 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.SnowballAnalyzer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SnowballAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
+public class SnowballAnalyzer
+    implements
+        AnalyzerVariant,
+        PlainJsonSerializable,
+        ToCopyableBuilder<SnowballAnalyzer.Builder, SnowballAnalyzer> {
 
     @Nonnull
     private final SnowballLanguage language;
@@ -144,19 +150,51 @@ public class SnowballAnalyzer implements AnalyzerVariant, PlainJsonSerializable 
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SnowballAnalyzer}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnowballAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnowballAnalyzer> {
         private SnowballLanguage language;
         @Nullable
         private List<String> stopwords;
         @Nullable
         private String version;
 
+        public Builder() {}
+
+        private Builder(SnowballAnalyzer o) {
+            this.language = o.language;
+            this.stopwords = _listCopy(o.stopwords);
+            this.version = o.version;
+        }
+
+        private Builder(Builder o) {
+            this.language = o.language;
+            this.stopwords = _listCopy(o.stopwords);
+            this.version = o.version;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - API name: {@code language}
          */
+        @Nonnull
         public final Builder language(SnowballLanguage value) {
             this.language = value;
             return this;
@@ -169,6 +207,7 @@ public class SnowballAnalyzer implements AnalyzerVariant, PlainJsonSerializable 
          * Adds all elements of <code>list</code> to <code>stopwords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stopwords(List<String> list) {
             this.stopwords = _listAddAll(this.stopwords, list);
             return this;
@@ -181,6 +220,7 @@ public class SnowballAnalyzer implements AnalyzerVariant, PlainJsonSerializable 
          * Adds one or more values to <code>stopwords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stopwords(String value, String... values) {
             this.stopwords = _listAdd(this.stopwords, value, values);
             return this;
@@ -189,6 +229,7 @@ public class SnowballAnalyzer implements AnalyzerVariant, PlainJsonSerializable 
         /**
          * API name: {@code version}
          */
+        @Nonnull
         public final Builder version(@Nullable String value) {
             this.version = value;
             return this;
@@ -199,6 +240,8 @@ public class SnowballAnalyzer implements AnalyzerVariant, PlainJsonSerializable 
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SnowballAnalyzer build() {
             _checkSingleUse();
 

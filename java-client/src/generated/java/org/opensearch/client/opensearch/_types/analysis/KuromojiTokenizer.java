@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.KuromojiTokenizer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+public class KuromojiTokenizer extends TokenizerBase
+    implements
+        TokenizerDefinitionVariant,
+        ToCopyableBuilder<KuromojiTokenizer.Builder, KuromojiTokenizer> {
 
     @Nullable
     private final Boolean discardCompoundToken;
@@ -202,10 +207,21 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link KuromojiTokenizer}.
      */
-    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<KuromojiTokenizer> {
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, KuromojiTokenizer> {
         @Nullable
         private Boolean discardCompoundToken;
         @Nullable
@@ -220,9 +236,46 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
         @Nullable
         private List<String> userDictionaryRules;
 
+        public Builder() {}
+
+        private Builder(KuromojiTokenizer o) {
+            super(o);
+            this.discardCompoundToken = o.discardCompoundToken;
+            this.discardPunctuation = o.discardPunctuation;
+            this.mode = o.mode;
+            this.nbestCost = o.nbestCost;
+            this.nbestExamples = o.nbestExamples;
+            this.userDictionary = o.userDictionary;
+            this.userDictionaryRules = _listCopy(o.userDictionaryRules);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.discardCompoundToken = o.discardCompoundToken;
+            this.discardPunctuation = o.discardPunctuation;
+            this.mode = o.mode;
+            this.nbestCost = o.nbestCost;
+            this.nbestExamples = o.nbestExamples;
+            this.userDictionary = o.userDictionary;
+            this.userDictionaryRules = _listCopy(o.userDictionaryRules);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code discard_compound_token}
          */
+        @Nonnull
         public final Builder discardCompoundToken(@Nullable Boolean value) {
             this.discardCompoundToken = value;
             return this;
@@ -231,6 +284,7 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
         /**
          * API name: {@code discard_punctuation}
          */
+        @Nonnull
         public final Builder discardPunctuation(@Nullable Boolean value) {
             this.discardPunctuation = value;
             return this;
@@ -239,6 +293,7 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
         /**
          * Required - API name: {@code mode}
          */
+        @Nonnull
         public final Builder mode(KuromojiTokenizationMode value) {
             this.mode = value;
             return this;
@@ -247,6 +302,7 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
         /**
          * API name: {@code nbest_cost}
          */
+        @Nonnull
         public final Builder nbestCost(@Nullable Integer value) {
             this.nbestCost = value;
             return this;
@@ -255,6 +311,7 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
         /**
          * API name: {@code nbest_examples}
          */
+        @Nonnull
         public final Builder nbestExamples(@Nullable String value) {
             this.nbestExamples = value;
             return this;
@@ -263,6 +320,7 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
         /**
          * API name: {@code user_dictionary}
          */
+        @Nonnull
         public final Builder userDictionary(@Nullable String value) {
             this.userDictionary = value;
             return this;
@@ -275,6 +333,7 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
          * Adds all elements of <code>list</code> to <code>userDictionaryRules</code>.
          * </p>
          */
+        @Nonnull
         public final Builder userDictionaryRules(List<String> list) {
             this.userDictionaryRules = _listAddAll(this.userDictionaryRules, list);
             return this;
@@ -287,13 +346,9 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
          * Adds one or more values to <code>userDictionaryRules</code>.
          * </p>
          */
+        @Nonnull
         public final Builder userDictionaryRules(String value, String... values) {
             this.userDictionaryRules = _listAdd(this.userDictionaryRules, value, values);
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -302,6 +357,8 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public KuromojiTokenizer build() {
             _checkSingleUse();
 

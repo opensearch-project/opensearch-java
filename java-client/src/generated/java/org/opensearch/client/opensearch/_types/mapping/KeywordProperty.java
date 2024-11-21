@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.KeywordProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class KeywordProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class KeywordProperty extends DocValuesPropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<KeywordProperty.Builder, KeywordProperty> {
 
     @Nullable
     private final Double boost;
@@ -214,10 +220,23 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link KeywordProperty}.
      */
-    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<KeywordProperty> {
+    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, KeywordProperty> {
         @Nullable
         private Double boost;
         @Nullable
@@ -235,9 +254,48 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
         @Nullable
         private Boolean splitQueriesOnWhitespace;
 
+        public Builder() {}
+
+        private Builder(KeywordProperty o) {
+            super(o);
+            this.boost = o.boost;
+            this.eagerGlobalOrdinals = o.eagerGlobalOrdinals;
+            this.index = o.index;
+            this.indexOptions = o.indexOptions;
+            this.normalizer = o.normalizer;
+            this.norms = o.norms;
+            this.nullValue = o.nullValue;
+            this.splitQueriesOnWhitespace = o.splitQueriesOnWhitespace;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.boost = o.boost;
+            this.eagerGlobalOrdinals = o.eagerGlobalOrdinals;
+            this.index = o.index;
+            this.indexOptions = o.indexOptions;
+            this.normalizer = o.normalizer;
+            this.norms = o.norms;
+            this.nullValue = o.nullValue;
+            this.splitQueriesOnWhitespace = o.splitQueriesOnWhitespace;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code boost}
          */
+        @Nonnull
         public final Builder boost(@Nullable Double value) {
             this.boost = value;
             return this;
@@ -246,6 +304,7 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
         /**
          * API name: {@code eager_global_ordinals}
          */
+        @Nonnull
         public final Builder eagerGlobalOrdinals(@Nullable Boolean value) {
             this.eagerGlobalOrdinals = value;
             return this;
@@ -254,6 +313,7 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
         /**
          * API name: {@code index}
          */
+        @Nonnull
         public final Builder index(@Nullable Boolean value) {
             this.index = value;
             return this;
@@ -262,6 +322,7 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
         /**
          * API name: {@code index_options}
          */
+        @Nonnull
         public final Builder indexOptions(@Nullable IndexOptions value) {
             this.indexOptions = value;
             return this;
@@ -270,6 +331,7 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
         /**
          * API name: {@code normalizer}
          */
+        @Nonnull
         public final Builder normalizer(@Nullable String value) {
             this.normalizer = value;
             return this;
@@ -278,6 +340,7 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
         /**
          * API name: {@code norms}
          */
+        @Nonnull
         public final Builder norms(@Nullable Boolean value) {
             this.norms = value;
             return this;
@@ -286,6 +349,7 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
         /**
          * API name: {@code null_value}
          */
+        @Nonnull
         public final Builder nullValue(@Nullable String value) {
             this.nullValue = value;
             return this;
@@ -294,13 +358,9 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
         /**
          * API name: {@code split_queries_on_whitespace}
          */
+        @Nonnull
         public final Builder splitQueriesOnWhitespace(@Nullable Boolean value) {
             this.splitQueriesOnWhitespace = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -309,6 +369,8 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public KeywordProperty build() {
             _checkSingleUse();
 

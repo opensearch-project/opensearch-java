@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch._types.mapping;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -82,9 +83,22 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
         @Nullable
         private Boolean docValues;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(DocValuesPropertyBase o) {
+            super(o);
+            this.docValues = o.docValues;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            super(o);
+            this.docValues = o.docValues;
+        }
+
         /**
          * API name: {@code doc_values}
          */
+        @Nonnull
         public final BuilderT docValues(@Nullable Boolean value) {
             this.docValues = value;
             return self();

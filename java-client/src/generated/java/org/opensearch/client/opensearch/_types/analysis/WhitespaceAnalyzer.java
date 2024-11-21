@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -47,14 +48,20 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.WhitespaceAnalyzer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class WhitespaceAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
+public class WhitespaceAnalyzer
+    implements
+        AnalyzerVariant,
+        PlainJsonSerializable,
+        ToCopyableBuilder<WhitespaceAnalyzer.Builder, WhitespaceAnalyzer> {
 
     @Nullable
     private final String version;
@@ -105,16 +112,44 @@ public class WhitespaceAnalyzer implements AnalyzerVariant, PlainJsonSerializabl
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link WhitespaceAnalyzer}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WhitespaceAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, WhitespaceAnalyzer> {
         @Nullable
         private String version;
+
+        public Builder() {}
+
+        private Builder(WhitespaceAnalyzer o) {
+            this.version = o.version;
+        }
+
+        private Builder(Builder o) {
+            this.version = o.version;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * API name: {@code version}
          */
+        @Nonnull
         public final Builder version(@Nullable String value) {
             this.version = value;
             return this;
@@ -125,6 +160,8 @@ public class WhitespaceAnalyzer implements AnalyzerVariant, PlainJsonSerializabl
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public WhitespaceAnalyzer build() {
             _checkSingleUse();
 

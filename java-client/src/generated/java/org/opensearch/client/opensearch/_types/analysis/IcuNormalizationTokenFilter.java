@@ -46,13 +46,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.IcuNormalizationTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IcuNormalizationTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class IcuNormalizationTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<IcuNormalizationTokenFilter.Builder, IcuNormalizationTokenFilter> {
 
     @Nonnull
     private final IcuNormalizationType name;
@@ -95,22 +100,55 @@ public class IcuNormalizationTokenFilter extends TokenFilterBase implements Toke
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IcuNormalizationTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<IcuNormalizationTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, IcuNormalizationTokenFilter> {
         private IcuNormalizationType name;
+
+        public Builder() {}
+
+        private Builder(IcuNormalizationTokenFilter o) {
+            super(o);
+            this.name = o.name;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.name = o.name;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code name}
          */
+        @Nonnull
         public final Builder name(IcuNormalizationType value) {
             this.name = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -119,6 +157,8 @@ public class IcuNormalizationTokenFilter extends TokenFilterBase implements Toke
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IcuNormalizationTokenFilter build() {
             _checkSingleUse();
 

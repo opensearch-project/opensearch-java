@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -47,14 +48,19 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexTemplateDataStreamConfiguration
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IndexTemplateDataStreamConfiguration implements PlainJsonSerializable {
+public class IndexTemplateDataStreamConfiguration
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<IndexTemplateDataStreamConfiguration.Builder, IndexTemplateDataStreamConfiguration> {
 
     @Nullable
     private final Boolean allowCustomRouting;
@@ -80,7 +86,7 @@ public class IndexTemplateDataStreamConfiguration implements PlainJsonSerializab
     }
 
     /**
-     * If true, the data stream supports custom routing.
+     * If <code>true</code>, the data stream supports custom routing.
      * <p>
      * API name: {@code allow_custom_routing}
      * </p>
@@ -91,7 +97,7 @@ public class IndexTemplateDataStreamConfiguration implements PlainJsonSerializab
     }
 
     /**
-     * If true, the data stream is hidden.
+     * If <code>true</code>, the data stream is hidden.
      * <p>
      * API name: {@code hidden}
      * </p>
@@ -138,10 +144,21 @@ public class IndexTemplateDataStreamConfiguration implements PlainJsonSerializab
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IndexTemplateDataStreamConfiguration}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexTemplateDataStreamConfiguration> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IndexTemplateDataStreamConfiguration> {
         @Nullable
         private Boolean allowCustomRouting;
         @Nullable
@@ -149,23 +166,45 @@ public class IndexTemplateDataStreamConfiguration implements PlainJsonSerializab
         @Nullable
         private DataStreamTimestampField timestampField;
 
+        public Builder() {}
+
+        private Builder(IndexTemplateDataStreamConfiguration o) {
+            this.allowCustomRouting = o.allowCustomRouting;
+            this.hidden = o.hidden;
+            this.timestampField = o.timestampField;
+        }
+
+        private Builder(Builder o) {
+            this.allowCustomRouting = o.allowCustomRouting;
+            this.hidden = o.hidden;
+            this.timestampField = o.timestampField;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
-         * If true, the data stream supports custom routing.
+         * If <code>true</code>, the data stream supports custom routing.
          * <p>
          * API name: {@code allow_custom_routing}
          * </p>
          */
+        @Nonnull
         public final Builder allowCustomRouting(@Nullable Boolean value) {
             this.allowCustomRouting = value;
             return this;
         }
 
         /**
-         * If true, the data stream is hidden.
+         * If <code>true</code>, the data stream is hidden.
          * <p>
          * API name: {@code hidden}
          * </p>
          */
+        @Nonnull
         public final Builder hidden(@Nullable Boolean value) {
             this.hidden = value;
             return this;
@@ -174,6 +213,7 @@ public class IndexTemplateDataStreamConfiguration implements PlainJsonSerializab
         /**
          * API name: {@code timestamp_field}
          */
+        @Nonnull
         public final Builder timestampField(@Nullable DataStreamTimestampField value) {
             this.timestampField = value;
             return this;
@@ -182,6 +222,7 @@ public class IndexTemplateDataStreamConfiguration implements PlainJsonSerializab
         /**
          * API name: {@code timestamp_field}
          */
+        @Nonnull
         public final Builder timestampField(Function<DataStreamTimestampField.Builder, ObjectBuilder<DataStreamTimestampField>> fn) {
             return timestampField(fn.apply(new DataStreamTimestampField.Builder()).build());
         }
@@ -191,6 +232,8 @@ public class IndexTemplateDataStreamConfiguration implements PlainJsonSerializab
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IndexTemplateDataStreamConfiguration build() {
             _checkSingleUse();
 

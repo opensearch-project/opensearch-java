@@ -40,19 +40,22 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.NestedProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class NestedProperty extends CorePropertyBase implements PropertyVariant {
+public class NestedProperty extends CorePropertyBase implements PropertyVariant, ToCopyableBuilder<NestedProperty.Builder, NestedProperty> {
 
     @Nullable
     private final Boolean enabled;
@@ -129,10 +132,21 @@ public class NestedProperty extends CorePropertyBase implements PropertyVariant 
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link NestedProperty}.
      */
-    public static class Builder extends CorePropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<NestedProperty> {
+    public static class Builder extends CorePropertyBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, NestedProperty> {
         @Nullable
         private Boolean enabled;
         @Nullable
@@ -140,9 +154,38 @@ public class NestedProperty extends CorePropertyBase implements PropertyVariant 
         @Nullable
         private Boolean includeInRoot;
 
+        public Builder() {}
+
+        private Builder(NestedProperty o) {
+            super(o);
+            this.enabled = o.enabled;
+            this.includeInParent = o.includeInParent;
+            this.includeInRoot = o.includeInRoot;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.enabled = o.enabled;
+            this.includeInParent = o.includeInParent;
+            this.includeInRoot = o.includeInRoot;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code enabled}
          */
+        @Nonnull
         public final Builder enabled(@Nullable Boolean value) {
             this.enabled = value;
             return this;
@@ -151,6 +194,7 @@ public class NestedProperty extends CorePropertyBase implements PropertyVariant 
         /**
          * API name: {@code include_in_parent}
          */
+        @Nonnull
         public final Builder includeInParent(@Nullable Boolean value) {
             this.includeInParent = value;
             return this;
@@ -159,13 +203,9 @@ public class NestedProperty extends CorePropertyBase implements PropertyVariant 
         /**
          * API name: {@code include_in_root}
          */
+        @Nonnull
         public final Builder includeInRoot(@Nullable Boolean value) {
             this.includeInRoot = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -174,6 +214,8 @@ public class NestedProperty extends CorePropertyBase implements PropertyVariant 
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public NestedProperty build() {
             _checkSingleUse();
 

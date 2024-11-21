@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.MultiplexerTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class MultiplexerTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<MultiplexerTokenFilter.Builder, MultiplexerTokenFilter> {
 
     @Nonnull
     private final List<String> filters;
@@ -117,13 +122,52 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link MultiplexerTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<MultiplexerTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, MultiplexerTokenFilter> {
         private List<String> filters;
         @Nullable
         private Boolean preserveOriginal;
+
+        public Builder() {}
+
+        private Builder(MultiplexerTokenFilter o) {
+            super(o);
+            this.filters = _listCopy(o.filters);
+            this.preserveOriginal = o.preserveOriginal;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.filters = _listCopy(o.filters);
+            this.preserveOriginal = o.preserveOriginal;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code filters}
@@ -132,6 +176,7 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
          * Adds all elements of <code>list</code> to <code>filters</code>.
          * </p>
          */
+        @Nonnull
         public final Builder filters(List<String> list) {
             this.filters = _listAddAll(this.filters, list);
             return this;
@@ -144,6 +189,7 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
          * Adds one or more values to <code>filters</code>.
          * </p>
          */
+        @Nonnull
         public final Builder filters(String value, String... values) {
             this.filters = _listAdd(this.filters, value, values);
             return this;
@@ -152,13 +198,9 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
         /**
          * API name: {@code preserve_original}
          */
+        @Nonnull
         public final Builder preserveOriginal(@Nullable Boolean value) {
             this.preserveOriginal = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -167,6 +209,8 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public MultiplexerTokenFilter build() {
             _checkSingleUse();
 

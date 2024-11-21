@@ -46,13 +46,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.SnowballTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class SnowballTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<SnowballTokenFilter.Builder, SnowballTokenFilter> {
 
     @Nonnull
     private final SnowballLanguage language;
@@ -93,22 +98,53 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterD
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SnowballTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<SnowballTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, SnowballTokenFilter> {
         private SnowballLanguage language;
+
+        public Builder() {}
+
+        private Builder(SnowballTokenFilter o) {
+            super(o);
+            this.language = o.language;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.language = o.language;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code language}
          */
+        @Nonnull
         public final Builder language(SnowballLanguage value) {
             this.language = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -117,6 +153,8 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterD
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SnowballTokenFilter build() {
             _checkSingleUse();
 

@@ -49,14 +49,19 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.OpenSearchVersionInfo
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class OpenSearchVersionInfo implements PlainJsonSerializable {
+public class OpenSearchVersionInfo
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<OpenSearchVersionInfo.Builder, OpenSearchVersionInfo> {
 
     @Nonnull
     private final String buildDate;
@@ -239,10 +244,21 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link OpenSearchVersionInfo}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OpenSearchVersionInfo> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, OpenSearchVersionInfo> {
         private String buildDate;
         @Nullable
         private String buildFlavor;
@@ -255,9 +271,44 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         private String minimumWireCompatibilityVersion;
         private String number;
 
+        public Builder() {}
+
+        private Builder(OpenSearchVersionInfo o) {
+            this.buildDate = o.buildDate;
+            this.buildFlavor = o.buildFlavor;
+            this.buildHash = o.buildHash;
+            this.buildSnapshot = o.buildSnapshot;
+            this.buildType = o.buildType;
+            this.distribution = o.distribution;
+            this.luceneVersion = o.luceneVersion;
+            this.minimumIndexCompatibilityVersion = o.minimumIndexCompatibilityVersion;
+            this.minimumWireCompatibilityVersion = o.minimumWireCompatibilityVersion;
+            this.number = o.number;
+        }
+
+        private Builder(Builder o) {
+            this.buildDate = o.buildDate;
+            this.buildFlavor = o.buildFlavor;
+            this.buildHash = o.buildHash;
+            this.buildSnapshot = o.buildSnapshot;
+            this.buildType = o.buildType;
+            this.distribution = o.distribution;
+            this.luceneVersion = o.luceneVersion;
+            this.minimumIndexCompatibilityVersion = o.minimumIndexCompatibilityVersion;
+            this.minimumWireCompatibilityVersion = o.minimumWireCompatibilityVersion;
+            this.number = o.number;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - API name: {@code build_date}
          */
+        @Nonnull
         public final Builder buildDate(String value) {
             this.buildDate = value;
             return this;
@@ -266,6 +317,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         /**
          * API name: {@code build_flavor}
          */
+        @Nonnull
         public final Builder buildFlavor(@Nullable String value) {
             this.buildFlavor = value;
             return this;
@@ -274,6 +326,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         /**
          * Required - API name: {@code build_hash}
          */
+        @Nonnull
         public final Builder buildHash(String value) {
             this.buildHash = value;
             return this;
@@ -282,6 +335,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         /**
          * Required - API name: {@code build_snapshot}
          */
+        @Nonnull
         public final Builder buildSnapshot(boolean value) {
             this.buildSnapshot = value;
             return this;
@@ -290,6 +344,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         /**
          * Required - API name: {@code build_type}
          */
+        @Nonnull
         public final Builder buildType(String value) {
             this.buildType = value;
             return this;
@@ -298,6 +353,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         /**
          * Required - API name: {@code distribution}
          */
+        @Nonnull
         public final Builder distribution(String value) {
             this.distribution = value;
             return this;
@@ -306,6 +362,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         /**
          * Required - API name: {@code lucene_version}
          */
+        @Nonnull
         public final Builder luceneVersion(String value) {
             this.luceneVersion = value;
             return this;
@@ -314,6 +371,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         /**
          * Required - API name: {@code minimum_index_compatibility_version}
          */
+        @Nonnull
         public final Builder minimumIndexCompatibilityVersion(String value) {
             this.minimumIndexCompatibilityVersion = value;
             return this;
@@ -322,6 +380,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         /**
          * Required - API name: {@code minimum_wire_compatibility_version}
          */
+        @Nonnull
         public final Builder minimumWireCompatibilityVersion(String value) {
             this.minimumWireCompatibilityVersion = value;
             return this;
@@ -330,6 +389,7 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
         /**
          * Required - API name: {@code number}
          */
+        @Nonnull
         public final Builder number(String value) {
             this.number = value;
             return this;
@@ -340,6 +400,8 @@ public class OpenSearchVersionInfo implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public OpenSearchVersionInfo build() {
             _checkSingleUse();
 

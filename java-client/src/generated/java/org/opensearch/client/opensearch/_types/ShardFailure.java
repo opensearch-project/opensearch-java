@@ -49,14 +49,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.ShardFailure
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ShardFailure implements PlainJsonSerializable {
+public class ShardFailure implements PlainJsonSerializable, ToCopyableBuilder<ShardFailure.Builder, ShardFailure> {
 
     @Nullable
     private final String index;
@@ -160,10 +162,21 @@ public class ShardFailure implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ShardFailure}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardFailure> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardFailure> {
         @Nullable
         private String index;
         @Nullable
@@ -173,9 +186,34 @@ public class ShardFailure implements PlainJsonSerializable {
         @Nullable
         private String status;
 
+        public Builder() {}
+
+        private Builder(ShardFailure o) {
+            this.index = o.index;
+            this.node = o.node;
+            this.reason = o.reason;
+            this.shard = o.shard;
+            this.status = o.status;
+        }
+
+        private Builder(Builder o) {
+            this.index = o.index;
+            this.node = o.node;
+            this.reason = o.reason;
+            this.shard = o.shard;
+            this.status = o.status;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code index}
          */
+        @Nonnull
         public final Builder index(@Nullable String value) {
             this.index = value;
             return this;
@@ -184,6 +222,7 @@ public class ShardFailure implements PlainJsonSerializable {
         /**
          * API name: {@code node}
          */
+        @Nonnull
         public final Builder node(@Nullable String value) {
             this.node = value;
             return this;
@@ -192,6 +231,7 @@ public class ShardFailure implements PlainJsonSerializable {
         /**
          * Required - API name: {@code reason}
          */
+        @Nonnull
         public final Builder reason(ErrorCause value) {
             this.reason = value;
             return this;
@@ -200,6 +240,7 @@ public class ShardFailure implements PlainJsonSerializable {
         /**
          * Required - API name: {@code reason}
          */
+        @Nonnull
         public final Builder reason(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return reason(fn.apply(new ErrorCause.Builder()).build());
         }
@@ -207,6 +248,7 @@ public class ShardFailure implements PlainJsonSerializable {
         /**
          * Required - API name: {@code shard}
          */
+        @Nonnull
         public final Builder shard(int value) {
             this.shard = value;
             return this;
@@ -215,6 +257,7 @@ public class ShardFailure implements PlainJsonSerializable {
         /**
          * API name: {@code status}
          */
+        @Nonnull
         public final Builder status(@Nullable String value) {
             this.status = value;
             return this;
@@ -225,6 +268,8 @@ public class ShardFailure implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ShardFailure build() {
             _checkSingleUse();
 

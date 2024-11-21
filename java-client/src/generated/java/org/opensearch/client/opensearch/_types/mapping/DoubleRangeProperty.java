@@ -39,18 +39,24 @@ package org.opensearch.client.opensearch._types.mapping;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.DoubleRangeProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DoubleRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class DoubleRangeProperty extends RangePropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<DoubleRangeProperty.Builder, DoubleRangeProperty> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -77,12 +83,42 @@ public class DoubleRangeProperty extends RangePropertyBase implements PropertyVa
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DoubleRangeProperty}.
      */
-    public static class Builder extends RangePropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<DoubleRangeProperty> {
+    public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, DoubleRangeProperty> {
+
+        public Builder() {}
+
+        private Builder(DoubleRangeProperty o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -92,6 +128,8 @@ public class DoubleRangeProperty extends RangePropertyBase implements PropertyVa
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DoubleRangeProperty build() {
             _checkSingleUse();
 

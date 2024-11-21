@@ -20,8 +20,10 @@ import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.delete_task.Request
 
@@ -29,7 +31,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  * Deletes a task.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteTaskRequest extends RequestBase {
+public class DeleteTaskRequest extends RequestBase implements ToCopyableBuilder<DeleteTaskRequest.Builder, DeleteTaskRequest> {
 
     @Nonnull
     private final String taskId;
@@ -54,15 +56,43 @@ public class DeleteTaskRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DeleteTaskRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteTaskRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DeleteTaskRequest> {
         private String taskId;
+
+        public Builder() {}
+
+        private Builder(DeleteTaskRequest o) {
+            this.taskId = o.taskId;
+        }
+
+        private Builder(Builder o) {
+            this.taskId = o.taskId;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code task_id}
          */
+        @Nonnull
         public final Builder taskId(String value) {
             this.taskId = value;
             return this;
@@ -73,6 +103,8 @@ public class DeleteTaskRequest extends RequestBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DeleteTaskRequest build() {
             _checkSingleUse();
 

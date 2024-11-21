@@ -48,14 +48,16 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.OpenSearchVersionInfo;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: info.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class InfoResponse implements PlainJsonSerializable {
+public class InfoResponse implements PlainJsonSerializable, ToCopyableBuilder<InfoResponse.Builder, InfoResponse> {
 
     @Nonnull
     private final String clusterName;
@@ -155,19 +157,55 @@ public class InfoResponse implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link InfoResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InfoResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, InfoResponse> {
         private String clusterName;
         private String clusterUuid;
         private String name;
         private String tagline;
         private OpenSearchVersionInfo version;
 
+        public Builder() {}
+
+        private Builder(InfoResponse o) {
+            this.clusterName = o.clusterName;
+            this.clusterUuid = o.clusterUuid;
+            this.name = o.name;
+            this.tagline = o.tagline;
+            this.version = o.version;
+        }
+
+        private Builder(Builder o) {
+            this.clusterName = o.clusterName;
+            this.clusterUuid = o.clusterUuid;
+            this.name = o.name;
+            this.tagline = o.tagline;
+            this.version = o.version;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - API name: {@code cluster_name}
          */
+        @Nonnull
         public final Builder clusterName(String value) {
             this.clusterName = value;
             return this;
@@ -176,6 +214,7 @@ public class InfoResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code cluster_uuid}
          */
+        @Nonnull
         public final Builder clusterUuid(String value) {
             this.clusterUuid = value;
             return this;
@@ -184,6 +223,7 @@ public class InfoResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code name}
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -192,6 +232,7 @@ public class InfoResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code tagline}
          */
+        @Nonnull
         public final Builder tagline(String value) {
             this.tagline = value;
             return this;
@@ -200,6 +241,7 @@ public class InfoResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code version}
          */
+        @Nonnull
         public final Builder version(OpenSearchVersionInfo value) {
             this.version = value;
             return this;
@@ -208,6 +250,7 @@ public class InfoResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code version}
          */
+        @Nonnull
         public final Builder version(Function<OpenSearchVersionInfo.Builder, ObjectBuilder<OpenSearchVersionInfo>> fn) {
             return version(fn.apply(new OpenSearchVersionInfo.Builder()).build());
         }
@@ -217,6 +260,8 @@ public class InfoResponse implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public InfoResponse build() {
             _checkSingleUse();
 

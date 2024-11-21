@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.IntegerNumberProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IntegerNumberProperty extends NumberPropertyBase implements PropertyVariant {
+public class IntegerNumberProperty extends NumberPropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<IntegerNumberProperty.Builder, IntegerNumberProperty> {
 
     @Nullable
     private final Integer nullValue;
@@ -95,23 +101,56 @@ public class IntegerNumberProperty extends NumberPropertyBase implements Propert
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IntegerNumberProperty}.
      */
-    public static class Builder extends NumberPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<IntegerNumberProperty> {
+    public static class Builder extends NumberPropertyBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, IntegerNumberProperty> {
         @Nullable
         private Integer nullValue;
+
+        public Builder() {}
+
+        private Builder(IntegerNumberProperty o) {
+            super(o);
+            this.nullValue = o.nullValue;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.nullValue = o.nullValue;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code null_value}
          */
+        @Nonnull
         public final Builder nullValue(@Nullable Integer value) {
             this.nullValue = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -120,6 +159,8 @@ public class IntegerNumberProperty extends NumberPropertyBase implements Propert
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IntegerNumberProperty build() {
             _checkSingleUse();
 

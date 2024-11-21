@@ -14,6 +14,7 @@ package org.opensearch.client.opensearch.ml;
 
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -45,6 +46,7 @@ public class UndeployModelResponse extends DictionaryResponse<String, UndeployMo
         implements
             ObjectBuilder<UndeployModelResponse> {
         @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }

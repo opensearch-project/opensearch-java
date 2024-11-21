@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.UniqueTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class UniqueTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<UniqueTokenFilter.Builder, UniqueTokenFilter> {
 
     @Nullable
     private final Boolean onlyOnSamePosition;
@@ -95,23 +101,54 @@ public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterDef
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link UniqueTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<UniqueTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, UniqueTokenFilter> {
         @Nullable
         private Boolean onlyOnSamePosition;
+
+        public Builder() {}
+
+        private Builder(UniqueTokenFilter o) {
+            super(o);
+            this.onlyOnSamePosition = o.onlyOnSamePosition;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.onlyOnSamePosition = o.onlyOnSamePosition;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code only_on_same_position}
          */
+        @Nonnull
         public final Builder onlyOnSamePosition(@Nullable Boolean value) {
             this.onlyOnSamePosition = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -120,6 +157,8 @@ public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterDef
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public UniqueTokenFilter build() {
             _checkSingleUse();
 
