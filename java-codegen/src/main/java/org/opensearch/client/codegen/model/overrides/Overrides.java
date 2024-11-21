@@ -28,8 +28,10 @@ public class Overrides {
 
     public static final Overrides OVERRIDES = builder().withSchemas(
         s -> s.with(schema("_common", "Duration"), so -> so.withMappedType(Types.Client.OpenSearch._Types.Time))
-            .with(schema("_common", "Stringifiedinteger"), so -> so.withMappedType(Types.Primitive.Int))
-            .with(schema("_common", "Stringifiedboolean"), so -> so.withMappedType(Types.Primitive.Boolean))
+            .with(schema("_common", "StringifiedBoolean"), so -> so.withMappedType(Types.Primitive.Boolean))
+            .with(schema("_common", "StringifiedDouble"), so -> so.withMappedType(Types.Primitive.Double))
+            .with(schema("_common", "StringifiedInteger"), so -> so.withMappedType(Types.Primitive.Int))
+            .with(schema("_common", "StringifiedLong"), so -> so.withMappedType(Types.Primitive.Long))
             .with(schema("_common", "StringifiedEpochTimeUnitMillis"), so -> so.withMappedType(Types.Primitive.Long))
 
             // TODO: Remove this to generate property mapping types

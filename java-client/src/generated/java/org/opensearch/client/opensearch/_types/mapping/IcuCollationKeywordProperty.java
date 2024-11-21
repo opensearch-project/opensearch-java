@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -50,13 +51,18 @@ import org.opensearch.client.opensearch._types.analysis.IcuCollationAlternate;
 import org.opensearch.client.opensearch._types.analysis.IcuCollationCaseFirst;
 import org.opensearch.client.opensearch._types.analysis.IcuCollationDecomposition;
 import org.opensearch.client.opensearch._types.analysis.IcuCollationStrength;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.IcuCollationKeywordProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IcuCollationKeywordProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class IcuCollationKeywordProperty extends DocValuesPropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<IcuCollationKeywordProperty.Builder, IcuCollationKeywordProperty> {
 
     @Nullable
     private final IcuCollationAlternate alternate;
@@ -305,12 +311,23 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IcuCollationKeywordProperty}.
      */
     public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
         implements
-            ObjectBuilder<IcuCollationKeywordProperty> {
+            CopyableBuilder<Builder, IcuCollationKeywordProperty> {
         @Nullable
         private IcuCollationAlternate alternate;
         @Nullable
@@ -338,9 +355,58 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         @Nullable
         private String variant;
 
+        public Builder() {}
+
+        private Builder(IcuCollationKeywordProperty o) {
+            super(o);
+            this.alternate = o.alternate;
+            this.caseFirst = o.caseFirst;
+            this.caseLevel = o.caseLevel;
+            this.country = o.country;
+            this.decomposition = o.decomposition;
+            this.hiraganaQuaternaryMode = o.hiraganaQuaternaryMode;
+            this.index = o.index;
+            this.language = o.language;
+            this.nullValue = o.nullValue;
+            this.numeric = o.numeric;
+            this.strength = o.strength;
+            this.variableTop = o.variableTop;
+            this.variant = o.variant;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.alternate = o.alternate;
+            this.caseFirst = o.caseFirst;
+            this.caseLevel = o.caseLevel;
+            this.country = o.country;
+            this.decomposition = o.decomposition;
+            this.hiraganaQuaternaryMode = o.hiraganaQuaternaryMode;
+            this.index = o.index;
+            this.language = o.language;
+            this.nullValue = o.nullValue;
+            this.numeric = o.numeric;
+            this.strength = o.strength;
+            this.variableTop = o.variableTop;
+            this.variant = o.variant;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code alternate}
          */
+        @Nonnull
         public final Builder alternate(@Nullable IcuCollationAlternate value) {
             this.alternate = value;
             return this;
@@ -349,6 +415,7 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         /**
          * API name: {@code case_first}
          */
+        @Nonnull
         public final Builder caseFirst(@Nullable IcuCollationCaseFirst value) {
             this.caseFirst = value;
             return this;
@@ -357,6 +424,7 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         /**
          * API name: {@code case_level}
          */
+        @Nonnull
         public final Builder caseLevel(@Nullable Boolean value) {
             this.caseLevel = value;
             return this;
@@ -365,6 +433,7 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         /**
          * API name: {@code country}
          */
+        @Nonnull
         public final Builder country(@Nullable String value) {
             this.country = value;
             return this;
@@ -373,6 +442,7 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         /**
          * API name: {@code decomposition}
          */
+        @Nonnull
         public final Builder decomposition(@Nullable IcuCollationDecomposition value) {
             this.decomposition = value;
             return this;
@@ -381,6 +451,7 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         /**
          * API name: {@code hiragana_quaternary_mode}
          */
+        @Nonnull
         public final Builder hiraganaQuaternaryMode(@Nullable Boolean value) {
             this.hiraganaQuaternaryMode = value;
             return this;
@@ -389,6 +460,7 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         /**
          * API name: {@code index}
          */
+        @Nonnull
         public final Builder index(@Nullable Boolean value) {
             this.index = value;
             return this;
@@ -397,6 +469,7 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         /**
          * API name: {@code language}
          */
+        @Nonnull
         public final Builder language(@Nullable String value) {
             this.language = value;
             return this;
@@ -405,6 +478,7 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         /**
          * API name: {@code null_value}
          */
+        @Nonnull
         public final Builder nullValue(@Nullable String value) {
             this.nullValue = value;
             return this;
@@ -413,6 +487,7 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         /**
          * API name: {@code numeric}
          */
+        @Nonnull
         public final Builder numeric(@Nullable Boolean value) {
             this.numeric = value;
             return this;
@@ -421,6 +496,7 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         /**
          * API name: {@code strength}
          */
+        @Nonnull
         public final Builder strength(@Nullable IcuCollationStrength value) {
             this.strength = value;
             return this;
@@ -429,6 +505,7 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         /**
          * API name: {@code variable_top}
          */
+        @Nonnull
         public final Builder variableTop(@Nullable String value) {
             this.variableTop = value;
             return this;
@@ -437,13 +514,9 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
         /**
          * API name: {@code variant}
          */
+        @Nonnull
         public final Builder variant(@Nullable String value) {
             this.variant = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -452,6 +525,8 @@ public class IcuCollationKeywordProperty extends DocValuesPropertyBase implement
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IcuCollationKeywordProperty build() {
             _checkSingleUse();
 

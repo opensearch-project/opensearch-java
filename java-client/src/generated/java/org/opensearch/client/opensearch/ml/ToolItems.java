@@ -28,14 +28,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.ToolItems
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ToolItems implements PlainJsonSerializable {
+public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolItems.Builder, ToolItems> {
 
     @Nullable
     private final String name;
@@ -131,10 +133,21 @@ public class ToolItems implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ToolItems}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ToolItems> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ToolItems> {
         @Nullable
         private String name;
         @Nullable
@@ -144,9 +157,32 @@ public class ToolItems implements PlainJsonSerializable {
         @Nullable
         private Map<String, JsonData> metadata;
 
+        public Builder() {}
+
+        private Builder(ToolItems o) {
+            this.name = o.name;
+            this.parameters = _mapCopy(o.parameters);
+            this.type = o.type;
+            this.metadata = _mapCopy(o.metadata);
+        }
+
+        private Builder(Builder o) {
+            this.name = o.name;
+            this.parameters = _mapCopy(o.parameters);
+            this.type = o.type;
+            this.metadata = _mapCopy(o.metadata);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code name}
          */
+        @Nonnull
         public final Builder name(@Nullable String value) {
             this.name = value;
             return this;
@@ -159,6 +195,7 @@ public class ToolItems implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>parameters</code>.
          * </p>
          */
+        @Nonnull
         public final Builder parameters(Map<String, JsonData> map) {
             this.parameters = _mapPutAll(this.parameters, map);
             return this;
@@ -171,6 +208,7 @@ public class ToolItems implements PlainJsonSerializable {
          * Adds an entry to <code>parameters</code>.
          * </p>
          */
+        @Nonnull
         public final Builder parameters(String key, JsonData value) {
             this.parameters = _mapPut(this.parameters, key, value);
             return this;
@@ -179,6 +217,7 @@ public class ToolItems implements PlainJsonSerializable {
         /**
          * API name: {@code type}
          */
+        @Nonnull
         public final Builder type(@Nullable String value) {
             this.type = value;
             return this;
@@ -190,6 +229,7 @@ public class ToolItems implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>metadata</code>.
          * </p>
          */
+        @Nonnull
         public final Builder metadata(Map<String, JsonData> map) {
             this.metadata = _mapPutAll(this.metadata, map);
             return this;
@@ -201,6 +241,7 @@ public class ToolItems implements PlainJsonSerializable {
          * Adds an entry to <code>metadata</code>.
          * </p>
          */
+        @Nonnull
         public final Builder metadata(String key, JsonData value) {
             this.metadata = _mapPut(this.metadata, key, value);
             return this;
@@ -211,6 +252,8 @@ public class ToolItems implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ToolItems build() {
             _checkSingleUse();
 

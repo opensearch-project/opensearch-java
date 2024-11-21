@@ -23,14 +23,19 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.register_model.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RegisterModelResponse implements PlainJsonSerializable {
+public class RegisterModelResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<RegisterModelResponse.Builder, RegisterModelResponse> {
 
     @Nonnull
     private final String status;
@@ -85,16 +90,46 @@ public class RegisterModelResponse implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RegisterModelResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RegisterModelResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RegisterModelResponse> {
         private String status;
         private String taskId;
+
+        public Builder() {}
+
+        private Builder(RegisterModelResponse o) {
+            this.status = o.status;
+            this.taskId = o.taskId;
+        }
+
+        private Builder(Builder o) {
+            this.status = o.status;
+            this.taskId = o.taskId;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code status}
          */
+        @Nonnull
         public final Builder status(String value) {
             this.status = value;
             return this;
@@ -103,6 +138,7 @@ public class RegisterModelResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code task_id}
          */
+        @Nonnull
         public final Builder taskId(String value) {
             this.taskId = value;
             return this;
@@ -113,6 +149,8 @@ public class RegisterModelResponse implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RegisterModelResponse build() {
             _checkSingleUse();
 

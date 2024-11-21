@@ -53,14 +53,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.ErrorCause
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ErrorCause implements PlainJsonSerializable {
+public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<ErrorCause.Builder, ErrorCause> {
 
     @Nullable
     private final ErrorCause causedBy;
@@ -218,10 +220,21 @@ public class ErrorCause implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ErrorCause}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ErrorCause> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ErrorCause> {
         @Nullable
         private ErrorCause causedBy;
         @Nullable
@@ -236,9 +249,38 @@ public class ErrorCause implements PlainJsonSerializable {
         @Nullable
         private Map<String, JsonData> metadata;
 
+        public Builder() {}
+
+        private Builder(ErrorCause o) {
+            this.causedBy = o.causedBy;
+            this.reason = o.reason;
+            this.rootCause = _listCopy(o.rootCause);
+            this.stackTrace = o.stackTrace;
+            this.suppressed = _listCopy(o.suppressed);
+            this.type = o.type;
+            this.metadata = _mapCopy(o.metadata);
+        }
+
+        private Builder(Builder o) {
+            this.causedBy = o.causedBy;
+            this.reason = o.reason;
+            this.rootCause = _listCopy(o.rootCause);
+            this.stackTrace = o.stackTrace;
+            this.suppressed = _listCopy(o.suppressed);
+            this.type = o.type;
+            this.metadata = _mapCopy(o.metadata);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code caused_by}
          */
+        @Nonnull
         public final Builder causedBy(@Nullable ErrorCause value) {
             this.causedBy = value;
             return this;
@@ -247,6 +289,7 @@ public class ErrorCause implements PlainJsonSerializable {
         /**
          * API name: {@code caused_by}
          */
+        @Nonnull
         public final Builder causedBy(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return causedBy(fn.apply(new ErrorCause.Builder()).build());
         }
@@ -257,6 +300,7 @@ public class ErrorCause implements PlainJsonSerializable {
          * API name: {@code reason}
          * </p>
          */
+        @Nonnull
         public final Builder reason(@Nullable String value) {
             this.reason = value;
             return this;
@@ -269,6 +313,7 @@ public class ErrorCause implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>rootCause</code>.
          * </p>
          */
+        @Nonnull
         public final Builder rootCause(List<ErrorCause> list) {
             this.rootCause = _listAddAll(this.rootCause, list);
             return this;
@@ -281,6 +326,7 @@ public class ErrorCause implements PlainJsonSerializable {
          * Adds one or more values to <code>rootCause</code>.
          * </p>
          */
+        @Nonnull
         public final Builder rootCause(ErrorCause value, ErrorCause... values) {
             this.rootCause = _listAdd(this.rootCause, value, values);
             return this;
@@ -293,6 +339,7 @@ public class ErrorCause implements PlainJsonSerializable {
          * Adds a value to <code>rootCause</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder rootCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return rootCause(fn.apply(new ErrorCause.Builder()).build());
         }
@@ -303,6 +350,7 @@ public class ErrorCause implements PlainJsonSerializable {
          * API name: {@code stack_trace}
          * </p>
          */
+        @Nonnull
         public final Builder stackTrace(@Nullable String value) {
             this.stackTrace = value;
             return this;
@@ -315,6 +363,7 @@ public class ErrorCause implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>suppressed</code>.
          * </p>
          */
+        @Nonnull
         public final Builder suppressed(List<ErrorCause> list) {
             this.suppressed = _listAddAll(this.suppressed, list);
             return this;
@@ -327,6 +376,7 @@ public class ErrorCause implements PlainJsonSerializable {
          * Adds one or more values to <code>suppressed</code>.
          * </p>
          */
+        @Nonnull
         public final Builder suppressed(ErrorCause value, ErrorCause... values) {
             this.suppressed = _listAdd(this.suppressed, value, values);
             return this;
@@ -339,6 +389,7 @@ public class ErrorCause implements PlainJsonSerializable {
          * Adds a value to <code>suppressed</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder suppressed(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return suppressed(fn.apply(new ErrorCause.Builder()).build());
         }
@@ -349,6 +400,7 @@ public class ErrorCause implements PlainJsonSerializable {
          * API name: {@code type}
          * </p>
          */
+        @Nonnull
         public final Builder type(String value) {
             this.type = value;
             return this;
@@ -361,6 +413,7 @@ public class ErrorCause implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>metadata</code>.
          * </p>
          */
+        @Nonnull
         public final Builder metadata(Map<String, JsonData> map) {
             this.metadata = _mapPutAll(this.metadata, map);
             return this;
@@ -373,6 +426,7 @@ public class ErrorCause implements PlainJsonSerializable {
          * Adds an entry to <code>metadata</code>.
          * </p>
          */
+        @Nonnull
         public final Builder metadata(String key, JsonData value) {
             this.metadata = _mapPut(this.metadata, key, value);
             return this;
@@ -383,6 +437,8 @@ public class ErrorCause implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ErrorCause build() {
             _checkSingleUse();
 

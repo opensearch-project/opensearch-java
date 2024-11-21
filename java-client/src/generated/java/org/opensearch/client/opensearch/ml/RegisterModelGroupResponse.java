@@ -23,14 +23,19 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.register_model_group.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RegisterModelGroupResponse implements PlainJsonSerializable {
+public class RegisterModelGroupResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<RegisterModelGroupResponse.Builder, RegisterModelGroupResponse> {
 
     @Nonnull
     private final String modelGroupId;
@@ -93,12 +98,41 @@ public class RegisterModelGroupResponse implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RegisterModelGroupResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RegisterModelGroupResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RegisterModelGroupResponse> {
         private String modelGroupId;
         private String status;
+
+        public Builder() {}
+
+        private Builder(RegisterModelGroupResponse o) {
+            this.modelGroupId = o.modelGroupId;
+            this.status = o.status;
+        }
+
+        private Builder(Builder o) {
+            this.modelGroupId = o.modelGroupId;
+            this.status = o.status;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - The model group ID.
@@ -106,6 +140,7 @@ public class RegisterModelGroupResponse implements PlainJsonSerializable {
          * API name: {@code model_group_id}
          * </p>
          */
+        @Nonnull
         public final Builder modelGroupId(String value) {
             this.modelGroupId = value;
             return this;
@@ -117,6 +152,7 @@ public class RegisterModelGroupResponse implements PlainJsonSerializable {
          * API name: {@code status}
          * </p>
          */
+        @Nonnull
         public final Builder status(String value) {
             this.status = value;
             return this;
@@ -127,6 +163,8 @@ public class RegisterModelGroupResponse implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RegisterModelGroupResponse build() {
             _checkSingleUse();
 
