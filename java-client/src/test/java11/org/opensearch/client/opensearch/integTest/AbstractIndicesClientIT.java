@@ -22,7 +22,6 @@ import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.indices.CreateDataStreamResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexRequest;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
-import org.opensearch.client.opensearch.indices.DataStream;
 import org.opensearch.client.opensearch.indices.DataStreamsStatsResponse;
 import org.opensearch.client.opensearch.indices.DeleteDataStreamResponse;
 import org.opensearch.client.opensearch.indices.GetAliasRequest;
@@ -127,7 +126,7 @@ public abstract class AbstractIndicesClientIT extends OpenSearchJavaClientTestCa
         PutIndexTemplateResponse putIndexTemplateResponse = javaClient().indices()
             .putIndexTemplate(
                 b -> b.name(dataStreamIndexTemplateName)
-                    .dataStream(new DataStream.Builder().timestampField(bd -> bd.name(timestampFieldName)).build())
+                    .dataStream(ds -> ds.timestampField(bd -> bd.name(timestampFieldName)))
                     .indexPatterns(namePattern)
             );
         assertTrue(putIndexTemplateResponse.acknowledged());

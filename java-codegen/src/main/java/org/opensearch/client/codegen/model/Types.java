@@ -13,7 +13,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class Types {
-    public static final Map<String, Object> TYPES_MAP = asMap(Types.class);
+    private static Map<String, Object> TYPES_MAP;
+
+    public static Map<String, Object> asMap() {
+        if (TYPES_MAP == null) {
+            TYPES_MAP = asMap(Types.class);
+        }
+        return TYPES_MAP;
+    }
 
     private static Map<String, Object> asMap(Class<?> clazz) {
         var map = new HashMap<String, Object>();

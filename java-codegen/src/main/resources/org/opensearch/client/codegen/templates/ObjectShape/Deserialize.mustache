@@ -14,9 +14,9 @@
     {{#extendsOtherShape}}
         setup{{extendsType.name}}Deserializer(op{{#extendsType.typeParams}}, {{>Type/deserializer}}{{/extendsType.typeParams}});
     {{/extendsOtherShape}}
-    {{#bodyFields}}
+    {{#fieldsToDeserialize}}
         op.add({{#extendedByOtherShape}}Abstract{{/extendedByOtherShape}}Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{wireName}}{{/quoted}}{{#aliases}}, {{#quoted}}{{.}}{{/quoted}}{{/aliases}});
-    {{/bodyFields}}
+    {{/fieldsToDeserialize}}
     {{#additionalPropertiesField}}
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
             if (builder.{{name}} == null) {

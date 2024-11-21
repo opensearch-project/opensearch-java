@@ -22,6 +22,7 @@ import org.opensearch.client.codegen.utils.Strings;
 public class TaggedUnionShape extends Shape {
     private final Map<String, Variant> variants = new TreeMap<>();
     private final String discriminatingField;
+    private final String defaultVariant;
 
     public TaggedUnionShape(
         Namespace parent,
@@ -29,10 +30,12 @@ public class TaggedUnionShape extends Shape {
         String typedefName,
         String description,
         String discriminatingField,
+        String defaultVariant,
         ShouldGenerate shouldGenerate
     ) {
         super(parent, className, typedefName, description, shouldGenerate);
         this.discriminatingField = discriminatingField;
+        this.defaultVariant = defaultVariant;
     }
 
     public void addVariant(String name, Type type) {
@@ -49,7 +52,7 @@ public class TaggedUnionShape extends Shape {
     }
 
     public Variant getDefaultVariant() {
-        return variants.get("custom");
+        return variants.get(this.defaultVariant != null ? this.defaultVariant : "custom");
     }
 
     @Override

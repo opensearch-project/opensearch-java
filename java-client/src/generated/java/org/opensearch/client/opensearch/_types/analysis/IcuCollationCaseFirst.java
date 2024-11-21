@@ -30,22 +30,28 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.analysis.IcuCollationCaseFirst
+
 @JsonpDeserializable
-public enum IcuCollationAlternate implements JsonEnum {
-    Shifted("shifted"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum IcuCollationCaseFirst implements JsonEnum {
+    Lower("lower"),
 
-    NonIgnorable("non-ignorable"),
-
-    ;
+    Upper("upper");
 
     private final String jsonValue;
 
-    IcuCollationAlternate(String jsonValue) {
+    IcuCollationCaseFirst(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -53,7 +59,7 @@ public enum IcuCollationAlternate implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<IcuCollationAlternate> _DESERIALIZER = new JsonEnum.Deserializer<>(
-        IcuCollationAlternate.values()
+    public static final JsonEnum.Deserializer<IcuCollationCaseFirst> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        IcuCollationCaseFirst.values()
     );
 }
