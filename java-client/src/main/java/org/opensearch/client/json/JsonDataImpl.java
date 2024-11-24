@@ -37,6 +37,8 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 class JsonDataImpl implements JsonData {
     private final Object value;
@@ -109,6 +111,24 @@ class JsonDataImpl implements JsonData {
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         if (value instanceof JsonValue) {
             generator.write((JsonValue) value);
+        } else if (value instanceof String) {
+            generator.write((String) value);
+        } else if (value instanceof BigDecimal) {
+            generator.write((BigDecimal) value);
+        } else if (value instanceof BigInteger) {
+            generator.write((BigInteger) value);
+        } else if (value instanceof Short) {
+            generator.write((Short) value);
+        } else if (value instanceof Integer) {
+            generator.write((Integer) value);
+        } else if (value instanceof Long) {
+            generator.write((Long) value);
+        } else if (value instanceof Float) {
+            generator.write((Float) value);
+        } else if (value instanceof Double) {
+            generator.write((Double) value);
+        } else if (value instanceof Boolean) {
+            generator.write((Boolean) value);
         } else {
             // Mapper provided at creation time has precedence
             (this.mapper != null ? this.mapper : mapper).serialize(value, generator);

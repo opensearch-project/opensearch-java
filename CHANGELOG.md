@@ -16,6 +16,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Fixed `IcuCollationDecomposition`'s variants to align with those supported by OpenSearch ([#]())
+- Fixed don't invoke the mapper's serialize method for the RangeQuery JsonData raw value [#1309](https://github.com/opensearch-project/opensearch-java/pull/1309)
 
 ### Security
 
