@@ -39,19 +39,25 @@ package org.opensearch.client.opensearch._types.analysis;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.KeywordTokenizer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class KeywordTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+public class KeywordTokenizer extends TokenizerBase
+    implements
+        TokenizerDefinitionVariant,
+        ToCopyableBuilder<KeywordTokenizer.Builder, KeywordTokenizer> {
 
     private final int bufferSize;
 
@@ -90,22 +96,53 @@ public class KeywordTokenizer extends TokenizerBase implements TokenizerDefiniti
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link KeywordTokenizer}.
      */
-    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<KeywordTokenizer> {
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, KeywordTokenizer> {
         private Integer bufferSize;
+
+        public Builder() {}
+
+        private Builder(KeywordTokenizer o) {
+            super(o);
+            this.bufferSize = o.bufferSize;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.bufferSize = o.bufferSize;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code buffer_size}
          */
+        @Nonnull
         public final Builder bufferSize(int value) {
             this.bufferSize = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -114,6 +151,8 @@ public class KeywordTokenizer extends TokenizerBase implements TokenizerDefiniti
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public KeywordTokenizer build() {
             _checkSingleUse();
 

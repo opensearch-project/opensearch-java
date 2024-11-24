@@ -116,6 +116,13 @@ public class AnalyzerBuilders {
     }
 
     /**
+     * Creates a builder for the {@link PhoneAnalyzer phone} {@code Analyzer} variant.
+     */
+    public static PhoneAnalyzer.Builder phone() {
+        return new PhoneAnalyzer.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link SimpleAnalyzer simple} {@code Analyzer} variant.
      */
     public static SimpleAnalyzer.Builder simple() {

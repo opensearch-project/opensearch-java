@@ -39,19 +39,25 @@ package org.opensearch.client.opensearch._types.analysis;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.KuromojiReadingFormTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class KuromojiReadingFormTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class KuromojiReadingFormTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<KuromojiReadingFormTokenFilter.Builder, KuromojiReadingFormTokenFilter> {
 
     private final boolean useRomaji;
 
@@ -92,22 +98,55 @@ public class KuromojiReadingFormTokenFilter extends TokenFilterBase implements T
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link KuromojiReadingFormTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<KuromojiReadingFormTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, KuromojiReadingFormTokenFilter> {
         private Boolean useRomaji;
+
+        public Builder() {}
+
+        private Builder(KuromojiReadingFormTokenFilter o) {
+            super(o);
+            this.useRomaji = o.useRomaji;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.useRomaji = o.useRomaji;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code use_romaji}
          */
+        @Nonnull
         public final Builder useRomaji(boolean value) {
             this.useRomaji = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -116,6 +155,8 @@ public class KuromojiReadingFormTokenFilter extends TokenFilterBase implements T
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public KuromojiReadingFormTokenFilter build() {
             _checkSingleUse();
 

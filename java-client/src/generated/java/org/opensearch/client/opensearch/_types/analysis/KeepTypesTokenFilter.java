@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.KeepTypesTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class KeepTypesTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<KeepTypesTokenFilter.Builder, KeepTypesTokenFilter> {
 
     @Nullable
     private final KeepTypesMode mode;
@@ -119,18 +124,56 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link KeepTypesTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<KeepTypesTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, KeepTypesTokenFilter> {
         @Nullable
         private KeepTypesMode mode;
         @Nullable
         private List<String> types;
 
+        public Builder() {}
+
+        private Builder(KeepTypesTokenFilter o) {
+            super(o);
+            this.mode = o.mode;
+            this.types = _listCopy(o.types);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.mode = o.mode;
+            this.types = _listCopy(o.types);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code mode}
          */
+        @Nonnull
         public final Builder mode(@Nullable KeepTypesMode value) {
             this.mode = value;
             return this;
@@ -143,6 +186,7 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
          * Adds all elements of <code>list</code> to <code>types</code>.
          * </p>
          */
+        @Nonnull
         public final Builder types(List<String> list) {
             this.types = _listAddAll(this.types, list);
             return this;
@@ -155,13 +199,9 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
          * Adds one or more values to <code>types</code>.
          * </p>
          */
+        @Nonnull
         public final Builder types(String value, String... values) {
             this.types = _listAdd(this.types, value, values);
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -170,6 +210,8 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public KeepTypesTokenFilter build() {
             _checkSingleUse();
 

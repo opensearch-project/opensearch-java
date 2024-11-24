@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.FieldAliasProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class FieldAliasProperty extends PropertyBase implements PropertyVariant {
+public class FieldAliasProperty extends PropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<FieldAliasProperty.Builder, FieldAliasProperty> {
 
     @Nullable
     private final String path;
@@ -95,23 +101,54 @@ public class FieldAliasProperty extends PropertyBase implements PropertyVariant 
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link FieldAliasProperty}.
      */
-    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<FieldAliasProperty> {
+    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, FieldAliasProperty> {
         @Nullable
         private String path;
+
+        public Builder() {}
+
+        private Builder(FieldAliasProperty o) {
+            super(o);
+            this.path = o.path;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.path = o.path;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code path}
          */
+        @Nonnull
         public final Builder path(@Nullable String value) {
             this.path = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -120,6 +157,8 @@ public class FieldAliasProperty extends PropertyBase implements PropertyVariant 
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public FieldAliasProperty build() {
             _checkSingleUse();
 

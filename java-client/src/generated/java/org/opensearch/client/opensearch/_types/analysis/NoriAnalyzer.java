@@ -50,14 +50,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.NoriAnalyzer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class NoriAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
+public class NoriAnalyzer implements AnalyzerVariant, PlainJsonSerializable, ToCopyableBuilder<NoriAnalyzer.Builder, NoriAnalyzer> {
 
     @Nullable
     private final NoriDecompoundMode decompoundMode;
@@ -163,10 +165,21 @@ public class NoriAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link NoriAnalyzer}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NoriAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NoriAnalyzer> {
         @Nullable
         private NoriDecompoundMode decompoundMode;
         @Nullable
@@ -176,9 +189,32 @@ public class NoriAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
         @Nullable
         private String version;
 
+        public Builder() {}
+
+        private Builder(NoriAnalyzer o) {
+            this.decompoundMode = o.decompoundMode;
+            this.stoptags = _listCopy(o.stoptags);
+            this.userDictionary = o.userDictionary;
+            this.version = o.version;
+        }
+
+        private Builder(Builder o) {
+            this.decompoundMode = o.decompoundMode;
+            this.stoptags = _listCopy(o.stoptags);
+            this.userDictionary = o.userDictionary;
+            this.version = o.version;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code decompound_mode}
          */
+        @Nonnull
         public final Builder decompoundMode(@Nullable NoriDecompoundMode value) {
             this.decompoundMode = value;
             return this;
@@ -191,6 +227,7 @@ public class NoriAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>stoptags</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stoptags(List<String> list) {
             this.stoptags = _listAddAll(this.stoptags, list);
             return this;
@@ -203,6 +240,7 @@ public class NoriAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          * Adds one or more values to <code>stoptags</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stoptags(String value, String... values) {
             this.stoptags = _listAdd(this.stoptags, value, values);
             return this;
@@ -211,6 +249,7 @@ public class NoriAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
         /**
          * API name: {@code user_dictionary}
          */
+        @Nonnull
         public final Builder userDictionary(@Nullable String value) {
             this.userDictionary = value;
             return this;
@@ -219,6 +258,7 @@ public class NoriAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
         /**
          * API name: {@code version}
          */
+        @Nonnull
         public final Builder version(@Nullable String value) {
             this.version = value;
             return this;
@@ -229,6 +269,8 @@ public class NoriAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public NoriAnalyzer build() {
             _checkSingleUse();
 

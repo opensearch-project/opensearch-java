@@ -49,14 +49,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.SuggestContext
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SuggestContext implements PlainJsonSerializable {
+public class SuggestContext implements PlainJsonSerializable, ToCopyableBuilder<SuggestContext.Builder, SuggestContext> {
 
     @Nonnull
     private final String name;
@@ -145,10 +147,21 @@ public class SuggestContext implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SuggestContext}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SuggestContext> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SuggestContext> {
         private String name;
         @Nullable
         private String path;
@@ -156,9 +169,32 @@ public class SuggestContext implements PlainJsonSerializable {
         private String precision;
         private String type;
 
+        public Builder() {}
+
+        private Builder(SuggestContext o) {
+            this.name = o.name;
+            this.path = o.path;
+            this.precision = o.precision;
+            this.type = o.type;
+        }
+
+        private Builder(Builder o) {
+            this.name = o.name;
+            this.path = o.path;
+            this.precision = o.precision;
+            this.type = o.type;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - API name: {@code name}
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -167,6 +203,7 @@ public class SuggestContext implements PlainJsonSerializable {
         /**
          * API name: {@code path}
          */
+        @Nonnull
         public final Builder path(@Nullable String value) {
             this.path = value;
             return this;
@@ -175,6 +212,7 @@ public class SuggestContext implements PlainJsonSerializable {
         /**
          * API name: {@code precision}
          */
+        @Nonnull
         public final Builder precision(@Nullable String value) {
             this.precision = value;
             return this;
@@ -183,6 +221,7 @@ public class SuggestContext implements PlainJsonSerializable {
         /**
          * Required - API name: {@code type}
          */
+        @Nonnull
         public final Builder type(String value) {
             this.type = value;
             return this;
@@ -193,6 +232,8 @@ public class SuggestContext implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SuggestContext build() {
             _checkSingleUse();
 

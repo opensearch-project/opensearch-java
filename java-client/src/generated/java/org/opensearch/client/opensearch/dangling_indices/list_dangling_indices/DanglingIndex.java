@@ -50,14 +50,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: dangling_indices.list_dangling_indices.DanglingIndex
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DanglingIndex implements PlainJsonSerializable {
+public class DanglingIndex implements PlainJsonSerializable, ToCopyableBuilder<DanglingIndex.Builder, DanglingIndex> {
 
     @Nullable
     private final String creationDate;
@@ -161,10 +163,21 @@ public class DanglingIndex implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DanglingIndex}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DanglingIndex> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DanglingIndex> {
         @Nullable
         private String creationDate;
         private Long creationDateMillis;
@@ -172,9 +185,34 @@ public class DanglingIndex implements PlainJsonSerializable {
         private String indexUuid;
         private List<String> nodeIds;
 
+        public Builder() {}
+
+        private Builder(DanglingIndex o) {
+            this.creationDate = o.creationDate;
+            this.creationDateMillis = o.creationDateMillis;
+            this.indexName = o.indexName;
+            this.indexUuid = o.indexUuid;
+            this.nodeIds = _listCopy(o.nodeIds);
+        }
+
+        private Builder(Builder o) {
+            this.creationDate = o.creationDate;
+            this.creationDateMillis = o.creationDateMillis;
+            this.indexName = o.indexName;
+            this.indexUuid = o.indexUuid;
+            this.nodeIds = _listCopy(o.nodeIds);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code creation_date}
          */
+        @Nonnull
         public final Builder creationDate(@Nullable String value) {
             this.creationDate = value;
             return this;
@@ -183,6 +221,7 @@ public class DanglingIndex implements PlainJsonSerializable {
         /**
          * Required - API name: {@code creation_date_millis}
          */
+        @Nonnull
         public final Builder creationDateMillis(long value) {
             this.creationDateMillis = value;
             return this;
@@ -191,6 +230,7 @@ public class DanglingIndex implements PlainJsonSerializable {
         /**
          * Required - API name: {@code index_name}
          */
+        @Nonnull
         public final Builder indexName(String value) {
             this.indexName = value;
             return this;
@@ -199,6 +239,7 @@ public class DanglingIndex implements PlainJsonSerializable {
         /**
          * Required - API name: {@code index_uuid}
          */
+        @Nonnull
         public final Builder indexUuid(String value) {
             this.indexUuid = value;
             return this;
@@ -211,6 +252,7 @@ public class DanglingIndex implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>nodeIds</code>.
          * </p>
          */
+        @Nonnull
         public final Builder nodeIds(List<String> list) {
             this.nodeIds = _listAddAll(this.nodeIds, list);
             return this;
@@ -223,6 +265,7 @@ public class DanglingIndex implements PlainJsonSerializable {
          * Adds one or more values to <code>nodeIds</code>.
          * </p>
          */
+        @Nonnull
         public final Builder nodeIds(String value, String... values) {
             this.nodeIds = _listAdd(this.nodeIds, value, values);
             return this;
@@ -233,6 +276,8 @@ public class DanglingIndex implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DanglingIndex build() {
             _checkSingleUse();
 

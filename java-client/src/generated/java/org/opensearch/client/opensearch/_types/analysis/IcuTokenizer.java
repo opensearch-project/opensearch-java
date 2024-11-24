@@ -46,13 +46,19 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.IcuTokenizer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IcuTokenizer extends TokenizerBase implements TokenFilterDefinitionVariant, TokenizerDefinitionVariant {
+public class IcuTokenizer extends TokenizerBase
+    implements
+        TokenFilterDefinitionVariant,
+        TokenizerDefinitionVariant,
+        ToCopyableBuilder<IcuTokenizer.Builder, IcuTokenizer> {
 
     @Nonnull
     private final String ruleFiles;
@@ -101,22 +107,53 @@ public class IcuTokenizer extends TokenizerBase implements TokenFilterDefinition
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IcuTokenizer}.
      */
-    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<IcuTokenizer> {
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, IcuTokenizer> {
         private String ruleFiles;
+
+        public Builder() {}
+
+        private Builder(IcuTokenizer o) {
+            super(o);
+            this.ruleFiles = o.ruleFiles;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.ruleFiles = o.ruleFiles;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code rule_files}
          */
+        @Nonnull
         public final Builder ruleFiles(String value) {
             this.ruleFiles = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -125,6 +162,8 @@ public class IcuTokenizer extends TokenizerBase implements TokenFilterDefinition
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IcuTokenizer build() {
             _checkSingleUse();
 

@@ -47,14 +47,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.GeoHashLocation
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GeoHashLocation implements PlainJsonSerializable {
+public class GeoHashLocation implements PlainJsonSerializable, ToCopyableBuilder<GeoHashLocation.Builder, GeoHashLocation> {
 
     @Nonnull
     private final String geohash;
@@ -94,15 +96,43 @@ public class GeoHashLocation implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GeoHashLocation}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoHashLocation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GeoHashLocation> {
         private String geohash;
+
+        public Builder() {}
+
+        private Builder(GeoHashLocation o) {
+            this.geohash = o.geohash;
+        }
+
+        private Builder(Builder o) {
+            this.geohash = o.geohash;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code geohash}
          */
+        @Nonnull
         public final Builder geohash(String value) {
             this.geohash = value;
             return this;
@@ -113,6 +143,8 @@ public class GeoHashLocation implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GeoHashLocation build() {
             _checkSingleUse();
 

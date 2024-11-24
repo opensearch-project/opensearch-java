@@ -49,7 +49,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _types.FieldSort
 
 @JsonpDeserializable
-public class FieldSort implements PlainJsonSerializable {
+public class FieldSort implements SortOptionsVariant, PlainJsonSerializable {
     // Single key dictionary
     private final String field;
 
@@ -92,6 +92,14 @@ public class FieldSort implements PlainJsonSerializable {
 
     public static FieldSort of(Function<Builder, ObjectBuilder<FieldSort>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * SortOptions variant kind.
+     */
+    @Override
+    public SortOptions.Kind _sortOptionsKind() {
+        return SortOptions.Kind.Field;
     }
 
     /**

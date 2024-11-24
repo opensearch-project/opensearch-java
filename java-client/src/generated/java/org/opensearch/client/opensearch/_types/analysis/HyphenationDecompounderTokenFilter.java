@@ -39,18 +39,24 @@ package org.opensearch.client.opensearch._types.analysis;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.HyphenationDecompounderTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterBase implements TokenFilterDefinitionVariant {
+public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<HyphenationDecompounderTokenFilter.Builder, HyphenationDecompounderTokenFilter> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -79,14 +85,42 @@ public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterB
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link HyphenationDecompounderTokenFilter}.
      */
     public static class Builder extends CompoundWordTokenFilterBase.AbstractBuilder<Builder>
         implements
-            ObjectBuilder<HyphenationDecompounderTokenFilter> {
+            CopyableBuilder<Builder, HyphenationDecompounderTokenFilter> {
+
+        public Builder() {}
+
+        private Builder(HyphenationDecompounderTokenFilter o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -96,6 +130,8 @@ public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterB
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public HyphenationDecompounderTokenFilter build() {
             _checkSingleUse();
 

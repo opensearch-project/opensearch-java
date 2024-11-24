@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.NoriTokenizer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+public class NoriTokenizer extends TokenizerBase
+    implements
+        TokenizerDefinitionVariant,
+        ToCopyableBuilder<NoriTokenizer.Builder, NoriTokenizer> {
 
     @Nullable
     private final NoriDecompoundMode decompoundMode;
@@ -153,10 +158,21 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link NoriTokenizer}.
      */
-    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<NoriTokenizer> {
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, NoriTokenizer> {
         @Nullable
         private NoriDecompoundMode decompoundMode;
         @Nullable
@@ -166,9 +182,40 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
         @Nullable
         private List<String> userDictionaryRules;
 
+        public Builder() {}
+
+        private Builder(NoriTokenizer o) {
+            super(o);
+            this.decompoundMode = o.decompoundMode;
+            this.discardPunctuation = o.discardPunctuation;
+            this.userDictionary = o.userDictionary;
+            this.userDictionaryRules = _listCopy(o.userDictionaryRules);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.decompoundMode = o.decompoundMode;
+            this.discardPunctuation = o.discardPunctuation;
+            this.userDictionary = o.userDictionary;
+            this.userDictionaryRules = _listCopy(o.userDictionaryRules);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code decompound_mode}
          */
+        @Nonnull
         public final Builder decompoundMode(@Nullable NoriDecompoundMode value) {
             this.decompoundMode = value;
             return this;
@@ -177,6 +224,7 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
         /**
          * API name: {@code discard_punctuation}
          */
+        @Nonnull
         public final Builder discardPunctuation(@Nullable Boolean value) {
             this.discardPunctuation = value;
             return this;
@@ -185,6 +233,7 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
         /**
          * API name: {@code user_dictionary}
          */
+        @Nonnull
         public final Builder userDictionary(@Nullable String value) {
             this.userDictionary = value;
             return this;
@@ -197,6 +246,7 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
          * Adds all elements of <code>list</code> to <code>userDictionaryRules</code>.
          * </p>
          */
+        @Nonnull
         public final Builder userDictionaryRules(List<String> list) {
             this.userDictionaryRules = _listAddAll(this.userDictionaryRules, list);
             return this;
@@ -209,13 +259,9 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
          * Adds one or more values to <code>userDictionaryRules</code>.
          * </p>
          */
+        @Nonnull
         public final Builder userDictionaryRules(String value, String... values) {
             this.userDictionaryRules = _listAdd(this.userDictionaryRules, value, values);
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -224,6 +270,8 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public NoriTokenizer build() {
             _checkSingleUse();
 

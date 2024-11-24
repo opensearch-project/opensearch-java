@@ -55,14 +55,19 @@ import org.opensearch.client.opensearch._types.analysis.Normalizer;
 import org.opensearch.client.opensearch._types.analysis.TokenFilter;
 import org.opensearch.client.opensearch._types.analysis.Tokenizer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsAnalysis
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IndexSettingsAnalysis implements PlainJsonSerializable {
+public class IndexSettingsAnalysis
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<IndexSettingsAnalysis.Builder, IndexSettingsAnalysis> {
 
     @Nonnull
     private final Map<String, Analyzer> analyzer;
@@ -197,10 +202,21 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IndexSettingsAnalysis}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettingsAnalysis> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IndexSettingsAnalysis> {
         @Nullable
         private Map<String, Analyzer> analyzer;
         @Nullable
@@ -212,6 +228,30 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
         @Nullable
         private Map<String, Tokenizer> tokenizer;
 
+        public Builder() {}
+
+        private Builder(IndexSettingsAnalysis o) {
+            this.analyzer = _mapCopy(o.analyzer);
+            this.charFilter = _mapCopy(o.charFilter);
+            this.filter = _mapCopy(o.filter);
+            this.normalizer = _mapCopy(o.normalizer);
+            this.tokenizer = _mapCopy(o.tokenizer);
+        }
+
+        private Builder(Builder o) {
+            this.analyzer = _mapCopy(o.analyzer);
+            this.charFilter = _mapCopy(o.charFilter);
+            this.filter = _mapCopy(o.filter);
+            this.normalizer = _mapCopy(o.normalizer);
+            this.tokenizer = _mapCopy(o.tokenizer);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code analyzer}
          *
@@ -219,6 +259,7 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>analyzer</code>.
          * </p>
          */
+        @Nonnull
         public final Builder analyzer(Map<String, Analyzer> map) {
             this.analyzer = _mapPutAll(this.analyzer, map);
             return this;
@@ -231,6 +272,7 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          * Adds an entry to <code>analyzer</code>.
          * </p>
          */
+        @Nonnull
         public final Builder analyzer(String key, Analyzer value) {
             this.analyzer = _mapPut(this.analyzer, key, value);
             return this;
@@ -243,6 +285,7 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          * Adds a value to <code>analyzer</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder analyzer(String key, Function<Analyzer.Builder, ObjectBuilder<Analyzer>> fn) {
             return analyzer(key, fn.apply(new Analyzer.Builder()).build());
         }
@@ -254,6 +297,7 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>charFilter</code>.
          * </p>
          */
+        @Nonnull
         public final Builder charFilter(Map<String, CharFilter> map) {
             this.charFilter = _mapPutAll(this.charFilter, map);
             return this;
@@ -266,6 +310,7 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          * Adds an entry to <code>charFilter</code>.
          * </p>
          */
+        @Nonnull
         public final Builder charFilter(String key, CharFilter value) {
             this.charFilter = _mapPut(this.charFilter, key, value);
             return this;
@@ -278,6 +323,7 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          * Adds a value to <code>charFilter</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder charFilter(String key, Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
             return charFilter(key, fn.apply(new CharFilter.Builder()).build());
         }
@@ -289,6 +335,7 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>filter</code>.
          * </p>
          */
+        @Nonnull
         public final Builder filter(Map<String, TokenFilter> map) {
             this.filter = _mapPutAll(this.filter, map);
             return this;
@@ -301,6 +348,7 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          * Adds an entry to <code>filter</code>.
          * </p>
          */
+        @Nonnull
         public final Builder filter(String key, TokenFilter value) {
             this.filter = _mapPut(this.filter, key, value);
             return this;
@@ -313,6 +361,7 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          * Adds a value to <code>filter</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder filter(String key, Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
             return filter(key, fn.apply(new TokenFilter.Builder()).build());
         }
@@ -324,6 +373,7 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>normalizer</code>.
          * </p>
          */
+        @Nonnull
         public final Builder normalizer(Map<String, Normalizer> map) {
             this.normalizer = _mapPutAll(this.normalizer, map);
             return this;
@@ -336,6 +386,7 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          * Adds an entry to <code>normalizer</code>.
          * </p>
          */
+        @Nonnull
         public final Builder normalizer(String key, Normalizer value) {
             this.normalizer = _mapPut(this.normalizer, key, value);
             return this;
@@ -348,6 +399,7 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          * Adds a value to <code>normalizer</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder normalizer(String key, Function<Normalizer.Builder, ObjectBuilder<Normalizer>> fn) {
             return normalizer(key, fn.apply(new Normalizer.Builder()).build());
         }
@@ -359,6 +411,7 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>tokenizer</code>.
          * </p>
          */
+        @Nonnull
         public final Builder tokenizer(Map<String, Tokenizer> map) {
             this.tokenizer = _mapPutAll(this.tokenizer, map);
             return this;
@@ -371,6 +424,7 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          * Adds an entry to <code>tokenizer</code>.
          * </p>
          */
+        @Nonnull
         public final Builder tokenizer(String key, Tokenizer value) {
             this.tokenizer = _mapPut(this.tokenizer, key, value);
             return this;
@@ -383,6 +437,7 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          * Adds a value to <code>tokenizer</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder tokenizer(String key, Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
             return tokenizer(key, fn.apply(new Tokenizer.Builder()).build());
         }
@@ -392,6 +447,8 @@ public class IndexSettingsAnalysis implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IndexSettingsAnalysis build() {
             _checkSingleUse();
 

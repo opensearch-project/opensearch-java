@@ -207,6 +207,7 @@ public final class Types {
         public static final class Util {
             public static final String PACKAGE = Client.PACKAGE + ".util";
             public static final Type ApiTypeHelper = type(PACKAGE, "ApiTypeHelper");
+            public static final Type CopyableBuilder = type(PACKAGE, "CopyableBuilder");
 
             public static Type ObjectBuilder(Type type) {
                 return ObjectBuilder.withTypeParameters(type);
@@ -221,6 +222,12 @@ public final class Types {
 
             public static final Type TaggedUnion = type(PACKAGE, "TaggedUnion");
             public static final Type TaggedUnionUtils = type(PACKAGE, "TaggedUnionUtils");
+
+            public static Type ToCopyableBuilder(Type builder, Type type) {
+                return ToCopyableBuilder.withTypeParameters(builder, type);
+            }
+
+            public static final Type ToCopyableBuilder = type(PACKAGE, "ToCopyableBuilder");
         }
     }
 

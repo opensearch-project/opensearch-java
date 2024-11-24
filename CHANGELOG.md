@@ -14,6 +14,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Added
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
+- Added `toBuilder()` and `Builder.copy()` methods to all generated classes ([#1300](https://github.com/opensearch-project/opensearch-java/pull/1300))
 
 ### Dependencies
 
@@ -44,16 +45,27 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Dependencies
 
 ### Changed
-- Changed AwsSdk2Transport to pre-emptively throw an exception when using AWS SDK's ApacheHttpClient to make an unsupported DELETE/GET request with a body ([#1256](https://github.com/opensearch-project/opensearch-java/pull/1256))
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+- Fixed an issue where `FieldSort` was not implementing `SortOptionsVariant` ([#1323](https://github.com/opensearch-project/opensearch-java/pull/1323))
 - Fixed don't invoke the mapper's serialize method for the RangeQuery JsonData raw value [#1309](https://github.com/opensearch-project/opensearch-java/pull/1309)
 
 ### Security
+
+## [2.18.0] - 11/19/2024
+### Added
+- Added support for disabling typed keys serialization ([#1296](https://github.com/opensearch-project/opensearch-java/pull/1296))
+- Added support for the `batch_size` param on the `text_embedding` processor ([#1298](https://github.com/opensearch-project/opensearch-java/pull/1298))
+
+### Dependencies
+- Bump `io.github.classgraph:classgraph` from 4.8.177 to 4.8.179 ([#1302](https://github.com/opensearch-project/opensearch-java/pull/1302))
+
+### Changed
+- Changed AwsSdk2Transport to pre-emptively throw an exception when using AWS SDK's ApacheHttpClient to make an unsupported DELETE/GET request with a body ([#1256](https://github.com/opensearch-project/opensearch-java/pull/1256))
 
 ## [2.17.0] - 11/05/2024
 ### Added
@@ -568,7 +580,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.17.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.18.0...2.x
+[2.18.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.17.0...v2.18.0
 [2.17.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.16.0...v2.17.0
 [2.16.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.15.0...v2.16.0
 [2.15.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.14.0...v2.15.0

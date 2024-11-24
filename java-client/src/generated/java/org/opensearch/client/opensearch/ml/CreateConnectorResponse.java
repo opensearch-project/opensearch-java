@@ -16,6 +16,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -23,14 +24,19 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.create_connector.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CreateConnectorResponse implements PlainJsonSerializable {
+public class CreateConnectorResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<CreateConnectorResponse.Builder, CreateConnectorResponse> {
 
     @Nullable
     private final String connectorId;
@@ -72,16 +78,44 @@ public class CreateConnectorResponse implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CreateConnectorResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateConnectorResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CreateConnectorResponse> {
         @Nullable
         private String connectorId;
+
+        public Builder() {}
+
+        private Builder(CreateConnectorResponse o) {
+            this.connectorId = o.connectorId;
+        }
+
+        private Builder(Builder o) {
+            this.connectorId = o.connectorId;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * API name: {@code connector_id}
          */
+        @Nonnull
         public final Builder connectorId(@Nullable String value) {
             this.connectorId = value;
             return this;
@@ -92,6 +126,8 @@ public class CreateConnectorResponse implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CreateConnectorResponse build() {
             _checkSingleUse();
 

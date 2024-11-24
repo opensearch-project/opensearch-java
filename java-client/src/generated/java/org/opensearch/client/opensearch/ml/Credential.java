@@ -28,14 +28,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.Credential
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class Credential implements PlainJsonSerializable {
+public class Credential implements PlainJsonSerializable, ToCopyableBuilder<Credential.Builder, Credential> {
 
     @Nullable
     private final String accessKey;
@@ -126,10 +128,21 @@ public class Credential implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link Credential}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Credential> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Credential> {
         @Nullable
         private String accessKey;
         @Nullable
@@ -139,9 +152,32 @@ public class Credential implements PlainJsonSerializable {
         @Nullable
         private Map<String, JsonData> metadata;
 
+        public Builder() {}
+
+        private Builder(Credential o) {
+            this.accessKey = o.accessKey;
+            this.secretKey = o.secretKey;
+            this.sessionToken = o.sessionToken;
+            this.metadata = _mapCopy(o.metadata);
+        }
+
+        private Builder(Builder o) {
+            this.accessKey = o.accessKey;
+            this.secretKey = o.secretKey;
+            this.sessionToken = o.sessionToken;
+            this.metadata = _mapCopy(o.metadata);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code access_key}
          */
+        @Nonnull
         public final Builder accessKey(@Nullable String value) {
             this.accessKey = value;
             return this;
@@ -150,6 +186,7 @@ public class Credential implements PlainJsonSerializable {
         /**
          * API name: {@code secret_key}
          */
+        @Nonnull
         public final Builder secretKey(@Nullable String value) {
             this.secretKey = value;
             return this;
@@ -158,6 +195,7 @@ public class Credential implements PlainJsonSerializable {
         /**
          * API name: {@code session_token}
          */
+        @Nonnull
         public final Builder sessionToken(@Nullable String value) {
             this.sessionToken = value;
             return this;
@@ -169,6 +207,7 @@ public class Credential implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>metadata</code>.
          * </p>
          */
+        @Nonnull
         public final Builder metadata(Map<String, JsonData> map) {
             this.metadata = _mapPutAll(this.metadata, map);
             return this;
@@ -180,6 +219,7 @@ public class Credential implements PlainJsonSerializable {
          * Adds an entry to <code>metadata</code>.
          * </p>
          */
+        @Nonnull
         public final Builder metadata(String key, JsonData value) {
             this.metadata = _mapPut(this.metadata, key, value);
             return this;
@@ -190,6 +230,8 @@ public class Credential implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public Credential build() {
             _checkSingleUse();
 

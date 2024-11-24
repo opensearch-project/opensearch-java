@@ -47,14 +47,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.IcuAnalyzer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IcuAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
+public class IcuAnalyzer implements AnalyzerVariant, PlainJsonSerializable, ToCopyableBuilder<IcuAnalyzer.Builder, IcuAnalyzer> {
 
     @Nonnull
     private final IcuNormalizationType method;
@@ -118,16 +120,46 @@ public class IcuAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IcuAnalyzer}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IcuAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IcuAnalyzer> {
         private IcuNormalizationType method;
         private IcuNormalizationMode mode;
+
+        public Builder() {}
+
+        private Builder(IcuAnalyzer o) {
+            this.method = o.method;
+            this.mode = o.mode;
+        }
+
+        private Builder(Builder o) {
+            this.method = o.method;
+            this.mode = o.mode;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code method}
          */
+        @Nonnull
         public final Builder method(IcuNormalizationType value) {
             this.method = value;
             return this;
@@ -136,6 +168,7 @@ public class IcuAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
         /**
          * Required - API name: {@code mode}
          */
+        @Nonnull
         public final Builder mode(IcuNormalizationMode value) {
             this.mode = value;
             return this;
@@ -146,6 +179,8 @@ public class IcuAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IcuAnalyzer build() {
             _checkSingleUse();
 

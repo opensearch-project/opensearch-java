@@ -16,6 +16,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -23,14 +24,19 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.register_agents.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RegisterAgentsResponse implements PlainJsonSerializable {
+public class RegisterAgentsResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<RegisterAgentsResponse.Builder, RegisterAgentsResponse> {
 
     @Nullable
     private final String agentId;
@@ -72,16 +78,44 @@ public class RegisterAgentsResponse implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RegisterAgentsResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RegisterAgentsResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RegisterAgentsResponse> {
         @Nullable
         private String agentId;
+
+        public Builder() {}
+
+        private Builder(RegisterAgentsResponse o) {
+            this.agentId = o.agentId;
+        }
+
+        private Builder(Builder o) {
+            this.agentId = o.agentId;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * API name: {@code agent_id}
          */
+        @Nonnull
         public final Builder agentId(@Nullable String value) {
             this.agentId = value;
             return this;
@@ -92,6 +126,8 @@ public class RegisterAgentsResponse implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RegisterAgentsResponse build() {
             _checkSingleUse();
 

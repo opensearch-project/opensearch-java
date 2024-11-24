@@ -41,14 +41,17 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.get_index_template.Request
 
@@ -56,7 +59,9 @@ import org.opensearch.client.util.ObjectBuilderBase;
  * Returns an index template.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GetIndexTemplateRequest extends RequestBase {
+public class GetIndexTemplateRequest extends RequestBase
+    implements
+        ToCopyableBuilder<GetIndexTemplateRequest.Builder, GetIndexTemplateRequest> {
 
     @Nullable
     private final Time clusterManagerTimeout;
@@ -100,7 +105,7 @@ public class GetIndexTemplateRequest extends RequestBase {
     }
 
     /**
-     * If true, returns settings in flat format.
+     * If <code>true</code>, returns settings in flat format.
      * <p>
      * API name: {@code flat_settings}
      * </p>
@@ -111,8 +116,8 @@ public class GetIndexTemplateRequest extends RequestBase {
     }
 
     /**
-     * If true, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the
-     * master node.
+     * If <code>true</code>, the request retrieves information from the local node only. Defaults to false, which means information is
+     * retrieved from the cluster-manager node.
      * <p>
      * API name: {@code local}
      * </p>
@@ -123,8 +128,8 @@ public class GetIndexTemplateRequest extends RequestBase {
     }
 
     /**
-     * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-     * returns an error.
+     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
+     * and returns an error.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -148,10 +153,21 @@ public class GetIndexTemplateRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GetIndexTemplateRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetIndexTemplateRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetIndexTemplateRequest> {
         @Nullable
         private Time clusterManagerTimeout;
         @Nullable
@@ -163,12 +179,37 @@ public class GetIndexTemplateRequest extends RequestBase {
         @Nullable
         private String name;
 
+        public Builder() {}
+
+        private Builder(GetIndexTemplateRequest o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.flatSettings = o.flatSettings;
+            this.local = o.local;
+            this.masterTimeout = o.masterTimeout;
+            this.name = o.name;
+        }
+
+        private Builder(Builder o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.flatSettings = o.flatSettings;
+            this.local = o.local;
+            this.masterTimeout = o.masterTimeout;
+            this.name = o.name;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
@@ -180,54 +221,59 @@ public class GetIndexTemplateRequest extends RequestBase {
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
-         * If true, returns settings in flat format.
+         * If <code>true</code>, returns settings in flat format.
          * <p>
          * API name: {@code flat_settings}
          * </p>
          */
+        @Nonnull
         public final Builder flatSettings(@Nullable Boolean value) {
             this.flatSettings = value;
             return this;
         }
 
         /**
-         * If true, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from
-         * the master node.
+         * If <code>true</code>, the request retrieves information from the local node only. Defaults to false, which means information is
+         * retrieved from the cluster-manager node.
          * <p>
          * API name: {@code local}
          * </p>
          */
+        @Nonnull
         public final Builder local(@Nullable Boolean value) {
             this.local = value;
             return this;
         }
 
         /**
-         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-         * returns an error.
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(@Nullable Time value) {
             this.masterTimeout = value;
             return this;
         }
 
         /**
-         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-         * returns an error.
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return masterTimeout(fn.apply(new Time.Builder()).build());
         }
@@ -238,6 +284,7 @@ public class GetIndexTemplateRequest extends RequestBase {
          * API name: {@code name}
          * </p>
          */
+        @Nonnull
         public final Builder name(@Nullable String value) {
             this.name = value;
             return this;
@@ -248,6 +295,8 @@ public class GetIndexTemplateRequest extends RequestBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GetIndexTemplateRequest build() {
             _checkSingleUse();
 

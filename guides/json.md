@@ -55,6 +55,22 @@ private String toJson(JsonpSerializable object) {
 }
 ```
 
+### Disabling Typed Keys Serialization
+By default, the JSON serialization of the OpenSearch Java client uses typed keys for certain types, notably Aggregations.
+This is done for the benefit of unambiguous deserialization, but may result in JSON output that is incompatible with use-cases expecting OpenSearch's default untyped keys.
+You may disable this behavior by setting the `JsonpMapperAttributes.SERIALIZE_TYPED_KEYS` attribute to `false` on a JsonpMapper instance.
+For example, the following code demonstrates how to serialize a SearchResponse without typed keys:
+```java
+private String withoutTypedKeys(OpenSearchClient client, SearchResponse response) {
+    JsonpMapper mapper = client._transport().jsonpMapper().withAttribute(JsonpMapperAttributes.SERIALIZE_TYPED_KEYS, false);
+    StringWriter writer = new StringWriter();
+    try (JsonGenerator generator = mapper.jsonProvider().createGenerator(writer)) {
+        response.serialize(generator, mapper);
+    }
+    return writer.toString();
+}
+```
+
 ## Deserialization
 
 For demonstration let's consider an IndexTemplateMapping JSON String.

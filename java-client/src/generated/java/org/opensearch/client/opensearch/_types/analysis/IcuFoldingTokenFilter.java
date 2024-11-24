@@ -46,13 +46,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.IcuFoldingTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IcuFoldingTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class IcuFoldingTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<IcuFoldingTokenFilter.Builder, IcuFoldingTokenFilter> {
 
     @Nonnull
     private final String unicodeSetFilter;
@@ -93,22 +98,55 @@ public class IcuFoldingTokenFilter extends TokenFilterBase implements TokenFilte
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IcuFoldingTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<IcuFoldingTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, IcuFoldingTokenFilter> {
         private String unicodeSetFilter;
+
+        public Builder() {}
+
+        private Builder(IcuFoldingTokenFilter o) {
+            super(o);
+            this.unicodeSetFilter = o.unicodeSetFilter;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.unicodeSetFilter = o.unicodeSetFilter;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code unicode_set_filter}
          */
+        @Nonnull
         public final Builder unicodeSetFilter(String value) {
             this.unicodeSetFilter = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -117,6 +155,8 @@ public class IcuFoldingTokenFilter extends TokenFilterBase implements TokenFilte
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IcuFoldingTokenFilter build() {
             _checkSingleUse();
 

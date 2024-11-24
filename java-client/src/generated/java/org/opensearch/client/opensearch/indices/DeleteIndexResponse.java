@@ -38,18 +38,23 @@ package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.IndicesResponseBase;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.delete.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteIndexResponse extends IndicesResponseBase {
+public class DeleteIndexResponse extends IndicesResponseBase
+    implements
+        ToCopyableBuilder<DeleteIndexResponse.Builder, DeleteIndexResponse> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -63,12 +68,42 @@ public class DeleteIndexResponse extends IndicesResponseBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DeleteIndexResponse}.
      */
-    public static class Builder extends IndicesResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteIndexResponse> {
+    public static class Builder extends IndicesResponseBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, DeleteIndexResponse> {
+
+        public Builder() {}
+
+        private Builder(DeleteIndexResponse o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -78,6 +113,8 @@ public class DeleteIndexResponse extends IndicesResponseBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DeleteIndexResponse build() {
             _checkSingleUse();
 

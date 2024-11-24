@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch._types.mapping;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -139,9 +140,28 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
         @Nullable
         private Boolean index;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(NumberPropertyBase o) {
+            super(o);
+            this.boost = o.boost;
+            this.coerce = o.coerce;
+            this.ignoreMalformed = o.ignoreMalformed;
+            this.index = o.index;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            super(o);
+            this.boost = o.boost;
+            this.coerce = o.coerce;
+            this.ignoreMalformed = o.ignoreMalformed;
+            this.index = o.index;
+        }
+
         /**
          * API name: {@code boost}
          */
+        @Nonnull
         public final BuilderT boost(@Nullable Double value) {
             this.boost = value;
             return self();
@@ -150,6 +170,7 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
         /**
          * API name: {@code coerce}
          */
+        @Nonnull
         public final BuilderT coerce(@Nullable Boolean value) {
             this.coerce = value;
             return self();
@@ -158,6 +179,7 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
         /**
          * API name: {@code ignore_malformed}
          */
+        @Nonnull
         public final BuilderT ignoreMalformed(@Nullable Boolean value) {
             this.ignoreMalformed = value;
             return self();
@@ -166,6 +188,7 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
         /**
          * API name: {@code index}
          */
+        @Nonnull
         public final BuilderT index(@Nullable Boolean value) {
             this.index = value;
             return self();

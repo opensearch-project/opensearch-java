@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -47,14 +48,16 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.DynamicTemplate
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DynamicTemplate implements PlainJsonSerializable {
+public class DynamicTemplate implements PlainJsonSerializable, ToCopyableBuilder<DynamicTemplate.Builder, DynamicTemplate> {
 
     @Nullable
     private final Property mapping;
@@ -198,10 +201,21 @@ public class DynamicTemplate implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DynamicTemplate}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DynamicTemplate> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DynamicTemplate> {
         @Nullable
         private Property mapping;
         @Nullable
@@ -217,9 +231,38 @@ public class DynamicTemplate implements PlainJsonSerializable {
         @Nullable
         private String unmatch;
 
+        public Builder() {}
+
+        private Builder(DynamicTemplate o) {
+            this.mapping = o.mapping;
+            this.match = o.match;
+            this.matchMappingType = o.matchMappingType;
+            this.matchPattern = o.matchPattern;
+            this.pathMatch = o.pathMatch;
+            this.pathUnmatch = o.pathUnmatch;
+            this.unmatch = o.unmatch;
+        }
+
+        private Builder(Builder o) {
+            this.mapping = o.mapping;
+            this.match = o.match;
+            this.matchMappingType = o.matchMappingType;
+            this.matchPattern = o.matchPattern;
+            this.pathMatch = o.pathMatch;
+            this.pathUnmatch = o.pathUnmatch;
+            this.unmatch = o.unmatch;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code mapping}
          */
+        @Nonnull
         public final Builder mapping(@Nullable Property value) {
             this.mapping = value;
             return this;
@@ -228,6 +271,7 @@ public class DynamicTemplate implements PlainJsonSerializable {
         /**
          * API name: {@code mapping}
          */
+        @Nonnull
         public final Builder mapping(Function<Property.Builder, ObjectBuilder<Property>> fn) {
             return mapping(fn.apply(new Property.Builder()).build());
         }
@@ -235,6 +279,7 @@ public class DynamicTemplate implements PlainJsonSerializable {
         /**
          * API name: {@code match}
          */
+        @Nonnull
         public final Builder match(@Nullable String value) {
             this.match = value;
             return this;
@@ -243,6 +288,7 @@ public class DynamicTemplate implements PlainJsonSerializable {
         /**
          * API name: {@code match_mapping_type}
          */
+        @Nonnull
         public final Builder matchMappingType(@Nullable String value) {
             this.matchMappingType = value;
             return this;
@@ -251,6 +297,7 @@ public class DynamicTemplate implements PlainJsonSerializable {
         /**
          * API name: {@code match_pattern}
          */
+        @Nonnull
         public final Builder matchPattern(@Nullable MatchType value) {
             this.matchPattern = value;
             return this;
@@ -259,6 +306,7 @@ public class DynamicTemplate implements PlainJsonSerializable {
         /**
          * API name: {@code path_match}
          */
+        @Nonnull
         public final Builder pathMatch(@Nullable String value) {
             this.pathMatch = value;
             return this;
@@ -267,6 +315,7 @@ public class DynamicTemplate implements PlainJsonSerializable {
         /**
          * API name: {@code path_unmatch}
          */
+        @Nonnull
         public final Builder pathUnmatch(@Nullable String value) {
             this.pathUnmatch = value;
             return this;
@@ -275,6 +324,7 @@ public class DynamicTemplate implements PlainJsonSerializable {
         /**
          * API name: {@code unmatch}
          */
+        @Nonnull
         public final Builder unmatch(@Nullable String value) {
             this.unmatch = value;
             return this;
@@ -285,6 +335,8 @@ public class DynamicTemplate implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DynamicTemplate build() {
             _checkSingleUse();
 

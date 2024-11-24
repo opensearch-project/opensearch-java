@@ -49,8 +49,10 @@ import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: tasks.get.Request
 
@@ -58,7 +60,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  * Returns information about a task.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GetTasksRequest extends RequestBase {
+public class GetTasksRequest extends RequestBase implements ToCopyableBuilder<GetTasksRequest.Builder, GetTasksRequest> {
 
     @Nonnull
     private final String taskId;
@@ -116,15 +118,46 @@ public class GetTasksRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GetTasksRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTasksRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetTasksRequest> {
         private String taskId;
         @Nullable
         private Time timeout;
         @Nullable
         private Boolean waitForCompletion;
+
+        public Builder() {}
+
+        private Builder(GetTasksRequest o) {
+            this.taskId = o.taskId;
+            this.timeout = o.timeout;
+            this.waitForCompletion = o.waitForCompletion;
+        }
+
+        private Builder(Builder o) {
+            this.taskId = o.taskId;
+            this.timeout = o.timeout;
+            this.waitForCompletion = o.waitForCompletion;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - ID of the task.
@@ -132,6 +165,7 @@ public class GetTasksRequest extends RequestBase {
          * API name: {@code task_id}
          * </p>
          */
+        @Nonnull
         public final Builder taskId(String value) {
             this.taskId = value;
             return this;
@@ -143,6 +177,7 @@ public class GetTasksRequest extends RequestBase {
          * API name: {@code timeout}
          * </p>
          */
+        @Nonnull
         public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
             return this;
@@ -154,6 +189,7 @@ public class GetTasksRequest extends RequestBase {
          * API name: {@code timeout}
          * </p>
          */
+        @Nonnull
         public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return timeout(fn.apply(new Time.Builder()).build());
         }
@@ -164,6 +200,7 @@ public class GetTasksRequest extends RequestBase {
          * API name: {@code wait_for_completion}
          * </p>
          */
+        @Nonnull
         public final Builder waitForCompletion(@Nullable Boolean value) {
             this.waitForCompletion = value;
             return this;
@@ -174,6 +211,8 @@ public class GetTasksRequest extends RequestBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GetTasksRequest build() {
             _checkSingleUse();
 

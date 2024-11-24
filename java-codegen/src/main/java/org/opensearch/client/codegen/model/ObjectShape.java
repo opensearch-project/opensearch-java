@@ -119,6 +119,10 @@ public class ObjectShape extends Shape {
             types.add(Types.Client.Json.PlainJsonSerializable);
         }
 
+        if (!isAbstract() && !canBeSingleton()) {
+            types.add(Types.Client.Util.ToCopyableBuilder(getType().getBuilderType(), getType()));
+        }
+
         return types;
     }
 

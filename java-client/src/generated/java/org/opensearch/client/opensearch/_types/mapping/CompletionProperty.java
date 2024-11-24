@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.CompletionProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CompletionProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class CompletionProperty extends DocValuesPropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<CompletionProperty.Builder, CompletionProperty> {
 
     @Nullable
     private final String analyzer;
@@ -187,10 +192,23 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CompletionProperty}.
      */
-    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<CompletionProperty> {
+    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, CompletionProperty> {
         @Nullable
         private String analyzer;
         @Nullable
@@ -204,9 +222,44 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
         @Nullable
         private String searchAnalyzer;
 
+        public Builder() {}
+
+        private Builder(CompletionProperty o) {
+            super(o);
+            this.analyzer = o.analyzer;
+            this.contexts = _listCopy(o.contexts);
+            this.maxInputLength = o.maxInputLength;
+            this.preservePositionIncrements = o.preservePositionIncrements;
+            this.preserveSeparators = o.preserveSeparators;
+            this.searchAnalyzer = o.searchAnalyzer;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.analyzer = o.analyzer;
+            this.contexts = _listCopy(o.contexts);
+            this.maxInputLength = o.maxInputLength;
+            this.preservePositionIncrements = o.preservePositionIncrements;
+            this.preserveSeparators = o.preserveSeparators;
+            this.searchAnalyzer = o.searchAnalyzer;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code analyzer}
          */
+        @Nonnull
         public final Builder analyzer(@Nullable String value) {
             this.analyzer = value;
             return this;
@@ -219,6 +272,7 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
          * Adds all elements of <code>list</code> to <code>contexts</code>.
          * </p>
          */
+        @Nonnull
         public final Builder contexts(List<SuggestContext> list) {
             this.contexts = _listAddAll(this.contexts, list);
             return this;
@@ -231,6 +285,7 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
          * Adds one or more values to <code>contexts</code>.
          * </p>
          */
+        @Nonnull
         public final Builder contexts(SuggestContext value, SuggestContext... values) {
             this.contexts = _listAdd(this.contexts, value, values);
             return this;
@@ -243,6 +298,7 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
          * Adds a value to <code>contexts</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder contexts(Function<SuggestContext.Builder, ObjectBuilder<SuggestContext>> fn) {
             return contexts(fn.apply(new SuggestContext.Builder()).build());
         }
@@ -250,6 +306,7 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
         /**
          * API name: {@code max_input_length}
          */
+        @Nonnull
         public final Builder maxInputLength(@Nullable Integer value) {
             this.maxInputLength = value;
             return this;
@@ -258,6 +315,7 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
         /**
          * API name: {@code preserve_position_increments}
          */
+        @Nonnull
         public final Builder preservePositionIncrements(@Nullable Boolean value) {
             this.preservePositionIncrements = value;
             return this;
@@ -266,6 +324,7 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
         /**
          * API name: {@code preserve_separators}
          */
+        @Nonnull
         public final Builder preserveSeparators(@Nullable Boolean value) {
             this.preserveSeparators = value;
             return this;
@@ -274,13 +333,9 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
         /**
          * API name: {@code search_analyzer}
          */
+        @Nonnull
         public final Builder searchAnalyzer(@Nullable String value) {
             this.searchAnalyzer = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -289,6 +344,8 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CompletionProperty build() {
             _checkSingleUse();
 

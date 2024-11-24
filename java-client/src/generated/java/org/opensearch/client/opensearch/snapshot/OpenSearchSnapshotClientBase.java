@@ -80,14 +80,14 @@ public abstract class OpenSearchSnapshotClientBase<Self extends OpenSearchSnapsh
     // ----- Endpoint: snapshot.clone
 
     /**
-     * Clones indices from one snapshot into another snapshot in the same repository.
+     * Clones indexes from one snapshot into another snapshot in the same repository.
      */
     public CloneSnapshotResponse clone(CloneSnapshotRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequest(request, CloneSnapshotRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Clones indices from one snapshot into another snapshot in the same repository.
+     * Clones indexes from one snapshot into another snapshot in the same repository.
      *
      * @param fn a function that initializes a builder to create the {@link CloneSnapshotRequest}
      */

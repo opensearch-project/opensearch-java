@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.StopTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class StopTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<StopTokenFilter.Builder, StopTokenFilter> {
 
     @Nullable
     private final Boolean ignoreCase;
@@ -153,10 +158,21 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link StopTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<StopTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, StopTokenFilter> {
         @Nullable
         private Boolean ignoreCase;
         @Nullable
@@ -166,9 +182,40 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
         @Nullable
         private String stopwordsPath;
 
+        public Builder() {}
+
+        private Builder(StopTokenFilter o) {
+            super(o);
+            this.ignoreCase = o.ignoreCase;
+            this.removeTrailing = o.removeTrailing;
+            this.stopwords = _listCopy(o.stopwords);
+            this.stopwordsPath = o.stopwordsPath;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.ignoreCase = o.ignoreCase;
+            this.removeTrailing = o.removeTrailing;
+            this.stopwords = _listCopy(o.stopwords);
+            this.stopwordsPath = o.stopwordsPath;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code ignore_case}
          */
+        @Nonnull
         public final Builder ignoreCase(@Nullable Boolean value) {
             this.ignoreCase = value;
             return this;
@@ -177,6 +224,7 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
         /**
          * API name: {@code remove_trailing}
          */
+        @Nonnull
         public final Builder removeTrailing(@Nullable Boolean value) {
             this.removeTrailing = value;
             return this;
@@ -189,6 +237,7 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
          * Adds all elements of <code>list</code> to <code>stopwords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stopwords(List<String> list) {
             this.stopwords = _listAddAll(this.stopwords, list);
             return this;
@@ -201,6 +250,7 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
          * Adds one or more values to <code>stopwords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stopwords(String value, String... values) {
             this.stopwords = _listAdd(this.stopwords, value, values);
             return this;
@@ -209,13 +259,9 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
         /**
          * API name: {@code stopwords_path}
          */
+        @Nonnull
         public final Builder stopwordsPath(@Nullable String value) {
             this.stopwordsPath = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -224,6 +270,8 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public StopTokenFilter build() {
             _checkSingleUse();
 

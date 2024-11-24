@@ -50,14 +50,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.NodeStatistics
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class NodeStatistics implements PlainJsonSerializable {
+public class NodeStatistics implements PlainJsonSerializable, ToCopyableBuilder<NodeStatistics.Builder, NodeStatistics> {
 
     private final int failed;
 
@@ -152,15 +154,48 @@ public class NodeStatistics implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link NodeStatistics}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeStatistics> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NodeStatistics> {
         private Integer failed;
         @Nullable
         private List<ErrorCause> failures;
         private Integer successful;
         private Integer total;
+
+        public Builder() {}
+
+        private Builder(NodeStatistics o) {
+            this.failed = o.failed;
+            this.failures = _listCopy(o.failures);
+            this.successful = o.successful;
+            this.total = o.total;
+        }
+
+        private Builder(Builder o) {
+            this.failed = o.failed;
+            this.failures = _listCopy(o.failures);
+            this.successful = o.successful;
+            this.total = o.total;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - The number of nodes that rejected the request or failed to respond. If this value is not 0, then a reason for the
@@ -169,6 +204,7 @@ public class NodeStatistics implements PlainJsonSerializable {
          * API name: {@code failed}
          * </p>
          */
+        @Nonnull
         public final Builder failed(int value) {
             this.failed = value;
             return this;
@@ -181,6 +217,7 @@ public class NodeStatistics implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>failures</code>.
          * </p>
          */
+        @Nonnull
         public final Builder failures(List<ErrorCause> list) {
             this.failures = _listAddAll(this.failures, list);
             return this;
@@ -193,6 +230,7 @@ public class NodeStatistics implements PlainJsonSerializable {
          * Adds one or more values to <code>failures</code>.
          * </p>
          */
+        @Nonnull
         public final Builder failures(ErrorCause value, ErrorCause... values) {
             this.failures = _listAdd(this.failures, value, values);
             return this;
@@ -205,6 +243,7 @@ public class NodeStatistics implements PlainJsonSerializable {
          * Adds a value to <code>failures</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder failures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return failures(fn.apply(new ErrorCause.Builder()).build());
         }
@@ -215,6 +254,7 @@ public class NodeStatistics implements PlainJsonSerializable {
          * API name: {@code successful}
          * </p>
          */
+        @Nonnull
         public final Builder successful(int value) {
             this.successful = value;
             return this;
@@ -226,6 +266,7 @@ public class NodeStatistics implements PlainJsonSerializable {
          * API name: {@code total}
          * </p>
          */
+        @Nonnull
         public final Builder total(int value) {
             this.total = value;
             return this;
@@ -236,6 +277,8 @@ public class NodeStatistics implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public NodeStatistics build() {
             _checkSingleUse();
 

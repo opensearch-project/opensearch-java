@@ -50,14 +50,16 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorCause;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: tasks.get.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GetTasksResponse implements PlainJsonSerializable {
+public class GetTasksResponse implements PlainJsonSerializable, ToCopyableBuilder<GetTasksResponse.Builder, GetTasksResponse> {
 
     private final boolean completed;
 
@@ -144,10 +146,21 @@ public class GetTasksResponse implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GetTasksResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTasksResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetTasksResponse> {
         private Boolean completed;
         @Nullable
         private ErrorCause error;
@@ -155,9 +168,32 @@ public class GetTasksResponse implements PlainJsonSerializable {
         private TaskResponse response;
         private TaskInfo task;
 
+        public Builder() {}
+
+        private Builder(GetTasksResponse o) {
+            this.completed = o.completed;
+            this.error = o.error;
+            this.response = o.response;
+            this.task = o.task;
+        }
+
+        private Builder(Builder o) {
+            this.completed = o.completed;
+            this.error = o.error;
+            this.response = o.response;
+            this.task = o.task;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - API name: {@code completed}
          */
+        @Nonnull
         public final Builder completed(boolean value) {
             this.completed = value;
             return this;
@@ -166,6 +202,7 @@ public class GetTasksResponse implements PlainJsonSerializable {
         /**
          * API name: {@code error}
          */
+        @Nonnull
         public final Builder error(@Nullable ErrorCause value) {
             this.error = value;
             return this;
@@ -174,6 +211,7 @@ public class GetTasksResponse implements PlainJsonSerializable {
         /**
          * API name: {@code error}
          */
+        @Nonnull
         public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return error(fn.apply(new ErrorCause.Builder()).build());
         }
@@ -181,6 +219,7 @@ public class GetTasksResponse implements PlainJsonSerializable {
         /**
          * API name: {@code response}
          */
+        @Nonnull
         public final Builder response(@Nullable TaskResponse value) {
             this.response = value;
             return this;
@@ -189,6 +228,7 @@ public class GetTasksResponse implements PlainJsonSerializable {
         /**
          * API name: {@code response}
          */
+        @Nonnull
         public final Builder response(Function<TaskResponse.Builder, ObjectBuilder<TaskResponse>> fn) {
             return response(fn.apply(new TaskResponse.Builder()).build());
         }
@@ -196,6 +236,7 @@ public class GetTasksResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code task}
          */
+        @Nonnull
         public final Builder task(TaskInfo value) {
             this.task = value;
             return this;
@@ -204,6 +245,7 @@ public class GetTasksResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code task}
          */
+        @Nonnull
         public final Builder task(Function<TaskInfo.Builder, ObjectBuilder<TaskInfo>> fn) {
             return task(fn.apply(new TaskInfo.Builder()).build());
         }
@@ -213,6 +255,8 @@ public class GetTasksResponse implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GetTasksResponse build() {
             _checkSingleUse();
 

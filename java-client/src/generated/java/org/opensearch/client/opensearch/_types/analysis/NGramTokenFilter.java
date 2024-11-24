@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.NGramTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class NGramTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<NGramTokenFilter.Builder, NGramTokenFilter> {
 
     @Nullable
     private final Integer maxGram;
@@ -129,10 +135,21 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link NGramTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<NGramTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, NGramTokenFilter> {
         @Nullable
         private Integer maxGram;
         @Nullable
@@ -140,9 +157,38 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
         @Nullable
         private Boolean preserveOriginal;
 
+        public Builder() {}
+
+        private Builder(NGramTokenFilter o) {
+            super(o);
+            this.maxGram = o.maxGram;
+            this.minGram = o.minGram;
+            this.preserveOriginal = o.preserveOriginal;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.maxGram = o.maxGram;
+            this.minGram = o.minGram;
+            this.preserveOriginal = o.preserveOriginal;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code max_gram}
          */
+        @Nonnull
         public final Builder maxGram(@Nullable Integer value) {
             this.maxGram = value;
             return this;
@@ -151,6 +197,7 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
         /**
          * API name: {@code min_gram}
          */
+        @Nonnull
         public final Builder minGram(@Nullable Integer value) {
             this.minGram = value;
             return this;
@@ -159,13 +206,9 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
         /**
          * API name: {@code preserve_original}
          */
+        @Nonnull
         public final Builder preserveOriginal(@Nullable Boolean value) {
             this.preserveOriginal = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -174,6 +217,8 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public NGramTokenFilter build() {
             _checkSingleUse();
 

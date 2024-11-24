@@ -25,14 +25,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.deploy_model.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeployModelResponse implements PlainJsonSerializable {
+public class DeployModelResponse implements PlainJsonSerializable, ToCopyableBuilder<DeployModelResponse.Builder, DeployModelResponse> {
 
     @Nonnull
     private final String status;
@@ -104,18 +106,50 @@ public class DeployModelResponse implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DeployModelResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeployModelResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DeployModelResponse> {
         private String status;
         private String taskId;
         @Nullable
         private String taskType;
 
+        public Builder() {}
+
+        private Builder(DeployModelResponse o) {
+            this.status = o.status;
+            this.taskId = o.taskId;
+            this.taskType = o.taskType;
+        }
+
+        private Builder(Builder o) {
+            this.status = o.status;
+            this.taskId = o.taskId;
+            this.taskType = o.taskType;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - API name: {@code status}
          */
+        @Nonnull
         public final Builder status(String value) {
             this.status = value;
             return this;
@@ -124,6 +158,7 @@ public class DeployModelResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code task_id}
          */
+        @Nonnull
         public final Builder taskId(String value) {
             this.taskId = value;
             return this;
@@ -132,6 +167,7 @@ public class DeployModelResponse implements PlainJsonSerializable {
         /**
          * API name: {@code task_type}
          */
+        @Nonnull
         public final Builder taskType(@Nullable String value) {
             this.taskType = value;
             return this;
@@ -142,6 +178,8 @@ public class DeployModelResponse implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DeployModelResponse build() {
             _checkSingleUse();
 

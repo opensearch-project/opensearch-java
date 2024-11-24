@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.IcuNormalizationCharFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IcuNormalizationCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
+public class IcuNormalizationCharFilter extends CharFilterBase
+    implements
+        CharFilterDefinitionVariant,
+        ToCopyableBuilder<IcuNormalizationCharFilter.Builder, IcuNormalizationCharFilter> {
 
     @Nullable
     private final IcuNormalizationMode mode;
@@ -114,18 +120,58 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IcuNormalizationCharFilter}.
      */
-    public static class Builder extends CharFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<IcuNormalizationCharFilter> {
+    public static class Builder extends CharFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, IcuNormalizationCharFilter> {
         @Nullable
         private IcuNormalizationMode mode;
         @Nullable
         private IcuNormalizationType name;
 
+        public Builder() {}
+
+        private Builder(IcuNormalizationCharFilter o) {
+            super(o);
+            this.mode = o.mode;
+            this.name = o.name;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.mode = o.mode;
+            this.name = o.name;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code mode}
          */
+        @Nonnull
         public final Builder mode(@Nullable IcuNormalizationMode value) {
             this.mode = value;
             return this;
@@ -134,13 +180,9 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
         /**
          * API name: {@code name}
          */
+        @Nonnull
         public final Builder name(@Nullable IcuNormalizationType value) {
             this.name = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -149,6 +191,8 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IcuNormalizationCharFilter build() {
             _checkSingleUse();
 

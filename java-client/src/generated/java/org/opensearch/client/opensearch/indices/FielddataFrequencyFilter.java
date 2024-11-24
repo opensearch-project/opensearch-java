@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch.indices;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -46,14 +47,19 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.FielddataFrequencyFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class FielddataFrequencyFilter implements PlainJsonSerializable {
+public class FielddataFrequencyFilter
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<FielddataFrequencyFilter.Builder, FielddataFrequencyFilter> {
 
     private final double max;
 
@@ -117,17 +123,49 @@ public class FielddataFrequencyFilter implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link FielddataFrequencyFilter}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataFrequencyFilter> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, FielddataFrequencyFilter> {
         private Double max;
         private Double min;
         private Integer minSegmentSize;
 
+        public Builder() {}
+
+        private Builder(FielddataFrequencyFilter o) {
+            this.max = o.max;
+            this.min = o.min;
+            this.minSegmentSize = o.minSegmentSize;
+        }
+
+        private Builder(Builder o) {
+            this.max = o.max;
+            this.min = o.min;
+            this.minSegmentSize = o.minSegmentSize;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - API name: {@code max}
          */
+        @Nonnull
         public final Builder max(double value) {
             this.max = value;
             return this;
@@ -136,6 +174,7 @@ public class FielddataFrequencyFilter implements PlainJsonSerializable {
         /**
          * Required - API name: {@code min}
          */
+        @Nonnull
         public final Builder min(double value) {
             this.min = value;
             return this;
@@ -144,6 +183,7 @@ public class FielddataFrequencyFilter implements PlainJsonSerializable {
         /**
          * Required - API name: {@code min_segment_size}
          */
+        @Nonnull
         public final Builder minSegmentSize(int value) {
             this.minSegmentSize = value;
             return this;
@@ -154,6 +194,8 @@ public class FielddataFrequencyFilter implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public FielddataFrequencyFilter build() {
             _checkSingleUse();
 

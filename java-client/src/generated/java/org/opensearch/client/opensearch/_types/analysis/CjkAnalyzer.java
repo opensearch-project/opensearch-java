@@ -26,14 +26,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.CjkAnalyzer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CjkAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
+public class CjkAnalyzer implements AnalyzerVariant, PlainJsonSerializable, ToCopyableBuilder<CjkAnalyzer.Builder, CjkAnalyzer> {
 
     @Nonnull
     private final List<String> stopwords;
@@ -105,14 +107,43 @@ public class CjkAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CjkAnalyzer}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CjkAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CjkAnalyzer> {
         @Nullable
         private List<String> stopwords;
         @Nullable
         private String stopwordsPath;
+
+        public Builder() {}
+
+        private Builder(CjkAnalyzer o) {
+            this.stopwords = _listCopy(o.stopwords);
+            this.stopwordsPath = o.stopwordsPath;
+        }
+
+        private Builder(Builder o) {
+            this.stopwords = _listCopy(o.stopwords);
+            this.stopwordsPath = o.stopwordsPath;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * API name: {@code stopwords}
@@ -121,6 +152,7 @@ public class CjkAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>stopwords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stopwords(List<String> list) {
             this.stopwords = _listAddAll(this.stopwords, list);
             return this;
@@ -133,6 +165,7 @@ public class CjkAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          * Adds one or more values to <code>stopwords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stopwords(String value, String... values) {
             this.stopwords = _listAdd(this.stopwords, value, values);
             return this;
@@ -141,6 +174,7 @@ public class CjkAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
         /**
          * API name: {@code stopwords_path}
          */
+        @Nonnull
         public final Builder stopwordsPath(@Nullable String value) {
             this.stopwordsPath = value;
             return this;
@@ -151,6 +185,8 @@ public class CjkAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CjkAnalyzer build() {
             _checkSingleUse();
 

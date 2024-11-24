@@ -49,13 +49,15 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.InlineScript
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class InlineScript extends ScriptBase {
+public class InlineScript extends ScriptBase implements ToCopyableBuilder<InlineScript.Builder, InlineScript> {
 
     @Nullable
     private final ScriptLanguage lang;
@@ -129,19 +131,59 @@ public class InlineScript extends ScriptBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link InlineScript}.
      */
-    public static class Builder extends ScriptBase.AbstractBuilder<Builder> implements ObjectBuilder<InlineScript> {
+    public static class Builder extends ScriptBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, InlineScript> {
         @Nullable
         private ScriptLanguage lang;
         @Nullable
         private Map<String, String> options;
         private String source;
 
+        public Builder() {}
+
+        private Builder(InlineScript o) {
+            super(o);
+            this.lang = o.lang;
+            this.options = _mapCopy(o.options);
+            this.source = o.source;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.lang = o.lang;
+            this.options = _mapCopy(o.options);
+            this.source = o.source;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code lang}
          */
+        @Nonnull
         public final Builder lang(@Nullable ScriptLanguage value) {
             this.lang = value;
             return this;
@@ -150,6 +192,7 @@ public class InlineScript extends ScriptBase {
         /**
          * API name: {@code lang}
          */
+        @Nonnull
         public final Builder lang(Function<ScriptLanguage.Builder, ObjectBuilder<ScriptLanguage>> fn) {
             return lang(fn.apply(new ScriptLanguage.Builder()).build());
         }
@@ -161,6 +204,7 @@ public class InlineScript extends ScriptBase {
          * Adds all elements of <code>map</code> to <code>options</code>.
          * </p>
          */
+        @Nonnull
         public final Builder options(Map<String, String> map) {
             this.options = _mapPutAll(this.options, map);
             return this;
@@ -173,6 +217,7 @@ public class InlineScript extends ScriptBase {
          * Adds an entry to <code>options</code>.
          * </p>
          */
+        @Nonnull
         public final Builder options(String key, String value) {
             this.options = _mapPut(this.options, key, value);
             return this;
@@ -184,13 +229,9 @@ public class InlineScript extends ScriptBase {
          * API name: {@code source}
          * </p>
          */
+        @Nonnull
         public final Builder source(String value) {
             this.source = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -199,6 +240,8 @@ public class InlineScript extends ScriptBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public InlineScript build() {
             _checkSingleUse();
 

@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.StandardTokenizer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class StandardTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+public class StandardTokenizer extends TokenizerBase
+    implements
+        TokenizerDefinitionVariant,
+        ToCopyableBuilder<StandardTokenizer.Builder, StandardTokenizer> {
 
     @Nullable
     private final Integer maxTokenLength;
@@ -95,23 +101,54 @@ public class StandardTokenizer extends TokenizerBase implements TokenizerDefinit
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link StandardTokenizer}.
      */
-    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<StandardTokenizer> {
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, StandardTokenizer> {
         @Nullable
         private Integer maxTokenLength;
+
+        public Builder() {}
+
+        private Builder(StandardTokenizer o) {
+            super(o);
+            this.maxTokenLength = o.maxTokenLength;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.maxTokenLength = o.maxTokenLength;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code max_token_length}
          */
+        @Nonnull
         public final Builder maxTokenLength(@Nullable Integer value) {
             this.maxTokenLength = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -120,6 +157,8 @@ public class StandardTokenizer extends TokenizerBase implements TokenizerDefinit
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public StandardTokenizer build() {
             _checkSingleUse();
 

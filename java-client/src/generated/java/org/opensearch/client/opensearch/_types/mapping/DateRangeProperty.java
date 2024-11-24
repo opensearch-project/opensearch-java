@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.DateRangeProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DateRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class DateRangeProperty extends RangePropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<DateRangeProperty.Builder, DateRangeProperty> {
 
     @Nullable
     private final String format;
@@ -95,23 +101,54 @@ public class DateRangeProperty extends RangePropertyBase implements PropertyVari
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DateRangeProperty}.
      */
-    public static class Builder extends RangePropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<DateRangeProperty> {
+    public static class Builder extends RangePropertyBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, DateRangeProperty> {
         @Nullable
         private String format;
+
+        public Builder() {}
+
+        private Builder(DateRangeProperty o) {
+            super(o);
+            this.format = o.format;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.format = o.format;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code format}
          */
+        @Nonnull
         public final Builder format(@Nullable String value) {
             this.format = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -120,6 +157,8 @@ public class DateRangeProperty extends RangePropertyBase implements PropertyVari
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DateRangeProperty build() {
             _checkSingleUse();
 

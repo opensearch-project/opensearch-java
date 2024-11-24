@@ -172,6 +172,25 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
         @Nullable
         private TaskInfos tasks;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(TaskListResponseBase o) {
+            this.nodeFailures = _listCopy(o.nodeFailures);
+            this.nodes = _mapCopy(o.nodes);
+            this.taskFailures = _listCopy(o.taskFailures);
+            this.tasks = o.tasks;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            this.nodeFailures = _listCopy(o.nodeFailures);
+            this.nodes = _mapCopy(o.nodes);
+            this.taskFailures = _listCopy(o.taskFailures);
+            this.tasks = o.tasks;
+        }
+
+        @Nonnull
+        protected abstract BuilderT self();
+
         /**
          * API name: {@code node_failures}
          *
@@ -179,6 +198,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>nodeFailures</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT nodeFailures(List<ErrorCause> list) {
             this.nodeFailures = _listAddAll(this.nodeFailures, list);
             return self();
@@ -191,6 +211,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
          * Adds one or more values to <code>nodeFailures</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT nodeFailures(ErrorCause value, ErrorCause... values) {
             this.nodeFailures = _listAdd(this.nodeFailures, value, values);
             return self();
@@ -203,6 +224,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
          * Adds a value to <code>nodeFailures</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final BuilderT nodeFailures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return nodeFailures(fn.apply(new ErrorCause.Builder()).build());
         }
@@ -217,6 +239,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>nodes</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT nodes(Map<String, TaskExecutingNode> map) {
             this.nodes = _mapPutAll(this.nodes, map);
             return self();
@@ -232,6 +255,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
          * Adds an entry to <code>nodes</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT nodes(String key, TaskExecutingNode value) {
             this.nodes = _mapPut(this.nodes, key, value);
             return self();
@@ -247,6 +271,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
          * Adds a value to <code>nodes</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final BuilderT nodes(String key, Function<TaskExecutingNode.Builder, ObjectBuilder<TaskExecutingNode>> fn) {
             return nodes(key, fn.apply(new TaskExecutingNode.Builder()).build());
         }
@@ -258,6 +283,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>taskFailures</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT taskFailures(List<TaskFailure> list) {
             this.taskFailures = _listAddAll(this.taskFailures, list);
             return self();
@@ -270,6 +296,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
          * Adds one or more values to <code>taskFailures</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT taskFailures(TaskFailure value, TaskFailure... values) {
             this.taskFailures = _listAdd(this.taskFailures, value, values);
             return self();
@@ -282,6 +309,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
          * Adds a value to <code>taskFailures</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final BuilderT taskFailures(Function<TaskFailure.Builder, ObjectBuilder<TaskFailure>> fn) {
             return taskFailures(fn.apply(new TaskFailure.Builder()).build());
         }
@@ -289,6 +317,7 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
         /**
          * API name: {@code tasks}
          */
+        @Nonnull
         public final BuilderT tasks(@Nullable TaskInfos value) {
             this.tasks = value;
             return self();
@@ -297,11 +326,11 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
         /**
          * API name: {@code tasks}
          */
+        @Nonnull
         public final BuilderT tasks(Function<TaskInfos.Builder, ObjectBuilder<TaskInfos>> fn) {
             return tasks(fn.apply(new TaskInfos.Builder()).build());
         }
 
-        protected abstract BuilderT self();
     }
 
     // ---------------------------------------------------------------------------------------------

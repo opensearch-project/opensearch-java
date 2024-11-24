@@ -50,14 +50,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.CustomAnalyzer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CustomAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
+public class CustomAnalyzer implements AnalyzerVariant, PlainJsonSerializable, ToCopyableBuilder<CustomAnalyzer.Builder, CustomAnalyzer> {
 
     @Nonnull
     private final List<String> charFilter;
@@ -182,10 +184,21 @@ public class CustomAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CustomAnalyzer}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CustomAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CustomAnalyzer> {
         @Nullable
         private List<String> charFilter;
         @Nullable
@@ -196,6 +209,30 @@ public class CustomAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
         private Integer positionOffsetGap;
         private String tokenizer;
 
+        public Builder() {}
+
+        private Builder(CustomAnalyzer o) {
+            this.charFilter = _listCopy(o.charFilter);
+            this.filter = _listCopy(o.filter);
+            this.positionIncrementGap = o.positionIncrementGap;
+            this.positionOffsetGap = o.positionOffsetGap;
+            this.tokenizer = o.tokenizer;
+        }
+
+        private Builder(Builder o) {
+            this.charFilter = _listCopy(o.charFilter);
+            this.filter = _listCopy(o.filter);
+            this.positionIncrementGap = o.positionIncrementGap;
+            this.positionOffsetGap = o.positionOffsetGap;
+            this.tokenizer = o.tokenizer;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code char_filter}
          *
@@ -203,6 +240,7 @@ public class CustomAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>charFilter</code>.
          * </p>
          */
+        @Nonnull
         public final Builder charFilter(List<String> list) {
             this.charFilter = _listAddAll(this.charFilter, list);
             return this;
@@ -215,6 +253,7 @@ public class CustomAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          * Adds one or more values to <code>charFilter</code>.
          * </p>
          */
+        @Nonnull
         public final Builder charFilter(String value, String... values) {
             this.charFilter = _listAdd(this.charFilter, value, values);
             return this;
@@ -227,6 +266,7 @@ public class CustomAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>filter</code>.
          * </p>
          */
+        @Nonnull
         public final Builder filter(List<String> list) {
             this.filter = _listAddAll(this.filter, list);
             return this;
@@ -239,6 +279,7 @@ public class CustomAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          * Adds one or more values to <code>filter</code>.
          * </p>
          */
+        @Nonnull
         public final Builder filter(String value, String... values) {
             this.filter = _listAdd(this.filter, value, values);
             return this;
@@ -247,6 +288,7 @@ public class CustomAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
         /**
          * API name: {@code position_increment_gap}
          */
+        @Nonnull
         public final Builder positionIncrementGap(@Nullable Integer value) {
             this.positionIncrementGap = value;
             return this;
@@ -255,6 +297,7 @@ public class CustomAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
         /**
          * API name: {@code position_offset_gap}
          */
+        @Nonnull
         public final Builder positionOffsetGap(@Nullable Integer value) {
             this.positionOffsetGap = value;
             return this;
@@ -263,6 +306,7 @@ public class CustomAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
         /**
          * Required - API name: {@code tokenizer}
          */
+        @Nonnull
         public final Builder tokenizer(String value) {
             this.tokenizer = value;
             return this;
@@ -273,6 +317,8 @@ public class CustomAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CustomAnalyzer build() {
             _checkSingleUse();
 

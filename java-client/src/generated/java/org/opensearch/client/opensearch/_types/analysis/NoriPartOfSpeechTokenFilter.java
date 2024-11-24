@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.NoriPartOfSpeechTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class NoriPartOfSpeechTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<NoriPartOfSpeechTokenFilter.Builder, NoriPartOfSpeechTokenFilter> {
 
     @Nonnull
     private final List<String> stoptags;
@@ -104,12 +109,49 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link NoriPartOfSpeechTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<NoriPartOfSpeechTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, NoriPartOfSpeechTokenFilter> {
         @Nullable
         private List<String> stoptags;
+
+        public Builder() {}
+
+        private Builder(NoriPartOfSpeechTokenFilter o) {
+            super(o);
+            this.stoptags = _listCopy(o.stoptags);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.stoptags = _listCopy(o.stoptags);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code stoptags}
@@ -118,6 +160,7 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
          * Adds all elements of <code>list</code> to <code>stoptags</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stoptags(List<String> list) {
             this.stoptags = _listAddAll(this.stoptags, list);
             return this;
@@ -130,13 +173,9 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
          * Adds one or more values to <code>stoptags</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stoptags(String value, String... values) {
             this.stoptags = _listAdd(this.stoptags, value, values);
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -145,6 +184,8 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public NoriPartOfSpeechTokenFilter build() {
             _checkSingleUse();
 

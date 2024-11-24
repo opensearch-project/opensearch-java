@@ -51,14 +51,16 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainDeserializable;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.SourceField
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SourceField implements PlainJsonSerializable {
+public class SourceField implements PlainJsonSerializable, ToCopyableBuilder<SourceField.Builder, SourceField> {
 
     @Nullable
     private final Boolean compress;
@@ -176,15 +178,21 @@ public class SourceField implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SourceField}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SourceField>, PlainDeserializable<Builder> {
-        @Override
-        public Builder self() {
-            return this;
-        }
-
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SourceField>, PlainDeserializable<Builder> {
         @Nullable
         private Boolean compress;
         @Nullable
@@ -196,9 +204,40 @@ public class SourceField implements PlainJsonSerializable {
         @Nullable
         private List<String> includes;
 
+        public Builder() {}
+
+        private Builder(SourceField o) {
+            this.compress = o.compress;
+            this.compressThreshold = o.compressThreshold;
+            this.enabled = o.enabled;
+            this.excludes = _listCopy(o.excludes);
+            this.includes = _listCopy(o.includes);
+        }
+
+        private Builder(Builder o) {
+            this.compress = o.compress;
+            this.compressThreshold = o.compressThreshold;
+            this.enabled = o.enabled;
+            this.excludes = _listCopy(o.excludes);
+            this.includes = _listCopy(o.includes);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        public Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code compress}
          */
+        @Nonnull
         public final Builder compress(@Nullable Boolean value) {
             this.compress = value;
             return this;
@@ -207,6 +246,7 @@ public class SourceField implements PlainJsonSerializable {
         /**
          * API name: {@code compress_threshold}
          */
+        @Nonnull
         public final Builder compressThreshold(@Nullable String value) {
             this.compressThreshold = value;
             return this;
@@ -215,6 +255,7 @@ public class SourceField implements PlainJsonSerializable {
         /**
          * API name: {@code enabled}
          */
+        @Nonnull
         public final Builder enabled(@Nullable Boolean value) {
             this.enabled = value;
             return this;
@@ -227,6 +268,7 @@ public class SourceField implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>excludes</code>.
          * </p>
          */
+        @Nonnull
         public final Builder excludes(List<String> list) {
             this.excludes = _listAddAll(this.excludes, list);
             return this;
@@ -239,6 +281,7 @@ public class SourceField implements PlainJsonSerializable {
          * Adds one or more values to <code>excludes</code>.
          * </p>
          */
+        @Nonnull
         public final Builder excludes(String value, String... values) {
             this.excludes = _listAdd(this.excludes, value, values);
             return this;
@@ -251,6 +294,7 @@ public class SourceField implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>includes</code>.
          * </p>
          */
+        @Nonnull
         public final Builder includes(List<String> list) {
             this.includes = _listAddAll(this.includes, list);
             return this;
@@ -263,6 +307,7 @@ public class SourceField implements PlainJsonSerializable {
          * Adds one or more values to <code>includes</code>.
          * </p>
          */
+        @Nonnull
         public final Builder includes(String value, String... values) {
             this.includes = _listAdd(this.includes, value, values);
             return this;
@@ -273,6 +318,8 @@ public class SourceField implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SourceField build() {
             _checkSingleUse();
 

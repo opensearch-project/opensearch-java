@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.MappingCharFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class MappingCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
+public class MappingCharFilter extends CharFilterBase
+    implements
+        CharFilterDefinitionVariant,
+        ToCopyableBuilder<MappingCharFilter.Builder, MappingCharFilter> {
 
     @Nonnull
     private final List<String> mappings;
@@ -119,14 +124,51 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link MappingCharFilter}.
      */
-    public static class Builder extends CharFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<MappingCharFilter> {
+    public static class Builder extends CharFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, MappingCharFilter> {
         @Nullable
         private List<String> mappings;
         @Nullable
         private String mappingsPath;
+
+        public Builder() {}
+
+        private Builder(MappingCharFilter o) {
+            super(o);
+            this.mappings = _listCopy(o.mappings);
+            this.mappingsPath = o.mappingsPath;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.mappings = _listCopy(o.mappings);
+            this.mappingsPath = o.mappingsPath;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code mappings}
@@ -135,6 +177,7 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
          * Adds all elements of <code>list</code> to <code>mappings</code>.
          * </p>
          */
+        @Nonnull
         public final Builder mappings(List<String> list) {
             this.mappings = _listAddAll(this.mappings, list);
             return this;
@@ -147,6 +190,7 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
          * Adds one or more values to <code>mappings</code>.
          * </p>
          */
+        @Nonnull
         public final Builder mappings(String value, String... values) {
             this.mappings = _listAdd(this.mappings, value, values);
             return this;
@@ -155,13 +199,9 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
         /**
          * API name: {@code mappings_path}
          */
+        @Nonnull
         public final Builder mappingsPath(@Nullable String value) {
             this.mappingsPath = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -170,6 +210,8 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public MappingCharFilter build() {
             _checkSingleUse();
 

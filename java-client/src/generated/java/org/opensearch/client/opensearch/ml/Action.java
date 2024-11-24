@@ -16,6 +16,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -23,14 +24,16 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.Action
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class Action implements PlainJsonSerializable {
+public class Action implements PlainJsonSerializable, ToCopyableBuilder<Action.Builder, Action> {
 
     @Nullable
     private final String actionType;
@@ -174,10 +177,21 @@ public class Action implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link Action}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Action> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Action> {
         @Nullable
         private String actionType;
         @Nullable
@@ -193,9 +207,38 @@ public class Action implements PlainJsonSerializable {
         @Nullable
         private String url;
 
+        public Builder() {}
+
+        private Builder(Action o) {
+            this.actionType = o.actionType;
+            this.headers = o.headers;
+            this.method = o.method;
+            this.postProcessFunction = o.postProcessFunction;
+            this.preProcessFunction = o.preProcessFunction;
+            this.requestBody = o.requestBody;
+            this.url = o.url;
+        }
+
+        private Builder(Builder o) {
+            this.actionType = o.actionType;
+            this.headers = o.headers;
+            this.method = o.method;
+            this.postProcessFunction = o.postProcessFunction;
+            this.preProcessFunction = o.preProcessFunction;
+            this.requestBody = o.requestBody;
+            this.url = o.url;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code action_type}
          */
+        @Nonnull
         public final Builder actionType(@Nullable String value) {
             this.actionType = value;
             return this;
@@ -204,6 +247,7 @@ public class Action implements PlainJsonSerializable {
         /**
          * API name: {@code headers}
          */
+        @Nonnull
         public final Builder headers(@Nullable Headers value) {
             this.headers = value;
             return this;
@@ -212,6 +256,7 @@ public class Action implements PlainJsonSerializable {
         /**
          * API name: {@code headers}
          */
+        @Nonnull
         public final Builder headers(Function<Headers.Builder, ObjectBuilder<Headers>> fn) {
             return headers(fn.apply(new Headers.Builder()).build());
         }
@@ -219,6 +264,7 @@ public class Action implements PlainJsonSerializable {
         /**
          * API name: {@code method}
          */
+        @Nonnull
         public final Builder method(@Nullable String value) {
             this.method = value;
             return this;
@@ -227,6 +273,7 @@ public class Action implements PlainJsonSerializable {
         /**
          * API name: {@code post_process_function}
          */
+        @Nonnull
         public final Builder postProcessFunction(@Nullable String value) {
             this.postProcessFunction = value;
             return this;
@@ -235,6 +282,7 @@ public class Action implements PlainJsonSerializable {
         /**
          * API name: {@code pre_process_function}
          */
+        @Nonnull
         public final Builder preProcessFunction(@Nullable String value) {
             this.preProcessFunction = value;
             return this;
@@ -243,6 +291,7 @@ public class Action implements PlainJsonSerializable {
         /**
          * API name: {@code request_body}
          */
+        @Nonnull
         public final Builder requestBody(@Nullable String value) {
             this.requestBody = value;
             return this;
@@ -251,6 +300,7 @@ public class Action implements PlainJsonSerializable {
         /**
          * API name: {@code url}
          */
+        @Nonnull
         public final Builder url(@Nullable String value) {
             this.url = value;
             return this;
@@ -261,6 +311,8 @@ public class Action implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public Action build() {
             _checkSingleUse();
 

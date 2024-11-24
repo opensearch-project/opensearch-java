@@ -27,14 +27,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.LLM
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class LLM implements PlainJsonSerializable {
+public class LLM implements PlainJsonSerializable, ToCopyableBuilder<LLM.Builder, LLM> {
 
     @Nullable
     private final String modelId;
@@ -98,18 +100,48 @@ public class LLM implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link LLM}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LLM> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, LLM> {
         @Nullable
         private String modelId;
         @Nullable
         private Map<String, JsonData> parameters;
 
+        public Builder() {}
+
+        private Builder(LLM o) {
+            this.modelId = o.modelId;
+            this.parameters = _mapCopy(o.parameters);
+        }
+
+        private Builder(Builder o) {
+            this.modelId = o.modelId;
+            this.parameters = _mapCopy(o.parameters);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code model_id}
          */
+        @Nonnull
         public final Builder modelId(@Nullable String value) {
             this.modelId = value;
             return this;
@@ -122,6 +154,7 @@ public class LLM implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>parameters</code>.
          * </p>
          */
+        @Nonnull
         public final Builder parameters(Map<String, JsonData> map) {
             this.parameters = _mapPutAll(this.parameters, map);
             return this;
@@ -134,6 +167,7 @@ public class LLM implements PlainJsonSerializable {
          * Adds an entry to <code>parameters</code>.
          * </p>
          */
+        @Nonnull
         public final Builder parameters(String key, JsonData value) {
             this.parameters = _mapPut(this.parameters, key, value);
             return this;
@@ -144,6 +178,8 @@ public class LLM implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public LLM build() {
             _checkSingleUse();
 

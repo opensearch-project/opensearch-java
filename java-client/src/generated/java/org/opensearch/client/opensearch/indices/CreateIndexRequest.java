@@ -58,8 +58,10 @@ import org.opensearch.client.opensearch._types.mapping.TypeMapping;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.create.Request
 
@@ -68,7 +70,10 @@ import org.opensearch.client.util.ObjectBuilderBase;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CreateIndexRequest extends RequestBase implements PlainJsonSerializable {
+public class CreateIndexRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<CreateIndexRequest.Builder, CreateIndexRequest> {
 
     @Nonnull
     private final Map<String, Alias> aliases;
@@ -154,8 +159,8 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
     }
 
     /**
-     * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-     * returns an error.
+     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
+     * and returns an error.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -230,10 +235,21 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
     }
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CreateIndexRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateIndexRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CreateIndexRequest> {
         @Nullable
         private Map<String, Alias> aliases;
         @Nullable
@@ -250,6 +266,36 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
         @Nullable
         private WaitForActiveShards waitForActiveShards;
 
+        public Builder() {}
+
+        private Builder(CreateIndexRequest o) {
+            this.aliases = _mapCopy(o.aliases);
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.index = o.index;
+            this.mappings = o.mappings;
+            this.masterTimeout = o.masterTimeout;
+            this.settings = o.settings;
+            this.timeout = o.timeout;
+            this.waitForActiveShards = o.waitForActiveShards;
+        }
+
+        private Builder(Builder o) {
+            this.aliases = _mapCopy(o.aliases);
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.index = o.index;
+            this.mappings = o.mappings;
+            this.masterTimeout = o.masterTimeout;
+            this.settings = o.settings;
+            this.timeout = o.timeout;
+            this.waitForActiveShards = o.waitForActiveShards;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Aliases for the index.
          * <p>
@@ -260,6 +306,7 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
          * Adds all elements of <code>map</code> to <code>aliases</code>.
          * </p>
          */
+        @Nonnull
         public final Builder aliases(Map<String, Alias> map) {
             this.aliases = _mapPutAll(this.aliases, map);
             return this;
@@ -275,6 +322,7 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
          * Adds an entry to <code>aliases</code>.
          * </p>
          */
+        @Nonnull
         public final Builder aliases(String key, Alias value) {
             this.aliases = _mapPut(this.aliases, key, value);
             return this;
@@ -290,6 +338,7 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
          * Adds a value to <code>aliases</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
             return aliases(key, fn.apply(new Alias.Builder()).build());
         }
@@ -300,6 +349,7 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
@@ -311,6 +361,7 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
@@ -321,6 +372,7 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
          * API name: {@code index}
          * </p>
          */
+        @Nonnull
         public final Builder index(String value) {
             this.index = value;
             return this;
@@ -329,6 +381,7 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
         /**
          * API name: {@code mappings}
          */
+        @Nonnull
         public final Builder mappings(@Nullable TypeMapping value) {
             this.mappings = value;
             return this;
@@ -337,31 +390,34 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
         /**
          * API name: {@code mappings}
          */
+        @Nonnull
         public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
             return mappings(fn.apply(new TypeMapping.Builder()).build());
         }
 
         /**
-         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-         * returns an error.
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(@Nullable Time value) {
             this.masterTimeout = value;
             return this;
         }
 
         /**
-         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-         * returns an error.
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return masterTimeout(fn.apply(new Time.Builder()).build());
         }
@@ -369,6 +425,7 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
         /**
          * API name: {@code settings}
          */
+        @Nonnull
         public final Builder settings(@Nullable IndexSettings value) {
             this.settings = value;
             return this;
@@ -377,6 +434,7 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
         /**
          * API name: {@code settings}
          */
+        @Nonnull
         public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
             return settings(fn.apply(new IndexSettings.Builder()).build());
         }
@@ -387,6 +445,7 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
          * API name: {@code timeout}
          * </p>
          */
+        @Nonnull
         public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
             return this;
@@ -398,6 +457,7 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
          * API name: {@code timeout}
          * </p>
          */
+        @Nonnull
         public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return timeout(fn.apply(new Time.Builder()).build());
         }
@@ -409,6 +469,7 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
          * API name: {@code wait_for_active_shards}
          * </p>
          */
+        @Nonnull
         public final Builder waitForActiveShards(@Nullable WaitForActiveShards value) {
             this.waitForActiveShards = value;
             return this;
@@ -421,6 +482,7 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
          * API name: {@code wait_for_active_shards}
          * </p>
          */
+        @Nonnull
         public final Builder waitForActiveShards(Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
             return waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
         }
@@ -430,6 +492,8 @@ public class CreateIndexRequest extends RequestBase implements PlainJsonSerializ
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CreateIndexRequest build() {
             _checkSingleUse();
 

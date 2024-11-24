@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.LengthTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class LengthTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<LengthTokenFilter.Builder, LengthTokenFilter> {
 
     @Nullable
     private final Integer max;
@@ -112,18 +118,56 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link LengthTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<LengthTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, LengthTokenFilter> {
         @Nullable
         private Integer max;
         @Nullable
         private Integer min;
 
+        public Builder() {}
+
+        private Builder(LengthTokenFilter o) {
+            super(o);
+            this.max = o.max;
+            this.min = o.min;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.max = o.max;
+            this.min = o.min;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code max}
          */
+        @Nonnull
         public final Builder max(@Nullable Integer value) {
             this.max = value;
             return this;
@@ -132,13 +176,9 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
         /**
          * API name: {@code min}
          */
+        @Nonnull
         public final Builder min(@Nullable Integer value) {
             this.min = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -147,6 +187,8 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public LengthTokenFilter build() {
             _checkSingleUse();
 

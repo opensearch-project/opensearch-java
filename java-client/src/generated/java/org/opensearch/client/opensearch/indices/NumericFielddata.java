@@ -47,14 +47,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.NumericFielddata
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class NumericFielddata implements PlainJsonSerializable {
+public class NumericFielddata implements PlainJsonSerializable, ToCopyableBuilder<NumericFielddata.Builder, NumericFielddata> {
 
     @Nonnull
     private final NumericFielddataFormat format;
@@ -94,15 +96,43 @@ public class NumericFielddata implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link NumericFielddata}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NumericFielddata> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NumericFielddata> {
         private NumericFielddataFormat format;
+
+        public Builder() {}
+
+        private Builder(NumericFielddata o) {
+            this.format = o.format;
+        }
+
+        private Builder(Builder o) {
+            this.format = o.format;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code format}
          */
+        @Nonnull
         public final Builder format(NumericFielddataFormat value) {
             this.format = value;
             return this;
@@ -113,6 +143,8 @@ public class NumericFielddata implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public NumericFielddata build() {
             _checkSingleUse();
 

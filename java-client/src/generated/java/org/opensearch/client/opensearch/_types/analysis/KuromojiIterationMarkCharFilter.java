@@ -39,19 +39,25 @@ package org.opensearch.client.opensearch._types.analysis;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.KuromojiIterationMarkCharFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class KuromojiIterationMarkCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
+public class KuromojiIterationMarkCharFilter extends CharFilterBase
+    implements
+        CharFilterDefinitionVariant,
+        ToCopyableBuilder<KuromojiIterationMarkCharFilter.Builder, KuromojiIterationMarkCharFilter> {
 
     private final boolean normalizeKana;
 
@@ -105,16 +111,56 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link KuromojiIterationMarkCharFilter}.
      */
-    public static class Builder extends CharFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<KuromojiIterationMarkCharFilter> {
+    public static class Builder extends CharFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, KuromojiIterationMarkCharFilter> {
         private Boolean normalizeKana;
         private Boolean normalizeKanji;
+
+        public Builder() {}
+
+        private Builder(KuromojiIterationMarkCharFilter o) {
+            super(o);
+            this.normalizeKana = o.normalizeKana;
+            this.normalizeKanji = o.normalizeKanji;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.normalizeKana = o.normalizeKana;
+            this.normalizeKanji = o.normalizeKanji;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code normalize_kana}
          */
+        @Nonnull
         public final Builder normalizeKana(boolean value) {
             this.normalizeKana = value;
             return this;
@@ -123,13 +169,9 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
         /**
          * Required - API name: {@code normalize_kanji}
          */
+        @Nonnull
         public final Builder normalizeKanji(boolean value) {
             this.normalizeKanji = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -138,6 +180,8 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public KuromojiIterationMarkCharFilter build() {
             _checkSingleUse();
 
