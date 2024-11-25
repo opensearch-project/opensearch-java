@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.KeepWordsTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class KeepWordsTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<KeepWordsTokenFilter.Builder, KeepWordsTokenFilter> {
 
     @Nonnull
     private final List<String> keepWords;
@@ -136,16 +141,55 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link KeepWordsTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<KeepWordsTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, KeepWordsTokenFilter> {
         @Nullable
         private List<String> keepWords;
         @Nullable
         private Boolean keepWordsCase;
         @Nullable
         private String keepWordsPath;
+
+        public Builder() {}
+
+        private Builder(KeepWordsTokenFilter o) {
+            super(o);
+            this.keepWords = _listCopy(o.keepWords);
+            this.keepWordsCase = o.keepWordsCase;
+            this.keepWordsPath = o.keepWordsPath;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.keepWords = _listCopy(o.keepWords);
+            this.keepWordsCase = o.keepWordsCase;
+            this.keepWordsPath = o.keepWordsPath;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code keep_words}
@@ -154,6 +198,7 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
          * Adds all elements of <code>list</code> to <code>keepWords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder keepWords(List<String> list) {
             this.keepWords = _listAddAll(this.keepWords, list);
             return this;
@@ -166,6 +211,7 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
          * Adds one or more values to <code>keepWords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder keepWords(String value, String... values) {
             this.keepWords = _listAdd(this.keepWords, value, values);
             return this;
@@ -174,6 +220,7 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
         /**
          * API name: {@code keep_words_case}
          */
+        @Nonnull
         public final Builder keepWordsCase(@Nullable Boolean value) {
             this.keepWordsCase = value;
             return this;
@@ -182,13 +229,9 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
         /**
          * API name: {@code keep_words_path}
          */
+        @Nonnull
         public final Builder keepWordsPath(@Nullable String value) {
             this.keepWordsPath = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -197,6 +240,8 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public KeepWordsTokenFilter build() {
             _checkSingleUse();
 

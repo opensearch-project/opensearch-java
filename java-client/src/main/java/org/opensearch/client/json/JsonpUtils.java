@@ -80,7 +80,6 @@ public class JsonpUtils {
                 ((JsonpSerializable) value).serialize(generator, this);
                 return;
             }
-
             throw new JsonException(
                 "Cannot find a serializer for type " + value.getClass().getName() + ". Consider using a full-featured JsonpMapper."
             );

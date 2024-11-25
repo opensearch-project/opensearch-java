@@ -20,8 +20,10 @@ import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.undeploy_model.Request
 
@@ -29,7 +31,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  * Undeploys a model.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class UndeployModelRequest extends RequestBase {
+public class UndeployModelRequest extends RequestBase implements ToCopyableBuilder<UndeployModelRequest.Builder, UndeployModelRequest> {
 
     @Nonnull
     private final String modelId;
@@ -54,15 +56,43 @@ public class UndeployModelRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link UndeployModelRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UndeployModelRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, UndeployModelRequest> {
         private String modelId;
+
+        public Builder() {}
+
+        private Builder(UndeployModelRequest o) {
+            this.modelId = o.modelId;
+        }
+
+        private Builder(Builder o) {
+            this.modelId = o.modelId;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code model_id}
          */
+        @Nonnull
         public final Builder modelId(String value) {
             this.modelId = value;
             return this;
@@ -73,6 +103,8 @@ public class UndeployModelRequest extends RequestBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public UndeployModelRequest build() {
             _checkSingleUse();
 

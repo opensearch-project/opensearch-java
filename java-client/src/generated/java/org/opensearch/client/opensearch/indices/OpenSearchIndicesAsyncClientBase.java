@@ -161,14 +161,14 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
     // ----- Endpoint: indices.get
 
     /**
-     * Returns information about one or more indices.
+     * Returns information about one or more indexes.
      */
     public CompletableFuture<GetIndexResponse> get(GetIndexRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequestAsync(request, GetIndexRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Returns information about one or more indices.
+     * Returns information about one or more indexes.
      *
      * @param fn a function that initializes a builder to create the {@link GetIndexRequest}
      */

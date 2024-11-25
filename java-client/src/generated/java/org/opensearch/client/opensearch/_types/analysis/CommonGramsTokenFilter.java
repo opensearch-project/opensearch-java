@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.CommonGramsTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class CommonGramsTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<CommonGramsTokenFilter.Builder, CommonGramsTokenFilter> {
 
     @Nonnull
     private final List<String> commonWords;
@@ -153,10 +158,23 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CommonGramsTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<CommonGramsTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, CommonGramsTokenFilter> {
         @Nullable
         private List<String> commonWords;
         @Nullable
@@ -166,6 +184,36 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
         @Nullable
         private Boolean queryMode;
 
+        public Builder() {}
+
+        private Builder(CommonGramsTokenFilter o) {
+            super(o);
+            this.commonWords = _listCopy(o.commonWords);
+            this.commonWordsPath = o.commonWordsPath;
+            this.ignoreCase = o.ignoreCase;
+            this.queryMode = o.queryMode;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.commonWords = _listCopy(o.commonWords);
+            this.commonWordsPath = o.commonWordsPath;
+            this.ignoreCase = o.ignoreCase;
+            this.queryMode = o.queryMode;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code common_words}
          *
@@ -173,6 +221,7 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
          * Adds all elements of <code>list</code> to <code>commonWords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder commonWords(List<String> list) {
             this.commonWords = _listAddAll(this.commonWords, list);
             return this;
@@ -185,6 +234,7 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
          * Adds one or more values to <code>commonWords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder commonWords(String value, String... values) {
             this.commonWords = _listAdd(this.commonWords, value, values);
             return this;
@@ -193,6 +243,7 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
         /**
          * API name: {@code common_words_path}
          */
+        @Nonnull
         public final Builder commonWordsPath(@Nullable String value) {
             this.commonWordsPath = value;
             return this;
@@ -201,6 +252,7 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
         /**
          * API name: {@code ignore_case}
          */
+        @Nonnull
         public final Builder ignoreCase(@Nullable Boolean value) {
             this.ignoreCase = value;
             return this;
@@ -209,13 +261,9 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
         /**
          * API name: {@code query_mode}
          */
+        @Nonnull
         public final Builder queryMode(@Nullable Boolean value) {
             this.queryMode = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -224,6 +272,8 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CommonGramsTokenFilter build() {
             _checkSingleUse();
 

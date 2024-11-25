@@ -47,13 +47,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.AggregateMetricDoubleProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class AggregateMetricDoubleProperty extends PropertyBase implements PropertyVariant {
+public class AggregateMetricDoubleProperty extends PropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<AggregateMetricDoubleProperty.Builder, AggregateMetricDoubleProperty> {
 
     @Nonnull
     private final String defaultMetric;
@@ -115,16 +120,56 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link AggregateMetricDoubleProperty}.
      */
-    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<AggregateMetricDoubleProperty> {
+    public static class Builder extends PropertyBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, AggregateMetricDoubleProperty> {
         private String defaultMetric;
         private List<String> metrics;
+
+        public Builder() {}
+
+        private Builder(AggregateMetricDoubleProperty o) {
+            super(o);
+            this.defaultMetric = o.defaultMetric;
+            this.metrics = _listCopy(o.metrics);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.defaultMetric = o.defaultMetric;
+            this.metrics = _listCopy(o.metrics);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code default_metric}
          */
+        @Nonnull
         public final Builder defaultMetric(String value) {
             this.defaultMetric = value;
             return this;
@@ -137,6 +182,7 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
          * Adds all elements of <code>list</code> to <code>metrics</code>.
          * </p>
          */
+        @Nonnull
         public final Builder metrics(List<String> list) {
             this.metrics = _listAddAll(this.metrics, list);
             return this;
@@ -149,13 +195,9 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
          * Adds one or more values to <code>metrics</code>.
          * </p>
          */
+        @Nonnull
         public final Builder metrics(String value, String... values) {
             this.metrics = _listAdd(this.metrics, value, values);
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -164,6 +206,8 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public AggregateMetricDoubleProperty build() {
             _checkSingleUse();
 

@@ -47,14 +47,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.create.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CreateIndexResponse implements PlainJsonSerializable {
+public class CreateIndexResponse implements PlainJsonSerializable, ToCopyableBuilder<CreateIndexResponse.Builder, CreateIndexResponse> {
 
     private final boolean acknowledged;
 
@@ -120,17 +122,49 @@ public class CreateIndexResponse implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CreateIndexResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateIndexResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CreateIndexResponse> {
         private Boolean acknowledged;
         private String index;
         private Boolean shardsAcknowledged;
 
+        public Builder() {}
+
+        private Builder(CreateIndexResponse o) {
+            this.acknowledged = o.acknowledged;
+            this.index = o.index;
+            this.shardsAcknowledged = o.shardsAcknowledged;
+        }
+
+        private Builder(Builder o) {
+            this.acknowledged = o.acknowledged;
+            this.index = o.index;
+            this.shardsAcknowledged = o.shardsAcknowledged;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - API name: {@code acknowledged}
          */
+        @Nonnull
         public final Builder acknowledged(boolean value) {
             this.acknowledged = value;
             return this;
@@ -139,6 +173,7 @@ public class CreateIndexResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code index}
          */
+        @Nonnull
         public final Builder index(String value) {
             this.index = value;
             return this;
@@ -147,6 +182,7 @@ public class CreateIndexResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code shards_acknowledged}
          */
+        @Nonnull
         public final Builder shardsAcknowledged(boolean value) {
             this.shardsAcknowledged = value;
             return this;
@@ -157,6 +193,8 @@ public class CreateIndexResponse implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CreateIndexResponse build() {
             _checkSingleUse();
 

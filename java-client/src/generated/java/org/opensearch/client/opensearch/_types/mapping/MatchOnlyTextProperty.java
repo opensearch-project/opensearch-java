@@ -51,14 +51,20 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.MatchOnlyTextProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class MatchOnlyTextProperty implements PropertyVariant, PlainJsonSerializable {
+public class MatchOnlyTextProperty
+    implements
+        PropertyVariant,
+        PlainJsonSerializable,
+        ToCopyableBuilder<MatchOnlyTextProperty.Builder, MatchOnlyTextProperty> {
 
     @Nonnull
     private final List<String> copyTo;
@@ -164,16 +170,47 @@ public class MatchOnlyTextProperty implements PropertyVariant, PlainJsonSerializ
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link MatchOnlyTextProperty}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MatchOnlyTextProperty> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, MatchOnlyTextProperty> {
         @Nullable
         private List<String> copyTo;
         @Nullable
         private Map<String, Property> fields;
         @Nullable
         private Map<String, String> meta;
+
+        public Builder() {}
+
+        private Builder(MatchOnlyTextProperty o) {
+            this.copyTo = _listCopy(o.copyTo);
+            this.fields = _mapCopy(o.fields);
+            this.meta = _mapCopy(o.meta);
+        }
+
+        private Builder(Builder o) {
+            this.copyTo = _listCopy(o.copyTo);
+            this.fields = _mapCopy(o.fields);
+            this.meta = _mapCopy(o.meta);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * API name: {@code copy_to}
@@ -182,6 +219,7 @@ public class MatchOnlyTextProperty implements PropertyVariant, PlainJsonSerializ
          * Adds all elements of <code>list</code> to <code>copyTo</code>.
          * </p>
          */
+        @Nonnull
         public final Builder copyTo(List<String> list) {
             this.copyTo = _listAddAll(this.copyTo, list);
             return this;
@@ -194,6 +232,7 @@ public class MatchOnlyTextProperty implements PropertyVariant, PlainJsonSerializ
          * Adds one or more values to <code>copyTo</code>.
          * </p>
          */
+        @Nonnull
         public final Builder copyTo(String value, String... values) {
             this.copyTo = _listAdd(this.copyTo, value, values);
             return this;
@@ -210,6 +249,7 @@ public class MatchOnlyTextProperty implements PropertyVariant, PlainJsonSerializ
          * Adds all elements of <code>map</code> to <code>fields</code>.
          * </p>
          */
+        @Nonnull
         public final Builder fields(Map<String, Property> map) {
             this.fields = _mapPutAll(this.fields, map);
             return this;
@@ -226,6 +266,7 @@ public class MatchOnlyTextProperty implements PropertyVariant, PlainJsonSerializ
          * Adds an entry to <code>fields</code>.
          * </p>
          */
+        @Nonnull
         public final Builder fields(String key, Property value) {
             this.fields = _mapPut(this.fields, key, value);
             return this;
@@ -242,6 +283,7 @@ public class MatchOnlyTextProperty implements PropertyVariant, PlainJsonSerializ
          * Adds a value to <code>fields</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder fields(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
             return fields(key, fn.apply(new Property.Builder()).build());
         }
@@ -256,6 +298,7 @@ public class MatchOnlyTextProperty implements PropertyVariant, PlainJsonSerializ
          * Adds all elements of <code>map</code> to <code>meta</code>.
          * </p>
          */
+        @Nonnull
         public final Builder meta(Map<String, String> map) {
             this.meta = _mapPutAll(this.meta, map);
             return this;
@@ -271,6 +314,7 @@ public class MatchOnlyTextProperty implements PropertyVariant, PlainJsonSerializ
          * Adds an entry to <code>meta</code>.
          * </p>
          */
+        @Nonnull
         public final Builder meta(String key, String value) {
             this.meta = _mapPut(this.meta, key, value);
             return this;
@@ -281,6 +325,8 @@ public class MatchOnlyTextProperty implements PropertyVariant, PlainJsonSerializ
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public MatchOnlyTextProperty build() {
             _checkSingleUse();
 

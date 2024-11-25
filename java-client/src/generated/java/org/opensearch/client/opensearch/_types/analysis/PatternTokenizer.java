@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.PatternTokenizer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PatternTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+public class PatternTokenizer extends TokenizerBase
+    implements
+        TokenizerDefinitionVariant,
+        ToCopyableBuilder<PatternTokenizer.Builder, PatternTokenizer> {
 
     @Nullable
     private final String flags;
@@ -129,10 +135,21 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PatternTokenizer}.
      */
-    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<PatternTokenizer> {
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PatternTokenizer> {
         @Nullable
         private String flags;
         @Nullable
@@ -140,9 +157,38 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
         @Nullable
         private String pattern;
 
+        public Builder() {}
+
+        private Builder(PatternTokenizer o) {
+            super(o);
+            this.flags = o.flags;
+            this.group = o.group;
+            this.pattern = o.pattern;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.flags = o.flags;
+            this.group = o.group;
+            this.pattern = o.pattern;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code flags}
          */
+        @Nonnull
         public final Builder flags(@Nullable String value) {
             this.flags = value;
             return this;
@@ -151,6 +197,7 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
         /**
          * API name: {@code group}
          */
+        @Nonnull
         public final Builder group(@Nullable Integer value) {
             this.group = value;
             return this;
@@ -159,13 +206,9 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
         /**
          * API name: {@code pattern}
          */
+        @Nonnull
         public final Builder pattern(@Nullable String value) {
             this.pattern = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -174,6 +217,8 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PatternTokenizer build() {
             _checkSingleUse();
 

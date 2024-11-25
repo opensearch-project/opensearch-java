@@ -50,13 +50,15 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.JoinProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class JoinProperty extends PropertyBase implements PropertyVariant {
+public class JoinProperty extends PropertyBase implements PropertyVariant, ToCopyableBuilder<JoinProperty.Builder, JoinProperty> {
 
     @Nullable
     private final Boolean eagerGlobalOrdinals;
@@ -127,18 +129,56 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link JoinProperty}.
      */
-    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<JoinProperty> {
+    public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, JoinProperty> {
         @Nullable
         private Boolean eagerGlobalOrdinals;
         @Nullable
         private Map<String, List<String>> relations;
 
+        public Builder() {}
+
+        private Builder(JoinProperty o) {
+            super(o);
+            this.eagerGlobalOrdinals = o.eagerGlobalOrdinals;
+            this.relations = _mapCopy(o.relations);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.eagerGlobalOrdinals = o.eagerGlobalOrdinals;
+            this.relations = _mapCopy(o.relations);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code eager_global_ordinals}
          */
+        @Nonnull
         public final Builder eagerGlobalOrdinals(@Nullable Boolean value) {
             this.eagerGlobalOrdinals = value;
             return this;
@@ -151,6 +191,7 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
          * Adds all elements of <code>map</code> to <code>relations</code>.
          * </p>
          */
+        @Nonnull
         public final Builder relations(Map<String, List<String>> map) {
             this.relations = _mapPutAll(this.relations, map);
             return this;
@@ -163,13 +204,9 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
          * Adds an entry to <code>relations</code>.
          * </p>
          */
+        @Nonnull
         public final Builder relations(String key, List<String> value) {
             this.relations = _mapPut(this.relations, key, value);
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -178,6 +215,8 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public JoinProperty build() {
             _checkSingleUse();
 

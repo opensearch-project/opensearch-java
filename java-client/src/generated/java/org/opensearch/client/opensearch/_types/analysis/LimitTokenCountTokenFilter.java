@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.LimitTokenCountTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class LimitTokenCountTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class LimitTokenCountTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<LimitTokenCountTokenFilter.Builder, LimitTokenCountTokenFilter> {
 
     @Nullable
     private final Boolean consumeAllTokens;
@@ -114,18 +120,58 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link LimitTokenCountTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<LimitTokenCountTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, LimitTokenCountTokenFilter> {
         @Nullable
         private Boolean consumeAllTokens;
         @Nullable
         private Integer maxTokenCount;
 
+        public Builder() {}
+
+        private Builder(LimitTokenCountTokenFilter o) {
+            super(o);
+            this.consumeAllTokens = o.consumeAllTokens;
+            this.maxTokenCount = o.maxTokenCount;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.consumeAllTokens = o.consumeAllTokens;
+            this.maxTokenCount = o.maxTokenCount;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code consume_all_tokens}
          */
+        @Nonnull
         public final Builder consumeAllTokens(@Nullable Boolean value) {
             this.consumeAllTokens = value;
             return this;
@@ -134,13 +180,9 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
         /**
          * API name: {@code max_token_count}
          */
+        @Nonnull
         public final Builder maxTokenCount(@Nullable Integer value) {
             this.maxTokenCount = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -149,6 +191,8 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public LimitTokenCountTokenFilter build() {
             _checkSingleUse();
 

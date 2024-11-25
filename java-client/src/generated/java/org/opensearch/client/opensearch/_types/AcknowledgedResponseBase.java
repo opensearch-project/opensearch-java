@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
@@ -88,18 +89,31 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         private Boolean acknowledged;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(AcknowledgedResponseBase o) {
+            this.acknowledged = o.acknowledged;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            this.acknowledged = o.acknowledged;
+        }
+
+        @Nonnull
+        protected abstract BuilderT self();
+
         /**
          * Required - For a successful response, this value is always true. On failure, an exception is returned instead.
          * <p>
          * API name: {@code acknowledged}
          * </p>
          */
+        @Nonnull
         public final BuilderT acknowledged(boolean value) {
             this.acknowledged = value;
             return self();
         }
 
-        protected abstract BuilderT self();
     }
 
     // ---------------------------------------------------------------------------------------------

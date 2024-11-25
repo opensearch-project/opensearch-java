@@ -196,6 +196,29 @@ public abstract class BaseNode implements PlainJsonSerializable {
         @Nullable
         private String transportAddress;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(BaseNode o) {
+            this.attributes = _mapCopy(o.attributes);
+            this.host = o.host;
+            this.ip = o.ip;
+            this.name = o.name;
+            this.roles = _listCopy(o.roles);
+            this.transportAddress = o.transportAddress;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            this.attributes = _mapCopy(o.attributes);
+            this.host = o.host;
+            this.ip = o.ip;
+            this.name = o.name;
+            this.roles = _listCopy(o.roles);
+            this.transportAddress = o.transportAddress;
+        }
+
+        @Nonnull
+        protected abstract BuilderT self();
+
         /**
          * API name: {@code attributes}
          *
@@ -203,6 +226,7 @@ public abstract class BaseNode implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>attributes</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT attributes(Map<String, String> map) {
             this.attributes = _mapPutAll(this.attributes, map);
             return self();
@@ -215,6 +239,7 @@ public abstract class BaseNode implements PlainJsonSerializable {
          * Adds an entry to <code>attributes</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT attributes(String key, String value) {
             this.attributes = _mapPut(this.attributes, key, value);
             return self();
@@ -223,6 +248,7 @@ public abstract class BaseNode implements PlainJsonSerializable {
         /**
          * API name: {@code host}
          */
+        @Nonnull
         public final BuilderT host(@Nullable String value) {
             this.host = value;
             return self();
@@ -231,6 +257,7 @@ public abstract class BaseNode implements PlainJsonSerializable {
         /**
          * API name: {@code ip}
          */
+        @Nonnull
         public final BuilderT ip(@Nullable String value) {
             this.ip = value;
             return self();
@@ -239,6 +266,7 @@ public abstract class BaseNode implements PlainJsonSerializable {
         /**
          * Required - API name: {@code name}
          */
+        @Nonnull
         public final BuilderT name(String value) {
             this.name = value;
             return self();
@@ -251,6 +279,7 @@ public abstract class BaseNode implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>roles</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT roles(List<NodeRole> list) {
             this.roles = _listAddAll(this.roles, list);
             return self();
@@ -263,6 +292,7 @@ public abstract class BaseNode implements PlainJsonSerializable {
          * Adds one or more values to <code>roles</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT roles(NodeRole value, NodeRole... values) {
             this.roles = _listAdd(this.roles, value, values);
             return self();
@@ -271,12 +301,12 @@ public abstract class BaseNode implements PlainJsonSerializable {
         /**
          * API name: {@code transport_address}
          */
+        @Nonnull
         public final BuilderT transportAddress(@Nullable String value) {
             this.transportAddress = value;
             return self();
         }
 
-        protected abstract BuilderT self();
     }
 
     // ---------------------------------------------------------------------------------------------

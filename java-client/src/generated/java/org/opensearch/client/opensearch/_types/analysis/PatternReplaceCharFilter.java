@@ -48,13 +48,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.PatternReplaceCharFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PatternReplaceCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
+public class PatternReplaceCharFilter extends CharFilterBase
+    implements
+        CharFilterDefinitionVariant,
+        ToCopyableBuilder<PatternReplaceCharFilter.Builder, PatternReplaceCharFilter> {
 
     @Nullable
     private final String flags;
@@ -129,19 +134,61 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PatternReplaceCharFilter}.
      */
-    public static class Builder extends CharFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<PatternReplaceCharFilter> {
+    public static class Builder extends CharFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, PatternReplaceCharFilter> {
         @Nullable
         private String flags;
         private String pattern;
         @Nullable
         private String replacement;
 
+        public Builder() {}
+
+        private Builder(PatternReplaceCharFilter o) {
+            super(o);
+            this.flags = o.flags;
+            this.pattern = o.pattern;
+            this.replacement = o.replacement;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.flags = o.flags;
+            this.pattern = o.pattern;
+            this.replacement = o.replacement;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code flags}
          */
+        @Nonnull
         public final Builder flags(@Nullable String value) {
             this.flags = value;
             return this;
@@ -150,6 +197,7 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
         /**
          * Required - API name: {@code pattern}
          */
+        @Nonnull
         public final Builder pattern(String value) {
             this.pattern = value;
             return this;
@@ -158,13 +206,9 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
         /**
          * API name: {@code replacement}
          */
+        @Nonnull
         public final Builder replacement(@Nullable String value) {
             this.replacement = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -173,6 +217,8 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PatternReplaceCharFilter build() {
             _checkSingleUse();
 

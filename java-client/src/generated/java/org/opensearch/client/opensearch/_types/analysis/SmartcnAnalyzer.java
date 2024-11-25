@@ -15,20 +15,27 @@ package org.opensearch.client.opensearch._types.analysis;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.SmartcnAnalyzer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SmartcnAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
+public class SmartcnAnalyzer
+    implements
+        AnalyzerVariant,
+        PlainJsonSerializable,
+        ToCopyableBuilder<SmartcnAnalyzer.Builder, SmartcnAnalyzer> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -62,16 +69,41 @@ public class SmartcnAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SmartcnAnalyzer}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SmartcnAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SmartcnAnalyzer> {
+
+        public Builder() {}
+
+        private Builder(SmartcnAnalyzer o) {}
+
+        private Builder(Builder o) {}
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Builds a {@link SmartcnAnalyzer}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SmartcnAnalyzer build() {
             _checkSingleUse();
 

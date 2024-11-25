@@ -127,6 +127,22 @@ public abstract class CorePropertyBase extends PropertyBase {
         @Nullable
         private Boolean store;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(CorePropertyBase o) {
+            super(o);
+            this.copyTo = _listCopy(o.copyTo);
+            this.similarity = o.similarity;
+            this.store = o.store;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            super(o);
+            this.copyTo = _listCopy(o.copyTo);
+            this.similarity = o.similarity;
+            this.store = o.store;
+        }
+
         /**
          * API name: {@code copy_to}
          *
@@ -134,6 +150,7 @@ public abstract class CorePropertyBase extends PropertyBase {
          * Adds all elements of <code>list</code> to <code>copyTo</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT copyTo(List<String> list) {
             this.copyTo = _listAddAll(this.copyTo, list);
             return self();
@@ -146,6 +163,7 @@ public abstract class CorePropertyBase extends PropertyBase {
          * Adds one or more values to <code>copyTo</code>.
          * </p>
          */
+        @Nonnull
         public final BuilderT copyTo(String value, String... values) {
             this.copyTo = _listAdd(this.copyTo, value, values);
             return self();
@@ -154,6 +172,7 @@ public abstract class CorePropertyBase extends PropertyBase {
         /**
          * API name: {@code similarity}
          */
+        @Nonnull
         public final BuilderT similarity(@Nullable String value) {
             this.similarity = value;
             return self();
@@ -162,6 +181,7 @@ public abstract class CorePropertyBase extends PropertyBase {
         /**
          * API name: {@code store}
          */
+        @Nonnull
         public final BuilderT store(@Nullable Boolean value) {
             this.store = value;
             return self();

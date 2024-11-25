@@ -48,14 +48,19 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.snapshot.cleanup_repository.CleanupRepositoryResults;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.cleanup_repository.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CleanupRepositoryResponse implements PlainJsonSerializable {
+public class CleanupRepositoryResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<CleanupRepositoryResponse.Builder, CleanupRepositoryResponse> {
 
     @Nonnull
     private final CleanupRepositoryResults results;
@@ -95,15 +100,43 @@ public class CleanupRepositoryResponse implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CleanupRepositoryResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CleanupRepositoryResponse> {
         private CleanupRepositoryResults results;
+
+        public Builder() {}
+
+        private Builder(CleanupRepositoryResponse o) {
+            this.results = o.results;
+        }
+
+        private Builder(Builder o) {
+            this.results = o.results;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code results}
          */
+        @Nonnull
         public final Builder results(CleanupRepositoryResults value) {
             this.results = value;
             return this;
@@ -112,6 +145,7 @@ public class CleanupRepositoryResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code results}
          */
+        @Nonnull
         public final Builder results(Function<CleanupRepositoryResults.Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
             return results(fn.apply(new CleanupRepositoryResults.Builder()).build());
         }
@@ -121,6 +155,8 @@ public class CleanupRepositoryResponse implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CleanupRepositoryResponse build() {
             _checkSingleUse();
 

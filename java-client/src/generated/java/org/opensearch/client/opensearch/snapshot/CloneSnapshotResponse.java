@@ -38,18 +38,23 @@ package org.opensearch.client.opensearch.snapshot;
 
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.clone.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CloneSnapshotResponse extends AcknowledgedResponseBase {
+public class CloneSnapshotResponse extends AcknowledgedResponseBase
+    implements
+        ToCopyableBuilder<CloneSnapshotResponse.Builder, CloneSnapshotResponse> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -63,12 +68,42 @@ public class CloneSnapshotResponse extends AcknowledgedResponseBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CloneSnapshotResponse}.
      */
-    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<CloneSnapshotResponse> {
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, CloneSnapshotResponse> {
+
+        public Builder() {}
+
+        private Builder(CloneSnapshotResponse o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -78,6 +113,8 @@ public class CloneSnapshotResponse extends AcknowledgedResponseBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CloneSnapshotResponse build() {
             _checkSingleUse();
 

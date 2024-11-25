@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch._types.mapping;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -46,14 +47,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.TextIndexPrefixes
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class TextIndexPrefixes implements PlainJsonSerializable {
+public class TextIndexPrefixes implements PlainJsonSerializable, ToCopyableBuilder<TextIndexPrefixes.Builder, TextIndexPrefixes> {
 
     private final int maxChars;
 
@@ -104,16 +107,46 @@ public class TextIndexPrefixes implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link TextIndexPrefixes}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TextIndexPrefixes> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TextIndexPrefixes> {
         private Integer maxChars;
         private Integer minChars;
+
+        public Builder() {}
+
+        private Builder(TextIndexPrefixes o) {
+            this.maxChars = o.maxChars;
+            this.minChars = o.minChars;
+        }
+
+        private Builder(Builder o) {
+            this.maxChars = o.maxChars;
+            this.minChars = o.minChars;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code max_chars}
          */
+        @Nonnull
         public final Builder maxChars(int value) {
             this.maxChars = value;
             return this;
@@ -122,6 +155,7 @@ public class TextIndexPrefixes implements PlainJsonSerializable {
         /**
          * Required - API name: {@code min_chars}
          */
+        @Nonnull
         public final Builder minChars(int value) {
             this.minChars = value;
             return this;
@@ -132,6 +166,8 @@ public class TextIndexPrefixes implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public TextIndexPrefixes build() {
             _checkSingleUse();
 

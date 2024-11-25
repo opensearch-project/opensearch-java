@@ -51,8 +51,10 @@ import org.opensearch.client.transport.endpoints.BooleanEndpoint;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.exists_index_template.Request
 
@@ -60,7 +62,9 @@ import org.opensearch.client.util.ObjectBuilderBase;
  * Returns information about whether a particular index template exists.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ExistsIndexTemplateRequest extends RequestBase {
+public class ExistsIndexTemplateRequest extends RequestBase
+    implements
+        ToCopyableBuilder<ExistsIndexTemplateRequest.Builder, ExistsIndexTemplateRequest> {
 
     @Nullable
     private final Time clusterManagerTimeout;
@@ -128,8 +132,8 @@ public class ExistsIndexTemplateRequest extends RequestBase {
     }
 
     /**
-     * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-     * returns an error.
+     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
+     * and returns an error.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -153,10 +157,21 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ExistsIndexTemplateRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsIndexTemplateRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ExistsIndexTemplateRequest> {
         @Nullable
         private Time clusterManagerTimeout;
         @Nullable
@@ -167,12 +182,37 @@ public class ExistsIndexTemplateRequest extends RequestBase {
         private Time masterTimeout;
         private String name;
 
+        public Builder() {}
+
+        private Builder(ExistsIndexTemplateRequest o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.flatSettings = o.flatSettings;
+            this.local = o.local;
+            this.masterTimeout = o.masterTimeout;
+            this.name = o.name;
+        }
+
+        private Builder(Builder o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.flatSettings = o.flatSettings;
+            this.local = o.local;
+            this.masterTimeout = o.masterTimeout;
+            this.name = o.name;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
@@ -184,6 +224,7 @@ public class ExistsIndexTemplateRequest extends RequestBase {
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
@@ -194,6 +235,7 @@ public class ExistsIndexTemplateRequest extends RequestBase {
          * API name: {@code flat_settings}
          * </p>
          */
+        @Nonnull
         public final Builder flatSettings(@Nullable Boolean value) {
             this.flatSettings = value;
             return this;
@@ -205,32 +247,35 @@ public class ExistsIndexTemplateRequest extends RequestBase {
          * API name: {@code local}
          * </p>
          */
+        @Nonnull
         public final Builder local(@Nullable Boolean value) {
             this.local = value;
             return this;
         }
 
         /**
-         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-         * returns an error.
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(@Nullable Time value) {
             this.masterTimeout = value;
             return this;
         }
 
         /**
-         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-         * returns an error.
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return masterTimeout(fn.apply(new Time.Builder()).build());
         }
@@ -241,6 +286,7 @@ public class ExistsIndexTemplateRequest extends RequestBase {
          * API name: {@code name}
          * </p>
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -251,6 +297,8 @@ public class ExistsIndexTemplateRequest extends RequestBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ExistsIndexTemplateRequest build() {
             _checkSingleUse();
 

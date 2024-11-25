@@ -48,13 +48,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.IcuTransformTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class IcuTransformTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<IcuTransformTokenFilter.Builder, IcuTransformTokenFilter> {
 
     @Nullable
     private final IcuTransformDirection dir;
@@ -112,17 +117,57 @@ public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFil
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IcuTransformTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<IcuTransformTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, IcuTransformTokenFilter> {
         @Nullable
         private IcuTransformDirection dir;
         private String id;
 
+        public Builder() {}
+
+        private Builder(IcuTransformTokenFilter o) {
+            super(o);
+            this.dir = o.dir;
+            this.id = o.id;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.dir = o.dir;
+            this.id = o.id;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code dir}
          */
+        @Nonnull
         public final Builder dir(@Nullable IcuTransformDirection value) {
             this.dir = value;
             return this;
@@ -131,13 +176,9 @@ public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFil
         /**
          * Required - API name: {@code id}
          */
+        @Nonnull
         public final Builder id(String value) {
             this.id = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -146,6 +187,8 @@ public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFil
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IcuTransformTokenFilter build() {
             _checkSingleUse();
 

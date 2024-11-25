@@ -50,14 +50,20 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.CustomNormalizer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CustomNormalizer implements NormalizerVariant, PlainJsonSerializable {
+public class CustomNormalizer
+    implements
+        NormalizerVariant,
+        PlainJsonSerializable,
+        ToCopyableBuilder<CustomNormalizer.Builder, CustomNormalizer> {
 
     @Nonnull
     private final List<String> charFilter;
@@ -133,14 +139,43 @@ public class CustomNormalizer implements NormalizerVariant, PlainJsonSerializabl
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CustomNormalizer}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CustomNormalizer> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CustomNormalizer> {
         @Nullable
         private List<String> charFilter;
         @Nullable
         private List<String> filter;
+
+        public Builder() {}
+
+        private Builder(CustomNormalizer o) {
+            this.charFilter = _listCopy(o.charFilter);
+            this.filter = _listCopy(o.filter);
+        }
+
+        private Builder(Builder o) {
+            this.charFilter = _listCopy(o.charFilter);
+            this.filter = _listCopy(o.filter);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * API name: {@code char_filter}
@@ -149,6 +184,7 @@ public class CustomNormalizer implements NormalizerVariant, PlainJsonSerializabl
          * Adds all elements of <code>list</code> to <code>charFilter</code>.
          * </p>
          */
+        @Nonnull
         public final Builder charFilter(List<String> list) {
             this.charFilter = _listAddAll(this.charFilter, list);
             return this;
@@ -161,6 +197,7 @@ public class CustomNormalizer implements NormalizerVariant, PlainJsonSerializabl
          * Adds one or more values to <code>charFilter</code>.
          * </p>
          */
+        @Nonnull
         public final Builder charFilter(String value, String... values) {
             this.charFilter = _listAdd(this.charFilter, value, values);
             return this;
@@ -173,6 +210,7 @@ public class CustomNormalizer implements NormalizerVariant, PlainJsonSerializabl
          * Adds all elements of <code>list</code> to <code>filter</code>.
          * </p>
          */
+        @Nonnull
         public final Builder filter(List<String> list) {
             this.filter = _listAddAll(this.filter, list);
             return this;
@@ -185,6 +223,7 @@ public class CustomNormalizer implements NormalizerVariant, PlainJsonSerializabl
          * Adds one or more values to <code>filter</code>.
          * </p>
          */
+        @Nonnull
         public final Builder filter(String value, String... values) {
             this.filter = _listAdd(this.filter, value, values);
             return this;
@@ -195,6 +234,8 @@ public class CustomNormalizer implements NormalizerVariant, PlainJsonSerializabl
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CustomNormalizer build() {
             _checkSingleUse();
 

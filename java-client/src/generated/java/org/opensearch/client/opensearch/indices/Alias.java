@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -48,14 +49,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.Alias
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class Alias implements PlainJsonSerializable {
+public class Alias implements PlainJsonSerializable, ToCopyableBuilder<Alias.Builder, Alias> {
 
     @Nullable
     private final Query filter;
@@ -107,7 +110,7 @@ public class Alias implements PlainJsonSerializable {
     }
 
     /**
-     * If <code>true</code>, the alias is hidden. All indices for the alias must have the same <code>is_hidden</code> value.
+     * If <code>true</code>, the alias is hidden. All indexes for the alias must have the same <code>is_hidden</code> value.
      * <p>
      * API name: {@code is_hidden}
      * </p>
@@ -188,10 +191,21 @@ public class Alias implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link Alias}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Alias> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Alias> {
         @Nullable
         private Query filter;
         @Nullable
@@ -205,9 +219,36 @@ public class Alias implements PlainJsonSerializable {
         @Nullable
         private String searchRouting;
 
+        public Builder() {}
+
+        private Builder(Alias o) {
+            this.filter = o.filter;
+            this.indexRouting = o.indexRouting;
+            this.isHidden = o.isHidden;
+            this.isWriteIndex = o.isWriteIndex;
+            this.routing = o.routing;
+            this.searchRouting = o.searchRouting;
+        }
+
+        private Builder(Builder o) {
+            this.filter = o.filter;
+            this.indexRouting = o.indexRouting;
+            this.isHidden = o.isHidden;
+            this.isWriteIndex = o.isWriteIndex;
+            this.routing = o.routing;
+            this.searchRouting = o.searchRouting;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code filter}
          */
+        @Nonnull
         public final Builder filter(@Nullable Query value) {
             this.filter = value;
             return this;
@@ -216,6 +257,7 @@ public class Alias implements PlainJsonSerializable {
         /**
          * API name: {@code filter}
          */
+        @Nonnull
         public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
             return filter(fn.apply(new Query.Builder()).build());
         }
@@ -223,17 +265,19 @@ public class Alias implements PlainJsonSerializable {
         /**
          * API name: {@code index_routing}
          */
+        @Nonnull
         public final Builder indexRouting(@Nullable String value) {
             this.indexRouting = value;
             return this;
         }
 
         /**
-         * If <code>true</code>, the alias is hidden. All indices for the alias must have the same <code>is_hidden</code> value.
+         * If <code>true</code>, the alias is hidden. All indexes for the alias must have the same <code>is_hidden</code> value.
          * <p>
          * API name: {@code is_hidden}
          * </p>
          */
+        @Nonnull
         public final Builder isHidden(@Nullable Boolean value) {
             this.isHidden = value;
             return this;
@@ -245,6 +289,7 @@ public class Alias implements PlainJsonSerializable {
          * API name: {@code is_write_index}
          * </p>
          */
+        @Nonnull
         public final Builder isWriteIndex(@Nullable Boolean value) {
             this.isWriteIndex = value;
             return this;
@@ -253,6 +298,7 @@ public class Alias implements PlainJsonSerializable {
         /**
          * API name: {@code routing}
          */
+        @Nonnull
         public final Builder routing(@Nullable String value) {
             this.routing = value;
             return this;
@@ -261,6 +307,7 @@ public class Alias implements PlainJsonSerializable {
         /**
          * API name: {@code search_routing}
          */
+        @Nonnull
         public final Builder searchRouting(@Nullable String value) {
             this.searchRouting = value;
             return this;
@@ -271,6 +318,8 @@ public class Alias implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public Alias build() {
             _checkSingleUse();
 

@@ -39,18 +39,24 @@ package org.opensearch.client.opensearch._types.analysis;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.HtmlStripCharFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
+public class HtmlStripCharFilter extends CharFilterBase
+    implements
+        CharFilterDefinitionVariant,
+        ToCopyableBuilder<HtmlStripCharFilter.Builder, HtmlStripCharFilter> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -77,12 +83,40 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDef
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link HtmlStripCharFilter}.
      */
-    public static class Builder extends CharFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<HtmlStripCharFilter> {
+    public static class Builder extends CharFilterBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, HtmlStripCharFilter> {
+
+        public Builder() {}
+
+        private Builder(HtmlStripCharFilter o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -92,6 +126,8 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDef
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public HtmlStripCharFilter build() {
             _checkSingleUse();
 

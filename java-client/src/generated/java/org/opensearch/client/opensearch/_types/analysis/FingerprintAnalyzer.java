@@ -50,14 +50,20 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.FingerprintAnalyzer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class FingerprintAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
+public class FingerprintAnalyzer
+    implements
+        AnalyzerVariant,
+        PlainJsonSerializable,
+        ToCopyableBuilder<FingerprintAnalyzer.Builder, FingerprintAnalyzer> {
 
     private final int maxOutputSize;
 
@@ -187,10 +193,21 @@ public class FingerprintAnalyzer implements AnalyzerVariant, PlainJsonSerializab
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link FingerprintAnalyzer}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FingerprintAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, FingerprintAnalyzer> {
         private Integer maxOutputSize;
         private Boolean preserveOriginal;
         private String separator;
@@ -201,9 +218,36 @@ public class FingerprintAnalyzer implements AnalyzerVariant, PlainJsonSerializab
         @Nullable
         private String version;
 
+        public Builder() {}
+
+        private Builder(FingerprintAnalyzer o) {
+            this.maxOutputSize = o.maxOutputSize;
+            this.preserveOriginal = o.preserveOriginal;
+            this.separator = o.separator;
+            this.stopwords = _listCopy(o.stopwords);
+            this.stopwordsPath = o.stopwordsPath;
+            this.version = o.version;
+        }
+
+        private Builder(Builder o) {
+            this.maxOutputSize = o.maxOutputSize;
+            this.preserveOriginal = o.preserveOriginal;
+            this.separator = o.separator;
+            this.stopwords = _listCopy(o.stopwords);
+            this.stopwordsPath = o.stopwordsPath;
+            this.version = o.version;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - API name: {@code max_output_size}
          */
+        @Nonnull
         public final Builder maxOutputSize(int value) {
             this.maxOutputSize = value;
             return this;
@@ -212,6 +256,7 @@ public class FingerprintAnalyzer implements AnalyzerVariant, PlainJsonSerializab
         /**
          * Required - API name: {@code preserve_original}
          */
+        @Nonnull
         public final Builder preserveOriginal(boolean value) {
             this.preserveOriginal = value;
             return this;
@@ -220,6 +265,7 @@ public class FingerprintAnalyzer implements AnalyzerVariant, PlainJsonSerializab
         /**
          * Required - API name: {@code separator}
          */
+        @Nonnull
         public final Builder separator(String value) {
             this.separator = value;
             return this;
@@ -232,6 +278,7 @@ public class FingerprintAnalyzer implements AnalyzerVariant, PlainJsonSerializab
          * Adds all elements of <code>list</code> to <code>stopwords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stopwords(List<String> list) {
             this.stopwords = _listAddAll(this.stopwords, list);
             return this;
@@ -244,6 +291,7 @@ public class FingerprintAnalyzer implements AnalyzerVariant, PlainJsonSerializab
          * Adds one or more values to <code>stopwords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder stopwords(String value, String... values) {
             this.stopwords = _listAdd(this.stopwords, value, values);
             return this;
@@ -252,6 +300,7 @@ public class FingerprintAnalyzer implements AnalyzerVariant, PlainJsonSerializab
         /**
          * API name: {@code stopwords_path}
          */
+        @Nonnull
         public final Builder stopwordsPath(@Nullable String value) {
             this.stopwordsPath = value;
             return this;
@@ -260,6 +309,7 @@ public class FingerprintAnalyzer implements AnalyzerVariant, PlainJsonSerializab
         /**
          * API name: {@code version}
          */
+        @Nonnull
         public final Builder version(@Nullable String value) {
             this.version = value;
             return this;
@@ -270,6 +320,8 @@ public class FingerprintAnalyzer implements AnalyzerVariant, PlainJsonSerializab
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public FingerprintAnalyzer build() {
             _checkSingleUse();
 

@@ -54,14 +54,16 @@ import org.opensearch.client.opensearch._types.BulkByScrollTaskStatusOrException
 import org.opensearch.client.opensearch._types.Retries;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: tasks.TaskResponse
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class TaskResponse implements PlainJsonSerializable {
+public class TaskResponse implements PlainJsonSerializable, ToCopyableBuilder<TaskResponse.Builder, TaskResponse> {
 
     private final int batches;
 
@@ -397,10 +399,21 @@ public class TaskResponse implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link TaskResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TaskResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TaskResponse> {
         private Integer batches;
         @Nullable
         private String canceled;
@@ -428,12 +441,65 @@ public class TaskResponse implements PlainJsonSerializable {
         private Long updated;
         private Long versionConflicts;
 
+        public Builder() {}
+
+        private Builder(TaskResponse o) {
+            this.batches = o.batches;
+            this.canceled = o.canceled;
+            this.created = o.created;
+            this.deleted = o.deleted;
+            this.failures = _listCopy(o.failures);
+            this.noops = o.noops;
+            this.requestsPerSecond = o.requestsPerSecond;
+            this.retries = o.retries;
+            this.sliceId = o.sliceId;
+            this.slices = _listCopy(o.slices);
+            this.throttled = o.throttled;
+            this.throttledMillis = o.throttledMillis;
+            this.throttledUntil = o.throttledUntil;
+            this.throttledUntilMillis = o.throttledUntilMillis;
+            this.timedOut = o.timedOut;
+            this.took = o.took;
+            this.total = o.total;
+            this.updated = o.updated;
+            this.versionConflicts = o.versionConflicts;
+        }
+
+        private Builder(Builder o) {
+            this.batches = o.batches;
+            this.canceled = o.canceled;
+            this.created = o.created;
+            this.deleted = o.deleted;
+            this.failures = _listCopy(o.failures);
+            this.noops = o.noops;
+            this.requestsPerSecond = o.requestsPerSecond;
+            this.retries = o.retries;
+            this.sliceId = o.sliceId;
+            this.slices = _listCopy(o.slices);
+            this.throttled = o.throttled;
+            this.throttledMillis = o.throttledMillis;
+            this.throttledUntil = o.throttledUntil;
+            this.throttledUntilMillis = o.throttledUntilMillis;
+            this.timedOut = o.timedOut;
+            this.took = o.took;
+            this.total = o.total;
+            this.updated = o.updated;
+            this.versionConflicts = o.versionConflicts;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - The number of scroll responses pulled back by the reindex operation.
          * <p>
          * API name: {@code batches}
          * </p>
          */
+        @Nonnull
         public final Builder batches(int value) {
             this.batches = value;
             return this;
@@ -442,6 +508,7 @@ public class TaskResponse implements PlainJsonSerializable {
         /**
          * API name: {@code canceled}
          */
+        @Nonnull
         public final Builder canceled(@Nullable String value) {
             this.canceled = value;
             return this;
@@ -453,6 +520,7 @@ public class TaskResponse implements PlainJsonSerializable {
          * API name: {@code created}
          * </p>
          */
+        @Nonnull
         public final Builder created(@Nullable Long value) {
             this.created = value;
             return this;
@@ -464,6 +532,7 @@ public class TaskResponse implements PlainJsonSerializable {
          * API name: {@code deleted}
          * </p>
          */
+        @Nonnull
         public final Builder deleted(long value) {
             this.deleted = value;
             return this;
@@ -476,6 +545,7 @@ public class TaskResponse implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>failures</code>.
          * </p>
          */
+        @Nonnull
         public final Builder failures(List<BulkByScrollFailure> list) {
             this.failures = _listAddAll(this.failures, list);
             return this;
@@ -488,6 +558,7 @@ public class TaskResponse implements PlainJsonSerializable {
          * Adds one or more values to <code>failures</code>.
          * </p>
          */
+        @Nonnull
         public final Builder failures(BulkByScrollFailure value, BulkByScrollFailure... values) {
             this.failures = _listAdd(this.failures, value, values);
             return this;
@@ -500,6 +571,7 @@ public class TaskResponse implements PlainJsonSerializable {
          * Adds a value to <code>failures</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder failures(Function<BulkByScrollFailure.Builder, ObjectBuilder<BulkByScrollFailure>> fn) {
             return failures(fn.apply(new BulkByScrollFailure.Builder()).build());
         }
@@ -510,6 +582,7 @@ public class TaskResponse implements PlainJsonSerializable {
          * API name: {@code noops}
          * </p>
          */
+        @Nonnull
         public final Builder noops(long value) {
             this.noops = value;
             return this;
@@ -521,6 +594,7 @@ public class TaskResponse implements PlainJsonSerializable {
          * API name: {@code requests_per_second}
          * </p>
          */
+        @Nonnull
         public final Builder requestsPerSecond(float value) {
             this.requestsPerSecond = value;
             return this;
@@ -529,6 +603,7 @@ public class TaskResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code retries}
          */
+        @Nonnull
         public final Builder retries(Retries value) {
             this.retries = value;
             return this;
@@ -537,6 +612,7 @@ public class TaskResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code retries}
          */
+        @Nonnull
         public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
             return retries(fn.apply(new Retries.Builder()).build());
         }
@@ -544,6 +620,7 @@ public class TaskResponse implements PlainJsonSerializable {
         /**
          * API name: {@code slice_id}
          */
+        @Nonnull
         public final Builder sliceId(@Nullable Integer value) {
             this.sliceId = value;
             return this;
@@ -556,6 +633,7 @@ public class TaskResponse implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>slices</code>.
          * </p>
          */
+        @Nonnull
         public final Builder slices(List<BulkByScrollTaskStatusOrException> list) {
             this.slices = _listAddAll(this.slices, list);
             return this;
@@ -568,6 +646,7 @@ public class TaskResponse implements PlainJsonSerializable {
          * Adds one or more values to <code>slices</code>.
          * </p>
          */
+        @Nonnull
         public final Builder slices(BulkByScrollTaskStatusOrException value, BulkByScrollTaskStatusOrException... values) {
             this.slices = _listAdd(this.slices, value, values);
             return this;
@@ -580,6 +659,7 @@ public class TaskResponse implements PlainJsonSerializable {
          * Adds a value to <code>slices</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder slices(
             Function<BulkByScrollTaskStatusOrException.Builder, ObjectBuilder<BulkByScrollTaskStatusOrException>> fn
         ) {
@@ -589,6 +669,7 @@ public class TaskResponse implements PlainJsonSerializable {
         /**
          * API name: {@code throttled}
          */
+        @Nonnull
         public final Builder throttled(@Nullable Time value) {
             this.throttled = value;
             return this;
@@ -597,6 +678,7 @@ public class TaskResponse implements PlainJsonSerializable {
         /**
          * API name: {@code throttled}
          */
+        @Nonnull
         public final Builder throttled(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return throttled(fn.apply(new Time.Builder()).build());
         }
@@ -604,6 +686,7 @@ public class TaskResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code throttled_millis}
          */
+        @Nonnull
         public final Builder throttledMillis(long value) {
             this.throttledMillis = value;
             return this;
@@ -612,6 +695,7 @@ public class TaskResponse implements PlainJsonSerializable {
         /**
          * API name: {@code throttled_until}
          */
+        @Nonnull
         public final Builder throttledUntil(@Nullable Time value) {
             this.throttledUntil = value;
             return this;
@@ -620,6 +704,7 @@ public class TaskResponse implements PlainJsonSerializable {
         /**
          * API name: {@code throttled_until}
          */
+        @Nonnull
         public final Builder throttledUntil(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return throttledUntil(fn.apply(new Time.Builder()).build());
         }
@@ -627,6 +712,7 @@ public class TaskResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code throttled_until_millis}
          */
+        @Nonnull
         public final Builder throttledUntilMillis(long value) {
             this.throttledUntilMillis = value;
             return this;
@@ -635,6 +721,7 @@ public class TaskResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code timed_out}
          */
+        @Nonnull
         public final Builder timedOut(boolean value) {
             this.timedOut = value;
             return this;
@@ -643,6 +730,7 @@ public class TaskResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code took}
          */
+        @Nonnull
         public final Builder took(long value) {
             this.took = value;
             return this;
@@ -654,6 +742,7 @@ public class TaskResponse implements PlainJsonSerializable {
          * API name: {@code total}
          * </p>
          */
+        @Nonnull
         public final Builder total(long value) {
             this.total = value;
             return this;
@@ -665,6 +754,7 @@ public class TaskResponse implements PlainJsonSerializable {
          * API name: {@code updated}
          * </p>
          */
+        @Nonnull
         public final Builder updated(@Nullable Long value) {
             this.updated = value;
             return this;
@@ -676,6 +766,7 @@ public class TaskResponse implements PlainJsonSerializable {
          * API name: {@code version_conflicts}
          * </p>
          */
+        @Nonnull
         public final Builder versionConflicts(long value) {
             this.versionConflicts = value;
             return this;
@@ -686,6 +777,8 @@ public class TaskResponse implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public TaskResponse build() {
             _checkSingleUse();
 

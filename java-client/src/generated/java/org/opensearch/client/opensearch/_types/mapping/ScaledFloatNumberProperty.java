@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.ScaledFloatNumberProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ScaledFloatNumberProperty extends NumberPropertyBase implements PropertyVariant {
+public class ScaledFloatNumberProperty extends NumberPropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<ScaledFloatNumberProperty.Builder, ScaledFloatNumberProperty> {
 
     @Nullable
     private final Double nullValue;
@@ -112,18 +118,58 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ScaledFloatNumberProperty}.
      */
-    public static class Builder extends NumberPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<ScaledFloatNumberProperty> {
+    public static class Builder extends NumberPropertyBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, ScaledFloatNumberProperty> {
         @Nullable
         private Double nullValue;
         @Nullable
         private Double scalingFactor;
 
+        public Builder() {}
+
+        private Builder(ScaledFloatNumberProperty o) {
+            super(o);
+            this.nullValue = o.nullValue;
+            this.scalingFactor = o.scalingFactor;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.nullValue = o.nullValue;
+            this.scalingFactor = o.scalingFactor;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code null_value}
          */
+        @Nonnull
         public final Builder nullValue(@Nullable Double value) {
             this.nullValue = value;
             return this;
@@ -132,13 +178,9 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
         /**
          * API name: {@code scaling_factor}
          */
+        @Nonnull
         public final Builder scalingFactor(@Nullable Double value) {
             this.scalingFactor = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -147,6 +189,8 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ScaledFloatNumberProperty build() {
             _checkSingleUse();
 

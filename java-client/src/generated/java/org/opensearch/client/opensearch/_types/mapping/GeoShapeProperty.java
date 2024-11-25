@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.GeoShapeProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class GeoShapeProperty extends DocValuesPropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<GeoShapeProperty.Builder, GeoShapeProperty> {
 
     @Nullable
     private final Boolean coerce;
@@ -180,10 +186,23 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GeoShapeProperty}.
      */
-    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoShapeProperty> {
+    public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, GeoShapeProperty> {
         @Nullable
         private Boolean coerce;
         @Nullable
@@ -197,9 +216,44 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
         @Nullable
         private GeoStrategy strategy;
 
+        public Builder() {}
+
+        private Builder(GeoShapeProperty o) {
+            super(o);
+            this.coerce = o.coerce;
+            this.distanceErrorPct = o.distanceErrorPct;
+            this.ignoreMalformed = o.ignoreMalformed;
+            this.ignoreZValue = o.ignoreZValue;
+            this.orientation = o.orientation;
+            this.strategy = o.strategy;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.coerce = o.coerce;
+            this.distanceErrorPct = o.distanceErrorPct;
+            this.ignoreMalformed = o.ignoreMalformed;
+            this.ignoreZValue = o.ignoreZValue;
+            this.orientation = o.orientation;
+            this.strategy = o.strategy;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code coerce}
          */
+        @Nonnull
         public final Builder coerce(@Nullable Boolean value) {
             this.coerce = value;
             return this;
@@ -208,6 +262,7 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
         /**
          * API name: {@code distance_error_pct}
          */
+        @Nonnull
         public final Builder distanceErrorPct(@Nullable Double value) {
             this.distanceErrorPct = value;
             return this;
@@ -216,6 +271,7 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
         /**
          * API name: {@code ignore_malformed}
          */
+        @Nonnull
         public final Builder ignoreMalformed(@Nullable Boolean value) {
             this.ignoreMalformed = value;
             return this;
@@ -224,6 +280,7 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
         /**
          * API name: {@code ignore_z_value}
          */
+        @Nonnull
         public final Builder ignoreZValue(@Nullable Boolean value) {
             this.ignoreZValue = value;
             return this;
@@ -232,6 +289,7 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
         /**
          * API name: {@code orientation}
          */
+        @Nonnull
         public final Builder orientation(@Nullable GeoOrientation value) {
             this.orientation = value;
             return this;
@@ -240,13 +298,9 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
         /**
          * API name: {@code strategy}
          */
+        @Nonnull
         public final Builder strategy(@Nullable GeoStrategy value) {
             this.strategy = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -255,6 +309,8 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GeoShapeProperty build() {
             _checkSingleUse();
 

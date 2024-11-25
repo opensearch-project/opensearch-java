@@ -29,8 +29,10 @@ import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.register_model.Request
 
@@ -39,7 +41,10 @@ import org.opensearch.client.util.ObjectBuilderBase;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RegisterModelRequest extends RequestBase implements PlainJsonSerializable {
+public class RegisterModelRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<RegisterModelRequest.Builder, RegisterModelRequest> {
 
     @Nullable
     private final String description;
@@ -157,10 +162,21 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
     }
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RegisterModelRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RegisterModelRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RegisterModelRequest> {
         @Nullable
         private String description;
         private String modelFormat;
@@ -169,12 +185,37 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
         private String name;
         private String version;
 
+        public Builder() {}
+
+        private Builder(RegisterModelRequest o) {
+            this.description = o.description;
+            this.modelFormat = o.modelFormat;
+            this.modelGroupId = o.modelGroupId;
+            this.name = o.name;
+            this.version = o.version;
+        }
+
+        private Builder(Builder o) {
+            this.description = o.description;
+            this.modelFormat = o.modelFormat;
+            this.modelGroupId = o.modelGroupId;
+            this.name = o.name;
+            this.version = o.version;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * The model description.
          * <p>
          * API name: {@code description}
          * </p>
          */
+        @Nonnull
         public final Builder description(@Nullable String value) {
             this.description = value;
             return this;
@@ -186,6 +227,7 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
          * API name: {@code model_format}
          * </p>
          */
+        @Nonnull
         public final Builder modelFormat(String value) {
             this.modelFormat = value;
             return this;
@@ -197,6 +239,7 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
          * API name: {@code model_group_id}
          * </p>
          */
+        @Nonnull
         public final Builder modelGroupId(@Nullable String value) {
             this.modelGroupId = value;
             return this;
@@ -208,6 +251,7 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
          * API name: {@code name}
          * </p>
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -219,6 +263,7 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
          * API name: {@code version}
          * </p>
          */
+        @Nonnull
         public final Builder version(String value) {
             this.version = value;
             return this;
@@ -229,6 +274,8 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RegisterModelRequest build() {
             _checkSingleUse();
 

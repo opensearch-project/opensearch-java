@@ -49,8 +49,10 @@ import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: tasks.cancel.Request
 
@@ -58,7 +60,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  * Cancels a task, if it can be cancelled through an API.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CancelRequest extends RequestBase {
+public class CancelRequest extends RequestBase implements ToCopyableBuilder<CancelRequest.Builder, CancelRequest> {
 
     @Nonnull
     private final List<String> actions;
@@ -146,10 +148,21 @@ public class CancelRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CancelRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CancelRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CancelRequest> {
         @Nullable
         private List<String> actions;
         @Nullable
@@ -161,6 +174,30 @@ public class CancelRequest extends RequestBase {
         @Nullable
         private Boolean waitForCompletion;
 
+        public Builder() {}
+
+        private Builder(CancelRequest o) {
+            this.actions = _listCopy(o.actions);
+            this.nodes = _listCopy(o.nodes);
+            this.parentTaskId = o.parentTaskId;
+            this.taskId = o.taskId;
+            this.waitForCompletion = o.waitForCompletion;
+        }
+
+        private Builder(Builder o) {
+            this.actions = _listCopy(o.actions);
+            this.nodes = _listCopy(o.nodes);
+            this.parentTaskId = o.parentTaskId;
+            this.taskId = o.taskId;
+            this.waitForCompletion = o.waitForCompletion;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Comma-separated list or wildcard expression of actions used to limit the request.
          * <p>
@@ -171,6 +208,7 @@ public class CancelRequest extends RequestBase {
          * Adds all elements of <code>list</code> to <code>actions</code>.
          * </p>
          */
+        @Nonnull
         public final Builder actions(List<String> list) {
             this.actions = _listAddAll(this.actions, list);
             return this;
@@ -186,6 +224,7 @@ public class CancelRequest extends RequestBase {
          * Adds one or more values to <code>actions</code>.
          * </p>
          */
+        @Nonnull
         public final Builder actions(String value, String... values) {
             this.actions = _listAdd(this.actions, value, values);
             return this;
@@ -201,6 +240,7 @@ public class CancelRequest extends RequestBase {
          * Adds all elements of <code>list</code> to <code>nodes</code>.
          * </p>
          */
+        @Nonnull
         public final Builder nodes(List<String> list) {
             this.nodes = _listAddAll(this.nodes, list);
             return this;
@@ -216,6 +256,7 @@ public class CancelRequest extends RequestBase {
          * Adds one or more values to <code>nodes</code>.
          * </p>
          */
+        @Nonnull
         public final Builder nodes(String value, String... values) {
             this.nodes = _listAdd(this.nodes, value, values);
             return this;
@@ -227,6 +268,7 @@ public class CancelRequest extends RequestBase {
          * API name: {@code parent_task_id}
          * </p>
          */
+        @Nonnull
         public final Builder parentTaskId(@Nullable String value) {
             this.parentTaskId = value;
             return this;
@@ -238,6 +280,7 @@ public class CancelRequest extends RequestBase {
          * API name: {@code task_id}
          * </p>
          */
+        @Nonnull
         public final Builder taskId(@Nullable String value) {
             this.taskId = value;
             return this;
@@ -249,6 +292,7 @@ public class CancelRequest extends RequestBase {
          * API name: {@code wait_for_completion}
          * </p>
          */
+        @Nonnull
         public final Builder waitForCompletion(@Nullable Boolean value) {
             this.waitForCompletion = value;
             return this;
@@ -259,6 +303,8 @@ public class CancelRequest extends RequestBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CancelRequest build() {
             _checkSingleUse();
 

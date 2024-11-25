@@ -47,14 +47,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.verify_repository.CompactNodeInfo
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CompactNodeInfo implements PlainJsonSerializable {
+public class CompactNodeInfo implements PlainJsonSerializable, ToCopyableBuilder<CompactNodeInfo.Builder, CompactNodeInfo> {
 
     @Nonnull
     private final String name;
@@ -94,15 +96,43 @@ public class CompactNodeInfo implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CompactNodeInfo}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompactNodeInfo> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CompactNodeInfo> {
         private String name;
+
+        public Builder() {}
+
+        private Builder(CompactNodeInfo o) {
+            this.name = o.name;
+        }
+
+        private Builder(Builder o) {
+            this.name = o.name;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code name}
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -113,6 +143,8 @@ public class CompactNodeInfo implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CompactNodeInfo build() {
             _checkSingleUse();
 

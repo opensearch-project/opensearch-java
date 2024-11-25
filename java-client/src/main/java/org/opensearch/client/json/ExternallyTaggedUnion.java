@@ -188,10 +188,17 @@ public class ExternallyTaggedUnion {
         JsonGenerator generator,
         JsonpMapper mapper
     ) {
-        for (Map.Entry<String, T> entry : map.entrySet()) {
-            T value = entry.getValue();
-            generator.writeKey(value._kind().jsonValue() + "#" + entry.getKey());
-            value.serialize(generator, mapper);
+        if (mapper.attribute(JsonpMapperAttributes.SERIALIZE_TYPED_KEYS, true)) {
+            for (Map.Entry<String, T> entry : map.entrySet()) {
+                T value = entry.getValue();
+                generator.writeKey(value._kind().jsonValue() + "#" + entry.getKey());
+                value.serialize(generator, mapper);
+            }
+        } else {
+            for (Map.Entry<String, T> entry : map.entrySet()) {
+                generator.writeKey(entry.getKey());
+                entry.getValue().serialize(generator, mapper);
+            }
         }
     }
 }

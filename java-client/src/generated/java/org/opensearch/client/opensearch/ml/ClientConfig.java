@@ -16,6 +16,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -23,14 +24,16 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.ClientConfig
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ClientConfig implements PlainJsonSerializable {
+public class ClientConfig implements PlainJsonSerializable, ToCopyableBuilder<ClientConfig.Builder, ClientConfig> {
 
     @Nullable
     private final Integer connectionTimeout;
@@ -174,10 +177,21 @@ public class ClientConfig implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ClientConfig}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClientConfig> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ClientConfig> {
         @Nullable
         private Integer connectionTimeout;
         @Nullable
@@ -193,9 +207,38 @@ public class ClientConfig implements PlainJsonSerializable {
         @Nullable
         private Integer retryTimeoutSeconds;
 
+        public Builder() {}
+
+        private Builder(ClientConfig o) {
+            this.connectionTimeout = o.connectionTimeout;
+            this.maxConnection = o.maxConnection;
+            this.maxRetryTimes = o.maxRetryTimes;
+            this.readTimeout = o.readTimeout;
+            this.retryBackoffMillis = o.retryBackoffMillis;
+            this.retryBackoffPolicy = o.retryBackoffPolicy;
+            this.retryTimeoutSeconds = o.retryTimeoutSeconds;
+        }
+
+        private Builder(Builder o) {
+            this.connectionTimeout = o.connectionTimeout;
+            this.maxConnection = o.maxConnection;
+            this.maxRetryTimes = o.maxRetryTimes;
+            this.readTimeout = o.readTimeout;
+            this.retryBackoffMillis = o.retryBackoffMillis;
+            this.retryBackoffPolicy = o.retryBackoffPolicy;
+            this.retryTimeoutSeconds = o.retryTimeoutSeconds;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code connection_timeout}
          */
+        @Nonnull
         public final Builder connectionTimeout(@Nullable Integer value) {
             this.connectionTimeout = value;
             return this;
@@ -204,6 +247,7 @@ public class ClientConfig implements PlainJsonSerializable {
         /**
          * API name: {@code max_connection}
          */
+        @Nonnull
         public final Builder maxConnection(@Nullable Integer value) {
             this.maxConnection = value;
             return this;
@@ -212,6 +256,7 @@ public class ClientConfig implements PlainJsonSerializable {
         /**
          * API name: {@code max_retry_times}
          */
+        @Nonnull
         public final Builder maxRetryTimes(@Nullable Integer value) {
             this.maxRetryTimes = value;
             return this;
@@ -220,6 +265,7 @@ public class ClientConfig implements PlainJsonSerializable {
         /**
          * API name: {@code read_timeout}
          */
+        @Nonnull
         public final Builder readTimeout(@Nullable Integer value) {
             this.readTimeout = value;
             return this;
@@ -228,6 +274,7 @@ public class ClientConfig implements PlainJsonSerializable {
         /**
          * API name: {@code retry_backoff_millis}
          */
+        @Nonnull
         public final Builder retryBackoffMillis(@Nullable Integer value) {
             this.retryBackoffMillis = value;
             return this;
@@ -236,6 +283,7 @@ public class ClientConfig implements PlainJsonSerializable {
         /**
          * API name: {@code retry_backoff_policy}
          */
+        @Nonnull
         public final Builder retryBackoffPolicy(@Nullable String value) {
             this.retryBackoffPolicy = value;
             return this;
@@ -244,6 +292,7 @@ public class ClientConfig implements PlainJsonSerializable {
         /**
          * API name: {@code retry_timeout_seconds}
          */
+        @Nonnull
         public final Builder retryTimeoutSeconds(@Nullable Integer value) {
             this.retryTimeoutSeconds = value;
             return this;
@@ -254,6 +303,8 @@ public class ClientConfig implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ClientConfig build() {
             _checkSingleUse();
 

@@ -46,13 +46,15 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.StoredScriptId
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class StoredScriptId extends ScriptBase {
+public class StoredScriptId extends ScriptBase implements ToCopyableBuilder<StoredScriptId.Builder, StoredScriptId> {
 
     @Nonnull
     private final String id;
@@ -84,22 +86,53 @@ public class StoredScriptId extends ScriptBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link StoredScriptId}.
      */
-    public static class Builder extends ScriptBase.AbstractBuilder<Builder> implements ObjectBuilder<StoredScriptId> {
+    public static class Builder extends ScriptBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, StoredScriptId> {
         private String id;
+
+        public Builder() {}
+
+        private Builder(StoredScriptId o) {
+            super(o);
+            this.id = o.id;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.id = o.id;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code id}
          */
+        @Nonnull
         public final Builder id(String value) {
             this.id = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -108,6 +141,8 @@ public class StoredScriptId extends ScriptBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public StoredScriptId build() {
             _checkSingleUse();
 

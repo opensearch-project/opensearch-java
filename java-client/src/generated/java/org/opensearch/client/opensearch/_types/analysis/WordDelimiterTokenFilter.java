@@ -49,13 +49,18 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.WordDelimiterTokenFilter
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+public class WordDelimiterTokenFilter extends TokenFilterBase
+    implements
+        TokenFilterDefinitionVariant,
+        ToCopyableBuilder<WordDelimiterTokenFilter.Builder, WordDelimiterTokenFilter> {
 
     @Nullable
     private final Boolean catenateAll;
@@ -310,10 +315,23 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link WordDelimiterTokenFilter}.
      */
-    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder> implements ObjectBuilder<WordDelimiterTokenFilter> {
+    public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, WordDelimiterTokenFilter> {
         @Nullable
         private Boolean catenateAll;
         @Nullable
@@ -341,9 +359,58 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
         @Nullable
         private String typeTablePath;
 
+        public Builder() {}
+
+        private Builder(WordDelimiterTokenFilter o) {
+            super(o);
+            this.catenateAll = o.catenateAll;
+            this.catenateNumbers = o.catenateNumbers;
+            this.catenateWords = o.catenateWords;
+            this.generateNumberParts = o.generateNumberParts;
+            this.generateWordParts = o.generateWordParts;
+            this.preserveOriginal = o.preserveOriginal;
+            this.protectedWords = _listCopy(o.protectedWords);
+            this.protectedWordsPath = o.protectedWordsPath;
+            this.splitOnCaseChange = o.splitOnCaseChange;
+            this.splitOnNumerics = o.splitOnNumerics;
+            this.stemEnglishPossessive = o.stemEnglishPossessive;
+            this.typeTable = _listCopy(o.typeTable);
+            this.typeTablePath = o.typeTablePath;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.catenateAll = o.catenateAll;
+            this.catenateNumbers = o.catenateNumbers;
+            this.catenateWords = o.catenateWords;
+            this.generateNumberParts = o.generateNumberParts;
+            this.generateWordParts = o.generateWordParts;
+            this.preserveOriginal = o.preserveOriginal;
+            this.protectedWords = _listCopy(o.protectedWords);
+            this.protectedWordsPath = o.protectedWordsPath;
+            this.splitOnCaseChange = o.splitOnCaseChange;
+            this.splitOnNumerics = o.splitOnNumerics;
+            this.stemEnglishPossessive = o.stemEnglishPossessive;
+            this.typeTable = _listCopy(o.typeTable);
+            this.typeTablePath = o.typeTablePath;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code catenate_all}
          */
+        @Nonnull
         public final Builder catenateAll(@Nullable Boolean value) {
             this.catenateAll = value;
             return this;
@@ -352,6 +419,7 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
         /**
          * API name: {@code catenate_numbers}
          */
+        @Nonnull
         public final Builder catenateNumbers(@Nullable Boolean value) {
             this.catenateNumbers = value;
             return this;
@@ -360,6 +428,7 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
         /**
          * API name: {@code catenate_words}
          */
+        @Nonnull
         public final Builder catenateWords(@Nullable Boolean value) {
             this.catenateWords = value;
             return this;
@@ -368,6 +437,7 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
         /**
          * API name: {@code generate_number_parts}
          */
+        @Nonnull
         public final Builder generateNumberParts(@Nullable Boolean value) {
             this.generateNumberParts = value;
             return this;
@@ -376,6 +446,7 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
         /**
          * API name: {@code generate_word_parts}
          */
+        @Nonnull
         public final Builder generateWordParts(@Nullable Boolean value) {
             this.generateWordParts = value;
             return this;
@@ -384,6 +455,7 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
         /**
          * API name: {@code preserve_original}
          */
+        @Nonnull
         public final Builder preserveOriginal(@Nullable Boolean value) {
             this.preserveOriginal = value;
             return this;
@@ -396,6 +468,7 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
          * Adds all elements of <code>list</code> to <code>protectedWords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder protectedWords(List<String> list) {
             this.protectedWords = _listAddAll(this.protectedWords, list);
             return this;
@@ -408,6 +481,7 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
          * Adds one or more values to <code>protectedWords</code>.
          * </p>
          */
+        @Nonnull
         public final Builder protectedWords(String value, String... values) {
             this.protectedWords = _listAdd(this.protectedWords, value, values);
             return this;
@@ -416,6 +490,7 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
         /**
          * API name: {@code protected_words_path}
          */
+        @Nonnull
         public final Builder protectedWordsPath(@Nullable String value) {
             this.protectedWordsPath = value;
             return this;
@@ -424,6 +499,7 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
         /**
          * API name: {@code split_on_case_change}
          */
+        @Nonnull
         public final Builder splitOnCaseChange(@Nullable Boolean value) {
             this.splitOnCaseChange = value;
             return this;
@@ -432,6 +508,7 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
         /**
          * API name: {@code split_on_numerics}
          */
+        @Nonnull
         public final Builder splitOnNumerics(@Nullable Boolean value) {
             this.splitOnNumerics = value;
             return this;
@@ -440,6 +517,7 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
         /**
          * API name: {@code stem_english_possessive}
          */
+        @Nonnull
         public final Builder stemEnglishPossessive(@Nullable Boolean value) {
             this.stemEnglishPossessive = value;
             return this;
@@ -452,6 +530,7 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
          * Adds all elements of <code>list</code> to <code>typeTable</code>.
          * </p>
          */
+        @Nonnull
         public final Builder typeTable(List<String> list) {
             this.typeTable = _listAddAll(this.typeTable, list);
             return this;
@@ -464,6 +543,7 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
          * Adds one or more values to <code>typeTable</code>.
          * </p>
          */
+        @Nonnull
         public final Builder typeTable(String value, String... values) {
             this.typeTable = _listAdd(this.typeTable, value, values);
             return this;
@@ -472,13 +552,9 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
         /**
          * API name: {@code type_table_path}
          */
+        @Nonnull
         public final Builder typeTablePath(@Nullable String value) {
             this.typeTablePath = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -487,6 +563,8 @@ public class WordDelimiterTokenFilter extends TokenFilterBase implements TokenFi
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public WordDelimiterTokenFilter build() {
             _checkSingleUse();
 

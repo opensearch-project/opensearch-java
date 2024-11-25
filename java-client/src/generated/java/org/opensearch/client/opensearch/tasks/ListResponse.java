@@ -38,17 +38,20 @@ package org.opensearch.client.opensearch.tasks;
 
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: tasks.list.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ListResponse extends TaskListResponseBase {
+public class ListResponse extends TaskListResponseBase implements ToCopyableBuilder<ListResponse.Builder, ListResponse> {
 
     // ---------------------------------------------------------------------------------------------
 
@@ -62,12 +65,40 @@ public class ListResponse extends TaskListResponseBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ListResponse}.
      */
-    public static class Builder extends TaskListResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<ListResponse> {
+    public static class Builder extends TaskListResponseBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ListResponse> {
+
+        public Builder() {}
+
+        private Builder(ListResponse o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -77,6 +108,8 @@ public class ListResponse extends TaskListResponseBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ListResponse build() {
             _checkSingleUse();
 

@@ -39,6 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 public class ObjectBuilderBase {
     private boolean _used = false;
@@ -69,8 +70,16 @@ public class ObjectBuilderBase {
             return list;
         } else {
             // Adding to a list we don't own: make a defensive copy, also ensuring it is mutable.
-            return new InternalList<>(list);
+            return _listCopy(list);
         }
+    }
+
+    /**
+     * Make a mutable copy of a list if it is not {@code null}.
+     */
+    @Nullable
+    protected static <T> List<T> _listCopy(@Nullable List<T> list) {
+        return list == null ? null : new InternalList<>(list);
     }
 
     /** Add a value to a (possibly {@code null}) list */
@@ -116,8 +125,16 @@ public class ObjectBuilderBase {
             return map;
         } else {
             // Adding to a map we don't own: make a defensive copy, also ensuring it is mutable.
-            return new InternalMap<>(map);
+            return _mapCopy(map);
         }
+    }
+
+    /**
+     * Make a mutable copy of a map if it is not {@code null}.
+     */
+    @Nullable
+    protected static <K, V> Map<K, V> _mapCopy(@Nullable Map<K, V> map) {
+        return map == null ? null : new InternalMap<>(map);
     }
 
     /** Add a value to a (possibly {@code null}) map */

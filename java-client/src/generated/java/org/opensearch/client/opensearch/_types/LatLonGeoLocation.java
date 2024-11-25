@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch._types;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -46,14 +47,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.LatLonGeoLocation
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class LatLonGeoLocation implements PlainJsonSerializable {
+public class LatLonGeoLocation implements PlainJsonSerializable, ToCopyableBuilder<LatLonGeoLocation.Builder, LatLonGeoLocation> {
 
     private final double lat;
 
@@ -110,12 +113,41 @@ public class LatLonGeoLocation implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link LatLonGeoLocation}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LatLonGeoLocation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, LatLonGeoLocation> {
         private Double lat;
         private Double lon;
+
+        public Builder() {}
+
+        private Builder(LatLonGeoLocation o) {
+            this.lat = o.lat;
+            this.lon = o.lon;
+        }
+
+        private Builder(Builder o) {
+            this.lat = o.lat;
+            this.lon = o.lon;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - Latitude
@@ -123,6 +155,7 @@ public class LatLonGeoLocation implements PlainJsonSerializable {
          * API name: {@code lat}
          * </p>
          */
+        @Nonnull
         public final Builder lat(double value) {
             this.lat = value;
             return this;
@@ -134,6 +167,7 @@ public class LatLonGeoLocation implements PlainJsonSerializable {
          * API name: {@code lon}
          * </p>
          */
+        @Nonnull
         public final Builder lon(double value) {
             this.lon = value;
             return this;
@@ -144,6 +178,8 @@ public class LatLonGeoLocation implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public LatLonGeoLocation build() {
             _checkSingleUse();
 

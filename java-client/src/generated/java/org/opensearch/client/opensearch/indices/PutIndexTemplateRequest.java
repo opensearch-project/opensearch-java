@@ -59,8 +59,10 @@ import org.opensearch.client.opensearch.indices.put_index_template.IndexTemplate
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.put_index_template.Request
 
@@ -69,7 +71,10 @@ import org.opensearch.client.util.ObjectBuilderBase;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSerializable {
+public class PutIndexTemplateRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<PutIndexTemplateRequest.Builder, PutIndexTemplateRequest> {
 
     @Nullable
     private final String cause;
@@ -191,7 +196,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
     }
 
     /**
-     * Operation timeout for connection to master node.
+     * Operation timeout for connection to cluster-manager node.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -311,10 +316,21 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
     }
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PutIndexTemplateRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutIndexTemplateRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PutIndexTemplateRequest> {
         @Nullable
         private String cause;
         @Nullable
@@ -339,12 +355,51 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
         @Nullable
         private Long version;
 
+        public Builder() {}
+
+        private Builder(PutIndexTemplateRequest o) {
+            this.cause = o.cause;
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.composedOf = _listCopy(o.composedOf);
+            this.create = o.create;
+            this.dataStream = o.dataStream;
+            this.indexPatterns = _listCopy(o.indexPatterns);
+            this.masterTimeout = o.masterTimeout;
+            this.meta = _mapCopy(o.meta);
+            this.name = o.name;
+            this.priority = o.priority;
+            this.template = o.template;
+            this.version = o.version;
+        }
+
+        private Builder(Builder o) {
+            this.cause = o.cause;
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.composedOf = _listCopy(o.composedOf);
+            this.create = o.create;
+            this.dataStream = o.dataStream;
+            this.indexPatterns = _listCopy(o.indexPatterns);
+            this.masterTimeout = o.masterTimeout;
+            this.meta = _mapCopy(o.meta);
+            this.name = o.name;
+            this.priority = o.priority;
+            this.template = o.template;
+            this.version = o.version;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * User defined reason for creating/updating the index template.
          * <p>
          * API name: {@code cause}
          * </p>
          */
+        @Nonnull
         public final Builder cause(@Nullable String value) {
             this.cause = value;
             return this;
@@ -356,6 +411,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
@@ -367,6 +423,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
@@ -382,6 +439,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
          * Adds all elements of <code>list</code> to <code>composedOf</code>.
          * </p>
          */
+        @Nonnull
         public final Builder composedOf(List<String> list) {
             this.composedOf = _listAddAll(this.composedOf, list);
             return this;
@@ -398,6 +456,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
          * Adds one or more values to <code>composedOf</code>.
          * </p>
          */
+        @Nonnull
         public final Builder composedOf(String value, String... values) {
             this.composedOf = _listAdd(this.composedOf, value, values);
             return this;
@@ -409,6 +468,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
          * API name: {@code create}
          * </p>
          */
+        @Nonnull
         public final Builder create(@Nullable Boolean value) {
             this.create = value;
             return this;
@@ -417,6 +477,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
         /**
          * API name: {@code data_stream}
          */
+        @Nonnull
         public final Builder dataStream(@Nullable IndexTemplateDataStreamConfiguration value) {
             this.dataStream = value;
             return this;
@@ -425,6 +486,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
         /**
          * API name: {@code data_stream}
          */
+        @Nonnull
         public final Builder dataStream(
             Function<IndexTemplateDataStreamConfiguration.Builder, ObjectBuilder<IndexTemplateDataStreamConfiguration>> fn
         ) {
@@ -438,6 +500,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
          * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
          * </p>
          */
+        @Nonnull
         public final Builder indexPatterns(List<String> list) {
             this.indexPatterns = _listAddAll(this.indexPatterns, list);
             return this;
@@ -450,30 +513,33 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
          * Adds one or more values to <code>indexPatterns</code>.
          * </p>
          */
+        @Nonnull
         public final Builder indexPatterns(String value, String... values) {
             this.indexPatterns = _listAdd(this.indexPatterns, value, values);
             return this;
         }
 
         /**
-         * Operation timeout for connection to master node.
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(@Nullable Time value) {
             this.masterTimeout = value;
             return this;
         }
 
         /**
-         * Operation timeout for connection to master node.
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return masterTimeout(fn.apply(new Time.Builder()).build());
         }
@@ -485,6 +551,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
          * Adds all elements of <code>map</code> to <code>meta</code>.
          * </p>
          */
+        @Nonnull
         public final Builder meta(Map<String, JsonData> map) {
             this.meta = _mapPutAll(this.meta, map);
             return this;
@@ -497,6 +564,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
          * Adds an entry to <code>meta</code>.
          * </p>
          */
+        @Nonnull
         public final Builder meta(String key, JsonData value) {
             this.meta = _mapPut(this.meta, key, value);
             return this;
@@ -508,6 +576,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
          * API name: {@code name}
          * </p>
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -521,6 +590,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
          * API name: {@code priority}
          * </p>
          */
+        @Nonnull
         public final Builder priority(@Nullable Integer value) {
             this.priority = value;
             return this;
@@ -529,6 +599,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
         /**
          * API name: {@code template}
          */
+        @Nonnull
         public final Builder template(@Nullable IndexTemplateMapping value) {
             this.template = value;
             return this;
@@ -537,6 +608,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
         /**
          * API name: {@code template}
          */
+        @Nonnull
         public final Builder template(Function<IndexTemplateMapping.Builder, ObjectBuilder<IndexTemplateMapping>> fn) {
             return template(fn.apply(new IndexTemplateMapping.Builder()).build());
         }
@@ -544,6 +616,7 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
         /**
          * API name: {@code version}
          */
+        @Nonnull
         public final Builder version(@Nullable Long value) {
             this.version = value;
             return this;
@@ -554,6 +627,8 @@ public class PutIndexTemplateRequest extends RequestBase implements PlainJsonSer
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PutIndexTemplateRequest build() {
             _checkSingleUse();
 

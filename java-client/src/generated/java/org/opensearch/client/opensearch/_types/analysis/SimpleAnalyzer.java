@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -47,14 +48,16 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.SimpleAnalyzer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SimpleAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
+public class SimpleAnalyzer implements AnalyzerVariant, PlainJsonSerializable, ToCopyableBuilder<SimpleAnalyzer.Builder, SimpleAnalyzer> {
 
     @Nullable
     private final String version;
@@ -105,16 +108,44 @@ public class SimpleAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SimpleAnalyzer}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimpleAnalyzer> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SimpleAnalyzer> {
         @Nullable
         private String version;
+
+        public Builder() {}
+
+        private Builder(SimpleAnalyzer o) {
+            this.version = o.version;
+        }
+
+        private Builder(Builder o) {
+            this.version = o.version;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * API name: {@code version}
          */
+        @Nonnull
         public final Builder version(@Nullable String value) {
             this.version = value;
             return this;
@@ -125,6 +156,8 @@ public class SimpleAnalyzer implements AnalyzerVariant, PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SimpleAnalyzer build() {
             _checkSingleUse();
 

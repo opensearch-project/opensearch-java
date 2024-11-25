@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch._types.mapping;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -46,14 +47,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.RoutingField
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RoutingField implements PlainJsonSerializable {
+public class RoutingField implements PlainJsonSerializable, ToCopyableBuilder<RoutingField.Builder, RoutingField> {
 
     private final boolean required;
 
@@ -91,15 +94,43 @@ public class RoutingField implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RoutingField}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoutingField> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RoutingField> {
         private Boolean required;
+
+        public Builder() {}
+
+        private Builder(RoutingField o) {
+            this.required = o.required;
+        }
+
+        private Builder(Builder o) {
+            this.required = o.required;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code required}
          */
+        @Nonnull
         public final Builder required(boolean value) {
             this.required = value;
             return this;
@@ -110,6 +141,8 @@ public class RoutingField implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RoutingField build() {
             _checkSingleUse();
 

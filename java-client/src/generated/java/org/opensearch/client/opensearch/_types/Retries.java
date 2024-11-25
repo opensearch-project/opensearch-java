@@ -39,6 +39,7 @@ package org.opensearch.client.opensearch._types;
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -46,14 +47,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.Retries
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class Retries implements PlainJsonSerializable {
+public class Retries implements PlainJsonSerializable, ToCopyableBuilder<Retries.Builder, Retries> {
 
     private final long bulk;
 
@@ -104,16 +107,46 @@ public class Retries implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link Retries}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Retries> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Retries> {
         private Long bulk;
         private Long search;
+
+        public Builder() {}
+
+        private Builder(Retries o) {
+            this.bulk = o.bulk;
+            this.search = o.search;
+        }
+
+        private Builder(Builder o) {
+            this.bulk = o.bulk;
+            this.search = o.search;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code bulk}
          */
+        @Nonnull
         public final Builder bulk(long value) {
             this.bulk = value;
             return this;
@@ -122,6 +155,7 @@ public class Retries implements PlainJsonSerializable {
         /**
          * Required - API name: {@code search}
          */
+        @Nonnull
         public final Builder search(long value) {
             this.search = value;
             return this;
@@ -132,6 +166,8 @@ public class Retries implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public Retries build() {
             _checkSingleUse();
 

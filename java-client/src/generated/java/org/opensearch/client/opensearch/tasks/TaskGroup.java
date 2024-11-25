@@ -49,13 +49,15 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: tasks.TaskGroup
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class TaskGroup extends TaskInfo {
+public class TaskGroup extends TaskInfoBase implements ToCopyableBuilder<TaskGroup.Builder, TaskGroup> {
 
     @Nonnull
     private final List<TaskGroup> children;
@@ -93,12 +95,47 @@ public class TaskGroup extends TaskInfo {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link TaskGroup}.
      */
-    public static class Builder extends TaskInfo.AbstractBuilder<Builder> implements ObjectBuilder<TaskGroup> {
+    public static class Builder extends TaskInfoBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, TaskGroup> {
         @Nullable
         private List<TaskGroup> children;
+
+        public Builder() {}
+
+        private Builder(TaskGroup o) {
+            super(o);
+            this.children = _listCopy(o.children);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.children = _listCopy(o.children);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code children}
@@ -107,6 +144,7 @@ public class TaskGroup extends TaskInfo {
          * Adds all elements of <code>list</code> to <code>children</code>.
          * </p>
          */
+        @Nonnull
         public final Builder children(List<TaskGroup> list) {
             this.children = _listAddAll(this.children, list);
             return this;
@@ -119,6 +157,7 @@ public class TaskGroup extends TaskInfo {
          * Adds one or more values to <code>children</code>.
          * </p>
          */
+        @Nonnull
         public final Builder children(TaskGroup value, TaskGroup... values) {
             this.children = _listAdd(this.children, value, values);
             return this;
@@ -131,13 +170,9 @@ public class TaskGroup extends TaskInfo {
          * Adds a value to <code>children</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder children(Function<TaskGroup.Builder, ObjectBuilder<TaskGroup>> fn) {
             return children(fn.apply(new TaskGroup.Builder()).build());
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
         }
 
         /**
@@ -145,6 +180,8 @@ public class TaskGroup extends TaskInfo {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public TaskGroup build() {
             _checkSingleUse();
 
@@ -163,7 +200,7 @@ public class TaskGroup extends TaskInfo {
     );
 
     protected static void setupTaskGroupDeserializer(ObjectDeserializer<TaskGroup.Builder> op) {
-        setupTaskInfoDeserializer(op);
+        setupTaskInfoBaseDeserializer(op);
         op.add(Builder::children, JsonpDeserializer.arrayDeserializer(TaskGroup._DESERIALIZER), "children");
     }
 

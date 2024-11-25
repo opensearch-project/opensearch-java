@@ -40,19 +40,25 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.mapping.ShortNumberProperty
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ShortNumberProperty extends NumberPropertyBase implements PropertyVariant {
+public class ShortNumberProperty extends NumberPropertyBase
+    implements
+        PropertyVariant,
+        ToCopyableBuilder<ShortNumberProperty.Builder, ShortNumberProperty> {
 
     @Nullable
     private final Number nullValue;
@@ -95,23 +101,56 @@ public class ShortNumberProperty extends NumberPropertyBase implements PropertyV
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ShortNumberProperty}.
      */
-    public static class Builder extends NumberPropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<ShortNumberProperty> {
+    public static class Builder extends NumberPropertyBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, ShortNumberProperty> {
         @Nullable
         private Number nullValue;
+
+        public Builder() {}
+
+        private Builder(ShortNumberProperty o) {
+            super(o);
+            this.nullValue = o.nullValue;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.nullValue = o.nullValue;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code null_value}
          */
+        @Nonnull
         public final Builder nullValue(@Nullable Number value) {
             this.nullValue = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
@@ -120,6 +159,8 @@ public class ShortNumberProperty extends NumberPropertyBase implements PropertyV
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ShortNumberProperty build() {
             _checkSingleUse();
 

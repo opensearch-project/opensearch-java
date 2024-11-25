@@ -59,8 +59,10 @@ import org.opensearch.client.opensearch.indices.put_index_template.IndexTemplate
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.simulate_index_template.Request
 
@@ -69,7 +71,10 @@ import org.opensearch.client.util.ObjectBuilderBase;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SimulateIndexTemplateRequest extends RequestBase implements PlainJsonSerializable {
+public class SimulateIndexTemplateRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<SimulateIndexTemplateRequest.Builder, SimulateIndexTemplateRequest> {
 
     @Nullable
     private final Boolean allowAutoCreate;
@@ -137,8 +142,8 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
 
     /**
      * This setting overrides the value of the <code>action.auto_create_index</code> cluster setting. If set to <code>true</code> in a
-     * template, then indices can be automatically created using that template even if auto-creation of indices is disabled via
-     * <code>actions.auto_create_index</code>. If set to <code>false</code>, then indices or data streams matching the template must always
+     * template, then indexes can be automatically created using that template even if auto-creation of indexes is disabled using
+     * <code>actions.auto_create_index</code>. If set to <code>false</code>, then indexes or data streams matching the template must always
      * be explicitly created, and may never be automatically created.
      * <p>
      * API name: {@code allow_auto_create}
@@ -213,8 +218,8 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
     }
 
     /**
-     * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-     * returns an error.
+     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
+     * and returns an error.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -339,10 +344,21 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
     }
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SimulateIndexTemplateRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateIndexTemplateRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SimulateIndexTemplateRequest> {
         @Nullable
         private Boolean allowAutoCreate;
         @Nullable
@@ -369,15 +385,56 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
         @Nullable
         private Long version;
 
+        public Builder() {}
+
+        private Builder(SimulateIndexTemplateRequest o) {
+            this.allowAutoCreate = o.allowAutoCreate;
+            this.cause = o.cause;
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.composedOf = _listCopy(o.composedOf);
+            this.create = o.create;
+            this.dataStream = o.dataStream;
+            this.indexPatterns = _listCopy(o.indexPatterns);
+            this.masterTimeout = o.masterTimeout;
+            this.meta = _mapCopy(o.meta);
+            this.name = o.name;
+            this.priority = o.priority;
+            this.template = o.template;
+            this.version = o.version;
+        }
+
+        private Builder(Builder o) {
+            this.allowAutoCreate = o.allowAutoCreate;
+            this.cause = o.cause;
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.composedOf = _listCopy(o.composedOf);
+            this.create = o.create;
+            this.dataStream = o.dataStream;
+            this.indexPatterns = _listCopy(o.indexPatterns);
+            this.masterTimeout = o.masterTimeout;
+            this.meta = _mapCopy(o.meta);
+            this.name = o.name;
+            this.priority = o.priority;
+            this.template = o.template;
+            this.version = o.version;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * This setting overrides the value of the <code>action.auto_create_index</code> cluster setting. If set to <code>true</code> in a
-         * template, then indices can be automatically created using that template even if auto-creation of indices is disabled via
-         * <code>actions.auto_create_index</code>. If set to <code>false</code>, then indices or data streams matching the template must
+         * template, then indexes can be automatically created using that template even if auto-creation of indexes is disabled using
+         * <code>actions.auto_create_index</code>. If set to <code>false</code>, then indexes or data streams matching the template must
          * always be explicitly created, and may never be automatically created.
          * <p>
          * API name: {@code allow_auto_create}
          * </p>
          */
+        @Nonnull
         public final Builder allowAutoCreate(@Nullable Boolean value) {
             this.allowAutoCreate = value;
             return this;
@@ -389,6 +446,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
          * API name: {@code cause}
          * </p>
          */
+        @Nonnull
         public final Builder cause(@Nullable String value) {
             this.cause = value;
             return this;
@@ -400,6 +458,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
@@ -411,6 +470,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
          * API name: {@code cluster_manager_timeout}
          * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
@@ -426,6 +486,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
          * Adds all elements of <code>list</code> to <code>composedOf</code>.
          * </p>
          */
+        @Nonnull
         public final Builder composedOf(List<String> list) {
             this.composedOf = _listAddAll(this.composedOf, list);
             return this;
@@ -442,6 +503,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
          * Adds one or more values to <code>composedOf</code>.
          * </p>
          */
+        @Nonnull
         public final Builder composedOf(String value, String... values) {
             this.composedOf = _listAdd(this.composedOf, value, values);
             return this;
@@ -455,6 +517,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
          * API name: {@code create}
          * </p>
          */
+        @Nonnull
         public final Builder create(@Nullable Boolean value) {
             this.create = value;
             return this;
@@ -463,6 +526,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
         /**
          * API name: {@code data_stream}
          */
+        @Nonnull
         public final Builder dataStream(@Nullable IndexTemplateDataStreamConfiguration value) {
             this.dataStream = value;
             return this;
@@ -471,6 +535,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
         /**
          * API name: {@code data_stream}
          */
+        @Nonnull
         public final Builder dataStream(
             Function<IndexTemplateDataStreamConfiguration.Builder, ObjectBuilder<IndexTemplateDataStreamConfiguration>> fn
         ) {
@@ -484,6 +549,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
          * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
          * </p>
          */
+        @Nonnull
         public final Builder indexPatterns(List<String> list) {
             this.indexPatterns = _listAddAll(this.indexPatterns, list);
             return this;
@@ -496,32 +562,35 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
          * Adds one or more values to <code>indexPatterns</code>.
          * </p>
          */
+        @Nonnull
         public final Builder indexPatterns(String value, String... values) {
             this.indexPatterns = _listAdd(this.indexPatterns, value, values);
             return this;
         }
 
         /**
-         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-         * returns an error.
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(@Nullable Time value) {
             this.masterTimeout = value;
             return this;
         }
 
         /**
-         * Period to wait for a connection to the master node. If no response is received before the timeout expires, the request fails and
-         * returns an error.
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
          */
         @Deprecated
+        @Nonnull
         public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return masterTimeout(fn.apply(new Time.Builder()).build());
         }
@@ -533,6 +602,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
          * Adds all elements of <code>map</code> to <code>meta</code>.
          * </p>
          */
+        @Nonnull
         public final Builder meta(Map<String, JsonData> map) {
             this.meta = _mapPutAll(this.meta, map);
             return this;
@@ -545,6 +615,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
          * Adds an entry to <code>meta</code>.
          * </p>
          */
+        @Nonnull
         public final Builder meta(String key, JsonData value) {
             this.meta = _mapPut(this.meta, key, value);
             return this;
@@ -556,6 +627,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
          * API name: {@code name}
          * </p>
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -569,6 +641,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
          * API name: {@code priority}
          * </p>
          */
+        @Nonnull
         public final Builder priority(@Nullable Integer value) {
             this.priority = value;
             return this;
@@ -577,6 +650,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
         /**
          * API name: {@code template}
          */
+        @Nonnull
         public final Builder template(@Nullable IndexTemplateMapping value) {
             this.template = value;
             return this;
@@ -585,6 +659,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
         /**
          * API name: {@code template}
          */
+        @Nonnull
         public final Builder template(Function<IndexTemplateMapping.Builder, ObjectBuilder<IndexTemplateMapping>> fn) {
             return template(fn.apply(new IndexTemplateMapping.Builder()).build());
         }
@@ -592,6 +667,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
         /**
          * API name: {@code version}
          */
+        @Nonnull
         public final Builder version(@Nullable Long value) {
             this.version = value;
             return this;
@@ -602,6 +678,8 @@ public class SimulateIndexTemplateRequest extends RequestBase implements PlainJs
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SimulateIndexTemplateRequest build() {
             _checkSingleUse();
 
