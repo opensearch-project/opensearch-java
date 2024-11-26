@@ -30,13 +30,19 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -51,9 +57,8 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 /**
  * Returns information about a snapshot.
- *
  */
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GetSnapshotRequest extends RequestBase {
     @Nullable
     private final Boolean human;
@@ -61,9 +66,11 @@ public class GetSnapshotRequest extends RequestBase {
     @Nullable
     private final Boolean ignoreUnavailable;
 
+    @Deprecated
     @Nullable
     private final Boolean includeRepository;
 
+    @Deprecated
     @Nullable
     private final Boolean indexDetails;
 
@@ -74,8 +81,10 @@ public class GetSnapshotRequest extends RequestBase {
     @Nullable
     private final Time clusterManagerTimeout;
 
+    @Nonnull
     private final String repository;
 
+    @Nonnull
     private final List<String> snapshot;
 
     @Nullable
@@ -84,8 +93,8 @@ public class GetSnapshotRequest extends RequestBase {
     // ---------------------------------------------------------------------------------------------
 
     private GetSnapshotRequest(Builder builder) {
-
         this.human = builder.human;
+
         this.ignoreUnavailable = builder.ignoreUnavailable;
         this.includeRepository = builder.includeRepository;
         this.indexDetails = builder.indexDetails;
@@ -97,23 +106,26 @@ public class GetSnapshotRequest extends RequestBase {
 
     }
 
-    public static GetSnapshotRequest of(Function<Builder, ObjectBuilder<GetSnapshotRequest>> fn) {
+    public static GetSnapshotRequest of(Function<GetSnapshotRequest.Builder, ObjectBuilder<GetSnapshotRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * API name: {@code human}
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     * </p>
      */
     @Nullable
-    public final Boolean human() {
-        return this.human;
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
     }
 
     /**
-     * If false, the request returns an error for any snapshots that are
-     * unavailable.
+     * If <code>false</code>, the request returns an error for any snapshots that are unavailable.
      * <p>
      * API name: {@code ignore_unavailable}
+     * </p>
      */
     @Nullable
     public final Boolean ignoreUnavailable() {
@@ -121,34 +133,29 @@ public class GetSnapshotRequest extends RequestBase {
     }
 
     /**
-     * Whether to include the repository name in the snapshot info. Defaults to
-     * true.
-     * <p>
-     * API name: {@code include_repository}
+     * This method is left for compatibility.
      */
     @Nullable
+    @Deprecated
     public final Boolean includeRepository() {
         return this.includeRepository;
     }
 
     /**
-     * If true, returns additional information about each index in the snapshot
-     * comprising the number of shards in the index, the total size of the index in
-     * bytes, and the maximum number of segments per shard in the index. Defaults to
-     * false, meaning that this information is omitted.
-     * <p>
-     * API name: {@code index_details}
+     * * This method is left for compatibility.
      */
     @Nullable
+    @Deprecated
     public final Boolean indexDetails() {
         return this.indexDetails;
     }
 
     /**
-     * Period to wait for a connection to the master node. If no response is
-     * received before the timeout expires, the request fails and returns an error.
+     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
+     * and returns an error.
      * <p>
      * API name: {@code master_timeout}
+     * </p>
      */
     @Deprecated
     @Nullable
@@ -157,48 +164,40 @@ public class GetSnapshotRequest extends RequestBase {
     }
 
     /**
-     * Period to wait for a connection to the cluster-manager node. If no response is
-     * received before the timeout expires, the request fails and returns an error.
-     * <p>
-     * API name: {@code cluster_manager_timeout}
-     */
-    @Nullable
-    public final Time clusterManagerTimeout() {
-        return this.clusterManagerTimeout;
-    }
-
-    /**
-     * Required - Comma-separated list of snapshot repository names used to limit
-     * the request. Wildcard (*) expressions are supported.
+     * Required - Comma-separated list of snapshot repository names used to limit the request. Wildcard (*) expressions are supported.
      * <p>
      * API name: {@code repository}
+     * </p>
      */
+    @Nonnull
     public final String repository() {
         return this.repository;
     }
 
     /**
-     * Required - Comma-separated list of snapshot names to retrieve. Also accepts
-     * wildcards (*).
+     * Required -
+     * <p>
+     * Comma-separated list of snapshot names to retrieve. Also accepts wildcards (<code>*</code>).
+     * </p>
      * <ul>
-     * <li>To get information about all snapshots in a registered repository, use a
-     * wildcard (*) or _all.</li>
-     * <li>To get information about any snapshots that are currently running, use
-     * _current.</li>
+     * <li>To get information about all snapshots in a registered repository, use a wildcard (<code>*</code>) or <code>_all</code>.</li>
+     * <li>To get information about any snapshots that are currently running, use <code>_current</code>.</li>
      * </ul>
      * <p>
      * API name: {@code snapshot}
+     * </p>
      */
+    @Nonnull
     public final List<String> snapshot() {
         return this.snapshot;
     }
 
     /**
-     * If true, returns additional information about each snapshot such as the
-     * version of OpenSearch which took the snapshot, the start and end times of
-     * the snapshot, and the number of shards snapshotted.
+     * If <code>true</code>, returns additional information about each snapshot such as the version of OpenSearch which took the snapshot,
+     * the start and end times of the snapshot, and the number of shards snapshotted.
      * <p>
      * API name: {@code verbose}
+     * </p>
      */
     @Nullable
     public final Boolean verbose() {
@@ -218,9 +217,11 @@ public class GetSnapshotRequest extends RequestBase {
         @Nullable
         private Boolean ignoreUnavailable;
 
+        @Deprecated
         @Nullable
         private Boolean includeRepository;
 
+        @Deprecated
         @Nullable
         private Boolean indexDetails;
 
@@ -247,140 +248,151 @@ public class GetSnapshotRequest extends RequestBase {
         }
 
         /**
-         * If false, the request returns an error for any snapshots that are
-         * unavailable.
-         * <p>
-         * API name: {@code ignore_unavailable}
-         */
-        public final Builder ignoreUnavailable(@Nullable Boolean value) {
-            this.ignoreUnavailable = value;
-            return this;
-        }
-
-        /**
-         * Whether to include the repository name in the snapshot info. Defaults to
-         * true.
-         * <p>
-         * API name: {@code include_repository}
-         */
-        public final Builder includeRepository(@Nullable Boolean value) {
-            this.includeRepository = value;
-            return this;
-        }
-
-        /**
-         * If true, returns additional information about each index in the snapshot
-         * comprising the number of shards in the index, the total size of the index in
-         * bytes, and the maximum number of segments per shard in the index. Defaults to
-         * false, meaning that this information is omitted.
-         * <p>
-         * API name: {@code index_details}
-         */
-        public final Builder indexDetails(@Nullable Boolean value) {
-            this.indexDetails = value;
-            return this;
-        }
-
-        /**
-         * Period to wait for a connection to the master node. If no response is
-         * received before the timeout expires, the request fails and returns an error.
-         * <p>
-         * API name: {@code master_timeout}
-         */
-        @Deprecated
-        public final Builder masterTimeout(@Nullable Time value) {
-            this.masterTimeout = value;
-            return this;
-        }
-
-        /**
-         * Period to wait for a connection to the master node. If no response is
-         * received before the timeout expires, the request fails and returns an error.
-         * <p>
-         * API name: {@code master_timeout}
-         */
-        @Deprecated
-        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.masterTimeout(fn.apply(new Time.Builder()).build());
-        }
-
-        /**
-         * Period to wait for a connection to the cluster-manager node. If no response is
-         * received before the timeout expires, the request fails and returns an error.
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
         }
 
         /**
-         * Period to wait for a connection to the cluster-manager node. If no response is
-         * received before the timeout expires, the request fails and returns an error.
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+            return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
-         * Required - Comma-separated list of snapshot repository names used to limit
-         * the request. Wildcard (*) expressions are supported.
+         * If <code>false</code>, the request returns an error for any snapshots that are unavailable.
+         * <p>
+         * API name: {@code ignore_unavailable}
+         * </p>
+         */
+        @Nonnull
+        public final Builder ignoreUnavailable(@Nullable Boolean value) {
+            this.ignoreUnavailable = value;
+            return this;
+        }
+
+        /**
+         * This method is left for compatibility. The set value is not used.
+         */
+        @Deprecated
+        public final Builder includeRepository(@Nullable Boolean value) {
+            this.includeRepository = value;
+            return this;
+        }
+
+        /**
+        * This method is left for compatibility. The set value is not used.
+        */
+        @Deprecated
+        public final Builder indexDetails(@Nullable Boolean value) {
+            this.indexDetails = value;
+            return this;
+        }
+
+        /**
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
+
+        /**
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return masterTimeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * Required - Comma-separated list of snapshot repository names used to limit the request. Wildcard (*) expressions are supported.
          * <p>
          * API name: {@code repository}
+         * </p>
          */
+        @Nonnull
         public final Builder repository(String value) {
             this.repository = value;
             return this;
         }
 
         /**
-         * Required - Comma-separated list of snapshot names to retrieve. Also accepts
-         * wildcards (*).
+         * Required -
+         * <p>
+         * Comma-separated list of snapshot names to retrieve. Also accepts wildcards (<code>*</code>).
+         * </p>
          * <ul>
-         * <li>To get information about all snapshots in a registered repository, use a
-         * wildcard (*) or _all.</li>
-         * <li>To get information about any snapshots that are currently running, use
-         * _current.</li>
+         * <li>To get information about all snapshots in a registered repository, use a wildcard (<code>*</code>) or <code>_all</code>.</li>
+         * <li>To get information about any snapshots that are currently running, use <code>_current</code>.</li>
          * </ul>
          * <p>
          * API name: {@code snapshot}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>snapshot</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder snapshot(List<String> list) {
             this.snapshot = _listAddAll(this.snapshot, list);
             return this;
         }
 
         /**
-         * Required - Comma-separated list of snapshot names to retrieve. Also accepts
-         * wildcards (*).
+         * Required -
+         * <p>
+         * Comma-separated list of snapshot names to retrieve. Also accepts wildcards (<code>*</code>).
+         * </p>
          * <ul>
-         * <li>To get information about all snapshots in a registered repository, use a
-         * wildcard (*) or _all.</li>
-         * <li>To get information about any snapshots that are currently running, use
-         * _current.</li>
+         * <li>To get information about all snapshots in a registered repository, use a wildcard (<code>*</code>) or <code>_all</code>.</li>
+         * <li>To get information about any snapshots that are currently running, use <code>_current</code>.</li>
          * </ul>
          * <p>
          * API name: {@code snapshot}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>snapshot</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder snapshot(String value, String... values) {
             this.snapshot = _listAdd(this.snapshot, value, values);
             return this;
         }
 
         /**
-         * If true, returns additional information about each snapshot such as the
-         * version of OpenSearch which took the snapshot, the start and end times of
-         * the snapshot, and the number of shards snapshotted.
+         * If <code>true</code>, returns additional information about each snapshot such as the version of OpenSearch which took the
+         * snapshot, the start and end times of the snapshot, and the number of shards snapshotted.
          * <p>
          * API name: {@code verbose}
+         * </p>
          */
+        @Nonnull
         public final Builder verbose(@Nullable Boolean value) {
             this.verbose = value;
             return this;
@@ -389,9 +401,10 @@ public class GetSnapshotRequest extends RequestBase {
         /**
          * Builds a {@link GetSnapshotRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GetSnapshotRequest build() {
             _checkSingleUse();
 
@@ -405,53 +418,28 @@ public class GetSnapshotRequest extends RequestBase {
      * Endpoint "{@code snapshot.get}".
      */
     public static final Endpoint<GetSnapshotRequest, GetSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "GET";
-
-        },
-
+        request -> "GET",
         // Request path
         request -> {
-            final int _repository = 1 << 0;
-            final int _snapshot = 1 << 1;
-
-            int propsSet = 0;
-
-            propsSet |= _repository;
-            propsSet |= _snapshot;
-
-            if (propsSet == (_repository | _snapshot)) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_snapshot");
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.repository, buf);
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.snapshot.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-                return buf.toString();
-            }
-            throw SimpleEndpoint.noPathTemplateFound("path");
-
+            StringBuilder buf = new StringBuilder();
+            buf.append("/_snapshot/");
+            SimpleEndpoint.pathEncode(request.repository, buf);
+            buf.append("/");
+            SimpleEndpoint.pathEncode(String.join(",", request.snapshot), buf);
+            return buf.toString();
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
             if (request.clusterManagerTimeout != null) {
                 params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.includeRepository != null) {
-                params.put("include_repository", String.valueOf(request.includeRepository));
             }
             if (request.ignoreUnavailable != null) {
                 params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
             }
-            if (request.indexDetails != null) {
-                params.put("index_details", String.valueOf(request.indexDetails));
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
             }
             if (request.human != null) {
                 params.put("human", String.valueOf(request.human));
@@ -460,10 +448,34 @@ public class GetSnapshotRequest extends RequestBase {
                 params.put("verbose", String.valueOf(request.verbose));
             }
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         false,
         GetSnapshotResponse._DESERIALIZER
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
+        result = 31 * result + Objects.hashCode(this.ignoreUnavailable);
+        result = 31 * result + Objects.hashCode(this.masterTimeout);
+        result = 31 * result + this.repository.hashCode();
+        result = 31 * result + this.snapshot.hashCode();
+        result = 31 * result + Objects.hashCode(this.verbose);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        GetSnapshotRequest other = (GetSnapshotRequest) o;
+        return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
+            && Objects.equals(this.ignoreUnavailable, other.ignoreUnavailable)
+            && Objects.equals(this.masterTimeout, other.masterTimeout)
+            && this.repository.equals(other.repository)
+            && this.snapshot.equals(other.snapshot)
+            && Objects.equals(this.verbose, other.verbose);
+    }
 }

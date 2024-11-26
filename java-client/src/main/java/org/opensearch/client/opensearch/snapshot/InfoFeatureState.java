@@ -47,6 +47,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: snapshot._types.InfoFeatureState
 
+@Deprecated
 @JsonpDeserializable
 public class InfoFeatureState implements PlainJsonSerializable {
     private final String featureName;
