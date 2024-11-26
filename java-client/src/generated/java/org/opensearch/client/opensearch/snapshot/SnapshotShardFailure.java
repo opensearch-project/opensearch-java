@@ -49,14 +49,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.SnapshotShardFailure
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SnapshotShardFailure implements PlainJsonSerializable {
+public class SnapshotShardFailure implements PlainJsonSerializable, ToCopyableBuilder<SnapshotShardFailure.Builder, SnapshotShardFailure> {
 
     @Nonnull
     private final String index;
@@ -158,10 +160,21 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SnapshotShardFailure}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotShardFailure> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotShardFailure> {
         private String index;
         @Nullable
         private String nodeId;
@@ -169,9 +182,34 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
         private String shardId;
         private String status;
 
+        public Builder() {}
+
+        private Builder(SnapshotShardFailure o) {
+            this.index = o.index;
+            this.nodeId = o.nodeId;
+            this.reason = o.reason;
+            this.shardId = o.shardId;
+            this.status = o.status;
+        }
+
+        private Builder(Builder o) {
+            this.index = o.index;
+            this.nodeId = o.nodeId;
+            this.reason = o.reason;
+            this.shardId = o.shardId;
+            this.status = o.status;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - API name: {@code index}
          */
+        @Nonnull
         public final Builder index(String value) {
             this.index = value;
             return this;
@@ -180,6 +218,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
         /**
          * API name: {@code node_id}
          */
+        @Nonnull
         public final Builder nodeId(@Nullable String value) {
             this.nodeId = value;
             return this;
@@ -188,6 +227,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
         /**
          * Required - API name: {@code reason}
          */
+        @Nonnull
         public final Builder reason(String value) {
             this.reason = value;
             return this;
@@ -196,6 +236,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
         /**
          * Required - API name: {@code shard_id}
          */
+        @Nonnull
         public final Builder shardId(String value) {
             this.shardId = value;
             return this;
@@ -204,6 +245,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
         /**
          * Required - API name: {@code status}
          */
+        @Nonnull
         public final Builder status(String value) {
             this.status = value;
             return this;
@@ -214,6 +256,8 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SnapshotShardFailure build() {
             _checkSingleUse();
 

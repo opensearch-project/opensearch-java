@@ -48,14 +48,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.get.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GetSnapshotResponse implements PlainJsonSerializable {
+public class GetSnapshotResponse implements PlainJsonSerializable, ToCopyableBuilder<GetSnapshotResponse.Builder, GetSnapshotResponse> {
 
     @Nonnull
     private final List<SnapshotInfo> snapshots;
@@ -99,11 +101,38 @@ public class GetSnapshotResponse implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GetSnapshotResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetSnapshotResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetSnapshotResponse> {
         private List<SnapshotInfo> snapshots;
+
+        public Builder() {}
+
+        private Builder(GetSnapshotResponse o) {
+            this.snapshots = _listCopy(o.snapshots);
+        }
+
+        private Builder(Builder o) {
+            this.snapshots = _listCopy(o.snapshots);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code snapshots}
@@ -112,6 +141,7 @@ public class GetSnapshotResponse implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>snapshots</code>.
          * </p>
          */
+        @Nonnull
         public final Builder snapshots(List<SnapshotInfo> list) {
             this.snapshots = _listAddAll(this.snapshots, list);
             return this;
@@ -124,6 +154,7 @@ public class GetSnapshotResponse implements PlainJsonSerializable {
          * Adds one or more values to <code>snapshots</code>.
          * </p>
          */
+        @Nonnull
         public final Builder snapshots(SnapshotInfo value, SnapshotInfo... values) {
             this.snapshots = _listAdd(this.snapshots, value, values);
             return this;
@@ -136,6 +167,7 @@ public class GetSnapshotResponse implements PlainJsonSerializable {
          * Adds a value to <code>snapshots</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder snapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
             return snapshots(fn.apply(new SnapshotInfo.Builder()).build());
         }
@@ -145,6 +177,8 @@ public class GetSnapshotResponse implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GetSnapshotResponse build() {
             _checkSingleUse();
 

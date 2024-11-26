@@ -54,14 +54,16 @@ import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ShardStatistics;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.SnapshotInfo
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SnapshotInfo implements PlainJsonSerializable {
+public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<SnapshotInfo.Builder, SnapshotInfo> {
 
     @Nonnull
     private final List<String> dataStreams;
@@ -437,10 +439,21 @@ public class SnapshotInfo implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SnapshotInfo}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotInfo> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotInfo> {
         private List<String> dataStreams;
         @Nullable
         private Time duration;
@@ -479,6 +492,60 @@ public class SnapshotInfo implements PlainJsonSerializable {
         @Nullable
         private Long versionId;
 
+        public Builder() {}
+
+        private Builder(SnapshotInfo o) {
+            this.dataStreams = _listCopy(o.dataStreams);
+            this.duration = o.duration;
+            this.durationInMillis = o.durationInMillis;
+            this.endTime = o.endTime;
+            this.endTimeInMillis = o.endTimeInMillis;
+            this.failures = _listCopy(o.failures);
+            this.includeGlobalState = o.includeGlobalState;
+            this.indices = _listCopy(o.indices);
+            this.metadata = _mapCopy(o.metadata);
+            this.pinnedTimestamp = o.pinnedTimestamp;
+            this.reason = o.reason;
+            this.remoteStoreIndexShallowCopy = o.remoteStoreIndexShallowCopy;
+            this.shards = o.shards;
+            this.snapshot = o.snapshot;
+            this.startTime = o.startTime;
+            this.startTimeInMillis = o.startTimeInMillis;
+            this.state = o.state;
+            this.uuid = o.uuid;
+            this.version = o.version;
+            this.versionId = o.versionId;
+        }
+
+        private Builder(Builder o) {
+            this.dataStreams = _listCopy(o.dataStreams);
+            this.duration = o.duration;
+            this.durationInMillis = o.durationInMillis;
+            this.endTime = o.endTime;
+            this.endTimeInMillis = o.endTimeInMillis;
+            this.failures = _listCopy(o.failures);
+            this.includeGlobalState = o.includeGlobalState;
+            this.indices = _listCopy(o.indices);
+            this.metadata = _mapCopy(o.metadata);
+            this.pinnedTimestamp = o.pinnedTimestamp;
+            this.reason = o.reason;
+            this.remoteStoreIndexShallowCopy = o.remoteStoreIndexShallowCopy;
+            this.shards = o.shards;
+            this.snapshot = o.snapshot;
+            this.startTime = o.startTime;
+            this.startTimeInMillis = o.startTimeInMillis;
+            this.state = o.state;
+            this.uuid = o.uuid;
+            this.version = o.version;
+            this.versionId = o.versionId;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * Required - API name: {@code data_streams}
          *
@@ -486,6 +553,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>dataStreams</code>.
          * </p>
          */
+        @Nonnull
         public final Builder dataStreams(List<String> list) {
             this.dataStreams = _listAddAll(this.dataStreams, list);
             return this;
@@ -498,6 +566,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
          * Adds one or more values to <code>dataStreams</code>.
          * </p>
          */
+        @Nonnull
         public final Builder dataStreams(String value, String... values) {
             this.dataStreams = _listAdd(this.dataStreams, value, values);
             return this;
@@ -506,6 +575,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code duration}
          */
+        @Nonnull
         public final Builder duration(@Nullable Time value) {
             this.duration = value;
             return this;
@@ -514,6 +584,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code duration}
          */
+        @Nonnull
         public final Builder duration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return duration(fn.apply(new Time.Builder()).build());
         }
@@ -521,6 +592,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code duration_in_millis}
          */
+        @Nonnull
         public final Builder durationInMillis(@Nullable Long value) {
             this.durationInMillis = value;
             return this;
@@ -529,6 +601,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code end_time}
          */
+        @Nonnull
         public final Builder endTime(@Nullable String value) {
             this.endTime = value;
             return this;
@@ -537,6 +610,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code end_time_in_millis}
          */
+        @Nonnull
         public final Builder endTimeInMillis(@Nullable Long value) {
             this.endTimeInMillis = value;
             return this;
@@ -549,6 +623,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>failures</code>.
          * </p>
          */
+        @Nonnull
         public final Builder failures(List<SnapshotShardFailure> list) {
             this.failures = _listAddAll(this.failures, list);
             return this;
@@ -561,6 +636,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
          * Adds one or more values to <code>failures</code>.
          * </p>
          */
+        @Nonnull
         public final Builder failures(SnapshotShardFailure value, SnapshotShardFailure... values) {
             this.failures = _listAdd(this.failures, value, values);
             return this;
@@ -573,6 +649,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
          * Adds a value to <code>failures</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder failures(Function<SnapshotShardFailure.Builder, ObjectBuilder<SnapshotShardFailure>> fn) {
             return failures(fn.apply(new SnapshotShardFailure.Builder()).build());
         }
@@ -580,6 +657,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code include_global_state}
          */
+        @Nonnull
         public final Builder includeGlobalState(@Nullable Boolean value) {
             this.includeGlobalState = value;
             return this;
@@ -592,6 +670,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>indices</code>.
          * </p>
          */
+        @Nonnull
         public final Builder indices(List<String> list) {
             this.indices = _listAddAll(this.indices, list);
             return this;
@@ -604,6 +683,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
          * Adds one or more values to <code>indices</code>.
          * </p>
          */
+        @Nonnull
         public final Builder indices(String value, String... values) {
             this.indices = _listAdd(this.indices, value, values);
             return this;
@@ -616,6 +696,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>metadata</code>.
          * </p>
          */
+        @Nonnull
         public final Builder metadata(Map<String, JsonData> map) {
             this.metadata = _mapPutAll(this.metadata, map);
             return this;
@@ -628,6 +709,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
          * Adds an entry to <code>metadata</code>.
          * </p>
          */
+        @Nonnull
         public final Builder metadata(String key, JsonData value) {
             this.metadata = _mapPut(this.metadata, key, value);
             return this;
@@ -636,6 +718,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code pinned_timestamp}
          */
+        @Nonnull
         public final Builder pinnedTimestamp(@Nullable Long value) {
             this.pinnedTimestamp = value;
             return this;
@@ -644,6 +727,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code reason}
          */
+        @Nonnull
         public final Builder reason(@Nullable String value) {
             this.reason = value;
             return this;
@@ -652,6 +736,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code remote_store_index_shallow_copy}
          */
+        @Nonnull
         public final Builder remoteStoreIndexShallowCopy(@Nullable Boolean value) {
             this.remoteStoreIndexShallowCopy = value;
             return this;
@@ -660,6 +745,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code shards}
          */
+        @Nonnull
         public final Builder shards(@Nullable ShardStatistics value) {
             this.shards = value;
             return this;
@@ -668,6 +754,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code shards}
          */
+        @Nonnull
         public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
             return shards(fn.apply(new ShardStatistics.Builder()).build());
         }
@@ -675,6 +762,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * Required - API name: {@code snapshot}
          */
+        @Nonnull
         public final Builder snapshot(String value) {
             this.snapshot = value;
             return this;
@@ -683,6 +771,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code start_time}
          */
+        @Nonnull
         public final Builder startTime(@Nullable String value) {
             this.startTime = value;
             return this;
@@ -691,6 +780,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code start_time_in_millis}
          */
+        @Nonnull
         public final Builder startTimeInMillis(@Nullable Long value) {
             this.startTimeInMillis = value;
             return this;
@@ -699,6 +789,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code state}
          */
+        @Nonnull
         public final Builder state(@Nullable String value) {
             this.state = value;
             return this;
@@ -707,6 +798,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * Required - API name: {@code uuid}
          */
+        @Nonnull
         public final Builder uuid(String value) {
             this.uuid = value;
             return this;
@@ -715,6 +807,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code version}
          */
+        @Nonnull
         public final Builder version(@Nullable String value) {
             this.version = value;
             return this;
@@ -723,6 +816,7 @@ public class SnapshotInfo implements PlainJsonSerializable {
         /**
          * API name: {@code version_id}
          */
+        @Nonnull
         public final Builder versionId(@Nullable Long value) {
             this.versionId = value;
             return this;
@@ -733,6 +827,8 @@ public class SnapshotInfo implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SnapshotInfo build() {
             _checkSingleUse();
 
