@@ -30,10 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,49 +49,58 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: snapshot._types.SnapshotShardFailure
+// typedef: snapshot.SnapshotShardFailure
 
 @JsonpDeserializable
-public class SnapshotShardFailure implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SnapshotShardFailure implements PlainJsonSerializable, ToCopyableBuilder<SnapshotShardFailure.Builder, SnapshotShardFailure> {
+
+    @Nonnull
     private final String index;
 
+    @Nullable
     private final String nodeId;
 
+    @Nonnull
     private final String reason;
 
+    @Nonnull
     private final String shardId;
 
+    @Nonnull
     private final String status;
 
     // ---------------------------------------------------------------------------------------------
 
     private SnapshotShardFailure(Builder builder) {
-
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-        this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+        this.nodeId = builder.nodeId;
         this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
         this.shardId = ApiTypeHelper.requireNonNull(builder.shardId, this, "shardId");
         this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
-
     }
 
-    public static SnapshotShardFailure of(Function<Builder, ObjectBuilder<SnapshotShardFailure>> fn) {
+    public static SnapshotShardFailure of(Function<SnapshotShardFailure.Builder, ObjectBuilder<SnapshotShardFailure>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code index}
      */
+    @Nonnull
     public final String index() {
         return this.index;
     }
 
     /**
-     * Required - API name: {@code node_id}
+     * API name: {@code node_id}
      */
+    @Nullable
     public final String nodeId() {
         return this.nodeId;
     }
@@ -91,6 +108,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
     /**
      * Required - API name: {@code reason}
      */
+    @Nonnull
     public final String reason() {
         return this.reason;
     }
@@ -98,6 +116,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
     /**
      * Required - API name: {@code shard_id}
      */
+    @Nonnull
     public final String shardId() {
         return this.shardId;
     }
@@ -105,6 +124,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
     /**
      * Required - API name: {@code status}
      */
+    @Nonnull
     public final String status() {
         return this.status;
     }
@@ -112,6 +132,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -119,12 +140,13 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("index");
         generator.write(this.index);
 
-        generator.writeKey("node_id");
-        generator.write(this.nodeId);
+        if (this.nodeId != null) {
+            generator.writeKey("node_id");
+            generator.write(this.nodeId);
+        }
 
         generator.writeKey("reason");
         generator.write(this.reason);
@@ -134,38 +156,70 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
 
         generator.writeKey("status");
         generator.write(this.status);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SnapshotShardFailure}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotShardFailure> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotShardFailure> {
         private String index;
-
+        @Nullable
         private String nodeId;
-
         private String reason;
-
         private String shardId;
-
         private String status;
+
+        public Builder() {}
+
+        private Builder(SnapshotShardFailure o) {
+            this.index = o.index;
+            this.nodeId = o.nodeId;
+            this.reason = o.reason;
+            this.shardId = o.shardId;
+            this.status = o.status;
+        }
+
+        private Builder(Builder o) {
+            this.index = o.index;
+            this.nodeId = o.nodeId;
+            this.reason = o.reason;
+            this.shardId = o.shardId;
+            this.status = o.status;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code index}
          */
+        @Nonnull
         public final Builder index(String value) {
             this.index = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code node_id}
+         * API name: {@code node_id}
          */
-        public final Builder nodeId(String value) {
+        @Nonnull
+        public final Builder nodeId(@Nullable String value) {
             this.nodeId = value;
             return this;
         }
@@ -173,6 +227,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
         /**
          * Required - API name: {@code reason}
          */
+        @Nonnull
         public final Builder reason(String value) {
             this.reason = value;
             return this;
@@ -181,6 +236,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
         /**
          * Required - API name: {@code shard_id}
          */
+        @Nonnull
         public final Builder shardId(String value) {
             this.shardId = value;
             return this;
@@ -189,6 +245,7 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
         /**
          * Required - API name: {@code status}
          */
+        @Nonnull
         public final Builder status(String value) {
             this.status = value;
             return this;
@@ -197,9 +254,10 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
         /**
          * Builds a {@link SnapshotShardFailure}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SnapshotShardFailure build() {
             _checkSingleUse();
 
@@ -218,13 +276,33 @@ public class SnapshotShardFailure implements PlainJsonSerializable {
     );
 
     protected static void setupSnapshotShardFailureDeserializer(ObjectDeserializer<SnapshotShardFailure.Builder> op) {
-
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
         op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
         op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
         op.add(Builder::shardId, JsonpDeserializer.stringDeserializer(), "shard_id");
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.index.hashCode();
+        result = 31 * result + Objects.hashCode(this.nodeId);
+        result = 31 * result + this.reason.hashCode();
+        result = 31 * result + this.shardId.hashCode();
+        result = 31 * result + this.status.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SnapshotShardFailure other = (SnapshotShardFailure) o;
+        return this.index.equals(other.index)
+            && Objects.equals(this.nodeId, other.nodeId)
+            && this.reason.equals(other.reason)
+            && this.shardId.equals(other.shardId)
+            && this.status.equals(other.status);
+    }
 }

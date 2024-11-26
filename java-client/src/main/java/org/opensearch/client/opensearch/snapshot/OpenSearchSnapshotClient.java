@@ -190,38 +190,6 @@ public class OpenSearchSnapshotClient extends OpenSearchSnapshotClientBase<OpenS
         return deleteRepository(fn.apply(new DeleteRepositoryRequest.Builder()).build());
     }
 
-    // ----- Endpoint: snapshot.get
-
-    /**
-     * Returns information about a snapshot.
-     *
-     *
-     */
-
-    public GetSnapshotResponse get(GetSnapshotRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetSnapshotRequest, GetSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetSnapshotRequest,
-            GetSnapshotResponse,
-            ErrorResponse>) GetSnapshotRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about a snapshot.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetSnapshotRequest}
-     *
-     */
-
-    public final GetSnapshotResponse get(Function<GetSnapshotRequest.Builder, ObjectBuilder<GetSnapshotRequest>> fn) throws IOException,
-        OpenSearchException {
-        return get(fn.apply(new GetSnapshotRequest.Builder()).build());
-    }
-
     // ----- Endpoint: snapshot.get_repository
 
     /**
