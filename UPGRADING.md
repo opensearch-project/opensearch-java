@@ -96,3 +96,20 @@ After:
 - The `DataStream` class has been renamed to `IndexTemplateDataStreamConfiguration`, this affects:
   - `PutIndexTemplateRequest`'s `dataStream` field.
   - `SimulateIndexTemplateRequest`'s `dataStream` field.
+
+### Translog
+- The `durability` property now accepts a `TranslogDurability` enum instead of a `String`.
+
+### IndexSettingsMapping
+- The mapping limit fields now have specialized types instead of a generic `IndexSettingsMappingLimit` type:
+  - `depth` is now of type `IndexSettingsMappingLimitDepth`.
+  - `fieldNameLength` is now of type `IndexSettingsMappingLimitFieldNameLength`.
+  - `nestedFields` is now of type `IndexSettingsMappingLimitNestedFields`.
+  - `nestedObjects` is now of type `IndexSettingsMappingLimitNestedObjects`.
+  - `totalFields` is now of type `IndexSettingsMappingLimitTotalFields`.
+
+### IndexSettings
+- The `creationDate` property is now of type `Long` instead of `String`.
+- The `translogDurability` property now accepts a `TranslogDurability` enum instead of a `String`.
+- The `numberOfReplicas` property is now of type `Integer` instead of `String`.
+- The `numberOfShards` property is now of type `Integer` instead of `String`.

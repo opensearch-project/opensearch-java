@@ -37,7 +37,7 @@ public class KnnEfficientFilter {
                 client.indices()
                     .create(
                         r -> r.index(indexName)
-                            .settings(s -> s.knn(true).knnAlgoParamEfSearch(100).numberOfShards("1").numberOfReplicas("0"))
+                            .settings(s -> s.knn(true).knnAlgoParamEfSearch(100).numberOfShards(1).numberOfReplicas(0))
                             .mappings(
                                 m -> m.properties(
                                     "location",

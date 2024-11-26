@@ -47,8 +47,8 @@ public class IndexTemplates {
             PutComponentTemplateRequest putComponentTemplateRequest = PutComponentTemplateRequest.of(
                 c -> c.name(indexSettingsComponentTemplate)
                     .settings(
-                        s -> s.numberOfShards("2")
-                            .numberOfReplicas("1")
+                        s -> s.numberOfShards(2)
+                            .numberOfReplicas(1)
                             .indexing(
                                 i -> i.slowlog(
                                     sl -> sl.level("info")

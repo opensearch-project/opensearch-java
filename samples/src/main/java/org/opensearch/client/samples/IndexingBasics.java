@@ -46,7 +46,7 @@ public class IndexingBasics {
 
             if (!client.indices().exists(r -> r.index(indexName)).value()) {
                 LOGGER.info("Creating index {}", indexName);
-                IndexSettings settings = new IndexSettings.Builder().numberOfShards("2").numberOfReplicas("1").build();
+                IndexSettings settings = new IndexSettings.Builder().numberOfShards(2).numberOfReplicas(1).build();
                 TypeMapping mapping = new TypeMapping.Builder().properties(
                     "age",
                     new Property.Builder().integer(new IntegerNumberProperty.Builder().build()).build()

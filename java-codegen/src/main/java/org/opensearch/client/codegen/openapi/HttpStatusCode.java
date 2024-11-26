@@ -44,4 +44,8 @@ public enum HttpStatusCode {
         }
         return value;
     }
+
+    public boolean isSuccessful() {
+        return this.code.startsWith("2");
+    }
 }
