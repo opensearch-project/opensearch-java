@@ -29,7 +29,6 @@ import org.opensearch.client.codegen.model.overrides.Overrides;
 import org.opensearch.client.codegen.model.overrides.PropertyOverride;
 import org.opensearch.client.codegen.model.overrides.SchemaOverride;
 import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
-import org.opensearch.client.codegen.openapi.HttpStatusCode;
 import org.opensearch.client.codegen.openapi.In;
 import org.opensearch.client.codegen.openapi.JsonPointer;
 import org.opensearch.client.codegen.openapi.MimeType;
@@ -116,7 +115,7 @@ public class SpecTransformer {
             .map(OpenApiOperation::getResponses)
             .flatMap(Optional::stream)
             .findFirst()
-            .flatMap(r -> r.get(HttpStatusCode.Ok))
+            .flatMap(r -> r.entries().filter(e -> e.getKey().isSuccessful()).map(Map.Entry::getValue).findFirst())
             .map(OpenApiResponse::resolve)
             .flatMap(OpenApiResponse::getContent)
             .flatMap(c -> c.get(MimeType.Json))
@@ -508,6 +507,11 @@ public class SpecTransformer {
             return mapOneOf(oneOf.get());
         }
 
+        var anyOf = schema.getAnyOf();
+        if (anyOf.isPresent()) {
+            return mapAnyOf(anyOf.get());
+        }
+
         var allOf = schema.getAllOf();
         if (allOf.isPresent()) {
             return mapAllOf(allOf.get());
@@ -549,6 +553,16 @@ public class SpecTransformer {
             && (types.contains(OpenApiSchemaType.Boolean)
                 || types.contains(OpenApiSchemaType.Integer)
                 || types.contains(OpenApiSchemaType.Number))) {
+            return Types.Java.Lang.String;
+        }
+
+        return Types.Client.Json.JsonData;
+    }
+
+    private Type mapAnyOf(List<OpenApiSchema> anyOf) {
+        var types = OpenApiSchema.determineTypes(anyOf);
+
+        if (types.size() == 1 && types.contains(OpenApiSchemaType.String)) {
             return Types.Java.Lang.String;
         }
 

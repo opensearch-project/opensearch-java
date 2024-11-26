@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -45,8 +46,20 @@ public class Overrides {
                 schema("_common.query_dsl", "QueryContainer"),
                 so -> so.withMappedType(t -> t.withPackage(Types.Client.OpenSearch._Types.PACKAGE + ".query_dsl").withName("Query"))
             )
-            // TODO: Remove this to generate index settings types
-            .with(schema("indices._common", "IndexSettings"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+
+            .with(schema("indices._common", "IndexSettings"), so -> so.withAliasProvider(k -> {
+                switch (k) {
+                    case "index":
+                    case "indexing":
+                    case "mapping":
+                    case "search":
+                    case "settings":
+                    case "top_metrics_max_size":
+                        return null;
+                    default:
+                        return Set.of("index." + k);
+                }
+            }).withShouldGenerate(ShouldGenerate.Never))
 
             .with(
                 schema("_common", "ShardStatistics"),
