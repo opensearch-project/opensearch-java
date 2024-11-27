@@ -78,20 +78,6 @@ public class OpenSearchSnapshotClient extends OpenSearchSnapshotClientBase<OpenS
         return this.transport.performRequest(request, endpoint, this.transportOptions);
     }
 
-    /**
-     * Creates a snapshot in a repository.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link CreateSnapshotRequest}
-     *
-     */
-
-    public final CreateSnapshotResponse create(Function<CreateSnapshotRequest.Builder, ObjectBuilder<CreateSnapshotRequest>> fn)
-        throws IOException, OpenSearchException {
-        return create(fn.apply(new CreateSnapshotRequest.Builder()).build());
-    }
-
     // ----- Endpoint: snapshot.create_repository
 
     /**
