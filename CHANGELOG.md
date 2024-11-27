@@ -43,12 +43,14 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Added
 
 ### Dependencies
+- Upgraded aws-sdk-java dependencies to at least `2.19.22` ([#]())
 
 ### Changed
 
 ### Deprecated
 
 ### Removed
+- Removed throwing of exception when using `AwsSdk2Transport` with AWS SDK's `ApacheHttpClient` to make an DELETE/GET request with a body ([#]())
 
 ### Fixed
 - Fixed an issue where `FieldSort` was not implementing `SortOptionsVariant` ([#1323](https://github.com/opensearch-project/opensearch-java/pull/1323))
