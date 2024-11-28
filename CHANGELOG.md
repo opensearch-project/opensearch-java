@@ -7,12 +7,14 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Dependencies
 - Bumps `org.junit:junit-bom` from 5.10.2 to 5.11.3
+- Upgraded aws-sdk-java dependencies to at least `2.19.22` ([#1333](https://github.com/opensearch-project/opensearch-java/pull/1333))
 
 ### Changed
 
 ### Deprecated
 
 ### Removed
+- Removed throwing of exception when using `AwsSdk2Transport` with AWS SDK's `ApacheHttpClient` to make an DELETE/GET request with a body ([#1333](https://github.com/opensearch-project/opensearch-java/pull/1333))
 
 ### Fixed
 - Fixed `IcuCollationDecomposition`'s variants to align with those supported by OpenSearch ([#]())
