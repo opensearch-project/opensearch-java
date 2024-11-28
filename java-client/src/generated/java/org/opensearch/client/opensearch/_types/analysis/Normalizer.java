@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -141,9 +142,26 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
         mapper.serialize(_value, generator);
     }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Normalizer> {
         private Kind _kind;
         private NormalizerVariant _value;
+
+        public Builder() {}
+
+        private Builder(Normalizer o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         public ObjectBuilder<Normalizer> custom(CustomNormalizer v) {
             this._kind = Kind.Custom;
@@ -175,7 +193,6 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
     protected static void setupNormalizerDeserializer(ObjectDeserializer<Builder> op) {
         op.add(Builder::custom, CustomNormalizer._DESERIALIZER, "custom");
         op.add(Builder::lowercase, LowercaseNormalizer._DESERIALIZER, "lowercase");
-
         op.setTypeProperty("type", Kind.Custom.jsonValue());
     }
 

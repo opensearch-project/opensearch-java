@@ -59,7 +59,7 @@ public abstract class AbstractKnnIT extends OpenSearchJavaClientTestCase {
         assertFalse(bulkResponse.errors());
 
         var searchResponse = javaClient().search(
-            s -> s.index(indexName).size(2).query(q -> q.knn(k -> k.field("vector").vector(new float[] { 2.0f, 3.0f, 5.0f, 6.0f }).k(2))),
+            s -> s.index(indexName).size(2).query(q -> q.knn(k -> k.field("vector").vector(2.0f, 3.0f, 5.0f, 6.0f).k(2))),
             Doc.class
         );
 

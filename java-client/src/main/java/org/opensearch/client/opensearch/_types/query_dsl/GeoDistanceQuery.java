@@ -147,7 +147,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return toBuilder(new Builder()).field(field).location(location);
+        return new Builder(this);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -160,6 +160,17 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
         private String field;
 
         private GeoLocation location;
+
+        public Builder() {}
+
+        private Builder(GeoDistanceQuery o) {
+            super(o);
+            this.field = o.field;
+            this.location = o.location;
+            this.distance = o.distance;
+            this.distanceType = o.distanceType;
+            this.validationMethod = o.validationMethod;
+        }
 
         /**
          * Required -

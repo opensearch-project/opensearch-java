@@ -306,7 +306,6 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
             this.wordListPath = value;
             return self();
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------

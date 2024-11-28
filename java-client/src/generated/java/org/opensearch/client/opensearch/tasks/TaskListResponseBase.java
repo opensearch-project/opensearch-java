@@ -330,7 +330,6 @@ public abstract class TaskListResponseBase implements PlainJsonSerializable {
         public final BuilderT tasks(Function<TaskInfos.Builder, ObjectBuilder<TaskInfos>> fn) {
             return tasks(fn.apply(new TaskInfos.Builder()).build());
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------

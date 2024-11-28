@@ -55,7 +55,7 @@ public class KnnBasics {
             LOGGER.info("Waiting for indexing to finish");
             client.indices().refresh(i -> i.index(indexName));
 
-            final var searchVector = RandUtil.rand2SfArray(dimensions);
+            final var searchVector = RandUtil.rand2SfList(dimensions);
             LOGGER.info("Searching for vector {}", searchVector);
 
             var searchResponse = client.search(

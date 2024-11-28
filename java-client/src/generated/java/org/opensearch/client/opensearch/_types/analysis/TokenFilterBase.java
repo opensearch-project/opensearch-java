@@ -113,7 +113,6 @@ public abstract class TokenFilterBase implements PlainJsonSerializable {
             this.version = value;
             return self();
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------

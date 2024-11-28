@@ -113,3 +113,34 @@ After:
 - The `translogDurability` property now accepts a `TranslogDurability` enum instead of a `String`.
 - The `numberOfReplicas` property is now of type `Integer` instead of `String`.
 - The `numberOfShards` property is now of type `Integer` instead of `String`.
+
+### BoostingQuery
+- The `negativeBoost` property has been corrected to be of type `float` instead of `double`.
+
+### DisMaxQuery
+- The `tieBreaker` property has been corrected to be of type `Float` instead of `Double`.
+
+### FunctionScoreQuery
+- The `maxBoost` property has been corrected to be of type `Float` instead of `Double`.
+- The `minScore` property has been corrected to be of type `Float` instead of `Double`.
+
+### KnnQuery
+- The `filter` property is now of type `List<Query>` instead of `Query`.
+- The `vector` property is now of type `List<Float>` instead of `float[]`.
+
+### LikeDocument
+- The `type` property has been removed as it is not supported by OpenSearch as of version 2.0.0.
+
+### MatchQuery
+- The `cutoffFrequency` property has been corrected to be of type `Float` instead of `Double`.
+
+### MoreLikeThisQuery
+- The `boostTerms` property has been corrected to be of type `Float` instead of `Double`.
+
+### MultiMatchQuery
+- The `cutoffFrequency` property has been corrected to be of type `Float` instead of `Double`.
+- The `tieBreaker` property has been corrected to be of type `Float` instead of `Double`.
+
+### QueryStringQuery
+- The `phraseSlop` property has been corrected to be of type `Integer` instead of `Double`.
+- The `tieBreaker` property has been corrected to be of type `Float` instead of `Double`.

@@ -225,7 +225,7 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return toBuilder(new Builder()).field(field).gt(gt).gte(gte).lt(lt).lte(lte).from(from).to(to).format(format).timeZone(timeZone);
+        return new Builder(this);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -236,6 +236,21 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 
     public static class Builder extends RangeQueryBase.AbstractBuilder<Builder> implements ObjectBuilder<RangeQuery> {
         private String field;
+
+        public Builder() {}
+
+        private Builder(RangeQuery o) {
+            super(o);
+            this.field = o.field;
+            this.gt = o.gt;
+            this.gte = o.gte;
+            this.lt = o.lt;
+            this.lte = o.lte;
+            this.from = o.from;
+            this.to = o.to;
+            this.format = o.format;
+            this.timeZone = o.timeZone;
+        }
 
         /**
          * Required - The target field

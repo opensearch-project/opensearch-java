@@ -46,7 +46,7 @@ import org.opensearch.client.json.JsonpSerializable;
 public interface CharFilterDefinitionVariant extends JsonpSerializable {
     CharFilterDefinition.Kind _charFilterDefinitionKind();
 
-    default CharFilterDefinition _toCharFilterDefinition() {
+    default CharFilterDefinition toCharFilterDefinition() {
         return new CharFilterDefinition(this);
     }
 }

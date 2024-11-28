@@ -75,6 +75,13 @@ public abstract class RangeQueryBase extends QueryBase {
         @Nullable
         private RangeRelation relation;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(RangeQueryBase o) {
+            super(o);
+            this.relation = o.relation;
+        }
+
         /**
          * API name: {@code relation}
          */

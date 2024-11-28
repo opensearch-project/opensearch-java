@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -192,9 +193,26 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinition.Ki
         mapper.serialize(_value, generator);
     }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CharFilterDefinition> {
         private Kind _kind;
         private CharFilterDefinitionVariant _value;
+
+        public Builder() {}
+
+        private Builder(CharFilterDefinition o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         public ObjectBuilder<CharFilterDefinition> htmlStrip(HtmlStripCharFilter v) {
             this._kind = Kind.HtmlStrip;
@@ -265,7 +283,6 @@ public class CharFilterDefinition implements TaggedUnion<CharFilterDefinition.Ki
         op.add(Builder::kuromojiIterationMark, KuromojiIterationMarkCharFilter._DESERIALIZER, "kuromoji_iteration_mark");
         op.add(Builder::mapping, MappingCharFilter._DESERIALIZER, "mapping");
         op.add(Builder::patternReplace, PatternReplaceCharFilter._DESERIALIZER, "pattern_replace");
-
         op.setTypeProperty("type", null);
     }
 

@@ -336,7 +336,6 @@ public abstract class PropertyBase implements PlainJsonSerializable {
         public final BuilderT properties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
             return properties(key, fn.apply(new Property.Builder()).build());
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------

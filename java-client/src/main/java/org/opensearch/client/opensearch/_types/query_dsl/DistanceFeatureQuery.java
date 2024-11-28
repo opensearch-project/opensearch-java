@@ -112,7 +112,7 @@ public class DistanceFeatureQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return toBuilder(new Builder()).origin(origin).pivot(pivot).field(field);
+        return new Builder(this);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -127,6 +127,15 @@ public class DistanceFeatureQuery extends QueryBase implements QueryVariant {
         private JsonData pivot;
 
         private String field;
+
+        public Builder() {}
+
+        private Builder(DistanceFeatureQuery o) {
+            super(o);
+            this.origin = o.origin;
+            this.pivot = o.pivot;
+            this.field = o.field;
+        }
 
         /**
          * Required - API name: {@code origin}

@@ -46,7 +46,7 @@ import org.opensearch.client.json.JsonpSerializable;
 public interface NormalizerVariant extends JsonpSerializable {
     Normalizer.Kind _normalizerKind();
 
-    default Normalizer _toNormalizer() {
+    default Normalizer toNormalizer() {
         return new Normalizer(this);
     }
 }

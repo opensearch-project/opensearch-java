@@ -39,6 +39,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolItems.Builder, ToolItems> {
 
+    @Nonnull
+    private final Map<String, JsonData> metadata;
+
     @Nullable
     private final String name;
 
@@ -48,20 +51,22 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
     @Nullable
     private final String type;
 
-    @Nonnull
-    private final Map<String, JsonData> metadata;
-
     // ---------------------------------------------------------------------------------------------
 
     private ToolItems(Builder builder) {
+        this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
         this.name = builder.name;
         this.parameters = ApiTypeHelper.unmodifiable(builder.parameters);
         this.type = builder.type;
-        this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
     }
 
     public static ToolItems of(Function<ToolItems.Builder, ObjectBuilder<ToolItems>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    @Nonnull
+    public final Map<String, JsonData> metadata() {
+        return this.metadata;
     }
 
     /**
@@ -86,13 +91,6 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
     @Nullable
     public final String type() {
         return this.type;
-    }
-
-    /**
-                                    */
-    @Nonnull
-    public final Map<String, JsonData> metadata() {
-        return this.metadata;
     }
 
     /**
@@ -149,34 +147,58 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ToolItems> {
         @Nullable
+        private Map<String, JsonData> metadata;
+        @Nullable
         private String name;
         @Nullable
         private Map<String, JsonData> parameters;
         @Nullable
         private String type;
-        @Nullable
-        private Map<String, JsonData> metadata;
 
         public Builder() {}
 
         private Builder(ToolItems o) {
+            this.metadata = _mapCopy(o.metadata);
             this.name = o.name;
             this.parameters = _mapCopy(o.parameters);
             this.type = o.type;
-            this.metadata = _mapCopy(o.metadata);
         }
 
         private Builder(Builder o) {
+            this.metadata = _mapCopy(o.metadata);
             this.name = o.name;
             this.parameters = _mapCopy(o.parameters);
             this.type = o.type;
-            this.metadata = _mapCopy(o.metadata);
         }
 
         @Override
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        /**
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>metadata</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder metadata(Map<String, JsonData> map) {
+            this.metadata = _mapPutAll(this.metadata, map);
+            return this;
+        }
+
+        /**
+         *
+         * <p>
+         * Adds an entry to <code>metadata</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder metadata(String key, JsonData value) {
+            this.metadata = _mapPut(this.metadata, key, value);
+            return this;
         }
 
         /**
@@ -224,30 +246,6 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
         }
 
         /**
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>metadata</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder metadata(Map<String, JsonData> map) {
-            this.metadata = _mapPutAll(this.metadata, map);
-            return this;
-        }
-
-        /**
-         *
-         * <p>
-         * Adds an entry to <code>metadata</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder metadata(String key, JsonData value) {
-            this.metadata = _mapPut(this.metadata, key, value);
-            return this;
-        }
-
-        /**
          * Builds a {@link ToolItems}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -286,10 +284,10 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.metadata);
         result = 31 * result + Objects.hashCode(this.name);
         result = 31 * result + Objects.hashCode(this.parameters);
         result = 31 * result + Objects.hashCode(this.type);
-        result = 31 * result + Objects.hashCode(this.metadata);
         return result;
     }
 
@@ -298,9 +296,9 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         ToolItems other = (ToolItems) o;
-        return Objects.equals(this.name, other.name)
+        return Objects.equals(this.metadata, other.metadata)
+            && Objects.equals(this.name, other.name)
             && Objects.equals(this.parameters, other.parameters)
-            && Objects.equals(this.type, other.type)
-            && Objects.equals(this.metadata, other.metadata);
+            && Objects.equals(this.type, other.type);
     }
 }

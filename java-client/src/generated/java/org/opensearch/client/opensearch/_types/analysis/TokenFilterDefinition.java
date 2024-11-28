@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -957,9 +958,26 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinition.
         mapper.serialize(_value, generator);
     }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TokenFilterDefinition> {
         private Kind _kind;
         private TokenFilterDefinitionVariant _value;
+
+        public Builder() {}
+
+        private Builder(TokenFilterDefinition o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         public ObjectBuilder<TokenFilterDefinition> asciifolding(AsciiFoldingTokenFilter v) {
             this._kind = Kind.Asciifolding;
@@ -1585,7 +1603,6 @@ public class TokenFilterDefinition implements TaggedUnion<TokenFilterDefinition.
         op.add(Builder::uppercase, UppercaseTokenFilter._DESERIALIZER, "uppercase");
         op.add(Builder::wordDelimiter, WordDelimiterTokenFilter._DESERIALIZER, "word_delimiter");
         op.add(Builder::wordDelimiterGraph, WordDelimiterGraphTokenFilter._DESERIALIZER, "word_delimiter_graph");
-
         op.setTypeProperty("type", null);
     }
 

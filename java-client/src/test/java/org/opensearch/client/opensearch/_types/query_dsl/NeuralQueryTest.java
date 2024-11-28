@@ -10,7 +10,6 @@ package org.opensearch.client.opensearch._types.query_dsl;
 
 import org.junit.Test;
 import org.opensearch.client.opensearch.model.ModelTestCase;
-import org.opensearch.client.util.MissingRequiredPropertiesException;
 
 public class NeuralQueryTest extends ModelTestCase {
     @Test
@@ -48,13 +47,5 @@ public class NeuralQueryTest extends ModelTestCase {
         NeuralQuery copied = origin.toBuilder().build();
 
         assertEquals(toJson(copied), toJson(origin));
-    }
-
-    @Test
-    public void toBuilder_missing_query() {
-        assertThrows(
-            MissingRequiredPropertiesException.class,
-            () -> new NeuralQuery.Builder().field("field").k(1).filter(IdsQuery.of(builder -> builder.values("Some_ID")).toQuery()).build()
-        );
     }
 }

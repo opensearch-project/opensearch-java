@@ -8,6 +8,7 @@
 
 package org.opensearch.client.codegen.model.overrides;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -21,14 +22,24 @@ import org.opensearch.client.codegen.utils.builder.ObjectMapBuilderBase;
 import org.opensearch.client.codegen.utils.builder.SetBuilder;
 
 public final class PropertyOverride {
+    public static final PropertyOverride EMPTY = builder().build();
+
+    @Nullable
+    private final String name;
     @Nullable
     private final Type mappedType;
     @Nullable
     private final Set<String> aliases;
 
     private PropertyOverride(Builder builder) {
+        this.name = builder.name;
         this.mappedType = builder.mappedType;
         this.aliases = builder.aliases;
+    }
+
+    @Nonnull
+    public Optional<String> getName() {
+        return Optional.ofNullable(name);
     }
 
     @Nonnull
@@ -51,7 +62,14 @@ public final class PropertyOverride {
         return new MapBuilder();
     }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder().withName(name).withMappedType(mappedType).withAliases(aliases != null ? new HashSet<>(aliases) : null);
+    }
+
     public static final class Builder extends ObjectBuilderBase<PropertyOverride, Builder> {
+        @Nullable
+        private String name;
         @Nullable
         private Type mappedType;
         @Nullable
@@ -63,6 +81,12 @@ public final class PropertyOverride {
         @Override
         protected PropertyOverride construct() {
             return new PropertyOverride(this);
+        }
+
+        @Nonnull
+        public Builder withName(@Nullable String name) {
+            this.name = name;
+            return this;
         }
 
         @Nonnull

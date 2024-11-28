@@ -113,6 +113,9 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
     @Nullable
     private final String creationDateString;
 
+    @Nonnull
+    private final Map<String, JsonData> customSettings;
+
     @Nullable
     private final String defaultPipeline;
 
@@ -284,9 +287,6 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
     @Nullable
     private final IndexVersioning version;
 
-    @Nonnull
-    private final Map<String, JsonData> customSettings;
-
     // ---------------------------------------------------------------------------------------------
 
     private IndexSettings(Builder builder) {
@@ -305,6 +305,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         this.compositeIndexStarTree = builder.compositeIndexStarTree;
         this.creationDate = builder.creationDate;
         this.creationDateString = builder.creationDateString;
+        this.customSettings = ApiTypeHelper.unmodifiable(builder.customSettings);
         this.defaultPipeline = builder.defaultPipeline;
         this.finalPipeline = builder.finalPipeline;
         this.format = builder.format;
@@ -362,7 +363,6 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         this.uuid = builder.uuid;
         this.verifiedBeforeClose = builder.verifiedBeforeClose;
         this.version = builder.version;
-        this.customSettings = ApiTypeHelper.unmodifiable(builder.customSettings);
     }
 
     public static IndexSettings of(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
@@ -487,6 +487,11 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
     @Nullable
     public final String creationDateString() {
         return this.creationDateString;
+    }
+
+    @Nonnull
+    public final Map<String, JsonData> customSettings() {
+        return this.customSettings;
     }
 
     /**
@@ -946,13 +951,6 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
-                                    */
-    @Nonnull
-    public final Map<String, JsonData> customSettings() {
-        return this.customSettings;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
     @Override
@@ -1380,6 +1378,8 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         @Nullable
         private String creationDateString;
         @Nullable
+        private Map<String, JsonData> customSettings;
+        @Nullable
         private String defaultPipeline;
         @Nullable
         private String finalPipeline;
@@ -1493,8 +1493,6 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         private Boolean verifiedBeforeClose;
         @Nullable
         private IndexVersioning version;
-        @Nullable
-        private Map<String, JsonData> customSettings;
 
         public Builder() {}
 
@@ -1514,6 +1512,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
             this.compositeIndexStarTree = o.compositeIndexStarTree;
             this.creationDate = o.creationDate;
             this.creationDateString = o.creationDateString;
+            this.customSettings = _mapCopy(o.customSettings);
             this.defaultPipeline = o.defaultPipeline;
             this.finalPipeline = o.finalPipeline;
             this.format = o.format;
@@ -1571,7 +1570,6 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
             this.uuid = o.uuid;
             this.verifiedBeforeClose = o.verifiedBeforeClose;
             this.version = o.version;
-            this.customSettings = _mapCopy(o.customSettings);
         }
 
         private Builder(Builder o) {
@@ -1590,6 +1588,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
             this.compositeIndexStarTree = o.compositeIndexStarTree;
             this.creationDate = o.creationDate;
             this.creationDateString = o.creationDateString;
+            this.customSettings = _mapCopy(o.customSettings);
             this.defaultPipeline = o.defaultPipeline;
             this.finalPipeline = o.finalPipeline;
             this.format = o.format;
@@ -1647,7 +1646,6 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
             this.uuid = o.uuid;
             this.verifiedBeforeClose = o.verifiedBeforeClose;
             this.version = o.version;
-            this.customSettings = _mapCopy(o.customSettings);
         }
 
         @Override
@@ -1820,6 +1818,30 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         @Nonnull
         public final Builder creationDateString(@Nullable String value) {
             this.creationDateString = value;
+            return this;
+        }
+
+        /**
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>customSettings</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder customSettings(Map<String, JsonData> map) {
+            this.customSettings = _mapPutAll(this.customSettings, map);
+            return this;
+        }
+
+        /**
+         *
+         * <p>
+         * Adds an entry to <code>customSettings</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder customSettings(String key, JsonData value) {
+            this.customSettings = _mapPut(this.customSettings, key, value);
             return this;
         }
 
@@ -2530,30 +2552,6 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>customSettings</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder customSettings(Map<String, JsonData> map) {
-            this.customSettings = _mapPutAll(this.customSettings, map);
-            return this;
-        }
-
-        /**
-         *
-         * <p>
-         * Adds an entry to <code>customSettings</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder customSettings(String key, JsonData value) {
-            this.customSettings = _mapPut(this.customSettings, key, value);
-            return this;
-        }
-
-        /**
          * Builds a {@link IndexSettings}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -2761,6 +2759,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         result = 31 * result + Objects.hashCode(this.compositeIndexStarTree);
         result = 31 * result + Objects.hashCode(this.creationDate);
         result = 31 * result + Objects.hashCode(this.creationDateString);
+        result = 31 * result + Objects.hashCode(this.customSettings);
         result = 31 * result + Objects.hashCode(this.defaultPipeline);
         result = 31 * result + Objects.hashCode(this.finalPipeline);
         result = 31 * result + Objects.hashCode(this.format);
@@ -2818,7 +2817,6 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         result = 31 * result + Objects.hashCode(this.uuid);
         result = 31 * result + Objects.hashCode(this.verifiedBeforeClose);
         result = 31 * result + Objects.hashCode(this.version);
-        result = 31 * result + Objects.hashCode(this.customSettings);
         return result;
     }
 
@@ -2842,6 +2840,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
             && Objects.equals(this.compositeIndexStarTree, other.compositeIndexStarTree)
             && Objects.equals(this.creationDate, other.creationDate)
             && Objects.equals(this.creationDateString, other.creationDateString)
+            && Objects.equals(this.customSettings, other.customSettings)
             && Objects.equals(this.defaultPipeline, other.defaultPipeline)
             && Objects.equals(this.finalPipeline, other.finalPipeline)
             && Objects.equals(this.format, other.format)
@@ -2898,7 +2897,6 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
             && Objects.equals(this.translogFlushThresholdSize, other.translogFlushThresholdSize)
             && Objects.equals(this.uuid, other.uuid)
             && Objects.equals(this.verifiedBeforeClose, other.verifiedBeforeClose)
-            && Objects.equals(this.version, other.version)
-            && Objects.equals(this.customSettings, other.customSettings);
+            && Objects.equals(this.version, other.version);
     }
 }

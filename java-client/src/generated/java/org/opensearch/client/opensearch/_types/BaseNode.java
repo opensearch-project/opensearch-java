@@ -306,7 +306,6 @@ public abstract class BaseNode implements PlainJsonSerializable {
             this.transportAddress = value;
             return self();
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------

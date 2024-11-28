@@ -94,7 +94,7 @@ public class TermsQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return toBuilder(new Builder()).field(field).terms(terms);
+        return new Builder(this);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -107,6 +107,14 @@ public class TermsQuery extends QueryBase implements QueryVariant {
         private String field;
 
         private TermsQueryField terms;
+
+        public Builder() {}
+
+        private Builder(TermsQuery o) {
+            super(o);
+            this.field = o.field;
+            this.terms = o.terms;
+        }
 
         /**
          * Required -

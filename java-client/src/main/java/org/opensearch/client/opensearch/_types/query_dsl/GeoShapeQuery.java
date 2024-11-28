@@ -113,7 +113,7 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return toBuilder(new Builder()).field(field).shape(shape);
+        return new Builder(this);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -126,6 +126,15 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
         private String field;
 
         private GeoShapeFieldQuery shape;
+
+        public Builder() {}
+
+        private Builder(GeoShapeQuery o) {
+            super(o);
+            this.field = o.field;
+            this.shape = o.shape;
+            this.ignoreUnmapped = o.ignoreUnmapped;
+        }
 
         /**
          * Required -

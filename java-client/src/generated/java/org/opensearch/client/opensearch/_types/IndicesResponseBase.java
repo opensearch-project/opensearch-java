@@ -112,7 +112,6 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
         public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
             return shards(fn.apply(new ShardStatistics.Builder()).build());
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -2,12 +2,17 @@
 {{#canBeSingleton}}
     public {{className}}() {}
 
+{{^abstract}}
     /**
     * Singleton instance for {@link {{className}}}.
     */
     public static final {{className}} _INSTANCE = new {{className}}();
 
     public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.JsonpDeserializer}}.fixedValue({{className}}._INSTANCE);
+{{/abstract}}
+{{#abstract}}
+    {{>ObjectShape/Builder}}
+{{/abstract}}
 {{/canBeSingleton}}
 {{^canBeSingleton}}
     {{>ObjectShape/Fields}}
@@ -17,13 +22,7 @@
     {{>ObjectShape/Constructor}}
 {{#referencingDiscriminatedUnions}}
 
-    /**
-     * {@link {{union.className}}} variant kind.
-     */
-    @Override
-    public {{union.type}}.Kind _{{#camelCase}}{{union.className}}{{/camelCase}}Kind() {
-        return {{union.type}}.Kind.{{#pascalCase}}{{discriminatorValue}}{{/pascalCase}};
-    }
+    {{>ObjectShape/DiscriminatedUnionInterfaceImpl}}
 {{/referencingDiscriminatedUnions}}
     {{>ObjectShape/Getters}}
 

@@ -307,7 +307,6 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
             this.version = value;
             return self();
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------

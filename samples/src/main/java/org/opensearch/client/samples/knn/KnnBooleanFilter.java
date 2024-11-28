@@ -57,7 +57,7 @@ public class KnnBooleanFilter {
             client.indices().refresh(i -> i.index(indexName));
 
             final var searchGenre = RandUtil.choice(genres);
-            final var searchVector = RandUtil.rand2SfArray(dimensions);
+            final var searchVector = RandUtil.rand2SfList(dimensions);
             LOGGER.info("Searching for vector {} with the '{}' genre", searchVector, searchGenre);
 
             var searchResponse = client.search(
@@ -85,7 +85,7 @@ public class KnnBooleanFilter {
         }
     }
 
-    public static class Doc {
+    private static class Doc {
         private float[] values;
         private Metadata metadata;
 

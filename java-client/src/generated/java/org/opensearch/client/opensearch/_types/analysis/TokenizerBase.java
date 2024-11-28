@@ -113,7 +113,6 @@ public abstract class TokenizerBase implements PlainJsonSerializable {
             this.version = value;
             return self();
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------

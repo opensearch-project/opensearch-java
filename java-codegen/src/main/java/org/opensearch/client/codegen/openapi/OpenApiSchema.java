@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
@@ -35,6 +36,9 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     public static final OpenApiSchema ANONYMOUS_UNTYPED = builder().withPointer(ANONYMOUS.append("untyped")).build();
     public static final OpenApiSchema ANONYMOUS_OBJECT = builder().withPointer(ANONYMOUS.append("object"))
         .withTypes(OpenApiSchemaType.Object)
+        .build();
+    public static final OpenApiSchema ANONYMOUS_STRING = builder().withPointer(ANONYMOUS.append("string"))
+        .withTypes(OpenApiSchemaType.String)
         .build();
 
     @Nullable
@@ -58,9 +62,15 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nullable
     private final OpenApiSchema items;
     @Nullable
+    private final OpenApiSchema propertyNames;
+    @Nullable
     private final OpenApiSchema additionalProperties;
     @Nullable
     private final Map<String, OpenApiSchema> properties;
+    @Nullable
+    private final Integer minProperties;
+    @Nullable
+    private final Integer maxProperties;
     @Nullable
     private final Set<String> required;
     @Nullable
@@ -88,8 +98,11 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         oneOf = builder.oneOf;
         enums = builder.enums;
         items = builder.items;
+        propertyNames = builder.propertyNames;
         additionalProperties = builder.additionalProperties;
         properties = builder.properties;
+        minProperties = builder.minProperties;
+        maxProperties = builder.maxProperties;
         required = builder.required;
         title = builder.title;
         pattern = builder.pattern;
@@ -138,9 +151,14 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
 
         items = child("items", schema.getItems(), OpenApiSchema::new);
 
+        propertyNames = child("propertyNames", schema.getPropertyNames(), OpenApiSchema::new);
         additionalProperties = child("additionalProperties", (Schema<?>) schema.getAdditionalProperties(), OpenApiSchema::new);
 
         properties = children("properties", schema.getProperties(), OpenApiSchema::new);
+
+        minProperties = schema.getMinProperties();
+        maxProperties = schema.getMaxProperties();
+
         required = ifNonnull(schema.getRequired(), HashSet::new);
 
         title = schema.getTitle();
@@ -253,6 +271,11 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     }
 
     @Nonnull
+    public Optional<OpenApiSchema> getPropertyNames() {
+        return Optional.ofNullable(propertyNames);
+    }
+
+    @Nonnull
     public Optional<OpenApiSchema> getAdditionalProperties() {
         return Optional.ofNullable(additionalProperties);
     }
@@ -260,6 +283,16 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
     @Nonnull
     public Optional<Map<String, OpenApiSchema>> getProperties() {
         return Maps.unmodifiableOpt(properties);
+    }
+
+    @Nonnull
+    public OptionalInt getMinProperties() {
+        return minProperties != null ? OptionalInt.of(minProperties) : OptionalInt.empty();
+    }
+
+    @Nonnull
+    public OptionalInt getMaxProperties() {
+        return maxProperties != null ? OptionalInt.of(maxProperties) : OptionalInt.empty();
     }
 
     @Nonnull
@@ -331,7 +364,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
             return determineTypes(oneOf);
         }
 
-        throw new IllegalStateException("Cannot determine type for schema: " + getPointer());
+        return OpenApiSchemaType.ALL_TYPES;
     }
 
     @Nonnull
@@ -374,9 +407,15 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         @Nullable
         private OpenApiSchema items;
         @Nullable
+        private OpenApiSchema propertyNames;
+        @Nullable
         private OpenApiSchema additionalProperties;
         @Nullable
         private Map<String, OpenApiSchema> properties;
+        @Nullable
+        private Integer minProperties;
+        @Nullable
+        private Integer maxProperties;
         @Nullable
         private Set<String> required;
         @Nullable

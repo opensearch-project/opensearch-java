@@ -112,7 +112,7 @@ public class XyShapeQuery extends QueryBase implements QueryVariant {
     }
 
     public XyShapeQuery.Builder toBuilder() {
-        return toBuilder(new Builder()).field(field).xyShape(xyShape);
+        return new Builder(this);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -125,6 +125,15 @@ public class XyShapeQuery extends QueryBase implements QueryVariant {
         private String field;
 
         private XyShapeFieldQuery xyShape;
+
+        public Builder() {}
+
+        private Builder(XyShapeQuery o) {
+            super(o);
+            this.field = o.field;
+            this.xyShape = o.xyShape;
+            this.ignoreUnmapped = o.ignoreUnmapped;
+        }
 
         /**
          * Required -
