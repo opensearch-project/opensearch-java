@@ -85,7 +85,6 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
     private static final byte[] NO_BYTES = new byte[0];
     private final SdkAutoCloseable httpClient;
-    private final boolean isApacheHttpClient;
     private final String host;
     private final String signingServiceName;
     private final Region signingRegion;
@@ -195,8 +194,6 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     ) {
         Objects.requireNonNull(host, "Target OpenSearch service host must not be null");
         this.httpClient = httpClient;
-        this.isApacheHttpClient = httpClient instanceof SdkHttpClient
-            && httpClient.getClass().getName().equals("software.amazon.awssdk.http.apache.ApacheHttpClient");
         this.host = host;
         this.signingServiceName = signingServiceName;
         this.signingRegion = signingRegion;
@@ -299,24 +296,8 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         Endpoint<RequestT, ?, ?> endpoint,
         @CheckForNull TransportOptions options,
         @CheckForNull OpenSearchRequestBodyBuffer body
-    ) throws UnsupportedEncodingException, TransportException {
+    ) throws UnsupportedEncodingException {
         SdkHttpMethod method = SdkHttpMethod.fromValue(endpoint.method(request));
-
-        // AWS Apache Http Client only supports request bodies on PATCH, POST & PUT requests.
-        // See:
-        // https://github.com/aws/aws-sdk-java-v2/blob/master/http-clients/apache-client/src/main/java/software/amazon/awssdk/http/apache/internal/impl/ApacheHttpRequestFactory.java#L118-L137
-        if (isApacheHttpClient
-            && method != SdkHttpMethod.PATCH
-            && method != SdkHttpMethod.POST
-            && method != SdkHttpMethod.PUT
-            && body != null
-            && body.getContentLength() > 0) {
-            throw new TransportException(
-                "AWS SDK's ApacheHttpClient does not support request bodies for HTTP method `"
-                    + method
-                    + "`. Please use a different SdkHttpClient implementation."
-            );
-        }
 
         SdkHttpFullRequest.Builder req = SdkHttpFullRequest.builder().method(method);
 
