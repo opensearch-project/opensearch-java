@@ -202,6 +202,8 @@ public class RequestShape extends ObjectShape {
                 return "GetIndex";
             case "snapshot.clone":
                 return "CloneSnapshot";
+            case "snapshot.create":
+                return "CreateSnapshot";
             case "tasks.get":
                 return "GetTasks";
             default:
