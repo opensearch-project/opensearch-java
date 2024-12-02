@@ -155,7 +155,7 @@ public class CreateSnapshotRequest extends RequestBase
     }
 
     /**
-     * If <code>true</code>, the request ignores data streams and indexes in <code>indices</code> that are missing or closed. If
+     * If <code>true</code>, the request ignores data streams and indexes in <code>indexes</code> that are missing or closed. If
      * <code>false</code>, the request returns an error for any data stream or index that is missing or closed.
      * <p>
      * API name: {@code ignore_unavailable}
@@ -445,7 +445,7 @@ public class CreateSnapshotRequest extends RequestBase
         }
 
         /**
-         * If <code>true</code>, the request ignores data streams and indexes in <code>indices</code> that are missing or closed. If
+         * If <code>true</code>, the request ignores data streams and indexes in <code>indexes</code> that are missing or closed. If
          * <code>false</code>, the request returns an error for any data stream or index that is missing or closed.
          * <p>
          * API name: {@code ignore_unavailable}

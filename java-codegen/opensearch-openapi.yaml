@@ -2486,9 +2486,7 @@ paths:
         url: https://opensearch.org/docs/latest
       parameters:
         - $ref: '#/components/parameters/indices.simulate_index_template___path.name'
-        - $ref: '#/components/parameters/indices.simulate_index_template___query.cause'
         - $ref: '#/components/parameters/indices.simulate_index_template___query.cluster_manager_timeout'
-        - $ref: '#/components/parameters/indices.simulate_index_template___query.create'
         - $ref: '#/components/parameters/indices.simulate_index_template___query.master_timeout'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
@@ -2803,6 +2801,7 @@ paths:
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
+        - $ref: '#/components/parameters/ingest.processor_grok___query.s'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
         - $ref: '#/components/parameters/_global___query.error_trace'
@@ -9486,6 +9485,7 @@ paths:
       operationId: indices.get_upgrade.0
       x-operation-group: indices.get_upgrade
       x-version-added: '1.0'
+      x-version-deprecated: '1.0'
       description: The `_upgrade` API is no longer useful and will be removed.
       externalDocs:
         url: https://opensearch.org/docs/latest
@@ -9505,6 +9505,7 @@ paths:
       operationId: indices.upgrade.0
       x-operation-group: indices.upgrade
       x-version-added: '1.0'
+      x-version-deprecated: '1.0'
       description: The `_upgrade` API is no longer useful and will be removed.
       externalDocs:
         url: https://opensearch.org/docs/latest
@@ -9519,6 +9520,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/indices.upgrade'
       responses:
         '200':
           $ref: '#/components/responses/indices.upgrade___200'
@@ -12216,6 +12219,7 @@ paths:
       operationId: indices.get_upgrade.1
       x-operation-group: indices.get_upgrade
       x-version-added: '1.0'
+      x-version-deprecated: '1.0'
       description: The `_upgrade` API is no longer useful and will be removed.
       externalDocs:
         url: https://opensearch.org/docs/latest
@@ -12236,6 +12240,7 @@ paths:
       operationId: indices.upgrade.1
       x-operation-group: indices.upgrade
       x-version-added: '1.0'
+      x-version-deprecated: '1.0'
       description: The `_upgrade` API is no longer useful and will be removed.
       externalDocs:
         url: https://opensearch.org/docs/latest
@@ -12251,6 +12256,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/indices.upgrade'
       responses:
         '200':
           $ref: '#/components/responses/indices.upgrade___200'
@@ -14823,13 +14830,13 @@ components:
     asynchronous_search.search___query.index:
       name: index
       in: query
-      description: The name of the index to be searched.
+      description: The name of the index to be searched. Can be an individual name, a comma-separated list of indexes, or a wildcard expression of index names.
       schema:
         type: string
     asynchronous_search.search___query.keep_alive:
       name: keep_alive
       in: query
-      description: The amount of time that the result is saved in the cluster.
+      description: The amount of time that the result is saved in the cluster. For example, `2d` means that the results are stored in the cluster for 48 hours. The saved search results are deleted after this period or if the search is canceled. Note that this includes the query execution time. If the query overruns this time, the process cancels this query automatically.
       schema:
         type: string
     asynchronous_search.search___query.keep_on_completion:
@@ -14841,7 +14848,7 @@ components:
     asynchronous_search.search___query.wait_for_completion_timeout:
       name: wait_for_completion_timeout
       in: query
-      description: The amount of time that you plan to wait for the results.
+      description: The amount of time that you plan to wait for the results. You can poll the remaining results based on an ID. The maximum value is `300s`. Default is `1s`.
       schema:
         type: string
     bulk_stream___path.index:
@@ -21162,14 +21169,6 @@ components:
       schema:
         $ref: '#/components/schemas/_common___Name'
       style: simple
-    indices.simulate_index_template___query.cause:
-      name: cause
-      in: query
-      description: User defined reason for dry-run creating the new template for simulation purposes.
-      schema:
-        type: string
-        default: 'false'
-        description: User defined reason for dry-run creating the new template for simulation purposes.
     indices.simulate_index_template___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
@@ -21177,19 +21176,6 @@ components:
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
-    indices.simulate_index_template___query.create:
-      in: query
-      name: create
-      description: |-
-        If `true`, the template passed in the body is only used if no existing
-        templates match the same index patterns. If `false`, the simulation uses
-        the template with the highest priority. Note that the template is not
-        permanently added or updated in either case; it is only used for the
-        simulation.
-      schema:
-        type: boolean
-        default: false
-      style: form
     indices.simulate_index_template___query.master_timeout:
       in: query
       name: master_timeout
@@ -21662,6 +21648,13 @@ components:
       style: form
       x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use `cluster_manager_timeout` instead.
+    ingest.processor_grok___query.s:
+      name: s
+      in: query
+      description: Sort returned patterns by key name.
+      schema:
+        type: boolean
+        default: false
     ingest.put_pipeline___path.id:
       in: path
       name: id
@@ -26674,6 +26667,11 @@ components:
                   $ref: '#/components/schemas/indices.update_aliases___Action'
             description: The definition of `actions` to perform
       required: true
+    indices.upgrade:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/indices._common___UpgradeRequest'
     indices.validate_query:
       content:
         application/json:
@@ -27560,7 +27558,7 @@ components:
             type: object
             properties:
               ignore_unavailable:
-                description: If `true`, the request ignores data streams and indexes in `indices` that are missing or closed. If `false`, the request returns an error for any data stream or index that is missing or closed.
+                description: If `true`, the request ignores data streams and indexes in `indexes` that are missing or closed. If `false`, the request returns an error for any data stream or index that is missing or closed.
                 type: boolean
               include_global_state:
                 description: If `true`, the current cluster state is included in the snapshot. The cluster state includes persistent cluster settings, composable index templates, legacy index templates, ingest pipelines, and ILM policies. It also includes data stored in system indexes, such as Watches and task records (configurable with `feature_states`).
@@ -27601,30 +27599,67 @@ components:
           schema:
             type: object
             properties:
-              feature_states:
-                type: array
-                items:
-                  type: string
               ignore_index_settings:
+                description: A comma-delimited list of index settings that you don't want to restore from a snapshot.
                 type: array
                 items:
                   type: string
               ignore_unavailable:
                 type: boolean
+                description: How to handle data streams or indexes that are missing or closed. If `false`, the request returns an error for any data stream or index that is missing or closed. If `true`, the request ignores data streams and indexes in indexes that are missing or closed. Defaults to `false`.
               include_aliases:
                 type: boolean
+                description: How to handle index aliases from the original snapshot. If `true`, index aliases from the original snapshot are restored. If `false`, aliases along with associated indexes are not restored. Defaults to `true`.
               include_global_state:
                 type: boolean
+                description: Whether to restore the current cluster state. If `false`, the cluster state is not restored. If true, the current cluster state is restored. Defaults to `false`.
               index_settings:
+                description: A comma-delimited list of settings to add or change in all restored indexes. Use this parameter to override index settings during snapshot restoration. For data streams, these index settings are applied to the restored backing indexes.
                 $ref: '#/components/schemas/indices._common___IndexSettings'
               indices:
+                description: A comma-delimited list of data streams and indexes to restore from the snapshot. Multi-index syntax is supported. By default, a restore operation includes all data streams and indexes in the snapshot. If this argument is provided, the restore operation only includes the data streams and indexes that you specify.
                 $ref: '#/components/schemas/_common___Indices'
               partial:
                 type: boolean
+                description: |-
+                  How the restore operation will behave if indexes in the snapshot do not have all primary shards available.
+                  If `false`, the entire restore operation fails if any indexes in the snapshot do not have all primary shards available.
+                  If `true`, allows the restoration of a partial snapshot of indexes with unavailable shards. Only shards that were successfully included in the snapshot are restored. All missing shards are recreated as empty. By default, the entire restore operation fails if one or more indexes included in the snapshot do not have all primary shards available. To change this behavior, set `partial` to `true`.
+                  Defaults to `false`.
               rename_pattern:
                 type: string
+                description: |-
+                  The pattern to apply to the restored data streams and indexes. Data streams and indexes matching the rename pattern will be renamed according to the `rename_replacement` setting.
+                  The rename pattern is applied as defined by the regular expression that supports referencing the original text.
+                  The request fails if two or more data streams or indexes are renamed into the same name.
+                  If you rename a restored data stream, its backing indexes are also renamed. For example, if you rename the logs data stream to `recovered-logs`, the backing index `.ds-logs-1` is renamed to `.ds-recovered-logs-1`.
+                  If you rename a restored stream, ensure an index template matches the new stream name. If there are no matching index template names, the stream cannot roll over and new backing indexes are not created.
               rename_replacement:
                 type: string
+                description: The rename replacement string.
+              rename_alias_pattern:
+                x-version-added: '2.18'
+                type: string
+                description: |-
+                  The pattern to apply to the restored aliases. Aliases matching the rename pattern will be renamed according to the `rename_alias_replacement` setting.
+                  The rename pattern is applied as defined by the regular expression that supports referencing the original text.
+                  If two or more aliases are renamed into the same name, these aliases will be merged into one.
+              rename_alias_replacement:
+                x-version-added: '2.18'
+                type: string
+                description: The rename replacement string for aliases.
+              source_remote_store_repository:
+                x-version-added: '2.10'
+                type: string
+                description: The name of the remote store repository of the source index being restored. If not provided, the Snapshot Restore API will use the repository that was registered when the snapshot was created.
+              storage_type:
+                x-version-added: '2.7'
+                type: string
+                description: |-
+                  Where will be the authoritative store of the restored indexes' data.
+                  A value of `local` indicates that all snapshot metadata and index data will be downloaded to local storage.
+                  A value of `remote_snapshot` indicates that snapshot metadata will be downloaded to the cluster, but the remote repository will remain the authoritative store of the index data. Data will be downloaded and cached as necessary to service queries. At least one node in the cluster must be configured with the search role in order to restore a snapshot using the type `remote_snapshot`.
+                  Defaults to `local`.
             description: Details of what to restore
     sql.close:
       content:
@@ -29156,6 +29191,10 @@ components:
               $ref: '#/components/schemas/indices._common___TemplateMapping'
       description: ''
     indices.get_upgrade___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/indices._common___IndexGetUpgradeStatus'
       description: ''
     indices.get___200:
       content:
@@ -29393,6 +29432,10 @@ components:
             $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
       description: ''
     indices.upgrade___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/indices._common___IndexPostUpgradeStatus'
       description: ''
     indices.validate_query___200:
       content:
@@ -30315,7 +30358,10 @@ components:
             type: object
             properties:
               result:
-                type: object
+                oneOf:
+                  - type: number
+                  - type: string
+                  - type: boolean
             required:
               - result
       description: ''
@@ -33095,6 +33141,35 @@ components:
           type: number
         total:
           type: number
+    _common___ResourceStat:
+      type: object
+      properties:
+        cpu_time_in_nanos:
+          $ref: '#/components/schemas/_common___DurationValueUnitNanos'
+        memory_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+      required:
+        - cpu_time_in_nanos
+        - memory_in_bytes
+    _common___ResourceStats:
+      type: object
+      properties:
+        average:
+          $ref: '#/components/schemas/_common___ResourceStat'
+        total:
+          $ref: '#/components/schemas/_common___ResourceStat'
+        min:
+          $ref: '#/components/schemas/_common___ResourceStat'
+        max:
+          $ref: '#/components/schemas/_common___ResourceStat'
+        thread_info:
+          $ref: '#/components/schemas/_common___ThreadInfo'
+      required:
+        - average
+        - max
+        - min
+        - thread_info
+        - total
     _common___ResourceType:
       type: string
       enum:
@@ -33688,6 +33763,16 @@ components:
         - h3
         - 'no'
         - z
+    _common___ThreadInfo:
+      type: object
+      properties:
+        thread_executions:
+          type: number
+        active_threads:
+          type: number
+      required:
+        - active_threads
+        - thread_executions
     _common___TimeOfDay:
       description: Time of day, expressed as HH:MM:SS.
       type: string
@@ -43543,7 +43628,6 @@ components:
       required:
         - document
         - index
-        - query
     _core.search_shards___ShardStoreIndex:
       type: object
       properties:
@@ -44032,8 +44116,7 @@ components:
           $ref: '#/components/schemas/_core.explain___Explanation'
         fields:
           type: object
-          additionalProperties:
-            type: object
+          additionalProperties: true
         highlight:
           type: object
           additionalProperties:
@@ -49037,6 +49120,19 @@ components:
       additionalProperties:
         title: metadata
         description: Additional details about the error.
+    indices._common___IndexGetUpgradeStatus:
+      type: object
+      properties:
+        size_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        size_to_upgrade_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        size_to_upgrade_ancient_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        indices:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/indices._common___UpgradeStatus'
     indices._common___IndexingPressure:
       type: object
       properties:
@@ -49072,6 +49168,15 @@ components:
       properties:
         index:
           $ref: '#/components/schemas/indices._common___SlowlogThresholdLevels'
+    indices._common___IndexPostUpgradeStatus:
+      type: object
+      properties:
+        _shards:
+          $ref: '#/components/schemas/_common___ShardStatistics'
+        upgraded_indices:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/indices._common___UpgradeVersionStatus'
     indices._common___IndexRouting:
       type: object
       properties:
@@ -50036,6 +50141,38 @@ components:
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
         age:
           $ref: '#/components/schemas/_common___Duration'
+    indices._common___UpgradeRequest:
+      type: object
+      properties:
+        allow_no_indices:
+          type: boolean
+        expand_wildcards:
+          type: string
+          enum:
+            - all
+            - closed
+            - none
+            - open
+        ignore_unavailable:
+          type: boolean
+        wait_for_completion:
+          type: boolean
+    indices._common___UpgradeStatus:
+      type: object
+      properties:
+        size_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        size_to_upgrade_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        size_to_upgrade_ancient_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+    indices._common___UpgradeVersionStatus:
+      type: object
+      properties:
+        upgrade_version:
+          $ref: '#/components/schemas/_common___VersionString'
+        oldest_lucene_segment_version:
+          $ref: '#/components/schemas/_common___VersionString'
     indices.add_block___IndicesBlockOptions:
       type: string
       enum:
@@ -50722,7 +50859,6 @@ components:
           $ref: '#/components/schemas/indices._common___IndexSettings'
       required:
         - aliases
-        - mappings
         - settings
     indices.stats___AllIndicesStats:
       type: object
@@ -51947,8 +52083,7 @@ components:
         _source:
           description: JSON body for the document.
           type: object
-          additionalProperties:
-            type: object
+          additionalProperties: true
         _version:
           $ref: '#/components/schemas/_common___StringifiedVersionNumber'
         _version_type:
@@ -53721,17 +53856,22 @@ components:
           description: Size of buffer pools in bytes.
           $ref: '#/components/schemas/_common___ByteCount'
     nodes._common___NodeReloadError:
+      allOf:
+        - $ref: '#/components/schemas/nodes._common___NodeReloadResponse'
+        - type: object
+          properties:
+            reload_exception:
+              $ref: '#/components/schemas/_common___ErrorCause'
+    nodes._common___NodeReloadResponse:
       type: object
       properties:
         name:
           $ref: '#/components/schemas/_common___Name'
-        reload_exception:
-          $ref: '#/components/schemas/_common___ErrorCause'
       required:
         - name
     nodes._common___NodeReloadResult:
-      oneOf:
-        - $ref: '#/components/schemas/nodes._common___Stats'
+      anyOf:
+        - $ref: '#/components/schemas/nodes._common___NodeReloadResponse'
         - $ref: '#/components/schemas/nodes._common___NodeReloadError'
     nodes._common___NodesResponseBase:
       type: object
@@ -55130,6 +55270,7 @@ components:
       type: string
       enum:
         - _all
+        - aggregations
         - rest_actions
     nodes.usage___NodeUsage:
       type: object
@@ -55147,8 +55288,6 @@ components:
           additionalProperties:
             type: object
       required:
-        - aggregations
-        - rest_actions
         - since
         - timestamp
     nodes.usage___ResponseBase:
@@ -57978,6 +58117,8 @@ components:
           type: string
         parent_task_id:
           $ref: '#/components/schemas/_common___TaskId'
+        resource_stats:
+          $ref: '#/components/schemas/_common___ResourceStats'
       required:
         - action
         - cancellable
