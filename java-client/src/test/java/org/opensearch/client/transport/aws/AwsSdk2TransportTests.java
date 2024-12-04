@@ -13,6 +13,7 @@ import static org.apache.hc.core5.http.HttpHeaders.CONTENT_LENGTH;
 import static org.apache.hc.core5.http.HttpHeaders.CONTENT_TYPE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -56,6 +57,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch.generic.Requests;
+import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.util.FunnellingHttpsProxy;
 import org.opensearch.client.transport.util.SelfSignedCertificateAuthority;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
@@ -408,7 +410,27 @@ public class AwsSdk2TransportTests {
         String contentSha256,
         String expectedSignature
     ) throws Exception {
-        request.invoke(getTestClient());
+        OpenSearchClient client = getTestClient();
+
+        if (sdkHttpClientType != SdkHttpClientType.APACHE
+            || contentLength == 0
+            || "PATCH".equals(method)
+            || "POST".equals(method)
+            || "PUT".equals(method)) {
+            request.invoke(client);
+        } else {
+            // AWS Apache Http Client only supports content on PATCH, POST & PUT requests.
+            // See:
+            // https://github.com/aws/aws-sdk-java-v2/blob/master/http-clients/apache-client/src/main/java/software/amazon/awssdk/http/apache/internal/impl/ApacheHttpRequestFactory.java#L118-L137
+            assertThrows(
+                "AWS SDK's ApacheHttpClient does not support request bodies for HTTP method `"
+                    + method
+                    + "`. Please use a different SdkHttpClient implementation.",
+                TransportException.class,
+                () -> request.invoke(client)
+            );
+            return;
+        }
 
         assertEquals(1, receivedRequests.size());
         ReceivedRequest req = receivedRequests.poll();
