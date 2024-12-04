@@ -8,7 +8,9 @@
 Requests to [OpenSearch Service and OpenSearch Serverless](https://docs.aws.amazon.com/opensearch-service/index.html) must be signed using the AWS signing protocol. Use `AwsSdk2Transport` to send signed requests.
 
 > ⚠️ **Warning** ⚠️  
-> If you are using `software.amazon.awssdk.http.apache.ApacheHttpClient` please ensure you use at least version `2.29.22` as earlier versions do not support request bodies on GET or DELETE requests, which leads to incorrect handling of requests such as `OpenSearchClient.clearScroll()` and `OpenSearchClient.deletePit()`.
+> Using `software.amazon.awssdk.http.apache.ApacheHttpClient` is discouraged as it does not support request bodies on GET or DELETE requests.  
+> This leads to incorrect handling of requests such as `OpenSearchClient.clearScroll()` and `OpenSearchClient.deletePit()`.  
+> As such `AwsSdk2Transport` will throw a `TransportException` if an unsupported request is encountered while using `ApacheHttpClient`.
 
 ```java
 SdkHttpClient httpClient = AwsCrtHttpClient.builder().build();
