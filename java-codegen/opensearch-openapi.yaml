@@ -9485,6 +9485,7 @@ paths:
       operationId: indices.get_upgrade.0
       x-operation-group: indices.get_upgrade
       x-version-added: '1.0'
+      x-version-deprecated: '1.0'
       description: The `_upgrade` API is no longer useful and will be removed.
       externalDocs:
         url: https://opensearch.org/docs/latest
@@ -9504,6 +9505,7 @@ paths:
       operationId: indices.upgrade.0
       x-operation-group: indices.upgrade
       x-version-added: '1.0'
+      x-version-deprecated: '1.0'
       description: The `_upgrade` API is no longer useful and will be removed.
       externalDocs:
         url: https://opensearch.org/docs/latest
@@ -9518,6 +9520,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/indices.upgrade'
       responses:
         '200':
           $ref: '#/components/responses/indices.upgrade___200'
@@ -12215,6 +12219,7 @@ paths:
       operationId: indices.get_upgrade.1
       x-operation-group: indices.get_upgrade
       x-version-added: '1.0'
+      x-version-deprecated: '1.0'
       description: The `_upgrade` API is no longer useful and will be removed.
       externalDocs:
         url: https://opensearch.org/docs/latest
@@ -12235,6 +12240,7 @@ paths:
       operationId: indices.upgrade.1
       x-operation-group: indices.upgrade
       x-version-added: '1.0'
+      x-version-deprecated: '1.0'
       description: The `_upgrade` API is no longer useful and will be removed.
       externalDocs:
         url: https://opensearch.org/docs/latest
@@ -12250,6 +12256,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/indices.upgrade'
       responses:
         '200':
           $ref: '#/components/responses/indices.upgrade___200'
@@ -26659,6 +26667,11 @@ components:
                   $ref: '#/components/schemas/indices.update_aliases___Action'
             description: The definition of `actions` to perform
       required: true
+    indices.upgrade:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/indices._common___UpgradeRequest'
     indices.validate_query:
       content:
         application/json:
@@ -29178,6 +29191,10 @@ components:
               $ref: '#/components/schemas/indices._common___TemplateMapping'
       description: ''
     indices.get_upgrade___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/indices._common___IndexGetUpgradeStatus'
       description: ''
     indices.get___200:
       content:
@@ -29415,6 +29432,10 @@ components:
             $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
       description: ''
     indices.upgrade___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/indices._common___IndexPostUpgradeStatus'
       description: ''
     indices.validate_query___200:
       content:
@@ -49101,6 +49122,19 @@ components:
       additionalProperties:
         title: metadata
         description: Additional details about the error.
+    indices._common___IndexGetUpgradeStatus:
+      type: object
+      properties:
+        size_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        size_to_upgrade_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        size_to_upgrade_ancient_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        indices:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/indices._common___UpgradeStatus'
     indices._common___IndexingPressure:
       type: object
       properties:
@@ -49136,6 +49170,15 @@ components:
       properties:
         index:
           $ref: '#/components/schemas/indices._common___SlowlogThresholdLevels'
+    indices._common___IndexPostUpgradeStatus:
+      type: object
+      properties:
+        _shards:
+          $ref: '#/components/schemas/_common___ShardStatistics'
+        upgraded_indices:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/indices._common___UpgradeVersionStatus'
     indices._common___IndexRouting:
       type: object
       properties:
@@ -50100,6 +50143,38 @@ components:
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
         age:
           $ref: '#/components/schemas/_common___Duration'
+    indices._common___UpgradeRequest:
+      type: object
+      properties:
+        allow_no_indices:
+          type: boolean
+        expand_wildcards:
+          type: string
+          enum:
+            - all
+            - closed
+            - none
+            - open
+        ignore_unavailable:
+          type: boolean
+        wait_for_completion:
+          type: boolean
+    indices._common___UpgradeStatus:
+      type: object
+      properties:
+        size_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        size_to_upgrade_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        size_to_upgrade_ancient_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+    indices._common___UpgradeVersionStatus:
+      type: object
+      properties:
+        upgrade_version:
+          $ref: '#/components/schemas/_common___VersionString'
+        oldest_lucene_segment_version:
+          $ref: '#/components/schemas/_common___VersionString'
     indices.add_block___IndicesBlockOptions:
       type: string
       enum:
