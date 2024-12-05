@@ -1,8 +1,5 @@
 {{^abstract}}
-    @{{TYPES.Javax.Annotation.Nonnull}}
-    public static Builder {{#extendedByOtherShape}}{{#camelCase}}{{className}}{{/camelCase}}B{{/extendedByOtherShape}}{{^extendedByOtherShape}}b{{/extendedByOtherShape}}uilder() {
-        return new Builder();
-    }
+    {{>ObjectShape/Builder/HelperCtor}}
 
     /**
     * Builder for {@link {{className}}}.
@@ -55,7 +52,9 @@
 
                 {{>ObjectShape/Builder/SelfImpl}}
 
-                {{>ObjectShape/Builder/Setters}}
+            {{#concreteBuilderSetters}}
+                {{>ObjectShape/Builder/Setter}}
+            {{/concreteBuilderSetters}}
 
                 {{>ObjectShape/Builder/BuildImpl}}
             }
@@ -86,7 +85,9 @@
 
             {{/shouldImplementPlainDeserializable}}
 
-                {{>ObjectShape/Builder/Setters}}
+            {{#concreteBuilderSetters}}
+                {{>ObjectShape/Builder/Setter}}
+            {{/concreteBuilderSetters}}
 
                 {{>ObjectShape/Builder/BuildImpl}}
             }
@@ -113,6 +114,8 @@
         protected abstract BuilderT self();
     {{/extendsOtherShape}}
 
-        {{>ObjectShape/Builder/Setters}}
+    {{#abstractBuilderSetters}}
+        {{>ObjectShape/Builder/Setter}}
+    {{/abstractBuilderSetters}}
     }
 {{/extendedByOtherShape}}

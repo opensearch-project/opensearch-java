@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -889,9 +890,26 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
         mapper.serialize(_value, generator);
     }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Property> {
         private Kind _kind;
         private PropertyVariant _value;
+
+        public Builder() {}
+
+        private Builder(Property o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         public ObjectBuilder<Property> aggregateMetricDouble(AggregateMetricDoubleProperty v) {
             this._kind = Kind.AggregateMetricDouble;
@@ -1419,7 +1437,6 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
         op.add(Builder::wildcard, WildcardProperty._DESERIALIZER, "wildcard");
         op.add(Builder::xyPoint, XyPointProperty._DESERIALIZER, "xy_point");
         op.add(Builder::xyShape, XyShapeProperty._DESERIALIZER, "xy_shape");
-
         op.setTypeProperty("type", Kind.Object.jsonValue());
     }
 

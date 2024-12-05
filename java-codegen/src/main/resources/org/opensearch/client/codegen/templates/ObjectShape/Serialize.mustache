@@ -11,6 +11,9 @@
 
 {{/extendsOtherShape}}
     protected void serializeInternal({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
+{{#singleKeyMap}}
+    generator.writeStartObject(this.{{name}});
+{{/singleKeyMap}}
 {{#distinctDiscriminatorFieldValues}}
     generator.write({{#quoted}}{{key}}{{/quoted}}, {{#quoted}}{{value}}{{/quoted}});
 {{/distinctDiscriminatorFieldValues}}
@@ -20,17 +23,8 @@
 {{#additionalPropertiesField}}
     {{#type.directSerializer}}this.{{name}}{{/type.directSerializer}}
 {{/additionalPropertiesField}}
-{{#fieldsToSerialize}}
-{{^required}}
-        if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) {
-{{/required}}
-            generator.writeKey({{#quoted}}{{wireName}}{{/quoted}});
-            {{#type.serializer}}this.{{name}}{{/type.serializer}}
-{{^required}}
-        }
-{{/required}}
-{{^-last}}
-
-{{/-last}}
-{{/fieldsToSerialize}}
+{{>ObjectShape/Serialize/Fields}}
+{{#singleKeyMap}}
+    generator.writeEnd();
+{{/singleKeyMap}}
     }

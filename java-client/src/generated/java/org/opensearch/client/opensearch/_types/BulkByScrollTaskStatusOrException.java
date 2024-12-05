@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -136,9 +137,26 @@ public class BulkByScrollTaskStatusOrException
         }
     }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkByScrollTaskStatusOrException> {
         private Kind _kind;
         private Object _value;
+
+        public Builder() {}
+
+        private Builder(BulkByScrollTaskStatusOrException o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         public ObjectBuilder<BulkByScrollTaskStatusOrException> exception(ErrorCause v) {
             this._kind = Kind.Exception;

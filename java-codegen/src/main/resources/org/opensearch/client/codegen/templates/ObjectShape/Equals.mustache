@@ -1,34 +1,17 @@
     @Override
     public boolean equals(Object o) {
-        {{#extendsOtherShape}}
-            if(!super.equals(o)) {
-                return false;
-            }
-        {{/extendsOtherShape}}
+    {{#extendsOtherShape}}
+        if(!super.equals(o)) {
+            return false;
+        }
+    {{/extendsOtherShape}}
         if(this == o) return true;
         if(o == null || this.getClass() != o.getClass()) return false;
-        {{#fields}}
-            {{#-first}}
+        {{#hasFields}}
             {{className}} other = ({{className}})o;
-            return
-            {{/-first}}
-            {{^-first}}
-                &&
-            {{/-first}}
-            {{#required}}
-                {{#type.isPrimitive}}
-                    this.{{name}} == other.{{name}}
-                {{/type.isPrimitive}}
-                {{^type.isPrimitive}}
-                    this.{{name}}.equals(other.{{name}})
-                {{/type.isPrimitive}}
-            {{/required}}
-            {{^required}}
-                {{TYPES.Java.Util.Objects}}.equals(this.{{name}}, other.{{name}})
-            {{/required}}
-        {{/fields}}
-        {{^fields}}
-            return true
-        {{/fields}}
-        ;
+            return {{>ObjectShape/Equals/Fields}};
+        {{/hasFields}}
+        {{^hasFields}}
+            return true;
+        {{/hasFields}}
     }

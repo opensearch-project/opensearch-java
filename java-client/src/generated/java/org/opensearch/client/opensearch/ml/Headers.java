@@ -64,8 +64,6 @@ public class Headers implements PlainJsonSerializable, ToCopyableBuilder<Headers
         return this.contentType;
     }
 
-    /**
-                                    */
     @Nonnull
     public final Map<String, JsonData> metadata() {
         return this.metadata;

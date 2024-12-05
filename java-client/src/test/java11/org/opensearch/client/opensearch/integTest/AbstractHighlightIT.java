@@ -90,7 +90,7 @@ public abstract class AbstractHighlightIT extends OpenSearchJavaClientTestCase {
         if (major >= 2 && minor >= 2) {
             String index = "queries_highlight";
             createTestDocuments(index);
-            List<Map<String, List<String>>> highlights = highlightQuery("real", h -> h.maxAnalyzerOffset("5").fields("title", b -> b));
+            List<Map<String, List<String>>> highlights = highlightQuery("real", h -> h.maxAnalyzerOffset(5).fields("title", b -> b));
 
             assertEquals(3, highlights.size());
             assertEquals(0, highlights.get(0).size());

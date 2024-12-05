@@ -113,7 +113,6 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
             this.acknowledged = value;
             return self();
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------

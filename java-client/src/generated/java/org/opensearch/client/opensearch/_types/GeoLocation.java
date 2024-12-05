@@ -41,6 +41,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -190,9 +191,26 @@ public class GeoLocation implements TaggedUnion<GeoLocation.Kind, Object>, Plain
         }
     }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoLocation> {
         private Kind _kind;
         private Object _value;
+
+        public Builder() {}
+
+        private Builder(GeoLocation o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         public ObjectBuilder<GeoLocation> coords(List<Double> v) {
             this._kind = Kind.Coords;

@@ -8,11 +8,26 @@
 
 package org.opensearch.client.samples.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RandUtil {
+    public static float rand2Sf() {
+        return Math.round(Math.random() * 100.0) / 100.0f;
+    }
+
     public static float[] rand2SfArray(int n) {
         var arr = new float[n];
         for (var i = 0; i < n; ++i) {
-            arr[i] = Math.round(Math.random() * 100.0) / 100.0f;
+            arr[i] = rand2Sf();
+        }
+        return arr;
+    }
+
+    public static List<Float> rand2SfList(int n) {
+        var arr = new ArrayList<Float>(n);
+        for (var i = 0; i < n; ++i) {
+            arr.add(rand2Sf());
         }
         return arr;
     }

@@ -47,6 +47,7 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.ResourceStats;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -80,6 +81,9 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
     private final String parentTaskId;
 
     @Nullable
+    private final ResourceStats resourceStats;
+
+    @Nullable
     private final Time runningTime;
 
     private final long runningTimeInNanos;
@@ -103,6 +107,7 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
         this.parentTaskId = builder.parentTaskId;
+        this.resourceStats = builder.resourceStats;
         this.runningTime = builder.runningTime;
         this.runningTimeInNanos = ApiTypeHelper.requireNonNull(builder.runningTimeInNanos, this, "runningTimeInNanos");
         this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
@@ -170,6 +175,14 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
     @Nullable
     public final String parentTaskId() {
         return this.parentTaskId;
+    }
+
+    /**
+     * API name: {@code resource_stats}
+     */
+    @Nullable
+    public final ResourceStats resourceStats() {
+        return this.resourceStats;
     }
 
     /**
@@ -256,6 +269,11 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
             generator.write(this.parentTaskId);
         }
 
+        if (this.resourceStats != null) {
+            generator.writeKey("resource_stats");
+            this.resourceStats.serialize(generator, mapper);
+        }
+
         if (this.runningTime != null) {
             generator.writeKey("running_time");
             this.runningTime.serialize(generator, mapper);
@@ -291,6 +309,8 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
         @Nullable
         private String parentTaskId;
         @Nullable
+        private ResourceStats resourceStats;
+        @Nullable
         private Time runningTime;
         private Long runningTimeInNanos;
         private Long startTimeInMillis;
@@ -309,6 +329,7 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
             this.id = o.id;
             this.node = o.node;
             this.parentTaskId = o.parentTaskId;
+            this.resourceStats = o.resourceStats;
             this.runningTime = o.runningTime;
             this.runningTimeInNanos = o.runningTimeInNanos;
             this.startTimeInMillis = o.startTimeInMillis;
@@ -325,6 +346,7 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
             this.id = o.id;
             this.node = o.node;
             this.parentTaskId = o.parentTaskId;
+            this.resourceStats = o.resourceStats;
             this.runningTime = o.runningTime;
             this.runningTimeInNanos = o.runningTimeInNanos;
             this.startTimeInMillis = o.startTimeInMillis;
@@ -425,6 +447,23 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
         }
 
         /**
+         * API name: {@code resource_stats}
+         */
+        @Nonnull
+        public final BuilderT resourceStats(@Nullable ResourceStats value) {
+            this.resourceStats = value;
+            return self();
+        }
+
+        /**
+         * API name: {@code resource_stats}
+         */
+        @Nonnull
+        public final BuilderT resourceStats(Function<ResourceStats.Builder, ObjectBuilder<ResourceStats>> fn) {
+            return resourceStats(fn.apply(new ResourceStats.Builder()).build());
+        }
+
+        /**
          * API name: {@code running_time}
          */
         @Nonnull
@@ -484,7 +523,6 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
             this.type = value;
             return self();
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -498,6 +536,7 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
         op.add(AbstractBuilder::id, JsonpDeserializer.longDeserializer(), "id");
         op.add(AbstractBuilder::node, JsonpDeserializer.stringDeserializer(), "node");
         op.add(AbstractBuilder::parentTaskId, JsonpDeserializer.stringDeserializer(), "parent_task_id");
+        op.add(AbstractBuilder::resourceStats, ResourceStats._DESERIALIZER, "resource_stats");
         op.add(AbstractBuilder::runningTime, Time._DESERIALIZER, "running_time");
         op.add(AbstractBuilder::runningTimeInNanos, JsonpDeserializer.longDeserializer(), "running_time_in_nanos");
         op.add(AbstractBuilder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
@@ -516,6 +555,7 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
         result = 31 * result + Long.hashCode(this.id);
         result = 31 * result + this.node.hashCode();
         result = 31 * result + Objects.hashCode(this.parentTaskId);
+        result = 31 * result + Objects.hashCode(this.resourceStats);
         result = 31 * result + Objects.hashCode(this.runningTime);
         result = 31 * result + Long.hashCode(this.runningTimeInNanos);
         result = 31 * result + Long.hashCode(this.startTimeInMillis);
@@ -537,6 +577,7 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
             && this.id == other.id
             && this.node.equals(other.node)
             && Objects.equals(this.parentTaskId, other.parentTaskId)
+            && Objects.equals(this.resourceStats, other.resourceStats)
             && Objects.equals(this.runningTime, other.runningTime)
             && this.runningTimeInNanos == other.runningTimeInNanos
             && this.startTimeInMillis == other.startTimeInMillis

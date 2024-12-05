@@ -186,7 +186,6 @@ public abstract class CorePropertyBase extends PropertyBase {
             this.store = value;
             return self();
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------

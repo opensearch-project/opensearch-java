@@ -163,7 +163,6 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
             this.index = value;
             return self();
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------

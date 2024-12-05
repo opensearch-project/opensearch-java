@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -396,9 +397,26 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Pl
         mapper.serialize(_value, generator);
     }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Analyzer> {
         private Kind _kind;
         private AnalyzerVariant _value;
+
+        public Builder() {}
+
+        private Builder(Analyzer o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         public ObjectBuilder<Analyzer> cjk(CjkAnalyzer v) {
             this._kind = Kind.Cjk;
@@ -595,7 +613,6 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Pl
         op.add(Builder::standard, StandardAnalyzer._DESERIALIZER, "standard");
         op.add(Builder::stop, StopAnalyzer._DESERIALIZER, "stop");
         op.add(Builder::whitespace, WhitespaceAnalyzer._DESERIALIZER, "whitespace");
-
         op.setTypeProperty("type", Kind.Custom.jsonValue());
     }
 

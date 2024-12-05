@@ -150,7 +150,6 @@ public abstract class ScriptBase implements PlainJsonSerializable {
             this.params = _mapPut(this.params, key, value);
             return self();
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------

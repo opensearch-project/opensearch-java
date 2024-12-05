@@ -172,6 +172,11 @@ public class RequestShape extends ObjectShape {
         return fields.values();
     }
 
+    @Override
+    public boolean hasFields() {
+        return !fields.isEmpty();
+    }
+
     public boolean hasAnyRequiredFields() {
         return fields.values().stream().anyMatch(Field::isRequired);
     }

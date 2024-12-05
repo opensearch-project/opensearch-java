@@ -193,7 +193,6 @@ public abstract class NumberPropertyBase extends DocValuesPropertyBase {
             this.index = value;
             return self();
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------

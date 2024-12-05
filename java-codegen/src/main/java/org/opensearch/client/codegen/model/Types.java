@@ -171,6 +171,7 @@ public final class Types {
             public static final class _Types {
                 public static final String PACKAGE = OpenSearch.PACKAGE + "._types";
                 public static final Type ErrorResponse = type(PACKAGE, "ErrorResponse");
+                public static final Type FieldValue = type(PACKAGE, "FieldValue");
                 public static final Type OpenSearchException = type(PACKAGE, "OpenSearchException");
                 public static final Type RequestBase = type(PACKAGE, "RequestBase");
                 public static final Type Time = type(PACKAGE, "Time");

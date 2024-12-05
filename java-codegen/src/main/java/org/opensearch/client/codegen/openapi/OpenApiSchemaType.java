@@ -9,6 +9,7 @@
 package org.opensearch.client.codegen.openapi;
 
 import java.util.Map;
+import java.util.Set;
 import javax.annotation.Nonnull;
 import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.Strings;
@@ -22,6 +23,7 @@ public enum OpenApiSchemaType {
     Object,
     String;
 
+    public static final Set<OpenApiSchemaType> ALL_TYPES = Set.of(values());
     private static final Map<String, OpenApiSchemaType> VALUES = Maps.createLookupOf(values(), OpenApiSchemaType::toString);
 
     @Nonnull

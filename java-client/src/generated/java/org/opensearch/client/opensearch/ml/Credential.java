@@ -42,22 +42,22 @@ public class Credential implements PlainJsonSerializable, ToCopyableBuilder<Cred
     @Nullable
     private final String accessKey;
 
+    @Nonnull
+    private final Map<String, JsonData> metadata;
+
     @Nullable
     private final String secretKey;
 
     @Nullable
     private final String sessionToken;
 
-    @Nonnull
-    private final Map<String, JsonData> metadata;
-
     // ---------------------------------------------------------------------------------------------
 
     private Credential(Builder builder) {
         this.accessKey = builder.accessKey;
+        this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
         this.secretKey = builder.secretKey;
         this.sessionToken = builder.sessionToken;
-        this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
     }
 
     public static Credential of(Function<Credential.Builder, ObjectBuilder<Credential>> fn) {
@@ -70,6 +70,11 @@ public class Credential implements PlainJsonSerializable, ToCopyableBuilder<Cred
     @Nullable
     public final String accessKey() {
         return this.accessKey;
+    }
+
+    @Nonnull
+    public final Map<String, JsonData> metadata() {
+        return this.metadata;
     }
 
     /**
@@ -86,13 +91,6 @@ public class Credential implements PlainJsonSerializable, ToCopyableBuilder<Cred
     @Nullable
     public final String sessionToken() {
         return this.sessionToken;
-    }
-
-    /**
-                                    */
-    @Nonnull
-    public final Map<String, JsonData> metadata() {
-        return this.metadata;
     }
 
     /**
@@ -146,26 +144,26 @@ public class Credential implements PlainJsonSerializable, ToCopyableBuilder<Cred
         @Nullable
         private String accessKey;
         @Nullable
+        private Map<String, JsonData> metadata;
+        @Nullable
         private String secretKey;
         @Nullable
         private String sessionToken;
-        @Nullable
-        private Map<String, JsonData> metadata;
 
         public Builder() {}
 
         private Builder(Credential o) {
             this.accessKey = o.accessKey;
+            this.metadata = _mapCopy(o.metadata);
             this.secretKey = o.secretKey;
             this.sessionToken = o.sessionToken;
-            this.metadata = _mapCopy(o.metadata);
         }
 
         private Builder(Builder o) {
             this.accessKey = o.accessKey;
+            this.metadata = _mapCopy(o.metadata);
             this.secretKey = o.secretKey;
             this.sessionToken = o.sessionToken;
-            this.metadata = _mapCopy(o.metadata);
         }
 
         @Override
@@ -180,24 +178,6 @@ public class Credential implements PlainJsonSerializable, ToCopyableBuilder<Cred
         @Nonnull
         public final Builder accessKey(@Nullable String value) {
             this.accessKey = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code secret_key}
-         */
-        @Nonnull
-        public final Builder secretKey(@Nullable String value) {
-            this.secretKey = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code session_token}
-         */
-        @Nonnull
-        public final Builder sessionToken(@Nullable String value) {
-            this.sessionToken = value;
             return this;
         }
 
@@ -222,6 +202,24 @@ public class Credential implements PlainJsonSerializable, ToCopyableBuilder<Cred
         @Nonnull
         public final Builder metadata(String key, JsonData value) {
             this.metadata = _mapPut(this.metadata, key, value);
+            return this;
+        }
+
+        /**
+         * API name: {@code secret_key}
+         */
+        @Nonnull
+        public final Builder secretKey(@Nullable String value) {
+            this.secretKey = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code session_token}
+         */
+        @Nonnull
+        public final Builder sessionToken(@Nullable String value) {
+            this.sessionToken = value;
             return this;
         }
 
@@ -265,9 +263,9 @@ public class Credential implements PlainJsonSerializable, ToCopyableBuilder<Cred
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.accessKey);
+        result = 31 * result + Objects.hashCode(this.metadata);
         result = 31 * result + Objects.hashCode(this.secretKey);
         result = 31 * result + Objects.hashCode(this.sessionToken);
-        result = 31 * result + Objects.hashCode(this.metadata);
         return result;
     }
 
@@ -277,8 +275,8 @@ public class Credential implements PlainJsonSerializable, ToCopyableBuilder<Cred
         if (o == null || this.getClass() != o.getClass()) return false;
         Credential other = (Credential) o;
         return Objects.equals(this.accessKey, other.accessKey)
+            && Objects.equals(this.metadata, other.metadata)
             && Objects.equals(this.secretKey, other.secretKey)
-            && Objects.equals(this.sessionToken, other.sessionToken)
-            && Objects.equals(this.metadata, other.metadata);
+            && Objects.equals(this.sessionToken, other.sessionToken);
     }
 }

@@ -82,6 +82,9 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
     @Nullable
     private final Long deleted;
 
+    @Nonnull
+    private final Map<String, JsonData> metadata;
+
     @Nullable
     private final Long noops;
 
@@ -124,9 +127,6 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
     @Nullable
     private final Long versionConflicts;
 
-    @Nonnull
-    private final Map<String, JsonData> metadata;
-
     // ---------------------------------------------------------------------------------------------
 
     private Status(Builder builder) {
@@ -134,6 +134,7 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
         this.canceled = builder.canceled;
         this.created = builder.created;
         this.deleted = builder.deleted;
+        this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
         this.noops = builder.noops;
         this.phase = builder.phase;
         this.requestsPerSecond = builder.requestsPerSecond;
@@ -148,7 +149,6 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
         this.total = builder.total;
         this.updated = builder.updated;
         this.versionConflicts = builder.versionConflicts;
-        this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
     }
 
     public static Status of(Function<Status.Builder, ObjectBuilder<Status>> fn) {
@@ -194,6 +194,11 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
     @Nullable
     public final Long deleted() {
         return this.deleted;
+    }
+
+    @Nonnull
+    public final Map<String, JsonData> metadata() {
+        return this.metadata;
     }
 
     /**
@@ -321,13 +326,6 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
     @Nullable
     public final Long versionConflicts() {
         return this.versionConflicts;
-    }
-
-    /**
-                                    */
-    @Nonnull
-    public final Map<String, JsonData> metadata() {
-        return this.metadata;
     }
 
     /**
@@ -466,6 +464,8 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
         @Nullable
         private Long deleted;
         @Nullable
+        private Map<String, JsonData> metadata;
+        @Nullable
         private Long noops;
         @Nullable
         private String phase;
@@ -493,8 +493,6 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
         private Long updated;
         @Nullable
         private Long versionConflicts;
-        @Nullable
-        private Map<String, JsonData> metadata;
 
         public Builder() {}
 
@@ -503,6 +501,7 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
             this.canceled = o.canceled;
             this.created = o.created;
             this.deleted = o.deleted;
+            this.metadata = _mapCopy(o.metadata);
             this.noops = o.noops;
             this.phase = o.phase;
             this.requestsPerSecond = o.requestsPerSecond;
@@ -517,7 +516,6 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
             this.total = o.total;
             this.updated = o.updated;
             this.versionConflicts = o.versionConflicts;
-            this.metadata = _mapCopy(o.metadata);
         }
 
         private Builder(Builder o) {
@@ -525,6 +523,7 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
             this.canceled = o.canceled;
             this.created = o.created;
             this.deleted = o.deleted;
+            this.metadata = _mapCopy(o.metadata);
             this.noops = o.noops;
             this.phase = o.phase;
             this.requestsPerSecond = o.requestsPerSecond;
@@ -539,7 +538,6 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
             this.total = o.total;
             this.updated = o.updated;
             this.versionConflicts = o.versionConflicts;
-            this.metadata = _mapCopy(o.metadata);
         }
 
         @Override
@@ -590,6 +588,30 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
         @Nonnull
         public final Builder deleted(@Nullable Long value) {
             this.deleted = value;
+            return this;
+        }
+
+        /**
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>metadata</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder metadata(Map<String, JsonData> map) {
+            this.metadata = _mapPutAll(this.metadata, map);
+            return this;
+        }
+
+        /**
+         *
+         * <p>
+         * Adds an entry to <code>metadata</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder metadata(String key, JsonData value) {
+            this.metadata = _mapPut(this.metadata, key, value);
             return this;
         }
 
@@ -790,30 +812,6 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
         }
 
         /**
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>metadata</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder metadata(Map<String, JsonData> map) {
-            this.metadata = _mapPutAll(this.metadata, map);
-            return this;
-        }
-
-        /**
-         *
-         * <p>
-         * Adds an entry to <code>metadata</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder metadata(String key, JsonData value) {
-            this.metadata = _mapPut(this.metadata, key, value);
-            return this;
-        }
-
-        /**
          * Builds a {@link Status}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -871,6 +869,7 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
         result = 31 * result + Objects.hashCode(this.canceled);
         result = 31 * result + Objects.hashCode(this.created);
         result = 31 * result + Objects.hashCode(this.deleted);
+        result = 31 * result + Objects.hashCode(this.metadata);
         result = 31 * result + Objects.hashCode(this.noops);
         result = 31 * result + Objects.hashCode(this.phase);
         result = 31 * result + Objects.hashCode(this.requestsPerSecond);
@@ -885,7 +884,6 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
         result = 31 * result + Objects.hashCode(this.total);
         result = 31 * result + Objects.hashCode(this.updated);
         result = 31 * result + Objects.hashCode(this.versionConflicts);
-        result = 31 * result + Objects.hashCode(this.metadata);
         return result;
     }
 
@@ -898,6 +896,7 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
             && Objects.equals(this.canceled, other.canceled)
             && Objects.equals(this.created, other.created)
             && Objects.equals(this.deleted, other.deleted)
+            && Objects.equals(this.metadata, other.metadata)
             && Objects.equals(this.noops, other.noops)
             && Objects.equals(this.phase, other.phase)
             && Objects.equals(this.requestsPerSecond, other.requestsPerSecond)
@@ -911,7 +910,6 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
             && Objects.equals(this.throttledUntilMillis, other.throttledUntilMillis)
             && Objects.equals(this.total, other.total)
             && Objects.equals(this.updated, other.updated)
-            && Objects.equals(this.versionConflicts, other.versionConflicts)
-            && Objects.equals(this.metadata, other.metadata);
+            && Objects.equals(this.versionConflicts, other.versionConflicts);
     }
 }

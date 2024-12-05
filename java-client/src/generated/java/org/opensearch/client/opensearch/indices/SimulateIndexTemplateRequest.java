@@ -80,16 +80,10 @@ public class SimulateIndexTemplateRequest extends RequestBase
     private final Boolean allowAutoCreate;
 
     @Nullable
-    private final String cause;
-
-    @Nullable
     private final Time clusterManagerTimeout;
 
     @Nonnull
     private final List<String> composedOf;
-
-    @Nullable
-    private final Boolean create;
 
     @Nullable
     private final IndexTemplateDataStreamConfiguration dataStream;
@@ -120,10 +114,8 @@ public class SimulateIndexTemplateRequest extends RequestBase
 
     private SimulateIndexTemplateRequest(Builder builder) {
         this.allowAutoCreate = builder.allowAutoCreate;
-        this.cause = builder.cause;
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.composedOf = ApiTypeHelper.unmodifiable(builder.composedOf);
-        this.create = builder.create;
         this.dataStream = builder.dataStream;
         this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
         this.masterTimeout = builder.masterTimeout;
@@ -155,17 +147,6 @@ public class SimulateIndexTemplateRequest extends RequestBase
     }
 
     /**
-     * User defined reason for dry-run creating the new template for simulation purposes.
-     * <p>
-     * API name: {@code cause}
-     * </p>
-     */
-    @Nullable
-    public final String cause() {
-        return this.cause;
-    }
-
-    /**
      * Operation timeout for connection to cluster-manager node.
      * <p>
      * API name: {@code cluster_manager_timeout}
@@ -186,19 +167,6 @@ public class SimulateIndexTemplateRequest extends RequestBase
     @Nonnull
     public final List<String> composedOf() {
         return this.composedOf;
-    }
-
-    /**
-     * If <code>true</code>, the template passed in the body is only used if no existing templates match the same index patterns. If
-     * <code>false</code>, the simulation uses the template with the highest priority. Note that the template is not permanently added or
-     * updated in either case; it is only used for the simulation.
-     * <p>
-     * API name: {@code create}
-     * </p>
-     */
-    @Nullable
-    public final Boolean create() {
-        return this.create;
     }
 
     /**
@@ -362,13 +330,9 @@ public class SimulateIndexTemplateRequest extends RequestBase
         @Nullable
         private Boolean allowAutoCreate;
         @Nullable
-        private String cause;
-        @Nullable
         private Time clusterManagerTimeout;
         @Nullable
         private List<String> composedOf;
-        @Nullable
-        private Boolean create;
         @Nullable
         private IndexTemplateDataStreamConfiguration dataStream;
         @Nullable
@@ -389,10 +353,8 @@ public class SimulateIndexTemplateRequest extends RequestBase
 
         private Builder(SimulateIndexTemplateRequest o) {
             this.allowAutoCreate = o.allowAutoCreate;
-            this.cause = o.cause;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.composedOf = _listCopy(o.composedOf);
-            this.create = o.create;
             this.dataStream = o.dataStream;
             this.indexPatterns = _listCopy(o.indexPatterns);
             this.masterTimeout = o.masterTimeout;
@@ -405,10 +367,8 @@ public class SimulateIndexTemplateRequest extends RequestBase
 
         private Builder(Builder o) {
             this.allowAutoCreate = o.allowAutoCreate;
-            this.cause = o.cause;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.composedOf = _listCopy(o.composedOf);
-            this.create = o.create;
             this.dataStream = o.dataStream;
             this.indexPatterns = _listCopy(o.indexPatterns);
             this.masterTimeout = o.masterTimeout;
@@ -437,18 +397,6 @@ public class SimulateIndexTemplateRequest extends RequestBase
         @Nonnull
         public final Builder allowAutoCreate(@Nullable Boolean value) {
             this.allowAutoCreate = value;
-            return this;
-        }
-
-        /**
-         * User defined reason for dry-run creating the new template for simulation purposes.
-         * <p>
-         * API name: {@code cause}
-         * </p>
-         */
-        @Nonnull
-        public final Builder cause(@Nullable String value) {
-            this.cause = value;
             return this;
         }
 
@@ -506,20 +454,6 @@ public class SimulateIndexTemplateRequest extends RequestBase
         @Nonnull
         public final Builder composedOf(String value, String... values) {
             this.composedOf = _listAdd(this.composedOf, value, values);
-            return this;
-        }
-
-        /**
-         * If <code>true</code>, the template passed in the body is only used if no existing templates match the same index patterns. If
-         * <code>false</code>, the simulation uses the template with the highest priority. Note that the template is not permanently added
-         * or updated in either case; it is only used for the simulation.
-         * <p>
-         * API name: {@code create}
-         * </p>
-         */
-        @Nonnull
-        public final Builder create(@Nullable Boolean value) {
-            this.create = value;
             return this;
         }
 
@@ -728,14 +662,8 @@ public class SimulateIndexTemplateRequest extends RequestBase
             // Request parameters
             request -> {
                 Map<String, String> params = new HashMap<>();
-                if (request.cause != null) {
-                    params.put("cause", request.cause);
-                }
                 if (request.clusterManagerTimeout != null) {
                     params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-                }
-                if (request.create != null) {
-                    params.put("create", String.valueOf(request.create));
                 }
                 if (request.masterTimeout != null) {
                     params.put("master_timeout", request.masterTimeout._toJsonString());
@@ -751,10 +679,8 @@ public class SimulateIndexTemplateRequest extends RequestBase
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.allowAutoCreate);
-        result = 31 * result + Objects.hashCode(this.cause);
         result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
         result = 31 * result + Objects.hashCode(this.composedOf);
-        result = 31 * result + Objects.hashCode(this.create);
         result = 31 * result + Objects.hashCode(this.dataStream);
         result = 31 * result + Objects.hashCode(this.indexPatterns);
         result = 31 * result + Objects.hashCode(this.masterTimeout);
@@ -772,10 +698,8 @@ public class SimulateIndexTemplateRequest extends RequestBase
         if (o == null || this.getClass() != o.getClass()) return false;
         SimulateIndexTemplateRequest other = (SimulateIndexTemplateRequest) o;
         return Objects.equals(this.allowAutoCreate, other.allowAutoCreate)
-            && Objects.equals(this.cause, other.cause)
             && Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
             && Objects.equals(this.composedOf, other.composedOf)
-            && Objects.equals(this.create, other.create)
             && Objects.equals(this.dataStream, other.dataStream)
             && Objects.equals(this.indexPatterns, other.indexPatterns)
             && Objects.equals(this.masterTimeout, other.masterTimeout)

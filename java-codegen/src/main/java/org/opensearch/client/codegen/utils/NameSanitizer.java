@@ -27,8 +27,8 @@ public class NameSanitizer {
     );
 
     @Nonnull
-    public static String wireNameToField(@Nonnull String wireName) {
-        var name = Strings.toCamelCase(wireName);
+    public static String fieldName(@Nonnull String name) {
+        name = Strings.toCamelCase(name);
         if (reservedWords.contains(name)) {
             name += "_";
         }

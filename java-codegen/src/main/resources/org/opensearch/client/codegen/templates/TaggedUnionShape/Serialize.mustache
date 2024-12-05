@@ -1,0 +1,40 @@
+@Override
+public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
+{{#internallyDiscriminated}}
+    mapper.serialize(_value, generator);
+{{/internallyDiscriminated}}
+{{^internallyDiscriminated}}
+    {{#externallyDiscriminated}}
+        generator.writeStartObject();
+    {{/externallyDiscriminated}}
+    {{#singleKeyMap}}
+        generator.writeStartObject(this.{{name}});
+    {{/singleKeyMap}}
+    {{#extendsOtherShape}}
+        super.serializeInternal(generator, mapper);
+    {{/extendsOtherShape}}
+    {{>ObjectShape/Serialize/Fields}}
+    {{#externallyDiscriminated}}
+        generator.writeKey(_kind.jsonValue());
+    {{/externallyDiscriminated}}
+    if (_value instanceof {{TYPES.Client.Json.JsonpSerializable}}) {
+    (({{TYPES.Client.Json.JsonpSerializable}}) _value).serialize(generator, mapper);
+    }{{#nonShapeVariants}}{{#-first}} else {
+    switch (_kind) {
+    {{/-first}}
+    case {{#pascalCase}}{{name}}{{/pascalCase}}:
+    {{#type.serializer}}(({{type}}) this._value){{/type.serializer}}
+    break;
+    {{#-last}}
+        }
+        }
+    {{/-last}}
+    {{/nonShapeVariants}}
+    {{#singleKeyMap}}
+        generator.writeEnd();
+    {{/singleKeyMap}}
+    {{#externallyDiscriminated}}
+        generator.writeEnd();
+    {{/externallyDiscriminated}}
+{{/internallyDiscriminated}}
+}

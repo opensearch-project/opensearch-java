@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -362,9 +363,26 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
         mapper.serialize(_value, generator);
     }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TokenizerDefinition> {
         private Kind _kind;
         private TokenizerDefinitionVariant _value;
+
+        public Builder() {}
+
+        private Builder(TokenizerDefinition o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         public ObjectBuilder<TokenizerDefinition> charGroup(CharGroupTokenizer v) {
             this._kind = Kind.CharGroup;
@@ -545,7 +563,6 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
         op.add(Builder::standard, StandardTokenizer._DESERIALIZER, "standard");
         op.add(Builder::uaxUrlEmail, UaxEmailUrlTokenizer._DESERIALIZER, "uax_url_email");
         op.add(Builder::whitespace, WhitespaceTokenizer._DESERIALIZER, "whitespace");
-
         op.setTypeProperty("type", null);
     }
 

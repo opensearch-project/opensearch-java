@@ -268,7 +268,7 @@ public class VariantsTest extends ModelTestCase {
                             .k(100)
                             .build()
                             .toQuery(),
-                        new KnnQuery.Builder().field("passage_embedding").vector(new float[] { 0.01f, 0.02f }).k(2).build().toQuery()
+                        new KnnQuery.Builder().field("passage_embedding").vector(0.01f, 0.02f).k(2).build().toQuery()
                     )
                 )
             )
@@ -281,7 +281,7 @@ public class VariantsTest extends ModelTestCase {
         assertEquals("bQ1J8ooBpBj3wT4HVUsb", searchRequest.query().hybrid().queries().get(1).neural().modelId());
         assertEquals((Integer) 100, searchRequest.query().hybrid().queries().get(1).neural().k());
         assertEquals("passage_embedding", searchRequest.query().hybrid().queries().get(2).knn().field());
-        assertEquals(2, searchRequest.query().hybrid().queries().get(2).knn().vector().length);
+        assertEquals(2, searchRequest.query().hybrid().queries().get(2).knn().vector().size());
         assertEquals((Integer) 2, searchRequest.query().hybrid().queries().get(2).knn().k());
     }
 
@@ -303,7 +303,7 @@ public class VariantsTest extends ModelTestCase {
         assertEquals("bQ1J8ooBpBj3wT4HVUsb", searchRequest.query().hybrid().queries().get(1).neural().modelId());
         assertEquals((Integer) 100, searchRequest.query().hybrid().queries().get(1).neural().k());
         assertEquals("passage_embedding", searchRequest.query().hybrid().queries().get(2).knn().field());
-        assertEquals(2, searchRequest.query().hybrid().queries().get(2).knn().vector().length);
+        assertEquals(2, searchRequest.query().hybrid().queries().get(2).knn().vector().size());
         assertEquals((Integer) 2, searchRequest.query().hybrid().queries().get(2).knn().k());
     }
 }

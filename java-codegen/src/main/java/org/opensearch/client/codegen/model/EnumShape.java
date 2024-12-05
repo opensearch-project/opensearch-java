@@ -45,7 +45,7 @@ public class EnumShape extends Shape {
         name = name.toLowerCase();
         var variant = variants.get(name);
         if (variant == null) {
-            variant = new Variant(value, description, deprecated);
+            variant = new Variant(name, value, description, deprecated);
             variants.put(name, variant);
         } else {
             variant.addAlias(value);
@@ -65,12 +65,14 @@ public class EnumShape extends Shape {
     }
 
     public static class Variant {
+        private final String name;
         private final String wireName;
         private final Set<String> aliases = new LinkedHashSet<>();
         private boolean deprecated;
         private String description;
 
-        public Variant(String wireName, String description, boolean deprecated) {
+        public Variant(String name, String wireName, String description, boolean deprecated) {
+            this.name = name;
             this.wireName = wireName;
             setDescription(description);
             this.deprecated = deprecated;
@@ -97,7 +99,7 @@ public class EnumShape extends Shape {
         }
 
         public String getName() {
-            return Strings.toPascalCase(wireName);
+            return Strings.toPascalCase(name);
         }
 
         public boolean isDeprecated() {

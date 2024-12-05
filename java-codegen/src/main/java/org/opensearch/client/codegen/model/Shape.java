@@ -11,6 +11,7 @@ package org.opensearch.client.codegen.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -101,8 +103,33 @@ public abstract class Shape {
         return !incomingReferences.getOrDefault(ReferenceKind.Extends, Collections.emptyList()).isEmpty();
     }
 
+    public Collection<ReferencingDiscriminatedUnion> getReferencingDiscriminatedUnions() {
+        return getIncomingReference(ReferenceKind.UnionVariant).stream()
+            .map(s -> (TaggedUnionShape) s)
+            .distinct()
+            .filter(TaggedUnionShape::isDiscriminated)
+            .sorted(Comparator.comparing(Shape::getClassName))
+            .map(u -> {
+                var discriminatorValue = u.getVariants()
+                    .stream()
+                    .filter(v -> v.getType().equals(getType()))
+                    .map(TaggedUnionShape.Variant::getName)
+                    .max(Comparator.naturalOrder())
+                    .orElseThrow();
+
+                return new ReferencingDiscriminatedUnion(u, discriminatorValue);
+            })
+            .collect(Collectors.toList());
+    }
+
     public Collection<Type> getImplementsTypes() {
-        return Collections.emptyList();
+        var types = new ArrayList<Type>();
+
+        for (var union : getReferencingDiscriminatedUnions()) {
+            types.add(union.getUnion().getVariantInterfaceType());
+        }
+
+        return types;
     }
 
     protected void tryAddReference(ReferenceKind kind, Type to) {
@@ -198,5 +225,28 @@ public abstract class Shape {
             .append("parent", parent)
             .append("extendsType", extendsType)
             .toString();
+    }
+
+    public static class ReferencingDiscriminatedUnion {
+        private final TaggedUnionShape union;
+        private final String discriminatorValue;
+
+        public ReferencingDiscriminatedUnion(TaggedUnionShape union, String discriminatorValue) {
+            this.union = union;
+            this.discriminatorValue = discriminatorValue;
+        }
+
+        public TaggedUnionShape getUnion() {
+            return union;
+        }
+
+        @Nullable
+        public String getDiscriminatingField() {
+            return union.getDiscriminatingField();
+        }
+
+        public String getDiscriminatorValue() {
+            return discriminatorValue;
+        }
     }
 }

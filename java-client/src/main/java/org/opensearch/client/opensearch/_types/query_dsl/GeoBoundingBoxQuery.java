@@ -149,11 +149,7 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
     }
 
     public Builder toBuilder() {
-        return toBuilder(new Builder()).field(field)
-            .boundingBox(boundingBox)
-            .type(type)
-            .validationMethod(validationMethod)
-            .ignoreUnmapped(ignoreUnmapped);
+        return new Builder(this);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -166,6 +162,17 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
         private String field;
 
         private GeoBounds boundingBox;
+
+        public Builder() {}
+
+        private Builder(GeoBoundingBoxQuery o) {
+            super(o);
+            this.field = o.field;
+            this.boundingBox = o.boundingBox;
+            this.type = o.type;
+            this.validationMethod = o.validationMethod;
+            this.ignoreUnmapped = o.ignoreUnmapped;
+        }
 
         /**
          * Required -

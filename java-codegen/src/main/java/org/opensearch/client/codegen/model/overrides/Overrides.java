@@ -29,16 +29,60 @@ public class Overrides {
 
     public static final Overrides OVERRIDES = builder().withSchemas(
         s -> s.with(schema("_common", "Duration"), so -> so.withMappedType(Types.Client.OpenSearch._Types.Time))
+            .with(schema("_common", "FieldValue"), so -> so.withMappedType(Types.Client.OpenSearch._Types.FieldValue))
             .with(schema("_common", "StringifiedBoolean"), so -> so.withMappedType(Types.Primitive.Boolean))
             .with(schema("_common", "StringifiedDouble"), so -> so.withMappedType(Types.Primitive.Double))
             .with(schema("_common", "StringifiedInteger"), so -> so.withMappedType(Types.Primitive.Int))
             .with(schema("_common", "StringifiedLong"), so -> so.withMappedType(Types.Primitive.Long))
             .with(schema("_common", "StringifiedEpochTimeUnitMillis"), so -> so.withMappedType(Types.Primitive.Long))
 
-            // TODO: Remove this to generate query types
+            .with(schema("_common", "DistanceUnit"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+            .with(schema("_common", "GeoBounds"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+            .with(schema("_common", "GeoDistanceType"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+            .with(schema("_common", "GeoShapeRelation"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+
+            .with(schema("_common", "ScriptSort"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+            .with(schema("_common", "SortOptions"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+
             .with(
-                schema("_common.query_dsl", "QueryContainer"),
-                so -> so.withMappedType(t -> t.withPackage(Types.Client.OpenSearch._Types.PACKAGE + ".query_dsl").withName("Query"))
+                schema("_common.aggregations", "AggregationContainer"),
+                so -> so.withClassName("Aggregation").withShouldGenerate(ShouldGenerate.Never)
+            )
+
+            // TODO: Remove this once figuring out how best to handle these schemas
+            .with(schema("_common.query_dsl", "DecayFunction"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(
+                schema("_common.query_dsl", "FunctionScoreContainer"),
+                so -> so.withShouldGenerate(ShouldGenerate.Never).withClassName("FunctionScore")
+            )
+            .with(schema("_common.query_dsl", "DistanceFeatureQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(schema("_common.query_dsl", "GeoBoundingBoxQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(schema("_common.query_dsl", "GeoDistanceQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(schema("_common.query_dsl", "GeoPolygonQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(schema("_common.query_dsl", "GeoShapeQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(schema("_common.query_dsl", "RangeQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(schema("_common.query_dsl", "RankFeatureFunctionLinear"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(schema("_common.query_dsl", "RankFeatureFunctionLogarithm"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(schema("_common.query_dsl", "RankFeatureFunctionSaturation"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(schema("_common.query_dsl", "RankFeatureFunctionSigmoid"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(
+                schema("_common.query_dsl", "SpanGapQuery"),
+                so -> so.withMappedType(t -> t.withPackage("org.opensearch.client.opensearch._types.query_dsl").withName("SpanGapQuery"))
+            )
+            .with(schema("_common.query_dsl", "TermsQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(schema("_common.query_dsl", "TermsQueryField"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+            .with(schema("_common.query_dsl", "XyShapeQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+
+            .with(schema("_common.query_dsl", "FieldValueFactorModifier"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+            .with(schema("_common.query_dsl", "IntervalsContainer"), so -> so.withClassName("Intervals"))
+
+            .with(schema("_common.query_dsl", "QueryBase"), so -> so.withProperties(p -> p.with("_name", po -> po.withName("queryName"))))
+
+            .with(schema("_common.query_dsl", "QueryContainer"), so -> so.withClassName("Query"))
+
+            .with(
+                schema("_core.search", "SourceFilter").append("oneOf", "1"),
+                so -> so.withAliasProvider(k -> k.endsWith("cludes") ? Set.of(k.substring(0, k.length() - 1)) : null)
             )
 
             .with(schema("indices._common", "IndexSettings"), so -> so.withAliasProvider(k -> {

@@ -67,6 +67,9 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
     @Nullable
     private final ErrorCause causedBy;
 
+    @Nonnull
+    private final Map<String, JsonData> metadata;
+
     @Nullable
     private final String reason;
 
@@ -82,19 +85,16 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
     @Nonnull
     private final String type;
 
-    @Nonnull
-    private final Map<String, JsonData> metadata;
-
     // ---------------------------------------------------------------------------------------------
 
     private ErrorCause(Builder builder) {
         this.causedBy = builder.causedBy;
+        this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
         this.reason = builder.reason;
         this.rootCause = ApiTypeHelper.unmodifiable(builder.rootCause);
         this.stackTrace = builder.stackTrace;
         this.suppressed = ApiTypeHelper.unmodifiable(builder.suppressed);
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-        this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
     }
 
     public static ErrorCause of(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
@@ -107,6 +107,14 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
     @Nullable
     public final ErrorCause causedBy() {
         return this.causedBy;
+    }
+
+    /**
+     * Any additional information about the error.
+     */
+    @Nonnull
+    public final Map<String, JsonData> metadata() {
+        return this.metadata;
     }
 
     /**
@@ -156,14 +164,6 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
     @Nonnull
     public final String type() {
         return this.type;
-    }
-
-    /**
-     * Any additional information about the error.
-     */
-    @Nonnull
-    public final Map<String, JsonData> metadata() {
-        return this.metadata;
     }
 
     /**
@@ -238,6 +238,8 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
         @Nullable
         private ErrorCause causedBy;
         @Nullable
+        private Map<String, JsonData> metadata;
+        @Nullable
         private String reason;
         @Nullable
         private List<ErrorCause> rootCause;
@@ -246,29 +248,27 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
         @Nullable
         private List<ErrorCause> suppressed;
         private String type;
-        @Nullable
-        private Map<String, JsonData> metadata;
 
         public Builder() {}
 
         private Builder(ErrorCause o) {
             this.causedBy = o.causedBy;
+            this.metadata = _mapCopy(o.metadata);
             this.reason = o.reason;
             this.rootCause = _listCopy(o.rootCause);
             this.stackTrace = o.stackTrace;
             this.suppressed = _listCopy(o.suppressed);
             this.type = o.type;
-            this.metadata = _mapCopy(o.metadata);
         }
 
         private Builder(Builder o) {
             this.causedBy = o.causedBy;
+            this.metadata = _mapCopy(o.metadata);
             this.reason = o.reason;
             this.rootCause = _listCopy(o.rootCause);
             this.stackTrace = o.stackTrace;
             this.suppressed = _listCopy(o.suppressed);
             this.type = o.type;
-            this.metadata = _mapCopy(o.metadata);
         }
 
         @Override
@@ -292,6 +292,32 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
         @Nonnull
         public final Builder causedBy(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return causedBy(fn.apply(new ErrorCause.Builder()).build());
+        }
+
+        /**
+         * Any additional information about the error.
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>metadata</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder metadata(Map<String, JsonData> map) {
+            this.metadata = _mapPutAll(this.metadata, map);
+            return this;
+        }
+
+        /**
+         * Any additional information about the error.
+         *
+         * <p>
+         * Adds an entry to <code>metadata</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder metadata(String key, JsonData value) {
+            this.metadata = _mapPut(this.metadata, key, value);
+            return this;
         }
 
         /**
@@ -407,32 +433,6 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
         }
 
         /**
-         * Any additional information about the error.
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>metadata</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder metadata(Map<String, JsonData> map) {
-            this.metadata = _mapPutAll(this.metadata, map);
-            return this;
-        }
-
-        /**
-         * Any additional information about the error.
-         *
-         * <p>
-         * Adds an entry to <code>metadata</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder metadata(String key, JsonData value) {
-            this.metadata = _mapPut(this.metadata, key, value);
-            return this;
-        }
-
-        /**
          * Builds a {@link ErrorCause}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -475,12 +475,12 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.causedBy);
+        result = 31 * result + Objects.hashCode(this.metadata);
         result = 31 * result + Objects.hashCode(this.reason);
         result = 31 * result + Objects.hashCode(this.rootCause);
         result = 31 * result + Objects.hashCode(this.stackTrace);
         result = 31 * result + Objects.hashCode(this.suppressed);
         result = 31 * result + this.type.hashCode();
-        result = 31 * result + Objects.hashCode(this.metadata);
         return result;
     }
 
@@ -490,11 +490,11 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
         if (o == null || this.getClass() != o.getClass()) return false;
         ErrorCause other = (ErrorCause) o;
         return Objects.equals(this.causedBy, other.causedBy)
+            && Objects.equals(this.metadata, other.metadata)
             && Objects.equals(this.reason, other.reason)
             && Objects.equals(this.rootCause, other.rootCause)
             && Objects.equals(this.stackTrace, other.stackTrace)
             && Objects.equals(this.suppressed, other.suppressed)
-            && this.type.equals(other.type)
-            && Objects.equals(this.metadata, other.metadata);
+            && this.type.equals(other.type);
     }
 }

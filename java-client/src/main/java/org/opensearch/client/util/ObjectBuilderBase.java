@@ -64,13 +64,13 @@ public class ObjectBuilderBase {
 
     /** Get a mutable list from the current list value of an object builder property */
     private static <T> List<T> _mutableList(List<T> list) {
-        if (list == null) {
+        if (!ApiTypeHelper.isDefined(list)) {
             return new InternalList<>();
         } else if (list instanceof InternalList) {
             return list;
         } else {
             // Adding to a list we don't own: make a defensive copy, also ensuring it is mutable.
-            return _listCopy(list);
+            return new InternalList<>(list);
         }
     }
 
@@ -79,7 +79,7 @@ public class ObjectBuilderBase {
      */
     @Nullable
     protected static <T> List<T> _listCopy(@Nullable List<T> list) {
-        return list == null ? null : new InternalList<>(list);
+        return ApiTypeHelper.isDefined(list) ? new InternalList<>(list) : null;
     }
 
     /** Add a value to a (possibly {@code null}) list */
@@ -119,13 +119,13 @@ public class ObjectBuilderBase {
 
     /** Get a mutable map from the current map value of an object builder property */
     private static <K, V> Map<K, V> _mutableMap(Map<K, V> map) {
-        if (map == null) {
+        if (!ApiTypeHelper.isDefined(map)) {
             return new InternalMap<>();
         } else if (map instanceof InternalMap) {
             return map;
         } else {
             // Adding to a map we don't own: make a defensive copy, also ensuring it is mutable.
-            return _mapCopy(map);
+            return new InternalMap<>(map);
         }
     }
 
@@ -134,7 +134,7 @@ public class ObjectBuilderBase {
      */
     @Nullable
     protected static <K, V> Map<K, V> _mapCopy(@Nullable Map<K, V> map) {
-        return map == null ? null : new InternalMap<>(map);
+        return ApiTypeHelper.isDefined(map) ? new InternalMap<>(map) : null;
     }
 
     /** Add a value to a (possibly {@code null}) map */

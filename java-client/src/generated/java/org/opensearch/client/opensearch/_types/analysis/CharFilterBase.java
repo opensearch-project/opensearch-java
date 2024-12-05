@@ -113,7 +113,6 @@ public abstract class CharFilterBase implements PlainJsonSerializable {
             this.version = value;
             return self();
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------

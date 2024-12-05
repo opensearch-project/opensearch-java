@@ -46,7 +46,7 @@ import org.opensearch.client.json.JsonpSerializable;
 public interface AnalyzerVariant extends JsonpSerializable {
     Analyzer.Kind _analyzerKind();
 
-    default Analyzer _toAnalyzer() {
+    default Analyzer toAnalyzer() {
         return new Analyzer(this);
     }
 }
