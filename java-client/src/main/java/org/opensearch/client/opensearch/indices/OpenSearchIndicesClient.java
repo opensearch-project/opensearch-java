@@ -327,38 +327,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.delete_template
-
-    /**
-     * Deletes an index template.
-     *
-     *
-     */
-
-    public DeleteTemplateResponse deleteTemplate(DeleteTemplateRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteTemplateRequest,
-            DeleteTemplateResponse,
-            ErrorResponse>) DeleteTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Deletes an index template.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteTemplateRequest}
-     *
-     */
-
-    public final DeleteTemplateResponse deleteTemplate(Function<DeleteTemplateRequest.Builder, ObjectBuilder<DeleteTemplateRequest>> fn)
-        throws IOException, OpenSearchException {
-        return deleteTemplate(fn.apply(new DeleteTemplateRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.disk_usage
 
     /**

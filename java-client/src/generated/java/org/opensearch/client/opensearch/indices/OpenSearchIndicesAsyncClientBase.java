@@ -118,6 +118,26 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return deleteIndexTemplate(fn.apply(new DeleteIndexTemplateRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.delete_template
+
+    /**
+     * Deletes an index template.
+     */
+    public CompletableFuture<DeleteTemplateResponse> deleteTemplate(DeleteTemplateRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes an index template.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteTemplateRequest}
+     */
+    public final CompletableFuture<DeleteTemplateResponse> deleteTemplate(
+        Function<DeleteTemplateRequest.Builder, ObjectBuilder<DeleteTemplateRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteTemplate(fn.apply(new DeleteTemplateRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.exists
 
     /**

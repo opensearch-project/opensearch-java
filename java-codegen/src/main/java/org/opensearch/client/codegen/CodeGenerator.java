@@ -49,6 +49,7 @@ public class CodeGenerator {
                 "create",
                 "delete",
                 "delete_index_template",
+                "delete_template",
                 "exists",
                 "exists_index_template",
                 "get",

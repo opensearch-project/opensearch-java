@@ -343,39 +343,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.delete_template
-
-    /**
-     * Deletes an index template.
-     *
-     *
-     */
-
-    public CompletableFuture<DeleteTemplateResponse> deleteTemplate(DeleteTemplateRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteTemplateRequest,
-            DeleteTemplateResponse,
-            ErrorResponse>) DeleteTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Deletes an index template.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteTemplateRequest}
-     *
-     */
-
-    public final CompletableFuture<DeleteTemplateResponse> deleteTemplate(
-        Function<DeleteTemplateRequest.Builder, ObjectBuilder<DeleteTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return deleteTemplate(fn.apply(new DeleteTemplateRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.disk_usage
 
     /**
