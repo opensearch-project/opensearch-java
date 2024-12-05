@@ -30,13 +30,19 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -46,17 +52,22 @@ import org.opensearch.client.transport.endpoints.BooleanEndpoint;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.exists_template.Request
 
 /**
  * Returns information about whether a particular index template exists.
- *
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ExistsTemplateRequest extends RequestBase implements ToCopyableBuilder<ExistsTemplateRequest.Builder, ExistsTemplateRequest> {
 
-public class ExistsTemplateRequest extends RequestBase {
+    @Nullable
+    private final Time clusterManagerTimeout;
+
     @Nullable
     private final Boolean flatSettings;
 
@@ -67,31 +78,39 @@ public class ExistsTemplateRequest extends RequestBase {
     @Nullable
     private final Time masterTimeout;
 
-    @Nullable
-    private final Time clusterManagerTimeout;
-
+    @Nonnull
     private final List<String> name;
 
     // ---------------------------------------------------------------------------------------------
 
     private ExistsTemplateRequest(Builder builder) {
-
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.flatSettings = builder.flatSettings;
         this.local = builder.local;
         this.masterTimeout = builder.masterTimeout;
-        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
-
     }
 
-    public static ExistsTemplateRequest of(Function<Builder, ObjectBuilder<ExistsTemplateRequest>> fn) {
+    public static ExistsTemplateRequest of(Function<ExistsTemplateRequest.Builder, ObjectBuilder<ExistsTemplateRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Return settings in flat format (default: false)
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     * </p>
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
+
+    /**
+     * Return settings in flat format.
      * <p>
      * API name: {@code flat_settings}
+     * </p>
      */
     @Nullable
     public final Boolean flatSettings() {
@@ -99,10 +118,10 @@ public class ExistsTemplateRequest extends RequestBase {
     }
 
     /**
-     * Return local information, do not retrieve the state from cluster-manager node
-     * (default: false)
+     * Return local information, do not retrieve the state from cluster-manager node.
      * <p>
      * API name: {@code local}
+     * </p>
      */
     @Nullable
     public final Boolean local() {
@@ -110,9 +129,10 @@ public class ExistsTemplateRequest extends RequestBase {
     }
 
     /**
-     * Explicit operation timeout for connection to master node
+     * Explicit operation timeout for connection to cluster-manager node
      * <p>
      * API name: {@code master_timeout}
+     * </p>
      */
     @Deprecated
     @Nullable
@@ -121,114 +141,150 @@ public class ExistsTemplateRequest extends RequestBase {
     }
 
     /**
-     * Explicit operation timeout for connection to cluster-manager node
-     * <p>
-     * API name: {@code cluster_manager_timeout}
-     */
-    @Nullable
-    public final Time clusterManagerTimeout() {
-        return this.clusterManagerTimeout;
-    }
-
-    /**
      * Required - The comma separated names of the index templates
      * <p>
      * API name: {@code name}
+     * </p>
      */
+    @Nonnull
     public final List<String> name() {
         return this.name;
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ExistsTemplateRequest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsTemplateRequest> {
-        @Nullable
-        private Boolean flatSettings;
-
-        @Nullable
-        private Boolean local;
-
-        @Deprecated
-        @Nullable
-        private Time masterTimeout;
-
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ExistsTemplateRequest> {
         @Nullable
         private Time clusterManagerTimeout;
-
+        @Nullable
+        private Boolean flatSettings;
+        @Nullable
+        private Boolean local;
+        @Nullable
+        private Time masterTimeout;
         private List<String> name;
 
-        /**
-         * Return settings in flat format (default: false)
-         * <p>
-         * API name: {@code flat_settings}
-         */
-        public final Builder flatSettings(@Nullable Boolean value) {
-            this.flatSettings = value;
-            return this;
+        public Builder() {}
+
+        private Builder(ExistsTemplateRequest o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.flatSettings = o.flatSettings;
+            this.local = o.local;
+            this.masterTimeout = o.masterTimeout;
+            this.name = _listCopy(o.name);
+        }
+
+        private Builder(Builder o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.flatSettings = o.flatSettings;
+            this.local = o.local;
+            this.masterTimeout = o.masterTimeout;
+            this.name = _listCopy(o.name);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
         }
 
         /**
-         * Return local information, do not retrieve the state from cluster-manager node
-         * (default: false)
-         * <p>
-         * API name: {@code local}
-         */
-        public final Builder local(@Nullable Boolean value) {
-            this.local = value;
-            return this;
-        }
-
-        /**
-         * Explicit operation timeout for connection to master node
-         * <p>
-         * API name: {@code master_timeout}
-         */
-        @Deprecated
-        public final Builder masterTimeout(@Nullable Time value) {
-            this.masterTimeout = value;
-            return this;
-        }
-
-        /**
-         * Explicit operation timeout for connection to master node
-         * <p>
-         * API name: {@code master_timeout}
-         */
-        @Deprecated
-        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.masterTimeout(fn.apply(new Time.Builder()).build());
-        }
-
-        /**
-         * Explicit operation timeout for connection to cluster-manager node
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
         }
 
         /**
-         * Explicit operation timeout for connection to cluster-manager node
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+            return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * Return settings in flat format.
+         * <p>
+         * API name: {@code flat_settings}
+         * </p>
+         */
+        @Nonnull
+        public final Builder flatSettings(@Nullable Boolean value) {
+            this.flatSettings = value;
+            return this;
+        }
+
+        /**
+         * Return local information, do not retrieve the state from cluster-manager node.
+         * <p>
+         * API name: {@code local}
+         * </p>
+         */
+        @Nonnull
+        public final Builder local(@Nullable Boolean value) {
+            this.local = value;
+            return this;
+        }
+
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
+
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return masterTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
          * Required - The comma separated names of the index templates
          * <p>
          * API name: {@code name}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>name</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder name(List<String> list) {
             this.name = _listAddAll(this.name, list);
             return this;
@@ -238,9 +294,13 @@ public class ExistsTemplateRequest extends RequestBase {
          * Required - The comma separated names of the index templates
          * <p>
          * API name: {@code name}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>name</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder name(String value, String... values) {
             this.name = _listAdd(this.name, value, values);
             return this;
@@ -249,9 +309,10 @@ public class ExistsTemplateRequest extends RequestBase {
         /**
          * Builds a {@link ExistsTemplateRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ExistsTemplateRequest build() {
             _checkSingleUse();
 
@@ -265,39 +326,18 @@ public class ExistsTemplateRequest extends RequestBase {
      * Endpoint "{@code indices.exists_template}".
      */
     public static final Endpoint<ExistsTemplateRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
-        "opensearch/indices.exists_template",
-
         // Request method
-        request -> {
-            return "HEAD";
-
-        },
-
+        request -> "HEAD",
         // Request path
         request -> {
-            final int _name = 1 << 0;
-
-            int propsSet = 0;
-
-            propsSet |= _name;
-
-            if (propsSet == (_name)) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_template");
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-                return buf.toString();
-            }
-            throw SimpleEndpoint.noPathTemplateFound("path");
-
+            StringBuilder buf = new StringBuilder();
+            buf.append("/_template/");
+            SimpleEndpoint.pathEncode(String.join(",", request.name), buf);
+            return buf.toString();
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
             if (request.clusterManagerTimeout != null) {
                 params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
             }
@@ -307,11 +347,34 @@ public class ExistsTemplateRequest extends RequestBase {
             if (request.local != null) {
                 params.put("local", String.valueOf(request.local));
             }
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
             return params;
-
         },
-        SimpleEndpoint.emptyMap(),
-        false,
-        null
+        SimpleEndpoint.emptyMap()
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
+        result = 31 * result + Objects.hashCode(this.flatSettings);
+        result = 31 * result + Objects.hashCode(this.local);
+        result = 31 * result + Objects.hashCode(this.masterTimeout);
+        result = 31 * result + this.name.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ExistsTemplateRequest other = (ExistsTemplateRequest) o;
+        return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
+            && Objects.equals(this.flatSettings, other.flatSettings)
+            && Objects.equals(this.local, other.local)
+            && Objects.equals(this.masterTimeout, other.masterTimeout)
+            && this.name.equals(other.name);
+    }
 }

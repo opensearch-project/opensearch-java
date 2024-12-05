@@ -174,6 +174,25 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return existsIndexTemplate(fn.apply(new ExistsIndexTemplateRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.exists_template
+
+    /**
+     * Returns information about whether a particular index template exists.
+     */
+    public BooleanResponse existsTemplate(ExistsTemplateRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ExistsTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about whether a particular index template exists.
+     *
+     * @param fn a function that initializes a builder to create the {@link ExistsTemplateRequest}
+     */
+    public final BooleanResponse existsTemplate(Function<ExistsTemplateRequest.Builder, ObjectBuilder<ExistsTemplateRequest>> fn)
+        throws IOException, OpenSearchException {
+        return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.get
 
     /**

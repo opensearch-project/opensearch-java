@@ -391,38 +391,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return existsAlias(fn.apply(new ExistsAliasRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.exists_template
-
-    /**
-     * Returns information about whether a particular index template exists.
-     *
-     *
-     */
-
-    public BooleanResponse existsTemplate(ExistsTemplateRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ExistsTemplateRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ExistsTemplateRequest,
-            BooleanResponse,
-            ErrorResponse>) ExistsTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about whether a particular index template exists.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ExistsTemplateRequest}
-     *
-     */
-
-    public final BooleanResponse existsTemplate(Function<ExistsTemplateRequest.Builder, ObjectBuilder<ExistsTemplateRequest>> fn)
-        throws IOException, OpenSearchException {
-        return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.flush
 
     /**

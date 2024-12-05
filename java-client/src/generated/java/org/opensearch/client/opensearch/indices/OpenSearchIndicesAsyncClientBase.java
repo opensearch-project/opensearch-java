@@ -178,6 +178,26 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return existsIndexTemplate(fn.apply(new ExistsIndexTemplateRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.exists_template
+
+    /**
+     * Returns information about whether a particular index template exists.
+     */
+    public CompletableFuture<BooleanResponse> existsTemplate(ExistsTemplateRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ExistsTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about whether a particular index template exists.
+     *
+     * @param fn a function that initializes a builder to create the {@link ExistsTemplateRequest}
+     */
+    public final CompletableFuture<BooleanResponse> existsTemplate(
+        Function<ExistsTemplateRequest.Builder, ObjectBuilder<ExistsTemplateRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.get
 
     /**
