@@ -30,12 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
-import javax.annotation.Nullable;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -50,68 +56,62 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: snapshot.get.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GetSnapshotResponse implements PlainJsonSerializable {
-    private final List<SnapshotResponseItem> responses;
 
+    @Nonnull
     private final List<SnapshotInfo> snapshots;
-
-    private final int total;
-
-    private final int remaining;
 
     // ---------------------------------------------------------------------------------------------
 
     private GetSnapshotResponse(Builder builder) {
-
-        this.responses = ApiTypeHelper.unmodifiable(builder.responses);
-        this.snapshots = ApiTypeHelper.unmodifiable(builder.snapshots);
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-        this.remaining = ApiTypeHelper.requireNonNull(builder.remaining, this, "remaining");
-
+        this.snapshots = ApiTypeHelper.unmodifiableRequired(builder.snapshots, this, "snapshots");
     }
 
-    public static GetSnapshotResponse of(Function<Builder, ObjectBuilder<GetSnapshotResponse>> fn) {
+    public static GetSnapshotResponse of(Function<GetSnapshotResponse.Builder, ObjectBuilder<GetSnapshotResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * API name: {@code responses}
+     * This method is left for compatibility. Always returns an empty list.
      */
+    @Deprecated
     public final List<SnapshotResponseItem> responses() {
-        return this.responses;
+        return Collections.emptyList();
     }
 
     /**
-     * API name: {@code snapshots}
+     * Required - API name: {@code snapshots}
      */
+    @Nonnull
     public final List<SnapshotInfo> snapshots() {
         return this.snapshots;
     }
 
     /**
-     * Required - The total number of snapshots that match the request when ignoring
-     * size limit or after query parameter.
+     * * This method is left for compatibility.
      * <p>
      * API name: {@code total}
      */
+    @Deprecated
     public final int total() {
-        return this.total;
+        return this.snapshots.size();
     }
 
     /**
-     * Required - The number of remaining snapshots that were not returned due to
-     * size limits and that can be fetched by additional requests using the next
-     * field value.
+     * This method is left for compatibility. Always returns 0.
      * <p>
      * API name: {@code remaining}
      */
+    @Deprecated
     public final int remaining() {
-        return this.remaining;
+        return 0;
     }
 
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -119,33 +119,12 @@ public class GetSnapshotResponse implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.responses)) {
-            generator.writeKey("responses");
-            generator.writeStartArray();
-            for (SnapshotResponseItem item0 : this.responses) {
-                item0.serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("snapshots");
+        generator.writeStartArray();
+        for (SnapshotInfo item0 : this.snapshots) {
+            item0.serialize(generator, mapper);
         }
-        if (ApiTypeHelper.isDefined(this.snapshots)) {
-            generator.writeKey("snapshots");
-            generator.writeStartArray();
-            for (SnapshotInfo item0 : this.snapshots) {
-                item0.serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
-        }
-        generator.writeKey("total");
-        generator.write(this.total);
-
-        generator.writeKey("remaining");
-        generator.write(this.remaining);
-
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -153,105 +132,54 @@ public class GetSnapshotResponse implements PlainJsonSerializable {
     /**
      * Builder for {@link GetSnapshotResponse}.
      */
-
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetSnapshotResponse> {
-        @Nullable
-        private List<SnapshotResponseItem> responses;
-
-        @Nullable
         private List<SnapshotInfo> snapshots;
 
-        private Integer total;
-
-        private Integer remaining;
-
         /**
-         * API name: {@code responses}
-         * <p>
-         * Adds all elements of <code>list</code> to <code>responses</code>.
-         */
-        public final Builder responses(List<SnapshotResponseItem> list) {
-            this.responses = _listAddAll(this.responses, list);
-            return this;
-        }
-
-        /**
-         * API name: {@code responses}
-         * <p>
-         * Adds one or more values to <code>responses</code>.
-         */
-        public final Builder responses(SnapshotResponseItem value, SnapshotResponseItem... values) {
-            this.responses = _listAdd(this.responses, value, values);
-            return this;
-        }
-
-        /**
-         * API name: {@code responses}
-         * <p>
-         * Adds a value to <code>responses</code> using a builder lambda.
-         */
-        public final Builder responses(Function<SnapshotResponseItem.Builder, ObjectBuilder<SnapshotResponseItem>> fn) {
-            return responses(fn.apply(new SnapshotResponseItem.Builder()).build());
-        }
-
-        /**
-         * API name: {@code snapshots}
+         * Required - API name: {@code snapshots}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>snapshots</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder snapshots(List<SnapshotInfo> list) {
             this.snapshots = _listAddAll(this.snapshots, list);
             return this;
         }
 
         /**
-         * API name: {@code snapshots}
+         * Required - API name: {@code snapshots}
+         *
          * <p>
          * Adds one or more values to <code>snapshots</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder snapshots(SnapshotInfo value, SnapshotInfo... values) {
             this.snapshots = _listAdd(this.snapshots, value, values);
             return this;
         }
 
         /**
-         * API name: {@code snapshots}
+         * Required - API name: {@code snapshots}
+         *
          * <p>
          * Adds a value to <code>snapshots</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder snapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
             return snapshots(fn.apply(new SnapshotInfo.Builder()).build());
         }
 
         /**
-         * Required - The total number of snapshots that match the request when ignoring
-         * size limit or after query parameter.
-         * <p>
-         * API name: {@code total}
-         */
-        public final Builder total(int value) {
-            this.total = value;
-            return this;
-        }
-
-        /**
-         * Required - The number of remaining snapshots that were not returned due to
-         * size limits and that can be fetched by additional requests using the next
-         * field value.
-         * <p>
-         * API name: {@code remaining}
-         */
-        public final Builder remaining(int value) {
-            this.remaining = value;
-            return this;
-        }
-
-        /**
          * Builds a {@link GetSnapshotResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GetSnapshotResponse build() {
             _checkSingleUse();
 
@@ -270,12 +198,21 @@ public class GetSnapshotResponse implements PlainJsonSerializable {
     );
 
     protected static void setupGetSnapshotResponseDeserializer(ObjectDeserializer<GetSnapshotResponse.Builder> op) {
-
-        op.add(Builder::responses, JsonpDeserializer.arrayDeserializer(SnapshotResponseItem._DESERIALIZER), "responses");
         op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(SnapshotInfo._DESERIALIZER), "snapshots");
-        op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
-        op.add(Builder::remaining, JsonpDeserializer.integerDeserializer(), "remaining");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.snapshots.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        GetSnapshotResponse other = (GetSnapshotResponse) o;
+        return this.snapshots.equals(other.snapshots);
+    }
 }

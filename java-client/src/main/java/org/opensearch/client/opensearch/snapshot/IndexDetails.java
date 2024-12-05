@@ -47,6 +47,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: snapshot._types.IndexDetails
 
+@Deprecated
 @JsonpDeserializable
 public class IndexDetails implements PlainJsonSerializable {
     private final int shardCount;
