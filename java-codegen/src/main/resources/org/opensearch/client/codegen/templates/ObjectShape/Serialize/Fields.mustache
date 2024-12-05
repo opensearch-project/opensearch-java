@@ -1,0 +1,13 @@
+{{#fieldsToSerialize}}
+    {{^required}}
+        if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) {
+    {{/required}}
+    generator.writeKey({{#quoted}}{{wireName}}{{/quoted}});
+    {{#type.serializer}}this.{{name}}{{/type.serializer}}
+    {{^required}}
+        }
+    {{/required}}
+    {{^-last}}
+
+    {{/-last}}
+{{/fieldsToSerialize}}

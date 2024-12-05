@@ -48,7 +48,7 @@ public final class TemplateGlobalContext implements Mustache.CustomContext {
         return new Builder().withLambda("quoted", s -> '\"' + StringEscapeUtils.escapeJava(s) + '\"')
             .withLambda("camelCase", Strings::toCamelCase)
             .withLambda("pascalCase", Strings::toPascalCase)
-            .withLambda("asFieldName", NameSanitizer::wireNameToField)
+            .withLambda("asFieldName", NameSanitizer::fieldName)
             .withLambda("toLower", s -> s.toLowerCase())
             .withLambda("ERROR", s -> {
                 throw new RuntimeException(s);

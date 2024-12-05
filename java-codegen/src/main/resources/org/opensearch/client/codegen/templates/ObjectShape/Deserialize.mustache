@@ -14,9 +14,7 @@
     {{#extendsOtherShape}}
         setup{{extendsType.name}}Deserializer(op{{#extendsType.typeParams}}, {{>Type/deserializer}}{{/extendsType.typeParams}});
     {{/extendsOtherShape}}
-    {{#fieldsToDeserialize}}
-        op.add({{#extendedByOtherShape}}Abstract{{/extendedByOtherShape}}Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{wireName}}{{/quoted}}{{#aliases}}, {{#quoted}}{{.}}{{/quoted}}{{/aliases}});
-    {{/fieldsToDeserialize}}
+    {{>ObjectShape/Deserialize/Fields}}
     {{#additionalPropertiesField}}
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
             if (builder.{{name}} == null) {
@@ -29,6 +27,9 @@
 
         op.ignore({{#quoted}}{{key}}{{/quoted}});
     {{/distinctDiscriminatorFieldValues}}
+    {{#singleKeyMap}}
+        op.setKey(Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}});
+    {{/singleKeyMap}}
     {{#shortcutProperty}}
 
         op.shortcutProperty({{#quoted}}{{.}}{{/quoted}});

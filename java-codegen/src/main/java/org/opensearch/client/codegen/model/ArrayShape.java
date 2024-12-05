@@ -24,7 +24,12 @@ public class ArrayShape extends ObjectShape {
         ShouldGenerate shouldGenerate
     ) {
         super(parent, className, typedefName, description, shouldGenerate);
-        this.valueBodyField = new Field("_value_body", arrayType, true, "Response value.", null);
+        this.valueBodyField = Field.builder()
+            .withName("valueBody")
+            .withType(arrayType)
+            .withRequired(true)
+            .withDescription("Response value.")
+            .build();
     }
 
     @Override

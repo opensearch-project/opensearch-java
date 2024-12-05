@@ -103,7 +103,6 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
             this.docValues = value;
             return self();
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------

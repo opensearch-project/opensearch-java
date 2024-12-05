@@ -8,10 +8,13 @@
 
 package org.opensearch.client.codegen.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
@@ -19,23 +22,15 @@ import org.opensearch.client.codegen.utils.JavaClassKind;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
 
-public class TaggedUnionShape extends Shape {
+public class TaggedUnionShape extends ObjectShapeBase {
     private final Map<String, Variant> variants = new TreeMap<>();
-    private final String discriminatingField;
-    private final String defaultVariant;
+    @Nullable
+    private String discriminatingField;
+    private String defaultVariant;
+    private boolean externallyDiscriminated;
 
-    public TaggedUnionShape(
-        Namespace parent,
-        String className,
-        String typedefName,
-        String description,
-        String discriminatingField,
-        String defaultVariant,
-        ShouldGenerate shouldGenerate
-    ) {
+    public TaggedUnionShape(Namespace parent, String className, String typedefName, String description, ShouldGenerate shouldGenerate) {
         super(parent, className, typedefName, description, shouldGenerate);
-        this.discriminatingField = discriminatingField;
-        this.defaultVariant = defaultVariant;
     }
 
     public void addVariant(String name, Type type) {
@@ -51,6 +46,10 @@ public class TaggedUnionShape extends Shape {
         return Lists.filter(getVariants(), v -> !v.getType().isInsidePackage("org.opensearch"));
     }
 
+    public void setDefaultVariant(String name) {
+        this.defaultVariant = name;
+    }
+
     public Variant getDefaultVariant() {
         return variants.get(this.defaultVariant != null ? this.defaultVariant : "custom");
     }
@@ -62,24 +61,46 @@ public class TaggedUnionShape extends Shape {
 
     @Override
     public Collection<Type> getImplementsTypes() {
-        return List.of(
-            Types.Client.Util.TaggedUnion(getType().getNestedType("Kind"), getVariantBaseType()),
-            Types.Client.Json.PlainJsonSerializable
-        );
+        var types = new ArrayList<Type>();
+        types.add(Types.Client.Util.TaggedUnion(getType().getNestedType("Kind"), getVariantBaseType()));
+        types.addAll(super.getImplementsTypes());
+        types.add(Types.Client.Json.PlainJsonSerializable);
+        return types;
     }
 
     public boolean isDiscriminated() {
+        return isInternallyDiscriminated() || isExternallyDiscriminated();
+    }
+
+    public boolean isInternallyDiscriminated() {
         return discriminatingField != null;
     }
 
+    public void setDiscriminatingField(@Nullable String field) {
+        this.discriminatingField = field;
+    }
+
+    @Nullable
     public String getDiscriminatingField() {
         return discriminatingField;
     }
 
+    public boolean isExternallyDiscriminated() {
+        return externallyDiscriminated;
+    }
+
+    public void setExternallyDiscriminated(boolean externallyDiscriminated) {
+        this.externallyDiscriminated = externallyDiscriminated;
+    }
+
     public Type getVariantBaseType() {
-        return isDiscriminated()
-            ? Type.builder().withPackage(getPackageName()).withName(getClassName() + "Variant").build()
+        return isDiscriminated() && getVariants().stream().map(Variant::getType).allMatch(t -> t.getTargetShape().isPresent())
+            ? getVariantInterfaceType()
             : Types.Java.Lang.Object;
+    }
+
+    public Type getVariantInterfaceType() {
+        return Type.builder().withPackage(getPackageName()).withName(getClassName() + "Variant").build();
     }
 
     public boolean canStringify() {
@@ -98,6 +119,15 @@ public class TaggedUnionShape extends Shape {
             var t = v.getType();
             return t.isString() || t.isEnum();
         }).count() > 1;
+    }
+
+    public Collection<BuilderSetter> getContainerBuilderSetters() {
+        var builderT = Type.builder().withName("ContainerBuilder").build();
+        return getFields(false).stream().map(f -> new BuilderSetter(builderT, "Builder.this", f)).collect(Collectors.toList());
+    }
+
+    public boolean needsContainerBuilder() {
+        return hasFields(false);
     }
 
     @Override
@@ -182,6 +212,7 @@ public class TaggedUnionShape extends Shape {
 
     public static class VariantInterface extends Shape {
         private final String unionClassName;
+        private boolean includeToUnionMethod;
 
         private VariantInterface(TaggedUnionShape union, ShouldGenerate shouldGenerate) {
             super(
@@ -192,7 +223,10 @@ public class TaggedUnionShape extends Shape {
                 shouldGenerate
             );
             unionClassName = union.getClassName();
-            setExtendsType(Types.Client.Json.JsonpSerializable);
+            if (union.isInternallyDiscriminated()) {
+                setExtendsType(Types.Client.Json.JsonpSerializable);
+            }
+            includeToUnionMethod = !union.hasFields();
         }
 
         @Override
@@ -202,6 +236,10 @@ public class TaggedUnionShape extends Shape {
 
         public String getUnionClassName() {
             return unionClassName;
+        }
+
+        public boolean includeToUnionMethod() {
+            return includeToUnionMethod;
         }
 
         @Override
