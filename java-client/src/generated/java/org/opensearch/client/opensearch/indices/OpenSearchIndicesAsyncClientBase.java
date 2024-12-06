@@ -245,6 +245,33 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return getIndexTemplate(new GetIndexTemplateRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.get_template
+
+    /**
+     * Returns an index template.
+     */
+    public CompletableFuture<GetTemplateResponse> getTemplate(GetTemplateRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, GetTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns an index template.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetTemplateRequest}
+     */
+    public final CompletableFuture<GetTemplateResponse> getTemplate(
+        Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return getTemplate(fn.apply(new GetTemplateRequest.Builder()).build());
+    }
+
+    /**
+     * Returns an index template.
+     */
+    public final CompletableFuture<GetTemplateResponse> getTemplate() throws IOException, OpenSearchException {
+        return getTemplate(new GetTemplateRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.put_index_template
 
     /**
@@ -266,6 +293,26 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return putIndexTemplate(fn.apply(new PutIndexTemplateRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.put_template
+
+    /**
+     * Creates or updates an index template.
+     */
+    public CompletableFuture<PutTemplateResponse> putTemplate(PutTemplateRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, PutTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates or updates an index template.
+     *
+     * @param fn a function that initializes a builder to create the {@link PutTemplateRequest}
+     */
+    public final CompletableFuture<PutTemplateResponse> putTemplate(
+        Function<PutTemplateRequest.Builder, ObjectBuilder<PutTemplateRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return putTemplate(fn.apply(new PutTemplateRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.simulate_index_template
 
     /**
@@ -285,5 +332,26 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         Function<SimulateIndexTemplateRequest.Builder, ObjectBuilder<SimulateIndexTemplateRequest>> fn
     ) throws IOException, OpenSearchException {
         return simulateIndexTemplate(fn.apply(new SimulateIndexTemplateRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.simulate_template
+
+    /**
+     * Simulate resolving the given template name or body.
+     */
+    public CompletableFuture<SimulateTemplateResponse> simulateTemplate(SimulateTemplateRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, SimulateTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Simulate resolving the given template name or body.
+     *
+     * @param fn a function that initializes a builder to create the {@link SimulateTemplateRequest}
+     */
+    public final CompletableFuture<SimulateTemplateResponse> simulateTemplate(
+        Function<SimulateTemplateRequest.Builder, ObjectBuilder<SimulateTemplateRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return simulateTemplate(fn.apply(new SimulateTemplateRequest.Builder()).build());
     }
 }

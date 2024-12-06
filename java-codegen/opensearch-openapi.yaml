@@ -1205,6 +1205,7 @@ paths:
         - $ref: '#/components/parameters/cat.snapshots___query.help'
         - $ref: '#/components/parameters/cat.snapshots___query.ignore_unavailable'
         - $ref: '#/components/parameters/cat.snapshots___query.master_timeout'
+        - $ref: '#/components/parameters/cat.snapshots___query.repository'
         - $ref: '#/components/parameters/cat.snapshots___query.s'
         - $ref: '#/components/parameters/cat.snapshots___query.time'
         - $ref: '#/components/parameters/cat.snapshots___query.v'
@@ -1232,6 +1233,7 @@ paths:
         - $ref: '#/components/parameters/cat.snapshots___query.help'
         - $ref: '#/components/parameters/cat.snapshots___query.ignore_unavailable'
         - $ref: '#/components/parameters/cat.snapshots___query.master_timeout'
+        - $ref: '#/components/parameters/cat.snapshots___query.repository'
         - $ref: '#/components/parameters/cat.snapshots___query.s'
         - $ref: '#/components/parameters/cat.snapshots___query.time'
         - $ref: '#/components/parameters/cat.snapshots___query.v'
@@ -9485,6 +9487,7 @@ paths:
       operationId: indices.get_upgrade.0
       x-operation-group: indices.get_upgrade
       x-version-added: '1.0'
+      x-version-deprecated: '1.0'
       description: The `_upgrade` API is no longer useful and will be removed.
       externalDocs:
         url: https://opensearch.org/docs/latest
@@ -9504,6 +9507,7 @@ paths:
       operationId: indices.upgrade.0
       x-operation-group: indices.upgrade
       x-version-added: '1.0'
+      x-version-deprecated: '1.0'
       description: The `_upgrade` API is no longer useful and will be removed.
       externalDocs:
         url: https://opensearch.org/docs/latest
@@ -9518,6 +9522,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/indices.upgrade'
       responses:
         '200':
           $ref: '#/components/responses/indices.upgrade___200'
@@ -12215,6 +12221,7 @@ paths:
       operationId: indices.get_upgrade.1
       x-operation-group: indices.get_upgrade
       x-version-added: '1.0'
+      x-version-deprecated: '1.0'
       description: The `_upgrade` API is no longer useful and will be removed.
       externalDocs:
         url: https://opensearch.org/docs/latest
@@ -12235,6 +12242,7 @@ paths:
       operationId: indices.upgrade.1
       x-operation-group: indices.upgrade
       x-version-added: '1.0'
+      x-version-deprecated: '1.0'
       description: The `_upgrade` API is no longer useful and will be removed.
       externalDocs:
         url: https://opensearch.org/docs/latest
@@ -12250,6 +12258,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/indices.upgrade'
       responses:
         '200':
           $ref: '#/components/responses/indices.upgrade___200'
@@ -16583,6 +16593,17 @@ components:
       x-version-deprecated: '2.0'
       x-deprecation-message: To promote inclusive language, use `cluster_manager_timeout` instead.
       deprecated: true
+    cat.snapshots___query.repository:
+      in: query
+      name: repository
+      description: |-
+        A comma-separated list of snapshot repositories used to limit the request.
+        Accepts wildcard expressions.
+        `_all` returns all repositories.
+        If any repository fails during the request, OpenSearch returns an error.
+      required: true
+      schema:
+        $ref: '#/components/schemas/_common___Names'
     cat.snapshots___query.s:
       name: s
       in: query
@@ -26534,12 +26555,12 @@ components:
 
                   Templates with lower 'order' values are merged first. Templates with higher
                   'order' values are merged later, overriding templates with lower values.
-                type: number
+                type: integer
+                format: int32
               settings:
                 description: Configuration options for the index.
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: true
               version:
                 $ref: '#/components/schemas/_common___VersionNumber'
             description: The template definition
@@ -26629,6 +26650,7 @@ components:
       content:
         application/json:
           schema:
+            title: template
             $ref: '#/components/schemas/indices._common___IndexTemplate'
     indices.split:
       content:
@@ -26659,6 +26681,11 @@ components:
                   $ref: '#/components/schemas/indices.update_aliases___Action'
             description: The definition of `actions` to perform
       required: true
+    indices.upgrade:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/indices._common___UpgradeRequest'
     indices.validate_query:
       content:
         application/json:
@@ -26795,12 +26822,61 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ml._common___CreateConnectorRequest'
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              version:
+                type: integer
+              protocol:
+                type: string
+              credential:
+                $ref: '#/components/schemas/ml._common___Credential'
+              parameters:
+                $ref: '#/components/schemas/ml._common___Parameters'
+              client_config:
+                $ref: '#/components/schemas/ml._common___ClientConfig'
+              actions:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ml._common___Action'
+            required:
+              - actions
+              - credential
+              - description
+              - name
+              - parameters
+              - protocol
+              - version
     ml.register_agents:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ml._common___RegisterAgentsRequest'
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              description:
+                type: string
+              tools:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ml._common___ToolItems'
+              parameters:
+                $ref: '#/components/schemas/ml._common___Parameters'
+              app_type:
+                type: string
+              memory:
+                $ref: '#/components/schemas/ml._common___Memory'
+              llm:
+                $ref: '#/components/schemas/ml._common___LLM'
+            required:
+              - name
+              - type
     ml.register_model:
       content:
         application/json:
@@ -26862,7 +26938,17 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ml._common___SearchModelsQuery'
+            type: object
+            properties:
+              query:
+                type: object
+                description: The query.
+              size:
+                type: integer
+                description: The number of models to return.
+            required:
+              - query
+              - size
     msearch:
       content:
         application/x-ndjson:
@@ -29178,6 +29264,10 @@ components:
               $ref: '#/components/schemas/indices._common___TemplateMapping'
       description: ''
     indices.get_upgrade___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/indices._common___IndexGetUpgradeStatus'
       description: ''
     indices.get___200:
       content:
@@ -29415,6 +29505,10 @@ components:
             $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
       description: ''
     indices.upgrade___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/indices._common___IndexPostUpgradeStatus'
       description: ''
     indices.validate_query___200:
       content:
@@ -30444,6 +30538,8 @@ components:
                     $ref: '#/components/schemas/_core.search___Suggest'
               terminated_early:
                 type: boolean
+              status:
+                type: number
             required:
               - _shards
               - hits
@@ -32095,13 +32191,39 @@ components:
           $ref: '#/components/schemas/_common___ByteCount'
       required:
         - size_in_bytes
+    _common___FieldSort:
+      oneOf:
+        - title: order
+          $ref: '#/components/schemas/_common___SortOrder'
+        - type: object
+          properties:
+            missing:
+              $ref: '#/components/schemas/_common___FieldValue'
+            mode:
+              $ref: '#/components/schemas/_common___SortMode'
+            nested:
+              $ref: '#/components/schemas/_common___NestedSortValue'
+            order:
+              $ref: '#/components/schemas/_common___SortOrder'
+            unmapped_type:
+              $ref: '#/components/schemas/_common.mapping___FieldType'
+            numeric_type:
+              $ref: '#/components/schemas/_common___FieldSortNumericType'
+            format:
+              type: string
+    _common___FieldSortNumericType:
+      type: string
+      enum:
+        - date
+        - date_nanos
+        - double
+        - long
     _common___FieldValue:
       description: A field value.
       type:
         - boolean
         - 'null'
         - number
-        - object
         - string
     _common___FlushStats:
       type: object
@@ -33527,18 +33649,44 @@ components:
         - min
         - sum
     _common___SortOptions:
-      type: object
-      properties:
-        _score:
-          $ref: '#/components/schemas/_common___ScoreSort'
-        _doc:
-          $ref: '#/components/schemas/_common___ScoreSort'
-        _geo_distance:
-          $ref: '#/components/schemas/_common___GeoDistanceSort'
-        _script:
-          $ref: '#/components/schemas/_common___ScriptSort'
-      minProperties: 1
-      maxProperties: 1
+      oneOf:
+        - type: string
+          const: _score
+        - type: string
+          const: _doc
+        - type: string
+          not:
+            type: string
+            enum:
+              - _doc
+              - _score
+        - type: object
+          properties:
+            _score:
+              $ref: '#/components/schemas/_common___ScoreSort'
+            _doc:
+              $ref: '#/components/schemas/_common___ScoreSort'
+            _geo_distance:
+              $ref: '#/components/schemas/_common___GeoDistanceSort'
+            _script:
+              $ref: '#/components/schemas/_common___ScriptSort'
+          minProperties: 1
+          maxProperties: 1
+        - type: object
+          propertyNames:
+            allOf:
+              - $ref: '#/components/schemas/_common___Field'
+              - not:
+                  type: string
+                  enum:
+                    - _doc
+                    - _geo_distance
+                    - _score
+                    - _script
+          additionalProperties:
+            $ref: '#/components/schemas/_common___FieldSort'
+          minProperties: 1
+          maxProperties: 1
     _common___SortOrder:
       type: string
       enum:
@@ -39646,6 +39794,55 @@ components:
           type: boolean
       required:
         - enabled
+    _common.mapping___FieldType:
+      type: string
+      enum:
+        - aggregate_metric_double
+        - alias
+        - binary
+        - boolean
+        - byte
+        - completion
+        - constant_keyword
+        - date
+        - date_nanos
+        - date_range
+        - double
+        - double_range
+        - flat_object
+        - float
+        - float_range
+        - geo_point
+        - geo_shape
+        - half_float
+        - histogram
+        - icu_collation_keyword
+        - integer
+        - integer_range
+        - ip
+        - ip_range
+        - join
+        - keyword
+        - knn_vector
+        - long
+        - long_range
+        - match_only_text
+        - murmur3
+        - nested
+        - object
+        - percolator
+        - rank_feature
+        - rank_features
+        - scaled_float
+        - search_as_you_type
+        - short
+        - text
+        - token_count
+        - unsigned_long
+        - version
+        - wildcard
+        - xy_point
+        - xy_shape
     _common.mapping___FlatObjectProperty:
       allOf:
         - $ref: '#/components/schemas/_common.mapping___PropertyBase'
@@ -42525,8 +42722,12 @@ components:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
         - type: object
+          properties:
+            _name: {}
+            boost: {}
           additionalProperties:
             $ref: '#/components/schemas/_common.query_dsl___TermsQueryField'
+          minProperties: 1
     _common.query_dsl___TermsQueryField:
       oneOf:
         - title: value
@@ -42559,18 +42760,6 @@ components:
         - most_fields
         - phrase
         - phrase_prefix
-    _common.query_dsl___TokenPruningConfig:
-      type: object
-      properties:
-        tokens_freq_ratio_threshold:
-          description: Tokens whose frequency is more than this threshold times the average frequency of all tokens in the specified field are considered outliers and pruned.
-          type: number
-        tokens_weight_threshold:
-          description: Tokens whose weight is less than this threshold are considered nonsignificant and pruned.
-          type: number
-        only_score_pruned_tokens:
-          description: Whether to only score pruned tokens, vs only scoring kept tokens.
-          type: boolean
     _common.query_dsl___TypeQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
@@ -43296,6 +43485,8 @@ components:
           $ref: '#/components/schemas/_common___IndexName'
         _score:
           type: number
+        _type:
+          $ref: '#/components/schemas/_common___Type'
       required:
         - _id
         - _index
@@ -43353,7 +43544,7 @@ components:
           additionalProperties:
             type: object
             additionalProperties:
-              type: object
+              type: number
       required:
         - hits
         - metric_details
@@ -49101,6 +49292,19 @@ components:
       additionalProperties:
         title: metadata
         description: Additional details about the error.
+    indices._common___IndexGetUpgradeStatus:
+      type: object
+      properties:
+        size_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        size_to_upgrade_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        size_to_upgrade_ancient_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        indices:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/indices._common___UpgradeStatus'
     indices._common___IndexingPressure:
       type: object
       properties:
@@ -49136,6 +49340,15 @@ components:
       properties:
         index:
           $ref: '#/components/schemas/indices._common___SlowlogThresholdLevels'
+    indices._common___IndexPostUpgradeStatus:
+      type: object
+      properties:
+        _shards:
+          $ref: '#/components/schemas/_common___ShardStatistics'
+        upgraded_indices:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/indices._common___UpgradeVersionStatus'
     indices._common___IndexRouting:
       type: object
       properties:
@@ -50060,11 +50273,11 @@ components:
         mappings:
           $ref: '#/components/schemas/_common.mapping___TypeMapping'
         order:
-          type: number
+          type: integer
+          format: int32
         settings:
           type: object
-          additionalProperties:
-            type: object
+          additionalProperties: true
         version:
           $ref: '#/components/schemas/_common___VersionNumber'
       required:
@@ -50100,6 +50313,38 @@ components:
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
         age:
           $ref: '#/components/schemas/_common___Duration'
+    indices._common___UpgradeRequest:
+      type: object
+      properties:
+        allow_no_indices:
+          type: boolean
+        expand_wildcards:
+          type: string
+          enum:
+            - all
+            - closed
+            - none
+            - open
+        ignore_unavailable:
+          type: boolean
+        wait_for_completion:
+          type: boolean
+    indices._common___UpgradeStatus:
+      type: object
+      properties:
+        size_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        size_to_upgrade_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        size_to_upgrade_ancient_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+    indices._common___UpgradeVersionStatus:
+      type: object
+      properties:
+        upgrade_version:
+          $ref: '#/components/schemas/_common___VersionString'
+        oldest_lucene_segment_version:
+          $ref: '#/components/schemas/_common___VersionString'
     indices.add_block___IndicesBlockOptions:
       type: string
       enum:
@@ -52730,35 +52975,6 @@ components:
           type: integer
         retry_timeout_seconds:
           type: integer
-    ml._common___CreateConnectorRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        version:
-          type: integer
-        protocol:
-          type: string
-        credential:
-          $ref: '#/components/schemas/ml._common___Credential'
-        parameters:
-          $ref: '#/components/schemas/ml._common___Parameters'
-        client_config:
-          $ref: '#/components/schemas/ml._common___ClientConfig'
-        actions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ml._common___Action'
-      required:
-        - actions
-        - credential
-        - description
-        - name
-        - parameters
-        - protocol
-        - version
     ml._common___Credential:
       type: object
       properties:
@@ -52857,30 +53073,6 @@ components:
     ml._common___Parameters:
       type: object
       additionalProperties: true
-    ml._common___RegisterAgentsRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        description:
-          type: string
-        tools:
-          type: array
-          items:
-            $ref: '#/components/schemas/ml._common___ToolItems'
-        parameters:
-          $ref: '#/components/schemas/ml._common___Parameters'
-        app_type:
-          type: string
-        memory:
-          $ref: '#/components/schemas/ml._common___Memory'
-        llm:
-          $ref: '#/components/schemas/ml._common___LLM'
-      required:
-        - name
-        - type
     ml._common___SearchModelsHits:
       type: object
       properties:
@@ -52921,18 +53113,6 @@ components:
           $ref: '#/components/schemas/_common___Name'
       required:
         - _score
-    ml._common___SearchModelsQuery:
-      type: object
-      properties:
-        query:
-          type: object
-          description: The query.
-        size:
-          type: integer
-          description: The number of models to return.
-      required:
-        - query
-        - size
     ml._common___SearchModelsResponse:
       type: object
       properties:
@@ -54959,8 +55139,7 @@ components:
         - name
     nodes.info___NodeInfoSettingsPlugins:
       type: object
-      additionalProperties:
-        $ref: '#/components/schemas/_common___FieldValue'
+      additionalProperties: true
     nodes.info___NodeInfoSettingsTransport:
       type: object
       properties:

@@ -55,8 +55,11 @@ public class CodeGenerator {
                 "exists_template",
                 "get",
                 "get_index_template",
+                "get_template",
                 "put_index_template",
-                "simulate_index_template"
+                "put_template",
+                "simulate_index_template",
+                "simulate_template"
             )
         ),
         and(namespace("ml"), not(named("search_models"))), // TODO: search_models is complex and ideally should re-use the search structures

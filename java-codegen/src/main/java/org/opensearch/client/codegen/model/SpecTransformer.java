@@ -227,8 +227,14 @@ public class SpecTransformer {
             .flatMap(OpenApiRequestBody::getContent)
             .flatMap(c -> c.get(MimeType.Json))
             .flatMap(OpenApiMediaType::getSchema)
-            .map(OpenApiSchema::resolve)
-            .ifPresent(s -> visitInto(s, shape));
+            .ifPresent(s -> {
+                if (s.has$ref()) {
+                    var name = s.getTitle().or(() -> s.resolve().getName()).orElseThrow();
+                    shape.setDelegatedBodyField(name, mapType(s));
+                } else {
+                    visitInto(s.resolve(), shape);
+                }
+            });
 
         if (shape.getExtendsType() == null) {
             shape.setExtendsType(Types.Client.OpenSearch._Types.RequestBase);

@@ -37,6 +37,8 @@ public class RequestShape extends ObjectShape {
     @Nonnull
     private final Map<String, Field> fields = new TreeMap<>();
     private boolean isBooleanRequest;
+    @Nullable
+    private Field delegatedBodyField;
 
     public RequestShape(
         @Nonnull Namespace parent,
@@ -106,7 +108,7 @@ public class RequestShape extends ObjectShape {
     }
 
     public boolean hasRequestBody() {
-        return !getBodyFields().isEmpty();
+        return hasDelegatedBodyField() || !getBodyFields().isEmpty();
     }
 
     public void addQueryParam(Field field) {
@@ -160,6 +162,19 @@ public class RequestShape extends ObjectShape {
     public void addBodyField(Field field) {
         super.addBodyField(field);
         addField(field);
+    }
+
+    public void setDelegatedBodyField(String name, Type type) {
+        this.delegatedBodyField = Field.builder().withName(name).withType(type).withRequired(true).withDescription("Request body.").build();
+        addField(this.delegatedBodyField);
+    }
+
+    public boolean hasDelegatedBodyField() {
+        return delegatedBodyField != null;
+    }
+
+    public Field getDelegatedBodyField() {
+        return delegatedBodyField;
     }
 
     private void addField(Field field) {

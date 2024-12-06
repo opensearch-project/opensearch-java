@@ -30,9 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -43,15 +49,15 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: indices.get_template.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GetTemplateResponse extends DictionaryResponse<String, TemplateMapping> {
     // ---------------------------------------------------------------------------------------------
 
     private GetTemplateResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static GetTemplateResponse of(Function<Builder, ObjectBuilder<GetTemplateResponse>> fn) {
+    public static GetTemplateResponse of(Function<GetTemplateResponse.Builder, ObjectBuilder<GetTemplateResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -60,11 +66,11 @@ public class GetTemplateResponse extends DictionaryResponse<String, TemplateMapp
     /**
      * Builder for {@link GetTemplateResponse}.
      */
-
     public static class Builder extends DictionaryResponse.AbstractBuilder<String, TemplateMapping, Builder>
         implements
             ObjectBuilder<GetTemplateResponse> {
         @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -72,8 +78,7 @@ public class GetTemplateResponse extends DictionaryResponse<String, TemplateMapp
         /**
          * Builds a {@link GetTemplateResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public GetTemplateResponse build() {
             _checkSingleUse();
@@ -95,8 +100,6 @@ public class GetTemplateResponse extends DictionaryResponse<String, TemplateMapp
     );
 
     protected static void setupGetTemplateResponseDeserializer(ObjectDeserializer<GetTemplateResponse.Builder> op) {
-        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), TemplateMapping._DESERIALIZER);
-
+        setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), TemplateMapping._DESERIALIZER);
     }
-
 }

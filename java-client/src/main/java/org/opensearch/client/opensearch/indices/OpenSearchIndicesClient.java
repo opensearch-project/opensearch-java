@@ -684,48 +684,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         );
     }
 
-    // ----- Endpoint: indices.get_template
-
-    /**
-     * Returns an index template.
-     *
-     *
-     */
-
-    public GetTemplateResponse getTemplate(GetTemplateRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetTemplateRequest, GetTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetTemplateRequest,
-            GetTemplateResponse,
-            ErrorResponse>) GetTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns an index template.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetTemplateRequest}
-     *
-     */
-
-    public final GetTemplateResponse getTemplate(Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn)
-        throws IOException, OpenSearchException {
-        return getTemplate(fn.apply(new GetTemplateRequest.Builder()).build());
-    }
-
-    /**
-     * Returns an index template.
-     *
-     *
-     */
-
-    public GetTemplateResponse getTemplate() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new GetTemplateRequest.Builder().build(), GetTemplateRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: indices.get_upgrade
 
     /**
@@ -908,38 +866,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
             PutIndicesSettingsRequest._ENDPOINT,
             this.transportOptions
         );
-    }
-
-    // ----- Endpoint: indices.put_template
-
-    /**
-     * Creates or updates an index template.
-     *
-     *
-     */
-
-    public PutTemplateResponse putTemplate(PutTemplateRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<PutTemplateRequest, PutTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            PutTemplateRequest,
-            PutTemplateResponse,
-            ErrorResponse>) PutTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Creates or updates an index template.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link PutTemplateRequest}
-     *
-     */
-
-    public final PutTemplateResponse putTemplate(Function<PutTemplateRequest.Builder, ObjectBuilder<PutTemplateRequest>> fn)
-        throws IOException, OpenSearchException {
-        return putTemplate(fn.apply(new PutTemplateRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.recovery
@@ -1206,53 +1132,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
     public final ShrinkResponse shrink(Function<ShrinkRequest.Builder, ObjectBuilder<ShrinkRequest>> fn) throws IOException,
         OpenSearchException {
         return shrink(fn.apply(new ShrinkRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: indices.simulate_template
-
-    /**
-     * Simulate resolving the given template name or body
-     *
-     *
-     */
-
-    public SimulateTemplateResponse simulateTemplate(SimulateTemplateRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<SimulateTemplateRequest, SimulateTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            SimulateTemplateRequest,
-            SimulateTemplateResponse,
-            ErrorResponse>) SimulateTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Simulate resolving the given template name or body
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link SimulateTemplateRequest}
-     *
-     */
-
-    public final SimulateTemplateResponse simulateTemplate(
-        Function<SimulateTemplateRequest.Builder, ObjectBuilder<SimulateTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return simulateTemplate(fn.apply(new SimulateTemplateRequest.Builder()).build());
-    }
-
-    /**
-     * Simulate resolving the given template name or body
-     *
-     *
-     */
-
-    public SimulateTemplateResponse simulateTemplate() throws IOException, OpenSearchException {
-        return this.transport.performRequest(
-            new SimulateTemplateRequest.Builder().build(),
-            SimulateTemplateRequest._ENDPOINT,
-            this.transportOptions
-        );
     }
 
     // ----- Endpoint: indices.split

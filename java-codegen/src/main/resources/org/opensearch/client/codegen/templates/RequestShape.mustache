@@ -17,7 +17,7 @@
     {{>ObjectShape/Getters}}
 
 {{#hasRequestBody}}
-    {{>ObjectShape/Serialize}}
+    {{>RequestShape/Serialize}}
 {{/hasRequestBody}}
 
     // ---------------------------------------------------------------------------------------------
@@ -29,7 +29,7 @@
 
     // ---------------------------------------------------------------------------------------------
 
-    {{>ObjectShape/Deserialize}}
+    {{>RequestShape/Deserialize}}
 
 {{/hasRequestBody}}
 {{/canBeSingleton}}

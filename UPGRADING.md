@@ -144,3 +144,11 @@ After:
 ### QueryStringQuery
 - The `phraseSlop` property has been corrected to be of type `Integer` instead of `Double`.
 - The `tieBreaker` property has been corrected to be of type `Float` instead of `Double`.
+
+### simulate_template.Template
+- The `settings` property is now of type `IndexSettings` instead of `Map<String, JsonData>`.
+- The `overlapping` property has been moved to `SimulateTemplateResponse`.
+
+### PutTemplateRequest
+- The `flatSettings` property has been removed as it is not supported by OpenSearch.
+- The `timeout` property has been removed as it is not supported by OpenSearch.
