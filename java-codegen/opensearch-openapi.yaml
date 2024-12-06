@@ -26524,6 +26524,7 @@ components:
       content:
         application/json:
           schema:
+            title: settings
             $ref: '#/components/schemas/indices._common___IndexSettings'
       required: true
     indices.put_template:
@@ -33679,9 +33680,9 @@ components:
               - not:
                   type: string
                   enum:
+                    - _score
                     - _doc
                     - _geo_distance
-                    - _score
                     - _script
           additionalProperties:
             $ref: '#/components/schemas/_common___FieldSort'

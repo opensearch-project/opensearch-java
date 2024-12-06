@@ -806,54 +806,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return putMapping(fn.apply(new PutMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.put_settings
-
-    /**
-     * Updates the index settings.
-     *
-     *
-     */
-
-    public CompletableFuture<PutIndicesSettingsResponse> putSettings(PutIndicesSettingsRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<PutIndicesSettingsRequest, PutIndicesSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            PutIndicesSettingsRequest,
-            PutIndicesSettingsResponse,
-            ErrorResponse>) PutIndicesSettingsRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Updates the index settings.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link PutIndicesSettingsRequest}
-     *
-     */
-
-    public final CompletableFuture<PutIndicesSettingsResponse> putSettings(
-        Function<PutIndicesSettingsRequest.Builder, ObjectBuilder<PutIndicesSettingsRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return putSettings(fn.apply(new PutIndicesSettingsRequest.Builder()).build());
-    }
-
-    /**
-     * Updates the index settings.
-     *
-     *
-     */
-
-    public CompletableFuture<PutIndicesSettingsResponse> putSettings() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new PutIndicesSettingsRequest.Builder().build(),
-            PutIndicesSettingsRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
     // ----- Endpoint: indices.recovery
 
     /**

@@ -58,6 +58,7 @@ public class CodeGenerator {
                 "get_settings",
                 "get_template",
                 "put_index_template",
+                "put_settings",
                 "put_template",
                 "simulate_index_template",
                 "simulate_template"

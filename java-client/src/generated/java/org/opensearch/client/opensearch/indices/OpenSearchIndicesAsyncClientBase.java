@@ -321,6 +321,27 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return putIndexTemplate(fn.apply(new PutIndexTemplateRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.put_settings
+
+    /**
+     * Updates the index settings.
+     */
+    public CompletableFuture<PutIndicesSettingsResponse> putSettings(PutIndicesSettingsRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, PutIndicesSettingsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Updates the index settings.
+     *
+     * @param fn a function that initializes a builder to create the {@link PutIndicesSettingsRequest}
+     */
+    public final CompletableFuture<PutIndicesSettingsResponse> putSettings(
+        Function<PutIndicesSettingsRequest.Builder, ObjectBuilder<PutIndicesSettingsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return putSettings(fn.apply(new PutIndicesSettingsRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.put_template
 
     /**
