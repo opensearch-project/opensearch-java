@@ -239,6 +239,33 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return getIndexTemplate(new GetIndexTemplateRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.get_settings
+
+    /**
+     * Returns settings for one or more indexes.
+     */
+    public GetIndicesSettingsResponse getSettings(GetIndicesSettingsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, GetIndicesSettingsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns settings for one or more indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetIndicesSettingsRequest}
+     */
+    public final GetIndicesSettingsResponse getSettings(
+        Function<GetIndicesSettingsRequest.Builder, ObjectBuilder<GetIndicesSettingsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return getSettings(fn.apply(new GetIndicesSettingsRequest.Builder()).build());
+    }
+
+    /**
+     * Returns settings for one or more indexes.
+     */
+    public final GetIndicesSettingsResponse getSettings() throws IOException, OpenSearchException {
+        return getSettings(new GetIndicesSettingsRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.get_template
 
     /**

@@ -220,6 +220,8 @@ public class RequestShape extends ObjectShape {
                 return "DeleteIndex";
             case "indices.get":
                 return "GetIndex";
+            case "indices.get_settings":
+                return "GetIndicesSettings";
             case "snapshot.clone":
                 return "CloneSnapshot";
             case "snapshot.create":

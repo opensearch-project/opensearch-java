@@ -245,6 +245,34 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return getIndexTemplate(new GetIndexTemplateRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.get_settings
+
+    /**
+     * Returns settings for one or more indexes.
+     */
+    public CompletableFuture<GetIndicesSettingsResponse> getSettings(GetIndicesSettingsRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, GetIndicesSettingsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns settings for one or more indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetIndicesSettingsRequest}
+     */
+    public final CompletableFuture<GetIndicesSettingsResponse> getSettings(
+        Function<GetIndicesSettingsRequest.Builder, ObjectBuilder<GetIndicesSettingsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return getSettings(fn.apply(new GetIndicesSettingsRequest.Builder()).build());
+    }
+
+    /**
+     * Returns settings for one or more indexes.
+     */
+    public final CompletableFuture<GetIndicesSettingsResponse> getSettings() throws IOException, OpenSearchException {
+        return getSettings(new GetIndicesSettingsRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.get_template
 
     /**

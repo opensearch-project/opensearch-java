@@ -30,9 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -43,15 +49,17 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: indices.get_settings.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GetIndicesSettingsResponse extends DictionaryResponse<String, IndexState> {
     // ---------------------------------------------------------------------------------------------
 
     private GetIndicesSettingsResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static GetIndicesSettingsResponse of(Function<Builder, ObjectBuilder<GetIndicesSettingsResponse>> fn) {
+    public static GetIndicesSettingsResponse of(
+        Function<GetIndicesSettingsResponse.Builder, ObjectBuilder<GetIndicesSettingsResponse>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
@@ -60,11 +68,11 @@ public class GetIndicesSettingsResponse extends DictionaryResponse<String, Index
     /**
      * Builder for {@link GetIndicesSettingsResponse}.
      */
-
     public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexState, Builder>
         implements
             ObjectBuilder<GetIndicesSettingsResponse> {
         @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -72,8 +80,7 @@ public class GetIndicesSettingsResponse extends DictionaryResponse<String, Index
         /**
          * Builds a {@link GetIndicesSettingsResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public GetIndicesSettingsResponse build() {
             _checkSingleUse();
@@ -95,8 +102,6 @@ public class GetIndicesSettingsResponse extends DictionaryResponse<String, Index
     );
 
     protected static void setupGetIndicesSettingsResponseDeserializer(ObjectDeserializer<GetIndicesSettingsResponse.Builder> op) {
-        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), IndexState._DESERIALIZER);
-
+        setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), IndexState._DESERIALIZER);
     }
-
 }

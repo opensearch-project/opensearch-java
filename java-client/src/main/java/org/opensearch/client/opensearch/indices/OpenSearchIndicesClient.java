@@ -637,53 +637,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return this.transport.performRequest(new GetMappingRequest.Builder().build(), GetMappingRequest._ENDPOINT, this.transportOptions);
     }
 
-    // ----- Endpoint: indices.get_settings
-
-    /**
-     * Returns settings for one or more indices.
-     *
-     *
-     */
-
-    public GetIndicesSettingsResponse getSettings(GetIndicesSettingsRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetIndicesSettingsRequest, GetIndicesSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetIndicesSettingsRequest,
-            GetIndicesSettingsResponse,
-            ErrorResponse>) GetIndicesSettingsRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns settings for one or more indices.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetIndicesSettingsRequest}
-     *
-     */
-
-    public final GetIndicesSettingsResponse getSettings(
-        Function<GetIndicesSettingsRequest.Builder, ObjectBuilder<GetIndicesSettingsRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return getSettings(fn.apply(new GetIndicesSettingsRequest.Builder()).build());
-    }
-
-    /**
-     * Returns settings for one or more indices.
-     *
-     *
-     */
-
-    public GetIndicesSettingsResponse getSettings() throws IOException, OpenSearchException {
-        return this.transport.performRequest(
-            new GetIndicesSettingsRequest.Builder().build(),
-            GetIndicesSettingsRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
     // ----- Endpoint: indices.get_upgrade
 
     /**
