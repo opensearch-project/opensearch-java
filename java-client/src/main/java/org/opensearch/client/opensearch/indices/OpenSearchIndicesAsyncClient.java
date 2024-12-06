@@ -618,52 +618,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.get_mapping
-
-    /**
-     * Returns mappings for one or more indices.
-     *
-     *
-     */
-
-    public CompletableFuture<GetMappingResponse> getMapping(GetMappingRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetMappingRequest, GetMappingResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetMappingRequest,
-            GetMappingResponse,
-            ErrorResponse>) GetMappingRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns mappings for one or more indices.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetMappingRequest}
-     *
-     */
-
-    public final CompletableFuture<GetMappingResponse> getMapping(Function<GetMappingRequest.Builder, ObjectBuilder<GetMappingRequest>> fn)
-        throws IOException, OpenSearchException {
-        return getMapping(fn.apply(new GetMappingRequest.Builder()).build());
-    }
-
-    /**
-     * Returns mappings for one or more indices.
-     *
-     *
-     */
-
-    public CompletableFuture<GetMappingResponse> getMapping() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new GetMappingRequest.Builder().build(),
-            GetMappingRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
     // ----- Endpoint: indices.get_upgrade
 
     /**
@@ -772,38 +726,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
     public final CompletableFuture<PutAliasResponse> putAlias(Function<PutAliasRequest.Builder, ObjectBuilder<PutAliasRequest>> fn)
         throws IOException, OpenSearchException {
         return putAlias(fn.apply(new PutAliasRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: indices.put_mapping
-
-    /**
-     * Updates the index mappings.
-     *
-     *
-     */
-
-    public CompletableFuture<PutMappingResponse> putMapping(PutMappingRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<PutMappingRequest, PutMappingResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            PutMappingRequest,
-            PutMappingResponse,
-            ErrorResponse>) PutMappingRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Updates the index mappings.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link PutMappingRequest}
-     *
-     */
-
-    public final CompletableFuture<PutMappingResponse> putMapping(Function<PutMappingRequest.Builder, ObjectBuilder<PutMappingRequest>> fn)
-        throws IOException, OpenSearchException {
-        return putMapping(fn.apply(new PutMappingRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.recovery

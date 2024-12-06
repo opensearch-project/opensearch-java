@@ -239,6 +239,32 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return getIndexTemplate(new GetIndexTemplateRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.get_mapping
+
+    /**
+     * Returns mappings for one or more indexes.
+     */
+    public GetMappingResponse getMapping(GetMappingRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, GetMappingRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns mappings for one or more indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetMappingRequest}
+     */
+    public final GetMappingResponse getMapping(Function<GetMappingRequest.Builder, ObjectBuilder<GetMappingRequest>> fn) throws IOException,
+        OpenSearchException {
+        return getMapping(fn.apply(new GetMappingRequest.Builder()).build());
+    }
+
+    /**
+     * Returns mappings for one or more indexes.
+     */
+    public final GetMappingResponse getMapping() throws IOException, OpenSearchException {
+        return getMapping(new GetMappingRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.get_settings
 
     /**
@@ -310,6 +336,25 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         Function<PutIndexTemplateRequest.Builder, ObjectBuilder<PutIndexTemplateRequest>> fn
     ) throws IOException, OpenSearchException {
         return putIndexTemplate(fn.apply(new PutIndexTemplateRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.put_mapping
+
+    /**
+     * Updates the index mappings.
+     */
+    public PutMappingResponse putMapping(PutMappingRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, PutMappingRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Updates the index mappings.
+     *
+     * @param fn a function that initializes a builder to create the {@link PutMappingRequest}
+     */
+    public final PutMappingResponse putMapping(Function<PutMappingRequest.Builder, ObjectBuilder<PutMappingRequest>> fn) throws IOException,
+        OpenSearchException {
+        return putMapping(fn.apply(new PutMappingRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.put_settings

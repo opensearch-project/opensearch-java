@@ -30,9 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -44,15 +50,15 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: indices.get_mapping.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GetMappingResponse extends DictionaryResponse<String, IndexMappingRecord> {
     // ---------------------------------------------------------------------------------------------
 
     private GetMappingResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static GetMappingResponse of(Function<Builder, ObjectBuilder<GetMappingResponse>> fn) {
+    public static GetMappingResponse of(Function<GetMappingResponse.Builder, ObjectBuilder<GetMappingResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -61,11 +67,11 @@ public class GetMappingResponse extends DictionaryResponse<String, IndexMappingR
     /**
      * Builder for {@link GetMappingResponse}.
      */
-
     public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexMappingRecord, Builder>
         implements
             ObjectBuilder<GetMappingResponse> {
         @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -73,8 +79,7 @@ public class GetMappingResponse extends DictionaryResponse<String, IndexMappingR
         /**
          * Builds a {@link GetMappingResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public GetMappingResponse build() {
             _checkSingleUse();
@@ -96,12 +101,6 @@ public class GetMappingResponse extends DictionaryResponse<String, IndexMappingR
     );
 
     protected static void setupGetMappingResponseDeserializer(ObjectDeserializer<GetMappingResponse.Builder> op) {
-        DictionaryResponse.setupDictionaryResponseDeserializer(
-            op,
-            JsonpDeserializer.stringDeserializer(),
-            IndexMappingRecord._DESERIALIZER
-        );
-
+        setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), IndexMappingRecord._DESERIALIZER);
     }
-
 }
