@@ -20,6 +20,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.NotImplementedException;
@@ -215,12 +216,6 @@ public class SpecTransformer {
         }
 
         variants.stream()
-            .flatMap(v -> v.getAllRelevantParameters(In.Query).stream())
-            .filter(p -> !p.isGlobal())
-            .map(this::visit)
-            .forEachOrdered(shape::addQueryParam);
-
-        variants.stream()
             .map(OpenApiOperation::getRequestBody)
             .flatMap(Optional::stream)
             .findFirst()
@@ -236,6 +231,16 @@ public class SpecTransformer {
                     visitInto(s.resolve(), shape);
                 }
             });
+
+        var bodyFieldNames = (shape.hasDelegatedBodyField()
+            ? (ObjectShapeBase) shape.getDelegatedBodyField().getType().getTargetShape().orElseThrow()
+            : shape).getBodyFields().stream().map(Field::getWireName).collect(Collectors.toSet());
+
+        variants.stream()
+            .flatMap(v -> v.getAllRelevantParameters(In.Query).stream())
+            .filter(p -> !p.isGlobal() && !bodyFieldNames.contains(p.getName().orElseThrow()))
+            .map(this::visit)
+            .forEachOrdered(shape::addQueryParam);
 
         if (shape.getExtendsType() == null) {
             shape.setExtendsType(Types.Client.OpenSearch._Types.RequestBase);

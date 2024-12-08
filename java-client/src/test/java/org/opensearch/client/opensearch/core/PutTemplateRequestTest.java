@@ -29,7 +29,6 @@ public class PutTemplateRequestTest extends Assert {
         final Map<String, Object> indexTemplateMap = new HashMap<>();
         indexTemplateMap.put("name", "test");
         indexTemplateMap.put("index_patterns", "*");
-        indexTemplateMap.put("create", true);
         indexTemplateMap.put("order", 1);
 
         final String indexTemplate = new ObjectMapper().writeValueAsString(indexTemplateMap);
@@ -37,9 +36,8 @@ public class PutTemplateRequestTest extends Assert {
 
         final PutTemplateRequest putTemplateRequest = PutTemplateRequest._DESERIALIZER.deserialize(parser, mapper);
 
-        assertEquals(putTemplateRequest.name(), "test");
-        assertEquals(putTemplateRequest.indexPatterns(), Collections.singletonList("*"));
-        assertEquals((int) putTemplateRequest.order(), 1);
-        assertEquals(putTemplateRequest.create(), true);
+        assertEquals("test", putTemplateRequest.name());
+        assertEquals(Collections.singletonList("*"), putTemplateRequest.indexPatterns());
+        assertEquals((Integer) 1, putTemplateRequest.order());
     }
 }

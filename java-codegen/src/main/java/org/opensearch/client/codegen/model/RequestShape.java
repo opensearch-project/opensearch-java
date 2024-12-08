@@ -107,6 +107,11 @@ public class RequestShape extends ObjectShape {
         return fields.values();
     }
 
+    @Override
+    public boolean hasFieldsToSerialize() {
+        return hasRequestBody();
+    }
+
     public boolean hasRequestBody() {
         return hasDelegatedBodyField() || !getBodyFields().isEmpty();
     }

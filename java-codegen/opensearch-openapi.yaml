@@ -20855,7 +20855,8 @@ components:
         Templates with lower 'order' values are merged first. Templates with higher
         'order' values are merged later, overriding templates with lower values.
       schema:
-        type: number
+        type: integer
+        format: int32
       style: form
     indices.recovery___path.index:
       in: path

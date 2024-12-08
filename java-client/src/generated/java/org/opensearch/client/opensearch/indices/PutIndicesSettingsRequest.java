@@ -46,8 +46,10 @@ import java.util.stream.Collectors;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -65,9 +67,11 @@ import org.opensearch.client.util.ToCopyableBuilder;
 /**
  * Updates the index settings.
  */
+@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class PutIndicesSettingsRequest extends RequestBase
     implements
+        PlainJsonSerializable,
         ToCopyableBuilder<PutIndicesSettingsRequest.Builder, PutIndicesSettingsRequest> {
 
     @Nullable
@@ -179,8 +183,8 @@ public class PutIndicesSettingsRequest extends RequestBase
     }
 
     /**
-     * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code><em></code>). To
-     * target all data streams and indexes, omit this parameter or use <code></em></code> or <code>_all</code>.
+     * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To target
+     * all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
      * <p>
      * API name: {@code index}
      * </p>
@@ -409,8 +413,8 @@ public class PutIndicesSettingsRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code><em></code>). To
-         * target all data streams and indexes, omit this parameter or use <code></em></code> or <code>_all</code>.
+         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
          * </p>
@@ -426,8 +430,8 @@ public class PutIndicesSettingsRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code><em></code>). To
-         * target all data streams and indexes, omit this parameter or use <code></em></code> or <code>_all</code>.
+         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
          * </p>

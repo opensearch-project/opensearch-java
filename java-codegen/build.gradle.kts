@@ -172,7 +172,7 @@ dependencies {
     implementation("org.semver4j", "semver4j", "5.3.0")
 
     // BSD-2-Clause
-    implementation("org.commonmark", "commonmark", "0.23.0")
+    implementation("org.commonmark", "commonmark", "0.24.0")
 
     // EPL-2.0
     testImplementation(platform("org.junit:junit-bom:5.11.3"))

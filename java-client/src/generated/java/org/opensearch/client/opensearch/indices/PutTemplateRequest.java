@@ -654,9 +654,6 @@ public class PutTemplateRequest extends RequestBase
             if (request.masterTimeout != null) {
                 params.put("master_timeout", request.masterTimeout._toJsonString());
             }
-            if (request.order != null) {
-                params.put("order", request.order._toJsonString());
-            }
             return params;
         },
         SimpleEndpoint.emptyMap(),

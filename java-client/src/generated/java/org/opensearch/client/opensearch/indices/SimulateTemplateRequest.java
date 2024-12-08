@@ -44,8 +44,10 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -62,9 +64,11 @@ import org.opensearch.client.util.ToCopyableBuilder;
 /**
  * Simulate resolving the given template name or body.
  */
+@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class SimulateTemplateRequest extends RequestBase
     implements
+        PlainJsonSerializable,
         ToCopyableBuilder<SimulateTemplateRequest.Builder, SimulateTemplateRequest> {
 
     @Nullable

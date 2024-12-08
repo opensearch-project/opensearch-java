@@ -187,8 +187,8 @@ public class GetIndicesSettingsRequest extends RequestBase
     }
 
     /**
-     * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code><em></code>). To
-     * target all data streams and indexes, omit this parameter or use <code></em></code> or <code>_all</code>.
+     * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To target
+     * all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
      * <p>
      * API name: {@code index}
      * </p>
@@ -414,8 +414,8 @@ public class GetIndicesSettingsRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code><em></code>). To
-         * target all data streams and indexes, omit this parameter or use <code></em></code> or <code>_all</code>.
+         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
          * </p>
@@ -431,8 +431,8 @@ public class GetIndicesSettingsRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code><em></code>). To
-         * target all data streams and indexes, omit this parameter or use <code></em></code> or <code>_all</code>.
+         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
          * </p>
