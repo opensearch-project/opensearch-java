@@ -46,11 +46,12 @@ import org.opensearch.client.codegen.openapi.OpenApiSpecification;
 import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.NameSanitizer;
 import org.opensearch.client.codegen.utils.Versions;
+import org.opensearch.client.codegen.utils.matcher.Matcher;
 
 public class SpecTransformer {
     private static final Logger LOGGER = LogManager.getLogger();
     @Nonnull
-    private final OperationGroupMatcher matcher;
+    private final Matcher<OperationGroup> matcher;
     @Nonnull
     private final Overrides overrides;
     @Nonnull
@@ -60,7 +61,7 @@ public class SpecTransformer {
     @Nonnull
     private final Map<OpenApiSchema, Type> schemaToType = new ConcurrentHashMap<>();
 
-    public SpecTransformer(@Nonnull OperationGroupMatcher matcher, @Nonnull Overrides overrides) {
+    public SpecTransformer(@Nonnull Matcher<OperationGroup> matcher, @Nonnull Overrides overrides) {
         this.matcher = Objects.requireNonNull(matcher, "matcher must not be null");
         this.overrides = Objects.requireNonNull(overrides, "overrides must not be null");
     }

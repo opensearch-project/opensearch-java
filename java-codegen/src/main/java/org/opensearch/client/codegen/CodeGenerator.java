@@ -8,11 +8,15 @@
 
 package org.opensearch.client.codegen;
 
-import static org.opensearch.client.codegen.model.OperationGroupMatcher.and;
-import static org.opensearch.client.codegen.model.OperationGroupMatcher.named;
+import static org.opensearch.client.codegen.model.OperationGroupMatcher.name;
 import static org.opensearch.client.codegen.model.OperationGroupMatcher.namespace;
-import static org.opensearch.client.codegen.model.OperationGroupMatcher.not;
-import static org.opensearch.client.codegen.model.OperationGroupMatcher.or;
+import static org.opensearch.client.codegen.utils.matcher.Matcher.and;
+import static org.opensearch.client.codegen.utils.matcher.Matcher.is;
+import static org.opensearch.client.codegen.utils.matcher.Matcher.isNot;
+import static org.opensearch.client.codegen.utils.matcher.Matcher.isNull;
+import static org.opensearch.client.codegen.utils.matcher.Matcher.isOneOf;
+import static org.opensearch.client.codegen.utils.matcher.Matcher.or;
+import static org.opensearch.client.codegen.utils.matcher.StringMatcher.endsWith;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,43 +36,38 @@ import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Namespace;
-import org.opensearch.client.codegen.model.OperationGroupMatcher;
+import org.opensearch.client.codegen.model.OperationGroup;
 import org.opensearch.client.codegen.model.ShapeRenderingContext;
 import org.opensearch.client.codegen.model.SpecTransformer;
 import org.opensearch.client.codegen.model.overrides.Overrides;
 import org.opensearch.client.codegen.openapi.OpenApiSpecification;
+import org.opensearch.client.codegen.utils.matcher.Matcher;
 
 public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final OperationGroupMatcher OPERATION_MATCHER = or(
-        and(namespace(""), named("info")),
-        namespace("dangling_indices"),
+    private static final Matcher<OperationGroup> OPERATION_MATCHER = or(
+        and(namespace(isNull()), name(is("info"))),
+        namespace(is("dangling_indices")),
         and(
-            namespace("indices"),
-            named(
-                "create",
-                "delete",
-                "delete_index_template",
-                "delete_template",
-                "exists",
-                "exists_index_template",
-                "exists_template",
-                "get",
-                "get_index_template",
-                "get_mapping",
-                "get_settings",
-                "get_template",
-                "put_index_template",
-                "put_mapping",
-                "put_settings",
-                "put_template",
-                "simulate_index_template",
-                "simulate_template"
+            namespace(is("indices")),
+            name(
+                or(
+                    and(endsWith("mapping"), isNot("get_field_mapping")),
+                    endsWith("settings"),
+                    endsWith("template"),
+                    isOneOf("create", "delete", "exists", "get")
+                )
             )
         ),
-        and(namespace("ml"), not(named("search_models"))), // TODO: search_models is complex and ideally should re-use the search structures
-        and(namespace("snapshot"), named("cleanup_repository", "clone", "create", "get", "verify_repository")),
-        and(namespace("tasks"))
+        and(
+            namespace(is("ml")),
+            name(
+                // TODO: search_models is complex and ideally should re-use the search structures
+                isNot("search_models")
+            )
+        ),
+        and(namespace(is("snapshot")), name(isOneOf("cleanup_repository", "clone", "create", "get", "verify_repository"))),
+        and(namespace(is("tasks")))
     );
 
     public static void main(String[] args) {
