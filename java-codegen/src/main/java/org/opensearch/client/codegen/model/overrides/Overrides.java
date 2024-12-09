@@ -42,7 +42,10 @@ public class Overrides {
             .with(schema("_common", "GeoShapeRelation"), so -> so.withShouldGenerate(ShouldGenerate.Always))
 
             .with(schema("_common", "ScriptSort"), so -> so.withShouldGenerate(ShouldGenerate.Always))
-            .with(schema("_common", "SortOptions"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+            .with(
+                schema("_common", "SortOptions"),
+                so -> so.withMappedType(t -> t.withPackage(Types.Client.OpenSearch._Types.PACKAGE).withName("SortOptions"))
+            )
 
             .with(
                 schema("_common.aggregations", "AggregationContainer"),
@@ -67,7 +70,7 @@ public class Overrides {
             .with(schema("_common.query_dsl", "RankFeatureFunctionSigmoid"), so -> so.withShouldGenerate(ShouldGenerate.Never))
             .with(
                 schema("_common.query_dsl", "SpanGapQuery"),
-                so -> so.withMappedType(t -> t.withPackage("org.opensearch.client.opensearch._types.query_dsl").withName("SpanGapQuery"))
+                so -> so.withMappedType(t -> t.withPackage(Types.Client.OpenSearch._Types.PACKAGE + ".query_dsl").withName("SpanGapQuery"))
             )
             .with(schema("_common.query_dsl", "TermsQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
             .with(schema("_common.query_dsl", "TermsQueryField"), so -> so.withShouldGenerate(ShouldGenerate.Always))

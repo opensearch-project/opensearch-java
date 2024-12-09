@@ -104,7 +104,7 @@ public abstract class Shape {
     }
 
     public Collection<ReferencingDiscriminatedUnion> getReferencingDiscriminatedUnions() {
-        return getIncomingReference(ReferenceKind.UnionVariant).stream()
+        var unions = getIncomingReference(ReferenceKind.UnionVariant).stream()
             .map(s -> (TaggedUnionShape) s)
             .distinct()
             .filter(TaggedUnionShape::isDiscriminated)
@@ -120,6 +120,15 @@ public abstract class Shape {
                 return new ReferencingDiscriminatedUnion(u, discriminatorValue);
             })
             .collect(Collectors.toList());
+
+        // Temporary hack until SortOptions is properly generated
+        if (parent.getName().equals("_types") && className.equals("ScriptSort")) {
+            unions.add(
+                new ReferencingDiscriminatedUnion(new TaggedUnionShape(parent, "SortOptions", null, null, ShouldGenerate.Never), "script")
+            );
+        }
+
+        return unions;
     }
 
     public Collection<Type> getImplementsTypes() {

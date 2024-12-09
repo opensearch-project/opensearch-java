@@ -30,78 +30,76 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch.indices.get_mapping.IndexMappingRecord;
 import org.opensearch.client.transport.endpoints.DictionaryResponse;
 import org.opensearch.client.util.ObjectBuilder;
 
-// typedef: indices.get_mapping.Response
+// typedef: indices.get_template.Response
 
 @JsonpDeserializable
-public class GetMappingResponse extends DictionaryResponse<String, IndexMappingRecord> {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class GetTemplateResponse extends DictionaryResponse<String, TemplateMapping> {
     // ---------------------------------------------------------------------------------------------
 
-    private GetMappingResponse(Builder builder) {
+    private GetTemplateResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static GetMappingResponse of(Function<Builder, ObjectBuilder<GetMappingResponse>> fn) {
+    public static GetTemplateResponse of(Function<GetTemplateResponse.Builder, ObjectBuilder<GetTemplateResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link GetMappingResponse}.
+     * Builder for {@link GetTemplateResponse}.
      */
-
-    public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexMappingRecord, Builder>
+    public static class Builder extends DictionaryResponse.AbstractBuilder<String, TemplateMapping, Builder>
         implements
-            ObjectBuilder<GetMappingResponse> {
+            ObjectBuilder<GetTemplateResponse> {
         @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
 
         /**
-         * Builds a {@link GetMappingResponse}.
+         * Builds a {@link GetTemplateResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public GetMappingResponse build() {
+        public GetTemplateResponse build() {
             _checkSingleUse();
             super.tKeySerializer(null);
             super.tValueSerializer(null);
 
-            return new GetMappingResponse(this);
+            return new GetTemplateResponse(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link GetMappingResponse}
+     * Json deserializer for {@link GetTemplateResponse}
      */
-    public static final JsonpDeserializer<GetMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<GetTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        GetMappingResponse::setupGetMappingResponseDeserializer
+        GetTemplateResponse::setupGetTemplateResponseDeserializer
     );
 
-    protected static void setupGetMappingResponseDeserializer(ObjectDeserializer<GetMappingResponse.Builder> op) {
-        DictionaryResponse.setupDictionaryResponseDeserializer(
-            op,
-            JsonpDeserializer.stringDeserializer(),
-            IndexMappingRecord._DESERIALIZER
-        );
-
+    protected static void setupGetTemplateResponseDeserializer(ObjectDeserializer<GetTemplateResponse.Builder> op) {
+        setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), TemplateMapping._DESERIALIZER);
     }
-
 }

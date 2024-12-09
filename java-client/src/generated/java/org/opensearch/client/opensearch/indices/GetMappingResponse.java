@@ -30,73 +30,77 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.indices.get_mapping.IndexMappingRecord;
 import org.opensearch.client.transport.endpoints.DictionaryResponse;
 import org.opensearch.client.util.ObjectBuilder;
 
-// typedef: indices.get_settings.Response
+// typedef: indices.get_mapping.Response
 
 @JsonpDeserializable
-public class GetIndicesSettingsResponse extends DictionaryResponse<String, IndexState> {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class GetMappingResponse extends DictionaryResponse<String, IndexMappingRecord> {
     // ---------------------------------------------------------------------------------------------
 
-    private GetIndicesSettingsResponse(Builder builder) {
+    private GetMappingResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static GetIndicesSettingsResponse of(Function<Builder, ObjectBuilder<GetIndicesSettingsResponse>> fn) {
+    public static GetMappingResponse of(Function<GetMappingResponse.Builder, ObjectBuilder<GetMappingResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Builder for {@link GetIndicesSettingsResponse}.
+     * Builder for {@link GetMappingResponse}.
      */
-
-    public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexState, Builder>
+    public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexMappingRecord, Builder>
         implements
-            ObjectBuilder<GetIndicesSettingsResponse> {
+            ObjectBuilder<GetMappingResponse> {
         @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
 
         /**
-         * Builds a {@link GetIndicesSettingsResponse}.
+         * Builds a {@link GetMappingResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public GetIndicesSettingsResponse build() {
+        public GetMappingResponse build() {
             _checkSingleUse();
             super.tKeySerializer(null);
             super.tValueSerializer(null);
 
-            return new GetIndicesSettingsResponse(this);
+            return new GetMappingResponse(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link GetIndicesSettingsResponse}
+     * Json deserializer for {@link GetMappingResponse}
      */
-    public static final JsonpDeserializer<GetIndicesSettingsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<GetMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        GetIndicesSettingsResponse::setupGetIndicesSettingsResponseDeserializer
+        GetMappingResponse::setupGetMappingResponseDeserializer
     );
 
-    protected static void setupGetIndicesSettingsResponseDeserializer(ObjectDeserializer<GetIndicesSettingsResponse.Builder> op) {
-        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), IndexState._DESERIALIZER);
-
+    protected static void setupGetMappingResponseDeserializer(ObjectDeserializer<GetMappingResponse.Builder> op) {
+        setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), IndexMappingRecord._DESERIALIZER);
     }
-
 }

@@ -30,41 +30,82 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.put_settings.Response
 
 @JsonpDeserializable
-public class PutIndicesSettingsResponse extends AcknowledgedResponseBase {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class PutIndicesSettingsResponse extends AcknowledgedResponseBase
+    implements
+        ToCopyableBuilder<PutIndicesSettingsResponse.Builder, PutIndicesSettingsResponse> {
+
     // ---------------------------------------------------------------------------------------------
 
     private PutIndicesSettingsResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static PutIndicesSettingsResponse of(Function<Builder, ObjectBuilder<PutIndicesSettingsResponse>> fn) {
+    public static PutIndicesSettingsResponse of(
+        Function<PutIndicesSettingsResponse.Builder, ObjectBuilder<PutIndicesSettingsResponse>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PutIndicesSettingsResponse}.
      */
-
     public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
         implements
-            ObjectBuilder<PutIndicesSettingsResponse> {
+            CopyableBuilder<Builder, PutIndicesSettingsResponse> {
+
+        public Builder() {}
+
+        private Builder(PutIndicesSettingsResponse o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -72,9 +113,10 @@ public class PutIndicesSettingsResponse extends AcknowledgedResponseBase {
         /**
          * Builds a {@link PutIndicesSettingsResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PutIndicesSettingsResponse build() {
             _checkSingleUse();
 
@@ -93,8 +135,22 @@ public class PutIndicesSettingsResponse extends AcknowledgedResponseBase {
     );
 
     protected static void setupPutIndicesSettingsResponseDeserializer(ObjectDeserializer<PutIndicesSettingsResponse.Builder> op) {
-        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-
+        setupAcknowledgedResponseBaseDeserializer(op);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

@@ -37,6 +37,8 @@ public class RequestShape extends ObjectShape {
     @Nonnull
     private final Map<String, Field> fields = new TreeMap<>();
     private boolean isBooleanRequest;
+    @Nullable
+    private Field delegatedBodyField;
 
     public RequestShape(
         @Nonnull Namespace parent,
@@ -105,8 +107,13 @@ public class RequestShape extends ObjectShape {
         return fields.values();
     }
 
+    @Override
+    public boolean hasFieldsToSerialize() {
+        return hasRequestBody();
+    }
+
     public boolean hasRequestBody() {
-        return !getBodyFields().isEmpty();
+        return hasDelegatedBodyField() || !getBodyFields().isEmpty();
     }
 
     public void addQueryParam(Field field) {
@@ -162,6 +169,19 @@ public class RequestShape extends ObjectShape {
         addField(field);
     }
 
+    public void setDelegatedBodyField(String name, Type type) {
+        this.delegatedBodyField = Field.builder().withName(name).withType(type).withRequired(true).withDescription("Request body.").build();
+        addField(this.delegatedBodyField);
+    }
+
+    public boolean hasDelegatedBodyField() {
+        return delegatedBodyField != null;
+    }
+
+    public Field getDelegatedBodyField() {
+        return delegatedBodyField;
+    }
+
     private void addField(Field field) {
         fields.put(field.getName(), field);
         tryAddReference(ReferenceKind.Field, field.getType());
@@ -205,6 +225,10 @@ public class RequestShape extends ObjectShape {
                 return "DeleteIndex";
             case "indices.get":
                 return "GetIndex";
+            case "indices.get_settings":
+                return "GetIndicesSettings";
+            case "indices.put_settings":
+                return "PutIndicesSettings";
             case "snapshot.clone":
                 return "CloneSnapshot";
             case "snapshot.create":

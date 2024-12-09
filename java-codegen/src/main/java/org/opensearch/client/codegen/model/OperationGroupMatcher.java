@@ -8,54 +8,16 @@
 
 package org.opensearch.client.codegen.model;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import javax.annotation.Nonnull;
+import org.opensearch.client.codegen.utils.matcher.Matcher;
 
-@FunctionalInterface
-public interface OperationGroupMatcher {
-    boolean matches(OperationGroup group);
+public final class OperationGroupMatcher {
+    private OperationGroupMatcher() {}
 
-    static OperationGroupMatcher all() {
-        return group -> true;
+    public static Matcher<OperationGroup> name(Matcher<String> nameMatcher) {
+        return group -> nameMatcher.matches(group.getName());
     }
 
-    static OperationGroupMatcher none() {
-        return group -> false;
-    }
-
-    static OperationGroupMatcher not(OperationGroupMatcher matcher) {
-        return group -> !matcher.matches(group);
-    }
-
-    static OperationGroupMatcher or(OperationGroupMatcher... matchers) {
-        return group -> {
-            for (OperationGroupMatcher matcher : matchers) {
-                if (matcher.matches(group)) {
-                    return true;
-                }
-            }
-            return false;
-        };
-    }
-
-    static OperationGroupMatcher and(OperationGroupMatcher... matchers) {
-        return group -> {
-            for (OperationGroupMatcher matcher : matchers) {
-                if (!matcher.matches(group)) {
-                    return false;
-                }
-            }
-            return true;
-        };
-    }
-
-    static OperationGroupMatcher named(String... names) {
-        var set = new HashSet<>(Arrays.asList(names));
-        return group -> set.contains(group.getName());
-    }
-
-    static OperationGroupMatcher namespace(@Nonnull String namespace) {
-        return group -> namespace.equals(group.getNamespace().orElse(""));
+    public static Matcher<OperationGroup> namespace(Matcher<String> namespaceMatcher) {
+        return group -> namespaceMatcher.matches(group.getNamespace().orElse(null));
     }
 }

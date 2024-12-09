@@ -30,39 +30,80 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.delete_template.Response
 
 @JsonpDeserializable
-public class DeleteTemplateResponse extends AcknowledgedResponseBase {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class DeleteTemplateResponse extends AcknowledgedResponseBase
+    implements
+        ToCopyableBuilder<DeleteTemplateResponse.Builder, DeleteTemplateResponse> {
+
     // ---------------------------------------------------------------------------------------------
 
     private DeleteTemplateResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static DeleteTemplateResponse of(Function<Builder, ObjectBuilder<DeleteTemplateResponse>> fn) {
+    public static DeleteTemplateResponse of(Function<DeleteTemplateResponse.Builder, ObjectBuilder<DeleteTemplateResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DeleteTemplateResponse}.
      */
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, DeleteTemplateResponse> {
 
-    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteTemplateResponse> {
+        public Builder() {}
+
+        private Builder(DeleteTemplateResponse o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -70,9 +111,10 @@ public class DeleteTemplateResponse extends AcknowledgedResponseBase {
         /**
          * Builds a {@link DeleteTemplateResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DeleteTemplateResponse build() {
             _checkSingleUse();
 
@@ -91,8 +133,22 @@ public class DeleteTemplateResponse extends AcknowledgedResponseBase {
     );
 
     protected static void setupDeleteTemplateResponseDeserializer(ObjectDeserializer<DeleteTemplateResponse.Builder> op) {
-        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-
+        setupAcknowledgedResponseBaseDeserializer(op);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }
