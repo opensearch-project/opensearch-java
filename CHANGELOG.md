@@ -10,6 +10,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.4 to 5.4.1
 - Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.3 to 5.3.1
 - Bump `org.owasp.dependencycheck` from 11.1.0 to 11.1.1 ([#1344](https://github.com/opensearch-project/opensearch-java/pull/1344))
+- Bump `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.8.1 to 2.8.2 ([#1345](https://github.com/opensearch-project/opensearch-java/pull/1345))
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
