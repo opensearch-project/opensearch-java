@@ -20,6 +20,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.NotImplementedException;
@@ -46,11 +47,12 @@ import org.opensearch.client.codegen.openapi.OpenApiSpecification;
 import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.NameSanitizer;
 import org.opensearch.client.codegen.utils.Versions;
+import org.opensearch.client.codegen.utils.matcher.Matcher;
 
 public class SpecTransformer {
     private static final Logger LOGGER = LogManager.getLogger();
     @Nonnull
-    private final OperationGroupMatcher matcher;
+    private final Matcher<OperationGroup> matcher;
     @Nonnull
     private final Overrides overrides;
     @Nonnull
@@ -60,7 +62,7 @@ public class SpecTransformer {
     @Nonnull
     private final Map<OpenApiSchema, Type> schemaToType = new ConcurrentHashMap<>();
 
-    public SpecTransformer(@Nonnull OperationGroupMatcher matcher, @Nonnull Overrides overrides) {
+    public SpecTransformer(@Nonnull Matcher<OperationGroup> matcher, @Nonnull Overrides overrides) {
         this.matcher = Objects.requireNonNull(matcher, "matcher must not be null");
         this.overrides = Objects.requireNonNull(overrides, "overrides must not be null");
     }
@@ -214,12 +216,6 @@ public class SpecTransformer {
         }
 
         variants.stream()
-            .flatMap(v -> v.getAllRelevantParameters(In.Query).stream())
-            .filter(p -> !p.isGlobal())
-            .map(this::visit)
-            .forEachOrdered(shape::addQueryParam);
-
-        variants.stream()
             .map(OpenApiOperation::getRequestBody)
             .flatMap(Optional::stream)
             .findFirst()
@@ -227,8 +223,24 @@ public class SpecTransformer {
             .flatMap(OpenApiRequestBody::getContent)
             .flatMap(c -> c.get(MimeType.Json))
             .flatMap(OpenApiMediaType::getSchema)
-            .map(OpenApiSchema::resolve)
-            .ifPresent(s -> visitInto(s, shape));
+            .ifPresent(s -> {
+                if (s.has$ref()) {
+                    var name = s.getTitle().or(() -> s.resolve().getName()).orElseThrow();
+                    shape.setDelegatedBodyField(name, mapType(s));
+                } else {
+                    visitInto(s.resolve(), shape);
+                }
+            });
+
+        var bodyFieldNames = (shape.hasDelegatedBodyField()
+            ? (ObjectShapeBase) shape.getDelegatedBodyField().getType().getTargetShape().orElseThrow()
+            : shape).getBodyFields().stream().map(Field::getWireName).collect(Collectors.toSet());
+
+        variants.stream()
+            .flatMap(v -> v.getAllRelevantParameters(In.Query).stream())
+            .filter(p -> !p.isGlobal() && !bodyFieldNames.contains(p.getName().orElseThrow()))
+            .map(this::visit)
+            .forEachOrdered(shape::addQueryParam);
 
         if (shape.getExtendsType() == null) {
             shape.setExtendsType(Types.Client.OpenSearch._Types.RequestBase);

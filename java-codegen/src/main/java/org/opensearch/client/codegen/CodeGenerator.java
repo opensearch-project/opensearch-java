@@ -8,11 +8,12 @@
 
 package org.opensearch.client.codegen;
 
-import static org.opensearch.client.codegen.model.OperationGroupMatcher.and;
-import static org.opensearch.client.codegen.model.OperationGroupMatcher.named;
+import static org.opensearch.client.codegen.model.OperationGroupMatcher.name;
 import static org.opensearch.client.codegen.model.OperationGroupMatcher.namespace;
-import static org.opensearch.client.codegen.model.OperationGroupMatcher.not;
-import static org.opensearch.client.codegen.model.OperationGroupMatcher.or;
+import static org.opensearch.client.codegen.utils.matcher.Matcher.and;
+import static org.opensearch.client.codegen.utils.matcher.Matcher.is;
+import static org.opensearch.client.codegen.utils.matcher.Matcher.isNot;
+import static org.opensearch.client.codegen.utils.matcher.Matcher.or;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,16 +33,23 @@ import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Namespace;
-import org.opensearch.client.codegen.model.OperationGroupMatcher;
+import org.opensearch.client.codegen.model.OperationGroup;
 import org.opensearch.client.codegen.model.ShapeRenderingContext;
 import org.opensearch.client.codegen.model.SpecTransformer;
 import org.opensearch.client.codegen.model.overrides.Overrides;
 import org.opensearch.client.codegen.openapi.OpenApiSpecification;
+import org.opensearch.client.codegen.utils.matcher.Matcher;
 
 public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final OperationGroupMatcher OPERATION_MATCHER = or(
-        and(namespace("ml"), not(named("search_models"))) // TODO: search_models is complex and ideally should re-use the search structures
+    private static final Matcher<OperationGroup> OPERATION_MATCHER = or(
+        and(
+            namespace(is("ml")),
+            name(
+                // TODO: search_models is complex and ideally should re-use the search structures
+                isNot("search_models")
+            )
+        )
     );
 
     public static void main(String[] args) {

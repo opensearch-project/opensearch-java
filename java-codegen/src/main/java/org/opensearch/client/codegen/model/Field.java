@@ -50,7 +50,7 @@ public class Field {
         }
         this.type = Objects.requireNonNull(builder.type, "type must not be null");
         this.required = builder.required;
-        this.description = builder.description != null ? Markdown.toJavaDocHtml(builder.description) : null;
+        this.description = builder.description;
         this.deprecation = builder.deprecation;
         this.aliases = builder.aliases;
     }
@@ -156,7 +156,7 @@ public class Field {
 
         @Nonnull
         public Builder withDescription(@Nullable String description) {
-            this.description = description;
+            this.description = description != null ? Markdown.toJavaDocHtml(description) : null;
             return this;
         }
 
