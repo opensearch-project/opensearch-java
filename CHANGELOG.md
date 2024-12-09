@@ -8,6 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bumps `org.junit:junit-bom` from 5.10.2 to 5.11.3
 - Bump `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.8.1 to 2.8.2 ([#1343](https://github.com/opensearch-project/opensearch-java/pull/1343))
+- Bump `org.owasp.dependencycheck` from 11.1.0 to 11.1.1 ([#1344](https://github.com/opensearch-project/opensearch-java/pull/1344))
 
 ### Changed
 
