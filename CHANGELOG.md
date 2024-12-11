@@ -3,12 +3,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
-- Added support for `IcuCollationKeywordProperty`'s `country`, `language` and `variant` properties ([#]())
 
 ### Dependencies
-- Bumps `org.junit:junit-bom` from 5.10.2 to 5.11.3
-- Bump `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.8.1 to 2.8.2 ([#1343](https://github.com/opensearch-project/opensearch-java/pull/1343))
-- Bump `org.owasp.dependencycheck` from 11.1.0 to 11.1.1 ([#1344](https://github.com/opensearch-project/opensearch-java/pull/1344))
 
 ### Changed
 
@@ -17,14 +13,25 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
-- Fixed `IcuCollationDecomposition`'s variants to align with those supported by OpenSearch ([#]())
+
+### Security
+
+## [2.19.0] - 12/12/2024
+### Added
+- Added support for `IcuCollationKeywordProperty`'s `country`, `language` and `variant` properties ([#1321](https://github.com/opensearch-project/opensearch-java/pull/1321))
+
+### Dependencies
+- Bumps `org.junit:junit-bom` from 5.10.2 to 5.11.3
+- Bump `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.8.1 to 2.8.2 ([#1343](https://github.com/opensearch-project/opensearch-java/pull/1343))
+- Bump `org.owasp.dependencycheck` from 11.1.0 to 11.1.1 ([#1344](https://github.com/opensearch-project/opensearch-java/pull/1344))
+
+### Fixed
+- Fixed `IcuCollationDecomposition`'s variants to align with those supported by OpenSearch ([#1321](https://github.com/opensearch-project/opensearch-java/pull/1321))
 - Fixed don't invoke the mapper's serialize method for the RangeQuery JsonData raw value [#1309](https://github.com/opensearch-project/opensearch-java/pull/1309)
 - Fixed an issue where `FieldSort` was not implementing `SortOptionsVariant` ([#1323](https://github.com/opensearch-project/opensearch-java/pull/1323))
 - Fixed `CreateSnapshotResponse` deserialization when wait_for_completion is false  ([#1332](https://github.com/opensearch-project/opensearch-java/pull/1332))
 - Fixed `GetSnapshotResponse` deserialization ([#1299](https://github.com/opensearch-project/opensearch-java/pull/1299))
 - Fixed serialization of nested aggregates under `SingleBucketAggregateBase` ([#1350](https://github.com/opensearch-project/opensearch-java/pull/1350))
-
-### Security
 
 ## [2.18.0] - 11/19/2024
 ### Added
@@ -542,7 +549,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
  
 ### Security
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.18.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.19.0...2.x
+[2.19.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.18.0...v2.19.0
 [2.18.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.17.0...v2.18.0
 [2.17.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.16.0...v2.17.0
 [2.16.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.15.0...v2.16.0
