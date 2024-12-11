@@ -25,3 +25,5 @@ java-client/bin
 samples/bin
 
 .DS_Store
+
+.kotlin/
