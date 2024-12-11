@@ -77,6 +77,53 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return create(fn.apply(new CreateIndexRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.create_data_stream
+
+    /**
+     * Creates or updates a data stream.
+     */
+    public CreateDataStreamResponse createDataStream(CreateDataStreamRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, CreateDataStreamRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates or updates a data stream.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreateDataStreamRequest}
+     */
+    public final CreateDataStreamResponse createDataStream(
+        Function<CreateDataStreamRequest.Builder, ObjectBuilder<CreateDataStreamRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return createDataStream(fn.apply(new CreateDataStreamRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.data_streams_stats
+
+    /**
+     * Provides statistics on operations happening in a data stream.
+     */
+    public DataStreamsStatsResponse dataStreamsStats(DataStreamsStatsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, DataStreamsStatsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Provides statistics on operations happening in a data stream.
+     *
+     * @param fn a function that initializes a builder to create the {@link DataStreamsStatsRequest}
+     */
+    public final DataStreamsStatsResponse dataStreamsStats(
+        Function<DataStreamsStatsRequest.Builder, ObjectBuilder<DataStreamsStatsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return dataStreamsStats(fn.apply(new DataStreamsStatsRequest.Builder()).build());
+    }
+
+    /**
+     * Provides statistics on operations happening in a data stream.
+     */
+    public final DataStreamsStatsResponse dataStreamsStats() throws IOException, OpenSearchException {
+        return dataStreamsStats(new DataStreamsStatsRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.delete
 
     /**
@@ -94,6 +141,26 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
     public final DeleteIndexResponse delete(Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn) throws IOException,
         OpenSearchException {
         return delete(fn.apply(new DeleteIndexRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.delete_data_stream
+
+    /**
+     * Deletes a data stream.
+     */
+    public DeleteDataStreamResponse deleteDataStream(DeleteDataStreamRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, DeleteDataStreamRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes a data stream.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteDataStreamRequest}
+     */
+    public final DeleteDataStreamResponse deleteDataStream(
+        Function<DeleteDataStreamRequest.Builder, ObjectBuilder<DeleteDataStreamRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteDataStream(fn.apply(new DeleteDataStreamRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.delete_index_template
@@ -210,6 +277,32 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
     public final GetIndexResponse get(Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn) throws IOException,
         OpenSearchException {
         return get(fn.apply(new GetIndexRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.get_data_stream
+
+    /**
+     * Returns data streams.
+     */
+    public GetDataStreamResponse getDataStream(GetDataStreamRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, GetDataStreamRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns data streams.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetDataStreamRequest}
+     */
+    public final GetDataStreamResponse getDataStream(Function<GetDataStreamRequest.Builder, ObjectBuilder<GetDataStreamRequest>> fn)
+        throws IOException, OpenSearchException {
+        return getDataStream(fn.apply(new GetDataStreamRequest.Builder()).build());
+    }
+
+    /**
+     * Returns data streams.
+     */
+    public final GetDataStreamResponse getDataStream() throws IOException, OpenSearchException {
+        return getDataStream(new GetDataStreamRequest.Builder().build());
     }
 
     // ----- Endpoint: indices.get_index_template

@@ -5065,8 +5065,8 @@ paths:
     get:
       operationId: observability.get_localstats.0
       x-operation-group: observability.get_localstats
-      x-version-added: '1.1'
-      description: Retrieves Local Stats of all observability objects.
+      x-version-added: '2.5'
+      description: Retrieves local stats of all observability objects.
       responses:
         '200':
           $ref: '#/components/responses/observability.get_localstats___200'
@@ -5630,8 +5630,8 @@ paths:
       externalDocs:
         url: https://opensearch.org/docs/latest/im-plugin/index-rollups/rollup-api/#create-or-update-an-index-rollup-job
       responses:
-        '200':
-          $ref: '#/components/responses/rollups.put___200'
+        '201':
+          $ref: '#/components/responses/rollups.put___201'
       parameters:
         - $ref: '#/components/parameters/rollups.put___path.id'
         - $ref: '#/components/parameters/rollups.put___query.if_primary_term'
@@ -7473,6 +7473,149 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+  /_plugins/_sm/policies:
+    get:
+      operationId: sm.get_policies.0
+      x-operation-group: sm.get_policies
+      x-version-added: '2.1'
+      description: Retrieves all snapshot management policies with optional pagination and filtering.
+      parameters:
+        - $ref: '#/components/parameters/sm.get_policies___query.from'
+        - $ref: '#/components/parameters/sm.get_policies___query.queryString'
+        - $ref: '#/components/parameters/sm.get_policies___query.size'
+        - $ref: '#/components/parameters/sm.get_policies___query.sortField'
+        - $ref: '#/components/parameters/sm.get_policies___query.sortOrder'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/sm.get_policies___200'
+  /_plugins/_sm/policies/{policy_name}:
+    delete:
+      operationId: sm.delete_policy.0
+      x-operation-group: sm.delete_policy
+      x-version-added: '2.1'
+      description: Deletes a snapshot management policy.
+      parameters:
+        - $ref: '#/components/parameters/sm.delete_policy___path.policy_name'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/sm.delete_policy___200'
+        '404':
+          $ref: '#/components/responses/sm.delete_policy___404'
+    get:
+      operationId: sm.get_policy.0
+      x-operation-group: sm.get_policy
+      x-version-added: '2.1'
+      description: Retrieves a specific snapshot management policy by name.
+      parameters:
+        - $ref: '#/components/parameters/sm.get_policy___path.policy_name'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/sm.get_policy___200'
+        '404':
+          $ref: '#/components/responses/sm.get_policy___404'
+    post:
+      operationId: sm.create_policy.0
+      x-operation-group: sm.create_policy
+      x-version-added: '2.1'
+      description: Creates a snapshot management policy.
+      parameters:
+        - $ref: '#/components/parameters/sm.create_policy___path.policy_name'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sm.create_policy'
+      responses:
+        '201':
+          $ref: '#/components/responses/sm.create_policy___201'
+        '400':
+          $ref: '#/components/responses/sm.create_policy___400'
+    put:
+      operationId: sm.update_policy.0
+      x-operation-group: sm.update_policy
+      x-version-added: '2.1'
+      description: Updates an existing snapshot management policy. Requires `if_seq_no` and `if_primary_term`.
+      parameters:
+        - $ref: '#/components/parameters/sm.update_policy___path.policy_name'
+        - $ref: '#/components/parameters/sm.update_policy___query.if_primary_term'
+        - $ref: '#/components/parameters/sm.update_policy___query.if_seq_no'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/sm.update_policy'
+      responses:
+        '200':
+          $ref: '#/components/responses/sm.update_policy___200'
+        '404':
+          $ref: '#/components/responses/sm.update_policy___404'
+  /_plugins/_sm/policies/{policy_name}/_explain:
+    get:
+      operationId: sm.explain_policy.0
+      x-operation-group: sm.explain_policy
+      x-version-added: '2.1'
+      description: Explains the state of the snapshot management policy.
+      parameters:
+        - $ref: '#/components/parameters/sm.explain_policy___path.policy_name'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/sm.explain_policy___200'
+  /_plugins/_sm/policies/{policy_name}/_start:
+    post:
+      operationId: sm.start_policy.0
+      x-operation-group: sm.start_policy
+      x-version-added: '2.1'
+      description: Starts a snapshot management policy.
+      parameters:
+        - $ref: '#/components/parameters/sm.start_policy___path.policy_name'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/sm.start_policy___200'
+  /_plugins/_sm/policies/{policy_name}/_stop:
+    post:
+      operationId: sm.stop_policy.0
+      x-operation-group: sm.stop_policy
+      x-version-added: '2.1'
+      description: Stops a snapshot management policy.
+      parameters:
+        - $ref: '#/components/parameters/sm.stop_policy___path.policy_name'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/sm.stop_policy___200'
   /_plugins/_sql:
     post:
       operationId: sql.query.0
@@ -7672,6 +7815,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/transforms.put___200'
+        '201':
+          $ref: '#/components/responses/transforms.put___201'
   /_plugins/_transform/{id}/_explain:
     get:
       operationId: transforms.explain.0
@@ -8374,6 +8519,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -8396,6 +8543,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -11538,6 +11687,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -11561,6 +11712,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -12977,8 +13130,8 @@ paths:
       externalDocs:
         url: https://opensearch.org/docs/latest/im-plugin/index-rollups/rollup-api/#create-or-update-an-index-rollup-job
       responses:
-        '200':
-          $ref: '#/components/responses/rollups.put___200'
+        '201':
+          $ref: '#/components/responses/rollups.put___201'
       parameters:
         - $ref: '#/components/parameters/rollups.put___path.id'
         - $ref: '#/components/parameters/rollups.put___query.if_primary_term'
@@ -22264,12 +22417,19 @@ components:
             - graph_memory_usage_percentage
             - graph_query_errors
             - graph_query_requests
+            - graph_stats
             - hit_count
             - indexing_from_model_degraded
             - indices_in_cache
             - knn_query_requests
+            - knn_query_with_filter_requests
             - load_exception_count
             - load_success_count
+            - lucene_initialized
+            - max_distance_query_requests
+            - max_distance_query_with_filter_requests
+            - min_score_query_requests
+            - min_score_query_with_filter_requests
             - miss_count
             - model_index_status
             - nmslib_initialized
@@ -24820,6 +24980,103 @@ components:
       schema:
         type: boolean
       required: false
+    sm.create_policy___path.policy_name:
+      name: policy_name
+      in: path
+      description: The name of the snapshot management policy.
+      required: true
+      schema:
+        type: string
+    sm.delete_policy___path.policy_name:
+      name: policy_name
+      in: path
+      description: The name of the snapshot management policy.
+      required: true
+      schema:
+        type: string
+    sm.explain_policy___path.policy_name:
+      name: policy_name
+      in: path
+      description: The name of the snapshot management policy.
+      required: true
+      schema:
+        type: string
+    sm.get_policies___query.from:
+      name: from
+      in: query
+      description: 'The starting index (default: 0)'
+      schema:
+        type: integer
+    sm.get_policies___query.queryString:
+      name: queryString
+      in: query
+      description: A query string to filter policies.
+      schema:
+        type: string
+    sm.get_policies___query.size:
+      name: size
+      in: query
+      description: The number of policies to return.
+      schema:
+        type: integer
+    sm.get_policies___query.sortField:
+      name: sortField
+      in: query
+      description: The field to sort on.
+      schema:
+        type: string
+    sm.get_policies___query.sortOrder:
+      name: sortOrder
+      in: query
+      description: The order of sorting.
+      schema:
+        type: string
+        enum:
+          - asc
+          - desc
+        default: asc
+    sm.get_policy___path.policy_name:
+      name: policy_name
+      in: path
+      description: The name of the snapshot management policy.
+      required: true
+      schema:
+        type: string
+    sm.start_policy___path.policy_name:
+      name: policy_name
+      in: path
+      description: The name of the snapshot management policy.
+      required: true
+      schema:
+        type: string
+    sm.stop_policy___path.policy_name:
+      name: policy_name
+      in: path
+      description: The name of the snapshot management policy.
+      required: true
+      schema:
+        type: string
+    sm.update_policy___path.policy_name:
+      name: policy_name
+      in: path
+      description: The name of the snapshot management policy.
+      required: true
+      schema:
+        type: string
+    sm.update_policy___query.if_primary_term:
+      name: if_primary_term
+      in: query
+      description: The primary term of the policy to update.
+      required: true
+      schema:
+        type: integer
+    sm.update_policy___query.if_seq_no:
+      name: if_seq_no
+      in: query
+      description: The sequence number of the policy to update.
+      required: true
+      schema:
+        type: integer
     snapshot.cleanup_repository___path.repository:
       in: path
       name: repository
@@ -26775,36 +27032,7 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              training_index:
-                type: string
-              training_field:
-                type: string
-              dimension:
-                type: integer
-                format: int32
-              max_training_vector_count:
-                type: integer
-                format: int32
-              search_size:
-                type: integer
-                format: int32
-              description:
-                type: string
-              mode:
-                type: string
-              compression_level:
-                type: string
-              method:
-                type: string
-              spaceType:
-                type: string
-            required:
-              - dimension
-              - training_field
-              - training_index
-      required: true
+            $ref: '#/components/schemas/knn._common___TrainedModel'
     mget:
       content:
         application/json:
@@ -27385,6 +27613,46 @@ components:
           schema:
             $ref: '#/components/schemas/search_pipeline._common___SearchPipelineStructure'
       required: true
+    search_shards:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              query:
+                description: Defines the search query to filter shards. Supports any query that is valid for the `_search` endpoint.
+                type: object
+                additionalProperties:
+                  type: object
+              indices_boost:
+                description: Allows increasing the relevance of specific indexes in the search.
+                type: object
+                additionalProperties:
+                  type: number
+              allow_partial_search_results:
+                description: Indicates whether partial search results are allowed if some shards are unavailable.
+                type: boolean
+              _source:
+                description: Specifies which fields to include in the `_source` response or excludes specific fields.
+                oneOf:
+                  - type: boolean
+                  - type: array
+                    items:
+                      type: string
+              from:
+                description: The starting offset (default 0) for paginated results.
+                type: integer
+              size:
+                description: The maximum number of results to return (default 10).
+                type: integer
+              sort:
+                description: A list of fields and directions for sorting the results.
+                type: array
+                items:
+                  type: object
+                  additionalProperties:
+                    type: string
+            description: Defines the parameters that can be used in the `search_shards` endpoint request. See documentation for supported query syntax.
     search_template:
       content:
         application/json:
@@ -27614,6 +27882,16 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/security._common___DistinguishedNames'
+    sm.create_policy:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sm._common___CreateUpdatePolicyRequest'
+    sm.update_policy:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sm._common___CreateUpdatePolicyRequest'
     snapshot.clone:
       content:
         application/json:
@@ -27784,17 +28062,12 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              transform:
-                $ref: '#/components/schemas/transforms._common___Transform'
-            required:
-              - transform
+            $ref: '#/components/schemas/transforms._common___TransformRequest'
     transforms.put:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/transforms._common___Transform'
+            $ref: '#/components/schemas/transforms._common___TransformRequest'
     update:
       content:
         application/json:
@@ -29094,16 +29367,18 @@ components:
                 $ref: '#/components/schemas/_common___ShardStatistics'
               backing_indices:
                 description: Total number of backing indexes for the selected data streams.
-                type: number
+                type: integer
+                format: int32
               data_stream_count:
                 description: Total number of selected data streams.
-                type: number
+                type: integer
+                format: int32
               data_streams:
                 description: Contains statistics for the selected data streams.
                 type: array
                 items:
-                  $ref: '#/components/schemas/indices.data_streams_stats___DataStreamsStatsItem'
-              total_store_sizes:
+                  $ref: '#/components/schemas/indices._common___DataStreamStats'
+              total_store_size:
                 $ref: '#/components/schemas/_common___HumanReadableByteCount'
               total_store_size_bytes:
                 description: Total size, in bytes, of all shards for the selected data streams.
@@ -29689,6 +29964,10 @@ components:
             $ref: '#/components/schemas/ism._common___RetryIndexResponse'
       description: ''
     knn.delete_model___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/knn._common___DeletedModel'
       description: ''
     knn.get_model___200:
       content:
@@ -29697,8 +29976,16 @@ components:
             type: object
       description: ''
     knn.search_models___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_core.search___ResponseBody'
       description: ''
     knn.stats___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/knn._common___Stats'
       description: ''
     knn.train_model___200:
       content:
@@ -29712,6 +29999,10 @@ components:
               - model_id
       description: ''
     knn.warmup___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ShardsOperationResponseBase'
       description: ''
     list.help___200:
       content:
@@ -30134,7 +30425,7 @@ components:
     observability.get_localstats___200:
       description: Retrieves
       content:
-        application/json:
+        text/plain:
           schema:
             type: string
     observability.get_object___200:
@@ -30403,6 +30694,10 @@ components:
             $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
       description: ''
     rollups.delete___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
       description: ''
     rollups.explain___200:
       content:
@@ -30416,15 +30711,23 @@ components:
           schema:
             $ref: '#/components/schemas/rollups._common___RollupEntity'
       description: ''
-    rollups.put___200:
+    rollups.put___201:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/rollups._common___RollupEntity'
       description: ''
     rollups.start___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
       description: ''
     rollups.stop___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
       description: ''
     scripts_painless_execute___200:
       content:
@@ -31382,6 +31685,84 @@ components:
           schema:
             $ref: '#/components/schemas/security._common___InternalServerError'
       description: ''
+    sm.create_policy___201:
+      description: Successfully created the snapshot management policy.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sm._common___PolicyResponse'
+    sm.create_policy___400:
+      description: Bad request when creating the snapshot management policy.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sm._common___BadRequestResponse'
+    sm.delete_policy___200:
+      description: Successfully deleted the snapshot management policy.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sm._common___DeletePolicyResponse'
+    sm.delete_policy___404:
+      description: Snapshot management policy not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sm._common___NotFoundResponse'
+    sm.explain_policy___200:
+      description: Successfully explained the state of the snapshot management policy.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sm._common___PolicyExplanation'
+    sm.get_policies___200:
+      description: Successfully retrieved the list of snapshot management policies.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sm._common___GetPoliciesResponse'
+    sm.get_policy___200:
+      description: Successfully retrieved the snapshot management policy.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sm._common___PolicyResponse'
+    sm.get_policy___404:
+      description: Snapshot management policy not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sm._common___NotFoundResponse'
+    sm.start_policy___200:
+      description: Successfully started the snapshot management policy.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              acknowledged:
+                type: boolean
+    sm.stop_policy___200:
+      description: Successfully stopped the snapshot management policy.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              acknowledged:
+                type: boolean
+    sm.update_policy___200:
+      description: Successfully updated the snapshot management policy.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sm._common___PolicyResponse'
+    sm.update_policy___404:
+      description: Snapshot management policy not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/sm._common___NotFoundResponse'
     snapshot.cleanup_repository___200:
       content:
         application/json:
@@ -31583,6 +31964,10 @@ components:
               - took
       description: ''
     transforms.delete___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/transforms._common___DeleteTransformsResponse'
       description: ''
     transforms.explain___200:
       content:
@@ -31594,7 +31979,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/transforms._common___TransformEntity'
+            $ref: '#/components/schemas/transforms._common___TransformResponse'
       description: ''
     transforms.preview___200:
       content:
@@ -31606,7 +31991,13 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/transforms._common___TransformEntity'
+            $ref: '#/components/schemas/transforms._common___TransformResponse'
+      description: ''
+    transforms.put___201:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/transforms._common___TransformResponse'
       description: ''
     transforms.search___200:
       content:
@@ -32379,17 +32770,27 @@ components:
         - time_in_millis
         - total
     _common___HealthStatus:
-      type: string
-      enum:
-        - green
-        - red
-        - yellow
-    _common___HealthStatusCapitalized:
-      type: string
-      enum:
-        - GREEN
-        - RED
-        - YELLOW
+      oneOf:
+        - description: All shards are assigned.
+          type: string
+          enum:
+            - green
+            - GREEN
+        - description: |
+            All primary shards are assigned, but one or more replica shards are
+            unassigned. If a node in the cluster fails, some data could be unavailable
+            until that node is repaired.
+          type: string
+          enum:
+            - yellow
+            - YELLOW
+        - description: |
+            One or more primary shards are unassigned, so some data is unavailable. This
+            can occur briefly during cluster startup as primary shards are assigned.
+          type: string
+          enum:
+            - red
+            - RED
     _common___Host:
       type: string
     _common___HourAndMinute:
@@ -33681,9 +34082,9 @@ components:
               - not:
                   type: string
                   enum:
-                    - _score
                     - _doc
                     - _geo_distance
+                    - _score
                     - _script
           additionalProperties:
             $ref: '#/components/schemas/_common___FieldSort'
@@ -49177,7 +49578,8 @@ components:
           type: boolean
         generation:
           description: Current generation for the data stream. This number acts as a cumulative count of the stream's rollovers, starting at 1.
-          type: number
+          type: integer
+          format: int64
         hidden:
           description: If `true`, the data stream is hidden.
           type: boolean
@@ -49201,7 +49603,7 @@ components:
           description: If `true`, the data stream is created and managed by cross-cluster replication and the local cluster can not write into this data stream or change its mappings.
           type: boolean
         status:
-          $ref: '#/components/schemas/_common___HealthStatusCapitalized'
+          $ref: '#/components/schemas/_common___HealthStatus'
         system:
           description: If `true`, the data stream is created and managed by an OpenSearch stack component and cannot be modified through normal user interaction.
           type: boolean
@@ -49233,6 +49635,27 @@ components:
       required:
         - index_name
         - index_uuid
+    indices._common___DataStreamStats:
+      type: object
+      properties:
+        backing_indices:
+          description: Current number of backing indexes for the data stream.
+          type: integer
+          format: int32
+        data_stream:
+          $ref: '#/components/schemas/_common___Name'
+        maximum_timestamp:
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+        store_size:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        store_size_bytes:
+          description: Total size, in bytes, of all shards for the data stream's backing indexes.
+          $ref: '#/components/schemas/_common___ByteCount'
+      required:
+        - backing_indices
+        - data_stream
+        - maximum_timestamp
+        - store_size_bytes
     indices._common___DataStreamTimestampField:
       type: object
       properties:
@@ -50496,26 +50919,6 @@ components:
             $ref: '#/components/schemas/_common___ShardFailure'
       required:
         - failures
-    indices.data_streams_stats___DataStreamsStatsItem:
-      type: object
-      properties:
-        backing_indices:
-          description: Current number of backing indexes for the data stream.
-          type: number
-        data_stream:
-          $ref: '#/components/schemas/_common___Name'
-        maximum_timestamp:
-          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
-        store_size:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        store_size_bytes:
-          description: Total size, in bytes, of all shards for the data stream's backing indexes.
-          $ref: '#/components/schemas/_common___ByteCount'
-      required:
-        - backing_indices
-        - data_stream
-        - maximum_timestamp
-        - store_size_bytes
     indices.get_alias___IndexAliases:
       type: object
       properties:
@@ -50974,6 +51377,8 @@ components:
           $ref: '#/components/schemas/_common___Id'
         store_exception:
           $ref: '#/components/schemas/indices.shard_stores___ShardStoreException'
+      additionalProperties:
+        $ref: '#/components/schemas/_common___NodeAttributes'
       required:
         - allocation
     indices.shard_stores___ShardStoreAllocation:
@@ -52930,12 +53335,143 @@ components:
       enum:
         - AND
         - OR
+    knn._common___DeletedModel:
+      type: object
+      properties:
+        model_id:
+          type: string
+        result:
+          type: string
+          enum:
+            - deleted
+            - error
+      required:
+        - model_id
+        - result
+    knn._common___GraphMergeStats:
+      type: object
+      properties:
+        current:
+          type: number
+        total:
+          type: number
+        total_time_in_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+        current_docs:
+          type: number
+        total_docs:
+          type: number
+        total_size_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        current_size_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+    knn._common___GraphRefreshStats:
+      type: object
+      properties:
+        total:
+          type: number
+        total_time_in_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+    knn._common___GraphStats:
+      type: object
+      properties:
+        merge:
+          $ref: '#/components/schemas/knn._common___GraphMergeStats'
+        refresh:
+          $ref: '#/components/schemas/knn._common___GraphRefreshStats'
+    knn._common___NodeStats:
+      type: object
+      properties:
+        max_distance_query_with_filter_requests:
+          type: number
+        graph_memory_usage_percentage:
+          $ref: '#/components/schemas/_common___PercentageNumber'
+        graph_query_requests:
+          type: number
+        graph_memory_usage:
+          type: number
+        cache_capacity_reached:
+          type: boolean
+        load_success_count:
+          type: number
+        training_memory_usage:
+          type: number
+        indices_in_cache:
+          type: object
+          additionalProperties: true
+        script_query_errors:
+          type: number
+        hit_count:
+          type: number
+        knn_query_requests:
+          type: number
+        total_load_time:
+          type: number
+        miss_count:
+          type: number
+        min_score_query_requests:
+          type: number
+        knn_query_with_filter_requests:
+          type: number
+        training_memory_usage_percentage:
+          $ref: '#/components/schemas/_common___PercentageNumber'
+        max_distance_query_requests:
+          type: number
+        lucene_initialized:
+          type: boolean
+        graph_index_requests:
+          type: number
+        faiss_initialized:
+          type: boolean
+        load_exception_count:
+          type: number
+        training_errors:
+          type: number
+        min_score_query_with_filter_requests:
+          type: number
+        eviction_count:
+          type: number
+        nmslib_initialized:
+          type: boolean
+        script_compilations:
+          type: number
+        script_query_requests:
+          type: number
+        graph_stats:
+          $ref: '#/components/schemas/knn._common___GraphStats'
+        graph_query_errors:
+          type: number
+        indexing_from_model_degraded:
+          type: boolean
+        graph_index_errors:
+          type: number
+        training_requests:
+          type: number
+        script_compilation_errors:
+          type: number
     knn._common___SearchType:
       type: string
       description: Search operation type.
       enum:
         - dfs_query_then_fetch
         - query_then_fetch
+    knn._common___Stats:
+      type: object
+      properties:
+        _nodes:
+          $ref: '#/components/schemas/_common___NodeStatistics'
+        cluster_name:
+          $ref: '#/components/schemas/_common___Name'
+        circuit_breaker_triggered:
+          type: boolean
+        model_index_status:
+          oneOf:
+            - $ref: '#/components/schemas/_common___HealthStatusCapitalized'
+            - type: 'null'
+        nodes:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/knn._common___NodeStats'
     knn._common___SuggestMode:
       type: string
       description: Specify suggest mode.
@@ -52943,6 +53479,36 @@ components:
         - always
         - missing
         - popular
+    knn._common___TrainedModel:
+      type: object
+      properties:
+        training_index:
+          type: string
+        training_field:
+          type: string
+        dimension:
+          type: integer
+          format: int32
+        max_training_vector_count:
+          type: integer
+          format: int32
+        search_size:
+          type: integer
+          format: int32
+        description:
+          type: string
+        mode:
+          type: string
+        compression_level:
+          type: string
+        method:
+          type: string
+        spaceType:
+          type: string
+      required:
+        - dimension
+        - training_field
+        - training_index
     ml._common___Action:
       type: object
       properties:
@@ -55745,7 +56311,6 @@ components:
           $ref: '#/components/schemas/observability._common___SavedQuery'
       required:
         - objectId
-        - tenant
     observability._common___ObservabilityObjectList:
       type: object
       properties:
@@ -56293,19 +56858,6 @@ components:
           type: string
         follower_cluster_role:
           type: string
-    rollups._common___Continuous:
-      type: object
-      properties:
-        next_window_start_time:
-          type: number
-        next_window_end_time:
-          type: number
-        status:
-          type: string
-        failure_reason:
-          type: string
-        stats:
-          $ref: '#/components/schemas/rollups._common___Stats'
     rollups._common___Cron:
       type: object
       properties:
@@ -56326,6 +56878,10 @@ components:
           type: string
         target_field:
           type: string
+        format:
+          type:
+            - 'null'
+            - string
     rollups._common___DimensionsConfigItem:
       type: object
       properties:
@@ -56340,17 +56896,18 @@ components:
     rollups._common___Explain:
       type: object
       properties:
-        rollup_id:
-          type: string
-        last_updated_time:
-          type: number
-        continuous:
-          $ref: '#/components/schemas/rollups._common___Continuous'
+        metadata_id:
+          type:
+            - 'null'
+            - string
+        rollup_metadata:
+          type:
+            - 'null'
+            - object
     rollups._common___ExplainEntities:
       type: object
-      properties:
-        item:
-          $ref: '#/components/schemas/rollups._common___Explain'
+      additionalProperties:
+        $ref: '#/components/schemas/rollups._common___Explain'
     rollups._common___HistogramDimension:
       type: object
       properties:
@@ -56425,7 +56982,9 @@ components:
         target_index:
           type: string
         metadata_id:
-          type: string
+          type:
+            - 'null'
+            - string
         page_size:
           type: number
         delay:
@@ -56447,11 +57006,14 @@ components:
       type: object
       properties:
         _id:
-          type: string
-        _seqNo:
-          type: number
-        _primaryTerm:
-          type: number
+          $ref: '#/components/schemas/_common___Id'
+        _seq_no:
+          $ref: '#/components/schemas/_common___SequenceNumber'
+        _primary_term:
+          type: integer
+          format: int64
+        _version:
+          $ref: '#/components/schemas/_common___VersionNumber'
         rollup:
           $ref: '#/components/schemas/rollups._common___Rollup'
     rollups._common___Schedule:
@@ -56459,19 +57021,6 @@ components:
       properties:
         interval:
           $ref: '#/components/schemas/rollups._common___Interval'
-    rollups._common___Stats:
-      type: object
-      properties:
-        pages_processed:
-          type: number
-        documents_processed:
-          type: number
-        rollups_indexed:
-          type: number
-        index_time_in_ms:
-          type: number
-        search_time_in_ms:
-          type: number
     rollups._common___TermsDimension:
       type: object
       properties:
@@ -57694,6 +58243,355 @@ components:
           type: boolean
         is_node_certificate_request:
           type: boolean
+    sm._common___BadRequestResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: integer
+    sm._common___CreateUpdatePolicyRequest:
+      type: object
+      properties:
+        description:
+          type: string
+        creation:
+          $ref: '#/components/schemas/sm._common___CreationConfig'
+        deletion:
+          $ref: '#/components/schemas/sm._common___DeletionConfig'
+        snapshot_config:
+          $ref: '#/components/schemas/sm._common___SnapshotConfig'
+        notification:
+          $ref: '#/components/schemas/sm._common___NotificationConfig'
+        enabled:
+          type: boolean
+          description: 'Whether the policy should be enabled at creation. Default: true'
+      required:
+        - creation
+        - snapshot_config
+    sm._common___CreationConfig:
+      type: object
+      properties:
+        schedule:
+          $ref: '#/components/schemas/sm._common___CronSchedule'
+        time_limit:
+          type: string
+          description: Maximum time for snapshot creation.
+      required:
+        - schedule
+    sm._common___CronExpression:
+      type: object
+      properties:
+        expression:
+          type: string
+        timezone:
+          type: string
+      required:
+        - expression
+        - timezone
+    sm._common___CronSchedule:
+      type: object
+      properties:
+        cron:
+          $ref: '#/components/schemas/sm._common___CronExpression'
+    sm._common___DeletePolicyResponse:
+      type: object
+      properties:
+        _index:
+          type: string
+        _id:
+          type: string
+        _version:
+          type: integer
+        result:
+          type: string
+        forced_refresh:
+          type: boolean
+        _shards:
+          $ref: '#/components/schemas/sm._common___ShardsInfo'
+        _seq_no:
+          type: integer
+        _primary_term:
+          type: integer
+      required:
+        - _id
+        - _index
+        - _primary_term
+        - _seq_no
+        - _shards
+        - _version
+        - forced_refresh
+        - result
+    sm._common___DeletionCondition:
+      type: object
+      properties:
+        max_age:
+          type: string
+        max_count:
+          type: integer
+        min_count:
+          type: integer
+    sm._common___DeletionConfig:
+      type: object
+      properties:
+        schedule:
+          $ref: '#/components/schemas/sm._common___CronSchedule'
+        condition:
+          $ref: '#/components/schemas/sm._common___DeletionCondition'
+        time_limit:
+          type: string
+    sm._common___ExecutionInfo:
+      type: object
+      properties:
+        message:
+          type: string
+        cause:
+          type: string
+    sm._common___ExecutionMetadata:
+      type: object
+      properties:
+        info:
+          $ref: '#/components/schemas/sm._common___ExecutionInfo'
+    sm._common___ExplainedPolicy:
+      type: object
+      properties:
+        name:
+          type: string
+        creation:
+          $ref: '#/components/schemas/sm._common___StateMetadata'
+        deletion:
+          $ref: '#/components/schemas/sm._common___StateMetadata'
+        policy_seq_no:
+          type: integer
+        policy_primary_term:
+          type: integer
+        enabled:
+          type: boolean
+    sm._common___GetPoliciesResponse:
+      type: object
+      properties:
+        total_policies:
+          type: integer
+        policies:
+          type: array
+          items:
+            $ref: '#/components/schemas/sm._common___ListedPolicy'
+      required:
+        - policies
+        - total_policies
+    sm._common___IntervalConfig:
+      type: object
+      properties:
+        start_time:
+          type: integer
+        period:
+          type: integer
+        unit:
+          type: string
+          enum:
+            - Days
+            - Hours
+            - Minutes
+      required:
+        - period
+        - start_time
+        - unit
+    sm._common___IntervalSchedule:
+      type: object
+      properties:
+        interval:
+          $ref: '#/components/schemas/sm._common___IntervalConfig'
+    sm._common___ListedPolicy:
+      type: object
+      properties:
+        _id:
+          type: string
+        _seq_no:
+          type: integer
+        _primary_term:
+          type: integer
+        sm_policy:
+          $ref: '#/components/schemas/sm._common___SMPolicy'
+      required:
+        - _id
+        - sm_policy
+    sm._common___NotFoundError:
+      type: object
+      properties:
+        root_cause:
+          type: array
+          items:
+            $ref: '#/components/schemas/sm._common___RootCause'
+        type:
+          type: string
+        reason:
+          type: string
+      required:
+        - reason
+        - type
+    sm._common___NotFoundResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/sm._common___NotFoundError'
+        status:
+          type: integer
+      required:
+        - error
+        - status
+    sm._common___NotificationChannel:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+        - id
+    sm._common___NotificationConditions:
+      type: object
+      properties:
+        creation:
+          type: boolean
+          default: true
+        deletion:
+          type: boolean
+          default: false
+        failure:
+          type: boolean
+          default: false
+        time_limit_exceeded:
+          type: boolean
+          default: false
+    sm._common___NotificationConfig:
+      type: object
+      properties:
+        channel:
+          $ref: '#/components/schemas/sm._common___NotificationChannel'
+        conditions:
+          $ref: '#/components/schemas/sm._common___NotificationConditions'
+    sm._common___PolicyExplanation:
+      type: object
+      properties:
+        policies:
+          type: array
+          items:
+            $ref: '#/components/schemas/sm._common___ExplainedPolicy'
+    sm._common___PolicyResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+        _version:
+          type: integer
+        _seq_no:
+          type: integer
+        _primary_term:
+          type: integer
+        sm_policy:
+          $ref: '#/components/schemas/sm._common___SMPolicy'
+      required:
+        - _id
+        - _primary_term
+        - _seq_no
+        - _version
+        - sm_policy
+    sm._common___RetryMetadata:
+      type: object
+      properties:
+        count:
+          type: integer
+    sm._common___RootCause:
+      type: object
+      properties:
+        type:
+          type: string
+        reason:
+          type: string
+    sm._common___ShardsInfo:
+      type: object
+      properties:
+        total:
+          type: integer
+        successful:
+          type: integer
+        failed:
+          type: integer
+    sm._common___SMPolicy:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        schema_version:
+          type: integer
+        creation:
+          $ref: '#/components/schemas/sm._common___CreationConfig'
+        deletion:
+          $ref: '#/components/schemas/sm._common___DeletionConfig'
+          description: Configuration for snapshot deletion, optional.
+        snapshot_config:
+          $ref: '#/components/schemas/sm._common___SnapshotConfig'
+        notification:
+          $ref: '#/components/schemas/sm._common___NotificationConfig'
+        schedule:
+          $ref: '#/components/schemas/sm._common___IntervalSchedule'
+          description: System-generated schedule metadata returned by the API.
+        enabled:
+          type: boolean
+        last_updated_time:
+          type: integer
+        enabled_time:
+          type: integer
+      required:
+        - creation
+        - description
+        - name
+        - snapshot_config
+    sm._common___SnapshotConfig:
+      type: object
+      properties:
+        date_format:
+          type: string
+          description: Default "yyyy-MM-dd'T'HH:mm:ss"
+        timezone:
+          type: string
+          description: Default UTC
+        indices:
+          type: string
+          description: Default "*"
+        repository:
+          type: string
+        ignore_unavailable:
+          type: boolean
+          description: Default false
+        include_global_state:
+          type: boolean
+          description: Default true
+        partial:
+          type: boolean
+          description: Default false
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - repository
+    sm._common___StateMetadata:
+      type: object
+      properties:
+        current_state:
+          type: string
+        trigger:
+          $ref: '#/components/schemas/sm._common___TriggerMetadata'
+        latest_execution:
+          $ref: '#/components/schemas/sm._common___ExecutionMetadata'
+        retry:
+          $ref: '#/components/schemas/sm._common___RetryMetadata'
+    sm._common___TriggerMetadata:
+      type: object
+      properties:
+        time:
+          type: integer
     snapshot._common___FileCountSnapshotStats:
       type: object
       properties:
@@ -58289,13 +59187,68 @@ components:
           type: string
         target_field:
           type: string
+    transforms._common___DeletedTransformResponse:
+      type: object
+      properties:
+        _type:
+          $ref: '#/components/schemas/_common___Type'
+        _index:
+          type: string
+        _id:
+          $ref: '#/components/schemas/_common___Id'
+        _version:
+          $ref: '#/components/schemas/_common___VersionNumber'
+        result:
+          type: string
+        forced_refresh:
+          type: boolean
+        _shards:
+          $ref: '#/components/schemas/_common___ShardStatistics'
+        _primary_term:
+          type: integer
+          format: int64
+        _seq_no:
+          $ref: '#/components/schemas/_common___SequenceNumber'
+        status:
+          type: number
+      required:
+        - _id
+        - _index
+        - _primary_term
+        - _seq_no
+        - _shards
+        - _version
+        - forced_refresh
+        - result
+        - status
+    transforms._common___DeleteTransformResponseItem:
+      type: object
+      properties:
+        delete:
+          $ref: '#/components/schemas/transforms._common___DeletedTransformResponse'
+    transforms._common___DeleteTransformsResponse:
+      type: object
+      properties:
+        took:
+          type: integer
+          format: int64
+        errors:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/transforms._common___DeleteTransformResponseItem'
     transforms._common___Explain:
       type: object
       properties:
         metadata_id:
-          type: string
+          type:
+            - 'null'
+            - string
         transform_metadata:
-          $ref: '#/components/schemas/transforms._common___TransformMetadata'
+          oneOf:
+            - $ref: '#/components/schemas/transforms._common___TransformMetadata'
+            - type: 'null'
     transforms._common___ExplainResponse:
       type: object
       additionalProperties:
@@ -58333,32 +59286,6 @@ components:
           type: string
         interval:
           type: string
-    transforms._common___MetricsConfigItem:
-      type: object
-      properties:
-        source_field:
-          type: string
-        target_field:
-          type: string
-        metrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/transforms._common___MetricsConfigMetrics'
-    transforms._common___MetricsConfigMetrics:
-      type: object
-      properties:
-        avg:
-          type: object
-        sum:
-          type: object
-        max:
-          type: object
-        min:
-          type: object
-        value_count:
-          type: object
-      minProperties: 1
-      maxProperties: 1
     transforms._common___Preview:
       type: object
       properties:
@@ -58401,13 +59328,17 @@ components:
         schedule:
           $ref: '#/components/schemas/transforms._common___Schedule'
         metadata_id:
-          type: string
+          type:
+            - 'null'
+            - string
         updated_at:
-          type: string
+          type: number
         enabled:
           type: boolean
         enabled_at:
-          type: number
+          type:
+            - 'null'
+            - number
         description:
           type: string
         source_index:
@@ -58427,20 +59358,9 @@ components:
           items:
             $ref: '#/components/schemas/transforms._common___GroupsConfigItem'
         aggregations:
-          type: array
-          items:
-            $ref: '#/components/schemas/transforms._common___MetricsConfigItem'
-    transforms._common___TransformEntity:
-      type: object
-      properties:
-        _id:
-          type: string
-        _seqNo:
-          type: number
-        _primaryTerm:
-          type: number
-        transform:
-          $ref: '#/components/schemas/transforms._common___Transform'
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/transforms._common___GroupsConfigItem'
     transforms._common___TransformMetadata:
       type: object
       properties:
@@ -58456,6 +59376,27 @@ components:
           type: string
         stats:
           $ref: '#/components/schemas/transforms._common___ExplainStats'
+    transforms._common___TransformRequest:
+      type: object
+      properties:
+        transform:
+          $ref: '#/components/schemas/transforms._common___Transform'
+      required:
+        - transform
+    transforms._common___TransformResponse:
+      type: object
+      properties:
+        _id:
+          $ref: '#/components/schemas/_common___Id'
+        _primary_term:
+          type: integer
+          format: int64
+        _seq_no:
+          $ref: '#/components/schemas/_common___SequenceNumber'
+        _version:
+          $ref: '#/components/schemas/_common___VersionNumber'
+        transform:
+          $ref: '#/components/schemas/transforms._common___Transform'
     transforms._common___TransformsResponse:
       type: object
       properties:
@@ -58464,7 +59405,7 @@ components:
         transforms:
           type: array
           items:
-            $ref: '#/components/schemas/transforms._common___TransformEntity'
+            $ref: '#/components/schemas/transforms._common___TransformResponse'
     wlm._common___QueryGroupCreate:
       type: object
       properties:
