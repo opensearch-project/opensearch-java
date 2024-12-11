@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.ExternallyTaggedUnion;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
@@ -71,8 +72,10 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
+
+        ExternallyTaggedUnion.serializeTypedKeysInner(this.aggregations, generator, mapper);
+
         generator.writeKey("doc_count");
         generator.write(this.docCount);
 

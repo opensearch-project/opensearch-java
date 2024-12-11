@@ -57,6 +57,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Fixed don't invoke the mapper's serialize method for the RangeQuery JsonData raw value ([#1309](https://github.com/opensearch-project/opensearch-java/pull/1309))
 - Fixed `GetSnapshotResponse` deserialization ([#1299](https://github.com/opensearch-project/opensearch-java/pull/1299))
 - Fixed `CreateSnapshotResponse` deserialization when wait_for_completion is false  ([#1332](https://github.com/opensearch-project/opensearch-java/pull/1332))
+- Fixed serialization of nested aggregates under `SingleBucketAggregateBase` ([#1350](https://github.com/opensearch-project/opensearch-java/pull/1350))
 
 ### Security
 
