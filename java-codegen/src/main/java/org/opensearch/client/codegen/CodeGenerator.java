@@ -16,6 +16,7 @@ import static org.opensearch.client.codegen.utils.matcher.Matcher.isNot;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.isNull;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.isOneOf;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.or;
+import static org.opensearch.client.codegen.utils.matcher.StringMatcher.contains;
 import static org.opensearch.client.codegen.utils.matcher.StringMatcher.endsWith;
 
 import java.io.File;
@@ -52,6 +53,7 @@ public class CodeGenerator {
             namespace(is("indices")),
             name(
                 or(
+                    contains("data_stream"),
                     and(endsWith("mapping"), isNot("get_field_mapping")),
                     endsWith("settings"),
                     endsWith("template"),

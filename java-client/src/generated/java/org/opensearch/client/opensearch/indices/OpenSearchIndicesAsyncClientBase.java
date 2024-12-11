@@ -78,6 +78,55 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return create(fn.apply(new CreateIndexRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.create_data_stream
+
+    /**
+     * Creates or updates a data stream.
+     */
+    public CompletableFuture<CreateDataStreamResponse> createDataStream(CreateDataStreamRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, CreateDataStreamRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates or updates a data stream.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreateDataStreamRequest}
+     */
+    public final CompletableFuture<CreateDataStreamResponse> createDataStream(
+        Function<CreateDataStreamRequest.Builder, ObjectBuilder<CreateDataStreamRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return createDataStream(fn.apply(new CreateDataStreamRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.data_streams_stats
+
+    /**
+     * Provides statistics on operations happening in a data stream.
+     */
+    public CompletableFuture<DataStreamsStatsResponse> dataStreamsStats(DataStreamsStatsRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, DataStreamsStatsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Provides statistics on operations happening in a data stream.
+     *
+     * @param fn a function that initializes a builder to create the {@link DataStreamsStatsRequest}
+     */
+    public final CompletableFuture<DataStreamsStatsResponse> dataStreamsStats(
+        Function<DataStreamsStatsRequest.Builder, ObjectBuilder<DataStreamsStatsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return dataStreamsStats(fn.apply(new DataStreamsStatsRequest.Builder()).build());
+    }
+
+    /**
+     * Provides statistics on operations happening in a data stream.
+     */
+    public final CompletableFuture<DataStreamsStatsResponse> dataStreamsStats() throws IOException, OpenSearchException {
+        return dataStreamsStats(new DataStreamsStatsRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.delete
 
     /**
@@ -95,6 +144,27 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
     public final CompletableFuture<DeleteIndexResponse> delete(Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn)
         throws IOException, OpenSearchException {
         return delete(fn.apply(new DeleteIndexRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.delete_data_stream
+
+    /**
+     * Deletes a data stream.
+     */
+    public CompletableFuture<DeleteDataStreamResponse> deleteDataStream(DeleteDataStreamRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteDataStreamRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes a data stream.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteDataStreamRequest}
+     */
+    public final CompletableFuture<DeleteDataStreamResponse> deleteDataStream(
+        Function<DeleteDataStreamRequest.Builder, ObjectBuilder<DeleteDataStreamRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteDataStream(fn.apply(new DeleteDataStreamRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.delete_index_template
@@ -215,6 +285,33 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
     public final CompletableFuture<GetIndexResponse> get(Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn)
         throws IOException, OpenSearchException {
         return get(fn.apply(new GetIndexRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.get_data_stream
+
+    /**
+     * Returns data streams.
+     */
+    public CompletableFuture<GetDataStreamResponse> getDataStream(GetDataStreamRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, GetDataStreamRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns data streams.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetDataStreamRequest}
+     */
+    public final CompletableFuture<GetDataStreamResponse> getDataStream(
+        Function<GetDataStreamRequest.Builder, ObjectBuilder<GetDataStreamRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return getDataStream(fn.apply(new GetDataStreamRequest.Builder()).build());
+    }
+
+    /**
+     * Returns data streams.
+     */
+    public final CompletableFuture<GetDataStreamResponse> getDataStream() throws IOException, OpenSearchException {
+        return getDataStream(new GetDataStreamRequest.Builder().build());
     }
 
     // ----- Endpoint: indices.get_index_template
