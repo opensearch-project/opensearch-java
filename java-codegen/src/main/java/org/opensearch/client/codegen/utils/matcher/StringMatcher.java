@@ -14,4 +14,8 @@ public final class StringMatcher {
     public static Matcher<String> endsWith(String suffix) {
         return s -> s.endsWith(suffix);
     }
+
+    public static Matcher<String> contains(String substring) {
+        return s -> s.contains(substring);
+    }
 }

@@ -235,66 +235,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return close(fn.apply(new CloseIndexRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.create_data_stream
-
-    /**
-     * Creates a data stream
-     */
-
-    public CreateDataStreamResponse createDataStream(CreateDataStreamRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<CreateDataStreamRequest, CreateDataStreamResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            CreateDataStreamRequest,
-            CreateDataStreamResponse,
-            ErrorResponse>) CreateDataStreamRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Creates a data stream
-     *
-     * @param fn
-     * 				a function that initializes a builder to create the {@link CreateDataStreamRequest}
-     */
-
-    public final CreateDataStreamResponse createDataStream(
-        Function<CreateDataStreamRequest.Builder, ObjectBuilder<CreateDataStreamRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return createDataStream(fn.apply(new CreateDataStreamRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: indices.delete_data_stream
-
-    /**
-     * Deletes one or more data streams and their backing indices.
-     */
-
-    public DeleteDataStreamResponse deleteDataStream(DeleteDataStreamRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteDataStreamRequest, DeleteDataStreamResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteDataStreamRequest,
-            DeleteDataStreamResponse,
-            ErrorResponse>) DeleteDataStreamRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Deletes one or more data streams and their backing indices.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteDataStreamRequest}
-     *
-     */
-
-    public final DeleteDataStreamResponse deleteDataStream(
-        Function<DeleteDataStreamRequest.Builder, ObjectBuilder<DeleteDataStreamRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return deleteDataStream(fn.apply(new DeleteDataStreamRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.delete_alias
 
     /**
@@ -473,52 +413,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
 
     public ForcemergeResponse forcemerge() throws IOException, OpenSearchException {
         return this.transport.performRequest(new ForcemergeRequest.Builder().build(), ForcemergeRequest._ENDPOINT, this.transportOptions);
-    }
-
-    // ----- Endpoint: indices.get_data_stream
-
-    /**
-     * Returns information about one or more data streams.
-     *
-     *
-     */
-
-    public GetDataStreamResponse getDataStream(GetDataStreamRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetDataStreamRequest, GetDataStreamResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetDataStreamRequest,
-            GetDataStreamResponse,
-            ErrorResponse>) GetDataStreamRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about one or more data streams.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetDataStreamRequest}
-     *
-     */
-
-    public final GetDataStreamResponse getDataStream(Function<GetDataStreamRequest.Builder, ObjectBuilder<GetDataStreamRequest>> fn)
-        throws IOException, OpenSearchException {
-        return getDataStream(fn.apply(new GetDataStreamRequest.Builder()).build());
-    }
-
-    /**
-     * Returns information about one or more data streams.
-     *
-     *
-     */
-
-    public GetDataStreamResponse getDataStream() throws IOException, OpenSearchException {
-        return this.transport.performRequest(
-            new GetDataStreamRequest.Builder().build(),
-            GetDataStreamRequest._ENDPOINT,
-            this.transportOptions
-        );
     }
 
     // ----- Endpoint: indices.get_alias
@@ -1042,53 +936,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return this.transport.performRequest(
             new IndicesStatsRequest.Builder().build(),
             IndicesStatsRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
-    // ----- Endpoint: indices.data_streams_stats
-
-    /**
-     * Returns statistics of data streams
-     *
-     *
-     */
-
-    public DataStreamsStatsResponse dataStreamsStats(DataStreamsStatsRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DataStreamsStatsRequest, DataStreamsStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DataStreamsStatsRequest,
-            DataStreamsStatsResponse,
-            ErrorResponse>) DataStreamsStatsRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns statistics of data streams
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DataStreamsStatsRequest}
-     *
-     */
-
-    public final DataStreamsStatsResponse dataStreamsStats(
-        Function<DataStreamsStatsRequest.Builder, ObjectBuilder<DataStreamsStatsRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return dataStreamsStats(fn.apply(new DataStreamsStatsRequest.Builder()).build());
-    }
-
-    /**
-     * Returns statistics of data streams
-     *
-     *
-     */
-
-    public DataStreamsStatsResponse dataStreamsStats() throws IOException, OpenSearchException {
-        return this.transport.performRequest(
-            new DataStreamsStatsRequest.Builder().build(),
-            DataStreamsStatsRequest._ENDPOINT,
             this.transportOptions
         );
     }

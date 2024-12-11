@@ -152,3 +152,12 @@ After:
 ### PutTemplateRequest
 - The `flatSettings` property has been removed as it is not supported by OpenSearch.
 - The `timeout` property has been removed as it is not supported by OpenSearch.
+
+### DataStreamInfo renamed to DataStream
+- The `DataStreamInfo` class has been renamed to `DataStream`, this affects:
+  - `GetDataStreamResponse`'s `dataStreams` field.
+- The `generation` property is now of type `long` instead of `int`.
+
+### DataStreamIndexInfo renamed to DataStreamIndex
+- The `DataStreamIndexInfo` class has been renamed to `DataStreamIndex`, this affects:
+  - `DataStream`'s (previously `DataStreamInfo`) `indices` field.

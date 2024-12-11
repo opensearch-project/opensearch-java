@@ -30,12 +30,20 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.HealthStatus
+
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum HealthStatus implements JsonEnum {
     /**
      * All shards are assigned.
@@ -43,19 +51,16 @@ public enum HealthStatus implements JsonEnum {
     Green("green", "GREEN"),
 
     /**
-     * All primary shards are assigned, but one or more replica shards are
-     * unassigned. If a node in the cluster fails, some data could be unavailable
-     * until that node is repaired.
-     */
-    Yellow("yellow", "YELLOW"),
-
-    /**
-     * One or more primary shards are unassigned, so some data is unavailable. This
-     * can occur briefly during cluster startup as primary shards are assigned.
+     * One or more primary shards are unassigned, so some data is unavailable. This can occur briefly during cluster startup as primary
+     * shards are assigned.
      */
     Red("red", "RED"),
 
-    ;
+    /**
+     * All primary shards are assigned, but one or more replica shards are unassigned. If a node in the cluster fails, some data could be
+     * unavailable until that node is repaired.
+     */
+    Yellow("yellow", "YELLOW");
 
     private final String jsonValue;
     private final String[] aliases;

@@ -502,7 +502,9 @@ public class SpecTransformer {
             schema.getOneOf().orElseThrow().forEach(s -> visitInto(s, shape));
         } else if (schema.hasEnums()) {
             var enums = schema.getEnums().orElseThrow();
-            var description = enums.size() == 1 ? schema.getDescription().orElse(null) : null;
+            var description = title.isPresent() || enums.stream().map(String::toLowerCase).distinct().count() == 1
+                ? schema.getDescription().orElse(null)
+                : null;
             enums.forEach(v -> shape.addVariant(title.orElse(v), v, description, isDeprecated));
         } else if (schema.hasConst()) {
             var value = (String) schema.getConst().orElseThrow();
