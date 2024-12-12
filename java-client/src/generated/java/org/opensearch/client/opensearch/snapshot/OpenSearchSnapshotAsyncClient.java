@@ -51,11 +51,18 @@ import org.opensearch.client.util.ObjectBuilder;
  * Client for the snapshot namespace.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public abstract class OpenSearchSnapshotAsyncClientBase<Self extends OpenSearchSnapshotAsyncClientBase<Self>> extends ApiClient<
-    OpenSearchTransport,
-    Self> {
-    public OpenSearchSnapshotAsyncClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+public class OpenSearchSnapshotAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchSnapshotAsyncClient> {
+    public OpenSearchSnapshotAsyncClient(OpenSearchTransport transport) {
+        super(transport, null);
+    }
+
+    public OpenSearchSnapshotAsyncClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
+    }
+
+    @Override
+    public OpenSearchSnapshotAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+        return new OpenSearchSnapshotAsyncClient(this.transport, transportOptions);
     }
 
     // ----- Endpoint: snapshot.cleanup_repository
@@ -140,6 +147,26 @@ public abstract class OpenSearchSnapshotAsyncClientBase<Self extends OpenSearchS
         return createRepository(fn.apply(new CreateRepositoryRequest.Builder()).build());
     }
 
+    // ----- Endpoint: snapshot.delete
+
+    /**
+     * Deletes a snapshot.
+     */
+    public CompletableFuture<DeleteSnapshotResponse> delete(DeleteSnapshotRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteSnapshotRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes a snapshot.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteSnapshotRequest}
+     */
+    public final CompletableFuture<DeleteSnapshotResponse> delete(
+        Function<DeleteSnapshotRequest.Builder, ObjectBuilder<DeleteSnapshotRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return delete(fn.apply(new DeleteSnapshotRequest.Builder()).build());
+    }
+
     // ----- Endpoint: snapshot.delete_repository
 
     /**
@@ -205,6 +232,52 @@ public abstract class OpenSearchSnapshotAsyncClientBase<Self extends OpenSearchS
      */
     public final CompletableFuture<GetRepositoryResponse> getRepository() throws IOException, OpenSearchException {
         return getRepository(new GetRepositoryRequest.Builder().build());
+    }
+
+    // ----- Endpoint: snapshot.restore
+
+    /**
+     * Restores a snapshot.
+     */
+    public CompletableFuture<RestoreResponse> restore(RestoreRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, RestoreRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Restores a snapshot.
+     *
+     * @param fn a function that initializes a builder to create the {@link RestoreRequest}
+     */
+    public final CompletableFuture<RestoreResponse> restore(Function<RestoreRequest.Builder, ObjectBuilder<RestoreRequest>> fn)
+        throws IOException, OpenSearchException {
+        return restore(fn.apply(new RestoreRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: snapshot.status
+
+    /**
+     * Returns information about the status of a snapshot.
+     */
+    public CompletableFuture<SnapshotStatusResponse> status(SnapshotStatusRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, SnapshotStatusRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about the status of a snapshot.
+     *
+     * @param fn a function that initializes a builder to create the {@link SnapshotStatusRequest}
+     */
+    public final CompletableFuture<SnapshotStatusResponse> status(
+        Function<SnapshotStatusRequest.Builder, ObjectBuilder<SnapshotStatusRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return status(fn.apply(new SnapshotStatusRequest.Builder()).build());
+    }
+
+    /**
+     * Returns information about the status of a snapshot.
+     */
+    public final CompletableFuture<SnapshotStatusResponse> status() throws IOException, OpenSearchException {
+        return status(new SnapshotStatusRequest.Builder().build());
     }
 
     // ----- Endpoint: snapshot.verify_repository

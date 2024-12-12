@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,34 +47,39 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: snapshot._types.FileCountSnapshotStats
+// typedef: snapshot.ShardsStatsSummaryItem
 
 @JsonpDeserializable
-public class FileCountSnapshotStats implements PlainJsonSerializable {
-    private final int fileCount;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ShardsStatsSummaryItem
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<ShardsStatsSummaryItem.Builder, ShardsStatsSummaryItem> {
+
+    private final long fileCount;
 
     private final long sizeInBytes;
 
     // ---------------------------------------------------------------------------------------------
 
-    private FileCountSnapshotStats(Builder builder) {
-
+    private ShardsStatsSummaryItem(Builder builder) {
         this.fileCount = ApiTypeHelper.requireNonNull(builder.fileCount, this, "fileCount");
         this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
-
     }
 
-    public static FileCountSnapshotStats of(Function<Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
+    public static ShardsStatsSummaryItem of(Function<ShardsStatsSummaryItem.Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code file_count}
      */
-    public final int fileCount() {
+    public final long fileCount() {
         return this.fileCount;
     }
 
@@ -82,6 +93,7 @@ public class FileCountSnapshotStats implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -89,30 +101,56 @@ public class FileCountSnapshotStats implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("file_count");
         generator.write(this.fileCount);
 
         generator.writeKey("size_in_bytes");
         generator.write(this.sizeInBytes);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
-     * Builder for {@link FileCountSnapshotStats}.
+     * Builder for {@link ShardsStatsSummaryItem}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FileCountSnapshotStats> {
-        private Integer fileCount;
-
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardsStatsSummaryItem> {
+        private Long fileCount;
         private Long sizeInBytes;
+
+        public Builder() {}
+
+        private Builder(ShardsStatsSummaryItem o) {
+            this.fileCount = o.fileCount;
+            this.sizeInBytes = o.sizeInBytes;
+        }
+
+        private Builder(Builder o) {
+            this.fileCount = o.fileCount;
+            this.sizeInBytes = o.sizeInBytes;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code file_count}
          */
-        public final Builder fileCount(int value) {
+        @Nonnull
+        public final Builder fileCount(long value) {
             this.fileCount = value;
             return this;
         }
@@ -120,39 +158,54 @@ public class FileCountSnapshotStats implements PlainJsonSerializable {
         /**
          * Required - API name: {@code size_in_bytes}
          */
+        @Nonnull
         public final Builder sizeInBytes(long value) {
             this.sizeInBytes = value;
             return this;
         }
 
         /**
-         * Builds a {@link FileCountSnapshotStats}.
+         * Builds a {@link ShardsStatsSummaryItem}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public FileCountSnapshotStats build() {
+        @Override
+        @Nonnull
+        public ShardsStatsSummaryItem build() {
             _checkSingleUse();
 
-            return new FileCountSnapshotStats(this);
+            return new ShardsStatsSummaryItem(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link FileCountSnapshotStats}
+     * Json deserializer for {@link ShardsStatsSummaryItem}
      */
-    public static final JsonpDeserializer<FileCountSnapshotStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<ShardsStatsSummaryItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        FileCountSnapshotStats::setupFileCountSnapshotStatsDeserializer
+        ShardsStatsSummaryItem::setupShardsStatsSummaryItemDeserializer
     );
 
-    protected static void setupFileCountSnapshotStatsDeserializer(ObjectDeserializer<FileCountSnapshotStats.Builder> op) {
-
-        op.add(Builder::fileCount, JsonpDeserializer.integerDeserializer(), "file_count");
+    protected static void setupShardsStatsSummaryItemDeserializer(ObjectDeserializer<ShardsStatsSummaryItem.Builder> op) {
+        op.add(Builder::fileCount, JsonpDeserializer.longDeserializer(), "file_count");
         op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Long.hashCode(this.fileCount);
+        result = 31 * result + Long.hashCode(this.sizeInBytes);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ShardsStatsSummaryItem other = (ShardsStatsSummaryItem) o;
+        return this.fileCount == other.fileCount && this.sizeInBytes == other.sizeInBytes;
+    }
 }

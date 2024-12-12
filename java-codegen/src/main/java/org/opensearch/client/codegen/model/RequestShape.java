@@ -240,8 +240,12 @@ public class RequestShape extends ObjectShape {
                 return "CloneSnapshot";
             case "snapshot.create":
                 return "CreateSnapshot";
+            case "snapshot.delete":
+                return "DeleteSnapshot";
             case "snapshot.get":
                 return "GetSnapshot";
+            case "snapshot.status":
+                return "SnapshotStatus";
             case "tasks.get":
                 return "GetTasks";
             default:

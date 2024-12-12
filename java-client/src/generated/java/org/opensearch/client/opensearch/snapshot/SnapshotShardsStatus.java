@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,33 +47,38 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: snapshot._types.SnapshotShardsStatus
+// typedef: snapshot.SnapshotShardsStatus
 
 @JsonpDeserializable
-public class SnapshotShardsStatus implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SnapshotShardsStatus implements PlainJsonSerializable, ToCopyableBuilder<SnapshotShardsStatus.Builder, SnapshotShardsStatus> {
+
+    @Nonnull
     private final ShardsStatsStage stage;
 
+    @Nonnull
     private final ShardsStatsSummary stats;
 
     // ---------------------------------------------------------------------------------------------
 
     private SnapshotShardsStatus(Builder builder) {
-
         this.stage = ApiTypeHelper.requireNonNull(builder.stage, this, "stage");
         this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
-
     }
 
-    public static SnapshotShardsStatus of(Function<Builder, ObjectBuilder<SnapshotShardsStatus>> fn) {
+    public static SnapshotShardsStatus of(Function<SnapshotShardsStatus.Builder, ObjectBuilder<SnapshotShardsStatus>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code stage}
      */
+    @Nonnull
     public final ShardsStatsStage stage() {
         return this.stage;
     }
@@ -75,6 +86,7 @@ public class SnapshotShardsStatus implements PlainJsonSerializable {
     /**
      * Required - API name: {@code stats}
      */
+    @Nonnull
     public final ShardsStatsSummary stats() {
         return this.stats;
     }
@@ -82,6 +94,7 @@ public class SnapshotShardsStatus implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -89,28 +102,55 @@ public class SnapshotShardsStatus implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("stage");
         this.stage.serialize(generator, mapper);
+
         generator.writeKey("stats");
         this.stats.serialize(generator, mapper);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SnapshotShardsStatus}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotShardsStatus> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotShardsStatus> {
         private ShardsStatsStage stage;
-
         private ShardsStatsSummary stats;
+
+        public Builder() {}
+
+        private Builder(SnapshotShardsStatus o) {
+            this.stage = o.stage;
+            this.stats = o.stats;
+        }
+
+        private Builder(Builder o) {
+            this.stage = o.stage;
+            this.stats = o.stats;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code stage}
          */
+        @Nonnull
         public final Builder stage(ShardsStatsStage value) {
             this.stage = value;
             return this;
@@ -119,6 +159,7 @@ public class SnapshotShardsStatus implements PlainJsonSerializable {
         /**
          * Required - API name: {@code stats}
          */
+        @Nonnull
         public final Builder stats(ShardsStatsSummary value) {
             this.stats = value;
             return this;
@@ -127,16 +168,18 @@ public class SnapshotShardsStatus implements PlainJsonSerializable {
         /**
          * Required - API name: {@code stats}
          */
+        @Nonnull
         public final Builder stats(Function<ShardsStatsSummary.Builder, ObjectBuilder<ShardsStatsSummary>> fn) {
-            return this.stats(fn.apply(new ShardsStatsSummary.Builder()).build());
+            return stats(fn.apply(new ShardsStatsSummary.Builder()).build());
         }
 
         /**
          * Builds a {@link SnapshotShardsStatus}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SnapshotShardsStatus build() {
             _checkSingleUse();
 
@@ -155,10 +198,23 @@ public class SnapshotShardsStatus implements PlainJsonSerializable {
     );
 
     protected static void setupSnapshotShardsStatusDeserializer(ObjectDeserializer<SnapshotShardsStatus.Builder> op) {
-
         op.add(Builder::stage, ShardsStatsStage._DESERIALIZER, "stage");
         op.add(Builder::stats, ShardsStatsSummary._DESERIALIZER, "stats");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.stage.hashCode();
+        result = 31 * result + this.stats.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SnapshotShardsStatus other = (SnapshotShardsStatus) o;
+        return this.stage.equals(other.stage) && this.stats.equals(other.stats);
+    }
 }

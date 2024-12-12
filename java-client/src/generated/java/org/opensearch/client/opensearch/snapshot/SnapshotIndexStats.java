@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,36 +48,42 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: snapshot._types.SnapshotIndexStats
+// typedef: snapshot.SnapshotIndexStats
 
 @JsonpDeserializable
-public class SnapshotIndexStats implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuilder<SnapshotIndexStats.Builder, SnapshotIndexStats> {
+
+    @Nonnull
     private final Map<String, SnapshotShardsStatus> shards;
 
+    @Nonnull
     private final ShardsStats shardsStats;
 
+    @Nonnull
     private final SnapshotStats stats;
 
     // ---------------------------------------------------------------------------------------------
 
     private SnapshotIndexStats(Builder builder) {
-
         this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
         this.shardsStats = ApiTypeHelper.requireNonNull(builder.shardsStats, this, "shardsStats");
         this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
-
     }
 
-    public static SnapshotIndexStats of(Function<Builder, ObjectBuilder<SnapshotIndexStats>> fn) {
+    public static SnapshotIndexStats of(Function<SnapshotIndexStats.Builder, ObjectBuilder<SnapshotIndexStats>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code shards}
      */
+    @Nonnull
     public final Map<String, SnapshotShardsStatus> shards() {
         return this.shards;
     }
@@ -79,6 +91,7 @@ public class SnapshotIndexStats implements PlainJsonSerializable {
     /**
      * Required - API name: {@code shards_stats}
      */
+    @Nonnull
     public final ShardsStats shardsStats() {
         return this.shardsStats;
     }
@@ -86,6 +99,7 @@ public class SnapshotIndexStats implements PlainJsonSerializable {
     /**
      * Required - API name: {@code stats}
      */
+    @Nonnull
     public final SnapshotStats stats() {
         return this.stats;
     }
@@ -93,6 +107,7 @@ public class SnapshotIndexStats implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -100,44 +115,70 @@ public class SnapshotIndexStats implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.shards)) {
-            generator.writeKey("shards");
-            generator.writeStartObject();
-            for (Map.Entry<String, SnapshotShardsStatus> item0 : this.shards.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("shards");
+        generator.writeStartObject();
+        for (Map.Entry<String, SnapshotShardsStatus> item0 : this.shards.entrySet()) {
+            generator.writeKey(item0.getKey());
+            item0.getValue().serialize(generator, mapper);
         }
+        generator.writeEnd();
+
         generator.writeKey("shards_stats");
         this.shardsStats.serialize(generator, mapper);
 
         generator.writeKey("stats");
         this.stats.serialize(generator, mapper);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SnapshotIndexStats}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotIndexStats> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotIndexStats> {
         private Map<String, SnapshotShardsStatus> shards;
-
         private ShardsStats shardsStats;
-
         private SnapshotStats stats;
+
+        public Builder() {}
+
+        private Builder(SnapshotIndexStats o) {
+            this.shards = _mapCopy(o.shards);
+            this.shardsStats = o.shardsStats;
+            this.stats = o.stats;
+        }
+
+        private Builder(Builder o) {
+            this.shards = _mapCopy(o.shards);
+            this.shardsStats = o.shardsStats;
+            this.stats = o.stats;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code shards}
+         *
          * <p>
-         * Adds all entries of <code>map</code> to <code>shards</code>.
+         * Adds all elements of <code>map</code> to <code>shards</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder shards(Map<String, SnapshotShardsStatus> map) {
             this.shards = _mapPutAll(this.shards, map);
             return this;
@@ -145,9 +186,12 @@ public class SnapshotIndexStats implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code shards}
+         *
          * <p>
          * Adds an entry to <code>shards</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder shards(String key, SnapshotShardsStatus value) {
             this.shards = _mapPut(this.shards, key, value);
             return this;
@@ -155,9 +199,12 @@ public class SnapshotIndexStats implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code shards}
+         *
          * <p>
-         * Adds an entry to <code>shards</code> using a builder lambda.
+         * Adds a value to <code>shards</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder shards(String key, Function<SnapshotShardsStatus.Builder, ObjectBuilder<SnapshotShardsStatus>> fn) {
             return shards(key, fn.apply(new SnapshotShardsStatus.Builder()).build());
         }
@@ -165,6 +212,7 @@ public class SnapshotIndexStats implements PlainJsonSerializable {
         /**
          * Required - API name: {@code shards_stats}
          */
+        @Nonnull
         public final Builder shardsStats(ShardsStats value) {
             this.shardsStats = value;
             return this;
@@ -173,13 +221,15 @@ public class SnapshotIndexStats implements PlainJsonSerializable {
         /**
          * Required - API name: {@code shards_stats}
          */
+        @Nonnull
         public final Builder shardsStats(Function<ShardsStats.Builder, ObjectBuilder<ShardsStats>> fn) {
-            return this.shardsStats(fn.apply(new ShardsStats.Builder()).build());
+            return shardsStats(fn.apply(new ShardsStats.Builder()).build());
         }
 
         /**
          * Required - API name: {@code stats}
          */
+        @Nonnull
         public final Builder stats(SnapshotStats value) {
             this.stats = value;
             return this;
@@ -188,16 +238,18 @@ public class SnapshotIndexStats implements PlainJsonSerializable {
         /**
          * Required - API name: {@code stats}
          */
+        @Nonnull
         public final Builder stats(Function<SnapshotStats.Builder, ObjectBuilder<SnapshotStats>> fn) {
-            return this.stats(fn.apply(new SnapshotStats.Builder()).build());
+            return stats(fn.apply(new SnapshotStats.Builder()).build());
         }
 
         /**
          * Builds a {@link SnapshotIndexStats}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SnapshotIndexStats build() {
             _checkSingleUse();
 
@@ -216,11 +268,25 @@ public class SnapshotIndexStats implements PlainJsonSerializable {
     );
 
     protected static void setupSnapshotIndexStatsDeserializer(ObjectDeserializer<SnapshotIndexStats.Builder> op) {
-
         op.add(Builder::shards, JsonpDeserializer.stringMapDeserializer(SnapshotShardsStatus._DESERIALIZER), "shards");
         op.add(Builder::shardsStats, ShardsStats._DESERIALIZER, "shards_stats");
         op.add(Builder::stats, SnapshotStats._DESERIALIZER, "stats");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.shards.hashCode();
+        result = 31 * result + this.shardsStats.hashCode();
+        result = 31 * result + this.stats.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SnapshotIndexStats other = (SnapshotIndexStats) o;
+        return this.shards.equals(other.shards) && this.shardsStats.equals(other.shardsStats) && this.stats.equals(other.stats);
+    }
 }

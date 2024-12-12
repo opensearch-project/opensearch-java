@@ -68,8 +68,8 @@ public class CodeGenerator {
                 isNot("search_models")
             )
         ),
-        and(namespace(is("snapshot")), name(or(contains("repository"), isOneOf("clone", "create", "get")))),
-        and(namespace(is("tasks")))
+        namespace(is("snapshot")),
+        namespace(is("tasks"))
     );
 
     public static void main(String[] args) {

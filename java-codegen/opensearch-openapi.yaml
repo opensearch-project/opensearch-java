@@ -15206,63 +15206,63 @@ components:
     cat.aliases___query.expand_wildcards:
       in: query
       name: expand_wildcards
-      description: Whether to expand wildcard expression to concrete indexes that are open, closed or both.
+      description: Expands wildcard expressions to concrete indexes. Combine multiple values with commas. Supported values are `all`, `open`, `closed`, `hidden`, and `none`.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
       style: form
     cat.aliases___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.aliases___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.aliases___query.help:
       name: help
       in: query
-      description: Return help information.
+      description: Returns help information.
       schema:
-        description: Return help information.
+        description: Returns help information.
         type: boolean
         default: false
     cat.aliases___query.local:
       name: local
       in: query
-      description: Return local information, do not retrieve the state from cluster-manager node.
+      description: Whether to return information from the local node only instead of from the cluster manager node.
       schema:
         type: boolean
         default: false
-        description: Return local information, do not retrieve the state from cluster-manager node.
+        description: Whether to return information from the local node only instead of from the cluster manager node.
     cat.aliases___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.aliases___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.all_pit_segments___query.bytes:
       name: bytes
       in: query
@@ -15317,7 +15317,7 @@ components:
     cat.allocation___path.node_id:
       in: path
       name: node_id
-      description: Comma-separated list of node identifiers or names used to limit the returned information.
+      description: A comma-separated list of node IDs or names used to limit the returned information.
       required: true
       schema:
         $ref: '#/components/schemas/_common___NodeIds'
@@ -15325,55 +15325,55 @@ components:
     cat.allocation___query.bytes:
       in: query
       name: bytes
-      description: The unit used to display byte values.
+      description: The units used to display byte values.
       schema:
         $ref: '#/components/schemas/_common___ByteUnit'
       style: form
     cat.allocation___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: A timeout for connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cat.allocation___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the HTTP `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the HTTP `Accept` header, such as `json` or `yaml`.
     cat.allocation___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.allocation___query.help:
       name: help
       in: query
-      description: Return help information.
+      description: Returns help information.
       schema:
         type: boolean
         default: false
-        description: Return help information.
+        description: Returns help information.
     cat.allocation___query.local:
       name: local
       in: query
-      description: Return local information, do not retrieve the state from cluster-manager node.
+      description: Returns local information but does not retrieve the state from cluster-manager node.
       schema:
         type: boolean
         default: false
-        description: Return local information, do not retrieve the state from cluster-manager node.
+        description: Returns local information but does not retrieve the state from cluster-manager node.
     cat.allocation___query.master_timeout:
       name: master_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: A timeout for connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-deprecated: '2.0'
@@ -15382,46 +15382,46 @@ components:
     cat.allocation___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.allocation___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.cluster_manager___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: A timeout for connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cat.cluster_manager___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the HTTP `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the HTTP `Accept` header, such as `json` or `yaml`.
     cat.cluster_manager___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.cluster_manager___query.help:
       name: help
@@ -15442,7 +15442,7 @@ components:
     cat.cluster_manager___query.master_timeout:
       name: master_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: A timeout for connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-deprecated: '2.0'
@@ -15451,22 +15451,22 @@ components:
     cat.cluster_manager___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.cluster_manager___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.count___path.index:
       in: path
       name: index
@@ -27374,16 +27374,15 @@ components:
           schema:
             type: object
             properties:
-              file:
-                type: string
+              id:
+                $ref: '#/components/schemas/_common___Id'
               params:
                 description: |-
                   Key-value pairs used to replace Mustache variables in the template.
                   The key is the variable name.
                   The value is the variable value.
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: true
               source:
                 description: |-
                   An inline search template.
@@ -58596,7 +58595,8 @@ components:
       type: object
       properties:
         file_count:
-          type: number
+          type: integer
+          format: int32
         size_in_bytes:
           $ref: '#/components/schemas/_common___ByteCount'
       required:
@@ -58633,17 +58633,23 @@ components:
       type: object
       properties:
         done:
-          type: number
+          type: integer
+          format: int64
         failed:
-          type: number
+          type: integer
+          format: int64
         finalizing:
-          type: number
+          type: integer
+          format: int64
         initializing:
-          type: number
+          type: integer
+          format: int64
         started:
-          type: number
+          type: integer
+          format: int64
         total:
-          type: number
+          type: integer
+          format: int64
       required:
         - done
         - failed
@@ -58652,13 +58658,22 @@ components:
         - started
         - total
     snapshot._common___ShardsStatsStage:
-      type: string
-      enum:
-        - DONE
-        - FAILURE
-        - FINALIZE
-        - INIT
-        - STARTED
+      oneOf:
+        - type: string
+          const: DONE
+          description: Number of shards in the snapshot that were successfully stored in the repository.
+        - type: string
+          const: FAILURE
+          description: Number of shards in the snapshot that were not successfully stored in the repository.
+        - type: string
+          const: FINALIZE
+          description: Number of shards in the snapshot that are in the finalizing stage of being stored in the repository.
+        - type: string
+          const: INIT
+          description: Number of shards in the snapshot that are in the initializing stage of being stored in the repository.
+        - type: string
+          const: STARTED
+          description: Number of shards in the snapshot that are in the started stage of being stored in the repository.
     snapshot._common___ShardsStatsSummary:
       type: object
       properties:
@@ -58681,7 +58696,8 @@ components:
       type: object
       properties:
         file_count:
-          type: number
+          type: integer
+          format: int64
         size_in_bytes:
           $ref: '#/components/schemas/_common___ByteCount'
       required:
