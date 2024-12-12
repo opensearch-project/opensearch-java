@@ -161,3 +161,6 @@ After:
 ### DataStreamIndexInfo renamed to DataStreamIndex
 - The `DataStreamIndexInfo` class has been renamed to `DataStreamIndex`, this affects:
   - `DataStream`'s (previously `DataStreamInfo`) `indices` field.
+
+### RepositorySettings
+- The `concurrentStreams` property is now of type `Integer` instead of `String`.

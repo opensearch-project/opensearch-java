@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,13 +49,17 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: snapshot._types.RepositorySettings
+// typedef: snapshot.RepositorySettings
 
 @JsonpDeserializable
-public class RepositorySettings implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuilder<RepositorySettings.Builder, RepositorySettings> {
+
     @Nullable
     private final String chunkSize;
 
@@ -56,8 +67,9 @@ public class RepositorySettings implements PlainJsonSerializable {
     private final Boolean compress;
 
     @Nullable
-    private final String concurrentStreams;
+    private final Integer concurrentStreams;
 
+    @Nonnull
     private final String location;
 
     @Nullable
@@ -66,16 +78,14 @@ public class RepositorySettings implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private RepositorySettings(Builder builder) {
-
         this.chunkSize = builder.chunkSize;
         this.compress = builder.compress;
         this.concurrentStreams = builder.concurrentStreams;
         this.location = ApiTypeHelper.requireNonNull(builder.location, this, "location");
         this.readOnly = builder.readOnly;
-
     }
 
-    public static RepositorySettings of(Function<Builder, ObjectBuilder<RepositorySettings>> fn) {
+    public static RepositorySettings of(Function<RepositorySettings.Builder, ObjectBuilder<RepositorySettings>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -99,13 +109,14 @@ public class RepositorySettings implements PlainJsonSerializable {
      * API name: {@code concurrent_streams}
      */
     @Nullable
-    public final String concurrentStreams() {
+    public final Integer concurrentStreams() {
         return this.concurrentStreams;
     }
 
     /**
      * Required - API name: {@code location}
      */
+    @Nonnull
     public final String location() {
         return this.location;
     }
@@ -121,6 +132,7 @@ public class RepositorySettings implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -128,57 +140,85 @@ public class RepositorySettings implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (this.chunkSize != null) {
             generator.writeKey("chunk_size");
             generator.write(this.chunkSize);
-
         }
+
         if (this.compress != null) {
             generator.writeKey("compress");
             generator.write(this.compress);
-
         }
+
         if (this.concurrentStreams != null) {
             generator.writeKey("concurrent_streams");
             generator.write(this.concurrentStreams);
-
         }
+
         generator.writeKey("location");
         generator.write(this.location);
 
         if (this.readOnly != null) {
             generator.writeKey("read_only");
             generator.write(this.readOnly);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RepositorySettings}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RepositorySettings> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RepositorySettings> {
         @Nullable
         private String chunkSize;
-
         @Nullable
         private Boolean compress;
-
         @Nullable
-        private String concurrentStreams;
-
+        private Integer concurrentStreams;
         private String location;
-
         @Nullable
         private Boolean readOnly;
+
+        public Builder() {}
+
+        private Builder(RepositorySettings o) {
+            this.chunkSize = o.chunkSize;
+            this.compress = o.compress;
+            this.concurrentStreams = o.concurrentStreams;
+            this.location = o.location;
+            this.readOnly = o.readOnly;
+        }
+
+        private Builder(Builder o) {
+            this.chunkSize = o.chunkSize;
+            this.compress = o.compress;
+            this.concurrentStreams = o.concurrentStreams;
+            this.location = o.location;
+            this.readOnly = o.readOnly;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * API name: {@code chunk_size}
          */
+        @Nonnull
         public final Builder chunkSize(@Nullable String value) {
             this.chunkSize = value;
             return this;
@@ -187,6 +227,7 @@ public class RepositorySettings implements PlainJsonSerializable {
         /**
          * API name: {@code compress}
          */
+        @Nonnull
         public final Builder compress(@Nullable Boolean value) {
             this.compress = value;
             return this;
@@ -195,7 +236,8 @@ public class RepositorySettings implements PlainJsonSerializable {
         /**
          * API name: {@code concurrent_streams}
          */
-        public final Builder concurrentStreams(@Nullable String value) {
+        @Nonnull
+        public final Builder concurrentStreams(@Nullable Integer value) {
             this.concurrentStreams = value;
             return this;
         }
@@ -203,6 +245,7 @@ public class RepositorySettings implements PlainJsonSerializable {
         /**
          * Required - API name: {@code location}
          */
+        @Nonnull
         public final Builder location(String value) {
             this.location = value;
             return this;
@@ -211,6 +254,7 @@ public class RepositorySettings implements PlainJsonSerializable {
         /**
          * API name: {@code read_only}
          */
+        @Nonnull
         public final Builder readOnly(@Nullable Boolean value) {
             this.readOnly = value;
             return this;
@@ -219,9 +263,10 @@ public class RepositorySettings implements PlainJsonSerializable {
         /**
          * Builds a {@link RepositorySettings}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RepositorySettings build() {
             _checkSingleUse();
 
@@ -240,13 +285,33 @@ public class RepositorySettings implements PlainJsonSerializable {
     );
 
     protected static void setupRepositorySettingsDeserializer(ObjectDeserializer<RepositorySettings.Builder> op) {
-
         op.add(Builder::chunkSize, JsonpDeserializer.stringDeserializer(), "chunk_size");
         op.add(Builder::compress, JsonpDeserializer.booleanDeserializer(), "compress");
-        op.add(Builder::concurrentStreams, JsonpDeserializer.stringDeserializer(), "concurrent_streams");
+        op.add(Builder::concurrentStreams, JsonpDeserializer.integerDeserializer(), "concurrent_streams");
         op.add(Builder::location, JsonpDeserializer.stringDeserializer(), "location");
-        op.add(Builder::readOnly, JsonpDeserializer.booleanDeserializer(), "read_only", "readonly");
-
+        op.add(Builder::readOnly, JsonpDeserializer.booleanDeserializer(), "read_only");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.chunkSize);
+        result = 31 * result + Objects.hashCode(this.compress);
+        result = 31 * result + Objects.hashCode(this.concurrentStreams);
+        result = 31 * result + this.location.hashCode();
+        result = 31 * result + Objects.hashCode(this.readOnly);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RepositorySettings other = (RepositorySettings) o;
+        return Objects.equals(this.chunkSize, other.chunkSize)
+            && Objects.equals(this.compress, other.compress)
+            && Objects.equals(this.concurrentStreams, other.concurrentStreams)
+            && this.location.equals(other.location)
+            && Objects.equals(this.readOnly, other.readOnly);
+    }
 }

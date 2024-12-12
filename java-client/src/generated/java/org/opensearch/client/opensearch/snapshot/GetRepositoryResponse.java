@@ -30,9 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -43,15 +49,15 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: snapshot.get_repository.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GetRepositoryResponse extends DictionaryResponse<String, Repository> {
     // ---------------------------------------------------------------------------------------------
 
     private GetRepositoryResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static GetRepositoryResponse of(Function<Builder, ObjectBuilder<GetRepositoryResponse>> fn) {
+    public static GetRepositoryResponse of(Function<GetRepositoryResponse.Builder, ObjectBuilder<GetRepositoryResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -60,11 +66,11 @@ public class GetRepositoryResponse extends DictionaryResponse<String, Repository
     /**
      * Builder for {@link GetRepositoryResponse}.
      */
-
     public static class Builder extends DictionaryResponse.AbstractBuilder<String, Repository, Builder>
         implements
             ObjectBuilder<GetRepositoryResponse> {
         @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -72,8 +78,7 @@ public class GetRepositoryResponse extends DictionaryResponse<String, Repository
         /**
          * Builds a {@link GetRepositoryResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public GetRepositoryResponse build() {
             _checkSingleUse();
@@ -95,8 +100,6 @@ public class GetRepositoryResponse extends DictionaryResponse<String, Repository
     );
 
     protected static void setupGetRepositoryResponseDeserializer(ObjectDeserializer<GetRepositoryResponse.Builder> op) {
-        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), Repository._DESERIALIZER);
-
+        setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), Repository._DESERIALIZER);
     }
-
 }

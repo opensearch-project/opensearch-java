@@ -68,7 +68,7 @@ public class CodeGenerator {
                 isNot("search_models")
             )
         ),
-        and(namespace(is("snapshot")), name(isOneOf("cleanup_repository", "clone", "create", "get", "verify_repository"))),
+        and(namespace(is("snapshot")), name(or(contains("repository"), isOneOf("clone", "create", "get")))),
         and(namespace(is("tasks")))
     );
 

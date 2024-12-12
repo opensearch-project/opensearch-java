@@ -53466,7 +53466,7 @@ components:
           type: boolean
         model_index_status:
           oneOf:
-            - $ref: '#/components/schemas/_common___HealthStatusCapitalized'
+            - $ref: '#/components/schemas/_common___HealthStatus'
             - type: 'null'
         nodes:
           type: object
@@ -58620,19 +58620,13 @@ components:
         chunk_size:
           type: string
         compress:
-          oneOf:
-            - type: string
-            - type: boolean
+          $ref: '#/components/schemas/_common___StringifiedBoolean'
         concurrent_streams:
-          oneOf:
-            - type: string
-            - type: number
+          $ref: '#/components/schemas/_common___StringifiedInteger'
         location:
           type: string
         read_only:
-          oneOf:
-            - type: string
-            - type: boolean
+          $ref: '#/components/schemas/_common___StringifiedBoolean'
       required:
         - location
     snapshot._common___ShardsStats:

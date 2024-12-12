@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,37 +49,50 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: snapshot._types.Repository
+// typedef: snapshot.Repository
 
 @JsonpDeserializable
-public class Repository implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class Repository implements PlainJsonSerializable, ToCopyableBuilder<Repository.Builder, Repository> {
+
+    @Nonnull
+    private final RepositorySettings settings;
+
+    @Nonnull
     private final String type;
 
     @Nullable
     private final String uuid;
 
-    private final RepositorySettings settings;
-
     // ---------------------------------------------------------------------------------------------
 
     private Repository(Builder builder) {
-
+        this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
         this.uuid = builder.uuid;
-        this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
-
     }
 
-    public static Repository of(Function<Builder, ObjectBuilder<Repository>> fn) {
+    public static Repository of(Function<Repository.Builder, ObjectBuilder<Repository>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * Required - API name: {@code settings}
+     */
+    @Nonnull
+    public final RepositorySettings settings() {
+        return this.settings;
     }
 
     /**
      * Required - API name: {@code type}
      */
+    @Nonnull
     public final String type() {
         return this.type;
     }
@@ -86,15 +106,9 @@ public class Repository implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code settings}
-     */
-    public final RepositorySettings settings() {
-        return this.settings;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -102,6 +116,8 @@ public class Repository implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeKey("settings");
+        this.settings.serialize(generator, mapper);
 
         generator.writeKey("type");
         generator.write(this.type);
@@ -109,46 +125,55 @@ public class Repository implements PlainJsonSerializable {
         if (this.uuid != null) {
             generator.writeKey("uuid");
             generator.write(this.uuid);
-
         }
-        generator.writeKey("settings");
-        this.settings.serialize(generator, mapper);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link Repository}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Repository> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Repository> {
+        private RepositorySettings settings;
         private String type;
-
         @Nullable
         private String uuid;
 
-        private RepositorySettings settings;
+        public Builder() {}
 
-        /**
-         * Required - API name: {@code type}
-         */
-        public final Builder type(String value) {
-            this.type = value;
-            return this;
+        private Builder(Repository o) {
+            this.settings = o.settings;
+            this.type = o.type;
+            this.uuid = o.uuid;
         }
 
-        /**
-         * API name: {@code uuid}
-         */
-        public final Builder uuid(@Nullable String value) {
-            this.uuid = value;
-            return this;
+        private Builder(Builder o) {
+            this.settings = o.settings;
+            this.type = o.type;
+            this.uuid = o.uuid;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
         }
 
         /**
          * Required - API name: {@code settings}
          */
+        @Nonnull
         public final Builder settings(RepositorySettings value) {
             this.settings = value;
             return this;
@@ -157,16 +182,36 @@ public class Repository implements PlainJsonSerializable {
         /**
          * Required - API name: {@code settings}
          */
+        @Nonnull
         public final Builder settings(Function<RepositorySettings.Builder, ObjectBuilder<RepositorySettings>> fn) {
-            return this.settings(fn.apply(new RepositorySettings.Builder()).build());
+            return settings(fn.apply(new RepositorySettings.Builder()).build());
+        }
+
+        /**
+         * Required - API name: {@code type}
+         */
+        @Nonnull
+        public final Builder type(String value) {
+            this.type = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code uuid}
+         */
+        @Nonnull
+        public final Builder uuid(@Nullable String value) {
+            this.uuid = value;
+            return this;
         }
 
         /**
          * Builds a {@link Repository}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public Repository build() {
             _checkSingleUse();
 
@@ -185,11 +230,25 @@ public class Repository implements PlainJsonSerializable {
     );
 
     protected static void setupRepositoryDeserializer(ObjectDeserializer<Repository.Builder> op) {
-
+        op.add(Builder::settings, RepositorySettings._DESERIALIZER, "settings");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
         op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");
-        op.add(Builder::settings, RepositorySettings._DESERIALIZER, "settings");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.settings.hashCode();
+        result = 31 * result + this.type.hashCode();
+        result = 31 * result + Objects.hashCode(this.uuid);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Repository other = (Repository) o;
+        return this.settings.equals(other.settings) && this.type.equals(other.type) && Objects.equals(this.uuid, other.uuid);
+    }
 }

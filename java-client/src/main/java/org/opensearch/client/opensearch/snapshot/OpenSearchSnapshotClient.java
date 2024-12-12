@@ -78,39 +78,6 @@ public class OpenSearchSnapshotClient extends OpenSearchSnapshotClientBase<OpenS
         return this.transport.performRequest(request, endpoint, this.transportOptions);
     }
 
-    // ----- Endpoint: snapshot.create_repository
-
-    /**
-     * Creates a repository.
-     *
-     *
-     */
-
-    public CreateRepositoryResponse createRepository(CreateRepositoryRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<CreateRepositoryRequest, CreateRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            CreateRepositoryRequest,
-            CreateRepositoryResponse,
-            ErrorResponse>) CreateRepositoryRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Creates a repository.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link CreateRepositoryRequest}
-     *
-     */
-
-    public final CreateRepositoryResponse createRepository(
-        Function<CreateRepositoryRequest.Builder, ObjectBuilder<CreateRepositoryRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return createRepository(fn.apply(new CreateRepositoryRequest.Builder()).build());
-    }
-
     // ----- Endpoint: snapshot.delete
 
     /**
@@ -141,85 +108,6 @@ public class OpenSearchSnapshotClient extends OpenSearchSnapshotClientBase<OpenS
     public final DeleteSnapshotResponse delete(Function<DeleteSnapshotRequest.Builder, ObjectBuilder<DeleteSnapshotRequest>> fn)
         throws IOException, OpenSearchException {
         return delete(fn.apply(new DeleteSnapshotRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: snapshot.delete_repository
-
-    /**
-     * Deletes a repository.
-     *
-     *
-     */
-
-    public DeleteRepositoryResponse deleteRepository(DeleteRepositoryRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteRepositoryRequest,
-            DeleteRepositoryResponse,
-            ErrorResponse>) DeleteRepositoryRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Deletes a repository.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteRepositoryRequest}
-     *
-     */
-
-    public final DeleteRepositoryResponse deleteRepository(
-        Function<DeleteRepositoryRequest.Builder, ObjectBuilder<DeleteRepositoryRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return deleteRepository(fn.apply(new DeleteRepositoryRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: snapshot.get_repository
-
-    /**
-     * Returns information about a repository.
-     *
-     *
-     */
-
-    public GetRepositoryResponse getRepository(GetRepositoryRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetRepositoryRequest, GetRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetRepositoryRequest,
-            GetRepositoryResponse,
-            ErrorResponse>) GetRepositoryRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about a repository.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetRepositoryRequest}
-     *
-     */
-
-    public final GetRepositoryResponse getRepository(Function<GetRepositoryRequest.Builder, ObjectBuilder<GetRepositoryRequest>> fn)
-        throws IOException, OpenSearchException {
-        return getRepository(fn.apply(new GetRepositoryRequest.Builder()).build());
-    }
-
-    /**
-     * Returns information about a repository.
-     *
-     *
-     */
-
-    public GetRepositoryResponse getRepository() throws IOException, OpenSearchException {
-        return this.transport.performRequest(
-            new GetRepositoryRequest.Builder().build(),
-            GetRepositoryRequest._ENDPOINT,
-            this.transportOptions
-        );
     }
 
     // ----- Endpoint: snapshot.restore

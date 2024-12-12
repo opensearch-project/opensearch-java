@@ -119,6 +119,48 @@ public abstract class OpenSearchSnapshotAsyncClientBase<Self extends OpenSearchS
         return create(fn.apply(new CreateSnapshotRequest.Builder()).build());
     }
 
+    // ----- Endpoint: snapshot.create_repository
+
+    /**
+     * Creates a repository.
+     */
+    public CompletableFuture<CreateRepositoryResponse> createRepository(CreateRepositoryRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, CreateRepositoryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates a repository.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreateRepositoryRequest}
+     */
+    public final CompletableFuture<CreateRepositoryResponse> createRepository(
+        Function<CreateRepositoryRequest.Builder, ObjectBuilder<CreateRepositoryRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return createRepository(fn.apply(new CreateRepositoryRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: snapshot.delete_repository
+
+    /**
+     * Deletes a repository.
+     */
+    public CompletableFuture<DeleteRepositoryResponse> deleteRepository(DeleteRepositoryRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteRepositoryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes a repository.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteRepositoryRequest}
+     */
+    public final CompletableFuture<DeleteRepositoryResponse> deleteRepository(
+        Function<DeleteRepositoryRequest.Builder, ObjectBuilder<DeleteRepositoryRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteRepository(fn.apply(new DeleteRepositoryRequest.Builder()).build());
+    }
+
     // ----- Endpoint: snapshot.get
 
     /**
@@ -136,6 +178,33 @@ public abstract class OpenSearchSnapshotAsyncClientBase<Self extends OpenSearchS
     public final CompletableFuture<GetSnapshotResponse> get(Function<GetSnapshotRequest.Builder, ObjectBuilder<GetSnapshotRequest>> fn)
         throws IOException, OpenSearchException {
         return get(fn.apply(new GetSnapshotRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: snapshot.get_repository
+
+    /**
+     * Returns information about a repository.
+     */
+    public CompletableFuture<GetRepositoryResponse> getRepository(GetRepositoryRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, GetRepositoryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about a repository.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetRepositoryRequest}
+     */
+    public final CompletableFuture<GetRepositoryResponse> getRepository(
+        Function<GetRepositoryRequest.Builder, ObjectBuilder<GetRepositoryRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return getRepository(fn.apply(new GetRepositoryRequest.Builder()).build());
+    }
+
+    /**
+     * Returns information about a repository.
+     */
+    public final CompletableFuture<GetRepositoryResponse> getRepository() throws IOException, OpenSearchException {
+        return getRepository(new GetRepositoryRequest.Builder().build());
     }
 
     // ----- Endpoint: snapshot.verify_repository
