@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices.analyze;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,33 +48,38 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.analyze.CharFilterDetail
 
 @JsonpDeserializable
-public class CharFilterDetail implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class CharFilterDetail implements PlainJsonSerializable, ToCopyableBuilder<CharFilterDetail.Builder, CharFilterDetail> {
+
+    @Nonnull
     private final List<String> filteredText;
 
+    @Nonnull
     private final String name;
 
     // ---------------------------------------------------------------------------------------------
 
     private CharFilterDetail(Builder builder) {
-
         this.filteredText = ApiTypeHelper.unmodifiableRequired(builder.filteredText, this, "filteredText");
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-
     }
 
-    public static CharFilterDetail of(Function<Builder, ObjectBuilder<CharFilterDetail>> fn) {
+    public static CharFilterDetail of(Function<CharFilterDetail.Builder, ObjectBuilder<CharFilterDetail>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code filtered_text}
      */
+    @Nonnull
     public final List<String> filteredText() {
         return this.filteredText;
     }
@@ -76,6 +87,7 @@ public class CharFilterDetail implements PlainJsonSerializable {
     /**
      * Required - API name: {@code name}
      */
+    @Nonnull
     public final String name() {
         return this.name;
     }
@@ -83,6 +95,7 @@ public class CharFilterDetail implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -90,38 +103,63 @@ public class CharFilterDetail implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.filteredText)) {
-            generator.writeKey("filtered_text");
-            generator.writeStartArray();
-            for (String item0 : this.filteredText) {
-                generator.write(item0);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("filtered_text");
+        generator.writeStartArray();
+        for (String item0 : this.filteredText) {
+            generator.write(item0);
         }
+        generator.writeEnd();
+
         generator.writeKey("name");
         generator.write(this.name);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CharFilterDetail}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CharFilterDetail> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CharFilterDetail> {
         private List<String> filteredText;
-
         private String name;
+
+        public Builder() {}
+
+        private Builder(CharFilterDetail o) {
+            this.filteredText = _listCopy(o.filteredText);
+            this.name = o.name;
+        }
+
+        private Builder(Builder o) {
+            this.filteredText = _listCopy(o.filteredText);
+            this.name = o.name;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code filtered_text}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>filteredText</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder filteredText(List<String> list) {
             this.filteredText = _listAddAll(this.filteredText, list);
             return this;
@@ -129,9 +167,12 @@ public class CharFilterDetail implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code filtered_text}
+         *
          * <p>
          * Adds one or more values to <code>filteredText</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder filteredText(String value, String... values) {
             this.filteredText = _listAdd(this.filteredText, value, values);
             return this;
@@ -140,6 +181,7 @@ public class CharFilterDetail implements PlainJsonSerializable {
         /**
          * Required - API name: {@code name}
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -148,9 +190,10 @@ public class CharFilterDetail implements PlainJsonSerializable {
         /**
          * Builds a {@link CharFilterDetail}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CharFilterDetail build() {
             _checkSingleUse();
 
@@ -169,10 +212,23 @@ public class CharFilterDetail implements PlainJsonSerializable {
     );
 
     protected static void setupCharFilterDetailDeserializer(ObjectDeserializer<CharFilterDetail.Builder> op) {
-
         op.add(Builder::filteredText, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "filtered_text");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.filteredText.hashCode();
+        result = 31 * result + this.name.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CharFilterDetail other = (CharFilterDetail) o;
+        return this.filteredText.equals(other.filteredText) && this.name.equals(other.name);
+    }
 }

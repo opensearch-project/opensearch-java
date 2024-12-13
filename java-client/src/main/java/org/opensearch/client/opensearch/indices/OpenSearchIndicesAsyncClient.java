@@ -61,51 +61,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return new OpenSearchIndicesAsyncClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: indices.analyze
-
-    /**
-     * Performs the analysis process on a text and return the tokens breakdown of
-     * the text.
-     *
-     *
-     */
-
-    public CompletableFuture<AnalyzeResponse> analyze(AnalyzeRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            AnalyzeRequest,
-            AnalyzeResponse,
-            ErrorResponse>) AnalyzeRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Performs the analysis process on a text and return the tokens breakdown of
-     * the text.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link AnalyzeRequest}
-     *
-     */
-
-    public final CompletableFuture<AnalyzeResponse> analyze(Function<AnalyzeRequest.Builder, ObjectBuilder<AnalyzeRequest>> fn)
-        throws IOException, OpenSearchException {
-        return analyze(fn.apply(new AnalyzeRequest.Builder()).build());
-    }
-
-    /**
-     * Performs the analysis process on a text and return the tokens breakdown of
-     * the text.
-     *
-     *
-     */
-
-    public CompletableFuture<AnalyzeResponse> analyze() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(new AnalyzeRequest.Builder().build(), AnalyzeRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: indices.clear_cache
 
     /**

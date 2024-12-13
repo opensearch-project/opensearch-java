@@ -78,6 +78,32 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return addBlock(fn.apply(new AddBlockRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.analyze
+
+    /**
+     * Performs the analysis process on a text and return the tokens breakdown of the text.
+     */
+    public CompletableFuture<AnalyzeResponse> analyze(AnalyzeRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, AnalyzeRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Performs the analysis process on a text and return the tokens breakdown of the text.
+     *
+     * @param fn a function that initializes a builder to create the {@link AnalyzeRequest}
+     */
+    public final CompletableFuture<AnalyzeResponse> analyze(Function<AnalyzeRequest.Builder, ObjectBuilder<AnalyzeRequest>> fn)
+        throws IOException, OpenSearchException {
+        return analyze(fn.apply(new AnalyzeRequest.Builder()).build());
+    }
+
+    /**
+     * Performs the analysis process on a text and return the tokens breakdown of the text.
+     */
+    public final CompletableFuture<AnalyzeResponse> analyze() throws IOException, OpenSearchException {
+        return analyze(new AnalyzeRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.create
 
     /**

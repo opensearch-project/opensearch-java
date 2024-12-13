@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices.analyze;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,33 +48,38 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: indices.analyze.TokenDetail
+// typedef: indices.analyze.AnalyzerDetail
 
 @JsonpDeserializable
-public class TokenDetail implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class AnalyzerDetail implements PlainJsonSerializable, ToCopyableBuilder<AnalyzerDetail.Builder, AnalyzerDetail> {
+
+    @Nonnull
     private final String name;
 
+    @Nonnull
     private final List<ExplainAnalyzeToken> tokens;
 
     // ---------------------------------------------------------------------------------------------
 
-    private TokenDetail(Builder builder) {
-
+    private AnalyzerDetail(Builder builder) {
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.tokens = ApiTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
-
     }
 
-    public static TokenDetail of(Function<Builder, ObjectBuilder<TokenDetail>> fn) {
+    public static AnalyzerDetail of(Function<AnalyzerDetail.Builder, ObjectBuilder<AnalyzerDetail>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code name}
      */
+    @Nonnull
     public final String name() {
         return this.name;
     }
@@ -76,6 +87,7 @@ public class TokenDetail implements PlainJsonSerializable {
     /**
      * Required - API name: {@code tokens}
      */
+    @Nonnull
     public final List<ExplainAnalyzeToken> tokens() {
         return this.tokens;
     }
@@ -83,6 +95,7 @@ public class TokenDetail implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -90,37 +103,59 @@ public class TokenDetail implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("name");
         generator.write(this.name);
 
-        if (ApiTypeHelper.isDefined(this.tokens)) {
-            generator.writeKey("tokens");
-            generator.writeStartArray();
-            for (ExplainAnalyzeToken item0 : this.tokens) {
-                item0.serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("tokens");
+        generator.writeStartArray();
+        for (ExplainAnalyzeToken item0 : this.tokens) {
+            item0.serialize(generator, mapper);
         }
-
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
-     * Builder for {@link TokenDetail}.
+     * Builder for {@link AnalyzerDetail}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TokenDetail> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AnalyzerDetail> {
         private String name;
-
         private List<ExplainAnalyzeToken> tokens;
+
+        public Builder() {}
+
+        private Builder(AnalyzerDetail o) {
+            this.name = o.name;
+            this.tokens = _listCopy(o.tokens);
+        }
+
+        private Builder(Builder o) {
+            this.name = o.name;
+            this.tokens = _listCopy(o.tokens);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code name}
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -128,9 +163,12 @@ public class TokenDetail implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code tokens}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>tokens</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder tokens(List<ExplainAnalyzeToken> list) {
             this.tokens = _listAddAll(this.tokens, list);
             return this;
@@ -138,9 +176,12 @@ public class TokenDetail implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code tokens}
+         *
          * <p>
          * Adds one or more values to <code>tokens</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder tokens(ExplainAnalyzeToken value, ExplainAnalyzeToken... values) {
             this.tokens = _listAdd(this.tokens, value, values);
             return this;
@@ -148,41 +189,58 @@ public class TokenDetail implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code tokens}
+         *
          * <p>
          * Adds a value to <code>tokens</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder tokens(Function<ExplainAnalyzeToken.Builder, ObjectBuilder<ExplainAnalyzeToken>> fn) {
             return tokens(fn.apply(new ExplainAnalyzeToken.Builder()).build());
         }
 
         /**
-         * Builds a {@link TokenDetail}.
+         * Builds a {@link AnalyzerDetail}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public TokenDetail build() {
+        @Override
+        @Nonnull
+        public AnalyzerDetail build() {
             _checkSingleUse();
 
-            return new TokenDetail(this);
+            return new AnalyzerDetail(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link TokenDetail}
+     * Json deserializer for {@link AnalyzerDetail}
      */
-    public static final JsonpDeserializer<TokenDetail> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<AnalyzerDetail> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        TokenDetail::setupTokenDetailDeserializer
+        AnalyzerDetail::setupAnalyzerDetailDeserializer
     );
 
-    protected static void setupTokenDetailDeserializer(ObjectDeserializer<TokenDetail.Builder> op) {
-
+    protected static void setupAnalyzerDetailDeserializer(ObjectDeserializer<AnalyzerDetail.Builder> op) {
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::tokens, JsonpDeserializer.arrayDeserializer(ExplainAnalyzeToken._DESERIALIZER), "tokens");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.name.hashCode();
+        result = 31 * result + this.tokens.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        AnalyzerDetail other = (AnalyzerDetail) o;
+        return this.name.equals(other.name) && this.tokens.equals(other.tokens);
+    }
 }

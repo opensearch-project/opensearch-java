@@ -60,48 +60,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return new OpenSearchIndicesClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: indices.analyze
-
-    /**
-     * Performs the analysis process on a text and return the tokens breakdown of
-     * the text.
-     *
-     */
-
-    public AnalyzeResponse analyze(AnalyzeRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            AnalyzeRequest,
-            AnalyzeResponse,
-            ErrorResponse>) AnalyzeRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Performs the analysis process on a text and return the tokens breakdown of
-     * the text.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link AnalyzeRequest}
-     */
-
-    public final AnalyzeResponse analyze(Function<AnalyzeRequest.Builder, ObjectBuilder<AnalyzeRequest>> fn) throws IOException,
-        OpenSearchException {
-        return analyze(fn.apply(new AnalyzeRequest.Builder()).build());
-    }
-
-    /**
-     * Performs the analysis process on a text and return the tokens breakdown of
-     * the text.
-     *
-     */
-
-    public AnalyzeResponse analyze() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new AnalyzeRequest.Builder().build(), AnalyzeRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: indices.clear_cache
 
     /**

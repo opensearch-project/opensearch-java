@@ -30,11 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -45,28 +52,31 @@ import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.indices.analyze.AnalyzeDetail;
 import org.opensearch.client.opensearch.indices.analyze.AnalyzeToken;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.analyze.Response
 
 @JsonpDeserializable
-public class AnalyzeResponse implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class AnalyzeResponse implements PlainJsonSerializable, ToCopyableBuilder<AnalyzeResponse.Builder, AnalyzeResponse> {
+
     @Nullable
     private final AnalyzeDetail detail;
 
+    @Nonnull
     private final List<AnalyzeToken> tokens;
 
     // ---------------------------------------------------------------------------------------------
 
     private AnalyzeResponse(Builder builder) {
-
         this.detail = builder.detail;
         this.tokens = ApiTypeHelper.unmodifiable(builder.tokens);
-
     }
 
-    public static AnalyzeResponse of(Function<Builder, ObjectBuilder<AnalyzeResponse>> fn) {
+    public static AnalyzeResponse of(Function<AnalyzeResponse.Builder, ObjectBuilder<AnalyzeResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -81,6 +91,7 @@ public class AnalyzeResponse implements PlainJsonSerializable {
     /**
      * API name: {@code tokens}
      */
+    @Nonnull
     public final List<AnalyzeToken> tokens() {
         return this.tokens;
     }
@@ -88,6 +99,7 @@ public class AnalyzeResponse implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -95,41 +107,65 @@ public class AnalyzeResponse implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (this.detail != null) {
             generator.writeKey("detail");
             this.detail.serialize(generator, mapper);
-
         }
+
         if (ApiTypeHelper.isDefined(this.tokens)) {
             generator.writeKey("tokens");
             generator.writeStartArray();
             for (AnalyzeToken item0 : this.tokens) {
                 item0.serialize(generator, mapper);
-
             }
             generator.writeEnd();
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link AnalyzeResponse}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalyzeResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AnalyzeResponse> {
         @Nullable
         private AnalyzeDetail detail;
-
         @Nullable
         private List<AnalyzeToken> tokens;
+
+        public Builder() {}
+
+        private Builder(AnalyzeResponse o) {
+            this.detail = o.detail;
+            this.tokens = _listCopy(o.tokens);
+        }
+
+        private Builder(Builder o) {
+            this.detail = o.detail;
+            this.tokens = _listCopy(o.tokens);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * API name: {@code detail}
          */
+        @Nonnull
         public final Builder detail(@Nullable AnalyzeDetail value) {
             this.detail = value;
             return this;
@@ -138,15 +174,19 @@ public class AnalyzeResponse implements PlainJsonSerializable {
         /**
          * API name: {@code detail}
          */
+        @Nonnull
         public final Builder detail(Function<AnalyzeDetail.Builder, ObjectBuilder<AnalyzeDetail>> fn) {
-            return this.detail(fn.apply(new AnalyzeDetail.Builder()).build());
+            return detail(fn.apply(new AnalyzeDetail.Builder()).build());
         }
 
         /**
          * API name: {@code tokens}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>tokens</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder tokens(List<AnalyzeToken> list) {
             this.tokens = _listAddAll(this.tokens, list);
             return this;
@@ -154,9 +194,12 @@ public class AnalyzeResponse implements PlainJsonSerializable {
 
         /**
          * API name: {@code tokens}
+         *
          * <p>
          * Adds one or more values to <code>tokens</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder tokens(AnalyzeToken value, AnalyzeToken... values) {
             this.tokens = _listAdd(this.tokens, value, values);
             return this;
@@ -164,9 +207,12 @@ public class AnalyzeResponse implements PlainJsonSerializable {
 
         /**
          * API name: {@code tokens}
+         *
          * <p>
          * Adds a value to <code>tokens</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder tokens(Function<AnalyzeToken.Builder, ObjectBuilder<AnalyzeToken>> fn) {
             return tokens(fn.apply(new AnalyzeToken.Builder()).build());
         }
@@ -174,9 +220,10 @@ public class AnalyzeResponse implements PlainJsonSerializable {
         /**
          * Builds a {@link AnalyzeResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public AnalyzeResponse build() {
             _checkSingleUse();
 
@@ -195,10 +242,23 @@ public class AnalyzeResponse implements PlainJsonSerializable {
     );
 
     protected static void setupAnalyzeResponseDeserializer(ObjectDeserializer<AnalyzeResponse.Builder> op) {
-
         op.add(Builder::detail, AnalyzeDetail._DESERIALIZER, "detail");
         op.add(Builder::tokens, JsonpDeserializer.arrayDeserializer(AnalyzeToken._DESERIALIZER), "tokens");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.detail);
+        result = 31 * result + Objects.hashCode(this.tokens);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        AnalyzeResponse other = (AnalyzeResponse) o;
+        return Objects.equals(this.detail, other.detail) && Objects.equals(this.tokens, other.tokens);
+    }
 }

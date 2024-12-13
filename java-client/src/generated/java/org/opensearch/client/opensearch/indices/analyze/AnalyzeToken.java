@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices.analyze;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,75 +49,80 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.analyze.AnalyzeToken
 
 @JsonpDeserializable
-public class AnalyzeToken implements PlainJsonSerializable {
-    private final long endOffset;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class AnalyzeToken implements PlainJsonSerializable, ToCopyableBuilder<AnalyzeToken.Builder, AnalyzeToken> {
 
-    private final long position;
+    private final int endOffset;
+
+    private final int position;
 
     @Nullable
-    private final Long positionLength;
+    private final Integer positionLength;
 
-    private final long startOffset;
+    private final int startOffset;
 
+    @Nonnull
     private final String token;
 
+    @Nonnull
     private final String type;
 
     // ---------------------------------------------------------------------------------------------
 
     private AnalyzeToken(Builder builder) {
-
         this.endOffset = ApiTypeHelper.requireNonNull(builder.endOffset, this, "endOffset");
         this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position");
         this.positionLength = builder.positionLength;
         this.startOffset = ApiTypeHelper.requireNonNull(builder.startOffset, this, "startOffset");
         this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-
     }
 
-    public static AnalyzeToken of(Function<Builder, ObjectBuilder<AnalyzeToken>> fn) {
+    public static AnalyzeToken of(Function<AnalyzeToken.Builder, ObjectBuilder<AnalyzeToken>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code end_offset}
      */
-    public final long endOffset() {
+    public final int endOffset() {
         return this.endOffset;
     }
 
     /**
      * Required - API name: {@code position}
      */
-    public final long position() {
+    public final int position() {
         return this.position;
     }
 
     /**
-     * API name: {@code position_length}
+     * API name: {@code positionLength}
      */
     @Nullable
-    public final Long positionLength() {
+    public final Integer positionLength() {
         return this.positionLength;
     }
 
     /**
      * Required - API name: {@code start_offset}
      */
-    public final long startOffset() {
+    public final int startOffset() {
         return this.startOffset;
     }
 
     /**
      * Required - API name: {@code token}
      */
+    @Nonnull
     public final String token() {
         return this.token;
     }
@@ -118,6 +130,7 @@ public class AnalyzeToken implements PlainJsonSerializable {
     /**
      * Required - API name: {@code type}
      */
+    @Nonnull
     public final String type() {
         return this.type;
     }
@@ -125,6 +138,7 @@ public class AnalyzeToken implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -132,7 +146,6 @@ public class AnalyzeToken implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("end_offset");
         generator.write(this.endOffset);
 
@@ -140,10 +153,10 @@ public class AnalyzeToken implements PlainJsonSerializable {
         generator.write(this.position);
 
         if (this.positionLength != null) {
-            generator.writeKey("position_length");
+            generator.writeKey("positionLength");
             generator.write(this.positionLength);
-
         }
+
         generator.writeKey("start_offset");
         generator.write(this.startOffset);
 
@@ -152,33 +165,64 @@ public class AnalyzeToken implements PlainJsonSerializable {
 
         generator.writeKey("type");
         generator.write(this.type);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link AnalyzeToken}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalyzeToken> {
-        private Long endOffset;
-
-        private Long position;
-
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AnalyzeToken> {
+        private Integer endOffset;
+        private Integer position;
         @Nullable
-        private Long positionLength;
-
-        private Long startOffset;
-
+        private Integer positionLength;
+        private Integer startOffset;
         private String token;
-
         private String type;
+
+        public Builder() {}
+
+        private Builder(AnalyzeToken o) {
+            this.endOffset = o.endOffset;
+            this.position = o.position;
+            this.positionLength = o.positionLength;
+            this.startOffset = o.startOffset;
+            this.token = o.token;
+            this.type = o.type;
+        }
+
+        private Builder(Builder o) {
+            this.endOffset = o.endOffset;
+            this.position = o.position;
+            this.positionLength = o.positionLength;
+            this.startOffset = o.startOffset;
+            this.token = o.token;
+            this.type = o.type;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code end_offset}
          */
-        public final Builder endOffset(long value) {
+        @Nonnull
+        public final Builder endOffset(int value) {
             this.endOffset = value;
             return this;
         }
@@ -186,15 +230,17 @@ public class AnalyzeToken implements PlainJsonSerializable {
         /**
          * Required - API name: {@code position}
          */
-        public final Builder position(long value) {
+        @Nonnull
+        public final Builder position(int value) {
             this.position = value;
             return this;
         }
 
         /**
-         * API name: {@code position_length}
+         * API name: {@code positionLength}
          */
-        public final Builder positionLength(@Nullable Long value) {
+        @Nonnull
+        public final Builder positionLength(@Nullable Integer value) {
             this.positionLength = value;
             return this;
         }
@@ -202,7 +248,8 @@ public class AnalyzeToken implements PlainJsonSerializable {
         /**
          * Required - API name: {@code start_offset}
          */
-        public final Builder startOffset(long value) {
+        @Nonnull
+        public final Builder startOffset(int value) {
             this.startOffset = value;
             return this;
         }
@@ -210,6 +257,7 @@ public class AnalyzeToken implements PlainJsonSerializable {
         /**
          * Required - API name: {@code token}
          */
+        @Nonnull
         public final Builder token(String value) {
             this.token = value;
             return this;
@@ -218,6 +266,7 @@ public class AnalyzeToken implements PlainJsonSerializable {
         /**
          * Required - API name: {@code type}
          */
+        @Nonnull
         public final Builder type(String value) {
             this.type = value;
             return this;
@@ -226,9 +275,10 @@ public class AnalyzeToken implements PlainJsonSerializable {
         /**
          * Builds a {@link AnalyzeToken}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public AnalyzeToken build() {
             _checkSingleUse();
 
@@ -247,14 +297,36 @@ public class AnalyzeToken implements PlainJsonSerializable {
     );
 
     protected static void setupAnalyzeTokenDeserializer(ObjectDeserializer<AnalyzeToken.Builder> op) {
-
-        op.add(Builder::endOffset, JsonpDeserializer.longDeserializer(), "end_offset");
-        op.add(Builder::position, JsonpDeserializer.longDeserializer(), "position");
-        op.add(Builder::positionLength, JsonpDeserializer.longDeserializer(), "position_length");
-        op.add(Builder::startOffset, JsonpDeserializer.longDeserializer(), "start_offset");
+        op.add(Builder::endOffset, JsonpDeserializer.integerDeserializer(), "end_offset");
+        op.add(Builder::position, JsonpDeserializer.integerDeserializer(), "position");
+        op.add(Builder::positionLength, JsonpDeserializer.integerDeserializer(), "positionLength");
+        op.add(Builder::startOffset, JsonpDeserializer.integerDeserializer(), "start_offset");
         op.add(Builder::token, JsonpDeserializer.stringDeserializer(), "token");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Integer.hashCode(this.endOffset);
+        result = 31 * result + Integer.hashCode(this.position);
+        result = 31 * result + Objects.hashCode(this.positionLength);
+        result = 31 * result + Integer.hashCode(this.startOffset);
+        result = 31 * result + this.token.hashCode();
+        result = 31 * result + this.type.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        AnalyzeToken other = (AnalyzeToken) o;
+        return this.endOffset == other.endOffset
+            && this.position == other.position
+            && Objects.equals(this.positionLength, other.positionLength)
+            && this.startOffset == other.startOffset
+            && this.token.equals(other.token)
+            && this.type.equals(other.type);
+    }
 }
