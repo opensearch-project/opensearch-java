@@ -244,6 +244,8 @@ public class RequestShape extends ObjectShape {
                 return "DeleteSnapshot";
             case "snapshot.get":
                 return "GetSnapshot";
+            case "snapshot.restore":
+                return "RestoreSnapshot";
             case "snapshot.status":
                 return "SnapshotStatus";
             case "tasks.get":

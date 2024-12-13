@@ -239,18 +239,19 @@ public class OpenSearchSnapshotAsyncClient extends ApiClient<OpenSearchTransport
     /**
      * Restores a snapshot.
      */
-    public CompletableFuture<RestoreResponse> restore(RestoreRequest request) throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(request, RestoreRequest._ENDPOINT, this.transportOptions);
+    public CompletableFuture<RestoreSnapshotResponse> restore(RestoreSnapshotRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, RestoreSnapshotRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
      * Restores a snapshot.
      *
-     * @param fn a function that initializes a builder to create the {@link RestoreRequest}
+     * @param fn a function that initializes a builder to create the {@link RestoreSnapshotRequest}
      */
-    public final CompletableFuture<RestoreResponse> restore(Function<RestoreRequest.Builder, ObjectBuilder<RestoreRequest>> fn)
-        throws IOException, OpenSearchException {
-        return restore(fn.apply(new RestoreRequest.Builder()).build());
+    public final CompletableFuture<RestoreSnapshotResponse> restore(
+        Function<RestoreSnapshotRequest.Builder, ObjectBuilder<RestoreSnapshotRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return restore(fn.apply(new RestoreSnapshotRequest.Builder()).build());
     }
 
     // ----- Endpoint: snapshot.status

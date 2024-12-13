@@ -165,5 +165,6 @@ After:
 ### RepositorySettings
 - The `concurrentStreams` property is now of type `Integer` instead of `String`.
 
-### snapshot.RestoreRequest
+### snapshot.RestoreRequest renamed to snapshot.RestoreSnapshotRequest
+- The `snapshot.RestoreRequest` class has been renamed to `snapshot.RestoreSnapshotRequest`.
 - The `indexSettings` property has been corrected to be of type `IndexSettings` instead of `PutIndicesSettingsRequest`.

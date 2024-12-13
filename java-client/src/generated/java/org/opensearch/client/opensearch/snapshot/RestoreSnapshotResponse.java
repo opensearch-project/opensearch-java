@@ -58,7 +58,10 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RestoreResponse implements PlainJsonSerializable, ToCopyableBuilder<RestoreResponse.Builder, RestoreResponse> {
+public class RestoreSnapshotResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<RestoreSnapshotResponse.Builder, RestoreSnapshotResponse> {
 
     @Nullable
     private final Boolean accepted;
@@ -68,12 +71,12 @@ public class RestoreResponse implements PlainJsonSerializable, ToCopyableBuilder
 
     // ---------------------------------------------------------------------------------------------
 
-    private RestoreResponse(Builder builder) {
+    private RestoreSnapshotResponse(Builder builder) {
         this.accepted = builder.accepted;
         this.snapshot = builder.snapshot;
     }
 
-    public static RestoreResponse of(Function<RestoreResponse.Builder, ObjectBuilder<RestoreResponse>> fn) {
+    public static RestoreSnapshotResponse of(Function<RestoreSnapshotResponse.Builder, ObjectBuilder<RestoreSnapshotResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -133,9 +136,9 @@ public class RestoreResponse implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Builder for {@link RestoreResponse}.
+     * Builder for {@link RestoreSnapshotResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RestoreResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RestoreSnapshotResponse> {
         @Nullable
         private Boolean accepted;
         @Nullable
@@ -143,7 +146,7 @@ public class RestoreResponse implements PlainJsonSerializable, ToCopyableBuilder
 
         public Builder() {}
 
-        private Builder(RestoreResponse o) {
+        private Builder(RestoreSnapshotResponse o) {
             this.accepted = o.accepted;
             this.snapshot = o.snapshot;
         }
@@ -190,30 +193,30 @@ public class RestoreResponse implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Builds a {@link RestoreResponse}.
+         * Builds a {@link RestoreSnapshotResponse}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public RestoreResponse build() {
+        public RestoreSnapshotResponse build() {
             _checkSingleUse();
 
-            return new RestoreResponse(this);
+            return new RestoreSnapshotResponse(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link RestoreResponse}
+     * Json deserializer for {@link RestoreSnapshotResponse}
      */
-    public static final JsonpDeserializer<RestoreResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<RestoreSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        RestoreResponse::setupRestoreResponseDeserializer
+        RestoreSnapshotResponse::setupRestoreSnapshotResponseDeserializer
     );
 
-    protected static void setupRestoreResponseDeserializer(ObjectDeserializer<RestoreResponse.Builder> op) {
+    protected static void setupRestoreSnapshotResponseDeserializer(ObjectDeserializer<RestoreSnapshotResponse.Builder> op) {
         op.add(Builder::accepted, JsonpDeserializer.booleanDeserializer(), "accepted");
         op.add(Builder::snapshot, SnapshotRestore._DESERIALIZER, "snapshot");
     }
@@ -230,7 +233,7 @@ public class RestoreResponse implements PlainJsonSerializable, ToCopyableBuilder
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        RestoreResponse other = (RestoreResponse) o;
+        RestoreSnapshotResponse other = (RestoreSnapshotResponse) o;
         return Objects.equals(this.accepted, other.accepted) && Objects.equals(this.snapshot, other.snapshot);
     }
 }

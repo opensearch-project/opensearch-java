@@ -70,10 +70,10 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RestoreRequest extends RequestBase
+public class RestoreSnapshotRequest extends RequestBase
     implements
         PlainJsonSerializable,
-        ToCopyableBuilder<RestoreRequest.Builder, RestoreRequest> {
+        ToCopyableBuilder<RestoreSnapshotRequest.Builder, RestoreSnapshotRequest> {
 
     @Nullable
     private final Time clusterManagerTimeout;
@@ -132,7 +132,7 @@ public class RestoreRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private RestoreRequest(Builder builder) {
+    private RestoreSnapshotRequest(Builder builder) {
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.ignoreIndexSettings = ApiTypeHelper.unmodifiable(builder.ignoreIndexSettings);
         this.ignoreUnavailable = builder.ignoreUnavailable;
@@ -153,7 +153,7 @@ public class RestoreRequest extends RequestBase
         this.waitForCompletion = builder.waitForCompletion;
     }
 
-    public static RestoreRequest of(Function<RestoreRequest.Builder, ObjectBuilder<RestoreRequest>> fn) {
+    public static RestoreSnapshotRequest of(Function<RestoreSnapshotRequest.Builder, ObjectBuilder<RestoreSnapshotRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -479,9 +479,9 @@ public class RestoreRequest extends RequestBase
     }
 
     /**
-     * Builder for {@link RestoreRequest}.
+     * Builder for {@link RestoreSnapshotRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RestoreRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RestoreSnapshotRequest> {
         @Nullable
         private Time clusterManagerTimeout;
         @Nullable
@@ -519,7 +519,7 @@ public class RestoreRequest extends RequestBase
 
         public Builder() {}
 
-        private Builder(RestoreRequest o) {
+        private Builder(RestoreSnapshotRequest o) {
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.ignoreIndexSettings = _listCopy(o.ignoreIndexSettings);
             this.ignoreUnavailable = o.ignoreUnavailable;
@@ -887,30 +887,30 @@ public class RestoreRequest extends RequestBase
         }
 
         /**
-         * Builds a {@link RestoreRequest}.
+         * Builds a {@link RestoreSnapshotRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public RestoreRequest build() {
+        public RestoreSnapshotRequest build() {
             _checkSingleUse();
 
-            return new RestoreRequest(this);
+            return new RestoreSnapshotRequest(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link RestoreRequest}
+     * Json deserializer for {@link RestoreSnapshotRequest}
      */
-    public static final JsonpDeserializer<RestoreRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<RestoreSnapshotRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        RestoreRequest::setupRestoreRequestDeserializer
+        RestoreSnapshotRequest::setupRestoreSnapshotRequestDeserializer
     );
 
-    protected static void setupRestoreRequestDeserializer(ObjectDeserializer<RestoreRequest.Builder> op) {
+    protected static void setupRestoreSnapshotRequestDeserializer(ObjectDeserializer<RestoreSnapshotRequest.Builder> op) {
         op.add(
             Builder::ignoreIndexSettings,
             JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
@@ -937,7 +937,7 @@ public class RestoreRequest extends RequestBase
     /**
      * Endpoint "{@code snapshot.restore}".
      */
-    public static final Endpoint<RestoreRequest, RestoreResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final Endpoint<RestoreSnapshotRequest, RestoreSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
         // Request method
         request -> "POST",
         // Request path
@@ -966,7 +966,7 @@ public class RestoreRequest extends RequestBase
         },
         SimpleEndpoint.emptyMap(),
         true,
-        RestoreResponse._DESERIALIZER
+        RestoreSnapshotResponse._DESERIALIZER
     );
 
     @Override
@@ -997,7 +997,7 @@ public class RestoreRequest extends RequestBase
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        RestoreRequest other = (RestoreRequest) o;
+        RestoreSnapshotRequest other = (RestoreSnapshotRequest) o;
         return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
             && Objects.equals(this.ignoreIndexSettings, other.ignoreIndexSettings)
             && Objects.equals(this.ignoreUnavailable, other.ignoreUnavailable)
