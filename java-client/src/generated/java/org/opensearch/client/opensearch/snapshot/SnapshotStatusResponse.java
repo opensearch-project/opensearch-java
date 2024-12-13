@@ -63,7 +63,7 @@ public class SnapshotStatusResponse
         ToCopyableBuilder<SnapshotStatusResponse.Builder, SnapshotStatusResponse> {
 
     @Nonnull
-    private final List<Status> snapshots;
+    private final List<SnapshotStatus> snapshots;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -79,7 +79,7 @@ public class SnapshotStatusResponse
      * Required - API name: {@code snapshots}
      */
     @Nonnull
-    public final List<Status> snapshots() {
+    public final List<SnapshotStatus> snapshots() {
         return this.snapshots;
     }
 
@@ -96,7 +96,7 @@ public class SnapshotStatusResponse
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeKey("snapshots");
         generator.writeStartArray();
-        for (Status item0 : this.snapshots) {
+        for (SnapshotStatus item0 : this.snapshots) {
             item0.serialize(generator, mapper);
         }
         generator.writeEnd();
@@ -119,7 +119,7 @@ public class SnapshotStatusResponse
      * Builder for {@link SnapshotStatusResponse}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotStatusResponse> {
-        private List<Status> snapshots;
+        private List<SnapshotStatus> snapshots;
 
         public Builder() {}
 
@@ -145,7 +145,7 @@ public class SnapshotStatusResponse
          * </p>
          */
         @Nonnull
-        public final Builder snapshots(List<Status> list) {
+        public final Builder snapshots(List<SnapshotStatus> list) {
             this.snapshots = _listAddAll(this.snapshots, list);
             return this;
         }
@@ -158,7 +158,7 @@ public class SnapshotStatusResponse
          * </p>
          */
         @Nonnull
-        public final Builder snapshots(Status value, Status... values) {
+        public final Builder snapshots(SnapshotStatus value, SnapshotStatus... values) {
             this.snapshots = _listAdd(this.snapshots, value, values);
             return this;
         }
@@ -171,8 +171,8 @@ public class SnapshotStatusResponse
          * </p>
          */
         @Nonnull
-        public final Builder snapshots(Function<Status.Builder, ObjectBuilder<Status>> fn) {
-            return snapshots(fn.apply(new Status.Builder()).build());
+        public final Builder snapshots(Function<SnapshotStatus.Builder, ObjectBuilder<SnapshotStatus>> fn) {
+            return snapshots(fn.apply(new SnapshotStatus.Builder()).build());
         }
 
         /**
@@ -200,7 +200,7 @@ public class SnapshotStatusResponse
     );
 
     protected static void setupSnapshotStatusResponseDeserializer(ObjectDeserializer<SnapshotStatusResponse.Builder> op) {
-        op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(Status._DESERIALIZER), "snapshots");
+        op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(SnapshotStatus._DESERIALIZER), "snapshots");
     }
 
     @Override

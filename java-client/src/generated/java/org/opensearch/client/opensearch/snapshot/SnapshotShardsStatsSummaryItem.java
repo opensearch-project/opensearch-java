@@ -52,14 +52,14 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: snapshot.ShardsStatsSummaryItem
+// typedef: snapshot.SnapshotShardsStatsSummaryItem
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ShardsStatsSummaryItem
+public class SnapshotShardsStatsSummaryItem
     implements
         PlainJsonSerializable,
-        ToCopyableBuilder<ShardsStatsSummaryItem.Builder, ShardsStatsSummaryItem> {
+        ToCopyableBuilder<SnapshotShardsStatsSummaryItem.Builder, SnapshotShardsStatsSummaryItem> {
 
     private final long fileCount;
 
@@ -67,12 +67,14 @@ public class ShardsStatsSummaryItem
 
     // ---------------------------------------------------------------------------------------------
 
-    private ShardsStatsSummaryItem(Builder builder) {
+    private SnapshotShardsStatsSummaryItem(Builder builder) {
         this.fileCount = ApiTypeHelper.requireNonNull(builder.fileCount, this, "fileCount");
         this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
     }
 
-    public static ShardsStatsSummaryItem of(Function<ShardsStatsSummaryItem.Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
+    public static SnapshotShardsStatsSummaryItem of(
+        Function<SnapshotShardsStatsSummaryItem.Builder, ObjectBuilder<SnapshotShardsStatsSummaryItem>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
@@ -122,15 +124,15 @@ public class ShardsStatsSummaryItem
     }
 
     /**
-     * Builder for {@link ShardsStatsSummaryItem}.
+     * Builder for {@link SnapshotShardsStatsSummaryItem}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardsStatsSummaryItem> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotShardsStatsSummaryItem> {
         private Long fileCount;
         private Long sizeInBytes;
 
         public Builder() {}
 
-        private Builder(ShardsStatsSummaryItem o) {
+        private Builder(SnapshotShardsStatsSummaryItem o) {
             this.fileCount = o.fileCount;
             this.sizeInBytes = o.sizeInBytes;
         }
@@ -165,30 +167,30 @@ public class ShardsStatsSummaryItem
         }
 
         /**
-         * Builds a {@link ShardsStatsSummaryItem}.
+         * Builds a {@link SnapshotShardsStatsSummaryItem}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public ShardsStatsSummaryItem build() {
+        public SnapshotShardsStatsSummaryItem build() {
             _checkSingleUse();
 
-            return new ShardsStatsSummaryItem(this);
+            return new SnapshotShardsStatsSummaryItem(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link ShardsStatsSummaryItem}
+     * Json deserializer for {@link SnapshotShardsStatsSummaryItem}
      */
-    public static final JsonpDeserializer<ShardsStatsSummaryItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<SnapshotShardsStatsSummaryItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        ShardsStatsSummaryItem::setupShardsStatsSummaryItemDeserializer
+        SnapshotShardsStatsSummaryItem::setupSnapshotShardsStatsSummaryItemDeserializer
     );
 
-    protected static void setupShardsStatsSummaryItemDeserializer(ObjectDeserializer<ShardsStatsSummaryItem.Builder> op) {
+    protected static void setupSnapshotShardsStatsSummaryItemDeserializer(ObjectDeserializer<SnapshotShardsStatsSummaryItem.Builder> op) {
         op.add(Builder::fileCount, JsonpDeserializer.longDeserializer(), "file_count");
         op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
     }
@@ -205,7 +207,7 @@ public class ShardsStatsSummaryItem
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        ShardsStatsSummaryItem other = (ShardsStatsSummaryItem) o;
+        SnapshotShardsStatsSummaryItem other = (SnapshotShardsStatsSummaryItem) o;
         return this.fileCount == other.fileCount && this.sizeInBytes == other.sizeInBytes;
     }
 }

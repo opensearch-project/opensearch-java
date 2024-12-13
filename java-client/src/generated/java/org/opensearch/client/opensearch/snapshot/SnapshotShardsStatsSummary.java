@@ -55,14 +55,20 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: snapshot.ShardsStatsSummary
+// typedef: snapshot.SnapshotShardsStatsSummary
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ShardsStatsSummary implements PlainJsonSerializable, ToCopyableBuilder<ShardsStatsSummary.Builder, ShardsStatsSummary> {
+public class SnapshotShardsStatsSummary
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<SnapshotShardsStatsSummary.Builder, SnapshotShardsStatsSummary> {
 
     @Nonnull
-    private final ShardsStatsSummaryItem incremental;
+    private final SnapshotShardsStatsSummaryItem incremental;
+
+    @Nullable
+    private final SnapshotShardsStatsSummaryItem processed;
 
     private final long startTimeInMillis;
 
@@ -72,19 +78,22 @@ public class ShardsStatsSummary implements PlainJsonSerializable, ToCopyableBuil
     private final long timeInMillis;
 
     @Nonnull
-    private final ShardsStatsSummaryItem total;
+    private final SnapshotShardsStatsSummaryItem total;
 
     // ---------------------------------------------------------------------------------------------
 
-    private ShardsStatsSummary(Builder builder) {
+    private SnapshotShardsStatsSummary(Builder builder) {
         this.incremental = ApiTypeHelper.requireNonNull(builder.incremental, this, "incremental");
+        this.processed = builder.processed;
         this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
         this.time = builder.time;
         this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
         this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
     }
 
-    public static ShardsStatsSummary of(Function<ShardsStatsSummary.Builder, ObjectBuilder<ShardsStatsSummary>> fn) {
+    public static SnapshotShardsStatsSummary of(
+        Function<SnapshotShardsStatsSummary.Builder, ObjectBuilder<SnapshotShardsStatsSummary>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
@@ -92,8 +101,16 @@ public class ShardsStatsSummary implements PlainJsonSerializable, ToCopyableBuil
      * Required - API name: {@code incremental}
      */
     @Nonnull
-    public final ShardsStatsSummaryItem incremental() {
+    public final SnapshotShardsStatsSummaryItem incremental() {
         return this.incremental;
+    }
+
+    /**
+     * API name: {@code processed}
+     */
+    @Nullable
+    public final SnapshotShardsStatsSummaryItem processed() {
+        return this.processed;
     }
 
     /**
@@ -122,7 +139,7 @@ public class ShardsStatsSummary implements PlainJsonSerializable, ToCopyableBuil
      * Required - API name: {@code total}
      */
     @Nonnull
-    public final ShardsStatsSummaryItem total() {
+    public final SnapshotShardsStatsSummaryItem total() {
         return this.total;
     }
 
@@ -139,6 +156,11 @@ public class ShardsStatsSummary implements PlainJsonSerializable, ToCopyableBuil
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeKey("incremental");
         this.incremental.serialize(generator, mapper);
+
+        if (this.processed != null) {
+            generator.writeKey("processed");
+            this.processed.serialize(generator, mapper);
+        }
 
         generator.writeKey("start_time_in_millis");
         generator.write(this.startTimeInMillis);
@@ -169,20 +191,23 @@ public class ShardsStatsSummary implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
-     * Builder for {@link ShardsStatsSummary}.
+     * Builder for {@link SnapshotShardsStatsSummary}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardsStatsSummary> {
-        private ShardsStatsSummaryItem incremental;
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotShardsStatsSummary> {
+        private SnapshotShardsStatsSummaryItem incremental;
+        @Nullable
+        private SnapshotShardsStatsSummaryItem processed;
         private Long startTimeInMillis;
         @Nullable
         private Time time;
         private Long timeInMillis;
-        private ShardsStatsSummaryItem total;
+        private SnapshotShardsStatsSummaryItem total;
 
         public Builder() {}
 
-        private Builder(ShardsStatsSummary o) {
+        private Builder(SnapshotShardsStatsSummary o) {
             this.incremental = o.incremental;
+            this.processed = o.processed;
             this.startTimeInMillis = o.startTimeInMillis;
             this.time = o.time;
             this.timeInMillis = o.timeInMillis;
@@ -191,6 +216,7 @@ public class ShardsStatsSummary implements PlainJsonSerializable, ToCopyableBuil
 
         private Builder(Builder o) {
             this.incremental = o.incremental;
+            this.processed = o.processed;
             this.startTimeInMillis = o.startTimeInMillis;
             this.time = o.time;
             this.timeInMillis = o.timeInMillis;
@@ -207,7 +233,7 @@ public class ShardsStatsSummary implements PlainJsonSerializable, ToCopyableBuil
          * Required - API name: {@code incremental}
          */
         @Nonnull
-        public final Builder incremental(ShardsStatsSummaryItem value) {
+        public final Builder incremental(SnapshotShardsStatsSummaryItem value) {
             this.incremental = value;
             return this;
         }
@@ -216,8 +242,27 @@ public class ShardsStatsSummary implements PlainJsonSerializable, ToCopyableBuil
          * Required - API name: {@code incremental}
          */
         @Nonnull
-        public final Builder incremental(Function<ShardsStatsSummaryItem.Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
-            return incremental(fn.apply(new ShardsStatsSummaryItem.Builder()).build());
+        public final Builder incremental(
+            Function<SnapshotShardsStatsSummaryItem.Builder, ObjectBuilder<SnapshotShardsStatsSummaryItem>> fn
+        ) {
+            return incremental(fn.apply(new SnapshotShardsStatsSummaryItem.Builder()).build());
+        }
+
+        /**
+         * API name: {@code processed}
+         */
+        @Nonnull
+        public final Builder processed(@Nullable SnapshotShardsStatsSummaryItem value) {
+            this.processed = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code processed}
+         */
+        @Nonnull
+        public final Builder processed(Function<SnapshotShardsStatsSummaryItem.Builder, ObjectBuilder<SnapshotShardsStatsSummaryItem>> fn) {
+            return processed(fn.apply(new SnapshotShardsStatsSummaryItem.Builder()).build());
         }
 
         /**
@@ -259,7 +304,7 @@ public class ShardsStatsSummary implements PlainJsonSerializable, ToCopyableBuil
          * Required - API name: {@code total}
          */
         @Nonnull
-        public final Builder total(ShardsStatsSummaryItem value) {
+        public final Builder total(SnapshotShardsStatsSummaryItem value) {
             this.total = value;
             return this;
         }
@@ -268,46 +313,48 @@ public class ShardsStatsSummary implements PlainJsonSerializable, ToCopyableBuil
          * Required - API name: {@code total}
          */
         @Nonnull
-        public final Builder total(Function<ShardsStatsSummaryItem.Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
-            return total(fn.apply(new ShardsStatsSummaryItem.Builder()).build());
+        public final Builder total(Function<SnapshotShardsStatsSummaryItem.Builder, ObjectBuilder<SnapshotShardsStatsSummaryItem>> fn) {
+            return total(fn.apply(new SnapshotShardsStatsSummaryItem.Builder()).build());
         }
 
         /**
-         * Builds a {@link ShardsStatsSummary}.
+         * Builds a {@link SnapshotShardsStatsSummary}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public ShardsStatsSummary build() {
+        public SnapshotShardsStatsSummary build() {
             _checkSingleUse();
 
-            return new ShardsStatsSummary(this);
+            return new SnapshotShardsStatsSummary(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link ShardsStatsSummary}
+     * Json deserializer for {@link SnapshotShardsStatsSummary}
      */
-    public static final JsonpDeserializer<ShardsStatsSummary> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<SnapshotShardsStatsSummary> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        ShardsStatsSummary::setupShardsStatsSummaryDeserializer
+        SnapshotShardsStatsSummary::setupSnapshotShardsStatsSummaryDeserializer
     );
 
-    protected static void setupShardsStatsSummaryDeserializer(ObjectDeserializer<ShardsStatsSummary.Builder> op) {
-        op.add(Builder::incremental, ShardsStatsSummaryItem._DESERIALIZER, "incremental");
+    protected static void setupSnapshotShardsStatsSummaryDeserializer(ObjectDeserializer<SnapshotShardsStatsSummary.Builder> op) {
+        op.add(Builder::incremental, SnapshotShardsStatsSummaryItem._DESERIALIZER, "incremental");
+        op.add(Builder::processed, SnapshotShardsStatsSummaryItem._DESERIALIZER, "processed");
         op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
         op.add(Builder::time, Time._DESERIALIZER, "time");
         op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
-        op.add(Builder::total, ShardsStatsSummaryItem._DESERIALIZER, "total");
+        op.add(Builder::total, SnapshotShardsStatsSummaryItem._DESERIALIZER, "total");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + this.incremental.hashCode();
+        result = 31 * result + Objects.hashCode(this.processed);
         result = 31 * result + Long.hashCode(this.startTimeInMillis);
         result = 31 * result + Objects.hashCode(this.time);
         result = 31 * result + Long.hashCode(this.timeInMillis);
@@ -319,8 +366,9 @@ public class ShardsStatsSummary implements PlainJsonSerializable, ToCopyableBuil
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        ShardsStatsSummary other = (ShardsStatsSummary) o;
+        SnapshotShardsStatsSummary other = (SnapshotShardsStatsSummary) o;
         return this.incremental.equals(other.incremental)
+            && Objects.equals(this.processed, other.processed)
             && this.startTimeInMillis == other.startTimeInMillis
             && Objects.equals(this.time, other.time)
             && this.timeInMillis == other.timeInMillis

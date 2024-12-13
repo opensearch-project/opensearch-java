@@ -64,6 +64,9 @@ public class SnapshotStats implements PlainJsonSerializable, ToCopyableBuilder<S
     @Nonnull
     private final FileCountSnapshotStats incremental;
 
+    @Nullable
+    private final FileCountSnapshotStats processed;
+
     private final long startTimeInMillis;
 
     @Nullable
@@ -78,6 +81,7 @@ public class SnapshotStats implements PlainJsonSerializable, ToCopyableBuilder<S
 
     private SnapshotStats(Builder builder) {
         this.incremental = ApiTypeHelper.requireNonNull(builder.incremental, this, "incremental");
+        this.processed = builder.processed;
         this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
         this.time = builder.time;
         this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
@@ -94,6 +98,14 @@ public class SnapshotStats implements PlainJsonSerializable, ToCopyableBuilder<S
     @Nonnull
     public final FileCountSnapshotStats incremental() {
         return this.incremental;
+    }
+
+    /**
+     * API name: {@code processed}
+     */
+    @Nullable
+    public final FileCountSnapshotStats processed() {
+        return this.processed;
     }
 
     /**
@@ -140,6 +152,11 @@ public class SnapshotStats implements PlainJsonSerializable, ToCopyableBuilder<S
         generator.writeKey("incremental");
         this.incremental.serialize(generator, mapper);
 
+        if (this.processed != null) {
+            generator.writeKey("processed");
+            this.processed.serialize(generator, mapper);
+        }
+
         generator.writeKey("start_time_in_millis");
         generator.write(this.startTimeInMillis);
 
@@ -173,6 +190,8 @@ public class SnapshotStats implements PlainJsonSerializable, ToCopyableBuilder<S
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotStats> {
         private FileCountSnapshotStats incremental;
+        @Nullable
+        private FileCountSnapshotStats processed;
         private Long startTimeInMillis;
         @Nullable
         private Time time;
@@ -183,6 +202,7 @@ public class SnapshotStats implements PlainJsonSerializable, ToCopyableBuilder<S
 
         private Builder(SnapshotStats o) {
             this.incremental = o.incremental;
+            this.processed = o.processed;
             this.startTimeInMillis = o.startTimeInMillis;
             this.time = o.time;
             this.timeInMillis = o.timeInMillis;
@@ -191,6 +211,7 @@ public class SnapshotStats implements PlainJsonSerializable, ToCopyableBuilder<S
 
         private Builder(Builder o) {
             this.incremental = o.incremental;
+            this.processed = o.processed;
             this.startTimeInMillis = o.startTimeInMillis;
             this.time = o.time;
             this.timeInMillis = o.timeInMillis;
@@ -218,6 +239,23 @@ public class SnapshotStats implements PlainJsonSerializable, ToCopyableBuilder<S
         @Nonnull
         public final Builder incremental(Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
             return incremental(fn.apply(new FileCountSnapshotStats.Builder()).build());
+        }
+
+        /**
+         * API name: {@code processed}
+         */
+        @Nonnull
+        public final Builder processed(@Nullable FileCountSnapshotStats value) {
+            this.processed = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code processed}
+         */
+        @Nonnull
+        public final Builder processed(Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
+            return processed(fn.apply(new FileCountSnapshotStats.Builder()).build());
         }
 
         /**
@@ -298,6 +336,7 @@ public class SnapshotStats implements PlainJsonSerializable, ToCopyableBuilder<S
 
     protected static void setupSnapshotStatsDeserializer(ObjectDeserializer<SnapshotStats.Builder> op) {
         op.add(Builder::incremental, FileCountSnapshotStats._DESERIALIZER, "incremental");
+        op.add(Builder::processed, FileCountSnapshotStats._DESERIALIZER, "processed");
         op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
         op.add(Builder::time, Time._DESERIALIZER, "time");
         op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
@@ -308,6 +347,7 @@ public class SnapshotStats implements PlainJsonSerializable, ToCopyableBuilder<S
     public int hashCode() {
         int result = 17;
         result = 31 * result + this.incremental.hashCode();
+        result = 31 * result + Objects.hashCode(this.processed);
         result = 31 * result + Long.hashCode(this.startTimeInMillis);
         result = 31 * result + Objects.hashCode(this.time);
         result = 31 * result + Long.hashCode(this.timeInMillis);
@@ -321,6 +361,7 @@ public class SnapshotStats implements PlainJsonSerializable, ToCopyableBuilder<S
         if (o == null || this.getClass() != o.getClass()) return false;
         SnapshotStats other = (SnapshotStats) o;
         return this.incremental.equals(other.incremental)
+            && Objects.equals(this.processed, other.processed)
             && this.startTimeInMillis == other.startTimeInMillis
             && Objects.equals(this.time, other.time)
             && this.timeInMillis == other.timeInMillis

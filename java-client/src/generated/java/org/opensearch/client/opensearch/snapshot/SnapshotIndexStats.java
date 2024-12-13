@@ -63,7 +63,7 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
     private final Map<String, SnapshotShardsStatus> shards;
 
     @Nonnull
-    private final ShardsStats shardsStats;
+    private final SnapshotShardsStats shardsStats;
 
     @Nonnull
     private final SnapshotStats stats;
@@ -92,7 +92,7 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
      * Required - API name: {@code shards_stats}
      */
     @Nonnull
-    public final ShardsStats shardsStats() {
+    public final SnapshotShardsStats shardsStats() {
         return this.shardsStats;
     }
 
@@ -148,7 +148,7 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotIndexStats> {
         private Map<String, SnapshotShardsStatus> shards;
-        private ShardsStats shardsStats;
+        private SnapshotShardsStats shardsStats;
         private SnapshotStats stats;
 
         public Builder() {}
@@ -213,7 +213,7 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
          * Required - API name: {@code shards_stats}
          */
         @Nonnull
-        public final Builder shardsStats(ShardsStats value) {
+        public final Builder shardsStats(SnapshotShardsStats value) {
             this.shardsStats = value;
             return this;
         }
@@ -222,8 +222,8 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
          * Required - API name: {@code shards_stats}
          */
         @Nonnull
-        public final Builder shardsStats(Function<ShardsStats.Builder, ObjectBuilder<ShardsStats>> fn) {
-            return shardsStats(fn.apply(new ShardsStats.Builder()).build());
+        public final Builder shardsStats(Function<SnapshotShardsStats.Builder, ObjectBuilder<SnapshotShardsStats>> fn) {
+            return shardsStats(fn.apply(new SnapshotShardsStats.Builder()).build());
         }
 
         /**
@@ -269,7 +269,7 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
 
     protected static void setupSnapshotIndexStatsDeserializer(ObjectDeserializer<SnapshotIndexStats.Builder> op) {
         op.add(Builder::shards, JsonpDeserializer.stringMapDeserializer(SnapshotShardsStatus._DESERIALIZER), "shards");
-        op.add(Builder::shardsStats, ShardsStats._DESERIALIZER, "shards_stats");
+        op.add(Builder::shardsStats, SnapshotShardsStats._DESERIALIZER, "shards_stats");
         op.add(Builder::stats, SnapshotStats._DESERIALIZER, "stats");
     }
 

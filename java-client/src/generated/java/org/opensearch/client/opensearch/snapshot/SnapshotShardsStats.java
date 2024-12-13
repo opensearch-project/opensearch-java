@@ -52,11 +52,11 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: snapshot.ShardsStats
+// typedef: snapshot.SnapshotShardsStats
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ShardsStats implements PlainJsonSerializable, ToCopyableBuilder<ShardsStats.Builder, ShardsStats> {
+public class SnapshotShardsStats implements PlainJsonSerializable, ToCopyableBuilder<SnapshotShardsStats.Builder, SnapshotShardsStats> {
 
     private final long done;
 
@@ -72,7 +72,7 @@ public class ShardsStats implements PlainJsonSerializable, ToCopyableBuilder<Sha
 
     // ---------------------------------------------------------------------------------------------
 
-    private ShardsStats(Builder builder) {
+    private SnapshotShardsStats(Builder builder) {
         this.done = ApiTypeHelper.requireNonNull(builder.done, this, "done");
         this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
         this.finalizing = ApiTypeHelper.requireNonNull(builder.finalizing, this, "finalizing");
@@ -81,7 +81,7 @@ public class ShardsStats implements PlainJsonSerializable, ToCopyableBuilder<Sha
         this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
     }
 
-    public static ShardsStats of(Function<ShardsStats.Builder, ObjectBuilder<ShardsStats>> fn) {
+    public static SnapshotShardsStats of(Function<SnapshotShardsStats.Builder, ObjectBuilder<SnapshotShardsStats>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -171,9 +171,9 @@ public class ShardsStats implements PlainJsonSerializable, ToCopyableBuilder<Sha
     }
 
     /**
-     * Builder for {@link ShardsStats}.
+     * Builder for {@link SnapshotShardsStats}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardsStats> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotShardsStats> {
         private Long done;
         private Long failed;
         private Long finalizing;
@@ -183,7 +183,7 @@ public class ShardsStats implements PlainJsonSerializable, ToCopyableBuilder<Sha
 
         public Builder() {}
 
-        private Builder(ShardsStats o) {
+        private Builder(SnapshotShardsStats o) {
             this.done = o.done;
             this.failed = o.failed;
             this.finalizing = o.finalizing;
@@ -262,30 +262,30 @@ public class ShardsStats implements PlainJsonSerializable, ToCopyableBuilder<Sha
         }
 
         /**
-         * Builds a {@link ShardsStats}.
+         * Builds a {@link SnapshotShardsStats}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public ShardsStats build() {
+        public SnapshotShardsStats build() {
             _checkSingleUse();
 
-            return new ShardsStats(this);
+            return new SnapshotShardsStats(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link ShardsStats}
+     * Json deserializer for {@link SnapshotShardsStats}
      */
-    public static final JsonpDeserializer<ShardsStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<SnapshotShardsStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        ShardsStats::setupShardsStatsDeserializer
+        SnapshotShardsStats::setupSnapshotShardsStatsDeserializer
     );
 
-    protected static void setupShardsStatsDeserializer(ObjectDeserializer<ShardsStats.Builder> op) {
+    protected static void setupSnapshotShardsStatsDeserializer(ObjectDeserializer<SnapshotShardsStats.Builder> op) {
         op.add(Builder::done, JsonpDeserializer.longDeserializer(), "done");
         op.add(Builder::failed, JsonpDeserializer.longDeserializer(), "failed");
         op.add(Builder::finalizing, JsonpDeserializer.longDeserializer(), "finalizing");
@@ -310,7 +310,7 @@ public class ShardsStats implements PlainJsonSerializable, ToCopyableBuilder<Sha
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        ShardsStats other = (ShardsStats) o;
+        SnapshotShardsStats other = (SnapshotShardsStats) o;
         return this.done == other.done
             && this.failed == other.failed
             && this.finalizing == other.finalizing
