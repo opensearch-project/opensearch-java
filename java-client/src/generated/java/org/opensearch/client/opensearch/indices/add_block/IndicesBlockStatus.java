@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices.add_block;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,35 +47,31 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.add_block.IndicesBlockStatus
 
 @JsonpDeserializable
-public class IndicesBlockStatus implements PlainJsonSerializable {
-    private final String name;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class IndicesBlockStatus implements PlainJsonSerializable, ToCopyableBuilder<IndicesBlockStatus.Builder, IndicesBlockStatus> {
 
     private final boolean blocked;
+
+    @Nonnull
+    private final String name;
 
     // ---------------------------------------------------------------------------------------------
 
     private IndicesBlockStatus(Builder builder) {
-
-        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.blocked = ApiTypeHelper.requireNonNull(builder.blocked, this, "blocked");
-
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
     }
 
-    public static IndicesBlockStatus of(Function<Builder, ObjectBuilder<IndicesBlockStatus>> fn) {
+    public static IndicesBlockStatus of(Function<IndicesBlockStatus.Builder, ObjectBuilder<IndicesBlockStatus>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * Required - API name: {@code name}
-     */
-    public final String name() {
-        return this.name;
     }
 
     /**
@@ -80,8 +82,17 @@ public class IndicesBlockStatus implements PlainJsonSerializable {
     }
 
     /**
+     * Required - API name: {@code name}
+     */
+    @Nonnull
+    public final String name() {
+        return this.name;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -89,48 +100,76 @@ public class IndicesBlockStatus implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.writeKey("name");
-        generator.write(this.name);
-
         generator.writeKey("blocked");
         generator.write(this.blocked);
 
+        generator.writeKey("name");
+        generator.write(this.name);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IndicesBlockStatus}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesBlockStatus> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IndicesBlockStatus> {
+        private Boolean blocked;
         private String name;
 
-        private Boolean blocked;
+        public Builder() {}
 
-        /**
-         * Required - API name: {@code name}
-         */
-        public final Builder name(String value) {
-            this.name = value;
-            return this;
+        private Builder(IndicesBlockStatus o) {
+            this.blocked = o.blocked;
+            this.name = o.name;
+        }
+
+        private Builder(Builder o) {
+            this.blocked = o.blocked;
+            this.name = o.name;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
         }
 
         /**
          * Required - API name: {@code blocked}
          */
+        @Nonnull
         public final Builder blocked(boolean value) {
             this.blocked = value;
             return this;
         }
 
         /**
+         * Required - API name: {@code name}
+         */
+        @Nonnull
+        public final Builder name(String value) {
+            this.name = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link IndicesBlockStatus}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IndicesBlockStatus build() {
             _checkSingleUse();
 
@@ -149,10 +188,23 @@ public class IndicesBlockStatus implements PlainJsonSerializable {
     );
 
     protected static void setupIndicesBlockStatusDeserializer(ObjectDeserializer<IndicesBlockStatus.Builder> op) {
-
-        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::blocked, JsonpDeserializer.booleanDeserializer(), "blocked");
-
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.blocked);
+        result = 31 * result + this.name.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        IndicesBlockStatus other = (IndicesBlockStatus) o;
+        return this.blocked == other.blocked && this.name.equals(other.name);
+    }
 }

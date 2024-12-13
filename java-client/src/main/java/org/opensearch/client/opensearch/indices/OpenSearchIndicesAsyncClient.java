@@ -61,38 +61,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return new OpenSearchIndicesAsyncClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: indices.add_block
-
-    /**
-     * Adds a block to an index.
-     *
-     *
-     */
-
-    public CompletableFuture<AddBlockResponse> addBlock(AddBlockRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<AddBlockRequest, AddBlockResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            AddBlockRequest,
-            AddBlockResponse,
-            ErrorResponse>) AddBlockRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Adds a block to an index.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link AddBlockRequest}
-     *
-     */
-
-    public final CompletableFuture<AddBlockResponse> addBlock(Function<AddBlockRequest.Builder, ObjectBuilder<AddBlockRequest>> fn)
-        throws IOException, OpenSearchException {
-        return addBlock(fn.apply(new AddBlockRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.analyze
 
     /**

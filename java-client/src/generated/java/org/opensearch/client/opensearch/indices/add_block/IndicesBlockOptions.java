@@ -30,12 +30,20 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices.add_block;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: indices.add_block.IndicesBlockOptions
+
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum IndicesBlockOptions implements JsonEnum {
     Metadata("metadata"),
 
@@ -43,9 +51,7 @@ public enum IndicesBlockOptions implements JsonEnum {
 
     ReadOnly("read_only"),
 
-    Write("write"),
-
-    ;
+    Write("write");
 
     private final String jsonValue;
 

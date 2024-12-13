@@ -60,36 +60,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return new OpenSearchIndicesClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: indices.add_block
-
-    /**
-     * Adds a block to an index.
-     *
-     */
-
-    public AddBlockResponse addBlock(AddBlockRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<AddBlockRequest, AddBlockResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            AddBlockRequest,
-            AddBlockResponse,
-            ErrorResponse>) AddBlockRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Adds a block to an index.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link AddBlockRequest}
-     */
-
-    public final AddBlockResponse addBlock(Function<AddBlockRequest.Builder, ObjectBuilder<AddBlockRequest>> fn) throws IOException,
-        OpenSearchException {
-        return addBlock(fn.apply(new AddBlockRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.analyze
 
     /**

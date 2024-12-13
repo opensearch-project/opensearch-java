@@ -58,6 +58,25 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         super(transport, transportOptions);
     }
 
+    // ----- Endpoint: indices.add_block
+
+    /**
+     * Adds a block to an index.
+     */
+    public AddBlockResponse addBlock(AddBlockRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, AddBlockRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Adds a block to an index.
+     *
+     * @param fn a function that initializes a builder to create the {@link AddBlockRequest}
+     */
+    public final AddBlockResponse addBlock(Function<AddBlockRequest.Builder, ObjectBuilder<AddBlockRequest>> fn) throws IOException,
+        OpenSearchException {
+        return addBlock(fn.apply(new AddBlockRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.create
 
     /**

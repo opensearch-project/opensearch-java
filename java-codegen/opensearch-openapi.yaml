@@ -29263,20 +29263,19 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              acknowledged:
-                type: boolean
-              shards_acknowledged:
-                type: boolean
-              indices:
-                type: array
-                items:
-                  $ref: '#/components/schemas/indices.add_block___IndicesBlockStatus'
-            required:
-              - acknowledged
-              - indices
-              - shards_acknowledged
+            allOf:
+              - $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
+              - type: object
+                properties:
+                  shards_acknowledged:
+                    type: boolean
+                  indices:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/indices.add_block___IndicesBlockStatus'
+                required:
+                  - indices
+                  - shards_acknowledged
       description: ''
     indices.analyze___200:
       content:
