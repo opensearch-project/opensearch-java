@@ -30,9 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -44,15 +50,15 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: indices.get_alias.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GetAliasResponse extends DictionaryResponse<String, IndexAliases> {
     // ---------------------------------------------------------------------------------------------
 
     private GetAliasResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static GetAliasResponse of(Function<Builder, ObjectBuilder<GetAliasResponse>> fn) {
+    public static GetAliasResponse of(Function<GetAliasResponse.Builder, ObjectBuilder<GetAliasResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -61,11 +67,11 @@ public class GetAliasResponse extends DictionaryResponse<String, IndexAliases> {
     /**
      * Builder for {@link GetAliasResponse}.
      */
-
     public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexAliases, Builder>
         implements
             ObjectBuilder<GetAliasResponse> {
         @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -73,8 +79,7 @@ public class GetAliasResponse extends DictionaryResponse<String, IndexAliases> {
         /**
          * Builds a {@link GetAliasResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public GetAliasResponse build() {
             _checkSingleUse();
@@ -96,8 +101,6 @@ public class GetAliasResponse extends DictionaryResponse<String, IndexAliases> {
     );
 
     protected static void setupGetAliasResponseDeserializer(ObjectDeserializer<GetAliasResponse.Builder> op) {
-        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), IndexAliases._DESERIALIZER);
-
+        setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), IndexAliases._DESERIALIZER);
     }
-
 }

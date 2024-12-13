@@ -30,17 +30,22 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices.update_aliases;
+
+import javax.annotation.Generated;
 
 /**
  * Base interface for {@link Action} variants.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public interface ActionVariant {
-
     Action.Kind _actionKind();
 
-    default Action _toAction() {
+    default Action toAction() {
         return new Action(this);
     }
-
 }

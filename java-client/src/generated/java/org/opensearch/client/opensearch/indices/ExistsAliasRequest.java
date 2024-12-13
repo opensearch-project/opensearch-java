@@ -30,13 +30,20 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
@@ -46,55 +53,58 @@ import org.opensearch.client.transport.endpoints.BooleanEndpoint;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.exists_alias.Request
 
 /**
  * Returns information about whether a particular alias exists.
- *
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ExistsAliasRequest extends RequestBase implements ToCopyableBuilder<ExistsAliasRequest.Builder, ExistsAliasRequest> {
 
-public class ExistsAliasRequest extends RequestBase {
     @Nullable
     private final Boolean allowNoIndices;
 
+    @Nonnull
     private final List<ExpandWildcard> expandWildcards;
 
     @Nullable
     private final Boolean ignoreUnavailable;
 
+    @Nonnull
     private final List<String> index;
 
     @Nullable
     private final Boolean local;
 
+    @Nonnull
     private final List<String> name;
 
     // ---------------------------------------------------------------------------------------------
 
     private ExistsAliasRequest(Builder builder) {
-
         this.allowNoIndices = builder.allowNoIndices;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.ignoreUnavailable = builder.ignoreUnavailable;
         this.index = ApiTypeHelper.unmodifiable(builder.index);
         this.local = builder.local;
         this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
-
     }
 
-    public static ExistsAliasRequest of(Function<Builder, ObjectBuilder<ExistsAliasRequest>> fn) {
+    public static ExistsAliasRequest of(Function<ExistsAliasRequest.Builder, ObjectBuilder<ExistsAliasRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Whether to ignore if a wildcard indices expression resolves into no concrete
-     * indices. (This includes <code>_all</code> string or when no indices have been
-     * specified)
+     * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets only
+     * missing or closed indexes. This behavior applies even if the request targets other open indexes.
      * <p>
      * API name: {@code allow_no_indices}
+     * </p>
      */
     @Nullable
     public final Boolean allowNoIndices() {
@@ -102,20 +112,23 @@ public class ExistsAliasRequest extends RequestBase {
     }
 
     /**
-     * Whether to expand wildcard expression to concrete indices that are open,
-     * closed or both.
+     * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
+     * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>. Valid values are:
+     * <code>all</code>, <code>open</code>, <code>closed</code>, <code>hidden</code>, <code>none</code>.
      * <p>
      * API name: {@code expand_wildcards}
+     * </p>
      */
+    @Nonnull
     public final List<ExpandWildcard> expandWildcards() {
         return this.expandWildcards;
     }
 
     /**
-     * Whether specified concrete indices should be ignored when unavailable
-     * (missing or closed)
+     * If <code>false</code>, requests that include a missing data stream or index in the target indexes or data streams return an error.
      * <p>
      * API name: {@code ignore_unavailable}
+     * </p>
      */
     @Nullable
     public final Boolean ignoreUnavailable() {
@@ -123,19 +136,22 @@ public class ExistsAliasRequest extends RequestBase {
     }
 
     /**
-     * A comma-separated list of index names to filter aliases
+     * Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>). To target all data
+     * streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
      * <p>
      * API name: {@code index}
+     * </p>
      */
+    @Nonnull
     public final List<String> index() {
         return this.index;
     }
 
     /**
-     * Return local information, do not retrieve the state from cluster-manager node
-     * (default: false)
+     * If <code>true</code>, the request retrieves information from the local node only.
      * <p>
      * API name: {@code local}
+     * </p>
      */
     @Nullable
     public final Boolean local() {
@@ -143,141 +159,206 @@ public class ExistsAliasRequest extends RequestBase {
     }
 
     /**
-     * Required - A comma-separated list of alias names to return
+     * Required - Comma-separated list of aliases to check. Supports wildcards (<code>*</code>).
      * <p>
      * API name: {@code name}
+     * </p>
      */
+    @Nonnull
     public final List<String> name() {
         return this.name;
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ExistsAliasRequest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsAliasRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ExistsAliasRequest> {
         @Nullable
         private Boolean allowNoIndices;
-
         @Nullable
         private List<ExpandWildcard> expandWildcards;
-
         @Nullable
         private Boolean ignoreUnavailable;
-
         @Nullable
         private List<String> index;
-
         @Nullable
         private Boolean local;
-
         private List<String> name;
 
+        public Builder() {}
+
+        private Builder(ExistsAliasRequest o) {
+            this.allowNoIndices = o.allowNoIndices;
+            this.expandWildcards = _listCopy(o.expandWildcards);
+            this.ignoreUnavailable = o.ignoreUnavailable;
+            this.index = _listCopy(o.index);
+            this.local = o.local;
+            this.name = _listCopy(o.name);
+        }
+
+        private Builder(Builder o) {
+            this.allowNoIndices = o.allowNoIndices;
+            this.expandWildcards = _listCopy(o.expandWildcards);
+            this.ignoreUnavailable = o.ignoreUnavailable;
+            this.index = _listCopy(o.index);
+            this.local = o.local;
+            this.name = _listCopy(o.name);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
-         * Whether to ignore if a wildcard indices expression resolves into no concrete
-         * indices. (This includes <code>_all</code> string or when no indices have been
-         * specified)
+         * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets
+         * only missing or closed indexes. This behavior applies even if the request targets other open indexes.
          * <p>
          * API name: {@code allow_no_indices}
+         * </p>
          */
+        @Nonnull
         public final Builder allowNoIndices(@Nullable Boolean value) {
             this.allowNoIndices = value;
             return this;
         }
 
         /**
-         * Whether to expand wildcard expression to concrete indices that are open,
-         * closed or both.
+         * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
+         * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>. Valid values are:
+         * <code>all</code>, <code>open</code>, <code>closed</code>, <code>hidden</code>, <code>none</code>.
          * <p>
          * API name: {@code expand_wildcards}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder expandWildcards(List<ExpandWildcard> list) {
             this.expandWildcards = _listAddAll(this.expandWildcards, list);
             return this;
         }
 
         /**
-         * Whether to expand wildcard expression to concrete indices that are open,
-         * closed or both.
+         * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
+         * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>. Valid values are:
+         * <code>all</code>, <code>open</code>, <code>closed</code>, <code>hidden</code>, <code>none</code>.
          * <p>
          * API name: {@code expand_wildcards}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>expandWildcards</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
             this.expandWildcards = _listAdd(this.expandWildcards, value, values);
             return this;
         }
 
         /**
-         * Whether specified concrete indices should be ignored when unavailable
-         * (missing or closed)
+         * If <code>false</code>, requests that include a missing data stream or index in the target indexes or data streams return an
+         * error.
          * <p>
          * API name: {@code ignore_unavailable}
+         * </p>
          */
+        @Nonnull
         public final Builder ignoreUnavailable(@Nullable Boolean value) {
             this.ignoreUnavailable = value;
             return this;
         }
 
         /**
-         * A comma-separated list of index names to filter aliases
+         * Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>). To target all
+         * data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>index</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder index(List<String> list) {
             this.index = _listAddAll(this.index, list);
             return this;
         }
 
         /**
-         * A comma-separated list of index names to filter aliases
+         * Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>). To target all
+         * data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>index</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder index(String value, String... values) {
             this.index = _listAdd(this.index, value, values);
             return this;
         }
 
         /**
-         * Return local information, do not retrieve the state from cluster-manager node
-         * (default: false)
+         * If <code>true</code>, the request retrieves information from the local node only.
          * <p>
          * API name: {@code local}
+         * </p>
          */
+        @Nonnull
         public final Builder local(@Nullable Boolean value) {
             this.local = value;
             return this;
         }
 
         /**
-         * Required - A comma-separated list of alias names to return
+         * Required - Comma-separated list of aliases to check. Supports wildcards (<code>*</code>).
          * <p>
          * API name: {@code name}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>name</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder name(List<String> list) {
             this.name = _listAddAll(this.name, list);
             return this;
         }
 
         /**
-         * Required - A comma-separated list of alias names to return
+         * Required - Comma-separated list of aliases to check. Supports wildcards (<code>*</code>).
          * <p>
          * API name: {@code name}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>name</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder name(String value, String... values) {
             this.name = _listAdd(this.name, value, values);
             return this;
@@ -286,9 +367,10 @@ public class ExistsAliasRequest extends RequestBase {
         /**
          * Builds a {@link ExistsAliasRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ExistsAliasRequest build() {
             _checkSingleUse();
 
@@ -302,64 +384,77 @@ public class ExistsAliasRequest extends RequestBase {
      * Endpoint "{@code indices.exists_alias}".
      */
     public static final Endpoint<ExistsAliasRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
-        "opensearch/indices.exists_alias",
-
         // Request method
-        request -> {
-            return "HEAD";
-
-        },
-
+        request -> "HEAD",
         // Request path
         request -> {
-            final int _name = 1 << 0;
-            final int _index = 1 << 1;
+            final int _index = 1 << 0;
+            final int _name = 1 << 1;
 
             int propsSet = 0;
 
-            propsSet |= _name;
             if (ApiTypeHelper.isDefined(request.index())) propsSet |= _index;
+            propsSet |= _name;
 
-            if (propsSet == (_name)) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_alias");
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-                return buf.toString();
-            }
             if (propsSet == (_index | _name)) {
                 StringBuilder buf = new StringBuilder();
                 buf.append("/");
-                SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-                buf.append("/_alias");
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                SimpleEndpoint.pathEncode(String.join(",", request.index), buf);
+                buf.append("/_alias/");
+                SimpleEndpoint.pathEncode(String.join(",", request.name), buf);
                 return buf.toString();
             }
+            if (propsSet == (_name)) {
+                StringBuilder buf = new StringBuilder();
+                buf.append("/_alias/");
+                SimpleEndpoint.pathEncode(String.join(",", request.name), buf);
+                return buf.toString();
+            }
+
             throw SimpleEndpoint.noPathTemplateFound("path");
-
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
+            if (request.allowNoIndices != null) {
+                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+            }
             if (ApiTypeHelper.isDefined(request.expandWildcards)) {
                 params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
             }
             if (request.ignoreUnavailable != null) {
                 params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
             }
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-            }
             if (request.local != null) {
                 params.put("local", String.valueOf(request.local));
             }
             return params;
-
         },
-        SimpleEndpoint.emptyMap(),
-        false,
-        null
+        SimpleEndpoint.emptyMap()
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.allowNoIndices);
+        result = 31 * result + Objects.hashCode(this.expandWildcards);
+        result = 31 * result + Objects.hashCode(this.ignoreUnavailable);
+        result = 31 * result + Objects.hashCode(this.index);
+        result = 31 * result + Objects.hashCode(this.local);
+        result = 31 * result + this.name.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ExistsAliasRequest other = (ExistsAliasRequest) o;
+        return Objects.equals(this.allowNoIndices, other.allowNoIndices)
+            && Objects.equals(this.expandWildcards, other.expandWildcards)
+            && Objects.equals(this.ignoreUnavailable, other.ignoreUnavailable)
+            && Objects.equals(this.index, other.index)
+            && Objects.equals(this.local, other.local)
+            && this.name.equals(other.name);
+    }
 }

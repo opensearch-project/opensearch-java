@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices.update_aliases;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -41,6 +48,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -50,23 +58,15 @@ import org.opensearch.client.util.TaggedUnionUtils;
 // typedef: indices.update_aliases.Action
 
 @JsonpDeserializable
-public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializable {
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class Action implements TaggedUnion<Action.Kind, ActionVariant>, PlainJsonSerializable {
     /**
      * {@link Action} variant kinds.
      */
-    /**
-     * {@link Action} variant kinds.
-     */
-
     public enum Kind implements JsonEnum {
         Add("add"),
-
         Remove("remove"),
-
-        RemoveIndex("remove_index"),
-
-        ;
+        RemoveIndex("remove_index");
 
         private final String jsonValue;
 
@@ -74,14 +74,14 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
             this.jsonValue = jsonValue;
         }
 
+        @Override
         public String jsonValue() {
-            return this.jsonValue;
+            return jsonValue;
         }
-
     }
 
     private final Kind _kind;
-    private final Object _value;
+    private final ActionVariant _value;
 
     @Override
     public final Kind _kind() {
@@ -89,25 +89,21 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
     }
 
     @Override
-    public final Object _get() {
+    public final ActionVariant _get() {
         return _value;
     }
 
     public Action(ActionVariant value) {
-
         this._kind = ApiTypeHelper.requireNonNull(value._actionKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
-
     }
 
     private Action(Builder builder) {
-
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
     }
 
-    public static Action of(Function<Builder, ObjectBuilder<Action>> fn) {
+    public static Action of(Function<Action.Builder, ObjectBuilder<Action>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -121,8 +117,7 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
     /**
      * Get the {@code add} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code add} kind.
+     * @throws IllegalStateException if the current variant is not the {@code add} kind.
      */
     public AddAction add() {
         return TaggedUnionUtils.get(this, Kind.Add);
@@ -138,8 +133,7 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
     /**
      * Get the {@code remove} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code remove} kind.
+     * @throws IllegalStateException if the current variant is not the {@code remove} kind.
      */
     public RemoveAction remove() {
         return TaggedUnionUtils.get(this, Kind.Remove);
@@ -155,31 +149,42 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
     /**
      * Get the {@code remove_index} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code remove_index} kind.
+     * @throws IllegalStateException if the current variant is not the {@code remove_index} kind.
      */
     public RemoveIndexAction removeIndex() {
         return TaggedUnionUtils.get(this, Kind.RemoveIndex);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeStartObject();
-
         generator.writeKey(_kind.jsonValue());
         if (_value instanceof JsonpSerializable) {
             ((JsonpSerializable) _value).serialize(generator, mapper);
         }
-
         generator.writeEnd();
+    }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Action> {
         private Kind _kind;
-        private Object _value;
+        private ActionVariant _value;
+
+        public Builder() {}
+
+        private Builder(Action o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         public ObjectBuilder<Action> add(AddAction v) {
             this._kind = Kind.Add;
@@ -211,19 +216,17 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
             return this.removeIndex(fn.apply(new RemoveIndexAction.Builder()).build());
         }
 
+        @Override
         public Action build() {
             _checkSingleUse();
             return new Action(this);
         }
-
     }
 
     protected static void setupActionDeserializer(ObjectDeserializer<Builder> op) {
-
         op.add(Builder::add, AddAction._DESERIALIZER, "add");
         op.add(Builder::remove, RemoveAction._DESERIALIZER, "remove");
         op.add(Builder::removeIndex, RemoveIndexAction._DESERIALIZER, "remove_index");
-
     }
 
     public static final JsonpDeserializer<Action> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
@@ -231,4 +234,20 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
         Action::setupActionDeserializer,
         Builder::build
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Action other = (Action) o;
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
 }

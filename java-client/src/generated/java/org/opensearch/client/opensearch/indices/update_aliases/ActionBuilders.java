@@ -30,20 +30,39 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch.indices;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
-import org.opensearch.client.json.JsonpDeserializer;
+package org.opensearch.client.opensearch.indices.update_aliases;
 
-// typedef: indices.exists_alias.Response
+import javax.annotation.Generated;
 
-public class ExistsAliasResponse {
-    public ExistsAliasResponse() {}
+/**
+ * Builders for {@link Action} variants.
+ */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ActionBuilders {
+    private ActionBuilders() {}
 
     /**
-     * Singleton instance for {@link ExistsAliasResponse}.
+     * Creates a builder for the {@link AddAction add} {@code Action} variant.
      */
-    public static final ExistsAliasResponse _INSTANCE = new ExistsAliasResponse();
+    public static AddAction.Builder add() {
+        return new AddAction.Builder();
+    }
 
-    public static final JsonpDeserializer<ExistsAliasResponse> _DESERIALIZER = JsonpDeserializer.fixedValue(ExistsAliasResponse._INSTANCE);
+    /**
+     * Creates a builder for the {@link RemoveAction remove} {@code Action} variant.
+     */
+    public static RemoveAction.Builder remove() {
+        return new RemoveAction.Builder();
+    }
 
+    /**
+     * Creates a builder for the {@link RemoveIndexAction remove_index} {@code Action} variant.
+     */
+    public static RemoveIndexAction.Builder removeIndex() {
+        return new RemoveIndexAction.Builder();
+    }
 }

@@ -20,7 +20,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.NotImplementedException;
@@ -237,13 +236,11 @@ public class SpecTransformer {
                 }
             });
 
-        var bodyFieldNames = (shape.hasDelegatedBodyField()
-            ? (ObjectShapeBase) shape.getDelegatedBodyField().getType().getTargetShape().orElseThrow()
-            : shape).getBodyFields().stream().map(Field::getWireName).collect(Collectors.toSet());
+        var seenQueryParams = new HashSet<String>();
 
         variants.stream()
             .flatMap(v -> v.getAllRelevantParameters(In.Query).stream())
-            .filter(p -> !p.isGlobal() && !bodyFieldNames.contains(p.getName().orElseThrow()))
+            .filter(p -> seenQueryParams.add(p.getName().orElseThrow()) && !p.isGlobal())
             .map(this::visit)
             .forEachOrdered(shape::addQueryParam);
 

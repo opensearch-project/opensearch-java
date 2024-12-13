@@ -53,6 +53,7 @@ public class CodeGenerator {
             namespace(is("indices")),
             name(
                 or(
+                    contains("alias"),
                     contains("data_stream"),
                     and(endsWith("mapping"), isNot("get_field_mapping")),
                     endsWith("settings"),

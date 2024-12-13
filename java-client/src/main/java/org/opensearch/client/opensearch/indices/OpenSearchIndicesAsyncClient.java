@@ -41,7 +41,6 @@ import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
-import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.util.ObjectBuilder;
 
 /**
@@ -248,39 +247,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return close(fn.apply(new CloseIndexRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.delete_alias
-
-    /**
-     * Deletes an alias.
-     *
-     *
-     */
-
-    public CompletableFuture<DeleteAliasResponse> deleteAlias(DeleteAliasRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteAliasRequest,
-            DeleteAliasResponse,
-            ErrorResponse>) DeleteAliasRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Deletes an alias.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteAliasRequest}
-     *
-     */
-
-    public final CompletableFuture<DeleteAliasResponse> deleteAlias(
-        Function<DeleteAliasRequest.Builder, ObjectBuilder<DeleteAliasRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.disk_usage
 
     /**
@@ -311,38 +277,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
     public final CompletableFuture<DiskUsageResponse> diskUsage(Function<DiskUsageRequest.Builder, ObjectBuilder<DiskUsageRequest>> fn)
         throws IOException, OpenSearchException {
         return diskUsage(fn.apply(new DiskUsageRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: indices.exists_alias
-
-    /**
-     * Returns information about whether a particular alias exists.
-     *
-     *
-     */
-
-    public CompletableFuture<BooleanResponse> existsAlias(ExistsAliasRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ExistsAliasRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ExistsAliasRequest,
-            BooleanResponse,
-            ErrorResponse>) ExistsAliasRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about whether a particular alias exists.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ExistsAliasRequest}
-     *
-     */
-
-    public final CompletableFuture<BooleanResponse> existsAlias(Function<ExistsAliasRequest.Builder, ObjectBuilder<ExistsAliasRequest>> fn)
-        throws IOException, OpenSearchException {
-        return existsAlias(fn.apply(new ExistsAliasRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.flush
@@ -431,48 +365,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
             ForcemergeRequest._ENDPOINT,
             this.transportOptions
         );
-    }
-
-    // ----- Endpoint: indices.get_alias
-
-    /**
-     * Returns an alias.
-     *
-     *
-     */
-
-    public CompletableFuture<GetAliasResponse> getAlias(GetAliasRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetAliasRequest, GetAliasResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetAliasRequest,
-            GetAliasResponse,
-            ErrorResponse>) GetAliasRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns an alias.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetAliasRequest}
-     *
-     */
-
-    public final CompletableFuture<GetAliasResponse> getAlias(Function<GetAliasRequest.Builder, ObjectBuilder<GetAliasRequest>> fn)
-        throws IOException, OpenSearchException {
-        return getAlias(fn.apply(new GetAliasRequest.Builder()).build());
-    }
-
-    /**
-     * Returns an alias.
-     *
-     *
-     */
-
-    public CompletableFuture<GetAliasResponse> getAlias() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(new GetAliasRequest.Builder().build(), GetAliasRequest._ENDPOINT, this.transportOptions);
     }
 
     // ----- Endpoint: indices.get_field_mapping
@@ -585,38 +477,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
     public final CompletableFuture<OpenResponse> open(Function<OpenRequest.Builder, ObjectBuilder<OpenRequest>> fn) throws IOException,
         OpenSearchException {
         return open(fn.apply(new OpenRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: indices.put_alias
-
-    /**
-     * Creates or updates an alias.
-     *
-     *
-     */
-
-    public CompletableFuture<PutAliasResponse> putAlias(PutAliasRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<PutAliasRequest, PutAliasResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            PutAliasRequest,
-            PutAliasResponse,
-            ErrorResponse>) PutAliasRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Creates or updates an alias.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link PutAliasRequest}
-     *
-     */
-
-    public final CompletableFuture<PutAliasResponse> putAlias(Function<PutAliasRequest.Builder, ObjectBuilder<PutAliasRequest>> fn)
-        throws IOException, OpenSearchException {
-        return putAlias(fn.apply(new PutAliasRequest.Builder()).build());
     }
 
     // ----- Endpoint: indices.recovery
@@ -967,53 +827,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return this.transport.performRequestAsync(
             new IndicesStatsRequest.Builder().build(),
             IndicesStatsRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
-    // ----- Endpoint: indices.update_aliases
-
-    /**
-     * Updates index aliases.
-     *
-     *
-     */
-
-    public CompletableFuture<UpdateAliasesResponse> updateAliases(UpdateAliasesRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<UpdateAliasesRequest, UpdateAliasesResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            UpdateAliasesRequest,
-            UpdateAliasesResponse,
-            ErrorResponse>) UpdateAliasesRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Updates index aliases.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link UpdateAliasesRequest}
-     *
-     */
-
-    public final CompletableFuture<UpdateAliasesResponse> updateAliases(
-        Function<UpdateAliasesRequest.Builder, ObjectBuilder<UpdateAliasesRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return updateAliases(fn.apply(new UpdateAliasesRequest.Builder()).build());
-    }
-
-    /**
-     * Updates index aliases.
-     *
-     *
-     */
-
-    public CompletableFuture<UpdateAliasesResponse> updateAliases() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new UpdateAliasesRequest.Builder().build(),
-            UpdateAliasesRequest._ENDPOINT,
             this.transportOptions
         );
     }

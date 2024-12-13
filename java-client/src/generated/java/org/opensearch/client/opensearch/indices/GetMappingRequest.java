@@ -461,9 +461,6 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
             if (request.ignoreUnavailable != null) {
                 params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
             }
-            if (ApiTypeHelper.isDefined(request.index)) {
-                params.put("index", String.join(",", request.index));
-            }
             if (request.local != null) {
                 params.put("local", String.valueOf(request.local));
             }

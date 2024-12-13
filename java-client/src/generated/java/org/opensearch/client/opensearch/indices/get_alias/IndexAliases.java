@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices.get_alias;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -43,30 +49,34 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.indices.AliasDefinition;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.get_alias.IndexAliases
 
 @JsonpDeserializable
-public class IndexAliases implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class IndexAliases implements PlainJsonSerializable, ToCopyableBuilder<IndexAliases.Builder, IndexAliases> {
+
+    @Nonnull
     private final Map<String, AliasDefinition> aliases;
 
     // ---------------------------------------------------------------------------------------------
 
     private IndexAliases(Builder builder) {
-
         this.aliases = ApiTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
-
     }
 
-    public static IndexAliases of(Function<Builder, ObjectBuilder<IndexAliases>> fn) {
+    public static IndexAliases of(Function<IndexAliases.Builder, ObjectBuilder<IndexAliases>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code aliases}
      */
+    @Nonnull
     public final Map<String, AliasDefinition> aliases() {
         return this.aliases;
     }
@@ -74,6 +84,7 @@ public class IndexAliases implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -81,35 +92,58 @@ public class IndexAliases implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.aliases)) {
-            generator.writeKey("aliases");
-            generator.writeStartObject();
-            for (Map.Entry<String, AliasDefinition> item0 : this.aliases.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("aliases");
+        generator.writeStartObject();
+        for (Map.Entry<String, AliasDefinition> item0 : this.aliases.entrySet()) {
+            generator.writeKey(item0.getKey());
+            item0.getValue().serialize(generator, mapper);
         }
-
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IndexAliases}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexAliases> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IndexAliases> {
         private Map<String, AliasDefinition> aliases;
+
+        public Builder() {}
+
+        private Builder(IndexAliases o) {
+            this.aliases = _mapCopy(o.aliases);
+        }
+
+        private Builder(Builder o) {
+            this.aliases = _mapCopy(o.aliases);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code aliases}
+         *
          * <p>
-         * Adds all entries of <code>map</code> to <code>aliases</code>.
+         * Adds all elements of <code>map</code> to <code>aliases</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder aliases(Map<String, AliasDefinition> map) {
             this.aliases = _mapPutAll(this.aliases, map);
             return this;
@@ -117,9 +151,12 @@ public class IndexAliases implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code aliases}
+         *
          * <p>
          * Adds an entry to <code>aliases</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder aliases(String key, AliasDefinition value) {
             this.aliases = _mapPut(this.aliases, key, value);
             return this;
@@ -127,9 +164,12 @@ public class IndexAliases implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code aliases}
+         *
          * <p>
-         * Adds an entry to <code>aliases</code> using a builder lambda.
+         * Adds a value to <code>aliases</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder aliases(String key, Function<AliasDefinition.Builder, ObjectBuilder<AliasDefinition>> fn) {
             return aliases(key, fn.apply(new AliasDefinition.Builder()).build());
         }
@@ -137,9 +177,10 @@ public class IndexAliases implements PlainJsonSerializable {
         /**
          * Builds a {@link IndexAliases}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IndexAliases build() {
             _checkSingleUse();
 
@@ -158,9 +199,21 @@ public class IndexAliases implements PlainJsonSerializable {
     );
 
     protected static void setupIndexAliasesDeserializer(ObjectDeserializer<IndexAliases.Builder> op) {
-
         op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition._DESERIALIZER), "aliases");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.aliases.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        IndexAliases other = (IndexAliases) o;
+        return this.aliases.equals(other.aliases);
+    }
 }

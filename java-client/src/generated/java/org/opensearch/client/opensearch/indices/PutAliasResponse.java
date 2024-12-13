@@ -30,39 +30,78 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.put_alias.Response
 
 @JsonpDeserializable
-public class PutAliasResponse extends AcknowledgedResponseBase {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class PutAliasResponse extends AcknowledgedResponseBase implements ToCopyableBuilder<PutAliasResponse.Builder, PutAliasResponse> {
+
     // ---------------------------------------------------------------------------------------------
 
     private PutAliasResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static PutAliasResponse of(Function<Builder, ObjectBuilder<PutAliasResponse>> fn) {
+    public static PutAliasResponse of(Function<PutAliasResponse.Builder, ObjectBuilder<PutAliasResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PutAliasResponse}.
      */
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, PutAliasResponse> {
 
-    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<PutAliasResponse> {
+        public Builder() {}
+
+        private Builder(PutAliasResponse o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -70,9 +109,10 @@ public class PutAliasResponse extends AcknowledgedResponseBase {
         /**
          * Builds a {@link PutAliasResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PutAliasResponse build() {
             _checkSingleUse();
 
@@ -91,8 +131,22 @@ public class PutAliasResponse extends AcknowledgedResponseBase {
     );
 
     protected static void setupPutAliasResponseDeserializer(ObjectDeserializer<PutAliasResponse.Builder> op) {
-        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-
+        setupAcknowledgedResponseBaseDeserializer(op);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }
