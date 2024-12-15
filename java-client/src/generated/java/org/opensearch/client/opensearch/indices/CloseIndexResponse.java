@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -43,12 +49,19 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
 import org.opensearch.client.opensearch.indices.close.CloseIndexResult;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.close.Response
 
 @JsonpDeserializable
-public class CloseIndexResponse extends AcknowledgedResponseBase {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class CloseIndexResponse extends AcknowledgedResponseBase
+    implements
+        ToCopyableBuilder<CloseIndexResponse.Builder, CloseIndexResponse> {
+
+    @Nonnull
     private final Map<String, CloseIndexResult> indices;
 
     private final boolean shardsAcknowledged;
@@ -57,19 +70,18 @@ public class CloseIndexResponse extends AcknowledgedResponseBase {
 
     private CloseIndexResponse(Builder builder) {
         super(builder);
-
         this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
         this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
-
     }
 
-    public static CloseIndexResponse of(Function<Builder, ObjectBuilder<CloseIndexResponse>> fn) {
+    public static CloseIndexResponse of(Function<CloseIndexResponse.Builder, ObjectBuilder<CloseIndexResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code indices}
      */
+    @Nonnull
     public final Map<String, CloseIndexResult> indices() {
         return this.indices;
     }
@@ -82,40 +94,75 @@ public class CloseIndexResponse extends AcknowledgedResponseBase {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
-        if (ApiTypeHelper.isDefined(this.indices)) {
-            generator.writeKey("indices");
-            generator.writeStartObject();
-            for (Map.Entry<String, CloseIndexResult> item0 : this.indices.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("indices");
+        generator.writeStartObject();
+        for (Map.Entry<String, CloseIndexResult> item0 : this.indices.entrySet()) {
+            generator.writeKey(item0.getKey());
+            item0.getValue().serialize(generator, mapper);
         }
+        generator.writeEnd();
+
         generator.writeKey("shards_acknowledged");
         generator.write(this.shardsAcknowledged);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CloseIndexResponse}.
      */
-
-    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<CloseIndexResponse> {
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, CloseIndexResponse> {
         private Map<String, CloseIndexResult> indices;
-
         private Boolean shardsAcknowledged;
+
+        public Builder() {}
+
+        private Builder(CloseIndexResponse o) {
+            super(o);
+            this.indices = _mapCopy(o.indices);
+            this.shardsAcknowledged = o.shardsAcknowledged;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.indices = _mapCopy(o.indices);
+            this.shardsAcknowledged = o.shardsAcknowledged;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code indices}
+         *
          * <p>
-         * Adds all entries of <code>map</code> to <code>indices</code>.
+         * Adds all elements of <code>map</code> to <code>indices</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder indices(Map<String, CloseIndexResult> map) {
             this.indices = _mapPutAll(this.indices, map);
             return this;
@@ -123,9 +170,12 @@ public class CloseIndexResponse extends AcknowledgedResponseBase {
 
         /**
          * Required - API name: {@code indices}
+         *
          * <p>
          * Adds an entry to <code>indices</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder indices(String key, CloseIndexResult value) {
             this.indices = _mapPut(this.indices, key, value);
             return this;
@@ -133,9 +183,12 @@ public class CloseIndexResponse extends AcknowledgedResponseBase {
 
         /**
          * Required - API name: {@code indices}
+         *
          * <p>
-         * Adds an entry to <code>indices</code> using a builder lambda.
+         * Adds a value to <code>indices</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder indices(String key, Function<CloseIndexResult.Builder, ObjectBuilder<CloseIndexResult>> fn) {
             return indices(key, fn.apply(new CloseIndexResult.Builder()).build());
         }
@@ -143,22 +196,19 @@ public class CloseIndexResponse extends AcknowledgedResponseBase {
         /**
          * Required - API name: {@code shards_acknowledged}
          */
+        @Nonnull
         public final Builder shardsAcknowledged(boolean value) {
             this.shardsAcknowledged = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
         /**
          * Builds a {@link CloseIndexResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CloseIndexResponse build() {
             _checkSingleUse();
 
@@ -177,10 +227,27 @@ public class CloseIndexResponse extends AcknowledgedResponseBase {
     );
 
     protected static void setupCloseIndexResponseDeserializer(ObjectDeserializer<CloseIndexResponse.Builder> op) {
-        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+        setupAcknowledgedResponseBaseDeserializer(op);
         op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(CloseIndexResult._DESERIALIZER), "indices");
         op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + this.indices.hashCode();
+        result = 31 * result + Boolean.hashCode(this.shardsAcknowledged);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CloseIndexResponse other = (CloseIndexResponse) o;
+        return this.indices.equals(other.indices) && this.shardsAcknowledged == other.shardsAcknowledged;
+    }
 }
