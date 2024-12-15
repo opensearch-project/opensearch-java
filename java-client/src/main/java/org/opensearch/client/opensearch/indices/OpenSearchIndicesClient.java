@@ -60,37 +60,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return new OpenSearchIndicesClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: indices.clone
-
-    /**
-     * Clones an index
-     *
-     */
-
-    public CloneIndexResponse clone(CloneIndexRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<CloneIndexRequest, CloneIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            CloneIndexRequest,
-            CloneIndexResponse,
-            ErrorResponse>) CloneIndexRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Clones an index
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link CloneIndexRequest}
-     *
-     */
-
-    public final CloneIndexResponse clone(Function<CloneIndexRequest.Builder, ObjectBuilder<CloneIndexRequest>> fn) throws IOException,
-        OpenSearchException {
-        return clone(fn.apply(new CloneIndexRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.close
 
     /**

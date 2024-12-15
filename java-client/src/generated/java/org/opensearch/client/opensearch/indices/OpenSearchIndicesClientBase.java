@@ -129,6 +129,25 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return clearCache(new ClearCacheRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.clone
+
+    /**
+     * Clones an index.
+     */
+    public CloneIndexResponse clone(CloneIndexRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, CloneIndexRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Clones an index.
+     *
+     * @param fn a function that initializes a builder to create the {@link CloneIndexRequest}
+     */
+    public final CloneIndexResponse clone(Function<CloneIndexRequest.Builder, ObjectBuilder<CloneIndexRequest>> fn) throws IOException,
+        OpenSearchException {
+        return clone(fn.apply(new CloneIndexRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.create
 
     /**
