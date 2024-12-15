@@ -30,13 +30,19 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -44,17 +50,22 @@ import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.status.Request
 
 /**
  * Returns information about the status of a snapshot.
- *
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SnapshotStatusRequest extends RequestBase implements ToCopyableBuilder<SnapshotStatusRequest.Builder, SnapshotStatusRequest> {
 
-public class SnapshotStatusRequest extends RequestBase {
+    @Nullable
+    private final Time clusterManagerTimeout;
+
     @Nullable
     private final Boolean ignoreUnavailable;
 
@@ -63,34 +74,41 @@ public class SnapshotStatusRequest extends RequestBase {
     private final Time masterTimeout;
 
     @Nullable
-    private final Time clusterManagerTimeout;
-
-    @Nullable
     private final String repository;
 
+    @Nonnull
     private final List<String> snapshot;
 
     // ---------------------------------------------------------------------------------------------
 
     private SnapshotStatusRequest(Builder builder) {
-
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.ignoreUnavailable = builder.ignoreUnavailable;
         this.masterTimeout = builder.masterTimeout;
-        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.repository = builder.repository;
         this.snapshot = ApiTypeHelper.unmodifiable(builder.snapshot);
-
     }
 
-    public static SnapshotStatusRequest of(Function<Builder, ObjectBuilder<SnapshotStatusRequest>> fn) {
+    public static SnapshotStatusRequest of(Function<SnapshotStatusRequest.Builder, ObjectBuilder<SnapshotStatusRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Whether to ignore unavailable snapshots, defaults to false which means a
-     * SnapshotMissingException is thrown
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     * </p>
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
+
+    /**
+     * Whether to ignore unavailable snapshots, defaults to <code>false</code> which means a SnapshotMissingException is thrown
      * <p>
      * API name: {@code ignore_unavailable}
+     * </p>
      */
     @Nullable
     public final Boolean ignoreUnavailable() {
@@ -98,9 +116,10 @@ public class SnapshotStatusRequest extends RequestBase {
     }
 
     /**
-     * Explicit operation timeout for connection to master node
+     * Explicit operation timeout for connection to cluster-manager node
      * <p>
      * API name: {@code master_timeout}
+     * </p>
      */
     @Deprecated
     @Nullable
@@ -109,19 +128,10 @@ public class SnapshotStatusRequest extends RequestBase {
     }
 
     /**
-     * Explicit operation timeout for connection to cluster-manager node
-     * <p>
-     * API name: {@code cluster_manager_timeout}
-     */
-    @Nullable
-    public final Time clusterManagerTimeout() {
-        return this.clusterManagerTimeout;
-    }
-
-    /**
      * A repository name
      * <p>
      * API name: {@code repository}
+     * </p>
      */
     @Nullable
     public final String repository() {
@@ -132,90 +142,132 @@ public class SnapshotStatusRequest extends RequestBase {
      * A comma-separated list of snapshot names
      * <p>
      * API name: {@code snapshot}
+     * </p>
      */
+    @Nonnull
     public final List<String> snapshot() {
         return this.snapshot;
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SnapshotStatusRequest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotStatusRequest> {
-        @Nullable
-        private Boolean ignoreUnavailable;
-
-        @Deprecated
-        @Nullable
-        private Time masterTimeout;
-
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotStatusRequest> {
         @Nullable
         private Time clusterManagerTimeout;
-
+        @Nullable
+        private Boolean ignoreUnavailable;
+        @Nullable
+        private Time masterTimeout;
         @Nullable
         private String repository;
-
         @Nullable
         private List<String> snapshot;
 
-        /**
-         * Whether to ignore unavailable snapshots, defaults to false which means a
-         * SnapshotMissingException is thrown
-         * <p>
-         * API name: {@code ignore_unavailable}
-         */
-        public final Builder ignoreUnavailable(@Nullable Boolean value) {
-            this.ignoreUnavailable = value;
-            return this;
+        public Builder() {}
+
+        private Builder(SnapshotStatusRequest o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.ignoreUnavailable = o.ignoreUnavailable;
+            this.masterTimeout = o.masterTimeout;
+            this.repository = o.repository;
+            this.snapshot = _listCopy(o.snapshot);
+        }
+
+        private Builder(Builder o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.ignoreUnavailable = o.ignoreUnavailable;
+            this.masterTimeout = o.masterTimeout;
+            this.repository = o.repository;
+            this.snapshot = _listCopy(o.snapshot);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
         }
 
         /**
-         * Explicit operation timeout for connection to master node
-         * <p>
-         * API name: {@code master_timeout}
-         */
-        @Deprecated
-        public final Builder masterTimeout(@Nullable Time value) {
-            this.masterTimeout = value;
-            return this;
-        }
-
-        /**
-         * Explicit operation timeout for connection to master node
-         * <p>
-         * API name: {@code master_timeout}
-         */
-        @Deprecated
-        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.masterTimeout(fn.apply(new Time.Builder()).build());
-        }
-
-        /**
-         * Explicit operation timeout for connection to cluster-manager node
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
         }
 
         /**
-         * Explicit operation timeout for connection to cluster-manager node
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+            return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * Whether to ignore unavailable snapshots, defaults to <code>false</code> which means a SnapshotMissingException is thrown
+         * <p>
+         * API name: {@code ignore_unavailable}
+         * </p>
+         */
+        @Nonnull
+        public final Builder ignoreUnavailable(@Nullable Boolean value) {
+            this.ignoreUnavailable = value;
+            return this;
+        }
+
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
+
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return masterTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
          * A repository name
          * <p>
          * API name: {@code repository}
+         * </p>
          */
+        @Nonnull
         public final Builder repository(@Nullable String value) {
             this.repository = value;
             return this;
@@ -225,9 +277,13 @@ public class SnapshotStatusRequest extends RequestBase {
          * A comma-separated list of snapshot names
          * <p>
          * API name: {@code snapshot}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>snapshot</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder snapshot(List<String> list) {
             this.snapshot = _listAddAll(this.snapshot, list);
             return this;
@@ -237,9 +293,13 @@ public class SnapshotStatusRequest extends RequestBase {
          * A comma-separated list of snapshot names
          * <p>
          * API name: {@code snapshot}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>snapshot</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder snapshot(String value, String... values) {
             this.snapshot = _listAdd(this.snapshot, value, values);
             return this;
@@ -248,9 +308,10 @@ public class SnapshotStatusRequest extends RequestBase {
         /**
          * Builds a {@link SnapshotStatusRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SnapshotStatusRequest build() {
             _checkSingleUse();
 
@@ -264,13 +325,8 @@ public class SnapshotStatusRequest extends RequestBase {
      * Endpoint "{@code snapshot.status}".
      */
     public static final Endpoint<SnapshotStatusRequest, SnapshotStatusResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "GET";
-
-        },
-
+        request -> "GET",
         // Request path
         request -> {
             final int _repository = 1 << 0;
@@ -282,50 +338,66 @@ public class SnapshotStatusRequest extends RequestBase {
             if (ApiTypeHelper.isDefined(request.snapshot())) propsSet |= _snapshot;
 
             if (propsSet == 0) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_snapshot");
-                buf.append("/_status");
-                return buf.toString();
+                return "/_snapshot/_status";
             }
             if (propsSet == (_repository)) {
                 StringBuilder buf = new StringBuilder();
-                buf.append("/_snapshot");
-                buf.append("/");
+                buf.append("/_snapshot/");
                 SimpleEndpoint.pathEncode(request.repository, buf);
                 buf.append("/_status");
                 return buf.toString();
             }
             if (propsSet == (_repository | _snapshot)) {
                 StringBuilder buf = new StringBuilder();
-                buf.append("/_snapshot");
-                buf.append("/");
+                buf.append("/_snapshot/");
                 SimpleEndpoint.pathEncode(request.repository, buf);
                 buf.append("/");
-                SimpleEndpoint.pathEncode(request.snapshot.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                SimpleEndpoint.pathEncode(String.join(",", request.snapshot), buf);
                 buf.append("/_status");
                 return buf.toString();
             }
+
             throw SimpleEndpoint.noPathTemplateFound("path");
-
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
             if (request.clusterManagerTimeout != null) {
                 params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
             }
             if (request.ignoreUnavailable != null) {
                 params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
             }
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         false,
         SnapshotStatusResponse._DESERIALIZER
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
+        result = 31 * result + Objects.hashCode(this.ignoreUnavailable);
+        result = 31 * result + Objects.hashCode(this.masterTimeout);
+        result = 31 * result + Objects.hashCode(this.repository);
+        result = 31 * result + Objects.hashCode(this.snapshot);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SnapshotStatusRequest other = (SnapshotStatusRequest) o;
+        return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
+            && Objects.equals(this.ignoreUnavailable, other.ignoreUnavailable)
+            && Objects.equals(this.masterTimeout, other.masterTimeout)
+            && Objects.equals(this.repository, other.repository)
+            && Objects.equals(this.snapshot, other.snapshot);
+    }
 }

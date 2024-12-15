@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot.restore;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -43,57 +49,66 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ShardStatistics;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.restore.SnapshotRestore
 
 @JsonpDeserializable
-public class SnapshotRestore implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SnapshotRestore implements PlainJsonSerializable, ToCopyableBuilder<SnapshotRestore.Builder, SnapshotRestore> {
+
+    @Nonnull
     private final List<String> indices;
 
-    private final String snapshot;
-
+    @Nonnull
     private final ShardStatistics shards;
+
+    @Nonnull
+    private final String snapshot;
 
     // ---------------------------------------------------------------------------------------------
 
     private SnapshotRestore(Builder builder) {
-
         this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-        this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
         this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-
+        this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
     }
 
-    public static SnapshotRestore of(Function<Builder, ObjectBuilder<SnapshotRestore>> fn) {
+    public static SnapshotRestore of(Function<SnapshotRestore.Builder, ObjectBuilder<SnapshotRestore>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code indices}
      */
+    @Nonnull
     public final List<String> indices() {
         return this.indices;
     }
 
     /**
-     * Required - API name: {@code snapshot}
-     */
-    public final String snapshot() {
-        return this.snapshot;
-    }
-
-    /**
      * Required - API name: {@code shards}
      */
+    @Nonnull
     public final ShardStatistics shards() {
         return this.shards;
     }
 
     /**
+     * Required - API name: {@code snapshot}
+     */
+    @Nonnull
+    public final String snapshot() {
+        return this.snapshot;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -101,43 +116,69 @@ public class SnapshotRestore implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.indices)) {
-            generator.writeKey("indices");
-            generator.writeStartArray();
-            for (String item0 : this.indices) {
-                generator.write(item0);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("indices");
+        generator.writeStartArray();
+        for (String item0 : this.indices) {
+            generator.write(item0);
         }
-        generator.writeKey("snapshot");
-        generator.write(this.snapshot);
+        generator.writeEnd();
 
         generator.writeKey("shards");
         this.shards.serialize(generator, mapper);
 
+        generator.writeKey("snapshot");
+        generator.write(this.snapshot);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SnapshotRestore}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotRestore> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotRestore> {
         private List<String> indices;
-
+        private ShardStatistics shards;
         private String snapshot;
 
-        private ShardStatistics shards;
+        public Builder() {}
+
+        private Builder(SnapshotRestore o) {
+            this.indices = _listCopy(o.indices);
+            this.shards = o.shards;
+            this.snapshot = o.snapshot;
+        }
+
+        private Builder(Builder o) {
+            this.indices = _listCopy(o.indices);
+            this.shards = o.shards;
+            this.snapshot = o.snapshot;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code indices}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>indices</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder indices(List<String> list) {
             this.indices = _listAddAll(this.indices, list);
             return this;
@@ -145,25 +186,21 @@ public class SnapshotRestore implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code indices}
+         *
          * <p>
          * Adds one or more values to <code>indices</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder indices(String value, String... values) {
             this.indices = _listAdd(this.indices, value, values);
             return this;
         }
 
         /**
-         * Required - API name: {@code snapshot}
-         */
-        public final Builder snapshot(String value) {
-            this.snapshot = value;
-            return this;
-        }
-
-        /**
          * Required - API name: {@code shards}
          */
+        @Nonnull
         public final Builder shards(ShardStatistics value) {
             this.shards = value;
             return this;
@@ -172,16 +209,27 @@ public class SnapshotRestore implements PlainJsonSerializable {
         /**
          * Required - API name: {@code shards}
          */
+        @Nonnull
         public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-            return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+            return shards(fn.apply(new ShardStatistics.Builder()).build());
+        }
+
+        /**
+         * Required - API name: {@code snapshot}
+         */
+        @Nonnull
+        public final Builder snapshot(String value) {
+            this.snapshot = value;
+            return this;
         }
 
         /**
          * Builds a {@link SnapshotRestore}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SnapshotRestore build() {
             _checkSingleUse();
 
@@ -200,11 +248,25 @@ public class SnapshotRestore implements PlainJsonSerializable {
     );
 
     protected static void setupSnapshotRestoreDeserializer(ObjectDeserializer<SnapshotRestore.Builder> op) {
-
         op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "indices");
-        op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
         op.add(Builder::shards, ShardStatistics._DESERIALIZER, "shards");
-
+        op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.indices.hashCode();
+        result = 31 * result + this.shards.hashCode();
+        result = 31 * result + this.snapshot.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SnapshotRestore other = (SnapshotRestore) o;
+        return this.indices.equals(other.indices) && this.shards.equals(other.shards) && this.snapshot.equals(other.snapshot);
+    }
 }

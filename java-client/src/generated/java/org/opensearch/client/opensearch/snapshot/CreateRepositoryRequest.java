@@ -30,12 +30,19 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -49,34 +56,43 @@ import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.create_repository.Request
 
 /**
  * Creates a repository.
- *
  */
 @JsonpDeserializable
-public class CreateRepositoryRequest extends RequestBase implements PlainJsonSerializable {
-    @Deprecated
-    @Nullable
-    private final Time masterTimeout;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class CreateRepositoryRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<CreateRepositoryRequest.Builder, CreateRepositoryRequest> {
 
     @Nullable
     private final Time clusterManagerTimeout;
 
+    @Deprecated
+    @Nullable
+    private final Time masterTimeout;
+
+    @Nonnull
     private final String name;
 
     @Nullable
     private final Repository repository;
 
+    @Nonnull
     private final RepositorySettings settings;
 
     @Nullable
     private final Time timeout;
 
+    @Nonnull
     private final String type;
 
     @Nullable
@@ -85,26 +101,36 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
     // ---------------------------------------------------------------------------------------------
 
     private CreateRepositoryRequest(Builder builder) {
-
-        this.masterTimeout = builder.masterTimeout;
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
+        this.masterTimeout = builder.masterTimeout;
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.repository = builder.repository;
         this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
         this.timeout = builder.timeout;
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
         this.verify = builder.verify;
-
     }
 
-    public static CreateRepositoryRequest of(Function<Builder, ObjectBuilder<CreateRepositoryRequest>> fn) {
+    public static CreateRepositoryRequest of(Function<CreateRepositoryRequest.Builder, ObjectBuilder<CreateRepositoryRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Explicit operation timeout for connection to master node
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     * </p>
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
+
+    /**
+     * Explicit operation timeout for connection to cluster-manager node
      * <p>
      * API name: {@code master_timeout}
+     * </p>
      */
     @Deprecated
     @Nullable
@@ -113,20 +139,12 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
     }
 
     /**
-     * Explicit operation timeout for connection to cluster-manager node
-     * <p>
-     * API name: {@code cluster_manager_timeout}
-     */
-    @Nullable
-    public final Time clusterManagerTimeout() {
-        return this.clusterManagerTimeout;
-    }
-
-    /**
      * Required - A repository name
      * <p>
      * API name: {@code repository}
+     * </p>
      */
+    @Nonnull
     public final String name() {
         return this.name;
     }
@@ -142,6 +160,7 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
     /**
      * Required - API name: {@code settings}
      */
+    @Nonnull
     public final RepositorySettings settings() {
         return this.settings;
     }
@@ -150,6 +169,7 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
      * Explicit operation timeout
      * <p>
      * API name: {@code timeout}
+     * </p>
      */
     @Nullable
     public final Time timeout() {
@@ -159,6 +179,7 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
     /**
      * Required - API name: {@code type}
      */
+    @Nonnull
     public final String type() {
         return this.type;
     }
@@ -167,6 +188,7 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
      * Whether to verify the repository after creation
      * <p>
      * API name: {@code verify}
+     * </p>
      */
     @Nullable
     public final Boolean verify() {
@@ -176,6 +198,7 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -183,94 +206,133 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (this.repository != null) {
             generator.writeKey("repository");
             this.repository.serialize(generator, mapper);
-
         }
+
         generator.writeKey("settings");
         this.settings.serialize(generator, mapper);
 
         generator.writeKey("type");
         generator.write(this.type);
+    }
+    // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
     }
 
-    // ---------------------------------------------------------------------------------------------
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
 
     /**
      * Builder for {@link CreateRepositoryRequest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateRepositoryRequest> {
-        @Deprecated
-        @Nullable
-        private Time masterTimeout;
-
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CreateRepositoryRequest> {
         @Nullable
         private Time clusterManagerTimeout;
-
+        @Nullable
+        private Time masterTimeout;
         private String name;
-
         @Nullable
         private Repository repository;
-
         private RepositorySettings settings;
-
         @Nullable
         private Time timeout;
-
         private String type;
-
         @Nullable
         private Boolean verify;
 
-        /**
-         * Explicit operation timeout for connection to master node
-         * <p>
-         * API name: {@code master_timeout}
-         */
-        @Deprecated
-        public final Builder masterTimeout(@Nullable Time value) {
-            this.masterTimeout = value;
-            return this;
+        public Builder() {}
+
+        private Builder(CreateRepositoryRequest o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.masterTimeout = o.masterTimeout;
+            this.name = o.name;
+            this.repository = o.repository;
+            this.settings = o.settings;
+            this.timeout = o.timeout;
+            this.type = o.type;
+            this.verify = o.verify;
+        }
+
+        private Builder(Builder o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.masterTimeout = o.masterTimeout;
+            this.name = o.name;
+            this.repository = o.repository;
+            this.settings = o.settings;
+            this.timeout = o.timeout;
+            this.type = o.type;
+            this.verify = o.verify;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
         }
 
         /**
-         * Explicit operation timeout for connection to master node
-         * <p>
-         * API name: {@code master_timeout}
-         */
-        @Deprecated
-        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.masterTimeout(fn.apply(new Time.Builder()).build());
-        }
-
-        /**
-         * Explicit operation timeout for connection to cluster-manager node
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
         }
 
         /**
-         * Explicit operation timeout for connection to cluster-manager node
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+            return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
+
+        /**
+         * Explicit operation timeout for connection to cluster-manager node
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return masterTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
          * Required - A repository name
          * <p>
          * API name: {@code repository}
+         * </p>
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -279,6 +341,7 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
         /**
          * API name: {@code repository}
          */
+        @Nonnull
         public final Builder repository(@Nullable Repository value) {
             this.repository = value;
             return this;
@@ -287,13 +350,15 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
         /**
          * API name: {@code repository}
          */
+        @Nonnull
         public final Builder repository(Function<Repository.Builder, ObjectBuilder<Repository>> fn) {
-            return this.repository(fn.apply(new Repository.Builder()).build());
+            return repository(fn.apply(new Repository.Builder()).build());
         }
 
         /**
          * Required - API name: {@code settings}
          */
+        @Nonnull
         public final Builder settings(RepositorySettings value) {
             this.settings = value;
             return this;
@@ -302,15 +367,18 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
         /**
          * Required - API name: {@code settings}
          */
+        @Nonnull
         public final Builder settings(Function<RepositorySettings.Builder, ObjectBuilder<RepositorySettings>> fn) {
-            return this.settings(fn.apply(new RepositorySettings.Builder()).build());
+            return settings(fn.apply(new RepositorySettings.Builder()).build());
         }
 
         /**
          * Explicit operation timeout
          * <p>
          * API name: {@code timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
             return this;
@@ -320,14 +388,17 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
          * Explicit operation timeout
          * <p>
          * API name: {@code timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.timeout(fn.apply(new Time.Builder()).build());
+            return timeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
          * Required - API name: {@code type}
          */
+        @Nonnull
         public final Builder type(String value) {
             this.type = value;
             return this;
@@ -337,7 +408,9 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
          * Whether to verify the repository after creation
          * <p>
          * API name: {@code verify}
+         * </p>
          */
+        @Nonnull
         public final Builder verify(@Nullable Boolean value) {
             this.verify = value;
             return this;
@@ -346,9 +419,10 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
         /**
          * Builds a {@link CreateRepositoryRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CreateRepositoryRequest build() {
             _checkSingleUse();
 
@@ -367,11 +441,10 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
     );
 
     protected static void setupCreateRepositoryRequestDeserializer(ObjectDeserializer<CreateRepositoryRequest.Builder> op) {
-
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::repository, Repository._DESERIALIZER, "repository");
         op.add(Builder::settings, RepositorySettings._DESERIALIZER, "settings");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -380,52 +453,63 @@ public class CreateRepositoryRequest extends RequestBase implements PlainJsonSer
      * Endpoint "{@code snapshot.create_repository}".
      */
     public static final Endpoint<CreateRepositoryRequest, CreateRepositoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "PUT";
-
-        },
-
+        request -> "PUT",
         // Request path
         request -> {
-            final int _name = 1 << 0;
-
-            int propsSet = 0;
-
-            propsSet |= _name;
-
-            if (propsSet == (_name)) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_snapshot");
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.name, buf);
-                return buf.toString();
-            }
-            throw SimpleEndpoint.noPathTemplateFound("path");
-
+            StringBuilder buf = new StringBuilder();
+            buf.append("/_snapshot/");
+            SimpleEndpoint.pathEncode(request.name, buf);
+            return buf.toString();
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
             if (request.clusterManagerTimeout != null) {
                 params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
             }
-            if (request.verify != null) {
-                params.put("verify", String.valueOf(request.verify));
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
             }
             if (request.timeout != null) {
                 params.put("timeout", request.timeout._toJsonString());
             }
+            if (request.verify != null) {
+                params.put("verify", String.valueOf(request.verify));
+            }
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         true,
         CreateRepositoryResponse._DESERIALIZER
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
+        result = 31 * result + Objects.hashCode(this.masterTimeout);
+        result = 31 * result + this.name.hashCode();
+        result = 31 * result + Objects.hashCode(this.repository);
+        result = 31 * result + this.settings.hashCode();
+        result = 31 * result + Objects.hashCode(this.timeout);
+        result = 31 * result + this.type.hashCode();
+        result = 31 * result + Objects.hashCode(this.verify);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CreateRepositoryRequest other = (CreateRepositoryRequest) o;
+        return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
+            && Objects.equals(this.masterTimeout, other.masterTimeout)
+            && this.name.equals(other.name)
+            && Objects.equals(this.repository, other.repository)
+            && this.settings.equals(other.settings)
+            && Objects.equals(this.timeout, other.timeout)
+            && this.type.equals(other.type)
+            && Objects.equals(this.verify, other.verify);
+    }
 }

@@ -161,3 +161,34 @@ After:
 ### DataStreamIndexInfo renamed to DataStreamIndex
 - The `DataStreamIndexInfo` class has been renamed to `DataStreamIndex`, this affects:
   - `DataStream`'s (previously `DataStreamInfo`) `indices` field.
+
+### RepositorySettings
+- The `concurrentStreams` property is now of type `Integer` instead of `String`.
+
+### snapshot.RestoreRequest renamed to snapshot.RestoreSnapshotRequest
+- The `snapshot.RestoreRequest` class has been renamed to `snapshot.RestoreSnapshotRequest`.
+- The `indexSettings` property has been corrected to be of type `IndexSettings` instead of `PutIndicesSettingsRequest`.
+
+### snapshot.RestoreResponse renamed to snapshot.RestoreSnapshotResponse
+- The `snapshot.RestoreResponse` class has been renamed to `snapshot.RestoreSnapshotResponse`.
+
+### snapshot.Status renamed to snapshot.SnapshotStatus
+- The `snapshot.Status` class has been renamed to `snapshot.SnapshotStatus`, this affects:
+  - `snapshot.SnapshotStatusResponse`'s `snapshots` field.
+
+### snapshot.ShardStats renamed to snapshot.SnapshotShardStats
+- The `snapshot.ShardStats` class has been renamed to `snapshot.SnapshotShardStats`, this affects:
+  - `snapshot.SnapshotStatus`'s (previous `snapshot.Status`) `shardsStats` field.
+  - `snapshot.SnapshotIndexStats`'s `shardsStats` field.
+
+### snapshot.ShardsStatsStage renamed to snapshot.SnapshotShardsStatsStage
+- The `snapshot.ShardsStatsStage` class has been renamed to `snapshot.SnapshotShardsStatsStage`, this affects:
+  - `snapshot.SnapshotShardsStatus`'s `stage` field.
+
+### snapshot.ShardsStatsSummary renamed to snapshot.SnapshotShardsStatsSummary
+- The `snapshot.ShardsStatsSummary` class has been renamed to `snapshot.SnapshotShardsStatsSummary`, this affects:
+  - `snapshot.SnapshotShardsStatus`'s `summary` field.
+
+### snapshot.ShardsStatsSummaryItem renamed to snapshot.SnapshotShardsStatsSummaryItem
+- The `snapshot.ShardsStatsSummaryItem` class has been renamed to `snapshot.SnapshotShardsStatsSummaryItem`, this affects:
+  - `snapshot.SnapshotShardsStatsSummary`'s (previously `snapshot.ShardsStatsSummary`) `incremental` and `total` fields.

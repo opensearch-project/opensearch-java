@@ -50,11 +50,18 @@ import org.opensearch.client.util.ObjectBuilder;
  * Client for the snapshot namespace.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public abstract class OpenSearchSnapshotClientBase<Self extends OpenSearchSnapshotClientBase<Self>> extends ApiClient<
-    OpenSearchTransport,
-    Self> {
-    public OpenSearchSnapshotClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+public class OpenSearchSnapshotClient extends ApiClient<OpenSearchTransport, OpenSearchSnapshotClient> {
+    public OpenSearchSnapshotClient(OpenSearchTransport transport) {
+        super(transport, null);
+    }
+
+    public OpenSearchSnapshotClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
+    }
+
+    @Override
+    public OpenSearchSnapshotClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+        return new OpenSearchSnapshotClient(this.transport, transportOptions);
     }
 
     // ----- Endpoint: snapshot.cleanup_repository
@@ -115,6 +122,65 @@ public abstract class OpenSearchSnapshotClientBase<Self extends OpenSearchSnapsh
         return create(fn.apply(new CreateSnapshotRequest.Builder()).build());
     }
 
+    // ----- Endpoint: snapshot.create_repository
+
+    /**
+     * Creates a repository.
+     */
+    public CreateRepositoryResponse createRepository(CreateRepositoryRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, CreateRepositoryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates a repository.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreateRepositoryRequest}
+     */
+    public final CreateRepositoryResponse createRepository(
+        Function<CreateRepositoryRequest.Builder, ObjectBuilder<CreateRepositoryRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return createRepository(fn.apply(new CreateRepositoryRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: snapshot.delete
+
+    /**
+     * Deletes a snapshot.
+     */
+    public DeleteSnapshotResponse delete(DeleteSnapshotRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, DeleteSnapshotRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes a snapshot.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteSnapshotRequest}
+     */
+    public final DeleteSnapshotResponse delete(Function<DeleteSnapshotRequest.Builder, ObjectBuilder<DeleteSnapshotRequest>> fn)
+        throws IOException, OpenSearchException {
+        return delete(fn.apply(new DeleteSnapshotRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: snapshot.delete_repository
+
+    /**
+     * Deletes a repository.
+     */
+    public DeleteRepositoryResponse deleteRepository(DeleteRepositoryRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, DeleteRepositoryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes a repository.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteRepositoryRequest}
+     */
+    public final DeleteRepositoryResponse deleteRepository(
+        Function<DeleteRepositoryRequest.Builder, ObjectBuilder<DeleteRepositoryRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteRepository(fn.apply(new DeleteRepositoryRequest.Builder()).build());
+    }
+
     // ----- Endpoint: snapshot.get
 
     /**
@@ -132,6 +198,77 @@ public abstract class OpenSearchSnapshotClientBase<Self extends OpenSearchSnapsh
     public final GetSnapshotResponse get(Function<GetSnapshotRequest.Builder, ObjectBuilder<GetSnapshotRequest>> fn) throws IOException,
         OpenSearchException {
         return get(fn.apply(new GetSnapshotRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: snapshot.get_repository
+
+    /**
+     * Returns information about a repository.
+     */
+    public GetRepositoryResponse getRepository(GetRepositoryRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, GetRepositoryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about a repository.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetRepositoryRequest}
+     */
+    public final GetRepositoryResponse getRepository(Function<GetRepositoryRequest.Builder, ObjectBuilder<GetRepositoryRequest>> fn)
+        throws IOException, OpenSearchException {
+        return getRepository(fn.apply(new GetRepositoryRequest.Builder()).build());
+    }
+
+    /**
+     * Returns information about a repository.
+     */
+    public final GetRepositoryResponse getRepository() throws IOException, OpenSearchException {
+        return getRepository(new GetRepositoryRequest.Builder().build());
+    }
+
+    // ----- Endpoint: snapshot.restore
+
+    /**
+     * Restores a snapshot.
+     */
+    public RestoreSnapshotResponse restore(RestoreSnapshotRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, RestoreSnapshotRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Restores a snapshot.
+     *
+     * @param fn a function that initializes a builder to create the {@link RestoreSnapshotRequest}
+     */
+    public final RestoreSnapshotResponse restore(Function<RestoreSnapshotRequest.Builder, ObjectBuilder<RestoreSnapshotRequest>> fn)
+        throws IOException, OpenSearchException {
+        return restore(fn.apply(new RestoreSnapshotRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: snapshot.status
+
+    /**
+     * Returns information about the status of a snapshot.
+     */
+    public SnapshotStatusResponse status(SnapshotStatusRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, SnapshotStatusRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about the status of a snapshot.
+     *
+     * @param fn a function that initializes a builder to create the {@link SnapshotStatusRequest}
+     */
+    public final SnapshotStatusResponse status(Function<SnapshotStatusRequest.Builder, ObjectBuilder<SnapshotStatusRequest>> fn)
+        throws IOException, OpenSearchException {
+        return status(fn.apply(new SnapshotStatusRequest.Builder()).build());
+    }
+
+    /**
+     * Returns information about the status of a snapshot.
+     */
+    public final SnapshotStatusResponse status() throws IOException, OpenSearchException {
+        return status(new SnapshotStatusRequest.Builder().build());
     }
 
     // ----- Endpoint: snapshot.verify_repository

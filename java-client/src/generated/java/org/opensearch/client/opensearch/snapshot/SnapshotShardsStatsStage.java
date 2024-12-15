@@ -30,48 +30,49 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: snapshot.SnapshotShardsStatsStage
+
 @JsonpDeserializable
-public enum ShardsStatsStage implements JsonEnum {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum SnapshotShardsStatsStage implements JsonEnum {
     /**
-     * Number of shards in the snapshot that were successfully stored in the
-     * repository.
+     * Number of shards in the snapshot that were successfully stored in the repository.
      */
     Done("DONE"),
 
     /**
-     * Number of shards in the snapshot that were not successfully stored in the
-     * repository.
+     * Number of shards in the snapshot that were not successfully stored in the repository.
      */
     Failure("FAILURE"),
 
     /**
-     * Number of shards in the snapshot that are in the finalizing stage of being
-     * stored in the repository.
+     * Number of shards in the snapshot that are in the finalizing stage of being stored in the repository.
      */
     Finalize("FINALIZE"),
 
     /**
-     * Number of shards in the snapshot that are in the initializing stage of being
-     * stored in the repository.
+     * Number of shards in the snapshot that are in the initializing stage of being stored in the repository.
      */
     Init("INIT"),
 
     /**
-     * Number of shards in the snapshot that are in the started stage of being
-     * stored in the repository.
+     * Number of shards in the snapshot that are in the started stage of being stored in the repository.
      */
-    Started("STARTED"),
-
-    ;
+    Started("STARTED");
 
     private final String jsonValue;
 
-    ShardsStatsStage(String jsonValue) {
+    SnapshotShardsStatsStage(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -79,5 +80,7 @@ public enum ShardsStatsStage implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<ShardsStatsStage> _DESERIALIZER = new JsonEnum.Deserializer<>(ShardsStatsStage.values());
+    public static final JsonEnum.Deserializer<SnapshotShardsStatsStage> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        SnapshotShardsStatsStage.values()
+    );
 }

@@ -27,6 +27,7 @@ import org.apache.commons.lang3.NotImplementedException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.model.overrides.Overrides;
+import org.opensearch.client.codegen.model.overrides.PathParameterOverride;
 import org.opensearch.client.codegen.model.overrides.PropertyOverride;
 import org.opensearch.client.codegen.model.overrides.SchemaOverride;
 import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
@@ -149,6 +150,7 @@ public class SpecTransformer {
 
     @Nonnull
     private RequestShape visit(@Nonnull Namespace parent, @Nonnull OperationGroup group, @Nonnull List<OpenApiOperation> variants) {
+        var overrides = this.overrides.getOperation(group);
         var seenHttpPaths = new HashSet<String>();
         HashSet<String> requiredPathParams = null;
         var allPathParams = new HashMap<String, Field>();
@@ -170,7 +172,10 @@ public class SpecTransformer {
             variant.getAllRelevantParameters(In.Path).forEach(parameter -> {
                 var paramName = parameter.getName().orElseThrow();
                 if (!allPathParams.containsKey(paramName)) {
-                    allPathParams.put(paramName, visit(parameter));
+                    var paramOverrides = overrides.flatMap(o -> o.getPathParameter(paramName));
+                    var paramBuilder = visit(parameter).toBuilder();
+                    paramOverrides.flatMap(PathParameterOverride::getName).ifPresent(paramBuilder::withName);
+                    allPathParams.put(paramName, paramBuilder.build());
                 }
             });
 

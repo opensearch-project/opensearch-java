@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,37 +48,45 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.status.Response
 
 @JsonpDeserializable
-public class SnapshotStatusResponse implements PlainJsonSerializable {
-    private final List<Status> snapshots;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SnapshotStatusResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<SnapshotStatusResponse.Builder, SnapshotStatusResponse> {
+
+    @Nonnull
+    private final List<SnapshotStatus> snapshots;
 
     // ---------------------------------------------------------------------------------------------
 
     private SnapshotStatusResponse(Builder builder) {
-
         this.snapshots = ApiTypeHelper.unmodifiableRequired(builder.snapshots, this, "snapshots");
-
     }
 
-    public static SnapshotStatusResponse of(Function<Builder, ObjectBuilder<SnapshotStatusResponse>> fn) {
+    public static SnapshotStatusResponse of(Function<SnapshotStatusResponse.Builder, ObjectBuilder<SnapshotStatusResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code snapshots}
      */
-    public final List<Status> snapshots() {
+    @Nonnull
+    public final List<SnapshotStatus> snapshots() {
         return this.snapshots;
     }
 
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -80,64 +94,94 @@ public class SnapshotStatusResponse implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.snapshots)) {
-            generator.writeKey("snapshots");
-            generator.writeStartArray();
-            for (Status item0 : this.snapshots) {
-                item0.serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("snapshots");
+        generator.writeStartArray();
+        for (SnapshotStatus item0 : this.snapshots) {
+            item0.serialize(generator, mapper);
         }
-
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SnapshotStatusResponse}.
      */
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotStatusResponse> {
+        private List<SnapshotStatus> snapshots;
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotStatusResponse> {
-        private List<Status> snapshots;
+        public Builder() {}
+
+        private Builder(SnapshotStatusResponse o) {
+            this.snapshots = _listCopy(o.snapshots);
+        }
+
+        private Builder(Builder o) {
+            this.snapshots = _listCopy(o.snapshots);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code snapshots}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>snapshots</code>.
+         * </p>
          */
-        public final Builder snapshots(List<Status> list) {
+        @Nonnull
+        public final Builder snapshots(List<SnapshotStatus> list) {
             this.snapshots = _listAddAll(this.snapshots, list);
             return this;
         }
 
         /**
          * Required - API name: {@code snapshots}
+         *
          * <p>
          * Adds one or more values to <code>snapshots</code>.
+         * </p>
          */
-        public final Builder snapshots(Status value, Status... values) {
+        @Nonnull
+        public final Builder snapshots(SnapshotStatus value, SnapshotStatus... values) {
             this.snapshots = _listAdd(this.snapshots, value, values);
             return this;
         }
 
         /**
          * Required - API name: {@code snapshots}
+         *
          * <p>
          * Adds a value to <code>snapshots</code> using a builder lambda.
+         * </p>
          */
-        public final Builder snapshots(Function<Status.Builder, ObjectBuilder<Status>> fn) {
-            return snapshots(fn.apply(new Status.Builder()).build());
+        @Nonnull
+        public final Builder snapshots(Function<SnapshotStatus.Builder, ObjectBuilder<SnapshotStatus>> fn) {
+            return snapshots(fn.apply(new SnapshotStatus.Builder()).build());
         }
 
         /**
          * Builds a {@link SnapshotStatusResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SnapshotStatusResponse build() {
             _checkSingleUse();
 
@@ -156,9 +200,21 @@ public class SnapshotStatusResponse implements PlainJsonSerializable {
     );
 
     protected static void setupSnapshotStatusResponseDeserializer(ObjectDeserializer<SnapshotStatusResponse.Builder> op) {
-
-        op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(Status._DESERIALIZER), "snapshots");
-
+        op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(SnapshotStatus._DESERIALIZER), "snapshots");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.snapshots.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SnapshotStatusResponse other = (SnapshotStatusResponse) o;
+        return this.snapshots.equals(other.snapshots);
+    }
 }
