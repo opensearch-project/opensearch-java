@@ -222,7 +222,10 @@ public class RequestShape extends ObjectShape {
     @Nonnull
     private static String classBaseName(@Nonnull OperationGroup operationGroup) {
         Objects.requireNonNull(operationGroup, "operationGroup must not be null");
+
         switch (operationGroup.toString()) {
+            case "indices.clone":
+                return "CloneIndex";
             case "indices.create":
                 return "CreateIndex";
             case "indices.delete":

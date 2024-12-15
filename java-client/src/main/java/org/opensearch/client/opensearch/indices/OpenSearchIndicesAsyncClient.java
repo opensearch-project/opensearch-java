@@ -61,37 +61,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return new OpenSearchIndicesAsyncClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: indices.clone
-
-    /**
-     * Clones an index
-     *
-     */
-
-    public CompletableFuture<CloneIndexResponse> clone(CloneIndexRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<CloneIndexRequest, CloneIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            CloneIndexRequest,
-            CloneIndexResponse,
-            ErrorResponse>) CloneIndexRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Clones an index
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link CloneIndexRequest}
-     *
-     */
-
-    public final CompletableFuture<CloneIndexResponse> clone(Function<CloneIndexRequest.Builder, ObjectBuilder<CloneIndexRequest>> fn)
-        throws IOException, OpenSearchException {
-        return clone(fn.apply(new CloneIndexRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.close
 
     /**
