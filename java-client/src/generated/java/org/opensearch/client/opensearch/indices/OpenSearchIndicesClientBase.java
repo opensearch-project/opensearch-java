@@ -148,6 +148,25 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return clone(fn.apply(new CloneIndexRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.close
+
+    /**
+     * Closes an index.
+     */
+    public CloseIndexResponse close(CloseIndexRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, CloseIndexRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Closes an index.
+     *
+     * @param fn a function that initializes a builder to create the {@link CloseIndexRequest}
+     */
+    public final CloseIndexResponse close(Function<CloseIndexRequest.Builder, ObjectBuilder<CloseIndexRequest>> fn) throws IOException,
+        OpenSearchException {
+        return close(fn.apply(new CloseIndexRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.create
 
     /**

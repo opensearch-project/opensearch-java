@@ -29315,20 +29315,19 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              acknowledged:
-                type: boolean
-              indices:
-                type: object
-                additionalProperties:
-                  $ref: '#/components/schemas/indices.close___CloseIndexResult'
-              shards_acknowledged:
-                type: boolean
-            required:
-              - acknowledged
-              - indices
-              - shards_acknowledged
+            allOf:
+              - $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
+              - type: object
+                properties:
+                  indices:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/indices.close___CloseIndexResult'
+                  shards_acknowledged:
+                    type: boolean
+                required:
+                  - indices
+                  - shards_acknowledged
       description: ''
     indices.create_data_stream___200:
       content:

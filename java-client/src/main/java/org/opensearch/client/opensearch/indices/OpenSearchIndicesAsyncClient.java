@@ -61,38 +61,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return new OpenSearchIndicesAsyncClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: indices.close
-
-    /**
-     * Closes an index.
-     *
-     *
-     */
-
-    public CompletableFuture<CloseIndexResponse> close(CloseIndexRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<CloseIndexRequest, CloseIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            CloseIndexRequest,
-            CloseIndexResponse,
-            ErrorResponse>) CloseIndexRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Closes an index.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link CloseIndexRequest}
-     *
-     */
-
-    public final CompletableFuture<CloseIndexResponse> close(Function<CloseIndexRequest.Builder, ObjectBuilder<CloseIndexRequest>> fn)
-        throws IOException, OpenSearchException {
-        return close(fn.apply(new CloseIndexRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.flush
 
     /**
