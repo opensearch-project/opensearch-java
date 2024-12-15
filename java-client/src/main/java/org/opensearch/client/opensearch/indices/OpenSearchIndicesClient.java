@@ -60,45 +60,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return new OpenSearchIndicesClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: indices.clear_cache
-
-    /**
-     * Clears all or specific caches for one or more indices.
-     *
-     */
-
-    public ClearCacheResponse clearCache(ClearCacheRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ClearCacheRequest, ClearCacheResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ClearCacheRequest,
-            ClearCacheResponse,
-            ErrorResponse>) ClearCacheRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Clears all or specific caches for one or more indices.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ClearCacheRequest}
-     */
-
-    public final ClearCacheResponse clearCache(Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn) throws IOException,
-        OpenSearchException {
-        return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
-    }
-
-    /**
-     * Clears all or specific caches for one or more indices.
-     *
-     */
-
-    public ClearCacheResponse clearCache() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new ClearCacheRequest.Builder().build(), ClearCacheRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: indices.clone
 
     /**

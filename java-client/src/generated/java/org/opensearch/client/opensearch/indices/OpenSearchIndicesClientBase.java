@@ -103,6 +103,32 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return analyze(new AnalyzeRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.clear_cache
+
+    /**
+     * Clears all or specific caches for one or more indexes.
+     */
+    public ClearCacheResponse clearCache(ClearCacheRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ClearCacheRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Clears all or specific caches for one or more indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link ClearCacheRequest}
+     */
+    public final ClearCacheResponse clearCache(Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn) throws IOException,
+        OpenSearchException {
+        return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
+    }
+
+    /**
+     * Clears all or specific caches for one or more indexes.
+     */
+    public final ClearCacheResponse clearCache() throws IOException, OpenSearchException {
+        return clearCache(new ClearCacheRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.create
 
     /**

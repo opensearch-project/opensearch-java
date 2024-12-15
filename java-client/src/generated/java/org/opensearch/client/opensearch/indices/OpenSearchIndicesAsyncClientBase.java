@@ -104,6 +104,32 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return analyze(new AnalyzeRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.clear_cache
+
+    /**
+     * Clears all or specific caches for one or more indexes.
+     */
+    public CompletableFuture<ClearCacheResponse> clearCache(ClearCacheRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ClearCacheRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Clears all or specific caches for one or more indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link ClearCacheRequest}
+     */
+    public final CompletableFuture<ClearCacheResponse> clearCache(Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn)
+        throws IOException, OpenSearchException {
+        return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
+    }
+
+    /**
+     * Clears all or specific caches for one or more indexes.
+     */
+    public final CompletableFuture<ClearCacheResponse> clearCache() throws IOException, OpenSearchException {
+        return clearCache(new ClearCacheRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.create
 
     /**

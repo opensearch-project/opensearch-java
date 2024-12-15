@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
@@ -43,20 +49,22 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.ShardsOperationResponseBase
 
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class ShardsOperationResponseBase implements PlainJsonSerializable {
+
+    @Nonnull
     private final ShardStatistics shards;
 
     // ---------------------------------------------------------------------------------------------
 
     protected ShardsOperationResponseBase(AbstractBuilder<?> builder) {
-
         this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-
     }
 
     /**
      * Required - API name: {@code _shards}
      */
+    @Nonnull
     public final ShardStatistics shards() {
         return this.shards;
     }
@@ -64,6 +72,7 @@ public abstract class ShardsOperationResponseBase implements PlainJsonSerializab
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -71,18 +80,32 @@ public abstract class ShardsOperationResponseBase implements PlainJsonSerializab
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("_shards");
         this.shards.serialize(generator, mapper);
-
     }
+
+    // ---------------------------------------------------------------------------------------------
 
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         private ShardStatistics shards;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(ShardsOperationResponseBase o) {
+            this.shards = o.shards;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            this.shards = o.shards;
+        }
+
+        @Nonnull
+        protected abstract BuilderT self();
+
         /**
          * Required - API name: {@code _shards}
          */
+        @Nonnull
         public final BuilderT shards(ShardStatistics value) {
             this.shards = value;
             return self();
@@ -91,21 +114,32 @@ public abstract class ShardsOperationResponseBase implements PlainJsonSerializab
         /**
          * Required - API name: {@code _shards}
          */
+        @Nonnull
         public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-            return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+            return shards(fn.apply(new ShardStatistics.Builder()).build());
         }
-
-        protected abstract BuilderT self();
-
     }
 
     // ---------------------------------------------------------------------------------------------
+
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupShardsOperationResponseBaseDeserializer(
         ObjectDeserializer<BuilderT> op
     ) {
-
         op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.shards.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ShardsOperationResponseBase other = (ShardsOperationResponseBase) o;
+        return this.shards.equals(other.shards);
+    }
 }
