@@ -95,38 +95,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.open
-
-    /**
-     * Opens an index.
-     *
-     *
-     */
-
-    public CompletableFuture<OpenResponse> open(OpenRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<OpenRequest, OpenResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            OpenRequest,
-            OpenResponse,
-            ErrorResponse>) OpenRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Opens an index.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link OpenRequest}
-     *
-     */
-
-    public final CompletableFuture<OpenResponse> open(Function<OpenRequest.Builder, ObjectBuilder<OpenRequest>> fn) throws IOException,
-        OpenSearchException {
-        return open(fn.apply(new OpenRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.recovery
 
     /**

@@ -678,6 +678,25 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return getUpgrade(new GetUpgradeRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.open
+
+    /**
+     * Opens an index.
+     */
+    public CompletableFuture<OpenResponse> open(OpenRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, OpenRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Opens an index.
+     *
+     * @param fn a function that initializes a builder to create the {@link OpenRequest}
+     */
+    public final CompletableFuture<OpenResponse> open(Function<OpenRequest.Builder, ObjectBuilder<OpenRequest>> fn) throws IOException,
+        OpenSearchException {
+        return open(fn.apply(new OpenRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.put_alias
 
     /**
