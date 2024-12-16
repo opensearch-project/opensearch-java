@@ -10,6 +10,7 @@ package org.opensearch.client.codegen.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.Streams;
 import org.opensearch.client.codegen.utils.Strings;
+import org.semver4j.Semver;
 
 public class RequestShape extends ObjectShape {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -207,6 +209,19 @@ public class RequestShape extends ObjectShape {
 
     public Type getJsonEndpointType() {
         return Types.Client.Transport.JsonEndpoint(getType(), getResponseType(), Types.Client.OpenSearch._Types.ErrorResponse);
+    }
+
+    public Deprecation getDeprecation() {
+        var deprecations = new ArrayList<Deprecation>(httpPaths.size());
+        for (var httpPath : httpPaths) {
+            var deprecation = httpPath.getDeprecation();
+            if (deprecation == null) {
+                return null;
+            }
+            deprecations.add(deprecation);
+        }
+        deprecations.sort(Comparator.comparing(Deprecation::getVersion));
+        return deprecations.get(deprecations.size() - 1);
     }
 
     @Nonnull

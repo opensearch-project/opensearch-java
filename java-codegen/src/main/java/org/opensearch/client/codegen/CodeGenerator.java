@@ -64,7 +64,8 @@ public class CodeGenerator {
                         "exists",
                         "flush",
                         "forcemerge",
-                        "get"
+                        "get",
+                        "get_upgrade"
                     ),
                     contains("alias"),
                     contains("data_stream"),

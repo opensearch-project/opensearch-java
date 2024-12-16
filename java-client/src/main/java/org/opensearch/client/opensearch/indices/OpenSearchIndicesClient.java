@@ -92,48 +92,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.get_upgrade
-
-    /**
-     * DEPRECATED Returns a progress status of current upgrade.
-     *
-     *
-     */
-
-    public GetUpgradeResponse getUpgrade(GetUpgradeRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetUpgradeRequest, GetUpgradeResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetUpgradeRequest,
-            GetUpgradeResponse,
-            ErrorResponse>) GetUpgradeRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * DEPRECATED Returns a progress status of current upgrade.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetUpgradeRequest}
-     *
-     */
-
-    public final GetUpgradeResponse getUpgrade(Function<GetUpgradeRequest.Builder, ObjectBuilder<GetUpgradeRequest>> fn) throws IOException,
-        OpenSearchException {
-        return getUpgrade(fn.apply(new GetUpgradeRequest.Builder()).build());
-    }
-
-    /**
-     * DEPRECATED Returns a progress status of current upgrade.
-     *
-     *
-     */
-
-    public GetUpgradeResponse getUpgrade() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new GetUpgradeRequest.Builder().build(), GetUpgradeRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: indices.open
 
     /**
