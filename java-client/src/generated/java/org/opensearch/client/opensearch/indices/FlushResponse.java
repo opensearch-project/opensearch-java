@@ -30,39 +30,78 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.ShardsOperationResponseBase;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.flush.Response
 
 @JsonpDeserializable
-public class FlushResponse extends ShardsOperationResponseBase {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class FlushResponse extends ShardsOperationResponseBase implements ToCopyableBuilder<FlushResponse.Builder, FlushResponse> {
+
     // ---------------------------------------------------------------------------------------------
 
     private FlushResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static FlushResponse of(Function<Builder, ObjectBuilder<FlushResponse>> fn) {
+    public static FlushResponse of(Function<FlushResponse.Builder, ObjectBuilder<FlushResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link FlushResponse}.
      */
+    public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, FlushResponse> {
 
-    public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<FlushResponse> {
+        public Builder() {}
+
+        private Builder(FlushResponse o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -70,9 +109,10 @@ public class FlushResponse extends ShardsOperationResponseBase {
         /**
          * Builds a {@link FlushResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public FlushResponse build() {
             _checkSingleUse();
 
@@ -91,8 +131,22 @@ public class FlushResponse extends ShardsOperationResponseBase {
     );
 
     protected static void setupFlushResponseDeserializer(ObjectDeserializer<FlushResponse.Builder> op) {
-        ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
-
+        setupShardsOperationResponseBaseDeserializer(op);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

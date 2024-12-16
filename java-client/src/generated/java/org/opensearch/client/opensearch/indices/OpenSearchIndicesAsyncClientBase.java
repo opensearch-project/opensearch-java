@@ -416,6 +416,32 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.flush
+
+    /**
+     * Performs the flush operation on one or more indexes.
+     */
+    public CompletableFuture<FlushResponse> flush(FlushRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, FlushRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Performs the flush operation on one or more indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link FlushRequest}
+     */
+    public final CompletableFuture<FlushResponse> flush(Function<FlushRequest.Builder, ObjectBuilder<FlushRequest>> fn) throws IOException,
+        OpenSearchException {
+        return flush(fn.apply(new FlushRequest.Builder()).build());
+    }
+
+    /**
+     * Performs the flush operation on one or more indexes.
+     */
+    public final CompletableFuture<FlushResponse> flush() throws IOException, OpenSearchException {
+        return flush(new FlushRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.get
 
     /**

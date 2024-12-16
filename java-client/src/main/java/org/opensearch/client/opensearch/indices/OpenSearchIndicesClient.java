@@ -60,48 +60,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return new OpenSearchIndicesClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: indices.flush
-
-    /**
-     * Performs the flush operation on one or more indices.
-     *
-     *
-     */
-
-    public FlushResponse flush(FlushRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<FlushRequest, FlushResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            FlushRequest,
-            FlushResponse,
-            ErrorResponse>) FlushRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Performs the flush operation on one or more indices.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link FlushRequest}
-     *
-     */
-
-    public final FlushResponse flush(Function<FlushRequest.Builder, ObjectBuilder<FlushRequest>> fn) throws IOException,
-        OpenSearchException {
-        return flush(fn.apply(new FlushRequest.Builder()).build());
-    }
-
-    /**
-     * Performs the flush operation on one or more indices.
-     *
-     *
-     */
-
-    public FlushResponse flush() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new FlushRequest.Builder().build(), FlushRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: indices.forcemerge
 
     /**
