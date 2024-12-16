@@ -636,6 +636,35 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return getTemplate(new GetTemplateRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.get_upgrade
+
+    /**
+     * The <code>_upgrade</code> API is no longer useful and will be removed.
+     */
+    @Deprecated
+    public GetUpgradeResponse getUpgrade(GetUpgradeRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, GetUpgradeRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * The <code>_upgrade</code> API is no longer useful and will be removed.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetUpgradeRequest}
+     */
+    @Deprecated
+    public final GetUpgradeResponse getUpgrade(Function<GetUpgradeRequest.Builder, ObjectBuilder<GetUpgradeRequest>> fn) throws IOException,
+        OpenSearchException {
+        return getUpgrade(fn.apply(new GetUpgradeRequest.Builder()).build());
+    }
+
+    /**
+     * The <code>_upgrade</code> API is no longer useful and will be removed.
+     */
+    @Deprecated
+    public final GetUpgradeResponse getUpgrade() throws IOException, OpenSearchException {
+        return getUpgrade(new GetUpgradeRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.put_alias
 
     /**
