@@ -60,48 +60,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return new OpenSearchIndicesClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: indices.forcemerge
-
-    /**
-     * Performs the force merge operation on one or more indices.
-     *
-     *
-     */
-
-    public ForcemergeResponse forcemerge(ForcemergeRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ForcemergeRequest, ForcemergeResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ForcemergeRequest,
-            ForcemergeResponse,
-            ErrorResponse>) ForcemergeRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Performs the force merge operation on one or more indices.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ForcemergeRequest}
-     *
-     */
-
-    public final ForcemergeResponse forcemerge(Function<ForcemergeRequest.Builder, ObjectBuilder<ForcemergeRequest>> fn) throws IOException,
-        OpenSearchException {
-        return forcemerge(fn.apply(new ForcemergeRequest.Builder()).build());
-    }
-
-    /**
-     * Performs the force merge operation on one or more indices.
-     *
-     *
-     */
-
-    public ForcemergeResponse forcemerge() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new ForcemergeRequest.Builder().build(), ForcemergeRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: indices.get_field_mapping
 
     /**

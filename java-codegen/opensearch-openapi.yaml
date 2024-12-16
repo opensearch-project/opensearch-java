@@ -20103,7 +20103,8 @@ components:
         Set this parameter to 1 to merge all segments into one segment.
         The default behavior is to perform the merge as necessary.
       schema:
-        type: number
+        type: integer
+        format: int64
       style: form
     indices.forcemerge___query.only_expunge_deletes:
       in: query

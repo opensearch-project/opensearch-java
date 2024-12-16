@@ -61,52 +61,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return new OpenSearchIndicesAsyncClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: indices.forcemerge
-
-    /**
-     * Performs the force merge operation on one or more indices.
-     *
-     *
-     */
-
-    public CompletableFuture<ForcemergeResponse> forcemerge(ForcemergeRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ForcemergeRequest, ForcemergeResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ForcemergeRequest,
-            ForcemergeResponse,
-            ErrorResponse>) ForcemergeRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Performs the force merge operation on one or more indices.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ForcemergeRequest}
-     *
-     */
-
-    public final CompletableFuture<ForcemergeResponse> forcemerge(Function<ForcemergeRequest.Builder, ObjectBuilder<ForcemergeRequest>> fn)
-        throws IOException, OpenSearchException {
-        return forcemerge(fn.apply(new ForcemergeRequest.Builder()).build());
-    }
-
-    /**
-     * Performs the force merge operation on one or more indices.
-     *
-     *
-     */
-
-    public CompletableFuture<ForcemergeResponse> forcemerge() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new ForcemergeRequest.Builder().build(),
-            ForcemergeRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
     // ----- Endpoint: indices.get_field_mapping
 
     /**
