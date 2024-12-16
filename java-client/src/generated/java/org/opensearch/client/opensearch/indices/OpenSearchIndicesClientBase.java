@@ -665,6 +665,24 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return getUpgrade(new GetUpgradeRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.open
+
+    /**
+     * Opens an index.
+     */
+    public OpenResponse open(OpenRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, OpenRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Opens an index.
+     *
+     * @param fn a function that initializes a builder to create the {@link OpenRequest}
+     */
+    public final OpenResponse open(Function<OpenRequest.Builder, ObjectBuilder<OpenRequest>> fn) throws IOException, OpenSearchException {
+        return open(fn.apply(new OpenRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.put_alias
 
     /**
