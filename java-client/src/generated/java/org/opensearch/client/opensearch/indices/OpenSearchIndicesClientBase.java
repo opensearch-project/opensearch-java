@@ -433,6 +433,32 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return flush(new FlushRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.forcemerge
+
+    /**
+     * Performs the force merge operation on one or more indexes.
+     */
+    public ForcemergeResponse forcemerge(ForcemergeRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ForcemergeRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Performs the force merge operation on one or more indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link ForcemergeRequest}
+     */
+    public final ForcemergeResponse forcemerge(Function<ForcemergeRequest.Builder, ObjectBuilder<ForcemergeRequest>> fn) throws IOException,
+        OpenSearchException {
+        return forcemerge(fn.apply(new ForcemergeRequest.Builder()).build());
+    }
+
+    /**
+     * Performs the force merge operation on one or more indexes.
+     */
+    public final ForcemergeResponse forcemerge() throws IOException, OpenSearchException {
+        return forcemerge(new ForcemergeRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.get
 
     /**

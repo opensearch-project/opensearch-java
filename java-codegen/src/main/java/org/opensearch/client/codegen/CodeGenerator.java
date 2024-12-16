@@ -53,7 +53,19 @@ public class CodeGenerator {
             namespace(is("indices")),
             name(
                 or(
-                    isOneOf("add_block", "analyze", "clear_cache", "clone", "close", "create", "delete", "exists", "flush", "get"),
+                    isOneOf(
+                        "add_block",
+                        "analyze",
+                        "clear_cache",
+                        "clone",
+                        "close",
+                        "create",
+                        "delete",
+                        "exists",
+                        "flush",
+                        "forcemerge",
+                        "get"
+                    ),
                     contains("alias"),
                     contains("data_stream"),
                     and(endsWith("mapping"), isNot("get_field_mapping")),
