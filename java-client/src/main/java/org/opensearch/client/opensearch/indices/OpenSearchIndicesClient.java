@@ -92,38 +92,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.resolve_index
-
-    /**
-     * Returns information about any matching indices, aliases, and data streams
-     *
-     *
-     */
-
-    public ResolveIndexResponse resolveIndex(ResolveIndexRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ResolveIndexRequest, ResolveIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ResolveIndexRequest,
-            ResolveIndexResponse,
-            ErrorResponse>) ResolveIndexRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about any matching indices, aliases, and data streams
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ResolveIndexRequest}
-     *
-     */
-
-    public final ResolveIndexResponse resolveIndex(Function<ResolveIndexRequest.Builder, ObjectBuilder<ResolveIndexRequest>> fn)
-        throws IOException, OpenSearchException {
-        return resolveIndex(fn.apply(new ResolveIndexRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.rollover
 
     /**

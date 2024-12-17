@@ -839,6 +839,25 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return refresh(new RefreshRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.resolve_index
+
+    /**
+     * Returns information about any matching indexes, aliases, and data streams.
+     */
+    public ResolveIndexResponse resolveIndex(ResolveIndexRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ResolveIndexRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about any matching indexes, aliases, and data streams.
+     *
+     * @param fn a function that initializes a builder to create the {@link ResolveIndexRequest}
+     */
+    public final ResolveIndexResponse resolveIndex(Function<ResolveIndexRequest.Builder, ObjectBuilder<ResolveIndexRequest>> fn)
+        throws IOException, OpenSearchException {
+        return resolveIndex(fn.apply(new ResolveIndexRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.simulate_index_template
 
     /**

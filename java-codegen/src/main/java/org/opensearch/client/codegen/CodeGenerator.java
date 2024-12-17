@@ -68,7 +68,8 @@ public class CodeGenerator {
                         "get_upgrade",
                         "open",
                         "recovery",
-                        "refresh"
+                        "refresh",
+                        "resolve_index"
                     ),
                     contains("alias"),
                     contains("data_stream"),
