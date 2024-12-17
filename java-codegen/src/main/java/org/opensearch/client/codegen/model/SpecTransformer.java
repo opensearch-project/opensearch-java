@@ -604,7 +604,7 @@ public class SpecTransformer {
 
     private Type mapOneOf(List<OpenApiSchema> oneOf) {
         if (isOneOfSingleAndArray(oneOf)) {
-            return mapType(oneOf.get(1));
+            return mapType(oneOf.stream().filter(OpenApiSchema::isArray).findFirst().orElseThrow());
         }
 
         var types = OpenApiSchema.determineTypes(oneOf);
@@ -719,13 +719,24 @@ public class SpecTransformer {
         if (oneOf.size() != 2) {
             return false;
         }
+        var first = oneOf.get(0);
         var second = oneOf.get(1);
-        if (!second.isArray()) {
+
+        OpenApiSchema array;
+        OpenApiSchema single;
+
+        if (first.isArray()) {
+            array = first;
+            single = second;
+        } else if (second.isArray()) {
+            array = second;
+            single = first;
+        } else {
             return false;
         }
-        var first = oneOf.get(0);
-        var items = second.getItems().orElseThrow();
-        return first.getTypes().equals(items.getTypes()) && first.get$ref().equals(items.get$ref());
+
+        var items = array.getItems().orElseThrow();
+        return single.getTypes().equals(items.getTypes()) && single.get$ref().equals(items.get$ref());
     }
 
     private static boolean isEnum(OpenApiSchema schema) {

@@ -231,3 +231,7 @@ After:
 
 ### IndexRolloverMapping
 - The `IndexRolloverMapping` class has been removed.
+
+### Segment
+- The `deletedDocs` and `numDocs` properties have been corrected to be of type `int` instead of `long`.
+- The `memoryInBytes` and `sizeInBytes` properties have been corrected to be of type `long` instead of `double`.
