@@ -50981,11 +50981,13 @@ components:
       type: object
       properties:
         length:
-          type: number
+          type: integer
+          format: int64
         name:
           type: string
         recovered:
-          type: number
+          type: integer
+          format: int64
       required:
         - length
         - name
@@ -51026,11 +51028,14 @@ components:
         percent:
           $ref: '#/components/schemas/_common___PercentageString'
         recovered:
-          type: number
+          type: integer
+          format: int64
         reused:
-          type: number
+          type: integer
+          format: int64
         total:
-          type: number
+          type: integer
+          format: int64
       required:
         - percent
         - recovered
@@ -51129,7 +51134,8 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
+          format: int32
         index:
           $ref: '#/components/schemas/indices.recovery___RecoveryIndexStatus'
         primary:
@@ -51178,11 +51184,14 @@ components:
         percent:
           $ref: '#/components/schemas/_common___PercentageString'
         recovered:
-          type: number
+          type: integer
+          format: int32
         total:
-          type: number
+          type: integer
+          format: int32
         total_on_start:
-          type: number
+          type: integer
+          format: int32
         total_time:
           $ref: '#/components/schemas/_common___Duration'
         total_time_in_millis:

@@ -199,3 +199,29 @@ After:
 ### ExplainAnalyzeToken
 - The `endOffset`, `position`, `positionLength`, `startOffset` and `termFrequency` properties have been corrected to be of type `int` instead of `long`.
 - The `positionlength` and `termfrequency` properties have had their casing corrected to `positionLength` and `termFrequency` respectively.
+
+### RecoveryBytes
+- The `recoveredFromSnapshotInBytes`, `recoveredInBytes`, `reusedInBytes` and `totalInBytes` properties have been corrected to be of type `long` instead of `String`.
+
+### RecoveryIndexStatus
+- The `sourceThrottleTimeInMillis`, `targetThrottleTimeInMillis` and `totalTimeInMillis` properties have been corrected to be of type `long` instead of `String`.
+
+### RecoveryOrigin
+- The `restoreuuid` property has had its casing corrected to `restoreUuid`.
+
+### RecoveryStartStatus
+- The `checkIndexTime` property has been corrected to be of type `Time` instead of `long`.
+- The `totalTimeInMillis` property has been corrected to be of type `long` instead of `String`.
+
+### ShardRecovery
+- The `id` property has been corrected to be of type `int` instead of `long`.
+- The `startTimeInMillis`, `stopTimeInMillis` and `totalTimeInMillis` properties have been corrected to be of type `long` instead of `String`.
+- The `totalTime` property has been corrected to be of type `Time` instead of `String`.
+
+### indices.recovery.TranslogStatus
+- The `recovered`, `total` and `totalOnStart` properties have been corrected to be of type `int` instead of `long`.
+- The `totalTime` property has been corrected to be of type `Time` instead of `String`.
+- The `totalTimeInMillis` property has been corrected to be of type `long` instead of `String`.
+
+### indices.recovery.VerifyIndex
+- The `checkIndexTimeInMillis` and `totalTimeInMillis` properties have been corrected to be of type `long` instead of `String`.

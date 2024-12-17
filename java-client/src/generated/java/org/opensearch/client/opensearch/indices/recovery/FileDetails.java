@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices.recovery;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,15 +47,20 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.recovery.FileDetails
 
 @JsonpDeserializable
-public class FileDetails implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class FileDetails implements PlainJsonSerializable, ToCopyableBuilder<FileDetails.Builder, FileDetails> {
+
     private final long length;
 
+    @Nonnull
     private final String name;
 
     private final long recovered;
@@ -57,14 +68,12 @@ public class FileDetails implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private FileDetails(Builder builder) {
-
         this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
-
     }
 
-    public static FileDetails of(Function<Builder, ObjectBuilder<FileDetails>> fn) {
+    public static FileDetails of(Function<FileDetails.Builder, ObjectBuilder<FileDetails>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -78,6 +87,7 @@ public class FileDetails implements PlainJsonSerializable {
     /**
      * Required - API name: {@code name}
      */
+    @Nonnull
     public final String name() {
         return this.name;
     }
@@ -92,6 +102,7 @@ public class FileDetails implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -99,7 +110,6 @@ public class FileDetails implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("length");
         generator.write(this.length);
 
@@ -108,25 +118,53 @@ public class FileDetails implements PlainJsonSerializable {
 
         generator.writeKey("recovered");
         generator.write(this.recovered);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link FileDetails}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FileDetails> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, FileDetails> {
         private Long length;
-
         private String name;
-
         private Long recovered;
+
+        public Builder() {}
+
+        private Builder(FileDetails o) {
+            this.length = o.length;
+            this.name = o.name;
+            this.recovered = o.recovered;
+        }
+
+        private Builder(Builder o) {
+            this.length = o.length;
+            this.name = o.name;
+            this.recovered = o.recovered;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code length}
          */
+        @Nonnull
         public final Builder length(long value) {
             this.length = value;
             return this;
@@ -135,6 +173,7 @@ public class FileDetails implements PlainJsonSerializable {
         /**
          * Required - API name: {@code name}
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -143,6 +182,7 @@ public class FileDetails implements PlainJsonSerializable {
         /**
          * Required - API name: {@code recovered}
          */
+        @Nonnull
         public final Builder recovered(long value) {
             this.recovered = value;
             return this;
@@ -151,9 +191,10 @@ public class FileDetails implements PlainJsonSerializable {
         /**
          * Builds a {@link FileDetails}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public FileDetails build() {
             _checkSingleUse();
 
@@ -172,11 +213,25 @@ public class FileDetails implements PlainJsonSerializable {
     );
 
     protected static void setupFileDetailsDeserializer(ObjectDeserializer<FileDetails.Builder> op) {
-
         op.add(Builder::length, JsonpDeserializer.longDeserializer(), "length");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::recovered, JsonpDeserializer.longDeserializer(), "recovered");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Long.hashCode(this.length);
+        result = 31 * result + this.name.hashCode();
+        result = 31 * result + Long.hashCode(this.recovered);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        FileDetails other = (FileDetails) o;
+        return this.length == other.length && this.name.equals(other.name) && this.recovered == other.recovered;
+    }
 }

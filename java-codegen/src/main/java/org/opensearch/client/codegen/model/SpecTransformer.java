@@ -20,6 +20,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.NotImplementedException;
@@ -575,7 +576,9 @@ public class SpecTransformer {
             return mapAllOf(allOf.get());
         }
 
-        var types = schema.getTypes().orElse(null);
+        var types = schema.getTypes()
+            .map(ts -> ts.stream().filter(t -> t != OpenApiSchemaType.Null).collect(Collectors.toSet()))
+            .orElse(null);
 
         if (types == null || types.size() != 1) {
             return Types.Client.Json.JsonData;

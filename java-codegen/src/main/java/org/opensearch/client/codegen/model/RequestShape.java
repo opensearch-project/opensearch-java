@@ -25,7 +25,6 @@ import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.Streams;
 import org.opensearch.client.codegen.utils.Strings;
-import org.semver4j.Semver;
 
 public class RequestShape extends ObjectShape {
     private static final Logger LOGGER = LogManager.getLogger();
