@@ -235,3 +235,6 @@ After:
 ### Segment
 - The `deletedDocs` and `numDocs` properties have been corrected to be of type `int` instead of `long`.
 - The `memoryInBytes` and `sizeInBytes` properties have been corrected to be of type `long` instead of `double`.
+
+### ShardStore
+- The `attributes`, `id`, `legacyVersion`, `name` and `transportAddress` properties have been removed and are now correctly nested within the `NodeAttributes` under the `nodes` property map.

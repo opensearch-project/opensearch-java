@@ -71,7 +71,8 @@ public class CodeGenerator {
                         "refresh",
                         "resolve_index",
                         "rollover",
-                        "segments"
+                        "segments",
+                        "shard_stores"
                     ),
                     contains("alias"),
                     contains("data_stream"),
