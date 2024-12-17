@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices.segments;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,36 +47,41 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.segments.ShardSegmentRouting
 
 @JsonpDeserializable
-public class ShardSegmentRouting implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ShardSegmentRouting implements PlainJsonSerializable, ToCopyableBuilder<ShardSegmentRouting.Builder, ShardSegmentRouting> {
+
+    @Nonnull
     private final String node;
 
     private final boolean primary;
 
+    @Nonnull
     private final String state;
 
     // ---------------------------------------------------------------------------------------------
 
     private ShardSegmentRouting(Builder builder) {
-
         this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
         this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
         this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
-
     }
 
-    public static ShardSegmentRouting of(Function<Builder, ObjectBuilder<ShardSegmentRouting>> fn) {
+    public static ShardSegmentRouting of(Function<ShardSegmentRouting.Builder, ObjectBuilder<ShardSegmentRouting>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code node}
      */
+    @Nonnull
     public final String node() {
         return this.node;
     }
@@ -85,6 +96,7 @@ public class ShardSegmentRouting implements PlainJsonSerializable {
     /**
      * Required - API name: {@code state}
      */
+    @Nonnull
     public final String state() {
         return this.state;
     }
@@ -92,6 +104,7 @@ public class ShardSegmentRouting implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -99,7 +112,6 @@ public class ShardSegmentRouting implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("node");
         generator.write(this.node);
 
@@ -108,25 +120,53 @@ public class ShardSegmentRouting implements PlainJsonSerializable {
 
         generator.writeKey("state");
         generator.write(this.state);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ShardSegmentRouting}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardSegmentRouting> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardSegmentRouting> {
         private String node;
-
         private Boolean primary;
-
         private String state;
+
+        public Builder() {}
+
+        private Builder(ShardSegmentRouting o) {
+            this.node = o.node;
+            this.primary = o.primary;
+            this.state = o.state;
+        }
+
+        private Builder(Builder o) {
+            this.node = o.node;
+            this.primary = o.primary;
+            this.state = o.state;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code node}
          */
+        @Nonnull
         public final Builder node(String value) {
             this.node = value;
             return this;
@@ -135,6 +175,7 @@ public class ShardSegmentRouting implements PlainJsonSerializable {
         /**
          * Required - API name: {@code primary}
          */
+        @Nonnull
         public final Builder primary(boolean value) {
             this.primary = value;
             return this;
@@ -143,6 +184,7 @@ public class ShardSegmentRouting implements PlainJsonSerializable {
         /**
          * Required - API name: {@code state}
          */
+        @Nonnull
         public final Builder state(String value) {
             this.state = value;
             return this;
@@ -151,9 +193,10 @@ public class ShardSegmentRouting implements PlainJsonSerializable {
         /**
          * Builds a {@link ShardSegmentRouting}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ShardSegmentRouting build() {
             _checkSingleUse();
 
@@ -172,11 +215,25 @@ public class ShardSegmentRouting implements PlainJsonSerializable {
     );
 
     protected static void setupShardSegmentRoutingDeserializer(ObjectDeserializer<ShardSegmentRouting.Builder> op) {
-
         op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
         op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
         op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.node.hashCode();
+        result = 31 * result + Boolean.hashCode(this.primary);
+        result = 31 * result + this.state.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ShardSegmentRouting other = (ShardSegmentRouting) o;
+        return this.node.equals(other.node) && this.primary == other.primary && this.state.equals(other.state);
+    }
 }

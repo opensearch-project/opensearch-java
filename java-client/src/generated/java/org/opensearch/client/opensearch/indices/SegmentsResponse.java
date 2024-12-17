@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -44,33 +50,38 @@ import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ShardStatistics;
 import org.opensearch.client.opensearch.indices.segments.IndexSegment;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.segments.Response
 
 @JsonpDeserializable
-public class SegmentsResponse implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SegmentsResponse implements PlainJsonSerializable, ToCopyableBuilder<SegmentsResponse.Builder, SegmentsResponse> {
+
+    @Nonnull
     private final Map<String, IndexSegment> indices;
 
+    @Nonnull
     private final ShardStatistics shards;
 
     // ---------------------------------------------------------------------------------------------
 
     private SegmentsResponse(Builder builder) {
-
         this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
         this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-
     }
 
-    public static SegmentsResponse of(Function<Builder, ObjectBuilder<SegmentsResponse>> fn) {
+    public static SegmentsResponse of(Function<SegmentsResponse.Builder, ObjectBuilder<SegmentsResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code indices}
      */
+    @Nonnull
     public final Map<String, IndexSegment> indices() {
         return this.indices;
     }
@@ -78,6 +89,7 @@ public class SegmentsResponse implements PlainJsonSerializable {
     /**
      * Required - API name: {@code _shards}
      */
+    @Nonnull
     public final ShardStatistics shards() {
         return this.shards;
     }
@@ -85,6 +97,7 @@ public class SegmentsResponse implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -92,39 +105,64 @@ public class SegmentsResponse implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.indices)) {
-            generator.writeKey("indices");
-            generator.writeStartObject();
-            for (Map.Entry<String, IndexSegment> item0 : this.indices.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("indices");
+        generator.writeStartObject();
+        for (Map.Entry<String, IndexSegment> item0 : this.indices.entrySet()) {
+            generator.writeKey(item0.getKey());
+            item0.getValue().serialize(generator, mapper);
         }
+        generator.writeEnd();
+
         generator.writeKey("_shards");
         this.shards.serialize(generator, mapper);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SegmentsResponse}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SegmentsResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SegmentsResponse> {
         private Map<String, IndexSegment> indices;
-
         private ShardStatistics shards;
+
+        public Builder() {}
+
+        private Builder(SegmentsResponse o) {
+            this.indices = _mapCopy(o.indices);
+            this.shards = o.shards;
+        }
+
+        private Builder(Builder o) {
+            this.indices = _mapCopy(o.indices);
+            this.shards = o.shards;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code indices}
+         *
          * <p>
-         * Adds all entries of <code>map</code> to <code>indices</code>.
+         * Adds all elements of <code>map</code> to <code>indices</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder indices(Map<String, IndexSegment> map) {
             this.indices = _mapPutAll(this.indices, map);
             return this;
@@ -132,9 +170,12 @@ public class SegmentsResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code indices}
+         *
          * <p>
          * Adds an entry to <code>indices</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder indices(String key, IndexSegment value) {
             this.indices = _mapPut(this.indices, key, value);
             return this;
@@ -142,9 +183,12 @@ public class SegmentsResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code indices}
+         *
          * <p>
-         * Adds an entry to <code>indices</code> using a builder lambda.
+         * Adds a value to <code>indices</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder indices(String key, Function<IndexSegment.Builder, ObjectBuilder<IndexSegment>> fn) {
             return indices(key, fn.apply(new IndexSegment.Builder()).build());
         }
@@ -152,6 +196,7 @@ public class SegmentsResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code _shards}
          */
+        @Nonnull
         public final Builder shards(ShardStatistics value) {
             this.shards = value;
             return this;
@@ -160,16 +205,18 @@ public class SegmentsResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code _shards}
          */
+        @Nonnull
         public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-            return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+            return shards(fn.apply(new ShardStatistics.Builder()).build());
         }
 
         /**
          * Builds a {@link SegmentsResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SegmentsResponse build() {
             _checkSingleUse();
 
@@ -188,10 +235,23 @@ public class SegmentsResponse implements PlainJsonSerializable {
     );
 
     protected static void setupSegmentsResponseDeserializer(ObjectDeserializer<SegmentsResponse.Builder> op) {
-
         op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndexSegment._DESERIALIZER), "indices");
         op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.indices.hashCode();
+        result = 31 * result + this.shards.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SegmentsResponse other = (SegmentsResponse) o;
+        return this.indices.equals(other.indices) && this.shards.equals(other.shards);
+    }
 }

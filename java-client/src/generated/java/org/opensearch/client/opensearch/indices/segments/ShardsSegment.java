@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices.segments;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,33 +48,37 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.segments.ShardsSegment
 
 @JsonpDeserializable
-public class ShardsSegment implements PlainJsonSerializable {
-    private final int numCommittedSegments;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ShardsSegment implements PlainJsonSerializable, ToCopyableBuilder<ShardsSegment.Builder, ShardsSegment> {
 
-    private final ShardSegmentRouting routing;
+    private final int numCommittedSegments;
 
     private final int numSearchSegments;
 
+    @Nonnull
+    private final ShardSegmentRouting routing;
+
+    @Nonnull
     private final Map<String, Segment> segments;
 
     // ---------------------------------------------------------------------------------------------
 
     private ShardsSegment(Builder builder) {
-
         this.numCommittedSegments = ApiTypeHelper.requireNonNull(builder.numCommittedSegments, this, "numCommittedSegments");
-        this.routing = ApiTypeHelper.requireNonNull(builder.routing, this, "routing");
         this.numSearchSegments = ApiTypeHelper.requireNonNull(builder.numSearchSegments, this, "numSearchSegments");
+        this.routing = ApiTypeHelper.requireNonNull(builder.routing, this, "routing");
         this.segments = ApiTypeHelper.unmodifiableRequired(builder.segments, this, "segments");
-
     }
 
-    public static ShardsSegment of(Function<Builder, ObjectBuilder<ShardsSegment>> fn) {
+    public static ShardsSegment of(Function<ShardsSegment.Builder, ObjectBuilder<ShardsSegment>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -80,13 +90,6 @@ public class ShardsSegment implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code routing}
-     */
-    public final ShardSegmentRouting routing() {
-        return this.routing;
-    }
-
-    /**
      * Required - API name: {@code num_search_segments}
      */
     public final int numSearchSegments() {
@@ -94,8 +97,17 @@ public class ShardsSegment implements PlainJsonSerializable {
     }
 
     /**
+     * Required - API name: {@code routing}
+     */
+    @Nonnull
+    public final ShardSegmentRouting routing() {
+        return this.routing;
+    }
+
+    /**
      * Required - API name: {@code segments}
      */
+    @Nonnull
     public final Map<String, Segment> segments() {
         return this.segments;
     }
@@ -103,6 +115,7 @@ public class ShardsSegment implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -110,56 +123,90 @@ public class ShardsSegment implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("num_committed_segments");
         generator.write(this.numCommittedSegments);
-
-        generator.writeKey("routing");
-        this.routing.serialize(generator, mapper);
 
         generator.writeKey("num_search_segments");
         generator.write(this.numSearchSegments);
 
-        if (ApiTypeHelper.isDefined(this.segments)) {
-            generator.writeKey("segments");
-            generator.writeStartObject();
-            for (Map.Entry<String, Segment> item0 : this.segments.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
+        generator.writeKey("routing");
+        this.routing.serialize(generator, mapper);
 
-            }
-            generator.writeEnd();
-
+        generator.writeKey("segments");
+        generator.writeStartObject();
+        for (Map.Entry<String, Segment> item0 : this.segments.entrySet()) {
+            generator.writeKey(item0.getKey());
+            item0.getValue().serialize(generator, mapper);
         }
-
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ShardsSegment}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsSegment> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardsSegment> {
         private Integer numCommittedSegments;
-
-        private ShardSegmentRouting routing;
-
         private Integer numSearchSegments;
-
+        private ShardSegmentRouting routing;
         private Map<String, Segment> segments;
+
+        public Builder() {}
+
+        private Builder(ShardsSegment o) {
+            this.numCommittedSegments = o.numCommittedSegments;
+            this.numSearchSegments = o.numSearchSegments;
+            this.routing = o.routing;
+            this.segments = _mapCopy(o.segments);
+        }
+
+        private Builder(Builder o) {
+            this.numCommittedSegments = o.numCommittedSegments;
+            this.numSearchSegments = o.numSearchSegments;
+            this.routing = o.routing;
+            this.segments = _mapCopy(o.segments);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code num_committed_segments}
          */
+        @Nonnull
         public final Builder numCommittedSegments(int value) {
             this.numCommittedSegments = value;
             return this;
         }
 
         /**
+         * Required - API name: {@code num_search_segments}
+         */
+        @Nonnull
+        public final Builder numSearchSegments(int value) {
+            this.numSearchSegments = value;
+            return this;
+        }
+
+        /**
          * Required - API name: {@code routing}
          */
+        @Nonnull
         public final Builder routing(ShardSegmentRouting value) {
             this.routing = value;
             return this;
@@ -168,23 +215,19 @@ public class ShardsSegment implements PlainJsonSerializable {
         /**
          * Required - API name: {@code routing}
          */
+        @Nonnull
         public final Builder routing(Function<ShardSegmentRouting.Builder, ObjectBuilder<ShardSegmentRouting>> fn) {
-            return this.routing(fn.apply(new ShardSegmentRouting.Builder()).build());
-        }
-
-        /**
-         * Required - API name: {@code num_search_segments}
-         */
-        public final Builder numSearchSegments(int value) {
-            this.numSearchSegments = value;
-            return this;
+            return routing(fn.apply(new ShardSegmentRouting.Builder()).build());
         }
 
         /**
          * Required - API name: {@code segments}
+         *
          * <p>
-         * Adds all entries of <code>map</code> to <code>segments</code>.
+         * Adds all elements of <code>map</code> to <code>segments</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder segments(Map<String, Segment> map) {
             this.segments = _mapPutAll(this.segments, map);
             return this;
@@ -192,9 +235,12 @@ public class ShardsSegment implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code segments}
+         *
          * <p>
          * Adds an entry to <code>segments</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder segments(String key, Segment value) {
             this.segments = _mapPut(this.segments, key, value);
             return this;
@@ -202,9 +248,12 @@ public class ShardsSegment implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code segments}
+         *
          * <p>
-         * Adds an entry to <code>segments</code> using a builder lambda.
+         * Adds a value to <code>segments</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder segments(String key, Function<Segment.Builder, ObjectBuilder<Segment>> fn) {
             return segments(key, fn.apply(new Segment.Builder()).build());
         }
@@ -212,9 +261,10 @@ public class ShardsSegment implements PlainJsonSerializable {
         /**
          * Builds a {@link ShardsSegment}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ShardsSegment build() {
             _checkSingleUse();
 
@@ -233,12 +283,30 @@ public class ShardsSegment implements PlainJsonSerializable {
     );
 
     protected static void setupShardsSegmentDeserializer(ObjectDeserializer<ShardsSegment.Builder> op) {
-
         op.add(Builder::numCommittedSegments, JsonpDeserializer.integerDeserializer(), "num_committed_segments");
-        op.add(Builder::routing, ShardSegmentRouting._DESERIALIZER, "routing");
         op.add(Builder::numSearchSegments, JsonpDeserializer.integerDeserializer(), "num_search_segments");
+        op.add(Builder::routing, ShardSegmentRouting._DESERIALIZER, "routing");
         op.add(Builder::segments, JsonpDeserializer.stringMapDeserializer(Segment._DESERIALIZER), "segments");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Integer.hashCode(this.numCommittedSegments);
+        result = 31 * result + Integer.hashCode(this.numSearchSegments);
+        result = 31 * result + this.routing.hashCode();
+        result = 31 * result + this.segments.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ShardsSegment other = (ShardsSegment) o;
+        return this.numCommittedSegments == other.numCommittedSegments
+            && this.numSearchSegments == other.numSearchSegments
+            && this.routing.equals(other.routing)
+            && this.segments.equals(other.segments);
+    }
 }

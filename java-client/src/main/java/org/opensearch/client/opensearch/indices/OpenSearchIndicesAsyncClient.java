@@ -95,48 +95,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.segments
-
-    /**
-     * Provides low-level information about segments in a Lucene index.
-     *
-     *
-     */
-
-    public CompletableFuture<SegmentsResponse> segments(SegmentsRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<SegmentsRequest, SegmentsResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            SegmentsRequest,
-            SegmentsResponse,
-            ErrorResponse>) SegmentsRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Provides low-level information about segments in a Lucene index.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link SegmentsRequest}
-     *
-     */
-
-    public final CompletableFuture<SegmentsResponse> segments(Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn)
-        throws IOException, OpenSearchException {
-        return segments(fn.apply(new SegmentsRequest.Builder()).build());
-    }
-
-    /**
-     * Provides low-level information about segments in a Lucene index.
-     *
-     *
-     */
-
-    public CompletableFuture<SegmentsResponse> segments() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(new SegmentsRequest.Builder().build(), SegmentsRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: indices.shard_stores
 
     /**

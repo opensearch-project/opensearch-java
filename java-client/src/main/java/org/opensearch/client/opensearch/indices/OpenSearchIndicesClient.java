@@ -92,48 +92,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.segments
-
-    /**
-     * Provides low-level information about segments in a Lucene index.
-     *
-     *
-     */
-
-    public SegmentsResponse segments(SegmentsRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<SegmentsRequest, SegmentsResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            SegmentsRequest,
-            SegmentsResponse,
-            ErrorResponse>) SegmentsRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Provides low-level information about segments in a Lucene index.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link SegmentsRequest}
-     *
-     */
-
-    public final SegmentsResponse segments(Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn) throws IOException,
-        OpenSearchException {
-        return segments(fn.apply(new SegmentsRequest.Builder()).build());
-    }
-
-    /**
-     * Provides low-level information about segments in a Lucene index.
-     *
-     *
-     */
-
-    public SegmentsResponse segments() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new SegmentsRequest.Builder().build(), SegmentsRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: indices.shard_stores
 
     /**

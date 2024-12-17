@@ -877,6 +877,32 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return rollover(fn.apply(new RolloverRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.segments
+
+    /**
+     * Provides low-level information about segments in a Lucene index.
+     */
+    public SegmentsResponse segments(SegmentsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, SegmentsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Provides low-level information about segments in a Lucene index.
+     *
+     * @param fn a function that initializes a builder to create the {@link SegmentsRequest}
+     */
+    public final SegmentsResponse segments(Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn) throws IOException,
+        OpenSearchException {
+        return segments(fn.apply(new SegmentsRequest.Builder()).build());
+    }
+
+    /**
+     * Provides low-level information about segments in a Lucene index.
+     */
+    public final SegmentsResponse segments() throws IOException, OpenSearchException {
+        return segments(new SegmentsRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.simulate_index_template
 
     /**

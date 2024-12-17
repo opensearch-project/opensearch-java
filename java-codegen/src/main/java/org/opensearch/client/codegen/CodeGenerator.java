@@ -70,7 +70,8 @@ public class CodeGenerator {
                         "recovery",
                         "refresh",
                         "resolve_index",
-                        "rollover"
+                        "rollover",
+                        "segments"
                     ),
                     contains("alias"),
                     contains("data_stream"),
