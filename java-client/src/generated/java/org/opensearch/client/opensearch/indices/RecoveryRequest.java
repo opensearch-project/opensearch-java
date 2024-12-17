@@ -30,56 +30,64 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.recovery.Request
 
 /**
  * Returns information about ongoing index shard recoveries.
- *
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class RecoveryRequest extends RequestBase implements ToCopyableBuilder<RecoveryRequest.Builder, RecoveryRequest> {
 
-public class RecoveryRequest extends RequestBase {
     @Nullable
     private final Boolean activeOnly;
 
     @Nullable
     private final Boolean detailed;
 
+    @Nonnull
     private final List<String> index;
 
     // ---------------------------------------------------------------------------------------------
 
     private RecoveryRequest(Builder builder) {
-
         this.activeOnly = builder.activeOnly;
         this.detailed = builder.detailed;
         this.index = ApiTypeHelper.unmodifiable(builder.index);
-
     }
 
-    public static RecoveryRequest of(Function<Builder, ObjectBuilder<RecoveryRequest>> fn) {
+    public static RecoveryRequest of(Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Display only those recoveries that are currently on-going
+     * If <code>true</code>, the response only includes ongoing shard recoveries.
      * <p>
      * API name: {@code active_only}
+     * </p>
      */
     @Nullable
     public final Boolean activeOnly() {
@@ -87,9 +95,10 @@ public class RecoveryRequest extends RequestBase {
     }
 
     /**
-     * Whether to display detailed information about shard recovery
+     * If <code>true</code>, the response includes detailed information about shard recoveries.
      * <p>
      * API name: {@code detailed}
+     * </p>
      */
     @Nullable
     public final Boolean detailed() {
@@ -97,72 +106,114 @@ public class RecoveryRequest extends RequestBase {
     }
 
     /**
-     * A comma-separated list of index names; use <code>_all</code> or empty string
-     * to perform the operation on all indices
+     * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To target
+     * all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
      * <p>
      * API name: {@code index}
+     * </p>
      */
+    @Nonnull
     public final List<String> index() {
         return this.index;
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RecoveryRequest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RecoveryRequest> {
         @Nullable
         private Boolean activeOnly;
-
         @Nullable
         private Boolean detailed;
-
         @Nullable
         private List<String> index;
 
+        public Builder() {}
+
+        private Builder(RecoveryRequest o) {
+            this.activeOnly = o.activeOnly;
+            this.detailed = o.detailed;
+            this.index = _listCopy(o.index);
+        }
+
+        private Builder(Builder o) {
+            this.activeOnly = o.activeOnly;
+            this.detailed = o.detailed;
+            this.index = _listCopy(o.index);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
-         * Display only those recoveries that are currently on-going
+         * If <code>true</code>, the response only includes ongoing shard recoveries.
          * <p>
          * API name: {@code active_only}
+         * </p>
          */
+        @Nonnull
         public final Builder activeOnly(@Nullable Boolean value) {
             this.activeOnly = value;
             return this;
         }
 
         /**
-         * Whether to display detailed information about shard recovery
+         * If <code>true</code>, the response includes detailed information about shard recoveries.
          * <p>
          * API name: {@code detailed}
+         * </p>
          */
+        @Nonnull
         public final Builder detailed(@Nullable Boolean value) {
             this.detailed = value;
             return this;
         }
 
         /**
-         * A comma-separated list of index names; use <code>_all</code> or empty string
-         * to perform the operation on all indices
+         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>index</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder index(List<String> list) {
             this.index = _listAddAll(this.index, list);
             return this;
         }
 
         /**
-         * A comma-separated list of index names; use <code>_all</code> or empty string
-         * to perform the operation on all indices
+         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>index</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder index(String value, String... values) {
             this.index = _listAdd(this.index, value, values);
             return this;
@@ -171,9 +222,10 @@ public class RecoveryRequest extends RequestBase {
         /**
          * Builds a {@link RecoveryRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RecoveryRequest build() {
             _checkSingleUse();
 
@@ -187,13 +239,8 @@ public class RecoveryRequest extends RequestBase {
      * Endpoint "{@code indices.recovery}".
      */
     public static final Endpoint<RecoveryRequest, RecoveryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "GET";
-
-        },
-
+        request -> "GET",
         // Request path
         request -> {
             final int _index = 1 << 0;
@@ -203,35 +250,50 @@ public class RecoveryRequest extends RequestBase {
             if (ApiTypeHelper.isDefined(request.index())) propsSet |= _index;
 
             if (propsSet == 0) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_recovery");
-                return buf.toString();
+                return "/_recovery";
             }
             if (propsSet == (_index)) {
                 StringBuilder buf = new StringBuilder();
                 buf.append("/");
-                SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                SimpleEndpoint.pathEncode(String.join(",", request.index), buf);
                 buf.append("/_recovery");
                 return buf.toString();
             }
+
             throw SimpleEndpoint.noPathTemplateFound("path");
-
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.detailed != null) {
-                params.put("detailed", String.valueOf(request.detailed));
-            }
             if (request.activeOnly != null) {
                 params.put("active_only", String.valueOf(request.activeOnly));
             }
+            if (request.detailed != null) {
+                params.put("detailed", String.valueOf(request.detailed));
+            }
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         false,
         RecoveryResponse._DESERIALIZER
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.activeOnly);
+        result = 31 * result + Objects.hashCode(this.detailed);
+        result = 31 * result + Objects.hashCode(this.index);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RecoveryRequest other = (RecoveryRequest) o;
+        return Objects.equals(this.activeOnly, other.activeOnly)
+            && Objects.equals(this.detailed, other.detailed)
+            && Objects.equals(this.index, other.index);
+    }
 }

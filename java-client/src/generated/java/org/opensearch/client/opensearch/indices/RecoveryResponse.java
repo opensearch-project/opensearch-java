@@ -30,9 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -44,15 +50,15 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: indices.recovery.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus> {
     // ---------------------------------------------------------------------------------------------
 
     private RecoveryResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static RecoveryResponse of(Function<Builder, ObjectBuilder<RecoveryResponse>> fn) {
+    public static RecoveryResponse of(Function<RecoveryResponse.Builder, ObjectBuilder<RecoveryResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -61,11 +67,11 @@ public class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus>
     /**
      * Builder for {@link RecoveryResponse}.
      */
-
     public static class Builder extends DictionaryResponse.AbstractBuilder<String, RecoveryStatus, Builder>
         implements
             ObjectBuilder<RecoveryResponse> {
         @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -73,8 +79,7 @@ public class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus>
         /**
          * Builds a {@link RecoveryResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public RecoveryResponse build() {
             _checkSingleUse();
@@ -96,8 +101,6 @@ public class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus>
     );
 
     protected static void setupRecoveryResponseDeserializer(ObjectDeserializer<RecoveryResponse.Builder> op) {
-        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), RecoveryStatus._DESERIALIZER);
-
+        setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), RecoveryStatus._DESERIALIZER);
     }
-
 }

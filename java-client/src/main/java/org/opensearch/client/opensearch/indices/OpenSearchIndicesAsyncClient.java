@@ -95,48 +95,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.recovery
-
-    /**
-     * Returns information about ongoing index shard recoveries.
-     *
-     *
-     */
-
-    public CompletableFuture<RecoveryResponse> recovery(RecoveryRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<RecoveryRequest, RecoveryResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            RecoveryRequest,
-            RecoveryResponse,
-            ErrorResponse>) RecoveryRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about ongoing index shard recoveries.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link RecoveryRequest}
-     *
-     */
-
-    public final CompletableFuture<RecoveryResponse> recovery(Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn)
-        throws IOException, OpenSearchException {
-        return recovery(fn.apply(new RecoveryRequest.Builder()).build());
-    }
-
-    /**
-     * Returns information about ongoing index shard recoveries.
-     *
-     *
-     */
-
-    public CompletableFuture<RecoveryResponse> recovery() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(new RecoveryRequest.Builder().build(), RecoveryRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: indices.refresh
 
     /**

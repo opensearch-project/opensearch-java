@@ -66,7 +66,8 @@ public class CodeGenerator {
                         "forcemerge",
                         "get",
                         "get_upgrade",
-                        "open"
+                        "open",
+                        "recovery"
                     ),
                     contains("alias"),
                     contains("data_stream"),

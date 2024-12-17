@@ -787,6 +787,32 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return putTemplate(fn.apply(new PutTemplateRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.recovery
+
+    /**
+     * Returns information about ongoing index shard recoveries.
+     */
+    public RecoveryResponse recovery(RecoveryRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, RecoveryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about ongoing index shard recoveries.
+     *
+     * @param fn a function that initializes a builder to create the {@link RecoveryRequest}
+     */
+    public final RecoveryResponse recovery(Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn) throws IOException,
+        OpenSearchException {
+        return recovery(fn.apply(new RecoveryRequest.Builder()).build());
+    }
+
+    /**
+     * Returns information about ongoing index shard recoveries.
+     */
+    public final RecoveryResponse recovery() throws IOException, OpenSearchException {
+        return recovery(new RecoveryRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.simulate_index_template
 
     /**
