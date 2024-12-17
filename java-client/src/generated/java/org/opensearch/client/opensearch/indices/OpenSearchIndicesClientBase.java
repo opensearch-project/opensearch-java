@@ -813,6 +813,32 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return recovery(new RecoveryRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.refresh
+
+    /**
+     * Performs the refresh operation in one or more indexes.
+     */
+    public RefreshResponse refresh(RefreshRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, RefreshRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Performs the refresh operation in one or more indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link RefreshRequest}
+     */
+    public final RefreshResponse refresh(Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn) throws IOException,
+        OpenSearchException {
+        return refresh(fn.apply(new RefreshRequest.Builder()).build());
+    }
+
+    /**
+     * Performs the refresh operation in one or more indexes.
+     */
+    public final RefreshResponse refresh() throws IOException, OpenSearchException {
+        return refresh(new RefreshRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.simulate_index_template
 
     /**

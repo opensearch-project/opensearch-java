@@ -830,6 +830,32 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return recovery(new RecoveryRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.refresh
+
+    /**
+     * Performs the refresh operation in one or more indexes.
+     */
+    public CompletableFuture<RefreshResponse> refresh(RefreshRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, RefreshRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Performs the refresh operation in one or more indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link RefreshRequest}
+     */
+    public final CompletableFuture<RefreshResponse> refresh(Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn)
+        throws IOException, OpenSearchException {
+        return refresh(fn.apply(new RefreshRequest.Builder()).build());
+    }
+
+    /**
+     * Performs the refresh operation in one or more indexes.
+     */
+    public final CompletableFuture<RefreshResponse> refresh() throws IOException, OpenSearchException {
+        return refresh(new RefreshRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.simulate_index_template
 
     /**
