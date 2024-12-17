@@ -92,48 +92,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.refresh
-
-    /**
-     * Performs the refresh operation in one or more indices.
-     *
-     *
-     */
-
-    public RefreshResponse refresh(RefreshRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<RefreshRequest, RefreshResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            RefreshRequest,
-            RefreshResponse,
-            ErrorResponse>) RefreshRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Performs the refresh operation in one or more indices.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link RefreshRequest}
-     *
-     */
-
-    public final RefreshResponse refresh(Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn) throws IOException,
-        OpenSearchException {
-        return refresh(fn.apply(new RefreshRequest.Builder()).build());
-    }
-
-    /**
-     * Performs the refresh operation in one or more indices.
-     *
-     *
-     */
-
-    public RefreshResponse refresh() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new RefreshRequest.Builder().build(), RefreshRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: indices.resolve_index
 
     /**
