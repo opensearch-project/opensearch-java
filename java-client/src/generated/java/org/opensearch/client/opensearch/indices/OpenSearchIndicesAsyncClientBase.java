@@ -948,6 +948,25 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return shardStores(new ShardStoresRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.shrink
+
+    /**
+     * Allow to shrink an existing index into a new index with fewer primary shards.
+     */
+    public CompletableFuture<ShrinkResponse> shrink(ShrinkRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ShrinkRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Allow to shrink an existing index into a new index with fewer primary shards.
+     *
+     * @param fn a function that initializes a builder to create the {@link ShrinkRequest}
+     */
+    public final CompletableFuture<ShrinkResponse> shrink(Function<ShrinkRequest.Builder, ObjectBuilder<ShrinkRequest>> fn)
+        throws IOException, OpenSearchException {
+        return shrink(fn.apply(new ShrinkRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.simulate_index_template
 
     /**

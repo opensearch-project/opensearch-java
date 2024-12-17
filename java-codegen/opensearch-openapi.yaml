@@ -26864,8 +26864,7 @@ components:
               settings:
                 description: Configuration options for the target index.
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: true
             description: The configuration for the target index (`settings` and `aliases`)
     indices.simulate_index_template:
       content:
@@ -29700,18 +29699,17 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              acknowledged:
-                type: boolean
-              shards_acknowledged:
-                type: boolean
-              index:
-                $ref: '#/components/schemas/_common___IndexName'
-            required:
-              - acknowledged
-              - index
-              - shards_acknowledged
+            allOf:
+              - $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
+              - type: object
+                properties:
+                  shards_acknowledged:
+                    type: boolean
+                  index:
+                    $ref: '#/components/schemas/_common___IndexName'
+                required:
+                  - index
+                  - shards_acknowledged
       description: ''
     indices.simulate_index_template___200:
       content:

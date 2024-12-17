@@ -92,38 +92,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.shrink
-
-    /**
-     * Allow to shrink an existing index into a new index with fewer primary shards.
-     *
-     *
-     */
-
-    public ShrinkResponse shrink(ShrinkRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ShrinkRequest, ShrinkResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ShrinkRequest,
-            ShrinkResponse,
-            ErrorResponse>) ShrinkRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Allow to shrink an existing index into a new index with fewer primary shards.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ShrinkRequest}
-     *
-     */
-
-    public final ShrinkResponse shrink(Function<ShrinkRequest.Builder, ObjectBuilder<ShrinkRequest>> fn) throws IOException,
-        OpenSearchException {
-        return shrink(fn.apply(new ShrinkRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.split
 
     /**
