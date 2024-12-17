@@ -26846,8 +26846,7 @@ components:
                   Configuration options for the index.
                   Data streams do not support this parameter.
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: true
             description: The conditions that needs to be met for executing rollover
     indices.shrink:
       content:
@@ -29642,32 +29641,31 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              acknowledged:
-                type: boolean
-              conditions:
-                type: object
-                additionalProperties:
-                  type: boolean
-              dry_run:
-                type: boolean
-              new_index:
-                type: string
-              old_index:
-                type: string
-              rolled_over:
-                type: boolean
-              shards_acknowledged:
-                type: boolean
-            required:
-              - acknowledged
-              - conditions
-              - dry_run
-              - new_index
-              - old_index
-              - rolled_over
-              - shards_acknowledged
+            allOf:
+              - $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
+              - type: object
+                properties:
+                  conditions:
+                    type: object
+                    additionalProperties:
+                      type: boolean
+                  dry_run:
+                    type: boolean
+                  new_index:
+                    type: string
+                  old_index:
+                    type: string
+                  rolled_over:
+                    type: boolean
+                  shards_acknowledged:
+                    type: boolean
+                required:
+                  - conditions
+                  - dry_run
+                  - new_index
+                  - old_index
+                  - rolled_over
+                  - shards_acknowledged
       description: ''
     indices.segments___200:
       content:
@@ -51267,9 +51265,11 @@ components:
         max_age_millis:
           $ref: '#/components/schemas/_common___DurationValueUnitMillis'
         min_docs:
-          type: number
+          type: integer
+          format: int64
         max_docs:
-          type: number
+          type: integer
+          format: int64
         max_size:
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
         max_size_bytes:
@@ -51287,9 +51287,11 @@ components:
         min_primary_shard_size_bytes:
           $ref: '#/components/schemas/_common___ByteCount'
         max_primary_shard_docs:
-          type: number
+          type: integer
+          format: int64
         min_primary_shard_docs:
-          type: number
+          type: integer
+          format: int64
     indices.segments___IndexSegment:
       type: object
       properties:

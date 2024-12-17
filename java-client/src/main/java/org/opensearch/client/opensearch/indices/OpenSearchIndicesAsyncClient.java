@@ -95,40 +95,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.rollover
-
-    /**
-     * Updates an alias to point to a new index when the existing index is
-     * considered to be too large or too old.
-     *
-     *
-     */
-
-    public CompletableFuture<RolloverResponse> rollover(RolloverRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<RolloverRequest, RolloverResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            RolloverRequest,
-            RolloverResponse,
-            ErrorResponse>) RolloverRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Updates an alias to point to a new index when the existing index is
-     * considered to be too large or too old.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link RolloverRequest}
-     *
-     */
-
-    public final CompletableFuture<RolloverResponse> rollover(Function<RolloverRequest.Builder, ObjectBuilder<RolloverRequest>> fn)
-        throws IOException, OpenSearchException {
-        return rollover(fn.apply(new RolloverRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.segments
 
     /**

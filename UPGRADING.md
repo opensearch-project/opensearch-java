@@ -225,3 +225,9 @@ After:
 
 ### indices.recovery.VerifyIndex
 - The `checkIndexTimeInMillis` and `totalTimeInMillis` properties have been corrected to be of type `long` instead of `String`.
+
+### RolloverRequest
+- The `mappings` property is now of type `TypeMapping` instead of `IndexRolloverMapping`.
+
+### IndexRolloverMapping
+- The `IndexRolloverMapping` class has been removed.
