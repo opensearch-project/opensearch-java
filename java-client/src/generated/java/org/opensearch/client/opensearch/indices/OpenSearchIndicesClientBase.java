@@ -858,6 +858,25 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return resolveIndex(fn.apply(new ResolveIndexRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.rollover
+
+    /**
+     * Updates an alias to point to a new index when the existing index is considered to be too large or too old.
+     */
+    public RolloverResponse rollover(RolloverRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, RolloverRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Updates an alias to point to a new index when the existing index is considered to be too large or too old.
+     *
+     * @param fn a function that initializes a builder to create the {@link RolloverRequest}
+     */
+    public final RolloverResponse rollover(Function<RolloverRequest.Builder, ObjectBuilder<RolloverRequest>> fn) throws IOException,
+        OpenSearchException {
+        return rollover(fn.apply(new RolloverRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.simulate_index_template
 
     /**
