@@ -95,40 +95,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.split
-
-    /**
-     * Allows you to split an existing index into a new index with more primary
-     * shards.
-     *
-     *
-     */
-
-    public CompletableFuture<SplitResponse> split(SplitRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<SplitRequest, SplitResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            SplitRequest,
-            SplitResponse,
-            ErrorResponse>) SplitRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Allows you to split an existing index into a new index with more primary
-     * shards.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link SplitRequest}
-     *
-     */
-
-    public final CompletableFuture<SplitResponse> split(Function<SplitRequest.Builder, ObjectBuilder<SplitRequest>> fn) throws IOException,
-        OpenSearchException {
-        return split(fn.apply(new SplitRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.stats
 
     /**

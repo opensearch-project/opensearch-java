@@ -1009,6 +1009,25 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return simulateTemplate(fn.apply(new SimulateTemplateRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.split
+
+    /**
+     * Allows you to split an existing index into a new index with more primary shards.
+     */
+    public CompletableFuture<SplitResponse> split(SplitRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, SplitRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Allows you to split an existing index into a new index with more primary shards.
+     *
+     * @param fn a function that initializes a builder to create the {@link SplitRequest}
+     */
+    public final CompletableFuture<SplitResponse> split(Function<SplitRequest.Builder, ObjectBuilder<SplitRequest>> fn) throws IOException,
+        OpenSearchException {
+        return split(fn.apply(new SplitRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.update_aliases
 
     /**

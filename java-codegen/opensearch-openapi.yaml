@@ -29736,18 +29736,17 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              acknowledged:
-                type: boolean
-              shards_acknowledged:
-                type: boolean
-              index:
-                $ref: '#/components/schemas/_common___IndexName'
-            required:
-              - acknowledged
-              - index
-              - shards_acknowledged
+            allOf:
+              - $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
+              - type: object
+                properties:
+                  shards_acknowledged:
+                    type: boolean
+                  index:
+                    $ref: '#/components/schemas/_common___IndexName'
+                required:
+                  - index
+                  - shards_acknowledged
       description: ''
     indices.stats___200:
       content:
