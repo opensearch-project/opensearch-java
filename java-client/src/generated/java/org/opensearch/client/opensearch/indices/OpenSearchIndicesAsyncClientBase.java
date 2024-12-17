@@ -856,6 +856,26 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return refresh(new RefreshRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.resolve_index
+
+    /**
+     * Returns information about any matching indexes, aliases, and data streams.
+     */
+    public CompletableFuture<ResolveIndexResponse> resolveIndex(ResolveIndexRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ResolveIndexRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about any matching indexes, aliases, and data streams.
+     *
+     * @param fn a function that initializes a builder to create the {@link ResolveIndexRequest}
+     */
+    public final CompletableFuture<ResolveIndexResponse> resolveIndex(
+        Function<ResolveIndexRequest.Builder, ObjectBuilder<ResolveIndexRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return resolveIndex(fn.apply(new ResolveIndexRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.simulate_index_template
 
     /**
