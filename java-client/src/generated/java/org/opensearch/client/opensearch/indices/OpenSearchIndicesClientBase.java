@@ -903,6 +903,32 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return segments(new SegmentsRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.shard_stores
+
+    /**
+     * Provides store information for shard copies of indexes.
+     */
+    public ShardStoresResponse shardStores(ShardStoresRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ShardStoresRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Provides store information for shard copies of indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link ShardStoresRequest}
+     */
+    public final ShardStoresResponse shardStores(Function<ShardStoresRequest.Builder, ObjectBuilder<ShardStoresRequest>> fn)
+        throws IOException, OpenSearchException {
+        return shardStores(fn.apply(new ShardStoresRequest.Builder()).build());
+    }
+
+    /**
+     * Provides store information for shard copies of indexes.
+     */
+    public final ShardStoresResponse shardStores() throws IOException, OpenSearchException {
+        return shardStores(new ShardStoresRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.simulate_index_template
 
     /**

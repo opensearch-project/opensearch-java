@@ -21248,10 +21248,10 @@ components:
       description: List of shard health statuses used to limit the request.
       schema:
         oneOf:
-          - $ref: '#/components/schemas/indices.shard_stores___Status'
+          - $ref: '#/components/schemas/indices.shard_stores___ShardStoreStatus'
           - type: array
             items:
-              $ref: '#/components/schemas/indices.shard_stores___Status'
+              $ref: '#/components/schemas/indices.shard_stores___ShardStoreStatus'
       style: form
     indices.shrink___path.index:
       in: path
@@ -51396,6 +51396,7 @@ components:
         store_exception:
           $ref: '#/components/schemas/indices.shard_stores___ShardStoreException'
       additionalProperties:
+        title: nodes
         $ref: '#/components/schemas/_common___NodeAttributes'
       required:
         - allocation
@@ -51415,6 +51416,20 @@ components:
       required:
         - reason
         - type
+    indices.shard_stores___ShardStoreStatus:
+      oneOf:
+        - type: string
+          const: all
+          description: Return all shards, regardless of health status.
+        - type: string
+          const: green
+          description: The primary shard and all replica shards are assigned.
+        - type: string
+          const: red
+          description: The primary shard is unassigned.
+        - type: string
+          const: yellow
+          description: One or more replica shards are unassigned.
     indices.shard_stores___ShardStoreWrapper:
       type: object
       properties:
@@ -51424,13 +51439,6 @@ components:
             $ref: '#/components/schemas/indices.shard_stores___ShardStore'
       required:
         - stores
-    indices.shard_stores___Status:
-      type: string
-      enum:
-        - all
-        - green
-        - red
-        - yellow
     indices.simulate_template___Overlapping:
       type: object
       properties:

@@ -30,20 +30,26 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices.shard_stores;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: indices.shard_stores.ShardStoreAllocation
+
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum ShardStoreAllocation implements JsonEnum {
     Primary("primary"),
 
     Replica("replica"),
 
-    Unused("unused"),
-
-    ;
+    Unused("unused");
 
     private final String jsonValue;
 

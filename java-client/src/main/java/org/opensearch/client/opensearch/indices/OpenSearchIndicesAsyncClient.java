@@ -95,53 +95,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.shard_stores
-
-    /**
-     * Provides store information for shard copies of indices.
-     *
-     *
-     */
-
-    public CompletableFuture<ShardStoresResponse> shardStores(ShardStoresRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ShardStoresRequest, ShardStoresResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ShardStoresRequest,
-            ShardStoresResponse,
-            ErrorResponse>) ShardStoresRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Provides store information for shard copies of indices.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ShardStoresRequest}
-     *
-     */
-
-    public final CompletableFuture<ShardStoresResponse> shardStores(
-        Function<ShardStoresRequest.Builder, ObjectBuilder<ShardStoresRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return shardStores(fn.apply(new ShardStoresRequest.Builder()).build());
-    }
-
-    /**
-     * Provides store information for shard copies of indices.
-     *
-     *
-     */
-
-    public CompletableFuture<ShardStoresResponse> shardStores() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new ShardStoresRequest.Builder().build(),
-            ShardStoresRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
     // ----- Endpoint: indices.shrink
 
     /**

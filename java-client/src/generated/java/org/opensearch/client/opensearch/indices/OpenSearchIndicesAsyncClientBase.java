@@ -921,6 +921,33 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return segments(new SegmentsRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.shard_stores
+
+    /**
+     * Provides store information for shard copies of indexes.
+     */
+    public CompletableFuture<ShardStoresResponse> shardStores(ShardStoresRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ShardStoresRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Provides store information for shard copies of indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link ShardStoresRequest}
+     */
+    public final CompletableFuture<ShardStoresResponse> shardStores(
+        Function<ShardStoresRequest.Builder, ObjectBuilder<ShardStoresRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return shardStores(fn.apply(new ShardStoresRequest.Builder()).build());
+    }
+
+    /**
+     * Provides store information for shard copies of indexes.
+     */
+    public final CompletableFuture<ShardStoresResponse> shardStores() throws IOException, OpenSearchException {
+        return shardStores(new ShardStoresRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.simulate_index_template
 
     /**

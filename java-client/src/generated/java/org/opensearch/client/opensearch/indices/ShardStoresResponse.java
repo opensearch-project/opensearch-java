@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -43,30 +49,34 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.indices.shard_stores.IndicesShardStores;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.shard_stores.Response
 
 @JsonpDeserializable
-public class ShardStoresResponse implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ShardStoresResponse implements PlainJsonSerializable, ToCopyableBuilder<ShardStoresResponse.Builder, ShardStoresResponse> {
+
+    @Nonnull
     private final Map<String, IndicesShardStores> indices;
 
     // ---------------------------------------------------------------------------------------------
 
     private ShardStoresResponse(Builder builder) {
-
         this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-
     }
 
-    public static ShardStoresResponse of(Function<Builder, ObjectBuilder<ShardStoresResponse>> fn) {
+    public static ShardStoresResponse of(Function<ShardStoresResponse.Builder, ObjectBuilder<ShardStoresResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code indices}
      */
+    @Nonnull
     public final Map<String, IndicesShardStores> indices() {
         return this.indices;
     }
@@ -74,6 +84,7 @@ public class ShardStoresResponse implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -81,35 +92,58 @@ public class ShardStoresResponse implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.indices)) {
-            generator.writeKey("indices");
-            generator.writeStartObject();
-            for (Map.Entry<String, IndicesShardStores> item0 : this.indices.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("indices");
+        generator.writeStartObject();
+        for (Map.Entry<String, IndicesShardStores> item0 : this.indices.entrySet()) {
+            generator.writeKey(item0.getKey());
+            item0.getValue().serialize(generator, mapper);
         }
-
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ShardStoresResponse}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoresResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardStoresResponse> {
         private Map<String, IndicesShardStores> indices;
+
+        public Builder() {}
+
+        private Builder(ShardStoresResponse o) {
+            this.indices = _mapCopy(o.indices);
+        }
+
+        private Builder(Builder o) {
+            this.indices = _mapCopy(o.indices);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code indices}
+         *
          * <p>
-         * Adds all entries of <code>map</code> to <code>indices</code>.
+         * Adds all elements of <code>map</code> to <code>indices</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder indices(Map<String, IndicesShardStores> map) {
             this.indices = _mapPutAll(this.indices, map);
             return this;
@@ -117,9 +151,12 @@ public class ShardStoresResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code indices}
+         *
          * <p>
          * Adds an entry to <code>indices</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder indices(String key, IndicesShardStores value) {
             this.indices = _mapPut(this.indices, key, value);
             return this;
@@ -127,9 +164,12 @@ public class ShardStoresResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code indices}
+         *
          * <p>
-         * Adds an entry to <code>indices</code> using a builder lambda.
+         * Adds a value to <code>indices</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder indices(String key, Function<IndicesShardStores.Builder, ObjectBuilder<IndicesShardStores>> fn) {
             return indices(key, fn.apply(new IndicesShardStores.Builder()).build());
         }
@@ -137,9 +177,10 @@ public class ShardStoresResponse implements PlainJsonSerializable {
         /**
          * Builds a {@link ShardStoresResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ShardStoresResponse build() {
             _checkSingleUse();
 
@@ -158,9 +199,21 @@ public class ShardStoresResponse implements PlainJsonSerializable {
     );
 
     protected static void setupShardStoresResponseDeserializer(ObjectDeserializer<ShardStoresResponse.Builder> op) {
-
         op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndicesShardStores._DESERIALIZER), "indices");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.indices.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ShardStoresResponse other = (ShardStoresResponse) o;
+        return this.indices.equals(other.indices);
+    }
 }
