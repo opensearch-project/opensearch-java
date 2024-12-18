@@ -21,13 +21,13 @@ import org.junit.Test;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.client.opensearch.indices.PutTemplateRequest;
+import org.opensearch.client.util.MissingRequiredPropertyException;
 
 public class PutTemplateRequestTest extends Assert {
 
     // TODO: Allow constructing requests from JSON with required path params
-    @Ignore
     @Test
-    public void deserialize_validFieldsIncluded_RequestIsBuilt() throws JsonProcessingException {
+    public void doesNotDeserializePathParamsFromJsonBlob() throws JsonProcessingException {
         final JsonpMapper mapper = new JsonbJsonpMapper();
         final Map<String, Object> indexTemplateMap = new HashMap<>();
         indexTemplateMap.put("name", "test");
@@ -37,10 +37,8 @@ public class PutTemplateRequestTest extends Assert {
         final String indexTemplate = new ObjectMapper().writeValueAsString(indexTemplateMap);
         final JsonParser parser = mapper.jsonProvider().createParser(new StringReader(indexTemplate));
 
-        final PutTemplateRequest putTemplateRequest = PutTemplateRequest._DESERIALIZER.deserialize(parser, mapper);
-
-        assertEquals("test", putTemplateRequest.name());
-        assertEquals(Collections.singletonList("*"), putTemplateRequest.indexPatterns());
-        assertEquals((Integer) 1, putTemplateRequest.order());
+        assertThrows("Missing required property 'PutTemplateRequest.name'", MissingRequiredPropertyException.class, () -> {
+            PutTemplateRequest._DESERIALIZER.deserialize(parser, mapper);
+        });
     }
 }
