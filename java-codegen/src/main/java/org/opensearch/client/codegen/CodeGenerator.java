@@ -76,7 +76,8 @@ public class CodeGenerator {
                         "shrink",
                         "split",
                         "stats",
-                        "upgrade"
+                        "upgrade",
+                        "validate_query"
                     ),
                     contains("alias"),
                     contains("data_stream"),
