@@ -608,11 +608,9 @@ public class PutAliasRequest extends RequestBase
     protected static void setupPutAliasRequestDeserializer(ObjectDeserializer<PutAliasRequest.Builder> op) {
         op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias");
         op.add(Builder::filter, Query._DESERIALIZER, "filter");
-        op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
         op.add(Builder::indexRouting, JsonpDeserializer.stringDeserializer(), "index_routing");
         op.add(Builder::isHidden, JsonpDeserializer.booleanDeserializer(), "is_hidden");
         op.add(Builder::isWriteIndex, JsonpDeserializer.booleanDeserializer(), "is_write_index");
-        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
         op.add(Builder::searchRouting, JsonpDeserializer.stringDeserializer(), "search_routing");
     }

@@ -629,7 +629,6 @@ public class AnalyzeRequest extends RequestBase
         op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(TokenFilter._DESERIALIZER), "filter");
-        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
         op.add(Builder::normalizer, JsonpDeserializer.stringDeserializer(), "normalizer");
         op.add(Builder::text, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "text");
         op.add(Builder::tokenizer, Tokenizer._DESERIALIZER, "tokenizer");

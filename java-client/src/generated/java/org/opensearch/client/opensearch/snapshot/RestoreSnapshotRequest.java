@@ -926,8 +926,6 @@ public class RestoreSnapshotRequest extends RequestBase
         op.add(Builder::renameAliasReplacement, JsonpDeserializer.stringDeserializer(), "rename_alias_replacement");
         op.add(Builder::renamePattern, JsonpDeserializer.stringDeserializer(), "rename_pattern");
         op.add(Builder::renameReplacement, JsonpDeserializer.stringDeserializer(), "rename_replacement");
-        op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
-        op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
         op.add(Builder::sourceRemoteStoreRepository, JsonpDeserializer.stringDeserializer(), "source_remote_store_repository");
         op.add(Builder::storageType, JsonpDeserializer.stringDeserializer(), "storage_type");
     }

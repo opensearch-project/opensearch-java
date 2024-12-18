@@ -441,7 +441,6 @@ public class CreateRepositoryRequest extends RequestBase
     );
 
     protected static void setupCreateRepositoryRequestDeserializer(ObjectDeserializer<CreateRepositoryRequest.Builder> op) {
-        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::repository, Repository._DESERIALIZER, "repository");
         op.add(Builder::settings, RepositorySettings._DESERIALIZER, "settings");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");

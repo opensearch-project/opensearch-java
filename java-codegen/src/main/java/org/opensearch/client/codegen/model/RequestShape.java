@@ -16,7 +16,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang3.tuple.Pair;
@@ -102,19 +101,6 @@ public class RequestShape extends ObjectShape {
     @Override
     public boolean canBeSingleton() {
         return !hasRequestBody() && !hasQueryParams() && hasSinglePath() && !getFirstPath().hasParams();
-    }
-
-    @Override
-    public Collection<Field> getFieldsToDeserialize() {
-        var fields = new TreeMap<>(bodyFields);
-        var wireNameSet = bodyFields.values().stream().map(Field::getWireName).collect(Collectors.toSet());
-        pathParams.forEach((k, v) -> {
-            if (wireNameSet.contains(v.getWireName())) {
-                v = v.toBuilder().withWireName(v.getName()).build();
-            }
-            fields.put(k, v);
-        });
-        return fields.values();
     }
 
     @Override

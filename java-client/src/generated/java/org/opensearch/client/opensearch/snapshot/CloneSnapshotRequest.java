@@ -356,9 +356,6 @@ public class CloneSnapshotRequest extends RequestBase
 
     protected static void setupCloneSnapshotRequestDeserializer(ObjectDeserializer<CloneSnapshotRequest.Builder> op) {
         op.add(Builder::indices, JsonpDeserializer.stringDeserializer(), "indices");
-        op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
-        op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
-        op.add(Builder::targetSnapshot, JsonpDeserializer.stringDeserializer(), "target_snapshot");
     }
 
     // ---------------------------------------------------------------------------------------------
