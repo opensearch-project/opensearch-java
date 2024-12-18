@@ -192,3 +192,10 @@ After:
 ### snapshot.ShardsStatsSummaryItem renamed to snapshot.SnapshotShardsStatsSummaryItem
 - The `snapshot.ShardsStatsSummaryItem` class has been renamed to `snapshot.SnapshotShardsStatsSummaryItem`, this affects:
   - `snapshot.SnapshotShardsStatsSummary`'s (previously `snapshot.ShardsStatsSummary`) `incremental` and `total` fields.
+
+### AnalyzeToken
+- The `endOffset`, `position`, `positionLength` and `startOffset` properties have been corrected to be of type `int` instead of `long`.
+
+### ExplainAnalyzeToken
+- The `endOffset`, `position`, `positionLength`, `startOffset` and `termFrequency` properties have been corrected to be of type `int` instead of `long`.
+- The `positionlength` and `termfrequency` properties have had their casing corrected to `positionLength` and `termFrequency` respectively.

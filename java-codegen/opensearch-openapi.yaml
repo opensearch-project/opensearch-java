@@ -29263,20 +29263,19 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              acknowledged:
-                type: boolean
-              shards_acknowledged:
-                type: boolean
-              indices:
-                type: array
-                items:
-                  $ref: '#/components/schemas/indices.add_block___IndicesBlockStatus'
-            required:
-              - acknowledged
-              - indices
-              - shards_acknowledged
+            allOf:
+              - $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
+              - type: object
+                properties:
+                  shards_acknowledged:
+                    type: boolean
+                  indices:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/indices.add_block___IndicesBlockStatus'
+                required:
+                  - indices
+                  - shards_acknowledged
       description: ''
     indices.analyze___200:
       content:
@@ -50821,13 +50820,17 @@ components:
       type: object
       properties:
         end_offset:
-          type: number
+          type: integer
+          format: int32
         position:
-          type: number
+          type: integer
+          format: int32
         positionLength:
-          type: number
+          type: integer
+          format: int32
         start_offset:
-          type: number
+          type: integer
+          format: int32
         token:
           type: string
         type:
@@ -50856,17 +50859,22 @@ components:
         bytes:
           type: string
         end_offset:
-          type: number
+          type: integer
+          format: int32
         keyword:
           type: boolean
         position:
-          type: number
+          type: integer
+          format: int32
         positionLength:
-          type: number
+          type: integer
+          format: int32
         start_offset:
-          type: number
+          type: integer
+          format: int32
         termFrequency:
-          type: number
+          type: integer
+          format: int32
         token:
           type: string
         type:

@@ -34,22 +34,16 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.snapshot;
+package org.opensearch.client.opensearch.indices;
 
-import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonpDeserializable;
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.ObjectBuilderDeserializer;
-import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
@@ -61,49 +55,41 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: snapshot.clone.Request
+// typedef: indices.delete_alias.Request
 
 /**
- * Clones indexes from one snapshot into another snapshot in the same repository.
+ * Deletes an alias.
  */
-@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CloneSnapshotRequest extends RequestBase
-    implements
-        PlainJsonSerializable,
-        ToCopyableBuilder<CloneSnapshotRequest.Builder, CloneSnapshotRequest> {
+public class DeleteAliasRequest extends RequestBase implements ToCopyableBuilder<DeleteAliasRequest.Builder, DeleteAliasRequest> {
 
     @Nullable
     private final Time clusterManagerTimeout;
 
     @Nonnull
-    private final String indices;
+    private final List<String> index;
 
     @Deprecated
     @Nullable
     private final Time masterTimeout;
 
     @Nonnull
-    private final String repository;
+    private final List<String> name;
 
-    @Nonnull
-    private final String snapshot;
-
-    @Nonnull
-    private final String targetSnapshot;
+    @Nullable
+    private final Time timeout;
 
     // ---------------------------------------------------------------------------------------------
 
-    private CloneSnapshotRequest(Builder builder) {
+    private DeleteAliasRequest(Builder builder) {
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
-        this.indices = ApiTypeHelper.requireNonNull(builder.indices, this, "indices");
+        this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
         this.masterTimeout = builder.masterTimeout;
-        this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
-        this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
-        this.targetSnapshot = ApiTypeHelper.requireNonNull(builder.targetSnapshot, this, "targetSnapshot");
+        this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
+        this.timeout = builder.timeout;
     }
 
-    public static CloneSnapshotRequest of(Function<CloneSnapshotRequest.Builder, ObjectBuilder<CloneSnapshotRequest>> fn) {
+    public static DeleteAliasRequest of(Function<DeleteAliasRequest.Builder, ObjectBuilder<DeleteAliasRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -119,15 +105,19 @@ public class CloneSnapshotRequest extends RequestBase
     }
 
     /**
-     * Required - API name: {@code indices}
+     * Required - Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>).
+     * <p>
+     * API name: {@code index}
+     * </p>
      */
     @Nonnull
-    public final String indices() {
-        return this.indices;
+    public final List<String> index() {
+        return this.index;
     }
 
     /**
-     * Explicit operation timeout for connection to cluster-manager node
+     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
+     * and returns an error.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -139,52 +129,28 @@ public class CloneSnapshotRequest extends RequestBase
     }
 
     /**
-     * Required - A repository name
+     * Required - Comma-separated list of aliases to remove. Supports wildcards (<code>*</code>). To remove all aliases, use <code>*</code>
+     * or <code>_all</code>.
      * <p>
-     * API name: {@code repository}
+     * API name: {@code name}
      * </p>
      */
     @Nonnull
-    public final String repository() {
-        return this.repository;
+    public final List<String> name() {
+        return this.name;
     }
 
     /**
-     * Required - The name of the snapshot to clone from
+     * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
      * <p>
-     * API name: {@code snapshot}
+     * API name: {@code timeout}
      * </p>
      */
-    @Nonnull
-    public final String snapshot() {
-        return this.snapshot;
+    @Nullable
+    public final Time timeout() {
+        return this.timeout;
     }
 
-    /**
-     * Required - The name of the cloned snapshot to create
-     * <p>
-     * API name: {@code target_snapshot}
-     * </p>
-     */
-    @Nonnull
-    public final String targetSnapshot() {
-        return this.targetSnapshot;
-    }
-
-    /**
-     * Serialize this object to JSON.
-     */
-    @Override
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        serializeInternal(generator, mapper);
-        generator.writeEnd();
-    }
-
-    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("indices");
-        generator.write(this.indices);
-    }
     // ---------------------------------------------------------------------------------------------
 
     @Override
@@ -199,36 +165,34 @@ public class CloneSnapshotRequest extends RequestBase
     }
 
     /**
-     * Builder for {@link CloneSnapshotRequest}.
+     * Builder for {@link DeleteAliasRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CloneSnapshotRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DeleteAliasRequest> {
         @Nullable
         private Time clusterManagerTimeout;
-        private String indices;
+        private List<String> index;
         @Nullable
         private Time masterTimeout;
-        private String repository;
-        private String snapshot;
-        private String targetSnapshot;
+        private List<String> name;
+        @Nullable
+        private Time timeout;
 
         public Builder() {}
 
-        private Builder(CloneSnapshotRequest o) {
+        private Builder(DeleteAliasRequest o) {
             this.clusterManagerTimeout = o.clusterManagerTimeout;
-            this.indices = o.indices;
+            this.index = _listCopy(o.index);
             this.masterTimeout = o.masterTimeout;
-            this.repository = o.repository;
-            this.snapshot = o.snapshot;
-            this.targetSnapshot = o.targetSnapshot;
+            this.name = _listCopy(o.name);
+            this.timeout = o.timeout;
         }
 
         private Builder(Builder o) {
             this.clusterManagerTimeout = o.clusterManagerTimeout;
-            this.indices = o.indices;
+            this.index = _listCopy(o.index);
             this.masterTimeout = o.masterTimeout;
-            this.repository = o.repository;
-            this.snapshot = o.snapshot;
-            this.targetSnapshot = o.targetSnapshot;
+            this.name = _listCopy(o.name);
+            this.timeout = o.timeout;
         }
 
         @Override
@@ -261,16 +225,40 @@ public class CloneSnapshotRequest extends RequestBase
         }
 
         /**
-         * Required - API name: {@code indices}
+         * Required - Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>).
+         * <p>
+         * API name: {@code index}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>index</code>.
+         * </p>
          */
         @Nonnull
-        public final Builder indices(String value) {
-            this.indices = value;
+        public final Builder index(List<String> list) {
+            this.index = _listAddAll(this.index, list);
             return this;
         }
 
         /**
-         * Explicit operation timeout for connection to cluster-manager node
+         * Required - Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>).
+         * <p>
+         * API name: {@code index}
+         * </p>
+         *
+         * <p>
+         * Adds one or more values to <code>index</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder index(String value, String... values) {
+            this.index = _listAdd(this.index, value, values);
+            return this;
+        }
+
+        /**
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -283,7 +271,8 @@ public class CloneSnapshotRequest extends RequestBase
         }
 
         /**
-         * Explicit operation timeout for connection to cluster-manager node
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -295,86 +284,91 @@ public class CloneSnapshotRequest extends RequestBase
         }
 
         /**
-         * Required - A repository name
+         * Required - Comma-separated list of aliases to remove. Supports wildcards (<code>*</code>). To remove all aliases, use
+         * <code>*</code> or <code>_all</code>.
          * <p>
-         * API name: {@code repository}
+         * API name: {@code name}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>name</code>.
          * </p>
          */
         @Nonnull
-        public final Builder repository(String value) {
-            this.repository = value;
+        public final Builder name(List<String> list) {
+            this.name = _listAddAll(this.name, list);
             return this;
         }
 
         /**
-         * Required - The name of the snapshot to clone from
+         * Required - Comma-separated list of aliases to remove. Supports wildcards (<code>*</code>). To remove all aliases, use
+         * <code>*</code> or <code>_all</code>.
          * <p>
-         * API name: {@code snapshot}
+         * API name: {@code name}
+         * </p>
+         *
+         * <p>
+         * Adds one or more values to <code>name</code>.
          * </p>
          */
         @Nonnull
-        public final Builder snapshot(String value) {
-            this.snapshot = value;
+        public final Builder name(String value, String... values) {
+            this.name = _listAdd(this.name, value, values);
             return this;
         }
 
         /**
-         * Required - The name of the cloned snapshot to create
+         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
          * <p>
-         * API name: {@code target_snapshot}
+         * API name: {@code timeout}
          * </p>
          */
         @Nonnull
-        public final Builder targetSnapshot(String value) {
-            this.targetSnapshot = value;
+        public final Builder timeout(@Nullable Time value) {
+            this.timeout = value;
             return this;
         }
 
         /**
-         * Builds a {@link CloneSnapshotRequest}.
+         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * <p>
+         * API name: {@code timeout}
+         * </p>
+         */
+        @Nonnull
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return timeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * Builds a {@link DeleteAliasRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public CloneSnapshotRequest build() {
+        public DeleteAliasRequest build() {
             _checkSingleUse();
 
-            return new CloneSnapshotRequest(this);
+            return new DeleteAliasRequest(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link CloneSnapshotRequest}
+     * Endpoint "{@code indices.delete_alias}".
      */
-    public static final JsonpDeserializer<CloneSnapshotRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        CloneSnapshotRequest::setupCloneSnapshotRequestDeserializer
-    );
-
-    protected static void setupCloneSnapshotRequestDeserializer(ObjectDeserializer<CloneSnapshotRequest.Builder> op) {
-        op.add(Builder::indices, JsonpDeserializer.stringDeserializer(), "indices");
-    }
-
-    // ---------------------------------------------------------------------------------------------
-
-    /**
-     * Endpoint "{@code snapshot.clone}".
-     */
-    public static final Endpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final Endpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
         // Request method
-        request -> "PUT",
+        request -> "DELETE",
         // Request path
         request -> {
             StringBuilder buf = new StringBuilder();
-            buf.append("/_snapshot/");
-            SimpleEndpoint.pathEncode(request.repository, buf);
             buf.append("/");
-            SimpleEndpoint.pathEncode(request.snapshot, buf);
-            buf.append("/_clone/");
-            SimpleEndpoint.pathEncode(request.targetSnapshot, buf);
+            SimpleEndpoint.pathEncode(String.join(",", request.index), buf);
+            buf.append("/_alias/");
+            SimpleEndpoint.pathEncode(String.join(",", request.name), buf);
             return buf.toString();
         },
         // Request parameters
@@ -386,22 +380,24 @@ public class CloneSnapshotRequest extends RequestBase
             if (request.masterTimeout != null) {
                 params.put("master_timeout", request.masterTimeout._toJsonString());
             }
+            if (request.timeout != null) {
+                params.put("timeout", request.timeout._toJsonString());
+            }
             return params;
         },
         SimpleEndpoint.emptyMap(),
-        true,
-        CloneSnapshotResponse._DESERIALIZER
+        false,
+        DeleteAliasResponse._DESERIALIZER
     );
 
     @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
-        result = 31 * result + this.indices.hashCode();
+        result = 31 * result + this.index.hashCode();
         result = 31 * result + Objects.hashCode(this.masterTimeout);
-        result = 31 * result + this.repository.hashCode();
-        result = 31 * result + this.snapshot.hashCode();
-        result = 31 * result + this.targetSnapshot.hashCode();
+        result = 31 * result + this.name.hashCode();
+        result = 31 * result + Objects.hashCode(this.timeout);
         return result;
     }
 
@@ -409,12 +405,11 @@ public class CloneSnapshotRequest extends RequestBase
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        CloneSnapshotRequest other = (CloneSnapshotRequest) o;
+        DeleteAliasRequest other = (DeleteAliasRequest) o;
         return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
-            && this.indices.equals(other.indices)
+            && this.index.equals(other.index)
             && Objects.equals(this.masterTimeout, other.masterTimeout)
-            && this.repository.equals(other.repository)
-            && this.snapshot.equals(other.snapshot)
-            && this.targetSnapshot.equals(other.targetSnapshot);
+            && this.name.equals(other.name)
+            && Objects.equals(this.timeout, other.timeout);
     }
 }

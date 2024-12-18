@@ -38,6 +38,7 @@ package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -53,8 +54,7 @@ import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
-import org.opensearch.client.opensearch._types.WaitForActiveShards;
-import org.opensearch.client.opensearch._types.mapping.TypeMapping;
+import org.opensearch.client.opensearch.indices.update_aliases.Action;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -63,69 +63,53 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: indices.create.Request
+// typedef: indices.update_aliases.Request
 
 /**
- * Creates an index with optional settings and mappings.
+ * Updates index aliases.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CreateIndexRequest extends RequestBase
+public class UpdateAliasesRequest extends RequestBase
     implements
         PlainJsonSerializable,
-        ToCopyableBuilder<CreateIndexRequest.Builder, CreateIndexRequest> {
+        ToCopyableBuilder<UpdateAliasesRequest.Builder, UpdateAliasesRequest> {
 
     @Nonnull
-    private final Map<String, Alias> aliases;
+    private final List<Action> actions;
 
     @Nullable
     private final Time clusterManagerTimeout;
-
-    @Nonnull
-    private final String index;
-
-    @Nullable
-    private final TypeMapping mappings;
 
     @Deprecated
     @Nullable
     private final Time masterTimeout;
 
     @Nullable
-    private final IndexSettings settings;
-
-    @Nullable
     private final Time timeout;
-
-    @Nullable
-    private final WaitForActiveShards waitForActiveShards;
 
     // ---------------------------------------------------------------------------------------------
 
-    private CreateIndexRequest(Builder builder) {
-        this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
+    private UpdateAliasesRequest(Builder builder) {
+        this.actions = ApiTypeHelper.unmodifiable(builder.actions);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
-        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-        this.mappings = builder.mappings;
         this.masterTimeout = builder.masterTimeout;
-        this.settings = builder.settings;
         this.timeout = builder.timeout;
-        this.waitForActiveShards = builder.waitForActiveShards;
     }
 
-    public static CreateIndexRequest of(Function<CreateIndexRequest.Builder, ObjectBuilder<CreateIndexRequest>> fn) {
+    public static UpdateAliasesRequest of(Function<UpdateAliasesRequest.Builder, ObjectBuilder<UpdateAliasesRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Aliases for the index.
+     * Actions to perform.
      * <p>
-     * API name: {@code aliases}
+     * API name: {@code actions}
      * </p>
      */
     @Nonnull
-    public final Map<String, Alias> aliases() {
-        return this.aliases;
+    public final List<Action> actions() {
+        return this.actions;
     }
 
     /**
@@ -137,25 +121,6 @@ public class CreateIndexRequest extends RequestBase
     @Nullable
     public final Time clusterManagerTimeout() {
         return this.clusterManagerTimeout;
-    }
-
-    /**
-     * Required - Name of the index you wish to create.
-     * <p>
-     * API name: {@code index}
-     * </p>
-     */
-    @Nonnull
-    public final String index() {
-        return this.index;
-    }
-
-    /**
-     * API name: {@code mappings}
-     */
-    @Nullable
-    public final TypeMapping mappings() {
-        return this.mappings;
     }
 
     /**
@@ -172,14 +137,6 @@ public class CreateIndexRequest extends RequestBase
     }
 
     /**
-     * API name: {@code settings}
-     */
-    @Nullable
-    public final IndexSettings settings() {
-        return this.settings;
-    }
-
-    /**
      * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
      * <p>
      * API name: {@code timeout}
@@ -188,18 +145,6 @@ public class CreateIndexRequest extends RequestBase
     @Nullable
     public final Time timeout() {
         return this.timeout;
-    }
-
-    /**
-     * The number of shard copies that must be active before proceeding with the operation. Set to <code>all</code> or any positive integer
-     * up to the total number of shards in the index (<code>number_of_replicas+1</code>).
-     * <p>
-     * API name: {@code wait_for_active_shards}
-     * </p>
-     */
-    @Nullable
-    public final WaitForActiveShards waitForActiveShards() {
-        return this.waitForActiveShards;
     }
 
     /**
@@ -213,24 +158,13 @@ public class CreateIndexRequest extends RequestBase
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (ApiTypeHelper.isDefined(this.aliases)) {
-            generator.writeKey("aliases");
-            generator.writeStartObject();
-            for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.actions)) {
+            generator.writeKey("actions");
+            generator.writeStartArray();
+            for (Action item0 : this.actions) {
+                item0.serialize(generator, mapper);
             }
             generator.writeEnd();
-        }
-
-        if (this.mappings != null) {
-            generator.writeKey("mappings");
-            this.mappings.serialize(generator, mapper);
-        }
-
-        if (this.settings != null) {
-            generator.writeKey("settings");
-            this.settings.serialize(generator, mapper);
         }
     }
     // ---------------------------------------------------------------------------------------------
@@ -247,47 +181,32 @@ public class CreateIndexRequest extends RequestBase
     }
 
     /**
-     * Builder for {@link CreateIndexRequest}.
+     * Builder for {@link UpdateAliasesRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CreateIndexRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, UpdateAliasesRequest> {
         @Nullable
-        private Map<String, Alias> aliases;
+        private List<Action> actions;
         @Nullable
         private Time clusterManagerTimeout;
-        private String index;
-        @Nullable
-        private TypeMapping mappings;
         @Nullable
         private Time masterTimeout;
         @Nullable
-        private IndexSettings settings;
-        @Nullable
         private Time timeout;
-        @Nullable
-        private WaitForActiveShards waitForActiveShards;
 
         public Builder() {}
 
-        private Builder(CreateIndexRequest o) {
-            this.aliases = _mapCopy(o.aliases);
+        private Builder(UpdateAliasesRequest o) {
+            this.actions = _listCopy(o.actions);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
-            this.index = o.index;
-            this.mappings = o.mappings;
             this.masterTimeout = o.masterTimeout;
-            this.settings = o.settings;
             this.timeout = o.timeout;
-            this.waitForActiveShards = o.waitForActiveShards;
         }
 
         private Builder(Builder o) {
-            this.aliases = _mapCopy(o.aliases);
+            this.actions = _listCopy(o.actions);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
-            this.index = o.index;
-            this.mappings = o.mappings;
             this.masterTimeout = o.masterTimeout;
-            this.settings = o.settings;
             this.timeout = o.timeout;
-            this.waitForActiveShards = o.waitForActiveShards;
         }
 
         @Override
@@ -297,50 +216,50 @@ public class CreateIndexRequest extends RequestBase
         }
 
         /**
-         * Aliases for the index.
+         * Actions to perform.
          * <p>
-         * API name: {@code aliases}
+         * API name: {@code actions}
          * </p>
          *
          * <p>
-         * Adds all elements of <code>map</code> to <code>aliases</code>.
+         * Adds all elements of <code>list</code> to <code>actions</code>.
          * </p>
          */
         @Nonnull
-        public final Builder aliases(Map<String, Alias> map) {
-            this.aliases = _mapPutAll(this.aliases, map);
+        public final Builder actions(List<Action> list) {
+            this.actions = _listAddAll(this.actions, list);
             return this;
         }
 
         /**
-         * Aliases for the index.
+         * Actions to perform.
          * <p>
-         * API name: {@code aliases}
+         * API name: {@code actions}
          * </p>
          *
          * <p>
-         * Adds an entry to <code>aliases</code>.
+         * Adds one or more values to <code>actions</code>.
          * </p>
          */
         @Nonnull
-        public final Builder aliases(String key, Alias value) {
-            this.aliases = _mapPut(this.aliases, key, value);
+        public final Builder actions(Action value, Action... values) {
+            this.actions = _listAdd(this.actions, value, values);
             return this;
         }
 
         /**
-         * Aliases for the index.
+         * Actions to perform.
          * <p>
-         * API name: {@code aliases}
+         * API name: {@code actions}
          * </p>
          *
          * <p>
-         * Adds a value to <code>aliases</code> using a builder lambda.
+         * Adds a value to <code>actions</code> using a builder lambda.
          * </p>
          */
         @Nonnull
-        public final Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
-            return aliases(key, fn.apply(new Alias.Builder()).build());
+        public final Builder actions(Function<Action.Builder, ObjectBuilder<Action>> fn) {
+            return actions(fn.apply(new Action.Builder()).build());
         }
 
         /**
@@ -364,35 +283,6 @@ public class CreateIndexRequest extends RequestBase
         @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
-        }
-
-        /**
-         * Required - Name of the index you wish to create.
-         * <p>
-         * API name: {@code index}
-         * </p>
-         */
-        @Nonnull
-        public final Builder index(String value) {
-            this.index = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code mappings}
-         */
-        @Nonnull
-        public final Builder mappings(@Nullable TypeMapping value) {
-            this.mappings = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code mappings}
-         */
-        @Nonnull
-        public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
-            return mappings(fn.apply(new TypeMapping.Builder()).build());
         }
 
         /**
@@ -423,23 +313,6 @@ public class CreateIndexRequest extends RequestBase
         }
 
         /**
-         * API name: {@code settings}
-         */
-        @Nonnull
-        public final Builder settings(@Nullable IndexSettings value) {
-            this.settings = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code settings}
-         */
-        @Nonnull
-        public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
-            return settings(fn.apply(new IndexSettings.Builder()).build());
-        }
-
-        /**
          * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
          * <p>
          * API name: {@code timeout}
@@ -463,75 +336,43 @@ public class CreateIndexRequest extends RequestBase
         }
 
         /**
-         * The number of shard copies that must be active before proceeding with the operation. Set to <code>all</code> or any positive
-         * integer up to the total number of shards in the index (<code>number_of_replicas+1</code>).
-         * <p>
-         * API name: {@code wait_for_active_shards}
-         * </p>
-         */
-        @Nonnull
-        public final Builder waitForActiveShards(@Nullable WaitForActiveShards value) {
-            this.waitForActiveShards = value;
-            return this;
-        }
-
-        /**
-         * The number of shard copies that must be active before proceeding with the operation. Set to <code>all</code> or any positive
-         * integer up to the total number of shards in the index (<code>number_of_replicas+1</code>).
-         * <p>
-         * API name: {@code wait_for_active_shards}
-         * </p>
-         */
-        @Nonnull
-        public final Builder waitForActiveShards(Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
-            return waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
-        }
-
-        /**
-         * Builds a {@link CreateIndexRequest}.
+         * Builds a {@link UpdateAliasesRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public CreateIndexRequest build() {
+        public UpdateAliasesRequest build() {
             _checkSingleUse();
 
-            return new CreateIndexRequest(this);
+            return new UpdateAliasesRequest(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link CreateIndexRequest}
+     * Json deserializer for {@link UpdateAliasesRequest}
      */
-    public static final JsonpDeserializer<CreateIndexRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<UpdateAliasesRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        CreateIndexRequest::setupCreateIndexRequestDeserializer
+        UpdateAliasesRequest::setupUpdateAliasesRequestDeserializer
     );
 
-    protected static void setupCreateIndexRequestDeserializer(ObjectDeserializer<CreateIndexRequest.Builder> op) {
-        op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
-        op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
-        op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
+    protected static void setupUpdateAliasesRequestDeserializer(ObjectDeserializer<UpdateAliasesRequest.Builder> op) {
+        op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(Action._DESERIALIZER), "actions");
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Endpoint "{@code indices.create}".
+     * Endpoint "{@code indices.update_aliases}".
      */
-    public static final Endpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final Endpoint<UpdateAliasesRequest, UpdateAliasesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
         // Request method
-        request -> "PUT",
+        request -> "POST",
         // Request path
-        request -> {
-            StringBuilder buf = new StringBuilder();
-            buf.append("/");
-            SimpleEndpoint.pathEncode(request.index, buf);
-            return buf.toString();
-        },
+        request -> "/_aliases",
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
@@ -544,27 +385,20 @@ public class CreateIndexRequest extends RequestBase
             if (request.timeout != null) {
                 params.put("timeout", request.timeout._toJsonString());
             }
-            if (request.waitForActiveShards != null) {
-                params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
-            }
             return params;
         },
         SimpleEndpoint.emptyMap(),
         true,
-        CreateIndexResponse._DESERIALIZER
+        UpdateAliasesResponse._DESERIALIZER
     );
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.aliases);
+        result = 31 * result + Objects.hashCode(this.actions);
         result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
-        result = 31 * result + this.index.hashCode();
-        result = 31 * result + Objects.hashCode(this.mappings);
         result = 31 * result + Objects.hashCode(this.masterTimeout);
-        result = 31 * result + Objects.hashCode(this.settings);
         result = 31 * result + Objects.hashCode(this.timeout);
-        result = 31 * result + Objects.hashCode(this.waitForActiveShards);
         return result;
     }
 
@@ -572,14 +406,10 @@ public class CreateIndexRequest extends RequestBase
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        CreateIndexRequest other = (CreateIndexRequest) o;
-        return Objects.equals(this.aliases, other.aliases)
+        UpdateAliasesRequest other = (UpdateAliasesRequest) o;
+        return Objects.equals(this.actions, other.actions)
             && Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
-            && this.index.equals(other.index)
-            && Objects.equals(this.mappings, other.mappings)
             && Objects.equals(this.masterTimeout, other.masterTimeout)
-            && Objects.equals(this.settings, other.settings)
-            && Objects.equals(this.timeout, other.timeout)
-            && Objects.equals(this.waitForActiveShards, other.waitForActiveShards);
+            && Objects.equals(this.timeout, other.timeout);
     }
 }

@@ -53,11 +53,12 @@ public class CodeGenerator {
             namespace(is("indices")),
             name(
                 or(
+                    isOneOf("add_block", "analyze", "clear_cache", "create", "delete", "exists", "get"),
+                    contains("alias"),
                     contains("data_stream"),
                     and(endsWith("mapping"), isNot("get_field_mapping")),
                     endsWith("settings"),
-                    endsWith("template"),
-                    isOneOf("create", "delete", "exists", "get")
+                    endsWith("template")
                 )
             )
         ),

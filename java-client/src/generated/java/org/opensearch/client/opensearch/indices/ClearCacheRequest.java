@@ -48,7 +48,6 @@ import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch._types.RequestBase;
-import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -57,22 +56,28 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: indices.get_mapping.Request
+// typedef: indices.clear_cache.Request
 
 /**
- * Returns mappings for one or more indexes.
+ * Clears all or specific caches for one or more indexes.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<GetMappingRequest.Builder, GetMappingRequest> {
+public class ClearCacheRequest extends RequestBase implements ToCopyableBuilder<ClearCacheRequest.Builder, ClearCacheRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
 
-    @Nullable
-    private final Time clusterManagerTimeout;
-
     @Nonnull
     private final List<ExpandWildcard> expandWildcards;
+
+    @Nullable
+    private final Boolean fielddata;
+
+    @Nonnull
+    private final List<String> fields;
+
+    @Nullable
+    private final Boolean file;
 
     @Nullable
     private final Boolean ignoreUnavailable;
@@ -81,25 +86,26 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
     private final List<String> index;
 
     @Nullable
-    private final Boolean local;
+    private final Boolean query;
 
-    @Deprecated
     @Nullable
-    private final Time masterTimeout;
+    private final Boolean request;
 
     // ---------------------------------------------------------------------------------------------
 
-    private GetMappingRequest(Builder builder) {
+    private ClearCacheRequest(Builder builder) {
         this.allowNoIndices = builder.allowNoIndices;
-        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+        this.fielddata = builder.fielddata;
+        this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+        this.file = builder.file;
         this.ignoreUnavailable = builder.ignoreUnavailable;
         this.index = ApiTypeHelper.unmodifiable(builder.index);
-        this.local = builder.local;
-        this.masterTimeout = builder.masterTimeout;
+        this.query = builder.query;
+        this.request = builder.request;
     }
 
-    public static GetMappingRequest of(Function<GetMappingRequest.Builder, ObjectBuilder<GetMappingRequest>> fn) {
+    public static ClearCacheRequest of(Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -116,17 +122,6 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
-     * <p>
-     * API name: {@code cluster_manager_timeout}
-     * </p>
-     */
-    @Nullable
-    public final Time clusterManagerTimeout() {
-        return this.clusterManagerTimeout;
-    }
-
-    /**
      * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
      * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>. Valid values are:
      * <code>all</code>, <code>open</code>, <code>closed</code>, <code>hidden</code>, <code>none</code>.
@@ -137,6 +132,39 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
     @Nonnull
     public final List<ExpandWildcard> expandWildcards() {
         return this.expandWildcards;
+    }
+
+    /**
+     * If <code>true</code>, clears the fields cache. Use the <code>fields</code> parameter to clear the cache of specific fields only.
+     * <p>
+     * API name: {@code fielddata}
+     * </p>
+     */
+    @Nullable
+    public final Boolean fielddata() {
+        return this.fielddata;
+    }
+
+    /**
+     * Comma-separated list of field names used to limit the <code>fielddata</code> parameter.
+     * <p>
+     * API name: {@code fields}
+     * </p>
+     */
+    @Nonnull
+    public final List<String> fields() {
+        return this.fields;
+    }
+
+    /**
+     * If <code>true</code>, clears the unused entries from the file cache on nodes with the Search role.
+     * <p>
+     * API name: {@code file}
+     * </p>
+     */
+    @Nullable
+    public final Boolean file() {
+        return this.file;
     }
 
     /**
@@ -163,27 +191,25 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
     }
 
     /**
-     * If <code>true</code>, the request retrieves information from the local node only.
+     * If <code>true</code>, clears the query cache.
      * <p>
-     * API name: {@code local}
+     * API name: {@code query}
      * </p>
      */
     @Nullable
-    public final Boolean local() {
-        return this.local;
+    public final Boolean query() {
+        return this.query;
     }
 
     /**
-     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
-     * and returns an error.
+     * If <code>true</code>, clears the request cache.
      * <p>
-     * API name: {@code master_timeout}
+     * API name: {@code request}
      * </p>
      */
-    @Deprecated
     @Nullable
-    public final Time masterTimeout() {
-        return this.masterTimeout;
+    public final Boolean request() {
+        return this.request;
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -200,44 +226,52 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
     }
 
     /**
-     * Builder for {@link GetMappingRequest}.
+     * Builder for {@link ClearCacheRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetMappingRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ClearCacheRequest> {
         @Nullable
         private Boolean allowNoIndices;
         @Nullable
-        private Time clusterManagerTimeout;
-        @Nullable
         private List<ExpandWildcard> expandWildcards;
+        @Nullable
+        private Boolean fielddata;
+        @Nullable
+        private List<String> fields;
+        @Nullable
+        private Boolean file;
         @Nullable
         private Boolean ignoreUnavailable;
         @Nullable
         private List<String> index;
         @Nullable
-        private Boolean local;
+        private Boolean query;
         @Nullable
-        private Time masterTimeout;
+        private Boolean request;
 
         public Builder() {}
 
-        private Builder(GetMappingRequest o) {
+        private Builder(ClearCacheRequest o) {
             this.allowNoIndices = o.allowNoIndices;
-            this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.expandWildcards = _listCopy(o.expandWildcards);
+            this.fielddata = o.fielddata;
+            this.fields = _listCopy(o.fields);
+            this.file = o.file;
             this.ignoreUnavailable = o.ignoreUnavailable;
             this.index = _listCopy(o.index);
-            this.local = o.local;
-            this.masterTimeout = o.masterTimeout;
+            this.query = o.query;
+            this.request = o.request;
         }
 
         private Builder(Builder o) {
             this.allowNoIndices = o.allowNoIndices;
-            this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.expandWildcards = _listCopy(o.expandWildcards);
+            this.fielddata = o.fielddata;
+            this.fields = _listCopy(o.fields);
+            this.file = o.file;
             this.ignoreUnavailable = o.ignoreUnavailable;
             this.index = _listCopy(o.index);
-            this.local = o.local;
-            this.masterTimeout = o.masterTimeout;
+            this.query = o.query;
+            this.request = o.request;
         }
 
         @Override
@@ -257,29 +291,6 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
         public final Builder allowNoIndices(@Nullable Boolean value) {
             this.allowNoIndices = value;
             return this;
-        }
-
-        /**
-         * Operation timeout for connection to cluster-manager node.
-         * <p>
-         * API name: {@code cluster_manager_timeout}
-         * </p>
-         */
-        @Nonnull
-        public final Builder clusterManagerTimeout(@Nullable Time value) {
-            this.clusterManagerTimeout = value;
-            return this;
-        }
-
-        /**
-         * Operation timeout for connection to cluster-manager node.
-         * <p>
-         * API name: {@code cluster_manager_timeout}
-         * </p>
-         */
-        @Nonnull
-        public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
@@ -315,6 +326,62 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
         @Nonnull
         public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
             this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+            return this;
+        }
+
+        /**
+         * If <code>true</code>, clears the fields cache. Use the <code>fields</code> parameter to clear the cache of specific fields only.
+         * <p>
+         * API name: {@code fielddata}
+         * </p>
+         */
+        @Nonnull
+        public final Builder fielddata(@Nullable Boolean value) {
+            this.fielddata = value;
+            return this;
+        }
+
+        /**
+         * Comma-separated list of field names used to limit the <code>fielddata</code> parameter.
+         * <p>
+         * API name: {@code fields}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>fields</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder fields(List<String> list) {
+            this.fields = _listAddAll(this.fields, list);
+            return this;
+        }
+
+        /**
+         * Comma-separated list of field names used to limit the <code>fielddata</code> parameter.
+         * <p>
+         * API name: {@code fields}
+         * </p>
+         *
+         * <p>
+         * Adds one or more values to <code>fields</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder fields(String value, String... values) {
+            this.fields = _listAdd(this.fields, value, values);
+            return this;
+        }
+
+        /**
+         * If <code>true</code>, clears the unused entries from the file cache on nodes with the Search role.
+         * <p>
+         * API name: {@code file}
+         * </p>
+         */
+        @Nonnull
+        public final Builder file(@Nullable Boolean value) {
+            this.file = value;
             return this;
         }
 
@@ -365,66 +432,51 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         /**
-         * If <code>true</code>, the request retrieves information from the local node only.
+         * If <code>true</code>, clears the query cache.
          * <p>
-         * API name: {@code local}
+         * API name: {@code query}
          * </p>
          */
         @Nonnull
-        public final Builder local(@Nullable Boolean value) {
-            this.local = value;
+        public final Builder query(@Nullable Boolean value) {
+            this.query = value;
             return this;
         }
 
         /**
-         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
-         * fails and returns an error.
+         * If <code>true</code>, clears the request cache.
          * <p>
-         * API name: {@code master_timeout}
+         * API name: {@code request}
          * </p>
          */
-        @Deprecated
         @Nonnull
-        public final Builder masterTimeout(@Nullable Time value) {
-            this.masterTimeout = value;
+        public final Builder request(@Nullable Boolean value) {
+            this.request = value;
             return this;
         }
 
         /**
-         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
-         * fails and returns an error.
-         * <p>
-         * API name: {@code master_timeout}
-         * </p>
-         */
-        @Deprecated
-        @Nonnull
-        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return masterTimeout(fn.apply(new Time.Builder()).build());
-        }
-
-        /**
-         * Builds a {@link GetMappingRequest}.
+         * Builds a {@link ClearCacheRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public GetMappingRequest build() {
+        public ClearCacheRequest build() {
             _checkSingleUse();
 
-            return new GetMappingRequest(this);
+            return new ClearCacheRequest(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Endpoint "{@code indices.get_mapping}".
+     * Endpoint "{@code indices.clear_cache}".
      */
-    public static final Endpoint<GetMappingRequest, GetMappingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final Endpoint<ClearCacheRequest, ClearCacheResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
         // Request method
-        request -> "GET",
+        request -> "POST",
         // Request path
         request -> {
             final int _index = 1 << 0;
@@ -434,13 +486,13 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
             if (ApiTypeHelper.isDefined(request.index())) propsSet |= _index;
 
             if (propsSet == 0) {
-                return "/_mapping";
+                return "/_cache/clear";
             }
             if (propsSet == (_index)) {
                 StringBuilder buf = new StringBuilder();
                 buf.append("/");
                 SimpleEndpoint.pathEncode(String.join(",", request.index), buf);
-                buf.append("/_mapping");
+                buf.append("/_cache/clear");
                 return buf.toString();
             }
 
@@ -452,38 +504,46 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
             if (request.allowNoIndices != null) {
                 params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
             }
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
             if (ApiTypeHelper.isDefined(request.expandWildcards)) {
                 params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+            }
+            if (request.fielddata != null) {
+                params.put("fielddata", String.valueOf(request.fielddata));
+            }
+            if (ApiTypeHelper.isDefined(request.fields)) {
+                params.put("fields", String.join(",", request.fields));
+            }
+            if (request.file != null) {
+                params.put("file", String.valueOf(request.file));
             }
             if (request.ignoreUnavailable != null) {
                 params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
             }
-            if (request.local != null) {
-                params.put("local", String.valueOf(request.local));
+            if (request.query != null) {
+                params.put("query", String.valueOf(request.query));
             }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
+            if (request.request != null) {
+                params.put("request", String.valueOf(request.request));
             }
             return params;
         },
         SimpleEndpoint.emptyMap(),
         false,
-        GetMappingResponse._DESERIALIZER
+        ClearCacheResponse._DESERIALIZER
     );
 
     @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.allowNoIndices);
-        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
         result = 31 * result + Objects.hashCode(this.expandWildcards);
+        result = 31 * result + Objects.hashCode(this.fielddata);
+        result = 31 * result + Objects.hashCode(this.fields);
+        result = 31 * result + Objects.hashCode(this.file);
         result = 31 * result + Objects.hashCode(this.ignoreUnavailable);
         result = 31 * result + Objects.hashCode(this.index);
-        result = 31 * result + Objects.hashCode(this.local);
-        result = 31 * result + Objects.hashCode(this.masterTimeout);
+        result = 31 * result + Objects.hashCode(this.query);
+        result = 31 * result + Objects.hashCode(this.request);
         return result;
     }
 
@@ -491,13 +551,15 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        GetMappingRequest other = (GetMappingRequest) o;
+        ClearCacheRequest other = (ClearCacheRequest) o;
         return Objects.equals(this.allowNoIndices, other.allowNoIndices)
-            && Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
             && Objects.equals(this.expandWildcards, other.expandWildcards)
+            && Objects.equals(this.fielddata, other.fielddata)
+            && Objects.equals(this.fields, other.fields)
+            && Objects.equals(this.file, other.file)
             && Objects.equals(this.ignoreUnavailable, other.ignoreUnavailable)
             && Objects.equals(this.index, other.index)
-            && Objects.equals(this.local, other.local)
-            && Objects.equals(this.masterTimeout, other.masterTimeout);
+            && Objects.equals(this.query, other.query)
+            && Objects.equals(this.request, other.request);
     }
 }

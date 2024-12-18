@@ -1013,7 +1013,6 @@ public class PutMappingRequest extends RequestBase
             "dynamic_templates"
         );
         op.add(Builder::fieldNames, FieldNamesField._DESERIALIZER, "_field_names");
-        op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
         op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
         op.add(Builder::numericDetection, JsonpDeserializer.booleanDeserializer(), "numeric_detection");
         op.add(Builder::properties, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER), "properties");

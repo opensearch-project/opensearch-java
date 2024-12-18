@@ -632,8 +632,6 @@ public class CreateSnapshotRequest extends RequestBase
         op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "indices");
         op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
         op.add(Builder::partial, JsonpDeserializer.booleanDeserializer(), "partial");
-        op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
-        op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
     }
 
     // ---------------------------------------------------------------------------------------------

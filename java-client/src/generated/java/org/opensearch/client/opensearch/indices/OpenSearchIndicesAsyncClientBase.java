@@ -59,6 +59,77 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         super(transport, transportOptions);
     }
 
+    // ----- Endpoint: indices.add_block
+
+    /**
+     * Adds a block to an index.
+     */
+    public CompletableFuture<AddBlockResponse> addBlock(AddBlockRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, AddBlockRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Adds a block to an index.
+     *
+     * @param fn a function that initializes a builder to create the {@link AddBlockRequest}
+     */
+    public final CompletableFuture<AddBlockResponse> addBlock(Function<AddBlockRequest.Builder, ObjectBuilder<AddBlockRequest>> fn)
+        throws IOException, OpenSearchException {
+        return addBlock(fn.apply(new AddBlockRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.analyze
+
+    /**
+     * Performs the analysis process on a text and return the tokens breakdown of the text.
+     */
+    public CompletableFuture<AnalyzeResponse> analyze(AnalyzeRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, AnalyzeRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Performs the analysis process on a text and return the tokens breakdown of the text.
+     *
+     * @param fn a function that initializes a builder to create the {@link AnalyzeRequest}
+     */
+    public final CompletableFuture<AnalyzeResponse> analyze(Function<AnalyzeRequest.Builder, ObjectBuilder<AnalyzeRequest>> fn)
+        throws IOException, OpenSearchException {
+        return analyze(fn.apply(new AnalyzeRequest.Builder()).build());
+    }
+
+    /**
+     * Performs the analysis process on a text and return the tokens breakdown of the text.
+     */
+    public final CompletableFuture<AnalyzeResponse> analyze() throws IOException, OpenSearchException {
+        return analyze(new AnalyzeRequest.Builder().build());
+    }
+
+    // ----- Endpoint: indices.clear_cache
+
+    /**
+     * Clears all or specific caches for one or more indexes.
+     */
+    public CompletableFuture<ClearCacheResponse> clearCache(ClearCacheRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ClearCacheRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Clears all or specific caches for one or more indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link ClearCacheRequest}
+     */
+    public final CompletableFuture<ClearCacheResponse> clearCache(Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn)
+        throws IOException, OpenSearchException {
+        return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
+    }
+
+    /**
+     * Clears all or specific caches for one or more indexes.
+     */
+    public final CompletableFuture<ClearCacheResponse> clearCache() throws IOException, OpenSearchException {
+        return clearCache(new ClearCacheRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.create
 
     /**
@@ -146,6 +217,26 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return delete(fn.apply(new DeleteIndexRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.delete_alias
+
+    /**
+     * Deletes an alias.
+     */
+    public CompletableFuture<DeleteAliasResponse> deleteAlias(DeleteAliasRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteAliasRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes an alias.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteAliasRequest}
+     */
+    public final CompletableFuture<DeleteAliasResponse> deleteAlias(
+        Function<DeleteAliasRequest.Builder, ObjectBuilder<DeleteAliasRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.delete_data_stream
 
     /**
@@ -227,6 +318,25 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return exists(fn.apply(new ExistsRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.exists_alias
+
+    /**
+     * Returns information about whether a particular alias exists.
+     */
+    public CompletableFuture<BooleanResponse> existsAlias(ExistsAliasRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ExistsAliasRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about whether a particular alias exists.
+     *
+     * @param fn a function that initializes a builder to create the {@link ExistsAliasRequest}
+     */
+    public final CompletableFuture<BooleanResponse> existsAlias(Function<ExistsAliasRequest.Builder, ObjectBuilder<ExistsAliasRequest>> fn)
+        throws IOException, OpenSearchException {
+        return existsAlias(fn.apply(new ExistsAliasRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.exists_index_template
 
     /**
@@ -285,6 +395,32 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
     public final CompletableFuture<GetIndexResponse> get(Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn)
         throws IOException, OpenSearchException {
         return get(fn.apply(new GetIndexRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.get_alias
+
+    /**
+     * Returns an alias.
+     */
+    public CompletableFuture<GetAliasResponse> getAlias(GetAliasRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, GetAliasRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns an alias.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetAliasRequest}
+     */
+    public final CompletableFuture<GetAliasResponse> getAlias(Function<GetAliasRequest.Builder, ObjectBuilder<GetAliasRequest>> fn)
+        throws IOException, OpenSearchException {
+        return getAlias(fn.apply(new GetAliasRequest.Builder()).build());
+    }
+
+    /**
+     * Returns an alias.
+     */
+    public final CompletableFuture<GetAliasResponse> getAlias() throws IOException, OpenSearchException {
+        return getAlias(new GetAliasRequest.Builder().build());
     }
 
     // ----- Endpoint: indices.get_data_stream
@@ -423,6 +559,32 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return getTemplate(new GetTemplateRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.put_alias
+
+    /**
+     * Creates or updates an alias.
+     */
+    public CompletableFuture<PutAliasResponse> putAlias(PutAliasRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, PutAliasRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates or updates an alias.
+     *
+     * @param fn a function that initializes a builder to create the {@link PutAliasRequest}
+     */
+    public final CompletableFuture<PutAliasResponse> putAlias(Function<PutAliasRequest.Builder, ObjectBuilder<PutAliasRequest>> fn)
+        throws IOException, OpenSearchException {
+        return putAlias(fn.apply(new PutAliasRequest.Builder()).build());
+    }
+
+    /**
+     * Creates or updates an alias.
+     */
+    public final CompletableFuture<PutAliasResponse> putAlias() throws IOException, OpenSearchException {
+        return putAlias(new PutAliasRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.put_index_template
 
     /**
@@ -544,5 +706,32 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         Function<SimulateTemplateRequest.Builder, ObjectBuilder<SimulateTemplateRequest>> fn
     ) throws IOException, OpenSearchException {
         return simulateTemplate(fn.apply(new SimulateTemplateRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.update_aliases
+
+    /**
+     * Updates index aliases.
+     */
+    public CompletableFuture<UpdateAliasesResponse> updateAliases(UpdateAliasesRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, UpdateAliasesRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Updates index aliases.
+     *
+     * @param fn a function that initializes a builder to create the {@link UpdateAliasesRequest}
+     */
+    public final CompletableFuture<UpdateAliasesResponse> updateAliases(
+        Function<UpdateAliasesRequest.Builder, ObjectBuilder<UpdateAliasesRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return updateAliases(fn.apply(new UpdateAliasesRequest.Builder()).build());
+    }
+
+    /**
+     * Updates index aliases.
+     */
+    public final CompletableFuture<UpdateAliasesResponse> updateAliases() throws IOException, OpenSearchException {
+        return updateAliases(new UpdateAliasesRequest.Builder().build());
     }
 }

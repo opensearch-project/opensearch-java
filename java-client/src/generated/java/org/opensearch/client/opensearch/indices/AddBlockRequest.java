@@ -49,6 +49,7 @@ import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
+import org.opensearch.client.opensearch.indices.add_block.IndicesBlockOptions;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -57,16 +58,19 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: indices.get_mapping.Request
+// typedef: indices.add_block.Request
 
 /**
- * Returns mappings for one or more indexes.
+ * Adds a block to an index.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<GetMappingRequest.Builder, GetMappingRequest> {
+public class AddBlockRequest extends RequestBase implements ToCopyableBuilder<AddBlockRequest.Builder, AddBlockRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
+
+    @Nonnull
+    private final IndicesBlockOptions block;
 
     @Nullable
     private final Time clusterManagerTimeout;
@@ -80,32 +84,33 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
     @Nonnull
     private final List<String> index;
 
-    @Nullable
-    private final Boolean local;
-
     @Deprecated
     @Nullable
     private final Time masterTimeout;
 
+    @Nullable
+    private final Time timeout;
+
     // ---------------------------------------------------------------------------------------------
 
-    private GetMappingRequest(Builder builder) {
+    private AddBlockRequest(Builder builder) {
         this.allowNoIndices = builder.allowNoIndices;
+        this.block = ApiTypeHelper.requireNonNull(builder.block, this, "block");
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.ignoreUnavailable = builder.ignoreUnavailable;
-        this.index = ApiTypeHelper.unmodifiable(builder.index);
-        this.local = builder.local;
+        this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
         this.masterTimeout = builder.masterTimeout;
+        this.timeout = builder.timeout;
     }
 
-    public static GetMappingRequest of(Function<GetMappingRequest.Builder, ObjectBuilder<GetMappingRequest>> fn) {
+    public static AddBlockRequest of(Function<AddBlockRequest.Builder, ObjectBuilder<AddBlockRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets only
-     * missing or closed indexes. This behavior applies even if the request targets other open indexes.
+     * Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes <code>_all</code> string or when
+     * no indexes have been specified).
      * <p>
      * API name: {@code allow_no_indices}
      * </p>
@@ -113,6 +118,17 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
     @Nullable
     public final Boolean allowNoIndices() {
         return this.allowNoIndices;
+    }
+
+    /**
+     * Required - The block to add (one of <code>read</code>, <code>write</code>, <code>read_only</code> or <code>metadata</code>).
+     * <p>
+     * API name: {@code block}
+     * </p>
+     */
+    @Nonnull
+    public final IndicesBlockOptions block() {
+        return this.block;
     }
 
     /**
@@ -127,9 +143,7 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
     }
 
     /**
-     * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
-     * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>. Valid values are:
-     * <code>all</code>, <code>open</code>, <code>closed</code>, <code>hidden</code>, <code>none</code>.
+     * Whether to expand wildcard expression to concrete indexes that are open, closed or both.
      * <p>
      * API name: {@code expand_wildcards}
      * </p>
@@ -140,7 +154,7 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
     }
 
     /**
-     * If <code>false</code>, the request returns an error if it targets a missing or closed index.
+     * Whether specified concrete indexes should be ignored when unavailable (missing or closed).
      * <p>
      * API name: {@code ignore_unavailable}
      * </p>
@@ -151,8 +165,7 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
     }
 
     /**
-     * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To target
-     * all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+     * Required - A comma separated list of indexes to add a block to.
      * <p>
      * API name: {@code index}
      * </p>
@@ -163,19 +176,7 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
     }
 
     /**
-     * If <code>true</code>, the request retrieves information from the local node only.
-     * <p>
-     * API name: {@code local}
-     * </p>
-     */
-    @Nullable
-    public final Boolean local() {
-        return this.local;
-    }
-
-    /**
-     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
-     * and returns an error.
+     * Specify timeout for connection to cluster manager.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -184,6 +185,17 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
     @Nullable
     public final Time masterTimeout() {
         return this.masterTimeout;
+    }
+
+    /**
+     * Explicit operation timeout
+     * <p>
+     * API name: {@code timeout}
+     * </p>
+     */
+    @Nullable
+    public final Time timeout() {
+        return this.timeout;
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -200,44 +212,46 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
     }
 
     /**
-     * Builder for {@link GetMappingRequest}.
+     * Builder for {@link AddBlockRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetMappingRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AddBlockRequest> {
         @Nullable
         private Boolean allowNoIndices;
+        private IndicesBlockOptions block;
         @Nullable
         private Time clusterManagerTimeout;
         @Nullable
         private List<ExpandWildcard> expandWildcards;
         @Nullable
         private Boolean ignoreUnavailable;
-        @Nullable
         private List<String> index;
         @Nullable
-        private Boolean local;
-        @Nullable
         private Time masterTimeout;
+        @Nullable
+        private Time timeout;
 
         public Builder() {}
 
-        private Builder(GetMappingRequest o) {
+        private Builder(AddBlockRequest o) {
             this.allowNoIndices = o.allowNoIndices;
+            this.block = o.block;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.ignoreUnavailable = o.ignoreUnavailable;
             this.index = _listCopy(o.index);
-            this.local = o.local;
             this.masterTimeout = o.masterTimeout;
+            this.timeout = o.timeout;
         }
 
         private Builder(Builder o) {
             this.allowNoIndices = o.allowNoIndices;
+            this.block = o.block;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.ignoreUnavailable = o.ignoreUnavailable;
             this.index = _listCopy(o.index);
-            this.local = o.local;
             this.masterTimeout = o.masterTimeout;
+            this.timeout = o.timeout;
         }
 
         @Override
@@ -247,8 +261,8 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         /**
-         * If <code>false</code>, the request returns an error if any wildcard expression, index alias, or <code>_all</code> value targets
-         * only missing or closed indexes. This behavior applies even if the request targets other open indexes.
+         * Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes <code>_all</code> string or
+         * when no indexes have been specified).
          * <p>
          * API name: {@code allow_no_indices}
          * </p>
@@ -256,6 +270,18 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
         @Nonnull
         public final Builder allowNoIndices(@Nullable Boolean value) {
             this.allowNoIndices = value;
+            return this;
+        }
+
+        /**
+         * Required - The block to add (one of <code>read</code>, <code>write</code>, <code>read_only</code> or <code>metadata</code>).
+         * <p>
+         * API name: {@code block}
+         * </p>
+         */
+        @Nonnull
+        public final Builder block(IndicesBlockOptions value) {
+            this.block = value;
             return this;
         }
 
@@ -283,9 +309,7 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         /**
-         * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
-         * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>. Valid values are:
-         * <code>all</code>, <code>open</code>, <code>closed</code>, <code>hidden</code>, <code>none</code>.
+         * Whether to expand wildcard expression to concrete indexes that are open, closed or both.
          * <p>
          * API name: {@code expand_wildcards}
          * </p>
@@ -301,9 +325,7 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         /**
-         * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
-         * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>. Valid values are:
-         * <code>all</code>, <code>open</code>, <code>closed</code>, <code>hidden</code>, <code>none</code>.
+         * Whether to expand wildcard expression to concrete indexes that are open, closed or both.
          * <p>
          * API name: {@code expand_wildcards}
          * </p>
@@ -319,7 +341,7 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         /**
-         * If <code>false</code>, the request returns an error if it targets a missing or closed index.
+         * Whether specified concrete indexes should be ignored when unavailable (missing or closed).
          * <p>
          * API name: {@code ignore_unavailable}
          * </p>
@@ -331,8 +353,7 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         /**
-         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
-         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+         * Required - A comma separated list of indexes to add a block to.
          * <p>
          * API name: {@code index}
          * </p>
@@ -348,8 +369,7 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         /**
-         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
-         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+         * Required - A comma separated list of indexes to add a block to.
          * <p>
          * API name: {@code index}
          * </p>
@@ -365,20 +385,7 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         /**
-         * If <code>true</code>, the request retrieves information from the local node only.
-         * <p>
-         * API name: {@code local}
-         * </p>
-         */
-        @Nonnull
-        public final Builder local(@Nullable Boolean value) {
-            this.local = value;
-            return this;
-        }
-
-        /**
-         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
-         * fails and returns an error.
+         * Specify timeout for connection to cluster manager.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -391,8 +398,7 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         /**
-         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
-         * fails and returns an error.
+         * Specify timeout for connection to cluster manager.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -404,47 +410,58 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         /**
-         * Builds a {@link GetMappingRequest}.
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         * </p>
+         */
+        @Nonnull
+        public final Builder timeout(@Nullable Time value) {
+            this.timeout = value;
+            return this;
+        }
+
+        /**
+         * Explicit operation timeout
+         * <p>
+         * API name: {@code timeout}
+         * </p>
+         */
+        @Nonnull
+        public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return timeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * Builds a {@link AddBlockRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public GetMappingRequest build() {
+        public AddBlockRequest build() {
             _checkSingleUse();
 
-            return new GetMappingRequest(this);
+            return new AddBlockRequest(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Endpoint "{@code indices.get_mapping}".
+     * Endpoint "{@code indices.add_block}".
      */
-    public static final Endpoint<GetMappingRequest, GetMappingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final Endpoint<AddBlockRequest, AddBlockResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
         // Request method
-        request -> "GET",
+        request -> "PUT",
         // Request path
         request -> {
-            final int _index = 1 << 0;
-
-            int propsSet = 0;
-
-            if (ApiTypeHelper.isDefined(request.index())) propsSet |= _index;
-
-            if (propsSet == 0) {
-                return "/_mapping";
-            }
-            if (propsSet == (_index)) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/");
-                SimpleEndpoint.pathEncode(String.join(",", request.index), buf);
-                buf.append("/_mapping");
-                return buf.toString();
-            }
-
-            throw SimpleEndpoint.noPathTemplateFound("path");
+            StringBuilder buf = new StringBuilder();
+            buf.append("/");
+            SimpleEndpoint.pathEncode(String.join(",", request.index), buf);
+            buf.append("/_block/");
+            SimpleEndpoint.pathEncode(request.block.jsonValue(), buf);
+            return buf.toString();
         },
         // Request parameters
         request -> {
@@ -461,29 +478,30 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
             if (request.ignoreUnavailable != null) {
                 params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
             }
-            if (request.local != null) {
-                params.put("local", String.valueOf(request.local));
-            }
             if (request.masterTimeout != null) {
                 params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
+            if (request.timeout != null) {
+                params.put("timeout", request.timeout._toJsonString());
             }
             return params;
         },
         SimpleEndpoint.emptyMap(),
         false,
-        GetMappingResponse._DESERIALIZER
+        AddBlockResponse._DESERIALIZER
     );
 
     @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.allowNoIndices);
+        result = 31 * result + this.block.hashCode();
         result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
         result = 31 * result + Objects.hashCode(this.expandWildcards);
         result = 31 * result + Objects.hashCode(this.ignoreUnavailable);
-        result = 31 * result + Objects.hashCode(this.index);
-        result = 31 * result + Objects.hashCode(this.local);
+        result = 31 * result + this.index.hashCode();
         result = 31 * result + Objects.hashCode(this.masterTimeout);
+        result = 31 * result + Objects.hashCode(this.timeout);
         return result;
     }
 
@@ -491,13 +509,14 @@ public class GetMappingRequest extends RequestBase implements ToCopyableBuilder<
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        GetMappingRequest other = (GetMappingRequest) o;
+        AddBlockRequest other = (AddBlockRequest) o;
         return Objects.equals(this.allowNoIndices, other.allowNoIndices)
+            && this.block.equals(other.block)
             && Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
             && Objects.equals(this.expandWildcards, other.expandWildcards)
             && Objects.equals(this.ignoreUnavailable, other.ignoreUnavailable)
-            && Objects.equals(this.index, other.index)
-            && Objects.equals(this.local, other.local)
-            && Objects.equals(this.masterTimeout, other.masterTimeout);
+            && this.index.equals(other.index)
+            && Objects.equals(this.masterTimeout, other.masterTimeout)
+            && Objects.equals(this.timeout, other.timeout);
     }
 }

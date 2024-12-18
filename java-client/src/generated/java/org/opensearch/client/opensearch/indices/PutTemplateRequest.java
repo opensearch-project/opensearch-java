@@ -621,7 +621,6 @@ public class PutTemplateRequest extends RequestBase
         op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
         op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index_patterns");
         op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
-        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::order, JsonpDeserializer.integerDeserializer(), "order");
         op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
         op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");

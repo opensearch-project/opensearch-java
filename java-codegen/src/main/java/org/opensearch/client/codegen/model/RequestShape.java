@@ -16,15 +16,17 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang3.tuple.Pair;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.Streams;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class RequestShape extends ObjectShape {
+    private static final Logger LOGGER = LogManager.getLogger();
     @Nonnull
     private final OperationGroup operationGroup;
     @Nonnull
@@ -102,19 +104,6 @@ public class RequestShape extends ObjectShape {
     }
 
     @Override
-    public Collection<Field> getFieldsToDeserialize() {
-        var fields = new TreeMap<>(bodyFields);
-        var wireNameSet = bodyFields.values().stream().map(Field::getWireName).collect(Collectors.toSet());
-        pathParams.forEach((k, v) -> {
-            if (wireNameSet.contains(v.getWireName())) {
-                v = v.toBuilder().withWireName(v.getName()).build();
-            }
-            fields.put(k, v);
-        });
-        return fields.values();
-    }
-
-    @Override
     public boolean hasFieldsToSerialize() {
         return hasRequestBody();
     }
@@ -124,8 +113,9 @@ public class RequestShape extends ObjectShape {
     }
 
     public void addQueryParam(Field field) {
-        queryParams.put(field.getName(), field);
-        addField(field);
+        if (addField(field)) {
+            queryParams.put(field.getName(), field);
+        }
     }
 
     public Collection<Field> getQueryParams() {
@@ -153,8 +143,9 @@ public class RequestShape extends ObjectShape {
     }
 
     public void addPathParam(Field field) {
-        pathParams.put(field.getName(), field);
-        addField(field);
+        if (addField(field)) {
+            pathParams.put(field.getName(), field);
+        }
     }
 
     public Collection<Pair<String, Integer>> getIndexedPathParams() {
@@ -172,8 +163,9 @@ public class RequestShape extends ObjectShape {
 
     @Override
     public void addBodyField(Field field) {
-        super.addBodyField(field);
-        addField(field);
+        if (addField(field)) {
+            super.addBodyField(field);
+        }
     }
 
     public void setDelegatedBodyField(String name, Type type) {
@@ -189,9 +181,14 @@ public class RequestShape extends ObjectShape {
         return delegatedBodyField;
     }
 
-    private void addField(Field field) {
+    private boolean addField(Field field) {
+        if (fields.containsKey(field.getName())) {
+            LOGGER.warn("Attempted to add duplicate field {} to request {}", field.getName(), getOperationGroup());
+            return false;
+        }
         fields.put(field.getName(), field);
         tryAddReference(ReferenceKind.Field, field.getType());
+        return true;
     }
 
     @Override
