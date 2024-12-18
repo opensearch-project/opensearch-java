@@ -601,9 +601,7 @@ public class CloneIndexRequest extends RequestBase
 
     protected static void setupCloneIndexRequestDeserializer(ObjectDeserializer<CloneIndexRequest.Builder> op) {
         op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
-        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
         op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
-        op.add(Builder::target, JsonpDeserializer.stringDeserializer(), "target");
     }
 
     // ---------------------------------------------------------------------------------------------

@@ -629,9 +629,7 @@ public class SplitRequest extends RequestBase implements PlainJsonSerializable, 
 
     protected static void setupSplitRequestDeserializer(ObjectDeserializer<SplitRequest.Builder> op) {
         op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
-        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
         op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
-        op.add(Builder::target, JsonpDeserializer.stringDeserializer(), "target");
     }
 
     // ---------------------------------------------------------------------------------------------
