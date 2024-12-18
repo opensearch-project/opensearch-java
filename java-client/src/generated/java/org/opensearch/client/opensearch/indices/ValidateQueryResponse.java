@@ -30,11 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -45,13 +52,24 @@ import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ShardStatistics;
 import org.opensearch.client.opensearch.indices.validate_query.IndicesValidationExplanation;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.validate_query.Response
 
 @JsonpDeserializable
-public class ValidateQueryResponse implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ValidateQueryResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<ValidateQueryResponse.Builder, ValidateQueryResponse> {
+
+    @Nullable
+    private final String error;
+
+    @Nonnull
     private final List<IndicesValidationExplanation> explanations;
 
     @Nullable
@@ -59,27 +77,31 @@ public class ValidateQueryResponse implements PlainJsonSerializable {
 
     private final boolean valid;
 
-    @Nullable
-    private final String error;
-
     // ---------------------------------------------------------------------------------------------
 
     private ValidateQueryResponse(Builder builder) {
-
+        this.error = builder.error;
         this.explanations = ApiTypeHelper.unmodifiable(builder.explanations);
         this.shards = builder.shards;
         this.valid = ApiTypeHelper.requireNonNull(builder.valid, this, "valid");
-        this.error = builder.error;
-
     }
 
-    public static ValidateQueryResponse of(Function<Builder, ObjectBuilder<ValidateQueryResponse>> fn) {
+    public static ValidateQueryResponse of(Function<ValidateQueryResponse.Builder, ObjectBuilder<ValidateQueryResponse>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * API name: {@code error}
+     */
+    @Nullable
+    public final String error() {
+        return this.error;
     }
 
     /**
      * API name: {@code explanations}
      */
+    @Nonnull
     public final List<IndicesValidationExplanation> explanations() {
         return this.explanations;
     }
@@ -100,16 +122,9 @@ public class ValidateQueryResponse implements PlainJsonSerializable {
     }
 
     /**
-     * API name: {@code error}
-     */
-    @Nullable
-    public final String error() {
-        return this.error;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -117,56 +132,93 @@ public class ValidateQueryResponse implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.error != null) {
+            generator.writeKey("error");
+            generator.write(this.error);
+        }
 
         if (ApiTypeHelper.isDefined(this.explanations)) {
             generator.writeKey("explanations");
             generator.writeStartArray();
             for (IndicesValidationExplanation item0 : this.explanations) {
                 item0.serialize(generator, mapper);
-
             }
             generator.writeEnd();
-
         }
+
         if (this.shards != null) {
             generator.writeKey("_shards");
             this.shards.serialize(generator, mapper);
-
         }
+
         generator.writeKey("valid");
         generator.write(this.valid);
-
-        if (this.error != null) {
-            generator.writeKey("error");
-            generator.write(this.error);
-
-        }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ValidateQueryResponse}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ValidateQueryResponse> {
-        @Nullable
-        private List<IndicesValidationExplanation> explanations;
-
-        @Nullable
-        private ShardStatistics shards;
-
-        private Boolean valid;
-
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ValidateQueryResponse> {
         @Nullable
         private String error;
+        @Nullable
+        private List<IndicesValidationExplanation> explanations;
+        @Nullable
+        private ShardStatistics shards;
+        private Boolean valid;
+
+        public Builder() {}
+
+        private Builder(ValidateQueryResponse o) {
+            this.error = o.error;
+            this.explanations = _listCopy(o.explanations);
+            this.shards = o.shards;
+            this.valid = o.valid;
+        }
+
+        private Builder(Builder o) {
+            this.error = o.error;
+            this.explanations = _listCopy(o.explanations);
+            this.shards = o.shards;
+            this.valid = o.valid;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        /**
+         * API name: {@code error}
+         */
+        @Nonnull
+        public final Builder error(@Nullable String value) {
+            this.error = value;
+            return this;
+        }
 
         /**
          * API name: {@code explanations}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>explanations</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder explanations(List<IndicesValidationExplanation> list) {
             this.explanations = _listAddAll(this.explanations, list);
             return this;
@@ -174,9 +226,12 @@ public class ValidateQueryResponse implements PlainJsonSerializable {
 
         /**
          * API name: {@code explanations}
+         *
          * <p>
          * Adds one or more values to <code>explanations</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder explanations(IndicesValidationExplanation value, IndicesValidationExplanation... values) {
             this.explanations = _listAdd(this.explanations, value, values);
             return this;
@@ -184,9 +239,12 @@ public class ValidateQueryResponse implements PlainJsonSerializable {
 
         /**
          * API name: {@code explanations}
+         *
          * <p>
          * Adds a value to <code>explanations</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder explanations(Function<IndicesValidationExplanation.Builder, ObjectBuilder<IndicesValidationExplanation>> fn) {
             return explanations(fn.apply(new IndicesValidationExplanation.Builder()).build());
         }
@@ -194,6 +252,7 @@ public class ValidateQueryResponse implements PlainJsonSerializable {
         /**
          * API name: {@code _shards}
          */
+        @Nonnull
         public final Builder shards(@Nullable ShardStatistics value) {
             this.shards = value;
             return this;
@@ -202,32 +261,27 @@ public class ValidateQueryResponse implements PlainJsonSerializable {
         /**
          * API name: {@code _shards}
          */
+        @Nonnull
         public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-            return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+            return shards(fn.apply(new ShardStatistics.Builder()).build());
         }
 
         /**
          * Required - API name: {@code valid}
          */
+        @Nonnull
         public final Builder valid(boolean value) {
             this.valid = value;
             return this;
         }
 
         /**
-         * API name: {@code error}
-         */
-        public final Builder error(@Nullable String value) {
-            this.error = value;
-            return this;
-        }
-
-        /**
          * Builds a {@link ValidateQueryResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ValidateQueryResponse build() {
             _checkSingleUse();
 
@@ -246,12 +300,30 @@ public class ValidateQueryResponse implements PlainJsonSerializable {
     );
 
     protected static void setupValidateQueryResponseDeserializer(ObjectDeserializer<ValidateQueryResponse.Builder> op) {
-
+        op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
         op.add(Builder::explanations, JsonpDeserializer.arrayDeserializer(IndicesValidationExplanation._DESERIALIZER), "explanations");
         op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
         op.add(Builder::valid, JsonpDeserializer.booleanDeserializer(), "valid");
-        op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.error);
+        result = 31 * result + Objects.hashCode(this.explanations);
+        result = 31 * result + Objects.hashCode(this.shards);
+        result = 31 * result + Boolean.hashCode(this.valid);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ValidateQueryResponse other = (ValidateQueryResponse) o;
+        return Objects.equals(this.error, other.error)
+            && Objects.equals(this.explanations, other.explanations)
+            && Objects.equals(this.shards, other.shards)
+            && this.valid == other.valid;
+    }
 }

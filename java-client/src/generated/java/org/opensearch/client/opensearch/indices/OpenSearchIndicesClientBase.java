@@ -1088,4 +1088,30 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
     public final UpgradeResponse upgrade() throws IOException, OpenSearchException {
         return upgrade(new UpgradeRequest.Builder().build());
     }
+
+    // ----- Endpoint: indices.validate_query
+
+    /**
+     * Allows a user to validate a potentially expensive query without executing it.
+     */
+    public ValidateQueryResponse validateQuery(ValidateQueryRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ValidateQueryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Allows a user to validate a potentially expensive query without executing it.
+     *
+     * @param fn a function that initializes a builder to create the {@link ValidateQueryRequest}
+     */
+    public final ValidateQueryResponse validateQuery(Function<ValidateQueryRequest.Builder, ObjectBuilder<ValidateQueryRequest>> fn)
+        throws IOException, OpenSearchException {
+        return validateQuery(fn.apply(new ValidateQueryRequest.Builder()).build());
+    }
+
+    /**
+     * Allows a user to validate a potentially expensive query without executing it.
+     */
+    public final ValidateQueryResponse validateQuery() throws IOException, OpenSearchException {
+        return validateQuery(new ValidateQueryRequest.Builder().build());
+    }
 }
