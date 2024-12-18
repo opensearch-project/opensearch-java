@@ -252,6 +252,8 @@ public class RequestShape extends ObjectShape {
                 return "GetIndicesSettings";
             case "indices.put_settings":
                 return "PutIndicesSettings";
+            case "indices.stats":
+                return "IndicesStats";
             case "snapshot.clone":
                 return "CloneSnapshot";
             case "snapshot.create":

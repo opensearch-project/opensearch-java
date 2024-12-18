@@ -32,6 +32,9 @@ public class NameSanitizer {
         if (reservedWords.contains(name)) {
             name += "_";
         }
+        if (Character.isDigit(name.charAt(0))) {
+            name = "_" + name;
+        }
         return name;
     }
 }

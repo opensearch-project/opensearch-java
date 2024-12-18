@@ -74,7 +74,8 @@ public class CodeGenerator {
                         "segments",
                         "shard_stores",
                         "shrink",
-                        "split"
+                        "split",
+                        "stats"
                     ),
                     contains("alias"),
                     contains("data_stream"),
