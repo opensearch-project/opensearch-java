@@ -71,7 +71,7 @@ public class RemoteStoreUploadStats
 
     private final long maxRefreshTimeLagInMillis;
 
-    @Nonnull
+    @Nullable
     private final RemoteStoreUploadPressureStats pressure;
 
     @Nonnull
@@ -90,7 +90,7 @@ public class RemoteStoreUploadStats
     private RemoteStoreUploadStats(Builder builder) {
         this.maxRefreshTimeLag = builder.maxRefreshTimeLag;
         this.maxRefreshTimeLagInMillis = ApiTypeHelper.requireNonNull(builder.maxRefreshTimeLagInMillis, this, "maxRefreshTimeLagInMillis");
-        this.pressure = ApiTypeHelper.requireNonNull(builder.pressure, this, "pressure");
+        this.pressure = builder.pressure;
         this.refreshSizeLag = ApiTypeHelper.requireNonNull(builder.refreshSizeLag, this, "refreshSizeLag");
         this.totalTimeSpent = builder.totalTimeSpent;
         this.totalTimeSpentInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeSpentInMillis, this, "totalTimeSpentInMillis");
@@ -123,9 +123,9 @@ public class RemoteStoreUploadStats
     }
 
     /**
-     * Required - API name: {@code pressure}
+     * API name: {@code pressure}
      */
-    @Nonnull
+    @Nullable
     public final RemoteStoreUploadPressureStats pressure() {
         return this.pressure;
     }
@@ -186,8 +186,10 @@ public class RemoteStoreUploadStats
         generator.writeKey("max_refresh_time_lag_in_millis");
         generator.write(this.maxRefreshTimeLagInMillis);
 
-        generator.writeKey("pressure");
-        this.pressure.serialize(generator, mapper);
+        if (this.pressure != null) {
+            generator.writeKey("pressure");
+            this.pressure.serialize(generator, mapper);
+        }
 
         generator.writeKey("refresh_size_lag");
         this.refreshSizeLag.serialize(generator, mapper);
@@ -224,6 +226,7 @@ public class RemoteStoreUploadStats
         @Nullable
         private Time maxRefreshTimeLag;
         private Long maxRefreshTimeLagInMillis;
+        @Nullable
         private RemoteStoreUploadPressureStats pressure;
         private RemoteStoreUploadRefreshSizeLagStats refreshSizeLag;
         @Nullable
@@ -295,16 +298,16 @@ public class RemoteStoreUploadStats
         }
 
         /**
-         * Required - API name: {@code pressure}
+         * API name: {@code pressure}
          */
         @Nonnull
-        public final Builder pressure(RemoteStoreUploadPressureStats value) {
+        public final Builder pressure(@Nullable RemoteStoreUploadPressureStats value) {
             this.pressure = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code pressure}
+         * API name: {@code pressure}
          */
         @Nonnull
         public final Builder pressure(Function<RemoteStoreUploadPressureStats.Builder, ObjectBuilder<RemoteStoreUploadPressureStats>> fn) {
@@ -423,7 +426,7 @@ public class RemoteStoreUploadStats
         int result = 17;
         result = 31 * result + Objects.hashCode(this.maxRefreshTimeLag);
         result = 31 * result + Long.hashCode(this.maxRefreshTimeLagInMillis);
-        result = 31 * result + this.pressure.hashCode();
+        result = 31 * result + Objects.hashCode(this.pressure);
         result = 31 * result + this.refreshSizeLag.hashCode();
         result = 31 * result + Objects.hashCode(this.totalTimeSpent);
         result = 31 * result + Long.hashCode(this.totalTimeSpentInMillis);
@@ -438,7 +441,7 @@ public class RemoteStoreUploadStats
         RemoteStoreUploadStats other = (RemoteStoreUploadStats) o;
         return Objects.equals(this.maxRefreshTimeLag, other.maxRefreshTimeLag)
             && this.maxRefreshTimeLagInMillis == other.maxRefreshTimeLagInMillis
-            && this.pressure.equals(other.pressure)
+            && Objects.equals(this.pressure, other.pressure)
             && this.refreshSizeLag.equals(other.refreshSizeLag)
             && Objects.equals(this.totalTimeSpent, other.totalTimeSpent)
             && this.totalTimeSpentInMillis == other.totalTimeSpentInMillis

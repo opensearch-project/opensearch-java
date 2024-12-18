@@ -33586,7 +33586,6 @@ components:
           $ref: '#/components/schemas/_common___RemoteStoreUploadDownloadStats'
       required:
         - max_refresh_time_lag_in_millis
-        - pressure
         - refresh_size_lag
         - total_time_spent_in_millis
         - total_upload_size
