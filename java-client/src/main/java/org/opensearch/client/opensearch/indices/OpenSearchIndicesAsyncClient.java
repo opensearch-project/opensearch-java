@@ -95,52 +95,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.stats
-
-    /**
-     * Provides statistics on operations happening in an index.
-     *
-     *
-     */
-
-    public CompletableFuture<IndicesStatsResponse> stats(IndicesStatsRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<IndicesStatsRequest, IndicesStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            IndicesStatsRequest,
-            IndicesStatsResponse,
-            ErrorResponse>) IndicesStatsRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Provides statistics on operations happening in an index.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link IndicesStatsRequest}
-     *
-     */
-
-    public final CompletableFuture<IndicesStatsResponse> stats(Function<IndicesStatsRequest.Builder, ObjectBuilder<IndicesStatsRequest>> fn)
-        throws IOException, OpenSearchException {
-        return stats(fn.apply(new IndicesStatsRequest.Builder()).build());
-    }
-
-    /**
-     * Provides statistics on operations happening in an index.
-     *
-     *
-     */
-
-    public CompletableFuture<IndicesStatsResponse> stats() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new IndicesStatsRequest.Builder().build(),
-            IndicesStatsRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
     // ----- Endpoint: indices.upgrade
 
     /**

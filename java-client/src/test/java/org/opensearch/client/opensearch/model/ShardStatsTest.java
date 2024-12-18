@@ -44,6 +44,7 @@ import org.opensearch.client.opensearch._types.FlushStats;
 import org.opensearch.client.opensearch._types.GetStats;
 import org.opensearch.client.opensearch._types.IndexingStats;
 import org.opensearch.client.opensearch._types.MergesStats;
+import org.opensearch.client.opensearch._types.QueryCacheStats;
 import org.opensearch.client.opensearch._types.RecoveryStats;
 import org.opensearch.client.opensearch._types.RefreshStats;
 import org.opensearch.client.opensearch._types.RequestCacheStats;
@@ -52,14 +53,13 @@ import org.opensearch.client.opensearch._types.SegmentsStats;
 import org.opensearch.client.opensearch._types.StoreStats;
 import org.opensearch.client.opensearch._types.TranslogStats;
 import org.opensearch.client.opensearch._types.WarmerStats;
+import org.opensearch.client.opensearch.indices.stats.IndexShardStats;
 import org.opensearch.client.opensearch.indices.stats.ShardCommit;
 import org.opensearch.client.opensearch.indices.stats.ShardPath;
-import org.opensearch.client.opensearch.indices.stats.ShardQueryCache;
 import org.opensearch.client.opensearch.indices.stats.ShardRetentionLeases;
 import org.opensearch.client.opensearch.indices.stats.ShardRouting;
 import org.opensearch.client.opensearch.indices.stats.ShardRoutingState;
 import org.opensearch.client.opensearch.indices.stats.ShardSequenceNumber;
-import org.opensearch.client.opensearch.indices.stats.ShardStats;
 import org.opensearch.client.util.MissingRequiredPropertyException;
 
 public class ShardStatsTest extends Assert {
@@ -67,7 +67,7 @@ public class ShardStatsTest extends Assert {
     @Test
     public void testShardStatsBulkAndShardsPropertiesNotRequired() {
 
-        ShardStats.Builder builder = createShardsStatsBuilderWithRequiredFields();
+        IndexShardStats.Builder builder = createShardsStatsBuilderWithRequiredFields();
 
         try {
             builder.build();
@@ -76,10 +76,10 @@ public class ShardStatsTest extends Assert {
         }
     }
 
-    private ShardStats.Builder createShardsStatsBuilderWithRequiredFields() {
+    private IndexShardStats.Builder createShardsStatsBuilderWithRequiredFields() {
         ShardCommit commit = new ShardCommit.Builder().id("").generation(0).numDocs(0).userData(new HashMap<>()).build();
         CompletionStats completion = new CompletionStats.Builder().sizeInBytes(0).build();
-        DocStats docs = new DocStats.Builder().count(0).deleted(0).build();
+        DocStats docs = new DocStats.Builder().count(0).deleted(0L).build();
         FielddataStats fielddata = new FielddataStats.Builder().memorySizeInBytes(0).build();
         FlushStats flush = new FlushStats.Builder().periodic(0).total(0).totalTimeInMillis(0).build();
         GetStats get = new GetStats.Builder().current(0)
@@ -100,7 +100,6 @@ public class ShardStatsTest extends Assert {
             .indexTimeInMillis(0)
             .indexTotal(0)
             .indexFailed(0)
-            .types(new HashMap<>())
             .build();
         MergesStats merges = new MergesStats.Builder().current(0)
             .currentDocs(0)
@@ -114,7 +113,7 @@ public class ShardStatsTest extends Assert {
             .totalTimeInMillis(0)
             .build();
         ShardPath shardPath = new ShardPath.Builder().dataPath("").isCustomDataPath(false).statePath("").build();
-        ShardQueryCache queryCache = new ShardQueryCache.Builder().cacheCount(0)
+        QueryCacheStats queryCache = new QueryCacheStats.Builder().cacheCount(0)
             .cacheSize(0)
             .evictions(0)
             .hitCount(0)
@@ -169,7 +168,7 @@ public class ShardStatsTest extends Assert {
             .build();
         WarmerStats warmer = new WarmerStats.Builder().current(0).total(0).totalTimeInMillis(0).build();
 
-        ShardStats.Builder builder = new ShardStats.Builder();
+        IndexShardStats.Builder builder = new IndexShardStats.Builder();
 
         builder.commit(commit)
             .completion(completion)

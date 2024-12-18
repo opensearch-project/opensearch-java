@@ -1008,6 +1008,32 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return split(fn.apply(new SplitRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.stats
+
+    /**
+     * Provides statistics on operations happening in an index.
+     */
+    public IndicesStatsResponse stats(IndicesStatsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, IndicesStatsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Provides statistics on operations happening in an index.
+     *
+     * @param fn a function that initializes a builder to create the {@link IndicesStatsRequest}
+     */
+    public final IndicesStatsResponse stats(Function<IndicesStatsRequest.Builder, ObjectBuilder<IndicesStatsRequest>> fn)
+        throws IOException, OpenSearchException {
+        return stats(fn.apply(new IndicesStatsRequest.Builder()).build());
+    }
+
+    /**
+     * Provides statistics on operations happening in an index.
+     */
+    public final IndicesStatsResponse stats() throws IOException, OpenSearchException {
+        return stats(new IndicesStatsRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.update_aliases
 
     /**
