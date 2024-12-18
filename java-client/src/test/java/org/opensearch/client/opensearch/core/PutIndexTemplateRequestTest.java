@@ -36,8 +36,6 @@ public class PutIndexTemplateRequestTest extends Assert {
         final String indexTemplate = new ObjectMapper().writeValueAsString(indexTemplateMap);
         final JsonParser parser = mapper.jsonProvider().createParser(new StringReader(indexTemplate));
 
-        assertThrows("Missing required property 'PutTemplateRequest.name'", MissingRequiredPropertyException.class, () -> {
-            PutIndexTemplateRequest._DESERIALIZER.deserialize(parser, mapper);
-        });
+        assertThrows(MissingRequiredPropertyException.class, () -> { PutIndexTemplateRequest._DESERIALIZER.deserialize(parser, mapper); });
     }
 }

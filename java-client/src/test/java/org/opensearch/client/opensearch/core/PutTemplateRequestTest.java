@@ -12,11 +12,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.json.stream.JsonParser;
 import java.io.StringReader;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
@@ -37,8 +35,6 @@ public class PutTemplateRequestTest extends Assert {
         final String indexTemplate = new ObjectMapper().writeValueAsString(indexTemplateMap);
         final JsonParser parser = mapper.jsonProvider().createParser(new StringReader(indexTemplate));
 
-        assertThrows("Missing required property 'PutTemplateRequest.name'", MissingRequiredPropertyException.class, () -> {
-            PutTemplateRequest._DESERIALIZER.deserialize(parser, mapper);
-        });
+        assertThrows(MissingRequiredPropertyException.class, () -> { PutTemplateRequest._DESERIALIZER.deserialize(parser, mapper); });
     }
 }
