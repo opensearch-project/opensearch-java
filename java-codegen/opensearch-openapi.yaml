@@ -9671,8 +9671,6 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
-      requestBody:
-        $ref: '#/components/requestBodies/indices.upgrade'
       responses:
         '200':
           $ref: '#/components/responses/indices.upgrade___200'
@@ -12411,8 +12409,6 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
-      requestBody:
-        $ref: '#/components/requestBodies/indices.upgrade'
       responses:
         '200':
           $ref: '#/components/responses/indices.upgrade___200'
@@ -26938,11 +26934,6 @@ components:
                   $ref: '#/components/schemas/indices.update_aliases___Action'
             description: The definition of `actions` to perform
       required: true
-    indices.upgrade:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/indices._common___UpgradeRequest'
     indices.validate_query:
       content:
         application/json:
@@ -29776,7 +29767,14 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/indices._common___IndexPostUpgradeStatus'
+            allOf:
+              - $ref: '#/components/schemas/_common___ShardsOperationResponseBase'
+              - type: object
+                properties:
+                  upgraded_indices:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/indices._common___UpgradeVersionStatus'
       description: ''
     indices.validate_query___200:
       content:
@@ -49817,15 +49815,6 @@ components:
       properties:
         index:
           $ref: '#/components/schemas/indices._common___SlowlogThresholdLevels'
-    indices._common___IndexPostUpgradeStatus:
-      type: object
-      properties:
-        _shards:
-          $ref: '#/components/schemas/_common___ShardStatistics'
-        upgraded_indices:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/indices._common___UpgradeVersionStatus'
     indices._common___IndexRouting:
       type: object
       properties:
@@ -50790,22 +50779,6 @@ components:
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
         age:
           $ref: '#/components/schemas/_common___Duration'
-    indices._common___UpgradeRequest:
-      type: object
-      properties:
-        allow_no_indices:
-          type: boolean
-        expand_wildcards:
-          type: string
-          enum:
-            - all
-            - closed
-            - none
-            - open
-        ignore_unavailable:
-          type: boolean
-        wait_for_completion:
-          type: boolean
     indices._common___UpgradeStatus:
       type: object
       properties:

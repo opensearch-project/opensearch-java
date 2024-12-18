@@ -92,48 +92,6 @@ public class OpenSearchIndicesClient extends OpenSearchIndicesClientBase<OpenSea
         return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.upgrade
-
-    /**
-     * DEPRECATED Upgrades to the current version of Lucene.
-     *
-     *
-     */
-
-    public UpgradeResponse upgrade(UpgradeRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<UpgradeRequest, UpgradeResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            UpgradeRequest,
-            UpgradeResponse,
-            ErrorResponse>) UpgradeRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * DEPRECATED Upgrades to the current version of Lucene.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link UpgradeRequest}
-     *
-     */
-
-    public final UpgradeResponse upgrade(Function<UpgradeRequest.Builder, ObjectBuilder<UpgradeRequest>> fn) throws IOException,
-        OpenSearchException {
-        return upgrade(fn.apply(new UpgradeRequest.Builder()).build());
-    }
-
-    /**
-     * DEPRECATED Upgrades to the current version of Lucene.
-     *
-     *
-     */
-
-    public UpgradeResponse upgrade() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new UpgradeRequest.Builder().build(), UpgradeRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: indices.validate_query
 
     /**
