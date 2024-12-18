@@ -30,8 +30,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Deprecate RestClientTransport ([#536](https://github.com/opensearch-project/opensearch-java/pull/536))
 
 ### Removed
-- Removed the `features` and `shutdown` namespaces as they're not supported by OpenSearch ([#]())
-- Removed the `indices.diskUsage` operation as it's not supported by OpenSearch ([#]())
+- Removed the `features` and `shutdown` namespaces as they're not supported by OpenSearch ([#1361](https://github.com/opensearch-project/opensearch-java/pull/1361))
+- Removed the `indices.diskUsage` operation as it's not supported by OpenSearch ([#1361](https://github.com/opensearch-project/opensearch-java/pull/1361))
 
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
