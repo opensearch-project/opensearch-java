@@ -40,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -61,11 +62,14 @@ public class SegmentReplicationStats
         PlainJsonSerializable,
         ToCopyableBuilder<SegmentReplicationStats.Builder, SegmentReplicationStats> {
 
-    private final long maxBytesBehind;
+    @Nonnull
+    private final JsonData maxBytesBehind;
 
-    private final long maxReplicationLag;
+    @Nonnull
+    private final JsonData maxReplicationLag;
 
-    private final long totalBytesBehind;
+    @Nonnull
+    private final JsonData totalBytesBehind;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -82,21 +86,24 @@ public class SegmentReplicationStats
     /**
      * Required - API name: {@code max_bytes_behind}
      */
-    public final long maxBytesBehind() {
+    @Nonnull
+    public final JsonData maxBytesBehind() {
         return this.maxBytesBehind;
     }
 
     /**
      * Required - API name: {@code max_replication_lag}
      */
-    public final long maxReplicationLag() {
+    @Nonnull
+    public final JsonData maxReplicationLag() {
         return this.maxReplicationLag;
     }
 
     /**
      * Required - API name: {@code total_bytes_behind}
      */
-    public final long totalBytesBehind() {
+    @Nonnull
+    public final JsonData totalBytesBehind() {
         return this.totalBytesBehind;
     }
 
@@ -112,13 +119,13 @@ public class SegmentReplicationStats
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeKey("max_bytes_behind");
-        generator.write(this.maxBytesBehind);
+        this.maxBytesBehind.serialize(generator, mapper);
 
         generator.writeKey("max_replication_lag");
-        generator.write(this.maxReplicationLag);
+        this.maxReplicationLag.serialize(generator, mapper);
 
         generator.writeKey("total_bytes_behind");
-        generator.write(this.totalBytesBehind);
+        this.totalBytesBehind.serialize(generator, mapper);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -138,9 +145,9 @@ public class SegmentReplicationStats
      * Builder for {@link SegmentReplicationStats}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SegmentReplicationStats> {
-        private Long maxBytesBehind;
-        private Long maxReplicationLag;
-        private Long totalBytesBehind;
+        private JsonData maxBytesBehind;
+        private JsonData maxReplicationLag;
+        private JsonData totalBytesBehind;
 
         public Builder() {}
 
@@ -166,7 +173,7 @@ public class SegmentReplicationStats
          * Required - API name: {@code max_bytes_behind}
          */
         @Nonnull
-        public final Builder maxBytesBehind(long value) {
+        public final Builder maxBytesBehind(JsonData value) {
             this.maxBytesBehind = value;
             return this;
         }
@@ -175,7 +182,7 @@ public class SegmentReplicationStats
          * Required - API name: {@code max_replication_lag}
          */
         @Nonnull
-        public final Builder maxReplicationLag(long value) {
+        public final Builder maxReplicationLag(JsonData value) {
             this.maxReplicationLag = value;
             return this;
         }
@@ -184,7 +191,7 @@ public class SegmentReplicationStats
          * Required - API name: {@code total_bytes_behind}
          */
         @Nonnull
-        public final Builder totalBytesBehind(long value) {
+        public final Builder totalBytesBehind(JsonData value) {
             this.totalBytesBehind = value;
             return this;
         }
@@ -214,17 +221,17 @@ public class SegmentReplicationStats
     );
 
     protected static void setupSegmentReplicationStatsDeserializer(ObjectDeserializer<SegmentReplicationStats.Builder> op) {
-        op.add(Builder::maxBytesBehind, JsonpDeserializer.longDeserializer(), "max_bytes_behind");
-        op.add(Builder::maxReplicationLag, JsonpDeserializer.longDeserializer(), "max_replication_lag");
-        op.add(Builder::totalBytesBehind, JsonpDeserializer.longDeserializer(), "total_bytes_behind");
+        op.add(Builder::maxBytesBehind, JsonData._DESERIALIZER, "max_bytes_behind");
+        op.add(Builder::maxReplicationLag, JsonData._DESERIALIZER, "max_replication_lag");
+        op.add(Builder::totalBytesBehind, JsonData._DESERIALIZER, "total_bytes_behind");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Long.hashCode(this.maxBytesBehind);
-        result = 31 * result + Long.hashCode(this.maxReplicationLag);
-        result = 31 * result + Long.hashCode(this.totalBytesBehind);
+        result = 31 * result + this.maxBytesBehind.hashCode();
+        result = 31 * result + this.maxReplicationLag.hashCode();
+        result = 31 * result + this.totalBytesBehind.hashCode();
         return result;
     }
 
@@ -233,8 +240,8 @@ public class SegmentReplicationStats
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         SegmentReplicationStats other = (SegmentReplicationStats) o;
-        return this.maxBytesBehind == other.maxBytesBehind
-            && this.maxReplicationLag == other.maxReplicationLag
-            && this.totalBytesBehind == other.totalBytesBehind;
+        return this.maxBytesBehind.equals(other.maxBytesBehind)
+            && this.maxReplicationLag.equals(other.maxReplicationLag)
+            && this.totalBytesBehind.equals(other.totalBytesBehind);
     }
 }
