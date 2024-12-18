@@ -124,38 +124,6 @@ public class OpenSearchIndicesAsyncClient extends OpenSearchIndicesAsyncClientBa
         return close(fn.apply(new CloseIndexRequest.Builder()).build());
     }
 
-    // ----- Endpoint: indices.disk_usage
-
-    /**
-     * Analyzes the disk usage of each field of an index or data stream
-     *
-     *
-     */
-
-    public CompletableFuture<DiskUsageResponse> diskUsage(DiskUsageRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DiskUsageRequest, DiskUsageResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DiskUsageRequest,
-            DiskUsageResponse,
-            ErrorResponse>) DiskUsageRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Analyzes the disk usage of each field of an index or data stream
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DiskUsageRequest}
-     *
-     */
-
-    public final CompletableFuture<DiskUsageResponse> diskUsage(Function<DiskUsageRequest.Builder, ObjectBuilder<DiskUsageRequest>> fn)
-        throws IOException, OpenSearchException {
-        return diskUsage(fn.apply(new DiskUsageRequest.Builder()).build());
-    }
-
     // ----- Endpoint: indices.flush
 
     /**
