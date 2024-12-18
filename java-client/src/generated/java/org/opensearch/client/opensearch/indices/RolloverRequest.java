@@ -637,11 +637,9 @@ public class RolloverRequest extends RequestBase
     );
 
     protected static void setupRolloverRequestDeserializer(ObjectDeserializer<RolloverRequest.Builder> op) {
-        op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias");
         op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
         op.add(Builder::conditions, RolloverConditions._DESERIALIZER, "conditions");
         op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
-        op.add(Builder::newIndex, JsonpDeserializer.stringDeserializer(), "new_index");
         op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
     }
 
