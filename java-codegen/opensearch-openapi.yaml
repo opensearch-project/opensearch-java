@@ -33906,18 +33906,34 @@ components:
         - dfs_query_then_fetch
         - query_then_fetch
     _common___SegmentReplicationStats:
-      type: object
-      properties:
-        max_bytes_behind:
-          $ref: '#/components/schemas/_common___ByteCount'
-        max_replication_lag:
-          $ref: '#/components/schemas/_common___ByteCount'
-        total_bytes_behind:
-          $ref: '#/components/schemas/_common___ByteCount'
-      required:
-        - max_bytes_behind
-        - max_replication_lag
-        - total_bytes_behind
+      oneOf:
+        - x-version-added: 2.10.0
+          x-version-removed: 2.12.0
+          type: object
+          properties:
+            max_bytes_behind:
+              $ref: '#/components/schemas/_common___HumanReadableByteCount'
+            max_replication_lag:
+              $ref: '#/components/schemas/_common___Duration'
+            total_bytes_behind:
+              $ref: '#/components/schemas/_common___HumanReadableByteCount'
+          required:
+            - max_bytes_behind
+            - max_replication_lag
+            - total_bytes_behind
+        - x-version-added: 2.12.0
+          type: object
+          properties:
+            max_bytes_behind:
+              $ref: '#/components/schemas/_common___ByteCount'
+            max_replication_lag:
+              $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+            total_bytes_behind:
+              $ref: '#/components/schemas/_common___ByteCount'
+          required:
+            - max_bytes_behind
+            - max_replication_lag
+            - total_bytes_behind
     _common___SegmentsStats:
       type: object
       properties:
