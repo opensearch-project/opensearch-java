@@ -118,12 +118,9 @@ import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
 import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
 import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
 import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
-import org.opensearch.client.opensearch.features.OpenSearchFeaturesClient;
 import org.opensearch.client.opensearch.generic.OpenSearchGenericClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestClient;
 import org.opensearch.client.opensearch.nodes.OpenSearchNodesClient;
-import org.opensearch.client.opensearch.shutdown.OpenSearchShutdownClient;
-import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotClient;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
@@ -161,24 +158,12 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
         return new OpenSearchClusterClient(this.transport, this.transportOptions);
     }
 
-    public OpenSearchFeaturesClient features() {
-        return new OpenSearchFeaturesClient(this.transport, this.transportOptions);
-    }
-
     public OpenSearchIngestClient ingest() {
         return new OpenSearchIngestClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchNodesClient nodes() {
         return new OpenSearchNodesClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchShutdownClient shutdown() {
-        return new OpenSearchShutdownClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchSnapshotClient snapshot() {
-        return new OpenSearchSnapshotClient(this.transport, this.transportOptions);
     }
 
     // ----- Endpoint: bulk
