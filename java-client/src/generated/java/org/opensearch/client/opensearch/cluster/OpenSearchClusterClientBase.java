@@ -106,6 +106,34 @@ public abstract class OpenSearchClusterClientBase<Self extends OpenSearchCluster
         return deleteComponentTemplate(fn.apply(new DeleteComponentTemplateRequest.Builder()).build());
     }
 
+    // ----- Endpoint: cluster.delete_voting_config_exclusions
+
+    /**
+     * Clears cluster voting config exclusions.
+     */
+    public BooleanResponse deleteVotingConfigExclusions(DeleteVotingConfigExclusionsRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequest(request, DeleteVotingConfigExclusionsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Clears cluster voting config exclusions.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteVotingConfigExclusionsRequest}
+     */
+    public final BooleanResponse deleteVotingConfigExclusions(
+        Function<DeleteVotingConfigExclusionsRequest.Builder, ObjectBuilder<DeleteVotingConfigExclusionsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteVotingConfigExclusions(fn.apply(new DeleteVotingConfigExclusionsRequest.Builder()).build());
+    }
+
+    /**
+     * Clears cluster voting config exclusions.
+     */
+    public final BooleanResponse deleteVotingConfigExclusions() throws IOException, OpenSearchException {
+        return deleteVotingConfigExclusions(new DeleteVotingConfigExclusionsRequest.Builder().build());
+    }
+
     // ----- Endpoint: cluster.exists_component_template
 
     /**
@@ -178,6 +206,33 @@ public abstract class OpenSearchClusterClientBase<Self extends OpenSearchCluster
      */
     public final GetClusterSettingsResponse getSettings() throws IOException, OpenSearchException {
         return getSettings(new GetClusterSettingsRequest.Builder().build());
+    }
+
+    // ----- Endpoint: cluster.post_voting_config_exclusions
+
+    /**
+     * Updates the cluster voting config exclusions by node ids or node names.
+     */
+    public BooleanResponse postVotingConfigExclusions(PostVotingConfigExclusionsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, PostVotingConfigExclusionsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Updates the cluster voting config exclusions by node ids or node names.
+     *
+     * @param fn a function that initializes a builder to create the {@link PostVotingConfigExclusionsRequest}
+     */
+    public final BooleanResponse postVotingConfigExclusions(
+        Function<PostVotingConfigExclusionsRequest.Builder, ObjectBuilder<PostVotingConfigExclusionsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return postVotingConfigExclusions(fn.apply(new PostVotingConfigExclusionsRequest.Builder()).build());
+    }
+
+    /**
+     * Updates the cluster voting config exclusions by node ids or node names.
+     */
+    public final BooleanResponse postVotingConfigExclusions() throws IOException, OpenSearchException {
+        return postVotingConfigExclusions(new PostVotingConfigExclusionsRequest.Builder().build());
     }
 
     // ----- Endpoint: cluster.put_component_template

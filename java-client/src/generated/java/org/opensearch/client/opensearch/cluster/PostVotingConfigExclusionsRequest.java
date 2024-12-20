@@ -30,13 +30,19 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -46,19 +52,25 @@ import org.opensearch.client.transport.endpoints.BooleanEndpoint;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.post_voting_config_exclusions.Request
 
 /**
  * Updates the cluster voting config exclusions by node ids or node names.
- *
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class PostVotingConfigExclusionsRequest extends RequestBase
+    implements
+        ToCopyableBuilder<PostVotingConfigExclusionsRequest.Builder, PostVotingConfigExclusionsRequest> {
 
-public class PostVotingConfigExclusionsRequest extends RequestBase {
+    @Nonnull
     private final List<String> nodeIds;
 
+    @Nonnull
     private final List<String> nodeNames;
 
     @Nullable
@@ -67,44 +79,47 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
     // ---------------------------------------------------------------------------------------------
 
     private PostVotingConfigExclusionsRequest(Builder builder) {
-
         this.nodeIds = ApiTypeHelper.unmodifiable(builder.nodeIds);
         this.nodeNames = ApiTypeHelper.unmodifiable(builder.nodeNames);
         this.timeout = builder.timeout;
-
     }
 
-    public static PostVotingConfigExclusionsRequest of(Function<Builder, ObjectBuilder<PostVotingConfigExclusionsRequest>> fn) {
+    public static PostVotingConfigExclusionsRequest of(
+        Function<PostVotingConfigExclusionsRequest.Builder, ObjectBuilder<PostVotingConfigExclusionsRequest>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * A comma-separated list of the persistent ids of the nodes to exclude from the
-     * voting configuration. If specified, you may not also specify node_names.
+     * A comma-separated list of the persistent ids of the nodes to exclude from the voting configuration. If specified, you may not also
+     * specify <code>node_names</code>.
      * <p>
      * API name: {@code node_ids}
+     * </p>
      */
+    @Nonnull
     public final List<String> nodeIds() {
         return this.nodeIds;
     }
 
     /**
-     * A comma-separated list of the names of the nodes to exclude from the voting
-     * configuration. If specified, you may not also specify node_ids.
+     * A comma-separated list of the names of the nodes to exclude from the voting configuration. If specified, you may not also specify
+     * <code>node_ids</code>.
      * <p>
      * API name: {@code node_names}
+     * </p>
      */
+    @Nonnull
     public final List<String> nodeNames() {
         return this.nodeNames;
     }
 
     /**
-     * When adding a voting configuration exclusion, the API waits for the specified
-     * nodes to be excluded from the voting configuration before returning. If the
-     * timeout expires before the appropriate condition is satisfied, the request
-     * fails and returns an error.
+     * When adding a voting configuration exclusion, the API waits for the specified nodes to be excluded from the voting configuration
+     * before returning. If the timeout expires before the appropriate condition is satisfied, the request fails and returns an error.
      * <p>
      * API name: {@code timeout}
+     * </p>
      */
     @Nullable
     public final Time timeout() {
@@ -113,103 +128,148 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PostVotingConfigExclusionsRequest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostVotingConfigExclusionsRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PostVotingConfigExclusionsRequest> {
         @Nullable
         private List<String> nodeIds;
-
         @Nullable
         private List<String> nodeNames;
-
         @Nullable
         private Time timeout;
 
+        public Builder() {}
+
+        private Builder(PostVotingConfigExclusionsRequest o) {
+            this.nodeIds = _listCopy(o.nodeIds);
+            this.nodeNames = _listCopy(o.nodeNames);
+            this.timeout = o.timeout;
+        }
+
+        private Builder(Builder o) {
+            this.nodeIds = _listCopy(o.nodeIds);
+            this.nodeNames = _listCopy(o.nodeNames);
+            this.timeout = o.timeout;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
-         * A comma-separated list of the persistent ids of the nodes to exclude from the
-         * voting configuration. If specified, you may not also specify node_names.
+         * A comma-separated list of the persistent ids of the nodes to exclude from the voting configuration. If specified, you may not
+         * also specify <code>node_names</code>.
          * <p>
          * API name: {@code node_ids}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>nodeIds</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder nodeIds(List<String> list) {
             this.nodeIds = _listAddAll(this.nodeIds, list);
             return this;
         }
 
         /**
-         * A comma-separated list of the persistent ids of the nodes to exclude from the
-         * voting configuration. If specified, you may not also specify node_names.
+         * A comma-separated list of the persistent ids of the nodes to exclude from the voting configuration. If specified, you may not
+         * also specify <code>node_names</code>.
          * <p>
          * API name: {@code node_ids}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>nodeIds</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder nodeIds(String value, String... values) {
             this.nodeIds = _listAdd(this.nodeIds, value, values);
             return this;
         }
 
         /**
-         * A comma-separated list of the names of the nodes to exclude from the voting
-         * configuration. If specified, you may not also specify node_ids.
+         * A comma-separated list of the names of the nodes to exclude from the voting configuration. If specified, you may not also specify
+         * <code>node_ids</code>.
          * <p>
          * API name: {@code node_names}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>nodeNames</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder nodeNames(List<String> list) {
             this.nodeNames = _listAddAll(this.nodeNames, list);
             return this;
         }
 
         /**
-         * A comma-separated list of the names of the nodes to exclude from the voting
-         * configuration. If specified, you may not also specify node_ids.
+         * A comma-separated list of the names of the nodes to exclude from the voting configuration. If specified, you may not also specify
+         * <code>node_ids</code>.
          * <p>
          * API name: {@code node_names}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>nodeNames</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder nodeNames(String value, String... values) {
             this.nodeNames = _listAdd(this.nodeNames, value, values);
             return this;
         }
 
         /**
-         * When adding a voting configuration exclusion, the API waits for the specified
-         * nodes to be excluded from the voting configuration before returning. If the
-         * timeout expires before the appropriate condition is satisfied, the request
-         * fails and returns an error.
+         * When adding a voting configuration exclusion, the API waits for the specified nodes to be excluded from the voting configuration
+         * before returning. If the timeout expires before the appropriate condition is satisfied, the request fails and returns an error.
          * <p>
          * API name: {@code timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
             return this;
         }
 
         /**
-         * When adding a voting configuration exclusion, the API waits for the specified
-         * nodes to be excluded from the voting configuration before returning. If the
-         * timeout expires before the appropriate condition is satisfied, the request
-         * fails and returns an error.
+         * When adding a voting configuration exclusion, the API waits for the specified nodes to be excluded from the voting configuration
+         * before returning. If the timeout expires before the appropriate condition is satisfied, the request fails and returns an error.
          * <p>
          * API name: {@code timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.timeout(fn.apply(new Time.Builder()).build());
+            return timeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
          * Builds a {@link PostVotingConfigExclusionsRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PostVotingConfigExclusionsRequest build() {
             _checkSingleUse();
 
@@ -223,37 +283,43 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
      * Endpoint "{@code cluster.post_voting_config_exclusions}".
      */
     public static final Endpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
-        "opensearch/cluster.post_voting_config_exclusions",
-
         // Request method
-        request -> {
-            return "POST";
-
-        },
-
+        request -> "POST",
         // Request path
-        request -> {
-            return "/_cluster/voting_config_exclusions";
-
-        },
-
+        request -> "/_cluster/voting_config_exclusions",
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (ApiTypeHelper.isDefined(request.nodeNames)) {
-                params.put("node_names", request.nodeNames.stream().map(v -> v).collect(Collectors.joining(",")));
-            }
             if (ApiTypeHelper.isDefined(request.nodeIds)) {
-                params.put("node_ids", request.nodeIds.stream().map(v -> v).collect(Collectors.joining(",")));
+                params.put("node_ids", String.join(",", request.nodeIds));
+            }
+            if (ApiTypeHelper.isDefined(request.nodeNames)) {
+                params.put("node_names", String.join(",", request.nodeNames));
             }
             if (request.timeout != null) {
                 params.put("timeout", request.timeout._toJsonString());
             }
             return params;
-
         },
-        SimpleEndpoint.emptyMap(),
-        false,
-        null
+        SimpleEndpoint.emptyMap()
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.nodeIds);
+        result = 31 * result + Objects.hashCode(this.nodeNames);
+        result = 31 * result + Objects.hashCode(this.timeout);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        PostVotingConfigExclusionsRequest other = (PostVotingConfigExclusionsRequest) o;
+        return Objects.equals(this.nodeIds, other.nodeIds)
+            && Objects.equals(this.nodeNames, other.nodeNames)
+            && Objects.equals(this.timeout, other.timeout);
+    }
 }

@@ -62,54 +62,6 @@ public class OpenSearchClusterAsyncClient extends OpenSearchClusterAsyncClientBa
         return new OpenSearchClusterAsyncClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: cluster.delete_voting_config_exclusions
-
-    /**
-     * Clears cluster voting config exclusions.
-     *
-     *
-     */
-
-    public CompletableFuture<BooleanResponse> deleteVotingConfigExclusions(DeleteVotingConfigExclusionsRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteVotingConfigExclusionsRequest,
-            BooleanResponse,
-            ErrorResponse>) DeleteVotingConfigExclusionsRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Clears cluster voting config exclusions.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteVotingConfigExclusionsRequest}
-     *
-     */
-
-    public final CompletableFuture<BooleanResponse> deleteVotingConfigExclusions(
-        Function<DeleteVotingConfigExclusionsRequest.Builder, ObjectBuilder<DeleteVotingConfigExclusionsRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return deleteVotingConfigExclusions(fn.apply(new DeleteVotingConfigExclusionsRequest.Builder()).build());
-    }
-
-    /**
-     * Clears cluster voting config exclusions.
-     *
-     *
-     */
-
-    public CompletableFuture<BooleanResponse> deleteVotingConfigExclusions() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new DeleteVotingConfigExclusionsRequest.Builder().build(),
-            DeleteVotingConfigExclusionsRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
     // ----- Endpoint: cluster.health
 
     /**
@@ -198,54 +150,6 @@ public class OpenSearchClusterAsyncClient extends OpenSearchClusterAsyncClientBa
         return this.transport.performRequestAsync(
             new PendingTasksRequest.Builder().build(),
             PendingTasksRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
-    // ----- Endpoint: cluster.post_voting_config_exclusions
-
-    /**
-     * Updates the cluster voting config exclusions by node ids or node names.
-     *
-     *
-     */
-
-    public CompletableFuture<BooleanResponse> postVotingConfigExclusions(PostVotingConfigExclusionsRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            PostVotingConfigExclusionsRequest,
-            BooleanResponse,
-            ErrorResponse>) PostVotingConfigExclusionsRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Updates the cluster voting config exclusions by node ids or node names.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link PostVotingConfigExclusionsRequest}
-     *
-     */
-
-    public final CompletableFuture<BooleanResponse> postVotingConfigExclusions(
-        Function<PostVotingConfigExclusionsRequest.Builder, ObjectBuilder<PostVotingConfigExclusionsRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return postVotingConfigExclusions(fn.apply(new PostVotingConfigExclusionsRequest.Builder()).build());
-    }
-
-    /**
-     * Updates the cluster voting config exclusions by node ids or node names.
-     *
-     *
-     */
-
-    public CompletableFuture<BooleanResponse> postVotingConfigExclusions() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new PostVotingConfigExclusionsRequest.Builder().build(),
-            PostVotingConfigExclusionsRequest._ENDPOINT,
             this.transportOptions
         );
     }

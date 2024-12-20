@@ -47,7 +47,12 @@ public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Matcher<OperationGroup> OPERATION_MATCHER = or(
         and(namespace(isNull()), name(is("info"))),
-        and(namespace(is("cluster")), name(or(isOneOf("allocation_explain"), contains("component_template"), contains("settings")))),
+        and(namespace(is("cluster")), name(or(
+                isOneOf("allocation_explain"),
+                contains("component_template"),
+                contains("settings"),
+                contains("voting_config_exclusions")
+        ))),
         namespace(is("dangling_indices")),
         and(namespace(is("indices")), name(isNot("get_field_mapping"))),
         and(
