@@ -30,17 +30,24 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster.remote_info;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -50,21 +57,14 @@ import org.opensearch.client.util.TaggedUnionUtils;
 // typedef: cluster.remote_info.ClusterRemoteInfo
 
 @JsonpDeserializable
-public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfo.Kind, ClusterRemoteInfoVariant>, JsonpSerializable {
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfo.Kind, ClusterRemoteInfoVariant>, PlainJsonSerializable {
     /**
      * {@link ClusterRemoteInfo} variant kinds.
      */
-    /**
-     * {@link ClusterRemoteInfo} variant kinds.
-     */
-
     public enum Kind implements JsonEnum {
         Proxy("proxy"),
-
-        Sniff("sniff"),
-
-        ;
+        Sniff("sniff");
 
         private final String jsonValue;
 
@@ -72,10 +72,10 @@ public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfo.Kind, Cl
             this.jsonValue = jsonValue;
         }
 
+        @Override
         public String jsonValue() {
-            return this.jsonValue;
+            return jsonValue;
         }
-
     }
 
     private final Kind _kind;
@@ -92,20 +92,16 @@ public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfo.Kind, Cl
     }
 
     public ClusterRemoteInfo(ClusterRemoteInfoVariant value) {
-
         this._kind = ApiTypeHelper.requireNonNull(value._clusterRemoteInfoKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
-
     }
 
     private ClusterRemoteInfo(Builder builder) {
-
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
     }
 
-    public static ClusterRemoteInfo of(Function<Builder, ObjectBuilder<ClusterRemoteInfo>> fn) {
+    public static ClusterRemoteInfo of(Function<ClusterRemoteInfo.Builder, ObjectBuilder<ClusterRemoteInfo>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -119,8 +115,7 @@ public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfo.Kind, Cl
     /**
      * Get the {@code proxy} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code proxy} kind.
+     * @throws IllegalStateException if the current variant is not the {@code proxy} kind.
      */
     public ClusterRemoteProxyInfo proxy() {
         return TaggedUnionUtils.get(this, Kind.Proxy);
@@ -136,8 +131,7 @@ public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfo.Kind, Cl
     /**
      * Get the {@code sniff} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code sniff} kind.
+     * @throws IllegalStateException if the current variant is not the {@code sniff} kind.
      */
     public ClusterRemoteSniffInfo sniff() {
         return TaggedUnionUtils.get(this, Kind.Sniff);
@@ -145,14 +139,29 @@ public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfo.Kind, Cl
 
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-
         mapper.serialize(_value, generator);
+    }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterRemoteInfo> {
         private Kind _kind;
         private ClusterRemoteInfoVariant _value;
+
+        public Builder() {}
+
+        private Builder(ClusterRemoteInfo o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         public ObjectBuilder<ClusterRemoteInfo> proxy(ClusterRemoteProxyInfo v) {
             this._kind = Kind.Proxy;
@@ -174,20 +183,17 @@ public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfo.Kind, Cl
             return this.sniff(fn.apply(new ClusterRemoteSniffInfo.Builder()).build());
         }
 
+        @Override
         public ClusterRemoteInfo build() {
             _checkSingleUse();
             return new ClusterRemoteInfo(this);
         }
-
     }
 
     protected static void setupClusterRemoteInfoDeserializer(ObjectDeserializer<Builder> op) {
-
         op.add(Builder::proxy, ClusterRemoteProxyInfo._DESERIALIZER, "proxy");
         op.add(Builder::sniff, ClusterRemoteSniffInfo._DESERIALIZER, "sniff");
-
         op.setTypeProperty("mode", null);
-
     }
 
     public static final JsonpDeserializer<ClusterRemoteInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
@@ -195,4 +201,20 @@ public class ClusterRemoteInfo implements TaggedUnion<ClusterRemoteInfo.Kind, Cl
         ClusterRemoteInfo::setupClusterRemoteInfoDeserializer,
         Builder::build
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ClusterRemoteInfo other = (ClusterRemoteInfo) o;
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
 }

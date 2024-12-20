@@ -345,4 +345,13 @@ public abstract class OpenSearchClusterAsyncClientBase<Self extends OpenSearchCl
     public final CompletableFuture<PutClusterSettingsResponse> putSettings() throws IOException, OpenSearchException {
         return putSettings(new PutClusterSettingsRequest.Builder().build());
     }
+
+    // ----- Endpoint: cluster.remote_info
+
+    /**
+     * Returns the information about configured remote clusters.
+     */
+    public CompletableFuture<RemoteInfoResponse> remoteInfo() throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(RemoteInfoRequest._INSTANCE, RemoteInfoRequest._ENDPOINT, this.transportOptions);
+    }
 }

@@ -30,9 +30,13 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster;
 
-import java.util.Collections;
+import javax.annotation.Generated;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
@@ -41,12 +45,9 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 // typedef: cluster.remote_info.Request
 
 /**
- * The cluster remote info API allows you to retrieve all of the configured
- * remote cluster information. It returns connection and endpoint information
- * keyed by the configured remote cluster alias.
- *
+ * Returns the information about configured remote clusters.
  */
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RemoteInfoRequest extends RequestBase {
     public RemoteInfoRequest() {}
 
@@ -61,26 +62,27 @@ public class RemoteInfoRequest extends RequestBase {
      * Endpoint "{@code cluster.remote_info}".
      */
     public static final Endpoint<RemoteInfoRequest, RemoteInfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "GET";
-
-        },
-
+        request -> "GET",
         // Request path
-        request -> {
-            return "/_remote/info";
-
-        },
-
+        request -> "/_remote/info",
         // Request parameters
-        request -> {
-            return Collections.emptyMap();
-
-        },
+        SimpleEndpoint.emptyMap(),
         SimpleEndpoint.emptyMap(),
         false,
         RemoteInfoResponse._DESERIALIZER
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

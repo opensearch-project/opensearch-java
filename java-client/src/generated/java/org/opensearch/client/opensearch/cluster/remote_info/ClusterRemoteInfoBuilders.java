@@ -30,19 +30,32 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster.remote_info;
 
-import org.opensearch.client.json.JsonpSerializable;
+import javax.annotation.Generated;
 
 /**
- * Base interface for {@link ClusterRemoteInfo} variants.
+ * Builders for {@link ClusterRemoteInfo} variants.
  */
-public interface ClusterRemoteInfoVariant extends JsonpSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ClusterRemoteInfoBuilders {
+    private ClusterRemoteInfoBuilders() {}
 
-    ClusterRemoteInfo.Kind _clusterRemoteInfoKind();
-
-    default ClusterRemoteInfo _toClusterRemoteInfo() {
-        return new ClusterRemoteInfo(this);
+    /**
+     * Creates a builder for the {@link ClusterRemoteProxyInfo proxy} {@code ClusterRemoteInfo} variant.
+     */
+    public static ClusterRemoteProxyInfo.Builder proxy() {
+        return new ClusterRemoteProxyInfo.Builder();
     }
 
+    /**
+     * Creates a builder for the {@link ClusterRemoteSniffInfo sniff} {@code ClusterRemoteInfo} variant.
+     */
+    public static ClusterRemoteSniffInfo.Builder sniff() {
+        return new ClusterRemoteSniffInfo.Builder();
+    }
 }

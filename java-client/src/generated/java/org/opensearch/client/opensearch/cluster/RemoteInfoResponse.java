@@ -30,9 +30,15 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
@@ -44,15 +50,15 @@ import org.opensearch.client.util.ObjectBuilder;
 // typedef: cluster.remote_info.Response
 
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RemoteInfoResponse extends DictionaryResponse<String, ClusterRemoteInfo> {
     // ---------------------------------------------------------------------------------------------
 
     private RemoteInfoResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static RemoteInfoResponse of(Function<Builder, ObjectBuilder<RemoteInfoResponse>> fn) {
+    public static RemoteInfoResponse of(Function<RemoteInfoResponse.Builder, ObjectBuilder<RemoteInfoResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -61,11 +67,11 @@ public class RemoteInfoResponse extends DictionaryResponse<String, ClusterRemote
     /**
      * Builder for {@link RemoteInfoResponse}.
      */
-
     public static class Builder extends DictionaryResponse.AbstractBuilder<String, ClusterRemoteInfo, Builder>
         implements
             ObjectBuilder<RemoteInfoResponse> {
         @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -73,8 +79,7 @@ public class RemoteInfoResponse extends DictionaryResponse<String, ClusterRemote
         /**
          * Builds a {@link RemoteInfoResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
         public RemoteInfoResponse build() {
             _checkSingleUse();
@@ -96,8 +101,6 @@ public class RemoteInfoResponse extends DictionaryResponse<String, ClusterRemote
     );
 
     protected static void setupRemoteInfoResponseDeserializer(ObjectDeserializer<RemoteInfoResponse.Builder> op) {
-        DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), ClusterRemoteInfo._DESERIALIZER);
-
+        setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(), ClusterRemoteInfo._DESERIALIZER);
     }
-
 }

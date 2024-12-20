@@ -336,4 +336,13 @@ public abstract class OpenSearchClusterClientBase<Self extends OpenSearchCluster
     public final PutClusterSettingsResponse putSettings() throws IOException, OpenSearchException {
         return putSettings(new PutClusterSettingsRequest.Builder().build());
     }
+
+    // ----- Endpoint: cluster.remote_info
+
+    /**
+     * Returns the information about configured remote clusters.
+     */
+    public RemoteInfoResponse remoteInfo() throws IOException, OpenSearchException {
+        return this.transport.performRequest(RemoteInfoRequest._INSTANCE, RemoteInfoRequest._ENDPOINT, this.transportOptions);
+    }
 }

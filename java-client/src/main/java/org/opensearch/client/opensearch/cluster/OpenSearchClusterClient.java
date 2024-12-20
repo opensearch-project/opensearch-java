@@ -60,17 +60,6 @@ public class OpenSearchClusterClient extends OpenSearchClusterClientBase<OpenSea
         return new OpenSearchClusterClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: cluster.remote_info
-
-    /**
-     * Returns the information about configured remote clusters.
-     *
-     *
-     */
-    public RemoteInfoResponse remoteInfo() throws IOException, OpenSearchException {
-        return this.transport.performRequest(RemoteInfoRequest._INSTANCE, RemoteInfoRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: cluster.reroute
 
     /**

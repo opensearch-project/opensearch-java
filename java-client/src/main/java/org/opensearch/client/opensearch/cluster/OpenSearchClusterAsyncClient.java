@@ -61,17 +61,6 @@ public class OpenSearchClusterAsyncClient extends OpenSearchClusterAsyncClientBa
         return new OpenSearchClusterAsyncClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: cluster.remote_info
-
-    /**
-     * Returns the information about configured remote clusters.
-     *
-     *
-     */
-    public CompletableFuture<RemoteInfoResponse> remoteInfo() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(RemoteInfoRequest._INSTANCE, RemoteInfoRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: cluster.reroute
 
     /**
