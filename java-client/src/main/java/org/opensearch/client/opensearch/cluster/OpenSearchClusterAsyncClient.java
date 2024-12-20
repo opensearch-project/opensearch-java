@@ -63,40 +63,6 @@ public class OpenSearchClusterAsyncClient extends OpenSearchClusterAsyncClientBa
         return new OpenSearchClusterAsyncClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: cluster.delete_component_template
-
-    /**
-     * Deletes a component template
-     *
-     *
-     */
-
-    public CompletableFuture<DeleteComponentTemplateResponse> deleteComponentTemplate(DeleteComponentTemplateRequest request)
-        throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteComponentTemplateRequest, DeleteComponentTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteComponentTemplateRequest,
-            DeleteComponentTemplateResponse,
-            ErrorResponse>) DeleteComponentTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Deletes a component template
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteComponentTemplateRequest}
-     *
-     */
-
-    public final CompletableFuture<DeleteComponentTemplateResponse> deleteComponentTemplate(
-        Function<DeleteComponentTemplateRequest.Builder, ObjectBuilder<DeleteComponentTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return deleteComponentTemplate(fn.apply(new DeleteComponentTemplateRequest.Builder()).build());
-    }
-
     // ----- Endpoint: cluster.delete_voting_config_exclusions
 
     /**
@@ -141,88 +107,6 @@ public class OpenSearchClusterAsyncClient extends OpenSearchClusterAsyncClientBa
         return this.transport.performRequestAsync(
             new DeleteVotingConfigExclusionsRequest.Builder().build(),
             DeleteVotingConfigExclusionsRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
-    // ----- Endpoint: cluster.exists_component_template
-
-    /**
-     * Returns information about whether a particular component template exist
-     *
-     *
-     */
-
-    public CompletableFuture<BooleanResponse> existsComponentTemplate(ExistsComponentTemplateRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ExistsComponentTemplateRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ExistsComponentTemplateRequest,
-            BooleanResponse,
-            ErrorResponse>) ExistsComponentTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about whether a particular component template exist
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ExistsComponentTemplateRequest}
-     *
-     */
-
-    public final CompletableFuture<BooleanResponse> existsComponentTemplate(
-        Function<ExistsComponentTemplateRequest.Builder, ObjectBuilder<ExistsComponentTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return existsComponentTemplate(fn.apply(new ExistsComponentTemplateRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: cluster.get_component_template
-
-    /**
-     * Returns one or more component templates
-     *
-     *
-     */
-
-    public CompletableFuture<GetComponentTemplateResponse> getComponentTemplate(GetComponentTemplateRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetComponentTemplateRequest,
-            GetComponentTemplateResponse,
-            ErrorResponse>) GetComponentTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns one or more component templates
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetComponentTemplateRequest}
-     *
-     */
-
-    public final CompletableFuture<GetComponentTemplateResponse> getComponentTemplate(
-        Function<GetComponentTemplateRequest.Builder, ObjectBuilder<GetComponentTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return getComponentTemplate(fn.apply(new GetComponentTemplateRequest.Builder()).build());
-    }
-
-    /**
-     * Returns one or more component templates
-     *
-     *
-     */
-
-    public CompletableFuture<GetComponentTemplateResponse> getComponentTemplate() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new GetComponentTemplateRequest.Builder().build(),
-            GetComponentTemplateRequest._ENDPOINT,
             this.transportOptions
         );
     }
@@ -413,40 +297,6 @@ public class OpenSearchClusterAsyncClient extends OpenSearchClusterAsyncClientBa
             PostVotingConfigExclusionsRequest._ENDPOINT,
             this.transportOptions
         );
-    }
-
-    // ----- Endpoint: cluster.put_component_template
-
-    /**
-     * Creates or updates a component template
-     *
-     *
-     */
-
-    public CompletableFuture<PutComponentTemplateResponse> putComponentTemplate(PutComponentTemplateRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            PutComponentTemplateRequest,
-            PutComponentTemplateResponse,
-            ErrorResponse>) PutComponentTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Creates or updates a component template
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link PutComponentTemplateRequest}
-     *
-     */
-
-    public final CompletableFuture<PutComponentTemplateResponse> putComponentTemplate(
-        Function<PutComponentTemplateRequest.Builder, ObjectBuilder<PutComponentTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return putComponentTemplate(fn.apply(new PutComponentTemplateRequest.Builder()).build());
     }
 
     // ----- Endpoint: cluster.put_settings

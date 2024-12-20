@@ -30,28 +30,42 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.get_component_template.Request
 
 /**
- * Returns one or more component templates
- *
+ * Returns one or more component templates.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class GetComponentTemplateRequest extends RequestBase
+    implements
+        ToCopyableBuilder<GetComponentTemplateRequest.Builder, GetComponentTemplateRequest> {
 
-public class GetComponentTemplateRequest extends RequestBase {
+    @Nullable
+    private final Time clusterManagerTimeout;
+
     @Nullable
     private final Boolean flatSettings;
 
@@ -63,29 +77,40 @@ public class GetComponentTemplateRequest extends RequestBase {
     private final Time masterTimeout;
 
     @Nullable
-    private final Time clusterManagerTimeout;
-
-    @Nullable
     private final String name;
 
     // ---------------------------------------------------------------------------------------------
 
     private GetComponentTemplateRequest(Builder builder) {
-
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.flatSettings = builder.flatSettings;
         this.local = builder.local;
         this.masterTimeout = builder.masterTimeout;
-        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.name = builder.name;
-
     }
 
-    public static GetComponentTemplateRequest of(Function<Builder, ObjectBuilder<GetComponentTemplateRequest>> fn) {
+    public static GetComponentTemplateRequest of(
+        Function<GetComponentTemplateRequest.Builder, ObjectBuilder<GetComponentTemplateRequest>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     * </p>
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
+
+    /**
+     * If <code>true</code>, returns settings in flat format.
+     * <p>
      * API name: {@code flat_settings}
+     * </p>
      */
     @Nullable
     public final Boolean flatSettings() {
@@ -93,10 +118,11 @@ public class GetComponentTemplateRequest extends RequestBase {
     }
 
     /**
-     * Return local information, do not retrieve the state from master node
-     * (default: false)
+     * If <code>true</code>, the request retrieves information from the local node only. If <code>false</code>, information is retrieved
+     * from the cluster-manager node.
      * <p>
      * API name: {@code local}
+     * </p>
      */
     @Nullable
     public final Boolean local() {
@@ -104,9 +130,11 @@ public class GetComponentTemplateRequest extends RequestBase {
     }
 
     /**
-     * Explicit operation timeout for connection to master node
+     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
+     * and returns an error.
      * <p>
      * API name: {@code master_timeout}
+     * </p>
      */
     @Deprecated
     @Nullable
@@ -115,19 +143,10 @@ public class GetComponentTemplateRequest extends RequestBase {
     }
 
     /**
-     * Explicit operation timeout for connection to cluster-manager node
-     * <p>
-     * API name: {@code cluster_manager_timeout}
-     */
-    @Nullable
-    public final Time clusterManagerTimeout() {
-        return this.clusterManagerTimeout;
-    }
-
-    /**
-     * The comma separated names of the component templates
+     * Name of the component template to retrieve. Wildcard (<code>*</code>) expressions are supported.
      * <p>
      * API name: {@code name}
+     * </p>
      */
     @Nullable
     public final String name() {
@@ -136,91 +155,138 @@ public class GetComponentTemplateRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GetComponentTemplateRequest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetComponentTemplateRequest> {
-        @Nullable
-        private Boolean flatSettings;
-
-        @Nullable
-        private Boolean local;
-
-        @Deprecated
-        @Nullable
-        private Time masterTimeout;
-
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetComponentTemplateRequest> {
         @Nullable
         private Time clusterManagerTimeout;
-
+        @Nullable
+        private Boolean flatSettings;
+        @Nullable
+        private Boolean local;
+        @Nullable
+        private Time masterTimeout;
         @Nullable
         private String name;
 
-        /**
-         * API name: {@code flat_settings}
-         */
-        public final Builder flatSettings(@Nullable Boolean value) {
-            this.flatSettings = value;
-            return this;
+        public Builder() {}
+
+        private Builder(GetComponentTemplateRequest o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.flatSettings = o.flatSettings;
+            this.local = o.local;
+            this.masterTimeout = o.masterTimeout;
+            this.name = o.name;
+        }
+
+        private Builder(Builder o) {
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.flatSettings = o.flatSettings;
+            this.local = o.local;
+            this.masterTimeout = o.masterTimeout;
+            this.name = o.name;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
         }
 
         /**
-         * Return local information, do not retrieve the state from master node
-         * (default: false)
-         * <p>
-         * API name: {@code local}
-         */
-        public final Builder local(@Nullable Boolean value) {
-            this.local = value;
-            return this;
-        }
-
-        /**
-         * Explicit operation timeout for connection to master node
-         * <p>
-         * API name: {@code master_timeout}
-         */
-        @Deprecated
-        public final Builder masterTimeout(@Nullable Time value) {
-            this.masterTimeout = value;
-            return this;
-        }
-
-        /**
-         * Explicit operation timeout for connection to master node
-         * <p>
-         * API name: {@code master_timeout}
-         */
-        @Deprecated
-        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.masterTimeout(fn.apply(new Time.Builder()).build());
-        }
-
-        /**
-         * Explicit operation timeout for connection to cluster-manager node
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
         }
 
         /**
-         * Explicit operation timeout for connection to cluster-manager node
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+            return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
-         * The comma separated names of the component templates
+         * If <code>true</code>, returns settings in flat format.
+         * <p>
+         * API name: {@code flat_settings}
+         * </p>
+         */
+        @Nonnull
+        public final Builder flatSettings(@Nullable Boolean value) {
+            this.flatSettings = value;
+            return this;
+        }
+
+        /**
+         * If <code>true</code>, the request retrieves information from the local node only. If <code>false</code>, information is retrieved
+         * from the cluster-manager node.
+         * <p>
+         * API name: {@code local}
+         * </p>
+         */
+        @Nonnull
+        public final Builder local(@Nullable Boolean value) {
+            this.local = value;
+            return this;
+        }
+
+        /**
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
+
+        /**
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return masterTimeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * Name of the component template to retrieve. Wildcard (<code>*</code>) expressions are supported.
          * <p>
          * API name: {@code name}
+         * </p>
          */
+        @Nonnull
         public final Builder name(@Nullable String value) {
             this.name = value;
             return this;
@@ -229,9 +295,10 @@ public class GetComponentTemplateRequest extends RequestBase {
         /**
          * Builds a {@link GetComponentTemplateRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GetComponentTemplateRequest build() {
             _checkSingleUse();
 
@@ -245,13 +312,8 @@ public class GetComponentTemplateRequest extends RequestBase {
      * Endpoint "{@code cluster.get_component_template}".
      */
     public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "GET";
-
-        },
-
+        request -> "GET",
         // Request path
         request -> {
             final int _name = 1 << 0;
@@ -261,27 +323,20 @@ public class GetComponentTemplateRequest extends RequestBase {
             if (request.name() != null) propsSet |= _name;
 
             if (propsSet == 0) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_component_template");
-                return buf.toString();
+                return "/_component_template";
             }
             if (propsSet == (_name)) {
                 StringBuilder buf = new StringBuilder();
-                buf.append("/_component_template");
-                buf.append("/");
+                buf.append("/_component_template/");
                 SimpleEndpoint.pathEncode(request.name, buf);
                 return buf.toString();
             }
+
             throw SimpleEndpoint.noPathTemplateFound("path");
-
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
             if (request.clusterManagerTimeout != null) {
                 params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
             }
@@ -291,11 +346,36 @@ public class GetComponentTemplateRequest extends RequestBase {
             if (request.local != null) {
                 params.put("local", String.valueOf(request.local));
             }
+            if (request.masterTimeout != null) {
+                params.put("master_timeout", request.masterTimeout._toJsonString());
+            }
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         false,
         GetComponentTemplateResponse._DESERIALIZER
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
+        result = 31 * result + Objects.hashCode(this.flatSettings);
+        result = 31 * result + Objects.hashCode(this.local);
+        result = 31 * result + Objects.hashCode(this.masterTimeout);
+        result = 31 * result + Objects.hashCode(this.name);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        GetComponentTemplateRequest other = (GetComponentTemplateRequest) o;
+        return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
+            && Objects.equals(this.flatSettings, other.flatSettings)
+            && Objects.equals(this.local, other.local)
+            && Objects.equals(this.masterTimeout, other.masterTimeout)
+            && Objects.equals(this.name, other.name);
+    }
 }

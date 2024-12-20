@@ -16,6 +16,7 @@ import static org.opensearch.client.codegen.utils.matcher.Matcher.isNot;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.isNull;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.isOneOf;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.or;
+import static org.opensearch.client.codegen.utils.matcher.StringMatcher.contains;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,8 +47,9 @@ public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Matcher<OperationGroup> OPERATION_MATCHER = or(
         and(namespace(isNull()), name(is("info"))),
-        and(namespace(is("cluster")), name(isOneOf(
-                "allocation_explain"
+        and(namespace(is("cluster")), name(or(
+                isOneOf("allocation_explain"),
+                contains("component_template")
         ))),
         namespace(is("dangling_indices")),
         and(namespace(is("indices")), name(isNot("get_field_mapping"))),

@@ -1949,6 +1949,7 @@ paths:
         url: https://opensearch.org/docs/latest
       parameters:
         - $ref: '#/components/parameters/cluster.get_component_template___query.cluster_manager_timeout'
+        - $ref: '#/components/parameters/cluster.get_component_template___query.flat_settings'
         - $ref: '#/components/parameters/cluster.get_component_template___query.local'
         - $ref: '#/components/parameters/cluster.get_component_template___query.master_timeout'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -1990,6 +1991,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/cluster.get_component_template___path.name'
         - $ref: '#/components/parameters/cluster.get_component_template___query.cluster_manager_timeout'
+        - $ref: '#/components/parameters/cluster.get_component_template___query.flat_settings'
         - $ref: '#/components/parameters/cluster.get_component_template___query.local'
         - $ref: '#/components/parameters/cluster.get_component_template___query.master_timeout'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -17174,6 +17176,14 @@ components:
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
+    cluster.get_component_template___query.flat_settings:
+      in: query
+      name: flat_settings
+      description: If `true`, returns settings in flat format.
+      schema:
+        type: boolean
+        default: false
+      style: form
     cluster.get_component_template___query.local:
       in: query
       name: local

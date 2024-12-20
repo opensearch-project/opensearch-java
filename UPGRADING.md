@@ -283,3 +283,6 @@ After:
 
 ### AllocationExplainResponse
 - The `allocationDelay`, `configuredDelay` and `remainingDelay` properties have been corrected to be of type `Time` instead of `String`.
+
+### PutComponentTemplateRequest
+- The `aliases`, `mappings` and `settings` properties have been removed as they should be set within the `template` property.

@@ -45,6 +45,7 @@ import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.util.ObjectBuilder;
 
 /**
@@ -84,5 +85,96 @@ public abstract class OpenSearchClusterAsyncClientBase<Self extends OpenSearchCl
      */
     public final CompletableFuture<AllocationExplainResponse> allocationExplain() throws IOException, OpenSearchException {
         return allocationExplain(new AllocationExplainRequest.Builder().build());
+    }
+
+    // ----- Endpoint: cluster.delete_component_template
+
+    /**
+     * Deletes a component template.
+     */
+    public CompletableFuture<DeleteComponentTemplateResponse> deleteComponentTemplate(DeleteComponentTemplateRequest request)
+        throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteComponentTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes a component template.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteComponentTemplateRequest}
+     */
+    public final CompletableFuture<DeleteComponentTemplateResponse> deleteComponentTemplate(
+        Function<DeleteComponentTemplateRequest.Builder, ObjectBuilder<DeleteComponentTemplateRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteComponentTemplate(fn.apply(new DeleteComponentTemplateRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: cluster.exists_component_template
+
+    /**
+     * Returns information about whether a particular component template exist.
+     */
+    public CompletableFuture<BooleanResponse> existsComponentTemplate(ExistsComponentTemplateRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, ExistsComponentTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about whether a particular component template exist.
+     *
+     * @param fn a function that initializes a builder to create the {@link ExistsComponentTemplateRequest}
+     */
+    public final CompletableFuture<BooleanResponse> existsComponentTemplate(
+        Function<ExistsComponentTemplateRequest.Builder, ObjectBuilder<ExistsComponentTemplateRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return existsComponentTemplate(fn.apply(new ExistsComponentTemplateRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: cluster.get_component_template
+
+    /**
+     * Returns one or more component templates.
+     */
+    public CompletableFuture<GetComponentTemplateResponse> getComponentTemplate(GetComponentTemplateRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, GetComponentTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns one or more component templates.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetComponentTemplateRequest}
+     */
+    public final CompletableFuture<GetComponentTemplateResponse> getComponentTemplate(
+        Function<GetComponentTemplateRequest.Builder, ObjectBuilder<GetComponentTemplateRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return getComponentTemplate(fn.apply(new GetComponentTemplateRequest.Builder()).build());
+    }
+
+    /**
+     * Returns one or more component templates.
+     */
+    public final CompletableFuture<GetComponentTemplateResponse> getComponentTemplate() throws IOException, OpenSearchException {
+        return getComponentTemplate(new GetComponentTemplateRequest.Builder().build());
+    }
+
+    // ----- Endpoint: cluster.put_component_template
+
+    /**
+     * Creates or updates a component template.
+     */
+    public CompletableFuture<PutComponentTemplateResponse> putComponentTemplate(PutComponentTemplateRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, PutComponentTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates or updates a component template.
+     *
+     * @param fn a function that initializes a builder to create the {@link PutComponentTemplateRequest}
+     */
+    public final CompletableFuture<PutComponentTemplateResponse> putComponentTemplate(
+        Function<PutComponentTemplateRequest.Builder, ObjectBuilder<PutComponentTemplateRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return putComponentTemplate(fn.apply(new PutComponentTemplateRequest.Builder()).build());
     }
 }

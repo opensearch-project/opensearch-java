@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,30 +48,39 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.get_component_template.Response
 
 @JsonpDeserializable
-public class GetComponentTemplateResponse implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class GetComponentTemplateResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<GetComponentTemplateResponse.Builder, GetComponentTemplateResponse> {
+
+    @Nonnull
     private final List<ComponentTemplate> componentTemplates;
 
     // ---------------------------------------------------------------------------------------------
 
     private GetComponentTemplateResponse(Builder builder) {
-
         this.componentTemplates = ApiTypeHelper.unmodifiableRequired(builder.componentTemplates, this, "componentTemplates");
-
     }
 
-    public static GetComponentTemplateResponse of(Function<Builder, ObjectBuilder<GetComponentTemplateResponse>> fn) {
+    public static GetComponentTemplateResponse of(
+        Function<GetComponentTemplateResponse.Builder, ObjectBuilder<GetComponentTemplateResponse>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code component_templates}
      */
+    @Nonnull
     public final List<ComponentTemplate> componentTemplates() {
         return this.componentTemplates;
     }
@@ -73,6 +88,7 @@ public class GetComponentTemplateResponse implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -80,34 +96,57 @@ public class GetComponentTemplateResponse implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.componentTemplates)) {
-            generator.writeKey("component_templates");
-            generator.writeStartArray();
-            for (ComponentTemplate item0 : this.componentTemplates) {
-                item0.serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("component_templates");
+        generator.writeStartArray();
+        for (ComponentTemplate item0 : this.componentTemplates) {
+            item0.serialize(generator, mapper);
         }
-
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GetComponentTemplateResponse}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetComponentTemplateResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetComponentTemplateResponse> {
         private List<ComponentTemplate> componentTemplates;
+
+        public Builder() {}
+
+        private Builder(GetComponentTemplateResponse o) {
+            this.componentTemplates = _listCopy(o.componentTemplates);
+        }
+
+        private Builder(Builder o) {
+            this.componentTemplates = _listCopy(o.componentTemplates);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code component_templates}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>componentTemplates</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder componentTemplates(List<ComponentTemplate> list) {
             this.componentTemplates = _listAddAll(this.componentTemplates, list);
             return this;
@@ -115,9 +154,12 @@ public class GetComponentTemplateResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code component_templates}
+         *
          * <p>
          * Adds one or more values to <code>componentTemplates</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder componentTemplates(ComponentTemplate value, ComponentTemplate... values) {
             this.componentTemplates = _listAdd(this.componentTemplates, value, values);
             return this;
@@ -125,9 +167,12 @@ public class GetComponentTemplateResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code component_templates}
+         *
          * <p>
          * Adds a value to <code>componentTemplates</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder componentTemplates(Function<ComponentTemplate.Builder, ObjectBuilder<ComponentTemplate>> fn) {
             return componentTemplates(fn.apply(new ComponentTemplate.Builder()).build());
         }
@@ -135,9 +180,10 @@ public class GetComponentTemplateResponse implements PlainJsonSerializable {
         /**
          * Builds a {@link GetComponentTemplateResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GetComponentTemplateResponse build() {
             _checkSingleUse();
 
@@ -156,9 +202,21 @@ public class GetComponentTemplateResponse implements PlainJsonSerializable {
     );
 
     protected static void setupGetComponentTemplateResponseDeserializer(ObjectDeserializer<GetComponentTemplateResponse.Builder> op) {
-
         op.add(Builder::componentTemplates, JsonpDeserializer.arrayDeserializer(ComponentTemplate._DESERIALIZER), "component_templates");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.componentTemplates.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        GetComponentTemplateResponse other = (GetComponentTemplateResponse) o;
+        return this.componentTemplates.equals(other.componentTemplates);
+    }
 }
