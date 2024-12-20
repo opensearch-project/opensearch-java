@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -43,30 +49,34 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.cluster.pending_tasks.PendingTask;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.pending_tasks.Response
 
 @JsonpDeserializable
-public class PendingTasksResponse implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class PendingTasksResponse implements PlainJsonSerializable, ToCopyableBuilder<PendingTasksResponse.Builder, PendingTasksResponse> {
+
+    @Nonnull
     private final List<PendingTask> tasks;
 
     // ---------------------------------------------------------------------------------------------
 
     private PendingTasksResponse(Builder builder) {
-
         this.tasks = ApiTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
-
     }
 
-    public static PendingTasksResponse of(Function<Builder, ObjectBuilder<PendingTasksResponse>> fn) {
+    public static PendingTasksResponse of(Function<PendingTasksResponse.Builder, ObjectBuilder<PendingTasksResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code tasks}
      */
+    @Nonnull
     public final List<PendingTask> tasks() {
         return this.tasks;
     }
@@ -74,6 +84,7 @@ public class PendingTasksResponse implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -81,34 +92,57 @@ public class PendingTasksResponse implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.tasks)) {
-            generator.writeKey("tasks");
-            generator.writeStartArray();
-            for (PendingTask item0 : this.tasks) {
-                item0.serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("tasks");
+        generator.writeStartArray();
+        for (PendingTask item0 : this.tasks) {
+            item0.serialize(generator, mapper);
         }
-
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PendingTasksResponse}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTasksResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PendingTasksResponse> {
         private List<PendingTask> tasks;
+
+        public Builder() {}
+
+        private Builder(PendingTasksResponse o) {
+            this.tasks = _listCopy(o.tasks);
+        }
+
+        private Builder(Builder o) {
+            this.tasks = _listCopy(o.tasks);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code tasks}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>tasks</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder tasks(List<PendingTask> list) {
             this.tasks = _listAddAll(this.tasks, list);
             return this;
@@ -116,9 +150,12 @@ public class PendingTasksResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code tasks}
+         *
          * <p>
          * Adds one or more values to <code>tasks</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder tasks(PendingTask value, PendingTask... values) {
             this.tasks = _listAdd(this.tasks, value, values);
             return this;
@@ -126,9 +163,12 @@ public class PendingTasksResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code tasks}
+         *
          * <p>
          * Adds a value to <code>tasks</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder tasks(Function<PendingTask.Builder, ObjectBuilder<PendingTask>> fn) {
             return tasks(fn.apply(new PendingTask.Builder()).build());
         }
@@ -136,9 +176,10 @@ public class PendingTasksResponse implements PlainJsonSerializable {
         /**
          * Builds a {@link PendingTasksResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PendingTasksResponse build() {
             _checkSingleUse();
 
@@ -157,9 +198,21 @@ public class PendingTasksResponse implements PlainJsonSerializable {
     );
 
     protected static void setupPendingTasksResponseDeserializer(ObjectDeserializer<PendingTasksResponse.Builder> op) {
-
         op.add(Builder::tasks, JsonpDeserializer.arrayDeserializer(PendingTask._DESERIALIZER), "tasks");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.tasks.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        PendingTasksResponse other = (PendingTasksResponse) o;
+        return this.tasks.equals(other.tasks);
+    }
 }

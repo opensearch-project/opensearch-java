@@ -234,6 +234,35 @@ public abstract class OpenSearchClusterClientBase<Self extends OpenSearchCluster
         return health(new HealthRequest.Builder().build());
     }
 
+    // ----- Endpoint: cluster.pending_tasks
+
+    /**
+     * Returns a list of any cluster-level changes (e.g. create index, update mapping, allocate or fail shard) which have not yet been
+     * executed.
+     */
+    public PendingTasksResponse pendingTasks(PendingTasksRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, PendingTasksRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns a list of any cluster-level changes (e.g. create index, update mapping, allocate or fail shard) which have not yet been
+     * executed.
+     *
+     * @param fn a function that initializes a builder to create the {@link PendingTasksRequest}
+     */
+    public final PendingTasksResponse pendingTasks(Function<PendingTasksRequest.Builder, ObjectBuilder<PendingTasksRequest>> fn)
+        throws IOException, OpenSearchException {
+        return pendingTasks(fn.apply(new PendingTasksRequest.Builder()).build());
+    }
+
+    /**
+     * Returns a list of any cluster-level changes (e.g. create index, update mapping, allocate or fail shard) which have not yet been
+     * executed.
+     */
+    public final PendingTasksResponse pendingTasks() throws IOException, OpenSearchException {
+        return pendingTasks(new PendingTasksRequest.Builder().build());
+    }
+
     // ----- Endpoint: cluster.post_voting_config_exclusions
 
     /**

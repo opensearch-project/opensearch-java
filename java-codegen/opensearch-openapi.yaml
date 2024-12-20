@@ -48172,7 +48172,8 @@ components:
           type: boolean
         insert_order:
           description: The number that represents when the task has been inserted into the task queue.
-          type: number
+          type: integer
+          format: int32
         priority:
           description: |-
             The priority of the pending task.

@@ -30,98 +30,129 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster.pending_tasks;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.pending_tasks.PendingTask
 
 @JsonpDeserializable
-public class PendingTask implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class PendingTask implements PlainJsonSerializable, ToCopyableBuilder<PendingTask.Builder, PendingTask> {
+
     private final boolean executing;
 
     private final int insertOrder;
 
+    @Nonnull
     private final String priority;
 
+    @Nonnull
     private final String source;
 
-    private final String timeInQueue;
+    @Nullable
+    private final Time timeInQueue;
 
-    private final int timeInQueueMillis;
+    private final long timeInQueueMillis;
 
     // ---------------------------------------------------------------------------------------------
 
     private PendingTask(Builder builder) {
-
         this.executing = ApiTypeHelper.requireNonNull(builder.executing, this, "executing");
         this.insertOrder = ApiTypeHelper.requireNonNull(builder.insertOrder, this, "insertOrder");
         this.priority = ApiTypeHelper.requireNonNull(builder.priority, this, "priority");
         this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
-        this.timeInQueue = ApiTypeHelper.requireNonNull(builder.timeInQueue, this, "timeInQueue");
+        this.timeInQueue = builder.timeInQueue;
         this.timeInQueueMillis = ApiTypeHelper.requireNonNull(builder.timeInQueueMillis, this, "timeInQueueMillis");
-
     }
 
-    public static PendingTask of(Function<Builder, ObjectBuilder<PendingTask>> fn) {
+    public static PendingTask of(Function<PendingTask.Builder, ObjectBuilder<PendingTask>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code executing}
+     * Required - Indicates whether the pending tasks are currently executing or not.
+     * <p>
+     * API name: {@code executing}
+     * </p>
      */
     public final boolean executing() {
         return this.executing;
     }
 
     /**
-     * Required - API name: {@code insert_order}
+     * Required - The number that represents when the task has been inserted into the task queue.
+     * <p>
+     * API name: {@code insert_order}
+     * </p>
      */
     public final int insertOrder() {
         return this.insertOrder;
     }
 
     /**
-     * Required - API name: {@code priority}
+     * Required - The priority of the pending task. The valid priorities in descending priority order are: <code>IMMEDIATE</code> &gt;
+     * <code>URGENT</code> &gt; <code>HIGH</code> &gt; <code>NORMAL</code> &gt; <code>LOW</code> &gt; <code>LANGUID</code>.
+     * <p>
+     * API name: {@code priority}
+     * </p>
      */
+    @Nonnull
     public final String priority() {
         return this.priority;
     }
 
     /**
-     * Required - API name: {@code source}
+     * Required - A general description of the cluster task that may include a reason and origin.
+     * <p>
+     * API name: {@code source}
+     * </p>
      */
+    @Nonnull
     public final String source() {
         return this.source;
     }
 
     /**
-     * Required - API name: {@code time_in_queue}
+     * API name: {@code time_in_queue}
      */
-    public final String timeInQueue() {
+    @Nullable
+    public final Time timeInQueue() {
         return this.timeInQueue;
     }
 
     /**
      * Required - API name: {@code time_in_queue_millis}
      */
-    public final int timeInQueueMillis() {
+    public final long timeInQueueMillis() {
         return this.timeInQueueMillis;
     }
 
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -129,7 +160,6 @@ public class PendingTask implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("executing");
         generator.write(this.executing);
 
@@ -142,77 +172,137 @@ public class PendingTask implements PlainJsonSerializable {
         generator.writeKey("source");
         generator.write(this.source);
 
-        generator.writeKey("time_in_queue");
-        generator.write(this.timeInQueue);
+        if (this.timeInQueue != null) {
+            generator.writeKey("time_in_queue");
+            this.timeInQueue.serialize(generator, mapper);
+        }
 
         generator.writeKey("time_in_queue_millis");
         generator.write(this.timeInQueueMillis);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PendingTask}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTask> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PendingTask> {
         private Boolean executing;
-
         private Integer insertOrder;
-
         private String priority;
-
         private String source;
+        @Nullable
+        private Time timeInQueue;
+        private Long timeInQueueMillis;
 
-        private String timeInQueue;
+        public Builder() {}
 
-        private Integer timeInQueueMillis;
+        private Builder(PendingTask o) {
+            this.executing = o.executing;
+            this.insertOrder = o.insertOrder;
+            this.priority = o.priority;
+            this.source = o.source;
+            this.timeInQueue = o.timeInQueue;
+            this.timeInQueueMillis = o.timeInQueueMillis;
+        }
+
+        private Builder(Builder o) {
+            this.executing = o.executing;
+            this.insertOrder = o.insertOrder;
+            this.priority = o.priority;
+            this.source = o.source;
+            this.timeInQueue = o.timeInQueue;
+            this.timeInQueueMillis = o.timeInQueueMillis;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
-         * Required - API name: {@code executing}
+         * Required - Indicates whether the pending tasks are currently executing or not.
+         * <p>
+         * API name: {@code executing}
+         * </p>
          */
+        @Nonnull
         public final Builder executing(boolean value) {
             this.executing = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code insert_order}
+         * Required - The number that represents when the task has been inserted into the task queue.
+         * <p>
+         * API name: {@code insert_order}
+         * </p>
          */
+        @Nonnull
         public final Builder insertOrder(int value) {
             this.insertOrder = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code priority}
+         * Required - The priority of the pending task. The valid priorities in descending priority order are: <code>IMMEDIATE</code> &gt;
+         * <code>URGENT</code> &gt; <code>HIGH</code> &gt; <code>NORMAL</code> &gt; <code>LOW</code> &gt; <code>LANGUID</code>.
+         * <p>
+         * API name: {@code priority}
+         * </p>
          */
+        @Nonnull
         public final Builder priority(String value) {
             this.priority = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code source}
+         * Required - A general description of the cluster task that may include a reason and origin.
+         * <p>
+         * API name: {@code source}
+         * </p>
          */
+        @Nonnull
         public final Builder source(String value) {
             this.source = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code time_in_queue}
+         * API name: {@code time_in_queue}
          */
-        public final Builder timeInQueue(String value) {
+        @Nonnull
+        public final Builder timeInQueue(@Nullable Time value) {
             this.timeInQueue = value;
             return this;
         }
 
         /**
+         * API name: {@code time_in_queue}
+         */
+        @Nonnull
+        public final Builder timeInQueue(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return timeInQueue(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
          * Required - API name: {@code time_in_queue_millis}
          */
-        public final Builder timeInQueueMillis(int value) {
+        @Nonnull
+        public final Builder timeInQueueMillis(long value) {
             this.timeInQueueMillis = value;
             return this;
         }
@@ -220,9 +310,10 @@ public class PendingTask implements PlainJsonSerializable {
         /**
          * Builds a {@link PendingTask}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PendingTask build() {
             _checkSingleUse();
 
@@ -241,14 +332,36 @@ public class PendingTask implements PlainJsonSerializable {
     );
 
     protected static void setupPendingTaskDeserializer(ObjectDeserializer<PendingTask.Builder> op) {
-
         op.add(Builder::executing, JsonpDeserializer.booleanDeserializer(), "executing");
         op.add(Builder::insertOrder, JsonpDeserializer.integerDeserializer(), "insert_order");
         op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority");
         op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
-        op.add(Builder::timeInQueue, JsonpDeserializer.stringDeserializer(), "time_in_queue");
-        op.add(Builder::timeInQueueMillis, JsonpDeserializer.integerDeserializer(), "time_in_queue_millis");
-
+        op.add(Builder::timeInQueue, Time._DESERIALIZER, "time_in_queue");
+        op.add(Builder::timeInQueueMillis, JsonpDeserializer.longDeserializer(), "time_in_queue_millis");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Boolean.hashCode(this.executing);
+        result = 31 * result + Integer.hashCode(this.insertOrder);
+        result = 31 * result + this.priority.hashCode();
+        result = 31 * result + this.source.hashCode();
+        result = 31 * result + Objects.hashCode(this.timeInQueue);
+        result = 31 * result + Long.hashCode(this.timeInQueueMillis);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        PendingTask other = (PendingTask) o;
+        return this.executing == other.executing
+            && this.insertOrder == other.insertOrder
+            && this.priority.equals(other.priority)
+            && this.source.equals(other.source)
+            && Objects.equals(this.timeInQueue, other.timeInQueue)
+            && this.timeInQueueMillis == other.timeInQueueMillis;
+    }
 }

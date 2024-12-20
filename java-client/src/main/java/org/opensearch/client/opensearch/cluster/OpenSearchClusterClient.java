@@ -40,7 +40,6 @@ import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
-import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.util.ObjectBuilder;
 
 /**
@@ -59,55 +58,6 @@ public class OpenSearchClusterClient extends OpenSearchClusterClientBase<OpenSea
     @Override
     public OpenSearchClusterClient withTransportOptions(@Nullable TransportOptions transportOptions) {
         return new OpenSearchClusterClient(this.transport, transportOptions);
-    }
-    
-    // ----- Endpoint: cluster.pending_tasks
-
-    /**
-     * Returns a list of any cluster-level changes (e.g. create index, update
-     * mapping, allocate or fail shard) which have not yet been executed.
-     *
-     *
-     */
-
-    public PendingTasksResponse pendingTasks(PendingTasksRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<PendingTasksRequest, PendingTasksResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            PendingTasksRequest,
-            PendingTasksResponse,
-            ErrorResponse>) PendingTasksRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns a list of any cluster-level changes (e.g. create index, update
-     * mapping, allocate or fail shard) which have not yet been executed.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link PendingTasksRequest}
-     *
-     */
-
-    public final PendingTasksResponse pendingTasks(Function<PendingTasksRequest.Builder, ObjectBuilder<PendingTasksRequest>> fn)
-        throws IOException, OpenSearchException {
-        return pendingTasks(fn.apply(new PendingTasksRequest.Builder()).build());
-    }
-
-    /**
-     * Returns a list of any cluster-level changes (e.g. create index, update
-     * mapping, allocate or fail shard) which have not yet been executed.
-     *
-     *
-     */
-
-    public PendingTasksResponse pendingTasks() throws IOException, OpenSearchException {
-        return this.transport.performRequest(
-            new PendingTasksRequest.Builder().build(),
-            PendingTasksRequest._ENDPOINT,
-            this.transportOptions
-        );
     }
 
     // ----- Endpoint: cluster.remote_info

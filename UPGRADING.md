@@ -293,3 +293,7 @@ After:
 ### HealthResponse
 - The `activeShardsPercentAsNumber` property has been corrected to be of type `double` instead of `String`.
 - The `taskMaxWaitingInQueueMillis` property has been corrected to be of type `long` instead of `String`. 
+
+### PendingTask
+- The `timeInQueue` property has been corrected to be of type `Time` instead of `String`.
+- The `timeInQueueMillis` property has been corrected to be of type `long` instead of `int`.
