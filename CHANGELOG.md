@@ -52,6 +52,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
+- Fixed serialization of `time_zone` field in `CompositeDateHistogramAggregationSource` ([#1362](https://github.com/opensearch-project/opensearch-java/pull/1362))
 
 ### Security
 
