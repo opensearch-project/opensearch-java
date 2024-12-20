@@ -213,6 +213,32 @@ public abstract class OpenSearchClusterAsyncClientBase<Self extends OpenSearchCl
         return getSettings(new GetClusterSettingsRequest.Builder().build());
     }
 
+    // ----- Endpoint: cluster.health
+
+    /**
+     * Returns basic information about the health of the cluster.
+     */
+    public CompletableFuture<HealthResponse> health(HealthRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, HealthRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns basic information about the health of the cluster.
+     *
+     * @param fn a function that initializes a builder to create the {@link HealthRequest}
+     */
+    public final CompletableFuture<HealthResponse> health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
+        throws IOException, OpenSearchException {
+        return health(fn.apply(new HealthRequest.Builder()).build());
+    }
+
+    /**
+     * Returns basic information about the health of the cluster.
+     */
+    public final CompletableFuture<HealthResponse> health() throws IOException, OpenSearchException {
+        return health(new HealthRequest.Builder().build());
+    }
+
     // ----- Endpoint: cluster.post_voting_config_exclusions
 
     /**

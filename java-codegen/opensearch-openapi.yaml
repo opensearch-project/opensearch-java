@@ -47983,26 +47983,34 @@ components:
       x-version-added: '2.5'
       properties:
         active_shards:
-          type: number
+          type: integer
+          format: int32
         initializing_shards:
-          type: number
+          type: integer
+          format: int32
         relocating_shards:
-          type: number
+          type: integer
+          format: int32
         unassigned_shards:
-          type: number
+          type: integer
+          format: int32
         data_nodes:
-          type: number
+          type: integer
+          format: int32
         weight:
-          type: number
+          type: integer
+          format: int32
     cluster.health___HealthResponseBody:
       type: object
       properties:
         active_primary_shards:
           description: The number of active primary shards.
-          type: number
+          type: integer
+          format: int32
         active_shards:
           description: The total number of active primary and replica shards.
-          type: number
+          type: integer
+          format: int32
         active_shards_percent:
           $ref: '#/components/schemas/_common___PercentageString'
         active_shards_percent_as_number:
@@ -48017,7 +48025,8 @@ components:
           $ref: '#/components/schemas/_common___Name'
         delayed_unassigned_shards:
           description: The number of shards whose allocation has been delayed by the timeout settings.
-          type: number
+          type: integer
+          format: int32
         discovered_master:
           description: True if the cluster-manager node has been discovered.
           type: boolean
@@ -48032,22 +48041,28 @@ components:
             $ref: '#/components/schemas/cluster.health___IndexHealthStats'
         initializing_shards:
           description: The number of shards that are under initialization.
-          type: number
+          type: integer
+          format: int32
         number_of_data_nodes:
           description: The number of nodes that are dedicated data nodes.
-          type: number
+          type: integer
+          format: int32
         number_of_in_flight_fetch:
           description: The number of unfinished fetches.
-          type: number
+          type: integer
+          format: int32
         number_of_nodes:
           description: The number of nodes within the cluster.
-          type: number
+          type: integer
+          format: int32
         number_of_pending_tasks:
           description: The number of cluster-level changes that have not yet been executed.
-          type: number
+          type: integer
+          format: int32
         relocating_shards:
           description: The number of shards that are under relocation.
-          type: number
+          type: integer
+          format: int32
         status:
           $ref: '#/components/schemas/_common___HealthStatus'
         task_max_waiting_in_queue:
@@ -48059,7 +48074,8 @@ components:
           type: boolean
         unassigned_shards:
           description: The number of shards that are not allocated.
-          type: number
+          type: integer
+          format: int32
       required:
         - active_primary_shards
         - active_shards
@@ -48080,17 +48096,23 @@ components:
       type: object
       properties:
         active_primary_shards:
-          type: number
+          type: integer
+          format: int32
         active_shards:
-          type: number
+          type: integer
+          format: int32
         initializing_shards:
-          type: number
+          type: integer
+          format: int32
         number_of_replicas:
-          type: number
+          type: integer
+          format: int32
         number_of_shards:
-          type: number
+          type: integer
+          format: int32
         relocating_shards:
-          type: number
+          type: integer
+          format: int32
         shards:
           type: object
           additionalProperties:
@@ -48098,7 +48120,8 @@ components:
         status:
           $ref: '#/components/schemas/_common___HealthStatus'
         unassigned_shards:
-          type: number
+          type: integer
+          format: int32
       required:
         - active_primary_shards
         - active_shards
@@ -48119,17 +48142,21 @@ components:
       type: object
       properties:
         active_shards:
-          type: number
+          type: integer
+          format: int32
         initializing_shards:
-          type: number
+          type: integer
+          format: int32
         primary_active:
           type: boolean
         relocating_shards:
-          type: number
+          type: integer
+          format: int32
         status:
           $ref: '#/components/schemas/_common___HealthStatus'
         unassigned_shards:
-          type: number
+          type: integer
+          format: int32
       required:
         - active_shards
         - initializing_shards

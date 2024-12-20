@@ -60,49 +60,7 @@ public class OpenSearchClusterClient extends OpenSearchClusterClientBase<OpenSea
     public OpenSearchClusterClient withTransportOptions(@Nullable TransportOptions transportOptions) {
         return new OpenSearchClusterClient(this.transport, transportOptions);
     }
-
-    // ----- Endpoint: cluster.health
-
-    /**
-     * Returns basic information about the health of the cluster.
-     *
-     *
-     */
-
-    public HealthResponse health(HealthRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<HealthRequest, HealthResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            HealthRequest,
-            HealthResponse,
-            ErrorResponse>) HealthRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns basic information about the health of the cluster.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link HealthRequest}
-     *
-     */
-
-    public final HealthResponse health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn) throws IOException,
-        OpenSearchException {
-        return health(fn.apply(new HealthRequest.Builder()).build());
-    }
-
-    /**
-     * Returns basic information about the health of the cluster.
-     *
-     *
-     */
-
-    public HealthResponse health() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new HealthRequest.Builder().build(), HealthRequest._ENDPOINT, this.transportOptions);
-    }
-
+    
     // ----- Endpoint: cluster.pending_tasks
 
     /**

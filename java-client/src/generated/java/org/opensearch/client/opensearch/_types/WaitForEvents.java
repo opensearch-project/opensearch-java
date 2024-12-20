@@ -30,26 +30,32 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.WaitForEvents
+
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum WaitForEvents implements JsonEnum {
-    Immediate("immediate"),
-
-    Urgent("urgent"),
-
     High("high"),
 
-    Normal("normal"),
-
-    Low("low"),
+    Immediate("immediate"),
 
     Languid("languid"),
 
-    ;
+    Low("low"),
+
+    Normal("normal"),
+
+    Urgent("urgent");
 
     private final String jsonValue;
 

@@ -286,3 +286,10 @@ After:
 
 ### PutComponentTemplateRequest
 - The `aliases`, `mappings` and `settings` properties have been removed as they should be set within the `template` property.
+
+### HealthRequest
+- The `level` property is now of type `ClusterHealthLevel` instead of `Level`.
+
+### HealthResponse
+- The `activeShardsPercentAsNumber` property has been corrected to be of type `double` instead of `String`.
+- The `taskMaxWaitingInQueueMillis` property has been corrected to be of type `long` instead of `String`. 

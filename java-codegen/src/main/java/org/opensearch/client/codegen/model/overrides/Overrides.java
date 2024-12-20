@@ -110,6 +110,8 @@ public class Overrides {
                     so -> so.withAliasProvider(k -> k.endsWith("cludes") ? Set.of(k.substring(0, k.length() - 1)) : null)
                 )
 
+                .with(schema("cluster.health", "Level"), so -> so.withClassName("ClusterHealthLevel"))
+
                 .with(schema("indices._common", "IndexSettings"), so -> so.withAliasProvider(k -> {
                     switch (k) {
                         case "index":

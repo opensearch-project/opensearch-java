@@ -48,7 +48,7 @@ public class CodeGenerator {
     private static final Matcher<OperationGroup> OPERATION_MATCHER = or(
         and(namespace(isNull()), name(is("info"))),
         and(namespace(is("cluster")), name(or(
-                isOneOf("allocation_explain"),
+                isOneOf("allocation_explain", "health"),
                 contains("component_template"),
                 contains("settings"),
                 contains("voting_config_exclusions")
