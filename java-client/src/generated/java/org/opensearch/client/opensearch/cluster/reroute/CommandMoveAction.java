@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster.reroute;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,39 +47,56 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.reroute.CommandMoveAction
 
 @JsonpDeserializable
-public class CommandMoveAction implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class CommandMoveAction implements PlainJsonSerializable, ToCopyableBuilder<CommandMoveAction.Builder, CommandMoveAction> {
+
+    @Nonnull
+    private final String fromNode;
+
+    @Nonnull
     private final String index;
 
     private final int shard;
 
-    private final String fromNode;
-
+    @Nonnull
     private final String toNode;
 
     // ---------------------------------------------------------------------------------------------
 
     private CommandMoveAction(Builder builder) {
-
+        this.fromNode = ApiTypeHelper.requireNonNull(builder.fromNode, this, "fromNode");
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
-        this.fromNode = ApiTypeHelper.requireNonNull(builder.fromNode, this, "fromNode");
         this.toNode = ApiTypeHelper.requireNonNull(builder.toNode, this, "toNode");
-
     }
 
-    public static CommandMoveAction of(Function<Builder, ObjectBuilder<CommandMoveAction>> fn) {
+    public static CommandMoveAction of(Function<CommandMoveAction.Builder, ObjectBuilder<CommandMoveAction>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * Required - The node to move the shard from
+     * <p>
+     * API name: {@code from_node}
+     * </p>
+     */
+    @Nonnull
+    public final String fromNode() {
+        return this.fromNode;
     }
 
     /**
      * Required - API name: {@code index}
      */
+    @Nonnull
     public final String index() {
         return this.index;
     }
@@ -86,19 +109,12 @@ public class CommandMoveAction implements PlainJsonSerializable {
     }
 
     /**
-     * Required - The node to move the shard from
-     * <p>
-     * API name: {@code from_node}
-     */
-    public final String fromNode() {
-        return this.fromNode;
-    }
-
-    /**
      * Required - The node to move the shard to
      * <p>
      * API name: {@code to_node}
+     * </p>
      */
+    @Nonnull
     public final String toNode() {
         return this.toNode;
     }
@@ -106,6 +122,7 @@ public class CommandMoveAction implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -113,6 +130,8 @@ public class CommandMoveAction implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeKey("from_node");
+        generator.write(this.fromNode);
 
         generator.writeKey("index");
         generator.write(this.index);
@@ -120,32 +139,70 @@ public class CommandMoveAction implements PlainJsonSerializable {
         generator.writeKey("shard");
         generator.write(this.shard);
 
-        generator.writeKey("from_node");
-        generator.write(this.fromNode);
-
         generator.writeKey("to_node");
         generator.write(this.toNode);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CommandMoveAction}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CommandMoveAction> {
-        private String index;
-
-        private Integer shard;
-
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CommandMoveAction> {
         private String fromNode;
-
+        private String index;
+        private Integer shard;
         private String toNode;
+
+        public Builder() {}
+
+        private Builder(CommandMoveAction o) {
+            this.fromNode = o.fromNode;
+            this.index = o.index;
+            this.shard = o.shard;
+            this.toNode = o.toNode;
+        }
+
+        private Builder(Builder o) {
+            this.fromNode = o.fromNode;
+            this.index = o.index;
+            this.shard = o.shard;
+            this.toNode = o.toNode;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        /**
+         * Required - The node to move the shard from
+         * <p>
+         * API name: {@code from_node}
+         * </p>
+         */
+        @Nonnull
+        public final Builder fromNode(String value) {
+            this.fromNode = value;
+            return this;
+        }
 
         /**
          * Required - API name: {@code index}
          */
+        @Nonnull
         public final Builder index(String value) {
             this.index = value;
             return this;
@@ -154,18 +211,9 @@ public class CommandMoveAction implements PlainJsonSerializable {
         /**
          * Required - API name: {@code shard}
          */
+        @Nonnull
         public final Builder shard(int value) {
             this.shard = value;
-            return this;
-        }
-
-        /**
-         * Required - The node to move the shard from
-         * <p>
-         * API name: {@code from_node}
-         */
-        public final Builder fromNode(String value) {
-            this.fromNode = value;
             return this;
         }
 
@@ -173,7 +221,9 @@ public class CommandMoveAction implements PlainJsonSerializable {
          * Required - The node to move the shard to
          * <p>
          * API name: {@code to_node}
+         * </p>
          */
+        @Nonnull
         public final Builder toNode(String value) {
             this.toNode = value;
             return this;
@@ -182,9 +232,10 @@ public class CommandMoveAction implements PlainJsonSerializable {
         /**
          * Builds a {@link CommandMoveAction}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CommandMoveAction build() {
             _checkSingleUse();
 
@@ -203,12 +254,30 @@ public class CommandMoveAction implements PlainJsonSerializable {
     );
 
     protected static void setupCommandMoveActionDeserializer(ObjectDeserializer<CommandMoveAction.Builder> op) {
-
+        op.add(Builder::fromNode, JsonpDeserializer.stringDeserializer(), "from_node");
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
         op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
-        op.add(Builder::fromNode, JsonpDeserializer.stringDeserializer(), "from_node");
         op.add(Builder::toNode, JsonpDeserializer.stringDeserializer(), "to_node");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.fromNode.hashCode();
+        result = 31 * result + this.index.hashCode();
+        result = 31 * result + Integer.hashCode(this.shard);
+        result = 31 * result + this.toNode.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CommandMoveAction other = (CommandMoveAction) o;
+        return this.fromNode.equals(other.fromNode)
+            && this.index.equals(other.index)
+            && this.shard == other.shard
+            && this.toNode.equals(other.toNode);
+    }
 }

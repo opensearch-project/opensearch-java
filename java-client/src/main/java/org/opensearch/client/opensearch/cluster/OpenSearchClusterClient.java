@@ -60,48 +60,6 @@ public class OpenSearchClusterClient extends OpenSearchClusterClientBase<OpenSea
         return new OpenSearchClusterClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: cluster.reroute
-
-    /**
-     * Allows to manually change the allocation of individual shards in the cluster.
-     *
-     *
-     */
-
-    public RerouteResponse reroute(RerouteRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<RerouteRequest, RerouteResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            RerouteRequest,
-            RerouteResponse,
-            ErrorResponse>) RerouteRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Allows to manually change the allocation of individual shards in the cluster.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link RerouteRequest}
-     *
-     */
-
-    public final RerouteResponse reroute(Function<RerouteRequest.Builder, ObjectBuilder<RerouteRequest>> fn) throws IOException,
-        OpenSearchException {
-        return reroute(fn.apply(new RerouteRequest.Builder()).build());
-    }
-
-    /**
-     * Allows to manually change the allocation of individual shards in the cluster.
-     *
-     *
-     */
-
-    public RerouteResponse reroute() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new RerouteRequest.Builder().build(), RerouteRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: cluster.state
 
     /**

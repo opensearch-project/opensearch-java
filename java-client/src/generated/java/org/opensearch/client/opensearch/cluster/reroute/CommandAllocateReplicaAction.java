@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster.reroute;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,38 +47,56 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.reroute.CommandAllocateReplicaAction
 
 @JsonpDeserializable
-public class CommandAllocateReplicaAction implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class CommandAllocateReplicaAction
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<CommandAllocateReplicaAction.Builder, CommandAllocateReplicaAction> {
+
+    @Nonnull
     private final String index;
 
-    private final int shard;
-
+    @Nonnull
     private final String node;
+
+    private final int shard;
 
     // ---------------------------------------------------------------------------------------------
 
     private CommandAllocateReplicaAction(Builder builder) {
-
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
         this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
-
+        this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
     }
 
-    public static CommandAllocateReplicaAction of(Function<Builder, ObjectBuilder<CommandAllocateReplicaAction>> fn) {
+    public static CommandAllocateReplicaAction of(
+        Function<CommandAllocateReplicaAction.Builder, ObjectBuilder<CommandAllocateReplicaAction>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code index}
      */
+    @Nonnull
     public final String index() {
         return this.index;
+    }
+
+    /**
+     * Required - API name: {@code node}
+     */
+    @Nonnull
+    public final String node() {
+        return this.node;
     }
 
     /**
@@ -83,15 +107,9 @@ public class CommandAllocateReplicaAction implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code node}
-     */
-    public final String node() {
-        return this.node;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -99,61 +117,91 @@ public class CommandAllocateReplicaAction implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("index");
         generator.write(this.index);
-
-        generator.writeKey("shard");
-        generator.write(this.shard);
 
         generator.writeKey("node");
         generator.write(this.node);
 
+        generator.writeKey("shard");
+        generator.write(this.shard);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CommandAllocateReplicaAction}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CommandAllocateReplicaAction> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CommandAllocateReplicaAction> {
         private String index;
-
+        private String node;
         private Integer shard;
 
-        private String node;
+        public Builder() {}
+
+        private Builder(CommandAllocateReplicaAction o) {
+            this.index = o.index;
+            this.node = o.node;
+            this.shard = o.shard;
+        }
+
+        private Builder(Builder o) {
+            this.index = o.index;
+            this.node = o.node;
+            this.shard = o.shard;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code index}
          */
+        @Nonnull
         public final Builder index(String value) {
             this.index = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code shard}
-         */
-        public final Builder shard(int value) {
-            this.shard = value;
-            return this;
-        }
-
-        /**
          * Required - API name: {@code node}
          */
+        @Nonnull
         public final Builder node(String value) {
             this.node = value;
             return this;
         }
 
         /**
+         * Required - API name: {@code shard}
+         */
+        @Nonnull
+        public final Builder shard(int value) {
+            this.shard = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link CommandAllocateReplicaAction}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CommandAllocateReplicaAction build() {
             _checkSingleUse();
 
@@ -172,11 +220,25 @@ public class CommandAllocateReplicaAction implements PlainJsonSerializable {
     );
 
     protected static void setupCommandAllocateReplicaActionDeserializer(ObjectDeserializer<CommandAllocateReplicaAction.Builder> op) {
-
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-        op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
         op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
-
+        op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.index.hashCode();
+        result = 31 * result + this.node.hashCode();
+        result = 31 * result + Integer.hashCode(this.shard);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CommandAllocateReplicaAction other = (CommandAllocateReplicaAction) o;
+        return this.index.equals(other.index) && this.node.equals(other.node) && this.shard == other.shard;
+    }
 }

@@ -354,4 +354,30 @@ public abstract class OpenSearchClusterAsyncClientBase<Self extends OpenSearchCl
     public CompletableFuture<RemoteInfoResponse> remoteInfo() throws IOException, OpenSearchException {
         return this.transport.performRequestAsync(RemoteInfoRequest._INSTANCE, RemoteInfoRequest._ENDPOINT, this.transportOptions);
     }
+
+    // ----- Endpoint: cluster.reroute
+
+    /**
+     * Allows to manually change the allocation of individual shards in the cluster.
+     */
+    public CompletableFuture<RerouteResponse> reroute(RerouteRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, RerouteRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Allows to manually change the allocation of individual shards in the cluster.
+     *
+     * @param fn a function that initializes a builder to create the {@link RerouteRequest}
+     */
+    public final CompletableFuture<RerouteResponse> reroute(Function<RerouteRequest.Builder, ObjectBuilder<RerouteRequest>> fn)
+        throws IOException, OpenSearchException {
+        return reroute(fn.apply(new RerouteRequest.Builder()).build());
+    }
+
+    /**
+     * Allows to manually change the allocation of individual shards in the cluster.
+     */
+    public final CompletableFuture<RerouteResponse> reroute() throws IOException, OpenSearchException {
+        return reroute(new RerouteRequest.Builder().build());
+    }
 }

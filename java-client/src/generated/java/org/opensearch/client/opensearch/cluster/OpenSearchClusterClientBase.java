@@ -345,4 +345,30 @@ public abstract class OpenSearchClusterClientBase<Self extends OpenSearchCluster
     public RemoteInfoResponse remoteInfo() throws IOException, OpenSearchException {
         return this.transport.performRequest(RemoteInfoRequest._INSTANCE, RemoteInfoRequest._ENDPOINT, this.transportOptions);
     }
+
+    // ----- Endpoint: cluster.reroute
+
+    /**
+     * Allows to manually change the allocation of individual shards in the cluster.
+     */
+    public RerouteResponse reroute(RerouteRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, RerouteRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Allows to manually change the allocation of individual shards in the cluster.
+     *
+     * @param fn a function that initializes a builder to create the {@link RerouteRequest}
+     */
+    public final RerouteResponse reroute(Function<RerouteRequest.Builder, ObjectBuilder<RerouteRequest>> fn) throws IOException,
+        OpenSearchException {
+        return reroute(fn.apply(new RerouteRequest.Builder()).build());
+    }
+
+    /**
+     * Allows to manually change the allocation of individual shards in the cluster.
+     */
+    public final RerouteResponse reroute() throws IOException, OpenSearchException {
+        return reroute(new RerouteRequest.Builder().build());
+    }
 }

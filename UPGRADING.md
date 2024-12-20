@@ -297,3 +297,6 @@ After:
 ### PendingTask
 - The `timeInQueue` property has been corrected to be of type `Time` instead of `String`.
 - The `timeInQueueMillis` property has been corrected to be of type `long` instead of `int`.
+
+### RerouteRequest
+- The `metric` property is now of type `List<ClusterRerouteMetric>` instead of `List<String>`.
