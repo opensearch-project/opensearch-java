@@ -280,3 +280,6 @@ After:
 ### ShardStats renamed to IndexShardStats
 - The `ShardStats` class has been renamed to `IndexShardStats`, this affects:
   - `IndicesStats`'s `shards` field.
+
+### AllocationExplainResponse
+- The `allocationDelay`, `configuredDelay` and `remainingDelay` properties have been corrected to be of type `Time` instead of `String`.

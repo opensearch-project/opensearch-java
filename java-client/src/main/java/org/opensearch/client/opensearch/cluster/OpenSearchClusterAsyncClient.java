@@ -48,7 +48,7 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the cluster namespace.
  */
-public class OpenSearchClusterAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchClusterAsyncClient> {
+public class OpenSearchClusterAsyncClient extends OpenSearchClusterAsyncClientBase<OpenSearchClusterAsyncClient> {
 
     public OpenSearchClusterAsyncClient(OpenSearchTransport transport) {
         super(transport, null);
@@ -61,54 +61,6 @@ public class OpenSearchClusterAsyncClient extends ApiClient<OpenSearchTransport,
     @Override
     public OpenSearchClusterAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
         return new OpenSearchClusterAsyncClient(this.transport, transportOptions);
-    }
-
-    // ----- Endpoint: cluster.allocation_explain
-
-    /**
-     * Provides explanations for shard allocations in the cluster.
-     *
-     *
-     */
-
-    public CompletableFuture<AllocationExplainResponse> allocationExplain(AllocationExplainRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<AllocationExplainRequest, AllocationExplainResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            AllocationExplainRequest,
-            AllocationExplainResponse,
-            ErrorResponse>) AllocationExplainRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Provides explanations for shard allocations in the cluster.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link AllocationExplainRequest}
-     *
-     */
-
-    public final CompletableFuture<AllocationExplainResponse> allocationExplain(
-        Function<AllocationExplainRequest.Builder, ObjectBuilder<AllocationExplainRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return allocationExplain(fn.apply(new AllocationExplainRequest.Builder()).build());
-    }
-
-    /**
-     * Provides explanations for shard allocations in the cluster.
-     *
-     *
-     */
-
-    public CompletableFuture<AllocationExplainResponse> allocationExplain() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new AllocationExplainRequest.Builder().build(),
-            AllocationExplainRequest._ENDPOINT,
-            this.transportOptions
-        );
     }
 
     // ----- Endpoint: cluster.delete_component_template

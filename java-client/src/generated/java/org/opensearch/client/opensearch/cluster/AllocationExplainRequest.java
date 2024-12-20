@@ -30,12 +30,19 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -47,17 +54,23 @@ import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.allocation_explain.Request
 
 /**
  * Provides explanations for shard allocations in the cluster.
- *
  */
 @JsonpDeserializable
-public class AllocationExplainRequest extends RequestBase implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class AllocationExplainRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<AllocationExplainRequest.Builder, AllocationExplainRequest> {
+
     @Nullable
     private final String currentNode;
 
@@ -79,25 +92,23 @@ public class AllocationExplainRequest extends RequestBase implements PlainJsonSe
     // ---------------------------------------------------------------------------------------------
 
     private AllocationExplainRequest(Builder builder) {
-
         this.currentNode = builder.currentNode;
         this.includeDiskInfo = builder.includeDiskInfo;
         this.includeYesDecisions = builder.includeYesDecisions;
         this.index = builder.index;
         this.primary = builder.primary;
         this.shard = builder.shard;
-
     }
 
-    public static AllocationExplainRequest of(Function<Builder, ObjectBuilder<AllocationExplainRequest>> fn) {
+    public static AllocationExplainRequest of(Function<AllocationExplainRequest.Builder, ObjectBuilder<AllocationExplainRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Specifies the node ID or the name of the node to only explain a shard that is
-     * currently located on the specified node.
+     * Specifies the node ID or the name of the node to only explain a shard that is currently located on the specified node.
      * <p>
      * API name: {@code current_node}
+     * </p>
      */
     @Nullable
     public final String currentNode() {
@@ -105,9 +116,10 @@ public class AllocationExplainRequest extends RequestBase implements PlainJsonSe
     }
 
     /**
-     * If true, returns information about disk usage and shard sizes.
+     * If <code>true</code>, returns information about disk usage and shard sizes.
      * <p>
      * API name: {@code include_disk_info}
+     * </p>
      */
     @Nullable
     public final Boolean includeDiskInfo() {
@@ -115,9 +127,10 @@ public class AllocationExplainRequest extends RequestBase implements PlainJsonSe
     }
 
     /**
-     * If true, returns YES decisions in explanation.
+     * If <code>true</code>, returns YES decisions in explanation.
      * <p>
      * API name: {@code include_yes_decisions}
+     * </p>
      */
     @Nullable
     public final Boolean includeYesDecisions() {
@@ -125,8 +138,6 @@ public class AllocationExplainRequest extends RequestBase implements PlainJsonSe
     }
 
     /**
-     * Specifies the name of the index that you would like an explanation for.
-     * <p>
      * API name: {@code index}
      */
     @Nullable
@@ -135,9 +146,10 @@ public class AllocationExplainRequest extends RequestBase implements PlainJsonSe
     }
 
     /**
-     * If true, returns explanation for the primary shard for the given shard ID.
+     * If <code>true</code>, returns explanation for the primary shard for the given shard ID.
      * <p>
      * API name: {@code primary}
+     * </p>
      */
     @Nullable
     public final Boolean primary() {
@@ -148,6 +160,7 @@ public class AllocationExplainRequest extends RequestBase implements PlainJsonSe
      * Specifies the ID of the shard that you would like an explanation for.
      * <p>
      * API name: {@code shard}
+     * </p>
      */
     @Nullable
     public final Integer shard() {
@@ -157,6 +170,7 @@ public class AllocationExplainRequest extends RequestBase implements PlainJsonSe
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -164,101 +178,134 @@ public class AllocationExplainRequest extends RequestBase implements PlainJsonSe
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (this.currentNode != null) {
             generator.writeKey("current_node");
             generator.write(this.currentNode);
-
         }
+
         if (this.index != null) {
             generator.writeKey("index");
             generator.write(this.index);
-
         }
+
         if (this.primary != null) {
             generator.writeKey("primary");
             generator.write(this.primary);
-
         }
+
         if (this.shard != null) {
             generator.writeKey("shard");
             generator.write(this.shard);
-
         }
+    }
+    // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
     }
 
-    // ---------------------------------------------------------------------------------------------
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
 
     /**
      * Builder for {@link AllocationExplainRequest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationExplainRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AllocationExplainRequest> {
         @Nullable
         private String currentNode;
-
         @Nullable
         private Boolean includeDiskInfo;
-
         @Nullable
         private Boolean includeYesDecisions;
-
         @Nullable
         private String index;
-
         @Nullable
         private Boolean primary;
-
         @Nullable
         private Integer shard;
 
+        public Builder() {}
+
+        private Builder(AllocationExplainRequest o) {
+            this.currentNode = o.currentNode;
+            this.includeDiskInfo = o.includeDiskInfo;
+            this.includeYesDecisions = o.includeYesDecisions;
+            this.index = o.index;
+            this.primary = o.primary;
+            this.shard = o.shard;
+        }
+
+        private Builder(Builder o) {
+            this.currentNode = o.currentNode;
+            this.includeDiskInfo = o.includeDiskInfo;
+            this.includeYesDecisions = o.includeYesDecisions;
+            this.index = o.index;
+            this.primary = o.primary;
+            this.shard = o.shard;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
-         * Specifies the node ID or the name of the node to only explain a shard that is
-         * currently located on the specified node.
+         * Specifies the node ID or the name of the node to only explain a shard that is currently located on the specified node.
          * <p>
          * API name: {@code current_node}
+         * </p>
          */
+        @Nonnull
         public final Builder currentNode(@Nullable String value) {
             this.currentNode = value;
             return this;
         }
 
         /**
-         * If true, returns information about disk usage and shard sizes.
+         * If <code>true</code>, returns information about disk usage and shard sizes.
          * <p>
          * API name: {@code include_disk_info}
+         * </p>
          */
+        @Nonnull
         public final Builder includeDiskInfo(@Nullable Boolean value) {
             this.includeDiskInfo = value;
             return this;
         }
 
         /**
-         * If true, returns YES decisions in explanation.
+         * If <code>true</code>, returns YES decisions in explanation.
          * <p>
          * API name: {@code include_yes_decisions}
+         * </p>
          */
+        @Nonnull
         public final Builder includeYesDecisions(@Nullable Boolean value) {
             this.includeYesDecisions = value;
             return this;
         }
 
         /**
-         * Specifies the name of the index that you would like an explanation for.
-         * <p>
          * API name: {@code index}
          */
+        @Nonnull
         public final Builder index(@Nullable String value) {
             this.index = value;
             return this;
         }
 
         /**
-         * If true, returns explanation for the primary shard for the given shard ID.
+         * If <code>true</code>, returns explanation for the primary shard for the given shard ID.
          * <p>
          * API name: {@code primary}
+         * </p>
          */
+        @Nonnull
         public final Builder primary(@Nullable Boolean value) {
             this.primary = value;
             return this;
@@ -268,7 +315,9 @@ public class AllocationExplainRequest extends RequestBase implements PlainJsonSe
          * Specifies the ID of the shard that you would like an explanation for.
          * <p>
          * API name: {@code shard}
+         * </p>
          */
+        @Nonnull
         public final Builder shard(@Nullable Integer value) {
             this.shard = value;
             return this;
@@ -277,9 +326,10 @@ public class AllocationExplainRequest extends RequestBase implements PlainJsonSe
         /**
          * Builds a {@link AllocationExplainRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public AllocationExplainRequest build() {
             _checkSingleUse();
 
@@ -298,12 +348,10 @@ public class AllocationExplainRequest extends RequestBase implements PlainJsonSe
     );
 
     protected static void setupAllocationExplainRequestDeserializer(ObjectDeserializer<AllocationExplainRequest.Builder> op) {
-
         op.add(Builder::currentNode, JsonpDeserializer.stringDeserializer(), "current_node");
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
         op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
         op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -312,19 +360,10 @@ public class AllocationExplainRequest extends RequestBase implements PlainJsonSe
      * Endpoint "{@code cluster.allocation_explain}".
      */
     public static final Endpoint<AllocationExplainRequest, AllocationExplainResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "POST";
-
-        },
-
+        request -> "POST",
         // Request path
-        request -> {
-            return "/_cluster/allocation/explain";
-
-        },
-
+        request -> "/_cluster/allocation/explain",
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
@@ -335,10 +374,34 @@ public class AllocationExplainRequest extends RequestBase implements PlainJsonSe
                 params.put("include_yes_decisions", String.valueOf(request.includeYesDecisions));
             }
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         true,
         AllocationExplainResponse._DESERIALIZER
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.currentNode);
+        result = 31 * result + Objects.hashCode(this.includeDiskInfo);
+        result = 31 * result + Objects.hashCode(this.includeYesDecisions);
+        result = 31 * result + Objects.hashCode(this.index);
+        result = 31 * result + Objects.hashCode(this.primary);
+        result = 31 * result + Objects.hashCode(this.shard);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        AllocationExplainRequest other = (AllocationExplainRequest) o;
+        return Objects.equals(this.currentNode, other.currentNode)
+            && Objects.equals(this.includeDiskInfo, other.includeDiskInfo)
+            && Objects.equals(this.includeYesDecisions, other.includeYesDecisions)
+            && Objects.equals(this.index, other.index)
+            && Objects.equals(this.primary, other.primary)
+            && Objects.equals(this.shard, other.shard);
+    }
 }

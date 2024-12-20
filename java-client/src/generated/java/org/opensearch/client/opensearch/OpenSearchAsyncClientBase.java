@@ -42,6 +42,7 @@ import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.opensearch.cluster.OpenSearchClusterAsyncClient;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesAsyncClient;
@@ -62,6 +63,10 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
     }
 
     // ----- Child clients
+
+    public OpenSearchClusterAsyncClient cluster() {
+        return new OpenSearchClusterAsyncClient(this.transport, this.transportOptions);
+    }
 
     public OpenSearchDanglingIndicesAsyncClient danglingIndices() {
         return new OpenSearchDanglingIndicesAsyncClient(this.transport, this.transportOptions);

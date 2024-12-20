@@ -47,7 +47,7 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the cluster namespace.
  */
-public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, OpenSearchClusterClient> {
+public class OpenSearchClusterClient extends OpenSearchClusterClientBase<OpenSearchClusterClient> {
 
     public OpenSearchClusterClient(OpenSearchTransport transport) {
         super(transport, null);
@@ -60,53 +60,6 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     @Override
     public OpenSearchClusterClient withTransportOptions(@Nullable TransportOptions transportOptions) {
         return new OpenSearchClusterClient(this.transport, transportOptions);
-    }
-
-    // ----- Endpoint: cluster.allocation_explain
-
-    /**
-     * Provides explanations for shard allocations in the cluster.
-     *
-     *
-     */
-
-    public AllocationExplainResponse allocationExplain(AllocationExplainRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<AllocationExplainRequest, AllocationExplainResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            AllocationExplainRequest,
-            AllocationExplainResponse,
-            ErrorResponse>) AllocationExplainRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Provides explanations for shard allocations in the cluster.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link AllocationExplainRequest}
-     *
-     */
-
-    public final AllocationExplainResponse allocationExplain(
-        Function<AllocationExplainRequest.Builder, ObjectBuilder<AllocationExplainRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return allocationExplain(fn.apply(new AllocationExplainRequest.Builder()).build());
-    }
-
-    /**
-     * Provides explanations for shard allocations in the cluster.
-     *
-     *
-     */
-
-    public AllocationExplainResponse allocationExplain() throws IOException, OpenSearchException {
-        return this.transport.performRequest(
-            new AllocationExplainRequest.Builder().build(),
-            AllocationExplainRequest._ENDPOINT,
-            this.transportOptions
-        );
     }
 
     // ----- Endpoint: cluster.delete_component_template

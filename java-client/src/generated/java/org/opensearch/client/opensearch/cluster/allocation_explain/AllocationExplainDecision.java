@@ -30,34 +30,32 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster.allocation_explain;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: cluster.allocation_explain.AllocationExplainDecision
+
 @JsonpDeserializable
-public enum Decision implements JsonEnum {
-    Yes("yes"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum AllocationExplainDecision implements JsonEnum {
+    Always("ALWAYS"),
 
-    No("no"),
+    No("NO"),
 
-    WorseBalance("worse_balance"),
+    Throttle("THROTTLE"),
 
-    Throttled("throttled"),
-
-    AwaitingInfo("awaiting_info"),
-
-    AllocationDelayed("allocation_delayed"),
-
-    NoValidShardCopy("no_valid_shard_copy"),
-
-    NoAttempt("no_attempt"),
-
-    ;
+    Yes("YES");
 
     private final String jsonValue;
 
-    Decision(String jsonValue) {
+    AllocationExplainDecision(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -65,5 +63,7 @@ public enum Decision implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<Decision> _DESERIALIZER = new JsonEnum.Deserializer<>(Decision.values());
+    public static final JsonEnum.Deserializer<AllocationExplainDecision> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        AllocationExplainDecision.values()
+    );
 }

@@ -30,44 +30,50 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster.allocation_explain;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: cluster.allocation_explain.UnassignedInformationReason
+
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum UnassignedInformationReason implements JsonEnum {
-    IndexCreated("INDEX_CREATED"),
+    AllocationFailed("ALLOCATION_FAILED"),
 
     ClusterRecovered("CLUSTER_RECOVERED"),
 
-    IndexReopened("INDEX_REOPENED"),
-
     DanglingIndexImported("DANGLING_INDEX_IMPORTED"),
-
-    NewIndexRestored("NEW_INDEX_RESTORED"),
 
     ExistingIndexRestored("EXISTING_INDEX_RESTORED"),
 
-    ReplicaAdded("REPLICA_ADDED"),
-
-    AllocationFailed("ALLOCATION_FAILED"),
-
-    NodeLeft("NODE_LEFT"),
-
-    RerouteCancelled("REROUTE_CANCELLED"),
-
-    Reinitialized("REINITIALIZED"),
-
-    ReallocatedReplica("REALLOCATED_REPLICA"),
-
-    PrimaryFailed("PRIMARY_FAILED"),
-
     ForcedEmptyPrimary("FORCED_EMPTY_PRIMARY"),
+
+    IndexCreated("INDEX_CREATED"),
+
+    IndexReopened("INDEX_REOPENED"),
 
     ManualAllocation("MANUAL_ALLOCATION"),
 
-    ;
+    NewIndexRestored("NEW_INDEX_RESTORED"),
+
+    NodeLeft("NODE_LEFT"),
+
+    PrimaryFailed("PRIMARY_FAILED"),
+
+    ReallocatedReplica("REALLOCATED_REPLICA"),
+
+    Reinitialized("REINITIALIZED"),
+
+    ReplicaAdded("REPLICA_ADDED"),
+
+    RerouteCancelled("REROUTE_CANCELLED");
 
     private final String jsonValue;
 

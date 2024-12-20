@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster.allocation_explain;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,13 +47,18 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.allocation_explain.AllocationStore
 
 @JsonpDeserializable
-public class AllocationStore implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class AllocationStore implements PlainJsonSerializable, ToCopyableBuilder<AllocationStore.Builder, AllocationStore> {
+
+    @Nonnull
     private final String allocationId;
 
     private final boolean found;
@@ -58,28 +69,28 @@ public class AllocationStore implements PlainJsonSerializable {
 
     private final boolean matchingSyncId;
 
+    @Nonnull
     private final String storeException;
 
     // ---------------------------------------------------------------------------------------------
 
     private AllocationStore(Builder builder) {
-
         this.allocationId = ApiTypeHelper.requireNonNull(builder.allocationId, this, "allocationId");
         this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
         this.inSync = ApiTypeHelper.requireNonNull(builder.inSync, this, "inSync");
         this.matchingSizeInBytes = ApiTypeHelper.requireNonNull(builder.matchingSizeInBytes, this, "matchingSizeInBytes");
         this.matchingSyncId = ApiTypeHelper.requireNonNull(builder.matchingSyncId, this, "matchingSyncId");
         this.storeException = ApiTypeHelper.requireNonNull(builder.storeException, this, "storeException");
-
     }
 
-    public static AllocationStore of(Function<Builder, ObjectBuilder<AllocationStore>> fn) {
+    public static AllocationStore of(Function<AllocationStore.Builder, ObjectBuilder<AllocationStore>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code allocation_id}
      */
+    @Nonnull
     public final String allocationId() {
         return this.allocationId;
     }
@@ -115,6 +126,7 @@ public class AllocationStore implements PlainJsonSerializable {
     /**
      * Required - API name: {@code store_exception}
      */
+    @Nonnull
     public final String storeException() {
         return this.storeException;
     }
@@ -122,6 +134,7 @@ public class AllocationStore implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -129,7 +142,6 @@ public class AllocationStore implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("allocation_id");
         generator.write(this.allocationId);
 
@@ -147,31 +159,62 @@ public class AllocationStore implements PlainJsonSerializable {
 
         generator.writeKey("store_exception");
         generator.write(this.storeException);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link AllocationStore}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationStore> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AllocationStore> {
         private String allocationId;
-
         private Boolean found;
-
         private Boolean inSync;
-
         private Long matchingSizeInBytes;
-
         private Boolean matchingSyncId;
-
         private String storeException;
+
+        public Builder() {}
+
+        private Builder(AllocationStore o) {
+            this.allocationId = o.allocationId;
+            this.found = o.found;
+            this.inSync = o.inSync;
+            this.matchingSizeInBytes = o.matchingSizeInBytes;
+            this.matchingSyncId = o.matchingSyncId;
+            this.storeException = o.storeException;
+        }
+
+        private Builder(Builder o) {
+            this.allocationId = o.allocationId;
+            this.found = o.found;
+            this.inSync = o.inSync;
+            this.matchingSizeInBytes = o.matchingSizeInBytes;
+            this.matchingSyncId = o.matchingSyncId;
+            this.storeException = o.storeException;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code allocation_id}
          */
+        @Nonnull
         public final Builder allocationId(String value) {
             this.allocationId = value;
             return this;
@@ -180,6 +223,7 @@ public class AllocationStore implements PlainJsonSerializable {
         /**
          * Required - API name: {@code found}
          */
+        @Nonnull
         public final Builder found(boolean value) {
             this.found = value;
             return this;
@@ -188,6 +232,7 @@ public class AllocationStore implements PlainJsonSerializable {
         /**
          * Required - API name: {@code in_sync}
          */
+        @Nonnull
         public final Builder inSync(boolean value) {
             this.inSync = value;
             return this;
@@ -196,6 +241,7 @@ public class AllocationStore implements PlainJsonSerializable {
         /**
          * Required - API name: {@code matching_size_in_bytes}
          */
+        @Nonnull
         public final Builder matchingSizeInBytes(long value) {
             this.matchingSizeInBytes = value;
             return this;
@@ -204,6 +250,7 @@ public class AllocationStore implements PlainJsonSerializable {
         /**
          * Required - API name: {@code matching_sync_id}
          */
+        @Nonnull
         public final Builder matchingSyncId(boolean value) {
             this.matchingSyncId = value;
             return this;
@@ -212,6 +259,7 @@ public class AllocationStore implements PlainJsonSerializable {
         /**
          * Required - API name: {@code store_exception}
          */
+        @Nonnull
         public final Builder storeException(String value) {
             this.storeException = value;
             return this;
@@ -220,9 +268,10 @@ public class AllocationStore implements PlainJsonSerializable {
         /**
          * Builds a {@link AllocationStore}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public AllocationStore build() {
             _checkSingleUse();
 
@@ -241,14 +290,36 @@ public class AllocationStore implements PlainJsonSerializable {
     );
 
     protected static void setupAllocationStoreDeserializer(ObjectDeserializer<AllocationStore.Builder> op) {
-
         op.add(Builder::allocationId, JsonpDeserializer.stringDeserializer(), "allocation_id");
         op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
         op.add(Builder::inSync, JsonpDeserializer.booleanDeserializer(), "in_sync");
         op.add(Builder::matchingSizeInBytes, JsonpDeserializer.longDeserializer(), "matching_size_in_bytes");
         op.add(Builder::matchingSyncId, JsonpDeserializer.booleanDeserializer(), "matching_sync_id");
         op.add(Builder::storeException, JsonpDeserializer.stringDeserializer(), "store_exception");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.allocationId.hashCode();
+        result = 31 * result + Boolean.hashCode(this.found);
+        result = 31 * result + Boolean.hashCode(this.inSync);
+        result = 31 * result + Long.hashCode(this.matchingSizeInBytes);
+        result = 31 * result + Boolean.hashCode(this.matchingSyncId);
+        result = 31 * result + this.storeException.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        AllocationStore other = (AllocationStore) o;
+        return this.allocationId.equals(other.allocationId)
+            && this.found == other.found
+            && this.inSync == other.inSync
+            && this.matchingSizeInBytes == other.matchingSizeInBytes
+            && this.matchingSyncId == other.matchingSyncId
+            && this.storeException.equals(other.storeException);
+    }
 }

@@ -26428,7 +26428,8 @@ components:
                 type: boolean
               shard:
                 description: Specifies the ID of the shard that you would like an explanation for.
-                type: number
+                type: integer
+                format: int32
             description: The index, shard, and primary flag to explain. Empty means 'explain the first unassigned shard'
     cluster.delete_weighted_routing:
       content:
@@ -28581,7 +28582,8 @@ components:
               remaining_delay_in_millis:
                 $ref: '#/components/schemas/_common___DurationValueUnitMillis'
               shard:
-                type: number
+                type: integer
+                format: int32
               unassigned_info:
                 $ref: '#/components/schemas/cluster.allocation_explain___UnassignedInformation'
               note:
@@ -47804,7 +47806,8 @@ components:
         transport_address:
           $ref: '#/components/schemas/_common___TransportAddress'
         weight_ranking:
-          type: number
+          type: integer
+          format: int32
       required:
         - attributes
         - id
@@ -47872,7 +47875,8 @@ components:
         transport_address:
           $ref: '#/components/schemas/_common___TransportAddress'
         weight_ranking:
-          type: number
+          type: integer
+          format: int32
       required:
         - deciders
         - node_attributes
@@ -47901,7 +47905,8 @@ components:
         path:
           type: string
         total:
-          type: number
+          type: integer
+          format: int64
         shards:
           type: array
           items:
@@ -47923,7 +47928,8 @@ components:
         details:
           type: string
         failed_allocation_attempts:
-          type: number
+          type: integer
+          format: int32
         delayed:
           type: boolean
         allocation_status:
