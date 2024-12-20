@@ -153,6 +153,33 @@ public abstract class OpenSearchClusterClientBase<Self extends OpenSearchCluster
         return getComponentTemplate(new GetComponentTemplateRequest.Builder().build());
     }
 
+    // ----- Endpoint: cluster.get_settings
+
+    /**
+     * Returns cluster settings.
+     */
+    public GetClusterSettingsResponse getSettings(GetClusterSettingsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, GetClusterSettingsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns cluster settings.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetClusterSettingsRequest}
+     */
+    public final GetClusterSettingsResponse getSettings(
+        Function<GetClusterSettingsRequest.Builder, ObjectBuilder<GetClusterSettingsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return getSettings(fn.apply(new GetClusterSettingsRequest.Builder()).build());
+    }
+
+    /**
+     * Returns cluster settings.
+     */
+    public final GetClusterSettingsResponse getSettings() throws IOException, OpenSearchException {
+        return getSettings(new GetClusterSettingsRequest.Builder().build());
+    }
+
     // ----- Endpoint: cluster.put_component_template
 
     /**
@@ -171,5 +198,32 @@ public abstract class OpenSearchClusterClientBase<Self extends OpenSearchCluster
         Function<PutComponentTemplateRequest.Builder, ObjectBuilder<PutComponentTemplateRequest>> fn
     ) throws IOException, OpenSearchException {
         return putComponentTemplate(fn.apply(new PutComponentTemplateRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: cluster.put_settings
+
+    /**
+     * Updates the cluster settings.
+     */
+    public PutClusterSettingsResponse putSettings(PutClusterSettingsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, PutClusterSettingsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Updates the cluster settings.
+     *
+     * @param fn a function that initializes a builder to create the {@link PutClusterSettingsRequest}
+     */
+    public final PutClusterSettingsResponse putSettings(
+        Function<PutClusterSettingsRequest.Builder, ObjectBuilder<PutClusterSettingsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return putSettings(fn.apply(new PutClusterSettingsRequest.Builder()).build());
+    }
+
+    /**
+     * Updates the cluster settings.
+     */
+    public final PutClusterSettingsResponse putSettings() throws IOException, OpenSearchException {
+        return putSettings(new PutClusterSettingsRequest.Builder().build());
     }
 }

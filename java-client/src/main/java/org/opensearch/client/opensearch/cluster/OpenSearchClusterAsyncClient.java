@@ -36,7 +36,6 @@ import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.JsonEndpoint;
@@ -107,54 +106,6 @@ public class OpenSearchClusterAsyncClient extends OpenSearchClusterAsyncClientBa
         return this.transport.performRequestAsync(
             new DeleteVotingConfigExclusionsRequest.Builder().build(),
             DeleteVotingConfigExclusionsRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
-    // ----- Endpoint: cluster.get_settings
-
-    /**
-     * Returns cluster settings.
-     *
-     *
-     */
-
-    public CompletableFuture<GetClusterSettingsResponse> getSettings(GetClusterSettingsRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetClusterSettingsRequest, GetClusterSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetClusterSettingsRequest,
-            GetClusterSettingsResponse,
-            ErrorResponse>) GetClusterSettingsRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns cluster settings.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetClusterSettingsRequest}
-     *
-     */
-
-    public final CompletableFuture<GetClusterSettingsResponse> getSettings(
-        Function<GetClusterSettingsRequest.Builder, ObjectBuilder<GetClusterSettingsRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return getSettings(fn.apply(new GetClusterSettingsRequest.Builder()).build());
-    }
-
-    /**
-     * Returns cluster settings.
-     *
-     *
-     */
-
-    public CompletableFuture<GetClusterSettingsResponse> getSettings() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new GetClusterSettingsRequest.Builder().build(),
-            GetClusterSettingsRequest._ENDPOINT,
             this.transportOptions
         );
     }
@@ -295,54 +246,6 @@ public class OpenSearchClusterAsyncClient extends OpenSearchClusterAsyncClientBa
         return this.transport.performRequestAsync(
             new PostVotingConfigExclusionsRequest.Builder().build(),
             PostVotingConfigExclusionsRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
-    // ----- Endpoint: cluster.put_settings
-
-    /**
-     * Updates the cluster settings.
-     *
-     *
-     */
-
-    public CompletableFuture<PutClusterSettingsResponse> putSettings(PutClusterSettingsRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<PutClusterSettingsRequest, PutClusterSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            PutClusterSettingsRequest,
-            PutClusterSettingsResponse,
-            ErrorResponse>) PutClusterSettingsRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Updates the cluster settings.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link PutClusterSettingsRequest}
-     *
-     */
-
-    public final CompletableFuture<PutClusterSettingsResponse> putSettings(
-        Function<PutClusterSettingsRequest.Builder, ObjectBuilder<PutClusterSettingsRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return putSettings(fn.apply(new PutClusterSettingsRequest.Builder()).build());
-    }
-
-    /**
-     * Updates the cluster settings.
-     *
-     *
-     */
-
-    public CompletableFuture<PutClusterSettingsResponse> putSettings() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new PutClusterSettingsRequest.Builder().build(),
-            PutClusterSettingsRequest._ENDPOINT,
             this.transportOptions
         );
     }

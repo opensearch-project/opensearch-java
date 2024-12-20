@@ -157,6 +157,34 @@ public abstract class OpenSearchClusterAsyncClientBase<Self extends OpenSearchCl
         return getComponentTemplate(new GetComponentTemplateRequest.Builder().build());
     }
 
+    // ----- Endpoint: cluster.get_settings
+
+    /**
+     * Returns cluster settings.
+     */
+    public CompletableFuture<GetClusterSettingsResponse> getSettings(GetClusterSettingsRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, GetClusterSettingsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns cluster settings.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetClusterSettingsRequest}
+     */
+    public final CompletableFuture<GetClusterSettingsResponse> getSettings(
+        Function<GetClusterSettingsRequest.Builder, ObjectBuilder<GetClusterSettingsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return getSettings(fn.apply(new GetClusterSettingsRequest.Builder()).build());
+    }
+
+    /**
+     * Returns cluster settings.
+     */
+    public final CompletableFuture<GetClusterSettingsResponse> getSettings() throws IOException, OpenSearchException {
+        return getSettings(new GetClusterSettingsRequest.Builder().build());
+    }
+
     // ----- Endpoint: cluster.put_component_template
 
     /**
@@ -176,5 +204,33 @@ public abstract class OpenSearchClusterAsyncClientBase<Self extends OpenSearchCl
         Function<PutComponentTemplateRequest.Builder, ObjectBuilder<PutComponentTemplateRequest>> fn
     ) throws IOException, OpenSearchException {
         return putComponentTemplate(fn.apply(new PutComponentTemplateRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: cluster.put_settings
+
+    /**
+     * Updates the cluster settings.
+     */
+    public CompletableFuture<PutClusterSettingsResponse> putSettings(PutClusterSettingsRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, PutClusterSettingsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Updates the cluster settings.
+     *
+     * @param fn a function that initializes a builder to create the {@link PutClusterSettingsRequest}
+     */
+    public final CompletableFuture<PutClusterSettingsResponse> putSettings(
+        Function<PutClusterSettingsRequest.Builder, ObjectBuilder<PutClusterSettingsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return putSettings(fn.apply(new PutClusterSettingsRequest.Builder()).build());
+    }
+
+    /**
+     * Updates the cluster settings.
+     */
+    public final CompletableFuture<PutClusterSettingsResponse> putSettings() throws IOException, OpenSearchException {
+        return putSettings(new PutClusterSettingsRequest.Builder().build());
     }
 }
