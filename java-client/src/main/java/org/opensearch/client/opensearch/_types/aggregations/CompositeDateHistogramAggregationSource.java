@@ -29,14 +29,15 @@ public class CompositeDateHistogramAggregationSource extends CompositeValuesSour
     @Nullable
     private final Long offset;
 
-    private final String zoneId;
+    @Nullable
+    private final String timeZone;
 
     private CompositeDateHistogramAggregationSource(Builder builder) {
         super(builder);
         this.calendarInterval = builder.calendarInterval;
         this.fixedInterval = builder.fixedInterval;
         this.offset = builder.offset;
-        this.zoneId = builder.zoneId;
+        this.timeZone = builder.timeZone;
     }
 
     public static CompositeDateHistogramAggregationSource of(Function<Builder, ObjectBuilder<CompositeDateHistogramAggregationSource>> fn) {
@@ -65,14 +66,22 @@ public class CompositeDateHistogramAggregationSource extends CompositeValuesSour
     @Nullable
     public final Long offset() {
         return this.offset;
-
     }
 
     /**
-     * Required - API name: {@code zone_id}
+     * API name: {@code time_zone}
      */
+    public final String timeZone() {
+        return this.timeZone;
+    }
+
+    /**
+     * API name: {@code time_zone}
+     * @deprecated Use {@link #timeZone()} instead.
+     */
+    @Deprecated
     public final String zoneId() {
-        return this.zoneId;
+        return timeZone();
     }
 
     /**
@@ -103,8 +112,10 @@ public class CompositeDateHistogramAggregationSource extends CompositeValuesSour
 
         }
 
-        generator.writeKey("zone_id");
-        generator.write(this.zoneId);
+        if (this.timeZone != null) {
+            generator.writeKey("time_zone");
+            generator.write(this.timeZone);
+        }
     }
 
     /**
@@ -124,7 +135,8 @@ public class CompositeDateHistogramAggregationSource extends CompositeValuesSour
         @Nullable
         private Long offset;
 
-        private String zoneId;
+        @Nullable
+        private String timeZone;
 
         /**
          * API name: {@code calendar_interval}
@@ -151,12 +163,20 @@ public class CompositeDateHistogramAggregationSource extends CompositeValuesSour
         }
 
         /**
-         * Required - API name: {@code zone_id}
+         * API name: {@code time_zone}
          */
-
-        public final Builder zoneId(String value) {
-            this.zoneId = value;
+        public final Builder timeZone(String value) {
+            this.timeZone = value;
             return this;
+        }
+
+        /**
+         * API name: {@code time_zone}
+         * @deprecated Use {@link #timeZone(String)} instead.
+         */
+        @Deprecated
+        public final Builder zoneId(String value) {
+            return timeZone(value);
         }
 
         /**
@@ -192,7 +212,7 @@ public class CompositeDateHistogramAggregationSource extends CompositeValuesSour
         op.add(Builder::calendarInterval, Time._DESERIALIZER, "calendar_interval");
         op.add(Builder::fixedInterval, Time._DESERIALIZER, "fixed_interval");
         op.add(Builder::offset, JsonpDeserializer.longDeserializer(), "offset");
-        op.add(Builder::zoneId, JsonpDeserializer.stringDeserializer(), "time_zone");
+        op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
     }
 
 }
