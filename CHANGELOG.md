@@ -13,6 +13,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fixed serialization of `time_zone` field in `CompositeDateHistogramAggregationSource` ([#1362](https://github.com/opensearch-project/opensearch-java/pull/1362))
 
 ### Security
 
