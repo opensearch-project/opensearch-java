@@ -130,6 +130,44 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return clearCache(new ClearCacheRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.clone
+
+    /**
+     * Clones an index.
+     */
+    public CompletableFuture<CloneIndexResponse> clone(CloneIndexRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, CloneIndexRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Clones an index.
+     *
+     * @param fn a function that initializes a builder to create the {@link CloneIndexRequest}
+     */
+    public final CompletableFuture<CloneIndexResponse> clone(Function<CloneIndexRequest.Builder, ObjectBuilder<CloneIndexRequest>> fn)
+        throws IOException, OpenSearchException {
+        return clone(fn.apply(new CloneIndexRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.close
+
+    /**
+     * Closes an index.
+     */
+    public CompletableFuture<CloseIndexResponse> close(CloseIndexRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, CloseIndexRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Closes an index.
+     *
+     * @param fn a function that initializes a builder to create the {@link CloseIndexRequest}
+     */
+    public final CompletableFuture<CloseIndexResponse> close(Function<CloseIndexRequest.Builder, ObjectBuilder<CloseIndexRequest>> fn)
+        throws IOException, OpenSearchException {
+        return close(fn.apply(new CloseIndexRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.create
 
     /**
@@ -378,6 +416,58 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.flush
+
+    /**
+     * Performs the flush operation on one or more indexes.
+     */
+    public CompletableFuture<FlushResponse> flush(FlushRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, FlushRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Performs the flush operation on one or more indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link FlushRequest}
+     */
+    public final CompletableFuture<FlushResponse> flush(Function<FlushRequest.Builder, ObjectBuilder<FlushRequest>> fn) throws IOException,
+        OpenSearchException {
+        return flush(fn.apply(new FlushRequest.Builder()).build());
+    }
+
+    /**
+     * Performs the flush operation on one or more indexes.
+     */
+    public final CompletableFuture<FlushResponse> flush() throws IOException, OpenSearchException {
+        return flush(new FlushRequest.Builder().build());
+    }
+
+    // ----- Endpoint: indices.forcemerge
+
+    /**
+     * Performs the force merge operation on one or more indexes.
+     */
+    public CompletableFuture<ForcemergeResponse> forcemerge(ForcemergeRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ForcemergeRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Performs the force merge operation on one or more indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link ForcemergeRequest}
+     */
+    public final CompletableFuture<ForcemergeResponse> forcemerge(Function<ForcemergeRequest.Builder, ObjectBuilder<ForcemergeRequest>> fn)
+        throws IOException, OpenSearchException {
+        return forcemerge(fn.apply(new ForcemergeRequest.Builder()).build());
+    }
+
+    /**
+     * Performs the force merge operation on one or more indexes.
+     */
+    public final CompletableFuture<ForcemergeResponse> forcemerge() throws IOException, OpenSearchException {
+        return forcemerge(new ForcemergeRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.get
 
     /**
@@ -559,6 +649,54 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return getTemplate(new GetTemplateRequest.Builder().build());
     }
 
+    // ----- Endpoint: indices.get_upgrade
+
+    /**
+     * The <code>_upgrade</code> API is no longer useful and will be removed.
+     */
+    @Deprecated
+    public CompletableFuture<GetUpgradeResponse> getUpgrade(GetUpgradeRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, GetUpgradeRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * The <code>_upgrade</code> API is no longer useful and will be removed.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetUpgradeRequest}
+     */
+    @Deprecated
+    public final CompletableFuture<GetUpgradeResponse> getUpgrade(Function<GetUpgradeRequest.Builder, ObjectBuilder<GetUpgradeRequest>> fn)
+        throws IOException, OpenSearchException {
+        return getUpgrade(fn.apply(new GetUpgradeRequest.Builder()).build());
+    }
+
+    /**
+     * The <code>_upgrade</code> API is no longer useful and will be removed.
+     */
+    @Deprecated
+    public final CompletableFuture<GetUpgradeResponse> getUpgrade() throws IOException, OpenSearchException {
+        return getUpgrade(new GetUpgradeRequest.Builder().build());
+    }
+
+    // ----- Endpoint: indices.open
+
+    /**
+     * Opens an index.
+     */
+    public CompletableFuture<OpenResponse> open(OpenRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, OpenRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Opens an index.
+     *
+     * @param fn a function that initializes a builder to create the {@link OpenRequest}
+     */
+    public final CompletableFuture<OpenResponse> open(Function<OpenRequest.Builder, ObjectBuilder<OpenRequest>> fn) throws IOException,
+        OpenSearchException {
+        return open(fn.apply(new OpenRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.put_alias
 
     /**
@@ -666,6 +804,169 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return putTemplate(fn.apply(new PutTemplateRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.recovery
+
+    /**
+     * Returns information about ongoing index shard recoveries.
+     */
+    public CompletableFuture<RecoveryResponse> recovery(RecoveryRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, RecoveryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about ongoing index shard recoveries.
+     *
+     * @param fn a function that initializes a builder to create the {@link RecoveryRequest}
+     */
+    public final CompletableFuture<RecoveryResponse> recovery(Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn)
+        throws IOException, OpenSearchException {
+        return recovery(fn.apply(new RecoveryRequest.Builder()).build());
+    }
+
+    /**
+     * Returns information about ongoing index shard recoveries.
+     */
+    public final CompletableFuture<RecoveryResponse> recovery() throws IOException, OpenSearchException {
+        return recovery(new RecoveryRequest.Builder().build());
+    }
+
+    // ----- Endpoint: indices.refresh
+
+    /**
+     * Performs the refresh operation in one or more indexes.
+     */
+    public CompletableFuture<RefreshResponse> refresh(RefreshRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, RefreshRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Performs the refresh operation in one or more indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link RefreshRequest}
+     */
+    public final CompletableFuture<RefreshResponse> refresh(Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn)
+        throws IOException, OpenSearchException {
+        return refresh(fn.apply(new RefreshRequest.Builder()).build());
+    }
+
+    /**
+     * Performs the refresh operation in one or more indexes.
+     */
+    public final CompletableFuture<RefreshResponse> refresh() throws IOException, OpenSearchException {
+        return refresh(new RefreshRequest.Builder().build());
+    }
+
+    // ----- Endpoint: indices.resolve_index
+
+    /**
+     * Returns information about any matching indexes, aliases, and data streams.
+     */
+    public CompletableFuture<ResolveIndexResponse> resolveIndex(ResolveIndexRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ResolveIndexRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about any matching indexes, aliases, and data streams.
+     *
+     * @param fn a function that initializes a builder to create the {@link ResolveIndexRequest}
+     */
+    public final CompletableFuture<ResolveIndexResponse> resolveIndex(
+        Function<ResolveIndexRequest.Builder, ObjectBuilder<ResolveIndexRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return resolveIndex(fn.apply(new ResolveIndexRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.rollover
+
+    /**
+     * Updates an alias to point to a new index when the existing index is considered to be too large or too old.
+     */
+    public CompletableFuture<RolloverResponse> rollover(RolloverRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, RolloverRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Updates an alias to point to a new index when the existing index is considered to be too large or too old.
+     *
+     * @param fn a function that initializes a builder to create the {@link RolloverRequest}
+     */
+    public final CompletableFuture<RolloverResponse> rollover(Function<RolloverRequest.Builder, ObjectBuilder<RolloverRequest>> fn)
+        throws IOException, OpenSearchException {
+        return rollover(fn.apply(new RolloverRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.segments
+
+    /**
+     * Provides low-level information about segments in a Lucene index.
+     */
+    public CompletableFuture<SegmentsResponse> segments(SegmentsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, SegmentsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Provides low-level information about segments in a Lucene index.
+     *
+     * @param fn a function that initializes a builder to create the {@link SegmentsRequest}
+     */
+    public final CompletableFuture<SegmentsResponse> segments(Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn)
+        throws IOException, OpenSearchException {
+        return segments(fn.apply(new SegmentsRequest.Builder()).build());
+    }
+
+    /**
+     * Provides low-level information about segments in a Lucene index.
+     */
+    public final CompletableFuture<SegmentsResponse> segments() throws IOException, OpenSearchException {
+        return segments(new SegmentsRequest.Builder().build());
+    }
+
+    // ----- Endpoint: indices.shard_stores
+
+    /**
+     * Provides store information for shard copies of indexes.
+     */
+    public CompletableFuture<ShardStoresResponse> shardStores(ShardStoresRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ShardStoresRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Provides store information for shard copies of indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link ShardStoresRequest}
+     */
+    public final CompletableFuture<ShardStoresResponse> shardStores(
+        Function<ShardStoresRequest.Builder, ObjectBuilder<ShardStoresRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return shardStores(fn.apply(new ShardStoresRequest.Builder()).build());
+    }
+
+    /**
+     * Provides store information for shard copies of indexes.
+     */
+    public final CompletableFuture<ShardStoresResponse> shardStores() throws IOException, OpenSearchException {
+        return shardStores(new ShardStoresRequest.Builder().build());
+    }
+
+    // ----- Endpoint: indices.shrink
+
+    /**
+     * Allow to shrink an existing index into a new index with fewer primary shards.
+     */
+    public CompletableFuture<ShrinkResponse> shrink(ShrinkRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ShrinkRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Allow to shrink an existing index into a new index with fewer primary shards.
+     *
+     * @param fn a function that initializes a builder to create the {@link ShrinkRequest}
+     */
+    public final CompletableFuture<ShrinkResponse> shrink(Function<ShrinkRequest.Builder, ObjectBuilder<ShrinkRequest>> fn)
+        throws IOException, OpenSearchException {
+        return shrink(fn.apply(new ShrinkRequest.Builder()).build());
+    }
+
     // ----- Endpoint: indices.simulate_index_template
 
     /**
@@ -708,6 +1009,51 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
         return simulateTemplate(fn.apply(new SimulateTemplateRequest.Builder()).build());
     }
 
+    // ----- Endpoint: indices.split
+
+    /**
+     * Allows you to split an existing index into a new index with more primary shards.
+     */
+    public CompletableFuture<SplitResponse> split(SplitRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, SplitRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Allows you to split an existing index into a new index with more primary shards.
+     *
+     * @param fn a function that initializes a builder to create the {@link SplitRequest}
+     */
+    public final CompletableFuture<SplitResponse> split(Function<SplitRequest.Builder, ObjectBuilder<SplitRequest>> fn) throws IOException,
+        OpenSearchException {
+        return split(fn.apply(new SplitRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: indices.stats
+
+    /**
+     * Provides statistics on operations happening in an index.
+     */
+    public CompletableFuture<IndicesStatsResponse> stats(IndicesStatsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, IndicesStatsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Provides statistics on operations happening in an index.
+     *
+     * @param fn a function that initializes a builder to create the {@link IndicesStatsRequest}
+     */
+    public final CompletableFuture<IndicesStatsResponse> stats(Function<IndicesStatsRequest.Builder, ObjectBuilder<IndicesStatsRequest>> fn)
+        throws IOException, OpenSearchException {
+        return stats(fn.apply(new IndicesStatsRequest.Builder()).build());
+    }
+
+    /**
+     * Provides statistics on operations happening in an index.
+     */
+    public final CompletableFuture<IndicesStatsResponse> stats() throws IOException, OpenSearchException {
+        return stats(new IndicesStatsRequest.Builder().build());
+    }
+
     // ----- Endpoint: indices.update_aliases
 
     /**
@@ -733,5 +1079,61 @@ public abstract class OpenSearchIndicesAsyncClientBase<Self extends OpenSearchIn
      */
     public final CompletableFuture<UpdateAliasesResponse> updateAliases() throws IOException, OpenSearchException {
         return updateAliases(new UpdateAliasesRequest.Builder().build());
+    }
+
+    // ----- Endpoint: indices.upgrade
+
+    /**
+     * The <code>_upgrade</code> API is no longer useful and will be removed.
+     */
+    @Deprecated
+    public CompletableFuture<UpgradeResponse> upgrade(UpgradeRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, UpgradeRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * The <code>_upgrade</code> API is no longer useful and will be removed.
+     *
+     * @param fn a function that initializes a builder to create the {@link UpgradeRequest}
+     */
+    @Deprecated
+    public final CompletableFuture<UpgradeResponse> upgrade(Function<UpgradeRequest.Builder, ObjectBuilder<UpgradeRequest>> fn)
+        throws IOException, OpenSearchException {
+        return upgrade(fn.apply(new UpgradeRequest.Builder()).build());
+    }
+
+    /**
+     * The <code>_upgrade</code> API is no longer useful and will be removed.
+     */
+    @Deprecated
+    public final CompletableFuture<UpgradeResponse> upgrade() throws IOException, OpenSearchException {
+        return upgrade(new UpgradeRequest.Builder().build());
+    }
+
+    // ----- Endpoint: indices.validate_query
+
+    /**
+     * Allows a user to validate a potentially expensive query without executing it.
+     */
+    public CompletableFuture<ValidateQueryResponse> validateQuery(ValidateQueryRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ValidateQueryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Allows a user to validate a potentially expensive query without executing it.
+     *
+     * @param fn a function that initializes a builder to create the {@link ValidateQueryRequest}
+     */
+    public final CompletableFuture<ValidateQueryResponse> validateQuery(
+        Function<ValidateQueryRequest.Builder, ObjectBuilder<ValidateQueryRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return validateQuery(fn.apply(new ValidateQueryRequest.Builder()).build());
+    }
+
+    /**
+     * Allows a user to validate a potentially expensive query without executing it.
+     */
+    public final CompletableFuture<ValidateQueryResponse> validateQuery() throws IOException, OpenSearchException {
+        return validateQuery(new ValidateQueryRequest.Builder().build());
     }
 }

@@ -20,6 +20,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.NotImplementedException;
@@ -575,7 +576,9 @@ public class SpecTransformer {
             return mapAllOf(allOf.get());
         }
 
-        var types = schema.getTypes().orElse(null);
+        var types = schema.getTypes()
+            .map(ts -> ts.stream().filter(t -> t != OpenApiSchemaType.Null).collect(Collectors.toSet()))
+            .orElse(null);
 
         if (types == null || types.size() != 1) {
             return Types.Client.Json.JsonData;
@@ -601,7 +604,7 @@ public class SpecTransformer {
 
     private Type mapOneOf(List<OpenApiSchema> oneOf) {
         if (isOneOfSingleAndArray(oneOf)) {
-            return mapType(oneOf.get(1));
+            return mapType(oneOf.stream().filter(OpenApiSchema::isArray).findFirst().orElseThrow());
         }
 
         var types = OpenApiSchema.determineTypes(oneOf);
@@ -716,13 +719,24 @@ public class SpecTransformer {
         if (oneOf.size() != 2) {
             return false;
         }
+        var first = oneOf.get(0);
         var second = oneOf.get(1);
-        if (!second.isArray()) {
+
+        OpenApiSchema array;
+        OpenApiSchema single;
+
+        if (first.isArray()) {
+            array = first;
+            single = second;
+        } else if (second.isArray()) {
+            array = second;
+            single = first;
+        } else {
             return false;
         }
-        var first = oneOf.get(0);
-        var items = second.getItems().orElseThrow();
-        return first.getTypes().equals(items.getTypes()) && first.get$ref().equals(items.get$ref());
+
+        var items = array.getItems().orElseThrow();
+        return single.getTypes().equals(items.getTypes()) && single.get$ref().equals(items.get$ref());
     }
 
     private static boolean isEnum(OpenApiSchema schema) {

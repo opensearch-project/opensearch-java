@@ -199,3 +199,84 @@ After:
 ### ExplainAnalyzeToken
 - The `endOffset`, `position`, `positionLength`, `startOffset` and `termFrequency` properties have been corrected to be of type `int` instead of `long`.
 - The `positionlength` and `termfrequency` properties have had their casing corrected to `positionLength` and `termFrequency` respectively.
+
+### RecoveryBytes
+- The `recoveredFromSnapshotInBytes`, `recoveredInBytes`, `reusedInBytes` and `totalInBytes` properties have been corrected to be of type `long` instead of `String`.
+
+### RecoveryIndexStatus
+- The `sourceThrottleTimeInMillis`, `targetThrottleTimeInMillis` and `totalTimeInMillis` properties have been corrected to be of type `long` instead of `String`.
+
+### RecoveryOrigin
+- The `restoreuuid` property has had its casing corrected to `restoreUuid`.
+
+### RecoveryStartStatus
+- The `checkIndexTime` property has been corrected to be of type `Time` instead of `long`.
+- The `totalTimeInMillis` property has been corrected to be of type `long` instead of `String`.
+
+### ShardRecovery
+- The `id` property has been corrected to be of type `int` instead of `long`.
+- The `startTimeInMillis`, `stopTimeInMillis` and `totalTimeInMillis` properties have been corrected to be of type `long` instead of `String`.
+- The `totalTime` property has been corrected to be of type `Time` instead of `String`.
+
+### indices.recovery.TranslogStatus
+- The `recovered`, `total` and `totalOnStart` properties have been corrected to be of type `int` instead of `long`.
+- The `totalTime` property has been corrected to be of type `Time` instead of `String`.
+- The `totalTimeInMillis` property has been corrected to be of type `long` instead of `String`.
+
+### indices.recovery.VerifyIndex
+- The `checkIndexTimeInMillis` and `totalTimeInMillis` properties have been corrected to be of type `long` instead of `String`.
+
+### RolloverRequest
+- The `mappings` property is now of type `TypeMapping` instead of `IndexRolloverMapping`.
+
+### IndexRolloverMapping
+- The `IndexRolloverMapping` class has been removed.
+
+### Segment
+- The `deletedDocs` and `numDocs` properties have been corrected to be of type `int` instead of `long`.
+- The `memoryInBytes` and `sizeInBytes` properties have been corrected to be of type `long` instead of `double`.
+
+### ShardStore
+- The `attributes`, `id`, `legacyVersion`, `name` and `transportAddress` properties have been removed and are now correctly nested within the `NodeAttributes` under the `nodes` property map.
+
+### FlushStats
+- The `totalTime` property has been corrected to be of type `Time` instead of `String`.
+
+### GetStats
+- The `existsTime`, `missingTime` and `time` properties have been corrected to be of type `Time` instead of `String`.
+
+### IndexingStats
+- The `deleteTime`, `indexTime` and `throttleTime` properties have been corrected to be of type `Time` instead of `String`.
+- The `types` property has been removed as it is no longer supported by OpenSearch as of version 2.0.0.
+
+### MergesStats
+- The `totalStoppedTime`, `totalThrottledTime` and `totalTime` properties have been corrected to be of type `Time` instead of `String`.
+
+### RecoveryStats
+- The `throttleTime` property has been corrected to be of type `Time` instead of `String`.
+
+### RefreshStats
+- The `totalTime` property has been corrected to be of type `Time` instead of `String`.
+
+### SegmentsStats
+- The `storedMemory` property has been renamed to `storedFieldsMemory` to match the OpenSearch response.
+
+### StoreStats
+- The `totalDataSetSize` and `totalDataSetSizeInBytes` properties have been removed as they are not returned by OpenSearch.
+
+### TranslogStats
+- The `operations` property has been corrected to be of type `int` instead of `long`.
+
+### WarmerStats
+- The `totalTime` property has been corrected to be of type `Time` instead of `String`.
+
+### IndicesStatsRequest
+- The `metric` property is now of type `List<IndicesStatsMetric>` instead of `List<String>`.
+- The `types` property has been removed as it is no longer supported by OpenSearch as of version 2.0.0.
+
+### IndicesStatsResponse
+- The `all` property is now of type `AllIndicesStats` instead of `IndicesStats`.
+
+### ShardStats renamed to IndexShardStats
+- The `ShardStats` class has been renamed to `IndexShardStats`, this affects:
+  - `IndicesStats`'s `shards` field.
