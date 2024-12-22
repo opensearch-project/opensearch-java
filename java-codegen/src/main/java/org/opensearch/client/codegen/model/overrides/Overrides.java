@@ -62,6 +62,8 @@ public class Overrides {
                     so -> so.withMappedType(t -> t.withPackage(Types.Client.OpenSearch._Types.PACKAGE).withName("SortOptions"))
                 )
 
+                .with(schema("_common", "GetStats"), so -> so.withProperties(p -> p.with("getTime", po -> po.withName("time"))))
+
                 .with(
                     schema("_common.aggregations", "AggregationContainer"),
                     so -> so.withClassName("Aggregation").withShouldGenerate(ShouldGenerate.Never)
@@ -121,6 +123,8 @@ public class Overrides {
                             return Set.of("index." + k);
                     }
                 }))
+
+                .with(schema("indices.stats", "Metric"), so -> so.withClassName("IndicesStatsMetric"))
         )
         .build();
 

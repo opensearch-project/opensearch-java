@@ -10,6 +10,7 @@ package org.opensearch.client.codegen.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -209,6 +210,19 @@ public class RequestShape extends ObjectShape {
         return Types.Client.Transport.JsonEndpoint(getType(), getResponseType(), Types.Client.OpenSearch._Types.ErrorResponse);
     }
 
+    public Deprecation getDeprecation() {
+        var deprecations = new ArrayList<Deprecation>(httpPaths.size());
+        for (var httpPath : httpPaths) {
+            var deprecation = httpPath.getDeprecation();
+            if (deprecation == null) {
+                return null;
+            }
+            deprecations.add(deprecation);
+        }
+        deprecations.sort(Comparator.comparing(Deprecation::getVersion));
+        return deprecations.get(deprecations.size() - 1);
+    }
+
     @Nonnull
     private static String requestClassName(@Nonnull OperationGroup operationGroup) {
         return classBaseName(operationGroup) + "Request";
@@ -222,7 +236,12 @@ public class RequestShape extends ObjectShape {
     @Nonnull
     private static String classBaseName(@Nonnull OperationGroup operationGroup) {
         Objects.requireNonNull(operationGroup, "operationGroup must not be null");
+
         switch (operationGroup.toString()) {
+            case "indices.clone":
+                return "CloneIndex";
+            case "indices.close":
+                return "CloseIndex";
             case "indices.create":
                 return "CreateIndex";
             case "indices.delete":
@@ -233,6 +252,8 @@ public class RequestShape extends ObjectShape {
                 return "GetIndicesSettings";
             case "indices.put_settings":
                 return "PutIndicesSettings";
+            case "indices.stats":
+                return "IndicesStats";
             case "snapshot.clone":
                 return "CloneSnapshot";
             case "snapshot.create":

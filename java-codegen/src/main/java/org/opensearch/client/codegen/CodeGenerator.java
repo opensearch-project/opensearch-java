@@ -14,10 +14,7 @@ import static org.opensearch.client.codegen.utils.matcher.Matcher.and;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.is;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.isNot;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.isNull;
-import static org.opensearch.client.codegen.utils.matcher.Matcher.isOneOf;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.or;
-import static org.opensearch.client.codegen.utils.matcher.StringMatcher.contains;
-import static org.opensearch.client.codegen.utils.matcher.StringMatcher.endsWith;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,19 +46,7 @@ public class CodeGenerator {
     private static final Matcher<OperationGroup> OPERATION_MATCHER = or(
         and(namespace(isNull()), name(is("info"))),
         namespace(is("dangling_indices")),
-        and(
-            namespace(is("indices")),
-            name(
-                or(
-                    isOneOf("add_block", "analyze", "clear_cache", "create", "delete", "exists", "get"),
-                    contains("alias"),
-                    contains("data_stream"),
-                    and(endsWith("mapping"), isNot("get_field_mapping")),
-                    endsWith("settings"),
-                    endsWith("template")
-                )
-            )
-        ),
+        and(namespace(is("indices")), name(isNot("get_field_mapping"))),
         and(
             namespace(is("ml")),
             name(
