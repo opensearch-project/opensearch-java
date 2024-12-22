@@ -87,7 +87,7 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
 
     @Nonnull
     public Optional<Deprecation> getDeprecation() {
-        if (versionDeprecated == null && deprecationMessage == null) return Optional.empty();
+        if (versionDeprecated == null) return Optional.empty();
         return Optional.of(new Deprecation(deprecationMessage, versionDeprecated));
     }
 }
