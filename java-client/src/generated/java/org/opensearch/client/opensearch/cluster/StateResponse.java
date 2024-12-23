@@ -30,42 +30,47 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cluster;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonData;
-import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: cluster.state.Response
 
-@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class StateResponse implements PlainJsonSerializable {
+
+    @Nonnull
     private final JsonData valueBody;
 
     // ---------------------------------------------------------------------------------------------
 
     private StateResponse(Builder builder) {
-
         this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
-
     }
 
-    public static StateResponse of(Function<Builder, ObjectBuilder<StateResponse>> fn) {
+    public static StateResponse of(Function<StateResponse.Builder, ObjectBuilder<StateResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - Response value.
-     * <p>
-     * API name: {@code _value_body}
      */
+    @Nonnull
     public final JsonData valueBody() {
         return this.valueBody;
     }
@@ -73,25 +78,50 @@ public class StateResponse implements PlainJsonSerializable {
     /**
      * Serialize this value to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         this.valueBody.serialize(generator, mapper);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link StateResponse}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StateResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, StateResponse> {
         private JsonData valueBody;
+
+        public Builder() {}
+
+        private Builder(StateResponse o) {
+            this.valueBody = o.valueBody;
+        }
+
+        private Builder(Builder o) {
+            this.valueBody = o.valueBody;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
          */
+        @Nonnull
         public final Builder valueBody(JsonData value) {
             this.valueBody = value;
             return this;
@@ -100,9 +130,10 @@ public class StateResponse implements PlainJsonSerializable {
         /**
          * Builds a {@link StateResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public StateResponse build() {
             _checkSingleUse();
 
@@ -110,16 +141,29 @@ public class StateResponse implements PlainJsonSerializable {
         }
     }
 
+    // ---------------------------------------------------------------------------------------------
+
     public static final JsonpDeserializer<StateResponse> _DESERIALIZER = createStateResponseDeserializer();
 
     protected static JsonpDeserializer<StateResponse> createStateResponseDeserializer() {
-
         JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
-
         return JsonpDeserializer.of(
             valueDeserializer.acceptedEvents(),
             (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
         );
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.valueBody.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

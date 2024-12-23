@@ -371,4 +371,30 @@ public abstract class OpenSearchClusterClientBase<Self extends OpenSearchCluster
     public final RerouteResponse reroute() throws IOException, OpenSearchException {
         return reroute(new RerouteRequest.Builder().build());
     }
+
+    // ----- Endpoint: cluster.state
+
+    /**
+     * Returns a comprehensive information about the state of the cluster.
+     */
+    public StateResponse state(StateRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, StateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns a comprehensive information about the state of the cluster.
+     *
+     * @param fn a function that initializes a builder to create the {@link StateRequest}
+     */
+    public final StateResponse state(Function<StateRequest.Builder, ObjectBuilder<StateRequest>> fn) throws IOException,
+        OpenSearchException {
+        return state(fn.apply(new StateRequest.Builder()).build());
+    }
+
+    /**
+     * Returns a comprehensive information about the state of the cluster.
+     */
+    public final StateResponse state() throws IOException, OpenSearchException {
+        return state(new StateRequest.Builder().build());
+    }
 }

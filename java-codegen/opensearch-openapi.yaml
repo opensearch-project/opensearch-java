@@ -28763,8 +28763,7 @@ components:
     cluster.state___200:
       content:
         application/json:
-          schema:
-            type: object
+          schema: {}
       description: ''
     cluster.stats___200:
       content:

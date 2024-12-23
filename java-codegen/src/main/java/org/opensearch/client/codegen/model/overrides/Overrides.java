@@ -112,6 +112,7 @@ public class Overrides {
 
                 .with(schema("cluster.health", "Level"), so -> so.withClassName("ClusterHealthLevel"))
                 .with(schema("cluster.reroute", "Metric"), so -> so.withClassName("ClusterRerouteMetric"))
+                .with(schema("cluster.state", "Metric"), so -> so.withClassName("ClusterStateMetric"))
 
                 .with(schema("indices._common", "IndexSettings"), so -> so.withAliasProvider(k -> {
                     switch (k) {

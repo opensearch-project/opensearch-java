@@ -300,3 +300,6 @@ After:
 
 ### RerouteRequest
 - The `metric` property is now of type `List<ClusterRerouteMetric>` instead of `List<String>`.
+
+### StateRequest
+- The `metric` property is now of type `List<ClusterStateMetric>` instead of `List<String>`.
