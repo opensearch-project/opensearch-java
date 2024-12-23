@@ -20,7 +20,6 @@ import org.opensearch.client.ResponseException;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.HealthStatus;
-import org.opensearch.client.opensearch._types.Level;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.cluster.ClusterStatsRequest;
 import org.opensearch.client.opensearch.cluster.ClusterStatsResponse;
@@ -229,7 +228,10 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         OpenSearchClient openSearchClient = javaClient();
         createIndex("index", Settings.EMPTY);
         createIndex("index2", Settings.EMPTY);
-        HealthRequest request = new HealthRequest.Builder().index("index").timeout(t -> t.time("5s")).level(ClusterHealthLevel.Shards).build();
+        HealthRequest request = new HealthRequest.Builder().index("index")
+            .timeout(t -> t.time("5s"))
+            .level(ClusterHealthLevel.Shards)
+            .build();
         HealthResponse response = openSearchClient.cluster().health(request);
 
         assertNotNull(response);
