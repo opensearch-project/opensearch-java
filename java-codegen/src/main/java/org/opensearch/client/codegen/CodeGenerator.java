@@ -51,7 +51,7 @@ public class CodeGenerator {
             namespace(is("cluster")),
             name(
                 or(
-                    isOneOf("allocation_explain", "health", "pending_tasks", "remote_info", "reroute", "state"),
+                    isOneOf("allocation_explain", "health", "pending_tasks", "remote_info", "reroute", "state", "stats"),
                     contains("component_template"),
                     contains("settings"),
                     contains("voting_config_exclusions")

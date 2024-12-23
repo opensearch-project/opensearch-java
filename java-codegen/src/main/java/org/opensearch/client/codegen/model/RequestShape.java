@@ -242,6 +242,8 @@ public class RequestShape extends ObjectShape {
                 return "GetClusterSettings";
             case "cluster.put_settings":
                 return "PutClusterSettings";
+            case "cluster.stats":
+                return "ClusterStats";
             case "indices.clone":
                 return "CloneIndex";
             case "indices.close":

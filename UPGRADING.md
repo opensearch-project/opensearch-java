@@ -303,3 +303,18 @@ After:
 
 ### StateRequest
 - The `metric` property is now of type `List<ClusterStateMetric>` instead of `List<String>`.
+
+### ClusterIndicesShards
+- The `primaries`, `replication` and `total` properties have been corrected to be of type `Integer` instead of `Double`.
+
+### ClusterProcessCpu
+- The `percent` property has been corrected to be of type `double` instead of `int`.
+
+### FieldTypes
+- The `scriptCount` property has been removed as it is not supported by OpenSearch.
+
+### FieldTypesMappings
+- The `runtimeFieldTypes` property has been removed as it is not supported by OpenSearch.
+
+### OperatingSystemMemoryInfo
+- The `freePercent` and `usedPercent` properties have been corrected to be of type `double` instead of `int`.
