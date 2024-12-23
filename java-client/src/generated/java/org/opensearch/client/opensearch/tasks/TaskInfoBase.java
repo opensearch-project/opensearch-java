@@ -64,6 +64,9 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
     private final boolean cancellable;
 
     @Nullable
+    private final Long cancellationTimeMillis;
+
+    @Nullable
     private final Boolean cancelled;
 
     @Nullable
@@ -101,6 +104,7 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
     protected TaskInfoBase(AbstractBuilder<?> builder) {
         this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
         this.cancellable = ApiTypeHelper.requireNonNull(builder.cancellable, this, "cancellable");
+        this.cancellationTimeMillis = builder.cancellationTimeMillis;
         this.cancelled = builder.cancelled;
         this.description = builder.description;
         this.headers = ApiTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
@@ -128,6 +132,14 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
      */
     public final boolean cancellable() {
         return this.cancellable;
+    }
+
+    /**
+     * API name: {@code cancellation_time_millis}
+     */
+    @Nullable
+    public final Long cancellationTimeMillis() {
+        return this.cancellationTimeMillis;
     }
 
     /**
@@ -240,6 +252,11 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
         generator.writeKey("cancellable");
         generator.write(this.cancellable);
 
+        if (this.cancellationTimeMillis != null) {
+            generator.writeKey("cancellation_time_millis");
+            generator.write(this.cancellationTimeMillis);
+        }
+
         if (this.cancelled != null) {
             generator.writeKey("cancelled");
             generator.write(this.cancelled);
@@ -300,6 +317,8 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
         private String action;
         private Boolean cancellable;
         @Nullable
+        private Long cancellationTimeMillis;
+        @Nullable
         private Boolean cancelled;
         @Nullable
         private String description;
@@ -323,6 +342,7 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
         protected AbstractBuilder(TaskInfoBase o) {
             this.action = o.action;
             this.cancellable = o.cancellable;
+            this.cancellationTimeMillis = o.cancellationTimeMillis;
             this.cancelled = o.cancelled;
             this.description = o.description;
             this.headers = _mapCopy(o.headers);
@@ -340,6 +360,7 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
         protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
             this.action = o.action;
             this.cancellable = o.cancellable;
+            this.cancellationTimeMillis = o.cancellationTimeMillis;
             this.cancelled = o.cancelled;
             this.description = o.description;
             this.headers = _mapCopy(o.headers);
@@ -372,6 +393,15 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
         @Nonnull
         public final BuilderT cancellable(boolean value) {
             this.cancellable = value;
+            return self();
+        }
+
+        /**
+         * API name: {@code cancellation_time_millis}
+         */
+        @Nonnull
+        public final BuilderT cancellationTimeMillis(@Nullable Long value) {
+            this.cancellationTimeMillis = value;
             return self();
         }
 
@@ -530,6 +560,7 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupTaskInfoBaseDeserializer(ObjectDeserializer<BuilderT> op) {
         op.add(AbstractBuilder::action, JsonpDeserializer.stringDeserializer(), "action");
         op.add(AbstractBuilder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");
+        op.add(AbstractBuilder::cancellationTimeMillis, JsonpDeserializer.longDeserializer(), "cancellation_time_millis");
         op.add(AbstractBuilder::cancelled, JsonpDeserializer.booleanDeserializer(), "cancelled");
         op.add(AbstractBuilder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(AbstractBuilder::headers, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "headers");
@@ -549,6 +580,7 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
         int result = 17;
         result = 31 * result + this.action.hashCode();
         result = 31 * result + Boolean.hashCode(this.cancellable);
+        result = 31 * result + Objects.hashCode(this.cancellationTimeMillis);
         result = 31 * result + Objects.hashCode(this.cancelled);
         result = 31 * result + Objects.hashCode(this.description);
         result = 31 * result + this.headers.hashCode();
@@ -571,6 +603,7 @@ public abstract class TaskInfoBase implements PlainJsonSerializable {
         TaskInfoBase other = (TaskInfoBase) o;
         return this.action.equals(other.action)
             && this.cancellable == other.cancellable
+            && Objects.equals(this.cancellationTimeMillis, other.cancellationTimeMillis)
             && Objects.equals(this.cancelled, other.cancelled)
             && Objects.equals(this.description, other.description)
             && this.headers.equals(other.headers)
