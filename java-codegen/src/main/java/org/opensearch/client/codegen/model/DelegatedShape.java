@@ -47,6 +47,7 @@ public class DelegatedShape extends Shape {
     public Collection<Type> getImplementsTypes() {
         var types = new ArrayList<>(super.getImplementsTypes());
         types.add(Types.Client.Json.PlainJsonSerializable);
+        types.add(Types.Client.Util.ToCopyableBuilder(getType().getBuilderType(), getType()));
         return types;
     }
 

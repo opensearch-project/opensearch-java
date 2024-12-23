@@ -48,11 +48,12 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.state.Response
 
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class StateResponse implements PlainJsonSerializable {
+public class StateResponse implements PlainJsonSerializable, ToCopyableBuilder<StateResponse.Builder, StateResponse> {
 
     @Nonnull
     private final JsonData valueBody;
