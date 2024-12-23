@@ -280,3 +280,41 @@ After:
 ### ShardStats renamed to IndexShardStats
 - The `ShardStats` class has been renamed to `IndexShardStats`, this affects:
   - `IndicesStats`'s `shards` field.
+
+### AllocationExplainResponse
+- The `allocationDelay`, `configuredDelay` and `remainingDelay` properties have been corrected to be of type `Time` instead of `String`.
+
+### PutComponentTemplateRequest
+- The `aliases`, `mappings` and `settings` properties have been removed as they should be set within the `template` property.
+
+### HealthRequest
+- The `level` property is now of type `ClusterHealthLevel` instead of `Level`.
+
+### HealthResponse
+- The `activeShardsPercentAsNumber` property has been corrected to be of type `double` instead of `String`.
+- The `taskMaxWaitingInQueueMillis` property has been corrected to be of type `long` instead of `String`. 
+
+### PendingTask
+- The `timeInQueue` property has been corrected to be of type `Time` instead of `String`.
+- The `timeInQueueMillis` property has been corrected to be of type `long` instead of `int`.
+
+### RerouteRequest
+- The `metric` property is now of type `List<ClusterRerouteMetric>` instead of `List<String>`.
+
+### StateRequest
+- The `metric` property is now of type `List<ClusterStateMetric>` instead of `List<String>`.
+
+### ClusterIndicesShards
+- The `primaries`, `replication` and `total` properties have been corrected to be of type `Integer` instead of `Double`.
+
+### ClusterProcessCpu
+- The `percent` property has been corrected to be of type `double` instead of `int`.
+
+### FieldTypes
+- The `scriptCount` property has been removed as it is not supported by OpenSearch.
+
+### FieldTypesMappings
+- The `runtimeFieldTypes` property has been removed as it is not supported by OpenSearch.
+
+### OperatingSystemMemoryInfo
+- The `freePercent` and `usedPercent` properties have been corrected to be of type `double` instead of `int`.
