@@ -35,7 +35,6 @@ package org.opensearch.client.opensearch.nodes;
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.JsonEndpoint;
@@ -46,7 +45,7 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the nodes namespace.
  */
-public class OpenSearchNodesClient extends ApiClient<OpenSearchTransport, OpenSearchNodesClient> {
+public class OpenSearchNodesClient extends OpenSearchNodesClientBase<OpenSearchNodesClient> {
 
     public OpenSearchNodesClient(OpenSearchTransport transport) {
         super(transport, null);
@@ -101,48 +100,6 @@ public class OpenSearchNodesClient extends ApiClient<OpenSearchTransport, OpenSe
 
     public HotThreadsResponse hotThreads() throws IOException, OpenSearchException {
         return this.transport.performRequest(new HotThreadsRequest.Builder().build(), HotThreadsRequest._ENDPOINT, this.transportOptions);
-    }
-
-    // ----- Endpoint: nodes.info
-
-    /**
-     * Returns information about nodes in the cluster.
-     *
-     *
-     */
-
-    public NodesInfoResponse info(NodesInfoRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            NodesInfoRequest,
-            NodesInfoResponse,
-            ErrorResponse>) NodesInfoRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about nodes in the cluster.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link NodesInfoRequest}
-     *
-     */
-
-    public final NodesInfoResponse info(Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn) throws IOException,
-        OpenSearchException {
-        return info(fn.apply(new NodesInfoRequest.Builder()).build());
-    }
-
-    /**
-     * Returns information about nodes in the cluster.
-     *
-     *
-     */
-
-    public NodesInfoResponse info() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new NodesInfoRequest.Builder().build(), NodesInfoRequest._ENDPOINT, this.transportOptions);
     }
 
     // ----- Endpoint: nodes.reload_secure_settings

@@ -14970,11 +14970,7 @@ components:
       in: query
       description: Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
       schema:
-        oneOf:
-          - type: string
-          - type: array
-            items:
-              type: string
+        $ref: schemas/_common.yaml#/components/schemas/StringOrStringArray
       x-global: true
     asynchronous_search.delete___path.id:
       name: id
@@ -21553,11 +21549,7 @@ components:
       name: groups
       description: Comma-separated list of search groups to include in the search statistics.
       schema:
-        oneOf:
-          - type: string
-          - type: array
-            items:
-              type: string
+        $ref: '#/components/schemas/_common___StringOrStringArray'
       style: form
     indices.stats___query.include_segment_file_sizes:
       in: query
@@ -24591,11 +24583,7 @@ components:
       name: sort
       description: A comma-separated list of <field>:<direction> pairs.
       schema:
-        oneOf:
-          - type: string
-          - type: array
-            items:
-              type: string
+        $ref: '#/components/schemas/_common___StringOrStringArray'
       style: form
     search___query.stats:
       in: query
@@ -25592,11 +25580,7 @@ components:
       name: actions
       description: Comma-separated list or wildcard expression of actions used to limit the request.
       schema:
-        oneOf:
-          - type: string
-          - type: array
-            items:
-              type: string
+        $ref: '#/components/schemas/_common___StringOrStringArray'
       style: form
     tasks.cancel___query.nodes:
       in: query
@@ -25652,11 +25636,7 @@ components:
       name: actions
       description: Comma-separated list or wildcard expression of actions used to limit the request.
       schema:
-        oneOf:
-          - type: string
-          - type: array
-            items:
-              type: string
+        $ref: '#/components/schemas/_common___StringOrStringArray'
       style: form
     tasks.list___query.detailed:
       in: query
@@ -26815,11 +26795,7 @@ components:
                 description: |-
                   Array of wildcard expressions used to match the names
                   of indexes during creation.
-                oneOf:
-                  - type: string
-                  - type: array
-                    items:
-                      type: string
+                $ref: '#/components/schemas/_common___StringOrStringArray'
               mappings:
                 $ref: '#/components/schemas/_common.mapping___TypeMapping'
               order:
@@ -30315,7 +30291,19 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/nodes.info___ResponseBase'
+            allOf:
+              - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
+              - type: object
+                properties:
+                  cluster_name:
+                    $ref: '#/components/schemas/_common___Name'
+                  nodes:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/nodes.info___NodeInfo'
+                required:
+                  - cluster_name
+                  - nodes
       description: ''
     nodes.reload_secure_settings___200:
       content:
@@ -32873,11 +32861,7 @@ components:
     _common___HttpHeaders:
       type: object
       additionalProperties:
-        oneOf:
-          - type: string
-          - type: array
-            items:
-              type: string
+        $ref: '#/components/schemas/_common___StringOrStringArray'
     _common___HumanReadableByteCount:
       type: string
       pattern: (?:(-1)|(0)|\d+(\.\d+)?(b|kb|k|mb|m|gb|g|tb|t|pb|p))
@@ -33744,11 +33728,7 @@ components:
     _common___Routing:
       type: string
     _common___RoutingInQueryString:
-      oneOf:
-        - type: string
-        - type: array
-          items:
-            type: string
+      $ref: '#/components/schemas/_common___StringOrStringArray'
     _common___RrfRank:
       allOf:
         - $ref: '#/components/schemas/_common___RankBase'
@@ -34326,6 +34306,12 @@ components:
       oneOf:
         - $ref: '#/components/schemas/_common___VersionNumber'
         - type: string
+    _common___StringOrStringArray:
+      oneOf:
+        - type: string
+        - type: array
+          items:
+            type: string
     _common___SuggestMode:
       type: string
       enum:
@@ -39681,11 +39667,7 @@ components:
         Language value, such as `arabic` or `thai`. Defaults to `english`.
         Each language value corresponds to a predefined list of stop words in Lucene. See Stop words by language for supported language values and their stop words.
         Also accepts an array of stop words.
-      oneOf:
-        - type: string
-        - type: array
-          items:
-            type: string
+      $ref: '#/components/schemas/_common___StringOrStringArray'
     _common.analysis___SynonymFormat:
       type: string
       enum:
@@ -50091,11 +50073,7 @@ components:
         mode:
           type: string
         routing_path:
-          oneOf:
-            - type: string
-            - type: array
-              items:
-                type: string
+          $ref: '#/components/schemas/_common___StringOrStringArray'
         soft_deletes:
           $ref: '#/components/schemas/indices._common___SoftDeletes'
         soft_deletes.retention_lease.period:
@@ -51089,11 +51067,7 @@ components:
         - token
         - type
     indices.analyze___TextToAnalyze:
-      oneOf:
-        - type: string
-        - type: array
-          items:
-            type: string
+      $ref: '#/components/schemas/_common___StringOrStringArray'
     indices.analyze___TokenDetail:
       type: object
       properties:
@@ -55408,15 +55382,6 @@ components:
       properties:
         transport:
           $ref: '#/components/schemas/nodes._common___TransportUsageStats'
-    nodes.info___DeprecationIndexing:
-      type: object
-      properties:
-        enabled:
-          oneOf:
-            - type: boolean
-            - type: string
-      required:
-        - enabled
     nodes.info___Metric:
       type: string
       enum:
@@ -55477,9 +55442,9 @@ components:
             $ref: '#/components/schemas/nodes.info___NodeThreadPoolInfo'
         total_indexing_buffer:
           description: Total heap allowed to be used to hold recently indexed documents before they must be written to disk. This size is a shared pool across all shards on this node, and is controlled by Indexing Buffer settings.
-          type: number
-        total_indexing_buffer_in_bytes:
           $ref: '#/components/schemas/_common___ByteCount'
+        total_indexing_buffer_in_bytes:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
         transport:
           $ref: '#/components/schemas/nodes.info___NodeInfoTransport'
         transport_address:
@@ -55633,7 +55598,8 @@ components:
         primary_interface:
           $ref: '#/components/schemas/nodes.info___NodeInfoNetworkInterface'
         refresh_interval:
-          type: number
+          type: integer
+          format: int32
       required:
         - primary_interface
         - refresh_interval
@@ -55658,15 +55624,19 @@ components:
         cache_size_in_bytes:
           $ref: '#/components/schemas/_common___ByteCount'
         cores_per_socket:
-          type: number
+          type: integer
+          format: int32
         mhz:
-          type: number
+          type: integer
+          format: int32
         model:
           type: string
         total_cores:
-          type: number
+          type: integer
+          format: int32
         total_sockets:
-          type: number
+          type: integer
+          format: int32
         vendor:
           type: string
       required:
@@ -55800,11 +55770,11 @@ components:
         election:
           $ref: '#/components/schemas/nodes.info___NodeInfoSettingsClusterElection'
         initial_cluster_manager_nodes:
-          type: string
+          $ref: '#/components/schemas/_common___StringOrStringArray'
         initial_master_nodes:
-          type: string
+          $ref: '#/components/schemas/_common___StringOrStringArray'
         deprecation_indexing:
-          $ref: '#/components/schemas/nodes.info___DeprecationIndexing'
+          $ref: '#/components/schemas/nodes.info___NodeInfoSettingsDeprecationIndexing'
       required:
         - name
     nodes.info___NodeInfoSettingsClusterElection:
@@ -55814,6 +55784,13 @@ components:
           $ref: '#/components/schemas/_common___Name'
       required:
         - strategy
+    nodes.info___NodeInfoSettingsDeprecationIndexing:
+      type: object
+      properties:
+        enabled:
+          $ref: '#/components/schemas/_common___StringifiedBoolean'
+      required:
+        - enabled
     nodes.info___NodeInfoSettingsHttp:
       type: object
       properties:
@@ -55822,13 +55799,9 @@ components:
         type.default:
           type: string
         compression:
-          oneOf:
-            - type: boolean
-            - type: string
+          $ref: '#/components/schemas/_common___StringifiedBoolean'
         port:
-          oneOf:
-            - type: number
-            - type: string
+          $ref: '#/components/schemas/_common___StringifiedInteger'
       required:
         - type
     nodes.info___NodeInfoSettingsIndex:
@@ -55937,7 +55910,8 @@ components:
         name:
           $ref: '#/components/schemas/_common___Name'
         attr:
-          $ref: '#/components/schemas/nodes.info___NodeInfoShardIndexingPressureEnabled'
+          type: object
+          additionalProperties: true
         max_local_storage_nodes:
           type: string
       required:
@@ -55955,13 +55929,6 @@ components:
           type: string
       required:
         - type
-    nodes.info___NodeInfoShardIndexingPressureEnabled:
-      type: object
-      properties:
-        shard_indexing_pressure_enabled:
-          type: string
-      required:
-        - shard_indexing_pressure_enabled
     nodes.info___NodeInfoTransport:
       type: object
       properties:
@@ -55993,7 +55960,8 @@ components:
           items:
             type: string
         pid:
-          type: number
+          type: integer
+          format: int32
         start_time_in_millis:
           $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
         version:
@@ -56011,9 +55979,7 @@ components:
             - boolean
             - 'null'
         using_compressed_ordinary_object_pointers:
-          oneOf:
-            - type: boolean
-            - type: string
+          $ref: '#/components/schemas/_common___StringifiedBoolean'
         input_arguments:
           type: array
           items:
@@ -56031,10 +55997,12 @@ components:
           type: string
         available_processors:
           description: Number of processors available to the Java virtual machine
-          type: number
+          type: integer
+          format: int32
         allocated_processors:
           description: The number of processors actually used to calculate thread pool size. This number can be set with the `node.processors` setting of a node and defaults to the number of processors reported by the OS.
-          type: number
+          type: integer
+          format: int32
         name:
           $ref: '#/components/schemas/_common___Name'
         pretty_name:
@@ -56057,7 +56025,8 @@ components:
       properties:
         id:
           description: Process identifier (PID)
-          type: number
+          type: integer
+          format: int64
         mlockall:
           description: Indicates if the process address space has been successfully locked in memory
           type: boolean
@@ -56071,34 +56040,24 @@ components:
       type: object
       properties:
         core:
-          type: number
+          type: integer
+          format: int32
         keep_alive:
           $ref: '#/components/schemas/_common___Duration'
         max:
-          type: number
+          type: integer
+          format: int32
         queue_size:
-          type: number
+          type: integer
+          format: int32
         size:
-          type: number
+          type: integer
+          format: int32
         type:
           type: string
       required:
         - queue_size
         - type
-    nodes.info___ResponseBase:
-      allOf:
-        - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
-        - type: object
-          properties:
-            cluster_name:
-              $ref: '#/components/schemas/_common___Name'
-            nodes:
-              type: object
-              additionalProperties:
-                $ref: '#/components/schemas/nodes.info___NodeInfo'
-          required:
-            - cluster_name
-            - nodes
     nodes.reload_secure_settings___ResponseBase:
       allOf:
         - $ref: '#/components/schemas/nodes._common___NodesResponseBase'

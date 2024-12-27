@@ -36,7 +36,6 @@ import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.JsonEndpoint;
@@ -47,7 +46,7 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the nodes namespace.
  */
-public class OpenSearchNodesAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchNodesAsyncClient> {
+public class OpenSearchNodesAsyncClient extends OpenSearchNodesAsyncClientBase<OpenSearchNodesAsyncClient> {
 
     public OpenSearchNodesAsyncClient(OpenSearchTransport transport) {
         super(transport, null);
@@ -104,52 +103,6 @@ public class OpenSearchNodesAsyncClient extends ApiClient<OpenSearchTransport, O
         return this.transport.performRequestAsync(
             new HotThreadsRequest.Builder().build(),
             HotThreadsRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
-    // ----- Endpoint: nodes.info
-
-    /**
-     * Returns information about nodes in the cluster.
-     *
-     *
-     */
-
-    public CompletableFuture<NodesInfoResponse> info(NodesInfoRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            NodesInfoRequest,
-            NodesInfoResponse,
-            ErrorResponse>) NodesInfoRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about nodes in the cluster.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link NodesInfoRequest}
-     *
-     */
-
-    public final CompletableFuture<NodesInfoResponse> info(Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn)
-        throws IOException, OpenSearchException {
-        return info(fn.apply(new NodesInfoRequest.Builder()).build());
-    }
-
-    /**
-     * Returns information about nodes in the cluster.
-     *
-     *
-     */
-
-    public CompletableFuture<NodesInfoResponse> info() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new NodesInfoRequest.Builder().build(),
-            NodesInfoRequest._ENDPOINT,
             this.transportOptions
         );
     }

@@ -19,10 +19,14 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.model.overrides.Overrides;
@@ -160,6 +164,8 @@ public class SpecTransformer {
 
         var shape = new RequestShape(parent, group, description, ShouldGenerate.Always);
 
+        var pathCombos = new ArrayList<Triple<String, OpenApiOperation, List<PathParam>>>();
+
         for (var variant : variants) {
             shape.addSupportedHttpMethod(variant.getHttpMethod().toString().toUpperCase());
 
@@ -168,17 +174,24 @@ public class SpecTransformer {
                 continue;
             }
 
-            variant.getAllRelevantParameters(In.Path).forEach(parameter -> {
-                var paramName = parameter.getName().orElseThrow();
-                if (!allPathParams.containsKey(paramName)) {
-                    var paramOverrides = overrides.flatMap(o -> o.getPathParameter(paramName));
+            getOverloadedPathVariants(httpPathStr, variant, pathCombos);
+        }
+
+        for (var combo : pathCombos) {
+            var httpPathStr = combo.getLeft();
+            var operation = combo.getMiddle();
+            var pathParams = combo.getRight();
+
+            pathParams.forEach(parameter -> {
+                if (!allPathParams.containsKey(parameter.name)) {
+                    var paramOverrides = overrides.flatMap(o -> o.getPathParameter(parameter.name));
                     var paramBuilder = visit(parameter).toBuilder();
                     paramOverrides.flatMap(PathParameterOverride::getName).ifPresent(paramBuilder::withName);
-                    allPathParams.put(paramName, paramBuilder.build());
+                    allPathParams.put(parameter.name, paramBuilder.build());
                 }
             });
 
-            var httpPath = HttpPath.from(httpPathStr, variant, allPathParams);
+            var httpPath = HttpPath.from(httpPathStr, operation, allPathParams);
 
             (httpPath.getDeprecation() == null ? canonicalPaths : deprecatedPaths).put(httpPath.getParamWireNameSet(), httpPath);
 
@@ -249,6 +262,87 @@ public class SpecTransformer {
         }
 
         return shape;
+    }
+
+    private static void getOverloadedPathVariants(
+        String originalHttpPath,
+        OpenApiOperation operation,
+        List<Triple<String, OpenApiOperation, List<PathParam>>> variants
+    ) {
+        getOverloadedPathVariants(
+            originalHttpPath,
+            operation.getAllRelevantParameters(In.Path),
+            0,
+            new ArrayList<>(),
+            (httpPath, pathParams) -> variants.add(Triple.of(httpPath, operation, pathParams))
+        );
+    }
+
+    private static void getOverloadedPathVariants(
+        String httpPath,
+        List<OpenApiParameter> pathParams,
+        int i,
+        List<PathParam> combo,
+        BiConsumer<String, List<PathParam>> callback
+    ) {
+        if (i == pathParams.size()) {
+            callback.accept(httpPath, combo);
+            return;
+        }
+
+        var originalParameter = pathParams.get(i);
+        var originalName = originalParameter.getName().orElseThrow();
+        var overloads = !originalParameter.isOverloaded()
+            ? Stream.of(Pair.of(httpPath, new PathParam(originalParameter)))
+            : originalParameter.getSchema().flatMap(OpenApiSchema::getAnyOf).orElseThrow().stream().map(o -> {
+                var overloadedName = o.getTitle().orElseThrow();
+                return Pair.of(
+                    httpPath.replace("{" + originalName + "}", "{" + overloadedName + "}"),
+                    new PathParam(overloadedName, o, originalParameter)
+                );
+            });
+
+        overloads.forEach(o -> getOverloadedPathVariants(o.getKey(), pathParams, i + 1, new ArrayList<>(combo) {
+            {
+                add(o.getValue());
+            }
+        }, callback));
+    }
+
+    private static class PathParam {
+        private final String name;
+        private final OpenApiSchema schema;
+        private final String description;
+        private final Deprecation deprecation;
+
+        public PathParam(String name, OpenApiSchema schema, OpenApiParameter original) {
+            this.name = name;
+            this.schema = schema;
+            this.description = original.getDescription().orElse(null);
+            this.deprecation = original.getDeprecation().orElse(null);
+        }
+
+        public PathParam(OpenApiParameter parameter) {
+            this.name = parameter.getName().orElseThrow();
+            this.schema = parameter.getSchema().orElseThrow();
+            this.description = parameter.getDescription().orElse(null);
+            this.deprecation = parameter.getDeprecation().orElse(null);
+        }
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this).append("name", name).append("schema", schema).append("description", description).toString();
+        }
+    }
+
+    private Field visit(PathParam parameter) {
+        LOGGER.info("Visiting Parameter: {}", parameter);
+        return Field.builder()
+            .withWireName(parameter.name)
+            .withType(mapType(parameter.schema))
+            .withDescription(parameter.description)
+            .withDeprecation(parameter.deprecation)
+            .build();
     }
 
     private Field visit(OpenApiParameter parameter) {

@@ -134,6 +134,7 @@ public class Overrides {
                     schema("nodes._common", "NodesResponseBase"),
                     so -> so.withProperties(p -> p.with("_nodes", po -> po.withName("nodeStats")))
                 )
+                .with(schema("nodes.info", "Metric"), so -> so.withClassName("NodesInfoMetric"))
         )
         .build();
 

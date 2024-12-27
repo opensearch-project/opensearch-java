@@ -67,6 +67,7 @@ public class CodeGenerator {
                 isNot("search_models")
             )
         ),
+        and(namespace(is("nodes")), name(isOneOf("info"))),
         namespace(is("snapshot")),
         namespace(is("tasks"))
     );

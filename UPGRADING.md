@@ -318,3 +318,16 @@ After:
 
 ### OperatingSystemMemoryInfo
 - The `freePercent` and `usedPercent` properties have been corrected to be of type `double` instead of `int`.
+
+### NodeInfoSettingsHttp
+- The `type` property has been corrected to be of type `String` instead of `NodeInfoSettingsHttpType`.
+
+### NodeInfoSettingsTransport
+- The `type` property has been corrected to be of type `String` instead of `NodeInfoSettingsTransportType`.
+
+### NodeThreadPoolInfo
+- The `keepAlive` property has been corrected to be of type `Time` instead of `String`.
+
+### NodesInfoRequest
+- The `metric` property is now of type `List<NodesInfoMetric>` instead of `List<String>`.
+- The `clusterManagerTimeout` and `masterTimeout` properties have been removed as they are not supported by OpenSearch.
