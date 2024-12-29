@@ -30,122 +30,128 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.nodes.reload_secure_settings;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
-import javax.annotation.Nullable;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorCause;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.reload_secure_settings.NodeReloadError
 
 @JsonpDeserializable
-public class NodeReloadError implements PlainJsonSerializable {
-    private final String name;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class NodeReloadError extends NodeReloadResultBase implements ToCopyableBuilder<NodeReloadError.Builder, NodeReloadError> {
 
-    @Nullable
+    @Nonnull
     private final ErrorCause reloadException;
 
     // ---------------------------------------------------------------------------------------------
 
     private NodeReloadError(Builder builder) {
-
-        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-        this.reloadException = builder.reloadException;
-
+        super(builder);
+        this.reloadException = ApiTypeHelper.requireNonNull(builder.reloadException, this, "reloadException");
     }
 
-    public static NodeReloadError of(Function<Builder, ObjectBuilder<NodeReloadError>> fn) {
+    public static NodeReloadError of(Function<NodeReloadError.Builder, ObjectBuilder<NodeReloadError>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code name}
+     * Required - API name: {@code reload_exception}
      */
-    public final String name() {
-        return this.name;
-    }
-
-    /**
-     * API name: {@code reload_exception}
-     */
-    @Nullable
+    @Nonnull
     public final ErrorCause reloadException() {
         return this.reloadException;
     }
 
-    /**
-     * Serialize this object to JSON.
-     */
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        serializeInternal(generator, mapper);
-        generator.writeEnd();
-    }
-
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.writeKey("name");
-        generator.write(this.name);
-
-        if (this.reloadException != null) {
-            generator.writeKey("reload_exception");
-            this.reloadException.serialize(generator, mapper);
-
-        }
-
+        super.serializeInternal(generator, mapper);
+        generator.writeKey("reload_exception");
+        this.reloadException.serialize(generator, mapper);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link NodeReloadError}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeReloadError> {
-        private String name;
-
-        @Nullable
+    public static class Builder extends NodeReloadResultBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, NodeReloadError> {
         private ErrorCause reloadException;
 
-        /**
-         * Required - API name: {@code name}
-         */
-        public final Builder name(String value) {
-            this.name = value;
+        public Builder() {}
+
+        private Builder(NodeReloadError o) {
+            super(o);
+            this.reloadException = o.reloadException;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.reloadException = o.reloadException;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
             return this;
         }
 
         /**
-         * API name: {@code reload_exception}
+         * Required - API name: {@code reload_exception}
          */
-        public final Builder reloadException(@Nullable ErrorCause value) {
+        @Nonnull
+        public final Builder reloadException(ErrorCause value) {
             this.reloadException = value;
             return this;
         }
 
         /**
-         * API name: {@code reload_exception}
+         * Required - API name: {@code reload_exception}
          */
+        @Nonnull
         public final Builder reloadException(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-            return this.reloadException(fn.apply(new ErrorCause.Builder()).build());
+            return reloadException(fn.apply(new ErrorCause.Builder()).build());
         }
 
         /**
          * Builds a {@link NodeReloadError}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public NodeReloadError build() {
             _checkSingleUse();
 
@@ -164,10 +170,25 @@ public class NodeReloadError implements PlainJsonSerializable {
     );
 
     protected static void setupNodeReloadErrorDeserializer(ObjectDeserializer<NodeReloadError.Builder> op) {
-
-        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        setupNodeReloadResultBaseDeserializer(op);
         op.add(Builder::reloadException, ErrorCause._DESERIALIZER, "reload_exception");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + this.reloadException.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        NodeReloadError other = (NodeReloadError) o;
+        return this.reloadException.equals(other.reloadException);
+    }
 }

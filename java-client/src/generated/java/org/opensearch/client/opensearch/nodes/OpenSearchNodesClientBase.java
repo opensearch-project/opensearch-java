@@ -80,4 +80,31 @@ public abstract class OpenSearchNodesClientBase<Self extends OpenSearchNodesClie
     public final NodesInfoResponse info() throws IOException, OpenSearchException {
         return info(new NodesInfoRequest.Builder().build());
     }
+
+    // ----- Endpoint: nodes.reload_secure_settings
+
+    /**
+     * Reloads secure settings.
+     */
+    public ReloadSecureSettingsResponse reloadSecureSettings(ReloadSecureSettingsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ReloadSecureSettingsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Reloads secure settings.
+     *
+     * @param fn a function that initializes a builder to create the {@link ReloadSecureSettingsRequest}
+     */
+    public final ReloadSecureSettingsResponse reloadSecureSettings(
+        Function<ReloadSecureSettingsRequest.Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
+    }
+
+    /**
+     * Reloads secure settings.
+     */
+    public final ReloadSecureSettingsResponse reloadSecureSettings() throws IOException, OpenSearchException {
+        return reloadSecureSettings(new ReloadSecureSettingsRequest.Builder().build());
+    }
 }

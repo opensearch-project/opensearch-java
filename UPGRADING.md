@@ -331,3 +331,6 @@ After:
 ### NodesInfoRequest
 - The `metric` property is now of type `List<NodesInfoMetric>` instead of `List<String>`.
 - The `clusterManagerTimeout` and `masterTimeout` properties have been removed as they are not supported by OpenSearch.
+
+### NodeReloadResult
+- The `stats` variant has been corrected to be `success` instead.

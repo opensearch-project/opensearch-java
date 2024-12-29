@@ -107,49 +107,6 @@ public class OpenSearchNodesAsyncClient extends OpenSearchNodesAsyncClientBase<O
         );
     }
 
-    // ----- Endpoint: nodes.reload_secure_settings
-
-    /**
-     * Reloads secure settings.
-     */
-
-    public CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings(ReloadSecureSettingsRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ReloadSecureSettingsRequest,
-            ReloadSecureSettingsResponse,
-            ErrorResponse>) ReloadSecureSettingsRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Reloads secure settings.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ReloadSecureSettingsRequest}
-     */
-
-    public final CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings(
-        Function<ReloadSecureSettingsRequest.Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
-    }
-
-    /**
-     * Reloads secure settings.
-     */
-
-    public CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new ReloadSecureSettingsRequest.Builder().build(),
-            ReloadSecureSettingsRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
     // ----- Endpoint: nodes.stats
 
     /**

@@ -30,30 +30,32 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.nodes.reload_secure_settings;
 
-import org.opensearch.client.opensearch.nodes.Stats;
+import javax.annotation.Generated;
 
 /**
  * Builders for {@link NodeReloadResult} variants.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeReloadResultBuilders {
     private NodeReloadResultBuilders() {}
 
     /**
-     * Creates a builder for the {@link Stats stats} {@code NodeReloadResult}
-     * variant.
-     */
-    public static Stats.Builder stats() {
-        return new Stats.Builder();
-    }
-
-    /**
-     * Creates a builder for the {@link NodeReloadError error}
-     * {@code NodeReloadResult} variant.
+     * Creates a builder for the {@link NodeReloadError error} {@code NodeReloadResult} variant.
      */
     public static NodeReloadError.Builder error() {
         return new NodeReloadError.Builder();
     }
 
+    /**
+     * Creates a builder for the {@link NodeReloadSuccess success} {@code NodeReloadResult} variant.
+     */
+    public static NodeReloadSuccess.Builder success() {
+        return new NodeReloadSuccess.Builder();
+    }
 }

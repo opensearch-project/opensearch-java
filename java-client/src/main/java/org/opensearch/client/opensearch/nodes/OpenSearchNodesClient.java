@@ -102,48 +102,6 @@ public class OpenSearchNodesClient extends OpenSearchNodesClientBase<OpenSearchN
         return this.transport.performRequest(new HotThreadsRequest.Builder().build(), HotThreadsRequest._ENDPOINT, this.transportOptions);
     }
 
-    // ----- Endpoint: nodes.reload_secure_settings
-
-    /**
-     * Reloads secure settings.
-     */
-
-    public ReloadSecureSettingsResponse reloadSecureSettings(ReloadSecureSettingsRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ReloadSecureSettingsRequest,
-            ReloadSecureSettingsResponse,
-            ErrorResponse>) ReloadSecureSettingsRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Reloads secure settings.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ReloadSecureSettingsRequest}
-     */
-
-    public final ReloadSecureSettingsResponse reloadSecureSettings(
-        Function<ReloadSecureSettingsRequest.Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
-    }
-
-    /**
-     * Reloads secure settings.
-     */
-
-    public ReloadSecureSettingsResponse reloadSecureSettings() throws IOException, OpenSearchException {
-        return this.transport.performRequest(
-            new ReloadSecureSettingsRequest.Builder().build(),
-            ReloadSecureSettingsRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
     // ----- Endpoint: nodes.stats
 
     /**

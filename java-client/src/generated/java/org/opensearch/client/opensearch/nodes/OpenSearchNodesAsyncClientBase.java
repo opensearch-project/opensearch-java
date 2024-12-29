@@ -83,4 +83,32 @@ public abstract class OpenSearchNodesAsyncClientBase<Self extends OpenSearchNode
     public final CompletableFuture<NodesInfoResponse> info() throws IOException, OpenSearchException {
         return info(new NodesInfoRequest.Builder().build());
     }
+
+    // ----- Endpoint: nodes.reload_secure_settings
+
+    /**
+     * Reloads secure settings.
+     */
+    public CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings(ReloadSecureSettingsRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, ReloadSecureSettingsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Reloads secure settings.
+     *
+     * @param fn a function that initializes a builder to create the {@link ReloadSecureSettingsRequest}
+     */
+    public final CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings(
+        Function<ReloadSecureSettingsRequest.Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
+    }
+
+    /**
+     * Reloads secure settings.
+     */
+    public final CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings() throws IOException, OpenSearchException {
+        return reloadSecureSettings(new ReloadSecureSettingsRequest.Builder().build());
+    }
 }

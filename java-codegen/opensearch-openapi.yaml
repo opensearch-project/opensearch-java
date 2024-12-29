@@ -30309,7 +30309,19 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/nodes.reload_secure_settings___ResponseBase'
+            allOf:
+              - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
+              - type: object
+                properties:
+                  cluster_name:
+                    $ref: '#/components/schemas/_common___Name'
+                  nodes:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/nodes.reload_secure_settings___NodeReloadResult'
+                required:
+                  - cluster_name
+                  - nodes
       description: ''
     nodes.stats___200:
       content:
@@ -54741,24 +54753,6 @@ components:
         used_in_bytes:
           description: Size of buffer pools in bytes.
           $ref: '#/components/schemas/_common___ByteCount'
-    nodes._common___NodeReloadError:
-      allOf:
-        - $ref: '#/components/schemas/nodes._common___NodeReloadResponse'
-        - type: object
-          properties:
-            reload_exception:
-              $ref: '#/components/schemas/_common___ErrorCause'
-    nodes._common___NodeReloadResponse:
-      type: object
-      properties:
-        name:
-          $ref: '#/components/schemas/_common___Name'
-      required:
-        - name
-    nodes._common___NodeReloadResult:
-      anyOf:
-        - $ref: '#/components/schemas/nodes._common___NodeReloadResponse'
-        - $ref: '#/components/schemas/nodes._common___NodeReloadError'
     nodes._common___NodesResponseBase:
       type: object
       properties:
@@ -56058,20 +56052,33 @@ components:
       required:
         - queue_size
         - type
-    nodes.reload_secure_settings___ResponseBase:
+    nodes.reload_secure_settings___NodeReloadError:
       allOf:
-        - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
+        - $ref: '#/components/schemas/nodes.reload_secure_settings___NodeReloadResultBase'
         - type: object
           properties:
-            cluster_name:
-              $ref: '#/components/schemas/_common___Name'
-            nodes:
-              type: object
-              additionalProperties:
-                $ref: '#/components/schemas/nodes._common___NodeReloadResult'
+            reload_exception:
+              $ref: '#/components/schemas/_common___ErrorCause'
           required:
-            - cluster_name
-            - nodes
+            - reload_exception
+    nodes.reload_secure_settings___NodeReloadResult:
+      anyOf:
+        - title: success
+          $ref: '#/components/schemas/nodes.reload_secure_settings___NodeReloadSuccess'
+        - title: error
+          $ref: '#/components/schemas/nodes.reload_secure_settings___NodeReloadError'
+    nodes.reload_secure_settings___NodeReloadResultBase:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/_common___Name'
+      required:
+        - name
+    nodes.reload_secure_settings___NodeReloadSuccess:
+      allOf:
+        - $ref: '#/components/schemas/nodes.reload_secure_settings___NodeReloadResultBase'
+        - type: object
+          properties: {}
     nodes.stats___IndexMetric:
       type: string
       enum:
