@@ -120,7 +120,7 @@ public class ClusterStatsResponse extends NodesResponseBase
     }
 
     /**
-     * Contains statistics about indices with shards assigned to selected nodes.
+     * Contains statistics about indexes with shards assigned to selected nodes.
      * <p>
      * API name: {@code indices}
      * </p>
@@ -274,7 +274,7 @@ public class ClusterStatsResponse extends NodesResponseBase
         }
 
         /**
-         * Contains statistics about indices with shards assigned to selected nodes.
+         * Contains statistics about indexes with shards assigned to selected nodes.
          * <p>
          * API name: {@code indices}
          * </p>
@@ -286,7 +286,7 @@ public class ClusterStatsResponse extends NodesResponseBase
         }
 
         /**
-         * Contains statistics about indices with shards assigned to selected nodes.
+         * Contains statistics about indexes with shards assigned to selected nodes.
          * <p>
          * API name: {@code indices}
          * </p>
