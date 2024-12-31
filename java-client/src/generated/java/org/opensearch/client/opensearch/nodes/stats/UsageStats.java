@@ -34,33 +34,67 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.indices.stats;
+package org.opensearch.client.opensearch.nodes.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: indices.stats.IndexShardStats
+// typedef: nodes.stats.UsageStats
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IndexShardStats extends IndexShardStatsBase implements ToCopyableBuilder<IndexShardStats.Builder, IndexShardStats> {
+public class UsageStats implements PlainJsonSerializable, ToCopyableBuilder<UsageStats.Builder, UsageStats> {
+
+    @Nullable
+    private final TransportUsageStats transport;
 
     // ---------------------------------------------------------------------------------------------
 
-    private IndexShardStats(Builder builder) {
-        super(builder);
+    private UsageStats(Builder builder) {
+        this.transport = builder.transport;
     }
 
-    public static IndexShardStats of(Function<IndexShardStats.Builder, ObjectBuilder<IndexShardStats>> fn) {
+    public static UsageStats of(Function<UsageStats.Builder, ObjectBuilder<UsageStats>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * API name: {@code transport}
+     */
+    @Nullable
+    public final TransportUsageStats transport() {
+        return this.transport;
+    }
+
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.transport != null) {
+            generator.writeKey("transport");
+            this.transport.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -77,18 +111,20 @@ public class IndexShardStats extends IndexShardStatsBase implements ToCopyableBu
     }
 
     /**
-     * Builder for {@link IndexShardStats}.
+     * Builder for {@link UsageStats}.
      */
-    public static class Builder extends IndexShardStatsBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, IndexShardStats> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, UsageStats> {
+        @Nullable
+        private TransportUsageStats transport;
 
         public Builder() {}
 
-        private Builder(IndexShardStats o) {
-            super(o);
+        private Builder(UsageStats o) {
+            this.transport = o.transport;
         }
 
         private Builder(Builder o) {
-            super(o);
+            this.transport = o.transport;
         }
 
         @Override
@@ -97,53 +133,63 @@ public class IndexShardStats extends IndexShardStatsBase implements ToCopyableBu
             return new Builder(this);
         }
 
-        @Override
+        /**
+         * API name: {@code transport}
+         */
         @Nonnull
-        protected Builder self() {
+        public final Builder transport(@Nullable TransportUsageStats value) {
+            this.transport = value;
             return this;
         }
 
         /**
-         * Builds a {@link IndexShardStats}.
+         * API name: {@code transport}
+         */
+        @Nonnull
+        public final Builder transport(Function<TransportUsageStats.Builder, ObjectBuilder<TransportUsageStats>> fn) {
+            return transport(fn.apply(new TransportUsageStats.Builder()).build());
+        }
+
+        /**
+         * Builds a {@link UsageStats}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public IndexShardStats build() {
+        public UsageStats build() {
             _checkSingleUse();
 
-            return new IndexShardStats(this);
+            return new UsageStats(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link IndexShardStats}
+     * Json deserializer for {@link UsageStats}
      */
-    public static final JsonpDeserializer<IndexShardStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<UsageStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        IndexShardStats::setupIndexShardStatsDeserializer
+        UsageStats::setupUsageStatsDeserializer
     );
 
-    protected static void setupIndexShardStatsDeserializer(ObjectDeserializer<IndexShardStats.Builder> op) {
-        setupIndexShardStatsBaseDeserializer(op);
+    protected static void setupUsageStatsDeserializer(ObjectDeserializer<UsageStats.Builder> op) {
+        op.add(Builder::transport, TransportUsageStats._DESERIALIZER, "transport");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.transport);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        return true;
+        UsageStats other = (UsageStats) o;
+        return Objects.equals(this.transport, other.transport);
     }
 }

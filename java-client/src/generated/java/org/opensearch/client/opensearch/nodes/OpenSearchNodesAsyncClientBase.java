@@ -111,4 +111,30 @@ public abstract class OpenSearchNodesAsyncClientBase<Self extends OpenSearchNode
     public final CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings() throws IOException, OpenSearchException {
         return reloadSecureSettings(new ReloadSecureSettingsRequest.Builder().build());
     }
+
+    // ----- Endpoint: nodes.stats
+
+    /**
+     * Returns statistical information about nodes in the cluster.
+     */
+    public CompletableFuture<NodesStatsResponse> stats(NodesStatsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, NodesStatsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns statistical information about nodes in the cluster.
+     *
+     * @param fn a function that initializes a builder to create the {@link NodesStatsRequest}
+     */
+    public final CompletableFuture<NodesStatsResponse> stats(Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn)
+        throws IOException, OpenSearchException {
+        return stats(fn.apply(new NodesStatsRequest.Builder()).build());
+    }
+
+    /**
+     * Returns statistical information about nodes in the cluster.
+     */
+    public final CompletableFuture<NodesStatsResponse> stats() throws IOException, OpenSearchException {
+        return stats(new NodesStatsRequest.Builder().build());
+    }
 }

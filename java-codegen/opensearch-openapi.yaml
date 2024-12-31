@@ -30327,7 +30327,18 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/nodes.stats___ResponseBase'
+            allOf:
+              - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
+              - type: object
+                properties:
+                  cluster_name:
+                    $ref: '#/components/schemas/_common___Name'
+                  nodes:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/nodes.stats___Stats'
+                required:
+                  - nodes
       description: ''
     nodes.usage___200:
       content:
@@ -32524,6 +32535,9 @@ components:
     _common___DurationLarge:
       description: 'A date histogram interval, similar to `Duration`, with support for additional units: `w` (week), `M` (month), `q` (quarter), and `y` (year).'
       type: string
+    _common___DurationValueUnitMicros:
+      allOf:
+        - $ref: '#/components/schemas/_common___UnitMicros'
     _common___DurationValueUnitMillis:
       allOf:
         - $ref: '#/components/schemas/_common___UnitMillis'
@@ -34440,6 +34454,10 @@ components:
       type: integer
     _common___ulong:
       type: number
+    _common___UnitMicros:
+      description: Time unit for microseconds.
+      type: integer
+      format: int64
     _common___UnitMillis:
       description: The time unit for milliseconds.
       type: integer
@@ -51667,6 +51685,11 @@ components:
         - total
     indices.stats___IndexShardStats:
       allOf:
+        - $ref: '#/components/schemas/indices.stats___IndexShardStatsBase'
+        - type: object
+          properties: {}
+    indices.stats___IndexShardStatsBase:
+      allOf:
         - $ref: '#/components/schemas/indices.stats___IndexStatsBase'
         - type: object
           properties:
@@ -54079,831 +54102,12 @@ components:
       additionalProperties:
         title: nodes
         $ref: '#/components/schemas/ml._common___UndeployModelNode'
-    nodes._common___AdaptiveSelection:
-      type: object
-      properties:
-        avg_queue_size:
-          description: The exponentially weighted moving average queue size of search requests on the keyed node.
-          type: number
-        avg_response_time:
-          $ref: '#/components/schemas/_common___Duration'
-        avg_response_time_ns:
-          description: The exponentially weighted moving average response time, in nanoseconds, of search requests on the keyed node.
-          type: number
-        avg_service_time:
-          $ref: '#/components/schemas/_common___Duration'
-        avg_service_time_ns:
-          description: The exponentially weighted moving average service time, in nanoseconds, of search requests on the keyed node.
-          type: number
-        outgoing_searches:
-          description: The number of outstanding search requests to the keyed node from the node these stats are for.
-          type: number
-        rank:
-          description: The rank of this node; used for shard selection when routing search requests.
-          type: string
-    nodes._common___Breaker:
-      type: object
-      properties:
-        estimated_size:
-          description: Estimated memory used for the operation.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        estimated_size_in_bytes:
-          description: Estimated memory used, in bytes, for the operation.
-          $ref: '#/components/schemas/_common___ByteCount'
-        limit_size:
-          description: Memory limit for the circuit breaker.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        limit_size_in_bytes:
-          description: Memory limit, in bytes, for the circuit breaker.
-          $ref: '#/components/schemas/_common___ByteCount'
-        overhead:
-          description: A constant that all estimates for the circuit breaker are multiplied with to calculate a final estimate.
-          type: number
-        tripped:
-          description: Total number of times the circuit breaker has been triggered and prevented an out of memory error.
-          type: number
-    nodes._common___Cgroup:
-      type: object
-      properties:
-        cpuacct:
-          $ref: '#/components/schemas/nodes._common___CpuAcct'
-        cpu:
-          $ref: '#/components/schemas/nodes._common___CgroupCpu'
-        memory:
-          $ref: '#/components/schemas/nodes._common___CgroupMemory'
-    nodes._common___CgroupCpu:
-      type: object
-      properties:
-        control_group:
-          description: The `cpu` control group to which the OpenSearch process belongs.
-          type: string
-        cfs_period_micros:
-          description: The period of time, in microseconds, for how regularly all tasks in the same cgroup as the OpenSearch process should have their access to CPU resources reallocated.
-          type: number
-        cfs_quota_micros:
-          description: The total amount of time, in microseconds, for which all tasks in the same cgroup as the OpenSearch process can run during one period `cfs_period_micros`.
-          type: number
-        stat:
-          $ref: '#/components/schemas/nodes._common___CgroupCpuStat'
-    nodes._common___CgroupCpuStat:
-      type: object
-      properties:
-        number_of_elapsed_periods:
-          description: The number of reporting periods (as specified by `cfs_period_micros`) that have elapsed.
-          type: number
-        number_of_times_throttled:
-          description: The number of times all tasks in the same cgroup as the OpenSearch process have been throttled.
-          type: number
-        time_throttled_nanos:
-          $ref: '#/components/schemas/_common___DurationValueUnitNanos'
-    nodes._common___CgroupMemory:
-      type: object
-      properties:
-        control_group:
-          description: The `memory` control group to which the OpenSearch process belongs.
-          type: string
-        limit_in_bytes:
-          description: |-
-            The maximum amount of user memory (including file cache) allowed for all tasks in the same cgroup as the OpenSearch process.
-            This value can be too big to store in a `long`, so is returned as a string so that the value returned can exactly match what the underlying operating system interface returns.
-            Any value that is too large to parse into a `long` almost certainly means no limit has been set for the cgroup.
-          type: string
-        usage_in_bytes:
-          description: |-
-            The total current memory usage by processes in the cgroup, in bytes, by all tasks in the same cgroup as the OpenSearch process.
-            This value is stored as a string for consistency with `limit_in_bytes`.
-          type: string
-    nodes._common___Client:
-      type: object
-      properties:
-        id:
-          description: Unique ID for the HTTP client.
-          type: number
-        agent:
-          description: |-
-            Reported agent for the HTTP client.
-            If unavailable, this property is not included in the response.
-          type: string
-        local_address:
-          description: Local address for the HTTP connection.
-          type: string
-        remote_address:
-          description: Remote address for the HTTP connection.
-          type: string
-        last_uri:
-          description: The URI of the client's most recent request.
-          type: string
-        opened_time_millis:
-          description: Time at which the client opened the connection.
-          type: number
-        closed_time_millis:
-          description: Time at which the client closed the connection if the connection is closed.
-          type: number
-        last_request_time_millis:
-          description: Time of the most recent request from this client.
-          type: number
-        request_count:
-          description: Number of requests from this client.
-          type: number
-        request_size_bytes:
-          description: Cumulative size in bytes of all requests from this client.
-          $ref: '#/components/schemas/_common___ByteCount'
-        x_opaque_id:
-          description: |-
-            Value from the client's `x-opaque-id` HTTP header.
-            If unavailable, this property is not included in the response.
-          type: string
-    nodes._common___ClusterAppliedStats:
-      type: object
-      properties:
-        recordings:
-          type: array
-          items:
-            $ref: '#/components/schemas/nodes._common___Recording'
-    nodes._common___ClusterStateOverallStats:
-      type: object
-      properties:
-        update_count:
-          type: number
-        total_time_in_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-        failed_count:
-          type: number
-    nodes._common___ClusterStateQueue:
-      type: object
-      properties:
-        total:
-          description: Total number of cluster states in queue.
-          type: number
-        pending:
-          description: Number of pending cluster states in queue.
-          type: number
-        committed:
-          description: Number of committed cluster states in queue.
-          type: number
-    nodes._common___ClusterStateStats:
-      type: object
-      properties:
-        overall:
-          $ref: '#/components/schemas/nodes._common___ClusterStateOverallStats'
-    nodes._common___ClusterStateUpdate:
-      type: object
-      properties:
-        count:
-          description: The number of cluster state update attempts that did not change the cluster state since the node started.
-          type: number
-        computation_time:
-          $ref: '#/components/schemas/_common___Duration'
-        computation_time_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-        publication_time:
-          $ref: '#/components/schemas/_common___Duration'
-        publication_time_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-        context_construction_time:
-          $ref: '#/components/schemas/_common___Duration'
-        context_construction_time_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-        commit_time:
-          $ref: '#/components/schemas/_common___Duration'
-        commit_time_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-        completion_time:
-          $ref: '#/components/schemas/_common___Duration'
-        completion_time_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-        master_apply_time:
-          $ref: '#/components/schemas/_common___Duration'
-        master_apply_time_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-        notification_time:
-          $ref: '#/components/schemas/_common___Duration'
-        notification_time_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-      required:
-        - count
-    nodes._common___Context:
-      type: object
-      properties:
-        context:
-          type: string
-        compilations:
-          type: number
-        cache_evictions:
-          type: number
-        compilation_limit_triggered:
-          type: number
-    nodes._common___Cpu:
-      type: object
-      properties:
-        percent:
-          $ref: '#/components/schemas/_common___PercentageNumber'
-        sys:
-          $ref: '#/components/schemas/_common___Duration'
-        sys_in_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-        total:
-          $ref: '#/components/schemas/_common___Duration'
-        total_in_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-        user:
-          $ref: '#/components/schemas/_common___Duration'
-        user_in_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-        load_average:
-          type: object
-          additionalProperties:
-            type: number
-    nodes._common___CpuAcct:
-      type: object
-      properties:
-        control_group:
-          description: The `cpuacct` control group to which the OpenSearch process belongs.
-          type: string
-        usage_nanos:
-          $ref: '#/components/schemas/_common___DurationValueUnitNanos'
-    nodes._common___DataPathStats:
-      type: object
-      properties:
-        available:
-          description: Total amount of disk space available to this Java virtual machine on this file store.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        available_in_bytes:
-          description: Total number of bytes available to this Java virtual machine on this file store.
-          $ref: '#/components/schemas/_common___ByteCount'
-        cache_reserved:
-          x-version-added: '2.7'
-          description: Total number of cache bytes reserved available to this Java virtual machine on this file store.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        cache_reserved_in_bytes:
-          x-version-added: '2.7'
-          description: Total number of cache bytes reserved available to this Java virtual machine on this file store.
-          $ref: '#/components/schemas/_common___ByteCount'
-        disk_queue:
-          type: string
-        disk_reads:
-          type: number
-        disk_read_size:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        disk_read_size_in_bytes:
-          $ref: '#/components/schemas/_common___ByteCount'
-        disk_writes:
-          type: number
-        disk_write_size:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        disk_write_size_in_bytes:
-          $ref: '#/components/schemas/_common___ByteCount'
-        free:
-          description: Total amount of unallocated disk space in the file store.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        free_in_bytes:
-          description: Total number of unallocated bytes in the file store.
-          $ref: '#/components/schemas/_common___ByteCount'
-        mount:
-          description: 'Mount point of the file store (for example: `/dev/sda2`).'
-          type: string
-        path:
-          description: Path to the file store.
-          type: string
-        total:
-          description: Total size of the file store.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        total_in_bytes:
-          description: Total size of the file store in bytes.
-          $ref: '#/components/schemas/_common___ByteCount'
-        type:
-          description: 'Type of the file store (ex: ext4).'
-          type: string
-    nodes._common___Discovery:
-      type: object
-      properties:
-        cluster_state_queue:
-          $ref: '#/components/schemas/nodes._common___ClusterStateQueue'
-        cluster_state_stats:
-          $ref: '#/components/schemas/nodes._common___ClusterStateStats'
-        published_cluster_states:
-          $ref: '#/components/schemas/nodes._common___PublishedClusterStates'
-        cluster_state_update:
-          description: |-
-            Contains low-level statistics about how long various activities took during cluster state updates while the node was the elected cluster manager.
-            Omitted if the node is not cluster-manager-eligible.
-            Every field whose name ends in `_time` within this object is also represented as a raw number of milliseconds in a field whose name ends in `_time_millis`.
-            The human-readable fields with a `_time` suffix are only returned if requested with the `?human=true` query parameter.
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/nodes._common___ClusterStateUpdate'
-        serialized_cluster_states:
-          $ref: '#/components/schemas/nodes._common___SerializedClusterState'
-        cluster_applier_stats:
-          $ref: '#/components/schemas/nodes._common___ClusterAppliedStats'
-    nodes._common___ExtendedMemoryStats:
-      allOf:
-        - $ref: '#/components/schemas/nodes._common___MemoryStats'
-        - type: object
-          properties:
-            free_percent:
-              description: Percentage of free memory.
-              $ref: '#/components/schemas/_common___PercentageNumber'
-            used_percent:
-              description: Percentage of used memory.
-              $ref: '#/components/schemas/_common___PercentageNumber'
-    nodes._common___FileSystem:
-      type: object
-      properties:
-        data:
-          description: List of all file stores.
-          type: array
-          items:
-            $ref: '#/components/schemas/nodes._common___DataPathStats'
-        timestamp:
-          description: |-
-            Last time the file stores statistics were refreshed.
-            Recorded in milliseconds since the Unix Epoch.
-          type: number
-        total:
-          $ref: '#/components/schemas/nodes._common___FileSystemTotal'
-        io_stats:
-          $ref: '#/components/schemas/nodes._common___IoStats'
-    nodes._common___FileSystemTotal:
-      type: object
-      properties:
-        available:
-          description: |-
-            Total disk space available to this Java virtual machine on all file stores.
-            Depending on OS or process level restrictions, this might appear less than `free`.
-            This is the actual amount of free disk space the OpenSearch node can utilize.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        available_in_bytes:
-          description: |-
-            Total number of bytes available to this Java virtual machine on all file stores.
-            Depending on OS or process level restrictions, this might appear less than `free_in_bytes`.
-            This is the actual amount of free disk space the OpenSearch node can utilize.
-          $ref: '#/components/schemas/_common___ByteCount'
-        free:
-          description: Total unallocated disk space in all file stores.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        free_in_bytes:
-          description: Total number of unallocated bytes in all file stores.
-          $ref: '#/components/schemas/_common___ByteCount'
-        total:
-          description: Total size of all file stores.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        total_in_bytes:
-          description: Total size of all file stores in bytes.
-          $ref: '#/components/schemas/_common___ByteCount'
-        cache_reserved:
-          x-version-added: '2.7'
-          description: Total size of cache bytes reserved in all file stores.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        cache_reserved_in_bytes:
-          x-version-added: '2.7'
-          description: Total size of cache bytes reserved in all file stores.
-          $ref: '#/components/schemas/_common___ByteCount'
-    nodes._common___GarbageCollector:
-      type: object
-      properties:
-        collectors:
-          description: Contains statistics about JVM garbage collectors for the node.
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/nodes._common___GarbageCollectorTotal'
-    nodes._common___GarbageCollectorTotal:
-      type: object
-      properties:
-        collection_count:
-          description: Total number of JVM garbage collectors that collect objects.
-          type: number
-        collection_time:
-          description: Total time spent by JVM collecting objects.
-          type: string
-        collection_time_in_millis:
-          description: Total time, in milliseconds, spent by JVM collecting objects.
-          type: number
-    nodes._common___Http:
-      type: object
-      properties:
-        current_open:
-          description: Current number of open HTTP connections for the node.
-          type: number
-        total_opened:
-          description: Total number of HTTP connections opened for the node.
-          type: number
-        clients:
-          description: |-
-            Information on current and recently-closed HTTP client connections.
-            Clients that have been closed longer than the `http.client_stats.closed_channels.max_age` setting will not be represented here.
-          type: array
-          items:
-            $ref: '#/components/schemas/nodes._common___Client'
-    nodes._common___IndexingPressure:
-      type: object
-      properties:
-        memory:
-          $ref: '#/components/schemas/nodes._common___IndexingPressureMemory'
-    nodes._common___IndexingPressureMemory:
-      type: object
-      properties:
-        limit:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        limit_in_bytes:
-          description: |-
-            Configured memory limit, in bytes, for the indexing requests.
-            Replica requests have an automatic limit that is 1.5x this value.
-          $ref: '#/components/schemas/_common___ByteCount'
-        current:
-          $ref: '#/components/schemas/nodes._common___PressureMemory'
-        total:
-          $ref: '#/components/schemas/nodes._common___PressureMemory'
-    nodes._common___Ingest:
-      type: object
-      properties:
-        pipelines:
-          description: Contains statistics about ingest pipelines for the node.
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/nodes._common___IngestTotal'
-        total:
-          $ref: '#/components/schemas/nodes._common___IngestTotal'
-    nodes._common___IngestTotal:
-      type: object
-      properties:
-        count:
-          description: Total number of documents ingested during the lifetime of this node.
-          type: number
-        current:
-          description: Total number of documents currently being ingested.
-          type: number
-        failed:
-          description: Total number of failed ingest operations during the lifetime of this node.
-          type: number
-        processors:
-          description: Total number of ingest processors.
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              $ref: '#/components/schemas/nodes._common___KeyedProcessor'
-        time:
-          $ref: '#/components/schemas/_common___Duration'
-        time_in_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-    nodes._common___IoStatDevice:
-      type: object
-      properties:
-        device_name:
-          description: The Linux device name.
-          type: string
-        operations:
-          description: The total number of read and write operations for the device completed since starting OpenSearch.
-          type: number
-        read_kilobytes:
-          description: The total number of kilobytes read for the device since starting OpenSearch.
-          type: number
-        read_operations:
-          description: The total number of read operations for the device completed since starting OpenSearch.
-          type: number
-        write_kilobytes:
-          description: The total number of kilobytes written for the device since starting OpenSearch.
-          type: number
-        write_operations:
-          description: The total number of write operations for the device completed since starting OpenSearch.
-          type: number
-        read_time:
-          type: number
-        write_time:
-          type: number
-        queue_size:
-          type: number
-        io_time_in_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-    nodes._common___IoStats:
-      type: object
-      properties:
-        devices:
-          description: |-
-            Array of disk metrics for each device that is backing an OpenSearch data path.
-            These disk metrics are probed periodically and averages between the last probe and the current probe are computed.
-          type: array
-          items:
-            $ref: '#/components/schemas/nodes._common___IoStatDevice'
-        total:
-          $ref: '#/components/schemas/nodes._common___IoStatDevice'
-    nodes._common___Jvm:
-      type: object
-      properties:
-        buffer_pools:
-          description: Contains statistics about JVM buffer pools for the node.
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/nodes._common___NodeBufferPool'
-        classes:
-          $ref: '#/components/schemas/nodes._common___JvmClasses'
-        gc:
-          $ref: '#/components/schemas/nodes._common___GarbageCollector'
-        mem:
-          $ref: '#/components/schemas/nodes._common___JvmMemoryStats'
-        threads:
-          $ref: '#/components/schemas/nodes._common___JvmThreads'
-        timestamp:
-          description: Last time JVM statistics were refreshed.
-          type: number
-        uptime:
-          description: |-
-            Human-readable JVM uptime.
-            Only returned if the `human` query parameter is `true`.
-          type: string
-        uptime_in_millis:
-          description: JVM uptime in milliseconds.
-          type: number
-    nodes._common___JvmClasses:
-      type: object
-      properties:
-        current_loaded_count:
-          description: Number of classes currently loaded by JVM.
-          type: number
-        total_loaded_count:
-          description: Total number of classes loaded since the JVM started.
-          type: number
-        total_unloaded_count:
-          description: Total number of classes unloaded since the JVM started.
-          type: number
-    nodes._common___JvmMemoryStats:
-      type: object
-      properties:
-        heap_used:
-          description: Memory currently in use by the heap.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        heap_used_in_bytes:
-          description: Memory, in bytes, currently in use by the heap.
-          $ref: '#/components/schemas/_common___ByteCount'
-        heap_used_percent:
-          description: Percentage of memory currently in use by the heap.
-          $ref: '#/components/schemas/_common___PercentageNumber'
-        heap_committed:
-          description: Amount of memory available for use by the heap.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        heap_committed_in_bytes:
-          description: Amount of memory, in bytes, available for use by the heap.
-          $ref: '#/components/schemas/_common___ByteCount'
-        heap_max:
-          description: Maximum amount of memory available for use by the heap.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        heap_max_in_bytes:
-          description: Maximum amount of memory, in bytes, available for use by the heap.
-          $ref: '#/components/schemas/_common___ByteCount'
-        non_heap_used:
-          description: Non-heap memory used.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        non_heap_used_in_bytes:
-          description: Non-heap memory used, in bytes.
-          $ref: '#/components/schemas/_common___ByteCount'
-        non_heap_committed:
-          description: Amount of non-heap memory available.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        non_heap_committed_in_bytes:
-          description: Amount of non-heap memory available, in bytes.
-          $ref: '#/components/schemas/_common___ByteCount'
-        pools:
-          description: Contains statistics about heap memory usage for the node.
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/nodes._common___Pool'
-    nodes._common___JvmThreads:
-      type: object
-      properties:
-        count:
-          description: Number of active threads in use by JVM.
-          type: number
-        peak_count:
-          description: Highest number of threads used by JVM.
-          type: number
-    nodes._common___KeyedProcessor:
-      type: object
-      properties:
-        stats:
-          $ref: '#/components/schemas/nodes._common___Processor'
-        type:
-          type: string
-    nodes._common___LastGcStats:
-      type: object
-      properties:
-        used:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        used_in_bytes:
-          $ref: '#/components/schemas/_common___ByteCount'
-        max:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        max_in_bytes:
-          $ref: '#/components/schemas/_common___ByteCount'
-        usage_percent:
-          $ref: '#/components/schemas/_common___PercentageNumber'
-    nodes._common___MemoryStats:
-      type: object
-      properties:
-        adjusted_total_in_bytes:
-          description: |-
-            If the amount of physical memory has been overridden using the `es`.`total_memory_bytes` system property then this reports the overridden value in bytes.
-            Otherwise it reports the same value as `total_in_bytes`.
-          $ref: '#/components/schemas/_common___ByteCount'
-        resident:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        resident_in_bytes:
-          $ref: '#/components/schemas/_common___ByteCount'
-        share:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        share_in_bytes:
-          $ref: '#/components/schemas/_common___ByteCount'
-        total_virtual:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        total_virtual_in_bytes:
-          $ref: '#/components/schemas/_common___ByteCount'
-        total:
-          description: Total amount of physical memory.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        total_in_bytes:
-          description: Total amount of physical memory in bytes.
-          $ref: '#/components/schemas/_common___ByteCount'
-        free:
-          description: Amount of free physical memory.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        free_in_bytes:
-          description: Amount of free physical memory in bytes.
-          $ref: '#/components/schemas/_common___ByteCount'
-        used:
-          description: Amount of used physical memory.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        used_in_bytes:
-          description: Amount of used physical memory in bytes.
-          $ref: '#/components/schemas/_common___ByteCount'
-    nodes._common___NodeBufferPool:
-      type: object
-      properties:
-        count:
-          description: Number of buffer pools.
-          type: number
-        total_capacity:
-          description: Total capacity of buffer pools.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        total_capacity_in_bytes:
-          description: Total capacity of buffer pools in bytes.
-          $ref: '#/components/schemas/_common___ByteCount'
-        used:
-          description: Size of buffer pools.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        used_in_bytes:
-          description: Size of buffer pools in bytes.
-          $ref: '#/components/schemas/_common___ByteCount'
     nodes._common___NodesResponseBase:
       type: object
       properties:
         _nodes:
           description: Contains statistics about the number of nodes selected by the request's node filters.
           $ref: '#/components/schemas/_common___NodeStatistics'
-    nodes._common___OperatingSystem:
-      type: object
-      properties:
-        cpu:
-          $ref: '#/components/schemas/nodes._common___Cpu'
-        mem:
-          $ref: '#/components/schemas/nodes._common___ExtendedMemoryStats'
-        swap:
-          $ref: '#/components/schemas/nodes._common___MemoryStats'
-        cgroup:
-          $ref: '#/components/schemas/nodes._common___Cgroup'
-        timestamp:
-          type: number
-    nodes._common___Pool:
-      type: object
-      properties:
-        used:
-          description: Memory used by the heap.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        used_in_bytes:
-          description: Memory, in bytes, used by the heap.
-          $ref: '#/components/schemas/_common___ByteCount'
-        max:
-          description: Maximum amount of memory available for use by the heap.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        max_in_bytes:
-          description: Maximum amount of memory, in bytes, available for use by the heap.
-          $ref: '#/components/schemas/_common___ByteCount'
-        peak_used:
-          description: Largest amount of memory historically used by the heap.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        peak_used_in_bytes:
-          description: Largest amount of memory, in bytes, historically used by the heap.
-          $ref: '#/components/schemas/_common___ByteCount'
-        peak_max:
-          description: Largest amount of memory historically used by the heap.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        peak_max_in_bytes:
-          description: Largest amount of memory, in bytes, historically used by the heap.
-          $ref: '#/components/schemas/_common___ByteCount'
-        last_gc_stats:
-          description: Most recent GC cycle stats for a particular memory pool.
-          $ref: '#/components/schemas/nodes._common___LastGcStats'
-    nodes._common___PressureMemory:
-      type: object
-      properties:
-        all:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        all_in_bytes:
-          description: Memory consumed, in bytes, by indexing requests in the coordinating, primary, or replica stage.
-          $ref: '#/components/schemas/_common___ByteCount'
-        combined_coordinating_and_primary:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        combined_coordinating_and_primary_in_bytes:
-          description: |-
-            Memory consumed, in bytes, by indexing requests in the coordinating or primary stage.
-            This value is not the sum of coordinating and primary as a node can reuse the coordinating memory if the primary stage is executed locally.
-          $ref: '#/components/schemas/_common___ByteCount'
-        coordinating:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        coordinating_in_bytes:
-          description: Memory consumed, in bytes, by indexing requests in the coordinating stage.
-          $ref: '#/components/schemas/_common___ByteCount'
-        primary:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        primary_in_bytes:
-          description: Memory consumed, in bytes, by indexing requests in the primary stage.
-          $ref: '#/components/schemas/_common___ByteCount'
-        replica:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        replica_in_bytes:
-          description: Memory consumed, in bytes, by indexing requests in the replica stage.
-          $ref: '#/components/schemas/_common___ByteCount'
-        coordinating_rejections:
-          description: Number of indexing requests rejected in the coordinating stage.
-          type: number
-        primary_rejections:
-          description: Number of indexing requests rejected in the primary stage.
-          type: number
-        replica_rejections:
-          description: Number of indexing requests rejected in the replica stage.
-          type: number
-    nodes._common___Process:
-      type: object
-      properties:
-        cpu:
-          $ref: '#/components/schemas/nodes._common___Cpu'
-        mem:
-          $ref: '#/components/schemas/nodes._common___MemoryStats'
-        open_file_descriptors:
-          description: Number of opened file descriptors associated with the current or `-1` if not supported.
-          type: number
-        max_file_descriptors:
-          description: Maximum number of file descriptors allowed on the system, or `-1` if not supported.
-          type: number
-        timestamp:
-          description: |-
-            Last time the statistics were refreshed.
-            Recorded in milliseconds since the Unix Epoch.
-          type: number
-    nodes._common___Processor:
-      type: object
-      properties:
-        count:
-          description: Number of documents transformed by the processor.
-          type: number
-        current:
-          description: Number of documents currently being transformed by the processor.
-          type: number
-        failed:
-          description: Number of failed operations for the processor.
-          type: number
-        time:
-          $ref: '#/components/schemas/_common___Duration'
-        time_in_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-    nodes._common___PublishedClusterStates:
-      type: object
-      properties:
-        full_states:
-          description: Number of published cluster states.
-          type: number
-        incompatible_diffs:
-          description: Number of incompatible differences between published cluster states.
-          type: number
-        compatible_diffs:
-          description: Number of compatible differences between published cluster states.
-          type: number
-    nodes._common___Recording:
-      type: object
-      properties:
-        name:
-          type: string
-        cumulative_execution_count:
-          type: number
-        cumulative_execution_time:
-          $ref: '#/components/schemas/_common___Duration'
-        cumulative_execution_time_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-    nodes._common___RemoteStoreStats:
-      type: object
-      properties:
-        last_successful_fetch_of_pinned_timestamps:
-          description: Timestamp for the last successful fetch of pinned timestamps.
-          $ref: '#/components/schemas/_common___StringifiedEpochTimeUnitSeconds'
     nodes._common___SampleType:
       type: string
       description: The type to sample.
@@ -54911,471 +54115,6 @@ components:
         - block
         - cpu
         - wait
-    nodes._common___ScriptCache:
-      type: object
-      properties:
-        cache_evictions:
-          description: Total number of times the script cache has evicted old data.
-          type: number
-        compilation_limit_triggered:
-          description: Total number of times the script compilation circuit breaker has limited inline script compilations.
-          type: number
-        compilations:
-          description: Total number of inline script compilations performed by the node.
-          type: number
-        context:
-          type: string
-    nodes._common___Scripting:
-      type: object
-      properties:
-        cache_evictions:
-          description: Total number of times the script cache has evicted old data.
-          type: number
-        compilations:
-          description: Total number of inline script compilations performed by the node.
-          type: number
-        compilations_history:
-          description: Contains this recent history of script compilations.
-          type: object
-          additionalProperties:
-            type: number
-        compilation_limit_triggered:
-          description: Total number of times the script compilation circuit breaker has limited inline script compilations.
-          type: number
-        contexts:
-          type: array
-          items:
-            $ref: '#/components/schemas/nodes._common___Context'
-    nodes._common___SerializedClusterState:
-      type: object
-      properties:
-        full_states:
-          $ref: '#/components/schemas/nodes._common___SerializedClusterStateDetail'
-        diffs:
-          $ref: '#/components/schemas/nodes._common___SerializedClusterStateDetail'
-    nodes._common___SerializedClusterStateDetail:
-      type: object
-      properties:
-        count:
-          type: number
-        uncompressed_size:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        uncompressed_size_in_bytes:
-          $ref: '#/components/schemas/_common___ByteCount'
-        compressed_size:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        compressed_size_in_bytes:
-          $ref: '#/components/schemas/_common___ByteCount'
-    nodes._common___ShardAdmissionControlStats:
-      type: object
-      properties:
-        global_io_usage:
-          $ref: '#/components/schemas/nodes._common___UsageStats'
-        global_cpu_usage:
-          $ref: '#/components/schemas/nodes._common___UsageStats'
-    nodes._common___ShardCachesStats:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/nodes._common___ShardCacheStats'
-    nodes._common___ShardCacheStats:
-      type: object
-      properties:
-        size:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        size_in_bytes:
-          $ref: '#/components/schemas/_common___ByteCount'
-        evictions:
-          type: number
-        hit_count:
-          type: number
-        miss_count:
-          type: number
-        item_count:
-          type: number
-        store_name:
-          type: string
-    nodes._common___ShardClusterManagerThrottlingStats:
-      type: object
-      properties:
-        stats:
-          $ref: '#/components/schemas/nodes._common___ShardClusterManagerThrottlingStatsDetail'
-    nodes._common___ShardClusterManagerThrottlingStatsDetail:
-      type: object
-      properties:
-        total_throttled_tasks:
-          type: number
-        throttled_tasks_per_task_type:
-          type: object
-    nodes._common___ShardIndexingPressureStats:
-      type: object
-      properties:
-        stats:
-          type: object
-        enabled:
-          type: boolean
-        enforced:
-          type: boolean
-        total_rejections_breakup:
-          $ref: '#/components/schemas/nodes._common___TotalRejectionsBreakup'
-        total_rejections_breakup_shadow_mode:
-          $ref: '#/components/schemas/nodes._common___TotalRejectionsBreakup'
-    nodes._common___ShardRepositoriesStats:
-      type: array
-    nodes._common___ShardResourceUsageStats:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/nodes._common___ShardResourceUsageStatsDetail'
-    nodes._common___ShardResourceUsageStatsDetail:
-      type: object
-      properties:
-        timestamp:
-          type: number
-        cpu_utilization_percent:
-          $ref: '#/components/schemas/_common___PercentageString'
-        memory_utilization_percent:
-          $ref: '#/components/schemas/_common___PercentageString'
-        io_usage_stats:
-          $ref: '#/components/schemas/nodes._common___ShardResourceUsageStatsIoUsageStats'
-    nodes._common___ShardResourceUsageStatsIoUsageStats:
-      type: object
-      properties:
-        max_io_utilization_percent:
-          $ref: '#/components/schemas/_common___PercentageString'
-    nodes._common___ShardSearchBackpressureMode:
-      type: string
-      enum:
-        - disabled
-        - enforced
-        - monitor_only
-    nodes._common___ShardSearchBackpressureStats:
-      type: object
-      properties:
-        search_task:
-          $ref: '#/components/schemas/nodes._common___ShardSearchBackpressureTaskStats'
-        search_shard_task:
-          $ref: '#/components/schemas/nodes._common___ShardSearchBackpressureTaskStats'
-        mode:
-          $ref: '#/components/schemas/nodes._common___ShardSearchBackpressureMode'
-    nodes._common___ShardSearchBackpressureTaskCancellationStats:
-      type: object
-      properties:
-        cancellation_count:
-          type: number
-        cancellation_limit_reached_count:
-          type: number
-        cancelled_task_percentage:
-          $ref: '#/components/schemas/_common___PercentageNumber'
-        current_cancellation_eligible_tasks_count:
-          type: number
-    nodes._common___ShardSearchBackpressureTaskResourceTrackerCpuUsageTrackerStats:
-      type: object
-      properties:
-        cancellation_count:
-          type: number
-        current_max:
-          $ref: '#/components/schemas/_common___Duration'
-        current_max_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-        current_avg:
-          $ref: '#/components/schemas/_common___Duration'
-        current_avg_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-    nodes._common___ShardSearchBackpressureTaskResourceTrackerElapsedTimeTrackerStats:
-      type: object
-      properties:
-        cancellation_count:
-          type: number
-        current_max:
-          $ref: '#/components/schemas/_common___Duration'
-        current_max_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-        current_avg:
-          $ref: '#/components/schemas/_common___Duration'
-        current_avg_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-    nodes._common___ShardSearchBackpressureTaskResourceTrackerHeapUsageTrackerStats:
-      type: object
-      properties:
-        cancellation_count:
-          type: number
-        current_max:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        current_max_bytes:
-          $ref: '#/components/schemas/_common___ByteCount'
-        current_avg:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        current_avg_bytes:
-          $ref: '#/components/schemas/_common___ByteCount'
-        rolling_avg:
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        rolling_avg_bytes:
-          $ref: '#/components/schemas/_common___ByteCount'
-    nodes._common___ShardSearchBackpressureTaskResourceTrackerStats:
-      type: object
-      properties:
-        heap_usage_tracker:
-          $ref: '#/components/schemas/nodes._common___ShardSearchBackpressureTaskResourceTrackerHeapUsageTrackerStats'
-        elapsed_time_tracker:
-          $ref: '#/components/schemas/nodes._common___ShardSearchBackpressureTaskResourceTrackerElapsedTimeTrackerStats'
-        cpu_usage_tracker:
-          $ref: '#/components/schemas/nodes._common___ShardSearchBackpressureTaskResourceTrackerCpuUsageTrackerStats'
-    nodes._common___ShardSearchBackpressureTaskStats:
-      type: object
-      properties:
-        resource_tracker_stats:
-          $ref: '#/components/schemas/nodes._common___ShardSearchBackpressureTaskResourceTrackerStats'
-        cancellation_stats:
-          $ref: '#/components/schemas/nodes._common___ShardSearchBackpressureTaskCancellationStats'
-        completion_count:
-          x-version-added: '3.0'
-          type: number
-    nodes._common___ShardSearchPipelineStats:
-      type: object
-      properties:
-        total_request:
-          $ref: '#/components/schemas/nodes._common___ShardSearchPipelineTotalStats'
-        total_response:
-          $ref: '#/components/schemas/nodes._common___ShardSearchPipelineTotalStats'
-        pipelines:
-          type: object
-    nodes._common___ShardSearchPipelineTotalStats:
-      type: object
-      properties:
-        count:
-          type: number
-        time:
-          $ref: '#/components/schemas/_common___Duration'
-        time_in_millis:
-          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-        current:
-          type: number
-        failed:
-          type: number
-    nodes._common___ShardSegmentReplicationBackpressureStats:
-      type: object
-      properties:
-        total_rejected_requests:
-          type: number
-    nodes._common___ShardTaskCancellationStats:
-      type: object
-      properties:
-        search_shard_task:
-          $ref: '#/components/schemas/nodes._common___ShardTaskCancellationStatsDetail'
-    nodes._common___ShardTaskCancellationStatsDetail:
-      type: object
-      properties:
-        current_count_post_cancel:
-          type: number
-        total_count_post_cancel:
-          type: number
-    nodes._common___ShardWeightedRoutingStats:
-      type: object
-      properties:
-        stats:
-          $ref: '#/components/schemas/nodes._common___ShardWeightedRoutingStatsDetail'
-    nodes._common___ShardWeightedRoutingStatsDetail:
-      type: object
-      properties:
-        fail_open_count:
-          type: number
-    nodes._common___Stats:
-      type: object
-      properties:
-        adaptive_selection:
-          description: Statistics about adaptive replica selection.
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/nodes._common___AdaptiveSelection'
-        breakers:
-          description: Statistics about the field data circuit breaker.
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/nodes._common___Breaker'
-        fs:
-          $ref: '#/components/schemas/nodes._common___FileSystem'
-        host:
-          $ref: '#/components/schemas/_common___Host'
-        http:
-          $ref: '#/components/schemas/nodes._common___Http'
-        ingest:
-          $ref: '#/components/schemas/nodes._common___Ingest'
-        ip:
-          description: IP address and port for the node.
-          oneOf:
-            - $ref: '#/components/schemas/_common___Ip'
-            - type: array
-              items:
-                $ref: '#/components/schemas/_common___Ip'
-        jvm:
-          $ref: '#/components/schemas/nodes._common___Jvm'
-        name:
-          $ref: '#/components/schemas/_common___Name'
-        os:
-          $ref: '#/components/schemas/nodes._common___OperatingSystem'
-        process:
-          $ref: '#/components/schemas/nodes._common___Process'
-        roles:
-          $ref: '#/components/schemas/_common___NodeRoles'
-        script:
-          $ref: '#/components/schemas/nodes._common___Scripting'
-        script_cache:
-          type: object
-          additionalProperties:
-            oneOf:
-              - $ref: '#/components/schemas/nodes._common___ScriptCache'
-              - type: array
-                items:
-                  $ref: '#/components/schemas/nodes._common___ScriptCache'
-        thread_pool:
-          description: Statistics about each thread pool, including current size, queue and rejected tasks.
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/nodes._common___ThreadCount'
-        timestamp:
-          type: number
-        transport:
-          $ref: '#/components/schemas/nodes._common___Transport'
-        transport_address:
-          $ref: '#/components/schemas/_common___TransportAddress'
-        attributes:
-          description: Contains a list of attributes for the node.
-          type: object
-          additionalProperties:
-            type: string
-        discovery:
-          $ref: '#/components/schemas/nodes._common___Discovery'
-        indexing_pressure:
-          $ref: '#/components/schemas/nodes._common___IndexingPressure'
-        indices:
-          $ref: '#/components/schemas/indices.stats___IndexShardStats'
-        shard_indexing_pressure:
-          $ref: '#/components/schemas/nodes._common___ShardIndexingPressureStats'
-        search_backpressure:
-          $ref: '#/components/schemas/nodes._common___ShardSearchBackpressureStats'
-        cluster_manager_throttling:
-          $ref: '#/components/schemas/nodes._common___ShardClusterManagerThrottlingStats'
-        weighted_routing:
-          $ref: '#/components/schemas/nodes._common___ShardWeightedRoutingStats'
-        task_cancellation:
-          $ref: '#/components/schemas/nodes._common___ShardTaskCancellationStats'
-        resource_usage_stats:
-          $ref: '#/components/schemas/nodes._common___ShardResourceUsageStats'
-        search_pipeline:
-          $ref: '#/components/schemas/nodes._common___ShardSearchPipelineStats'
-        segment_replication_backpressure:
-          $ref: '#/components/schemas/nodes._common___ShardSegmentReplicationBackpressureStats'
-        remote_store:
-          $ref: '#/components/schemas/nodes._common___RemoteStoreStats'
-        repositories:
-          $ref: '#/components/schemas/nodes._common___ShardRepositoriesStats'
-        admission_control:
-          $ref: '#/components/schemas/nodes._common___ShardAdmissionControlStats'
-        caches:
-          $ref: '#/components/schemas/nodes._common___ShardCachesStats'
-    nodes._common___ThreadCount:
-      type: object
-      properties:
-        active:
-          description: Number of active threads in the thread pool.
-          type: number
-        completed:
-          description: Number of tasks completed by the thread pool executor.
-          type: number
-        largest:
-          description: Highest number of active threads in the thread pool.
-          type: number
-        queue:
-          description: Number of tasks in queue for the thread pool.
-          type: number
-        rejected:
-          description: Number of tasks rejected by the thread pool executor.
-          type: number
-        threads:
-          description: Number of threads in the thread pool.
-          type: number
-        total_wait_time:
-          description: |
-            The total amount of time that tasks spend waiting in the thread pool queue.
-            Currently, only `search`, `search_throttled`, and `index_searcher` thread pools support this metric.
-          $ref: '#/components/schemas/_common___Duration'
-        total_wait_time_in_nanos:
-          description: |
-            The total amount of time that tasks spend waiting in the thread pool queue.
-            Currently, only `search`, `search_throttled`, and `index_searcher` thread pools support this metric.
-          type: number
-    nodes._common___TotalRejectionsBreakup:
-      type: object
-      properties:
-        node_limits:
-          type: number
-        no_successful_request_limits:
-          type: number
-        throughput_degradation_limits:
-          type: number
-    nodes._common___Transport:
-      type: object
-      properties:
-        inbound_handling_time_histogram:
-          description: The distribution of the time spent handling each inbound message on a transport thread, represented as a histogram.
-          type: array
-          items:
-            $ref: '#/components/schemas/nodes._common___TransportHistogram'
-        outbound_handling_time_histogram:
-          description: The distribution of the time spent sending each outbound transport message on a transport thread, represented as a histogram.
-          type: array
-          items:
-            $ref: '#/components/schemas/nodes._common___TransportHistogram'
-        rx_count:
-          description: Total number of RX (receive) packets received by the node during internal cluster communication.
-          type: number
-        rx_size:
-          description: Size of RX packets received by the node during internal cluster communication.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        rx_size_in_bytes:
-          description: Size, in bytes, of RX packets received by the node during internal cluster communication.
-          $ref: '#/components/schemas/_common___ByteCount'
-        server_open:
-          description: Current number of inbound TCP connections used for internal communication between nodes.
-          type: number
-        tx_count:
-          description: Total number of TX (transmit) packets sent by the node during internal cluster communication.
-          type: number
-        tx_size:
-          description: Size of TX packets sent by the node during internal cluster communication.
-          $ref: '#/components/schemas/_common___HumanReadableByteCount'
-        tx_size_in_bytes:
-          description: Size, in bytes, of TX packets sent by the node during internal cluster communication.
-          $ref: '#/components/schemas/_common___ByteCount'
-        total_outbound_connections:
-          description: |-
-            The cumulative number of outbound transport connections that this node has opened since it started.
-            Each transport connection may comprise multiple TCP connections but is only counted once in this statistic.
-            Transport connections are typically long-lived so this statistic should remain constant in a stable cluster.
-          type: number
-    nodes._common___TransportHistogram:
-      type: object
-      properties:
-        count:
-          description: The number of times a transport thread took a period of time within the bounds of this bucket to handle an inbound message.
-          type: number
-        lt_millis:
-          description: |-
-            The exclusive upper bound of the bucket in milliseconds.
-            May be omitted on the last bucket if this bucket has no upper bound.
-          type: number
-        ge_millis:
-          description: The inclusive lower bound of the bucket in milliseconds. May be omitted on the first bucket if this bucket has no lower bound.
-          type: number
-    nodes._common___TransportUsageStats:
-      type: object
-      properties:
-        rejection_count:
-          type: object
-    nodes._common___UsageStats:
-      type: object
-      properties:
-        transport:
-          $ref: '#/components/schemas/nodes._common___TransportUsageStats'
     nodes.info___Metric:
       type: string
       enum:
@@ -56079,6 +54818,306 @@ components:
         - $ref: '#/components/schemas/nodes.reload_secure_settings___NodeReloadResultBase'
         - type: object
           properties: {}
+    nodes.stats___AdaptiveSelection:
+      type: object
+      properties:
+        avg_queue_size:
+          description: The exponentially weighted moving average queue size of search requests on the keyed node.
+          type: integer
+          format: int64
+        avg_response_time:
+          $ref: '#/components/schemas/_common___Duration'
+        avg_response_time_ns:
+          description: The exponentially weighted moving average response time, in nanoseconds, of search requests on the keyed node.
+          $ref: '#/components/schemas/_common___DurationValueUnitNanos'
+        avg_service_time:
+          $ref: '#/components/schemas/_common___Duration'
+        avg_service_time_ns:
+          description: The exponentially weighted moving average service time, in nanoseconds, of search requests on the keyed node.
+          $ref: '#/components/schemas/_common___DurationValueUnitNanos'
+        outgoing_searches:
+          description: The number of outstanding search requests to the keyed node from the node these stats are for.
+          type: integer
+          format: int64
+        rank:
+          description: The rank of this node; used for shard selection when routing search requests.
+          type: string
+    nodes.stats___Breaker:
+      type: object
+      properties:
+        estimated_size:
+          description: Estimated memory used for the operation.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        estimated_size_in_bytes:
+          description: Estimated memory used, in bytes, for the operation.
+          $ref: '#/components/schemas/_common___ByteCount'
+        limit_size:
+          description: Memory limit for the circuit breaker.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        limit_size_in_bytes:
+          description: Memory limit, in bytes, for the circuit breaker.
+          $ref: '#/components/schemas/_common___ByteCount'
+        overhead:
+          description: A constant that all estimates for the circuit breaker are multiplied with to calculate a final estimate.
+          type: number
+          format: double
+        tripped:
+          description: Total number of times the circuit breaker has been triggered and prevented an out of memory error.
+          type: integer
+          format: int64
+    nodes.stats___CgroupCpuAcctStats:
+      type: object
+      properties:
+        control_group:
+          description: The `cpuacct` control group to which the OpenSearch process belongs.
+          type: string
+        usage_nanos:
+          $ref: '#/components/schemas/_common___DurationValueUnitNanos'
+    nodes.stats___CgroupCpuStat:
+      type: object
+      properties:
+        number_of_elapsed_periods:
+          description: The number of reporting periods (as specified by `cfs_period_micros`) that have elapsed.
+          type: integer
+          format: int64
+        number_of_times_throttled:
+          description: The number of times all tasks in the same cgroup as the OpenSearch process have been throttled.
+          type: integer
+          format: int64
+        time_throttled_nanos:
+          $ref: '#/components/schemas/_common___DurationValueUnitNanos'
+    nodes.stats___CgroupCpuStats:
+      type: object
+      properties:
+        control_group:
+          description: The `cpu` control group to which the OpenSearch process belongs.
+          type: string
+        cfs_period_micros:
+          description: The period of time, in microseconds, for how regularly all tasks in the same cgroup as the OpenSearch process should have their access to CPU resources reallocated.
+          $ref: '#/components/schemas/_common___DurationValueUnitMicros'
+        cfs_quota_micros:
+          description: The total amount of time, in microseconds, for which all tasks in the same cgroup as the OpenSearch process can run during one period `cfs_period_micros`.
+          $ref: '#/components/schemas/_common___DurationValueUnitMicros'
+        stat:
+          $ref: '#/components/schemas/nodes.stats___CgroupCpuStat'
+    nodes.stats___CgroupMemoryStats:
+      type: object
+      properties:
+        control_group:
+          description: The `memory` control group to which the OpenSearch process belongs.
+          type: string
+        limit_in_bytes:
+          description: |-
+            The maximum amount of user memory (including file cache) allowed for all tasks in the same cgroup as the OpenSearch process.
+            This value can be too big to store in a `long`, so is returned as a string so that the value returned can exactly match what the underlying operating system interface returns.
+            Any value that is too large to parse into a `long` almost certainly means no limit has been set for the cgroup.
+          type: string
+        usage_in_bytes:
+          description: |-
+            The total current memory usage by processes in the cgroup, in bytes, by all tasks in the same cgroup as the OpenSearch process.
+            This value is stored as a string for consistency with `limit_in_bytes`.
+          type: string
+    nodes.stats___CgroupStats:
+      type: object
+      properties:
+        cpuacct:
+          $ref: '#/components/schemas/nodes.stats___CgroupCpuAcctStats'
+        cpu:
+          $ref: '#/components/schemas/nodes.stats___CgroupCpuStats'
+        memory:
+          $ref: '#/components/schemas/nodes.stats___CgroupMemoryStats'
+    nodes.stats___ClusterStateOverallStats:
+      type: object
+      properties:
+        update_count:
+          type: integer
+          format: int64
+        total_time_in_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+        failed_count:
+          type: integer
+          format: int64
+    nodes.stats___ClusterStateQueue:
+      type: object
+      properties:
+        total:
+          description: Total number of cluster states in queue.
+          type: integer
+          format: int32
+        pending:
+          description: Number of pending cluster states in queue.
+          type: integer
+          format: int32
+        committed:
+          description: Number of committed cluster states in queue.
+          type: integer
+          format: int32
+    nodes.stats___ClusterStateStats:
+      type: object
+      properties:
+        overall:
+          $ref: '#/components/schemas/nodes.stats___ClusterStateOverallStats'
+    nodes.stats___DataPathStats:
+      type: object
+      properties:
+        available:
+          description: Total amount of disk space available to this Java virtual machine on this file store.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        available_in_bytes:
+          description: Total number of bytes available to this Java virtual machine on this file store.
+          $ref: '#/components/schemas/_common___ByteCount'
+        cache_reserved:
+          x-version-added: '2.7'
+          description: Total number of cache bytes reserved available to this Java virtual machine on this file store.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        cache_reserved_in_bytes:
+          x-version-added: '2.7'
+          description: Total number of cache bytes reserved available to this Java virtual machine on this file store.
+          $ref: '#/components/schemas/_common___ByteCount'
+        free:
+          description: Total amount of unallocated disk space in the file store.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        free_in_bytes:
+          description: Total number of unallocated bytes in the file store.
+          $ref: '#/components/schemas/_common___ByteCount'
+        mount:
+          description: 'Mount point of the file store (for example: `/dev/sda2`).'
+          type: string
+        path:
+          description: Path to the file store.
+          type: string
+        total:
+          description: Total size of the file store.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        total_in_bytes:
+          description: Total size of the file store in bytes.
+          $ref: '#/components/schemas/_common___ByteCount'
+        type:
+          description: 'Type of the file store (ex: ext4).'
+          type: string
+    nodes.stats___Discovery:
+      type: object
+      properties:
+        cluster_state_queue:
+          $ref: '#/components/schemas/nodes.stats___ClusterStateQueue'
+        cluster_state_stats:
+          $ref: '#/components/schemas/nodes.stats___ClusterStateStats'
+        published_cluster_states:
+          $ref: '#/components/schemas/nodes.stats___PublishedClusterStates'
+    nodes.stats___ExtendedMemoryStats:
+      allOf:
+        - $ref: '#/components/schemas/nodes.stats___MemoryStats'
+        - type: object
+          properties:
+            free_percent:
+              description: Percentage of free memory.
+              $ref: '#/components/schemas/_common___PercentageNumber'
+            used_percent:
+              description: Percentage of used memory.
+              $ref: '#/components/schemas/_common___PercentageNumber'
+    nodes.stats___FileSystem:
+      type: object
+      properties:
+        data:
+          description: List of all file stores.
+          type: array
+          items:
+            $ref: '#/components/schemas/nodes.stats___DataPathStats'
+        timestamp:
+          description: |-
+            Last time the file stores statistics were refreshed.
+            Recorded in milliseconds since the Unix Epoch.
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+        total:
+          $ref: '#/components/schemas/nodes.stats___FileSystemTotal'
+        io_stats:
+          $ref: '#/components/schemas/nodes.stats___IoStats'
+    nodes.stats___FileSystemTotal:
+      type: object
+      properties:
+        available:
+          description: |-
+            Total disk space available to this Java virtual machine on all file stores.
+            Depending on OS or process level restrictions, this might appear less than `free`.
+            This is the actual amount of free disk space the OpenSearch node can utilize.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        available_in_bytes:
+          description: |-
+            Total number of bytes available to this Java virtual machine on all file stores.
+            Depending on OS or process level restrictions, this might appear less than `free_in_bytes`.
+            This is the actual amount of free disk space the OpenSearch node can utilize.
+          $ref: '#/components/schemas/_common___ByteCount'
+        free:
+          description: Total unallocated disk space in all file stores.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        free_in_bytes:
+          description: Total number of unallocated bytes in all file stores.
+          $ref: '#/components/schemas/_common___ByteCount'
+        total:
+          description: Total size of all file stores.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        total_in_bytes:
+          description: Total size of all file stores in bytes.
+          $ref: '#/components/schemas/_common___ByteCount'
+        cache_reserved:
+          x-version-added: '2.7'
+          description: Total size of cache bytes reserved in all file stores.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        cache_reserved_in_bytes:
+          x-version-added: '2.7'
+          description: Total size of cache bytes reserved in all file stores.
+          $ref: '#/components/schemas/_common___ByteCount'
+    nodes.stats___GarbageCollector:
+      type: object
+      properties:
+        collectors:
+          description: Contains statistics about JVM garbage collectors for the node.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/nodes.stats___GarbageCollectorTotal'
+    nodes.stats___GarbageCollectorTotal:
+      type: object
+      properties:
+        collection_count:
+          description: Total number of JVM garbage collectors that collect objects.
+          type: integer
+          format: int64
+        collection_time:
+          description: Total time spent by JVM collecting objects.
+          $ref: '#/components/schemas/_common___Duration'
+        collection_time_in_millis:
+          description: Total time, in milliseconds, spent by JVM collecting objects.
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+    nodes.stats___Http:
+      type: object
+      properties:
+        current_open:
+          description: Current number of open HTTP connections for the node.
+          type: integer
+          format: int64
+        total_opened:
+          description: Total number of HTTP connections opened for the node.
+          type: integer
+          format: int64
+    nodes.stats___IndexingPressure:
+      type: object
+      properties:
+        memory:
+          $ref: '#/components/schemas/nodes.stats___IndexingPressureMemory'
+    nodes.stats___IndexingPressureMemory:
+      type: object
+      properties:
+        limit:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        limit_in_bytes:
+          description: |-
+            Configured memory limit, in bytes, for the indexing requests.
+            Replica requests have an automatic limit that is 1.5x this value.
+          $ref: '#/components/schemas/_common___ByteCount'
+        current:
+          $ref: '#/components/schemas/nodes.stats___PressureMemory'
+        total:
+          $ref: '#/components/schemas/nodes.stats___PressureMemory'
     nodes.stats___IndexMetric:
       type: string
       enum:
@@ -56100,6 +55139,226 @@ components:
         - suggest
         - translog
         - warmer
+    nodes.stats___Ingest:
+      type: object
+      properties:
+        pipelines:
+          description: Contains statistics about ingest pipelines for the node.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/nodes.stats___IngestTotal'
+        total:
+          $ref: '#/components/schemas/nodes.stats___IngestTotal'
+    nodes.stats___IngestTotal:
+      type: object
+      properties:
+        count:
+          description: Total number of documents ingested during the lifetime of this node.
+          type: integer
+          format: int64
+        current:
+          description: Total number of documents currently being ingested.
+          type: integer
+          format: int64
+        failed:
+          description: Total number of failed ingest operations during the lifetime of this node.
+          type: integer
+          format: int64
+        processors:
+          description: Total number of ingest processors.
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              $ref: '#/components/schemas/nodes.stats___KeyedProcessor'
+        time:
+          $ref: '#/components/schemas/_common___Duration'
+        time_in_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+    nodes.stats___IoStatDevice:
+      type: object
+      properties:
+        device_name:
+          description: The Linux device name.
+          type: string
+        operations:
+          description: The total number of read and write operations for the device completed since starting OpenSearch.
+          type: integer
+          format: int64
+        read_kilobytes:
+          description: The total number of kilobytes read for the device since starting OpenSearch.
+          type: integer
+          format: int64
+        read_operations:
+          description: The total number of read operations for the device completed since starting OpenSearch.
+          type: integer
+          format: int64
+        write_kilobytes:
+          description: The total number of kilobytes written for the device since starting OpenSearch.
+          type: integer
+          format: int64
+        write_operations:
+          description: The total number of write operations for the device completed since starting OpenSearch.
+          type: integer
+          format: int64
+        read_time:
+          type: integer
+          format: int64
+        write_time:
+          type: integer
+          format: int64
+        queue_size:
+          type: integer
+          format: int64
+        io_time_in_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+    nodes.stats___IoStats:
+      type: object
+      properties:
+        devices:
+          description: |-
+            Array of disk metrics for each device that is backing an OpenSearch data path.
+            These disk metrics are probed periodically and averages between the last probe and the current probe are computed.
+          type: array
+          items:
+            $ref: '#/components/schemas/nodes.stats___IoStatDevice'
+        total:
+          $ref: '#/components/schemas/nodes.stats___IoStatDevice'
+    nodes.stats___Jvm:
+      type: object
+      properties:
+        buffer_pools:
+          description: Contains statistics about JVM buffer pools for the node.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/nodes.stats___NodeBufferPool'
+        classes:
+          $ref: '#/components/schemas/nodes.stats___JvmClasses'
+        gc:
+          $ref: '#/components/schemas/nodes.stats___GarbageCollector'
+        mem:
+          $ref: '#/components/schemas/nodes.stats___JvmMemoryStats'
+        threads:
+          $ref: '#/components/schemas/nodes.stats___JvmThreads'
+        timestamp:
+          description: Last time JVM statistics were refreshed.
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+        uptime:
+          description: |-
+            Human-readable JVM uptime.
+            Only returned if the `human` query parameter is `true`.
+          $ref: '#/components/schemas/_common___Duration'
+        uptime_in_millis:
+          description: JVM uptime in milliseconds.
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+    nodes.stats___JvmClasses:
+      type: object
+      properties:
+        current_loaded_count:
+          description: Number of classes currently loaded by JVM.
+          type: integer
+          format: int64
+        total_loaded_count:
+          description: Total number of classes loaded since the JVM started.
+          type: integer
+          format: int64
+        total_unloaded_count:
+          description: Total number of classes unloaded since the JVM started.
+          type: integer
+          format: int64
+    nodes.stats___JvmMemoryStats:
+      type: object
+      properties:
+        heap_used:
+          description: Memory currently in use by the heap.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        heap_used_in_bytes:
+          description: Memory, in bytes, currently in use by the heap.
+          $ref: '#/components/schemas/_common___ByteCount'
+        heap_used_percent:
+          description: Percentage of memory currently in use by the heap.
+          $ref: '#/components/schemas/_common___PercentageNumber'
+        heap_committed:
+          description: Amount of memory available for use by the heap.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        heap_committed_in_bytes:
+          description: Amount of memory, in bytes, available for use by the heap.
+          $ref: '#/components/schemas/_common___ByteCount'
+        heap_max:
+          description: Maximum amount of memory available for use by the heap.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        heap_max_in_bytes:
+          description: Maximum amount of memory, in bytes, available for use by the heap.
+          $ref: '#/components/schemas/_common___ByteCount'
+        non_heap_used:
+          description: Non-heap memory used.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        non_heap_used_in_bytes:
+          description: Non-heap memory used, in bytes.
+          $ref: '#/components/schemas/_common___ByteCount'
+        non_heap_committed:
+          description: Amount of non-heap memory available.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        non_heap_committed_in_bytes:
+          description: Amount of non-heap memory available, in bytes.
+          $ref: '#/components/schemas/_common___ByteCount'
+        pools:
+          description: Contains statistics about heap memory usage for the node.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/nodes.stats___Pool'
+    nodes.stats___JvmThreads:
+      type: object
+      properties:
+        count:
+          description: Number of active threads in use by JVM.
+          type: integer
+          format: int64
+        peak_count:
+          description: Highest number of threads used by JVM.
+          type: integer
+          format: int64
+    nodes.stats___KeyedProcessor:
+      type: object
+      properties:
+        stats:
+          $ref: '#/components/schemas/nodes.stats___Processor'
+        type:
+          type: string
+    nodes.stats___LastGcStats:
+      type: object
+      properties:
+        used:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        used_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        max:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        max_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        usage_percent:
+          $ref: '#/components/schemas/_common___PercentageNumber'
+    nodes.stats___MemoryStats:
+      type: object
+      properties:
+        total:
+          description: Total amount of physical memory.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        total_in_bytes:
+          description: Total amount of physical memory in bytes.
+          $ref: '#/components/schemas/_common___ByteCount'
+        free:
+          description: Amount of free physical memory.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        free_in_bytes:
+          description: Amount of free physical memory in bytes.
+          $ref: '#/components/schemas/_common___ByteCount'
+        used:
+          description: Amount of used physical memory.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        used_in_bytes:
+          description: Amount of used physical memory in bytes.
+          $ref: '#/components/schemas/_common___ByteCount'
     nodes.stats___Metric:
       type: string
       enum:
@@ -56131,19 +55390,889 @@ components:
         - thread_pool
         - transport
         - weighted_routing
-    nodes.stats___ResponseBase:
+    nodes.stats___NodeBufferPool:
+      type: object
+      properties:
+        count:
+          description: Number of buffer pools.
+          type: integer
+          format: int64
+        total_capacity:
+          description: Total capacity of buffer pools.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        total_capacity_in_bytes:
+          description: Total capacity of buffer pools in bytes.
+          $ref: '#/components/schemas/_common___ByteCount'
+        used:
+          description: Size of buffer pools.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        used_in_bytes:
+          description: Size of buffer pools in bytes.
+          $ref: '#/components/schemas/_common___ByteCount'
+    nodes.stats___NodeIndexShardStats:
       allOf:
-        - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
+        - $ref: '#/components/schemas/indices.stats___IndexShardStatsBase'
+        - type: object
+          properties: {}
+    nodes.stats___NodeIndicesStats:
+      allOf:
+        - $ref: '#/components/schemas/indices.stats___IndexStatsBase'
         - type: object
           properties:
-            cluster_name:
-              $ref: '#/components/schemas/_common___Name'
-            nodes:
+            indices:
               type: object
               additionalProperties:
-                $ref: '#/components/schemas/nodes._common___Stats'
+                $ref: '#/components/schemas/indices.stats___IndexStats'
+            shards:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: object
+                  propertyNames:
+                    title: shard_id
+                    type: string
+                  additionalProperties:
+                    $ref: '#/components/schemas/nodes.stats___NodeIndexShardStats'
+                  minProperties: 1
+                  maxProperties: 1
+    nodes.stats___OperatingSystem:
+      type: object
+      properties:
+        cpu:
+          $ref: '#/components/schemas/nodes.stats___OperatingSystemCpuStats'
+        mem:
+          $ref: '#/components/schemas/nodes.stats___ExtendedMemoryStats'
+        swap:
+          $ref: '#/components/schemas/nodes.stats___MemoryStats'
+        cgroup:
+          $ref: '#/components/schemas/nodes.stats___CgroupStats'
+        timestamp:
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+    nodes.stats___OperatingSystemCpuStats:
+      type: object
+      properties:
+        percent:
+          $ref: '#/components/schemas/_common___PercentageNumber'
+        load_average:
+          type: object
+          additionalProperties:
+            type: number
+            format: double
+    nodes.stats___Pool:
+      type: object
+      properties:
+        used:
+          description: Memory used by the heap.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        used_in_bytes:
+          description: Memory, in bytes, used by the heap.
+          $ref: '#/components/schemas/_common___ByteCount'
+        max:
+          description: Maximum amount of memory available for use by the heap.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        max_in_bytes:
+          description: Maximum amount of memory, in bytes, available for use by the heap.
+          $ref: '#/components/schemas/_common___ByteCount'
+        peak_used:
+          description: Largest amount of memory historically used by the heap.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        peak_used_in_bytes:
+          description: Largest amount of memory, in bytes, historically used by the heap.
+          $ref: '#/components/schemas/_common___ByteCount'
+        peak_max:
+          description: Largest amount of memory historically used by the heap.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        peak_max_in_bytes:
+          description: Largest amount of memory, in bytes, historically used by the heap.
+          $ref: '#/components/schemas/_common___ByteCount'
+        last_gc_stats:
+          description: Most recent GC cycle stats for a particular memory pool.
+          $ref: '#/components/schemas/nodes.stats___LastGcStats'
+    nodes.stats___PressureMemory:
+      type: object
+      properties:
+        all:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        all_in_bytes:
+          description: Memory consumed, in bytes, by indexing requests in the coordinating, primary, or replica stage.
+          $ref: '#/components/schemas/_common___ByteCount'
+        combined_coordinating_and_primary:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        combined_coordinating_and_primary_in_bytes:
+          description: |-
+            Memory consumed, in bytes, by indexing requests in the coordinating or primary stage.
+            This value is not the sum of coordinating and primary as a node can reuse the coordinating memory if the primary stage is executed locally.
+          $ref: '#/components/schemas/_common___ByteCount'
+        coordinating:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        coordinating_in_bytes:
+          description: Memory consumed, in bytes, by indexing requests in the coordinating stage.
+          $ref: '#/components/schemas/_common___ByteCount'
+        primary:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        primary_in_bytes:
+          description: Memory consumed, in bytes, by indexing requests in the primary stage.
+          $ref: '#/components/schemas/_common___ByteCount'
+        replica:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        replica_in_bytes:
+          description: Memory consumed, in bytes, by indexing requests in the replica stage.
+          $ref: '#/components/schemas/_common___ByteCount'
+        coordinating_rejections:
+          description: Number of indexing requests rejected in the coordinating stage.
+          type: integer
+          format: int64
+        primary_rejections:
+          description: Number of indexing requests rejected in the primary stage.
+          type: integer
+          format: int64
+        replica_rejections:
+          description: Number of indexing requests rejected in the replica stage.
+          type: integer
+          format: int64
+    nodes.stats___Process:
+      type: object
+      properties:
+        cpu:
+          $ref: '#/components/schemas/nodes.stats___ProcessCpuStats'
+        mem:
+          $ref: '#/components/schemas/nodes.stats___ProcessMemoryStats'
+        open_file_descriptors:
+          description: Number of opened file descriptors associated with the current or `-1` if not supported.
+          type: integer
+          format: int64
+        max_file_descriptors:
+          description: Maximum number of file descriptors allowed on the system, or `-1` if not supported.
+          type: integer
+          format: int64
+        timestamp:
+          description: |-
+            Last time the statistics were refreshed.
+            Recorded in milliseconds since the Unix Epoch.
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+    nodes.stats___ProcessCpuStats:
+      type: object
+      properties:
+        percent:
+          $ref: '#/components/schemas/_common___PercentageNumber'
+        total:
+          $ref: '#/components/schemas/_common___Duration'
+        total_in_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+      required:
+        - percent
+        - total_in_millis
+    nodes.stats___ProcessMemoryStats:
+      type: object
+      properties:
+        total_virtual:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        total_virtual_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+    nodes.stats___Processor:
+      type: object
+      properties:
+        count:
+          description: Number of documents transformed by the processor.
+          type: integer
+          format: int64
+        current:
+          description: Number of documents currently being transformed by the processor.
+          type: integer
+          format: int64
+        failed:
+          description: Number of failed operations for the processor.
+          type: integer
+          format: int64
+        time:
+          $ref: '#/components/schemas/_common___Duration'
+        time_in_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+    nodes.stats___PublishedClusterStates:
+      type: object
+      properties:
+        full_states:
+          description: Number of published cluster states.
+          type: integer
+          format: int64
+        incompatible_diffs:
+          description: Number of incompatible differences between published cluster states.
+          type: integer
+          format: int64
+        compatible_diffs:
+          description: Number of compatible differences between published cluster states.
+          type: integer
+          format: int64
+    nodes.stats___RemoteStoreStats:
+      type: object
+      properties:
+        last_successful_fetch_of_pinned_timestamps:
+          description: Timestamp for the last successful fetch of pinned timestamps.
+          $ref: '#/components/schemas/_common___EpochTimeUnitSeconds'
+    nodes.stats___ScriptCacheStats:
+      type: object
+      properties:
+        sum:
+          $ref: '#/components/schemas/nodes.stats___ScriptStats'
+        contexts:
+          type: array
+          items:
+            $ref: '#/components/schemas/nodes.stats___ScriptContextStats'
+      required:
+        - sum
+    nodes.stats___ScriptContextStats:
+      allOf:
+        - $ref: '#/components/schemas/nodes.stats___ScriptStatsBase'
+        - type: object
+          properties:
+            context:
+              type: string
           required:
-            - nodes
+            - context
+    nodes.stats___ScriptStats:
+      allOf:
+        - $ref: '#/components/schemas/nodes.stats___ScriptStatsBase'
+        - type: object
+          properties: {}
+    nodes.stats___ScriptStatsBase:
+      type: object
+      properties:
+        cache_evictions:
+          description: Total number of times the script cache has evicted old data.
+          type: integer
+          format: int64
+        compilations:
+          description: Total number of inline script compilations performed by the node.
+          type: integer
+          format: int64
+        compilation_limit_triggered:
+          description: Total number of times the script compilation circuit breaker has limited inline script compilations.
+          type: integer
+          format: int64
+      required:
+        - cache_evictions
+        - compilations
+        - compilation_limit_triggered
+    nodes.stats___ShardAdmissionControlStats:
+      type: object
+      properties:
+        global_io_usage:
+          $ref: '#/components/schemas/nodes.stats___UsageStats'
+        global_cpu_usage:
+          $ref: '#/components/schemas/nodes.stats___UsageStats'
+    nodes.stats___ShardCachesStats:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/nodes.stats___ShardCacheStats'
+    nodes.stats___ShardCacheStats:
+      type: object
+      properties:
+        size:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        size_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        evictions:
+          type: integer
+          format: int64
+        hit_count:
+          type: integer
+          format: int64
+        miss_count:
+          type: integer
+          format: int64
+        item_count:
+          type: integer
+          format: int64
+        store_name:
+          type: string
+    nodes.stats___ShardClusterManagerThrottlingStats:
+      type: object
+      properties:
+        stats:
+          $ref: '#/components/schemas/nodes.stats___ShardClusterManagerThrottlingStatsDetail'
+    nodes.stats___ShardClusterManagerThrottlingStatsDetail:
+      type: object
+      properties:
+        total_throttled_tasks:
+          type: integer
+          format: int64
+        throttled_tasks_per_task_type:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int64
+      required:
+        - total_throttled_tasks
+        - throttled_tasks_per_task_type
+    nodes.stats___ShardIndexingPressurePerShardIndexingStats:
+      type: object
+      properties:
+        coordinating_time_in_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+        coordinating_count:
+          type: integer
+          format: int64
+        primary_time_in_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+        primary_count:
+          type: integer
+          format: int64
+        replica_time_in_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+        replica_count:
+          type: integer
+          format: int64
+      required:
+        - coordinating_time_in_millis
+        - coordinating_count
+        - primary_time_in_millis
+        - primary_count
+        - replica_time_in_millis
+        - replica_count
+    nodes.stats___ShardIndexingPressurePerShardLastSuccessfulTimestamp:
+      type: object
+      properties:
+        coordinating_last_successful_request_timestamp_in_millis:
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+        primary_last_successful_request_timestamp_in_millis:
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+        replica_last_successful_request_timestamp_in_millis:
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+      required:
+        - coordinating_last_successful_request_timestamp_in_millis
+        - primary_last_successful_request_timestamp_in_millis
+        - replica_last_successful_request_timestamp_in_millis
+    nodes.stats___ShardIndexingPressurePerShardMemoryAllocationCurrentStats:
+      type: object
+      properties:
+        current_coordinating_and_primary_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        current_replica_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+      required:
+        - current_coordinating_and_primary_bytes
+        - current_replica_bytes
+    nodes.stats___ShardIndexingPressurePerShardMemoryAllocationLimitStats:
+      type: object
+      properties:
+        current_coordinating_and_primary_limits_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        current_replica_limits_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+      required:
+        - current_coordinating_and_primary_limits_in_bytes
+        - current_replica_limits_in_bytes
+    nodes.stats___ShardIndexingPressurePerShardMemoryAllocationStats:
+      type: object
+      properties:
+        current:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressurePerShardMemoryAllocationCurrentStats'
+        limit:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressurePerShardMemoryAllocationLimitStats'
+      required:
+        - current
+        - limit
+    nodes.stats___ShardIndexingPressurePerShardMemoryStats:
+      type: object
+      properties:
+        current:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressurePerShardMemoryStatsDetails'
+        total:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressurePerShardMemoryStatsDetails'
+      required:
+        - current
+        - total
+    nodes.stats___ShardIndexingPressurePerShardMemoryStatsDetails:
+      type: object
+      properties:
+        coordinating:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        coordinating_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        primary:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        primary_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        replica:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        replica_in_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+      required:
+        - coordinating_in_bytes
+        - primary_in_bytes
+        - replica_in_bytes
+    nodes.stats___ShardIndexingPressurePerShardRejectionCoordinatingStats:
+      type: object
+      properties:
+        coordinating_rejections:
+          type: integer
+          format: int64
+        breakup:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressureRejectionsBreakupStats'
+        breakup_shadow_mode:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressureRejectionsBreakupStats'
+      required:
+        - coordinating_rejections
+    nodes.stats___ShardIndexingPressurePerShardRejectionPrimaryStats:
+      type: object
+      properties:
+        primary_rejections:
+          type: integer
+          format: int64
+        breakup:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressureRejectionsBreakupStats'
+        breakup_shadow_mode:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressureRejectionsBreakupStats'
+      required:
+        - primary_rejections
+    nodes.stats___ShardIndexingPressurePerShardRejectionReplicaStats:
+      type: object
+      properties:
+        replica_rejections:
+          type: integer
+          format: int64
+        breakup:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressureRejectionsBreakupStats'
+        breakup_shadow_mode:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressureRejectionsBreakupStats'
+      required:
+        - replica_rejections
+    nodes.stats___ShardIndexingPressurePerShardRejectionStats:
+      type: object
+      properties:
+        coordinating:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressurePerShardRejectionCoordinatingStats'
+        primary:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressurePerShardRejectionPrimaryStats'
+        replica:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressurePerShardRejectionReplicaStats'
+      required:
+        - coordinating
+        - primary
+        - replica
+    nodes.stats___ShardIndexingPressurePerShardStats:
+      type: object
+      properties:
+        memory:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressurePerShardMemoryStats'
+        rejection:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressurePerShardRejectionStats'
+        last_successful_timestamp:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressurePerShardLastSuccessfulTimestamp'
+        indexing:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressurePerShardIndexingStats'
+        memory_allocation:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressurePerShardMemoryAllocationStats'
+      required:
+        - memory
+        - rejection
+        - last_successful_timestamp
+        - indexing
+        - memory_allocation
+    nodes.stats___ShardIndexingPressureRejectionsBreakupStats:
+      type: object
+      properties:
+        node_limits:
+          type: integer
+          format: int64
+        no_successful_request_limits:
+          type: integer
+          format: int64
+        throughput_degradation_limits:
+          type: integer
+          format: int64
+    nodes.stats___ShardIndexingPressureStats:
+      type: object
+      properties:
+        stats:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/nodes.stats___ShardIndexingPressurePerShardStats'
+        enabled:
+          type: boolean
+        enforced:
+          type: boolean
+        total_rejections_breakup:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressureRejectionsBreakupStats'
+        total_rejections_breakup_shadow_mode:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressureRejectionsBreakupStats'
+    nodes.stats___ShardRepositoriesStats:
+      type: array
+    nodes.stats___ShardResourceUsageStats:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/nodes.stats___ShardResourceUsageStatsDetail'
+    nodes.stats___ShardResourceUsageStatsDetail:
+      type: object
+      properties:
+        timestamp:
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+        cpu_utilization_percent:
+          $ref: '#/components/schemas/_common___PercentageString'
+        memory_utilization_percent:
+          $ref: '#/components/schemas/_common___PercentageString'
+        io_usage_stats:
+          $ref: '#/components/schemas/nodes.stats___ShardResourceUsageStatsIoUsageStats'
+    nodes.stats___ShardResourceUsageStatsIoUsageStats:
+      type: object
+      properties:
+        max_io_utilization_percent:
+          $ref: '#/components/schemas/_common___PercentageString'
+    nodes.stats___ShardSearchBackpressureMode:
+      type: string
+      enum:
+        - disabled
+        - enforced
+        - monitor_only
+    nodes.stats___ShardSearchBackpressureStats:
+      type: object
+      properties:
+        search_task:
+          $ref: '#/components/schemas/nodes.stats___ShardSearchBackpressureTaskStats'
+        search_shard_task:
+          $ref: '#/components/schemas/nodes.stats___ShardSearchBackpressureTaskStats'
+        mode:
+          $ref: '#/components/schemas/nodes.stats___ShardSearchBackpressureMode'
+    nodes.stats___ShardSearchBackpressureTaskCancellationStats:
+      type: object
+      properties:
+        cancellation_count:
+          type: integer
+          format: int64
+        cancellation_limit_reached_count:
+          type: integer
+          format: int64
+        cancelled_task_percentage:
+          $ref: '#/components/schemas/_common___PercentageNumber'
+        current_cancellation_eligible_tasks_count:
+          type: integer
+          format: int64
+    nodes.stats___ShardSearchBackpressureTaskResourceTrackerCpuUsageTrackerStats:
+      type: object
+      properties:
+        cancellation_count:
+          type: integer
+          format: int64
+        current_max:
+          $ref: '#/components/schemas/_common___Duration'
+        current_max_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+        current_avg:
+          $ref: '#/components/schemas/_common___Duration'
+        current_avg_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+    nodes.stats___ShardSearchBackpressureTaskResourceTrackerElapsedTimeTrackerStats:
+      type: object
+      properties:
+        cancellation_count:
+          type: integer
+          format: int64
+        current_max:
+          $ref: '#/components/schemas/_common___Duration'
+        current_max_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+        current_avg:
+          $ref: '#/components/schemas/_common___Duration'
+        current_avg_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+    nodes.stats___ShardSearchBackpressureTaskResourceTrackerHeapUsageTrackerStats:
+      type: object
+      properties:
+        cancellation_count:
+          type: integer
+          format: int64
+        current_max:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        current_max_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        current_avg:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        current_avg_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+        rolling_avg:
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        rolling_avg_bytes:
+          $ref: '#/components/schemas/_common___ByteCount'
+    nodes.stats___ShardSearchBackpressureTaskResourceTrackerStats:
+      type: object
+      properties:
+        heap_usage_tracker:
+          $ref: '#/components/schemas/nodes.stats___ShardSearchBackpressureTaskResourceTrackerHeapUsageTrackerStats'
+        elapsed_time_tracker:
+          $ref: '#/components/schemas/nodes.stats___ShardSearchBackpressureTaskResourceTrackerElapsedTimeTrackerStats'
+        cpu_usage_tracker:
+          $ref: '#/components/schemas/nodes.stats___ShardSearchBackpressureTaskResourceTrackerCpuUsageTrackerStats'
+    nodes.stats___ShardSearchBackpressureTaskStats:
+      type: object
+      properties:
+        resource_tracker_stats:
+          $ref: '#/components/schemas/nodes.stats___ShardSearchBackpressureTaskResourceTrackerStats'
+        cancellation_stats:
+          $ref: '#/components/schemas/nodes.stats___ShardSearchBackpressureTaskCancellationStats'
+        completion_count:
+          x-version-added: '3.0'
+          type: integer
+          format: int64
+    nodes.stats___ShardSearchPipelineOperationStats:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int64
+        time:
+          $ref: '#/components/schemas/_common___Duration'
+        time_in_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+        current:
+          type: integer
+          format: int64
+        failed:
+          type: integer
+          format: int64
+    nodes.stats___ShardSearchPipelinePerPipelineProcessorStats:
+      type: object
+      properties:
+        type:
+          type: string
+        stats:
+          $ref: '#/components/schemas/nodes.stats___ShardSearchPipelineOperationStats'
+    nodes.stats___ShardSearchPipelinePerPipelineStats:
+      type: object
+      properties:
+        request:
+          $ref: '#/components/schemas/nodes.stats___ShardSearchPipelineOperationStats'
+        response:
+          $ref: '#/components/schemas/nodes.stats___ShardSearchPipelineOperationStats'
+        request_processors:
+          type: array
+          items:
+            $ref: '#/components/schemas/nodes.stats___ShardSearchPipelinePerPipelineProcessorStats'
+        response_processors:
+          type: array
+          items:
+            type: object
+            propertyNames:
+              title: processor_name
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/nodes.stats___ShardSearchPipelinePerPipelineProcessorStats'
+            minProperties: 1
+            maxProperties: 1
+    nodes.stats___ShardSearchPipelineStats:
+      type: object
+      properties:
+        total_request:
+          $ref: '#/components/schemas/nodes.stats___ShardSearchPipelineOperationStats'
+        total_response:
+          $ref: '#/components/schemas/nodes.stats___ShardSearchPipelineOperationStats'
+        pipelines:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/nodes.stats___ShardSearchPipelinePerPipelineStats'
+    nodes.stats___ShardSegmentReplicationBackpressureStats:
+      type: object
+      properties:
+        total_rejected_requests:
+          type: integer
+          format: int64
+    nodes.stats___ShardTaskCancellationStats:
+      type: object
+      properties:
+        search_shard_task:
+          $ref: '#/components/schemas/nodes.stats___ShardTaskCancellationStatsDetail'
+    nodes.stats___ShardTaskCancellationStatsDetail:
+      type: object
+      properties:
+        current_count_post_cancel:
+          type: integer
+          format: int64
+        total_count_post_cancel:
+          type: integer
+          format: int64
+    nodes.stats___ShardWeightedRoutingStats:
+      type: object
+      properties:
+        stats:
+          $ref: '#/components/schemas/nodes.stats___ShardWeightedRoutingStatsDetail'
+    nodes.stats___ShardWeightedRoutingStatsDetail:
+      type: object
+      properties:
+        fail_open_count:
+          type: integer
+          format: int32
+    nodes.stats___Stats:
+      type: object
+      properties:
+        adaptive_selection:
+          description: Statistics about adaptive replica selection.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/nodes.stats___AdaptiveSelection'
+        breakers:
+          description: Statistics about the field data circuit breaker.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/nodes.stats___Breaker'
+        fs:
+          $ref: '#/components/schemas/nodes.stats___FileSystem'
+        host:
+          $ref: '#/components/schemas/_common___Host'
+        http:
+          $ref: '#/components/schemas/nodes.stats___Http'
+        ingest:
+          $ref: '#/components/schemas/nodes.stats___Ingest'
+        ip:
+          description: IP address and port for the node.
+          oneOf:
+            - $ref: '#/components/schemas/_common___Ip'
+            - type: array
+              items:
+                $ref: '#/components/schemas/_common___Ip'
+        jvm:
+          $ref: '#/components/schemas/nodes.stats___Jvm'
+        name:
+          $ref: '#/components/schemas/_common___Name'
+        os:
+          $ref: '#/components/schemas/nodes.stats___OperatingSystem'
+        process:
+          $ref: '#/components/schemas/nodes.stats___Process'
+        roles:
+          $ref: '#/components/schemas/_common___NodeRoles'
+        script:
+          $ref: '#/components/schemas/nodes.stats___ScriptStats'
+        script_cache:
+          $ref: '#/components/schemas/nodes.stats___ScriptCacheStats'
+        thread_pool:
+          description: Statistics about each thread pool, including current size, queue and rejected tasks.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/nodes.stats___ThreadCount'
+        timestamp:
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+        transport:
+          $ref: '#/components/schemas/nodes.stats___Transport'
+        transport_address:
+          $ref: '#/components/schemas/_common___TransportAddress'
+        attributes:
+          description: Contains a list of attributes for the node.
+          type: object
+          additionalProperties:
+            type: string
+        discovery:
+          $ref: '#/components/schemas/nodes.stats___Discovery'
+        indexing_pressure:
+          $ref: '#/components/schemas/nodes.stats___IndexingPressure'
+        indices:
+          $ref: '#/components/schemas/nodes.stats___NodeIndicesStats'
+        shard_indexing_pressure:
+          $ref: '#/components/schemas/nodes.stats___ShardIndexingPressureStats'
+        search_backpressure:
+          $ref: '#/components/schemas/nodes.stats___ShardSearchBackpressureStats'
+        cluster_manager_throttling:
+          $ref: '#/components/schemas/nodes.stats___ShardClusterManagerThrottlingStats'
+        weighted_routing:
+          $ref: '#/components/schemas/nodes.stats___ShardWeightedRoutingStats'
+        task_cancellation:
+          $ref: '#/components/schemas/nodes.stats___ShardTaskCancellationStats'
+        resource_usage_stats:
+          $ref: '#/components/schemas/nodes.stats___ShardResourceUsageStats'
+        search_pipeline:
+          $ref: '#/components/schemas/nodes.stats___ShardSearchPipelineStats'
+        segment_replication_backpressure:
+          $ref: '#/components/schemas/nodes.stats___ShardSegmentReplicationBackpressureStats'
+        remote_store:
+          $ref: '#/components/schemas/nodes.stats___RemoteStoreStats'
+        repositories:
+          $ref: '#/components/schemas/nodes.stats___ShardRepositoriesStats'
+        admission_control:
+          $ref: '#/components/schemas/nodes.stats___ShardAdmissionControlStats'
+        caches:
+          $ref: '#/components/schemas/nodes.stats___ShardCachesStats'
+    nodes.stats___ThreadCount:
+      type: object
+      properties:
+        active:
+          description: Number of active threads in the thread pool.
+          type: integer
+          format: int64
+        completed:
+          description: Number of tasks completed by the thread pool executor.
+          type: integer
+          format: int64
+        largest:
+          description: Highest number of active threads in the thread pool.
+          type: integer
+          format: int64
+        queue:
+          description: Number of tasks in queue for the thread pool.
+          type: integer
+          format: int64
+        rejected:
+          description: Number of tasks rejected by the thread pool executor.
+          type: integer
+          format: int64
+        threads:
+          description: Number of threads in the thread pool.
+          type: integer
+          format: int64
+        total_wait_time:
+          description: |
+            The total amount of time that tasks spend waiting in the thread pool queue.
+            Currently, only `search`, `search_throttled`, and `index_searcher` thread pools support this metric.
+          $ref: '#/components/schemas/_common___Duration'
+        total_wait_time_in_nanos:
+          description: |
+            The total amount of time that tasks spend waiting in the thread pool queue.
+            Currently, only `search`, `search_throttled`, and `index_searcher` thread pools support this metric.
+          $ref: '#/components/schemas/_common___DurationValueUnitNanos'
+    nodes.stats___Transport:
+      type: object
+      properties:
+        rx_count:
+          description: Total number of RX (receive) packets received by the node during internal cluster communication.
+          type: integer
+          format: int64
+        rx_size:
+          description: Size of RX packets received by the node during internal cluster communication.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        rx_size_in_bytes:
+          description: Size, in bytes, of RX packets received by the node during internal cluster communication.
+          $ref: '#/components/schemas/_common___ByteCount'
+        server_open:
+          description: Current number of inbound TCP connections used for internal communication between nodes.
+          type: integer
+          format: int64
+        tx_count:
+          description: Total number of TX (transmit) packets sent by the node during internal cluster communication.
+          type: integer
+          format: int64
+        tx_size:
+          description: Size of TX packets sent by the node during internal cluster communication.
+          $ref: '#/components/schemas/_common___HumanReadableByteCount'
+        tx_size_in_bytes:
+          description: Size, in bytes, of TX packets sent by the node during internal cluster communication.
+          $ref: '#/components/schemas/_common___ByteCount'
+        total_outbound_connections:
+          description: |-
+            The cumulative number of outbound transport connections that this node has opened since it started.
+            Each transport connection may comprise multiple TCP connections but is only counted once in this statistic.
+            Transport connections are typically long-lived so this statistic should remain constant in a stable cluster.
+          type: integer
+          format: int64
+    nodes.stats___TransportUsageStats:
+      type: object
+      properties:
+        rejection_count:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int64
+    nodes.stats___UsageStats:
+      type: object
+      properties:
+        transport:
+          $ref: '#/components/schemas/nodes.stats___TransportUsageStats'
     nodes.usage___Metric:
       type: string
       enum:

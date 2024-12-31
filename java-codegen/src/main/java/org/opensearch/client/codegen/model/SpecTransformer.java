@@ -645,7 +645,8 @@ public class SpecTransformer {
             var value = schema.getAdditionalProperties().orElseThrow();
             if (value.has$ref()) {
                 var keySchema = schema.getPropertyNames().orElse(OpenApiSchema.ANONYMOUS_STRING);
-                var fieldName = keySchema.resolve().getName().map(NameSanitizer::fieldName).orElse("key");
+                var resolvedKeySchema = keySchema.resolve();
+                var fieldName = resolvedKeySchema.getName().or(resolvedKeySchema::getTitle).map(NameSanitizer::fieldName).orElse("key");
                 var type = mapType(value);
                 var shape = type.getTargetShape().orElse(null);
                 if (shape instanceof ObjectShapeBase) {

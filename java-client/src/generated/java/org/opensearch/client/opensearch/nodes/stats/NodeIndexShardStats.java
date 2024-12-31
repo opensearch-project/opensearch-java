@@ -34,7 +34,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.indices.stats;
+package org.opensearch.client.opensearch.nodes.stats;
 
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -43,24 +43,40 @@ import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch.indices.stats.IndexShardStatsBase;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: indices.stats.IndexShardStats
+// typedef: nodes.stats.NodeIndexShardStats
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IndexShardStats extends IndexShardStatsBase implements ToCopyableBuilder<IndexShardStats.Builder, IndexShardStats> {
+public class NodeIndexShardStats extends IndexShardStatsBase
+    implements
+        ToCopyableBuilder<NodeIndexShardStats.Builder, NodeIndexShardStats> {
+
+    @Nonnull
+    private final String shardId;
 
     // ---------------------------------------------------------------------------------------------
 
-    private IndexShardStats(Builder builder) {
+    private NodeIndexShardStats(Builder builder) {
         super(builder);
+        this.shardId = ApiTypeHelper.requireNonNull(builder.shardId, this, "shardId");
     }
 
-    public static IndexShardStats of(Function<IndexShardStats.Builder, ObjectBuilder<IndexShardStats>> fn) {
+    public static NodeIndexShardStats of(Function<NodeIndexShardStats.Builder, ObjectBuilder<NodeIndexShardStats>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * Required - The target shardId
+     */
+    @Nonnull
+    public final String shardId() {
+        return this.shardId;
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -77,18 +93,23 @@ public class IndexShardStats extends IndexShardStatsBase implements ToCopyableBu
     }
 
     /**
-     * Builder for {@link IndexShardStats}.
+     * Builder for {@link NodeIndexShardStats}.
      */
-    public static class Builder extends IndexShardStatsBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, IndexShardStats> {
+    public static class Builder extends IndexShardStatsBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, NodeIndexShardStats> {
+        private String shardId;
 
         public Builder() {}
 
-        private Builder(IndexShardStats o) {
+        private Builder(NodeIndexShardStats o) {
             super(o);
+            this.shardId = o.shardId;
         }
 
         private Builder(Builder o) {
             super(o);
+            this.shardId = o.shardId;
         }
 
         @Override
@@ -104,36 +125,47 @@ public class IndexShardStats extends IndexShardStatsBase implements ToCopyableBu
         }
 
         /**
-         * Builds a {@link IndexShardStats}.
+         * Required - The target shardId
+         */
+        @Nonnull
+        public final Builder shardId(String value) {
+            this.shardId = value;
+            return this;
+        }
+
+        /**
+         * Builds a {@link NodeIndexShardStats}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public IndexShardStats build() {
+        public NodeIndexShardStats build() {
             _checkSingleUse();
 
-            return new IndexShardStats(this);
+            return new NodeIndexShardStats(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link IndexShardStats}
+     * Json deserializer for {@link NodeIndexShardStats}
      */
-    public static final JsonpDeserializer<IndexShardStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<NodeIndexShardStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        IndexShardStats::setupIndexShardStatsDeserializer
+        NodeIndexShardStats::setupNodeIndexShardStatsDeserializer
     );
 
-    protected static void setupIndexShardStatsDeserializer(ObjectDeserializer<IndexShardStats.Builder> op) {
+    protected static void setupNodeIndexShardStatsDeserializer(ObjectDeserializer<NodeIndexShardStats.Builder> op) {
         setupIndexShardStatsBaseDeserializer(op);
+        op.setKey(Builder::shardId, JsonpDeserializer.stringDeserializer());
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
+        result = 31 * result + this.shardId.hashCode();
         return result;
     }
 
@@ -144,6 +176,7 @@ public class IndexShardStats extends IndexShardStatsBase implements ToCopyableBu
         }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        return true;
+        NodeIndexShardStats other = (NodeIndexShardStats) o;
+        return this.shardId.equals(other.shardId);
     }
 }

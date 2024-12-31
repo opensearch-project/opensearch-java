@@ -34,33 +34,72 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.indices.stats;
+package org.opensearch.client.opensearch.nodes.stats;
 
+import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: indices.stats.IndexShardStats
+// typedef: nodes.stats.ShardWeightedRoutingStatsDetail
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IndexShardStats extends IndexShardStatsBase implements ToCopyableBuilder<IndexShardStats.Builder, IndexShardStats> {
+public class ShardWeightedRoutingStatsDetail
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<ShardWeightedRoutingStatsDetail.Builder, ShardWeightedRoutingStatsDetail> {
+
+    @Nullable
+    private final Integer failOpenCount;
 
     // ---------------------------------------------------------------------------------------------
 
-    private IndexShardStats(Builder builder) {
-        super(builder);
+    private ShardWeightedRoutingStatsDetail(Builder builder) {
+        this.failOpenCount = builder.failOpenCount;
     }
 
-    public static IndexShardStats of(Function<IndexShardStats.Builder, ObjectBuilder<IndexShardStats>> fn) {
+    public static ShardWeightedRoutingStatsDetail of(
+        Function<ShardWeightedRoutingStatsDetail.Builder, ObjectBuilder<ShardWeightedRoutingStatsDetail>> fn
+    ) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * API name: {@code fail_open_count}
+     */
+    @Nullable
+    public final Integer failOpenCount() {
+        return this.failOpenCount;
+    }
+
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.failOpenCount != null) {
+            generator.writeKey("fail_open_count");
+            generator.write(this.failOpenCount);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -77,18 +116,20 @@ public class IndexShardStats extends IndexShardStatsBase implements ToCopyableBu
     }
 
     /**
-     * Builder for {@link IndexShardStats}.
+     * Builder for {@link ShardWeightedRoutingStatsDetail}.
      */
-    public static class Builder extends IndexShardStatsBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, IndexShardStats> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardWeightedRoutingStatsDetail> {
+        @Nullable
+        private Integer failOpenCount;
 
         public Builder() {}
 
-        private Builder(IndexShardStats o) {
-            super(o);
+        private Builder(ShardWeightedRoutingStatsDetail o) {
+            this.failOpenCount = o.failOpenCount;
         }
 
         private Builder(Builder o) {
-            super(o);
+            this.failOpenCount = o.failOpenCount;
         }
 
         @Override
@@ -97,53 +138,55 @@ public class IndexShardStats extends IndexShardStatsBase implements ToCopyableBu
             return new Builder(this);
         }
 
-        @Override
+        /**
+         * API name: {@code fail_open_count}
+         */
         @Nonnull
-        protected Builder self() {
+        public final Builder failOpenCount(@Nullable Integer value) {
+            this.failOpenCount = value;
             return this;
         }
 
         /**
-         * Builds a {@link IndexShardStats}.
+         * Builds a {@link ShardWeightedRoutingStatsDetail}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public IndexShardStats build() {
+        public ShardWeightedRoutingStatsDetail build() {
             _checkSingleUse();
 
-            return new IndexShardStats(this);
+            return new ShardWeightedRoutingStatsDetail(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link IndexShardStats}
+     * Json deserializer for {@link ShardWeightedRoutingStatsDetail}
      */
-    public static final JsonpDeserializer<IndexShardStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<ShardWeightedRoutingStatsDetail> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        IndexShardStats::setupIndexShardStatsDeserializer
+        ShardWeightedRoutingStatsDetail::setupShardWeightedRoutingStatsDetailDeserializer
     );
 
-    protected static void setupIndexShardStatsDeserializer(ObjectDeserializer<IndexShardStats.Builder> op) {
-        setupIndexShardStatsBaseDeserializer(op);
+    protected static void setupShardWeightedRoutingStatsDetailDeserializer(ObjectDeserializer<ShardWeightedRoutingStatsDetail.Builder> op) {
+        op.add(Builder::failOpenCount, JsonpDeserializer.integerDeserializer(), "fail_open_count");
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.failOpenCount);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        return true;
+        ShardWeightedRoutingStatsDetail other = (ShardWeightedRoutingStatsDetail) o;
+        return Objects.equals(this.failOpenCount, other.failOpenCount);
     }
 }

@@ -34,7 +34,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.indices.stats;
+package org.opensearch.client.opensearch.nodes.stats;
 
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -47,19 +47,19 @@ import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: indices.stats.IndexShardStats
+// typedef: nodes.stats.ScriptStats
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IndexShardStats extends IndexShardStatsBase implements ToCopyableBuilder<IndexShardStats.Builder, IndexShardStats> {
+public class ScriptStats extends ScriptStatsBase implements ToCopyableBuilder<ScriptStats.Builder, ScriptStats> {
 
     // ---------------------------------------------------------------------------------------------
 
-    private IndexShardStats(Builder builder) {
+    private ScriptStats(Builder builder) {
         super(builder);
     }
 
-    public static IndexShardStats of(Function<IndexShardStats.Builder, ObjectBuilder<IndexShardStats>> fn) {
+    public static ScriptStats of(Function<ScriptStats.Builder, ObjectBuilder<ScriptStats>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -77,13 +77,13 @@ public class IndexShardStats extends IndexShardStatsBase implements ToCopyableBu
     }
 
     /**
-     * Builder for {@link IndexShardStats}.
+     * Builder for {@link ScriptStats}.
      */
-    public static class Builder extends IndexShardStatsBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, IndexShardStats> {
+    public static class Builder extends ScriptStatsBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ScriptStats> {
 
         public Builder() {}
 
-        private Builder(IndexShardStats o) {
+        private Builder(ScriptStats o) {
             super(o);
         }
 
@@ -104,31 +104,31 @@ public class IndexShardStats extends IndexShardStatsBase implements ToCopyableBu
         }
 
         /**
-         * Builds a {@link IndexShardStats}.
+         * Builds a {@link ScriptStats}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public IndexShardStats build() {
+        public ScriptStats build() {
             _checkSingleUse();
 
-            return new IndexShardStats(this);
+            return new ScriptStats(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link IndexShardStats}
+     * Json deserializer for {@link ScriptStats}
      */
-    public static final JsonpDeserializer<IndexShardStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<ScriptStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        IndexShardStats::setupIndexShardStatsDeserializer
+        ScriptStats::setupScriptStatsDeserializer
     );
 
-    protected static void setupIndexShardStatsDeserializer(ObjectDeserializer<IndexShardStats.Builder> op) {
-        setupIndexShardStatsBaseDeserializer(op);
+    protected static void setupScriptStatsDeserializer(ObjectDeserializer<ScriptStats.Builder> op) {
+        setupScriptStatsBaseDeserializer(op);
     }
 
     @Override
