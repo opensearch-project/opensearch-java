@@ -67,7 +67,13 @@ public class CodeGenerator {
                 isNot("search_models")
             )
         ),
-        and(namespace(is("nodes")), name(isOneOf("info", "reload_secure_settings", "stats", "usage"))),
+        and(
+            namespace(is("nodes")),
+            name(
+                // TODO: hot_threads is a plain text response and should be handled differently
+                isNot("hot_threads")
+            )
+        ),
         namespace(is("snapshot")),
         namespace(is("tasks"))
     );
