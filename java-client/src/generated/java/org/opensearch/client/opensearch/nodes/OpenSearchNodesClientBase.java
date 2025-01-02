@@ -133,4 +133,30 @@ public abstract class OpenSearchNodesClientBase<Self extends OpenSearchNodesClie
     public final NodesStatsResponse stats() throws IOException, OpenSearchException {
         return stats(new NodesStatsRequest.Builder().build());
     }
+
+    // ----- Endpoint: nodes.usage
+
+    /**
+     * Returns low-level information about REST actions usage on nodes.
+     */
+    public NodesUsageResponse usage(NodesUsageRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, NodesUsageRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns low-level information about REST actions usage on nodes.
+     *
+     * @param fn a function that initializes a builder to create the {@link NodesUsageRequest}
+     */
+    public final NodesUsageResponse usage(Function<NodesUsageRequest.Builder, ObjectBuilder<NodesUsageRequest>> fn) throws IOException,
+        OpenSearchException {
+        return usage(fn.apply(new NodesUsageRequest.Builder()).build());
+    }
+
+    /**
+     * Returns low-level information about REST actions usage on nodes.
+     */
+    public final NodesUsageResponse usage() throws IOException, OpenSearchException {
+        return usage(new NodesUsageRequest.Builder().build());
+    }
 }

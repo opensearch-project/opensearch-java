@@ -101,47 +101,4 @@ public class OpenSearchNodesClient extends OpenSearchNodesClientBase<OpenSearchN
     public HotThreadsResponse hotThreads() throws IOException, OpenSearchException {
         return this.transport.performRequest(new HotThreadsRequest.Builder().build(), HotThreadsRequest._ENDPOINT, this.transportOptions);
     }
-
-    // ----- Endpoint: nodes.usage
-
-    /**
-     * Returns low-level information about REST actions usage on nodes.
-     *
-     *
-     */
-
-    public NodesUsageResponse usage(NodesUsageRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            NodesUsageRequest,
-            NodesUsageResponse,
-            ErrorResponse>) NodesUsageRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns low-level information about REST actions usage on nodes.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link NodesUsageRequest}
-     *
-     */
-
-    public final NodesUsageResponse usage(Function<NodesUsageRequest.Builder, ObjectBuilder<NodesUsageRequest>> fn) throws IOException,
-        OpenSearchException {
-        return usage(fn.apply(new NodesUsageRequest.Builder()).build());
-    }
-
-    /**
-     * Returns low-level information about REST actions usage on nodes.
-     *
-     *
-     */
-
-    public NodesUsageResponse usage() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new NodesUsageRequest.Builder().build(), NodesUsageRequest._ENDPOINT, this.transportOptions);
-    }
-
 }

@@ -30344,7 +30344,19 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/nodes.usage___ResponseBase'
+            allOf:
+              - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
+              - type: object
+                properties:
+                  cluster_name:
+                    $ref: '#/components/schemas/_common___Name'
+                  nodes:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/nodes.usage___NodeUsage'
+                required:
+                  - cluster_name
+                  - nodes
       description: ''
     notifications.create_config___200:
       content:
@@ -56281,32 +56293,18 @@ components:
         rest_actions:
           type: object
           additionalProperties:
-            type: number
+            type: integer
+            format: int64
         since:
           $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
         timestamp:
           $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
         aggregations:
           type: object
-          additionalProperties:
-            type: object
+          additionalProperties: true
       required:
         - since
         - timestamp
-    nodes.usage___ResponseBase:
-      allOf:
-        - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
-        - type: object
-          properties:
-            cluster_name:
-              $ref: '#/components/schemas/_common___Name'
-            nodes:
-              type: object
-              additionalProperties:
-                $ref: '#/components/schemas/nodes.usage___NodeUsage'
-          required:
-            - cluster_name
-            - nodes
     notifications._common___Chime:
       type: object
       properties:

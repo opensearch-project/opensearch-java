@@ -420,3 +420,10 @@ After:
 ### nodes.Transport
 - The `Transport` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
 - The `serverOpen` property has been corrected to be of type `long` instead of `int`.
+
+### NodesUsageRequest
+- The `metric` property is now of type `List<NodesUsageMetric>` instead of `List<String>`.
+
+### NodeUsage
+- The `restActions` property has been corrected to be of type `Map<String, Long>` instead of `Map<String, Integer>`.
+- The `since` and `timestamp` properties have been corrected to be of type `long` instead of `String`.

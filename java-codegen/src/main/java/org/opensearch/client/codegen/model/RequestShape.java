@@ -255,6 +255,7 @@ public class RequestShape extends ObjectShape {
 
             case "stats":
             case "status":
+            case "usage":
                 return toPascalCase(ns) + toPascalCase(name);
 
             case "get_settings":

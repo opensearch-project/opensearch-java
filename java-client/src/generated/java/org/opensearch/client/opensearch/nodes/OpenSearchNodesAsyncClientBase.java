@@ -137,4 +137,30 @@ public abstract class OpenSearchNodesAsyncClientBase<Self extends OpenSearchNode
     public final CompletableFuture<NodesStatsResponse> stats() throws IOException, OpenSearchException {
         return stats(new NodesStatsRequest.Builder().build());
     }
+
+    // ----- Endpoint: nodes.usage
+
+    /**
+     * Returns low-level information about REST actions usage on nodes.
+     */
+    public CompletableFuture<NodesUsageResponse> usage(NodesUsageRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, NodesUsageRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns low-level information about REST actions usage on nodes.
+     *
+     * @param fn a function that initializes a builder to create the {@link NodesUsageRequest}
+     */
+    public final CompletableFuture<NodesUsageResponse> usage(Function<NodesUsageRequest.Builder, ObjectBuilder<NodesUsageRequest>> fn)
+        throws IOException, OpenSearchException {
+        return usage(fn.apply(new NodesUsageRequest.Builder()).build());
+    }
+
+    /**
+     * Returns low-level information about REST actions usage on nodes.
+     */
+    public final CompletableFuture<NodesUsageResponse> usage() throws IOException, OpenSearchException {
+        return usage(new NodesUsageRequest.Builder().build());
+    }
 }
