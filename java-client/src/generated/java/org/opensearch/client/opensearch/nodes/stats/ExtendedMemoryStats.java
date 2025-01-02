@@ -55,7 +55,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ExtendedMemoryStats extends MemoryStats implements ToCopyableBuilder<ExtendedMemoryStats.Builder, ExtendedMemoryStats> {
+public class ExtendedMemoryStats extends MemoryStatsBase implements ToCopyableBuilder<ExtendedMemoryStats.Builder, ExtendedMemoryStats> {
 
     @Nullable
     private final Double freePercent;
@@ -126,7 +126,7 @@ public class ExtendedMemoryStats extends MemoryStats implements ToCopyableBuilde
     /**
      * Builder for {@link ExtendedMemoryStats}.
      */
-    public static class Builder extends MemoryStats.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ExtendedMemoryStats> {
+    public static class Builder extends MemoryStatsBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ExtendedMemoryStats> {
         @Nullable
         private Double freePercent;
         @Nullable
@@ -207,7 +207,7 @@ public class ExtendedMemoryStats extends MemoryStats implements ToCopyableBuilde
     );
 
     protected static void setupExtendedMemoryStatsDeserializer(ObjectDeserializer<ExtendedMemoryStats.Builder> op) {
-        setupMemoryStatsDeserializer(op);
+        setupMemoryStatsBaseDeserializer(op);
         op.add(Builder::freePercent, JsonpDeserializer.doubleDeserializer(), "free_percent");
         op.add(Builder::usedPercent, JsonpDeserializer.doubleDeserializer(), "used_percent");
     }

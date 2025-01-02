@@ -41,52 +41,37 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.ObjectBuilderDeserializer;
+import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.json.UnionDeserializer;
+import org.opensearch.client.opensearch._types.ErrorCause;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import org.opensearch.client.util.TaggedUnion;
-import org.opensearch.client.util.TaggedUnionUtils;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.reload_secure_settings.NodeReloadResult
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Object>, PlainJsonSerializable {
-    /**
-     * {@link NodeReloadResult} variant kinds.
-     */
-    public enum Kind {
-        Error,
-        Success
-    }
+public class NodeReloadResult implements PlainJsonSerializable, ToCopyableBuilder<NodeReloadResult.Builder, NodeReloadResult> {
 
-    private final Kind _kind;
-    private final Object _value;
+    @Nonnull
+    private final String name;
 
-    @Override
-    public final Kind _kind() {
-        return _kind;
-    }
+    @Nullable
+    private final ErrorCause reloadException;
 
-    @Override
-    public final Object _get() {
-        return _value;
-    }
-
-    private NodeReloadResult(Kind kind, Object value) {
-        this._kind = kind;
-        this._value = value;
-    }
+    // ---------------------------------------------------------------------------------------------
 
     private NodeReloadResult(Builder builder) {
-        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.reloadException = builder.reloadException;
     }
 
     public static NodeReloadResult of(Function<NodeReloadResult.Builder, ObjectBuilder<NodeReloadResult>> fn) {
@@ -94,44 +79,44 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
     }
 
     /**
-     * Is this variant instance of kind {@code error}?
+     * Required - API name: {@code name}
      */
-    public boolean isError() {
-        return _kind == Kind.Error;
+    @Nonnull
+    public final String name() {
+        return this.name;
     }
 
     /**
-     * Get the {@code error} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code error} kind.
+     * API name: {@code reload_exception}
      */
-    public NodeReloadError error() {
-        return TaggedUnionUtils.get(this, Kind.Error);
+    @Nullable
+    public final ErrorCause reloadException() {
+        return this.reloadException;
     }
 
     /**
-     * Is this variant instance of kind {@code success}?
+     * Serialize this object to JSON.
      */
-    public boolean isSuccess() {
-        return _kind == Kind.Success;
-    }
-
-    /**
-     * Get the {@code success} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code success} kind.
-     */
-    public NodeReloadSuccess success() {
-        return TaggedUnionUtils.get(this, Kind.Success);
-    }
-
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        if (_value instanceof JsonpSerializable) {
-            ((JsonpSerializable) _value).serialize(generator, mapper);
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeKey("name");
+        generator.write(this.name);
+
+        if (this.reloadException != null) {
+            generator.writeKey("reload_exception");
+            this.reloadException.serialize(generator, mapper);
         }
     }
 
+    // ---------------------------------------------------------------------------------------------
+
+    @Override
     @Nonnull
     public Builder toBuilder() {
         return new Builder(this);
@@ -142,60 +127,92 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
         return new Builder();
     }
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeReloadResult> {
-        private Kind _kind;
-        private Object _value;
+    /**
+     * Builder for {@link NodeReloadResult}.
+     */
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NodeReloadResult> {
+        private String name;
+        @Nullable
+        private ErrorCause reloadException;
 
         public Builder() {}
 
         private Builder(NodeReloadResult o) {
-            this._kind = o._kind;
-            this._value = o._value;
+            this.name = o.name;
+            this.reloadException = o.reloadException;
         }
 
-        public ObjectBuilder<NodeReloadResult> error(NodeReloadError v) {
-            this._kind = Kind.Error;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<NodeReloadResult> error(Function<NodeReloadError.Builder, ObjectBuilder<NodeReloadError>> fn) {
-            return this.error(fn.apply(new NodeReloadError.Builder()).build());
-        }
-
-        public ObjectBuilder<NodeReloadResult> success(NodeReloadSuccess v) {
-            this._kind = Kind.Success;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<NodeReloadResult> success(Function<NodeReloadSuccess.Builder, ObjectBuilder<NodeReloadSuccess>> fn) {
-            return this.success(fn.apply(new NodeReloadSuccess.Builder()).build());
+        private Builder(Builder o) {
+            this.name = o.name;
+            this.reloadException = o.reloadException;
         }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        /**
+         * Required - API name: {@code name}
+         */
+        @Nonnull
+        public final Builder name(String value) {
+            this.name = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code reload_exception}
+         */
+        @Nonnull
+        public final Builder reloadException(@Nullable ErrorCause value) {
+            this.reloadException = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code reload_exception}
+         */
+        @Nonnull
+        public final Builder reloadException(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+            return reloadException(fn.apply(new ErrorCause.Builder()).build());
+        }
+
+        /**
+         * Builds a {@link NodeReloadResult}.
+         *
+         * @throws NullPointerException if some of the required fields are null.
+         */
+        @Override
+        @Nonnull
         public NodeReloadResult build() {
             _checkSingleUse();
+
             return new NodeReloadResult(this);
         }
     }
 
-    private static JsonpDeserializer<NodeReloadResult> buildNodeReloadResultDeserializer() {
-        return new UnionDeserializer.Builder<NodeReloadResult, Kind, Object>(NodeReloadResult::new, false).addMember(
-            Kind.Error,
-            NodeReloadError._DESERIALIZER
-        ).addMember(Kind.Success, NodeReloadSuccess._DESERIALIZER).build();
-    }
+    // ---------------------------------------------------------------------------------------------
 
-    public static final JsonpDeserializer<NodeReloadResult> _DESERIALIZER = JsonpDeserializer.lazy(
-        NodeReloadResult::buildNodeReloadResultDeserializer
+    /**
+     * Json deserializer for {@link NodeReloadResult}
+     */
+    public static final JsonpDeserializer<NodeReloadResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        NodeReloadResult::setupNodeReloadResultDeserializer
     );
+
+    protected static void setupNodeReloadResultDeserializer(ObjectDeserializer<NodeReloadResult.Builder> op) {
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::reloadException, ErrorCause._DESERIALIZER, "reload_exception");
+    }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this._kind);
-        result = 31 * result + Objects.hashCode(this._value);
+        result = 31 * result + this.name.hashCode();
+        result = 31 * result + Objects.hashCode(this.reloadException);
         return result;
     }
 
@@ -204,6 +221,6 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         NodeReloadResult other = (NodeReloadResult) o;
-        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+        return this.name.equals(other.name) && Objects.equals(this.reloadException, other.reloadException);
     }
 }

@@ -54793,31 +54793,22 @@ components:
         - type
     nodes.reload_secure_settings___NodeReloadError:
       allOf:
-        - $ref: '#/components/schemas/nodes.reload_secure_settings___NodeReloadResultBase'
+        - $ref: '#/components/schemas/nodes.reload_secure_settings___NodeReloadResponse'
         - type: object
           properties:
             reload_exception:
               $ref: '#/components/schemas/_common___ErrorCause'
-          required:
-            - reload_exception
-    nodes.reload_secure_settings___NodeReloadResult:
-      anyOf:
-        - title: success
-          $ref: '#/components/schemas/nodes.reload_secure_settings___NodeReloadSuccess'
-        - title: error
-          $ref: '#/components/schemas/nodes.reload_secure_settings___NodeReloadError'
-    nodes.reload_secure_settings___NodeReloadResultBase:
+    nodes.reload_secure_settings___NodeReloadResponse:
       type: object
       properties:
         name:
           $ref: '#/components/schemas/_common___Name'
       required:
         - name
-    nodes.reload_secure_settings___NodeReloadSuccess:
-      allOf:
-        - $ref: '#/components/schemas/nodes.reload_secure_settings___NodeReloadResultBase'
-        - type: object
-          properties: {}
+    nodes.reload_secure_settings___NodeReloadResult:
+      anyOf:
+        - $ref: '#/components/schemas/nodes.reload_secure_settings___NodeReloadResponse'
+        - $ref: '#/components/schemas/nodes.reload_secure_settings___NodeReloadError'
     nodes.stats___AdaptiveSelection:
       type: object
       properties:
@@ -55006,7 +54997,7 @@ components:
           $ref: '#/components/schemas/nodes.stats___PublishedClusterStates'
     nodes.stats___ExtendedMemoryStats:
       allOf:
-        - $ref: '#/components/schemas/nodes.stats___MemoryStats'
+        - $ref: '#/components/schemas/nodes.stats___MemoryStatsBase'
         - type: object
           properties:
             free_percent:
@@ -55339,6 +55330,11 @@ components:
         usage_percent:
           $ref: '#/components/schemas/_common___PercentageNumber'
     nodes.stats___MemoryStats:
+      allOf:
+        - $ref: '#/components/schemas/nodes.stats___MemoryStatsBase'
+        - type: object
+          properties: {}
+    nodes.stats___MemoryStatsBase:
       type: object
       properties:
         total:

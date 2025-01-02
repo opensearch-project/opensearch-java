@@ -333,7 +333,7 @@ After:
 - The `clusterManagerTimeout` and `masterTimeout` properties have been removed as they are not supported by OpenSearch.
 
 ### NodeReloadResult
-- The `stats` variant has been corrected to be `success` instead.
+- The `NodeReloadResult` class has been corrected to be an object with an optional `reloadException` instead of a union of stats and error.
 
 ### NodesStatsRequest
 - The `groups` property has been corrected to be of type `List<String>` instead of `Boolean`.
