@@ -35,7 +35,6 @@ package org.opensearch.client.opensearch.ingest;
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.transport.JsonEndpoint;
@@ -46,7 +45,7 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the ingest namespace.
  */
-public class OpenSearchIngestClient extends ApiClient<OpenSearchTransport, OpenSearchIngestClient> {
+public class OpenSearchIngestClient extends OpenSearchIngestClientBase<OpenSearchIngestClient> {
 
     public OpenSearchIngestClient(OpenSearchTransport transport) {
         super(transport, null);
@@ -59,38 +58,6 @@ public class OpenSearchIngestClient extends ApiClient<OpenSearchTransport, OpenS
     @Override
     public OpenSearchIngestClient withTransportOptions(@Nullable TransportOptions transportOptions) {
         return new OpenSearchIngestClient(this.transport, transportOptions);
-    }
-
-    // ----- Endpoint: ingest.delete_pipeline
-
-    /**
-     * Deletes a pipeline.
-     *
-     *
-     */
-
-    public DeletePipelineResponse deletePipeline(DeletePipelineRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeletePipelineRequest, DeletePipelineResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeletePipelineRequest,
-            DeletePipelineResponse,
-            ErrorResponse>) DeletePipelineRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Deletes a pipeline.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeletePipelineRequest}
-     *
-     */
-
-    public final DeletePipelineResponse deletePipeline(Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn)
-        throws IOException, OpenSearchException {
-        return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
     }
 
     // ----- Endpoint: ingest.geo_ip_stats
