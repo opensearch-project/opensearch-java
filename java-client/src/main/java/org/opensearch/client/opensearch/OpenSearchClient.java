@@ -118,7 +118,6 @@ import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
 import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
 import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.opensearch.generic.OpenSearchGenericClient;
-import org.opensearch.client.opensearch.ingest.OpenSearchIngestClient;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
@@ -150,10 +149,6 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
 
     public OpenSearchCatClient cat() {
         return new OpenSearchCatClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchIngestClient ingest() {
-        return new OpenSearchIngestClient(this.transport, this.transportOptions);
     }
 
     // ----- Endpoint: bulk

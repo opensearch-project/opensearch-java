@@ -118,7 +118,6 @@ import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
 import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
 import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
 import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
-import org.opensearch.client.opensearch.ingest.OpenSearchIngestAsyncClient;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
@@ -147,10 +146,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
 
     public OpenSearchCatAsyncClient cat() {
         return new OpenSearchCatAsyncClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchIngestAsyncClient ingest() {
-        return new OpenSearchIngestAsyncClient(this.transport, this.transportOptions);
     }
 
     // ----- Endpoint: bulk
