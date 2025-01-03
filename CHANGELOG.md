@@ -33,6 +33,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 - Removed the `features` and `shutdown` namespaces as they're not supported by OpenSearch ([#1361](https://github.com/opensearch-project/opensearch-java/pull/1361))
 - Removed the `indices.diskUsage` operation as it's not supported by OpenSearch ([#1361](https://github.com/opensearch-project/opensearch-java/pull/1361))
+- Removed the `ingest.geoIpStats` operation as it's not supported by OpenSearch ([#]())
 
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))

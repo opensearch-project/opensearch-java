@@ -61,17 +61,6 @@ public class OpenSearchIngestAsyncClient extends OpenSearchIngestAsyncClientBase
         return new OpenSearchIngestAsyncClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: ingest.geo_ip_stats
-
-    /**
-     * Returns statistical information about geoip databases
-     *
-     *
-     */
-    public CompletableFuture<GeoIpStatsResponse> geoIpStats() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: ingest.get_pipeline
 
     /**
