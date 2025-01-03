@@ -60,17 +60,6 @@ public class OpenSearchIngestClient extends OpenSearchIngestClientBase<OpenSearc
         return new OpenSearchIngestClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: ingest.geo_ip_stats
-
-    /**
-     * Returns statistical information about geoip databases
-     *
-     *
-     */
-    public GeoIpStatsResponse geoIpStats() throws IOException, OpenSearchException {
-        return this.transport.performRequest(GeoIpStatsRequest._INSTANCE, GeoIpStatsRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: ingest.get_pipeline
 
     /**
