@@ -24,7 +24,7 @@ import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Namespace {
-    private static final Set<String> PARTIAL_NAMESPACES = Set.of("", "indices");
+    private static final Set<String> PARTIAL_NAMESPACES = Set.of("", "indices", "nodes");
 
     private final Namespace parent;
     private final String name;

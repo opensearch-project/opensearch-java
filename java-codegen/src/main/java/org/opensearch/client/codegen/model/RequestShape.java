@@ -8,6 +8,8 @@
 
 package org.opensearch.client.codegen.model;
 
+import static org.opensearch.client.codegen.utils.Strings.toPascalCase;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -24,7 +26,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.Streams;
-import org.opensearch.client.codegen.utils.Strings;
 
 public class RequestShape extends ObjectShape {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -237,45 +238,42 @@ public class RequestShape extends ObjectShape {
     private static String classBaseName(@Nonnull OperationGroup operationGroup) {
         Objects.requireNonNull(operationGroup, "operationGroup must not be null");
 
-        switch (operationGroup.toString()) {
-            case "cluster.get_settings":
-                return "GetClusterSettings";
-            case "cluster.put_settings":
-                return "PutClusterSettings";
-            case "cluster.stats":
-                return "ClusterStats";
-            case "indices.clone":
-                return "CloneIndex";
-            case "indices.close":
-                return "CloseIndex";
-            case "indices.create":
-                return "CreateIndex";
-            case "indices.delete":
-                return "DeleteIndex";
-            case "indices.get":
-                return "GetIndex";
-            case "indices.get_settings":
-                return "GetIndicesSettings";
-            case "indices.put_settings":
-                return "PutIndicesSettings";
-            case "indices.stats":
-                return "IndicesStats";
-            case "snapshot.clone":
-                return "CloneSnapshot";
-            case "snapshot.create":
-                return "CreateSnapshot";
-            case "snapshot.delete":
-                return "DeleteSnapshot";
-            case "snapshot.get":
-                return "GetSnapshot";
-            case "snapshot.restore":
-                return "RestoreSnapshot";
-            case "snapshot.status":
-                return "SnapshotStatus";
-            case "tasks.get":
-                return "GetTasks";
+        var ns = operationGroup.getNamespace().orElse("");
+        var name = operationGroup.getName();
+
+        switch (name) {
+            case "clone":
+            case "close":
+            case "create":
+            case "delete":
+            case "get":
+            case "restore":
+                return toPascalCase(name) + toPascalCase(itemForNamespace(ns));
+
+            case "info":
+                return ns.isEmpty() ? toPascalCase(name) : toPascalCase(ns) + toPascalCase(name);
+
+            case "stats":
+            case "status":
+            case "usage":
+                return toPascalCase(ns) + toPascalCase(name);
+
+            case "get_settings":
+            case "put_settings":
+                return toPascalCase(name.replace("_", "_" + ns + "_"));
+
             default:
-                return Strings.toPascalCase(operationGroup.getName());
+                return toPascalCase(name);
+        }
+    }
+
+    @Nonnull
+    private static String itemForNamespace(@Nonnull String namespace) {
+        switch (namespace) {
+            case "indices":
+                return "index";
+            default:
+                return namespace;
         }
     }
 }

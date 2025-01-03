@@ -68,4 +68,9 @@ public interface Matcher<T> {
         var set = new HashSet<>(Arrays.asList(values));
         return set::contains;
     }
+
+    @SafeVarargs
+    static <T> Matcher<T> isNotOneOf(T... values) {
+        return not(isOneOf(values));
+    }
 }

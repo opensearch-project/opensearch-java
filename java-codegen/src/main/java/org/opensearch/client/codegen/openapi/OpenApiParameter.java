@@ -90,4 +90,8 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
         if (versionDeprecated == null) return Optional.empty();
         return Optional.of(new Deprecation(deprecationMessage, versionDeprecated));
     }
+
+    public boolean isOverloaded() {
+        return schema != null && schema.hasAnyOf() && schema.getAnyOf().orElseThrow().stream().allMatch(OpenApiSchema::hasTitle);
+    }
 }
