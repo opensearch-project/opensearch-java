@@ -449,7 +449,7 @@ paths:
       operationId: cat.aliases.0
       x-operation-group: cat.aliases
       x-version-added: '1.0'
-      description: Shows information about currently configured aliases to indexes including filter and routing info.
+      description: Shows information about aliases currently configured to indexes, including filter and routing information.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-aliases/
       parameters:
@@ -473,7 +473,7 @@ paths:
       operationId: cat.aliases.1
       x-operation-group: cat.aliases
       x-version-added: '1.0'
-      description: Shows information about currently configured aliases to indexes including filter and routing info.
+      description: Shows information about aliases currently configured to indexes, including filter and routing information.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-aliases/
       parameters:
@@ -576,7 +576,7 @@ paths:
       operationId: cat.count.0
       x-operation-group: cat.count
       x-version-added: '1.0'
-      description: Provides quick access to the document count of the entire cluster, or individual indexes.
+      description: Provides quick access to the document count of the entire cluster or of an individual index.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-count/
       parameters:
@@ -598,7 +598,7 @@ paths:
       operationId: cat.count.1
       x-operation-group: cat.count
       x-version-added: '1.0'
-      description: Provides quick access to the document count of the entire cluster, or individual indexes.
+      description: Provides quick access to the document count of the entire cluster or of an individual index.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-count/
       parameters:
@@ -694,7 +694,7 @@ paths:
       operationId: cat.indices.0
       x-operation-group: cat.indices
       x-version-added: '1.0'
-      description: 'Returns information about indexes: number of primaries and replicas, document counts, disk size, ...'
+      description: Lists information related to indexes, that is, how much disk space they are using, how many shards they have, their health status, and so on.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-indices/
       parameters:
@@ -725,7 +725,7 @@ paths:
       operationId: cat.indices.1
       x-operation-group: cat.indices
       x-version-added: '1.0'
-      description: 'Returns information about indexes: number of primaries and replicas, document counts, disk size, ...'
+      description: Lists information related to indexes, that is, how much disk space they are using, how many shards they have, their health status, and so on.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-indices/
       parameters:
@@ -813,7 +813,7 @@ paths:
       operationId: cat.nodes.0
       x-operation-group: cat.nodes
       x-version-added: '1.0'
-      description: Returns basic statistics about performance of cluster nodes.
+      description: Returns basic statistics about the performance of cluster nodes.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-nodes/
       parameters:
@@ -841,7 +841,7 @@ paths:
       operationId: cat.pending_tasks.0
       x-operation-group: cat.pending_tasks
       x-version-added: '1.0'
-      description: Returns a concise representation of the cluster pending tasks.
+      description: Returns a concise representation of the cluster's pending tasks.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-pending-tasks/
       parameters:
@@ -867,7 +867,7 @@ paths:
       operationId: cat.pit_segments.0
       x-operation-group: cat.pit_segments
       x-version-added: '2.4'
-      description: List segments for one or several PITs.
+      description: Lists one or several CAT point-in-time segments.
       externalDocs:
         url: https://opensearch.org/docs/latest/search-plugins/point-in-time-api/
       parameters:
@@ -892,7 +892,7 @@ paths:
       operationId: cat.all_pit_segments.0
       x-operation-group: cat.all_pit_segments
       x-version-added: '2.4'
-      description: Lists all active point-in-time segments.
+      description: Lists all active CAT point-in-time segments.
       externalDocs:
         url: https://opensearch.org/docs/latest/search-plugins/point-in-time-api/
       parameters:
@@ -915,7 +915,7 @@ paths:
       operationId: cat.plugins.0
       x-operation-group: cat.plugins
       x-version-added: '1.0'
-      description: Returns information about installed plugins across nodes node.
+      description: Returns information about the names, components, and versions of the installed plugins.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-plugins/
       parameters:
@@ -940,7 +940,7 @@ paths:
       operationId: cat.recovery.0
       x-operation-group: cat.recovery
       x-version-added: '1.0'
-      description: Returns information about index shard recoveries, both on-going completed.
+      description: Returns all completed and ongoing index and shard recoveries.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-plugins/
       parameters:
@@ -967,7 +967,7 @@ paths:
       operationId: cat.recovery.1
       x-operation-group: cat.recovery
       x-version-added: '1.0'
-      description: Returns information about index shard recoveries, both on-going completed.
+      description: Returns all completed and ongoing index and shard recoveries.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-plugins/
       parameters:
@@ -995,7 +995,7 @@ paths:
       operationId: cat.repositories.0
       x-operation-group: cat.repositories
       x-version-added: '1.0'
-      description: Returns information about snapshot repositories registered in the cluster.
+      description: Returns information about all snapshot repositories for a cluster.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-repositories/
       parameters:
@@ -1020,7 +1020,9 @@ paths:
       operationId: cat.segment_replication.0
       x-operation-group: cat.segment_replication
       x-version-added: '2.6'
-      description: Returns information about both on-going and latest completed Segment Replication events.
+      description: |-
+        Returns information about active and last-completed segment replication events on each replica shard, including related shard-level metrics. 
+        These metrics provide information about how far behind the primary shard the replicas are lagging.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-segment-replication/
       parameters:
@@ -1054,7 +1056,9 @@ paths:
       operationId: cat.segment_replication.1
       x-operation-group: cat.segment_replication
       x-version-added: '2.6'
-      description: Returns information about both on-going and latest completed Segment Replication events.
+      description: |-
+        Returns information about active and last-completed segment replication events on each replica shard, including related shard-level metrics. 
+        These metrics provide information about how far behind the primary shard the replicas are lagging.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-segment-replication/
       parameters:
@@ -1140,7 +1144,7 @@ paths:
       operationId: cat.shards.0
       x-operation-group: cat.shards
       x-version-added: '1.0'
-      description: Provides a detailed view of shard allocation on nodes.
+      description: Lists the states of all primary and replica shards and how they are distributed.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-shards/
       parameters:
@@ -1167,7 +1171,7 @@ paths:
       operationId: cat.shards.1
       x-operation-group: cat.shards
       x-version-added: '1.0'
-      description: Provides a detailed view of shard allocation on nodes.
+      description: Lists the states of all primary and replica shards and how they are distributed.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-shards/
       parameters:
@@ -1195,7 +1199,7 @@ paths:
       operationId: cat.snapshots.0
       x-operation-group: cat.snapshots
       x-version-added: '1.0'
-      description: Returns all snapshots in a specific repository.
+      description: Lists all of the snapshots stored in a specific repository.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-snapshots/
       parameters:
@@ -1222,7 +1226,7 @@ paths:
       operationId: cat.snapshots.1
       x-operation-group: cat.snapshots
       x-version-added: '1.0'
-      description: Returns all snapshots in a specific repository.
+      description: Lists all of the snapshots stored in a specific repository.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-snapshots/
       parameters:
@@ -1250,7 +1254,7 @@ paths:
       operationId: cat.tasks.0
       x-operation-group: cat.tasks
       x-version-added: '1.0'
-      description: Returns information about the tasks currently executing on one or more nodes in the cluster.
+      description: Lists the progress of all tasks currently running on the cluster.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-tasks/
       parameters:
@@ -1277,7 +1281,7 @@ paths:
       operationId: cat.templates.0
       x-operation-group: cat.templates
       x-version-added: '1.0'
-      description: Returns information about existing templates.
+      description: Lists the names, patterns, order numbers, and version numbers of index templates.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-templates/
       parameters:
@@ -1302,7 +1306,7 @@ paths:
       operationId: cat.templates.1
       x-operation-group: cat.templates
       x-version-added: '1.0'
-      description: Returns information about existing templates.
+      description: Lists the names, patterns, order numbers, and version numbers of index templates.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-templates/
       parameters:
@@ -1330,7 +1334,7 @@ paths:
       x-version-added: '1.0'
       description: |-
         Returns cluster-wide thread pool statistics per node.
-        By default the active, queue and rejected statistics are returned for all thread pools.
+        By default the active, queued, and rejected statistics are returned for all thread pools.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-thread-pool/
       parameters:
@@ -1358,7 +1362,7 @@ paths:
       x-version-added: '1.0'
       description: |-
         Returns cluster-wide thread pool statistics per node.
-        By default the active, queue and rejected statistics are returned for all thread pools.
+        By default the active, queued, and rejected statistics are returned for all thread pools.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cat/cat-thread-pool/
       parameters:
@@ -4631,6 +4635,58 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/knn.warmup___200'
+  /_plugins/_ml/_predict/{algorithm_name}/{model_id}:
+    post:
+      operationId: ml.predict.0
+      x-operation-group: ml.predict
+      description: Predicts new data with trained model.
+      parameters:
+        - $ref: '#/components/parameters/ml.predict___path.algorithm_name'
+        - $ref: '#/components/parameters/ml.predict___path.model_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ml.predict'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.predict___200'
+  /_plugins/_ml/_train_predict/{algorithm_name}:
+    post:
+      operationId: ml.train_predict.0
+      x-operation-group: ml.train_predict
+      description: Trains a model and predicts against the same training dataset.
+      parameters:
+        - $ref: '#/components/parameters/ml.train_predict___path.algorithm_name'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ml.train_predict'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.train_predict___200'
+  /_plugins/_ml/_train/{algorithm_name}:
+    post:
+      operationId: ml.train.0
+      x-operation-group: ml.train
+      description: Trains a model synchronously.
+      parameters:
+        - $ref: '#/components/parameters/ml.train___path.algorithm_name'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ml.train'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.train___200'
   /_plugins/_ml/agents/_register:
     post:
       operationId: ml.register_agents.0
@@ -14970,7 +15026,7 @@ components:
       in: query
       description: Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
       schema:
-        $ref: schemas/_common.yaml#/components/schemas/StringOrStringArray
+        $ref: '#/components/schemas/_common___StringOrStringArray'
       x-global: true
     asynchronous_search.delete___path.id:
       name: id
@@ -15268,26 +15324,26 @@ components:
     cat.all_pit_segments___query.bytes:
       name: bytes
       in: query
-      description: The unit in which to display byte values.
+      description: The units used to display byte values.
       schema:
         $ref: '#/components/schemas/_common___ByteUnit'
     cat.all_pit_segments___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.all_pit_segments___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.all_pit_segments___query.help:
       name: help
@@ -15300,22 +15356,22 @@ components:
     cat.all_pit_segments___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.all_pit_segments___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.allocation___path.node_id:
       in: path
       name: node_id
@@ -15436,11 +15492,11 @@ components:
     cat.cluster_manager___query.local:
       name: local
       in: query
-      description: Return local information, do not retrieve the state from cluster-manager node.
+      description: Returns local information but does not retrieve the state from the cluster manager node.
       schema:
         type: boolean
         default: false
-        description: Return local information, do not retrieve the state from cluster-manager node.
+        description: Returns local information but does not retrieve the state from the cluster manager node.
     cat.cluster_manager___query.master_timeout:
       name: master_timeout
       in: query
@@ -15482,20 +15538,20 @@ components:
     cat.count___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.count___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.count___query.help:
       name: help
@@ -15508,27 +15564,27 @@ components:
     cat.count___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.count___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.fielddata___path.fields:
       in: path
       name: fields
       description: |-
-        Comma-separated list of fields used to limit returned information.
+        A comma-separated list of fields used to limit the amount of returned information.
         To retrieve all fields, omit this parameter.
       required: true
       schema:
@@ -15537,34 +15593,34 @@ components:
     cat.fielddata___query.bytes:
       in: query
       name: bytes
-      description: The unit used to display byte values.
+      description: The units used to display byte values.
       schema:
         $ref: '#/components/schemas/_common___ByteUnit'
       style: form
     cat.fielddata___query.fields:
       in: query
       name: fields
-      description: Comma-separated list of fields used to limit returned information.
+      description: A comma-separated list of fields used to limit the amount of returned information.
       schema:
         $ref: '#/components/schemas/_common___Fields'
       style: form
     cat.fielddata___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.fielddata___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.fielddata___query.help:
       name: help
@@ -15577,39 +15633,39 @@ components:
     cat.fielddata___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.fielddata___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.health___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.health___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.health___query.help:
       name: help
@@ -15622,13 +15678,13 @@ components:
     cat.health___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.health___query.time:
       in: query
@@ -15640,7 +15696,7 @@ components:
     cat.health___query.ts:
       in: query
       name: ts
-      description: If `true`, returns `HH:MM:SS` and Unix epoch timestamps.
+      description: When `true`, returns `HH:MM:SS` and Unix epoch timestamps.
       schema:
         type: boolean
         default: true
@@ -15648,16 +15704,16 @@ components:
     cat.health___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.indices___path.index:
       in: path
       name: index
       description: |-
-        Comma-separated list of data streams, indexes, and aliases used to limit the request.
+        A comma-separated list of data streams, indexes, and aliases used to limit the request.
         Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
@@ -15666,14 +15722,14 @@ components:
     cat.indices___query.bytes:
       in: query
       name: bytes
-      description: The unit used to display byte values.
+      description: The units used to display byte values.
       schema:
         $ref: '#/components/schemas/_common___ByteUnit'
       style: form
     cat.indices___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
@@ -15687,25 +15743,25 @@ components:
     cat.indices___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.indices___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.indices___query.health:
       in: query
       name: health
-      description: The health status used to limit returned indexes. By default, the response includes indexes of any health status.
+      description: Limits indexes based on their health status. Supported values are `green`, `yellow`, and `red`.
       schema:
         $ref: '#/components/schemas/_common___HealthStatus'
       style: form
@@ -15720,7 +15776,7 @@ components:
     cat.indices___query.include_unloaded_segments:
       in: query
       name: include_unloaded_segments
-      description: If `true`, the response includes information from segments that are not loaded into memory.
+      description: Whether to include information from segments not loaded into memory.
       schema:
         type: boolean
         default: false
@@ -15728,15 +15784,15 @@ components:
     cat.indices___query.local:
       name: local
       in: query
-      description: Return local information, do not retrieve the state from cluster-manager node.
+      description: Returns local information but does not retrieve the state from the cluster manager node.
       schema:
         type: boolean
         default: false
-        description: Return local information, do not retrieve the state from cluster-manager node.
+        description: Returns local information but does not retrieve the state from the cluster manager node.
     cat.indices___query.master_timeout:
       name: master_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-deprecated: '2.0'
@@ -15745,7 +15801,7 @@ components:
     cat.indices___query.pri:
       in: query
       name: pri
-      description: If `true`, the response only includes information from primary shards.
+      description: When `true`, returns information only from the primary shards.
       schema:
         type: boolean
         default: false
@@ -15753,53 +15809,53 @@ components:
     cat.indices___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.indices___query.time:
       in: query
       name: time
-      description: The unit used to display time values.
+      description: Specifies the time units.
       schema:
         $ref: '#/components/schemas/_common___TimeUnit'
       style: form
     cat.indices___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.master___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cat.master___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.master___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.master___query.help:
       name: help
@@ -15812,15 +15868,15 @@ components:
     cat.master___query.local:
       name: local
       in: query
-      description: Return local information, do not retrieve the state from cluster-manager node.
+      description: Returns local information but does not retrieve the state from the cluster manager node.
       schema:
         type: boolean
         default: false
-        description: Return local information, do not retrieve the state from cluster-manager node.
+        description: Returns local information but does not retrieve the state from the cluster manager node.
     cat.master___query.master_timeout:
       name: master_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-deprecated: '2.0'
@@ -15829,46 +15885,46 @@ components:
     cat.master___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.master___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.nodeattrs___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cat.nodeattrs___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.nodeattrs___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.nodeattrs___query.help:
       name: help
@@ -15881,15 +15937,15 @@ components:
     cat.nodeattrs___query.local:
       name: local
       in: query
-      description: Return local information, do not retrieve the state from cluster-manager node.
+      description: Returns local information but does not retrieve the state from the cluster manager node.
       schema:
         type: boolean
         default: false
-        description: Return local information, do not retrieve the state from cluster-manager node.
+        description: Returns local information but does not retrieve the state from the cluster manager node.
     cat.nodeattrs___query.master_timeout:
       name: master_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-deprecated: '2.0'
@@ -15898,47 +15954,47 @@ components:
     cat.nodeattrs___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.nodeattrs___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.nodes___query.bytes:
       in: query
       name: bytes
-      description: The unit used to display byte values.
+      description: The units used to display byte values.
       schema:
         $ref: '#/components/schemas/_common___ByteUnit'
       style: form
     cat.nodes___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cat.nodes___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.nodes___query.full_id:
       in: query
       name: full_id
-      description: If `true`, return the full node ID. If `false`, return the shortened node ID.
+      description: When `true`, returns the full node ID. When `false`, returns the shortened node ID.
       schema:
         anyOf:
           - type: boolean
@@ -15948,13 +16004,13 @@ components:
     cat.nodes___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.nodes___query.help:
       name: help
@@ -15967,18 +16023,18 @@ components:
     cat.nodes___query.local:
       name: local
       in: query
-      description: Return local information, do not retrieve the state from cluster-manager node.
+      description: Returns local information but does not retrieve the state from the cluster manager node.
       deprecated: true
       x-version-deprecated: '1.0'
       x-deprecation-message: This parameter does not cause this API to act locally.
       schema:
         type: boolean
         default: false
-        description: Return local information, do not retrieve the state from cluster-manager node.
+        description: Returns local information but does not retrieve the state from the cluster manager node.
     cat.nodes___query.master_timeout:
       name: master_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-deprecated: '2.0'
@@ -15987,52 +16043,52 @@ components:
     cat.nodes___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.nodes___query.time:
       name: time
       in: query
-      description: The unit in which to display time values.
+      description: Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
       schema:
         $ref: '#/components/schemas/_common___TimeUnit'
     cat.nodes___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.pending_tasks___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cat.pending_tasks___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.pending_tasks___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.pending_tasks___query.help:
       name: help
@@ -16045,15 +16101,15 @@ components:
     cat.pending_tasks___query.local:
       name: local
       in: query
-      description: Return local information, do not retrieve the state from cluster-manager node.
+      description: Returns local information but does not retrieve the state from the cluster manager node.
       schema:
         type: boolean
         default: false
-        description: Return local information, do not retrieve the state from cluster-manager node.
+        description: Returns local information but does not retrieve the state from the cluster manager node.
     cat.pending_tasks___query.master_timeout:
       name: master_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-deprecated: '2.0'
@@ -16062,51 +16118,51 @@ components:
     cat.pending_tasks___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.pending_tasks___query.time:
       name: time
       in: query
-      description: The unit in which to display time values.
+      description: Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
       schema:
         $ref: '#/components/schemas/_common___TimeUnit'
     cat.pending_tasks___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.pit_segments___query.bytes:
       name: bytes
       in: query
-      description: The unit in which to display byte values.
+      description: The units used to display byte values.
       schema:
         $ref: '#/components/schemas/_common___ByteUnit'
     cat.pit_segments___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.pit_segments___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.pit_segments___query.help:
       name: help
@@ -16119,46 +16175,46 @@ components:
     cat.pit_segments___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.pit_segments___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.plugins___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cat.plugins___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.plugins___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.plugins___query.help:
       name: help
@@ -16171,15 +16227,15 @@ components:
     cat.plugins___query.local:
       name: local
       in: query
-      description: Return local information, do not retrieve the state from cluster-manager node.
+      description: Returns local information but does not retrieve the state from the cluster manager node.
       schema:
         type: boolean
         default: false
-        description: Return local information, do not retrieve the state from cluster-manager node.
+        description: Returns local information but does not retrieve the state from the cluster manager node.
     cat.plugins___query.master_timeout:
       name: master_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-deprecated: '2.0'
@@ -16188,22 +16244,22 @@ components:
     cat.plugins___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.plugins___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.recovery___path.index:
       in: path
       name: index
@@ -16225,14 +16281,14 @@ components:
     cat.recovery___query.bytes:
       in: query
       name: bytes
-      description: The unit used to display byte values.
+      description: The units used to display byte values.
       schema:
         $ref: '#/components/schemas/_common___ByteUnit'
       style: form
     cat.recovery___query.detailed:
       in: query
       name: detailed
-      description: If `true`, the response includes detailed information about shard recoveries.
+      description: When `true`, includes detailed information about shard recoveries.
       schema:
         type: boolean
         default: false
@@ -16240,20 +16296,20 @@ components:
     cat.recovery___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.recovery___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.recovery___query.help:
       name: help
@@ -16266,63 +16322,67 @@ components:
     cat.recovery___query.index:
       name: index
       in: query
-      description: Comma-separated list or wildcard expression of index names to limit the returned information.
+      description: |-
+        A comma-separated list of data streams, indexes, and aliases used to limit the request.
+        Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list or wildcard expression of index names to limit the returned information.
+        description: |-
+          A comma-separated list of data streams, indexes, and aliases used to limit the request.
+          Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       explode: true
     cat.recovery___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.recovery___query.time:
       name: time
       in: query
-      description: The unit in which to display time values.
+      description: Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
       schema:
         $ref: '#/components/schemas/_common___TimeUnit'
     cat.recovery___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.repositories___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cat.repositories___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.repositories___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.repositories___query.help:
       name: help
@@ -16335,15 +16395,15 @@ components:
     cat.repositories___query.local:
       name: local
       in: query
-      description: Return local information, do not retrieve the state from cluster-manager node.
+      description: Returns local information but does not retrieve the state from the cluster manager node.
       schema:
         type: boolean
         default: false
-        description: Return local information, do not retrieve the state from cluster-manager node.
+        description: Returns local information but does not retrieve the state from the cluster manager node.
     cat.repositories___query.master_timeout:
       name: master_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-deprecated: '2.0'
@@ -16352,92 +16412,96 @@ components:
     cat.repositories___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.repositories___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.segment_replication___path.index:
       name: index
       in: path
-      description: Comma-separated list or wildcard expression of index names to limit the returned information.
+      description: |-
+        A comma-separated list of data streams, indexes, and aliases used to limit the request.
+        Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       schema:
         type: array
-        description: Comma-separated list or wildcard expression of index names to limit the returned information.
+        description: |-
+          A comma-separated list of data streams, indexes, and aliases used to limit the request.
+          Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
         items:
           type: string
       required: true
     cat.segment_replication___query.active_only:
       name: active_only
       in: query
-      description: If `true`, the response only includes ongoing segment replication events.
+      description: When `true`, the response only includes ongoing segment replication events.
       schema:
         type: boolean
         default: false
-        description: If `true`, the response only includes ongoing segment replication events.
+        description: When `true`, the response only includes ongoing segment replication events.
     cat.segment_replication___query.allow_no_indices:
       name: allow_no_indices
       in: query
-      description: Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
+      description: Whether to ignore the index if a wildcard index expression resolves to no concrete indexes. This includes the `_all` string or when no indexes have been specified.
       schema:
         type: boolean
-        description: Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified).
+        description: Whether to ignore the index if a wildcard index expression resolves to no concrete indexes. This includes the `_all` string or when no indexes have been specified.
     cat.segment_replication___query.bytes:
       name: bytes
       in: query
-      description: The unit in which to display byte values.
+      description: The units used to display byte values.
       schema:
         $ref: '#/components/schemas/_common___ByteUnit'
     cat.segment_replication___query.completed_only:
       name: completed_only
       in: query
-      description: If `true`, the response only includes latest completed segment replication events.
+      description: When `true`, the response only includes the last-completed segment replication events.
       schema:
         type: boolean
         default: false
-        description: If `true`, the response only includes latest completed segment replication events.
+        description: When `true`, the response only includes the last-completed segment replication events.
     cat.segment_replication___query.detailed:
       name: detailed
       in: query
-      description: If `true`, the response includes detailed information about segment replications.
+      description: When `true`, the response includes additional metrics for each stage of a segment replication event.
       schema:
         type: boolean
         default: false
-        description: If `true`, the response includes detailed information about segment replications.
+        description: When `true`, the response includes additional metrics for each stage of a segment replication event.
     cat.segment_replication___query.expand_wildcards:
       name: expand_wildcards
       in: query
-      description: Whether to expand wildcard expression to concrete indexes that are open, closed or both.
+      description: Whether to expand the wildcard expression to include concrete indexes that are open, closed, or both.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
     cat.segment_replication___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.segment_replication___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.segment_replication___query.help:
       name: help
@@ -16450,70 +16514,74 @@ components:
     cat.segment_replication___query.ignore_throttled:
       name: ignore_throttled
       in: query
-      description: Whether specified concrete, expanded or aliased indexes should be ignored when throttled.
+      description: Whether specified concrete, expanded, or aliased indexes should be ignored when throttled.
       schema:
         type: boolean
-        description: Whether specified concrete, expanded or aliased indexes should be ignored when throttled.
+        description: Whether specified concrete, expanded, or aliased indexes should be ignored when throttled.
     cat.segment_replication___query.ignore_unavailable:
       name: ignore_unavailable
       in: query
-      description: Whether specified concrete indexes should be ignored when unavailable (missing or closed).
+      description: Whether the specified concrete indexes should be ignored when missing or closed.
       schema:
         type: boolean
-        description: Whether specified concrete indexes should be ignored when unavailable (missing or closed).
+        description: Whether the specified concrete indexes should be ignored when missing or closed.
     cat.segment_replication___query.index:
       name: index
       in: query
-      description: Comma-separated list or wildcard expression of index names to limit the returned information.
+      description: |-
+        A comma-separated list of data streams, indexes, and aliases used to limit the request.
+        Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list or wildcard expression of index names to limit the returned information.
+        description: |-
+          A comma-separated list of data streams, indexes, and aliases used to limit the request.
+          Supports wildcards (`*`). To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       explode: true
     cat.segment_replication___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.segment_replication___query.shards:
       name: shards
       in: query
-      description: Comma-separated list of shards to display.
+      description: A comma-separated list of shards to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of shards to display.
+        description: A comma-separated list of shards to display.
       explode: true
     cat.segment_replication___query.time:
       name: time
       in: query
-      description: The unit in which to display time values.
+      description: Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
       schema:
         $ref: '#/components/schemas/_common___TimeUnit'
     cat.segment_replication___query.timeout:
       name: timeout
       in: query
-      description: Operation timeout.
+      description: The operation timeout.
       schema:
         $ref: '#/components/schemas/_common___Duration'
     cat.segment_replication___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.segments___path.index:
       in: path
       name: index
@@ -16528,47 +16596,47 @@ components:
     cat.segments___query.bytes:
       in: query
       name: bytes
-      description: The unit used to display byte values.
+      description: The units used to display byte values.
       schema:
         $ref: '#/components/schemas/_common___ByteUnit'
       style: form
     cat.segments___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cat.segments___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.segments___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.segments___query.help:
       name: help
       in: query
-      description: Return help information.
+      description: Returns help information.
       schema:
         type: boolean
         default: false
-        description: Return help information.
+        description: Returns help information.
     cat.segments___query.master_timeout:
       name: master_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-deprecated: '2.0'
@@ -16577,22 +16645,22 @@ components:
     cat.segments___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.segments___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.shards___path.index:
       in: path
       name: index
@@ -16607,34 +16675,34 @@ components:
     cat.shards___query.bytes:
       in: query
       name: bytes
-      description: The unit used to display byte values.
+      description: The units used to display byte values.
       schema:
         $ref: '#/components/schemas/_common___ByteUnit'
       style: form
     cat.shards___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cat.shards___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.shards___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.shards___query.help:
       name: help
@@ -16647,15 +16715,15 @@ components:
     cat.shards___query.local:
       name: local
       in: query
-      description: Return local information, do not retrieve the state from cluster-manager node.
+      description: Returns local information but does not retrieve the state from the cluster manager node.
       schema:
         type: boolean
         default: false
-        description: Return local information, do not retrieve the state from cluster-manager node.
+        description: Returns local information but does not retrieve the state from the cluster manager node.
     cat.shards___query.master_timeout:
       name: master_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-deprecated: '2.0'
@@ -16664,28 +16732,28 @@ components:
     cat.shards___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.shards___query.time:
       name: time
       in: query
-      description: The unit in which to display time values.
+      description: Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
       schema:
         $ref: '#/components/schemas/_common___TimeUnit'
     cat.shards___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.snapshots___path.repository:
       in: path
       name: repository
@@ -16701,27 +16769,27 @@ components:
     cat.snapshots___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cat.snapshots___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.snapshots___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.snapshots___query.help:
       name: help
@@ -16734,7 +16802,7 @@ components:
     cat.snapshots___query.ignore_unavailable:
       in: query
       name: ignore_unavailable
-      description: If `true`, the response does not include information from unavailable snapshots.
+      description: When `true`, the response does not include information from unavailable snapshots.
       schema:
         type: boolean
         default: false
@@ -16742,7 +16810,7 @@ components:
     cat.snapshots___query.master_timeout:
       name: master_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-deprecated: '2.0'
@@ -16762,32 +16830,32 @@ components:
     cat.snapshots___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.snapshots___query.time:
       name: time
       in: query
-      description: The unit in which to display time values.
+      description: Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
       schema:
         $ref: '#/components/schemas/_common___TimeUnit'
     cat.snapshots___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.tasks___query.actions:
       in: query
       name: actions
-      description: The task action names, which are used to limit the response.
+      description: The task action names used to limit the response.
       schema:
         type: array
         items:
@@ -16804,20 +16872,20 @@ components:
     cat.tasks___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.tasks___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.tasks___query.help:
       name: help
@@ -16830,14 +16898,17 @@ components:
     cat.tasks___query.nodes:
       name: nodes
       in: query
-      description: Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
+      description: |-
+        A comma-separated list of node IDs or names used to limit the returned information. 
+        Use `_local` to return information from the node to which you're connecting, specify a specific node from which to get information, or keep the parameter empty to get information from all nodes.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
-      explode: true
+        description: |-
+          A comma-separated list of node IDs or names used to limit the returned information. 
+          Use `_local` to return information from the node to which you're connecting, specify a specific node from which to get information, or keep the parameter empty to get information from all nodes.
     cat.tasks___query.parent_task_id:
       in: query
       name: parent_task_id
@@ -16848,28 +16919,28 @@ components:
     cat.tasks___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.tasks___query.time:
       name: time
       in: query
-      description: The unit in which to display time values.
+      description: Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
       schema:
         $ref: '#/components/schemas/_common___TimeUnit'
     cat.tasks___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.templates___path.name:
       in: path
       name: name
@@ -16883,27 +16954,27 @@ components:
     cat.templates___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cat.templates___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.templates___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.templates___query.help:
       name: help
@@ -16916,15 +16987,15 @@ components:
     cat.templates___query.local:
       name: local
       in: query
-      description: Return local information, do not retrieve the state from cluster-manager node.
+      description: Returns local information but does not retrieve the state from the cluster manager node.
       schema:
         type: boolean
         default: false
-        description: Return local information, do not retrieve the state from cluster-manager node.
+        description: Returns local information but does not retrieve the state from the cluster manager node.
     cat.templates___query.master_timeout:
       name: master_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-deprecated: '2.0'
@@ -16933,22 +17004,22 @@ components:
     cat.templates___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.templates___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     cat.thread_pool___path.thread_pool_patterns:
       in: path
       name: thread_pool_patterns
@@ -16962,27 +17033,27 @@ components:
     cat.thread_pool___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: A timeout for connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cat.thread_pool___query.format:
       name: format
       in: query
-      description: A short version of the Accept header (for example, `json`, `yaml`).
+      description: A short version of the `Accept` header, such as `json` or `yaml`.
       schema:
         type: string
-        description: A short version of the Accept header (for example, `json`, `yaml`).
+        description: A short version of the `Accept` header, such as `json` or `yaml`.
     cat.thread_pool___query.h:
       name: h
       in: query
-      description: Comma-separated list of column names to display.
+      description: A comma-separated list of column names to display.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names to display.
+        description: A comma-separated list of column names to display.
       explode: true
     cat.thread_pool___query.help:
       name: help
@@ -16995,15 +17066,15 @@ components:
     cat.thread_pool___query.local:
       name: local
       in: query
-      description: Return local information, do not retrieve the state from cluster-manager node.
+      description: Returns local information but does not retrieve the state from the cluster manager node.
       schema:
         type: boolean
         default: false
-        description: Return local information, do not retrieve the state from cluster-manager node.
+        description: Returns local information but does not retrieve the state from the cluster manager node.
     cat.thread_pool___query.master_timeout:
       name: master_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-deprecated: '2.0'
@@ -17012,13 +17083,13 @@ components:
     cat.thread_pool___query.s:
       name: s
       in: query
-      description: Comma-separated list of column names or column aliases to sort by.
+      description: A comma-separated list of column names or column aliases to sort by.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of column names or column aliases to sort by.
+        description: A comma-separated list of column names or column aliases to sort by.
       explode: true
     cat.thread_pool___query.size:
       name: size
@@ -17031,11 +17102,11 @@ components:
     cat.thread_pool___query.v:
       name: v
       in: query
-      description: Verbose mode. Display column headers.
+      description: Enables verbose mode, which displays column headers.
       schema:
         type: boolean
         default: false
-        description: Verbose mode. Display column headers.
+        description: Enables verbose mode, which displays column headers.
     clear_scroll___path.scroll_id:
       in: path
       name: scroll_id
@@ -22865,6 +22936,30 @@ components:
       required: true
       schema:
         type: string
+    ml.predict___path.algorithm_name:
+      name: algorithm_name
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.predict___path.model_id:
+      name: model_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.train_predict___path.algorithm_name:
+      name: algorithm_name
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.train___path.algorithm_name:
+      name: algorithm_name
+      in: path
+      required: true
+      schema:
+        type: string
     ml.undeploy_model___path.model_id:
       name: model_id
       in: path
@@ -27064,6 +27159,32 @@ components:
               - parameters
               - protocol
               - version
+    ml.predict:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              input_query:
+                $ref: '#/components/schemas/ml._common___InputQuery'
+              input_index:
+                type: array
+                items:
+                  type: string
+                description: The input index.
+              text_docs:
+                type: array
+                items:
+                  type: string
+                description: The text documents.
+              return_number:
+                type: boolean
+                description: Whether to return bytes in model output.
+              target_response:
+                type: array
+                items:
+                  type: string
+                description: The target response.
     ml.register_agents:
       content:
         application/json:
@@ -27163,6 +27284,38 @@ components:
             required:
               - query
               - size
+    ml.train:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              parameters:
+                $ref: '#/components/schemas/ml._common___TrainParameters'
+              input_query:
+                $ref: '#/components/schemas/ml._common___InputQuery'
+              input_index:
+                type: array
+                description: The input index.
+                items:
+                  type: string
+    ml.train_predict:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              parameters:
+                $ref: '#/components/schemas/ml._common___TrainParameters'
+              input_query:
+                $ref: '#/components/schemas/ml._common___InputQuery'
+              input_index:
+                type: array
+                description: The input index.
+                items:
+                  type: string
+              input_data:
+                $ref: '#/components/schemas/ml._common___PredictionResult'
     msearch:
       content:
         application/x-ndjson:
@@ -30217,6 +30370,12 @@ components:
           schema:
             $ref: '#/components/schemas/ml._common___Task'
       description: ''
+    ml.predict___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ml._common___PredictResponse'
+      description: ''
     ml.register_agents___200:
       content:
         application/json:
@@ -30251,6 +30410,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ml._common___SearchModelsResponse'
+      description: ''
+    ml.train_predict___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ml._common___TrainPredictResponse'
+      description: ''
+    ml.train___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ml._common___TrainResponse'
       description: ''
     ml.undeploy_model___200:
       content:
@@ -53784,6 +53955,27 @@ components:
           type: string
         post_process_function:
           type: string
+    ml._common___BoolQuery:
+      type: object
+      description: The Boolean query.
+      properties:
+        filter:
+          type: array
+          description: Filter query that appears in matching documents.
+          items:
+            $ref: '#/components/schemas/ml._common___Filter'
+    ml._common___ByteBuffer:
+      type: object
+      properties:
+        array:
+          type: string
+          description: The byte buffer array.
+        order:
+          type: string
+          description: The byte buffer order.
+          enum:
+            - BIG_ENDIAN
+            - LITTLE_ENDIAN
     ml._common___ClientConfig:
       type: object
       properties:
@@ -53801,6 +53993,19 @@ components:
           type: integer
         retry_timeout_seconds:
           type: integer
+    ml._common___ColumnMeta:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/_common___Name'
+        column_type:
+          type: string
+          description: The column type.
+          enum:
+            - BOOLEAN
+            - DOUBLE
+            - INTEGER
+            - STRING
     ml._common___Credential:
       type: object
       properties:
@@ -53811,6 +54016,12 @@ components:
         session_token:
           type: string
       additionalProperties: true
+    ml._common___Filter:
+      type: object
+      description: The filter element.
+      properties:
+        range:
+          $ref: '#/components/schemas/ml._common___Range'
     ml._common___Headers:
       type: object
       properties:
@@ -53830,6 +54041,43 @@ components:
       required:
         - relation
         - value
+    ml._common___InferenceResults:
+      type: object
+      properties:
+        output:
+          type: array
+          items:
+            $ref: '#/components/schemas/ml._common___Output'
+    ml._common___InputQuery:
+      type: object
+      properties:
+        _source:
+          type: array
+          items:
+            type: string
+          description: The source fields
+        size:
+          type: integer
+          format: int64
+          description: The size of the query.
+        query:
+          $ref: '#/components/schemas/ml._common___Query'
+    ml._common___Key:
+      type: object
+      description: The key.
+      properties:
+        gte:
+          type: number
+          description: Greater than or equal to.
+        lte:
+          type: number
+          description: Less than or equal to.
+        gt:
+          type: number
+          description: Greater than.
+        lt:
+          type: number
+          description: Less than.
     ml._common___LLM:
       type: object
       properties:
@@ -53896,9 +54144,90 @@ components:
       required:
         - model_group_id
         - status
+    ml._common___Output:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The output name.
+        data_type:
+          type: string
+          description: The output data type.
+          enum:
+            - BOOLEAN
+            - FLOAT16
+            - FLOAT32
+            - FLOAT64
+            - INT32
+            - INT64
+            - INT8
+            - STRING
+            - UINT8
+            - UNKNOWN
+        shape:
+          type: array
+          items:
+            type: integer
+            format: int64
+            description: The output shape.
+        data:
+          type: array
+          items:
+            type: number
+            format: double
+            description: The output data.
+        byte_buffer:
+          $ref: '#/components/schemas/ml._common___ByteBuffer'
+      required:
+        - data
     ml._common___Parameters:
       type: object
       additionalProperties: true
+    ml._common___PredictionResult:
+      type: object
+      properties:
+        column_metas:
+          type: array
+          items:
+            $ref: '#/components/schemas/ml._common___ColumnMeta'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ml._common___Rows'
+    ml._common___PredictResponse:
+      type: object
+      properties:
+        inference_results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ml._common___InferenceResults'
+        status:
+          $ref: '#/components/schemas/ml._common___Status'
+        prediction_result:
+          $ref: '#/components/schemas/ml._common___PredictionResult'
+    ml._common___Query:
+      type: object
+      description: The query.
+      properties:
+        bool:
+          $ref: '#/components/schemas/ml._common___BoolQuery'
+    ml._common___Range:
+      type: object
+      description: The filter range.
+      properties:
+        k1:
+          $ref: '#/components/schemas/ml._common___Key'
+        k2:
+          $ref: '#/components/schemas/ml._common___Key'
+        k3:
+          $ref: '#/components/schemas/ml._common___Key'
+    ml._common___Rows:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ml._common___Values'
     ml._common___SearchModelsHits:
       type: object
       properties:
@@ -54051,6 +54380,16 @@ components:
         url:
           type: string
           description: The model URL.
+    ml._common___Status:
+      type: string
+      description: The status.
+      enum:
+        - CANCELLED
+        - COMPLETED
+        - COMPLETED_WITH_ERROR
+        - CREATED
+        - FAILED
+        - RUNNING
     ml._common___Task:
       type: object
       properties:
@@ -54062,9 +54401,11 @@ components:
           type: string
           enum:
             - CANCELLED
+            - CANCELLING
             - COMPLETED
             - COMPLETED_WITH_ERROR
             - CREATED
+            - EXPIRED
             - FAILED
             - RUNNING
         task_type:
@@ -54101,6 +54442,42 @@ components:
         parameters:
           $ref: '#/components/schemas/ml._common___Parameters'
       additionalProperties: true
+    ml._common___TrainParameters:
+      type: object
+      properties:
+        centroids:
+          type: integer
+          format: int64
+          description: The centroids.
+        iterations:
+          type: integer
+          format: int64
+          description: The iterations.
+        distance_type:
+          type: string
+          description: The distance type.
+          enum:
+            - COSINE
+            - EUCLIDEAN
+            - L1
+    ml._common___TrainPredictResponse:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/ml._common___Status'
+        prediction_result:
+          $ref: '#/components/schemas/ml._common___PredictionResult'
+      required:
+        - status
+    ml._common___TrainResponse:
+      type: object
+      properties:
+        model_id:
+          $ref: '#/components/schemas/_common___Name'
+        status:
+          $ref: '#/components/schemas/ml._common___Status'
+      required:
+        - status
     ml._common___UndeployModelNode:
       type: object
       properties:
@@ -54114,6 +54491,20 @@ components:
       additionalProperties:
         title: nodes
         $ref: '#/components/schemas/ml._common___UndeployModelNode'
+    ml._common___Values:
+      type: object
+      properties:
+        column_type:
+          type: string
+          description: The column type.
+          enum:
+            - BOOLEAN
+            - DOUBLE
+            - INTEGER
+            - STRING
+        value:
+          type: number
+          description: The value.
     nodes._common___NodesResponseBase:
       type: object
       properties:
@@ -54707,6 +55098,8 @@ components:
         pid:
           type: integer
           format: int32
+        start_time:
+          $ref: '#/components/schemas/_common___DateTime'
         start_time_in_millis:
           $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
         version:
@@ -54752,6 +55145,8 @@ components:
           $ref: '#/components/schemas/_common___Name'
         pretty_name:
           $ref: '#/components/schemas/_common___Name'
+        refresh_interval:
+          $ref: '#/components/schemas/_common___Duration'
         refresh_interval_in_millis:
           $ref: '#/components/schemas/_common___DurationValueUnitMillis'
         version:
@@ -54775,6 +55170,8 @@ components:
         mlockall:
           description: Indicates if the process address space has been successfully locked in memory
           type: boolean
+        refresh_interval:
+          $ref: '#/components/schemas/_common___Duration'
         refresh_interval_in_millis:
           $ref: '#/components/schemas/_common___DurationValueUnitMillis'
       required:
@@ -55660,8 +56057,8 @@ components:
           format: int64
       required:
         - cache_evictions
-        - compilations
         - compilation_limit_triggered
+        - compilations
     nodes.stats___ShardAdmissionControlStats:
       type: object
       properties:
@@ -55711,8 +56108,8 @@ components:
             type: integer
             format: int64
       required:
-        - total_throttled_tasks
         - throttled_tasks_per_task_type
+        - total_throttled_tasks
     nodes.stats___ShardIndexingPressurePerShardIndexingStats:
       type: object
       properties:
@@ -55732,12 +56129,12 @@ components:
           type: integer
           format: int64
       required:
-        - coordinating_time_in_millis
         - coordinating_count
-        - primary_time_in_millis
+        - coordinating_time_in_millis
         - primary_count
-        - replica_time_in_millis
+        - primary_time_in_millis
         - replica_count
+        - replica_time_in_millis
     nodes.stats___ShardIndexingPressurePerShardLastSuccessfulTimestamp:
       type: object
       properties:
@@ -55873,11 +56270,11 @@ components:
         memory_allocation:
           $ref: '#/components/schemas/nodes.stats___ShardIndexingPressurePerShardMemoryAllocationStats'
       required:
-        - memory
-        - rejection
-        - last_successful_timestamp
         - indexing
+        - last_successful_timestamp
+        - memory
         - memory_allocation
+        - rejection
     nodes.stats___ShardIndexingPressureRejectionsBreakupStats:
       type: object
       properties:

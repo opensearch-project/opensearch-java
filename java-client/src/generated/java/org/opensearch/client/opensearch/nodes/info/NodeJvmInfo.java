@@ -77,6 +77,9 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
 
     private final int pid;
 
+    @Nullable
+    private final String startTime;
+
     private final long startTimeInMillis;
 
     @Nullable
@@ -106,6 +109,7 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
         this.memoryPools = ApiTypeHelper.unmodifiable(builder.memoryPools);
         this.pid = ApiTypeHelper.requireNonNull(builder.pid, this, "pid");
+        this.startTime = builder.startTime;
         this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
         this.usingBundledJdk = builder.usingBundledJdk;
         this.usingCompressedOrdinaryObjectPointers = builder.usingCompressedOrdinaryObjectPointers;
@@ -163,6 +167,14 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
      */
     public final int pid() {
         return this.pid;
+    }
+
+    /**
+     * API name: {@code start_time}
+     */
+    @Nullable
+    public final String startTime() {
+        return this.startTime;
     }
 
     /**
@@ -267,6 +279,11 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         generator.writeKey("pid");
         generator.write(this.pid);
 
+        if (this.startTime != null) {
+            generator.writeKey("start_time");
+            generator.write(this.startTime);
+        }
+
         generator.writeKey("start_time_in_millis");
         generator.write(this.startTimeInMillis);
 
@@ -327,6 +344,8 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         @Nullable
         private List<String> memoryPools;
         private Integer pid;
+        @Nullable
+        private String startTime;
         private Long startTimeInMillis;
         @Nullable
         private Boolean usingBundledJdk;
@@ -350,6 +369,7 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
             this.mem = o.mem;
             this.memoryPools = _listCopy(o.memoryPools);
             this.pid = o.pid;
+            this.startTime = o.startTime;
             this.startTimeInMillis = o.startTimeInMillis;
             this.usingBundledJdk = o.usingBundledJdk;
             this.usingCompressedOrdinaryObjectPointers = o.usingCompressedOrdinaryObjectPointers;
@@ -366,6 +386,7 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
             this.mem = o.mem;
             this.memoryPools = _listCopy(o.memoryPools);
             this.pid = o.pid;
+            this.startTime = o.startTime;
             this.startTimeInMillis = o.startTimeInMillis;
             this.usingBundledJdk = o.usingBundledJdk;
             this.usingCompressedOrdinaryObjectPointers = o.usingCompressedOrdinaryObjectPointers;
@@ -495,6 +516,15 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         }
 
         /**
+         * API name: {@code start_time}
+         */
+        @Nonnull
+        public final Builder startTime(@Nullable String value) {
+            this.startTime = value;
+            return this;
+        }
+
+        /**
          * Required - API name: {@code start_time_in_millis}
          */
         @Nonnull
@@ -588,6 +618,7 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         op.add(Builder::mem, NodeInfoJvmMemory._DESERIALIZER, "mem");
         op.add(Builder::memoryPools, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "memory_pools");
         op.add(Builder::pid, JsonpDeserializer.integerDeserializer(), "pid");
+        op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time");
         op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
         op.add(Builder::usingBundledJdk, JsonpDeserializer.booleanDeserializer(), "using_bundled_jdk");
         op.add(
@@ -610,6 +641,7 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         result = 31 * result + this.mem.hashCode();
         result = 31 * result + Objects.hashCode(this.memoryPools);
         result = 31 * result + Integer.hashCode(this.pid);
+        result = 31 * result + Objects.hashCode(this.startTime);
         result = 31 * result + Long.hashCode(this.startTimeInMillis);
         result = 31 * result + Objects.hashCode(this.usingBundledJdk);
         result = 31 * result + Objects.hashCode(this.usingCompressedOrdinaryObjectPointers);
@@ -631,6 +663,7 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
             && this.mem.equals(other.mem)
             && Objects.equals(this.memoryPools, other.memoryPools)
             && this.pid == other.pid
+            && Objects.equals(this.startTime, other.startTime)
             && this.startTimeInMillis == other.startTimeInMillis
             && Objects.equals(this.usingBundledJdk, other.usingBundledJdk)
             && Objects.equals(this.usingCompressedOrdinaryObjectPointers, other.usingCompressedOrdinaryObjectPointers)

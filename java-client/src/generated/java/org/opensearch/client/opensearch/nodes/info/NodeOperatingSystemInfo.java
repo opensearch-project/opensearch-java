@@ -48,6 +48,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
@@ -83,6 +84,9 @@ public class NodeOperatingSystemInfo
     @Nullable
     private final String prettyName;
 
+    @Nullable
+    private final Time refreshInterval;
+
     private final long refreshIntervalInMillis;
 
     @Nullable
@@ -101,6 +105,7 @@ public class NodeOperatingSystemInfo
         this.mem = builder.mem;
         this.name = builder.name;
         this.prettyName = builder.prettyName;
+        this.refreshInterval = builder.refreshInterval;
         this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this, "refreshIntervalInMillis");
         this.swap = builder.swap;
         this.version = builder.version;
@@ -176,6 +181,14 @@ public class NodeOperatingSystemInfo
     }
 
     /**
+     * API name: {@code refresh_interval}
+     */
+    @Nullable
+    public final Time refreshInterval() {
+        return this.refreshInterval;
+    }
+
+    /**
      * Required - API name: {@code refresh_interval_in_millis}
      */
     public final long refreshIntervalInMillis() {
@@ -242,6 +255,11 @@ public class NodeOperatingSystemInfo
             generator.write(this.prettyName);
         }
 
+        if (this.refreshInterval != null) {
+            generator.writeKey("refresh_interval");
+            this.refreshInterval.serialize(generator, mapper);
+        }
+
         generator.writeKey("refresh_interval_in_millis");
         generator.write(this.refreshIntervalInMillis);
 
@@ -286,6 +304,8 @@ public class NodeOperatingSystemInfo
         private String name;
         @Nullable
         private String prettyName;
+        @Nullable
+        private Time refreshInterval;
         private Long refreshIntervalInMillis;
         @Nullable
         private NodeInfoMemory swap;
@@ -302,6 +322,7 @@ public class NodeOperatingSystemInfo
             this.mem = o.mem;
             this.name = o.name;
             this.prettyName = o.prettyName;
+            this.refreshInterval = o.refreshInterval;
             this.refreshIntervalInMillis = o.refreshIntervalInMillis;
             this.swap = o.swap;
             this.version = o.version;
@@ -315,6 +336,7 @@ public class NodeOperatingSystemInfo
             this.mem = o.mem;
             this.name = o.name;
             this.prettyName = o.prettyName;
+            this.refreshInterval = o.refreshInterval;
             this.refreshIntervalInMillis = o.refreshIntervalInMillis;
             this.swap = o.swap;
             this.version = o.version;
@@ -416,6 +438,23 @@ public class NodeOperatingSystemInfo
         }
 
         /**
+         * API name: {@code refresh_interval}
+         */
+        @Nonnull
+        public final Builder refreshInterval(@Nullable Time value) {
+            this.refreshInterval = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code refresh_interval}
+         */
+        @Nonnull
+        public final Builder refreshInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return refreshInterval(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
          * Required - API name: {@code refresh_interval_in_millis}
          */
         @Nonnull
@@ -482,6 +521,7 @@ public class NodeOperatingSystemInfo
         op.add(Builder::mem, NodeInfoMemory._DESERIALIZER, "mem");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::prettyName, JsonpDeserializer.stringDeserializer(), "pretty_name");
+        op.add(Builder::refreshInterval, Time._DESERIALIZER, "refresh_interval");
         op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.longDeserializer(), "refresh_interval_in_millis");
         op.add(Builder::swap, NodeInfoMemory._DESERIALIZER, "swap");
         op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
@@ -497,6 +537,7 @@ public class NodeOperatingSystemInfo
         result = 31 * result + Objects.hashCode(this.mem);
         result = 31 * result + Objects.hashCode(this.name);
         result = 31 * result + Objects.hashCode(this.prettyName);
+        result = 31 * result + Objects.hashCode(this.refreshInterval);
         result = 31 * result + Long.hashCode(this.refreshIntervalInMillis);
         result = 31 * result + Objects.hashCode(this.swap);
         result = 31 * result + Objects.hashCode(this.version);
@@ -515,6 +556,7 @@ public class NodeOperatingSystemInfo
             && Objects.equals(this.mem, other.mem)
             && Objects.equals(this.name, other.name)
             && Objects.equals(this.prettyName, other.prettyName)
+            && Objects.equals(this.refreshInterval, other.refreshInterval)
             && this.refreshIntervalInMillis == other.refreshIntervalInMillis
             && Objects.equals(this.swap, other.swap)
             && Objects.equals(this.version, other.version);

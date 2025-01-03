@@ -37,15 +37,18 @@
 package org.opensearch.client.opensearch.nodes.info;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
@@ -62,6 +65,9 @@ public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder
 
     private final boolean mlockall;
 
+    @Nullable
+    private final Time refreshInterval;
+
     private final long refreshIntervalInMillis;
 
     // ---------------------------------------------------------------------------------------------
@@ -69,6 +75,7 @@ public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder
     private NodeProcessInfo(Builder builder) {
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.mlockall = ApiTypeHelper.requireNonNull(builder.mlockall, this, "mlockall");
+        this.refreshInterval = builder.refreshInterval;
         this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this, "refreshIntervalInMillis");
     }
 
@@ -97,6 +104,14 @@ public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * API name: {@code refresh_interval}
+     */
+    @Nullable
+    public final Time refreshInterval() {
+        return this.refreshInterval;
+    }
+
+    /**
      * Required - API name: {@code refresh_interval_in_millis}
      */
     public final long refreshIntervalInMillis() {
@@ -119,6 +134,11 @@ public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder
 
         generator.writeKey("mlockall");
         generator.write(this.mlockall);
+
+        if (this.refreshInterval != null) {
+            generator.writeKey("refresh_interval");
+            this.refreshInterval.serialize(generator, mapper);
+        }
 
         generator.writeKey("refresh_interval_in_millis");
         generator.write(this.refreshIntervalInMillis);
@@ -143,6 +163,8 @@ public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NodeProcessInfo> {
         private Long id;
         private Boolean mlockall;
+        @Nullable
+        private Time refreshInterval;
         private Long refreshIntervalInMillis;
 
         public Builder() {}
@@ -150,12 +172,14 @@ public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder
         private Builder(NodeProcessInfo o) {
             this.id = o.id;
             this.mlockall = o.mlockall;
+            this.refreshInterval = o.refreshInterval;
             this.refreshIntervalInMillis = o.refreshIntervalInMillis;
         }
 
         private Builder(Builder o) {
             this.id = o.id;
             this.mlockall = o.mlockall;
+            this.refreshInterval = o.refreshInterval;
             this.refreshIntervalInMillis = o.refreshIntervalInMillis;
         }
 
@@ -187,6 +211,23 @@ public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder
         public final Builder mlockall(boolean value) {
             this.mlockall = value;
             return this;
+        }
+
+        /**
+         * API name: {@code refresh_interval}
+         */
+        @Nonnull
+        public final Builder refreshInterval(@Nullable Time value) {
+            this.refreshInterval = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code refresh_interval}
+         */
+        @Nonnull
+        public final Builder refreshInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return refreshInterval(fn.apply(new Time.Builder()).build());
         }
 
         /**
@@ -225,6 +266,7 @@ public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder
     protected static void setupNodeProcessInfoDeserializer(ObjectDeserializer<NodeProcessInfo.Builder> op) {
         op.add(Builder::id, JsonpDeserializer.longDeserializer(), "id");
         op.add(Builder::mlockall, JsonpDeserializer.booleanDeserializer(), "mlockall");
+        op.add(Builder::refreshInterval, Time._DESERIALIZER, "refresh_interval");
         op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.longDeserializer(), "refresh_interval_in_millis");
     }
 
@@ -233,6 +275,7 @@ public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder
         int result = 17;
         result = 31 * result + Long.hashCode(this.id);
         result = 31 * result + Boolean.hashCode(this.mlockall);
+        result = 31 * result + Objects.hashCode(this.refreshInterval);
         result = 31 * result + Long.hashCode(this.refreshIntervalInMillis);
         return result;
     }
@@ -242,6 +285,9 @@ public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         NodeProcessInfo other = (NodeProcessInfo) o;
-        return this.id == other.id && this.mlockall == other.mlockall && this.refreshIntervalInMillis == other.refreshIntervalInMillis;
+        return this.id == other.id
+            && this.mlockall == other.mlockall
+            && Objects.equals(this.refreshInterval, other.refreshInterval)
+            && this.refreshIntervalInMillis == other.refreshIntervalInMillis;
     }
 }
