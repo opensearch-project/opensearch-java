@@ -61,17 +61,6 @@ public class OpenSearchIngestAsyncClient extends OpenSearchIngestAsyncClientBase
         return new OpenSearchIngestAsyncClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: ingest.processor_grok
-
-    /**
-     * Returns a list of the built-in patterns.
-     *
-     *
-     */
-    public CompletableFuture<ProcessorGrokResponse> processorGrok() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: ingest.put_pipeline
 
     /**
