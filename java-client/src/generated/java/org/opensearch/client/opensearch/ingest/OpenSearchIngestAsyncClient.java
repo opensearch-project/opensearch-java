@@ -51,11 +51,18 @@ import org.opensearch.client.util.ObjectBuilder;
  * Client for the ingest namespace.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public abstract class OpenSearchIngestAsyncClientBase<Self extends OpenSearchIngestAsyncClientBase<Self>> extends ApiClient<
-    OpenSearchTransport,
-    Self> {
-    public OpenSearchIngestAsyncClientBase(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
+public class OpenSearchIngestAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchIngestAsyncClient> {
+    public OpenSearchIngestAsyncClient(OpenSearchTransport transport) {
+        super(transport, null);
+    }
+
+    public OpenSearchIngestAsyncClient(OpenSearchTransport transport, @Nullable TransportOptions transportOptions) {
         super(transport, transportOptions);
+    }
+
+    @Override
+    public OpenSearchIngestAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+        return new OpenSearchIngestAsyncClient(this.transport, transportOptions);
     }
 
     // ----- Endpoint: ingest.delete_pipeline
@@ -150,5 +157,31 @@ public abstract class OpenSearchIngestAsyncClientBase<Self extends OpenSearchIng
         Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn
     ) throws IOException, OpenSearchException {
         return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ingest.simulate
+
+    /**
+     * Allows to simulate a pipeline with example documents.
+     */
+    public CompletableFuture<SimulateResponse> simulate(SimulateRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, SimulateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Allows to simulate a pipeline with example documents.
+     *
+     * @param fn a function that initializes a builder to create the {@link SimulateRequest}
+     */
+    public final CompletableFuture<SimulateResponse> simulate(Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn)
+        throws IOException, OpenSearchException {
+        return simulate(fn.apply(new SimulateRequest.Builder()).build());
+    }
+
+    /**
+     * Allows to simulate a pipeline with example documents.
+     */
+    public final CompletableFuture<SimulateResponse> simulate() throws IOException, OpenSearchException {
+        return simulate(new SimulateRequest.Builder().build());
     }
 }
