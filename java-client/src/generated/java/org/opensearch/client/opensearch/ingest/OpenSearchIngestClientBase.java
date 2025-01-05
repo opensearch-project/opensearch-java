@@ -127,4 +127,23 @@ public abstract class OpenSearchIngestClientBase<Self extends OpenSearchIngestCl
     public final ProcessorGrokResponse processorGrok() throws IOException, OpenSearchException {
         return processorGrok(new ProcessorGrokRequest.Builder().build());
     }
+
+    // ----- Endpoint: ingest.put_pipeline
+
+    /**
+     * Creates or updates a pipeline.
+     */
+    public PutPipelineResponse putPipeline(PutPipelineRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, PutPipelineRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates or updates a pipeline.
+     *
+     * @param fn a function that initializes a builder to create the {@link PutPipelineRequest}
+     */
+    public final PutPipelineResponse putPipeline(Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn)
+        throws IOException, OpenSearchException {
+        return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
+    }
 }

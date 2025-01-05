@@ -60,38 +60,6 @@ public class OpenSearchIngestClient extends OpenSearchIngestClientBase<OpenSearc
         return new OpenSearchIngestClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: ingest.put_pipeline
-
-    /**
-     * Creates or updates a pipeline.
-     *
-     *
-     */
-
-    public PutPipelineResponse putPipeline(PutPipelineRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<PutPipelineRequest, PutPipelineResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            PutPipelineRequest,
-            PutPipelineResponse,
-            ErrorResponse>) PutPipelineRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Creates or updates a pipeline.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link PutPipelineRequest}
-     *
-     */
-
-    public final PutPipelineResponse putPipeline(Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn)
-        throws IOException, OpenSearchException {
-        return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
-    }
-
     // ----- Endpoint: ingest.simulate
 
     /**

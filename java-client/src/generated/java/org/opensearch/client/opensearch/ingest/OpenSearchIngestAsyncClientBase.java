@@ -131,4 +131,24 @@ public abstract class OpenSearchIngestAsyncClientBase<Self extends OpenSearchIng
     public final CompletableFuture<ProcessorGrokResponse> processorGrok() throws IOException, OpenSearchException {
         return processorGrok(new ProcessorGrokRequest.Builder().build());
     }
+
+    // ----- Endpoint: ingest.put_pipeline
+
+    /**
+     * Creates or updates a pipeline.
+     */
+    public CompletableFuture<PutPipelineResponse> putPipeline(PutPipelineRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, PutPipelineRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates or updates a pipeline.
+     *
+     * @param fn a function that initializes a builder to create the {@link PutPipelineRequest}
+     */
+    public final CompletableFuture<PutPipelineResponse> putPipeline(
+        Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
+    }
 }
