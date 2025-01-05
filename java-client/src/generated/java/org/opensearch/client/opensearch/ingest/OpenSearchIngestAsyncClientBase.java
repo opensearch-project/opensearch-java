@@ -104,4 +104,31 @@ public abstract class OpenSearchIngestAsyncClientBase<Self extends OpenSearchIng
     public final CompletableFuture<GetPipelineResponse> getPipeline() throws IOException, OpenSearchException {
         return getPipeline(new GetPipelineRequest.Builder().build());
     }
+
+    // ----- Endpoint: ingest.processor_grok
+
+    /**
+     * Returns a list of the built-in patterns.
+     */
+    public CompletableFuture<ProcessorGrokResponse> processorGrok(ProcessorGrokRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ProcessorGrokRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns a list of the built-in patterns.
+     *
+     * @param fn a function that initializes a builder to create the {@link ProcessorGrokRequest}
+     */
+    public final CompletableFuture<ProcessorGrokResponse> processorGrok(
+        Function<ProcessorGrokRequest.Builder, ObjectBuilder<ProcessorGrokRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return processorGrok(fn.apply(new ProcessorGrokRequest.Builder()).build());
+    }
+
+    /**
+     * Returns a list of the built-in patterns.
+     */
+    public final CompletableFuture<ProcessorGrokResponse> processorGrok() throws IOException, OpenSearchException {
+        return processorGrok(new ProcessorGrokRequest.Builder().build());
+    }
 }

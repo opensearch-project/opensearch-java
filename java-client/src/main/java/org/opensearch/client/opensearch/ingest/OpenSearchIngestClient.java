@@ -60,17 +60,6 @@ public class OpenSearchIngestClient extends OpenSearchIngestClientBase<OpenSearc
         return new OpenSearchIngestClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: ingest.processor_grok
-
-    /**
-     * Returns a list of the built-in patterns.
-     *
-     *
-     */
-    public ProcessorGrokResponse processorGrok() throws IOException, OpenSearchException {
-        return this.transport.performRequest(ProcessorGrokRequest._INSTANCE, ProcessorGrokRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: ingest.put_pipeline
 
     /**
