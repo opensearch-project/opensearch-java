@@ -14,6 +14,7 @@ import javax.annotation.Nonnull;
 public class NameSanitizer {
     private static final Set<String> reservedWords = Set.of(
         "default",
+        "if",
         "native",
         "transient",
         "boolean",

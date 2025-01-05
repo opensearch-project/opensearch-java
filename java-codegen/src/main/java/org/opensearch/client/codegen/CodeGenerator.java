@@ -61,7 +61,7 @@ public class CodeGenerator {
         ),
         namespace(is("dangling_indices")),
         and(namespace(is("indices")), name(isNot("get_field_mapping"))),
-        and(namespace(is("ingest")), name(isOneOf("delete_pipeline"))),
+        and(namespace(is("ingest")), name(isOneOf("delete_pipeline", "get_pipeline"))),
         and(
             namespace(is("ml")),
             name(
