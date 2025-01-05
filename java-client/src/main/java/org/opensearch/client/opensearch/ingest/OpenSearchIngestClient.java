@@ -60,48 +60,6 @@ public class OpenSearchIngestClient extends OpenSearchIngestClientBase<OpenSearc
         return new OpenSearchIngestClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: ingest.get_pipeline
-
-    /**
-     * Returns a pipeline.
-     *
-     *
-     */
-
-    public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetPipelineRequest,
-            GetPipelineResponse,
-            ErrorResponse>) GetPipelineRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns a pipeline.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetPipelineRequest}
-     *
-     */
-
-    public final GetPipelineResponse getPipeline(Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn)
-        throws IOException, OpenSearchException {
-        return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
-    }
-
-    /**
-     * Returns a pipeline.
-     *
-     *
-     */
-
-    public GetPipelineResponse getPipeline() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new GetPipelineRequest.Builder().build(), GetPipelineRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: ingest.processor_grok
 
     /**

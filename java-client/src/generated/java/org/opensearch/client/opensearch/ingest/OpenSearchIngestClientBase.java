@@ -75,4 +75,30 @@ public abstract class OpenSearchIngestClientBase<Self extends OpenSearchIngestCl
         throws IOException, OpenSearchException {
         return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
     }
+
+    // ----- Endpoint: ingest.get_pipeline
+
+    /**
+     * Returns a pipeline.
+     */
+    public GetPipelineResponse getPipeline(GetPipelineRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, GetPipelineRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns a pipeline.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetPipelineRequest}
+     */
+    public final GetPipelineResponse getPipeline(Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn)
+        throws IOException, OpenSearchException {
+        return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
+    }
+
+    /**
+     * Returns a pipeline.
+     */
+    public final GetPipelineResponse getPipeline() throws IOException, OpenSearchException {
+        return getPipeline(new GetPipelineRequest.Builder().build());
+    }
 }

@@ -49,6 +49,8 @@ import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.json.UnionDeserializer;
 import org.opensearch.client.opensearch._types.query_dsl.IntervalsFilter;
 import org.opensearch.client.opensearch._types.query_dsl.IntervalsFilterVariant;
+import org.opensearch.client.opensearch.ingest.Processor;
+import org.opensearch.client.opensearch.ingest.ProcessorVariant;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -59,7 +61,7 @@ import org.opensearch.client.util.TaggedUnionUtils;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class Script implements TaggedUnion<Script.Kind, Object>, IntervalsFilterVariant, PlainJsonSerializable {
+public class Script implements TaggedUnion<Script.Kind, Object>, IntervalsFilterVariant, ProcessorVariant, PlainJsonSerializable {
     /**
      * {@link Script} variant kinds.
      */
@@ -74,6 +76,14 @@ public class Script implements TaggedUnion<Script.Kind, Object>, IntervalsFilter
     @Override
     public IntervalsFilter.Kind _intervalsFilterKind() {
         return IntervalsFilter.Kind.Script;
+    }
+
+    /**
+     * {@link Processor} variant kind.
+     */
+    @Override
+    public Processor.Kind _processorKind() {
+        return Processor.Kind.Script;
     }
 
     private final Kind _kind;
