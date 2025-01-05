@@ -65,9 +65,6 @@ public class TextEmbeddingProcessor extends ProcessorBase
     @Nullable
     private final Integer batchSize;
 
-    @Nullable
-    private final String description;
-
     @Nonnull
     private final Map<String, String> fieldMap;
 
@@ -79,7 +76,6 @@ public class TextEmbeddingProcessor extends ProcessorBase
     private TextEmbeddingProcessor(Builder builder) {
         super(builder);
         this.batchSize = builder.batchSize;
-        this.description = builder.description;
         this.fieldMap = ApiTypeHelper.unmodifiableRequired(builder.fieldMap, this, "fieldMap");
         this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
     }
@@ -102,17 +98,6 @@ public class TextEmbeddingProcessor extends ProcessorBase
     @Nullable
     public final Integer batchSize() {
         return this.batchSize;
-    }
-
-    /**
-     * A brief description of the processor.
-     * <p>
-     * API name: {@code description}
-     * </p>
-     */
-    @Nullable
-    public final String description() {
-        return this.description;
     }
 
     /**
@@ -139,11 +124,6 @@ public class TextEmbeddingProcessor extends ProcessorBase
         if (this.batchSize != null) {
             generator.writeKey("batch_size");
             generator.write(this.batchSize);
-        }
-
-        if (this.description != null) {
-            generator.writeKey("description");
-            generator.write(this.description);
         }
 
         generator.writeKey("field_map");
@@ -177,8 +157,6 @@ public class TextEmbeddingProcessor extends ProcessorBase
     public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, TextEmbeddingProcessor> {
         @Nullable
         private Integer batchSize;
-        @Nullable
-        private String description;
         private Map<String, String> fieldMap;
         private String modelId;
 
@@ -187,7 +165,6 @@ public class TextEmbeddingProcessor extends ProcessorBase
         private Builder(TextEmbeddingProcessor o) {
             super(o);
             this.batchSize = o.batchSize;
-            this.description = o.description;
             this.fieldMap = _mapCopy(o.fieldMap);
             this.modelId = o.modelId;
         }
@@ -195,7 +172,6 @@ public class TextEmbeddingProcessor extends ProcessorBase
         private Builder(Builder o) {
             super(o);
             this.batchSize = o.batchSize;
-            this.description = o.description;
             this.fieldMap = _mapCopy(o.fieldMap);
             this.modelId = o.modelId;
         }
@@ -218,18 +194,6 @@ public class TextEmbeddingProcessor extends ProcessorBase
         @Nonnull
         public final Builder batchSize(@Nullable Integer value) {
             this.batchSize = value;
-            return this;
-        }
-
-        /**
-         * A brief description of the processor.
-         * <p>
-         * API name: {@code description}
-         * </p>
-         */
-        @Nonnull
-        public final Builder description(@Nullable String value) {
-            this.description = value;
             return this;
         }
 
@@ -301,7 +265,6 @@ public class TextEmbeddingProcessor extends ProcessorBase
     protected static void setupTextEmbeddingProcessorDeserializer(ObjectDeserializer<TextEmbeddingProcessor.Builder> op) {
         setupProcessorBaseDeserializer(op);
         op.add(Builder::batchSize, JsonpDeserializer.integerDeserializer(), "batch_size");
-        op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::fieldMap, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "field_map");
         op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
     }
@@ -310,7 +273,6 @@ public class TextEmbeddingProcessor extends ProcessorBase
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + Objects.hashCode(this.batchSize);
-        result = 31 * result + Objects.hashCode(this.description);
         result = 31 * result + this.fieldMap.hashCode();
         result = 31 * result + this.modelId.hashCode();
         return result;
@@ -325,7 +287,6 @@ public class TextEmbeddingProcessor extends ProcessorBase
         if (o == null || this.getClass() != o.getClass()) return false;
         TextEmbeddingProcessor other = (TextEmbeddingProcessor) o;
         return Objects.equals(this.batchSize, other.batchSize)
-            && Objects.equals(this.description, other.description)
             && this.fieldMap.equals(other.fieldMap)
             && this.modelId.equals(other.modelId);
     }
