@@ -52192,8 +52192,7 @@ components:
             value:
               description: The value to be appended. Supports template snippets.
               type: array
-              items:
-                type: object
+              items: {}
             allow_duplicates:
               description: If `false`, the processor does not append values already present in the field.
               type: boolean
@@ -52214,7 +52213,8 @@ components:
               description: |-
                 The number of chars being used for extraction to prevent huge fields.
                 Use `-1` for no limit.
-              type: number
+              type: integer
+              format: int64
             indexed_chars_field:
               $ref: '#/components/schemas/_common___Field'
             properties:
@@ -52255,6 +52255,7 @@ components:
             error_distance:
               description: The difference between the resulting inscribed distance from center to side and the circle's radius (measured in meters for `geo_shape`, unit-less for `shape`).
               type: number
+              format: double
             field:
               $ref: '#/components/schemas/_common___Field'
             ignore_missing:
@@ -52305,7 +52306,6 @@ components:
                 Value used to fill empty fields.
                 Empty fields are skipped if this is not provided.
                 An empty field is one with no value (2 consecutive separators) or empty quotes (`""`).
-              type: object
             field:
               $ref: '#/components/schemas/_common___Field'
             ignore_missing:
@@ -52432,38 +52432,6 @@ components:
       allOf:
         - $ref: '#/components/schemas/ingest._common___ProcessorBase'
         - type: object
-    ingest._common___EnrichProcessor:
-      allOf:
-        - $ref: '#/components/schemas/ingest._common___ProcessorBase'
-        - type: object
-          properties:
-            field:
-              $ref: '#/components/schemas/_common___Field'
-            ignore_missing:
-              description: If `true` and `field` does not exist, the processor quietly exits without modifying the document.
-              type: boolean
-            max_matches:
-              description: |-
-                The maximum number of matched documents to include under the configured target field.
-                The `target_field` will be turned into a JSON array if `max_matches` is higher than 1, otherwise `target_field` will become a JSON object.
-                In order to avoid documents getting too large, the maximum allowed value is 128.
-              type: number
-            override:
-              description: |-
-                If processor will update fields with pre-existing non-null-valued field.
-                When set to `false`, such fields will not be touched.
-              type: boolean
-            policy_name:
-              description: The name of the enrich policy to use.
-              type: string
-            shape_relation:
-              $ref: '#/components/schemas/_common___GeoShapeRelation'
-            target_field:
-              $ref: '#/components/schemas/_common___Field'
-          required:
-            - field
-            - policy_name
-            - target_field
     ingest._common___FailProcessor:
       allOf:
         - $ref: '#/components/schemas/ingest._common___ProcessorBase'
@@ -52568,61 +52536,6 @@ components:
             - field
             - pattern
             - replacement
-    ingest._common___InferenceConfig:
-      type: object
-      properties:
-        regression:
-          $ref: '#/components/schemas/ingest._common___InferenceConfigRegression'
-        classification:
-          $ref: '#/components/schemas/ingest._common___InferenceConfigClassification'
-      minProperties: 1
-      maxProperties: 1
-    ingest._common___InferenceConfigClassification:
-      type: object
-      properties:
-        num_top_classes:
-          description: Specifies the number of top class predictions to return.
-          type: number
-        num_top_feature_importance_values:
-          description: Specifies the maximum number of feature importance values per document.
-          type: number
-        results_field:
-          $ref: '#/components/schemas/_common___Field'
-        top_classes_results_field:
-          $ref: '#/components/schemas/_common___Field'
-        prediction_field_type:
-          description: |-
-            Specifies the type of the predicted field to write.
-            Valid values are: `string`, `number`, `boolean`.
-          type: string
-    ingest._common___InferenceConfigRegression:
-      type: object
-      properties:
-        results_field:
-          $ref: '#/components/schemas/_common___Field'
-        num_top_feature_importance_values:
-          description: Specifies the maximum number of feature importance values per document.
-          type: number
-    ingest._common___InferenceProcessor:
-      allOf:
-        - $ref: '#/components/schemas/ingest._common___ProcessorBase'
-        - type: object
-          properties:
-            model_id:
-              $ref: '#/components/schemas/_common___Id'
-            target_field:
-              $ref: '#/components/schemas/_common___Field'
-            field_map:
-              description: |-
-                Maps the document field names to the known field names of the model.
-                This mapping takes precedence over any default mappings provided in the model configuration.
-              type: object
-              additionalProperties:
-                type: object
-            inference_config:
-              $ref: '#/components/schemas/ingest._common___InferenceConfig'
-          required:
-            - model_id
     ingest._common___JoinProcessor:
       allOf:
         - $ref: '#/components/schemas/ingest._common___ProcessorBase'
@@ -52801,8 +52714,6 @@ components:
           $ref: '#/components/schemas/ingest._common___DateIndexNameProcessor'
         dot_expander:
           $ref: '#/components/schemas/ingest._common___DotExpanderProcessor'
-        enrich:
-          $ref: '#/components/schemas/ingest._common___EnrichProcessor'
         fail:
           $ref: '#/components/schemas/ingest._common___FailProcessor'
         foreach:
@@ -52853,8 +52764,6 @@ components:
           $ref: '#/components/schemas/ingest._common___DropProcessor'
         circle:
           $ref: '#/components/schemas/ingest._common___CircleProcessor'
-        inference:
-          $ref: '#/components/schemas/ingest._common___InferenceProcessor'
         text_embedding:
           $ref: '#/components/schemas/ingest._common___TextEmbeddingProcessor'
       minProperties: 1
@@ -52914,7 +52823,6 @@ components:
                 The value to be set for the field.
                 Supports template snippets.
                 May specify only one of `value` or `copy_from`.
-              type: object
           required:
             - field
     ingest._common___SetSecurityUserProcessor:
@@ -52935,7 +52843,7 @@ components:
       type: string
       enum:
         - geo_shape
-        - shape
+        - xy_shape
     ingest._common___SortProcessor:
       allOf:
         - $ref: '#/components/schemas/ingest._common___ProcessorBase'
@@ -52982,9 +52890,9 @@ components:
               type: object
               additionalProperties:
                 type: string
-            description:
-              type: string
-              description: A brief description of the processor.
+            batch_size:
+              type: integer
+              format: int32
           required:
             - field_map
             - model_id
@@ -53073,7 +52981,6 @@ components:
           $ref: '#/components/schemas/_common___IndexName'
         _source:
           description: JSON body for the document.
-          type: object
       required:
         - _source
     ingest.simulate___DocumentSimulation:
@@ -54844,9 +54751,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/nodes.info___NodeInfoIngestProcessor'
-      required:
-        - request_processors
-        - response_processors
     nodes.info___NodeInfoSearchRemote:
       type: object
       properties:
@@ -55051,7 +54955,6 @@ components:
         max_local_storage_nodes:
           type: string
       required:
-        - attr
         - name
     nodes.info___NodeInfoSettingsPlugins:
       type: object

@@ -74,7 +74,7 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
     // ---------------------------------------------------------------------------------------------
 
     private NodeInfoSettingsNode(Builder builder) {
-        this.attr = ApiTypeHelper.unmodifiableRequired(builder.attr, this, "attr");
+        this.attr = ApiTypeHelper.unmodifiable(builder.attr);
         this.maxLocalStorageNodes = builder.maxLocalStorageNodes;
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
     }
@@ -84,7 +84,7 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
-     * Required - API name: {@code attr}
+     * API name: {@code attr}
      */
     @Nonnull
     public final Map<String, JsonData> attr() {
@@ -118,13 +118,15 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("attr");
-        generator.writeStartObject();
-        for (Map.Entry<String, JsonData> item0 : this.attr.entrySet()) {
-            generator.writeKey(item0.getKey());
-            item0.getValue().serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.attr)) {
+            generator.writeKey("attr");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.attr.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
         }
-        generator.writeEnd();
 
         if (this.maxLocalStorageNodes != null) {
             generator.writeKey("max_local_storage_nodes");
@@ -152,6 +154,7 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
      * Builder for {@link NodeInfoSettingsNode}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NodeInfoSettingsNode> {
+        @Nullable
         private Map<String, JsonData> attr;
         @Nullable
         private String maxLocalStorageNodes;
@@ -178,7 +181,7 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Required - API name: {@code attr}
+         * API name: {@code attr}
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>attr</code>.
@@ -191,7 +194,7 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Required - API name: {@code attr}
+         * API name: {@code attr}
          *
          * <p>
          * Adds an entry to <code>attr</code>.
@@ -254,7 +257,7 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + this.attr.hashCode();
+        result = 31 * result + Objects.hashCode(this.attr);
         result = 31 * result + Objects.hashCode(this.maxLocalStorageNodes);
         result = 31 * result + this.name.hashCode();
         return result;
@@ -265,7 +268,7 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         NodeInfoSettingsNode other = (NodeInfoSettingsNode) o;
-        return this.attr.equals(other.attr)
+        return Objects.equals(this.attr, other.attr)
             && Objects.equals(this.maxLocalStorageNodes, other.maxLocalStorageNodes)
             && this.name.equals(other.name);
     }

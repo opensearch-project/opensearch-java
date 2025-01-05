@@ -38,9 +38,11 @@ package org.opensearch.client.opensearch.nodes.info;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -71,8 +73,8 @@ public class NodeInfoSearchPipelines
     // ---------------------------------------------------------------------------------------------
 
     private NodeInfoSearchPipelines(Builder builder) {
-        this.requestProcessors = ApiTypeHelper.unmodifiableRequired(builder.requestProcessors, this, "requestProcessors");
-        this.responseProcessors = ApiTypeHelper.unmodifiableRequired(builder.responseProcessors, this, "responseProcessors");
+        this.requestProcessors = ApiTypeHelper.unmodifiable(builder.requestProcessors);
+        this.responseProcessors = ApiTypeHelper.unmodifiable(builder.responseProcessors);
     }
 
     public static NodeInfoSearchPipelines of(Function<NodeInfoSearchPipelines.Builder, ObjectBuilder<NodeInfoSearchPipelines>> fn) {
@@ -80,7 +82,7 @@ public class NodeInfoSearchPipelines
     }
 
     /**
-     * Required - API name: {@code request_processors}
+     * API name: {@code request_processors}
      */
     @Nonnull
     public final List<NodeInfoIngestProcessor> requestProcessors() {
@@ -88,7 +90,7 @@ public class NodeInfoSearchPipelines
     }
 
     /**
-     * Required - API name: {@code response_processors}
+     * API name: {@code response_processors}
      */
     @Nonnull
     public final List<NodeInfoIngestProcessor> responseProcessors() {
@@ -106,19 +108,23 @@ public class NodeInfoSearchPipelines
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("request_processors");
-        generator.writeStartArray();
-        for (NodeInfoIngestProcessor item0 : this.requestProcessors) {
-            item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.requestProcessors)) {
+            generator.writeKey("request_processors");
+            generator.writeStartArray();
+            for (NodeInfoIngestProcessor item0 : this.requestProcessors) {
+                item0.serialize(generator, mapper);
+            }
+            generator.writeEnd();
         }
-        generator.writeEnd();
 
-        generator.writeKey("response_processors");
-        generator.writeStartArray();
-        for (NodeInfoIngestProcessor item0 : this.responseProcessors) {
-            item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.responseProcessors)) {
+            generator.writeKey("response_processors");
+            generator.writeStartArray();
+            for (NodeInfoIngestProcessor item0 : this.responseProcessors) {
+                item0.serialize(generator, mapper);
+            }
+            generator.writeEnd();
         }
-        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -138,7 +144,9 @@ public class NodeInfoSearchPipelines
      * Builder for {@link NodeInfoSearchPipelines}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NodeInfoSearchPipelines> {
+        @Nullable
         private List<NodeInfoIngestProcessor> requestProcessors;
+        @Nullable
         private List<NodeInfoIngestProcessor> responseProcessors;
 
         public Builder() {}
@@ -160,7 +168,7 @@ public class NodeInfoSearchPipelines
         }
 
         /**
-         * Required - API name: {@code request_processors}
+         * API name: {@code request_processors}
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>requestProcessors</code>.
@@ -173,7 +181,7 @@ public class NodeInfoSearchPipelines
         }
 
         /**
-         * Required - API name: {@code request_processors}
+         * API name: {@code request_processors}
          *
          * <p>
          * Adds one or more values to <code>requestProcessors</code>.
@@ -186,7 +194,7 @@ public class NodeInfoSearchPipelines
         }
 
         /**
-         * Required - API name: {@code request_processors}
+         * API name: {@code request_processors}
          *
          * <p>
          * Adds a value to <code>requestProcessors</code> using a builder lambda.
@@ -198,7 +206,7 @@ public class NodeInfoSearchPipelines
         }
 
         /**
-         * Required - API name: {@code response_processors}
+         * API name: {@code response_processors}
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>responseProcessors</code>.
@@ -211,7 +219,7 @@ public class NodeInfoSearchPipelines
         }
 
         /**
-         * Required - API name: {@code response_processors}
+         * API name: {@code response_processors}
          *
          * <p>
          * Adds one or more values to <code>responseProcessors</code>.
@@ -224,7 +232,7 @@ public class NodeInfoSearchPipelines
         }
 
         /**
-         * Required - API name: {@code response_processors}
+         * API name: {@code response_processors}
          *
          * <p>
          * Adds a value to <code>responseProcessors</code> using a builder lambda.
@@ -275,8 +283,8 @@ public class NodeInfoSearchPipelines
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + this.requestProcessors.hashCode();
-        result = 31 * result + this.responseProcessors.hashCode();
+        result = 31 * result + Objects.hashCode(this.requestProcessors);
+        result = 31 * result + Objects.hashCode(this.responseProcessors);
         return result;
     }
 
@@ -285,6 +293,7 @@ public class NodeInfoSearchPipelines
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         NodeInfoSearchPipelines other = (NodeInfoSearchPipelines) o;
-        return this.requestProcessors.equals(other.requestProcessors) && this.responseProcessors.equals(other.responseProcessors);
+        return Objects.equals(this.requestProcessors, other.requestProcessors)
+            && Objects.equals(this.responseProcessors, other.responseProcessors);
     }
 }
