@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.ingest.simulate;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,36 +49,32 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ingest.simulate.Ingest
 
 @JsonpDeserializable
-public class Ingest implements PlainJsonSerializable {
-    private final String timestamp;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class Ingest implements PlainJsonSerializable, ToCopyableBuilder<Ingest.Builder, Ingest> {
 
     @Nullable
     private final String pipeline;
 
+    @Nonnull
+    private final String timestamp;
+
     // ---------------------------------------------------------------------------------------------
 
     private Ingest(Builder builder) {
-
-        this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
         this.pipeline = builder.pipeline;
-
+        this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
     }
 
-    public static Ingest of(Function<Builder, ObjectBuilder<Ingest>> fn) {
+    public static Ingest of(Function<Ingest.Builder, ObjectBuilder<Ingest>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * Required - API name: {@code timestamp}
-     */
-    public final String timestamp() {
-        return this.timestamp;
     }
 
     /**
@@ -83,8 +86,17 @@ public class Ingest implements PlainJsonSerializable {
     }
 
     /**
+     * Required - API name: {@code timestamp}
+     */
+    @Nonnull
+    public final String timestamp() {
+        return this.timestamp;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -92,52 +104,79 @@ public class Ingest implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.writeKey("timestamp");
-        generator.write(this.timestamp);
-
         if (this.pipeline != null) {
             generator.writeKey("pipeline");
             generator.write(this.pipeline);
-
         }
 
+        generator.writeKey("timestamp");
+        generator.write(this.timestamp);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link Ingest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ingest> {
-        private String timestamp;
-
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Ingest> {
         @Nullable
         private String pipeline;
+        private String timestamp;
 
-        /**
-         * Required - API name: {@code timestamp}
-         */
-        public final Builder timestamp(String value) {
-            this.timestamp = value;
-            return this;
+        public Builder() {}
+
+        private Builder(Ingest o) {
+            this.pipeline = o.pipeline;
+            this.timestamp = o.timestamp;
+        }
+
+        private Builder(Builder o) {
+            this.pipeline = o.pipeline;
+            this.timestamp = o.timestamp;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
         }
 
         /**
          * API name: {@code pipeline}
          */
+        @Nonnull
         public final Builder pipeline(@Nullable String value) {
             this.pipeline = value;
             return this;
         }
 
         /**
+         * Required - API name: {@code timestamp}
+         */
+        @Nonnull
+        public final Builder timestamp(String value) {
+            this.timestamp = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link Ingest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public Ingest build() {
             _checkSingleUse();
 
@@ -156,10 +195,23 @@ public class Ingest implements PlainJsonSerializable {
     );
 
     protected static void setupIngestDeserializer(ObjectDeserializer<Ingest.Builder> op) {
-
-        op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
         op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
-
+        op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.pipeline);
+        result = 31 * result + this.timestamp.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Ingest other = (Ingest) o;
+        return Objects.equals(this.pipeline, other.pipeline) && this.timestamp.equals(other.timestamp);
+    }
 }

@@ -30,11 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.ingest.simulate;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -43,52 +50,60 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.VersionType;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ingest.simulate.DocumentSimulation
 
 @JsonpDeserializable
-public class DocumentSimulation implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class DocumentSimulation implements PlainJsonSerializable, ToCopyableBuilder<DocumentSimulation.Builder, DocumentSimulation> {
+
+    @Nonnull
     private final String id;
 
+    @Nonnull
     private final String index;
 
+    @Nonnull
     private final Ingest ingest;
-
-    @Nullable
-    private final String parent;
 
     @Nullable
     private final String routing;
 
+    @Nonnull
     private final Map<String, JsonData> source;
 
     @Nullable
-    private final String type;
+    private final String version;
+
+    @Nullable
+    private final VersionType versionType;
 
     // ---------------------------------------------------------------------------------------------
 
     private DocumentSimulation(Builder builder) {
-
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.ingest = ApiTypeHelper.requireNonNull(builder.ingest, this, "ingest");
-        this.parent = builder.parent;
         this.routing = builder.routing;
         this.source = ApiTypeHelper.unmodifiableRequired(builder.source, this, "source");
-        this.type = builder.type;
-
+        this.version = builder.version;
+        this.versionType = builder.versionType;
     }
 
-    public static DocumentSimulation of(Function<Builder, ObjectBuilder<DocumentSimulation>> fn) {
+    public static DocumentSimulation of(Function<DocumentSimulation.Builder, ObjectBuilder<DocumentSimulation>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code _id}
      */
+    @Nonnull
     public final String id() {
         return this.id;
     }
@@ -96,6 +111,7 @@ public class DocumentSimulation implements PlainJsonSerializable {
     /**
      * Required - API name: {@code _index}
      */
+    @Nonnull
     public final String index() {
         return this.index;
     }
@@ -103,20 +119,16 @@ public class DocumentSimulation implements PlainJsonSerializable {
     /**
      * Required - API name: {@code _ingest}
      */
+    @Nonnull
     public final Ingest ingest() {
         return this.ingest;
     }
 
     /**
-     * API name: {@code _parent}
-     */
-    @Nullable
-    public final String parent() {
-        return this.parent;
-    }
-
-    /**
+     * Value used to send the document to a specific primary shard.
+     * <p>
      * API name: {@code _routing}
+     * </p>
      */
     @Nullable
     public final String routing() {
@@ -124,23 +136,36 @@ public class DocumentSimulation implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code _source}
+     * Required - JSON body for the document.
+     * <p>
+     * API name: {@code _source}
+     * </p>
      */
+    @Nonnull
     public final Map<String, JsonData> source() {
         return this.source;
     }
 
     /**
-     * API name: {@code _type}
+     * API name: {@code _version}
      */
     @Nullable
-    public final String type() {
-        return this.type;
+    public final String version() {
+        return this.version;
+    }
+
+    /**
+     * API name: {@code _version_type}
+     */
+    @Nullable
+    public final VersionType versionType() {
+        return this.versionType;
     }
 
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -148,7 +173,6 @@ public class DocumentSimulation implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("_id");
         generator.write(this.id);
 
@@ -158,62 +182,90 @@ public class DocumentSimulation implements PlainJsonSerializable {
         generator.writeKey("_ingest");
         this.ingest.serialize(generator, mapper);
 
-        if (this.parent != null) {
-            generator.writeKey("_parent");
-            generator.write(this.parent);
-
-        }
         if (this.routing != null) {
             generator.writeKey("_routing");
             generator.write(this.routing);
-
-        }
-        if (ApiTypeHelper.isDefined(this.source)) {
-            generator.writeKey("_source");
-            generator.writeStartObject();
-            for (Map.Entry<String, JsonData> item0 : this.source.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
-        }
-        if (this.type != null) {
-            generator.writeKey("_type");
-            generator.write(this.type);
-
         }
 
+        generator.writeKey("_source");
+        generator.writeStartObject();
+        for (Map.Entry<String, JsonData> item0 : this.source.entrySet()) {
+            generator.writeKey(item0.getKey());
+            item0.getValue().serialize(generator, mapper);
+        }
+        generator.writeEnd();
+
+        if (this.version != null) {
+            generator.writeKey("_version");
+            generator.write(this.version);
+        }
+
+        if (this.versionType != null) {
+            generator.writeKey("_version_type");
+            this.versionType.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DocumentSimulation}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DocumentSimulation> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DocumentSimulation> {
         private String id;
-
         private String index;
-
         private Ingest ingest;
-
-        @Nullable
-        private String parent;
-
         @Nullable
         private String routing;
-
         private Map<String, JsonData> source;
-
         @Nullable
-        private String type;
+        private String version;
+        @Nullable
+        private VersionType versionType;
+
+        public Builder() {}
+
+        private Builder(DocumentSimulation o) {
+            this.id = o.id;
+            this.index = o.index;
+            this.ingest = o.ingest;
+            this.routing = o.routing;
+            this.source = _mapCopy(o.source);
+            this.version = o.version;
+            this.versionType = o.versionType;
+        }
+
+        private Builder(Builder o) {
+            this.id = o.id;
+            this.index = o.index;
+            this.ingest = o.ingest;
+            this.routing = o.routing;
+            this.source = _mapCopy(o.source);
+            this.version = o.version;
+            this.versionType = o.versionType;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code _id}
          */
+        @Nonnull
         public final Builder id(String value) {
             this.id = value;
             return this;
@@ -222,6 +274,7 @@ public class DocumentSimulation implements PlainJsonSerializable {
         /**
          * Required - API name: {@code _index}
          */
+        @Nonnull
         public final Builder index(String value) {
             this.index = value;
             return this;
@@ -230,6 +283,7 @@ public class DocumentSimulation implements PlainJsonSerializable {
         /**
          * Required - API name: {@code _ingest}
          */
+        @Nonnull
         public final Builder ingest(Ingest value) {
             this.ingest = value;
             return this;
@@ -238,60 +292,80 @@ public class DocumentSimulation implements PlainJsonSerializable {
         /**
          * Required - API name: {@code _ingest}
          */
+        @Nonnull
         public final Builder ingest(Function<Ingest.Builder, ObjectBuilder<Ingest>> fn) {
-            return this.ingest(fn.apply(new Ingest.Builder()).build());
+            return ingest(fn.apply(new Ingest.Builder()).build());
         }
 
         /**
-         * API name: {@code _parent}
-         */
-        public final Builder parent(@Nullable String value) {
-            this.parent = value;
-            return this;
-        }
-
-        /**
+         * Value used to send the document to a specific primary shard.
+         * <p>
          * API name: {@code _routing}
+         * </p>
          */
+        @Nonnull
         public final Builder routing(@Nullable String value) {
             this.routing = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code _source}
+         * Required - JSON body for the document.
          * <p>
-         * Adds all entries of <code>map</code> to <code>source</code>.
+         * API name: {@code _source}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>source</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder source(Map<String, JsonData> map) {
             this.source = _mapPutAll(this.source, map);
             return this;
         }
 
         /**
-         * Required - API name: {@code _source}
+         * Required - JSON body for the document.
+         * <p>
+         * API name: {@code _source}
+         * </p>
+         *
          * <p>
          * Adds an entry to <code>source</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder source(String key, JsonData value) {
             this.source = _mapPut(this.source, key, value);
             return this;
         }
 
         /**
-         * API name: {@code _type}
+         * API name: {@code _version}
          */
-        public final Builder type(@Nullable String value) {
-            this.type = value;
+        @Nonnull
+        public final Builder version(@Nullable String value) {
+            this.version = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code _version_type}
+         */
+        @Nonnull
+        public final Builder versionType(@Nullable VersionType value) {
+            this.versionType = value;
             return this;
         }
 
         /**
          * Builds a {@link DocumentSimulation}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DocumentSimulation build() {
             _checkSingleUse();
 
@@ -310,15 +384,39 @@ public class DocumentSimulation implements PlainJsonSerializable {
     );
 
     protected static void setupDocumentSimulationDeserializer(ObjectDeserializer<DocumentSimulation.Builder> op) {
-
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
         op.add(Builder::ingest, Ingest._DESERIALIZER, "_ingest");
-        op.add(Builder::parent, JsonpDeserializer.stringDeserializer(), "_parent");
         op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
         op.add(Builder::source, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_source");
-        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
-
+        op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "_version");
+        op.add(Builder::versionType, VersionType._DESERIALIZER, "_version_type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.id.hashCode();
+        result = 31 * result + this.index.hashCode();
+        result = 31 * result + this.ingest.hashCode();
+        result = 31 * result + Objects.hashCode(this.routing);
+        result = 31 * result + this.source.hashCode();
+        result = 31 * result + Objects.hashCode(this.version);
+        result = 31 * result + Objects.hashCode(this.versionType);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        DocumentSimulation other = (DocumentSimulation) o;
+        return this.id.equals(other.id)
+            && this.index.equals(other.index)
+            && this.ingest.equals(other.ingest)
+            && Objects.equals(this.routing, other.routing)
+            && this.source.equals(other.source)
+            && Objects.equals(this.version, other.version)
+            && Objects.equals(this.versionType, other.versionType);
+    }
 }

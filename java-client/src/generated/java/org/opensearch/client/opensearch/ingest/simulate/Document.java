@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.ingest.simulate;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -43,32 +50,35 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ingest.simulate.Document
 
 @JsonpDeserializable
-public class Document implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class Document implements PlainJsonSerializable, ToCopyableBuilder<Document.Builder, Document> {
+
     @Nullable
     private final String id;
 
     @Nullable
     private final String index;
 
+    @Nonnull
     private final JsonData source;
 
     // ---------------------------------------------------------------------------------------------
 
     private Document(Builder builder) {
-
         this.id = builder.id;
         this.index = builder.index;
         this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
-
     }
 
-    public static Document of(Function<Builder, ObjectBuilder<Document>> fn) {
+    public static Document of(Function<Document.Builder, ObjectBuilder<Document>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -89,8 +99,12 @@ public class Document implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code _source}
+     * Required - JSON body for the document.
+     * <p>
+     * API name: {@code _source}
+     * </p>
      */
+    @Nonnull
     public final JsonData source() {
         return this.source;
     }
@@ -98,6 +112,7 @@ public class Document implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -105,40 +120,67 @@ public class Document implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (this.id != null) {
             generator.writeKey("_id");
             generator.write(this.id);
-
         }
+
         if (this.index != null) {
             generator.writeKey("_index");
             generator.write(this.index);
-
         }
+
         generator.writeKey("_source");
         this.source.serialize(generator, mapper);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link Document}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Document> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Document> {
         @Nullable
         private String id;
-
         @Nullable
         private String index;
-
         private JsonData source;
+
+        public Builder() {}
+
+        private Builder(Document o) {
+            this.id = o.id;
+            this.index = o.index;
+            this.source = o.source;
+        }
+
+        private Builder(Builder o) {
+            this.id = o.id;
+            this.index = o.index;
+            this.source = o.source;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * API name: {@code _id}
          */
+        @Nonnull
         public final Builder id(@Nullable String value) {
             this.id = value;
             return this;
@@ -147,14 +189,19 @@ public class Document implements PlainJsonSerializable {
         /**
          * API name: {@code _index}
          */
+        @Nonnull
         public final Builder index(@Nullable String value) {
             this.index = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code _source}
+         * Required - JSON body for the document.
+         * <p>
+         * API name: {@code _source}
+         * </p>
          */
+        @Nonnull
         public final Builder source(JsonData value) {
             this.source = value;
             return this;
@@ -163,9 +210,10 @@ public class Document implements PlainJsonSerializable {
         /**
          * Builds a {@link Document}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public Document build() {
             _checkSingleUse();
 
@@ -184,11 +232,25 @@ public class Document implements PlainJsonSerializable {
     );
 
     protected static void setupDocumentDeserializer(ObjectDeserializer<Document.Builder> op) {
-
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
         op.add(Builder::source, JsonData._DESERIALIZER, "_source");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.id);
+        result = 31 * result + Objects.hashCode(this.index);
+        result = 31 * result + this.source.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Document other = (Document) o;
+        return Objects.equals(this.id, other.id) && Objects.equals(this.index, other.index) && this.source.equals(other.source);
+    }
 }

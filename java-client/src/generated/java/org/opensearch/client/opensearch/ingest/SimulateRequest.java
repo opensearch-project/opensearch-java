@@ -30,13 +30,20 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.ingest;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -50,17 +57,24 @@ import org.opensearch.client.opensearch.ingest.simulate.Document;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ingest.simulate.Request
 
 /**
  * Allows to simulate a pipeline with example documents.
- *
  */
 @JsonpDeserializable
-public class SimulateRequest extends RequestBase implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SimulateRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<SimulateRequest.Builder, SimulateRequest> {
+
+    @Nonnull
     private final List<Document> docs;
 
     @Nullable
@@ -75,29 +89,32 @@ public class SimulateRequest extends RequestBase implements PlainJsonSerializabl
     // ---------------------------------------------------------------------------------------------
 
     private SimulateRequest(Builder builder) {
-
         this.docs = ApiTypeHelper.unmodifiable(builder.docs);
         this.id = builder.id;
         this.pipeline = builder.pipeline;
         this.verbose = builder.verbose;
-
     }
 
-    public static SimulateRequest of(Function<Builder, ObjectBuilder<SimulateRequest>> fn) {
+    public static SimulateRequest of(Function<SimulateRequest.Builder, ObjectBuilder<SimulateRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
+     * Sample documents to test in the pipeline.
+     * <p>
      * API name: {@code docs}
+     * </p>
      */
+    @Nonnull
     public final List<Document> docs() {
         return this.docs;
     }
 
     /**
-     * Pipeline ID
+     * Pipeline to test. If you don't specify a <code>pipeline</code> in the request body, this parameter is required.
      * <p>
      * API name: {@code id}
+     * </p>
      */
     @Nullable
     public final String id() {
@@ -113,9 +130,10 @@ public class SimulateRequest extends RequestBase implements PlainJsonSerializabl
     }
 
     /**
-     * Verbose mode. Display data output for each processor in executed pipeline
+     * If <code>true</code>, the response includes output data for each processor in the executed pipeline.
      * <p>
      * API name: {@code verbose}
+     * </p>
      */
     @Nullable
     public final Boolean verbose() {
@@ -125,6 +143,7 @@ public class SimulateRequest extends RequestBase implements PlainJsonSerializabl
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -132,78 +151,122 @@ public class SimulateRequest extends RequestBase implements PlainJsonSerializabl
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (ApiTypeHelper.isDefined(this.docs)) {
             generator.writeKey("docs");
             generator.writeStartArray();
             for (Document item0 : this.docs) {
                 item0.serialize(generator, mapper);
-
             }
             generator.writeEnd();
-
         }
+
         if (this.pipeline != null) {
             generator.writeKey("pipeline");
             this.pipeline.serialize(generator, mapper);
-
         }
+    }
+    // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
     }
 
-    // ---------------------------------------------------------------------------------------------
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
 
     /**
      * Builder for {@link SimulateRequest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SimulateRequest> {
         @Nullable
         private List<Document> docs;
-
         @Nullable
         private String id;
-
         @Nullable
         private Pipeline pipeline;
-
         @Nullable
         private Boolean verbose;
 
+        public Builder() {}
+
+        private Builder(SimulateRequest o) {
+            this.docs = _listCopy(o.docs);
+            this.id = o.id;
+            this.pipeline = o.pipeline;
+            this.verbose = o.verbose;
+        }
+
+        private Builder(Builder o) {
+            this.docs = _listCopy(o.docs);
+            this.id = o.id;
+            this.pipeline = o.pipeline;
+            this.verbose = o.verbose;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
+         * Sample documents to test in the pipeline.
+         * <p>
          * API name: {@code docs}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>docs</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder docs(List<Document> list) {
             this.docs = _listAddAll(this.docs, list);
             return this;
         }
 
         /**
+         * Sample documents to test in the pipeline.
+         * <p>
          * API name: {@code docs}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>docs</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder docs(Document value, Document... values) {
             this.docs = _listAdd(this.docs, value, values);
             return this;
         }
 
         /**
+         * Sample documents to test in the pipeline.
+         * <p>
          * API name: {@code docs}
+         * </p>
+         *
          * <p>
          * Adds a value to <code>docs</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder docs(Function<Document.Builder, ObjectBuilder<Document>> fn) {
             return docs(fn.apply(new Document.Builder()).build());
         }
 
         /**
-         * Pipeline ID
+         * Pipeline to test. If you don't specify a <code>pipeline</code> in the request body, this parameter is required.
          * <p>
          * API name: {@code id}
+         * </p>
          */
+        @Nonnull
         public final Builder id(@Nullable String value) {
             this.id = value;
             return this;
@@ -212,6 +275,7 @@ public class SimulateRequest extends RequestBase implements PlainJsonSerializabl
         /**
          * API name: {@code pipeline}
          */
+        @Nonnull
         public final Builder pipeline(@Nullable Pipeline value) {
             this.pipeline = value;
             return this;
@@ -220,15 +284,18 @@ public class SimulateRequest extends RequestBase implements PlainJsonSerializabl
         /**
          * API name: {@code pipeline}
          */
+        @Nonnull
         public final Builder pipeline(Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
-            return this.pipeline(fn.apply(new Pipeline.Builder()).build());
+            return pipeline(fn.apply(new Pipeline.Builder()).build());
         }
 
         /**
-         * Verbose mode. Display data output for each processor in executed pipeline
+         * If <code>true</code>, the response includes output data for each processor in the executed pipeline.
          * <p>
          * API name: {@code verbose}
+         * </p>
          */
+        @Nonnull
         public final Builder verbose(@Nullable Boolean value) {
             this.verbose = value;
             return this;
@@ -237,9 +304,10 @@ public class SimulateRequest extends RequestBase implements PlainJsonSerializabl
         /**
          * Builds a {@link SimulateRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SimulateRequest build() {
             _checkSingleUse();
 
@@ -258,10 +326,8 @@ public class SimulateRequest extends RequestBase implements PlainJsonSerializabl
     );
 
     protected static void setupSimulateRequestDeserializer(ObjectDeserializer<SimulateRequest.Builder> op) {
-
         op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Document._DESERIALIZER), "docs");
         op.add(Builder::pipeline, Pipeline._DESERIALIZER, "pipeline");
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -270,13 +336,8 @@ public class SimulateRequest extends RequestBase implements PlainJsonSerializabl
      * Endpoint "{@code ingest.simulate}".
      */
     public static final Endpoint<SimulateRequest, SimulateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "POST";
-
-        },
-
+        request -> "POST",
         // Request path
         request -> {
             final int _id = 1 << 0;
@@ -286,25 +347,18 @@ public class SimulateRequest extends RequestBase implements PlainJsonSerializabl
             if (request.id() != null) propsSet |= _id;
 
             if (propsSet == 0) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_ingest");
-                buf.append("/pipeline");
-                buf.append("/_simulate");
-                return buf.toString();
+                return "/_ingest/pipeline/_simulate";
             }
             if (propsSet == (_id)) {
                 StringBuilder buf = new StringBuilder();
-                buf.append("/_ingest");
-                buf.append("/pipeline");
-                buf.append("/");
+                buf.append("/_ingest/pipeline/");
                 SimpleEndpoint.pathEncode(request.id, buf);
                 buf.append("/_simulate");
                 return buf.toString();
             }
+
             throw SimpleEndpoint.noPathTemplateFound("path");
-
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
@@ -312,10 +366,30 @@ public class SimulateRequest extends RequestBase implements PlainJsonSerializabl
                 params.put("verbose", String.valueOf(request.verbose));
             }
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         true,
         SimulateResponse._DESERIALIZER
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.docs);
+        result = 31 * result + Objects.hashCode(this.id);
+        result = 31 * result + Objects.hashCode(this.pipeline);
+        result = 31 * result + Objects.hashCode(this.verbose);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SimulateRequest other = (SimulateRequest) o;
+        return Objects.equals(this.docs, other.docs)
+            && Objects.equals(this.id, other.id)
+            && Objects.equals(this.pipeline, other.pipeline)
+            && Objects.equals(this.verbose, other.verbose);
+    }
 }
