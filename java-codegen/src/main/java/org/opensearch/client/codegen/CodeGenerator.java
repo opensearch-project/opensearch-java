@@ -12,7 +12,7 @@ import static org.opensearch.client.codegen.model.OperationGroupMatcher.name;
 import static org.opensearch.client.codegen.model.OperationGroupMatcher.namespace;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.and;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.is;
-import static org.opensearch.client.codegen.utils.matcher.Matcher.isNot;
+import static org.opensearch.client.codegen.utils.matcher.Matcher.isNotOneOf;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.or;
 
 import java.io.File;
@@ -47,7 +47,7 @@ public class CodeGenerator {
             namespace(is("ml")),
             name(
                 // TODO: search_models is complex and ideally should re-use the search structures
-                isNot("search_models")
+                isNotOneOf("predict", "search_models", "train", "train_predict")
             )
         )
     );
