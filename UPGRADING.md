@@ -319,11 +319,11 @@ After:
 ### OperatingSystemMemoryInfo
 - The `freePercent` and `usedPercent` properties have been corrected to be of type `double` instead of `int`.
 
-### NodeInfoSettingsHttp
-- The `type` property has been corrected to be of type `String` instead of `NodeInfoSettingsHttpType`.
+### NodeInfoSettingsHttpType
+- The `NodeInfoSettingsHttpType` class is now an untagged union between `String` and `NodeInfoSettingsHttpTypeConfig`.
 
-### NodeInfoSettingsTransport
-- The `type` property has been corrected to be of type `String` instead of `NodeInfoSettingsTransportType`.
+### NodeInfoSettingsTransportType
+- The `NodeInfoSettingsHttpType` class is now an untagged union between `String` and `NodeInfoSettingsHttpTypeConfig`.
 
 ### NodeThreadPoolInfo
 - The `keepAlive` property has been corrected to be of type `Time` instead of `String`.

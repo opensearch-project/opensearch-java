@@ -54835,7 +54835,7 @@ components:
       type: object
       properties:
         type:
-          type: string
+          $ref: '#/components/schemas/nodes.info___NodeInfoSettingsHttpType'
         type.default:
           type: string
         compression:
@@ -54844,6 +54844,17 @@ components:
           $ref: '#/components/schemas/_common___StringifiedInteger'
       required:
         - type
+    nodes.info___NodeInfoSettingsHttpType:
+      oneOf:
+        - title: type
+          type: string
+        - title: config
+          $ref: '#/components/schemas/nodes.info___NodeInfoSettingsHttpTypeConfig'
+    nodes.info___NodeInfoSettingsHttpTypeConfig:
+      type: object
+      properties:
+        default:
+          type: string
     nodes.info___NodeInfoSettingsIndex:
       type: object
       properties:
@@ -54963,11 +54974,22 @@ components:
       type: object
       properties:
         type:
-          type: string
+          $ref: '#/components/schemas/nodes.info___NodeInfoSettingsTransportType'
         type.default:
           type: string
       required:
         - type
+    nodes.info___NodeInfoSettingsTransportType:
+      oneOf:
+        - title: type
+          type: string
+        - title: config
+          $ref: '#/components/schemas/nodes.info___NodeInfoSettingsTransportTypeConfig'
+    nodes.info___NodeInfoSettingsTransportTypeConfig:
+      type: object
+      properties:
+        default:
+          type: string
     nodes.info___NodeInfoTransport:
       type: object
       properties:

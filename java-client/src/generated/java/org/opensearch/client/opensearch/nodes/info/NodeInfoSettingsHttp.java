@@ -67,7 +67,7 @@ public class NodeInfoSettingsHttp implements PlainJsonSerializable, ToCopyableBu
     private final Integer port;
 
     @Nonnull
-    private final String type;
+    private final NodeInfoSettingsHttpType type;
 
     @Nullable
     private final String typeDefault;
@@ -105,7 +105,7 @@ public class NodeInfoSettingsHttp implements PlainJsonSerializable, ToCopyableBu
      * Required - API name: {@code type}
      */
     @Nonnull
-    public final String type() {
+    public final NodeInfoSettingsHttpType type() {
         return this.type;
     }
 
@@ -139,7 +139,7 @@ public class NodeInfoSettingsHttp implements PlainJsonSerializable, ToCopyableBu
         }
 
         generator.writeKey("type");
-        generator.write(this.type);
+        this.type.serialize(generator, mapper);
 
         if (this.typeDefault != null) {
             generator.writeKey("type.default");
@@ -168,7 +168,7 @@ public class NodeInfoSettingsHttp implements PlainJsonSerializable, ToCopyableBu
         private Boolean compression;
         @Nullable
         private Integer port;
-        private String type;
+        private NodeInfoSettingsHttpType type;
         @Nullable
         private String typeDefault;
 
@@ -216,9 +216,17 @@ public class NodeInfoSettingsHttp implements PlainJsonSerializable, ToCopyableBu
          * Required - API name: {@code type}
          */
         @Nonnull
-        public final Builder type(String value) {
+        public final Builder type(NodeInfoSettingsHttpType value) {
             this.type = value;
             return this;
+        }
+
+        /**
+         * Required - API name: {@code type}
+         */
+        @Nonnull
+        public final Builder type(Function<NodeInfoSettingsHttpType.Builder, ObjectBuilder<NodeInfoSettingsHttpType>> fn) {
+            return type(fn.apply(new NodeInfoSettingsHttpType.Builder()).build());
         }
 
         /**
@@ -257,7 +265,7 @@ public class NodeInfoSettingsHttp implements PlainJsonSerializable, ToCopyableBu
     protected static void setupNodeInfoSettingsHttpDeserializer(ObjectDeserializer<NodeInfoSettingsHttp.Builder> op) {
         op.add(Builder::compression, JsonpDeserializer.booleanDeserializer(), "compression");
         op.add(Builder::port, JsonpDeserializer.integerDeserializer(), "port");
-        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+        op.add(Builder::type, NodeInfoSettingsHttpType._DESERIALIZER, "type");
         op.add(Builder::typeDefault, JsonpDeserializer.stringDeserializer(), "type.default");
     }
 
