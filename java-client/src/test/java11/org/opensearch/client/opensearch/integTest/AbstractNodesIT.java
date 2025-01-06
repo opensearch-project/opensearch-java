@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import org.junit.Test;
 import org.opensearch.client.opensearch.nodes.NodesStatsResponse;
+import org.opensearch.client.opensearch.nodes.stats.NodesStatsMetric;
 import org.opensearch.client.opensearch.tasks.ListRequest;
 import org.opensearch.client.opensearch.tasks.ListResponse;
 
@@ -34,49 +35,49 @@ public abstract class AbstractNodesIT extends OpenSearchJavaClientTestCase {
 
     @Test
     public void stats_fsMetricRequested_returnsFsStatsWithoutException() throws IOException {
-        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("fs"));
+        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric(NodesStatsMetric.Fs));
         statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.fs()); });
     }
 
     @Test
     public void stats_httpMetricRequested_returnsHttpStatsWithoutException() throws IOException {
-        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("http"));
+        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric(NodesStatsMetric.Http));
         statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.http()); });
     }
 
     @Test
     public void stats_indicesMetricRequested_returnsIndicesStatsWithoutException() throws IOException {
-        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("indices"));
+        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric(NodesStatsMetric.Indices));
         statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.indices()); });
     }
 
     @Test
     public void stats_ingestMetricRequested_returnsIngestStatsWithoutException() throws IOException {
-        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("ingest"));
+        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric(NodesStatsMetric.Ingest));
         statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.ingest()); });
     }
 
     @Test
     public void stats_jvmMetricRequested_returnsJvmStatsWithoutException() throws IOException {
-        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("jvm"));
+        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric(NodesStatsMetric.Jvm));
         statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.jvm()); });
     }
 
     @Test
     public void stats_osMetricRequested_returnsOsStatsWithoutException() throws IOException {
-        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("os"));
+        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric(NodesStatsMetric.Os));
         statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.os()); });
     }
 
     @Test
     public void stats_processMetricRequested_returnsProcessStatsWithoutException() throws IOException {
-        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("process"));
+        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric(NodesStatsMetric.Process));
         statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.process()); });
     }
 
     @Test
     public void stats_scriptMetricRequested_returnsScriptStatsWithoutException() throws IOException {
-        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric("script"));
+        final NodesStatsResponse statsResponse = javaClient().nodes().stats(s -> s.metric(NodesStatsMetric.Script));
         statsResponse.nodes().values().forEach((v) -> { assertNotNull(v.script()); });
     }
 }

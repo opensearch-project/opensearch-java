@@ -318,3 +318,112 @@ After:
 
 ### OperatingSystemMemoryInfo
 - The `freePercent` and `usedPercent` properties have been corrected to be of type `double` instead of `int`.
+
+### NodeInfoSettingsHttpType
+- The `NodeInfoSettingsHttpType` class is now an untagged union between `String` and `NodeInfoSettingsHttpTypeConfig`.
+
+### NodeInfoSettingsTransportType
+- The `NodeInfoSettingsHttpType` class is now an untagged union between `String` and `NodeInfoSettingsHttpTypeConfig`.
+
+### NodeThreadPoolInfo
+- The `keepAlive` property has been corrected to be of type `Time` instead of `String`.
+
+### NodesInfoRequest
+- The `metric` property is now of type `List<NodesInfoMetric>` instead of `List<String>`.
+- The `clusterManagerTimeout` and `masterTimeout` properties have been removed as they are not supported by OpenSearch.
+
+### NodeReloadResult
+- The `NodeReloadResult` class has been corrected to be an object with an optional `reloadException` instead of a union of stats and error.
+
+### NodesStatsRequest
+- The `groups` property has been corrected to be of type `List<String>` instead of `Boolean`.
+- The `indexMetric` property is now of type `List<NodesStatsIndexMetric>` instead of `List<String>`.
+- The `metric` property is now of type `List<NodesStatsMetric>` instead of `List<String>`.
+- The `includeUnloadedSegments`, `masterTimeout` and `clusterManagerTimeout` properties have been removed as they are not supported by OpenSearch.
+
+### nodes.AdaptiveSelection
+- The `AdaptiveSelection` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+
+### nodes.Breaker
+- The `Breaker` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+- The `overhead` property has been corrected to be of type `double` instead of `float`.
+- The `tripped` property has been corrected to be of type `long` instead of `float`.
+
+### nodes.DataPathStats
+- The `DataPathStats` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+
+### nodes.ExtendedMemoryStats
+- The `ExtendedMemoryStats` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+- The `freePercent` and `usedPercent` properties have been corrected to be of type `double` instead of `int`.
+
+### nodes.FileSystem
+- The `FileSystem` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+
+### nodes.FileSystemTotal
+- The `FileSystemTotal` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+
+### nodes.GarbageCollector
+- The `GarbageCollector` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+
+### nodes.GarbageCollectorTotal
+- The `GarbageCollectorTotal` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+
+### nodes.Http
+- The `Http` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+- The `currentOpen` property has been corrected to be of type `long` instead of `int`.
+
+### nodes.Ingest
+- The `Ingest` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+
+### nodes.IngestTotal
+- The `IngestTotal` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+
+### nodes.Jvm
+- The `Jvm` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+- The `mem` property is now of type `JvmMemoryStats` instead of `MemoryStats`.
+
+### nodes.JvmClasses
+- The `JvmClasses` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+
+### nodes.JvmThreads
+- The `JvmThreads` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+
+### nodes.KeyedProcessor
+- The `KeyedProcessor` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+- The `statistics` property has had its naming corrected to `stats` and its type corrected to `Processor`.
+
+### nodes.MemoryStats
+- The `MemoryStats` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+- The `resident`, `residentInBytes`, `share`, `shareInBytes`, `totalVirtual` and `totalVirtualInBytes` properties have been removed as they are not returned by OpenSearch.
+
+### nodes.NodeBufferPool
+- The `NodeBufferPool` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+
+### nodes.OperatingSystem
+- The `OperatingSystem` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+- The `cpu` property is now of type `OperatingSystemCpuStats` instead of `Cpu`.
+
+### nodes.Process
+- The `Process` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+- The `cpu` property is now of type `ProcessCpuStats` instead of `Cpu`.
+- The `mem` property is now of type `ProcessMemoryStats` instead of `MemoryStats`.
+- The `openFileDescriptors` property has been corrected to be of type `long` instead of `int`.
+
+### nodes.Stats
+- The `Stats` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+- The `indices` property is now of type `NodesIndicesStats` instead of `IndexStats`.
+- The `script` property is now of type `ScriptStats` instead of `Scripting`.
+
+### nodes.ThreadCount
+- The `ThreadCount` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+
+### nodes.Transport
+- The `Transport` class has been moved from the `org.opensearch.client.opensearch.nodes` package to the `org.opensearch.client.opensearch.nodes.stats` package.
+- The `serverOpen` property has been corrected to be of type `long` instead of `int`.
+
+### NodesUsageRequest
+- The `metric` property is now of type `List<NodesUsageMetric>` instead of `List<String>`.
+
+### NodeUsage
+- The `restActions` property has been corrected to be of type `Map<String, Long>` instead of `Map<String, Integer>`.
+- The `since` and `timestamp` properties have been corrected to be of type `long` instead of `String`.

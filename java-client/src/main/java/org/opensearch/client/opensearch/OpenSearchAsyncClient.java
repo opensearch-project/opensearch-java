@@ -39,7 +39,6 @@ import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.cat.OpenSearchCatAsyncClient;
-import org.opensearch.client.opensearch.cluster.OpenSearchClusterAsyncClient;
 import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.ClearScrollRequest;
@@ -120,7 +119,6 @@ import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
 import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
 import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestAsyncClient;
-import org.opensearch.client.opensearch.nodes.OpenSearchNodesAsyncClient;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
@@ -151,16 +149,8 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
         return new OpenSearchCatAsyncClient(this.transport, this.transportOptions);
     }
 
-    public OpenSearchClusterAsyncClient cluster() {
-        return new OpenSearchClusterAsyncClient(this.transport, this.transportOptions);
-    }
-
     public OpenSearchIngestAsyncClient ingest() {
         return new OpenSearchIngestAsyncClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchNodesAsyncClient nodes() {
-        return new OpenSearchNodesAsyncClient(this.transport, this.transportOptions);
     }
 
     // ----- Endpoint: bulk

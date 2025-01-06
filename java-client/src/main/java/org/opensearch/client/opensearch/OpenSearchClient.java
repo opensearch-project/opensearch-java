@@ -38,7 +38,6 @@ import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.cat.OpenSearchCatClient;
-import org.opensearch.client.opensearch.cluster.OpenSearchClusterClient;
 import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.ClearScrollRequest;
@@ -120,7 +119,6 @@ import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
 import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.opensearch.generic.OpenSearchGenericClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestClient;
-import org.opensearch.client.opensearch.nodes.OpenSearchNodesClient;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
@@ -154,16 +152,8 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
         return new OpenSearchCatClient(this.transport, this.transportOptions);
     }
 
-    public OpenSearchClusterClient cluster() {
-        return new OpenSearchClusterClient(this.transport, this.transportOptions);
-    }
-
     public OpenSearchIngestClient ingest() {
         return new OpenSearchIngestClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchNodesClient nodes() {
-        return new OpenSearchNodesClient(this.transport, this.transportOptions);
     }
 
     // ----- Endpoint: bulk
