@@ -215,6 +215,35 @@ public abstract class OpenSearchCatAsyncClientBase<Self extends OpenSearchCatAsy
         return health(new HealthRequest.Builder().build());
     }
 
+    // ----- Endpoint: cat.indices
+
+    /**
+     * Lists information related to indexes, that is, how much disk space they are using, how many shards they have, their health status,
+     * and so on.
+     */
+    public CompletableFuture<IndicesResponse> indices(IndicesRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, IndicesRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Lists information related to indexes, that is, how much disk space they are using, how many shards they have, their health status,
+     * and so on.
+     *
+     * @param fn a function that initializes a builder to create the {@link IndicesRequest}
+     */
+    public final CompletableFuture<IndicesResponse> indices(Function<IndicesRequest.Builder, ObjectBuilder<IndicesRequest>> fn)
+        throws IOException, OpenSearchException {
+        return indices(fn.apply(new IndicesRequest.Builder()).build());
+    }
+
+    /**
+     * Lists information related to indexes, that is, how much disk space they are using, how many shards they have, their health status,
+     * and so on.
+     */
+    public final CompletableFuture<IndicesResponse> indices() throws IOException, OpenSearchException {
+        return indices(new IndicesRequest.Builder().build());
+    }
+
     // ----- Endpoint: cat.master
 
     /**

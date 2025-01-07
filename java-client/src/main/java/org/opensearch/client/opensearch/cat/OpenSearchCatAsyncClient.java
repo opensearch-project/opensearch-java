@@ -72,51 +72,6 @@ public class OpenSearchCatAsyncClient extends OpenSearchCatAsyncClientBase<OpenS
         return this.transport.performRequestAsync(HelpRequest._INSTANCE, HelpRequest._ENDPOINT, this.transportOptions);
     }
 
-    // ----- Endpoint: cat.indices
-
-    /**
-     * Returns information about indices: number of primaries and replicas, document
-     * counts, disk size, ...
-     *
-     *
-     */
-
-    public CompletableFuture<IndicesResponse> indices(IndicesRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<IndicesRequest, IndicesResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            IndicesRequest,
-            IndicesResponse,
-            ErrorResponse>) IndicesRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about indices: number of primaries and replicas, document
-     * counts, disk size, ...
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link IndicesRequest}
-     *
-     */
-
-    public final CompletableFuture<IndicesResponse> indices(Function<IndicesRequest.Builder, ObjectBuilder<IndicesRequest>> fn)
-        throws IOException, OpenSearchException {
-        return indices(fn.apply(new IndicesRequest.Builder()).build());
-    }
-
-    /**
-     * Returns information about indices: number of primaries and replicas, document
-     * counts, disk size, ...
-     *
-     *
-     */
-
-    public CompletableFuture<IndicesResponse> indices() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(new IndicesRequest.Builder().build(), IndicesRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: cat.nodeattrs
 
     /**

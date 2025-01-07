@@ -30,43 +30,51 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cat;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.cat.indices.IndicesRecord;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cat.indices.Response
 
 @JsonpDeserializable
-public class IndicesResponse implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class IndicesResponse implements PlainJsonSerializable, ToCopyableBuilder<IndicesResponse.Builder, IndicesResponse> {
+
+    @Nonnull
     private final List<IndicesRecord> valueBody;
 
     // ---------------------------------------------------------------------------------------------
 
     private IndicesResponse(Builder builder) {
-
         this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
-
     }
 
-    public static IndicesResponse of(Function<Builder, ObjectBuilder<IndicesResponse>> fn) {
+    public static IndicesResponse of(Function<IndicesResponse.Builder, ObjectBuilder<IndicesResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - Response value.
-     * <p>
-     * API name: {@code _value_body}
      */
+    @Nonnull
     public final List<IndicesRecord> valueBody() {
         return this.valueBody;
     }
@@ -78,28 +86,53 @@ public class IndicesResponse implements PlainJsonSerializable {
         generator.writeStartArray();
         for (IndicesRecord item0 : this.valueBody) {
             item0.serialize(generator, mapper);
-
         }
         generator.writeEnd();
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link IndicesResponse}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IndicesResponse> {
         private List<IndicesRecord> valueBody;
+
+        public Builder() {}
+
+        private Builder(IndicesResponse o) {
+            this.valueBody = _listCopy(o.valueBody);
+        }
+
+        private Builder(Builder o) {
+            this.valueBody = _listCopy(o.valueBody);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>valueBody</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder valueBody(List<IndicesRecord> list) {
             this.valueBody = _listAddAll(this.valueBody, list);
             return this;
@@ -107,11 +140,12 @@ public class IndicesResponse implements PlainJsonSerializable {
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds one or more values to <code>valueBody</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder valueBody(IndicesRecord value, IndicesRecord... values) {
             this.valueBody = _listAdd(this.valueBody, value, values);
             return this;
@@ -119,11 +153,12 @@ public class IndicesResponse implements PlainJsonSerializable {
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds a value to <code>valueBody</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder valueBody(Function<IndicesRecord.Builder, ObjectBuilder<IndicesRecord>> fn) {
             return valueBody(fn.apply(new IndicesRecord.Builder()).build());
         }
@@ -131,9 +166,10 @@ public class IndicesResponse implements PlainJsonSerializable {
         /**
          * Builds a {@link IndicesResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public IndicesResponse build() {
             _checkSingleUse();
 
@@ -144,7 +180,6 @@ public class IndicesResponse implements PlainJsonSerializable {
     public static final JsonpDeserializer<IndicesResponse> _DESERIALIZER = createIndicesResponseDeserializer();
 
     protected static JsonpDeserializer<IndicesResponse> createIndicesResponseDeserializer() {
-
         JsonpDeserializer<List<IndicesRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(IndicesRecord._DESERIALIZER);
 
         return JsonpDeserializer.of(
@@ -152,5 +187,4 @@ public class IndicesResponse implements PlainJsonSerializable {
             (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
         );
     }
-
 }
