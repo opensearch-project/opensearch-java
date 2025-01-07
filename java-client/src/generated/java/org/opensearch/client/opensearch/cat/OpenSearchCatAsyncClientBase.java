@@ -83,4 +83,30 @@ public abstract class OpenSearchCatAsyncClientBase<Self extends OpenSearchCatAsy
     public final CompletableFuture<AliasesResponse> aliases() throws IOException, OpenSearchException {
         return aliases(new AliasesRequest.Builder().build());
     }
+
+    // ----- Endpoint: cat.allocation
+
+    /**
+     * Provides a snapshot of how many shards are allocated to each data node and how much disk space they are using.
+     */
+    public CompletableFuture<AllocationResponse> allocation(AllocationRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, AllocationRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Provides a snapshot of how many shards are allocated to each data node and how much disk space they are using.
+     *
+     * @param fn a function that initializes a builder to create the {@link AllocationRequest}
+     */
+    public final CompletableFuture<AllocationResponse> allocation(Function<AllocationRequest.Builder, ObjectBuilder<AllocationRequest>> fn)
+        throws IOException, OpenSearchException {
+        return allocation(fn.apply(new AllocationRequest.Builder()).build());
+    }
+
+    /**
+     * Provides a snapshot of how many shards are allocated to each data node and how much disk space they are using.
+     */
+    public final CompletableFuture<AllocationResponse> allocation() throws IOException, OpenSearchException {
+        return allocation(new AllocationRequest.Builder().build());
+    }
 }

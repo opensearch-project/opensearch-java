@@ -56,6 +56,9 @@ public class GetModelGroupResponse
     @Nonnull
     private final String name;
 
+    @Nullable
+    private final Owner owner;
+
     // ---------------------------------------------------------------------------------------------
 
     private GetModelGroupResponse(Builder builder) {
@@ -65,6 +68,7 @@ public class GetModelGroupResponse
         this.lastUpdatedTime = builder.lastUpdatedTime;
         this.latestVersion = ApiTypeHelper.requireNonNull(builder.latestVersion, this, "latestVersion");
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.owner = builder.owner;
     }
 
     public static GetModelGroupResponse of(Function<GetModelGroupResponse.Builder, ObjectBuilder<GetModelGroupResponse>> fn) {
@@ -131,6 +135,14 @@ public class GetModelGroupResponse
     }
 
     /**
+     * API name: {@code owner}
+     */
+    @Nullable
+    public final Owner owner() {
+        return this.owner;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     @Override
@@ -162,6 +174,11 @@ public class GetModelGroupResponse
 
         generator.writeKey("name");
         generator.write(this.name);
+
+        if (this.owner != null) {
+            generator.writeKey("owner");
+            this.owner.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -189,6 +206,8 @@ public class GetModelGroupResponse
         private Long lastUpdatedTime;
         private Integer latestVersion;
         private String name;
+        @Nullable
+        private Owner owner;
 
         public Builder() {}
 
@@ -199,6 +218,7 @@ public class GetModelGroupResponse
             this.lastUpdatedTime = o.lastUpdatedTime;
             this.latestVersion = o.latestVersion;
             this.name = o.name;
+            this.owner = o.owner;
         }
 
         private Builder(Builder o) {
@@ -208,6 +228,7 @@ public class GetModelGroupResponse
             this.lastUpdatedTime = o.lastUpdatedTime;
             this.latestVersion = o.latestVersion;
             this.name = o.name;
+            this.owner = o.owner;
         }
 
         @Override
@@ -283,6 +304,23 @@ public class GetModelGroupResponse
         }
 
         /**
+         * API name: {@code owner}
+         */
+        @Nonnull
+        public final Builder owner(@Nullable Owner value) {
+            this.owner = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code owner}
+         */
+        @Nonnull
+        public final Builder owner(Function<Owner.Builder, ObjectBuilder<Owner>> fn) {
+            return owner(fn.apply(new Owner.Builder()).build());
+        }
+
+        /**
          * Builds a {@link GetModelGroupResponse}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -313,6 +351,7 @@ public class GetModelGroupResponse
         op.add(Builder::lastUpdatedTime, JsonpDeserializer.longDeserializer(), "last_updated_time");
         op.add(Builder::latestVersion, JsonpDeserializer.integerDeserializer(), "latest_version");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::owner, Owner._DESERIALIZER, "owner");
     }
 
     @Override
@@ -324,6 +363,7 @@ public class GetModelGroupResponse
         result = 31 * result + Objects.hashCode(this.lastUpdatedTime);
         result = 31 * result + Integer.hashCode(this.latestVersion);
         result = 31 * result + this.name.hashCode();
+        result = 31 * result + Objects.hashCode(this.owner);
         return result;
     }
 
@@ -337,6 +377,7 @@ public class GetModelGroupResponse
             && this.description.equals(other.description)
             && Objects.equals(this.lastUpdatedTime, other.lastUpdatedTime)
             && this.latestVersion == other.latestVersion
-            && this.name.equals(other.name);
+            && this.name.equals(other.name)
+            && Objects.equals(this.owner, other.owner);
     }
 }

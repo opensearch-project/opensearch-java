@@ -30,35 +30,47 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.ByteUnit
+
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum Bytes implements JsonEnum {
     Bytes("b"),
 
-    KiloBytes("kb"),
+    GigaBytes("gb", "g"),
 
-    MegaBytes("mb"),
+    KiloBytes("kb", "k"),
 
-    GigaBytes("gb"),
+    MegaBytes("mb", "m"),
 
-    TeraBytes("tb"),
+    PetaBytes("pb", "p"),
 
-    PetaBytes("pb"),
-
-    ;
+    TeraBytes("tb", "t");
 
     private final String jsonValue;
+    private final String[] aliases;
 
-    Bytes(String jsonValue) {
+    Bytes(String jsonValue, String... aliases) {
         this.jsonValue = jsonValue;
+        this.aliases = aliases;
     }
 
     public String jsonValue() {
         return this.jsonValue;
+    }
+
+    public String[] aliases() {
+        return this.aliases;
     }
 
     public static final JsonEnum.Deserializer<Bytes> _DESERIALIZER = new JsonEnum.Deserializer<>(Bytes.values());

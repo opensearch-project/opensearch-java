@@ -60,51 +60,6 @@ public class OpenSearchCatClient extends OpenSearchCatClientBase<OpenSearchCatCl
         return new OpenSearchCatClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: cat.allocation
-
-    /**
-     * Provides a snapshot of how many shards are allocated to each data node and
-     * how much disk space they are using.
-     *
-     *
-     */
-
-    public AllocationResponse allocation(AllocationRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<AllocationRequest, AllocationResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            AllocationRequest,
-            AllocationResponse,
-            ErrorResponse>) AllocationRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Provides a snapshot of how many shards are allocated to each data node and
-     * how much disk space they are using.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link AllocationRequest}
-     *
-     */
-
-    public final AllocationResponse allocation(Function<AllocationRequest.Builder, ObjectBuilder<AllocationRequest>> fn) throws IOException,
-        OpenSearchException {
-        return allocation(fn.apply(new AllocationRequest.Builder()).build());
-    }
-
-    /**
-     * Provides a snapshot of how many shards are allocated to each data node and
-     * how much disk space they are using.
-     *
-     *
-     */
-
-    public AllocationResponse allocation() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new AllocationRequest.Builder().build(), AllocationRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: cat.count
 
     /**

@@ -705,6 +705,7 @@ public class SpecTransformer {
         }
 
         var types = OpenApiSchema.determineTypes(oneOf);
+        types.remove(OpenApiSchemaType.Null);
 
         if (types.size() == 1) {
             switch (types.iterator().next()) {

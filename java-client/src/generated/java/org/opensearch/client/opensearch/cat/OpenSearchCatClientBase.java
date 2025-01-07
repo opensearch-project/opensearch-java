@@ -80,4 +80,30 @@ public abstract class OpenSearchCatClientBase<Self extends OpenSearchCatClientBa
     public final AliasesResponse aliases() throws IOException, OpenSearchException {
         return aliases(new AliasesRequest.Builder().build());
     }
+
+    // ----- Endpoint: cat.allocation
+
+    /**
+     * Provides a snapshot of how many shards are allocated to each data node and how much disk space they are using.
+     */
+    public AllocationResponse allocation(AllocationRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, AllocationRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Provides a snapshot of how many shards are allocated to each data node and how much disk space they are using.
+     *
+     * @param fn a function that initializes a builder to create the {@link AllocationRequest}
+     */
+    public final AllocationResponse allocation(Function<AllocationRequest.Builder, ObjectBuilder<AllocationRequest>> fn) throws IOException,
+        OpenSearchException {
+        return allocation(fn.apply(new AllocationRequest.Builder()).build());
+    }
+
+    /**
+     * Provides a snapshot of how many shards are allocated to each data node and how much disk space they are using.
+     */
+    public final AllocationResponse allocation() throws IOException, OpenSearchException {
+        return allocation(new AllocationRequest.Builder().build());
+    }
 }
