@@ -23,7 +23,6 @@ import org.opensearch.client.opensearch.cat.AllPitSegmentsResponse;
 import org.opensearch.client.opensearch.cat.AllocationResponse;
 import org.opensearch.client.opensearch.cat.IndicesResponse;
 import org.opensearch.client.opensearch.cat.NodesResponse;
-import org.opensearch.client.opensearch.cat.PitSegmentsResponse;
 import org.opensearch.client.opensearch.cat.PluginsResponse;
 import org.opensearch.client.opensearch.cat.RecoveryResponse;
 import org.opensearch.client.opensearch.cat.SegmentsResponse;
