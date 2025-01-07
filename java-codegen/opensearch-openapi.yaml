@@ -34857,15 +34857,28 @@ components:
       description: Time of day, expressed as HH:MM:SS.
       type: string
     _common___TimeUnit:
-      type: string
-      enum:
-        - d
-        - h
-        - m
-        - micros
-        - ms
-        - nanos
-        - s
+      oneOf:
+        - title: nanoseconds
+          type: string
+          const: nanos
+        - title: microseconds
+          type: string
+          const: micros
+        - title: milliseconds
+          type: string
+          const: ms
+        - title: seconds
+          type: string
+          const: s
+        - title: minutes
+          type: string
+          const: m
+        - title: hours
+          type: string
+          const: h
+        - title: days
+          type: string
+          const: d
     _common___TimeZone:
       type: string
     _common___TopLeftBottomRightGeoBounds:

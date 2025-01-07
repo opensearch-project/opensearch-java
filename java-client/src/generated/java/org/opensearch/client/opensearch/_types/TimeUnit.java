@@ -30,28 +30,34 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.TimeUnit
+
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum TimeUnit implements JsonEnum {
-    Nanoseconds("nanos"),
+    Days("d"),
+
+    Hours("h"),
 
     Microseconds("micros"),
 
     Milliseconds("ms"),
 
-    Seconds("s"),
-
     Minutes("m"),
 
-    Hours("h"),
+    Nanoseconds("nanos"),
 
-    Days("d"),
-
-    ;
+    Seconds("s");
 
     private final String jsonValue;
 

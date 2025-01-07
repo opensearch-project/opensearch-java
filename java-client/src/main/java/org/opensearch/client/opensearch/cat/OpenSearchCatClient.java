@@ -60,48 +60,6 @@ public class OpenSearchCatClient extends OpenSearchCatClientBase<OpenSearchCatCl
         return new OpenSearchCatClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: cat.health
-
-    /**
-     * Returns a concise representation of the cluster health.
-     *
-     *
-     */
-
-    public HealthResponse health(HealthRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<HealthRequest, HealthResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            HealthRequest,
-            HealthResponse,
-            ErrorResponse>) HealthRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns a concise representation of the cluster health.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link HealthRequest}
-     *
-     */
-
-    public final HealthResponse health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn) throws IOException,
-        OpenSearchException {
-        return health(fn.apply(new HealthRequest.Builder()).build());
-    }
-
-    /**
-     * Returns a concise representation of the cluster health.
-     *
-     *
-     */
-
-    public HealthResponse health() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new HealthRequest.Builder().build(), HealthRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: cat.help
 
     /**

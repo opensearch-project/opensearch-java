@@ -61,48 +61,6 @@ public class OpenSearchCatAsyncClient extends OpenSearchCatAsyncClientBase<OpenS
         return new OpenSearchCatAsyncClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: cat.health
-
-    /**
-     * Returns a concise representation of the cluster health.
-     *
-     *
-     */
-
-    public CompletableFuture<HealthResponse> health(HealthRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<HealthRequest, HealthResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            HealthRequest,
-            HealthResponse,
-            ErrorResponse>) HealthRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns a concise representation of the cluster health.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link HealthRequest}
-     *
-     */
-
-    public final CompletableFuture<HealthResponse> health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
-        throws IOException, OpenSearchException {
-        return health(fn.apply(new HealthRequest.Builder()).build());
-    }
-
-    /**
-     * Returns a concise representation of the cluster health.
-     *
-     *
-     */
-
-    public CompletableFuture<HealthResponse> health() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(new HealthRequest.Builder().build(), HealthRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: cat.help
 
     /**

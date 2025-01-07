@@ -185,6 +185,32 @@ public abstract class OpenSearchCatClientBase<Self extends OpenSearchCatClientBa
         return fielddata(new FielddataRequest.Builder().build());
     }
 
+    // ----- Endpoint: cat.health
+
+    /**
+     * Returns a concise representation of the cluster health.
+     */
+    public HealthResponse health(HealthRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, HealthRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns a concise representation of the cluster health.
+     *
+     * @param fn a function that initializes a builder to create the {@link HealthRequest}
+     */
+    public final HealthResponse health(Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn) throws IOException,
+        OpenSearchException {
+        return health(fn.apply(new HealthRequest.Builder()).build());
+    }
+
+    /**
+     * Returns a concise representation of the cluster health.
+     */
+    public final HealthResponse health() throws IOException, OpenSearchException {
+        return health(new HealthRequest.Builder().build());
+    }
+
     // ----- Endpoint: cat.master
 
     /**
