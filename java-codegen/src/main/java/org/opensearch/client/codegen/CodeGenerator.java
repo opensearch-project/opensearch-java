@@ -48,35 +48,7 @@ public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Matcher<OperationGroup> OPERATION_MATCHER = or(
         and(namespace(isNull()), name(is("info"))),
-        and(
-            namespace(is("cat")),
-            name(
-                isOneOf(
-                    "aliases",
-                    "all_pit_segments",
-                    "allocation",
-                    "cluster_manager",
-                    "count",
-                    "fielddata",
-                    "health",
-                    "indices",
-                    "master",
-                    "nodeattrs",
-                    "nodes",
-                    "pending_tasks",
-                    "pit_segments",
-                    "plugins",
-                    "recovery",
-                    "repositories",
-                    "segments",
-                    "shards",
-                    "snapshots",
-                    "tasks",
-                    "templates",
-                    "thread_pool"
-                )
-            )
-        ),
+        and(namespace(is("cat")), name(isNot("help"))),
         and(
             namespace(is("cluster")),
             name(

@@ -470,6 +470,36 @@ public abstract class OpenSearchCatClientBase<Self extends OpenSearchCatClientBa
         return repositories(new RepositoriesRequest.Builder().build());
     }
 
+    // ----- Endpoint: cat.segment_replication
+
+    /**
+     * Returns information about active and last-completed segment replication events on each replica shard, including related shard-level
+     * metrics. These metrics provide information about how far behind the primary shard the replicas are lagging.
+     */
+    public SegmentReplicationResponse segmentReplication(SegmentReplicationRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, SegmentReplicationRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about active and last-completed segment replication events on each replica shard, including related shard-level
+     * metrics. These metrics provide information about how far behind the primary shard the replicas are lagging.
+     *
+     * @param fn a function that initializes a builder to create the {@link SegmentReplicationRequest}
+     */
+    public final SegmentReplicationResponse segmentReplication(
+        Function<SegmentReplicationRequest.Builder, ObjectBuilder<SegmentReplicationRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return segmentReplication(fn.apply(new SegmentReplicationRequest.Builder()).build());
+    }
+
+    /**
+     * Returns information about active and last-completed segment replication events on each replica shard, including related shard-level
+     * metrics. These metrics provide information about how far behind the primary shard the replicas are lagging.
+     */
+    public final SegmentReplicationResponse segmentReplication() throws IOException, OpenSearchException {
+        return segmentReplication(new SegmentReplicationRequest.Builder().build());
+    }
+
     // ----- Endpoint: cat.segments
 
     /**

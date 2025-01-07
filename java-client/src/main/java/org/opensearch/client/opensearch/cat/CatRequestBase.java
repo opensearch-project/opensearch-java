@@ -82,12 +82,6 @@ public abstract class CatRequestBase extends RequestBase {
         return this.sort;
     }
 
-    // TODO: remove me once all cat operations are generated
-    protected abstract static class CatRequestBaseBuilder<BuilderT extends CatRequestBaseBuilder<BuilderT>> extends AbstractBuilder<
-        BuilderT> implements ObjectBuilder {
-
-    }
-
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends RequestBase.AbstractBuilder<
         BuilderT> {
         @Nullable
@@ -168,12 +162,5 @@ public abstract class CatRequestBase extends RequestBase {
             params.put("s", String.join(",", sort));
         }
         params.put("format", "json");
-    }
-
-    // TODO: remove me once all cat operations are generated
-    protected final Map<String, String> queryParameters() {
-        Map<String, String> params = new HashMap<>();
-        applyQueryParameters(params);
-        return params;
     }
 }
