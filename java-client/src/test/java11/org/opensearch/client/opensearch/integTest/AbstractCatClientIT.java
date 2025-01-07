@@ -19,6 +19,7 @@ import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.Result;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch.cat.AliasesResponse;
+import org.opensearch.client.opensearch.cat.AllPitSegmentsResponse;
 import org.opensearch.client.opensearch.cat.AllocationResponse;
 import org.opensearch.client.opensearch.cat.IndicesResponse;
 import org.opensearch.client.opensearch.cat.NodesResponse;
@@ -237,7 +238,7 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
     }
 
     @Test
-    public void testCatPitSegments() throws Exception {
+    public void testCatAllPitSegments() throws Exception {
         final Version version = getServerVersion();
         assumeTrue("The PIT is supported in OpenSearch 2.4.0 and later", version.onOrAfter(Version.V_2_4_0));
         createIndex("cat-pit-segments-test-index");
@@ -253,7 +254,7 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
 
         createPit("cat-pit-segments-test-index");
 
-        PitSegmentsResponse pitSegmentsResponse = javaClient().cat().pitSegments(r -> r.headers("index,shard,id,segment,size"));
+        AllPitSegmentsResponse pitSegmentsResponse = javaClient().cat().allPitSegments(r -> r.headers("index,shard,id,segment,size"));
 
         assertNotNull("pitSegmentsResponse.segments() is null", pitSegmentsResponse.valueBody());
 
