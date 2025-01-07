@@ -28605,7 +28605,7 @@ components:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/cat._common___CatPitSegmentsRecord'
+              $ref: '#/components/schemas/cat.segments___SegmentsRecord'
       description: ''
     cat.allocation___200:
       content:
@@ -28762,7 +28762,7 @@ components:
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/cat._common___CatPitSegmentsRecord'
+              $ref: '#/components/schemas/cat.segments___SegmentsRecord'
       description: ''
     cat.plugins___200:
       content:
@@ -46114,37 +46114,6 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/asynchronous_search._common___NodesStats'
-    cat._common___CatPitSegmentsRecord:
-      type: object
-      properties:
-        index:
-          type: string
-        shard:
-          type: string
-        prirep:
-          type: string
-        ip:
-          type: string
-        segment:
-          type: string
-        generation:
-          type: string
-        docs.count:
-          type: string
-        docs.deleted:
-          type: string
-        size:
-          type: string
-        size.memory:
-          type: string
-        committed:
-          type: string
-        searchable:
-          type: string
-        version:
-          type: string
-        compound:
-          type: string
     cat._common___CatSegmentReplicationRecord:
       type: object
       properties:

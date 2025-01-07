@@ -81,6 +81,32 @@ public abstract class OpenSearchCatClientBase<Self extends OpenSearchCatClientBa
         return aliases(new AliasesRequest.Builder().build());
     }
 
+    // ----- Endpoint: cat.all_pit_segments
+
+    /**
+     * Lists all active CAT point-in-time segments.
+     */
+    public AllPitSegmentsResponse allPitSegments(AllPitSegmentsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, AllPitSegmentsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Lists all active CAT point-in-time segments.
+     *
+     * @param fn a function that initializes a builder to create the {@link AllPitSegmentsRequest}
+     */
+    public final AllPitSegmentsResponse allPitSegments(Function<AllPitSegmentsRequest.Builder, ObjectBuilder<AllPitSegmentsRequest>> fn)
+        throws IOException, OpenSearchException {
+        return allPitSegments(fn.apply(new AllPitSegmentsRequest.Builder()).build());
+    }
+
+    /**
+     * Lists all active CAT point-in-time segments.
+     */
+    public final AllPitSegmentsResponse allPitSegments() throws IOException, OpenSearchException {
+        return allPitSegments(new AllPitSegmentsRequest.Builder().build());
+    }
+
     // ----- Endpoint: cat.allocation
 
     /**
@@ -319,5 +345,76 @@ public abstract class OpenSearchCatClientBase<Self extends OpenSearchCatClientBa
      */
     public final NodesResponse nodes() throws IOException, OpenSearchException {
         return nodes(new NodesRequest.Builder().build());
+    }
+
+    // ----- Endpoint: cat.pending_tasks
+
+    /**
+     * Returns a concise representation of the cluster's pending tasks.
+     */
+    public PendingTasksResponse pendingTasks(PendingTasksRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, PendingTasksRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns a concise representation of the cluster's pending tasks.
+     *
+     * @param fn a function that initializes a builder to create the {@link PendingTasksRequest}
+     */
+    public final PendingTasksResponse pendingTasks(Function<PendingTasksRequest.Builder, ObjectBuilder<PendingTasksRequest>> fn)
+        throws IOException, OpenSearchException {
+        return pendingTasks(fn.apply(new PendingTasksRequest.Builder()).build());
+    }
+
+    /**
+     * Returns a concise representation of the cluster's pending tasks.
+     */
+    public final PendingTasksResponse pendingTasks() throws IOException, OpenSearchException {
+        return pendingTasks(new PendingTasksRequest.Builder().build());
+    }
+
+    // ----- Endpoint: cat.pit_segments
+
+    /**
+     * Lists one or several CAT point-in-time segments.
+     */
+    public PitSegmentsResponse pitSegments(PitSegmentsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, PitSegmentsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Lists one or several CAT point-in-time segments.
+     *
+     * @param fn a function that initializes a builder to create the {@link PitSegmentsRequest}
+     */
+    public final PitSegmentsResponse pitSegments(Function<PitSegmentsRequest.Builder, ObjectBuilder<PitSegmentsRequest>> fn)
+        throws IOException, OpenSearchException {
+        return pitSegments(fn.apply(new PitSegmentsRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: cat.plugins
+
+    /**
+     * Returns information about the names, components, and versions of the installed plugins.
+     */
+    public PluginsResponse plugins(PluginsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, PluginsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about the names, components, and versions of the installed plugins.
+     *
+     * @param fn a function that initializes a builder to create the {@link PluginsRequest}
+     */
+    public final PluginsResponse plugins(Function<PluginsRequest.Builder, ObjectBuilder<PluginsRequest>> fn) throws IOException,
+        OpenSearchException {
+        return plugins(fn.apply(new PluginsRequest.Builder()).build());
+    }
+
+    /**
+     * Returns information about the names, components, and versions of the installed plugins.
+     */
+    public final PluginsResponse plugins() throws IOException, OpenSearchException {
+        return plugins(new PluginsRequest.Builder().build());
     }
 }

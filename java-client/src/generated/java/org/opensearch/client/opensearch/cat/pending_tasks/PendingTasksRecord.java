@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cat.pending_tasks;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -41,18 +48,19 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cat.pending_tasks.PendingTasksRecord
 
 @JsonpDeserializable
-public class PendingTasksRecord implements PlainJsonSerializable {
-    @Nullable
-    private final String insertorder;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class PendingTasksRecord implements PlainJsonSerializable, ToCopyableBuilder<PendingTasksRecord.Builder, PendingTasksRecord> {
 
     @Nullable
-    private final String timeinqueue;
+    private final String insertOrder;
 
     @Nullable
     private final String priority;
@@ -60,45 +68,38 @@ public class PendingTasksRecord implements PlainJsonSerializable {
     @Nullable
     private final String source;
 
+    @Nullable
+    private final String timeInQueue;
+
     // ---------------------------------------------------------------------------------------------
 
     private PendingTasksRecord(Builder builder) {
-
-        this.insertorder = builder.insertorder;
-        this.timeinqueue = builder.timeinqueue;
+        this.insertOrder = builder.insertOrder;
         this.priority = builder.priority;
         this.source = builder.source;
-
+        this.timeInQueue = builder.timeInQueue;
     }
 
-    public static PendingTasksRecord of(Function<Builder, ObjectBuilder<PendingTasksRecord>> fn) {
+    public static PendingTasksRecord of(Function<PendingTasksRecord.Builder, ObjectBuilder<PendingTasksRecord>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * task insertion order
+     * The task insertion order.
      * <p>
      * API name: {@code insertOrder}
+     * </p>
      */
     @Nullable
-    public final String insertorder() {
-        return this.insertorder;
+    public final String insertOrder() {
+        return this.insertOrder;
     }
 
     /**
-     * how long task has been in queue
-     * <p>
-     * API name: {@code timeInQueue}
-     */
-    @Nullable
-    public final String timeinqueue() {
-        return this.timeinqueue;
-    }
-
-    /**
-     * task priority
+     * The task priority.
      * <p>
      * API name: {@code priority}
+     * </p>
      */
     @Nullable
     public final String priority() {
@@ -106,9 +107,10 @@ public class PendingTasksRecord implements PlainJsonSerializable {
     }
 
     /**
-     * task source
+     * The task source.
      * <p>
      * API name: {@code source}
+     * </p>
      */
     @Nullable
     public final String source() {
@@ -116,8 +118,20 @@ public class PendingTasksRecord implements PlainJsonSerializable {
     }
 
     /**
+     * Indicates how long the task has been in queue.
+     * <p>
+     * API name: {@code timeInQueue}
+     * </p>
+     */
+    @Nullable
+    public final String timeInQueue() {
+        return this.timeInQueue;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -125,95 +139,130 @@ public class PendingTasksRecord implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (this.insertorder != null) {
+        if (this.insertOrder != null) {
             generator.writeKey("insertOrder");
-            generator.write(this.insertorder);
-
+            generator.write(this.insertOrder);
         }
-        if (this.timeinqueue != null) {
-            generator.writeKey("timeInQueue");
-            generator.write(this.timeinqueue);
 
-        }
         if (this.priority != null) {
             generator.writeKey("priority");
             generator.write(this.priority);
-
         }
+
         if (this.source != null) {
             generator.writeKey("source");
             generator.write(this.source);
-
         }
 
+        if (this.timeInQueue != null) {
+            generator.writeKey("timeInQueue");
+            generator.write(this.timeInQueue);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PendingTasksRecord}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTasksRecord> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PendingTasksRecord> {
         @Nullable
-        private String insertorder;
-
-        @Nullable
-        private String timeinqueue;
-
+        private String insertOrder;
         @Nullable
         private String priority;
-
         @Nullable
         private String source;
+        @Nullable
+        private String timeInQueue;
+
+        public Builder() {}
+
+        private Builder(PendingTasksRecord o) {
+            this.insertOrder = o.insertOrder;
+            this.priority = o.priority;
+            this.source = o.source;
+            this.timeInQueue = o.timeInQueue;
+        }
+
+        private Builder(Builder o) {
+            this.insertOrder = o.insertOrder;
+            this.priority = o.priority;
+            this.source = o.source;
+            this.timeInQueue = o.timeInQueue;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
-         * task insertion order
+         * The task insertion order.
          * <p>
          * API name: {@code insertOrder}
+         * </p>
          */
-        public final Builder insertorder(@Nullable String value) {
-            this.insertorder = value;
+        @Nonnull
+        public final Builder insertOrder(@Nullable String value) {
+            this.insertOrder = value;
             return this;
         }
 
         /**
-         * how long task has been in queue
-         * <p>
-         * API name: {@code timeInQueue}
-         */
-        public final Builder timeinqueue(@Nullable String value) {
-            this.timeinqueue = value;
-            return this;
-        }
-
-        /**
-         * task priority
+         * The task priority.
          * <p>
          * API name: {@code priority}
+         * </p>
          */
+        @Nonnull
         public final Builder priority(@Nullable String value) {
             this.priority = value;
             return this;
         }
 
         /**
-         * task source
+         * The task source.
          * <p>
          * API name: {@code source}
+         * </p>
          */
+        @Nonnull
         public final Builder source(@Nullable String value) {
             this.source = value;
             return this;
         }
 
         /**
+         * Indicates how long the task has been in queue.
+         * <p>
+         * API name: {@code timeInQueue}
+         * </p>
+         */
+        @Nonnull
+        public final Builder timeInQueue(@Nullable String value) {
+            this.timeInQueue = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link PendingTasksRecord}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PendingTasksRecord build() {
             _checkSingleUse();
 
@@ -232,12 +281,30 @@ public class PendingTasksRecord implements PlainJsonSerializable {
     );
 
     protected static void setupPendingTasksRecordDeserializer(ObjectDeserializer<PendingTasksRecord.Builder> op) {
-
-        op.add(Builder::insertorder, JsonpDeserializer.stringDeserializer(), "insertOrder", "o");
-        op.add(Builder::timeinqueue, JsonpDeserializer.stringDeserializer(), "timeInQueue", "t");
-        op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority", "p");
-        op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source", "s");
-
+        op.add(Builder::insertOrder, JsonpDeserializer.stringDeserializer(), "insertOrder");
+        op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority");
+        op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+        op.add(Builder::timeInQueue, JsonpDeserializer.stringDeserializer(), "timeInQueue");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.insertOrder);
+        result = 31 * result + Objects.hashCode(this.priority);
+        result = 31 * result + Objects.hashCode(this.source);
+        result = 31 * result + Objects.hashCode(this.timeInQueue);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        PendingTasksRecord other = (PendingTasksRecord) o;
+        return Objects.equals(this.insertOrder, other.insertOrder)
+            && Objects.equals(this.priority, other.priority)
+            && Objects.equals(this.source, other.source)
+            && Objects.equals(this.timeInQueue, other.timeInQueue);
+    }
 }

@@ -53,6 +53,7 @@ public class CodeGenerator {
             name(
                 isOneOf(
                     "aliases",
+                    "all_pit_segments",
                     "allocation",
                     "cluster_manager",
                     "count",
@@ -61,7 +62,10 @@ public class CodeGenerator {
                     "indices",
                     "master",
                     "nodeattrs",
-                    "nodes"
+                    "nodes",
+                    "pending_tasks",
+                    "pit_segments",
+                    "plugins"
                 )
             )
         ),

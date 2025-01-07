@@ -30,44 +30,55 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cat;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.opensearch.cat.pending_tasks.PendingTasksRecord;
+import org.opensearch.client.opensearch.cat.segments.SegmentsRecord;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: cat.pending_tasks.Response
+// typedef: cat.all_pit_segments.Response
 
 @JsonpDeserializable
-public class PendingTasksResponse implements PlainJsonSerializable {
-    private final List<PendingTasksRecord> valueBody;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class AllPitSegmentsResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<AllPitSegmentsResponse.Builder, AllPitSegmentsResponse> {
+
+    @Nonnull
+    private final List<SegmentsRecord> valueBody;
 
     // ---------------------------------------------------------------------------------------------
 
-    private PendingTasksResponse(Builder builder) {
-
+    private AllPitSegmentsResponse(Builder builder) {
         this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
-
     }
 
-    public static PendingTasksResponse of(Function<Builder, ObjectBuilder<PendingTasksResponse>> fn) {
+    public static AllPitSegmentsResponse of(Function<AllPitSegmentsResponse.Builder, ObjectBuilder<AllPitSegmentsResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - Response value.
-     * <p>
-     * API name: {@code _value_body}
      */
-    public final List<PendingTasksRecord> valueBody() {
+    @Nonnull
+    public final List<SegmentsRecord> valueBody() {
         return this.valueBody;
     }
 
@@ -76,83 +87,107 @@ public class PendingTasksResponse implements PlainJsonSerializable {
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartArray();
-        for (PendingTasksRecord item0 : this.valueBody) {
+        for (SegmentsRecord item0 : this.valueBody) {
             item0.serialize(generator, mapper);
-
         }
         generator.writeEnd();
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    /**
-     * Builder for {@link PendingTasksResponse}.
-     */
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTasksResponse> {
-        private List<PendingTasksRecord> valueBody;
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /**
+     * Builder for {@link AllPitSegmentsResponse}.
+     */
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AllPitSegmentsResponse> {
+        private List<SegmentsRecord> valueBody;
+
+        public Builder() {}
+
+        private Builder(AllPitSegmentsResponse o) {
+            this.valueBody = _listCopy(o.valueBody);
+        }
+
+        private Builder(Builder o) {
+            this.valueBody = _listCopy(o.valueBody);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>valueBody</code>.
+         * </p>
          */
-        public final Builder valueBody(List<PendingTasksRecord> list) {
+        @Nonnull
+        public final Builder valueBody(List<SegmentsRecord> list) {
             this.valueBody = _listAddAll(this.valueBody, list);
             return this;
         }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds one or more values to <code>valueBody</code>.
+         * </p>
          */
-        public final Builder valueBody(PendingTasksRecord value, PendingTasksRecord... values) {
+        @Nonnull
+        public final Builder valueBody(SegmentsRecord value, SegmentsRecord... values) {
             this.valueBody = _listAdd(this.valueBody, value, values);
             return this;
         }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds a value to <code>valueBody</code> using a builder lambda.
+         * </p>
          */
-        public final Builder valueBody(Function<PendingTasksRecord.Builder, ObjectBuilder<PendingTasksRecord>> fn) {
-            return valueBody(fn.apply(new PendingTasksRecord.Builder()).build());
+        @Nonnull
+        public final Builder valueBody(Function<SegmentsRecord.Builder, ObjectBuilder<SegmentsRecord>> fn) {
+            return valueBody(fn.apply(new SegmentsRecord.Builder()).build());
         }
 
         /**
-         * Builds a {@link PendingTasksResponse}.
+         * Builds a {@link AllPitSegmentsResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public PendingTasksResponse build() {
+        @Override
+        @Nonnull
+        public AllPitSegmentsResponse build() {
             _checkSingleUse();
 
-            return new PendingTasksResponse(this);
+            return new AllPitSegmentsResponse(this);
         }
     }
 
-    public static final JsonpDeserializer<PendingTasksResponse> _DESERIALIZER = createPendingTasksResponseDeserializer();
+    public static final JsonpDeserializer<AllPitSegmentsResponse> _DESERIALIZER = createAllPitSegmentsResponseDeserializer();
 
-    protected static JsonpDeserializer<PendingTasksResponse> createPendingTasksResponseDeserializer() {
-
-        JsonpDeserializer<List<PendingTasksRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(
-            PendingTasksRecord._DESERIALIZER
-        );
+    protected static JsonpDeserializer<AllPitSegmentsResponse> createAllPitSegmentsResponseDeserializer() {
+        JsonpDeserializer<List<SegmentsRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(SegmentsRecord._DESERIALIZER);
 
         return JsonpDeserializer.of(
             valueDeserializer.acceptedEvents(),
             (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
         );
     }
-
 }
