@@ -22,6 +22,7 @@ import org.opensearch.client.opensearch.cat.AliasesResponse;
 import org.opensearch.client.opensearch.cat.AllocationResponse;
 import org.opensearch.client.opensearch.cat.IndicesResponse;
 import org.opensearch.client.opensearch.cat.NodesResponse;
+import org.opensearch.client.opensearch.cat.PitSegmentsResponse;
 import org.opensearch.client.opensearch.cat.PluginsResponse;
 import org.opensearch.client.opensearch.cat.RecoveryResponse;
 import org.opensearch.client.opensearch.cat.SegmentsResponse;
@@ -252,14 +253,14 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
 
         createPit("cat-pit-segments-test-index");
 
-        SegmentsResponse PitSegmentsResponse = javaClient().cat().pitSegments(r -> r.headers("index,shard,id,segment,size"));
+        PitSegmentsResponse pitSegmentsResponse = javaClient().cat().pitSegments(r -> r.headers("index,shard,id,segment,size"));
 
-        assertNotNull("PitSegmentsResponse.segments() is null", PitSegmentsResponse.valueBody());
+        assertNotNull("pitSegmentsResponse.segments() is null", pitSegmentsResponse.valueBody());
 
         if (version.onOrAfter(Version.V_2_10_0)) {
-            assertTrue("PitSegmentsResponse.segments().size() == 0", PitSegmentsResponse.valueBody().isEmpty());
+            assertTrue("pitSegmentsResponse.segments().size() == 0", pitSegmentsResponse.valueBody().isEmpty());
         } else {
-            assertTrue("PitSegmentsResponse.segments().size() == 0", PitSegmentsResponse.valueBody().size() > 0);
+            assertTrue("pitSegmentsResponse.segments().size() > 0", pitSegmentsResponse.valueBody().size() > 0);
         }
     }
 
@@ -276,5 +277,4 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
         assertNotNull(createPitResponse);
         assertNotNull(createPitResponse.pitId());
     }
-
 }
