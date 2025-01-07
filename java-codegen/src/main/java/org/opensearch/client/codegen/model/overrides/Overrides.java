@@ -137,6 +137,8 @@ public class Overrides {
 
                 .with(schema("indices.stats", "Metric"), so -> so.withClassName("IndicesStatsMetric"))
 
+                .with(schema("ingest._common", "ProcessorContainer"), so -> so.withClassName("Processor"))
+
                 .with(
                     schema("nodes._common", "NodesResponseBase"),
                     so -> so.withProperties(p -> p.with("_nodes", po -> po.withName("nodeStats")))
