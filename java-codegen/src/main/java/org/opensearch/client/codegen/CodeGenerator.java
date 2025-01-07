@@ -65,7 +65,10 @@ public class CodeGenerator {
                     "nodes",
                     "pending_tasks",
                     "pit_segments",
-                    "plugins"
+                    "plugins",
+                    "recovery",
+                    "repositories",
+                    "segments"
                 )
             )
         ),

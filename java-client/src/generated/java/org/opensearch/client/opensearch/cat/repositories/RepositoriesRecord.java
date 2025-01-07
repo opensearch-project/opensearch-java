@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cat.repositories;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -41,13 +48,17 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cat.repositories.RepositoriesRecord
 
 @JsonpDeserializable
-public class RepositoriesRecord implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class RepositoriesRecord implements PlainJsonSerializable, ToCopyableBuilder<RepositoriesRecord.Builder, RepositoriesRecord> {
+
     @Nullable
     private final String id;
 
@@ -57,20 +68,19 @@ public class RepositoriesRecord implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private RepositoriesRecord(Builder builder) {
-
         this.id = builder.id;
         this.type = builder.type;
-
     }
 
-    public static RepositoriesRecord of(Function<Builder, ObjectBuilder<RepositoriesRecord>> fn) {
+    public static RepositoriesRecord of(Function<RepositoriesRecord.Builder, ObjectBuilder<RepositoriesRecord>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * unique repository id
+     * The unique repository identifier.
      * <p>
      * API name: {@code id}
+     * </p>
      */
     @Nullable
     public final String id() {
@@ -78,9 +88,10 @@ public class RepositoriesRecord implements PlainJsonSerializable {
     }
 
     /**
-     * repository type
+     * The repository type.
      * <p>
      * API name: {@code type}
+     * </p>
      */
     @Nullable
     public final String type() {
@@ -90,6 +101,7 @@ public class RepositoriesRecord implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -97,48 +109,76 @@ public class RepositoriesRecord implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (this.id != null) {
             generator.writeKey("id");
             generator.write(this.id);
-
         }
+
         if (this.type != null) {
             generator.writeKey("type");
             generator.write(this.type);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RepositoriesRecord}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RepositoriesRecord> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RepositoriesRecord> {
         @Nullable
         private String id;
-
         @Nullable
         private String type;
 
+        public Builder() {}
+
+        private Builder(RepositoriesRecord o) {
+            this.id = o.id;
+            this.type = o.type;
+        }
+
+        private Builder(Builder o) {
+            this.id = o.id;
+            this.type = o.type;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
-         * unique repository id
+         * The unique repository identifier.
          * <p>
          * API name: {@code id}
+         * </p>
          */
+        @Nonnull
         public final Builder id(@Nullable String value) {
             this.id = value;
             return this;
         }
 
         /**
-         * repository type
+         * The repository type.
          * <p>
          * API name: {@code type}
+         * </p>
          */
+        @Nonnull
         public final Builder type(@Nullable String value) {
             this.type = value;
             return this;
@@ -147,9 +187,10 @@ public class RepositoriesRecord implements PlainJsonSerializable {
         /**
          * Builds a {@link RepositoriesRecord}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RepositoriesRecord build() {
             _checkSingleUse();
 
@@ -168,10 +209,23 @@ public class RepositoriesRecord implements PlainJsonSerializable {
     );
 
     protected static void setupRepositoriesRecordDeserializer(ObjectDeserializer<RepositoriesRecord.Builder> op) {
-
-        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id", "repoId");
-        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "t");
-
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.id);
+        result = 31 * result + Objects.hashCode(this.type);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RepositoriesRecord other = (RepositoriesRecord) o;
+        return Objects.equals(this.id, other.id) && Objects.equals(this.type, other.type);
+    }
 }

@@ -30,43 +30,51 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cat;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.cat.segments.SegmentsRecord;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cat.segments.Response
 
 @JsonpDeserializable
-public class SegmentsResponse implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SegmentsResponse implements PlainJsonSerializable, ToCopyableBuilder<SegmentsResponse.Builder, SegmentsResponse> {
+
+    @Nonnull
     private final List<SegmentsRecord> valueBody;
 
     // ---------------------------------------------------------------------------------------------
 
     private SegmentsResponse(Builder builder) {
-
         this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
-
     }
 
-    public static SegmentsResponse of(Function<Builder, ObjectBuilder<SegmentsResponse>> fn) {
+    public static SegmentsResponse of(Function<SegmentsResponse.Builder, ObjectBuilder<SegmentsResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - Response value.
-     * <p>
-     * API name: {@code _value_body}
      */
+    @Nonnull
     public final List<SegmentsRecord> valueBody() {
         return this.valueBody;
     }
@@ -78,28 +86,53 @@ public class SegmentsResponse implements PlainJsonSerializable {
         generator.writeStartArray();
         for (SegmentsRecord item0 : this.valueBody) {
             item0.serialize(generator, mapper);
-
         }
         generator.writeEnd();
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SegmentsResponse}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SegmentsResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SegmentsResponse> {
         private List<SegmentsRecord> valueBody;
+
+        public Builder() {}
+
+        private Builder(SegmentsResponse o) {
+            this.valueBody = _listCopy(o.valueBody);
+        }
+
+        private Builder(Builder o) {
+            this.valueBody = _listCopy(o.valueBody);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>valueBody</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder valueBody(List<SegmentsRecord> list) {
             this.valueBody = _listAddAll(this.valueBody, list);
             return this;
@@ -107,11 +140,12 @@ public class SegmentsResponse implements PlainJsonSerializable {
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds one or more values to <code>valueBody</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder valueBody(SegmentsRecord value, SegmentsRecord... values) {
             this.valueBody = _listAdd(this.valueBody, value, values);
             return this;
@@ -119,11 +153,12 @@ public class SegmentsResponse implements PlainJsonSerializable {
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds a value to <code>valueBody</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder valueBody(Function<SegmentsRecord.Builder, ObjectBuilder<SegmentsRecord>> fn) {
             return valueBody(fn.apply(new SegmentsRecord.Builder()).build());
         }
@@ -131,9 +166,10 @@ public class SegmentsResponse implements PlainJsonSerializable {
         /**
          * Builds a {@link SegmentsResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SegmentsResponse build() {
             _checkSingleUse();
 
@@ -144,7 +180,6 @@ public class SegmentsResponse implements PlainJsonSerializable {
     public static final JsonpDeserializer<SegmentsResponse> _DESERIALIZER = createSegmentsResponseDeserializer();
 
     protected static JsonpDeserializer<SegmentsResponse> createSegmentsResponseDeserializer() {
-
         JsonpDeserializer<List<SegmentsRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(SegmentsRecord._DESERIALIZER);
 
         return JsonpDeserializer.of(
@@ -152,5 +187,4 @@ public class SegmentsResponse implements PlainJsonSerializable {
             (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
         );
     }
-
 }

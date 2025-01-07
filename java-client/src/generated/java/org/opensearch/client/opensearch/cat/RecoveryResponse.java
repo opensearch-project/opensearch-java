@@ -30,44 +30,52 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cat;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.opensearch.cat.repositories.RepositoriesRecord;
+import org.opensearch.client.opensearch.cat.recovery.RecoveryRecord;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: cat.repositories.Response
+// typedef: cat.recovery.Response
 
 @JsonpDeserializable
-public class RepositoriesResponse implements PlainJsonSerializable {
-    private final List<RepositoriesRecord> valueBody;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class RecoveryResponse implements PlainJsonSerializable, ToCopyableBuilder<RecoveryResponse.Builder, RecoveryResponse> {
+
+    @Nonnull
+    private final List<RecoveryRecord> valueBody;
 
     // ---------------------------------------------------------------------------------------------
 
-    private RepositoriesResponse(Builder builder) {
-
+    private RecoveryResponse(Builder builder) {
         this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
-
     }
 
-    public static RepositoriesResponse of(Function<Builder, ObjectBuilder<RepositoriesResponse>> fn) {
+    public static RecoveryResponse of(Function<RecoveryResponse.Builder, ObjectBuilder<RecoveryResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - Response value.
-     * <p>
-     * API name: {@code _value_body}
      */
-    public final List<RepositoriesRecord> valueBody() {
+    @Nonnull
+    public final List<RecoveryRecord> valueBody() {
         return this.valueBody;
     }
 
@@ -76,83 +84,107 @@ public class RepositoriesResponse implements PlainJsonSerializable {
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartArray();
-        for (RepositoriesRecord item0 : this.valueBody) {
+        for (RecoveryRecord item0 : this.valueBody) {
             item0.serialize(generator, mapper);
-
         }
         generator.writeEnd();
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    /**
-     * Builder for {@link RepositoriesResponse}.
-     */
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RepositoriesResponse> {
-        private List<RepositoriesRecord> valueBody;
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /**
+     * Builder for {@link RecoveryResponse}.
+     */
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RecoveryResponse> {
+        private List<RecoveryRecord> valueBody;
+
+        public Builder() {}
+
+        private Builder(RecoveryResponse o) {
+            this.valueBody = _listCopy(o.valueBody);
+        }
+
+        private Builder(Builder o) {
+            this.valueBody = _listCopy(o.valueBody);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>valueBody</code>.
+         * </p>
          */
-        public final Builder valueBody(List<RepositoriesRecord> list) {
+        @Nonnull
+        public final Builder valueBody(List<RecoveryRecord> list) {
             this.valueBody = _listAddAll(this.valueBody, list);
             return this;
         }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds one or more values to <code>valueBody</code>.
+         * </p>
          */
-        public final Builder valueBody(RepositoriesRecord value, RepositoriesRecord... values) {
+        @Nonnull
+        public final Builder valueBody(RecoveryRecord value, RecoveryRecord... values) {
             this.valueBody = _listAdd(this.valueBody, value, values);
             return this;
         }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds a value to <code>valueBody</code> using a builder lambda.
+         * </p>
          */
-        public final Builder valueBody(Function<RepositoriesRecord.Builder, ObjectBuilder<RepositoriesRecord>> fn) {
-            return valueBody(fn.apply(new RepositoriesRecord.Builder()).build());
+        @Nonnull
+        public final Builder valueBody(Function<RecoveryRecord.Builder, ObjectBuilder<RecoveryRecord>> fn) {
+            return valueBody(fn.apply(new RecoveryRecord.Builder()).build());
         }
 
         /**
-         * Builds a {@link RepositoriesResponse}.
+         * Builds a {@link RecoveryResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public RepositoriesResponse build() {
+        @Override
+        @Nonnull
+        public RecoveryResponse build() {
             _checkSingleUse();
 
-            return new RepositoriesResponse(this);
+            return new RecoveryResponse(this);
         }
     }
 
-    public static final JsonpDeserializer<RepositoriesResponse> _DESERIALIZER = createRepositoriesResponseDeserializer();
+    public static final JsonpDeserializer<RecoveryResponse> _DESERIALIZER = createRecoveryResponseDeserializer();
 
-    protected static JsonpDeserializer<RepositoriesResponse> createRepositoriesResponseDeserializer() {
-
-        JsonpDeserializer<List<RepositoriesRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(
-            RepositoriesRecord._DESERIALIZER
-        );
+    protected static JsonpDeserializer<RecoveryResponse> createRecoveryResponseDeserializer() {
+        JsonpDeserializer<List<RecoveryRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(RecoveryRecord._DESERIALIZER);
 
         return JsonpDeserializer.of(
             valueDeserializer.acceptedEvents(),
             (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
         );
     }
-
 }

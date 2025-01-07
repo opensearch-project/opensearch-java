@@ -417,4 +417,82 @@ public abstract class OpenSearchCatClientBase<Self extends OpenSearchCatClientBa
     public final PluginsResponse plugins() throws IOException, OpenSearchException {
         return plugins(new PluginsRequest.Builder().build());
     }
+
+    // ----- Endpoint: cat.recovery
+
+    /**
+     * Returns all completed and ongoing index and shard recoveries.
+     */
+    public RecoveryResponse recovery(RecoveryRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, RecoveryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns all completed and ongoing index and shard recoveries.
+     *
+     * @param fn a function that initializes a builder to create the {@link RecoveryRequest}
+     */
+    public final RecoveryResponse recovery(Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn) throws IOException,
+        OpenSearchException {
+        return recovery(fn.apply(new RecoveryRequest.Builder()).build());
+    }
+
+    /**
+     * Returns all completed and ongoing index and shard recoveries.
+     */
+    public final RecoveryResponse recovery() throws IOException, OpenSearchException {
+        return recovery(new RecoveryRequest.Builder().build());
+    }
+
+    // ----- Endpoint: cat.repositories
+
+    /**
+     * Returns information about all snapshot repositories for a cluster.
+     */
+    public RepositoriesResponse repositories(RepositoriesRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, RepositoriesRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about all snapshot repositories for a cluster.
+     *
+     * @param fn a function that initializes a builder to create the {@link RepositoriesRequest}
+     */
+    public final RepositoriesResponse repositories(Function<RepositoriesRequest.Builder, ObjectBuilder<RepositoriesRequest>> fn)
+        throws IOException, OpenSearchException {
+        return repositories(fn.apply(new RepositoriesRequest.Builder()).build());
+    }
+
+    /**
+     * Returns information about all snapshot repositories for a cluster.
+     */
+    public final RepositoriesResponse repositories() throws IOException, OpenSearchException {
+        return repositories(new RepositoriesRequest.Builder().build());
+    }
+
+    // ----- Endpoint: cat.segments
+
+    /**
+     * Provides low-level information about the segments in the shards of an index.
+     */
+    public SegmentsResponse segments(SegmentsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, SegmentsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Provides low-level information about the segments in the shards of an index.
+     *
+     * @param fn a function that initializes a builder to create the {@link SegmentsRequest}
+     */
+    public final SegmentsResponse segments(Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn) throws IOException,
+        OpenSearchException {
+        return segments(fn.apply(new SegmentsRequest.Builder()).build());
+    }
+
+    /**
+     * Provides low-level information about the segments in the shards of an index.
+     */
+    public final SegmentsResponse segments() throws IOException, OpenSearchException {
+        return segments(new SegmentsRequest.Builder().build());
+    }
 }
