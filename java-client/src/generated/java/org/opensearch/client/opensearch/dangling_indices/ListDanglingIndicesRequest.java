@@ -36,11 +36,18 @@
 
 package org.opensearch.client.opensearch.dangling_indices;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
+import org.opensearch.client.util.CopyableBuilder;
+import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: dangling_indices.list_dangling_indices.Request
 
@@ -48,13 +55,77 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
  * Returns all dangling indexes.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ListDanglingIndicesRequest extends RequestBase {
-    public ListDanglingIndicesRequest() {}
+public final class ListDanglingIndicesRequest extends RequestBase
+    implements
+        ToCopyableBuilder<ListDanglingIndicesRequest.Builder, ListDanglingIndicesRequest> {
+
+    // ---------------------------------------------------------------------------------------------
+
+    private ListDanglingIndicesRequest(Builder builder) {
+        super(builder);
+    }
+
+    public static ListDanglingIndicesRequest of(
+        Function<ListDanglingIndicesRequest.Builder, ObjectBuilder<ListDanglingIndicesRequest>> fn
+    ) {
+        return fn.apply(new Builder()).build();
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
 
     /**
-     * Singleton instance for {@link ListDanglingIndicesRequest}.
+     * Builder for {@link ListDanglingIndicesRequest}.
      */
-    public static final ListDanglingIndicesRequest _INSTANCE = new ListDanglingIndicesRequest();
+    public static class Builder extends RequestBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, ListDanglingIndicesRequest> {
+
+        public Builder() {}
+
+        private Builder(ListDanglingIndicesRequest o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
+        /**
+         * Builds a {@link ListDanglingIndicesRequest}.
+         *
+         * @throws NullPointerException if some of the required fields are null.
+         */
+        @Override
+        @Nonnull
+        public ListDanglingIndicesRequest build() {
+            _checkSingleUse();
+
+            return new ListDanglingIndicesRequest(this);
+        }
+    }
 
     // ---------------------------------------------------------------------------------------------
 
@@ -67,7 +138,11 @@ public class ListDanglingIndicesRequest extends RequestBase {
         // Request path
         request -> "/_dangling",
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         false,
         ListDanglingIndicesResponse._DESERIALIZER

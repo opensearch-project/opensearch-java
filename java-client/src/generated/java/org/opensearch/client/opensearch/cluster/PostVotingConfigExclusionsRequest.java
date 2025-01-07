@@ -54,7 +54,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.post_voting_config_exclusions.Request
@@ -63,7 +62,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Updates the cluster voting config exclusions by node ids or node names.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PostVotingConfigExclusionsRequest extends RequestBase
+public final class PostVotingConfigExclusionsRequest extends RequestBase
     implements
         ToCopyableBuilder<PostVotingConfigExclusionsRequest.Builder, PostVotingConfigExclusionsRequest> {
 
@@ -79,6 +78,7 @@ public class PostVotingConfigExclusionsRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private PostVotingConfigExclusionsRequest(Builder builder) {
+        super(builder);
         this.nodeIds = ApiTypeHelper.unmodifiable(builder.nodeIds);
         this.nodeNames = ApiTypeHelper.unmodifiable(builder.nodeNames);
         this.timeout = builder.timeout;
@@ -142,7 +142,9 @@ public class PostVotingConfigExclusionsRequest extends RequestBase
     /**
      * Builder for {@link PostVotingConfigExclusionsRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PostVotingConfigExclusionsRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, PostVotingConfigExclusionsRequest> {
         @Nullable
         private List<String> nodeIds;
         @Nullable
@@ -153,12 +155,14 @@ public class PostVotingConfigExclusionsRequest extends RequestBase
         public Builder() {}
 
         private Builder(PostVotingConfigExclusionsRequest o) {
+            super(o);
             this.nodeIds = _listCopy(o.nodeIds);
             this.nodeNames = _listCopy(o.nodeNames);
             this.timeout = o.timeout;
         }
 
         private Builder(Builder o) {
+            super(o);
             this.nodeIds = _listCopy(o.nodeIds);
             this.nodeNames = _listCopy(o.nodeNames);
             this.timeout = o.timeout;
@@ -168,6 +172,12 @@ public class PostVotingConfigExclusionsRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -279,6 +289,20 @@ public class PostVotingConfigExclusionsRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (ApiTypeHelper.isDefined(this.nodeIds)) {
+            params.put("node_ids", String.join(",", this.nodeIds));
+        }
+        if (ApiTypeHelper.isDefined(this.nodeNames)) {
+            params.put("node_names", String.join(",", this.nodeNames));
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code cluster.post_voting_config_exclusions}".
      */
@@ -290,15 +314,7 @@ public class PostVotingConfigExclusionsRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (ApiTypeHelper.isDefined(request.nodeIds)) {
-                params.put("node_ids", String.join(",", request.nodeIds));
-            }
-            if (ApiTypeHelper.isDefined(request.nodeNames)) {
-                params.put("node_names", String.join(",", request.nodeNames));
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap()

@@ -55,7 +55,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.open.Request
@@ -64,7 +63,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Opens an index.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class OpenRequest extends RequestBase implements ToCopyableBuilder<OpenRequest.Builder, OpenRequest> {
+public final class OpenRequest extends RequestBase implements ToCopyableBuilder<OpenRequest.Builder, OpenRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
@@ -100,6 +99,7 @@ public class OpenRequest extends RequestBase implements ToCopyableBuilder<OpenRe
     // ---------------------------------------------------------------------------------------------
 
     private OpenRequest(Builder builder) {
+        super(builder);
         this.allowNoIndices = builder.allowNoIndices;
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
@@ -251,7 +251,7 @@ public class OpenRequest extends RequestBase implements ToCopyableBuilder<OpenRe
     /**
      * Builder for {@link OpenRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, OpenRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, OpenRequest> {
         @Nullable
         private Boolean allowNoIndices;
         @Nullable
@@ -275,6 +275,7 @@ public class OpenRequest extends RequestBase implements ToCopyableBuilder<OpenRe
         public Builder() {}
 
         private Builder(OpenRequest o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.expandWildcards = _listCopy(o.expandWildcards);
@@ -288,6 +289,7 @@ public class OpenRequest extends RequestBase implements ToCopyableBuilder<OpenRe
         }
 
         private Builder(Builder o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.expandWildcards = _listCopy(o.expandWildcards);
@@ -304,6 +306,12 @@ public class OpenRequest extends RequestBase implements ToCopyableBuilder<OpenRe
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -554,6 +562,38 @@ public class OpenRequest extends RequestBase implements ToCopyableBuilder<OpenRe
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.allowNoIndices != null) {
+            params.put("allow_no_indices", String.valueOf(this.allowNoIndices));
+        }
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.taskExecutionTimeout != null) {
+            params.put("task_execution_timeout", this.taskExecutionTimeout._toJsonString());
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+        if (this.waitForActiveShards != null) {
+            params.put("wait_for_active_shards", this.waitForActiveShards._toJsonString());
+        }
+        if (this.waitForCompletion != null) {
+            params.put("wait_for_completion", String.valueOf(this.waitForCompletion));
+        }
+    }
+
     /**
      * Endpoint "{@code indices.open}".
      */
@@ -571,33 +611,7 @@ public class OpenRequest extends RequestBase implements ToCopyableBuilder<OpenRe
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-            }
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.ignoreUnavailable != null) {
-                params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (request.taskExecutionTimeout != null) {
-                params.put("task_execution_timeout", request.taskExecutionTimeout._toJsonString());
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
-            if (request.waitForActiveShards != null) {
-                params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
-            }
-            if (request.waitForCompletion != null) {
-                params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

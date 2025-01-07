@@ -53,7 +53,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.forcemerge.Request
@@ -62,7 +61,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Performs the force merge operation on one or more indexes.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ForcemergeRequest extends RequestBase implements ToCopyableBuilder<ForcemergeRequest.Builder, ForcemergeRequest> {
+public final class ForcemergeRequest extends RequestBase implements ToCopyableBuilder<ForcemergeRequest.Builder, ForcemergeRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
@@ -94,6 +93,7 @@ public class ForcemergeRequest extends RequestBase implements ToCopyableBuilder<
     // ---------------------------------------------------------------------------------------------
 
     private ForcemergeRequest(Builder builder) {
+        super(builder);
         this.allowNoIndices = builder.allowNoIndices;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.flush = builder.flush;
@@ -226,7 +226,7 @@ public class ForcemergeRequest extends RequestBase implements ToCopyableBuilder<
     /**
      * Builder for {@link ForcemergeRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ForcemergeRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ForcemergeRequest> {
         @Nullable
         private Boolean allowNoIndices;
         @Nullable
@@ -249,6 +249,7 @@ public class ForcemergeRequest extends RequestBase implements ToCopyableBuilder<
         public Builder() {}
 
         private Builder(ForcemergeRequest o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.flush = o.flush;
@@ -261,6 +262,7 @@ public class ForcemergeRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         private Builder(Builder o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.flush = o.flush;
@@ -276,6 +278,12 @@ public class ForcemergeRequest extends RequestBase implements ToCopyableBuilder<
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -444,6 +452,35 @@ public class ForcemergeRequest extends RequestBase implements ToCopyableBuilder<
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.allowNoIndices != null) {
+            params.put("allow_no_indices", String.valueOf(this.allowNoIndices));
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.flush != null) {
+            params.put("flush", String.valueOf(this.flush));
+        }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        if (this.maxNumSegments != null) {
+            params.put("max_num_segments", String.valueOf(this.maxNumSegments));
+        }
+        if (this.onlyExpungeDeletes != null) {
+            params.put("only_expunge_deletes", String.valueOf(this.onlyExpungeDeletes));
+        }
+        if (this.primaryOnly != null) {
+            params.put("primary_only", String.valueOf(this.primaryOnly));
+        }
+        if (this.waitForCompletion != null) {
+            params.put("wait_for_completion", String.valueOf(this.waitForCompletion));
+        }
+    }
+
     /**
      * Endpoint "{@code indices.forcemerge}".
      */
@@ -474,30 +511,7 @@ public class ForcemergeRequest extends RequestBase implements ToCopyableBuilder<
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.flush != null) {
-                params.put("flush", String.valueOf(request.flush));
-            }
-            if (request.ignoreUnavailable != null) {
-                params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
-            if (request.maxNumSegments != null) {
-                params.put("max_num_segments", String.valueOf(request.maxNumSegments));
-            }
-            if (request.onlyExpungeDeletes != null) {
-                params.put("only_expunge_deletes", String.valueOf(request.onlyExpungeDeletes));
-            }
-            if (request.primaryOnly != null) {
-                params.put("primary_only", String.valueOf(request.primaryOnly));
-            }
-            if (request.waitForCompletion != null) {
-                params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

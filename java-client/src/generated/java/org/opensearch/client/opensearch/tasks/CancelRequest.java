@@ -51,7 +51,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: tasks.cancel.Request
@@ -60,7 +59,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Cancels a task, if it can be cancelled through an API.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CancelRequest extends RequestBase implements ToCopyableBuilder<CancelRequest.Builder, CancelRequest> {
+public final class CancelRequest extends RequestBase implements ToCopyableBuilder<CancelRequest.Builder, CancelRequest> {
 
     @Nonnull
     private final List<String> actions;
@@ -80,6 +79,7 @@ public class CancelRequest extends RequestBase implements ToCopyableBuilder<Canc
     // ---------------------------------------------------------------------------------------------
 
     private CancelRequest(Builder builder) {
+        super(builder);
         this.actions = ApiTypeHelper.unmodifiable(builder.actions);
         this.nodes = ApiTypeHelper.unmodifiable(builder.nodes);
         this.parentTaskId = builder.parentTaskId;
@@ -162,7 +162,7 @@ public class CancelRequest extends RequestBase implements ToCopyableBuilder<Canc
     /**
      * Builder for {@link CancelRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CancelRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, CancelRequest> {
         @Nullable
         private List<String> actions;
         @Nullable
@@ -177,6 +177,7 @@ public class CancelRequest extends RequestBase implements ToCopyableBuilder<Canc
         public Builder() {}
 
         private Builder(CancelRequest o) {
+            super(o);
             this.actions = _listCopy(o.actions);
             this.nodes = _listCopy(o.nodes);
             this.parentTaskId = o.parentTaskId;
@@ -185,6 +186,7 @@ public class CancelRequest extends RequestBase implements ToCopyableBuilder<Canc
         }
 
         private Builder(Builder o) {
+            super(o);
             this.actions = _listCopy(o.actions);
             this.nodes = _listCopy(o.nodes);
             this.parentTaskId = o.parentTaskId;
@@ -196,6 +198,12 @@ public class CancelRequest extends RequestBase implements ToCopyableBuilder<Canc
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -314,6 +322,23 @@ public class CancelRequest extends RequestBase implements ToCopyableBuilder<Canc
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (ApiTypeHelper.isDefined(this.actions)) {
+            params.put("actions", String.join(",", this.actions));
+        }
+        if (ApiTypeHelper.isDefined(this.nodes)) {
+            params.put("nodes", String.join(",", this.nodes));
+        }
+        if (this.parentTaskId != null) {
+            params.put("parent_task_id", this.parentTaskId);
+        }
+        if (this.waitForCompletion != null) {
+            params.put("wait_for_completion", String.valueOf(this.waitForCompletion));
+        }
+    }
+
     /**
      * Endpoint "{@code tasks.cancel}".
      */
@@ -344,18 +369,7 @@ public class CancelRequest extends RequestBase implements ToCopyableBuilder<Canc
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (ApiTypeHelper.isDefined(request.actions)) {
-                params.put("actions", String.join(",", request.actions));
-            }
-            if (ApiTypeHelper.isDefined(request.nodes)) {
-                params.put("nodes", String.join(",", request.nodes));
-            }
-            if (request.parentTaskId != null) {
-                params.put("parent_task_id", request.parentTaskId);
-            }
-            if (request.waitForCompletion != null) {
-                params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

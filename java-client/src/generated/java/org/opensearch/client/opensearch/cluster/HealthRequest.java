@@ -58,7 +58,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.health.Request
@@ -67,7 +66,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns basic information about the health of the cluster.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class HealthRequest extends RequestBase implements ToCopyableBuilder<HealthRequest.Builder, HealthRequest> {
+public final class HealthRequest extends RequestBase implements ToCopyableBuilder<HealthRequest.Builder, HealthRequest> {
 
     @Nullable
     private final String awarenessAttribute;
@@ -115,6 +114,7 @@ public class HealthRequest extends RequestBase implements ToCopyableBuilder<Heal
     // ---------------------------------------------------------------------------------------------
 
     private HealthRequest(Builder builder) {
+        super(builder);
         this.awarenessAttribute = builder.awarenessAttribute;
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
@@ -314,7 +314,7 @@ public class HealthRequest extends RequestBase implements ToCopyableBuilder<Heal
     /**
      * Builder for {@link HealthRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, HealthRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, HealthRequest> {
         @Nullable
         private String awarenessAttribute;
         @Nullable
@@ -347,6 +347,7 @@ public class HealthRequest extends RequestBase implements ToCopyableBuilder<Heal
         public Builder() {}
 
         private Builder(HealthRequest o) {
+            super(o);
             this.awarenessAttribute = o.awarenessAttribute;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.expandWildcards = _listCopy(o.expandWildcards);
@@ -364,6 +365,7 @@ public class HealthRequest extends RequestBase implements ToCopyableBuilder<Heal
         }
 
         private Builder(Builder o) {
+            super(o);
             this.awarenessAttribute = o.awarenessAttribute;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.expandWildcards = _listCopy(o.expandWildcards);
@@ -384,6 +386,12 @@ public class HealthRequest extends RequestBase implements ToCopyableBuilder<Heal
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -668,6 +676,50 @@ public class HealthRequest extends RequestBase implements ToCopyableBuilder<Heal
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.awarenessAttribute != null) {
+            params.put("awareness_attribute", this.awarenessAttribute);
+        }
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.level != null) {
+            params.put("level", this.level.jsonValue());
+        }
+        if (this.local != null) {
+            params.put("local", String.valueOf(this.local));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+        if (this.waitForActiveShards != null) {
+            params.put("wait_for_active_shards", this.waitForActiveShards._toJsonString());
+        }
+        if (this.waitForEvents != null) {
+            params.put("wait_for_events", this.waitForEvents.jsonValue());
+        }
+        if (this.waitForNoInitializingShards != null) {
+            params.put("wait_for_no_initializing_shards", String.valueOf(this.waitForNoInitializingShards));
+        }
+        if (this.waitForNoRelocatingShards != null) {
+            params.put("wait_for_no_relocating_shards", String.valueOf(this.waitForNoRelocatingShards));
+        }
+        if (this.waitForNodes != null) {
+            params.put("wait_for_nodes", this.waitForNodes);
+        }
+        if (this.waitForStatus != null) {
+            params.put("wait_for_status", this.waitForStatus.jsonValue());
+        }
+    }
+
     /**
      * Endpoint "{@code cluster.health}".
      */
@@ -697,45 +749,7 @@ public class HealthRequest extends RequestBase implements ToCopyableBuilder<Heal
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.awarenessAttribute != null) {
-                params.put("awareness_attribute", request.awarenessAttribute);
-            }
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.level != null) {
-                params.put("level", request.level.jsonValue());
-            }
-            if (request.local != null) {
-                params.put("local", String.valueOf(request.local));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
-            if (request.waitForActiveShards != null) {
-                params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
-            }
-            if (request.waitForEvents != null) {
-                params.put("wait_for_events", request.waitForEvents.jsonValue());
-            }
-            if (request.waitForNoInitializingShards != null) {
-                params.put("wait_for_no_initializing_shards", String.valueOf(request.waitForNoInitializingShards));
-            }
-            if (request.waitForNoRelocatingShards != null) {
-                params.put("wait_for_no_relocating_shards", String.valueOf(request.waitForNoRelocatingShards));
-            }
-            if (request.waitForNodes != null) {
-                params.put("wait_for_nodes", request.waitForNodes);
-            }
-            if (request.waitForStatus != null) {
-                params.put("wait_for_status", request.waitForStatus.jsonValue());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

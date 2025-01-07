@@ -36,11 +36,18 @@
 
 package org.opensearch.client.opensearch.core;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
+import org.opensearch.client.util.CopyableBuilder;
+import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _global.info.Request
 
@@ -48,13 +55,71 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
  * Returns basic information about the cluster.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class InfoRequest extends RequestBase {
-    public InfoRequest() {}
+public final class InfoRequest extends RequestBase implements ToCopyableBuilder<InfoRequest.Builder, InfoRequest> {
+
+    // ---------------------------------------------------------------------------------------------
+
+    private InfoRequest(Builder builder) {
+        super(builder);
+    }
+
+    public static InfoRequest of(Function<InfoRequest.Builder, ObjectBuilder<InfoRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
 
     /**
-     * Singleton instance for {@link InfoRequest}.
+     * Builder for {@link InfoRequest}.
      */
-    public static final InfoRequest _INSTANCE = new InfoRequest();
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, InfoRequest> {
+
+        public Builder() {}
+
+        private Builder(InfoRequest o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
+        /**
+         * Builds a {@link InfoRequest}.
+         *
+         * @throws NullPointerException if some of the required fields are null.
+         */
+        @Override
+        @Nonnull
+        public InfoRequest build() {
+            _checkSingleUse();
+
+            return new InfoRequest(this);
+        }
+    }
 
     // ---------------------------------------------------------------------------------------------
 
@@ -67,7 +132,11 @@ public class InfoRequest extends RequestBase {
         // Request path
         request -> "/",
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         false,
         InfoResponse._DESERIALIZER

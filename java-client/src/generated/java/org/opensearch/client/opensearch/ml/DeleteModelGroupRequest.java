@@ -12,6 +12,8 @@
 
 package org.opensearch.client.opensearch.ml;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
@@ -22,7 +24,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.delete_model_group.Request
@@ -31,7 +32,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Deletes a model group.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteModelGroupRequest extends RequestBase
+public final class DeleteModelGroupRequest extends RequestBase
     implements
         ToCopyableBuilder<DeleteModelGroupRequest.Builder, DeleteModelGroupRequest> {
 
@@ -41,6 +42,7 @@ public class DeleteModelGroupRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private DeleteModelGroupRequest(Builder builder) {
+        super(builder);
         this.modelGroupId = ApiTypeHelper.requireNonNull(builder.modelGroupId, this, "modelGroupId");
     }
 
@@ -72,16 +74,18 @@ public class DeleteModelGroupRequest extends RequestBase
     /**
      * Builder for {@link DeleteModelGroupRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DeleteModelGroupRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, DeleteModelGroupRequest> {
         private String modelGroupId;
 
         public Builder() {}
 
         private Builder(DeleteModelGroupRequest o) {
+            super(o);
             this.modelGroupId = o.modelGroupId;
         }
 
         private Builder(Builder o) {
+            super(o);
             this.modelGroupId = o.modelGroupId;
         }
 
@@ -89,6 +93,12 @@ public class DeleteModelGroupRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -130,7 +140,11 @@ public class DeleteModelGroupRequest extends RequestBase
             return buf.toString();
         },
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         false,
         DeleteModelGroupResponse._DESERIALIZER

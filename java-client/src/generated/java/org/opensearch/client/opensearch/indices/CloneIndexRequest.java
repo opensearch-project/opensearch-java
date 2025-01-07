@@ -60,7 +60,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.clone.Request
@@ -70,7 +69,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CloneIndexRequest extends RequestBase
+public final class CloneIndexRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<CloneIndexRequest.Builder, CloneIndexRequest> {
@@ -109,6 +108,7 @@ public class CloneIndexRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private CloneIndexRequest(Builder builder) {
+        super(builder);
         this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
@@ -285,7 +285,7 @@ public class CloneIndexRequest extends RequestBase
     /**
      * Builder for {@link CloneIndexRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CloneIndexRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, CloneIndexRequest> {
         @Nullable
         private Map<String, Alias> aliases;
         @Nullable
@@ -308,6 +308,7 @@ public class CloneIndexRequest extends RequestBase
         public Builder() {}
 
         private Builder(CloneIndexRequest o) {
+            super(o);
             this.aliases = _mapCopy(o.aliases);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.index = o.index;
@@ -321,6 +322,7 @@ public class CloneIndexRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.aliases = _mapCopy(o.aliases);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.index = o.index;
@@ -337,6 +339,12 @@ public class CloneIndexRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -606,6 +614,29 @@ public class CloneIndexRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.taskExecutionTimeout != null) {
+            params.put("task_execution_timeout", this.taskExecutionTimeout._toJsonString());
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+        if (this.waitForActiveShards != null) {
+            params.put("wait_for_active_shards", this.waitForActiveShards._toJsonString());
+        }
+        if (this.waitForCompletion != null) {
+            params.put("wait_for_completion", String.valueOf(this.waitForCompletion));
+        }
+    }
+
     /**
      * Endpoint "{@code indices.clone}".
      */
@@ -624,24 +655,7 @@ public class CloneIndexRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (request.taskExecutionTimeout != null) {
-                params.put("task_execution_timeout", request.taskExecutionTimeout._toJsonString());
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
-            if (request.waitForActiveShards != null) {
-                params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
-            }
-            if (request.waitForCompletion != null) {
-                params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

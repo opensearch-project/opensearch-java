@@ -54,7 +54,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.Request
@@ -63,7 +62,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns information about nodes in the cluster.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class NodesInfoRequest extends RequestBase implements ToCopyableBuilder<NodesInfoRequest.Builder, NodesInfoRequest> {
+public final class NodesInfoRequest extends RequestBase implements ToCopyableBuilder<NodesInfoRequest.Builder, NodesInfoRequest> {
 
     @Nullable
     private final Boolean flatSettings;
@@ -80,6 +79,7 @@ public class NodesInfoRequest extends RequestBase implements ToCopyableBuilder<N
     // ---------------------------------------------------------------------------------------------
 
     private NodesInfoRequest(Builder builder) {
+        super(builder);
         this.flatSettings = builder.flatSettings;
         this.metric = ApiTypeHelper.unmodifiable(builder.metric);
         this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
@@ -150,7 +150,7 @@ public class NodesInfoRequest extends RequestBase implements ToCopyableBuilder<N
     /**
      * Builder for {@link NodesInfoRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NodesInfoRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, NodesInfoRequest> {
         @Nullable
         private Boolean flatSettings;
         @Nullable
@@ -163,6 +163,7 @@ public class NodesInfoRequest extends RequestBase implements ToCopyableBuilder<N
         public Builder() {}
 
         private Builder(NodesInfoRequest o) {
+            super(o);
             this.flatSettings = o.flatSettings;
             this.metric = _listCopy(o.metric);
             this.nodeId = _listCopy(o.nodeId);
@@ -170,6 +171,7 @@ public class NodesInfoRequest extends RequestBase implements ToCopyableBuilder<N
         }
 
         private Builder(Builder o) {
+            super(o);
             this.flatSettings = o.flatSettings;
             this.metric = _listCopy(o.metric);
             this.nodeId = _listCopy(o.nodeId);
@@ -180,6 +182,12 @@ public class NodesInfoRequest extends RequestBase implements ToCopyableBuilder<N
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -297,6 +305,17 @@ public class NodesInfoRequest extends RequestBase implements ToCopyableBuilder<N
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.flatSettings != null) {
+            params.put("flat_settings", String.valueOf(this.flatSettings));
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code nodes.info}".
      */
@@ -342,12 +361,7 @@ public class NodesInfoRequest extends RequestBase implements ToCopyableBuilder<N
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.flatSettings != null) {
-                params.put("flat_settings", String.valueOf(request.flatSettings));
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

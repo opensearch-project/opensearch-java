@@ -28,10 +28,14 @@ public class ObjectShape extends ObjectShapeBase {
             .collect(Collectors.toSet());
     }
 
+    public boolean shouldImplementJsonSerializable() {
+        return hasFieldsToSerialize() && !extendsOtherShape();
+    }
+
     public Collection<Type> getImplementsTypes() {
         var types = new ArrayList<>(super.getImplementsTypes());
 
-        if (hasFieldsToSerialize() && !extendsOtherShape()) {
+        if (shouldImplementJsonSerializable()) {
             types.add(Types.Client.Json.PlainJsonSerializable);
         }
 

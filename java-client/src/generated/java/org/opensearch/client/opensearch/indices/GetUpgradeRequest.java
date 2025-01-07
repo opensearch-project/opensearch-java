@@ -53,7 +53,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.get_upgrade.Request
@@ -62,7 +61,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * The <code>_upgrade</code> API is no longer useful and will be removed.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GetUpgradeRequest extends RequestBase implements ToCopyableBuilder<GetUpgradeRequest.Builder, GetUpgradeRequest> {
+public final class GetUpgradeRequest extends RequestBase implements ToCopyableBuilder<GetUpgradeRequest.Builder, GetUpgradeRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
@@ -79,6 +78,7 @@ public class GetUpgradeRequest extends RequestBase implements ToCopyableBuilder<
     // ---------------------------------------------------------------------------------------------
 
     private GetUpgradeRequest(Builder builder) {
+        super(builder);
         this.allowNoIndices = builder.allowNoIndices;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.ignoreUnavailable = builder.ignoreUnavailable;
@@ -150,7 +150,7 @@ public class GetUpgradeRequest extends RequestBase implements ToCopyableBuilder<
     /**
      * Builder for {@link GetUpgradeRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetUpgradeRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, GetUpgradeRequest> {
         @Nullable
         private Boolean allowNoIndices;
         @Nullable
@@ -163,6 +163,7 @@ public class GetUpgradeRequest extends RequestBase implements ToCopyableBuilder<
         public Builder() {}
 
         private Builder(GetUpgradeRequest o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.ignoreUnavailable = o.ignoreUnavailable;
@@ -170,6 +171,7 @@ public class GetUpgradeRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         private Builder(Builder o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.ignoreUnavailable = o.ignoreUnavailable;
@@ -180,6 +182,12 @@ public class GetUpgradeRequest extends RequestBase implements ToCopyableBuilder<
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -287,6 +295,20 @@ public class GetUpgradeRequest extends RequestBase implements ToCopyableBuilder<
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.allowNoIndices != null) {
+            params.put("allow_no_indices", String.valueOf(this.allowNoIndices));
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+    }
+
     /**
      * Endpoint "{@code indices.get_upgrade}".
      */
@@ -317,15 +339,7 @@ public class GetUpgradeRequest extends RequestBase implements ToCopyableBuilder<
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.ignoreUnavailable != null) {
-                params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

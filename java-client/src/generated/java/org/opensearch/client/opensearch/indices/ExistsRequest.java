@@ -56,7 +56,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.exists.Request
@@ -65,7 +64,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns information about whether a particular index exists.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ExistsRequest extends RequestBase implements ToCopyableBuilder<ExistsRequest.Builder, ExistsRequest> {
+public final class ExistsRequest extends RequestBase implements ToCopyableBuilder<ExistsRequest.Builder, ExistsRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
@@ -94,6 +93,7 @@ public class ExistsRequest extends RequestBase implements ToCopyableBuilder<Exis
     // ---------------------------------------------------------------------------------------------
 
     private ExistsRequest(Builder builder) {
+        super(builder);
         this.allowNoIndices = builder.allowNoIndices;
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
@@ -215,7 +215,7 @@ public class ExistsRequest extends RequestBase implements ToCopyableBuilder<Exis
     /**
      * Builder for {@link ExistsRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ExistsRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ExistsRequest> {
         @Nullable
         private Boolean allowNoIndices;
         @Nullable
@@ -235,6 +235,7 @@ public class ExistsRequest extends RequestBase implements ToCopyableBuilder<Exis
         public Builder() {}
 
         private Builder(ExistsRequest o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.expandWildcards = _listCopy(o.expandWildcards);
@@ -246,6 +247,7 @@ public class ExistsRequest extends RequestBase implements ToCopyableBuilder<Exis
         }
 
         private Builder(Builder o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.expandWildcards = _listCopy(o.expandWildcards);
@@ -260,6 +262,12 @@ public class ExistsRequest extends RequestBase implements ToCopyableBuilder<Exis
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -430,6 +438,32 @@ public class ExistsRequest extends RequestBase implements ToCopyableBuilder<Exis
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.allowNoIndices != null) {
+            params.put("allow_no_indices", String.valueOf(this.allowNoIndices));
+        }
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.flatSettings != null) {
+            params.put("flat_settings", String.valueOf(this.flatSettings));
+        }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        if (this.includeDefaults != null) {
+            params.put("include_defaults", String.valueOf(this.includeDefaults));
+        }
+        if (this.local != null) {
+            params.put("local", String.valueOf(this.local));
+        }
+    }
+
     /**
      * Endpoint "{@code indices.exists}".
      */
@@ -446,27 +480,7 @@ public class ExistsRequest extends RequestBase implements ToCopyableBuilder<Exis
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-            }
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.flatSettings != null) {
-                params.put("flat_settings", String.valueOf(request.flatSettings));
-            }
-            if (request.ignoreUnavailable != null) {
-                params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
-            if (request.includeDefaults != null) {
-                params.put("include_defaults", String.valueOf(request.includeDefaults));
-            }
-            if (request.local != null) {
-                params.put("local", String.valueOf(request.local));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap()

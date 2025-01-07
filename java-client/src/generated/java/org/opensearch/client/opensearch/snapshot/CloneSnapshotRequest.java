@@ -58,7 +58,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.clone.Request
@@ -68,7 +67,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CloneSnapshotRequest extends RequestBase
+public final class CloneSnapshotRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<CloneSnapshotRequest.Builder, CloneSnapshotRequest> {
@@ -95,6 +94,7 @@ public class CloneSnapshotRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private CloneSnapshotRequest(Builder builder) {
+        super(builder);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.indices = ApiTypeHelper.requireNonNull(builder.indices, this, "indices");
         this.masterTimeout = builder.masterTimeout;
@@ -201,7 +201,7 @@ public class CloneSnapshotRequest extends RequestBase
     /**
      * Builder for {@link CloneSnapshotRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CloneSnapshotRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, CloneSnapshotRequest> {
         @Nullable
         private Time clusterManagerTimeout;
         private String indices;
@@ -214,6 +214,7 @@ public class CloneSnapshotRequest extends RequestBase
         public Builder() {}
 
         private Builder(CloneSnapshotRequest o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.indices = o.indices;
             this.masterTimeout = o.masterTimeout;
@@ -223,6 +224,7 @@ public class CloneSnapshotRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.indices = o.indices;
             this.masterTimeout = o.masterTimeout;
@@ -235,6 +237,12 @@ public class CloneSnapshotRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -360,6 +368,17 @@ public class CloneSnapshotRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code snapshot.clone}".
      */
@@ -380,12 +399,7 @@ public class CloneSnapshotRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

@@ -60,7 +60,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.put_alias.Request
@@ -70,7 +69,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PutAliasRequest extends RequestBase
+public final class PutAliasRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<PutAliasRequest.Builder, PutAliasRequest> {
@@ -115,6 +114,7 @@ public class PutAliasRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private PutAliasRequest(Builder builder) {
+        super(builder);
         this.alias = builder.alias;
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.filter = builder.filter;
@@ -318,7 +318,7 @@ public class PutAliasRequest extends RequestBase
     /**
      * Builder for {@link PutAliasRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PutAliasRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PutAliasRequest> {
         @Nullable
         private String alias;
         @Nullable
@@ -347,6 +347,7 @@ public class PutAliasRequest extends RequestBase
         public Builder() {}
 
         private Builder(PutAliasRequest o) {
+            super(o);
             this.alias = o.alias;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.filter = o.filter;
@@ -362,6 +363,7 @@ public class PutAliasRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.alias = o.alias;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.filter = o.filter;
@@ -380,6 +382,12 @@ public class PutAliasRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -617,6 +625,20 @@ public class PutAliasRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code indices.put_alias}".
      */
@@ -663,15 +685,7 @@ public class PutAliasRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

@@ -38,7 +38,6 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch.cat.OpenSearchCatAsyncClient;
 import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.ClearScrollRequest;
@@ -140,12 +139,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
     @Override
     public OpenSearchAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
         return new OpenSearchAsyncClient(this.transport, transportOptions);
-    }
-
-    // ----- Child clients
-
-    public OpenSearchCatAsyncClient cat() {
-        return new OpenSearchCatAsyncClient(this.transport, this.transportOptions);
     }
 
     // ----- Endpoint: bulk

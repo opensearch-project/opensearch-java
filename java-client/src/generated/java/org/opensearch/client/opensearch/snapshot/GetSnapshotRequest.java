@@ -52,7 +52,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.get.Request
@@ -61,7 +60,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns information about a snapshot.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GetSnapshotRequest extends RequestBase implements ToCopyableBuilder<GetSnapshotRequest.Builder, GetSnapshotRequest> {
+public final class GetSnapshotRequest extends RequestBase implements ToCopyableBuilder<GetSnapshotRequest.Builder, GetSnapshotRequest> {
 
     @Nullable
     private final Time clusterManagerTimeout;
@@ -85,6 +84,7 @@ public class GetSnapshotRequest extends RequestBase implements ToCopyableBuilder
     // ---------------------------------------------------------------------------------------------
 
     private GetSnapshotRequest(Builder builder) {
+        super(builder);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.ignoreUnavailable = builder.ignoreUnavailable;
         this.masterTimeout = builder.masterTimeout;
@@ -189,7 +189,7 @@ public class GetSnapshotRequest extends RequestBase implements ToCopyableBuilder
     /**
      * Builder for {@link GetSnapshotRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetSnapshotRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, GetSnapshotRequest> {
         @Nullable
         private Time clusterManagerTimeout;
         @Nullable
@@ -204,6 +204,7 @@ public class GetSnapshotRequest extends RequestBase implements ToCopyableBuilder
         public Builder() {}
 
         private Builder(GetSnapshotRequest o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.ignoreUnavailable = o.ignoreUnavailable;
             this.masterTimeout = o.masterTimeout;
@@ -213,6 +214,7 @@ public class GetSnapshotRequest extends RequestBase implements ToCopyableBuilder
         }
 
         private Builder(Builder o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.ignoreUnavailable = o.ignoreUnavailable;
             this.masterTimeout = o.masterTimeout;
@@ -225,6 +227,12 @@ public class GetSnapshotRequest extends RequestBase implements ToCopyableBuilder
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -376,6 +384,23 @@ public class GetSnapshotRequest extends RequestBase implements ToCopyableBuilder
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.verbose != null) {
+            params.put("verbose", String.valueOf(this.verbose));
+        }
+    }
+
     /**
      * Endpoint "{@code snapshot.get}".
      */
@@ -394,18 +419,7 @@ public class GetSnapshotRequest extends RequestBase implements ToCopyableBuilder
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.ignoreUnavailable != null) {
-                params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (request.verbose != null) {
-                params.put("verbose", String.valueOf(request.verbose));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

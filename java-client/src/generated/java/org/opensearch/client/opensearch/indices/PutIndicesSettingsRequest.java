@@ -59,7 +59,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.put_settings.Request
@@ -69,7 +68,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PutIndicesSettingsRequest extends RequestBase
+public final class PutIndicesSettingsRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<PutIndicesSettingsRequest.Builder, PutIndicesSettingsRequest> {
@@ -108,6 +107,7 @@ public class PutIndicesSettingsRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private PutIndicesSettingsRequest(Builder builder) {
+        super(builder);
         this.allowNoIndices = builder.allowNoIndices;
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
@@ -261,7 +261,9 @@ public class PutIndicesSettingsRequest extends RequestBase
     /**
      * Builder for {@link PutIndicesSettingsRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PutIndicesSettingsRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, PutIndicesSettingsRequest> {
         @Nullable
         private Boolean allowNoIndices;
         @Nullable
@@ -285,6 +287,7 @@ public class PutIndicesSettingsRequest extends RequestBase
         public Builder() {}
 
         private Builder(PutIndicesSettingsRequest o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.expandWildcards = _listCopy(o.expandWildcards);
@@ -298,6 +301,7 @@ public class PutIndicesSettingsRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.expandWildcards = _listCopy(o.expandWildcards);
@@ -314,6 +318,12 @@ public class PutIndicesSettingsRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -553,6 +563,35 @@ public class PutIndicesSettingsRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.allowNoIndices != null) {
+            params.put("allow_no_indices", String.valueOf(this.allowNoIndices));
+        }
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.flatSettings != null) {
+            params.put("flat_settings", String.valueOf(this.flatSettings));
+        }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.preserveExisting != null) {
+            params.put("preserve_existing", String.valueOf(this.preserveExisting));
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code indices.put_settings}".
      */
@@ -583,30 +622,7 @@ public class PutIndicesSettingsRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-            }
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.flatSettings != null) {
-                params.put("flat_settings", String.valueOf(request.flatSettings));
-            }
-            if (request.ignoreUnavailable != null) {
-                params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (request.preserveExisting != null) {
-                params.put("preserve_existing", String.valueOf(request.preserveExisting));
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

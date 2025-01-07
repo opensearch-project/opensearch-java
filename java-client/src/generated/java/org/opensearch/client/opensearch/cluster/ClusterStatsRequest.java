@@ -55,7 +55,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.stats.Request
@@ -64,7 +63,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns high-level overview of cluster statistics.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ClusterStatsRequest extends RequestBase implements ToCopyableBuilder<ClusterStatsRequest.Builder, ClusterStatsRequest> {
+public final class ClusterStatsRequest extends RequestBase implements ToCopyableBuilder<ClusterStatsRequest.Builder, ClusterStatsRequest> {
 
     @Nullable
     private final Boolean flatSettings;
@@ -84,6 +83,7 @@ public class ClusterStatsRequest extends RequestBase implements ToCopyableBuilde
     // ---------------------------------------------------------------------------------------------
 
     private ClusterStatsRequest(Builder builder) {
+        super(builder);
         this.flatSettings = builder.flatSettings;
         this.indexMetric = ApiTypeHelper.unmodifiable(builder.indexMetric);
         this.metric = ApiTypeHelper.unmodifiable(builder.metric);
@@ -168,7 +168,7 @@ public class ClusterStatsRequest extends RequestBase implements ToCopyableBuilde
     /**
      * Builder for {@link ClusterStatsRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ClusterStatsRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ClusterStatsRequest> {
         @Nullable
         private Boolean flatSettings;
         @Nullable
@@ -183,6 +183,7 @@ public class ClusterStatsRequest extends RequestBase implements ToCopyableBuilde
         public Builder() {}
 
         private Builder(ClusterStatsRequest o) {
+            super(o);
             this.flatSettings = o.flatSettings;
             this.indexMetric = _listCopy(o.indexMetric);
             this.metric = _listCopy(o.metric);
@@ -191,6 +192,7 @@ public class ClusterStatsRequest extends RequestBase implements ToCopyableBuilde
         }
 
         private Builder(Builder o) {
+            super(o);
             this.flatSettings = o.flatSettings;
             this.indexMetric = _listCopy(o.indexMetric);
             this.metric = _listCopy(o.metric);
@@ -202,6 +204,12 @@ public class ClusterStatsRequest extends RequestBase implements ToCopyableBuilde
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -355,6 +363,17 @@ public class ClusterStatsRequest extends RequestBase implements ToCopyableBuilde
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.flatSettings != null) {
+            params.put("flat_settings", String.valueOf(this.flatSettings));
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code cluster.stats}".
      */
@@ -406,12 +425,7 @@ public class ClusterStatsRequest extends RequestBase implements ToCopyableBuilde
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.flatSettings != null) {
-                params.put("flat_settings", String.valueOf(request.flatSettings));
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

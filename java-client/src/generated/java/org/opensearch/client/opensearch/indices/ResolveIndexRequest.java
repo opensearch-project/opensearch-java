@@ -53,7 +53,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.resolve_index.Request
@@ -62,7 +61,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns information about any matching indexes, aliases, and data streams.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ResolveIndexRequest extends RequestBase implements ToCopyableBuilder<ResolveIndexRequest.Builder, ResolveIndexRequest> {
+public final class ResolveIndexRequest extends RequestBase implements ToCopyableBuilder<ResolveIndexRequest.Builder, ResolveIndexRequest> {
 
     @Nonnull
     private final List<ExpandWildcard> expandWildcards;
@@ -73,6 +72,7 @@ public class ResolveIndexRequest extends RequestBase implements ToCopyableBuilde
     // ---------------------------------------------------------------------------------------------
 
     private ResolveIndexRequest(Builder builder) {
+        super(builder);
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
     }
@@ -122,7 +122,7 @@ public class ResolveIndexRequest extends RequestBase implements ToCopyableBuilde
     /**
      * Builder for {@link ResolveIndexRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ResolveIndexRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ResolveIndexRequest> {
         @Nullable
         private List<ExpandWildcard> expandWildcards;
         private List<String> name;
@@ -130,11 +130,13 @@ public class ResolveIndexRequest extends RequestBase implements ToCopyableBuilde
         public Builder() {}
 
         private Builder(ResolveIndexRequest o) {
+            super(o);
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.name = _listCopy(o.name);
         }
 
         private Builder(Builder o) {
+            super(o);
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.name = _listCopy(o.name);
         }
@@ -143,6 +145,12 @@ public class ResolveIndexRequest extends RequestBase implements ToCopyableBuilde
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -231,6 +239,14 @@ public class ResolveIndexRequest extends RequestBase implements ToCopyableBuilde
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+    }
+
     /**
      * Endpoint "{@code indices.resolve_index}".
      */
@@ -247,9 +263,7 @@ public class ResolveIndexRequest extends RequestBase implements ToCopyableBuilde
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

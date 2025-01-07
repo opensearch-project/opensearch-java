@@ -53,7 +53,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.upgrade.Request
@@ -62,7 +61,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * The <code>_upgrade</code> API is no longer useful and will be removed.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class UpgradeRequest extends RequestBase implements ToCopyableBuilder<UpgradeRequest.Builder, UpgradeRequest> {
+public final class UpgradeRequest extends RequestBase implements ToCopyableBuilder<UpgradeRequest.Builder, UpgradeRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
@@ -85,6 +84,7 @@ public class UpgradeRequest extends RequestBase implements ToCopyableBuilder<Upg
     // ---------------------------------------------------------------------------------------------
 
     private UpgradeRequest(Builder builder) {
+        super(builder);
         this.allowNoIndices = builder.allowNoIndices;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.ignoreUnavailable = builder.ignoreUnavailable;
@@ -180,7 +180,7 @@ public class UpgradeRequest extends RequestBase implements ToCopyableBuilder<Upg
     /**
      * Builder for {@link UpgradeRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, UpgradeRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, UpgradeRequest> {
         @Nullable
         private Boolean allowNoIndices;
         @Nullable
@@ -197,6 +197,7 @@ public class UpgradeRequest extends RequestBase implements ToCopyableBuilder<Upg
         public Builder() {}
 
         private Builder(UpgradeRequest o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.ignoreUnavailable = o.ignoreUnavailable;
@@ -206,6 +207,7 @@ public class UpgradeRequest extends RequestBase implements ToCopyableBuilder<Upg
         }
 
         private Builder(Builder o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.ignoreUnavailable = o.ignoreUnavailable;
@@ -218,6 +220,12 @@ public class UpgradeRequest extends RequestBase implements ToCopyableBuilder<Upg
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -349,6 +357,26 @@ public class UpgradeRequest extends RequestBase implements ToCopyableBuilder<Upg
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.allowNoIndices != null) {
+            params.put("allow_no_indices", String.valueOf(this.allowNoIndices));
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        if (this.onlyAncientSegments != null) {
+            params.put("only_ancient_segments", String.valueOf(this.onlyAncientSegments));
+        }
+        if (this.waitForCompletion != null) {
+            params.put("wait_for_completion", String.valueOf(this.waitForCompletion));
+        }
+    }
+
     /**
      * Endpoint "{@code indices.upgrade}".
      */
@@ -379,21 +407,7 @@ public class UpgradeRequest extends RequestBase implements ToCopyableBuilder<Upg
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.ignoreUnavailable != null) {
-                params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
-            if (request.onlyAncientSegments != null) {
-                params.put("only_ancient_segments", String.valueOf(request.onlyAncientSegments));
-            }
-            if (request.waitForCompletion != null) {
-                params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

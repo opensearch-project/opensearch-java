@@ -36,11 +36,18 @@
 
 package org.opensearch.client.opensearch.cluster;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
+import org.opensearch.client.util.CopyableBuilder;
+import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.remote_info.Request
 
@@ -48,13 +55,71 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
  * Returns the information about configured remote clusters.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RemoteInfoRequest extends RequestBase {
-    public RemoteInfoRequest() {}
+public final class RemoteInfoRequest extends RequestBase implements ToCopyableBuilder<RemoteInfoRequest.Builder, RemoteInfoRequest> {
+
+    // ---------------------------------------------------------------------------------------------
+
+    private RemoteInfoRequest(Builder builder) {
+        super(builder);
+    }
+
+    public static RemoteInfoRequest of(Function<RemoteInfoRequest.Builder, ObjectBuilder<RemoteInfoRequest>> fn) {
+        return fn.apply(new Builder()).build();
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
 
     /**
-     * Singleton instance for {@link RemoteInfoRequest}.
+     * Builder for {@link RemoteInfoRequest}.
      */
-    public static final RemoteInfoRequest _INSTANCE = new RemoteInfoRequest();
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RemoteInfoRequest> {
+
+        public Builder() {}
+
+        private Builder(RemoteInfoRequest o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
+        /**
+         * Builds a {@link RemoteInfoRequest}.
+         *
+         * @throws NullPointerException if some of the required fields are null.
+         */
+        @Override
+        @Nonnull
+        public RemoteInfoRequest build() {
+            _checkSingleUse();
+
+            return new RemoteInfoRequest(this);
+        }
+    }
 
     // ---------------------------------------------------------------------------------------------
 
@@ -67,7 +132,11 @@ public class RemoteInfoRequest extends RequestBase {
         // Request path
         request -> "/_remote/info",
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         false,
         RemoteInfoResponse._DESERIALIZER

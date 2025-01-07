@@ -53,7 +53,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.clear_cache.Request
@@ -62,7 +61,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Clears all or specific caches for one or more indexes.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ClearCacheRequest extends RequestBase implements ToCopyableBuilder<ClearCacheRequest.Builder, ClearCacheRequest> {
+public final class ClearCacheRequest extends RequestBase implements ToCopyableBuilder<ClearCacheRequest.Builder, ClearCacheRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
@@ -94,6 +93,7 @@ public class ClearCacheRequest extends RequestBase implements ToCopyableBuilder<
     // ---------------------------------------------------------------------------------------------
 
     private ClearCacheRequest(Builder builder) {
+        super(builder);
         this.allowNoIndices = builder.allowNoIndices;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.fielddata = builder.fielddata;
@@ -228,7 +228,7 @@ public class ClearCacheRequest extends RequestBase implements ToCopyableBuilder<
     /**
      * Builder for {@link ClearCacheRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ClearCacheRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ClearCacheRequest> {
         @Nullable
         private Boolean allowNoIndices;
         @Nullable
@@ -251,6 +251,7 @@ public class ClearCacheRequest extends RequestBase implements ToCopyableBuilder<
         public Builder() {}
 
         private Builder(ClearCacheRequest o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.fielddata = o.fielddata;
@@ -263,6 +264,7 @@ public class ClearCacheRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         private Builder(Builder o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.fielddata = o.fielddata;
@@ -278,6 +280,12 @@ public class ClearCacheRequest extends RequestBase implements ToCopyableBuilder<
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -471,6 +479,35 @@ public class ClearCacheRequest extends RequestBase implements ToCopyableBuilder<
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.allowNoIndices != null) {
+            params.put("allow_no_indices", String.valueOf(this.allowNoIndices));
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.fielddata != null) {
+            params.put("fielddata", String.valueOf(this.fielddata));
+        }
+        if (ApiTypeHelper.isDefined(this.fields)) {
+            params.put("fields", String.join(",", this.fields));
+        }
+        if (this.file != null) {
+            params.put("file", String.valueOf(this.file));
+        }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        if (this.query != null) {
+            params.put("query", String.valueOf(this.query));
+        }
+        if (this.request != null) {
+            params.put("request", String.valueOf(this.request));
+        }
+    }
+
     /**
      * Endpoint "{@code indices.clear_cache}".
      */
@@ -501,30 +538,7 @@ public class ClearCacheRequest extends RequestBase implements ToCopyableBuilder<
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.fielddata != null) {
-                params.put("fielddata", String.valueOf(request.fielddata));
-            }
-            if (ApiTypeHelper.isDefined(request.fields)) {
-                params.put("fields", String.join(",", request.fields));
-            }
-            if (request.file != null) {
-                params.put("file", String.valueOf(request.file));
-            }
-            if (request.ignoreUnavailable != null) {
-                params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
-            if (request.query != null) {
-                params.put("query", String.valueOf(request.query));
-            }
-            if (request.request != null) {
-                params.put("request", String.valueOf(request.request));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

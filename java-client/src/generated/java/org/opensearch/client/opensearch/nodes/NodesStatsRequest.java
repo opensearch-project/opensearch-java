@@ -56,7 +56,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.stats.Request
@@ -65,7 +64,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns statistical information about nodes in the cluster.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class NodesStatsRequest extends RequestBase implements ToCopyableBuilder<NodesStatsRequest.Builder, NodesStatsRequest> {
+public final class NodesStatsRequest extends RequestBase implements ToCopyableBuilder<NodesStatsRequest.Builder, NodesStatsRequest> {
 
     @Nonnull
     private final List<String> completionFields;
@@ -103,6 +102,7 @@ public class NodesStatsRequest extends RequestBase implements ToCopyableBuilder<
     // ---------------------------------------------------------------------------------------------
 
     private NodesStatsRequest(Builder builder) {
+        super(builder);
         this.completionFields = ApiTypeHelper.unmodifiable(builder.completionFields);
         this.fielddataFields = ApiTypeHelper.unmodifiable(builder.fielddataFields);
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
@@ -259,7 +259,7 @@ public class NodesStatsRequest extends RequestBase implements ToCopyableBuilder<
     /**
      * Builder for {@link NodesStatsRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NodesStatsRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, NodesStatsRequest> {
         @Nullable
         private List<String> completionFields;
         @Nullable
@@ -286,6 +286,7 @@ public class NodesStatsRequest extends RequestBase implements ToCopyableBuilder<
         public Builder() {}
 
         private Builder(NodesStatsRequest o) {
+            super(o);
             this.completionFields = _listCopy(o.completionFields);
             this.fielddataFields = _listCopy(o.fielddataFields);
             this.fields = _listCopy(o.fields);
@@ -300,6 +301,7 @@ public class NodesStatsRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         private Builder(Builder o) {
+            super(o);
             this.completionFields = _listCopy(o.completionFields);
             this.fielddataFields = _listCopy(o.fielddataFields);
             this.fields = _listCopy(o.fields);
@@ -317,6 +319,12 @@ public class NodesStatsRequest extends RequestBase implements ToCopyableBuilder<
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -641,6 +649,35 @@ public class NodesStatsRequest extends RequestBase implements ToCopyableBuilder<
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (ApiTypeHelper.isDefined(this.completionFields)) {
+            params.put("completion_fields", String.join(",", this.completionFields));
+        }
+        if (ApiTypeHelper.isDefined(this.fielddataFields)) {
+            params.put("fielddata_fields", String.join(",", this.fielddataFields));
+        }
+        if (ApiTypeHelper.isDefined(this.fields)) {
+            params.put("fields", String.join(",", this.fields));
+        }
+        if (ApiTypeHelper.isDefined(this.groups)) {
+            params.put("groups", String.join(",", this.groups));
+        }
+        if (this.includeSegmentFileSizes != null) {
+            params.put("include_segment_file_sizes", String.valueOf(this.includeSegmentFileSizes));
+        }
+        if (this.level != null) {
+            params.put("level", this.level.jsonValue());
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+        if (ApiTypeHelper.isDefined(this.types)) {
+            params.put("types", String.join(",", this.types));
+        }
+    }
+
     /**
      * Endpoint "{@code nodes.stats}".
      */
@@ -707,30 +744,7 @@ public class NodesStatsRequest extends RequestBase implements ToCopyableBuilder<
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (ApiTypeHelper.isDefined(request.completionFields)) {
-                params.put("completion_fields", String.join(",", request.completionFields));
-            }
-            if (ApiTypeHelper.isDefined(request.fielddataFields)) {
-                params.put("fielddata_fields", String.join(",", request.fielddataFields));
-            }
-            if (ApiTypeHelper.isDefined(request.fields)) {
-                params.put("fields", String.join(",", request.fields));
-            }
-            if (ApiTypeHelper.isDefined(request.groups)) {
-                params.put("groups", String.join(",", request.groups));
-            }
-            if (request.includeSegmentFileSizes != null) {
-                params.put("include_segment_file_sizes", String.valueOf(request.includeSegmentFileSizes));
-            }
-            if (request.level != null) {
-                params.put("level", request.level.jsonValue());
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
-            if (ApiTypeHelper.isDefined(request.types)) {
-                params.put("types", String.join(",", request.types));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

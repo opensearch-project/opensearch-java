@@ -55,7 +55,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.stats.Request
@@ -64,7 +63,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Provides statistics on operations happening in an index.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class IndicesStatsRequest extends RequestBase implements ToCopyableBuilder<IndicesStatsRequest.Builder, IndicesStatsRequest> {
+public final class IndicesStatsRequest extends RequestBase implements ToCopyableBuilder<IndicesStatsRequest.Builder, IndicesStatsRequest> {
 
     @Nonnull
     private final List<String> completionFields;
@@ -102,6 +101,7 @@ public class IndicesStatsRequest extends RequestBase implements ToCopyableBuilde
     // ---------------------------------------------------------------------------------------------
 
     private IndicesStatsRequest(Builder builder) {
+        super(builder);
         this.completionFields = ApiTypeHelper.unmodifiable(builder.completionFields);
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.fielddataFields = ApiTypeHelper.unmodifiable(builder.fielddataFields);
@@ -258,7 +258,7 @@ public class IndicesStatsRequest extends RequestBase implements ToCopyableBuilde
     /**
      * Builder for {@link IndicesStatsRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IndicesStatsRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, IndicesStatsRequest> {
         @Nullable
         private List<String> completionFields;
         @Nullable
@@ -285,6 +285,7 @@ public class IndicesStatsRequest extends RequestBase implements ToCopyableBuilde
         public Builder() {}
 
         private Builder(IndicesStatsRequest o) {
+            super(o);
             this.completionFields = _listCopy(o.completionFields);
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.fielddataFields = _listCopy(o.fielddataFields);
@@ -299,6 +300,7 @@ public class IndicesStatsRequest extends RequestBase implements ToCopyableBuilde
         }
 
         private Builder(Builder o) {
+            super(o);
             this.completionFields = _listCopy(o.completionFields);
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.fielddataFields = _listCopy(o.fielddataFields);
@@ -316,6 +318,12 @@ public class IndicesStatsRequest extends RequestBase implements ToCopyableBuilde
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -609,6 +617,38 @@ public class IndicesStatsRequest extends RequestBase implements ToCopyableBuilde
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (ApiTypeHelper.isDefined(this.completionFields)) {
+            params.put("completion_fields", String.join(",", this.completionFields));
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (ApiTypeHelper.isDefined(this.fielddataFields)) {
+            params.put("fielddata_fields", String.join(",", this.fielddataFields));
+        }
+        if (ApiTypeHelper.isDefined(this.fields)) {
+            params.put("fields", String.join(",", this.fields));
+        }
+        if (this.forbidClosedIndices != null) {
+            params.put("forbid_closed_indices", String.valueOf(this.forbidClosedIndices));
+        }
+        if (ApiTypeHelper.isDefined(this.groups)) {
+            params.put("groups", String.join(",", this.groups));
+        }
+        if (this.includeSegmentFileSizes != null) {
+            params.put("include_segment_file_sizes", String.valueOf(this.includeSegmentFileSizes));
+        }
+        if (this.includeUnloadedSegments != null) {
+            params.put("include_unloaded_segments", String.valueOf(this.includeUnloadedSegments));
+        }
+        if (this.level != null) {
+            params.put("level", this.level.jsonValue());
+        }
+    }
+
     /**
      * Endpoint "{@code indices.stats}".
      */
@@ -655,33 +695,7 @@ public class IndicesStatsRequest extends RequestBase implements ToCopyableBuilde
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (ApiTypeHelper.isDefined(request.completionFields)) {
-                params.put("completion_fields", String.join(",", request.completionFields));
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (ApiTypeHelper.isDefined(request.fielddataFields)) {
-                params.put("fielddata_fields", String.join(",", request.fielddataFields));
-            }
-            if (ApiTypeHelper.isDefined(request.fields)) {
-                params.put("fields", String.join(",", request.fields));
-            }
-            if (request.forbidClosedIndices != null) {
-                params.put("forbid_closed_indices", String.valueOf(request.forbidClosedIndices));
-            }
-            if (ApiTypeHelper.isDefined(request.groups)) {
-                params.put("groups", String.join(",", request.groups));
-            }
-            if (request.includeSegmentFileSizes != null) {
-                params.put("include_segment_file_sizes", String.valueOf(request.includeSegmentFileSizes));
-            }
-            if (request.includeUnloadedSegments != null) {
-                params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
-            }
-            if (request.level != null) {
-                params.put("level", request.level.jsonValue());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

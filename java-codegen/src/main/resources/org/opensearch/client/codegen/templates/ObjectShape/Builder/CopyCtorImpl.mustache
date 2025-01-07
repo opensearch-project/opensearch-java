@@ -1,6 +1,6 @@
-{{#extendsOtherShape}}
+{{#doesExtendType}}
     super(o);
-{{/extendsOtherShape}}
+{{/doesExtendType}}
 {{#fields}}
     {{#type.isList}}
         this.{{name}} = _listCopy(o.{{name}});

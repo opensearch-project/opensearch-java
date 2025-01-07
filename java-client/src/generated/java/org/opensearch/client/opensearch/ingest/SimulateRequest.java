@@ -59,7 +59,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ingest.simulate.Request
@@ -69,7 +68,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SimulateRequest extends RequestBase
+public final class SimulateRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<SimulateRequest.Builder, SimulateRequest> {
@@ -89,6 +88,7 @@ public class SimulateRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private SimulateRequest(Builder builder) {
+        super(builder);
         this.docs = ApiTypeHelper.unmodifiable(builder.docs);
         this.id = builder.id;
         this.pipeline = builder.pipeline;
@@ -181,7 +181,7 @@ public class SimulateRequest extends RequestBase
     /**
      * Builder for {@link SimulateRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SimulateRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, SimulateRequest> {
         @Nullable
         private List<Document> docs;
         @Nullable
@@ -194,6 +194,7 @@ public class SimulateRequest extends RequestBase
         public Builder() {}
 
         private Builder(SimulateRequest o) {
+            super(o);
             this.docs = _listCopy(o.docs);
             this.id = o.id;
             this.pipeline = o.pipeline;
@@ -201,6 +202,7 @@ public class SimulateRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.docs = _listCopy(o.docs);
             this.id = o.id;
             this.pipeline = o.pipeline;
@@ -211,6 +213,12 @@ public class SimulateRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -332,6 +340,14 @@ public class SimulateRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.verbose != null) {
+            params.put("verbose", String.valueOf(this.verbose));
+        }
+    }
+
     /**
      * Endpoint "{@code ingest.simulate}".
      */
@@ -362,9 +378,7 @@ public class SimulateRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.verbose != null) {
-                params.put("verbose", String.valueOf(request.verbose));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

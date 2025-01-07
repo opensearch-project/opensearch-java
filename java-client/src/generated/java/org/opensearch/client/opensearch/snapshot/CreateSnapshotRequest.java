@@ -60,7 +60,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.create.Request
@@ -70,7 +69,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CreateSnapshotRequest extends RequestBase
+public final class CreateSnapshotRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<CreateSnapshotRequest.Builder, CreateSnapshotRequest> {
@@ -112,6 +111,7 @@ public class CreateSnapshotRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private CreateSnapshotRequest(Builder builder) {
+        super(builder);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.featureStates = ApiTypeHelper.unmodifiable(builder.featureStates);
         this.ignoreUnavailable = builder.ignoreUnavailable;
@@ -325,7 +325,7 @@ public class CreateSnapshotRequest extends RequestBase
     /**
      * Builder for {@link CreateSnapshotRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CreateSnapshotRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, CreateSnapshotRequest> {
         @Nullable
         private Time clusterManagerTimeout;
         @Nullable
@@ -350,6 +350,7 @@ public class CreateSnapshotRequest extends RequestBase
         public Builder() {}
 
         private Builder(CreateSnapshotRequest o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.featureStates = _listCopy(o.featureStates);
             this.ignoreUnavailable = o.ignoreUnavailable;
@@ -364,6 +365,7 @@ public class CreateSnapshotRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.featureStates = _listCopy(o.featureStates);
             this.ignoreUnavailable = o.ignoreUnavailable;
@@ -381,6 +383,12 @@ public class CreateSnapshotRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -636,6 +644,20 @@ public class CreateSnapshotRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.waitForCompletion != null) {
+            params.put("wait_for_completion", String.valueOf(this.waitForCompletion));
+        }
+    }
+
     /**
      * Endpoint "{@code snapshot.create}".
      */
@@ -654,15 +676,7 @@ public class CreateSnapshotRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (request.waitForCompletion != null) {
-                params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

@@ -54,7 +54,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.usage.Request
@@ -63,7 +62,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns low-level information about REST actions usage on nodes.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class NodesUsageRequest extends RequestBase implements ToCopyableBuilder<NodesUsageRequest.Builder, NodesUsageRequest> {
+public final class NodesUsageRequest extends RequestBase implements ToCopyableBuilder<NodesUsageRequest.Builder, NodesUsageRequest> {
 
     @Nonnull
     private final List<NodesUsageMetric> metric;
@@ -77,6 +76,7 @@ public class NodesUsageRequest extends RequestBase implements ToCopyableBuilder<
     // ---------------------------------------------------------------------------------------------
 
     private NodesUsageRequest(Builder builder) {
+        super(builder);
         this.metric = ApiTypeHelper.unmodifiable(builder.metric);
         this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
         this.timeout = builder.timeout;
@@ -137,7 +137,7 @@ public class NodesUsageRequest extends RequestBase implements ToCopyableBuilder<
     /**
      * Builder for {@link NodesUsageRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NodesUsageRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, NodesUsageRequest> {
         @Nullable
         private List<NodesUsageMetric> metric;
         @Nullable
@@ -148,12 +148,14 @@ public class NodesUsageRequest extends RequestBase implements ToCopyableBuilder<
         public Builder() {}
 
         private Builder(NodesUsageRequest o) {
+            super(o);
             this.metric = _listCopy(o.metric);
             this.nodeId = _listCopy(o.nodeId);
             this.timeout = o.timeout;
         }
 
         private Builder(Builder o) {
+            super(o);
             this.metric = _listCopy(o.metric);
             this.nodeId = _listCopy(o.nodeId);
             this.timeout = o.timeout;
@@ -163,6 +165,12 @@ public class NodesUsageRequest extends RequestBase implements ToCopyableBuilder<
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -272,6 +280,14 @@ public class NodesUsageRequest extends RequestBase implements ToCopyableBuilder<
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code nodes.usage}".
      */
@@ -318,9 +334,7 @@ public class NodesUsageRequest extends RequestBase implements ToCopyableBuilder<
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

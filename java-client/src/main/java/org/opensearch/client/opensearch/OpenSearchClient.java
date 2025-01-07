@@ -37,7 +37,6 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
-import org.opensearch.client.opensearch.cat.OpenSearchCatClient;
 import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.ClearScrollRequest;
@@ -145,10 +144,6 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
     // ----- Child clients
     public OpenSearchGenericClient generic() {
         return new OpenSearchGenericClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchCatClient cat() {
-        return new OpenSearchCatClient(this.transport, this.transportOptions);
     }
 
     // ----- Endpoint: bulk

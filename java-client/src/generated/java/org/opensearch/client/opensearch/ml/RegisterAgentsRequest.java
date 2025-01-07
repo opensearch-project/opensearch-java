@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -34,7 +35,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.register_agents.Request
@@ -44,7 +44,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RegisterAgentsRequest extends RequestBase
+public final class RegisterAgentsRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<RegisterAgentsRequest.Builder, RegisterAgentsRequest> {
@@ -76,6 +76,7 @@ public class RegisterAgentsRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private RegisterAgentsRequest(Builder builder) {
+        super(builder);
         this.appType = builder.appType;
         this.description = builder.description;
         this.llm = builder.llm;
@@ -226,7 +227,7 @@ public class RegisterAgentsRequest extends RequestBase
     /**
      * Builder for {@link RegisterAgentsRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RegisterAgentsRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RegisterAgentsRequest> {
         @Nullable
         private String appType;
         @Nullable
@@ -245,6 +246,7 @@ public class RegisterAgentsRequest extends RequestBase
         public Builder() {}
 
         private Builder(RegisterAgentsRequest o) {
+            super(o);
             this.appType = o.appType;
             this.description = o.description;
             this.llm = o.llm;
@@ -256,6 +258,7 @@ public class RegisterAgentsRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.appType = o.appType;
             this.description = o.description;
             this.llm = o.llm;
@@ -270,6 +273,12 @@ public class RegisterAgentsRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -452,7 +461,11 @@ public class RegisterAgentsRequest extends RequestBase
         // Request path
         request -> "/_plugins/_ml/agents/_register",
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         true,
         RegisterAgentsResponse._DESERIALIZER

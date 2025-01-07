@@ -38,10 +38,12 @@ package org.opensearch.client.opensearch;
 
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.opensearch.cat.OpenSearchCatAsyncClient;
 import org.opensearch.client.opensearch.cluster.OpenSearchClusterAsyncClient;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
@@ -54,6 +56,7 @@ import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotAsyncClient;
 import org.opensearch.client.opensearch.tasks.OpenSearchTasksAsyncClient;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.util.ObjectBuilder;
 
 /**
  * Client for the namespace.
@@ -65,6 +68,10 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
     }
 
     // ----- Child clients
+
+    public OpenSearchCatAsyncClient cat() {
+        return new OpenSearchCatAsyncClient(this.transport, this.transportOptions);
+    }
 
     public OpenSearchClusterAsyncClient cluster() {
         return new OpenSearchClusterAsyncClient(this.transport, this.transportOptions);
@@ -103,7 +110,24 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
     /**
      * Returns basic information about the cluster.
      */
-    public CompletableFuture<InfoResponse> info() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
+    public CompletableFuture<InfoResponse> info(InfoRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, InfoRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns basic information about the cluster.
+     *
+     * @param fn a function that initializes a builder to create the {@link InfoRequest}
+     */
+    public final CompletableFuture<InfoResponse> info(Function<InfoRequest.Builder, ObjectBuilder<InfoRequest>> fn) throws IOException,
+        OpenSearchException {
+        return info(fn.apply(new InfoRequest.Builder()).build());
+    }
+
+    /**
+     * Returns basic information about the cluster.
+     */
+    public final CompletableFuture<InfoResponse> info() throws IOException, OpenSearchException {
+        return info(new InfoRequest.Builder().build());
     }
 }

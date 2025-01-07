@@ -50,7 +50,6 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.pending_tasks.Request
@@ -59,7 +58,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns a list of any cluster-level changes (e.g. create index, update mapping, allocate or fail shard) which have not yet been executed.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PendingTasksRequest extends RequestBase implements ToCopyableBuilder<PendingTasksRequest.Builder, PendingTasksRequest> {
+public final class PendingTasksRequest extends RequestBase implements ToCopyableBuilder<PendingTasksRequest.Builder, PendingTasksRequest> {
 
     @Nullable
     private final Time clusterManagerTimeout;
@@ -74,6 +73,7 @@ public class PendingTasksRequest extends RequestBase implements ToCopyableBuilde
     // ---------------------------------------------------------------------------------------------
 
     private PendingTasksRequest(Builder builder) {
+        super(builder);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.local = builder.local;
         this.masterTimeout = builder.masterTimeout;
@@ -135,7 +135,7 @@ public class PendingTasksRequest extends RequestBase implements ToCopyableBuilde
     /**
      * Builder for {@link PendingTasksRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PendingTasksRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PendingTasksRequest> {
         @Nullable
         private Time clusterManagerTimeout;
         @Nullable
@@ -146,12 +146,14 @@ public class PendingTasksRequest extends RequestBase implements ToCopyableBuilde
         public Builder() {}
 
         private Builder(PendingTasksRequest o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.local = o.local;
             this.masterTimeout = o.masterTimeout;
         }
 
         private Builder(Builder o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.local = o.local;
             this.masterTimeout = o.masterTimeout;
@@ -161,6 +163,12 @@ public class PendingTasksRequest extends RequestBase implements ToCopyableBuilde
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -242,6 +250,20 @@ public class PendingTasksRequest extends RequestBase implements ToCopyableBuilde
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.local != null) {
+            params.put("local", String.valueOf(this.local));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code cluster.pending_tasks}".
      */
@@ -253,15 +275,7 @@ public class PendingTasksRequest extends RequestBase implements ToCopyableBuilde
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.local != null) {
-                params.put("local", String.valueOf(request.local));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

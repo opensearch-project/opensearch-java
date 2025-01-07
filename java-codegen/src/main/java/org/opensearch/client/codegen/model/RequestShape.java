@@ -25,6 +25,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
+import org.opensearch.client.codegen.utils.JavaAbstractionLevel;
 import org.opensearch.client.codegen.utils.Streams;
 
 public class RequestShape extends ObjectShape {
@@ -102,7 +103,7 @@ public class RequestShape extends ObjectShape {
 
     @Override
     public boolean canBeSingleton() {
-        return !hasRequestBody() && !hasQueryParams() && hasSinglePath() && !getFirstPath().hasParams();
+        return false;
     }
 
     @Override
@@ -222,6 +223,11 @@ public class RequestShape extends ObjectShape {
         }
         deprecations.sort(Comparator.comparing(Deprecation::getVersion));
         return deprecations.get(deprecations.size() - 1);
+    }
+
+    @Override
+    public JavaAbstractionLevel getAbstractionLevel() {
+        return JavaAbstractionLevel.Final;
     }
 
     @Nonnull

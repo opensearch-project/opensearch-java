@@ -62,7 +62,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.validate_query.Request
@@ -72,7 +71,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ValidateQueryRequest extends RequestBase
+public final class ValidateQueryRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<ValidateQueryRequest.Builder, ValidateQueryRequest> {
@@ -122,6 +121,7 @@ public class ValidateQueryRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private ValidateQueryRequest(Builder builder) {
+        super(builder);
         this.allShards = builder.allShards;
         this.allowNoIndices = builder.allowNoIndices;
         this.analyzeWildcard = builder.analyzeWildcard;
@@ -330,7 +330,7 @@ public class ValidateQueryRequest extends RequestBase
     /**
      * Builder for {@link ValidateQueryRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ValidateQueryRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ValidateQueryRequest> {
         @Nullable
         private Boolean allShards;
         @Nullable
@@ -363,6 +363,7 @@ public class ValidateQueryRequest extends RequestBase
         public Builder() {}
 
         private Builder(ValidateQueryRequest o) {
+            super(o);
             this.allShards = o.allShards;
             this.allowNoIndices = o.allowNoIndices;
             this.analyzeWildcard = o.analyzeWildcard;
@@ -380,6 +381,7 @@ public class ValidateQueryRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.allShards = o.allShards;
             this.allowNoIndices = o.allowNoIndices;
             this.analyzeWildcard = o.analyzeWildcard;
@@ -400,6 +402,12 @@ public class ValidateQueryRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -655,6 +663,47 @@ public class ValidateQueryRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.allShards != null) {
+            params.put("all_shards", String.valueOf(this.allShards));
+        }
+        if (this.allowNoIndices != null) {
+            params.put("allow_no_indices", String.valueOf(this.allowNoIndices));
+        }
+        if (this.analyzeWildcard != null) {
+            params.put("analyze_wildcard", String.valueOf(this.analyzeWildcard));
+        }
+        if (this.analyzer != null) {
+            params.put("analyzer", this.analyzer);
+        }
+        if (this.defaultOperator != null) {
+            params.put("default_operator", this.defaultOperator.jsonValue());
+        }
+        if (this.df != null) {
+            params.put("df", this.df);
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.explain != null) {
+            params.put("explain", String.valueOf(this.explain));
+        }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        if (this.lenient != null) {
+            params.put("lenient", String.valueOf(this.lenient));
+        }
+        if (this.q != null) {
+            params.put("q", this.q);
+        }
+        if (this.rewrite != null) {
+            params.put("rewrite", String.valueOf(this.rewrite));
+        }
+    }
+
     /**
      * Endpoint "{@code indices.validate_query}".
      */
@@ -685,42 +734,7 @@ public class ValidateQueryRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.allShards != null) {
-                params.put("all_shards", String.valueOf(request.allShards));
-            }
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-            }
-            if (request.analyzeWildcard != null) {
-                params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
-            }
-            if (request.analyzer != null) {
-                params.put("analyzer", request.analyzer);
-            }
-            if (request.defaultOperator != null) {
-                params.put("default_operator", request.defaultOperator.jsonValue());
-            }
-            if (request.df != null) {
-                params.put("df", request.df);
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.explain != null) {
-                params.put("explain", String.valueOf(request.explain));
-            }
-            if (request.ignoreUnavailable != null) {
-                params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
-            if (request.lenient != null) {
-                params.put("lenient", String.valueOf(request.lenient));
-            }
-            if (request.q != null) {
-                params.put("q", request.q);
-            }
-            if (request.rewrite != null) {
-                params.put("rewrite", String.valueOf(request.rewrite));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

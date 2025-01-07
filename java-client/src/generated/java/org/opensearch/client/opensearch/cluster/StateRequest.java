@@ -55,7 +55,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.state.Request
@@ -64,7 +63,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns a comprehensive information about the state of the cluster.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class StateRequest extends RequestBase implements ToCopyableBuilder<StateRequest.Builder, StateRequest> {
+public final class StateRequest extends RequestBase implements ToCopyableBuilder<StateRequest.Builder, StateRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
@@ -103,6 +102,7 @@ public class StateRequest extends RequestBase implements ToCopyableBuilder<State
     // ---------------------------------------------------------------------------------------------
 
     private StateRequest(Builder builder) {
+        super(builder);
         this.allowNoIndices = builder.allowNoIndices;
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
@@ -259,7 +259,7 @@ public class StateRequest extends RequestBase implements ToCopyableBuilder<State
     /**
      * Builder for {@link StateRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, StateRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, StateRequest> {
         @Nullable
         private Boolean allowNoIndices;
         @Nullable
@@ -286,6 +286,7 @@ public class StateRequest extends RequestBase implements ToCopyableBuilder<State
         public Builder() {}
 
         private Builder(StateRequest o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.expandWildcards = _listCopy(o.expandWildcards);
@@ -300,6 +301,7 @@ public class StateRequest extends RequestBase implements ToCopyableBuilder<State
         }
 
         private Builder(Builder o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.expandWildcards = _listCopy(o.expandWildcards);
@@ -317,6 +319,12 @@ public class StateRequest extends RequestBase implements ToCopyableBuilder<State
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -563,6 +571,38 @@ public class StateRequest extends RequestBase implements ToCopyableBuilder<State
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.allowNoIndices != null) {
+            params.put("allow_no_indices", String.valueOf(this.allowNoIndices));
+        }
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.flatSettings != null) {
+            params.put("flat_settings", String.valueOf(this.flatSettings));
+        }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        if (this.local != null) {
+            params.put("local", String.valueOf(this.local));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.waitForMetadataVersion != null) {
+            params.put("wait_for_metadata_version", String.valueOf(this.waitForMetadataVersion));
+        }
+        if (this.waitForTimeout != null) {
+            params.put("wait_for_timeout", this.waitForTimeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code cluster.state}".
      */
@@ -602,33 +642,7 @@ public class StateRequest extends RequestBase implements ToCopyableBuilder<State
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-            }
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.flatSettings != null) {
-                params.put("flat_settings", String.valueOf(request.flatSettings));
-            }
-            if (request.ignoreUnavailable != null) {
-                params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
-            if (request.local != null) {
-                params.put("local", String.valueOf(request.local));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (request.waitForMetadataVersion != null) {
-                params.put("wait_for_metadata_version", String.valueOf(request.waitForMetadataVersion));
-            }
-            if (request.waitForTimeout != null) {
-                params.put("wait_for_timeout", request.waitForTimeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

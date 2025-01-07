@@ -112,11 +112,26 @@ public class OpenSearchDanglingIndicesAsyncClient extends ApiClient<OpenSearchTr
     /**
      * Returns all dangling indexes.
      */
-    public CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            ListDanglingIndicesRequest._INSTANCE,
-            ListDanglingIndicesRequest._ENDPOINT,
-            this.transportOptions
-        );
+    public CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices(ListDanglingIndicesRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, ListDanglingIndicesRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns all dangling indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link ListDanglingIndicesRequest}
+     */
+    public final CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices(
+        Function<ListDanglingIndicesRequest.Builder, ObjectBuilder<ListDanglingIndicesRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return listDanglingIndices(fn.apply(new ListDanglingIndicesRequest.Builder()).build());
+    }
+
+    /**
+     * Returns all dangling indexes.
+     */
+    public final CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices() throws IOException, OpenSearchException {
+        return listDanglingIndices(new ListDanglingIndicesRequest.Builder().build());
     }
 }

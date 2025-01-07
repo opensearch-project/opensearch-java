@@ -251,14 +251,16 @@ public class SpecTransformer {
 
         var seenQueryParams = new HashSet<String>();
 
+        var isCatNs = group.getNamespace().orElse("").equals("cat");
+
         variants.stream()
             .flatMap(v -> v.getAllRelevantParameters(In.Query).stream())
-            .filter(p -> seenQueryParams.add(p.getName().orElseThrow()) && !p.isGlobal())
+            .filter(p -> seenQueryParams.add(p.getName().orElseThrow()) && !p.isGlobal() && (!isCatNs || !p.isGlobalCatParameter()))
             .map(this::visit)
             .forEachOrdered(shape::addQueryParam);
 
         if (shape.getExtendsType() == null) {
-            shape.setExtendsType(Types.Client.OpenSearch._Types.RequestBase);
+            shape.setExtendsType(isCatNs ? Types.Client.OpenSearch.Cat.CatRequestBase : Types.Client.OpenSearch._Types.RequestBase);
         }
 
         return shape;

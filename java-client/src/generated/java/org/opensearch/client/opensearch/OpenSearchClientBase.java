@@ -37,10 +37,12 @@
 package org.opensearch.client.opensearch;
 
 import java.io.IOException;
+import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.opensearch.cat.OpenSearchCatClient;
 import org.opensearch.client.opensearch.cluster.OpenSearchClusterClient;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
@@ -53,6 +55,7 @@ import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotClient;
 import org.opensearch.client.opensearch.tasks.OpenSearchTasksClient;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.util.ObjectBuilder;
 
 /**
  * Client for the namespace.
@@ -64,6 +67,10 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
     }
 
     // ----- Child clients
+
+    public OpenSearchCatClient cat() {
+        return new OpenSearchCatClient(this.transport, this.transportOptions);
+    }
 
     public OpenSearchClusterClient cluster() {
         return new OpenSearchClusterClient(this.transport, this.transportOptions);
@@ -102,7 +109,23 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
     /**
      * Returns basic information about the cluster.
      */
-    public InfoResponse info() throws IOException, OpenSearchException {
-        return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
+    public InfoResponse info(InfoRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, InfoRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns basic information about the cluster.
+     *
+     * @param fn a function that initializes a builder to create the {@link InfoRequest}
+     */
+    public final InfoResponse info(Function<InfoRequest.Builder, ObjectBuilder<InfoRequest>> fn) throws IOException, OpenSearchException {
+        return info(fn.apply(new InfoRequest.Builder()).build());
+    }
+
+    /**
+     * Returns basic information about the cluster.
+     */
+    public final InfoResponse info() throws IOException, OpenSearchException {
+        return info(new InfoRequest.Builder().build());
     }
 }

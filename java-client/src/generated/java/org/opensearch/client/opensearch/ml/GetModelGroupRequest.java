@@ -12,6 +12,8 @@
 
 package org.opensearch.client.opensearch.ml;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
@@ -22,7 +24,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.get_model_group.Request
@@ -31,7 +32,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Retrieves a model group.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GetModelGroupRequest extends RequestBase implements ToCopyableBuilder<GetModelGroupRequest.Builder, GetModelGroupRequest> {
+public final class GetModelGroupRequest extends RequestBase
+    implements
+        ToCopyableBuilder<GetModelGroupRequest.Builder, GetModelGroupRequest> {
 
     @Nonnull
     private final String modelGroupId;
@@ -39,6 +42,7 @@ public class GetModelGroupRequest extends RequestBase implements ToCopyableBuild
     // ---------------------------------------------------------------------------------------------
 
     private GetModelGroupRequest(Builder builder) {
+        super(builder);
         this.modelGroupId = ApiTypeHelper.requireNonNull(builder.modelGroupId, this, "modelGroupId");
     }
 
@@ -70,16 +74,18 @@ public class GetModelGroupRequest extends RequestBase implements ToCopyableBuild
     /**
      * Builder for {@link GetModelGroupRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetModelGroupRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, GetModelGroupRequest> {
         private String modelGroupId;
 
         public Builder() {}
 
         private Builder(GetModelGroupRequest o) {
+            super(o);
             this.modelGroupId = o.modelGroupId;
         }
 
         private Builder(Builder o) {
+            super(o);
             this.modelGroupId = o.modelGroupId;
         }
 
@@ -87,6 +93,12 @@ public class GetModelGroupRequest extends RequestBase implements ToCopyableBuild
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -128,7 +140,11 @@ public class GetModelGroupRequest extends RequestBase implements ToCopyableBuild
             return buf.toString();
         },
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         false,
         GetModelGroupResponse._DESERIALIZER

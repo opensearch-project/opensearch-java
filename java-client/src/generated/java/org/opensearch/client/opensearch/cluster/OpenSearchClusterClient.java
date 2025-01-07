@@ -349,8 +349,25 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     /**
      * Returns the information about configured remote clusters.
      */
-    public RemoteInfoResponse remoteInfo() throws IOException, OpenSearchException {
-        return this.transport.performRequest(RemoteInfoRequest._INSTANCE, RemoteInfoRequest._ENDPOINT, this.transportOptions);
+    public RemoteInfoResponse remoteInfo(RemoteInfoRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, RemoteInfoRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns the information about configured remote clusters.
+     *
+     * @param fn a function that initializes a builder to create the {@link RemoteInfoRequest}
+     */
+    public final RemoteInfoResponse remoteInfo(Function<RemoteInfoRequest.Builder, ObjectBuilder<RemoteInfoRequest>> fn) throws IOException,
+        OpenSearchException {
+        return remoteInfo(fn.apply(new RemoteInfoRequest.Builder()).build());
+    }
+
+    /**
+     * Returns the information about configured remote clusters.
+     */
+    public final RemoteInfoResponse remoteInfo() throws IOException, OpenSearchException {
+        return remoteInfo(new RemoteInfoRequest.Builder().build());
     }
 
     // ----- Endpoint: cluster.reroute

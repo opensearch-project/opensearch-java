@@ -30,32 +30,42 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cat;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cat.aliases.Request
 
 /**
- * Shows information about currently configured aliases to indices including
- * filter and routing infos.
- *
+ * Shows information about aliases currently configured to indexes, including filter and routing information.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public final class AliasesRequest extends CatRequestBase implements ToCopyableBuilder<AliasesRequest.Builder, AliasesRequest> {
 
-public class AliasesRequest extends CatRequestBase {
+    @Nonnull
     private final List<ExpandWildcard> expandWildcards;
 
+    @Nonnull
     private final List<String> name;
 
     // ---------------------------------------------------------------------------------------------
@@ -64,90 +74,147 @@ public class AliasesRequest extends CatRequestBase {
         super(builder);
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.name = ApiTypeHelper.unmodifiable(builder.name);
-
     }
 
-    public static AliasesRequest of(Function<Builder, ObjectBuilder<AliasesRequest>> fn) {
+    public static AliasesRequest of(Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Whether to expand wildcard expression to concrete indices that are open,
-     * closed or both.
+     * Expands wildcard expressions to concrete indexes. Combine multiple values with commas. Supported values are <code>all</code>,
+     * <code>open</code>, <code>closed</code>, <code>hidden</code>, and <code>none</code>.
      * <p>
      * API name: {@code expand_wildcards}
+     * </p>
      */
+    @Nonnull
     public final List<ExpandWildcard> expandWildcards() {
         return this.expandWildcards;
     }
 
     /**
-     * A comma-separated list of alias names to return
+     * A comma-separated list of aliases to retrieve. Supports wildcards (<code>*</code>). To retrieve all aliases, omit this parameter or
+     * use <code>*</code> or <code>_all</code>.
      * <p>
      * API name: {@code name}
+     * </p>
      */
+    @Nonnull
     public final List<String> name() {
         return this.name;
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link AliasesRequest}.
      */
-
-    public static class Builder extends CatRequestBaseBuilder<AliasesRequest.Builder> {
+    public static class Builder extends CatRequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, AliasesRequest> {
         @Nullable
         private List<ExpandWildcard> expandWildcards;
-
         @Nullable
         private List<String> name;
 
+        public Builder() {}
+
+        private Builder(AliasesRequest o) {
+            super(o);
+            this.expandWildcards = _listCopy(o.expandWildcards);
+            this.name = _listCopy(o.name);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.expandWildcards = _listCopy(o.expandWildcards);
+            this.name = _listCopy(o.name);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
-         * Whether to expand wildcard expression to concrete indices that are open,
-         * closed or both.
+         * Expands wildcard expressions to concrete indexes. Combine multiple values with commas. Supported values are <code>all</code>,
+         * <code>open</code>, <code>closed</code>, <code>hidden</code>, and <code>none</code>.
          * <p>
          * API name: {@code expand_wildcards}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder expandWildcards(List<ExpandWildcard> list) {
             this.expandWildcards = _listAddAll(this.expandWildcards, list);
             return this;
         }
 
         /**
-         * Whether to expand wildcard expression to concrete indices that are open,
-         * closed or both.
+         * Expands wildcard expressions to concrete indexes. Combine multiple values with commas. Supported values are <code>all</code>,
+         * <code>open</code>, <code>closed</code>, <code>hidden</code>, and <code>none</code>.
          * <p>
          * API name: {@code expand_wildcards}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>expandWildcards</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
             this.expandWildcards = _listAdd(this.expandWildcards, value, values);
             return this;
         }
 
         /**
-         * A comma-separated list of alias names to return
+         * A comma-separated list of aliases to retrieve. Supports wildcards (<code>*</code>). To retrieve all aliases, omit this parameter
+         * or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code name}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>name</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder name(List<String> list) {
             this.name = _listAddAll(this.name, list);
             return this;
         }
 
         /**
-         * A comma-separated list of alias names to return
+         * A comma-separated list of aliases to retrieve. Supports wildcards (<code>*</code>). To retrieve all aliases, omit this parameter
+         * or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code name}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>name</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder name(String value, String... values) {
             this.name = _listAdd(this.name, value, values);
             return this;
@@ -156,34 +223,33 @@ public class AliasesRequest extends CatRequestBase {
         /**
          * Builds a {@link AliasesRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public AliasesRequest build() {
             _checkSingleUse();
 
             return new AliasesRequest(this);
         }
-
-        @Override
-        protected Builder self() {
-            return this;
-        }
     }
 
     // ---------------------------------------------------------------------------------------------
+
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+    }
 
     /**
      * Endpoint "{@code cat.aliases}".
      */
     public static final Endpoint<AliasesRequest, AliasesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "GET";
-
-        },
-
+        request -> "GET",
         // Request path
         request -> {
             final int _name = 1 << 0;
@@ -193,34 +259,41 @@ public class AliasesRequest extends CatRequestBase {
             if (ApiTypeHelper.isDefined(request.name())) propsSet |= _name;
 
             if (propsSet == 0) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_cat");
-                buf.append("/aliases");
-                return buf.toString();
+                return "/_cat/aliases";
             }
             if (propsSet == (_name)) {
                 StringBuilder buf = new StringBuilder();
-                buf.append("/_cat");
-                buf.append("/aliases");
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                buf.append("/_cat/aliases/");
+                SimpleEndpoint.pathEncode(String.join(",", request.name), buf);
                 return buf.toString();
             }
+
             throw SimpleEndpoint.noPathTemplateFound("path");
-
         },
-
         // Request parameters
         request -> {
-            Map<String, String> params = new HashMap<>(request.queryParameters());
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         false,
         AliasesResponse._DESERIALIZER
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.expandWildcards);
+        result = 31 * result + Objects.hashCode(this.name);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        AliasesRequest other = (AliasesRequest) o;
+        return Objects.equals(this.expandWildcards, other.expandWildcards) && Objects.equals(this.name, other.name);
+    }
 }

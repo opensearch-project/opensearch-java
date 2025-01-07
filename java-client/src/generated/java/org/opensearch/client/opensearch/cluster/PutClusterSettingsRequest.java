@@ -59,7 +59,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.put_settings.Request
@@ -69,7 +68,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PutClusterSettingsRequest extends RequestBase
+public final class PutClusterSettingsRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<PutClusterSettingsRequest.Builder, PutClusterSettingsRequest> {
@@ -96,6 +95,7 @@ public class PutClusterSettingsRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private PutClusterSettingsRequest(Builder builder) {
+        super(builder);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.flatSettings = builder.flatSettings;
         this.masterTimeout = builder.masterTimeout;
@@ -216,7 +216,9 @@ public class PutClusterSettingsRequest extends RequestBase
     /**
      * Builder for {@link PutClusterSettingsRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PutClusterSettingsRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, PutClusterSettingsRequest> {
         @Nullable
         private Time clusterManagerTimeout;
         @Nullable
@@ -233,6 +235,7 @@ public class PutClusterSettingsRequest extends RequestBase
         public Builder() {}
 
         private Builder(PutClusterSettingsRequest o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.flatSettings = o.flatSettings;
             this.masterTimeout = o.masterTimeout;
@@ -242,6 +245,7 @@ public class PutClusterSettingsRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.flatSettings = o.flatSettings;
             this.masterTimeout = o.masterTimeout;
@@ -254,6 +258,12 @@ public class PutClusterSettingsRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -422,6 +432,23 @@ public class PutClusterSettingsRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.flatSettings != null) {
+            params.put("flat_settings", String.valueOf(this.flatSettings));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code cluster.put_settings}".
      */
@@ -433,18 +460,7 @@ public class PutClusterSettingsRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.flatSettings != null) {
-                params.put("flat_settings", String.valueOf(request.flatSettings));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

@@ -59,7 +59,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.reload_secure_settings.Request
@@ -69,7 +68,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ReloadSecureSettingsRequest extends RequestBase
+public final class ReloadSecureSettingsRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<ReloadSecureSettingsRequest.Builder, ReloadSecureSettingsRequest> {
@@ -86,6 +85,7 @@ public class ReloadSecureSettingsRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private ReloadSecureSettingsRequest(Builder builder) {
+        super(builder);
         this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
         this.secureSettingsPassword = builder.secureSettingsPassword;
         this.timeout = builder.timeout;
@@ -159,7 +159,9 @@ public class ReloadSecureSettingsRequest extends RequestBase
     /**
      * Builder for {@link ReloadSecureSettingsRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ReloadSecureSettingsRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, ReloadSecureSettingsRequest> {
         @Nullable
         private List<String> nodeId;
         @Nullable
@@ -170,12 +172,14 @@ public class ReloadSecureSettingsRequest extends RequestBase
         public Builder() {}
 
         private Builder(ReloadSecureSettingsRequest o) {
+            super(o);
             this.nodeId = _listCopy(o.nodeId);
             this.secureSettingsPassword = o.secureSettingsPassword;
             this.timeout = o.timeout;
         }
 
         private Builder(Builder o) {
+            super(o);
             this.nodeId = _listCopy(o.nodeId);
             this.secureSettingsPassword = o.secureSettingsPassword;
             this.timeout = o.timeout;
@@ -185,6 +189,12 @@ public class ReloadSecureSettingsRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -281,6 +291,14 @@ public class ReloadSecureSettingsRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code nodes.reload_secure_settings}".
      */
@@ -311,9 +329,7 @@ public class ReloadSecureSettingsRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

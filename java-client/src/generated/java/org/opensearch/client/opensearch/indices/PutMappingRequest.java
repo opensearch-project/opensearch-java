@@ -68,7 +68,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.put_mapping.Request
@@ -78,7 +77,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PutMappingRequest extends RequestBase
+public final class PutMappingRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<PutMappingRequest.Builder, PutMappingRequest> {
@@ -141,6 +140,7 @@ public class PutMappingRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private PutMappingRequest(Builder builder) {
+        super(builder);
         this.allowNoIndices = builder.allowNoIndices;
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.dateDetection = builder.dateDetection;
@@ -464,7 +464,7 @@ public class PutMappingRequest extends RequestBase
     /**
      * Builder for {@link PutMappingRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PutMappingRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PutMappingRequest> {
         @Nullable
         private Boolean allowNoIndices;
         @Nullable
@@ -504,6 +504,7 @@ public class PutMappingRequest extends RequestBase
         public Builder() {}
 
         private Builder(PutMappingRequest o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.dateDetection = o.dateDetection;
@@ -525,6 +526,7 @@ public class PutMappingRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.dateDetection = o.dateDetection;
@@ -549,6 +551,12 @@ public class PutMappingRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -1022,6 +1030,32 @@ public class PutMappingRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.allowNoIndices != null) {
+            params.put("allow_no_indices", String.valueOf(this.allowNoIndices));
+        }
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+        if (this.writeIndexOnly != null) {
+            params.put("write_index_only", String.valueOf(this.writeIndexOnly));
+        }
+    }
+
     /**
      * Endpoint "{@code indices.put_mapping}".
      */
@@ -1039,27 +1073,7 @@ public class PutMappingRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-            }
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.ignoreUnavailable != null) {
-                params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
-            if (request.writeIndexOnly != null) {
-                params.put("write_index_only", String.valueOf(request.writeIndexOnly));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

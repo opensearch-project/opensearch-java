@@ -61,7 +61,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.simulate_index_template.Request
@@ -71,7 +70,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SimulateIndexTemplateRequest extends RequestBase
+public final class SimulateIndexTemplateRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<SimulateIndexTemplateRequest.Builder, SimulateIndexTemplateRequest> {
@@ -113,6 +112,7 @@ public class SimulateIndexTemplateRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private SimulateIndexTemplateRequest(Builder builder) {
+        super(builder);
         this.allowAutoCreate = builder.allowAutoCreate;
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.composedOf = ApiTypeHelper.unmodifiable(builder.composedOf);
@@ -326,7 +326,9 @@ public class SimulateIndexTemplateRequest extends RequestBase
     /**
      * Builder for {@link SimulateIndexTemplateRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SimulateIndexTemplateRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, SimulateIndexTemplateRequest> {
         @Nullable
         private Boolean allowAutoCreate;
         @Nullable
@@ -352,6 +354,7 @@ public class SimulateIndexTemplateRequest extends RequestBase
         public Builder() {}
 
         private Builder(SimulateIndexTemplateRequest o) {
+            super(o);
             this.allowAutoCreate = o.allowAutoCreate;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.composedOf = _listCopy(o.composedOf);
@@ -366,6 +369,7 @@ public class SimulateIndexTemplateRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.allowAutoCreate = o.allowAutoCreate;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.composedOf = _listCopy(o.composedOf);
@@ -383,6 +387,12 @@ public class SimulateIndexTemplateRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -644,6 +654,17 @@ public class SimulateIndexTemplateRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code indices.simulate_index_template}".
      */
@@ -661,12 +682,7 @@ public class SimulateIndexTemplateRequest extends RequestBase
             // Request parameters
             request -> {
                 Map<String, String> params = new HashMap<>();
-                if (request.clusterManagerTimeout != null) {
-                    params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-                }
-                if (request.masterTimeout != null) {
-                    params.put("master_timeout", request.masterTimeout._toJsonString());
-                }
+                request.applyQueryParameters(params);
                 return params;
             },
             SimpleEndpoint.emptyMap(),
