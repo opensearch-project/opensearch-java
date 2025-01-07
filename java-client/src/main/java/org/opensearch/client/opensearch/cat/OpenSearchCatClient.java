@@ -60,51 +60,6 @@ public class OpenSearchCatClient extends OpenSearchCatClientBase<OpenSearchCatCl
         return new OpenSearchCatClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: cat.fielddata
-
-    /**
-     * Shows how much heap memory is currently being used by fielddata on every data
-     * node in the cluster.
-     *
-     *
-     */
-
-    public FielddataResponse fielddata(FielddataRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<FielddataRequest, FielddataResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            FielddataRequest,
-            FielddataResponse,
-            ErrorResponse>) FielddataRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Shows how much heap memory is currently being used by fielddata on every data
-     * node in the cluster.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link FielddataRequest}
-     *
-     */
-
-    public final FielddataResponse fielddata(Function<FielddataRequest.Builder, ObjectBuilder<FielddataRequest>> fn) throws IOException,
-        OpenSearchException {
-        return fielddata(fn.apply(new FielddataRequest.Builder()).build());
-    }
-
-    /**
-     * Shows how much heap memory is currently being used by fielddata on every data
-     * node in the cluster.
-     *
-     *
-     */
-
-    public FielddataResponse fielddata() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new FielddataRequest.Builder().build(), FielddataRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: cat.health
 
     /**

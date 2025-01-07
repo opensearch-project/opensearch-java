@@ -159,6 +159,32 @@ public abstract class OpenSearchCatClientBase<Self extends OpenSearchCatClientBa
         return count(new CountRequest.Builder().build());
     }
 
+    // ----- Endpoint: cat.fielddata
+
+    /**
+     * Shows how much heap memory is currently being used by field data on every data node in the cluster.
+     */
+    public FielddataResponse fielddata(FielddataRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, FielddataRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Shows how much heap memory is currently being used by field data on every data node in the cluster.
+     *
+     * @param fn a function that initializes a builder to create the {@link FielddataRequest}
+     */
+    public final FielddataResponse fielddata(Function<FielddataRequest.Builder, ObjectBuilder<FielddataRequest>> fn) throws IOException,
+        OpenSearchException {
+        return fielddata(fn.apply(new FielddataRequest.Builder()).build());
+    }
+
+    /**
+     * Shows how much heap memory is currently being used by field data on every data node in the cluster.
+     */
+    public final FielddataResponse fielddata() throws IOException, OpenSearchException {
+        return fielddata(new FielddataRequest.Builder().build());
+    }
+
     // ----- Endpoint: cat.master
 
     /**

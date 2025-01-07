@@ -30,43 +30,51 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cat;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.cat.fielddata.FielddataRecord;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cat.fielddata.Response
 
 @JsonpDeserializable
-public class FielddataResponse implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class FielddataResponse implements PlainJsonSerializable, ToCopyableBuilder<FielddataResponse.Builder, FielddataResponse> {
+
+    @Nonnull
     private final List<FielddataRecord> valueBody;
 
     // ---------------------------------------------------------------------------------------------
 
     private FielddataResponse(Builder builder) {
-
         this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
-
     }
 
-    public static FielddataResponse of(Function<Builder, ObjectBuilder<FielddataResponse>> fn) {
+    public static FielddataResponse of(Function<FielddataResponse.Builder, ObjectBuilder<FielddataResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - Response value.
-     * <p>
-     * API name: {@code _value_body}
      */
+    @Nonnull
     public final List<FielddataRecord> valueBody() {
         return this.valueBody;
     }
@@ -78,28 +86,53 @@ public class FielddataResponse implements PlainJsonSerializable {
         generator.writeStartArray();
         for (FielddataRecord item0 : this.valueBody) {
             item0.serialize(generator, mapper);
-
         }
         generator.writeEnd();
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link FielddataResponse}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, FielddataResponse> {
         private List<FielddataRecord> valueBody;
+
+        public Builder() {}
+
+        private Builder(FielddataResponse o) {
+            this.valueBody = _listCopy(o.valueBody);
+        }
+
+        private Builder(Builder o) {
+            this.valueBody = _listCopy(o.valueBody);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>valueBody</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder valueBody(List<FielddataRecord> list) {
             this.valueBody = _listAddAll(this.valueBody, list);
             return this;
@@ -107,11 +140,12 @@ public class FielddataResponse implements PlainJsonSerializable {
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds one or more values to <code>valueBody</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder valueBody(FielddataRecord value, FielddataRecord... values) {
             this.valueBody = _listAdd(this.valueBody, value, values);
             return this;
@@ -119,11 +153,12 @@ public class FielddataResponse implements PlainJsonSerializable {
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds a value to <code>valueBody</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder valueBody(Function<FielddataRecord.Builder, ObjectBuilder<FielddataRecord>> fn) {
             return valueBody(fn.apply(new FielddataRecord.Builder()).build());
         }
@@ -131,9 +166,10 @@ public class FielddataResponse implements PlainJsonSerializable {
         /**
          * Builds a {@link FielddataResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public FielddataResponse build() {
             _checkSingleUse();
 
@@ -144,7 +180,6 @@ public class FielddataResponse implements PlainJsonSerializable {
     public static final JsonpDeserializer<FielddataResponse> _DESERIALIZER = createFielddataResponseDeserializer();
 
     protected static JsonpDeserializer<FielddataResponse> createFielddataResponseDeserializer() {
-
         JsonpDeserializer<List<FielddataRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(FielddataRecord._DESERIALIZER);
 
         return JsonpDeserializer.of(
@@ -152,5 +187,4 @@ public class FielddataResponse implements PlainJsonSerializable {
             (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
         );
     }
-
 }

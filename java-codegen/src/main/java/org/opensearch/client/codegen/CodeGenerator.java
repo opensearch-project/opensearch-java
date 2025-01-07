@@ -48,7 +48,7 @@ public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Matcher<OperationGroup> OPERATION_MATCHER = or(
         and(namespace(isNull()), name(is("info"))),
-        and(namespace(is("cat")), name(isOneOf("aliases", "allocation", "cluster_manager", "count", "master"))),
+        and(namespace(is("cat")), name(isOneOf("aliases", "allocation", "cluster_manager", "count", "fielddata", "master"))),
         and(
             namespace(is("cluster")),
             name(
@@ -67,12 +67,14 @@ public class CodeGenerator {
             namespace(is("ml")),
             name(
                 // TODO: search_models is complex and ideally should re-use the search structures
-                not(or(
-                    contains("predict"),
-                    contains("search"),
-                    contains("train"),
-                    isOneOf("get_connector", "update_connector", "update_model_group")
-                ))
+                not(
+                    or(
+                        contains("predict"),
+                        contains("search"),
+                        contains("train"),
+                        isOneOf("get_connector", "update_connector", "update_model_group")
+                    )
+                )
             )
         ),
         and(

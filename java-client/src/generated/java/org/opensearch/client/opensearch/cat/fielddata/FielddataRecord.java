@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cat.fielddata;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -41,18 +48,25 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cat.fielddata.FielddataRecord
 
 @JsonpDeserializable
-public class FielddataRecord implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class FielddataRecord implements PlainJsonSerializable, ToCopyableBuilder<FielddataRecord.Builder, FielddataRecord> {
+
     @Nullable
-    private final String id;
+    private final String field;
 
     @Nullable
     private final String host;
+
+    @Nullable
+    private final String id;
 
     @Nullable
     private final String ip;
@@ -61,42 +75,39 @@ public class FielddataRecord implements PlainJsonSerializable {
     private final String node;
 
     @Nullable
-    private final String field;
-
-    @Nullable
     private final String size;
 
     // ---------------------------------------------------------------------------------------------
 
     private FielddataRecord(Builder builder) {
-
-        this.id = builder.id;
+        this.field = builder.field;
         this.host = builder.host;
+        this.id = builder.id;
         this.ip = builder.ip;
         this.node = builder.node;
-        this.field = builder.field;
         this.size = builder.size;
-
     }
 
-    public static FielddataRecord of(Function<Builder, ObjectBuilder<FielddataRecord>> fn) {
+    public static FielddataRecord of(Function<FielddataRecord.Builder, ObjectBuilder<FielddataRecord>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * node id
+     * field name
      * <p>
-     * API name: {@code id}
+     * API name: {@code field}
+     * </p>
      */
     @Nullable
-    public final String id() {
-        return this.id;
+    public final String field() {
+        return this.field;
     }
 
     /**
-     * host name
+     * hostname
      * <p>
      * API name: {@code host}
+     * </p>
      */
     @Nullable
     public final String host() {
@@ -104,9 +115,21 @@ public class FielddataRecord implements PlainJsonSerializable {
     }
 
     /**
-     * ip address
+     * node id
+     * <p>
+     * API name: {@code id}
+     * </p>
+     */
+    @Nullable
+    public final String id() {
+        return this.id;
+    }
+
+    /**
+     * IP address
      * <p>
      * API name: {@code ip}
+     * </p>
      */
     @Nullable
     public final String ip() {
@@ -117,6 +140,7 @@ public class FielddataRecord implements PlainJsonSerializable {
      * node name
      * <p>
      * API name: {@code node}
+     * </p>
      */
     @Nullable
     public final String node() {
@@ -124,19 +148,10 @@ public class FielddataRecord implements PlainJsonSerializable {
     }
 
     /**
-     * field name
-     * <p>
-     * API name: {@code field}
-     */
-    @Nullable
-    public final String field() {
-        return this.field;
-    }
-
-    /**
      * field data usage
      * <p>
      * API name: {@code size}
+     * </p>
      */
     @Nullable
     public final String size() {
@@ -146,6 +161,7 @@ public class FielddataRecord implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -153,90 +169,136 @@ public class FielddataRecord implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.field != null) {
+            generator.writeKey("field");
+            generator.write(this.field);
+        }
+
+        if (this.host != null) {
+            generator.writeKey("host");
+            generator.write(this.host);
+        }
 
         if (this.id != null) {
             generator.writeKey("id");
             generator.write(this.id);
-
         }
-        if (this.host != null) {
-            generator.writeKey("host");
-            generator.write(this.host);
 
-        }
         if (this.ip != null) {
             generator.writeKey("ip");
             generator.write(this.ip);
-
         }
+
         if (this.node != null) {
             generator.writeKey("node");
             generator.write(this.node);
-
         }
-        if (this.field != null) {
-            generator.writeKey("field");
-            generator.write(this.field);
 
-        }
         if (this.size != null) {
             generator.writeKey("size");
             generator.write(this.size);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link FielddataRecord}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataRecord> {
-        @Nullable
-        private String id;
-
-        @Nullable
-        private String host;
-
-        @Nullable
-        private String ip;
-
-        @Nullable
-        private String node;
-
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, FielddataRecord> {
         @Nullable
         private String field;
-
+        @Nullable
+        private String host;
+        @Nullable
+        private String id;
+        @Nullable
+        private String ip;
+        @Nullable
+        private String node;
         @Nullable
         private String size;
 
+        public Builder() {}
+
+        private Builder(FielddataRecord o) {
+            this.field = o.field;
+            this.host = o.host;
+            this.id = o.id;
+            this.ip = o.ip;
+            this.node = o.node;
+            this.size = o.size;
+        }
+
+        private Builder(Builder o) {
+            this.field = o.field;
+            this.host = o.host;
+            this.id = o.id;
+            this.ip = o.ip;
+            this.node = o.node;
+            this.size = o.size;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
-         * node id
+         * field name
          * <p>
-         * API name: {@code id}
+         * API name: {@code field}
+         * </p>
          */
-        public final Builder id(@Nullable String value) {
-            this.id = value;
+        @Nonnull
+        public final Builder field(@Nullable String value) {
+            this.field = value;
             return this;
         }
 
         /**
-         * host name
+         * hostname
          * <p>
          * API name: {@code host}
+         * </p>
          */
+        @Nonnull
         public final Builder host(@Nullable String value) {
             this.host = value;
             return this;
         }
 
         /**
-         * ip address
+         * node id
+         * <p>
+         * API name: {@code id}
+         * </p>
+         */
+        @Nonnull
+        public final Builder id(@Nullable String value) {
+            this.id = value;
+            return this;
+        }
+
+        /**
+         * IP address
          * <p>
          * API name: {@code ip}
+         * </p>
          */
+        @Nonnull
         public final Builder ip(@Nullable String value) {
             this.ip = value;
             return this;
@@ -246,19 +308,11 @@ public class FielddataRecord implements PlainJsonSerializable {
          * node name
          * <p>
          * API name: {@code node}
+         * </p>
          */
+        @Nonnull
         public final Builder node(@Nullable String value) {
             this.node = value;
-            return this;
-        }
-
-        /**
-         * field name
-         * <p>
-         * API name: {@code field}
-         */
-        public final Builder field(@Nullable String value) {
-            this.field = value;
             return this;
         }
 
@@ -266,7 +320,9 @@ public class FielddataRecord implements PlainJsonSerializable {
          * field data usage
          * <p>
          * API name: {@code size}
+         * </p>
          */
+        @Nonnull
         public final Builder size(@Nullable String value) {
             this.size = value;
             return this;
@@ -275,9 +331,10 @@ public class FielddataRecord implements PlainJsonSerializable {
         /**
          * Builds a {@link FielddataRecord}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public FielddataRecord build() {
             _checkSingleUse();
 
@@ -296,14 +353,36 @@ public class FielddataRecord implements PlainJsonSerializable {
     );
 
     protected static void setupFielddataRecordDeserializer(ObjectDeserializer<FielddataRecord.Builder> op) {
-
+        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+        op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-        op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host", "h");
         op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip");
-        op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node", "n");
-        op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field", "f");
+        op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
         op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.field);
+        result = 31 * result + Objects.hashCode(this.host);
+        result = 31 * result + Objects.hashCode(this.id);
+        result = 31 * result + Objects.hashCode(this.ip);
+        result = 31 * result + Objects.hashCode(this.node);
+        result = 31 * result + Objects.hashCode(this.size);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        FielddataRecord other = (FielddataRecord) o;
+        return Objects.equals(this.field, other.field)
+            && Objects.equals(this.host, other.host)
+            && Objects.equals(this.id, other.id)
+            && Objects.equals(this.ip, other.ip)
+            && Objects.equals(this.node, other.node)
+            && Objects.equals(this.size, other.size);
+    }
 }
