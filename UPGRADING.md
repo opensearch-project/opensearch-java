@@ -427,3 +427,13 @@ After:
 ### NodeUsage
 - The `restActions` property has been corrected to be of type `Map<String, Long>` instead of `Map<String, Integer>`.
 - The `since` and `timestamp` properties have been corrected to be of type `long` instead of `String`.
+
+### GetPipelineRequest
+- The `summary` property has been removed as it is not supported by OpenSearch.
+
+### InferenceProcessor
+- The `InferenceProcessor` class has been removed as it is not supported by OpenSearch.
+  - This also affects the associated `InferenceConfig` and `InferenceConfigRegression` classes.
+
+### DocumentSimulation
+- The `type` property has been removed as it is no longer supported by OpenSearch.

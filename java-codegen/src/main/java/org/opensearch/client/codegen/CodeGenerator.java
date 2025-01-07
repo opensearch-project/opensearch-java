@@ -61,6 +61,7 @@ public class CodeGenerator {
         ),
         namespace(is("dangling_indices")),
         and(namespace(is("indices")), name(isNot("get_field_mapping"))),
+        and(namespace(is("ingest"))),
         and(
             namespace(is("ml")),
             name(
