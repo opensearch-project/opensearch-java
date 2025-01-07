@@ -106,4 +106,59 @@ public abstract class OpenSearchCatClientBase<Self extends OpenSearchCatClientBa
     public final AllocationResponse allocation() throws IOException, OpenSearchException {
         return allocation(new AllocationRequest.Builder().build());
     }
+
+    // ----- Endpoint: cat.cluster_manager
+
+    /**
+     * Returns information about the cluster-manager node.
+     */
+    public ClusterManagerResponse clusterManager(ClusterManagerRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ClusterManagerRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about the cluster-manager node.
+     *
+     * @param fn a function that initializes a builder to create the {@link ClusterManagerRequest}
+     */
+    public final ClusterManagerResponse clusterManager(Function<ClusterManagerRequest.Builder, ObjectBuilder<ClusterManagerRequest>> fn)
+        throws IOException, OpenSearchException {
+        return clusterManager(fn.apply(new ClusterManagerRequest.Builder()).build());
+    }
+
+    /**
+     * Returns information about the cluster-manager node.
+     */
+    public final ClusterManagerResponse clusterManager() throws IOException, OpenSearchException {
+        return clusterManager(new ClusterManagerRequest.Builder().build());
+    }
+
+    // ----- Endpoint: cat.master
+
+    /**
+     * Returns information about the cluster-manager node.
+     */
+    @Deprecated
+    public MasterResponse master(MasterRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, MasterRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about the cluster-manager node.
+     *
+     * @param fn a function that initializes a builder to create the {@link MasterRequest}
+     */
+    @Deprecated
+    public final MasterResponse master(Function<MasterRequest.Builder, ObjectBuilder<MasterRequest>> fn) throws IOException,
+        OpenSearchException {
+        return master(fn.apply(new MasterRequest.Builder()).build());
+    }
+
+    /**
+     * Returns information about the cluster-manager node.
+     */
+    @Deprecated
+    public final MasterResponse master() throws IOException, OpenSearchException {
+        return master(new MasterRequest.Builder().build());
+    }
 }

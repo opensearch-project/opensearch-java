@@ -253,33 +253,6 @@ public class OpenSearchCatAsyncClient extends OpenSearchCatAsyncClientBase<OpenS
         return this.transport.performRequestAsync(new IndicesRequest.Builder().build(), IndicesRequest._ENDPOINT, this.transportOptions);
     }
 
-    // ----- Endpoint: cat.master
-
-    /**
-     * Returns information about the master node.
-     *
-     *
-     */
-    @Deprecated
-    public CompletableFuture<ClusterManagerResponse> master() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            ClusterManagerRequest._INSTANCE,
-            ClusterManagerRequest._DEPRECATED_ENDPOINT,
-            this.transportOptions
-        );
-    }
-
-    // ----- Endpoint: cat.cluster_manager
-
-    /**
-     * Returns information about the cluster-manager node.
-     *
-     *
-     */
-    public CompletableFuture<ClusterManagerResponse> clusterManager() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(ClusterManagerRequest._INSTANCE, ClusterManagerRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: cat.nodeattrs
 
     /**
