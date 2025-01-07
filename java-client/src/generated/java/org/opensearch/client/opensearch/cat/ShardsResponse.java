@@ -30,44 +30,52 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cat;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.opensearch.cat.snapshots.SnapshotsRecord;
+import org.opensearch.client.opensearch.cat.shards.ShardsRecord;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: cat.snapshots.Response
+// typedef: cat.shards.Response
 
 @JsonpDeserializable
-public class SnapshotsResponse implements PlainJsonSerializable {
-    private final List<SnapshotsRecord> valueBody;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ShardsResponse implements PlainJsonSerializable, ToCopyableBuilder<ShardsResponse.Builder, ShardsResponse> {
+
+    @Nonnull
+    private final List<ShardsRecord> valueBody;
 
     // ---------------------------------------------------------------------------------------------
 
-    private SnapshotsResponse(Builder builder) {
-
+    private ShardsResponse(Builder builder) {
         this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
-
     }
 
-    public static SnapshotsResponse of(Function<Builder, ObjectBuilder<SnapshotsResponse>> fn) {
+    public static ShardsResponse of(Function<ShardsResponse.Builder, ObjectBuilder<ShardsResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - Response value.
-     * <p>
-     * API name: {@code _value_body}
      */
-    public final List<SnapshotsRecord> valueBody() {
+    @Nonnull
+    public final List<ShardsRecord> valueBody() {
         return this.valueBody;
     }
 
@@ -76,81 +84,107 @@ public class SnapshotsResponse implements PlainJsonSerializable {
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartArray();
-        for (SnapshotsRecord item0 : this.valueBody) {
+        for (ShardsRecord item0 : this.valueBody) {
             item0.serialize(generator, mapper);
-
         }
         generator.writeEnd();
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    /**
-     * Builder for {@link SnapshotsResponse}.
-     */
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotsResponse> {
-        private List<SnapshotsRecord> valueBody;
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /**
+     * Builder for {@link ShardsResponse}.
+     */
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardsResponse> {
+        private List<ShardsRecord> valueBody;
+
+        public Builder() {}
+
+        private Builder(ShardsResponse o) {
+            this.valueBody = _listCopy(o.valueBody);
+        }
+
+        private Builder(Builder o) {
+            this.valueBody = _listCopy(o.valueBody);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>valueBody</code>.
+         * </p>
          */
-        public final Builder valueBody(List<SnapshotsRecord> list) {
+        @Nonnull
+        public final Builder valueBody(List<ShardsRecord> list) {
             this.valueBody = _listAddAll(this.valueBody, list);
             return this;
         }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds one or more values to <code>valueBody</code>.
+         * </p>
          */
-        public final Builder valueBody(SnapshotsRecord value, SnapshotsRecord... values) {
+        @Nonnull
+        public final Builder valueBody(ShardsRecord value, ShardsRecord... values) {
             this.valueBody = _listAdd(this.valueBody, value, values);
             return this;
         }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds a value to <code>valueBody</code> using a builder lambda.
+         * </p>
          */
-        public final Builder valueBody(Function<SnapshotsRecord.Builder, ObjectBuilder<SnapshotsRecord>> fn) {
-            return valueBody(fn.apply(new SnapshotsRecord.Builder()).build());
+        @Nonnull
+        public final Builder valueBody(Function<ShardsRecord.Builder, ObjectBuilder<ShardsRecord>> fn) {
+            return valueBody(fn.apply(new ShardsRecord.Builder()).build());
         }
 
         /**
-         * Builds a {@link SnapshotsResponse}.
+         * Builds a {@link ShardsResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public SnapshotsResponse build() {
+        @Override
+        @Nonnull
+        public ShardsResponse build() {
             _checkSingleUse();
 
-            return new SnapshotsResponse(this);
+            return new ShardsResponse(this);
         }
     }
 
-    public static final JsonpDeserializer<SnapshotsResponse> _DESERIALIZER = createSnapshotsResponseDeserializer();
+    public static final JsonpDeserializer<ShardsResponse> _DESERIALIZER = createShardsResponseDeserializer();
 
-    protected static JsonpDeserializer<SnapshotsResponse> createSnapshotsResponseDeserializer() {
-
-        JsonpDeserializer<List<SnapshotsRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(SnapshotsRecord._DESERIALIZER);
+    protected static JsonpDeserializer<ShardsResponse> createShardsResponseDeserializer() {
+        JsonpDeserializer<List<ShardsRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(ShardsRecord._DESERIALIZER);
 
         return JsonpDeserializer.of(
             valueDeserializer.acceptedEvents(),
             (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
         );
     }
-
 }

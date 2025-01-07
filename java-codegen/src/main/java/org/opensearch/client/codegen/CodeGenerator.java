@@ -68,7 +68,10 @@ public class CodeGenerator {
                     "plugins",
                     "recovery",
                     "repositories",
-                    "segments"
+                    "segments",
+                    "shards",
+                    "snapshots",
+                    "tasks"
                 )
             )
         ),

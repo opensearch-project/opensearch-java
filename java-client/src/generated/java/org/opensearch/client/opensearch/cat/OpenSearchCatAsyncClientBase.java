@@ -503,4 +503,82 @@ public abstract class OpenSearchCatAsyncClientBase<Self extends OpenSearchCatAsy
     public final CompletableFuture<SegmentsResponse> segments() throws IOException, OpenSearchException {
         return segments(new SegmentsRequest.Builder().build());
     }
+
+    // ----- Endpoint: cat.shards
+
+    /**
+     * Lists the states of all primary and replica shards and how they are distributed.
+     */
+    public CompletableFuture<ShardsResponse> shards(ShardsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ShardsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Lists the states of all primary and replica shards and how they are distributed.
+     *
+     * @param fn a function that initializes a builder to create the {@link ShardsRequest}
+     */
+    public final CompletableFuture<ShardsResponse> shards(Function<ShardsRequest.Builder, ObjectBuilder<ShardsRequest>> fn)
+        throws IOException, OpenSearchException {
+        return shards(fn.apply(new ShardsRequest.Builder()).build());
+    }
+
+    /**
+     * Lists the states of all primary and replica shards and how they are distributed.
+     */
+    public final CompletableFuture<ShardsResponse> shards() throws IOException, OpenSearchException {
+        return shards(new ShardsRequest.Builder().build());
+    }
+
+    // ----- Endpoint: cat.snapshots
+
+    /**
+     * Lists all of the snapshots stored in a specific repository.
+     */
+    public CompletableFuture<SnapshotsResponse> snapshots(SnapshotsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, SnapshotsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Lists all of the snapshots stored in a specific repository.
+     *
+     * @param fn a function that initializes a builder to create the {@link SnapshotsRequest}
+     */
+    public final CompletableFuture<SnapshotsResponse> snapshots(Function<SnapshotsRequest.Builder, ObjectBuilder<SnapshotsRequest>> fn)
+        throws IOException, OpenSearchException {
+        return snapshots(fn.apply(new SnapshotsRequest.Builder()).build());
+    }
+
+    /**
+     * Lists all of the snapshots stored in a specific repository.
+     */
+    public final CompletableFuture<SnapshotsResponse> snapshots() throws IOException, OpenSearchException {
+        return snapshots(new SnapshotsRequest.Builder().build());
+    }
+
+    // ----- Endpoint: cat.tasks
+
+    /**
+     * Lists the progress of all tasks currently running on the cluster.
+     */
+    public CompletableFuture<TasksResponse> tasks(TasksRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, TasksRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Lists the progress of all tasks currently running on the cluster.
+     *
+     * @param fn a function that initializes a builder to create the {@link TasksRequest}
+     */
+    public final CompletableFuture<TasksResponse> tasks(Function<TasksRequest.Builder, ObjectBuilder<TasksRequest>> fn) throws IOException,
+        OpenSearchException {
+        return tasks(fn.apply(new TasksRequest.Builder()).build());
+    }
+
+    /**
+     * Lists the progress of all tasks currently running on the cluster.
+     */
+    public final CompletableFuture<TasksResponse> tasks() throws IOException, OpenSearchException {
+        return tasks(new TasksRequest.Builder().build());
+    }
 }

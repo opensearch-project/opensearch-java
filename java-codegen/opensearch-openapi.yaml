@@ -48015,7 +48015,7 @@ components:
         start_epoch:
           $ref: '#/components/schemas/_common___StringifiedEpochTimeUnitSeconds'
         start_time:
-          $ref: '#/components/schemas/_common___ScheduleTimeOfDay'
+          $ref: '#/components/schemas/_common___TimeOfDay'
         end_epoch:
           $ref: '#/components/schemas/_common___StringifiedEpochTimeUnitSeconds'
         end_time:
