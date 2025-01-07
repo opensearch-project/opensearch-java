@@ -71,48 +71,6 @@ public class OpenSearchCatClient extends OpenSearchCatClientBase<OpenSearchCatCl
         return this.transport.performRequest(HelpRequest._INSTANCE, HelpRequest._ENDPOINT, this.transportOptions);
     }
 
-    // ----- Endpoint: cat.nodes
-
-    /**
-     * Returns basic statistics about performance of cluster nodes.
-     *
-     *
-     */
-
-    public NodesResponse nodes(NodesRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<NodesRequest, NodesResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            NodesRequest,
-            NodesResponse,
-            ErrorResponse>) NodesRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns basic statistics about performance of cluster nodes.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link NodesRequest}
-     *
-     */
-
-    public final NodesResponse nodes(Function<NodesRequest.Builder, ObjectBuilder<NodesRequest>> fn) throws IOException,
-        OpenSearchException {
-        return nodes(fn.apply(new NodesRequest.Builder()).build());
-    }
-
-    /**
-     * Returns basic statistics about performance of cluster nodes.
-     *
-     *
-     */
-
-    public NodesResponse nodes() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new NodesRequest.Builder().build(), NodesRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: cat.point_in_time_segments
 
     /**

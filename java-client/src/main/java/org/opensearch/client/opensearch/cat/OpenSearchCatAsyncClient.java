@@ -72,48 +72,6 @@ public class OpenSearchCatAsyncClient extends OpenSearchCatAsyncClientBase<OpenS
         return this.transport.performRequestAsync(HelpRequest._INSTANCE, HelpRequest._ENDPOINT, this.transportOptions);
     }
 
-    // ----- Endpoint: cat.nodes
-
-    /**
-     * Returns basic statistics about performance of cluster nodes.
-     *
-     *
-     */
-
-    public CompletableFuture<NodesResponse> nodes(NodesRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<NodesRequest, NodesResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            NodesRequest,
-            NodesResponse,
-            ErrorResponse>) NodesRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns basic statistics about performance of cluster nodes.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link NodesRequest}
-     *
-     */
-
-    public final CompletableFuture<NodesResponse> nodes(Function<NodesRequest.Builder, ObjectBuilder<NodesRequest>> fn) throws IOException,
-        OpenSearchException {
-        return nodes(fn.apply(new NodesRequest.Builder()).build());
-    }
-
-    /**
-     * Returns basic statistics about performance of cluster nodes.
-     *
-     *
-     */
-
-    public CompletableFuture<NodesResponse> nodes() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(new NodesRequest.Builder().build(), NodesRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: cat.point_in_time_segments
 
     /**

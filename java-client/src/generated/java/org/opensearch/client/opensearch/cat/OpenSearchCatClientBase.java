@@ -294,4 +294,30 @@ public abstract class OpenSearchCatClientBase<Self extends OpenSearchCatClientBa
     public final NodeattrsResponse nodeattrs() throws IOException, OpenSearchException {
         return nodeattrs(new NodeattrsRequest.Builder().build());
     }
+
+    // ----- Endpoint: cat.nodes
+
+    /**
+     * Returns basic statistics about the performance of cluster nodes.
+     */
+    public NodesResponse nodes(NodesRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, NodesRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns basic statistics about the performance of cluster nodes.
+     *
+     * @param fn a function that initializes a builder to create the {@link NodesRequest}
+     */
+    public final NodesResponse nodes(Function<NodesRequest.Builder, ObjectBuilder<NodesRequest>> fn) throws IOException,
+        OpenSearchException {
+        return nodes(fn.apply(new NodesRequest.Builder()).build());
+    }
+
+    /**
+     * Returns basic statistics about the performance of cluster nodes.
+     */
+    public final NodesResponse nodes() throws IOException, OpenSearchException {
+        return nodes(new NodesRequest.Builder().build());
+    }
 }

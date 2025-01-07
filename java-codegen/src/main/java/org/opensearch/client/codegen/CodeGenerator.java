@@ -50,7 +50,20 @@ public class CodeGenerator {
         and(namespace(isNull()), name(is("info"))),
         and(
             namespace(is("cat")),
-            name(isOneOf("aliases", "allocation", "cluster_manager", "count", "fielddata", "health", "indices", "master", "nodeattrs"))
+            name(
+                isOneOf(
+                    "aliases",
+                    "allocation",
+                    "cluster_manager",
+                    "count",
+                    "fielddata",
+                    "health",
+                    "indices",
+                    "master",
+                    "nodeattrs",
+                    "nodes"
+                )
+            )
         ),
         and(
             namespace(is("cluster")),

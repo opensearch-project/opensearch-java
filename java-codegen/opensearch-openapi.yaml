@@ -16111,9 +16111,7 @@ components:
       name: full_id
       description: When `true`, returns the full node ID. When `false`, returns the shortened node ID.
       schema:
-        anyOf:
-          - type: boolean
-          - type: string
+        $ref: '#/components/schemas/_common___StringifiedBoolean'
         default: false
       style: form
     cat.nodes___query.h:
