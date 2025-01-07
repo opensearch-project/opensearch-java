@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cat.count;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -41,39 +48,50 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cat.count.CountRecord
 
 @JsonpDeserializable
-public class CountRecord implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class CountRecord implements PlainJsonSerializable, ToCopyableBuilder<CountRecord.Builder, CountRecord> {
+
+    @Nullable
+    private final String count;
+
     @Nullable
     private final String epoch;
 
     @Nullable
     private final String timestamp;
 
-    @Nullable
-    private final String count;
-
     // ---------------------------------------------------------------------------------------------
 
     private CountRecord(Builder builder) {
-
+        this.count = builder.count;
         this.epoch = builder.epoch;
         this.timestamp = builder.timestamp;
-        this.count = builder.count;
-
     }
 
-    public static CountRecord of(Function<Builder, ObjectBuilder<CountRecord>> fn) {
+    public static CountRecord of(Function<CountRecord.Builder, ObjectBuilder<CountRecord>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * seconds since 1969-01-01 00:00:00
+     * the document count
      * <p>
+     * API name: {@code count}
+     * </p>
+     */
+    @Nullable
+    public final String count() {
+        return this.count;
+    }
+
+    /**
      * API name: {@code epoch}
      */
     @Nullable
@@ -82,8 +100,6 @@ public class CountRecord implements PlainJsonSerializable {
     }
 
     /**
-     * time in HH:MM:SS
-     * <p>
      * API name: {@code timestamp}
      */
     @Nullable
@@ -92,18 +108,9 @@ public class CountRecord implements PlainJsonSerializable {
     }
 
     /**
-     * the document count
-     * <p>
-     * API name: {@code count}
-     */
-    @Nullable
-    public final String count() {
-        return this.count;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -111,77 +118,103 @@ public class CountRecord implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.count != null) {
+            generator.writeKey("count");
+            generator.write(this.count);
+        }
 
         if (this.epoch != null) {
             generator.writeKey("epoch");
             generator.write(this.epoch);
-
         }
+
         if (this.timestamp != null) {
             generator.writeKey("timestamp");
             generator.write(this.timestamp);
-
         }
-        if (this.count != null) {
-            generator.writeKey("count");
-            generator.write(this.count);
-
-        }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CountRecord}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CountRecord> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CountRecord> {
+        @Nullable
+        private String count;
         @Nullable
         private String epoch;
-
         @Nullable
         private String timestamp;
 
-        @Nullable
-        private String count;
+        public Builder() {}
 
-        /**
-         * seconds since 1969-01-01 00:00:00
-         * <p>
-         * API name: {@code epoch}
-         */
-        public final Builder epoch(@Nullable String value) {
-            this.epoch = value;
-            return this;
+        private Builder(CountRecord o) {
+            this.count = o.count;
+            this.epoch = o.epoch;
+            this.timestamp = o.timestamp;
         }
 
-        /**
-         * time in HH:MM:SS
-         * <p>
-         * API name: {@code timestamp}
-         */
-        public final Builder timestamp(@Nullable String value) {
-            this.timestamp = value;
-            return this;
+        private Builder(Builder o) {
+            this.count = o.count;
+            this.epoch = o.epoch;
+            this.timestamp = o.timestamp;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
         }
 
         /**
          * the document count
          * <p>
          * API name: {@code count}
+         * </p>
          */
+        @Nonnull
         public final Builder count(@Nullable String value) {
             this.count = value;
             return this;
         }
 
         /**
+         * API name: {@code epoch}
+         */
+        @Nonnull
+        public final Builder epoch(@Nullable String value) {
+            this.epoch = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code timestamp}
+         */
+        @Nonnull
+        public final Builder timestamp(@Nullable String value) {
+            this.timestamp = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link CountRecord}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CountRecord build() {
             _checkSingleUse();
 
@@ -200,11 +233,27 @@ public class CountRecord implements PlainJsonSerializable {
     );
 
     protected static void setupCountRecordDeserializer(ObjectDeserializer<CountRecord.Builder> op) {
-
-        op.add(Builder::epoch, JsonpDeserializer.stringDeserializer(), "epoch", "t", "time");
-        op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp", "ts", "hms", "hhmmss");
-        op.add(Builder::count, JsonpDeserializer.stringDeserializer(), "count", "dc", "docs.count", "docsCount");
-
+        op.add(Builder::count, JsonpDeserializer.stringDeserializer(), "count");
+        op.add(Builder::epoch, JsonpDeserializer.stringDeserializer(), "epoch");
+        op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.count);
+        result = 31 * result + Objects.hashCode(this.epoch);
+        result = 31 * result + Objects.hashCode(this.timestamp);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CountRecord other = (CountRecord) o;
+        return Objects.equals(this.count, other.count)
+            && Objects.equals(this.epoch, other.epoch)
+            && Objects.equals(this.timestamp, other.timestamp);
+    }
 }

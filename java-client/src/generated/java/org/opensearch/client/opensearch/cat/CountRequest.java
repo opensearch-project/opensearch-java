@@ -30,28 +30,37 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cat;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cat.count.Request
 
 /**
- * Provides quick access to the document count of the entire cluster, or
- * individual indices.
- *
+ * Provides quick access to the document count of the entire cluster or of an individual index.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public final class CountRequest extends CatRequestBase implements ToCopyableBuilder<CountRequest.Builder, CountRequest> {
 
-public class CountRequest extends CatRequestBase {
+    @Nonnull
     private final List<String> index;
 
     // ---------------------------------------------------------------------------------------------
@@ -59,51 +68,97 @@ public class CountRequest extends CatRequestBase {
     private CountRequest(Builder builder) {
         super(builder);
         this.index = ApiTypeHelper.unmodifiable(builder.index);
-
     }
 
-    public static CountRequest of(Function<Builder, ObjectBuilder<CountRequest>> fn) {
+    public static CountRequest of(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * A comma-separated list of index names to limit the returned information
+     * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To target
+     * all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
      * <p>
      * API name: {@code index}
+     * </p>
      */
+    @Nonnull
     public final List<String> index() {
         return this.index;
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CountRequest}.
      */
-
-    public static class Builder extends CatRequestBaseBuilder<CountRequest.Builder> {
+    public static class Builder extends CatRequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, CountRequest> {
         @Nullable
         private List<String> index;
 
+        public Builder() {}
+
+        private Builder(CountRequest o) {
+            super(o);
+            this.index = _listCopy(o.index);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.index = _listCopy(o.index);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
-         * A comma-separated list of index names to limit the returned information
+         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
+         * </p>
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>index</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder index(List<String> list) {
             this.index = _listAddAll(this.index, list);
             return this;
         }
 
         /**
-         * A comma-separated list of index names to limit the returned information
+         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
+         * </p>
+         *
          * <p>
          * Adds one or more values to <code>index</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder index(String value, String... values) {
             this.index = _listAdd(this.index, value, values);
             return this;
@@ -112,18 +167,14 @@ public class CountRequest extends CatRequestBase {
         /**
          * Builds a {@link CountRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CountRequest build() {
             _checkSingleUse();
 
             return new CountRequest(this);
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
         }
     }
 
@@ -133,13 +184,8 @@ public class CountRequest extends CatRequestBase {
      * Endpoint "{@code cat.count}".
      */
     public static final Endpoint<CountRequest, CountResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "GET";
-
-        },
-
+        request -> "GET",
         // Request path
         request -> {
             final int _index = 1 << 0;
@@ -149,27 +195,40 @@ public class CountRequest extends CatRequestBase {
             if (ApiTypeHelper.isDefined(request.index())) propsSet |= _index;
 
             if (propsSet == 0) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_cat");
-                buf.append("/count");
-                return buf.toString();
+                return "/_cat/count";
             }
             if (propsSet == (_index)) {
                 StringBuilder buf = new StringBuilder();
-                buf.append("/_cat");
-                buf.append("/count");
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+                buf.append("/_cat/count/");
+                SimpleEndpoint.pathEncode(String.join(",", request.index), buf);
                 return buf.toString();
             }
+
             throw SimpleEndpoint.noPathTemplateFound("path");
-
         },
-
         // Request parameters
-        request -> new HashMap<>(request.queryParameters()),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         false,
         CountResponse._DESERIALIZER
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.index);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CountRequest other = (CountRequest) o;
+        return Objects.equals(this.index, other.index);
+    }
 }

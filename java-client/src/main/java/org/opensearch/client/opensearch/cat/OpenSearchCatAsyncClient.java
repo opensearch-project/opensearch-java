@@ -61,51 +61,6 @@ public class OpenSearchCatAsyncClient extends OpenSearchCatAsyncClientBase<OpenS
         return new OpenSearchCatAsyncClient(this.transport, transportOptions);
     }
 
-    // ----- Endpoint: cat.count
-
-    /**
-     * Provides quick access to the document count of the entire cluster, or
-     * individual indices.
-     *
-     *
-     */
-
-    public CompletableFuture<CountResponse> count(CountRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<CountRequest, CountResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            CountRequest,
-            CountResponse,
-            ErrorResponse>) CountRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Provides quick access to the document count of the entire cluster, or
-     * individual indices.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link CountRequest}
-     *
-     */
-
-    public final CompletableFuture<CountResponse> count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn) throws IOException,
-        OpenSearchException {
-        return count(fn.apply(new CountRequest.Builder()).build());
-    }
-
-    /**
-     * Provides quick access to the document count of the entire cluster, or
-     * individual indices.
-     *
-     *
-     */
-
-    public CompletableFuture<CountResponse> count() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(new CountRequest.Builder().build(), CountRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: cat.fielddata
 
     /**

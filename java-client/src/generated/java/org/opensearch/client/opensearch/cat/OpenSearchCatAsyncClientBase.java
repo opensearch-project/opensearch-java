@@ -137,6 +137,32 @@ public abstract class OpenSearchCatAsyncClientBase<Self extends OpenSearchCatAsy
         return clusterManager(new ClusterManagerRequest.Builder().build());
     }
 
+    // ----- Endpoint: cat.count
+
+    /**
+     * Provides quick access to the document count of the entire cluster or of an individual index.
+     */
+    public CompletableFuture<CountResponse> count(CountRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, CountRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Provides quick access to the document count of the entire cluster or of an individual index.
+     *
+     * @param fn a function that initializes a builder to create the {@link CountRequest}
+     */
+    public final CompletableFuture<CountResponse> count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn) throws IOException,
+        OpenSearchException {
+        return count(fn.apply(new CountRequest.Builder()).build());
+    }
+
+    /**
+     * Provides quick access to the document count of the entire cluster or of an individual index.
+     */
+    public final CompletableFuture<CountResponse> count() throws IOException, OpenSearchException {
+        return count(new CountRequest.Builder().build());
+    }
+
     // ----- Endpoint: cat.master
 
     /**

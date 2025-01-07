@@ -48,7 +48,7 @@ public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Matcher<OperationGroup> OPERATION_MATCHER = or(
         and(namespace(isNull()), name(is("info"))),
-        and(namespace(is("cat")), name(isOneOf("aliases", "allocation", "cluster_manager", "master"))),
+        and(namespace(is("cat")), name(isOneOf("aliases", "allocation", "cluster_manager", "count", "master"))),
         and(
             namespace(is("cluster")),
             name(
