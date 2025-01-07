@@ -268,4 +268,30 @@ public abstract class OpenSearchCatClientBase<Self extends OpenSearchCatClientBa
     public final MasterResponse master() throws IOException, OpenSearchException {
         return master(new MasterRequest.Builder().build());
     }
+
+    // ----- Endpoint: cat.nodeattrs
+
+    /**
+     * Returns information about custom node attributes.
+     */
+    public NodeattrsResponse nodeattrs(NodeattrsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, NodeattrsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about custom node attributes.
+     *
+     * @param fn a function that initializes a builder to create the {@link NodeattrsRequest}
+     */
+    public final NodeattrsResponse nodeattrs(Function<NodeattrsRequest.Builder, ObjectBuilder<NodeattrsRequest>> fn) throws IOException,
+        OpenSearchException {
+        return nodeattrs(fn.apply(new NodeattrsRequest.Builder()).build());
+    }
+
+    /**
+     * Returns information about custom node attributes.
+     */
+    public final NodeattrsResponse nodeattrs() throws IOException, OpenSearchException {
+        return nodeattrs(new NodeattrsRequest.Builder().build());
+    }
 }

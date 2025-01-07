@@ -71,17 +71,6 @@ public class OpenSearchCatClient extends OpenSearchCatClientBase<OpenSearchCatCl
         return this.transport.performRequest(HelpRequest._INSTANCE, HelpRequest._ENDPOINT, this.transportOptions);
     }
 
-    // ----- Endpoint: cat.nodeattrs
-
-    /**
-     * Returns information about custom node attributes.
-     *
-     *
-     */
-    public NodeattrsResponse nodeattrs() throws IOException, OpenSearchException {
-        return this.transport.performRequest(NodeattrsRequest._INSTANCE, NodeattrsRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: cat.nodes
 
     /**

@@ -72,17 +72,6 @@ public class OpenSearchCatAsyncClient extends OpenSearchCatAsyncClientBase<OpenS
         return this.transport.performRequestAsync(HelpRequest._INSTANCE, HelpRequest._ENDPOINT, this.transportOptions);
     }
 
-    // ----- Endpoint: cat.nodeattrs
-
-    /**
-     * Returns information about custom node attributes.
-     *
-     *
-     */
-    public CompletableFuture<NodeattrsResponse> nodeattrs() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(NodeattrsRequest._INSTANCE, NodeattrsRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: cat.nodes
 
     /**

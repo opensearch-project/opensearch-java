@@ -272,4 +272,30 @@ public abstract class OpenSearchCatAsyncClientBase<Self extends OpenSearchCatAsy
     public final CompletableFuture<MasterResponse> master() throws IOException, OpenSearchException {
         return master(new MasterRequest.Builder().build());
     }
+
+    // ----- Endpoint: cat.nodeattrs
+
+    /**
+     * Returns information about custom node attributes.
+     */
+    public CompletableFuture<NodeattrsResponse> nodeattrs(NodeattrsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, NodeattrsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about custom node attributes.
+     *
+     * @param fn a function that initializes a builder to create the {@link NodeattrsRequest}
+     */
+    public final CompletableFuture<NodeattrsResponse> nodeattrs(Function<NodeattrsRequest.Builder, ObjectBuilder<NodeattrsRequest>> fn)
+        throws IOException, OpenSearchException {
+        return nodeattrs(fn.apply(new NodeattrsRequest.Builder()).build());
+    }
+
+    /**
+     * Returns information about custom node attributes.
+     */
+    public final CompletableFuture<NodeattrsResponse> nodeattrs() throws IOException, OpenSearchException {
+        return nodeattrs(new NodeattrsRequest.Builder().build());
+    }
 }
