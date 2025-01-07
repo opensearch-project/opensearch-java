@@ -732,6 +732,7 @@ public class SpecTransformer {
 
     private Type mapAnyOf(List<OpenApiSchema> anyOf) {
         var types = OpenApiSchema.determineTypes(anyOf);
+        types.remove(OpenApiSchemaType.Null);
 
         if (types.size() == 1 && types.contains(OpenApiSchemaType.String)) {
             return Types.Java.Lang.String;

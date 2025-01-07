@@ -581,4 +581,59 @@ public abstract class OpenSearchCatAsyncClientBase<Self extends OpenSearchCatAsy
     public final CompletableFuture<TasksResponse> tasks() throws IOException, OpenSearchException {
         return tasks(new TasksRequest.Builder().build());
     }
+
+    // ----- Endpoint: cat.templates
+
+    /**
+     * Lists the names, patterns, order numbers, and version numbers of index templates.
+     */
+    public CompletableFuture<TemplatesResponse> templates(TemplatesRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, TemplatesRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Lists the names, patterns, order numbers, and version numbers of index templates.
+     *
+     * @param fn a function that initializes a builder to create the {@link TemplatesRequest}
+     */
+    public final CompletableFuture<TemplatesResponse> templates(Function<TemplatesRequest.Builder, ObjectBuilder<TemplatesRequest>> fn)
+        throws IOException, OpenSearchException {
+        return templates(fn.apply(new TemplatesRequest.Builder()).build());
+    }
+
+    /**
+     * Lists the names, patterns, order numbers, and version numbers of index templates.
+     */
+    public final CompletableFuture<TemplatesResponse> templates() throws IOException, OpenSearchException {
+        return templates(new TemplatesRequest.Builder().build());
+    }
+
+    // ----- Endpoint: cat.thread_pool
+
+    /**
+     * Returns cluster-wide thread pool statistics per node. By default the active, queued, and rejected statistics are returned for all
+     * thread pools.
+     */
+    public CompletableFuture<ThreadPoolResponse> threadPool(ThreadPoolRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ThreadPoolRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns cluster-wide thread pool statistics per node. By default the active, queued, and rejected statistics are returned for all
+     * thread pools.
+     *
+     * @param fn a function that initializes a builder to create the {@link ThreadPoolRequest}
+     */
+    public final CompletableFuture<ThreadPoolResponse> threadPool(Function<ThreadPoolRequest.Builder, ObjectBuilder<ThreadPoolRequest>> fn)
+        throws IOException, OpenSearchException {
+        return threadPool(fn.apply(new ThreadPoolRequest.Builder()).build());
+    }
+
+    /**
+     * Returns cluster-wide thread pool statistics per node. By default the active, queued, and rejected statistics are returned for all
+     * thread pools.
+     */
+    public final CompletableFuture<ThreadPoolResponse> threadPool() throws IOException, OpenSearchException {
+        return threadPool(new ThreadPoolRequest.Builder().build());
+    }
 }

@@ -71,7 +71,9 @@ public class CodeGenerator {
                     "segments",
                     "shards",
                     "snapshots",
-                    "tasks"
+                    "tasks",
+                    "templates",
+                    "thread_pool"
                 )
             )
         ),

@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cat.templates;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -41,18 +48,25 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cat.templates.TemplatesRecord
 
 @JsonpDeserializable
-public class TemplatesRecord implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class TemplatesRecord implements PlainJsonSerializable, ToCopyableBuilder<TemplatesRecord.Builder, TemplatesRecord> {
+
     @Nullable
-    private final String name;
+    private final String composedOf;
 
     @Nullable
     private final String indexPatterns;
+
+    @Nullable
+    private final String name;
 
     @Nullable
     private final String order;
@@ -60,28 +74,43 @@ public class TemplatesRecord implements PlainJsonSerializable {
     @Nullable
     private final String version;
 
-    @Nullable
-    private final String composedOf;
-
     // ---------------------------------------------------------------------------------------------
 
     private TemplatesRecord(Builder builder) {
-
-        this.name = builder.name;
+        this.composedOf = builder.composedOf;
         this.indexPatterns = builder.indexPatterns;
+        this.name = builder.name;
         this.order = builder.order;
         this.version = builder.version;
-        this.composedOf = builder.composedOf;
-
     }
 
-    public static TemplatesRecord of(Function<Builder, ObjectBuilder<TemplatesRecord>> fn) {
+    public static TemplatesRecord of(Function<TemplatesRecord.Builder, ObjectBuilder<TemplatesRecord>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * template name
+     * The component templates that comprise the index template.
      * <p>
+     * API name: {@code composed_of}
+     * </p>
+     */
+    @Nullable
+    public final String composedOf() {
+        return this.composedOf;
+    }
+
+    /**
+     * The template index patterns.
+     * <p>
+     * API name: {@code index_patterns}
+     * </p>
+     */
+    @Nullable
+    public final String indexPatterns() {
+        return this.indexPatterns;
+    }
+
+    /**
      * API name: {@code name}
      */
     @Nullable
@@ -90,19 +119,10 @@ public class TemplatesRecord implements PlainJsonSerializable {
     }
 
     /**
-     * template index patterns
-     * <p>
-     * API name: {@code index_patterns}
-     */
-    @Nullable
-    public final String indexPatterns() {
-        return this.indexPatterns;
-    }
-
-    /**
-     * template application order/priority number
+     * The template application order or priority number.
      * <p>
      * API name: {@code order}
+     * </p>
      */
     @Nullable
     public final String order() {
@@ -110,9 +130,10 @@ public class TemplatesRecord implements PlainJsonSerializable {
     }
 
     /**
-     * version
+     * The template version.
      * <p>
      * API name: {@code version}
+     * </p>
      */
     @Nullable
     public final String version() {
@@ -120,18 +141,9 @@ public class TemplatesRecord implements PlainJsonSerializable {
     }
 
     /**
-     * component templates comprising index template
-     * <p>
-     * API name: {@code composed_of}
-     */
-    @Nullable
-    public final String composedOf() {
-        return this.composedOf;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -139,113 +151,148 @@ public class TemplatesRecord implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.composedOf != null) {
+            generator.writeKey("composed_of");
+            generator.write(this.composedOf);
+        }
+
+        if (this.indexPatterns != null) {
+            generator.writeKey("index_patterns");
+            generator.write(this.indexPatterns);
+        }
 
         if (this.name != null) {
             generator.writeKey("name");
             generator.write(this.name);
-
         }
-        if (this.indexPatterns != null) {
-            generator.writeKey("index_patterns");
-            generator.write(this.indexPatterns);
 
-        }
         if (this.order != null) {
             generator.writeKey("order");
             generator.write(this.order);
-
         }
+
         if (this.version != null) {
             generator.writeKey("version");
             generator.write(this.version);
-
         }
-        if (this.composedOf != null) {
-            generator.writeKey("composed_of");
-            generator.write(this.composedOf);
-
-        }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link TemplatesRecord}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TemplatesRecord> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TemplatesRecord> {
         @Nullable
-        private String name;
-
+        private String composedOf;
         @Nullable
         private String indexPatterns;
-
+        @Nullable
+        private String name;
         @Nullable
         private String order;
-
         @Nullable
         private String version;
 
-        @Nullable
-        private String composedOf;
+        public Builder() {}
 
-        /**
-         * template name
-         * <p>
-         * API name: {@code name}
-         */
-        public final Builder name(@Nullable String value) {
-            this.name = value;
-            return this;
+        private Builder(TemplatesRecord o) {
+            this.composedOf = o.composedOf;
+            this.indexPatterns = o.indexPatterns;
+            this.name = o.name;
+            this.order = o.order;
+            this.version = o.version;
+        }
+
+        private Builder(Builder o) {
+            this.composedOf = o.composedOf;
+            this.indexPatterns = o.indexPatterns;
+            this.name = o.name;
+            this.order = o.order;
+            this.version = o.version;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
         }
 
         /**
-         * template index patterns
-         * <p>
-         * API name: {@code index_patterns}
-         */
-        public final Builder indexPatterns(@Nullable String value) {
-            this.indexPatterns = value;
-            return this;
-        }
-
-        /**
-         * template application order/priority number
-         * <p>
-         * API name: {@code order}
-         */
-        public final Builder order(@Nullable String value) {
-            this.order = value;
-            return this;
-        }
-
-        /**
-         * version
-         * <p>
-         * API name: {@code version}
-         */
-        public final Builder version(@Nullable String value) {
-            this.version = value;
-            return this;
-        }
-
-        /**
-         * component templates comprising index template
+         * The component templates that comprise the index template.
          * <p>
          * API name: {@code composed_of}
+         * </p>
          */
+        @Nonnull
         public final Builder composedOf(@Nullable String value) {
             this.composedOf = value;
             return this;
         }
 
         /**
+         * The template index patterns.
+         * <p>
+         * API name: {@code index_patterns}
+         * </p>
+         */
+        @Nonnull
+        public final Builder indexPatterns(@Nullable String value) {
+            this.indexPatterns = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code name}
+         */
+        @Nonnull
+        public final Builder name(@Nullable String value) {
+            this.name = value;
+            return this;
+        }
+
+        /**
+         * The template application order or priority number.
+         * <p>
+         * API name: {@code order}
+         * </p>
+         */
+        @Nonnull
+        public final Builder order(@Nullable String value) {
+            this.order = value;
+            return this;
+        }
+
+        /**
+         * The template version.
+         * <p>
+         * API name: {@code version}
+         * </p>
+         */
+        @Nonnull
+        public final Builder version(@Nullable String value) {
+            this.version = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link TemplatesRecord}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public TemplatesRecord build() {
             _checkSingleUse();
 
@@ -264,13 +311,33 @@ public class TemplatesRecord implements PlainJsonSerializable {
     );
 
     protected static void setupTemplatesRecordDeserializer(ObjectDeserializer<TemplatesRecord.Builder> op) {
-
-        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name", "n");
-        op.add(Builder::indexPatterns, JsonpDeserializer.stringDeserializer(), "index_patterns", "t");
-        op.add(Builder::order, JsonpDeserializer.stringDeserializer(), "order", "o", "p");
-        op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version", "v");
-        op.add(Builder::composedOf, JsonpDeserializer.stringDeserializer(), "composed_of", "c");
-
+        op.add(Builder::composedOf, JsonpDeserializer.stringDeserializer(), "composed_of");
+        op.add(Builder::indexPatterns, JsonpDeserializer.stringDeserializer(), "index_patterns");
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::order, JsonpDeserializer.stringDeserializer(), "order");
+        op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.composedOf);
+        result = 31 * result + Objects.hashCode(this.indexPatterns);
+        result = 31 * result + Objects.hashCode(this.name);
+        result = 31 * result + Objects.hashCode(this.order);
+        result = 31 * result + Objects.hashCode(this.version);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        TemplatesRecord other = (TemplatesRecord) o;
+        return Objects.equals(this.composedOf, other.composedOf)
+            && Objects.equals(this.indexPatterns, other.indexPatterns)
+            && Objects.equals(this.name, other.name)
+            && Objects.equals(this.order, other.order)
+            && Objects.equals(this.version, other.version);
+    }
 }

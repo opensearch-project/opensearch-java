@@ -30,44 +30,52 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.cat;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.opensearch.cat.thread_pool.ThreadPoolRecord;
+import org.opensearch.client.opensearch.cat.templates.TemplatesRecord;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: cat.thread_pool.Response
+// typedef: cat.templates.Response
 
 @JsonpDeserializable
-public class ThreadPoolResponse implements PlainJsonSerializable {
-    private final List<ThreadPoolRecord> valueBody;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class TemplatesResponse implements PlainJsonSerializable, ToCopyableBuilder<TemplatesResponse.Builder, TemplatesResponse> {
+
+    @Nonnull
+    private final List<TemplatesRecord> valueBody;
 
     // ---------------------------------------------------------------------------------------------
 
-    private ThreadPoolResponse(Builder builder) {
-
+    private TemplatesResponse(Builder builder) {
         this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
-
     }
 
-    public static ThreadPoolResponse of(Function<Builder, ObjectBuilder<ThreadPoolResponse>> fn) {
+    public static TemplatesResponse of(Function<TemplatesResponse.Builder, ObjectBuilder<TemplatesResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - Response value.
-     * <p>
-     * API name: {@code _value_body}
      */
-    public final List<ThreadPoolRecord> valueBody() {
+    @Nonnull
+    public final List<TemplatesRecord> valueBody() {
         return this.valueBody;
     }
 
@@ -76,81 +84,107 @@ public class ThreadPoolResponse implements PlainJsonSerializable {
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartArray();
-        for (ThreadPoolRecord item0 : this.valueBody) {
+        for (TemplatesRecord item0 : this.valueBody) {
             item0.serialize(generator, mapper);
-
         }
         generator.writeEnd();
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    /**
-     * Builder for {@link ThreadPoolResponse}.
-     */
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThreadPoolResponse> {
-        private List<ThreadPoolRecord> valueBody;
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /**
+     * Builder for {@link TemplatesResponse}.
+     */
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TemplatesResponse> {
+        private List<TemplatesRecord> valueBody;
+
+        public Builder() {}
+
+        private Builder(TemplatesResponse o) {
+            this.valueBody = _listCopy(o.valueBody);
+        }
+
+        private Builder(Builder o) {
+            this.valueBody = _listCopy(o.valueBody);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>valueBody</code>.
+         * </p>
          */
-        public final Builder valueBody(List<ThreadPoolRecord> list) {
+        @Nonnull
+        public final Builder valueBody(List<TemplatesRecord> list) {
             this.valueBody = _listAddAll(this.valueBody, list);
             return this;
         }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds one or more values to <code>valueBody</code>.
+         * </p>
          */
-        public final Builder valueBody(ThreadPoolRecord value, ThreadPoolRecord... values) {
+        @Nonnull
+        public final Builder valueBody(TemplatesRecord value, TemplatesRecord... values) {
             this.valueBody = _listAdd(this.valueBody, value, values);
             return this;
         }
 
         /**
          * Required - Response value.
-         * <p>
-         * API name: {@code _value_body}
+         *
          * <p>
          * Adds a value to <code>valueBody</code> using a builder lambda.
+         * </p>
          */
-        public final Builder valueBody(Function<ThreadPoolRecord.Builder, ObjectBuilder<ThreadPoolRecord>> fn) {
-            return valueBody(fn.apply(new ThreadPoolRecord.Builder()).build());
+        @Nonnull
+        public final Builder valueBody(Function<TemplatesRecord.Builder, ObjectBuilder<TemplatesRecord>> fn) {
+            return valueBody(fn.apply(new TemplatesRecord.Builder()).build());
         }
 
         /**
-         * Builds a {@link ThreadPoolResponse}.
+         * Builds a {@link TemplatesResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public ThreadPoolResponse build() {
+        @Override
+        @Nonnull
+        public TemplatesResponse build() {
             _checkSingleUse();
 
-            return new ThreadPoolResponse(this);
+            return new TemplatesResponse(this);
         }
     }
 
-    public static final JsonpDeserializer<ThreadPoolResponse> _DESERIALIZER = createThreadPoolResponseDeserializer();
+    public static final JsonpDeserializer<TemplatesResponse> _DESERIALIZER = createTemplatesResponseDeserializer();
 
-    protected static JsonpDeserializer<ThreadPoolResponse> createThreadPoolResponseDeserializer() {
-
-        JsonpDeserializer<List<ThreadPoolRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(ThreadPoolRecord._DESERIALIZER);
+    protected static JsonpDeserializer<TemplatesResponse> createTemplatesResponseDeserializer() {
+        JsonpDeserializer<List<TemplatesRecord>> valueDeserializer = JsonpDeserializer.arrayDeserializer(TemplatesRecord._DESERIALIZER);
 
         return JsonpDeserializer.of(
             valueDeserializer.acceptedEvents(),
             (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
         );
     }
-
 }
