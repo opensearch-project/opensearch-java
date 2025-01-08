@@ -609,6 +609,9 @@ public class SpecTransformer {
         } else if (schema.hasConst()) {
             var value = (String) schema.getConst().orElseThrow();
             shape.addVariant(title.orElse(value), value, schema.getDescription().orElse(null), isDeprecated);
+        } else if (schema.isBoolean()) {
+            shape.addVariant(title.orElse("true"), "true", schema.getDescription().orElse(null), isDeprecated);
+            shape.addVariant(title.orElse("false"), "false", schema.getDescription().orElse(null), isDeprecated);
         }
     }
 
@@ -844,7 +847,18 @@ public class SpecTransformer {
             return schema.hasEnums() || schema.hasConst();
         }
         if (schema.getOneOf().isPresent()) {
-            return schema.getOneOf().get().stream().allMatch(SpecTransformer::isEnum);
+            var enumCount = 0;
+            var booleanCount = 0;
+            var totalCount = 0;
+            for (var s : schema.getOneOf().orElseThrow()) {
+                if (s.isBoolean()) {
+                    booleanCount++;
+                } else if (isEnum(s)) {
+                    enumCount++;
+                }
+                totalCount++;
+            }
+            return enumCount == totalCount || (booleanCount == 1 && enumCount == totalCount - 1);
         }
         return false;
     }

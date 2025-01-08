@@ -30,20 +30,26 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-@JsonpDeserializable
-public enum Refresh implements JsonEnum {
-    True("true"),
+// typedef: _types.Refresh
 
+@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum Refresh implements JsonEnum {
     False("false"),
 
-    WaitFor("wait_for"),
+    True("true"),
 
-    ;
+    WaitFor("wait_for");
 
     private final String jsonValue;
 

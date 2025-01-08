@@ -30,39 +30,76 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.WriteResponseBase;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.delete.Response
+// typedef: delete.Response
 
 @JsonpDeserializable
-public class DeleteResponse extends WriteResponseBase {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class DeleteResponse extends WriteResponseBase implements ToCopyableBuilder<DeleteResponse.Builder, DeleteResponse> {
+
     // ---------------------------------------------------------------------------------------------
 
     private DeleteResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static DeleteResponse of(Function<Builder, ObjectBuilder<DeleteResponse>> fn) {
+    public static DeleteResponse of(Function<DeleteResponse.Builder, ObjectBuilder<DeleteResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DeleteResponse}.
      */
+    public static class Builder extends WriteResponseBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, DeleteResponse> {
 
-    public static class Builder extends WriteResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteResponse> {
+        public Builder() {}
+
+        private Builder(DeleteResponse o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -70,9 +107,10 @@ public class DeleteResponse extends WriteResponseBase {
         /**
          * Builds a {@link DeleteResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DeleteResponse build() {
             _checkSingleUse();
 
@@ -91,8 +129,22 @@ public class DeleteResponse extends WriteResponseBase {
     );
 
     protected static void setupDeleteResponseDeserializer(ObjectDeserializer<DeleteResponse.Builder> op) {
-        WriteResponseBase.setupWriteResponseBaseDeserializer(op);
-
+        setupWriteResponseBaseDeserializer(op);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

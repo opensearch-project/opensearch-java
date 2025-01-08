@@ -451,3 +451,5 @@ After:
 ### CreatePitResponse
 - The `CreatePitResponse` class has been moved from the `org.opensearch.client.opensearch.core.pit` package to the `org.opensearch.client.opensearch.core` package.
 
+### DeleteRequest
+- The `routing` property is now of type `List<String>` instead of `String`.

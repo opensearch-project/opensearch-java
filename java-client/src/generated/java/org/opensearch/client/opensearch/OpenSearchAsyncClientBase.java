@@ -51,6 +51,8 @@ import org.opensearch.client.opensearch.core.CountRequest;
 import org.opensearch.client.opensearch.core.CountResponse;
 import org.opensearch.client.opensearch.core.CreatePitRequest;
 import org.opensearch.client.opensearch.core.CreatePitResponse;
+import org.opensearch.client.opensearch.core.DeleteRequest;
+import org.opensearch.client.opensearch.core.DeleteResponse;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesAsyncClient;
@@ -181,6 +183,25 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
     public final CompletableFuture<CreatePitResponse> createPit(Function<CreatePitRequest.Builder, ObjectBuilder<CreatePitRequest>> fn)
         throws IOException, OpenSearchException {
         return createPit(fn.apply(new CreatePitRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: delete
+
+    /**
+     * Removes a document from the index.
+     */
+    public CompletableFuture<DeleteResponse> delete(DeleteRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Removes a document from the index.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteRequest}
+     */
+    public final CompletableFuture<DeleteResponse> delete(Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn)
+        throws IOException, OpenSearchException {
+        return delete(fn.apply(new DeleteRequest.Builder()).build());
     }
 
     // ----- Endpoint: info

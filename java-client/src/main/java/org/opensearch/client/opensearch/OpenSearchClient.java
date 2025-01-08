@@ -222,38 +222,6 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
         return create(fn.apply(new CreateRequest.Builder<TDocument>()).build());
     }
 
-    // ----- Endpoint: delete
-
-    /**
-     * Removes a document from the index.
-     *
-     *
-     */
-
-    public DeleteResponse delete(DeleteRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteRequest, DeleteResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteRequest,
-            DeleteResponse,
-            ErrorResponse>) DeleteRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Removes a document from the index.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteRequest}
-     *
-     */
-
-    public final DeleteResponse delete(Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn) throws IOException,
-        OpenSearchException {
-        return delete(fn.apply(new DeleteRequest.Builder()).build());
-    }
-
     // ----- Endpoint: delete_point_in_time
 
     /**
