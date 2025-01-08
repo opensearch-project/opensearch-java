@@ -29,7 +29,7 @@
         }
     {{/extendedByOtherShape}}
     {{^extendedByOtherShape}}
-        {{#extendsOtherShape}}
+        {{#doesExtendType}}
             public static class Builder extends {{extendsType}}.AbstractBuilder<Builder>
                                         implements {{TYPES.Client.Util.CopyableBuilder}}<Builder, {{className}}> {{#shouldImplementPlainDeserializable}}, {{TYPES.Client.Json.PlainDeserializable}}<Builder>{{/shouldImplementPlainDeserializable}} {
                 {{>ObjectShape/Builder/Fields}}
@@ -58,8 +58,8 @@
 
                 {{>ObjectShape/Builder/BuildImpl}}
             }
-        {{/extendsOtherShape}}
-        {{^extendsOtherShape}}
+        {{/doesExtendType}}
+        {{^doesExtendType}}
             public static class Builder extends {{TYPES.Client.Util.ObjectBuilderBase}}
                                         implements {{TYPES.Client.Util.CopyableBuilder}}<Builder, {{className}}>{{#shouldImplementPlainDeserializable}}, {{TYPES.Client.Json.PlainDeserializable}}<Builder>{{/shouldImplementPlainDeserializable}} {
                 {{>ObjectShape/Builder/Fields}}
@@ -91,12 +91,12 @@
 
                 {{>ObjectShape/Builder/BuildImpl}}
             }
-        {{/extendsOtherShape}}
+        {{/doesExtendType}}
     {{/extendedByOtherShape}}
 {{/abstract}}
 {{#extendedByOtherShape}}
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-        extends {{#extendsOtherShape}}{{extendsType}}.AbstractBuilder<BuilderT>{{/extendsOtherShape}}{{^extendsOtherShape}}{{TYPES.Client.Util.ObjectBuilderBase}}{{/extendsOtherShape}} {
+        extends {{#doesExtendType}}{{extendsType}}.AbstractBuilder<BuilderT>{{/doesExtendType}}{{^doesExtendType}}{{TYPES.Client.Util.ObjectBuilderBase}}{{/doesExtendType}} {
         {{>ObjectShape/Builder/Fields}}
 
         protected AbstractBuilder() {}
@@ -108,11 +108,11 @@
         protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
             {{>ObjectShape/Builder/CopyCtorImpl}}
         }
-    {{^extendsOtherShape}}
+    {{^doesExtendType}}
 
         @{{TYPES.Javax.Annotation.Nonnull}}
         protected abstract BuilderT self();
-    {{/extendsOtherShape}}
+    {{/doesExtendType}}
 
     {{#abstractBuilderSetters}}
         {{>ObjectShape/Builder/Setter}}

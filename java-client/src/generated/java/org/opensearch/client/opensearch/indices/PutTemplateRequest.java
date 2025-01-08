@@ -61,7 +61,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.put_template.Request
@@ -71,7 +70,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PutTemplateRequest extends RequestBase
+public final class PutTemplateRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<PutTemplateRequest.Builder, PutTemplateRequest> {
@@ -110,6 +109,7 @@ public class PutTemplateRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private PutTemplateRequest(Builder builder) {
+        super(builder);
         this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.create = builder.create;
@@ -309,7 +309,7 @@ public class PutTemplateRequest extends RequestBase
     /**
      * Builder for {@link PutTemplateRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PutTemplateRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PutTemplateRequest> {
         @Nullable
         private Map<String, Alias> aliases;
         @Nullable
@@ -333,6 +333,7 @@ public class PutTemplateRequest extends RequestBase
         public Builder() {}
 
         private Builder(PutTemplateRequest o) {
+            super(o);
             this.aliases = _mapCopy(o.aliases);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.create = o.create;
@@ -346,6 +347,7 @@ public class PutTemplateRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.aliases = _mapCopy(o.aliases);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.create = o.create;
@@ -362,6 +364,12 @@ public class PutTemplateRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -628,6 +636,20 @@ public class PutTemplateRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.create != null) {
+            params.put("create", String.valueOf(this.create));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code indices.put_template}".
      */
@@ -644,15 +666,7 @@ public class PutTemplateRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.create != null) {
-                params.put("create", String.valueOf(request.create));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

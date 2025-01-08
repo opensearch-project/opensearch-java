@@ -62,7 +62,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.rollover.Request
@@ -72,7 +71,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RolloverRequest extends RequestBase
+public final class RolloverRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<RolloverRequest.Builder, RolloverRequest> {
@@ -114,6 +113,7 @@ public class RolloverRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private RolloverRequest(Builder builder) {
+        super(builder);
         this.alias = ApiTypeHelper.requireNonNull(builder.alias, this, "alias");
         this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
@@ -306,7 +306,7 @@ public class RolloverRequest extends RequestBase
     /**
      * Builder for {@link RolloverRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RolloverRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RolloverRequest> {
         private String alias;
         @Nullable
         private Map<String, Alias> aliases;
@@ -332,6 +332,7 @@ public class RolloverRequest extends RequestBase
         public Builder() {}
 
         private Builder(RolloverRequest o) {
+            super(o);
             this.alias = o.alias;
             this.aliases = _mapCopy(o.aliases);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
@@ -346,6 +347,7 @@ public class RolloverRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.alias = o.alias;
             this.aliases = _mapCopy(o.aliases);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
@@ -363,6 +365,12 @@ public class RolloverRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -645,6 +653,26 @@ public class RolloverRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.dryRun != null) {
+            params.put("dry_run", String.valueOf(this.dryRun));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+        if (this.waitForActiveShards != null) {
+            params.put("wait_for_active_shards", this.waitForActiveShards._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code indices.rollover}".
      */
@@ -682,21 +710,7 @@ public class RolloverRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.dryRun != null) {
-                params.put("dry_run", String.valueOf(request.dryRun));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
-            if (request.waitForActiveShards != null) {
-                params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

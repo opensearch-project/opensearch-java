@@ -51,7 +51,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.delete_component_template.Request
@@ -60,7 +59,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Deletes a component template.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteComponentTemplateRequest extends RequestBase
+public final class DeleteComponentTemplateRequest extends RequestBase
     implements
         ToCopyableBuilder<DeleteComponentTemplateRequest.Builder, DeleteComponentTemplateRequest> {
 
@@ -80,6 +79,7 @@ public class DeleteComponentTemplateRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private DeleteComponentTemplateRequest(Builder builder) {
+        super(builder);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.masterTimeout = builder.masterTimeout;
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
@@ -154,7 +154,9 @@ public class DeleteComponentTemplateRequest extends RequestBase
     /**
      * Builder for {@link DeleteComponentTemplateRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DeleteComponentTemplateRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, DeleteComponentTemplateRequest> {
         @Nullable
         private Time clusterManagerTimeout;
         @Nullable
@@ -166,6 +168,7 @@ public class DeleteComponentTemplateRequest extends RequestBase
         public Builder() {}
 
         private Builder(DeleteComponentTemplateRequest o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.masterTimeout = o.masterTimeout;
             this.name = o.name;
@@ -173,6 +176,7 @@ public class DeleteComponentTemplateRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.masterTimeout = o.masterTimeout;
             this.name = o.name;
@@ -183,6 +187,12 @@ public class DeleteComponentTemplateRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -286,6 +296,20 @@ public class DeleteComponentTemplateRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code cluster.delete_component_template}".
      */
@@ -303,15 +327,7 @@ public class DeleteComponentTemplateRequest extends RequestBase
             // Request parameters
             request -> {
                 Map<String, String> params = new HashMap<>();
-                if (request.clusterManagerTimeout != null) {
-                    params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-                }
-                if (request.masterTimeout != null) {
-                    params.put("master_timeout", request.masterTimeout._toJsonString());
-                }
-                if (request.timeout != null) {
-                    params.put("timeout", request.timeout._toJsonString());
-                }
+                request.applyQueryParameters(params);
                 return params;
             },
             SimpleEndpoint.emptyMap(),

@@ -12,6 +12,7 @@ import static org.opensearch.client.codegen.utils.Functional.ifNonnull;
 
 import io.swagger.v3.oas.models.parameters.Parameter;
 import java.util.Optional;
+import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.model.Deprecation;
@@ -93,5 +94,11 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
 
     public boolean isOverloaded() {
         return schema != null && schema.hasAnyOf() && schema.getAnyOf().orElseThrow().stream().allMatch(OpenApiSchema::hasTitle);
+    }
+
+    private static final Set<String> GLOBAL_CAT_PARAMETERS = Set.of("format", "h", "help", "local", "s", "v");
+
+    public boolean isGlobalCatParameter() {
+        return GLOBAL_CAT_PARAMETERS.contains(name);
     }
 }

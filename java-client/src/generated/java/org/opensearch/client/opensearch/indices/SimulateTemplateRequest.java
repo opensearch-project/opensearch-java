@@ -56,7 +56,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.simulate_template.Request
@@ -66,7 +65,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SimulateTemplateRequest extends RequestBase
+public final class SimulateTemplateRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<SimulateTemplateRequest.Builder, SimulateTemplateRequest> {
@@ -93,6 +92,7 @@ public class SimulateTemplateRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private SimulateTemplateRequest(Builder builder) {
+        super(builder);
         this.cause = builder.cause;
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.create = builder.create;
@@ -197,7 +197,7 @@ public class SimulateTemplateRequest extends RequestBase
     /**
      * Builder for {@link SimulateTemplateRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SimulateTemplateRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, SimulateTemplateRequest> {
         @Nullable
         private String cause;
         @Nullable
@@ -213,6 +213,7 @@ public class SimulateTemplateRequest extends RequestBase
         public Builder() {}
 
         private Builder(SimulateTemplateRequest o) {
+            super(o);
             this.cause = o.cause;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.create = o.create;
@@ -222,6 +223,7 @@ public class SimulateTemplateRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.cause = o.cause;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.create = o.create;
@@ -234,6 +236,12 @@ public class SimulateTemplateRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -370,6 +378,23 @@ public class SimulateTemplateRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.cause != null) {
+            params.put("cause", this.cause);
+        }
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.create != null) {
+            params.put("create", String.valueOf(this.create));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code indices.simulate_template}".
      */
@@ -399,18 +424,7 @@ public class SimulateTemplateRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.cause != null) {
-                params.put("cause", request.cause);
-            }
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.create != null) {
-                params.put("create", String.valueOf(request.create));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

@@ -51,7 +51,6 @@ import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.delete_voting_config_exclusions.Request
@@ -60,7 +59,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Clears cluster voting config exclusions.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteVotingConfigExclusionsRequest extends RequestBase
+public final class DeleteVotingConfigExclusionsRequest extends RequestBase
     implements
         ToCopyableBuilder<DeleteVotingConfigExclusionsRequest.Builder, DeleteVotingConfigExclusionsRequest> {
 
@@ -70,6 +69,7 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private DeleteVotingConfigExclusionsRequest(Builder builder) {
+        super(builder);
         this.waitForRemoval = builder.waitForRemoval;
     }
 
@@ -108,17 +108,21 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase
     /**
      * Builder for {@link DeleteVotingConfigExclusionsRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DeleteVotingConfigExclusionsRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, DeleteVotingConfigExclusionsRequest> {
         @Nullable
         private Boolean waitForRemoval;
 
         public Builder() {}
 
         private Builder(DeleteVotingConfigExclusionsRequest o) {
+            super(o);
             this.waitForRemoval = o.waitForRemoval;
         }
 
         private Builder(Builder o) {
+            super(o);
             this.waitForRemoval = o.waitForRemoval;
         }
 
@@ -126,6 +130,12 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -159,6 +169,14 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.waitForRemoval != null) {
+            params.put("wait_for_removal", String.valueOf(this.waitForRemoval));
+        }
+    }
+
     /**
      * Endpoint "{@code cluster.delete_voting_config_exclusions}".
      */
@@ -170,9 +188,7 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.waitForRemoval != null) {
-                params.put("wait_for_removal", String.valueOf(request.waitForRemoval));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap()

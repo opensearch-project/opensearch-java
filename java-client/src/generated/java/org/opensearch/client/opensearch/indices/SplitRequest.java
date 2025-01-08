@@ -60,7 +60,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.split.Request
@@ -70,7 +69,10 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SplitRequest extends RequestBase implements PlainJsonSerializable, ToCopyableBuilder<SplitRequest.Builder, SplitRequest> {
+public final class SplitRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<SplitRequest.Builder, SplitRequest> {
 
     @Nonnull
     private final Map<String, Alias> aliases;
@@ -109,6 +111,7 @@ public class SplitRequest extends RequestBase implements PlainJsonSerializable, 
     // ---------------------------------------------------------------------------------------------
 
     private SplitRequest(Builder builder) {
+        super(builder);
         this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.copySettings = builder.copySettings;
@@ -297,7 +300,7 @@ public class SplitRequest extends RequestBase implements PlainJsonSerializable, 
     /**
      * Builder for {@link SplitRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SplitRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, SplitRequest> {
         @Nullable
         private Map<String, Alias> aliases;
         @Nullable
@@ -322,6 +325,7 @@ public class SplitRequest extends RequestBase implements PlainJsonSerializable, 
         public Builder() {}
 
         private Builder(SplitRequest o) {
+            super(o);
             this.aliases = _mapCopy(o.aliases);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.copySettings = o.copySettings;
@@ -336,6 +340,7 @@ public class SplitRequest extends RequestBase implements PlainJsonSerializable, 
         }
 
         private Builder(Builder o) {
+            super(o);
             this.aliases = _mapCopy(o.aliases);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.copySettings = o.copySettings;
@@ -353,6 +358,12 @@ public class SplitRequest extends RequestBase implements PlainJsonSerializable, 
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -634,6 +645,32 @@ public class SplitRequest extends RequestBase implements PlainJsonSerializable, 
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.copySettings != null) {
+            params.put("copy_settings", String.valueOf(this.copySettings));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.taskExecutionTimeout != null) {
+            params.put("task_execution_timeout", this.taskExecutionTimeout._toJsonString());
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+        if (this.waitForActiveShards != null) {
+            params.put("wait_for_active_shards", this.waitForActiveShards._toJsonString());
+        }
+        if (this.waitForCompletion != null) {
+            params.put("wait_for_completion", String.valueOf(this.waitForCompletion));
+        }
+    }
+
     /**
      * Endpoint "{@code indices.split}".
      */
@@ -652,27 +689,7 @@ public class SplitRequest extends RequestBase implements PlainJsonSerializable, 
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.copySettings != null) {
-                params.put("copy_settings", String.valueOf(request.copySettings));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (request.taskExecutionTimeout != null) {
-                params.put("task_execution_timeout", request.taskExecutionTimeout._toJsonString());
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
-            if (request.waitForActiveShards != null) {
-                params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
-            }
-            if (request.waitForCompletion != null) {
-                params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

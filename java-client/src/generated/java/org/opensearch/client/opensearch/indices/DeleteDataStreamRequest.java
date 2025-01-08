@@ -36,7 +36,9 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
@@ -47,7 +49,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.delete_data_stream.Request
@@ -56,7 +57,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Deletes a data stream.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteDataStreamRequest extends RequestBase
+public final class DeleteDataStreamRequest extends RequestBase
     implements
         ToCopyableBuilder<DeleteDataStreamRequest.Builder, DeleteDataStreamRequest> {
 
@@ -66,6 +67,7 @@ public class DeleteDataStreamRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private DeleteDataStreamRequest(Builder builder) {
+        super(builder);
         this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
     }
 
@@ -100,16 +102,18 @@ public class DeleteDataStreamRequest extends RequestBase
     /**
      * Builder for {@link DeleteDataStreamRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DeleteDataStreamRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, DeleteDataStreamRequest> {
         private List<String> name;
 
         public Builder() {}
 
         private Builder(DeleteDataStreamRequest o) {
+            super(o);
             this.name = _listCopy(o.name);
         }
 
         private Builder(Builder o) {
+            super(o);
             this.name = _listCopy(o.name);
         }
 
@@ -117,6 +121,12 @@ public class DeleteDataStreamRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -181,7 +191,11 @@ public class DeleteDataStreamRequest extends RequestBase
             return buf.toString();
         },
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         false,
         DeleteDataStreamResponse._DESERIALIZER

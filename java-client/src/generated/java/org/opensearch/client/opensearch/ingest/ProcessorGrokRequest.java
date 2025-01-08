@@ -49,7 +49,6 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ingest.processor_grok.Request
@@ -58,7 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns a list of the built-in patterns.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ProcessorGrokRequest extends RequestBase implements ToCopyableBuilder<ProcessorGrokRequest.Builder, ProcessorGrokRequest> {
+public final class ProcessorGrokRequest extends RequestBase
+    implements
+        ToCopyableBuilder<ProcessorGrokRequest.Builder, ProcessorGrokRequest> {
 
     @Nullable
     private final Boolean s;
@@ -66,6 +67,7 @@ public class ProcessorGrokRequest extends RequestBase implements ToCopyableBuild
     // ---------------------------------------------------------------------------------------------
 
     private ProcessorGrokRequest(Builder builder) {
+        super(builder);
         this.s = builder.s;
     }
 
@@ -100,17 +102,19 @@ public class ProcessorGrokRequest extends RequestBase implements ToCopyableBuild
     /**
      * Builder for {@link ProcessorGrokRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ProcessorGrokRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ProcessorGrokRequest> {
         @Nullable
         private Boolean s;
 
         public Builder() {}
 
         private Builder(ProcessorGrokRequest o) {
+            super(o);
             this.s = o.s;
         }
 
         private Builder(Builder o) {
+            super(o);
             this.s = o.s;
         }
 
@@ -118,6 +122,12 @@ public class ProcessorGrokRequest extends RequestBase implements ToCopyableBuild
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -148,6 +158,14 @@ public class ProcessorGrokRequest extends RequestBase implements ToCopyableBuild
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.s != null) {
+            params.put("s", String.valueOf(this.s));
+        }
+    }
+
     /**
      * Endpoint "{@code ingest.processor_grok}".
      */
@@ -159,9 +177,7 @@ public class ProcessorGrokRequest extends RequestBase implements ToCopyableBuild
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.s != null) {
-                params.put("s", String.valueOf(request.s));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

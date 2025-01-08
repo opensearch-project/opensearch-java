@@ -62,7 +62,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.reroute.Request
@@ -72,7 +71,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RerouteRequest extends RequestBase
+public final class RerouteRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<RerouteRequest.Builder, RerouteRequest> {
@@ -105,6 +104,7 @@ public class RerouteRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private RerouteRequest(Builder builder) {
+        super(builder);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.commands = ApiTypeHelper.unmodifiable(builder.commands);
         this.dryRun = builder.dryRun;
@@ -245,7 +245,7 @@ public class RerouteRequest extends RequestBase
     /**
      * Builder for {@link RerouteRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RerouteRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RerouteRequest> {
         @Nullable
         private Time clusterManagerTimeout;
         @Nullable
@@ -266,6 +266,7 @@ public class RerouteRequest extends RequestBase
         public Builder() {}
 
         private Builder(RerouteRequest o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.commands = _listCopy(o.commands);
             this.dryRun = o.dryRun;
@@ -277,6 +278,7 @@ public class RerouteRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.commands = _listCopy(o.commands);
             this.dryRun = o.dryRun;
@@ -291,6 +293,12 @@ public class RerouteRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -511,6 +519,32 @@ public class RerouteRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.dryRun != null) {
+            params.put("dry_run", String.valueOf(this.dryRun));
+        }
+        if (this.explain != null) {
+            params.put("explain", String.valueOf(this.explain));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (ApiTypeHelper.isDefined(this.metric)) {
+            params.put("metric", this.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.retryFailed != null) {
+            params.put("retry_failed", String.valueOf(this.retryFailed));
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code cluster.reroute}".
      */
@@ -522,27 +556,7 @@ public class RerouteRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.dryRun != null) {
-                params.put("dry_run", String.valueOf(request.dryRun));
-            }
-            if (request.explain != null) {
-                params.put("explain", String.valueOf(request.explain));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (ApiTypeHelper.isDefined(request.metric)) {
-                params.put("metric", request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.retryFailed != null) {
-                params.put("retry_failed", String.valueOf(request.retryFailed));
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

@@ -51,7 +51,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.recovery.Request
@@ -60,7 +59,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns information about ongoing index shard recoveries.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RecoveryRequest extends RequestBase implements ToCopyableBuilder<RecoveryRequest.Builder, RecoveryRequest> {
+public final class RecoveryRequest extends RequestBase implements ToCopyableBuilder<RecoveryRequest.Builder, RecoveryRequest> {
 
     @Nullable
     private final Boolean activeOnly;
@@ -74,6 +73,7 @@ public class RecoveryRequest extends RequestBase implements ToCopyableBuilder<Re
     // ---------------------------------------------------------------------------------------------
 
     private RecoveryRequest(Builder builder) {
+        super(builder);
         this.activeOnly = builder.activeOnly;
         this.detailed = builder.detailed;
         this.index = ApiTypeHelper.unmodifiable(builder.index);
@@ -133,7 +133,7 @@ public class RecoveryRequest extends RequestBase implements ToCopyableBuilder<Re
     /**
      * Builder for {@link RecoveryRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RecoveryRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RecoveryRequest> {
         @Nullable
         private Boolean activeOnly;
         @Nullable
@@ -144,12 +144,14 @@ public class RecoveryRequest extends RequestBase implements ToCopyableBuilder<Re
         public Builder() {}
 
         private Builder(RecoveryRequest o) {
+            super(o);
             this.activeOnly = o.activeOnly;
             this.detailed = o.detailed;
             this.index = _listCopy(o.index);
         }
 
         private Builder(Builder o) {
+            super(o);
             this.activeOnly = o.activeOnly;
             this.detailed = o.detailed;
             this.index = _listCopy(o.index);
@@ -159,6 +161,12 @@ public class RecoveryRequest extends RequestBase implements ToCopyableBuilder<Re
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -235,6 +243,17 @@ public class RecoveryRequest extends RequestBase implements ToCopyableBuilder<Re
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.activeOnly != null) {
+            params.put("active_only", String.valueOf(this.activeOnly));
+        }
+        if (this.detailed != null) {
+            params.put("detailed", String.valueOf(this.detailed));
+        }
+    }
+
     /**
      * Endpoint "{@code indices.recovery}".
      */
@@ -265,12 +284,7 @@ public class RecoveryRequest extends RequestBase implements ToCopyableBuilder<Re
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.activeOnly != null) {
-                params.put("active_only", String.valueOf(request.activeOnly));
-            }
-            if (request.detailed != null) {
-                params.put("detailed", String.valueOf(request.detailed));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

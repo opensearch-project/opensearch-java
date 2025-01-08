@@ -176,6 +176,11 @@ public final class Types {
                 public static final Type RequestBase = type(PACKAGE, "RequestBase");
                 public static final Type Time = type(PACKAGE, "Time");
             }
+
+            public static final class Cat {
+                public static final String PACKAGE = OpenSearch.PACKAGE + ".cat";
+                public static final Type CatRequestBase = type(PACKAGE, "CatRequestBase");
+            }
         }
 
         public static final class Transport {

@@ -52,7 +52,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: tasks.list.Request
@@ -61,7 +60,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns a list of tasks.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ListRequest extends RequestBase implements ToCopyableBuilder<ListRequest.Builder, ListRequest> {
+public final class ListRequest extends RequestBase implements ToCopyableBuilder<ListRequest.Builder, ListRequest> {
 
     @Nonnull
     private final List<String> actions;
@@ -87,6 +86,7 @@ public class ListRequest extends RequestBase implements ToCopyableBuilder<ListRe
     // ---------------------------------------------------------------------------------------------
 
     private ListRequest(Builder builder) {
+        super(builder);
         this.actions = ApiTypeHelper.unmodifiable(builder.actions);
         this.detailed = builder.detailed;
         this.groupBy = builder.groupBy;
@@ -194,7 +194,7 @@ public class ListRequest extends RequestBase implements ToCopyableBuilder<ListRe
     /**
      * Builder for {@link ListRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ListRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ListRequest> {
         @Nullable
         private List<String> actions;
         @Nullable
@@ -213,6 +213,7 @@ public class ListRequest extends RequestBase implements ToCopyableBuilder<ListRe
         public Builder() {}
 
         private Builder(ListRequest o) {
+            super(o);
             this.actions = _listCopy(o.actions);
             this.detailed = o.detailed;
             this.groupBy = o.groupBy;
@@ -223,6 +224,7 @@ public class ListRequest extends RequestBase implements ToCopyableBuilder<ListRe
         }
 
         private Builder(Builder o) {
+            super(o);
             this.actions = _listCopy(o.actions);
             this.detailed = o.detailed;
             this.groupBy = o.groupBy;
@@ -236,6 +238,12 @@ public class ListRequest extends RequestBase implements ToCopyableBuilder<ListRe
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -391,6 +399,32 @@ public class ListRequest extends RequestBase implements ToCopyableBuilder<ListRe
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (ApiTypeHelper.isDefined(this.actions)) {
+            params.put("actions", String.join(",", this.actions));
+        }
+        if (this.detailed != null) {
+            params.put("detailed", String.valueOf(this.detailed));
+        }
+        if (this.groupBy != null) {
+            params.put("group_by", this.groupBy.jsonValue());
+        }
+        if (ApiTypeHelper.isDefined(this.nodes)) {
+            params.put("nodes", String.join(",", this.nodes));
+        }
+        if (this.parentTaskId != null) {
+            params.put("parent_task_id", this.parentTaskId);
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+        if (this.waitForCompletion != null) {
+            params.put("wait_for_completion", String.valueOf(this.waitForCompletion));
+        }
+    }
+
     /**
      * Endpoint "{@code tasks.list}".
      */
@@ -402,27 +436,7 @@ public class ListRequest extends RequestBase implements ToCopyableBuilder<ListRe
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (ApiTypeHelper.isDefined(request.actions)) {
-                params.put("actions", String.join(",", request.actions));
-            }
-            if (request.detailed != null) {
-                params.put("detailed", String.valueOf(request.detailed));
-            }
-            if (request.groupBy != null) {
-                params.put("group_by", request.groupBy.jsonValue());
-            }
-            if (ApiTypeHelper.isDefined(request.nodes)) {
-                params.put("nodes", String.join(",", request.nodes));
-            }
-            if (request.parentTaskId != null) {
-                params.put("parent_task_id", request.parentTaskId);
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
-            if (request.waitForCompletion != null) {
-                params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

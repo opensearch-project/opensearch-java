@@ -34,7 +34,7 @@ package org.opensearch.client.opensearch.model;
 
 import java.util.Arrays;
 import org.junit.Test;
-import org.opensearch.client.opensearch._types.Bytes;
+import org.opensearch.client.opensearch._types.DistanceUnit;
 import org.opensearch.client.opensearch._types.mapping.DynamicMapping;
 import org.opensearch.client.opensearch._types.mapping.GeoOrientation;
 
@@ -42,8 +42,8 @@ public class EnumTest extends ModelTestCase {
 
     @Test
     public void testSimpleEnum() {
-        assertNull(Bytes.GigaBytes.aliases());
-        assertEquals(Bytes.GigaBytes, Bytes._DESERIALIZER.parse("gb"));
+        assertNull(DistanceUnit.Meters.aliases());
+        assertEquals(DistanceUnit.Meters, DistanceUnit._DESERIALIZER.parse("m"));
     }
 
     @Test

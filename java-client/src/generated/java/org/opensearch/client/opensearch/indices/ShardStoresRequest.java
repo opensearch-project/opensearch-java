@@ -54,7 +54,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.shard_stores.Request
@@ -63,7 +62,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Provides store information for shard copies of indexes.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ShardStoresRequest extends RequestBase implements ToCopyableBuilder<ShardStoresRequest.Builder, ShardStoresRequest> {
+public final class ShardStoresRequest extends RequestBase implements ToCopyableBuilder<ShardStoresRequest.Builder, ShardStoresRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
@@ -83,6 +82,7 @@ public class ShardStoresRequest extends RequestBase implements ToCopyableBuilder
     // ---------------------------------------------------------------------------------------------
 
     private ShardStoresRequest(Builder builder) {
+        super(builder);
         this.allowNoIndices = builder.allowNoIndices;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.ignoreUnavailable = builder.ignoreUnavailable;
@@ -167,7 +167,7 @@ public class ShardStoresRequest extends RequestBase implements ToCopyableBuilder
     /**
      * Builder for {@link ShardStoresRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardStoresRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ShardStoresRequest> {
         @Nullable
         private Boolean allowNoIndices;
         @Nullable
@@ -182,6 +182,7 @@ public class ShardStoresRequest extends RequestBase implements ToCopyableBuilder
         public Builder() {}
 
         private Builder(ShardStoresRequest o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.ignoreUnavailable = o.ignoreUnavailable;
@@ -190,6 +191,7 @@ public class ShardStoresRequest extends RequestBase implements ToCopyableBuilder
         }
 
         private Builder(Builder o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.ignoreUnavailable = o.ignoreUnavailable;
@@ -201,6 +203,12 @@ public class ShardStoresRequest extends RequestBase implements ToCopyableBuilder
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -342,6 +350,23 @@ public class ShardStoresRequest extends RequestBase implements ToCopyableBuilder
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.allowNoIndices != null) {
+            params.put("allow_no_indices", String.valueOf(this.allowNoIndices));
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        if (ApiTypeHelper.isDefined(this.status)) {
+            params.put("status", this.status.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+    }
+
     /**
      * Endpoint "{@code indices.shard_stores}".
      */
@@ -372,18 +397,7 @@ public class ShardStoresRequest extends RequestBase implements ToCopyableBuilder
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.ignoreUnavailable != null) {
-                params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
-            if (ApiTypeHelper.isDefined(request.status)) {
-                params.put("status", request.status.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

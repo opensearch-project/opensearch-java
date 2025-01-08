@@ -36,7 +36,9 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -49,7 +51,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.data_streams_stats.Request
@@ -58,7 +59,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Provides statistics on operations happening in a data stream.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DataStreamsStatsRequest extends RequestBase
+public final class DataStreamsStatsRequest extends RequestBase
     implements
         ToCopyableBuilder<DataStreamsStatsRequest.Builder, DataStreamsStatsRequest> {
 
@@ -68,6 +69,7 @@ public class DataStreamsStatsRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private DataStreamsStatsRequest(Builder builder) {
+        super(builder);
         this.name = ApiTypeHelper.unmodifiable(builder.name);
     }
 
@@ -103,17 +105,19 @@ public class DataStreamsStatsRequest extends RequestBase
     /**
      * Builder for {@link DataStreamsStatsRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DataStreamsStatsRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, DataStreamsStatsRequest> {
         @Nullable
         private List<String> name;
 
         public Builder() {}
 
         private Builder(DataStreamsStatsRequest o) {
+            super(o);
             this.name = _listCopy(o.name);
         }
 
         private Builder(Builder o) {
+            super(o);
             this.name = _listCopy(o.name);
         }
 
@@ -121,6 +125,12 @@ public class DataStreamsStatsRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -201,7 +211,11 @@ public class DataStreamsStatsRequest extends RequestBase
             throw SimpleEndpoint.noPathTemplateFound("path");
         },
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         false,
         DataStreamsStatsResponse._DESERIALIZER

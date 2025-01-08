@@ -109,11 +109,25 @@ public class OpenSearchDanglingIndicesClient extends ApiClient<OpenSearchTranspo
     /**
      * Returns all dangling indexes.
      */
-    public ListDanglingIndicesResponse listDanglingIndices() throws IOException, OpenSearchException {
-        return this.transport.performRequest(
-            ListDanglingIndicesRequest._INSTANCE,
-            ListDanglingIndicesRequest._ENDPOINT,
-            this.transportOptions
-        );
+    public ListDanglingIndicesResponse listDanglingIndices(ListDanglingIndicesRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ListDanglingIndicesRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns all dangling indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link ListDanglingIndicesRequest}
+     */
+    public final ListDanglingIndicesResponse listDanglingIndices(
+        Function<ListDanglingIndicesRequest.Builder, ObjectBuilder<ListDanglingIndicesRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return listDanglingIndices(fn.apply(new ListDanglingIndicesRequest.Builder()).build());
+    }
+
+    /**
+     * Returns all dangling indexes.
+     */
+    public final ListDanglingIndicesResponse listDanglingIndices() throws IOException, OpenSearchException {
+        return listDanglingIndices(new ListDanglingIndicesRequest.Builder().build());
     }
 }

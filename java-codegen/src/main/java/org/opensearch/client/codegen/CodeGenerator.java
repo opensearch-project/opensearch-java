@@ -13,9 +13,9 @@ import static org.opensearch.client.codegen.model.OperationGroupMatcher.namespac
 import static org.opensearch.client.codegen.utils.matcher.Matcher.and;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.is;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.isNot;
-import static org.opensearch.client.codegen.utils.matcher.Matcher.isNotOneOf;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.isNull;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.isOneOf;
+import static org.opensearch.client.codegen.utils.matcher.Matcher.not;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.or;
 import static org.opensearch.client.codegen.utils.matcher.StringMatcher.contains;
 
@@ -48,6 +48,7 @@ public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Matcher<OperationGroup> OPERATION_MATCHER = or(
         and(namespace(isNull()), name(is("info"))),
+        and(namespace(is("cat")), name(isNot("help"))),
         and(
             namespace(is("cluster")),
             name(
@@ -66,7 +67,14 @@ public class CodeGenerator {
             namespace(is("ml")),
             name(
                 // TODO: search_models is complex and ideally should re-use the search structures
-                isNotOneOf("predict", "search_models", "train", "train_predict")
+                not(
+                    or(
+                        contains("predict"),
+                        contains("search"),
+                        contains("train"),
+                        isOneOf("get_connector", "update_connector", "update_model_group")
+                    )
+                )
             )
         ),
         and(

@@ -37,7 +37,9 @@
 package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -59,7 +61,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.analyze.Request
@@ -69,7 +70,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class AnalyzeRequest extends RequestBase
+public final class AnalyzeRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<AnalyzeRequest.Builder, AnalyzeRequest> {
@@ -107,6 +108,7 @@ public class AnalyzeRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private AnalyzeRequest(Builder builder) {
+        super(builder);
         this.analyzer = builder.analyzer;
         this.attributes = ApiTypeHelper.unmodifiable(builder.attributes);
         this.charFilter = ApiTypeHelper.unmodifiable(builder.charFilter);
@@ -314,7 +316,7 @@ public class AnalyzeRequest extends RequestBase
     /**
      * Builder for {@link AnalyzeRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AnalyzeRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, AnalyzeRequest> {
         @Nullable
         private String analyzer;
         @Nullable
@@ -339,6 +341,7 @@ public class AnalyzeRequest extends RequestBase
         public Builder() {}
 
         private Builder(AnalyzeRequest o) {
+            super(o);
             this.analyzer = o.analyzer;
             this.attributes = _listCopy(o.attributes);
             this.charFilter = _listCopy(o.charFilter);
@@ -352,6 +355,7 @@ public class AnalyzeRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.analyzer = o.analyzer;
             this.attributes = _listCopy(o.attributes);
             this.charFilter = _listCopy(o.charFilter);
@@ -368,6 +372,12 @@ public class AnalyzeRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -664,7 +674,11 @@ public class AnalyzeRequest extends RequestBase
             throw SimpleEndpoint.noPathTemplateFound("path");
         },
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         true,
         AnalyzeResponse._DESERIALIZER

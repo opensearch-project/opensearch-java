@@ -53,7 +53,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.segments.Request
@@ -62,7 +61,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Provides low-level information about segments in a Lucene index.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SegmentsRequest extends RequestBase implements ToCopyableBuilder<SegmentsRequest.Builder, SegmentsRequest> {
+public final class SegmentsRequest extends RequestBase implements ToCopyableBuilder<SegmentsRequest.Builder, SegmentsRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
@@ -82,6 +81,7 @@ public class SegmentsRequest extends RequestBase implements ToCopyableBuilder<Se
     // ---------------------------------------------------------------------------------------------
 
     private SegmentsRequest(Builder builder) {
+        super(builder);
         this.allowNoIndices = builder.allowNoIndices;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.ignoreUnavailable = builder.ignoreUnavailable;
@@ -168,7 +168,7 @@ public class SegmentsRequest extends RequestBase implements ToCopyableBuilder<Se
     /**
      * Builder for {@link SegmentsRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SegmentsRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, SegmentsRequest> {
         @Nullable
         private Boolean allowNoIndices;
         @Nullable
@@ -183,6 +183,7 @@ public class SegmentsRequest extends RequestBase implements ToCopyableBuilder<Se
         public Builder() {}
 
         private Builder(SegmentsRequest o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.ignoreUnavailable = o.ignoreUnavailable;
@@ -191,6 +192,7 @@ public class SegmentsRequest extends RequestBase implements ToCopyableBuilder<Se
         }
 
         private Builder(Builder o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.ignoreUnavailable = o.ignoreUnavailable;
@@ -202,6 +204,12 @@ public class SegmentsRequest extends RequestBase implements ToCopyableBuilder<Se
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -327,6 +335,23 @@ public class SegmentsRequest extends RequestBase implements ToCopyableBuilder<Se
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.allowNoIndices != null) {
+            params.put("allow_no_indices", String.valueOf(this.allowNoIndices));
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        if (this.verbose != null) {
+            params.put("verbose", String.valueOf(this.verbose));
+        }
+    }
+
     /**
      * Endpoint "{@code indices.segments}".
      */
@@ -357,18 +382,7 @@ public class SegmentsRequest extends RequestBase implements ToCopyableBuilder<Se
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.ignoreUnavailable != null) {
-                params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
-            if (request.verbose != null) {
-                params.put("verbose", String.valueOf(request.verbose));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

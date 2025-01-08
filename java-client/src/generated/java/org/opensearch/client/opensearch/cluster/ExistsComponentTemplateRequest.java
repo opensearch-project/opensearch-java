@@ -53,7 +53,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.exists_component_template.Request
@@ -62,7 +61,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns information about whether a particular component template exist.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ExistsComponentTemplateRequest extends RequestBase
+public final class ExistsComponentTemplateRequest extends RequestBase
     implements
         ToCopyableBuilder<ExistsComponentTemplateRequest.Builder, ExistsComponentTemplateRequest> {
 
@@ -82,6 +81,7 @@ public class ExistsComponentTemplateRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private ExistsComponentTemplateRequest(Builder builder) {
+        super(builder);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.local = builder.local;
         this.masterTimeout = builder.masterTimeout;
@@ -157,7 +157,9 @@ public class ExistsComponentTemplateRequest extends RequestBase
     /**
      * Builder for {@link ExistsComponentTemplateRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ExistsComponentTemplateRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, ExistsComponentTemplateRequest> {
         @Nullable
         private Time clusterManagerTimeout;
         @Nullable
@@ -169,6 +171,7 @@ public class ExistsComponentTemplateRequest extends RequestBase
         public Builder() {}
 
         private Builder(ExistsComponentTemplateRequest o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.local = o.local;
             this.masterTimeout = o.masterTimeout;
@@ -176,6 +179,7 @@ public class ExistsComponentTemplateRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.local = o.local;
             this.masterTimeout = o.masterTimeout;
@@ -186,6 +190,12 @@ public class ExistsComponentTemplateRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -279,6 +289,20 @@ public class ExistsComponentTemplateRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.local != null) {
+            params.put("local", String.valueOf(this.local));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code cluster.exists_component_template}".
      */
@@ -295,15 +319,7 @@ public class ExistsComponentTemplateRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.local != null) {
-                params.put("local", String.valueOf(request.local));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap()

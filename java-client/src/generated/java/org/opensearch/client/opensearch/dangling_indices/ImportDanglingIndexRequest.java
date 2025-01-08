@@ -51,7 +51,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: dangling_indices.import_dangling_index.Request
@@ -60,7 +59,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Imports the specified dangling index.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ImportDanglingIndexRequest extends RequestBase
+public final class ImportDanglingIndexRequest extends RequestBase
     implements
         ToCopyableBuilder<ImportDanglingIndexRequest.Builder, ImportDanglingIndexRequest> {
 
@@ -82,6 +81,7 @@ public class ImportDanglingIndexRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private ImportDanglingIndexRequest(Builder builder) {
+        super(builder);
         this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss");
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
@@ -166,7 +166,9 @@ public class ImportDanglingIndexRequest extends RequestBase
     /**
      * Builder for {@link ImportDanglingIndexRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ImportDanglingIndexRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, ImportDanglingIndexRequest> {
         private Boolean acceptDataLoss;
         @Nullable
         private Time clusterManagerTimeout;
@@ -179,6 +181,7 @@ public class ImportDanglingIndexRequest extends RequestBase
         public Builder() {}
 
         private Builder(ImportDanglingIndexRequest o) {
+            super(o);
             this.acceptDataLoss = o.acceptDataLoss;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.indexUuid = o.indexUuid;
@@ -187,6 +190,7 @@ public class ImportDanglingIndexRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.acceptDataLoss = o.acceptDataLoss;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.indexUuid = o.indexUuid;
@@ -198,6 +202,12 @@ public class ImportDanglingIndexRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -311,6 +321,21 @@ public class ImportDanglingIndexRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        params.put("accept_data_loss", String.valueOf(this.acceptDataLoss));
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code dangling_indices.import_dangling_index}".
      */
@@ -327,16 +352,7 @@ public class ImportDanglingIndexRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

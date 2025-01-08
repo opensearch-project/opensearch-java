@@ -56,7 +56,6 @@ import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.allocation_explain.Request
@@ -66,7 +65,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class AllocationExplainRequest extends RequestBase
+public final class AllocationExplainRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<AllocationExplainRequest.Builder, AllocationExplainRequest> {
@@ -92,6 +91,7 @@ public class AllocationExplainRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private AllocationExplainRequest(Builder builder) {
+        super(builder);
         this.currentNode = builder.currentNode;
         this.includeDiskInfo = builder.includeDiskInfo;
         this.includeYesDecisions = builder.includeYesDecisions;
@@ -214,7 +214,7 @@ public class AllocationExplainRequest extends RequestBase
     /**
      * Builder for {@link AllocationExplainRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AllocationExplainRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, AllocationExplainRequest> {
         @Nullable
         private String currentNode;
         @Nullable
@@ -231,6 +231,7 @@ public class AllocationExplainRequest extends RequestBase
         public Builder() {}
 
         private Builder(AllocationExplainRequest o) {
+            super(o);
             this.currentNode = o.currentNode;
             this.includeDiskInfo = o.includeDiskInfo;
             this.includeYesDecisions = o.includeYesDecisions;
@@ -240,6 +241,7 @@ public class AllocationExplainRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.currentNode = o.currentNode;
             this.includeDiskInfo = o.includeDiskInfo;
             this.includeYesDecisions = o.includeYesDecisions;
@@ -252,6 +254,12 @@ public class AllocationExplainRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -356,6 +364,17 @@ public class AllocationExplainRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.includeDiskInfo != null) {
+            params.put("include_disk_info", String.valueOf(this.includeDiskInfo));
+        }
+        if (this.includeYesDecisions != null) {
+            params.put("include_yes_decisions", String.valueOf(this.includeYesDecisions));
+        }
+    }
+
     /**
      * Endpoint "{@code cluster.allocation_explain}".
      */
@@ -367,12 +386,7 @@ public class AllocationExplainRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.includeDiskInfo != null) {
-                params.put("include_disk_info", String.valueOf(request.includeDiskInfo));
-            }
-            if (request.includeYesDecisions != null) {
-                params.put("include_yes_decisions", String.valueOf(request.includeYesDecisions));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

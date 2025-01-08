@@ -55,7 +55,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.add_block.Request
@@ -64,7 +63,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Adds a block to an index.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class AddBlockRequest extends RequestBase implements ToCopyableBuilder<AddBlockRequest.Builder, AddBlockRequest> {
+public final class AddBlockRequest extends RequestBase implements ToCopyableBuilder<AddBlockRequest.Builder, AddBlockRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
@@ -94,6 +93,7 @@ public class AddBlockRequest extends RequestBase implements ToCopyableBuilder<Ad
     // ---------------------------------------------------------------------------------------------
 
     private AddBlockRequest(Builder builder) {
+        super(builder);
         this.allowNoIndices = builder.allowNoIndices;
         this.block = ApiTypeHelper.requireNonNull(builder.block, this, "block");
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
@@ -214,7 +214,7 @@ public class AddBlockRequest extends RequestBase implements ToCopyableBuilder<Ad
     /**
      * Builder for {@link AddBlockRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AddBlockRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, AddBlockRequest> {
         @Nullable
         private Boolean allowNoIndices;
         private IndicesBlockOptions block;
@@ -233,6 +233,7 @@ public class AddBlockRequest extends RequestBase implements ToCopyableBuilder<Ad
         public Builder() {}
 
         private Builder(AddBlockRequest o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.block = o.block;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
@@ -244,6 +245,7 @@ public class AddBlockRequest extends RequestBase implements ToCopyableBuilder<Ad
         }
 
         private Builder(Builder o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.block = o.block;
             this.clusterManagerTimeout = o.clusterManagerTimeout;
@@ -258,6 +260,12 @@ public class AddBlockRequest extends RequestBase implements ToCopyableBuilder<Ad
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -448,6 +456,29 @@ public class AddBlockRequest extends RequestBase implements ToCopyableBuilder<Ad
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.allowNoIndices != null) {
+            params.put("allow_no_indices", String.valueOf(this.allowNoIndices));
+        }
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code indices.add_block}".
      */
@@ -466,24 +497,7 @@ public class AddBlockRequest extends RequestBase implements ToCopyableBuilder<Ad
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-            }
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.ignoreUnavailable != null) {
-                params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

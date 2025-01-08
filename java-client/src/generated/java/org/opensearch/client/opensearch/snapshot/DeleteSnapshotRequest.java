@@ -51,7 +51,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.delete.Request
@@ -60,7 +59,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Deletes a snapshot.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteSnapshotRequest extends RequestBase implements ToCopyableBuilder<DeleteSnapshotRequest.Builder, DeleteSnapshotRequest> {
+public final class DeleteSnapshotRequest extends RequestBase
+    implements
+        ToCopyableBuilder<DeleteSnapshotRequest.Builder, DeleteSnapshotRequest> {
 
     @Nullable
     private final Time clusterManagerTimeout;
@@ -78,6 +79,7 @@ public class DeleteSnapshotRequest extends RequestBase implements ToCopyableBuil
     // ---------------------------------------------------------------------------------------------
 
     private DeleteSnapshotRequest(Builder builder) {
+        super(builder);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.masterTimeout = builder.masterTimeout;
         this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
@@ -149,7 +151,7 @@ public class DeleteSnapshotRequest extends RequestBase implements ToCopyableBuil
     /**
      * Builder for {@link DeleteSnapshotRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DeleteSnapshotRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, DeleteSnapshotRequest> {
         @Nullable
         private Time clusterManagerTimeout;
         @Nullable
@@ -160,6 +162,7 @@ public class DeleteSnapshotRequest extends RequestBase implements ToCopyableBuil
         public Builder() {}
 
         private Builder(DeleteSnapshotRequest o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.masterTimeout = o.masterTimeout;
             this.repository = o.repository;
@@ -167,6 +170,7 @@ public class DeleteSnapshotRequest extends RequestBase implements ToCopyableBuil
         }
 
         private Builder(Builder o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.masterTimeout = o.masterTimeout;
             this.repository = o.repository;
@@ -177,6 +181,12 @@ public class DeleteSnapshotRequest extends RequestBase implements ToCopyableBuil
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -267,6 +277,17 @@ public class DeleteSnapshotRequest extends RequestBase implements ToCopyableBuil
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code snapshot.delete}".
      */
@@ -285,12 +306,7 @@ public class DeleteSnapshotRequest extends RequestBase implements ToCopyableBuil
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

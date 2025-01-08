@@ -53,7 +53,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.flush.Request
@@ -62,7 +61,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Performs the flush operation on one or more indexes.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class FlushRequest extends RequestBase implements ToCopyableBuilder<FlushRequest.Builder, FlushRequest> {
+public final class FlushRequest extends RequestBase implements ToCopyableBuilder<FlushRequest.Builder, FlushRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
@@ -85,6 +84,7 @@ public class FlushRequest extends RequestBase implements ToCopyableBuilder<Flush
     // ---------------------------------------------------------------------------------------------
 
     private FlushRequest(Builder builder) {
+        super(builder);
         this.allowNoIndices = builder.allowNoIndices;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.force = builder.force;
@@ -184,7 +184,7 @@ public class FlushRequest extends RequestBase implements ToCopyableBuilder<Flush
     /**
      * Builder for {@link FlushRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, FlushRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, FlushRequest> {
         @Nullable
         private Boolean allowNoIndices;
         @Nullable
@@ -201,6 +201,7 @@ public class FlushRequest extends RequestBase implements ToCopyableBuilder<Flush
         public Builder() {}
 
         private Builder(FlushRequest o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.force = o.force;
@@ -210,6 +211,7 @@ public class FlushRequest extends RequestBase implements ToCopyableBuilder<Flush
         }
 
         private Builder(Builder o) {
+            super(o);
             this.allowNoIndices = o.allowNoIndices;
             this.expandWildcards = _listCopy(o.expandWildcards);
             this.force = o.force;
@@ -222,6 +224,12 @@ public class FlushRequest extends RequestBase implements ToCopyableBuilder<Flush
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -360,6 +368,26 @@ public class FlushRequest extends RequestBase implements ToCopyableBuilder<Flush
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.allowNoIndices != null) {
+            params.put("allow_no_indices", String.valueOf(this.allowNoIndices));
+        }
+        if (ApiTypeHelper.isDefined(this.expandWildcards)) {
+            params.put("expand_wildcards", this.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+        }
+        if (this.force != null) {
+            params.put("force", String.valueOf(this.force));
+        }
+        if (this.ignoreUnavailable != null) {
+            params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
+        }
+        if (this.waitIfOngoing != null) {
+            params.put("wait_if_ongoing", String.valueOf(this.waitIfOngoing));
+        }
+    }
+
     /**
      * Endpoint "{@code indices.flush}".
      */
@@ -390,21 +418,7 @@ public class FlushRequest extends RequestBase implements ToCopyableBuilder<Flush
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.allowNoIndices != null) {
-                params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-            }
-            if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-                params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-            }
-            if (request.force != null) {
-                params.put("force", String.valueOf(request.force));
-            }
-            if (request.ignoreUnavailable != null) {
-                params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-            }
-            if (request.waitIfOngoing != null) {
-                params.put("wait_if_ongoing", String.valueOf(request.waitIfOngoing));
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap(),

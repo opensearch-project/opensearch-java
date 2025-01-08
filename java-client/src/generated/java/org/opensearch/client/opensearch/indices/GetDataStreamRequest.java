@@ -36,7 +36,9 @@
 
 package org.opensearch.client.opensearch.indices;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -49,7 +51,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.get_data_stream.Request
@@ -58,7 +59,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns data streams.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GetDataStreamRequest extends RequestBase implements ToCopyableBuilder<GetDataStreamRequest.Builder, GetDataStreamRequest> {
+public final class GetDataStreamRequest extends RequestBase
+    implements
+        ToCopyableBuilder<GetDataStreamRequest.Builder, GetDataStreamRequest> {
 
     @Nonnull
     private final List<String> name;
@@ -66,6 +69,7 @@ public class GetDataStreamRequest extends RequestBase implements ToCopyableBuild
     // ---------------------------------------------------------------------------------------------
 
     private GetDataStreamRequest(Builder builder) {
+        super(builder);
         this.name = ApiTypeHelper.unmodifiable(builder.name);
     }
 
@@ -101,17 +105,19 @@ public class GetDataStreamRequest extends RequestBase implements ToCopyableBuild
     /**
      * Builder for {@link GetDataStreamRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetDataStreamRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, GetDataStreamRequest> {
         @Nullable
         private List<String> name;
 
         public Builder() {}
 
         private Builder(GetDataStreamRequest o) {
+            super(o);
             this.name = _listCopy(o.name);
         }
 
         private Builder(Builder o) {
+            super(o);
             this.name = _listCopy(o.name);
         }
 
@@ -119,6 +125,12 @@ public class GetDataStreamRequest extends RequestBase implements ToCopyableBuild
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -198,7 +210,11 @@ public class GetDataStreamRequest extends RequestBase implements ToCopyableBuild
             throw SimpleEndpoint.noPathTemplateFound("path");
         },
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         false,
         GetDataStreamResponse._DESERIALIZER

@@ -53,7 +53,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.exists_index_template.Request
@@ -62,7 +61,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Returns information about whether a particular index template exists.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ExistsIndexTemplateRequest extends RequestBase
+public final class ExistsIndexTemplateRequest extends RequestBase
     implements
         ToCopyableBuilder<ExistsIndexTemplateRequest.Builder, ExistsIndexTemplateRequest> {
 
@@ -85,6 +84,7 @@ public class ExistsIndexTemplateRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private ExistsIndexTemplateRequest(Builder builder) {
+        super(builder);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.flatSettings = builder.flatSettings;
         this.local = builder.local;
@@ -171,7 +171,9 @@ public class ExistsIndexTemplateRequest extends RequestBase
     /**
      * Builder for {@link ExistsIndexTemplateRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ExistsIndexTemplateRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, ExistsIndexTemplateRequest> {
         @Nullable
         private Time clusterManagerTimeout;
         @Nullable
@@ -185,6 +187,7 @@ public class ExistsIndexTemplateRequest extends RequestBase
         public Builder() {}
 
         private Builder(ExistsIndexTemplateRequest o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.flatSettings = o.flatSettings;
             this.local = o.local;
@@ -193,6 +196,7 @@ public class ExistsIndexTemplateRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
             this.flatSettings = o.flatSettings;
             this.local = o.local;
@@ -204,6 +208,12 @@ public class ExistsIndexTemplateRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -308,6 +318,23 @@ public class ExistsIndexTemplateRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.flatSettings != null) {
+            params.put("flat_settings", String.valueOf(this.flatSettings));
+        }
+        if (this.local != null) {
+            params.put("local", String.valueOf(this.local));
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+    }
+
     /**
      * Endpoint "{@code indices.exists_index_template}".
      */
@@ -324,18 +351,7 @@ public class ExistsIndexTemplateRequest extends RequestBase
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.flatSettings != null) {
-                params.put("flat_settings", String.valueOf(request.flatSettings));
-            }
-            if (request.local != null) {
-                params.put("local", String.valueOf(request.local));
-            }
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
         },
         SimpleEndpoint.emptyMap()
