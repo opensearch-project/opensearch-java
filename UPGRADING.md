@@ -437,3 +437,8 @@ After:
 
 ### DocumentSimulation
 - The `type` property has been removed as it is no longer supported by OpenSearch.
+
+### CountRequest
+- The `minScore` property has been corrected to be of type `Float` instead of `Double`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+- The `terminateAfter` property is now of type `Integer` instead of `Long`.

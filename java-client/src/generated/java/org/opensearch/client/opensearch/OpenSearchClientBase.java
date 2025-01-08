@@ -46,6 +46,8 @@ import org.opensearch.client.opensearch.cat.OpenSearchCatClient;
 import org.opensearch.client.opensearch.cluster.OpenSearchClusterClient;
 import org.opensearch.client.opensearch.core.ClearScrollRequest;
 import org.opensearch.client.opensearch.core.ClearScrollResponse;
+import org.opensearch.client.opensearch.core.CountRequest;
+import org.opensearch.client.opensearch.core.CountResponse;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesClient;
@@ -130,6 +132,32 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
      */
     public final ClearScrollResponse clearScroll() throws IOException, OpenSearchException {
         return clearScroll(new ClearScrollRequest.Builder().build());
+    }
+
+    // ----- Endpoint: count
+
+    /**
+     * Returns number of documents matching a query.
+     */
+    public CountResponse count(CountRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, CountRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns number of documents matching a query.
+     *
+     * @param fn a function that initializes a builder to create the {@link CountRequest}
+     */
+    public final CountResponse count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn) throws IOException,
+        OpenSearchException {
+        return count(fn.apply(new CountRequest.Builder()).build());
+    }
+
+    /**
+     * Returns number of documents matching a query.
+     */
+    public final CountResponse count() throws IOException, OpenSearchException {
+        return count(new CountRequest.Builder().build());
     }
 
     // ----- Endpoint: info

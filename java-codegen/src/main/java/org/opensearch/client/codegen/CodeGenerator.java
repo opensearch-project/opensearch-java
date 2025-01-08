@@ -47,7 +47,7 @@ import org.opensearch.client.codegen.utils.matcher.Matcher;
 public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Matcher<OperationGroup> OPERATION_MATCHER = or(
-        and(namespace(isNull()), name(isOneOf("clear_scroll", "info"))),
+        and(namespace(isNull()), name(isOneOf("clear_scroll", "count", "info"))),
         and(namespace(is("cat")), name(isNot("help"))),
         and(
             namespace(is("cluster")),

@@ -186,48 +186,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
         return this.transport.performRequestAsync(new BulkRequest.Builder().build(), BulkRequest._ENDPOINT, this.transportOptions);
     }
 
-    // ----- Endpoint: count
-
-    /**
-     * Returns number of documents matching a query.
-     *
-     *
-     */
-
-    public CompletableFuture<CountResponse> count(CountRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<CountRequest, CountResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            CountRequest,
-            CountResponse,
-            ErrorResponse>) CountRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns number of documents matching a query.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link CountRequest}
-     *
-     */
-
-    public final CompletableFuture<CountResponse> count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn) throws IOException,
-        OpenSearchException {
-        return count(fn.apply(new CountRequest.Builder()).build());
-    }
-
-    /**
-     * Returns number of documents matching a query.
-     *
-     *
-     */
-
-    public CompletableFuture<CountResponse> count() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(new CountRequest.Builder().build(), CountRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: create
 
     /**
