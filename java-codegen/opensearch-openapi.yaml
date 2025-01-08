@@ -29192,7 +29192,7 @@ components:
               pit_id:
                 type: string
               _shards:
-                $ref: '#/components/schemas/_core._common___ShardStatistics'
+                $ref: '#/components/schemas/_common___ShardStatistics'
               creation_time:
                 type: integer
                 format: int64
@@ -33339,20 +33339,6 @@ components:
             - RED
     _common___Host:
       type: string
-    _common___HourAndMinute:
-      type: object
-      properties:
-        hour:
-          type: array
-          items:
-            type: number
-        minute:
-          type: array
-          items:
-            type: number
-      required:
-        - hour
-        - minute
     _common___HttpHeaders:
       type: object
       additionalProperties:
@@ -34235,11 +34221,6 @@ components:
             window_size:
               description: The size of the individual result sets per query.
               type: number
-    _common___ScheduleTimeOfDay:
-      description: A time of day, expressed either as `hh:mm`, `noon`, `midnight`, or an hour/minutes structure.
-      oneOf:
-        - type: string
-        - $ref: '#/components/schemas/_common___HourAndMinute'
     _common___ScoreSort:
       type: object
       properties:
@@ -43884,21 +43865,6 @@ components:
           type: boolean
         pit_id:
           type: string
-    _core._common___ShardStatistics:
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int32
-        successful:
-          type: integer
-          format: int32
-        skipped:
-          type: integer
-          format: int32
-        failed:
-          type: integer
-          format: int32
     _core.bulk___CreateOperation:
       $ref: '#/components/schemas/_core.bulk___WriteOperation'
     _core.bulk___DeleteOperation:

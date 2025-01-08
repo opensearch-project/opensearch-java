@@ -49,6 +49,8 @@ import org.opensearch.client.opensearch.core.ClearScrollRequest;
 import org.opensearch.client.opensearch.core.ClearScrollResponse;
 import org.opensearch.client.opensearch.core.CountRequest;
 import org.opensearch.client.opensearch.core.CountResponse;
+import org.opensearch.client.opensearch.core.CreatePitRequest;
+import org.opensearch.client.opensearch.core.CreatePitResponse;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesAsyncClient;
@@ -160,6 +162,25 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
      */
     public final CompletableFuture<CountResponse> count() throws IOException, OpenSearchException {
         return count(new CountRequest.Builder().build());
+    }
+
+    // ----- Endpoint: create_pit
+
+    /**
+     * Creates point in time context.
+     */
+    public CompletableFuture<CreatePitResponse> createPit(CreatePitRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, CreatePitRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates point in time context.
+     *
+     * @param fn a function that initializes a builder to create the {@link CreatePitRequest}
+     */
+    public final CompletableFuture<CreatePitResponse> createPit(Function<CreatePitRequest.Builder, ObjectBuilder<CreatePitRequest>> fn)
+        throws IOException, OpenSearchException {
+        return createPit(fn.apply(new CreatePitRequest.Builder()).build());
     }
 
     // ----- Endpoint: info

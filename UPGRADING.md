@@ -442,3 +442,12 @@ After:
 - The `minScore` property has been corrected to be of type `Float` instead of `Double`.
 - The `routing` property is now of type `List<String>` instead of `String`.
 - The `terminateAfter` property is now of type `Integer` instead of `Long`.
+
+### CreatePitRequest
+- The `CreatePitRequest` class has been moved from the `org.opensearch.client.opensearch.core.pit` package to the `org.opensearch.client.opensearch.core` package.
+- The `targetIndexes` property has been renamed to `index`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+
+### CreatePitResponse
+- The `CreatePitResponse` class has been moved from the `org.opensearch.client.opensearch.core.pit` package to the `org.opensearch.client.opensearch.core` package.
+

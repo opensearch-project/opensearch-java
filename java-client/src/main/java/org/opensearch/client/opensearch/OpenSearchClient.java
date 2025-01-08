@@ -39,10 +39,6 @@ import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
-import org.opensearch.client.opensearch.core.ClearScrollRequest;
-import org.opensearch.client.opensearch.core.ClearScrollResponse;
-import org.opensearch.client.opensearch.core.CountRequest;
-import org.opensearch.client.opensearch.core.CountResponse;
 import org.opensearch.client.opensearch.core.CreateRequest;
 import org.opensearch.client.opensearch.core.CreateResponse;
 import org.opensearch.client.opensearch.core.DeleteByQueryRequest;
@@ -110,8 +106,6 @@ import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleRequest;
 import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.core.UpdateRequest;
 import org.opensearch.client.opensearch.core.UpdateResponse;
-import org.opensearch.client.opensearch.core.pit.CreatePitRequest;
-import org.opensearch.client.opensearch.core.pit.CreatePitResponse;
 import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
 import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
 import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
@@ -226,40 +220,6 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
     public final <TDocument> CreateResponse create(Function<CreateRequest.Builder<TDocument>, ObjectBuilder<CreateRequest<TDocument>>> fn)
         throws IOException, OpenSearchException {
         return create(fn.apply(new CreateRequest.Builder<TDocument>()).build());
-    }
-
-    // ----- Endpoint: create_point_in_time
-
-    /**
-     * Provides low-level information about the disk utilization of a PIT by
-     * describing its Lucene segments.
-     *
-     *
-     */
-
-    public CreatePitResponse createPit(CreatePitRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<CreatePitRequest, CreatePitResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            CreatePitRequest,
-            CreatePitResponse,
-            ErrorResponse>) CreatePitRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Provides low-level information about the disk utilization of a PIT by
-     * describing its Lucene segments.
-     *
-     * @param fn
-     *           a function that initializes a builder to create the
-     *           {@link CreatePitRequest}
-     *
-     */
-
-    public final CreatePitResponse createPit(Function<CreatePitRequest.Builder, ObjectBuilder<CreatePitRequest>> fn) throws IOException,
-        OpenSearchException {
-        return createPit(fn.apply(new CreatePitRequest.Builder()).build());
     }
 
     // ----- Endpoint: delete
