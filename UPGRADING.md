@@ -453,3 +453,13 @@ After:
 
 ### DeleteRequest
 - The `routing` property is now of type `List<String>` instead of `String`.
+
+### DeletePitRequest
+- The `DeletePitRequest` class has been moved from the `org.opensearch.client.opensearch.core.pit` package to the `org.opensearch.client.opensearch.core` package.
+
+### DeletePitResponse
+- The `DeletePitResponse` class has been moved from the `org.opensearch.client.opensearch.core.pit` package to the `org.opensearch.client.opensearch.core` package.
+
+### DeletePitRecord renamed to DeletedPit
+- The `DeletePitRecord` class has been renamed to `DeletedPit`, this affects:
+  - `DeletePitResponse`'s `pits` field.

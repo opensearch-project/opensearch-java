@@ -29241,7 +29241,7 @@ components:
               pits:
                 type: array
                 items:
-                  $ref: '#/components/schemas/_core._common___PitsDetailsDeleteAll'
+                  $ref: '#/components/schemas/_core.pit___DeletedPit'
       description: ''
     delete_by_query_rethrottle___200:
       content:
@@ -29269,7 +29269,7 @@ components:
               pits:
                 type: array
                 items:
-                  $ref: '#/components/schemas/_core._common___DeletedPit'
+                  $ref: '#/components/schemas/_core.pit___DeletedPit'
       description: ''
     delete_script___200:
       content:
@@ -29586,7 +29586,7 @@ components:
               pits:
                 type: array
                 items:
-                  $ref: '#/components/schemas/_core._common___PitDetail'
+                  $ref: '#/components/schemas/_core.pit___PitDetail'
       description: ''
     get_script_context___200:
       content:
@@ -43840,31 +43840,6 @@ components:
       enum:
         - all
         - none
-    _core._common___DeletedPit:
-      type: object
-      properties:
-        successful:
-          type: boolean
-        pit_id:
-          type: string
-    _core._common___PitDetail:
-      type: object
-      properties:
-        pit_id:
-          type: string
-        creation_time:
-          type: integer
-          format: int64
-        keep_alive:
-          type: integer
-          format: int64
-    _core._common___PitsDetailsDeleteAll:
-      type: object
-      properties:
-        successful:
-          type: boolean
-        pit_id:
-          type: string
     _core.bulk___CreateOperation:
       $ref: '#/components/schemas/_core.bulk___WriteOperation'
     _core.bulk___DeleteOperation:
@@ -44461,6 +44436,24 @@ components:
       required:
         - _id
         - _index
+    _core.pit___DeletedPit:
+      type: object
+      properties:
+        successful:
+          type: boolean
+        pit_id:
+          type: string
+    _core.pit___PitDetail:
+      type: object
+      properties:
+        pit_id:
+          type: string
+        creation_time:
+          type: integer
+          format: int64
+        keep_alive:
+          type: integer
+          format: int64
     _core.rank_eval___DocumentRating:
       type: object
       properties:

@@ -46,8 +46,6 @@ import org.opensearch.client.opensearch.core.DeleteByQueryRequest;
 import org.opensearch.client.opensearch.core.DeleteByQueryResponse;
 import org.opensearch.client.opensearch.core.DeleteByQueryRethrottleRequest;
 import org.opensearch.client.opensearch.core.DeleteByQueryRethrottleResponse;
-import org.opensearch.client.opensearch.core.DeleteRequest;
-import org.opensearch.client.opensearch.core.DeleteResponse;
 import org.opensearch.client.opensearch.core.DeleteScriptRequest;
 import org.opensearch.client.opensearch.core.DeleteScriptResponse;
 import org.opensearch.client.opensearch.core.ExistsRequest;
@@ -107,8 +105,6 @@ import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleRequest;
 import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.core.UpdateRequest;
 import org.opensearch.client.opensearch.core.UpdateResponse;
-import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
-import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
 import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
 import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.transport.JsonEndpoint;
@@ -217,38 +213,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
         Function<CreateRequest.Builder<TDocument>, ObjectBuilder<CreateRequest<TDocument>>> fn
     ) throws IOException, OpenSearchException {
         return create(fn.apply(new CreateRequest.Builder<TDocument>()).build());
-    }
-
-    // ----- Endpoint: delete_point_in_time
-
-    /**
-     * Delete Point In Time
-     *
-     *
-     */
-
-    public CompletableFuture<DeletePitResponse> deletePit(DeletePitRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeletePitRequest, DeletePitResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeletePitRequest,
-            DeletePitResponse,
-            ErrorResponse>) DeletePitRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Delete Point In Time
-     *
-     * @param fn
-     *           a function that initializes a builder to create the
-     *           {@link DeletePitRequest}
-     *
-     */
-
-    public final CompletableFuture<DeletePitResponse> deletePit(Function<DeletePitRequest.Builder, ObjectBuilder<DeletePitRequest>> fn)
-        throws IOException, OpenSearchException {
-        return deletePit(fn.apply(new DeletePitRequest.Builder()).build());
     }
 
     // ----- Endpoint: delete_by_query

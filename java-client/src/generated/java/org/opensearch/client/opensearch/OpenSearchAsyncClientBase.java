@@ -51,6 +51,10 @@ import org.opensearch.client.opensearch.core.CountRequest;
 import org.opensearch.client.opensearch.core.CountResponse;
 import org.opensearch.client.opensearch.core.CreatePitRequest;
 import org.opensearch.client.opensearch.core.CreatePitResponse;
+import org.opensearch.client.opensearch.core.DeleteAllPitsRequest;
+import org.opensearch.client.opensearch.core.DeleteAllPitsResponse;
+import org.opensearch.client.opensearch.core.DeletePitRequest;
+import org.opensearch.client.opensearch.core.DeletePitResponse;
 import org.opensearch.client.opensearch.core.DeleteRequest;
 import org.opensearch.client.opensearch.core.DeleteResponse;
 import org.opensearch.client.opensearch.core.InfoRequest;
@@ -202,6 +206,52 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
     public final CompletableFuture<DeleteResponse> delete(Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn)
         throws IOException, OpenSearchException {
         return delete(fn.apply(new DeleteRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: delete_all_pits
+
+    /**
+     * Deletes all active point in time searches.
+     */
+    public CompletableFuture<DeleteAllPitsResponse> deleteAllPits(DeleteAllPitsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteAllPitsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes all active point in time searches.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteAllPitsRequest}
+     */
+    public final CompletableFuture<DeleteAllPitsResponse> deleteAllPits(
+        Function<DeleteAllPitsRequest.Builder, ObjectBuilder<DeleteAllPitsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteAllPits(fn.apply(new DeleteAllPitsRequest.Builder()).build());
+    }
+
+    /**
+     * Deletes all active point in time searches.
+     */
+    public final CompletableFuture<DeleteAllPitsResponse> deleteAllPits() throws IOException, OpenSearchException {
+        return deleteAllPits(new DeleteAllPitsRequest.Builder().build());
+    }
+
+    // ----- Endpoint: delete_pit
+
+    /**
+     * Deletes one or more point in time searches based on the IDs passed.
+     */
+    public CompletableFuture<DeletePitResponse> deletePit(DeletePitRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, DeletePitRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes one or more point in time searches based on the IDs passed.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeletePitRequest}
+     */
+    public final CompletableFuture<DeletePitResponse> deletePit(Function<DeletePitRequest.Builder, ObjectBuilder<DeletePitRequest>> fn)
+        throws IOException, OpenSearchException {
+        return deletePit(fn.apply(new DeletePitRequest.Builder()).build());
     }
 
     // ----- Endpoint: info
