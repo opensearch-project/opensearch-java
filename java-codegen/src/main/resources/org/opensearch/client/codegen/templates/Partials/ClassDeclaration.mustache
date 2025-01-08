@@ -11,4 +11,4 @@
 @{{.}}
 {{/annotations}}
 @{{TYPES.Javax.Annotation.Generated}}("org.opensearch.client.codegen.CodeGenerator")
-public {{#abstract}}abstract {{/abstract}}{{classKind}} {{className}}{{#typeParameters}}{{.}}{{/typeParameters}}{{#extendsType}} extends {{.}}{{/extendsType}}{{#implementsTypes}}{{#-first}} implements{{/-first}} {{.}}{{^-last}},{{/-last}}{{/implementsTypes}}
+public {{abstractionLevel}} {{classKind}} {{className}}{{#typeParameters}}{{.}}{{/typeParameters}}{{#extendsType}} extends {{.}}{{/extendsType}}{{#implementsTypes}}{{#-first}} implements{{/-first}} {{.}}{{^-last}},{{/-last}}{{/implementsTypes}}

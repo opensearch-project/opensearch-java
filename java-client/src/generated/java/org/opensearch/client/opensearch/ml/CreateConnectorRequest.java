@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -34,7 +35,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.create_connector.Request
@@ -44,7 +44,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CreateConnectorRequest extends RequestBase
+public final class CreateConnectorRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<CreateConnectorRequest.Builder, CreateConnectorRequest> {
@@ -75,6 +75,7 @@ public class CreateConnectorRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private CreateConnectorRequest(Builder builder) {
+        super(builder);
         this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
         this.clientConfig = builder.clientConfig;
         this.credential = ApiTypeHelper.requireNonNull(builder.credential, this, "credential");
@@ -214,7 +215,7 @@ public class CreateConnectorRequest extends RequestBase
     /**
      * Builder for {@link CreateConnectorRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CreateConnectorRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, CreateConnectorRequest> {
         private List<Action> actions;
         @Nullable
         private ClientConfig clientConfig;
@@ -228,6 +229,7 @@ public class CreateConnectorRequest extends RequestBase
         public Builder() {}
 
         private Builder(CreateConnectorRequest o) {
+            super(o);
             this.actions = _listCopy(o.actions);
             this.clientConfig = o.clientConfig;
             this.credential = o.credential;
@@ -239,6 +241,7 @@ public class CreateConnectorRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.actions = _listCopy(o.actions);
             this.clientConfig = o.clientConfig;
             this.credential = o.credential;
@@ -253,6 +256,12 @@ public class CreateConnectorRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -435,7 +444,11 @@ public class CreateConnectorRequest extends RequestBase
         // Request path
         request -> "/_plugins/_ml/connectors/_create",
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         true,
         CreateConnectorResponse._DESERIALIZER

@@ -30,6 +30,7 @@ public class ArrayShape extends ObjectShape {
             .withRequired(true)
             .withDescription("Response value.")
             .build();
+        tryAddReference(ReferenceKind.Field, arrayType);
     }
 
     @Override
@@ -43,11 +44,16 @@ public class ArrayShape extends ObjectShape {
     }
 
     @Override
-    public Collection<Type> getImplementsTypes() {
-        return List.of(Types.Client.Json.PlainJsonSerializable);
+    public boolean shouldImplementJsonSerializable() {
+        return true;
     }
 
     public Field getValueBodyField() {
         return valueBodyField;
+    }
+
+    @Override
+    public boolean canBeSingleton() {
+        return false;
     }
 }

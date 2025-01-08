@@ -1,13 +1,4 @@
 {{>Partials/ClassDeclaration}} {
-{{#canBeSingleton}}
-    public {{className}}() {}
-
-    /**
-     * Singleton instance for {@link {{className}}}.
-     */
-    public static final {{className}} _INSTANCE = new {{className}}();
-{{/canBeSingleton}}
-{{^canBeSingleton}}
     {{>ObjectShape/Fields}}
 
     // ---------------------------------------------------------------------------------------------
@@ -32,9 +23,24 @@
     {{>RequestShape/Deserialize}}
 
 {{/hasRequestBody}}
-{{/canBeSingleton}}
 
     // ---------------------------------------------------------------------------------------------
+
+{{#hasQueryParams}}
+    @Override
+    protected void applyQueryParameters(@{{TYPES.Javax.Annotation.Nonnull}} {{TYPES.Java.Util.Map}}<String, String> params) {
+        super.applyQueryParameters(params);
+{{#queryParams}}
+    {{^required}}
+        if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) {
+    {{/required}}
+        params.put({{#quoted}}{{wireName}}{{/quoted}}, {{#type.queryParamify}}this.{{name}}{{/type.queryParamify}});
+    {{^required}}
+        }
+    {{/required}}
+{{/queryParams}}
+    }
+{{/hasQueryParams}}
 
     /**
      * Endpoint "{@code {{operationGroup}}}".
@@ -78,24 +84,11 @@
                 }
                 {{/hasSinglePath}},
             // Request parameters
-            {{#hasQueryParams}}
             request -> {
                 {{TYPES.Java.Util.Map}}<String, String> params = new {{TYPES.Java.Util.HashMap}}<>();
-            {{#queryParams}}
-            {{^required}}
-                if ({{#type.isDefined}}request.{{name}}{{/type.isDefined}}) {
-            {{/required}}
-                    params.put({{#quoted}}{{wireName}}{{/quoted}}, {{#type.queryParamify}}request.{{name}}{{/type.queryParamify}});
-            {{^required}}
-                }
-            {{/required}}
-            {{/queryParams}}
+                request.applyQueryParameters(params);
                 return params;
             },
-            {{/hasQueryParams}}
-            {{^hasQueryParams}}
-            {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}.emptyMap(),
-            {{/hasQueryParams}}
             {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}.emptyMap()
         {{^isBooleanRequest}}
             ,

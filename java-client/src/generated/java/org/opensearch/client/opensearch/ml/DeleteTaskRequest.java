@@ -12,6 +12,8 @@
 
 package org.opensearch.client.opensearch.ml;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
@@ -22,7 +24,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.delete_task.Request
@@ -31,7 +32,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Deletes a task.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteTaskRequest extends RequestBase implements ToCopyableBuilder<DeleteTaskRequest.Builder, DeleteTaskRequest> {
+public final class DeleteTaskRequest extends RequestBase implements ToCopyableBuilder<DeleteTaskRequest.Builder, DeleteTaskRequest> {
 
     @Nonnull
     private final String taskId;
@@ -39,6 +40,7 @@ public class DeleteTaskRequest extends RequestBase implements ToCopyableBuilder<
     // ---------------------------------------------------------------------------------------------
 
     private DeleteTaskRequest(Builder builder) {
+        super(builder);
         this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
     }
 
@@ -70,16 +72,18 @@ public class DeleteTaskRequest extends RequestBase implements ToCopyableBuilder<
     /**
      * Builder for {@link DeleteTaskRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DeleteTaskRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, DeleteTaskRequest> {
         private String taskId;
 
         public Builder() {}
 
         private Builder(DeleteTaskRequest o) {
+            super(o);
             this.taskId = o.taskId;
         }
 
         private Builder(Builder o) {
+            super(o);
             this.taskId = o.taskId;
         }
 
@@ -87,6 +91,12 @@ public class DeleteTaskRequest extends RequestBase implements ToCopyableBuilder<
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -128,7 +138,11 @@ public class DeleteTaskRequest extends RequestBase implements ToCopyableBuilder<
             return buf.toString();
         },
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         false,
         DeleteTaskResponse._DESERIALIZER

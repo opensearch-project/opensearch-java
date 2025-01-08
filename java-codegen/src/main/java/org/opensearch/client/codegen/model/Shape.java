@@ -26,6 +26,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
+import org.opensearch.client.codegen.utils.JavaAbstractionLevel;
 import org.opensearch.client.codegen.utils.JavaClassKind;
 import org.opensearch.client.codegen.utils.Markdown;
 
@@ -61,13 +62,19 @@ public abstract class Shape {
         return JavaClassKind.Class;
     }
 
-    public boolean isAbstract() {
+    public JavaAbstractionLevel getAbstractionLevel() {
         var refKinds = incomingReferences.entrySet()
             .stream()
             .filter(e -> !e.getValue().isEmpty())
             .map(Map.Entry::getKey)
             .collect(Collectors.toSet());
-        return !refKinds.isEmpty() && refKinds.stream().noneMatch(ReferenceKind::isConcreteUsage);
+        return !refKinds.isEmpty() && refKinds.stream().noneMatch(ReferenceKind::isConcreteUsage)
+            ? JavaAbstractionLevel.Abstract
+            : JavaAbstractionLevel.Concrete;
+    }
+
+    public final boolean isAbstract() {
+        return getAbstractionLevel() == JavaAbstractionLevel.Abstract;
     }
 
     public String getTypedefName() {
@@ -93,6 +100,10 @@ public abstract class Shape {
     public void setExtendsType(Type extendsType) {
         this.extendsType = extendsType;
         tryAddReference(ReferenceKind.Extends, extendsType);
+    }
+
+    public boolean doesExtendType() {
+        return extendsType != null;
     }
 
     public boolean extendsOtherShape() {

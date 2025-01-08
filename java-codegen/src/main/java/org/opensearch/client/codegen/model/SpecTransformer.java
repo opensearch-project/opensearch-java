@@ -251,14 +251,16 @@ public class SpecTransformer {
 
         var seenQueryParams = new HashSet<String>();
 
+        var isCatNs = group.getNamespace().orElse("").equals("cat");
+
         variants.stream()
             .flatMap(v -> v.getAllRelevantParameters(In.Query).stream())
-            .filter(p -> seenQueryParams.add(p.getName().orElseThrow()) && !p.isGlobal())
+            .filter(p -> seenQueryParams.add(p.getName().orElseThrow()) && !p.isGlobal() && (!isCatNs || !p.isGlobalCatParameter()))
             .map(this::visit)
             .forEachOrdered(shape::addQueryParam);
 
         if (shape.getExtendsType() == null) {
-            shape.setExtendsType(Types.Client.OpenSearch._Types.RequestBase);
+            shape.setExtendsType(isCatNs ? Types.Client.OpenSearch.Cat.CatRequestBase : Types.Client.OpenSearch._Types.RequestBase);
         }
 
         return shape;
@@ -703,6 +705,7 @@ public class SpecTransformer {
         }
 
         var types = OpenApiSchema.determineTypes(oneOf);
+        types.remove(OpenApiSchemaType.Null);
 
         if (types.size() == 1) {
             switch (types.iterator().next()) {
@@ -729,6 +732,7 @@ public class SpecTransformer {
 
     private Type mapAnyOf(List<OpenApiSchema> anyOf) {
         var types = OpenApiSchema.determineTypes(anyOf);
+        types.remove(OpenApiSchemaType.Null);
 
         if (types.size() == 1 && types.contains(OpenApiSchemaType.String)) {
             return Types.Java.Lang.String;

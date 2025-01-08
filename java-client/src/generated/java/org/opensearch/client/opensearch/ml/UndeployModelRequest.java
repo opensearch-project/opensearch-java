@@ -12,6 +12,8 @@
 
 package org.opensearch.client.opensearch.ml;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
@@ -22,7 +24,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.undeploy_model.Request
@@ -31,7 +32,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
  * Undeploys a model.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class UndeployModelRequest extends RequestBase implements ToCopyableBuilder<UndeployModelRequest.Builder, UndeployModelRequest> {
+public final class UndeployModelRequest extends RequestBase
+    implements
+        ToCopyableBuilder<UndeployModelRequest.Builder, UndeployModelRequest> {
 
     @Nonnull
     private final String modelId;
@@ -39,6 +42,7 @@ public class UndeployModelRequest extends RequestBase implements ToCopyableBuild
     // ---------------------------------------------------------------------------------------------
 
     private UndeployModelRequest(Builder builder) {
+        super(builder);
         this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
     }
 
@@ -70,16 +74,18 @@ public class UndeployModelRequest extends RequestBase implements ToCopyableBuild
     /**
      * Builder for {@link UndeployModelRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, UndeployModelRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, UndeployModelRequest> {
         private String modelId;
 
         public Builder() {}
 
         private Builder(UndeployModelRequest o) {
+            super(o);
             this.modelId = o.modelId;
         }
 
         private Builder(Builder o) {
+            super(o);
             this.modelId = o.modelId;
         }
 
@@ -87,6 +93,12 @@ public class UndeployModelRequest extends RequestBase implements ToCopyableBuild
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -129,7 +141,11 @@ public class UndeployModelRequest extends RequestBase implements ToCopyableBuild
             return buf.toString();
         },
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         false,
         UndeployModelResponse._DESERIALIZER

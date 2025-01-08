@@ -43,7 +43,8 @@ public class Overrides {
             )
     )
         .withSchemas(
-            s -> s.with(schema("_common", "Duration"), so -> so.withMappedType(Types.Client.OpenSearch._Types.Time))
+            s -> s.with(schema("_common", "ByteUnit"), so -> so.withClassName("Bytes"))
+                .with(schema("_common", "Duration"), so -> so.withMappedType(Types.Client.OpenSearch._Types.Time))
                 .with(schema("_common", "FieldValue"), so -> so.withMappedType(Types.Client.OpenSearch._Types.FieldValue))
                 .with(schema("_common", "StringifiedBoolean"), so -> so.withMappedType(Types.Primitive.Boolean))
                 .with(schema("_common", "StringifiedDouble"), so -> so.withMappedType(Types.Primitive.Double))

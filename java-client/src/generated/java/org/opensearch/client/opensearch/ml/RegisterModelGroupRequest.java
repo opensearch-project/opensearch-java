@@ -13,7 +13,9 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -32,7 +34,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.register_model_group.Request
@@ -42,7 +43,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RegisterModelGroupRequest extends RequestBase
+public final class RegisterModelGroupRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<RegisterModelGroupRequest.Builder, RegisterModelGroupRequest> {
@@ -65,6 +66,7 @@ public class RegisterModelGroupRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private RegisterModelGroupRequest(Builder builder) {
+        super(builder);
         this.accessMode = builder.accessMode;
         this.addAllBackendRoles = builder.addAllBackendRoles;
         this.backendRoles = ApiTypeHelper.unmodifiable(builder.backendRoles);
@@ -185,7 +187,9 @@ public class RegisterModelGroupRequest extends RequestBase
     /**
      * Builder for {@link RegisterModelGroupRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RegisterModelGroupRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, RegisterModelGroupRequest> {
         @Nullable
         private String accessMode;
         @Nullable
@@ -199,6 +203,7 @@ public class RegisterModelGroupRequest extends RequestBase
         public Builder() {}
 
         private Builder(RegisterModelGroupRequest o) {
+            super(o);
             this.accessMode = o.accessMode;
             this.addAllBackendRoles = o.addAllBackendRoles;
             this.backendRoles = _listCopy(o.backendRoles);
@@ -207,6 +212,7 @@ public class RegisterModelGroupRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.accessMode = o.accessMode;
             this.addAllBackendRoles = o.addAllBackendRoles;
             this.backendRoles = _listCopy(o.backendRoles);
@@ -218,6 +224,12 @@ public class RegisterModelGroupRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -343,7 +355,11 @@ public class RegisterModelGroupRequest extends RequestBase
         // Request path
         request -> "/_plugins/_ml/model_groups/_register",
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         true,
         RegisterModelGroupResponse._DESERIALIZER

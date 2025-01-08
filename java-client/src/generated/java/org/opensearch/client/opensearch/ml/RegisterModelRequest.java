@@ -13,6 +13,8 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -31,7 +33,6 @@ import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.register_model.Request
@@ -41,7 +42,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RegisterModelRequest extends RequestBase
+public final class RegisterModelRequest extends RequestBase
     implements
         PlainJsonSerializable,
         ToCopyableBuilder<RegisterModelRequest.Builder, RegisterModelRequest> {
@@ -64,6 +65,7 @@ public class RegisterModelRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     private RegisterModelRequest(Builder builder) {
+        super(builder);
         this.description = builder.description;
         this.modelFormat = ApiTypeHelper.requireNonNull(builder.modelFormat, this, "modelFormat");
         this.modelGroupId = builder.modelGroupId;
@@ -176,7 +178,7 @@ public class RegisterModelRequest extends RequestBase
     /**
      * Builder for {@link RegisterModelRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RegisterModelRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RegisterModelRequest> {
         @Nullable
         private String description;
         private String modelFormat;
@@ -188,6 +190,7 @@ public class RegisterModelRequest extends RequestBase
         public Builder() {}
 
         private Builder(RegisterModelRequest o) {
+            super(o);
             this.description = o.description;
             this.modelFormat = o.modelFormat;
             this.modelGroupId = o.modelGroupId;
@@ -196,6 +199,7 @@ public class RegisterModelRequest extends RequestBase
         }
 
         private Builder(Builder o) {
+            super(o);
             this.description = o.description;
             this.modelFormat = o.modelFormat;
             this.modelGroupId = o.modelGroupId;
@@ -207,6 +211,12 @@ public class RegisterModelRequest extends RequestBase
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -312,7 +322,11 @@ public class RegisterModelRequest extends RequestBase
         // Request path
         request -> "/_plugins/_ml/models/_register",
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         true,
         RegisterModelResponse._DESERIALIZER
