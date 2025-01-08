@@ -34,9 +34,11 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.indices;
+package org.opensearch.client.opensearch.core;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -48,53 +50,70 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch._types.ShardsOperationResponseBase;
+import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.ErrorResponse;
+import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: indices.upgrade.Response
+// typedef: _global.clear_scroll.Request
 
+/**
+ * Explicitly clears the search context for a scroll.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class UpgradeResponse extends ShardsOperationResponseBase implements ToCopyableBuilder<UpgradeResponse.Builder, UpgradeResponse> {
+public final class ClearScrollRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<ClearScrollRequest.Builder, ClearScrollRequest> {
 
     @Nonnull
-    private final Map<String, UpgradeVersionStatus> upgradedIndices;
+    private final List<String> scrollId;
 
     // ---------------------------------------------------------------------------------------------
 
-    private UpgradeResponse(Builder builder) {
+    private ClearScrollRequest(Builder builder) {
         super(builder);
-        this.upgradedIndices = ApiTypeHelper.unmodifiable(builder.upgradedIndices);
+        this.scrollId = ApiTypeHelper.unmodifiable(builder.scrollId);
     }
 
-    public static UpgradeResponse of(Function<UpgradeResponse.Builder, ObjectBuilder<UpgradeResponse>> fn) {
+    public static ClearScrollRequest of(Function<ClearScrollRequest.Builder, ObjectBuilder<ClearScrollRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * API name: {@code upgraded_indices}
+     * API name: {@code scroll_id}
      */
     @Nonnull
-    public final Map<String, UpgradeVersionStatus> upgradedIndices() {
-        return this.upgradedIndices;
+    public final List<String> scrollId() {
+        return this.scrollId;
+    }
+
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
-        if (ApiTypeHelper.isDefined(this.upgradedIndices)) {
-            generator.writeKey("upgraded_indices");
-            generator.writeStartObject();
-            for (Map.Entry<String, UpgradeVersionStatus> item0 : this.upgradedIndices.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.scrollId)) {
+            generator.writeKey("scroll_id");
+            generator.writeStartArray();
+            for (String item0 : this.scrollId) {
+                generator.write(item0);
             }
             generator.writeEnd();
         }
     }
-
     // ---------------------------------------------------------------------------------------------
 
     @Override
@@ -109,24 +128,22 @@ public class UpgradeResponse extends ShardsOperationResponseBase implements ToCo
     }
 
     /**
-     * Builder for {@link UpgradeResponse}.
+     * Builder for {@link ClearScrollRequest}.
      */
-    public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder>
-        implements
-            CopyableBuilder<Builder, UpgradeResponse> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ClearScrollRequest> {
         @Nullable
-        private Map<String, UpgradeVersionStatus> upgradedIndices;
+        private List<String> scrollId;
 
         public Builder() {}
 
-        private Builder(UpgradeResponse o) {
+        private Builder(ClearScrollRequest o) {
             super(o);
-            this.upgradedIndices = _mapCopy(o.upgradedIndices);
+            this.scrollId = _listCopy(o.scrollId);
         }
 
         private Builder(Builder o) {
             super(o);
-            this.upgradedIndices = _mapCopy(o.upgradedIndices);
+            this.scrollId = _listCopy(o.scrollId);
         }
 
         @Override
@@ -142,87 +159,92 @@ public class UpgradeResponse extends ShardsOperationResponseBase implements ToCo
         }
 
         /**
-         * API name: {@code upgraded_indices}
+         * API name: {@code scroll_id}
          *
          * <p>
-         * Adds all elements of <code>map</code> to <code>upgradedIndices</code>.
+         * Adds all elements of <code>list</code> to <code>scrollId</code>.
          * </p>
          */
         @Nonnull
-        public final Builder upgradedIndices(Map<String, UpgradeVersionStatus> map) {
-            this.upgradedIndices = _mapPutAll(this.upgradedIndices, map);
+        public final Builder scrollId(List<String> list) {
+            this.scrollId = _listAddAll(this.scrollId, list);
             return this;
         }
 
         /**
-         * API name: {@code upgraded_indices}
+         * API name: {@code scroll_id}
          *
          * <p>
-         * Adds an entry to <code>upgradedIndices</code>.
+         * Adds one or more values to <code>scrollId</code>.
          * </p>
          */
         @Nonnull
-        public final Builder upgradedIndices(String key, UpgradeVersionStatus value) {
-            this.upgradedIndices = _mapPut(this.upgradedIndices, key, value);
+        public final Builder scrollId(String value, String... values) {
+            this.scrollId = _listAdd(this.scrollId, value, values);
             return this;
         }
 
         /**
-         * API name: {@code upgraded_indices}
-         *
-         * <p>
-         * Adds a value to <code>upgradedIndices</code> using a builder lambda.
-         * </p>
-         */
-        @Nonnull
-        public final Builder upgradedIndices(String key, Function<UpgradeVersionStatus.Builder, ObjectBuilder<UpgradeVersionStatus>> fn) {
-            return upgradedIndices(key, fn.apply(new UpgradeVersionStatus.Builder()).build());
-        }
-
-        /**
-         * Builds a {@link UpgradeResponse}.
+         * Builds a {@link ClearScrollRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public UpgradeResponse build() {
+        public ClearScrollRequest build() {
             _checkSingleUse();
 
-            return new UpgradeResponse(this);
+            return new ClearScrollRequest(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link UpgradeResponse}
+     * Json deserializer for {@link ClearScrollRequest}
      */
-    public static final JsonpDeserializer<UpgradeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<ClearScrollRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        UpgradeResponse::setupUpgradeResponseDeserializer
+        ClearScrollRequest::setupClearScrollRequestDeserializer
     );
 
-    protected static void setupUpgradeResponseDeserializer(ObjectDeserializer<UpgradeResponse.Builder> op) {
-        setupShardsOperationResponseBaseDeserializer(op);
-        op.add(Builder::upgradedIndices, JsonpDeserializer.stringMapDeserializer(UpgradeVersionStatus._DESERIALIZER), "upgraded_indices");
+    protected static void setupClearScrollRequestDeserializer(ObjectDeserializer<ClearScrollRequest.Builder> op) {
+        op.add(Builder::scrollId, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "scroll_id");
     }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Endpoint "{@code clear_scroll}".
+     */
+    public static final Endpoint<ClearScrollRequest, ClearScrollResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+        // Request method
+        request -> "DELETE",
+        // Request path
+        request -> "/_search/scroll",
+        // Request parameters
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
+        SimpleEndpoint.emptyMap(),
+        true,
+        ClearScrollResponse._DESERIALIZER
+    );
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + Objects.hashCode(this.upgradedIndices);
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.scrollId);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        UpgradeResponse other = (UpgradeResponse) o;
-        return Objects.equals(this.upgradedIndices, other.upgradedIndices);
+        ClearScrollRequest other = (ClearScrollRequest) o;
+        return Objects.equals(this.scrollId, other.scrollId);
     }
 }

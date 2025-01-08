@@ -34,62 +34,57 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.indices;
+package org.opensearch.client.opensearch.core;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: indices.UpgradeVersionStatus
+// typedef: clear_scroll.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class UpgradeVersionStatus implements PlainJsonSerializable, ToCopyableBuilder<UpgradeVersionStatus.Builder, UpgradeVersionStatus> {
+public class ClearScrollResponse implements PlainJsonSerializable, ToCopyableBuilder<ClearScrollResponse.Builder, ClearScrollResponse> {
 
-    @Nullable
-    private final String oldestLuceneSegmentVersion;
+    private final int numFreed;
 
-    @Nullable
-    private final String upgradeVersion;
+    private final boolean succeeded;
 
     // ---------------------------------------------------------------------------------------------
 
-    private UpgradeVersionStatus(Builder builder) {
-        this.oldestLuceneSegmentVersion = builder.oldestLuceneSegmentVersion;
-        this.upgradeVersion = builder.upgradeVersion;
+    private ClearScrollResponse(Builder builder) {
+        this.numFreed = ApiTypeHelper.requireNonNull(builder.numFreed, this, "numFreed");
+        this.succeeded = ApiTypeHelper.requireNonNull(builder.succeeded, this, "succeeded");
     }
 
-    public static UpgradeVersionStatus of(Function<UpgradeVersionStatus.Builder, ObjectBuilder<UpgradeVersionStatus>> fn) {
+    public static ClearScrollResponse of(Function<ClearScrollResponse.Builder, ObjectBuilder<ClearScrollResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * API name: {@code oldest_lucene_segment_version}
+     * Required - API name: {@code num_freed}
      */
-    @Nullable
-    public final String oldestLuceneSegmentVersion() {
-        return this.oldestLuceneSegmentVersion;
+    public final int numFreed() {
+        return this.numFreed;
     }
 
     /**
-     * API name: {@code upgrade_version}
+     * Required - API name: {@code succeeded}
      */
-    @Nullable
-    public final String upgradeVersion() {
-        return this.upgradeVersion;
+    public final boolean succeeded() {
+        return this.succeeded;
     }
 
     /**
@@ -103,15 +98,11 @@ public class UpgradeVersionStatus implements PlainJsonSerializable, ToCopyableBu
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.oldestLuceneSegmentVersion != null) {
-            generator.writeKey("oldest_lucene_segment_version");
-            generator.write(this.oldestLuceneSegmentVersion);
-        }
+        generator.writeKey("num_freed");
+        generator.write(this.numFreed);
 
-        if (this.upgradeVersion != null) {
-            generator.writeKey("upgrade_version");
-            generator.write(this.upgradeVersion);
-        }
+        generator.writeKey("succeeded");
+        generator.write(this.succeeded);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -128,24 +119,22 @@ public class UpgradeVersionStatus implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
-     * Builder for {@link UpgradeVersionStatus}.
+     * Builder for {@link ClearScrollResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, UpgradeVersionStatus> {
-        @Nullable
-        private String oldestLuceneSegmentVersion;
-        @Nullable
-        private String upgradeVersion;
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ClearScrollResponse> {
+        private Integer numFreed;
+        private Boolean succeeded;
 
         public Builder() {}
 
-        private Builder(UpgradeVersionStatus o) {
-            this.oldestLuceneSegmentVersion = o.oldestLuceneSegmentVersion;
-            this.upgradeVersion = o.upgradeVersion;
+        private Builder(ClearScrollResponse o) {
+            this.numFreed = o.numFreed;
+            this.succeeded = o.succeeded;
         }
 
         private Builder(Builder o) {
-            this.oldestLuceneSegmentVersion = o.oldestLuceneSegmentVersion;
-            this.upgradeVersion = o.upgradeVersion;
+            this.numFreed = o.numFreed;
+            this.succeeded = o.succeeded;
         }
 
         @Override
@@ -155,57 +144,57 @@ public class UpgradeVersionStatus implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * API name: {@code oldest_lucene_segment_version}
+         * Required - API name: {@code num_freed}
          */
         @Nonnull
-        public final Builder oldestLuceneSegmentVersion(@Nullable String value) {
-            this.oldestLuceneSegmentVersion = value;
+        public final Builder numFreed(int value) {
+            this.numFreed = value;
             return this;
         }
 
         /**
-         * API name: {@code upgrade_version}
+         * Required - API name: {@code succeeded}
          */
         @Nonnull
-        public final Builder upgradeVersion(@Nullable String value) {
-            this.upgradeVersion = value;
+        public final Builder succeeded(boolean value) {
+            this.succeeded = value;
             return this;
         }
 
         /**
-         * Builds a {@link UpgradeVersionStatus}.
+         * Builds a {@link ClearScrollResponse}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public UpgradeVersionStatus build() {
+        public ClearScrollResponse build() {
             _checkSingleUse();
 
-            return new UpgradeVersionStatus(this);
+            return new ClearScrollResponse(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link UpgradeVersionStatus}
+     * Json deserializer for {@link ClearScrollResponse}
      */
-    public static final JsonpDeserializer<UpgradeVersionStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<ClearScrollResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        UpgradeVersionStatus::setupUpgradeVersionStatusDeserializer
+        ClearScrollResponse::setupClearScrollResponseDeserializer
     );
 
-    protected static void setupUpgradeVersionStatusDeserializer(ObjectDeserializer<UpgradeVersionStatus.Builder> op) {
-        op.add(Builder::oldestLuceneSegmentVersion, JsonpDeserializer.stringDeserializer(), "oldest_lucene_segment_version");
-        op.add(Builder::upgradeVersion, JsonpDeserializer.stringDeserializer(), "upgrade_version");
+    protected static void setupClearScrollResponseDeserializer(ObjectDeserializer<ClearScrollResponse.Builder> op) {
+        op.add(Builder::numFreed, JsonpDeserializer.integerDeserializer(), "num_freed");
+        op.add(Builder::succeeded, JsonpDeserializer.booleanDeserializer(), "succeeded");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.oldestLuceneSegmentVersion);
-        result = 31 * result + Objects.hashCode(this.upgradeVersion);
+        result = 31 * result + Integer.hashCode(this.numFreed);
+        result = 31 * result + Boolean.hashCode(this.succeeded);
         return result;
     }
 
@@ -213,8 +202,7 @@ public class UpgradeVersionStatus implements PlainJsonSerializable, ToCopyableBu
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        UpgradeVersionStatus other = (UpgradeVersionStatus) o;
-        return Objects.equals(this.oldestLuceneSegmentVersion, other.oldestLuceneSegmentVersion)
-            && Objects.equals(this.upgradeVersion, other.upgradeVersion);
+        ClearScrollResponse other = (ClearScrollResponse) o;
+        return this.numFreed == other.numFreed && this.succeeded == other.succeeded;
     }
 }

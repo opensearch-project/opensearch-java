@@ -45,6 +45,8 @@ import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.cat.OpenSearchCatAsyncClient;
 import org.opensearch.client.opensearch.cluster.OpenSearchClusterAsyncClient;
+import org.opensearch.client.opensearch.core.ClearScrollRequest;
+import org.opensearch.client.opensearch.core.ClearScrollResponse;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesAsyncClient;
@@ -103,6 +105,33 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
 
     public OpenSearchTasksAsyncClient tasks() {
         return new OpenSearchTasksAsyncClient(this.transport, this.transportOptions);
+    }
+
+    // ----- Endpoint: clear_scroll
+
+    /**
+     * Explicitly clears the search context for a scroll.
+     */
+    public CompletableFuture<ClearScrollResponse> clearScroll(ClearScrollRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, ClearScrollRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Explicitly clears the search context for a scroll.
+     *
+     * @param fn a function that initializes a builder to create the {@link ClearScrollRequest}
+     */
+    public final CompletableFuture<ClearScrollResponse> clearScroll(
+        Function<ClearScrollRequest.Builder, ObjectBuilder<ClearScrollRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return clearScroll(fn.apply(new ClearScrollRequest.Builder()).build());
+    }
+
+    /**
+     * Explicitly clears the search context for a scroll.
+     */
+    public final CompletableFuture<ClearScrollResponse> clearScroll() throws IOException, OpenSearchException {
+        return clearScroll(new ClearScrollRequest.Builder().build());
     }
 
     // ----- Endpoint: info

@@ -91,6 +91,7 @@ public class SpecTransformer {
             .flatMap(Optional::stream)
             .map(Map::values)
             .flatMap(Collection::stream)
+            .filter(o -> o.getDeprecation().map(d -> d.getVersion().isGreaterThan(Versions.V1_0_0)).orElse(true))
             .forEach(operation -> {
                 var group = operation.getOperationGroup();
                 if (!matcher.matches(group)) {

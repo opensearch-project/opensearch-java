@@ -186,53 +186,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
         return this.transport.performRequestAsync(new BulkRequest.Builder().build(), BulkRequest._ENDPOINT, this.transportOptions);
     }
 
-    // ----- Endpoint: clear_scroll
-
-    /**
-     * Explicitly clears the search context for a scroll.
-     *
-     *
-     */
-
-    public CompletableFuture<ClearScrollResponse> clearScroll(ClearScrollRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ClearScrollRequest, ClearScrollResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ClearScrollRequest,
-            ClearScrollResponse,
-            ErrorResponse>) ClearScrollRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Explicitly clears the search context for a scroll.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ClearScrollRequest}
-     *
-     */
-
-    public final CompletableFuture<ClearScrollResponse> clearScroll(
-        Function<ClearScrollRequest.Builder, ObjectBuilder<ClearScrollRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return clearScroll(fn.apply(new ClearScrollRequest.Builder()).build());
-    }
-
-    /**
-     * Explicitly clears the search context for a scroll.
-     *
-     *
-     */
-
-    public CompletableFuture<ClearScrollResponse> clearScroll() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new ClearScrollRequest.Builder().build(),
-            ClearScrollRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
     // ----- Endpoint: count
 
     /**
