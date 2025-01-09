@@ -30,30 +30,28 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.Conflicts
+
 @JsonpDeserializable
-public enum SearchType implements JsonEnum {
-    /**
-     * Documents are scored using local term and document frequencies for the shard.
-     * This is usually faster but less accurate.
-     */
-    QueryThenFetch("query_then_fetch"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum Conflicts implements JsonEnum {
+    Abort("abort"),
 
-    /**
-     * Documents are scored using global term and document frequencies across all
-     * shards. This is usually slower but more accurate.
-     */
-    DfsQueryThenFetch("dfs_query_then_fetch"),
-
-    ;
+    Proceed("proceed");
 
     private final String jsonValue;
 
-    SearchType(String jsonValue) {
+    Conflicts(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -61,5 +59,5 @@ public enum SearchType implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<SearchType> _DESERIALIZER = new JsonEnum.Deserializer<>(SearchType.values());
+    public static final JsonEnum.Deserializer<Conflicts> _DESERIALIZER = new JsonEnum.Deserializer<>(Conflicts.values());
 }

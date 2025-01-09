@@ -30,16 +30,23 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.json.UnionDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -47,21 +54,21 @@ import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
 
-// typedef: _global.search._types.SourceConfigParam
+// typedef: core.search.SourceConfigParam
 
 /**
- * Defines how to fetch a source. Fetching can be disabled entirely, or the
- * source can be filtered. Used as a query parameter along with the
+ * Defines how to fetch a source. Fetching can be disabled entirely, or the source can be filtered. Use this setting with the
  * <code>_source_includes</code> and <code>_source_excludes</code> parameters.
- *
  */
 @JsonpDeserializable
-public class SourceConfigParam implements TaggedUnion<SourceConfigParam.Kind, Object>, JsonpSerializable {
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SourceConfigParam implements TaggedUnion<SourceConfigParam.Kind, Object>, PlainJsonSerializable {
+    /**
+     * {@link SourceConfigParam} variant kinds.
+     */
     public enum Kind {
-        Fields,
-        Fetch
-
+        Fetch,
+        Fields
     }
 
     private final Kind _kind;
@@ -82,44 +89,24 @@ public class SourceConfigParam implements TaggedUnion<SourceConfigParam.Kind, Ob
         this._value = value;
     }
 
-    public String _toJsonString() {
-        switch (_kind) {
-            case Fields:
-                return this.fields().stream().map(v -> v).collect(Collectors.joining(","));
-            case Fetch:
-                return String.valueOf(this.fetch());
-
-            default:
-                throw new IllegalStateException("Unknown kind " + _kind);
-        }
-    }
-
     private SourceConfigParam(Builder builder) {
-
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
     }
 
-    public static SourceConfigParam of(Function<Builder, ObjectBuilder<SourceConfigParam>> fn) {
+    public static SourceConfigParam of(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
         return fn.apply(new Builder()).build();
     }
 
-    /**
-     * Is this variant instance of kind {@code fields}?
-     */
-    public boolean isFields() {
-        return _kind == Kind.Fields;
-    }
-
-    /**
-     * Get the {@code fields} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code fields} kind.
-     */
-    public List<String> fields() {
-        return TaggedUnionUtils.get(this, Kind.Fields);
+    public String _toJsonString() {
+        switch (_kind) {
+            case Fetch:
+                return String.valueOf(this.fetch());
+            case Fields:
+                return String.join(",", this.fields());
+            default:
+                throw new IllegalStateException("Unknown kind " + _kind);
+        }
     }
 
     /**
@@ -132,11 +119,26 @@ public class SourceConfigParam implements TaggedUnion<SourceConfigParam.Kind, Ob
     /**
      * Get the {@code fetch} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code fetch} kind.
+     * @throws IllegalStateException if the current variant is not the {@code fetch} kind.
      */
     public Boolean fetch() {
         return TaggedUnionUtils.get(this, Kind.Fetch);
+    }
+
+    /**
+     * Is this variant instance of kind {@code fields}?
+     */
+    public boolean isFields() {
+        return _kind == Kind.Fields;
+    }
+
+    /**
+     * Get the {@code fields} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code fields} kind.
+     */
+    public List<String> fields() {
+        return TaggedUnionUtils.get(this, Kind.Fields);
     }
 
     @Override
@@ -145,32 +147,39 @@ public class SourceConfigParam implements TaggedUnion<SourceConfigParam.Kind, Ob
             ((JsonpSerializable) _value).serialize(generator, mapper);
         } else {
             switch (_kind) {
+                case Fetch:
+                    generator.write(((Boolean) this._value));
+                    break;
                 case Fields:
                     generator.writeStartArray();
                     for (String item0 : ((List<String>) this._value)) {
                         generator.write(item0);
-
                     }
                     generator.writeEnd();
-
-                    break;
-                case Fetch:
-                    generator.write(((Boolean) this._value));
-
                     break;
             }
         }
+    }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SourceConfigParam> {
         private Kind _kind;
         private Object _value;
 
-        public ObjectBuilder<SourceConfigParam> fields(List<String> v) {
-            this._kind = Kind.Fields;
-            this._value = v;
-            return this;
+        public Builder() {}
+
+        private Builder(SourceConfigParam o) {
+            this._kind = o._kind;
+            this._value = o._value;
         }
 
         public ObjectBuilder<SourceConfigParam> fetch(Boolean v) {
@@ -179,21 +188,43 @@ public class SourceConfigParam implements TaggedUnion<SourceConfigParam.Kind, Ob
             return this;
         }
 
+        public ObjectBuilder<SourceConfigParam> fields(List<String> v) {
+            this._kind = Kind.Fields;
+            this._value = v;
+            return this;
+        }
+
+        @Override
         public SourceConfigParam build() {
             _checkSingleUse();
             return new SourceConfigParam(this);
         }
-
     }
 
     private static JsonpDeserializer<SourceConfigParam> buildSourceConfigParamDeserializer() {
         return new UnionDeserializer.Builder<SourceConfigParam, Kind, Object>(SourceConfigParam::new, false).addMember(
-            Kind.Fields,
-            JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())
-        ).addMember(Kind.Fetch, JsonpDeserializer.booleanDeserializer()).build();
+            Kind.Fetch,
+            JsonpDeserializer.booleanDeserializer()
+        ).addMember(Kind.Fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())).build();
     }
 
     public static final JsonpDeserializer<SourceConfigParam> _DESERIALIZER = JsonpDeserializer.lazy(
         SourceConfigParam::buildSourceConfigParamDeserializer
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SourceConfigParam other = (SourceConfigParam) o;
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
 }

@@ -42,8 +42,6 @@ import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.CreateRequest;
 import org.opensearch.client.opensearch.core.CreateResponse;
-import org.opensearch.client.opensearch.core.DeleteByQueryRequest;
-import org.opensearch.client.opensearch.core.DeleteByQueryResponse;
 import org.opensearch.client.opensearch.core.DeleteByQueryRethrottleRequest;
 import org.opensearch.client.opensearch.core.DeleteByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.core.DeleteScriptRequest;
@@ -79,8 +77,6 @@ import org.opensearch.client.opensearch.core.PutScriptRequest;
 import org.opensearch.client.opensearch.core.PutScriptResponse;
 import org.opensearch.client.opensearch.core.RankEvalRequest;
 import org.opensearch.client.opensearch.core.RankEvalResponse;
-import org.opensearch.client.opensearch.core.ReindexRequest;
-import org.opensearch.client.opensearch.core.ReindexResponse;
 import org.opensearch.client.opensearch.core.ReindexRethrottleRequest;
 import org.opensearch.client.opensearch.core.ReindexRethrottleResponse;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateRequest;
@@ -213,39 +209,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
         Function<CreateRequest.Builder<TDocument>, ObjectBuilder<CreateRequest<TDocument>>> fn
     ) throws IOException, OpenSearchException {
         return create(fn.apply(new CreateRequest.Builder<TDocument>()).build());
-    }
-
-    // ----- Endpoint: delete_by_query
-
-    /**
-     * Deletes documents matching the provided query.
-     *
-     *
-     */
-
-    public CompletableFuture<DeleteByQueryResponse> deleteByQuery(DeleteByQueryRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteByQueryRequest, DeleteByQueryResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteByQueryRequest,
-            DeleteByQueryResponse,
-            ErrorResponse>) DeleteByQueryRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Deletes documents matching the provided query.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteByQueryRequest}
-     *
-     */
-
-    public final CompletableFuture<DeleteByQueryResponse> deleteByQuery(
-        Function<DeleteByQueryRequest.Builder, ObjectBuilder<DeleteByQueryRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return deleteByQuery(fn.apply(new DeleteByQueryRequest.Builder()).build());
     }
 
     // ----- Endpoint: delete_by_query_rethrottle
@@ -902,54 +865,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
         return rankEval(fn.apply(new RankEvalRequest.Builder()).build());
     }
 
-    // ----- Endpoint: reindex
-
-    /**
-     * Allows to copy documents from one index to another, optionally filtering the
-     * source documents by a query, changing the destination index settings, or
-     * fetching the documents from a remote cluster.
-     *
-     *
-     */
-
-    public CompletableFuture<ReindexResponse> reindex(ReindexRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ReindexRequest, ReindexResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ReindexRequest,
-            ReindexResponse,
-            ErrorResponse>) ReindexRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Allows to copy documents from one index to another, optionally filtering the
-     * source documents by a query, changing the destination index settings, or
-     * fetching the documents from a remote cluster.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ReindexRequest}
-     *
-     */
-
-    public final CompletableFuture<ReindexResponse> reindex(Function<ReindexRequest.Builder, ObjectBuilder<ReindexRequest>> fn)
-        throws IOException, OpenSearchException {
-        return reindex(fn.apply(new ReindexRequest.Builder()).build());
-    }
-
-    /**
-     * Allows to copy documents from one index to another, optionally filtering the
-     * source documents by a query, changing the destination index settings, or
-     * fetching the documents from a remote cluster.
-     *
-     *
-     */
-
-    public CompletableFuture<ReindexResponse> reindex() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(new ReindexRequest.Builder().build(), ReindexRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: reindex_rethrottle
 
     /**
@@ -1356,41 +1271,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
         Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
         return update(fn.apply(new UpdateRequest.Builder<TDocument, TPartialDocument>()).build(), tDocumentClass);
-    }
-
-    // ----- Endpoint: update_by_query
-
-    /**
-     * Performs an update on every document in the index without changing the
-     * source, for example to pick up a mapping change.
-     *
-     *
-     */
-
-    public CompletableFuture<UpdateByQueryResponse> updateByQuery(UpdateByQueryRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<UpdateByQueryRequest, UpdateByQueryResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            UpdateByQueryRequest,
-            UpdateByQueryResponse,
-            ErrorResponse>) UpdateByQueryRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Performs an update on every document in the index without changing the
-     * source, for example to pick up a mapping change.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link UpdateByQueryRequest}
-     *
-     */
-
-    public final CompletableFuture<UpdateByQueryResponse> updateByQuery(
-        Function<UpdateByQueryRequest.Builder, ObjectBuilder<UpdateByQueryRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return updateByQuery(fn.apply(new UpdateByQueryRequest.Builder()).build());
     }
 
     // ----- Endpoint: update_by_query_rethrottle

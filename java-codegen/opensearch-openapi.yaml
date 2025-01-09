@@ -8164,6 +8164,7 @@ paths:
         - $ref: '#/components/parameters/reindex___query.max_docs'
         - $ref: '#/components/parameters/reindex___query.refresh'
         - $ref: '#/components/parameters/reindex___query.requests_per_second'
+        - $ref: '#/components/parameters/reindex___query.require_alias'
         - $ref: '#/components/parameters/reindex___query.scroll'
         - $ref: '#/components/parameters/reindex___query.slices'
         - $ref: '#/components/parameters/reindex___query.timeout'
@@ -18266,10 +18267,7 @@ components:
       description: Set to `true` or `false` to return the `_source` field or not, or a list of fields to return.
       style: form
       schema:
-        type: array
-        items:
-          type: string
-        description: Set to `true` or `false` to return the `_source` field or not, or a list of fields to return.
+        $ref: '#/components/schemas/_core.search___SourceConfigParam'
       explode: true
     delete_by_query___query._source_excludes:
       name: _source_excludes
@@ -24043,6 +24041,11 @@ components:
         format: float
         default: 0
       style: form
+    reindex___query.require_alias:
+      in: query
+      name: require_alias
+      schema:
+        type: boolean
     reindex___query.scroll:
       in: query
       name: scroll
@@ -26153,10 +26156,7 @@ components:
       description: Set to `true` or `false` to return the `_source` field or not, or a list of fields to return.
       style: form
       schema:
-        type: array
-        items:
-          type: string
-        description: Set to `true` or `false` to return the `_source` field or not, or a list of fields to return.
+        $ref: '#/components/schemas/_core.search___SourceConfigParam'
       explode: true
     update_by_query___query._source_excludes:
       name: _source_excludes
@@ -34422,10 +34422,13 @@ components:
         - suggest_time_in_millis
         - suggest_total
     _common___SearchType:
-      type: string
-      enum:
-        - dfs_query_then_fetch
-        - query_then_fetch
+      oneOf:
+        - type: string
+          const: dfs_query_then_fetch
+          description: Documents are scored using global term and document frequencies across all shards. This is usually slower but more accurate.
+        - type: string
+          const: query_then_fetch
+          description: Documents are scored using local term and document frequencies for the shard. This is usually faster but less accurate.
     _common___SegmentReplicationStats:
       x-version-added: 2.10.0
       oneOf:
@@ -34604,7 +34607,8 @@ components:
         field:
           $ref: '#/components/schemas/_common___Field'
         id:
-          $ref: '#/components/schemas/_common___Id'
+          type: integer
+          format: int32
         max:
           type: integer
           format: int32
@@ -34614,8 +34618,11 @@ components:
     _common___Slices:
       description: The slice configuration used to parallelize a process.
       oneOf:
-        - type: number
-        - $ref: '#/components/schemas/_common___SlicesCalculation'
+        - title: count
+          type: integer
+          format: int32
+        - title: calculation
+          $ref: '#/components/schemas/_common___SlicesCalculation'
     _common___SlicesCalculation:
       type: string
       enum:
@@ -44772,7 +44779,8 @@ components:
           description: |-
             The number of documents to index per batch.
             Use the `size` setting when indexing from a remote cluster. This ensures that batches fit in the on-heap buffer. The buffer defaults to a maximum size of `100MB`.
-          type: number
+          type: integer
+          format: int32
         slice:
           $ref: '#/components/schemas/_common___SlicedScroll'
         sort:
@@ -45691,8 +45699,10 @@ components:
         Defines how to fetch a source. Fetching can be disabled entirely, or the source can be filtered.
         Use this setting with the `_source_includes` and `_source_excludes` parameters.
       oneOf:
-        - type: boolean
-        - $ref: '#/components/schemas/_common___Fields'
+        - title: fetch
+          type: boolean
+        - title: fields
+          $ref: '#/components/schemas/_common___Fields'
     _core.search___SourceFilter:
       oneOf:
         - title: includes

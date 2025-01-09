@@ -52,12 +52,18 @@ import org.opensearch.client.opensearch.core.CreatePitRequest;
 import org.opensearch.client.opensearch.core.CreatePitResponse;
 import org.opensearch.client.opensearch.core.DeleteAllPitsRequest;
 import org.opensearch.client.opensearch.core.DeleteAllPitsResponse;
+import org.opensearch.client.opensearch.core.DeleteByQueryRequest;
+import org.opensearch.client.opensearch.core.DeleteByQueryResponse;
 import org.opensearch.client.opensearch.core.DeletePitRequest;
 import org.opensearch.client.opensearch.core.DeletePitResponse;
 import org.opensearch.client.opensearch.core.DeleteRequest;
 import org.opensearch.client.opensearch.core.DeleteResponse;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
+import org.opensearch.client.opensearch.core.ReindexRequest;
+import org.opensearch.client.opensearch.core.ReindexResponse;
+import org.opensearch.client.opensearch.core.UpdateByQueryRequest;
+import org.opensearch.client.opensearch.core.UpdateByQueryResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestClient;
@@ -232,6 +238,25 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
         return deleteAllPits(new DeleteAllPitsRequest.Builder().build());
     }
 
+    // ----- Endpoint: delete_by_query
+
+    /**
+     * Deletes documents matching the provided query.
+     */
+    public DeleteByQueryResponse deleteByQuery(DeleteByQueryRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, DeleteByQueryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes documents matching the provided query.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteByQueryRequest}
+     */
+    public final DeleteByQueryResponse deleteByQuery(Function<DeleteByQueryRequest.Builder, ObjectBuilder<DeleteByQueryRequest>> fn)
+        throws IOException, OpenSearchException {
+        return deleteByQuery(fn.apply(new DeleteByQueryRequest.Builder()).build());
+    }
+
     // ----- Endpoint: delete_pit
 
     /**
@@ -274,5 +299,45 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
      */
     public final InfoResponse info() throws IOException, OpenSearchException {
         return info(new InfoRequest.Builder().build());
+    }
+
+    // ----- Endpoint: reindex
+
+    /**
+     * Allows to copy documents from one index to another, optionally filtering the source documents by a query, changing the destination
+     * index settings, or fetching the documents from a remote cluster.
+     */
+    public ReindexResponse reindex(ReindexRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ReindexRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Allows to copy documents from one index to another, optionally filtering the source documents by a query, changing the destination
+     * index settings, or fetching the documents from a remote cluster.
+     *
+     * @param fn a function that initializes a builder to create the {@link ReindexRequest}
+     */
+    public final ReindexResponse reindex(Function<ReindexRequest.Builder, ObjectBuilder<ReindexRequest>> fn) throws IOException,
+        OpenSearchException {
+        return reindex(fn.apply(new ReindexRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: update_by_query
+
+    /**
+     * Performs an update on every document in the index without changing the source, for example to pick up a mapping change.
+     */
+    public UpdateByQueryResponse updateByQuery(UpdateByQueryRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, UpdateByQueryRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Performs an update on every document in the index without changing the source, for example to pick up a mapping change.
+     *
+     * @param fn a function that initializes a builder to create the {@link UpdateByQueryRequest}
+     */
+    public final UpdateByQueryResponse updateByQuery(Function<UpdateByQueryRequest.Builder, ObjectBuilder<UpdateByQueryRequest>> fn)
+        throws IOException, OpenSearchException {
+        return updateByQuery(fn.apply(new UpdateByQueryRequest.Builder()).build());
     }
 }

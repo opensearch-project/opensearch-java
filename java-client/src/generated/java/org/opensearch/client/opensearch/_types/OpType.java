@@ -30,18 +30,24 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-@JsonpDeserializable
-public enum OpType implements JsonEnum {
-    Index("index"),
+// typedef: _types.OpType
 
+@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum OpType implements JsonEnum {
     Create("create"),
 
-    ;
+    Index("index");
 
     private final String jsonValue;
 

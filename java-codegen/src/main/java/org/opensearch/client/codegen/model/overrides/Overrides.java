@@ -106,6 +106,8 @@ public class Overrides {
 
                 .with(schema("_common.query_dsl", "QueryContainer"), so -> so.withClassName("Query"))
 
+                .with(schema("_core.reindex", "Source"), so -> so.withProperties(p -> p.with("_source", po -> po.withName("sourceFields"))))
+
                 .with(
                     schema("_core.search", "SourceFilter").append("oneOf", "1"),
                     so -> so.withAliasProvider(k -> k.endsWith("cludes") ? Set.of(k.substring(0, k.length() - 1)) : null)

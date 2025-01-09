@@ -30,17 +30,32 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch.core.search;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
-/**
- * Builders for {@link SourceConfigParam} variants.
- * <p>
- * Variants <code>fields</code>, <code>fetch</code> are not available here as
- * they don't have a dedicated class. Use {@link SourceConfigParam}'s builder
- * for these.
- *
- */
-public class SourceConfigParamBuilders {
-    private SourceConfigParamBuilders() {}
+package org.opensearch.client.opensearch._types;
 
+import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
+
+// typedef: _types.SlicesCalculation
+
+@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum SlicesCalculation implements JsonEnum {
+    Auto("auto");
+
+    private final String jsonValue;
+
+    SlicesCalculation(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
+
+    public String jsonValue() {
+        return this.jsonValue;
+    }
+
+    public static final JsonEnum.Deserializer<SlicesCalculation> _DESERIALIZER = new JsonEnum.Deserializer<>(SlicesCalculation.values());
 }

@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.reindex;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -43,14 +50,19 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.OpType;
 import org.opensearch.client.opensearch._types.VersionType;
+import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.reindex.Destination
+// typedef: core.reindex.Destination
 
 @JsonpDeserializable
-public class Destination implements PlainJsonSerializable {
-    @Nullable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class Destination implements PlainJsonSerializable, ToCopyableBuilder<Destination.Builder, Destination> {
+
+    @Nonnull
     private final String index;
 
     @Nullable
@@ -68,28 +80,21 @@ public class Destination implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private Destination(Builder builder) {
-
-        this.index = builder.index;
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
         this.opType = builder.opType;
         this.pipeline = builder.pipeline;
         this.routing = builder.routing;
         this.versionType = builder.versionType;
-
     }
 
-    public static Destination of(Function<Builder, ObjectBuilder<Destination>> fn) {
+    public static Destination of(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * The destination index for the transform. The mappings of the destination
-     * index are deduced based on the source fields when possible. If alternate
-     * mappings are required, use the Create index API prior to starting the
-     * transform.
-     * <p>
-     * API name: {@code index}
+     * Required - API name: {@code index}
      */
-    @Nullable
+    @Nonnull
     public final String index() {
         return this.index;
     }
@@ -103,9 +108,10 @@ public class Destination implements PlainJsonSerializable {
     }
 
     /**
-     * The unique identifier for an ingest pipeline.
+     * The name of the pipeline to use.
      * <p>
      * API name: {@code pipeline}
+     * </p>
      */
     @Nullable
     public final String pipeline() {
@@ -131,6 +137,7 @@ public class Destination implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -138,64 +145,86 @@ public class Destination implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeKey("index");
+        generator.write(this.index);
 
-        if (this.index != null) {
-            generator.writeKey("index");
-            generator.write(this.index);
-
-        }
         if (this.opType != null) {
             generator.writeKey("op_type");
             this.opType.serialize(generator, mapper);
         }
+
         if (this.pipeline != null) {
             generator.writeKey("pipeline");
             generator.write(this.pipeline);
-
         }
+
         if (this.routing != null) {
             generator.writeKey("routing");
             generator.write(this.routing);
-
         }
+
         if (this.versionType != null) {
             generator.writeKey("version_type");
             this.versionType.serialize(generator, mapper);
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link Destination}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Destination> {
-        @Nullable
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Destination> {
         private String index;
-
         @Nullable
         private OpType opType;
-
         @Nullable
         private String pipeline;
-
         @Nullable
         private String routing;
-
         @Nullable
         private VersionType versionType;
 
+        public Builder() {}
+
+        private Builder(Destination o) {
+            this.index = o.index;
+            this.opType = o.opType;
+            this.pipeline = o.pipeline;
+            this.routing = o.routing;
+            this.versionType = o.versionType;
+        }
+
+        private Builder(Builder o) {
+            this.index = o.index;
+            this.opType = o.opType;
+            this.pipeline = o.pipeline;
+            this.routing = o.routing;
+            this.versionType = o.versionType;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
-         * The destination index for the transform. The mappings of the destination
-         * index are deduced based on the source fields when possible. If alternate
-         * mappings are required, use the Create index API prior to starting the
-         * transform.
-         * <p>
-         * API name: {@code index}
+         * Required - API name: {@code index}
          */
-        public final Builder index(@Nullable String value) {
+        @Nonnull
+        public final Builder index(String value) {
             this.index = value;
             return this;
         }
@@ -203,16 +232,19 @@ public class Destination implements PlainJsonSerializable {
         /**
          * API name: {@code op_type}
          */
+        @Nonnull
         public final Builder opType(@Nullable OpType value) {
             this.opType = value;
             return this;
         }
 
         /**
-         * The unique identifier for an ingest pipeline.
+         * The name of the pipeline to use.
          * <p>
          * API name: {@code pipeline}
+         * </p>
          */
+        @Nonnull
         public final Builder pipeline(@Nullable String value) {
             this.pipeline = value;
             return this;
@@ -221,6 +253,7 @@ public class Destination implements PlainJsonSerializable {
         /**
          * API name: {@code routing}
          */
+        @Nonnull
         public final Builder routing(@Nullable String value) {
             this.routing = value;
             return this;
@@ -229,6 +262,7 @@ public class Destination implements PlainJsonSerializable {
         /**
          * API name: {@code version_type}
          */
+        @Nonnull
         public final Builder versionType(@Nullable VersionType value) {
             this.versionType = value;
             return this;
@@ -237,9 +271,10 @@ public class Destination implements PlainJsonSerializable {
         /**
          * Builds a {@link Destination}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public Destination build() {
             _checkSingleUse();
 
@@ -258,13 +293,33 @@ public class Destination implements PlainJsonSerializable {
     );
 
     protected static void setupDestinationDeserializer(ObjectDeserializer<Destination.Builder> op) {
-
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
         op.add(Builder::opType, OpType._DESERIALIZER, "op_type");
         op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
         op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
         op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.index.hashCode();
+        result = 31 * result + Objects.hashCode(this.opType);
+        result = 31 * result + Objects.hashCode(this.pipeline);
+        result = 31 * result + Objects.hashCode(this.routing);
+        result = 31 * result + Objects.hashCode(this.versionType);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Destination other = (Destination) o;
+        return this.index.equals(other.index)
+            && Objects.equals(this.opType, other.opType)
+            && Objects.equals(this.pipeline, other.pipeline)
+            && Objects.equals(this.routing, other.routing)
+            && Objects.equals(this.versionType, other.versionType);
+    }
 }

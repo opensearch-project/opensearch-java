@@ -463,3 +463,55 @@ After:
 ### DeletePitRecord renamed to DeletedPit
 - The `DeletePitRecord` class has been renamed to `DeletedPit`, this affects:
   - `DeletePitResponse`'s `pits` field.
+
+### DeleteByQueryRequest
+- The `from` property has been corrected to be of type `Integer` instead of `Long`.
+- The `maxDocs` property has been corrected to be of type `Integer` instead of `Long`.
+- The `refresh` property has been corrected to be of type `Refresh` instead of `Boolean`.
+- The `requestsPerSecond` property has been corrected to be of type `Float` instead of `Long`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+- The `scrollSize` property has been corrected to be of type `Integer` instead of `Long`.
+- The `size` property has been corrected to be of type `Integer` instead of `Long`.
+- The `slices` property now accepts a `Slices` union type instead of a `Long`.
+- The `terminateAfter` property is now of type `Integer` instead of `Long`.
+
+### DeleteByQueryResponse
+- The `batches` property has been corrected to be of type `Integer` instead of `Long`.
+
+### BulkIndexByScrollFailure renamed to BulkByScrollFailure
+- The `BulkIndexByScrollFailure` class has been renamed to `BulkByScrollFailure`, this affects:
+  - `DeleteByQueryResponse`'s `failures` field.
+  - `ReindexResponse`'s `failures` field.
+  - `UpdateByQueryResponse`'s `failures` field.
+
+### core.reindex.Source
+- The `runtimeMappings` property has been removed as it is not supported by OpenSearch.
+
+### ReindexRequest
+- The `maxDocs` property has been corrected to be of type `Integer` instead of `Long`.
+- The `refresh` property has been corrected to be of type `Refresh` instead of `Boolean`.
+- The `requestsPerSecond` property has been corrected to be of type `Float` instead of `Long`.
+- The `size` property has been corrected to be of type `Integer` instead of `Long`.
+- The `slices` property now accepts a `Slices` union type instead of a `Long`.
+
+### ReindexResponse
+- The `batches` property has been corrected to be of type `Integer` instead of `Long`.
+- The `requestsPerSecond` property has been corrected to be of type `Float` instead of `Long`.
+- The `throttledMillis` and `throttledUntilMillis` properties have been corrected to be of type `Long` instead of `String`.
+- The `took` property has been corrected to be of type `Long` instead of `Time`.
+
+### UpdateByQueryRequest
+- The `from` property has been corrected to be of type `Integer` instead of `Long`.
+- The `maxDocs` property has been corrected to be of type `Integer` instead of `Long`.
+- The `refresh` property has been corrected to be of type `Refresh` instead of `Boolean`.
+- The `requestsPerSecond` property has been corrected to be of type `Float` instead of `Long`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+- The `scrollSize` property has been corrected to be of type `Integer` instead of `Long`.
+- The `size` property has been corrected to be of type `Integer` instead of `Long`.
+- The `slices` property now accepts a `Slices` union type instead of a `Long`.
+- The `terminateAfter` property is now of type `Integer` instead of `Long`.
+- The `versionType` property has been removed as it is not supported by OpenSearch.
+
+### UpdateByQueryResponse
+- The `batches` property has been corrected to be of type `Integer` instead of `Long`.
+- The `throttledMillis` and `throttledUntilMillis` properties have been corrected to be of type `Long` instead of `Number`.
