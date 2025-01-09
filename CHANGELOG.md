@@ -35,6 +35,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Removed the `indices.diskUsage` operation as it's not supported by OpenSearch ([#1361](https://github.com/opensearch-project/opensearch-java/pull/1361))
 - Removed the `ingest.geoIpStats` operation as it's not supported by OpenSearch ([#1375](https://github.com/opensearch-project/opensearch-java/pull/1375))
 - Removed the `indices.getUpgrade` and `indices.upgrade` operations as they're not supported by OpenSearch ([#]())
+- Removed the `termsEnum` operation as it's not supported by OpenSearch ([#]())
 
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))

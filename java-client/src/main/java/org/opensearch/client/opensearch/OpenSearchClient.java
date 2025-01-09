@@ -63,8 +63,6 @@ import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.SearchTemplateRequest;
 import org.opensearch.client.opensearch.core.SearchTemplateResponse;
-import org.opensearch.client.opensearch.core.TermsEnumRequest;
-import org.opensearch.client.opensearch.core.TermsEnumResponse;
 import org.opensearch.client.opensearch.core.TermvectorsRequest;
 import org.opensearch.client.opensearch.core.TermvectorsResponse;
 import org.opensearch.client.opensearch.core.UpdateRequest;
@@ -609,42 +607,6 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
         Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
         return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), tDocumentClass);
-    }
-
-    // ----- Endpoint: terms_enum
-
-    /**
-     * The terms enum API can be used to discover terms in the index that begin with
-     * the provided string. It is designed for low-latency look-ups used in
-     * auto-complete scenarios.
-     *
-     *
-     */
-
-    public TermsEnumResponse termsEnum(TermsEnumRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<TermsEnumRequest, TermsEnumResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            TermsEnumRequest,
-            TermsEnumResponse,
-            ErrorResponse>) TermsEnumRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * The terms enum API can be used to discover terms in the index that begin with
-     * the provided string. It is designed for low-latency look-ups used in
-     * auto-complete scenarios.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link TermsEnumRequest}
-     *
-     */
-
-    public final TermsEnumResponse termsEnum(Function<TermsEnumRequest.Builder, ObjectBuilder<TermsEnumRequest>> fn) throws IOException,
-        OpenSearchException {
-        return termsEnum(fn.apply(new TermsEnumRequest.Builder()).build());
     }
 
     // ----- Endpoint: termvectors
