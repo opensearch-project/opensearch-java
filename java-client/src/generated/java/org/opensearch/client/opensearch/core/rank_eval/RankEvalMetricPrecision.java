@@ -30,26 +30,35 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.rank_eval;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.rank_eval.RankEvalMetricPrecision
+// typedef: core.rank_eval.RankEvalMetricPrecision
 
-/**
- * Precision at K (P@k)
- *
- */
 @JsonpDeserializable
-public class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class RankEvalMetricPrecision extends RankEvalMetricRatingThreshold
+    implements
+        ToCopyableBuilder<RankEvalMetricPrecision.Builder, RankEvalMetricPrecision> {
+
     @Nullable
     private final Boolean ignoreUnlabeled;
 
@@ -57,21 +66,19 @@ public class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold {
 
     private RankEvalMetricPrecision(Builder builder) {
         super(builder);
-
         this.ignoreUnlabeled = builder.ignoreUnlabeled;
-
     }
 
-    public static RankEvalMetricPrecision of(Function<Builder, ObjectBuilder<RankEvalMetricPrecision>> fn) {
+    public static RankEvalMetricPrecision of(Function<RankEvalMetricPrecision.Builder, ObjectBuilder<RankEvalMetricPrecision>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Controls how unlabeled documents in the search results are counted. If set to
-     * true, unlabeled documents are ignored and neither count as relevant or
-     * irrelevant. Set to false (the default), they are treated as irrelevant.
+     * Controls how unlabeled documents in the search results are counted. When <code>true</code>, unlabeled documents are ignored and are
+     * not treated as relevant or irrelevant. When <code>false</code>, unlabeled documents are treated as irrelevant.
      * <p>
      * API name: {@code ignore_unlabeled}
+     * </p>
      */
     @Nullable
     public final Boolean ignoreUnlabeled() {
@@ -79,51 +86,79 @@ public class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
         if (this.ignoreUnlabeled != null) {
             generator.writeKey("ignore_unlabeled");
             generator.write(this.ignoreUnlabeled);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RankEvalMetricPrecision}.
      */
-
-    public static class Builder extends RankEvalMetricRatingTreshold.AbstractBuilder<Builder>
+    public static class Builder extends RankEvalMetricRatingThreshold.AbstractBuilder<Builder>
         implements
-            ObjectBuilder<RankEvalMetricPrecision> {
+            CopyableBuilder<Builder, RankEvalMetricPrecision> {
         @Nullable
         private Boolean ignoreUnlabeled;
 
-        /**
-         * Controls how unlabeled documents in the search results are counted. If set to
-         * true, unlabeled documents are ignored and neither count as relevant or
-         * irrelevant. Set to false (the default), they are treated as irrelevant.
-         * <p>
-         * API name: {@code ignore_unlabeled}
-         */
-        public final Builder ignoreUnlabeled(@Nullable Boolean value) {
-            this.ignoreUnlabeled = value;
-            return this;
+        public Builder() {}
+
+        private Builder(RankEvalMetricPrecision o) {
+            super(o);
+            this.ignoreUnlabeled = o.ignoreUnlabeled;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.ignoreUnlabeled = o.ignoreUnlabeled;
         }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
+            return this;
+        }
+
+        /**
+         * Controls how unlabeled documents in the search results are counted. When <code>true</code>, unlabeled documents are ignored and
+         * are not treated as relevant or irrelevant. When <code>false</code>, unlabeled documents are treated as irrelevant.
+         * <p>
+         * API name: {@code ignore_unlabeled}
+         * </p>
+         */
+        @Nonnull
+        public final Builder ignoreUnlabeled(@Nullable Boolean value) {
+            this.ignoreUnlabeled = value;
             return this;
         }
 
         /**
          * Builds a {@link RankEvalMetricPrecision}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RankEvalMetricPrecision build() {
             _checkSingleUse();
 
@@ -142,9 +177,25 @@ public class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold {
     );
 
     protected static void setupRankEvalMetricPrecisionDeserializer(ObjectDeserializer<RankEvalMetricPrecision.Builder> op) {
-        RankEvalMetricRatingTreshold.setupRankEvalMetricRatingTresholdDeserializer(op);
+        setupRankEvalMetricRatingThresholdDeserializer(op);
         op.add(Builder::ignoreUnlabeled, JsonpDeserializer.booleanDeserializer(), "ignore_unlabeled");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.ignoreUnlabeled);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RankEvalMetricPrecision other = (RankEvalMetricPrecision) o;
+        return Objects.equals(this.ignoreUnlabeled, other.ignoreUnlabeled);
+    }
 }

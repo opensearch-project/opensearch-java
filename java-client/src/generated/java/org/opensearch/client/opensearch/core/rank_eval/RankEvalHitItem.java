@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.rank_eval;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,34 +49,38 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.rank_eval.RankEvalHitItem
+// typedef: core.rank_eval.RankEvalHitItem
 
 @JsonpDeserializable
-public class RankEvalHitItem implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class RankEvalHitItem implements PlainJsonSerializable, ToCopyableBuilder<RankEvalHitItem.Builder, RankEvalHitItem> {
+
+    @Nonnull
     private final RankEvalHit hit;
 
     @Nullable
-    private final Double rating;
+    private final Integer rating;
 
     // ---------------------------------------------------------------------------------------------
 
     private RankEvalHitItem(Builder builder) {
-
         this.hit = ApiTypeHelper.requireNonNull(builder.hit, this, "hit");
         this.rating = builder.rating;
-
     }
 
-    public static RankEvalHitItem of(Function<Builder, ObjectBuilder<RankEvalHitItem>> fn) {
+    public static RankEvalHitItem of(Function<RankEvalHitItem.Builder, ObjectBuilder<RankEvalHitItem>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code hit}
      */
+    @Nonnull
     public final RankEvalHit hit() {
         return this.hit;
     }
@@ -78,13 +89,14 @@ public class RankEvalHitItem implements PlainJsonSerializable {
      * API name: {@code rating}
      */
     @Nullable
-    public final Double rating() {
+    public final Integer rating() {
         return this.rating;
     }
 
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -92,33 +104,58 @@ public class RankEvalHitItem implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("hit");
         this.hit.serialize(generator, mapper);
 
         if (this.rating != null) {
             generator.writeKey("rating");
             generator.write(this.rating);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RankEvalHitItem}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalHitItem> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RankEvalHitItem> {
         private RankEvalHit hit;
-
         @Nullable
-        private Double rating;
+        private Integer rating;
+
+        public Builder() {}
+
+        private Builder(RankEvalHitItem o) {
+            this.hit = o.hit;
+            this.rating = o.rating;
+        }
+
+        private Builder(Builder o) {
+            this.hit = o.hit;
+            this.rating = o.rating;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code hit}
          */
+        @Nonnull
         public final Builder hit(RankEvalHit value) {
             this.hit = value;
             return this;
@@ -127,14 +164,16 @@ public class RankEvalHitItem implements PlainJsonSerializable {
         /**
          * Required - API name: {@code hit}
          */
+        @Nonnull
         public final Builder hit(Function<RankEvalHit.Builder, ObjectBuilder<RankEvalHit>> fn) {
-            return this.hit(fn.apply(new RankEvalHit.Builder()).build());
+            return hit(fn.apply(new RankEvalHit.Builder()).build());
         }
 
         /**
          * API name: {@code rating}
          */
-        public final Builder rating(@Nullable Double value) {
+        @Nonnull
+        public final Builder rating(@Nullable Integer value) {
             this.rating = value;
             return this;
         }
@@ -142,9 +181,10 @@ public class RankEvalHitItem implements PlainJsonSerializable {
         /**
          * Builds a {@link RankEvalHitItem}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RankEvalHitItem build() {
             _checkSingleUse();
 
@@ -163,10 +203,23 @@ public class RankEvalHitItem implements PlainJsonSerializable {
     );
 
     protected static void setupRankEvalHitItemDeserializer(ObjectDeserializer<RankEvalHitItem.Builder> op) {
-
         op.add(Builder::hit, RankEvalHit._DESERIALIZER, "hit");
-        op.add(Builder::rating, JsonpDeserializer.doubleDeserializer(), "rating");
-
+        op.add(Builder::rating, JsonpDeserializer.integerDeserializer(), "rating");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.hit.hashCode();
+        result = 31 * result + Objects.hashCode(this.rating);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RankEvalHitItem other = (RankEvalHitItem) o;
+        return this.hit.equals(other.hit) && Objects.equals(this.rating, other.rating);
+    }
 }

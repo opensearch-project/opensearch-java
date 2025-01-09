@@ -30,12 +30,19 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.rank_eval;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
@@ -45,53 +52,77 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.rank_eval.RankEvalRequestItem
+// typedef: core.rank_eval.RankEvalRequestItem
 
 @JsonpDeserializable
-public class RankEvalRequestItem implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class RankEvalRequestItem implements PlainJsonSerializable, ToCopyableBuilder<RankEvalRequestItem.Builder, RankEvalRequestItem> {
+
+    @Nonnull
     private final String id;
+
+    @Nonnull
+    private final Map<String, JsonData> params;
+
+    @Nonnull
+    private final List<DocumentRating> ratings;
 
     @Nullable
     private final RankEvalQuery request;
 
-    private final List<DocumentRating> ratings;
-
     @Nullable
     private final String templateId;
-
-    private final Map<String, JsonData> params;
 
     // ---------------------------------------------------------------------------------------------
 
     private RankEvalRequestItem(Builder builder) {
-
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-        this.request = builder.request;
-        this.ratings = ApiTypeHelper.unmodifiableRequired(builder.ratings, this, "ratings");
-        this.templateId = builder.templateId;
         this.params = ApiTypeHelper.unmodifiable(builder.params);
-
+        this.ratings = ApiTypeHelper.unmodifiableRequired(builder.ratings, this, "ratings");
+        this.request = builder.request;
+        this.templateId = builder.templateId;
     }
 
-    public static RankEvalRequestItem of(Function<Builder, ObjectBuilder<RankEvalRequestItem>> fn) {
+    public static RankEvalRequestItem of(Function<RankEvalRequestItem.Builder, ObjectBuilder<RankEvalRequestItem>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - The search request's ID, used to group result details later.
-     * <p>
-     * API name: {@code id}
+     * Required - API name: {@code id}
      */
+    @Nonnull
     public final String id() {
         return this.id;
     }
 
     /**
-     * The query being evaluated.
+     * The search template parameters.
      * <p>
+     * API name: {@code params}
+     * </p>
+     */
+    @Nonnull
+    public final Map<String, JsonData> params() {
+        return this.params;
+    }
+
+    /**
+     * Required - A list of document ratings.
+     * <p>
+     * API name: {@code ratings}
+     * </p>
+     */
+    @Nonnull
+    public final List<DocumentRating> ratings() {
+        return this.ratings;
+    }
+
+    /**
      * API name: {@code request}
      */
     @Nullable
@@ -100,17 +131,6 @@ public class RankEvalRequestItem implements PlainJsonSerializable {
     }
 
     /**
-     * Required - List of document ratings
-     * <p>
-     * API name: {@code ratings}
-     */
-    public final List<DocumentRating> ratings() {
-        return this.ratings;
-    }
-
-    /**
-     * The search template Id
-     * <p>
      * API name: {@code template_id}
      */
     @Nullable
@@ -119,17 +139,9 @@ public class RankEvalRequestItem implements PlainJsonSerializable {
     }
 
     /**
-     * The search template parameters.
-     * <p>
-     * API name: {@code params}
-     */
-    public final Map<String, JsonData> params() {
-        return this.params;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -137,135 +149,93 @@ public class RankEvalRequestItem implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("id");
         generator.write(this.id);
 
-        if (this.request != null) {
-            generator.writeKey("request");
-            this.request.serialize(generator, mapper);
-
-        }
-        if (ApiTypeHelper.isDefined(this.ratings)) {
-            generator.writeKey("ratings");
-            generator.writeStartArray();
-            for (DocumentRating item0 : this.ratings) {
-                item0.serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
-        }
-        if (this.templateId != null) {
-            generator.writeKey("template_id");
-            generator.write(this.templateId);
-
-        }
         if (ApiTypeHelper.isDefined(this.params)) {
             generator.writeKey("params");
             generator.writeStartObject();
             for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
                 generator.writeKey(item0.getKey());
                 item0.getValue().serialize(generator, mapper);
-
             }
             generator.writeEnd();
-
         }
 
+        generator.writeKey("ratings");
+        generator.writeStartArray();
+        for (DocumentRating item0 : this.ratings) {
+            item0.serialize(generator, mapper);
+        }
+        generator.writeEnd();
+
+        if (this.request != null) {
+            generator.writeKey("request");
+            this.request.serialize(generator, mapper);
+        }
+
+        if (this.templateId != null) {
+            generator.writeKey("template_id");
+            generator.write(this.templateId);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RankEvalRequestItem}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalRequestItem> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RankEvalRequestItem> {
         private String id;
-
+        @Nullable
+        private Map<String, JsonData> params;
+        private List<DocumentRating> ratings;
         @Nullable
         private RankEvalQuery request;
-
-        private List<DocumentRating> ratings;
-
         @Nullable
         private String templateId;
 
-        @Nullable
-        private Map<String, JsonData> params;
+        public Builder() {}
+
+        private Builder(RankEvalRequestItem o) {
+            this.id = o.id;
+            this.params = _mapCopy(o.params);
+            this.ratings = _listCopy(o.ratings);
+            this.request = o.request;
+            this.templateId = o.templateId;
+        }
+
+        private Builder(Builder o) {
+            this.id = o.id;
+            this.params = _mapCopy(o.params);
+            this.ratings = _listCopy(o.ratings);
+            this.request = o.request;
+            this.templateId = o.templateId;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
-         * Required - The search request's ID, used to group result details later.
-         * <p>
-         * API name: {@code id}
+         * Required - API name: {@code id}
          */
+        @Nonnull
         public final Builder id(String value) {
             this.id = value;
-            return this;
-        }
-
-        /**
-         * The query being evaluated.
-         * <p>
-         * API name: {@code request}
-         */
-        public final Builder request(@Nullable RankEvalQuery value) {
-            this.request = value;
-            return this;
-        }
-
-        /**
-         * The query being evaluated.
-         * <p>
-         * API name: {@code request}
-         */
-        public final Builder request(Function<RankEvalQuery.Builder, ObjectBuilder<RankEvalQuery>> fn) {
-            return this.request(fn.apply(new RankEvalQuery.Builder()).build());
-        }
-
-        /**
-         * Required - List of document ratings
-         * <p>
-         * API name: {@code ratings}
-         * <p>
-         * Adds all elements of <code>list</code> to <code>ratings</code>.
-         */
-        public final Builder ratings(List<DocumentRating> list) {
-            this.ratings = _listAddAll(this.ratings, list);
-            return this;
-        }
-
-        /**
-         * Required - List of document ratings
-         * <p>
-         * API name: {@code ratings}
-         * <p>
-         * Adds one or more values to <code>ratings</code>.
-         */
-        public final Builder ratings(DocumentRating value, DocumentRating... values) {
-            this.ratings = _listAdd(this.ratings, value, values);
-            return this;
-        }
-
-        /**
-         * Required - List of document ratings
-         * <p>
-         * API name: {@code ratings}
-         * <p>
-         * Adds a value to <code>ratings</code> using a builder lambda.
-         */
-        public final Builder ratings(Function<DocumentRating.Builder, ObjectBuilder<DocumentRating>> fn) {
-            return ratings(fn.apply(new DocumentRating.Builder()).build());
-        }
-
-        /**
-         * The search template Id
-         * <p>
-         * API name: {@code template_id}
-         */
-        public final Builder templateId(@Nullable String value) {
-            this.templateId = value;
             return this;
         }
 
@@ -273,9 +243,13 @@ public class RankEvalRequestItem implements PlainJsonSerializable {
          * The search template parameters.
          * <p>
          * API name: {@code params}
+         * </p>
+         *
          * <p>
-         * Adds all entries of <code>map</code> to <code>params</code>.
+         * Adds all elements of <code>map</code> to <code>params</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder params(Map<String, JsonData> map) {
             this.params = _mapPutAll(this.params, map);
             return this;
@@ -285,20 +259,98 @@ public class RankEvalRequestItem implements PlainJsonSerializable {
          * The search template parameters.
          * <p>
          * API name: {@code params}
+         * </p>
+         *
          * <p>
          * Adds an entry to <code>params</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder params(String key, JsonData value) {
             this.params = _mapPut(this.params, key, value);
             return this;
         }
 
         /**
+         * Required - A list of document ratings.
+         * <p>
+         * API name: {@code ratings}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>ratings</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder ratings(List<DocumentRating> list) {
+            this.ratings = _listAddAll(this.ratings, list);
+            return this;
+        }
+
+        /**
+         * Required - A list of document ratings.
+         * <p>
+         * API name: {@code ratings}
+         * </p>
+         *
+         * <p>
+         * Adds one or more values to <code>ratings</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder ratings(DocumentRating value, DocumentRating... values) {
+            this.ratings = _listAdd(this.ratings, value, values);
+            return this;
+        }
+
+        /**
+         * Required - A list of document ratings.
+         * <p>
+         * API name: {@code ratings}
+         * </p>
+         *
+         * <p>
+         * Adds a value to <code>ratings</code> using a builder lambda.
+         * </p>
+         */
+        @Nonnull
+        public final Builder ratings(Function<DocumentRating.Builder, ObjectBuilder<DocumentRating>> fn) {
+            return ratings(fn.apply(new DocumentRating.Builder()).build());
+        }
+
+        /**
+         * API name: {@code request}
+         */
+        @Nonnull
+        public final Builder request(@Nullable RankEvalQuery value) {
+            this.request = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code request}
+         */
+        @Nonnull
+        public final Builder request(Function<RankEvalQuery.Builder, ObjectBuilder<RankEvalQuery>> fn) {
+            return request(fn.apply(new RankEvalQuery.Builder()).build());
+        }
+
+        /**
+         * API name: {@code template_id}
+         */
+        @Nonnull
+        public final Builder templateId(@Nullable String value) {
+            this.templateId = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link RankEvalRequestItem}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RankEvalRequestItem build() {
             _checkSingleUse();
 
@@ -317,13 +369,33 @@ public class RankEvalRequestItem implements PlainJsonSerializable {
     );
 
     protected static void setupRankEvalRequestItemDeserializer(ObjectDeserializer<RankEvalRequestItem.Builder> op) {
-
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-        op.add(Builder::request, RankEvalQuery._DESERIALIZER, "request");
-        op.add(Builder::ratings, JsonpDeserializer.arrayDeserializer(DocumentRating._DESERIALIZER), "ratings");
-        op.add(Builder::templateId, JsonpDeserializer.stringDeserializer(), "template_id");
         op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
-
+        op.add(Builder::ratings, JsonpDeserializer.arrayDeserializer(DocumentRating._DESERIALIZER), "ratings");
+        op.add(Builder::request, RankEvalQuery._DESERIALIZER, "request");
+        op.add(Builder::templateId, JsonpDeserializer.stringDeserializer(), "template_id");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.id.hashCode();
+        result = 31 * result + Objects.hashCode(this.params);
+        result = 31 * result + this.ratings.hashCode();
+        result = 31 * result + Objects.hashCode(this.request);
+        result = 31 * result + Objects.hashCode(this.templateId);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RankEvalRequestItem other = (RankEvalRequestItem) o;
+        return this.id.equals(other.id)
+            && Objects.equals(this.params, other.params)
+            && this.ratings.equals(other.ratings)
+            && Objects.equals(this.request, other.request)
+            && Objects.equals(this.templateId, other.templateId);
+    }
 }

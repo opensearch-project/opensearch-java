@@ -30,44 +30,79 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.rank_eval;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.rank_eval.RankEvalMetricRecall
+// typedef: core.rank_eval.RankEvalMetricRecall
 
-/**
- * Recall at K (R@k)
- *
- */
 @JsonpDeserializable
-public class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class RankEvalMetricRecall extends RankEvalMetricRatingThreshold
+    implements
+        ToCopyableBuilder<RankEvalMetricRecall.Builder, RankEvalMetricRecall> {
+
     // ---------------------------------------------------------------------------------------------
 
     private RankEvalMetricRecall(Builder builder) {
         super(builder);
-
     }
 
-    public static RankEvalMetricRecall of(Function<Builder, ObjectBuilder<RankEvalMetricRecall>> fn) {
+    public static RankEvalMetricRecall of(Function<RankEvalMetricRecall.Builder, ObjectBuilder<RankEvalMetricRecall>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RankEvalMetricRecall}.
      */
-
-    public static class Builder extends RankEvalMetricRatingTreshold.AbstractBuilder<Builder>
+    public static class Builder extends RankEvalMetricRatingThreshold.AbstractBuilder<Builder>
         implements
-            ObjectBuilder<RankEvalMetricRecall> {
+            CopyableBuilder<Builder, RankEvalMetricRecall> {
+
+        public Builder() {}
+
+        private Builder(RankEvalMetricRecall o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -75,9 +110,10 @@ public class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
         /**
          * Builds a {@link RankEvalMetricRecall}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RankEvalMetricRecall build() {
             _checkSingleUse();
 
@@ -96,8 +132,22 @@ public class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
     );
 
     protected static void setupRankEvalMetricRecallDeserializer(ObjectDeserializer<RankEvalMetricRecall.Builder> op) {
-        RankEvalMetricRatingTreshold.setupRankEvalMetricRatingTresholdDeserializer(op);
-
+        setupRankEvalMetricRatingThresholdDeserializer(op);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

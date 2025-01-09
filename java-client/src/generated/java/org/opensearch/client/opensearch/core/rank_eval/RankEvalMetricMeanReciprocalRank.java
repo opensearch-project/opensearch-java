@@ -30,43 +30,81 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.rank_eval;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.rank_eval.RankEvalMetricMeanReciprocalRank
+// typedef: core.rank_eval.RankEvalMetricMeanReciprocalRank
 
-/**
- * Mean Reciprocal Rank
- */
 @JsonpDeserializable
-public class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRatingTreshold {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRatingThreshold
+    implements
+        ToCopyableBuilder<RankEvalMetricMeanReciprocalRank.Builder, RankEvalMetricMeanReciprocalRank> {
+
     // ---------------------------------------------------------------------------------------------
 
     private RankEvalMetricMeanReciprocalRank(Builder builder) {
         super(builder);
-
     }
 
-    public static RankEvalMetricMeanReciprocalRank of(Function<Builder, ObjectBuilder<RankEvalMetricMeanReciprocalRank>> fn) {
+    public static RankEvalMetricMeanReciprocalRank of(
+        Function<RankEvalMetricMeanReciprocalRank.Builder, ObjectBuilder<RankEvalMetricMeanReciprocalRank>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RankEvalMetricMeanReciprocalRank}.
      */
-
-    public static class Builder extends RankEvalMetricRatingTreshold.AbstractBuilder<Builder>
+    public static class Builder extends RankEvalMetricRatingThreshold.AbstractBuilder<Builder>
         implements
-            ObjectBuilder<RankEvalMetricMeanReciprocalRank> {
+            CopyableBuilder<Builder, RankEvalMetricMeanReciprocalRank> {
+
+        public Builder() {}
+
+        private Builder(RankEvalMetricMeanReciprocalRank o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -74,9 +112,10 @@ public class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRatingTresho
         /**
          * Builds a {@link RankEvalMetricMeanReciprocalRank}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RankEvalMetricMeanReciprocalRank build() {
             _checkSingleUse();
 
@@ -97,8 +136,22 @@ public class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRatingTresho
     protected static void setupRankEvalMetricMeanReciprocalRankDeserializer(
         ObjectDeserializer<RankEvalMetricMeanReciprocalRank.Builder> op
     ) {
-        RankEvalMetricRatingTreshold.setupRankEvalMetricRatingTresholdDeserializer(op);
-
+        setupRankEvalMetricRatingThresholdDeserializer(op);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

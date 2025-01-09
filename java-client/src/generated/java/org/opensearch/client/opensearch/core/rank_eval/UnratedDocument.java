@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.rank_eval;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,36 +47,38 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.rank_eval.RankEvalHit
+// typedef: core.rank_eval.UnratedDocument
 
 @JsonpDeserializable
-public class RankEvalHit implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class UnratedDocument implements PlainJsonSerializable, ToCopyableBuilder<UnratedDocument.Builder, UnratedDocument> {
+
+    @Nonnull
     private final String id;
 
+    @Nonnull
     private final String index;
-
-    private final double score;
 
     // ---------------------------------------------------------------------------------------------
 
-    private RankEvalHit(Builder builder) {
-
+    private UnratedDocument(Builder builder) {
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-        this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
-
     }
 
-    public static RankEvalHit of(Function<Builder, ObjectBuilder<RankEvalHit>> fn) {
+    public static UnratedDocument of(Function<UnratedDocument.Builder, ObjectBuilder<UnratedDocument>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code _id}
      */
+    @Nonnull
     public final String id() {
         return this.id;
     }
@@ -78,20 +86,15 @@ public class RankEvalHit implements PlainJsonSerializable {
     /**
      * Required - API name: {@code _index}
      */
+    @Nonnull
     public final String index() {
         return this.index;
     }
 
     /**
-     * Required - API name: {@code _score}
-     */
-    public final double score() {
-        return this.score;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -99,34 +102,55 @@ public class RankEvalHit implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("_id");
         generator.write(this.id);
 
         generator.writeKey("_index");
         generator.write(this.index);
-
-        generator.writeKey("_score");
-        generator.write(this.score);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
-     * Builder for {@link RankEvalHit}.
+     * Builder for {@link UnratedDocument}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalHit> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, UnratedDocument> {
         private String id;
-
         private String index;
 
-        private Double score;
+        public Builder() {}
+
+        private Builder(UnratedDocument o) {
+            this.id = o.id;
+            this.index = o.index;
+        }
+
+        private Builder(Builder o) {
+            this.id = o.id;
+            this.index = o.index;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code _id}
          */
+        @Nonnull
         public final Builder id(String value) {
             this.id = value;
             return this;
@@ -135,48 +159,54 @@ public class RankEvalHit implements PlainJsonSerializable {
         /**
          * Required - API name: {@code _index}
          */
+        @Nonnull
         public final Builder index(String value) {
             this.index = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code _score}
-         */
-        public final Builder score(double value) {
-            this.score = value;
-            return this;
-        }
-
-        /**
-         * Builds a {@link RankEvalHit}.
+         * Builds a {@link UnratedDocument}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public RankEvalHit build() {
+        @Override
+        @Nonnull
+        public UnratedDocument build() {
             _checkSingleUse();
 
-            return new RankEvalHit(this);
+            return new UnratedDocument(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link RankEvalHit}
+     * Json deserializer for {@link UnratedDocument}
      */
-    public static final JsonpDeserializer<RankEvalHit> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<UnratedDocument> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        RankEvalHit::setupRankEvalHitDeserializer
+        UnratedDocument::setupUnratedDocumentDeserializer
     );
 
-    protected static void setupRankEvalHitDeserializer(ObjectDeserializer<RankEvalHit.Builder> op) {
-
+    protected static void setupUnratedDocumentDeserializer(ObjectDeserializer<UnratedDocument.Builder> op) {
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-        op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "_score");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.id.hashCode();
+        result = 31 * result + this.index.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        UnratedDocument other = (UnratedDocument) o;
+        return this.id.equals(other.id) && this.index.equals(other.index);
+    }
 }

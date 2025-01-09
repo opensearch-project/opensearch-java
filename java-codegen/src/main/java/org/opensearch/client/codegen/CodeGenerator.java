@@ -51,7 +51,7 @@ public class CodeGenerator {
             namespace(isNull()),
             name(
                 or(
-                    isOneOf("clear_scroll", "count", "delete", "field_caps", "info", "mtermvectors", "ping"),
+                    isOneOf("clear_scroll", "count", "delete", "field_caps", "info", "mtermvectors", "ping", "rank_eval"),
                     contains("_by_query"),
                     contains("exists"),
                     contains("_pit"),

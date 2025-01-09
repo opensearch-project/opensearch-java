@@ -81,6 +81,8 @@ import org.opensearch.client.opensearch.core.MtermvectorsResponse;
 import org.opensearch.client.opensearch.core.PingRequest;
 import org.opensearch.client.opensearch.core.PutScriptRequest;
 import org.opensearch.client.opensearch.core.PutScriptResponse;
+import org.opensearch.client.opensearch.core.RankEvalRequest;
+import org.opensearch.client.opensearch.core.RankEvalResponse;
 import org.opensearch.client.opensearch.core.ReindexRequest;
 import org.opensearch.client.opensearch.core.ReindexResponse;
 import org.opensearch.client.opensearch.core.ReindexRethrottleRequest;
@@ -599,6 +601,25 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
     public final PutScriptResponse putScript(Function<PutScriptRequest.Builder, ObjectBuilder<PutScriptRequest>> fn) throws IOException,
         OpenSearchException {
         return putScript(fn.apply(new PutScriptRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: rank_eval
+
+    /**
+     * Allows to evaluate the quality of ranked search results over a set of typical search queries.
+     */
+    public RankEvalResponse rankEval(RankEvalRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, RankEvalRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Allows to evaluate the quality of ranked search results over a set of typical search queries.
+     *
+     * @param fn a function that initializes a builder to create the {@link RankEvalRequest}
+     */
+    public final RankEvalResponse rankEval(Function<RankEvalRequest.Builder, ObjectBuilder<RankEvalRequest>> fn) throws IOException,
+        OpenSearchException {
+        return rankEval(fn.apply(new RankEvalRequest.Builder()).build());
     }
 
     // ----- Endpoint: reindex

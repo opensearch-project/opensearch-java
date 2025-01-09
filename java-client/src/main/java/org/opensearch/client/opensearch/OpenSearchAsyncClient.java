@@ -56,8 +56,6 @@ import org.opensearch.client.opensearch.core.MsearchRequest;
 import org.opensearch.client.opensearch.core.MsearchResponse;
 import org.opensearch.client.opensearch.core.MsearchTemplateRequest;
 import org.opensearch.client.opensearch.core.MsearchTemplateResponse;
-import org.opensearch.client.opensearch.core.RankEvalRequest;
-import org.opensearch.client.opensearch.core.RankEvalResponse;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateRequest;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateResponse;
 import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteRequest;
@@ -456,40 +454,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
         Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
         return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), tDocumentClass);
-    }
-
-    // ----- Endpoint: rank_eval
-
-    /**
-     * Allows to evaluate the quality of ranked search results over a set of typical
-     * search queries
-     *
-     *
-     */
-
-    public CompletableFuture<RankEvalResponse> rankEval(RankEvalRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<RankEvalRequest, RankEvalResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            RankEvalRequest,
-            RankEvalResponse,
-            ErrorResponse>) RankEvalRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Allows to evaluate the quality of ranked search results over a set of typical
-     * search queries
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link RankEvalRequest}
-     *
-     */
-
-    public final CompletableFuture<RankEvalResponse> rankEval(Function<RankEvalRequest.Builder, ObjectBuilder<RankEvalRequest>> fn)
-        throws IOException, OpenSearchException {
-        return rankEval(fn.apply(new RankEvalRequest.Builder()).build());
     }
 
     // ----- Endpoint: render_search_template

@@ -31068,8 +31068,7 @@ components:
                   $ref: '#/components/schemas/_core.rank_eval___RankEvalMetricDetail'
               failures:
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: true
             required:
               - details
               - failures
@@ -44474,7 +44473,8 @@ components:
           $ref: '#/components/schemas/_common___IndexName'
         rating:
           description: The document's relevance with regard to the specified search request.
-          type: number
+          type: integer
+          format: int32
       required:
         - _id
         - _index
@@ -44488,6 +44488,7 @@ components:
           $ref: '#/components/schemas/_common___IndexName'
         _score:
           type: number
+          format: double
         _type:
           $ref: '#/components/schemas/_common___Type'
       required:
@@ -44500,10 +44501,8 @@ components:
         hit:
           $ref: '#/components/schemas/_core.rank_eval___RankEvalHit'
         rating:
-          type:
-            - 'null'
-            - number
-            - string
+          type: integer
+          format: int32
       required:
         - hit
     _core.rank_eval___RankEvalMetric:
@@ -44524,13 +44523,15 @@ components:
       properties:
         k:
           description: Sets the maximum number of documents retrieved per query. This value replaces the `size` parameter in the query.
-          type: number
+          type: integer
+          format: int32
     _core.rank_eval___RankEvalMetricDetail:
       type: object
       properties:
         metric_score:
           description: The `metric_score`, found in the `metric_details` section, shows the contribution of this query to the global quality metric score.
           type: number
+          format: double
         unrated_docs:
           description: The `unrated_docs` section contains an `_index` and `_id` entry for each document that didn't have a `ratings` value. This can be used to ask the user to supply ratings for these documents.
           type: array
@@ -44546,8 +44547,7 @@ components:
           type: object
           additionalProperties:
             type: object
-            additionalProperties:
-              type: number
+            additionalProperties: true
       required:
         - hits
         - metric_details
@@ -44568,7 +44568,8 @@ components:
           properties:
             maximum_relevance:
               description: The highest relevance grade used in user-supplied relevance judgments.
-              type: number
+              type: integer
+              format: int32
           required:
             - maximum_relevance
     _core.rank_eval___RankEvalMetricMeanReciprocalRank:
@@ -44590,7 +44591,8 @@ components:
           properties:
             relevant_rating_threshold:
               description: Sets the rating threshold above which documents are considered to be relevant.
-              type: number
+              type: integer
+              format: int32
     _core.rank_eval___RankEvalMetricRecall:
       allOf:
         - $ref: '#/components/schemas/_core.rank_eval___RankEvalMetricRatingThreshold'
@@ -44601,7 +44603,8 @@ components:
         query:
           $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
         size:
-          type: number
+          type: integer
+          format: int32
       required:
         - query
     _core.rank_eval___RankEvalRequestItem:
@@ -44621,8 +44624,7 @@ components:
         params:
           description: The search template parameters.
           type: object
-          additionalProperties:
-            type: object
+          additionalProperties: true
       required:
         - id
         - ratings

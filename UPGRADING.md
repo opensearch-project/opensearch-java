@@ -547,3 +547,12 @@ After:
 
 ### MtermvectorsRequest
 - The `routing` property is now of type `List<String>` instead of `String`.
+
+### RankEvalHitItem
+- The `rating` property has been corrected to be of type `Integer` instead of `Double`.
+
+### RankEvalMetricRatingTreshold renamed to RankEvalMetricRatingThreshold
+- The `RankEvalMetricRatingTreshold` class has been renamed to `RankEvalMetricRatingThreshold`.:
+
+### RankEvalRequest
+- The `searchType` property is now of type `SearchType` instead of `String`.

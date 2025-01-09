@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.rank_eval;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -43,13 +50,18 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.rank_eval.RankEvalQuery
+// typedef: core.rank_eval.RankEvalQuery
 
 @JsonpDeserializable
-public class RankEvalQuery implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class RankEvalQuery implements PlainJsonSerializable, ToCopyableBuilder<RankEvalQuery.Builder, RankEvalQuery> {
+
+    @Nonnull
     private final Query query;
 
     @Nullable
@@ -58,19 +70,18 @@ public class RankEvalQuery implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private RankEvalQuery(Builder builder) {
-
         this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
         this.size = builder.size;
-
     }
 
-    public static RankEvalQuery of(Function<Builder, ObjectBuilder<RankEvalQuery>> fn) {
+    public static RankEvalQuery of(Function<RankEvalQuery.Builder, ObjectBuilder<RankEvalQuery>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code query}
      */
+    @Nonnull
     public final Query query() {
         return this.query;
     }
@@ -86,6 +97,7 @@ public class RankEvalQuery implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -93,33 +105,58 @@ public class RankEvalQuery implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("query");
         this.query.serialize(generator, mapper);
 
         if (this.size != null) {
             generator.writeKey("size");
             generator.write(this.size);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RankEvalQuery}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalQuery> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RankEvalQuery> {
         private Query query;
-
         @Nullable
         private Integer size;
+
+        public Builder() {}
+
+        private Builder(RankEvalQuery o) {
+            this.query = o.query;
+            this.size = o.size;
+        }
+
+        private Builder(Builder o) {
+            this.query = o.query;
+            this.size = o.size;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code query}
          */
+        @Nonnull
         public final Builder query(Query value) {
             this.query = value;
             return this;
@@ -128,13 +165,15 @@ public class RankEvalQuery implements PlainJsonSerializable {
         /**
          * Required - API name: {@code query}
          */
+        @Nonnull
         public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-            return this.query(fn.apply(new Query.Builder()).build());
+            return query(fn.apply(new Query.Builder()).build());
         }
 
         /**
          * API name: {@code size}
          */
+        @Nonnull
         public final Builder size(@Nullable Integer value) {
             this.size = value;
             return this;
@@ -143,9 +182,10 @@ public class RankEvalQuery implements PlainJsonSerializable {
         /**
          * Builds a {@link RankEvalQuery}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RankEvalQuery build() {
             _checkSingleUse();
 
@@ -164,10 +204,23 @@ public class RankEvalQuery implements PlainJsonSerializable {
     );
 
     protected static void setupRankEvalQueryDeserializer(ObjectDeserializer<RankEvalQuery.Builder> op) {
-
         op.add(Builder::query, Query._DESERIALIZER, "query");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.query.hashCode();
+        result = 31 * result + Objects.hashCode(this.size);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RankEvalQuery other = (RankEvalQuery) o;
+        return this.query.equals(other.query) && Objects.equals(this.size, other.size);
+    }
 }
