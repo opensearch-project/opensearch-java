@@ -79,6 +79,7 @@ import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.core.MtermvectorsRequest;
 import org.opensearch.client.opensearch.core.MtermvectorsResponse;
+import org.opensearch.client.opensearch.core.PingRequest;
 import org.opensearch.client.opensearch.core.PutScriptRequest;
 import org.opensearch.client.opensearch.core.PutScriptResponse;
 import org.opensearch.client.opensearch.core.ReindexRequest;
@@ -563,6 +564,32 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
      */
     public final CompletableFuture<MtermvectorsResponse> mtermvectors() throws IOException, OpenSearchException {
         return mtermvectors(new MtermvectorsRequest.Builder().build());
+    }
+
+    // ----- Endpoint: ping
+
+    /**
+     * Returns whether the cluster is running.
+     */
+    public CompletableFuture<BooleanResponse> ping(PingRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, PingRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns whether the cluster is running.
+     *
+     * @param fn a function that initializes a builder to create the {@link PingRequest}
+     */
+    public final CompletableFuture<BooleanResponse> ping(Function<PingRequest.Builder, ObjectBuilder<PingRequest>> fn) throws IOException,
+        OpenSearchException {
+        return ping(fn.apply(new PingRequest.Builder()).build());
+    }
+
+    /**
+     * Returns whether the cluster is running.
+     */
+    public final CompletableFuture<BooleanResponse> ping() throws IOException, OpenSearchException {
+        return ping(new PingRequest.Builder().build());
     }
 
     // ----- Endpoint: put_script

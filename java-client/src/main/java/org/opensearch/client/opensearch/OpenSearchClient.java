@@ -55,7 +55,6 @@ import org.opensearch.client.opensearch.core.MsearchRequest;
 import org.opensearch.client.opensearch.core.MsearchResponse;
 import org.opensearch.client.opensearch.core.MsearchTemplateRequest;
 import org.opensearch.client.opensearch.core.MsearchTemplateResponse;
-import org.opensearch.client.opensearch.core.PingRequest;
 import org.opensearch.client.opensearch.core.RankEvalRequest;
 import org.opensearch.client.opensearch.core.RankEvalResponse;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateRequest;
@@ -80,7 +79,6 @@ import org.opensearch.client.opensearch.generic.OpenSearchGenericClient;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
-import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.transport.endpoints.EndpointWithResponseMapperAttr;
 import org.opensearch.client.util.ObjectBuilder;
 
@@ -458,17 +456,6 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
         Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
         return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), tDocumentClass);
-    }
-
-    // ----- Endpoint: ping
-
-    /**
-     * Returns whether the cluster is running.
-     *
-     *
-     */
-    public BooleanResponse ping() throws IOException, OpenSearchException {
-        return this.transport.performRequest(PingRequest._INSTANCE, PingRequest._ENDPOINT, this.transportOptions);
     }
 
     // ----- Endpoint: rank_eval
