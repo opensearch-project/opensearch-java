@@ -551,7 +551,7 @@ public final class UpdateByQueryRequest extends RequestBase
     }
 
     /**
-     * A comma-separated list of <field>:<direction> pairs.
+     * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs.
      * <p>
      * API name: {@code sort}
      * </p>
@@ -1345,7 +1345,7 @@ public final class UpdateByQueryRequest extends RequestBase
         }
 
         /**
-         * A comma-separated list of <field>:<direction> pairs.
+         * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs.
          * <p>
          * API name: {@code sort}
          * </p>
@@ -1361,7 +1361,7 @@ public final class UpdateByQueryRequest extends RequestBase
         }
 
         /**
-         * A comma-separated list of <field>:<direction> pairs.
+         * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs.
          * <p>
          * API name: {@code sort}
          * </p>

@@ -15,11 +15,11 @@ import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch._types.mapping.IntegerNumberProperty;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
-import org.opensearch.client.opensearch.core.pit.CreatePitRequest;
-import org.opensearch.client.opensearch.core.pit.CreatePitResponse;
-import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
-import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
-import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
+import org.opensearch.client.opensearch.core.CreatePitRequest;
+import org.opensearch.client.opensearch.core.CreatePitResponse;
+import org.opensearch.client.opensearch.core.DeletePitRequest;
+import org.opensearch.client.opensearch.core.DeletePitResponse;
+import org.opensearch.client.opensearch.core.GetAllPitsResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexRequest;
 import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
 import org.opensearch.client.opensearch.indices.IndexSettings;
@@ -53,14 +53,14 @@ public class PointInTime {
                 client.indices().create(createIndexRequest);
             }
 
-            CreatePitRequest createPitRequest = new CreatePitRequest.Builder().targetIndexes(Collections.singletonList(indexName))
+            CreatePitRequest createPitRequest = new CreatePitRequest.Builder().index(Collections.singletonList(indexName))
                 .keepAlive(new Time.Builder().time("100m").build())
                 .build();
 
             CreatePitResponse createPitResponse = client.createPit(createPitRequest);
             LOGGER.info("PIT created with id: {}", createPitResponse.pitId());
 
-            ListAllPitResponse listAllPitResponse = client.listAllPit();
+            GetAllPitsResponse listAllPitResponse = client.getAllPits();
             LOGGER.info("Found {} PITs", listAllPitResponse.pits().size());
 
             DeletePitRequest deletePitRequest = new DeletePitRequest.Builder().pitId(Collections.singletonList(createPitResponse.pitId()))

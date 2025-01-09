@@ -38,9 +38,11 @@ package org.opensearch.client.opensearch.core.termvectors;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -59,7 +61,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class TermVector implements PlainJsonSerializable, ToCopyableBuilder<TermVector.Builder, TermVector> {
 
-    @Nonnull
+    @Nullable
     private final FieldStatistics fieldStatistics;
 
     @Nonnull
@@ -68,7 +70,7 @@ public class TermVector implements PlainJsonSerializable, ToCopyableBuilder<Term
     // ---------------------------------------------------------------------------------------------
 
     private TermVector(Builder builder) {
-        this.fieldStatistics = ApiTypeHelper.requireNonNull(builder.fieldStatistics, this, "fieldStatistics");
+        this.fieldStatistics = builder.fieldStatistics;
         this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
     }
 
@@ -77,9 +79,9 @@ public class TermVector implements PlainJsonSerializable, ToCopyableBuilder<Term
     }
 
     /**
-     * Required - API name: {@code field_statistics}
+     * API name: {@code field_statistics}
      */
-    @Nonnull
+    @Nullable
     public final FieldStatistics fieldStatistics() {
         return this.fieldStatistics;
     }
@@ -103,8 +105,10 @@ public class TermVector implements PlainJsonSerializable, ToCopyableBuilder<Term
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("field_statistics");
-        this.fieldStatistics.serialize(generator, mapper);
+        if (this.fieldStatistics != null) {
+            generator.writeKey("field_statistics");
+            this.fieldStatistics.serialize(generator, mapper);
+        }
 
         generator.writeKey("terms");
         generator.writeStartObject();
@@ -132,6 +136,7 @@ public class TermVector implements PlainJsonSerializable, ToCopyableBuilder<Term
      * Builder for {@link TermVector}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TermVector> {
+        @Nullable
         private FieldStatistics fieldStatistics;
         private Map<String, Term> terms;
 
@@ -154,16 +159,16 @@ public class TermVector implements PlainJsonSerializable, ToCopyableBuilder<Term
         }
 
         /**
-         * Required - API name: {@code field_statistics}
+         * API name: {@code field_statistics}
          */
         @Nonnull
-        public final Builder fieldStatistics(FieldStatistics value) {
+        public final Builder fieldStatistics(@Nullable FieldStatistics value) {
             this.fieldStatistics = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code field_statistics}
+         * API name: {@code field_statistics}
          */
         @Nonnull
         public final Builder fieldStatistics(Function<FieldStatistics.Builder, ObjectBuilder<FieldStatistics>> fn) {
@@ -240,7 +245,7 @@ public class TermVector implements PlainJsonSerializable, ToCopyableBuilder<Term
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + this.fieldStatistics.hashCode();
+        result = 31 * result + Objects.hashCode(this.fieldStatistics);
         result = 31 * result + this.terms.hashCode();
         return result;
     }
@@ -250,6 +255,6 @@ public class TermVector implements PlainJsonSerializable, ToCopyableBuilder<Term
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         TermVector other = (TermVector) o;
-        return this.fieldStatistics.equals(other.fieldStatistics) && this.terms.equals(other.terms);
+        return Objects.equals(this.fieldStatistics, other.fieldStatistics) && this.terms.equals(other.terms);
     }
 }

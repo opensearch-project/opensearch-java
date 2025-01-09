@@ -45843,7 +45843,6 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/_core.termvectors___Term'
       required:
-        - field_statistics
         - terms
     _core.termvectors___Token:
       type: object

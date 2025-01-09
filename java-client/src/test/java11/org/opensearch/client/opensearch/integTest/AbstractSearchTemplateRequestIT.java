@@ -14,6 +14,7 @@ import java.util.Map;
 import org.junit.Test;
 import org.opensearch.Version;
 import org.opensearch.client.json.JsonData;
+import org.opensearch.client.opensearch._types.BuiltinScriptLanguage;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch.core.PutScriptRequest;
@@ -205,7 +206,7 @@ public abstract class AbstractSearchTemplateRequestIT extends OpenSearchJavaClie
     private void createSearchTemplate() throws IOException {
         var templateReq = new PutScriptRequest.Builder().id(TEST_SEARCH_TEMPLATE)
             .script(
-                s -> s.lang("mustache")
+                s -> s.lang(l -> l.builtin(BuiltinScriptLanguage.Mustache))
                     .source(
                         "{ \"query\": { \"match\": { \"title\": \"{{title}}\" } } "
                             + "{{#suggs}},\"suggest\" : { \"test-suggest\" : { \"text\" : "

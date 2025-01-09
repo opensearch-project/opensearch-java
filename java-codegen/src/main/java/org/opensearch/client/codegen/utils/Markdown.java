@@ -16,7 +16,7 @@ public final class Markdown {
     private Markdown() {}
 
     private static final Parser PARSER = Parser.builder().build();
-    private static final HtmlRenderer RENDERER = HtmlRenderer.builder().omitSingleParagraphP(true).build();
+    private static final HtmlRenderer RENDERER = HtmlRenderer.builder().escapeHtml(true).omitSingleParagraphP(true).build();
 
     @Nonnull
     public static String toJavaDocHtml(@Nonnull String markdown) {

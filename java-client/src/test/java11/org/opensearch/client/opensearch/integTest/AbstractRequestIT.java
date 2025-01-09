@@ -64,6 +64,11 @@ import org.opensearch.client.opensearch._types.query_dsl.TermsQuery;
 import org.opensearch.client.opensearch.cat.NodesResponse;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.ClearScrollResponse;
+import org.opensearch.client.opensearch.core.CreatePitRequest;
+import org.opensearch.client.opensearch.core.CreatePitResponse;
+import org.opensearch.client.opensearch.core.DeletePitRequest;
+import org.opensearch.client.opensearch.core.DeletePitResponse;
+import org.opensearch.client.opensearch.core.GetAllPitsResponse;
 import org.opensearch.client.opensearch.core.GetResponse;
 import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.InfoResponse;
@@ -72,11 +77,6 @@ import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.bulk.OperationType;
 import org.opensearch.client.opensearch.core.msearch.RequestItem;
-import org.opensearch.client.opensearch.core.pit.CreatePitRequest;
-import org.opensearch.client.opensearch.core.pit.CreatePitResponse;
-import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
-import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
-import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.opensearch.core.search.CompletionSuggester;
 import org.opensearch.client.opensearch.core.search.FieldSuggester;
 import org.opensearch.client.opensearch.core.search.FieldSuggesterBuilders;
@@ -626,7 +626,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         appData.setMsg("foo");
 
         javaClient().index(b -> b.index(index).id("1").document(appData).refresh(Refresh.True));
-        CreatePitRequest createPitRequest = new CreatePitRequest.Builder().targetIndexes(Collections.singletonList(index))
+        CreatePitRequest createPitRequest = new CreatePitRequest.Builder().index(Collections.singletonList(index))
             .keepAlive(new Time.Builder().time("100m").build())
             .build();
 
@@ -636,7 +636,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         assertNotNull(createPitResponse.pitId());
         assertEquals(createPitResponse.shards().total(), createPitResponse.shards().successful());
 
-        ListAllPitResponse listAllPitResponse = javaClient().listAllPit();
+        GetAllPitsResponse listAllPitResponse = javaClient().getAllPits();
 
         assertNotNull(listAllPitResponse);
         assertNotNull(listAllPitResponse.pits());
