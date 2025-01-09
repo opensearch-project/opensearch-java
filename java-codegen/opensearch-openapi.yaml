@@ -44395,7 +44395,6 @@ components:
           $ref: '#/components/schemas/_common___IndexName'
         doc:
           description: An artificial document for which you want to retrieve term vectors.
-          type: object
         fields:
           $ref: '#/components/schemas/_common___Fields'
         field_statistics:
@@ -44433,7 +44432,8 @@ components:
         _version:
           $ref: '#/components/schemas/_common___VersionNumber'
         took:
-          type: number
+          type: integer
+          format: int64
         found:
           type: boolean
         term_vectors:
@@ -45814,11 +45814,14 @@ components:
       type: object
       properties:
         doc_count:
-          type: number
+          type: integer
+          format: int32
         sum_doc_freq:
-          type: number
+          type: integer
+          format: int64
         sum_ttf:
-          type: number
+          type: integer
+          format: int64
       required:
         - doc_count
         - sum_doc_freq
@@ -45830,48 +45833,59 @@ components:
           description: |-
             Ignores words that appear in more than the specified number of documents.
             Default is `unbounded`.
-          type: number
+          type: integer
+          format: int32
         max_num_terms:
           description: The maximum number of terms that should be returned per field.
-          type: number
+          type: integer
+          format: int32
         max_term_freq:
           description: |-
             Ignore words with more than this frequency in the source doc.
             Default is `unbounded`.
-          type: number
+          type: integer
+          format: int32
         max_word_length:
           description: |-
             The maximum word length.
             Words longer than this value will be ignored.
             Default is `unbounded`.
-          type: number
+          type: integer
+          format: int32
         min_doc_freq:
           description: Ignore terms which do not occur in at least this many docs.
-          type: number
+          type: integer
+          format: int32
         min_term_freq:
           description: Ignore words with less than this frequency in the source doc.
-          type: number
+          type: integer
+          format: int32
         min_word_length:
           description: |-
             The minimum word length.
             Words shorter than this value will be ignored.
             Default is 0.
-          type: number
+          type: integer
+          format: int32
     _core.termvectors___Term:
       type: object
       properties:
         doc_freq:
-          type: number
+          type: integer
+          format: int32
         score:
           type: number
+          format: double
         term_freq:
-          type: number
+          type: integer
+          format: int32
         tokens:
           type: array
           items:
             $ref: '#/components/schemas/_core.termvectors___Token'
         ttf:
-          type: number
+          type: integer
+          format: int32
       required:
         - term_freq
     _core.termvectors___TermVector:
@@ -45890,13 +45904,16 @@ components:
       type: object
       properties:
         end_offset:
-          type: number
+          type: integer
+          format: int32
         payload:
           type: string
         position:
-          type: number
+          type: integer
+          format: int32
         start_offset:
-          type: number
+          type: integer
+          format: int32
       required:
         - position
     _core.update_by_query_rethrottle___UpdateByQueryRethrottleNode:

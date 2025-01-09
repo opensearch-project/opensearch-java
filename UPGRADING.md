@@ -544,3 +544,6 @@ After:
 
 ### FieldCapsRequest
 - The `runtimeMappings` property has been removed as it is not supported by OpenSearch.
+
+### MtermvectorsRequest
+- The `routing` property is now of type `List<String>` instead of `String`.

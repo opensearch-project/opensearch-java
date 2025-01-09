@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.termvectors;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,13 +47,17 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.termvectors.FieldStatistics
+// typedef: core.termvectors.FieldStatistics
 
 @JsonpDeserializable
-public class FieldStatistics implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class FieldStatistics implements PlainJsonSerializable, ToCopyableBuilder<FieldStatistics.Builder, FieldStatistics> {
+
     private final int docCount;
 
     private final long sumDocFreq;
@@ -57,14 +67,12 @@ public class FieldStatistics implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private FieldStatistics(Builder builder) {
-
         this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
         this.sumDocFreq = ApiTypeHelper.requireNonNull(builder.sumDocFreq, this, "sumDocFreq");
         this.sumTtf = ApiTypeHelper.requireNonNull(builder.sumTtf, this, "sumTtf");
-
     }
 
-    public static FieldStatistics of(Function<Builder, ObjectBuilder<FieldStatistics>> fn) {
+    public static FieldStatistics of(Function<FieldStatistics.Builder, ObjectBuilder<FieldStatistics>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -92,6 +100,7 @@ public class FieldStatistics implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -99,7 +108,6 @@ public class FieldStatistics implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("doc_count");
         generator.write(this.docCount);
 
@@ -108,25 +116,53 @@ public class FieldStatistics implements PlainJsonSerializable {
 
         generator.writeKey("sum_ttf");
         generator.write(this.sumTtf);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link FieldStatistics}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldStatistics> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, FieldStatistics> {
         private Integer docCount;
-
         private Long sumDocFreq;
-
         private Long sumTtf;
+
+        public Builder() {}
+
+        private Builder(FieldStatistics o) {
+            this.docCount = o.docCount;
+            this.sumDocFreq = o.sumDocFreq;
+            this.sumTtf = o.sumTtf;
+        }
+
+        private Builder(Builder o) {
+            this.docCount = o.docCount;
+            this.sumDocFreq = o.sumDocFreq;
+            this.sumTtf = o.sumTtf;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code doc_count}
          */
+        @Nonnull
         public final Builder docCount(int value) {
             this.docCount = value;
             return this;
@@ -135,6 +171,7 @@ public class FieldStatistics implements PlainJsonSerializable {
         /**
          * Required - API name: {@code sum_doc_freq}
          */
+        @Nonnull
         public final Builder sumDocFreq(long value) {
             this.sumDocFreq = value;
             return this;
@@ -143,6 +180,7 @@ public class FieldStatistics implements PlainJsonSerializable {
         /**
          * Required - API name: {@code sum_ttf}
          */
+        @Nonnull
         public final Builder sumTtf(long value) {
             this.sumTtf = value;
             return this;
@@ -151,9 +189,10 @@ public class FieldStatistics implements PlainJsonSerializable {
         /**
          * Builds a {@link FieldStatistics}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public FieldStatistics build() {
             _checkSingleUse();
 
@@ -172,11 +211,25 @@ public class FieldStatistics implements PlainJsonSerializable {
     );
 
     protected static void setupFieldStatisticsDeserializer(ObjectDeserializer<FieldStatistics.Builder> op) {
-
         op.add(Builder::docCount, JsonpDeserializer.integerDeserializer(), "doc_count");
         op.add(Builder::sumDocFreq, JsonpDeserializer.longDeserializer(), "sum_doc_freq");
         op.add(Builder::sumTtf, JsonpDeserializer.longDeserializer(), "sum_ttf");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Integer.hashCode(this.docCount);
+        result = 31 * result + Long.hashCode(this.sumDocFreq);
+        result = 31 * result + Long.hashCode(this.sumTtf);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        FieldStatistics other = (FieldStatistics) o;
+        return this.docCount == other.docCount && this.sumDocFreq == other.sumDocFreq && this.sumTtf == other.sumTtf;
+    }
 }

@@ -44,8 +44,6 @@ import org.opensearch.client.opensearch.core.CreateRequest;
 import org.opensearch.client.opensearch.core.CreateResponse;
 import org.opensearch.client.opensearch.core.ExplainRequest;
 import org.opensearch.client.opensearch.core.ExplainResponse;
-import org.opensearch.client.opensearch.core.FieldCapsRequest;
-import org.opensearch.client.opensearch.core.FieldCapsResponse;
 import org.opensearch.client.opensearch.core.GetRequest;
 import org.opensearch.client.opensearch.core.GetResponse;
 import org.opensearch.client.opensearch.core.GetSourceRequest;
@@ -58,8 +56,6 @@ import org.opensearch.client.opensearch.core.MsearchRequest;
 import org.opensearch.client.opensearch.core.MsearchResponse;
 import org.opensearch.client.opensearch.core.MsearchTemplateRequest;
 import org.opensearch.client.opensearch.core.MsearchTemplateResponse;
-import org.opensearch.client.opensearch.core.MtermvectorsRequest;
-import org.opensearch.client.opensearch.core.MtermvectorsResponse;
 import org.opensearch.client.opensearch.core.PingRequest;
 import org.opensearch.client.opensearch.core.RankEvalRequest;
 import org.opensearch.client.opensearch.core.RankEvalResponse;
@@ -462,53 +458,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
         Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
         return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), tDocumentClass);
-    }
-
-    // ----- Endpoint: mtermvectors
-
-    /**
-     * Returns multiple termvectors in one request.
-     *
-     *
-     */
-
-    public CompletableFuture<MtermvectorsResponse> mtermvectors(MtermvectorsRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<MtermvectorsRequest, MtermvectorsResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            MtermvectorsRequest,
-            MtermvectorsResponse,
-            ErrorResponse>) MtermvectorsRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns multiple termvectors in one request.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link MtermvectorsRequest}
-     *
-     */
-
-    public final CompletableFuture<MtermvectorsResponse> mtermvectors(
-        Function<MtermvectorsRequest.Builder, ObjectBuilder<MtermvectorsRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return mtermvectors(fn.apply(new MtermvectorsRequest.Builder()).build());
-    }
-
-    /**
-     * Returns multiple termvectors in one request.
-     *
-     *
-     */
-
-    public CompletableFuture<MtermvectorsResponse> mtermvectors() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new MtermvectorsRequest.Builder().build(),
-            MtermvectorsRequest._ENDPOINT,
-            this.transportOptions
-        );
     }
 
     // ----- Endpoint: ping

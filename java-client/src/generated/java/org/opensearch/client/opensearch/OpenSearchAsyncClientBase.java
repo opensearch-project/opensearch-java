@@ -77,6 +77,8 @@ import org.opensearch.client.opensearch.core.GetScriptRequest;
 import org.opensearch.client.opensearch.core.GetScriptResponse;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
+import org.opensearch.client.opensearch.core.MtermvectorsRequest;
+import org.opensearch.client.opensearch.core.MtermvectorsResponse;
 import org.opensearch.client.opensearch.core.PutScriptRequest;
 import org.opensearch.client.opensearch.core.PutScriptResponse;
 import org.opensearch.client.opensearch.core.ReindexRequest;
@@ -534,6 +536,33 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
      */
     public final CompletableFuture<InfoResponse> info() throws IOException, OpenSearchException {
         return info(new InfoRequest.Builder().build());
+    }
+
+    // ----- Endpoint: mtermvectors
+
+    /**
+     * Returns multiple termvectors in one request.
+     */
+    public CompletableFuture<MtermvectorsResponse> mtermvectors(MtermvectorsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, MtermvectorsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns multiple termvectors in one request.
+     *
+     * @param fn a function that initializes a builder to create the {@link MtermvectorsRequest}
+     */
+    public final CompletableFuture<MtermvectorsResponse> mtermvectors(
+        Function<MtermvectorsRequest.Builder, ObjectBuilder<MtermvectorsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return mtermvectors(fn.apply(new MtermvectorsRequest.Builder()).build());
+    }
+
+    /**
+     * Returns multiple termvectors in one request.
+     */
+    public final CompletableFuture<MtermvectorsResponse> mtermvectors() throws IOException, OpenSearchException {
+        return mtermvectors(new MtermvectorsRequest.Builder().build());
     }
 
     // ----- Endpoint: put_script
