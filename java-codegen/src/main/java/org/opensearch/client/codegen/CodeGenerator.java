@@ -51,8 +51,9 @@ public class CodeGenerator {
             namespace(isNull()),
             name(
                 or(
-                    isOneOf("clear_scroll", "count", "create_pit", "delete", "delete_all_pits", "delete_pit", "info"),
-                    contains("by_query"),
+                    isOneOf("clear_scroll", "count", "delete", "info"),
+                    contains("_by_query"),
+                    contains("_pit"),
                     contains("reindex")
                 )
             )

@@ -93,8 +93,6 @@ import org.opensearch.client.opensearch.core.TermvectorsRequest;
 import org.opensearch.client.opensearch.core.TermvectorsResponse;
 import org.opensearch.client.opensearch.core.UpdateRequest;
 import org.opensearch.client.opensearch.core.UpdateResponse;
-import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
-import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
@@ -561,18 +559,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
         Function<IndexRequest.Builder<TDocument>, ObjectBuilder<IndexRequest<TDocument>>> fn
     ) throws IOException, OpenSearchException {
         return index(fn.apply(new IndexRequest.Builder<TDocument>()).build());
-    }
-
-    // ----- Endpoint: list_point_in_time
-
-    /**
-     * List all Point In Time
-     *
-     *
-     */
-
-    public CompletableFuture<ListAllPitResponse> listAllPit() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(ListAllPitRequest._INSTANCE, ListAllPitRequest._ENDPOINT, this.transportOptions);
     }
 
     // ----- Endpoint: mget

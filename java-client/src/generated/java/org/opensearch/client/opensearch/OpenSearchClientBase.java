@@ -60,6 +60,8 @@ import org.opensearch.client.opensearch.core.DeletePitRequest;
 import org.opensearch.client.opensearch.core.DeletePitResponse;
 import org.opensearch.client.opensearch.core.DeleteRequest;
 import org.opensearch.client.opensearch.core.DeleteResponse;
+import org.opensearch.client.opensearch.core.GetAllPitsRequest;
+import org.opensearch.client.opensearch.core.GetAllPitsResponse;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.core.ReindexRequest;
@@ -301,6 +303,32 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
     public final DeletePitResponse deletePit(Function<DeletePitRequest.Builder, ObjectBuilder<DeletePitRequest>> fn) throws IOException,
         OpenSearchException {
         return deletePit(fn.apply(new DeletePitRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: get_all_pits
+
+    /**
+     * Lists all active point in time searches.
+     */
+    public GetAllPitsResponse getAllPits(GetAllPitsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, GetAllPitsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Lists all active point in time searches.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetAllPitsRequest}
+     */
+    public final GetAllPitsResponse getAllPits(Function<GetAllPitsRequest.Builder, ObjectBuilder<GetAllPitsRequest>> fn) throws IOException,
+        OpenSearchException {
+        return getAllPits(fn.apply(new GetAllPitsRequest.Builder()).build());
+    }
+
+    /**
+     * Lists all active point in time searches.
+     */
+    public final GetAllPitsResponse getAllPits() throws IOException, OpenSearchException {
+        return getAllPits(new GetAllPitsRequest.Builder().build());
     }
 
     // ----- Endpoint: info
