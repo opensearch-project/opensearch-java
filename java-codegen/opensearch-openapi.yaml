@@ -44042,7 +44042,11 @@ components:
         indices:
           $ref: '#/components/schemas/_common___Indices'
         meta:
-          $ref: '#/components/schemas/_common___Metadata'
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
         non_aggregatable_indices:
           $ref: '#/components/schemas/_common___Indices'
         non_searchable_indices:

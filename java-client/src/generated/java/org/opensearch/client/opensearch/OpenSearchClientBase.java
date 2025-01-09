@@ -64,6 +64,8 @@ import org.opensearch.client.opensearch.core.DeleteScriptRequest;
 import org.opensearch.client.opensearch.core.DeleteScriptResponse;
 import org.opensearch.client.opensearch.core.ExistsRequest;
 import org.opensearch.client.opensearch.core.ExistsSourceRequest;
+import org.opensearch.client.opensearch.core.FieldCapsRequest;
+import org.opensearch.client.opensearch.core.FieldCapsResponse;
 import org.opensearch.client.opensearch.core.GetAllPitsRequest;
 import org.opensearch.client.opensearch.core.GetAllPitsResponse;
 import org.opensearch.client.opensearch.core.GetScriptContextRequest;
@@ -373,6 +375,32 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
     public final BooleanResponse existsSource(Function<ExistsSourceRequest.Builder, ObjectBuilder<ExistsSourceRequest>> fn)
         throws IOException, OpenSearchException {
         return existsSource(fn.apply(new ExistsSourceRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: field_caps
+
+    /**
+     * Returns the information about the capabilities of fields among multiple indexes.
+     */
+    public FieldCapsResponse fieldCaps(FieldCapsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, FieldCapsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns the information about the capabilities of fields among multiple indexes.
+     *
+     * @param fn a function that initializes a builder to create the {@link FieldCapsRequest}
+     */
+    public final FieldCapsResponse fieldCaps(Function<FieldCapsRequest.Builder, ObjectBuilder<FieldCapsRequest>> fn) throws IOException,
+        OpenSearchException {
+        return fieldCaps(fn.apply(new FieldCapsRequest.Builder()).build());
+    }
+
+    /**
+     * Returns the information about the capabilities of fields among multiple indexes.
+     */
+    public final FieldCapsResponse fieldCaps() throws IOException, OpenSearchException {
+        return fieldCaps(new FieldCapsRequest.Builder().build());
     }
 
     // ----- Endpoint: get_all_pits

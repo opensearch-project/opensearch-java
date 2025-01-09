@@ -232,51 +232,6 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
         return explain(fn.apply(new ExplainRequest.Builder()).build(), tDocumentClass);
     }
 
-    // ----- Endpoint: field_caps
-
-    /**
-     * Returns the information about the capabilities of fields among multiple
-     * indices.
-     *
-     *
-     */
-
-    public FieldCapsResponse fieldCaps(FieldCapsRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<FieldCapsRequest, FieldCapsResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            FieldCapsRequest,
-            FieldCapsResponse,
-            ErrorResponse>) FieldCapsRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns the information about the capabilities of fields among multiple
-     * indices.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link FieldCapsRequest}
-     *
-     */
-
-    public final FieldCapsResponse fieldCaps(Function<FieldCapsRequest.Builder, ObjectBuilder<FieldCapsRequest>> fn) throws IOException,
-        OpenSearchException {
-        return fieldCaps(fn.apply(new FieldCapsRequest.Builder()).build());
-    }
-
-    /**
-     * Returns the information about the capabilities of fields among multiple
-     * indices.
-     *
-     *
-     */
-
-    public FieldCapsResponse fieldCaps() throws IOException, OpenSearchException {
-        return this.transport.performRequest(new FieldCapsRequest.Builder().build(), FieldCapsRequest._ENDPOINT, this.transportOptions);
-    }
-
     // ----- Endpoint: get
 
     /**
