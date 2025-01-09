@@ -95,6 +95,9 @@ public class EnumShape extends Shape {
         }
 
         public void addAlias(String alias) {
+            if (alias.equals(wireName)) {
+                return;
+            }
             aliases.add(alias);
         }
 

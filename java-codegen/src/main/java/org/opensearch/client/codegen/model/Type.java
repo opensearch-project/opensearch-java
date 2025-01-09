@@ -247,6 +247,16 @@ public class Type {
         return toBuilder().withTypeParameters(typeParams).build();
     }
 
+    public boolean canQueryParamify() {
+        if (isString() || isEnum() || isPotentiallyBoxedPrimitive() || isNumber()) {
+            return true;
+        }
+        if (isList()) {
+            return getListValueType().canQueryParamify();
+        }
+        return false;
+    }
+
     public Mustache.Lambda queryParamify() {
         return new TypeQueryParamifyLambda(this);
     }

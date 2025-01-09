@@ -47,7 +47,30 @@ import org.opensearch.client.codegen.utils.matcher.Matcher;
 public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Matcher<OperationGroup> OPERATION_MATCHER = or(
-        and(namespace(isNull()), name(is("info"))),
+        and(
+            namespace(isNull()),
+            name(
+                or(
+                    isOneOf(
+                        "clear_scroll",
+                        "count",
+                        "delete",
+                        "field_caps",
+                        "info",
+                        "mtermvectors",
+                        "ping",
+                        "rank_eval",
+                        "render_search_template",
+                        "search_shards"
+                    ),
+                    contains("_by_query"),
+                    contains("exists"),
+                    contains("_pit"),
+                    contains("reindex"),
+                    and(contains("script"), isNot("scripts_painless_execute"))
+                )
+            )
+        ),
         and(namespace(is("cat")), name(isNot("help"))),
         and(
             namespace(is("cluster")),

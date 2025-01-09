@@ -34,8 +34,8 @@ import org.opensearch.client.opensearch.cat.nodes.NodesRecord;
 import org.opensearch.client.opensearch.cat.recovery.RecoveryRecord;
 import org.opensearch.client.opensearch.cat.segments.SegmentsRecord;
 import org.opensearch.client.opensearch.cat.shards.ShardsRecord;
+import org.opensearch.client.opensearch.core.CreatePitResponse;
 import org.opensearch.client.opensearch.core.IndexResponse;
-import org.opensearch.client.opensearch.core.pit.CreatePitResponse;
 import org.opensearch.client.opensearch.indices.CreateIndexResponse;
 
 public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
@@ -272,7 +272,7 @@ public abstract class AbstractCatClientIT extends OpenSearchJavaClientTestCase {
 
     private void createPit(String indexName) throws Exception {
         CreatePitResponse createPitResponse = javaClient().createPit(
-            r -> r.targetIndexes(Collections.singletonList(indexName)).keepAlive(new Time.Builder().time("100m").build())
+            r -> r.index(Collections.singletonList(indexName)).keepAlive(new Time.Builder().time("100m").build())
         );
         assertNotNull(createPitResponse);
         assertNotNull(createPitResponse.pitId());

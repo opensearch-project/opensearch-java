@@ -262,13 +262,13 @@ public class ParsingTests extends ModelTestCase {
                 .version(1)
                 .found(true)
                 .took(0)
-                .termVectors("key1", tvb -> tvb.terms("term1", tb -> tb.score(0.3)))
+                .termVectors("key1", tvb -> tvb.terms("term1", tb -> tb.score(0.3).termFreq(5)))
         );
 
         String str = toJson(response);
         assertEquals(
             "{\"found\":true,\"_id\":\"id\",\"_index\":\"index\","
-                + "\"term_vectors\":{\"key1\":{\"terms\":{\"term1\":{\"score\":0.3}}}},\"took\":0,\"_version\":1}",
+                + "\"term_vectors\":{\"key1\":{\"terms\":{\"term1\":{\"score\":0.3,\"term_freq\":5}}}},\"took\":0,\"_version\":1}",
             str
         );
 

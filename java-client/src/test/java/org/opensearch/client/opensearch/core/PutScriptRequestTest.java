@@ -17,7 +17,7 @@ public class PutScriptRequestTest extends Assert {
     @Test
     public void toBuilder() {
         PutScriptRequest origin = new PutScriptRequest.Builder().id("id")
-            .script(StoredScript.of(a -> a.lang("lang").source("source")))
+            .script(StoredScript.of(a -> a.lang(l -> l.custom("lang")).source("source")))
             .build();
         PutScriptRequest copied = origin.toBuilder().build();
 

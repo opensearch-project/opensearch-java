@@ -636,35 +636,6 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
         return getTemplate(new GetTemplateRequest.Builder().build());
     }
 
-    // ----- Endpoint: indices.get_upgrade
-
-    /**
-     * The <code>_upgrade</code> API is no longer useful and will be removed.
-     */
-    @Deprecated
-    public GetUpgradeResponse getUpgrade(GetUpgradeRequest request) throws IOException, OpenSearchException {
-        return this.transport.performRequest(request, GetUpgradeRequest._ENDPOINT, this.transportOptions);
-    }
-
-    /**
-     * The <code>_upgrade</code> API is no longer useful and will be removed.
-     *
-     * @param fn a function that initializes a builder to create the {@link GetUpgradeRequest}
-     */
-    @Deprecated
-    public final GetUpgradeResponse getUpgrade(Function<GetUpgradeRequest.Builder, ObjectBuilder<GetUpgradeRequest>> fn) throws IOException,
-        OpenSearchException {
-        return getUpgrade(fn.apply(new GetUpgradeRequest.Builder()).build());
-    }
-
-    /**
-     * The <code>_upgrade</code> API is no longer useful and will be removed.
-     */
-    @Deprecated
-    public final GetUpgradeResponse getUpgrade() throws IOException, OpenSearchException {
-        return getUpgrade(new GetUpgradeRequest.Builder().build());
-    }
-
     // ----- Endpoint: indices.open
 
     /**
@@ -1058,35 +1029,6 @@ public abstract class OpenSearchIndicesClientBase<Self extends OpenSearchIndices
      */
     public final UpdateAliasesResponse updateAliases() throws IOException, OpenSearchException {
         return updateAliases(new UpdateAliasesRequest.Builder().build());
-    }
-
-    // ----- Endpoint: indices.upgrade
-
-    /**
-     * The <code>_upgrade</code> API is no longer useful and will be removed.
-     */
-    @Deprecated
-    public UpgradeResponse upgrade(UpgradeRequest request) throws IOException, OpenSearchException {
-        return this.transport.performRequest(request, UpgradeRequest._ENDPOINT, this.transportOptions);
-    }
-
-    /**
-     * The <code>_upgrade</code> API is no longer useful and will be removed.
-     *
-     * @param fn a function that initializes a builder to create the {@link UpgradeRequest}
-     */
-    @Deprecated
-    public final UpgradeResponse upgrade(Function<UpgradeRequest.Builder, ObjectBuilder<UpgradeRequest>> fn) throws IOException,
-        OpenSearchException {
-        return upgrade(fn.apply(new UpgradeRequest.Builder()).build());
-    }
-
-    /**
-     * The <code>_upgrade</code> API is no longer useful and will be removed.
-     */
-    @Deprecated
-    public final UpgradeResponse upgrade() throws IOException, OpenSearchException {
-        return upgrade(new UpgradeRequest.Builder().build());
     }
 
     // ----- Endpoint: indices.validate_query

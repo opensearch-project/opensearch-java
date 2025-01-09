@@ -4,6 +4,9 @@
 ### URL Path Encoding
 - The default URL path encoding has been changed to be more conservative. Previously the `!`, `$`, `&`, `'`, `(`, `)`, `*`, `+`, `,`, `;`, `=`, `@` and `:` characters were left un-encoded, they will now be percent-encoded. If you require the previous behavior you can specify the `org.opensearch.path.encoding=HTTP_CLIENT_V4_EQUIV` system property.
 
+### OpenSearchClient & OpenSearchAsyncClient
+- The `listAllPit` operation has been replaced by `getAllPits`.
+
 ### SearchAfter of SearchRequest type
 - Changed SearchAfter of SearchRequest type to FieldValue instead of String ([#769](https://github.com/opensearch-project/opensearch-java/pull/769))
 - Consider using `FieldValue.of` to make string type values compatible.
@@ -437,3 +440,125 @@ After:
 
 ### DocumentSimulation
 - The `type` property has been removed as it is no longer supported by OpenSearch.
+
+### CountRequest
+- The `minScore` property has been corrected to be of type `Float` instead of `Double`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+- The `terminateAfter` property is now of type `Integer` instead of `Long`.
+
+### CreatePitRequest
+- The `CreatePitRequest` class has been moved from the `org.opensearch.client.opensearch.core.pit` package to the `org.opensearch.client.opensearch.core` package.
+- The `targetIndexes` property has been renamed to `index`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+
+### CreatePitResponse
+- The `CreatePitResponse` class has been moved from the `org.opensearch.client.opensearch.core.pit` package to the `org.opensearch.client.opensearch.core` package.
+
+### DeleteRequest
+- The `routing` property is now of type `List<String>` instead of `String`.
+
+### DeletePitRequest
+- The `DeletePitRequest` class has been moved from the `org.opensearch.client.opensearch.core.pit` package to the `org.opensearch.client.opensearch.core` package.
+
+### DeletePitResponse
+- The `DeletePitResponse` class has been moved from the `org.opensearch.client.opensearch.core.pit` package to the `org.opensearch.client.opensearch.core` package.
+
+### DeletePitRecord renamed to DeletedPit
+- The `DeletePitRecord` class has been renamed to `DeletedPit`, this affects:
+  - `DeletePitResponse`'s `pits` field.
+
+### DeleteByQueryRequest
+- The `from` property has been corrected to be of type `Integer` instead of `Long`.
+- The `maxDocs` property has been corrected to be of type `Integer` instead of `Long`.
+- The `refresh` property has been corrected to be of type `Refresh` instead of `Boolean`.
+- The `requestsPerSecond` property has been corrected to be of type `Float` instead of `Long`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+- The `scrollSize` property has been corrected to be of type `Integer` instead of `Long`.
+- The `size` property has been corrected to be of type `Integer` instead of `Long`.
+- The `slices` property now accepts a `Slices` union type instead of a `Long`.
+- The `terminateAfter` property is now of type `Integer` instead of `Long`.
+
+### DeleteByQueryResponse
+- The `batches` property has been corrected to be of type `Integer` instead of `Long`.
+
+### BulkIndexByScrollFailure renamed to BulkByScrollFailure
+- The `BulkIndexByScrollFailure` class has been renamed to `BulkByScrollFailure`, this affects:
+  - `DeleteByQueryResponse`'s `failures` field.
+  - `ReindexResponse`'s `failures` field.
+  - `UpdateByQueryResponse`'s `failures` field.
+
+### core.reindex.Source
+- The `runtimeMappings` property has been removed as it is not supported by OpenSearch.
+
+### ReindexRequest
+- The `maxDocs` property has been corrected to be of type `Integer` instead of `Long`.
+- The `refresh` property has been corrected to be of type `Refresh` instead of `Boolean`.
+- The `requestsPerSecond` property has been corrected to be of type `Float` instead of `Long`.
+- The `size` property has been corrected to be of type `Integer` instead of `Long`.
+- The `slices` property now accepts a `Slices` union type instead of a `Long`.
+
+### ReindexResponse
+- The `batches` property has been corrected to be of type `Integer` instead of `Long`.
+- The `requestsPerSecond` property has been corrected to be of type `Float` instead of `Long`.
+- The `throttledMillis` and `throttledUntilMillis` properties have been corrected to be of type `Long` instead of `String`.
+- The `took` property has been corrected to be of type `Long` instead of `Time`.
+
+### UpdateByQueryRequest
+- The `from` property has been corrected to be of type `Integer` instead of `Long`.
+- The `maxDocs` property has been corrected to be of type `Integer` instead of `Long`.
+- The `refresh` property has been corrected to be of type `Refresh` instead of `Boolean`.
+- The `requestsPerSecond` property has been corrected to be of type `Float` instead of `Long`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+- The `scrollSize` property has been corrected to be of type `Integer` instead of `Long`.
+- The `size` property has been corrected to be of type `Integer` instead of `Long`.
+- The `slices` property now accepts a `Slices` union type instead of a `Long`.
+- The `terminateAfter` property is now of type `Integer` instead of `Long`.
+- The `versionType` property has been removed as it is not supported by OpenSearch.
+
+### UpdateByQueryResponse
+- The `batches` property has been corrected to be of type `Integer` instead of `Long`.
+- The `throttledMillis` and `throttledUntilMillis` properties have been corrected to be of type `Long` instead of `Number`.
+
+### DeleteByQueryRethrottleRequest
+- The `requestsPerSecond` property has been corrected to be of type `Float` instead of `Long`.
+
+### ReindexRethrottleRequest
+- The `requestsPerSecond` property has been corrected to be of type `Float` instead of `Long`.
+
+### UpdateByQueryRethrottleRequest
+- The `requestsPerSecond` property has been corrected to be of type `Float` instead of `Long`.
+
+### StoredScript
+- The `lang` property now accepts a `ScriptLanguage` enum instead of a `String`.
+
+### get_script_languages.LanguageContext
+- The `language` property now accepts a `ScriptLanguage` enum instead of a `String`.
+
+### ExistsRequest
+- The `refresh` property has been corrected to be of type `Refresh` instead of `Boolean`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+
+### ExistsSourceRequest
+- The `refresh` property has been corrected to be of type `Refresh` instead of `Boolean`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+
+### FieldCapsRequest
+- The `runtimeMappings` property has been removed as it is not supported by OpenSearch.
+
+### MtermvectorsRequest
+- The `routing` property is now of type `List<String>` instead of `String`.
+
+### RankEvalHitItem
+- The `rating` property has been corrected to be of type `Integer` instead of `Double`.
+
+### RankEvalMetricRatingTreshold renamed to RankEvalMetricRatingThreshold
+- The `RankEvalMetricRatingTreshold` class has been renamed to `RankEvalMetricRatingThreshold`.:
+
+### RankEvalRequest
+- The `searchType` property is now of type `SearchType` instead of `String`.
+
+### RenderSearchTemplateRequest
+- The `file` property has been removed as it is not supported by OpenSearch.
+
+### SearchShardsRequest
+- The `routing` property is now of type `List<String>` instead of `String`.
