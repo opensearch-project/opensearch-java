@@ -44648,19 +44648,24 @@ components:
       properties:
         batches:
           description: The number of scroll responses shown by the reindex.
-          type: number
+          type: integer
+          format: int64
         created:
           description: The number of documents that were successfully created.
-          type: number
+          type: integer
+          format: int64
         deleted:
           description: The number of documents that were successfully deleted.
-          type: number
+          type: integer
+          format: int64
         noops:
           description: The number of documents that were ignored because the script used for the reindex operation returned a `noop` value for `ctx.op`.
-          type: number
+          type: integer
+          format: int64
         requests_per_second:
           description: The number of successful requests per second during the reindex operation.
           type: number
+          format: float
         retries:
           $ref: '#/components/schemas/_common___Retries'
         throttled:
@@ -44673,13 +44678,16 @@ components:
           $ref: '#/components/schemas/_common___DurationValueUnitMillis'
         total:
           description: The number of documents that were successfully processed.
-          type: number
+          type: integer
+          format: int64
         updated:
           description: The number of documents that were successfully updated.
-          type: number
+          type: integer
+          format: int64
         version_conflicts:
           description: The number of version conflicts that reindex hits.
-          type: number
+          type: integer
+          format: int64
       required:
         - batches
         - created
@@ -44704,7 +44712,8 @@ components:
         description:
           type: string
         id:
-          type: number
+          type: integer
+          format: int64
         node:
           $ref: '#/components/schemas/_common___Name'
         resource_stats:

@@ -30,98 +30,144 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _global.reindex_rethrottle.Request
 
 /**
- * Changes the number of requests per second for a particular Reindex operation.
- *
+ * Changes the number of requests per second for a particular reindex operation.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public final class ReindexRethrottleRequest extends RequestBase
+    implements
+        ToCopyableBuilder<ReindexRethrottleRequest.Builder, ReindexRethrottleRequest> {
 
-public class ReindexRethrottleRequest extends RequestBase {
     @Nullable
-    private final Long requestsPerSecond;
+    private final Float requestsPerSecond;
 
+    @Nonnull
     private final String taskId;
 
     // ---------------------------------------------------------------------------------------------
 
     private ReindexRethrottleRequest(Builder builder) {
-
+        super(builder);
         this.requestsPerSecond = builder.requestsPerSecond;
         this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
-
     }
 
-    public static ReindexRethrottleRequest of(Function<Builder, ObjectBuilder<ReindexRethrottleRequest>> fn) {
+    public static ReindexRethrottleRequest of(Function<ReindexRethrottleRequest.Builder, ObjectBuilder<ReindexRethrottleRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * The throttle to set on this request in floating sub-requests per second. -1
-     * means set no throttle.
+     * The throttle for this request in sub-requests per second.
      * <p>
      * API name: {@code requests_per_second}
+     * </p>
      */
     @Nullable
-    public final Long requestsPerSecond() {
+    public final Float requestsPerSecond() {
         return this.requestsPerSecond;
     }
 
     /**
-     * Required - The task id to rethrottle
+     * Required - Identifier for the task.
      * <p>
      * API name: {@code task_id}
+     * </p>
      */
+    @Nonnull
     public final String taskId() {
         return this.taskId;
     }
 
+    // ---------------------------------------------------------------------------------------------
+
+    @Override
+    @Nonnull
     public Builder toBuilder() {
-        return new Builder().requestsPerSecond(requestsPerSecond).taskId(taskId);
+        return new Builder(this);
     }
 
-    // ---------------------------------------------------------------------------------------------
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
 
     /**
      * Builder for {@link ReindexRethrottleRequest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReindexRethrottleRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ReindexRethrottleRequest> {
         @Nullable
-        private Long requestsPerSecond;
-
+        private Float requestsPerSecond;
         private String taskId;
 
+        public Builder() {}
+
+        private Builder(ReindexRethrottleRequest o) {
+            super(o);
+            this.requestsPerSecond = o.requestsPerSecond;
+            this.taskId = o.taskId;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.requestsPerSecond = o.requestsPerSecond;
+            this.taskId = o.taskId;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
-         * The throttle to set on this request in floating sub-requests per second. -1
-         * means set no throttle.
+         * The throttle for this request in sub-requests per second.
          * <p>
          * API name: {@code requests_per_second}
+         * </p>
          */
-        public final Builder requestsPerSecond(@Nullable Long value) {
+        @Nonnull
+        public final Builder requestsPerSecond(@Nullable Float value) {
             this.requestsPerSecond = value;
             return this;
         }
 
         /**
-         * Required - The task id to rethrottle
+         * Required - Identifier for the task.
          * <p>
          * API name: {@code task_id}
+         * </p>
          */
+        @Nonnull
         public final Builder taskId(String value) {
             this.taskId = value;
             return this;
@@ -130,9 +176,10 @@ public class ReindexRethrottleRequest extends RequestBase {
         /**
          * Builds a {@link ReindexRethrottleRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ReindexRethrottleRequest build() {
             _checkSingleUse();
 
@@ -142,48 +189,52 @@ public class ReindexRethrottleRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.requestsPerSecond != null) {
+            params.put("requests_per_second", String.valueOf(this.requestsPerSecond));
+        }
+    }
+
     /**
      * Endpoint "{@code reindex_rethrottle}".
      */
     public static final Endpoint<ReindexRethrottleRequest, ReindexRethrottleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "POST";
-
-        },
-
+        request -> "POST",
         // Request path
         request -> {
-            final int _taskId = 1 << 0;
-
-            int propsSet = 0;
-
-            propsSet |= _taskId;
-
-            if (propsSet == (_taskId)) {
-                StringBuilder buf = new StringBuilder();
-                buf.append("/_reindex");
-                buf.append("/");
-                SimpleEndpoint.pathEncode(request.taskId, buf);
-                buf.append("/_rethrottle");
-                return buf.toString();
-            }
-            throw SimpleEndpoint.noPathTemplateFound("path");
-
+            StringBuilder buf = new StringBuilder();
+            buf.append("/_reindex/");
+            SimpleEndpoint.pathEncode(request.taskId, buf);
+            buf.append("/_rethrottle");
+            return buf.toString();
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.requestsPerSecond != null) {
-                params.put("requests_per_second", String.valueOf(request.requestsPerSecond));
-            }
+            request.applyQueryParameters(params);
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         false,
         ReindexRethrottleResponse._DESERIALIZER
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.requestsPerSecond);
+        result = 31 * result + this.taskId.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ReindexRethrottleRequest other = (ReindexRethrottleRequest) o;
+        return Objects.equals(this.requestsPerSecond, other.requestsPerSecond) && this.taskId.equals(other.taskId);
+    }
 }

@@ -515,3 +515,12 @@ After:
 ### UpdateByQueryResponse
 - The `batches` property has been corrected to be of type `Integer` instead of `Long`.
 - The `throttledMillis` and `throttledUntilMillis` properties have been corrected to be of type `Long` instead of `Number`.
+
+### DeleteByQueryRethrottleRequest
+- The `requestsPerSecond` property has been corrected to be of type `Float` instead of `Long`.
+
+### ReindexRethrottleRequest
+- The `requestsPerSecond` property has been corrected to be of type `Float` instead of `Long`.
+
+### UpdateByQueryRethrottleRequest
+- The `requestsPerSecond` property has been corrected to be of type `Float` instead of `Long`.

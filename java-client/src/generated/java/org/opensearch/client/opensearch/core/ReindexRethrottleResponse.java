@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -43,30 +49,37 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.core.reindex_rethrottle.ReindexNode;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.reindex_rethrottle.Response
+// typedef: reindex_rethrottle.Response
 
 @JsonpDeserializable
-public class ReindexRethrottleResponse implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ReindexRethrottleResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<ReindexRethrottleResponse.Builder, ReindexRethrottleResponse> {
+
+    @Nonnull
     private final Map<String, ReindexNode> nodes;
 
     // ---------------------------------------------------------------------------------------------
 
     private ReindexRethrottleResponse(Builder builder) {
-
         this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
-
     }
 
-    public static ReindexRethrottleResponse of(Function<Builder, ObjectBuilder<ReindexRethrottleResponse>> fn) {
+    public static ReindexRethrottleResponse of(Function<ReindexRethrottleResponse.Builder, ObjectBuilder<ReindexRethrottleResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code nodes}
      */
+    @Nonnull
     public final Map<String, ReindexNode> nodes() {
         return this.nodes;
     }
@@ -74,6 +87,7 @@ public class ReindexRethrottleResponse implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -81,35 +95,58 @@ public class ReindexRethrottleResponse implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.nodes)) {
-            generator.writeKey("nodes");
-            generator.writeStartObject();
-            for (Map.Entry<String, ReindexNode> item0 : this.nodes.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("nodes");
+        generator.writeStartObject();
+        for (Map.Entry<String, ReindexNode> item0 : this.nodes.entrySet()) {
+            generator.writeKey(item0.getKey());
+            item0.getValue().serialize(generator, mapper);
         }
-
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ReindexRethrottleResponse}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReindexRethrottleResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ReindexRethrottleResponse> {
         private Map<String, ReindexNode> nodes;
+
+        public Builder() {}
+
+        private Builder(ReindexRethrottleResponse o) {
+            this.nodes = _mapCopy(o.nodes);
+        }
+
+        private Builder(Builder o) {
+            this.nodes = _mapCopy(o.nodes);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code nodes}
+         *
          * <p>
-         * Adds all entries of <code>map</code> to <code>nodes</code>.
+         * Adds all elements of <code>map</code> to <code>nodes</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder nodes(Map<String, ReindexNode> map) {
             this.nodes = _mapPutAll(this.nodes, map);
             return this;
@@ -117,9 +154,12 @@ public class ReindexRethrottleResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code nodes}
+         *
          * <p>
          * Adds an entry to <code>nodes</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder nodes(String key, ReindexNode value) {
             this.nodes = _mapPut(this.nodes, key, value);
             return this;
@@ -127,9 +167,12 @@ public class ReindexRethrottleResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code nodes}
+         *
          * <p>
-         * Adds an entry to <code>nodes</code> using a builder lambda.
+         * Adds a value to <code>nodes</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder nodes(String key, Function<ReindexNode.Builder, ObjectBuilder<ReindexNode>> fn) {
             return nodes(key, fn.apply(new ReindexNode.Builder()).build());
         }
@@ -137,9 +180,10 @@ public class ReindexRethrottleResponse implements PlainJsonSerializable {
         /**
          * Builds a {@link ReindexRethrottleResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ReindexRethrottleResponse build() {
             _checkSingleUse();
 
@@ -158,9 +202,21 @@ public class ReindexRethrottleResponse implements PlainJsonSerializable {
     );
 
     protected static void setupReindexRethrottleResponseDeserializer(ObjectDeserializer<ReindexRethrottleResponse.Builder> op) {
-
         op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(ReindexNode._DESERIALIZER), "nodes");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.nodes.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ReindexRethrottleResponse other = (ReindexRethrottleResponse) o;
+        return this.nodes.equals(other.nodes);
+    }
 }

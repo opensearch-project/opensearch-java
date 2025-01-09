@@ -41,8 +41,6 @@ import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.CreateRequest;
 import org.opensearch.client.opensearch.core.CreateResponse;
-import org.opensearch.client.opensearch.core.DeleteByQueryRethrottleRequest;
-import org.opensearch.client.opensearch.core.DeleteByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.core.DeleteScriptRequest;
 import org.opensearch.client.opensearch.core.DeleteScriptResponse;
 import org.opensearch.client.opensearch.core.ExistsRequest;
@@ -76,8 +74,6 @@ import org.opensearch.client.opensearch.core.PutScriptRequest;
 import org.opensearch.client.opensearch.core.PutScriptResponse;
 import org.opensearch.client.opensearch.core.RankEvalRequest;
 import org.opensearch.client.opensearch.core.RankEvalResponse;
-import org.opensearch.client.opensearch.core.ReindexRethrottleRequest;
-import org.opensearch.client.opensearch.core.ReindexRethrottleResponse;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateRequest;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateResponse;
 import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteRequest;
@@ -94,10 +90,6 @@ import org.opensearch.client.opensearch.core.TermsEnumRequest;
 import org.opensearch.client.opensearch.core.TermsEnumResponse;
 import org.opensearch.client.opensearch.core.TermvectorsRequest;
 import org.opensearch.client.opensearch.core.TermvectorsResponse;
-import org.opensearch.client.opensearch.core.UpdateByQueryRequest;
-import org.opensearch.client.opensearch.core.UpdateByQueryResponse;
-import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleRequest;
-import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.core.UpdateRequest;
 import org.opensearch.client.opensearch.core.UpdateResponse;
 import org.opensearch.client.opensearch.core.pit.ListAllPitRequest;
@@ -212,42 +204,6 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
     public final <TDocument> CreateResponse create(Function<CreateRequest.Builder<TDocument>, ObjectBuilder<CreateRequest<TDocument>>> fn)
         throws IOException, OpenSearchException {
         return create(fn.apply(new CreateRequest.Builder<TDocument>()).build());
-    }
-
-    // ----- Endpoint: delete_by_query_rethrottle
-
-    /**
-     * Changes the number of requests per second for a particular Delete By Query
-     * operation.
-     *
-     *
-     */
-
-    public DeleteByQueryRethrottleResponse deleteByQueryRethrottle(DeleteByQueryRethrottleRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteByQueryRethrottleRequest,
-            DeleteByQueryRethrottleResponse,
-            ErrorResponse>) DeleteByQueryRethrottleRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Changes the number of requests per second for a particular Delete By Query
-     * operation.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteByQueryRethrottleRequest}
-     *
-     */
-
-    public final DeleteByQueryRethrottleResponse deleteByQueryRethrottle(
-        Function<DeleteByQueryRethrottleRequest.Builder, ObjectBuilder<DeleteByQueryRethrottleRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return deleteByQueryRethrottle(fn.apply(new DeleteByQueryRethrottleRequest.Builder()).build());
     }
 
     // ----- Endpoint: delete_script
@@ -856,39 +812,6 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
         return rankEval(fn.apply(new RankEvalRequest.Builder()).build());
     }
 
-    // ----- Endpoint: reindex_rethrottle
-
-    /**
-     * Changes the number of requests per second for a particular Reindex operation.
-     *
-     *
-     */
-
-    public ReindexRethrottleResponse reindexRethrottle(ReindexRethrottleRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ReindexRethrottleRequest, ReindexRethrottleResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ReindexRethrottleRequest,
-            ReindexRethrottleResponse,
-            ErrorResponse>) ReindexRethrottleRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Changes the number of requests per second for a particular Reindex operation.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ReindexRethrottleRequest}
-     *
-     */
-
-    public final ReindexRethrottleResponse reindexRethrottle(
-        Function<ReindexRethrottleRequest.Builder, ObjectBuilder<ReindexRethrottleRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return reindexRethrottle(fn.apply(new ReindexRethrottleRequest.Builder()).build());
-    }
-
     // ----- Endpoint: render_search_template
 
     /**
@@ -1257,41 +1180,4 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
     ) throws IOException, OpenSearchException {
         return update(fn.apply(new UpdateRequest.Builder<TDocument, TPartialDocument>()).build(), tDocumentClass);
     }
-
-    // ----- Endpoint: update_by_query_rethrottle
-
-    /**
-     * Changes the number of requests per second for a particular Update By Query
-     * operation.
-     *
-     *
-     */
-
-    public UpdateByQueryRethrottleResponse updateByQueryRethrottle(UpdateByQueryRethrottleRequest request) throws IOException,
-        OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<UpdateByQueryRethrottleRequest, UpdateByQueryRethrottleResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            UpdateByQueryRethrottleRequest,
-            UpdateByQueryRethrottleResponse,
-            ErrorResponse>) UpdateByQueryRethrottleRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Changes the number of requests per second for a particular Update By Query
-     * operation.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link UpdateByQueryRethrottleRequest}
-     *
-     */
-
-    public final UpdateByQueryRethrottleResponse updateByQueryRethrottle(
-        Function<UpdateByQueryRethrottleRequest.Builder, ObjectBuilder<UpdateByQueryRethrottleRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return updateByQueryRethrottle(fn.apply(new UpdateByQueryRethrottleRequest.Builder()).build());
-    }
-
 }

@@ -54,6 +54,8 @@ import org.opensearch.client.opensearch.core.DeleteAllPitsRequest;
 import org.opensearch.client.opensearch.core.DeleteAllPitsResponse;
 import org.opensearch.client.opensearch.core.DeleteByQueryRequest;
 import org.opensearch.client.opensearch.core.DeleteByQueryResponse;
+import org.opensearch.client.opensearch.core.DeleteByQueryRethrottleRequest;
+import org.opensearch.client.opensearch.core.DeleteByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.core.DeletePitRequest;
 import org.opensearch.client.opensearch.core.DeletePitResponse;
 import org.opensearch.client.opensearch.core.DeleteRequest;
@@ -62,8 +64,12 @@ import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.core.ReindexRequest;
 import org.opensearch.client.opensearch.core.ReindexResponse;
+import org.opensearch.client.opensearch.core.ReindexRethrottleRequest;
+import org.opensearch.client.opensearch.core.ReindexRethrottleResponse;
 import org.opensearch.client.opensearch.core.UpdateByQueryRequest;
 import org.opensearch.client.opensearch.core.UpdateByQueryResponse;
+import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleRequest;
+import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestClient;
@@ -257,6 +263,27 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
         return deleteByQuery(fn.apply(new DeleteByQueryRequest.Builder()).build());
     }
 
+    // ----- Endpoint: delete_by_query_rethrottle
+
+    /**
+     * Changes the number of requests per second for a particular Delete By Query operation.
+     */
+    public DeleteByQueryRethrottleResponse deleteByQueryRethrottle(DeleteByQueryRethrottleRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequest(request, DeleteByQueryRethrottleRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Changes the number of requests per second for a particular Delete By Query operation.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteByQueryRethrottleRequest}
+     */
+    public final DeleteByQueryRethrottleResponse deleteByQueryRethrottle(
+        Function<DeleteByQueryRethrottleRequest.Builder, ObjectBuilder<DeleteByQueryRethrottleRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteByQueryRethrottle(fn.apply(new DeleteByQueryRethrottleRequest.Builder()).build());
+    }
+
     // ----- Endpoint: delete_pit
 
     /**
@@ -322,6 +349,26 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
         return reindex(fn.apply(new ReindexRequest.Builder()).build());
     }
 
+    // ----- Endpoint: reindex_rethrottle
+
+    /**
+     * Changes the number of requests per second for a particular reindex operation.
+     */
+    public ReindexRethrottleResponse reindexRethrottle(ReindexRethrottleRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ReindexRethrottleRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Changes the number of requests per second for a particular reindex operation.
+     *
+     * @param fn a function that initializes a builder to create the {@link ReindexRethrottleRequest}
+     */
+    public final ReindexRethrottleResponse reindexRethrottle(
+        Function<ReindexRethrottleRequest.Builder, ObjectBuilder<ReindexRethrottleRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return reindexRethrottle(fn.apply(new ReindexRethrottleRequest.Builder()).build());
+    }
+
     // ----- Endpoint: update_by_query
 
     /**
@@ -339,5 +386,26 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
     public final UpdateByQueryResponse updateByQuery(Function<UpdateByQueryRequest.Builder, ObjectBuilder<UpdateByQueryRequest>> fn)
         throws IOException, OpenSearchException {
         return updateByQuery(fn.apply(new UpdateByQueryRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: update_by_query_rethrottle
+
+    /**
+     * Changes the number of requests per second for a particular Update By Query operation.
+     */
+    public UpdateByQueryRethrottleResponse updateByQueryRethrottle(UpdateByQueryRethrottleRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequest(request, UpdateByQueryRethrottleRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Changes the number of requests per second for a particular Update By Query operation.
+     *
+     * @param fn a function that initializes a builder to create the {@link UpdateByQueryRethrottleRequest}
+     */
+    public final UpdateByQueryRethrottleResponse updateByQueryRethrottle(
+        Function<UpdateByQueryRethrottleRequest.Builder, ObjectBuilder<UpdateByQueryRethrottleRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return updateByQueryRethrottle(fn.apply(new UpdateByQueryRethrottleRequest.Builder()).build());
     }
 }
