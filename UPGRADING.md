@@ -559,3 +559,6 @@ After:
 
 ### RenderSearchTemplateRequest
 - The `file` property has been removed as it is not supported by OpenSearch.
+
+### SearchShardsRequest
+- The `routing` property is now of type `List<String>` instead of `String`.

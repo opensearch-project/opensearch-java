@@ -90,6 +90,8 @@ import org.opensearch.client.opensearch.core.ReindexRethrottleRequest;
 import org.opensearch.client.opensearch.core.ReindexRethrottleResponse;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateRequest;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateResponse;
+import org.opensearch.client.opensearch.core.SearchShardsRequest;
+import org.opensearch.client.opensearch.core.SearchShardsResponse;
 import org.opensearch.client.opensearch.core.UpdateByQueryRequest;
 import org.opensearch.client.opensearch.core.UpdateByQueryResponse;
 import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleRequest;
@@ -702,6 +704,33 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
      */
     public final CompletableFuture<RenderSearchTemplateResponse> renderSearchTemplate() throws IOException, OpenSearchException {
         return renderSearchTemplate(new RenderSearchTemplateRequest.Builder().build());
+    }
+
+    // ----- Endpoint: search_shards
+
+    /**
+     * Returns information about the indexes and shards that a search request would be executed against.
+     */
+    public CompletableFuture<SearchShardsResponse> searchShards(SearchShardsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, SearchShardsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about the indexes and shards that a search request would be executed against.
+     *
+     * @param fn a function that initializes a builder to create the {@link SearchShardsRequest}
+     */
+    public final CompletableFuture<SearchShardsResponse> searchShards(
+        Function<SearchShardsRequest.Builder, ObjectBuilder<SearchShardsRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return searchShards(fn.apply(new SearchShardsRequest.Builder()).build());
+    }
+
+    /**
+     * Returns information about the indexes and shards that a search request would be executed against.
+     */
+    public final CompletableFuture<SearchShardsResponse> searchShards() throws IOException, OpenSearchException {
+        return searchShards(new SearchShardsRequest.Builder().build());
     }
 
     // ----- Endpoint: update_by_query

@@ -60,7 +60,8 @@ public class CodeGenerator {
                         "mtermvectors",
                         "ping",
                         "rank_eval",
-                        "render_search_template"
+                        "render_search_template",
+                        "search_shards"
                     ),
                     contains("_by_query"),
                     contains("exists"),

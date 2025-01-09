@@ -8695,8 +8695,6 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
-      requestBody:
-        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -8719,8 +8717,6 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
-      requestBody:
-        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -11865,8 +11861,6 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
-      requestBody:
-        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -11890,8 +11884,6 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
-      requestBody:
-        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -27986,46 +27978,6 @@ components:
           schema:
             $ref: '#/components/schemas/search_pipeline._common___SearchPipelineStructure'
       required: true
-    search_shards:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              query:
-                description: Defines the search query to filter shards. Supports any query that is valid for the `_search` endpoint.
-                type: object
-                additionalProperties:
-                  type: object
-              indices_boost:
-                description: Allows increasing the relevance of specific indexes in the search.
-                type: object
-                additionalProperties:
-                  type: number
-              allow_partial_search_results:
-                description: Indicates whether partial search results are allowed if some shards are unavailable.
-                type: boolean
-              _source:
-                description: Specifies which fields to include in the `_source` response or excludes specific fields.
-                oneOf:
-                  - type: boolean
-                  - type: array
-                    items:
-                      type: string
-              from:
-                description: The starting offset (default 0) for paginated results.
-                type: integer
-              size:
-                description: The maximum number of results to return (default 10).
-                type: integer
-              sort:
-                description: A list of fields and directions for sorting the results.
-                type: array
-                items:
-                  type: object
-                  additionalProperties:
-                    type: string
-            description: Defines the parameters that can be used in the `search_shards` endpoint request. See documentation for supported query syntax.
     search_template:
       content:
         application/json:
@@ -33683,7 +33635,8 @@ components:
         node:
           $ref: '#/components/schemas/_common___NodeName'
         shard:
-          type: number
+          type: integer
+          format: int32
         index:
           $ref: '#/components/schemas/_common___IndexName'
         allocation_id:
@@ -33700,8 +33653,6 @@ components:
           oneOf:
             - $ref: '#/components/schemas/_common___NodeId'
             - type: 'null'
-        relocation_failure_info:
-          $ref: '#/components/schemas/_common___RelocationFailureInfo'
       required:
         - index
         - primary
@@ -33937,13 +33888,6 @@ components:
         - total_time_in_millis
     _common___RelationName:
       type: string
-    _common___RelocationFailureInfo:
-      type: object
-      properties:
-        failed_attempts:
-          type: number
-      required:
-        - failed_attempts
     _common___RemoteStoreDownloadStats:
       type: object
       description: Statistics related to downloads to the remote segment store.
