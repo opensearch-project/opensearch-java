@@ -556,3 +556,6 @@ After:
 
 ### RankEvalRequest
 - The `searchType` property is now of type `SearchType` instead of `String`.
+
+### RenderSearchTemplateRequest
+- The `file` property has been removed as it is not supported by OpenSearch.

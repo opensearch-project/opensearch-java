@@ -55,8 +55,6 @@ import org.opensearch.client.opensearch.core.MsearchRequest;
 import org.opensearch.client.opensearch.core.MsearchResponse;
 import org.opensearch.client.opensearch.core.MsearchTemplateRequest;
 import org.opensearch.client.opensearch.core.MsearchTemplateResponse;
-import org.opensearch.client.opensearch.core.RenderSearchTemplateRequest;
-import org.opensearch.client.opensearch.core.RenderSearchTemplateResponse;
 import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteRequest;
 import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteResponse;
 import org.opensearch.client.opensearch.core.ScrollRequest;
@@ -454,53 +452,6 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
         Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
         return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), tDocumentClass);
-    }
-
-    // ----- Endpoint: render_search_template
-
-    /**
-     * Allows to use the Mustache language to pre-render a search definition.
-     *
-     *
-     */
-
-    public RenderSearchTemplateResponse renderSearchTemplate(RenderSearchTemplateRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<RenderSearchTemplateRequest, RenderSearchTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            RenderSearchTemplateRequest,
-            RenderSearchTemplateResponse,
-            ErrorResponse>) RenderSearchTemplateRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Allows to use the Mustache language to pre-render a search definition.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link RenderSearchTemplateRequest}
-     *
-     */
-
-    public final RenderSearchTemplateResponse renderSearchTemplate(
-        Function<RenderSearchTemplateRequest.Builder, ObjectBuilder<RenderSearchTemplateRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return renderSearchTemplate(fn.apply(new RenderSearchTemplateRequest.Builder()).build());
-    }
-
-    /**
-     * Allows to use the Mustache language to pre-render a search definition.
-     *
-     *
-     */
-
-    public RenderSearchTemplateResponse renderSearchTemplate() throws IOException, OpenSearchException {
-        return this.transport.performRequest(
-            new RenderSearchTemplateRequest.Builder().build(),
-            RenderSearchTemplateRequest._ENDPOINT,
-            this.transportOptions
-        );
     }
 
     // ----- Endpoint: scripts_painless_execute

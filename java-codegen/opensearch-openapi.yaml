@@ -31128,8 +31128,7 @@ components:
             properties:
               template_output:
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: true
             required:
               - template_output
       description: ''

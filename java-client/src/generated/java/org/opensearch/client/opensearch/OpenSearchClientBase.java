@@ -87,6 +87,8 @@ import org.opensearch.client.opensearch.core.ReindexRequest;
 import org.opensearch.client.opensearch.core.ReindexResponse;
 import org.opensearch.client.opensearch.core.ReindexRethrottleRequest;
 import org.opensearch.client.opensearch.core.ReindexRethrottleResponse;
+import org.opensearch.client.opensearch.core.RenderSearchTemplateRequest;
+import org.opensearch.client.opensearch.core.RenderSearchTemplateResponse;
 import org.opensearch.client.opensearch.core.UpdateByQueryRequest;
 import org.opensearch.client.opensearch.core.UpdateByQueryResponse;
 import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleRequest;
@@ -661,6 +663,33 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
         Function<ReindexRethrottleRequest.Builder, ObjectBuilder<ReindexRethrottleRequest>> fn
     ) throws IOException, OpenSearchException {
         return reindexRethrottle(fn.apply(new ReindexRethrottleRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: render_search_template
+
+    /**
+     * Allows to use the Mustache language to pre-render a search definition.
+     */
+    public RenderSearchTemplateResponse renderSearchTemplate(RenderSearchTemplateRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, RenderSearchTemplateRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Allows to use the Mustache language to pre-render a search definition.
+     *
+     * @param fn a function that initializes a builder to create the {@link RenderSearchTemplateRequest}
+     */
+    public final RenderSearchTemplateResponse renderSearchTemplate(
+        Function<RenderSearchTemplateRequest.Builder, ObjectBuilder<RenderSearchTemplateRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return renderSearchTemplate(fn.apply(new RenderSearchTemplateRequest.Builder()).build());
+    }
+
+    /**
+     * Allows to use the Mustache language to pre-render a search definition.
+     */
+    public final RenderSearchTemplateResponse renderSearchTemplate() throws IOException, OpenSearchException {
+        return renderSearchTemplate(new RenderSearchTemplateRequest.Builder().build());
     }
 
     // ----- Endpoint: update_by_query
