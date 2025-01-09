@@ -8164,6 +8164,7 @@ paths:
         - $ref: '#/components/parameters/reindex___query.max_docs'
         - $ref: '#/components/parameters/reindex___query.refresh'
         - $ref: '#/components/parameters/reindex___query.requests_per_second'
+        - $ref: '#/components/parameters/reindex___query.require_alias'
         - $ref: '#/components/parameters/reindex___query.scroll'
         - $ref: '#/components/parameters/reindex___query.slices'
         - $ref: '#/components/parameters/reindex___query.timeout'
@@ -8694,8 +8695,6 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
-      requestBody:
-        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -8718,8 +8717,6 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
-      requestBody:
-        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -11864,8 +11861,6 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
-      requestBody:
-        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -11889,8 +11884,6 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
-      requestBody:
-        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -18266,10 +18259,7 @@ components:
       description: Set to `true` or `false` to return the `_source` field or not, or a list of fields to return.
       style: form
       schema:
-        type: array
-        items:
-          type: string
-        description: Set to `true` or `false` to return the `_source` field or not, or a list of fields to return.
+        $ref: '#/components/schemas/_core.search___SourceConfigParam'
       explode: true
     delete_by_query___query._source_excludes:
       name: _source_excludes
@@ -24043,6 +24033,11 @@ components:
         format: float
         default: 0
       style: form
+    reindex___query.require_alias:
+      in: query
+      name: require_alias
+      schema:
+        type: boolean
     reindex___query.scroll:
       in: query
       name: scroll
@@ -26153,10 +26148,7 @@ components:
       description: Set to `true` or `false` to return the `_source` field or not, or a list of fields to return.
       style: form
       schema:
-        type: array
-        items:
-          type: string
-        description: Set to `true` or `false` to return the `_source` field or not, or a list of fields to return.
+        $ref: '#/components/schemas/_core.search___SourceConfigParam'
       explode: true
     update_by_query___query._source_excludes:
       name: _source_excludes
@@ -27986,46 +27978,6 @@ components:
           schema:
             $ref: '#/components/schemas/search_pipeline._common___SearchPipelineStructure'
       required: true
-    search_shards:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              query:
-                description: Defines the search query to filter shards. Supports any query that is valid for the `_search` endpoint.
-                type: object
-                additionalProperties:
-                  type: object
-              indices_boost:
-                description: Allows increasing the relevance of specific indexes in the search.
-                type: object
-                additionalProperties:
-                  type: number
-              allow_partial_search_results:
-                description: Indicates whether partial search results are allowed if some shards are unavailable.
-                type: boolean
-              _source:
-                description: Specifies which fields to include in the `_source` response or excludes specific fields.
-                oneOf:
-                  - type: boolean
-                  - type: array
-                    items:
-                      type: string
-              from:
-                description: The starting offset (default 0) for paginated results.
-                type: integer
-              size:
-                description: The maximum number of results to return (default 10).
-                type: integer
-              sort:
-                description: A list of fields and directions for sorting the results.
-                type: array
-                items:
-                  type: object
-                  additionalProperties:
-                    type: string
-            description: Defines the parameters that can be used in the `search_shards` endpoint request. See documentation for supported query syntax.
     search_template:
       content:
         application/json:
@@ -29192,7 +29144,7 @@ components:
               pit_id:
                 type: string
               _shards:
-                $ref: '#/components/schemas/_core._common___ShardStatistics'
+                $ref: '#/components/schemas/_common___ShardStatistics'
               creation_time:
                 type: integer
                 format: int64
@@ -29241,7 +29193,7 @@ components:
               pits:
                 type: array
                 items:
-                  $ref: '#/components/schemas/_core._common___PitsDetailsDeleteAll'
+                  $ref: '#/components/schemas/_core.pit___DeletedPit'
       description: ''
     delete_by_query_rethrottle___200:
       content:
@@ -29269,7 +29221,7 @@ components:
               pits:
                 type: array
                 items:
-                  $ref: '#/components/schemas/_core._common___DeletedPit'
+                  $ref: '#/components/schemas/_core.pit___DeletedPit'
       description: ''
     delete_script___200:
       content:
@@ -29586,7 +29538,7 @@ components:
               pits:
                 type: array
                 items:
-                  $ref: '#/components/schemas/_core._common___PitDetail'
+                  $ref: '#/components/schemas/_core.pit___PitDetail'
       description: ''
     get_script_context___200:
       content:
@@ -31068,8 +31020,7 @@ components:
                   $ref: '#/components/schemas/_core.rank_eval___RankEvalMetricDetail'
               failures:
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: true
             required:
               - details
               - failures
@@ -31129,8 +31080,7 @@ components:
             properties:
               template_output:
                 type: object
-                additionalProperties:
-                  type: object
+                additionalProperties: true
             required:
               - template_output
       description: ''
@@ -33339,20 +33289,6 @@ components:
             - RED
     _common___Host:
       type: string
-    _common___HourAndMinute:
-      type: object
-      properties:
-        hour:
-          type: array
-          items:
-            type: number
-        minute:
-          type: array
-          items:
-            type: number
-      required:
-        - hour
-        - minute
     _common___HttpHeaders:
       type: object
       additionalProperties:
@@ -33699,7 +33635,8 @@ components:
         node:
           $ref: '#/components/schemas/_common___NodeName'
         shard:
-          type: number
+          type: integer
+          format: int32
         index:
           $ref: '#/components/schemas/_common___IndexName'
         allocation_id:
@@ -33716,8 +33653,6 @@ components:
           oneOf:
             - $ref: '#/components/schemas/_common___NodeId'
             - type: 'null'
-        relocation_failure_info:
-          $ref: '#/components/schemas/_common___RelocationFailureInfo'
       required:
         - index
         - primary
@@ -33953,13 +33888,6 @@ components:
         - total_time_in_millis
     _common___RelationName:
       type: string
-    _common___RelocationFailureInfo:
-      type: object
-      properties:
-        failed_attempts:
-          type: number
-      required:
-        - failed_attempts
     _common___RemoteStoreDownloadStats:
       type: object
       description: Statistics related to downloads to the remote segment store.
@@ -34235,11 +34163,6 @@ components:
             window_size:
               description: The size of the individual result sets per query.
               type: number
-    _common___ScheduleTimeOfDay:
-      description: A time of day, expressed either as `hh:mm`, `noon`, `midnight`, or an hour/minutes structure.
-      oneOf:
-        - type: string
-        - $ref: '#/components/schemas/_common___HourAndMinute'
     _common___ScoreSort:
       type: object
       properties:
@@ -34441,10 +34364,13 @@ components:
         - suggest_time_in_millis
         - suggest_total
     _common___SearchType:
-      type: string
-      enum:
-        - dfs_query_then_fetch
-        - query_then_fetch
+      oneOf:
+        - type: string
+          const: dfs_query_then_fetch
+          description: Documents are scored using global term and document frequencies across all shards. This is usually slower but more accurate.
+        - type: string
+          const: query_then_fetch
+          description: Documents are scored using local term and document frequencies for the shard. This is usually faster but less accurate.
     _common___SegmentReplicationStats:
       x-version-added: 2.10.0
       oneOf:
@@ -34623,7 +34549,8 @@ components:
         field:
           $ref: '#/components/schemas/_common___Field'
         id:
-          $ref: '#/components/schemas/_common___Id'
+          type: integer
+          format: int32
         max:
           type: integer
           format: int32
@@ -34633,8 +34560,11 @@ components:
     _common___Slices:
       description: The slice configuration used to parallelize a process.
       oneOf:
-        - type: number
-        - $ref: '#/components/schemas/_common___SlicesCalculation'
+        - title: count
+          type: integer
+          format: int32
+        - title: calculation
+          $ref: '#/components/schemas/_common___SlicesCalculation'
     _common___SlicesCalculation:
       type: string
       enum:
@@ -43859,46 +43789,6 @@ components:
       enum:
         - all
         - none
-    _core._common___DeletedPit:
-      type: object
-      properties:
-        successful:
-          type: boolean
-        pit_id:
-          type: string
-    _core._common___PitDetail:
-      type: object
-      properties:
-        pit_id:
-          type: string
-        creation_time:
-          type: integer
-          format: int64
-        keep_alive:
-          type: integer
-          format: int64
-    _core._common___PitsDetailsDeleteAll:
-      type: object
-      properties:
-        successful:
-          type: boolean
-        pit_id:
-          type: string
-    _core._common___ShardStatistics:
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int32
-        successful:
-          type: integer
-          format: int32
-        skipped:
-          type: integer
-          format: int32
-        failed:
-          type: integer
-          format: int32
     _core.bulk___CreateOperation:
       $ref: '#/components/schemas/_core.bulk___WriteOperation'
     _core.bulk___DeleteOperation:
@@ -44094,7 +43984,11 @@ components:
         indices:
           $ref: '#/components/schemas/_common___Indices'
         meta:
-          $ref: '#/components/schemas/_common___Metadata'
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
         non_aggregatable_indices:
           $ref: '#/components/schemas/_common___Indices'
         non_searchable_indices:
@@ -44443,7 +44337,6 @@ components:
           $ref: '#/components/schemas/_common___IndexName'
         doc:
           description: An artificial document for which you want to retrieve term vectors.
-          type: object
         fields:
           $ref: '#/components/schemas/_common___Fields'
         field_statistics:
@@ -44481,7 +44374,8 @@ components:
         _version:
           $ref: '#/components/schemas/_common___VersionNumber'
         took:
-          type: number
+          type: integer
+          format: int64
         found:
           type: boolean
         term_vectors:
@@ -44495,6 +44389,24 @@ components:
       required:
         - _id
         - _index
+    _core.pit___DeletedPit:
+      type: object
+      properties:
+        successful:
+          type: boolean
+        pit_id:
+          type: string
+    _core.pit___PitDetail:
+      type: object
+      properties:
+        pit_id:
+          type: string
+        creation_time:
+          type: integer
+          format: int64
+        keep_alive:
+          type: integer
+          format: int64
     _core.rank_eval___DocumentRating:
       type: object
       properties:
@@ -44504,7 +44416,8 @@ components:
           $ref: '#/components/schemas/_common___IndexName'
         rating:
           description: The document's relevance with regard to the specified search request.
-          type: number
+          type: integer
+          format: int32
       required:
         - _id
         - _index
@@ -44518,6 +44431,7 @@ components:
           $ref: '#/components/schemas/_common___IndexName'
         _score:
           type: number
+          format: double
         _type:
           $ref: '#/components/schemas/_common___Type'
       required:
@@ -44530,10 +44444,8 @@ components:
         hit:
           $ref: '#/components/schemas/_core.rank_eval___RankEvalHit'
         rating:
-          type:
-            - 'null'
-            - number
-            - string
+          type: integer
+          format: int32
       required:
         - hit
     _core.rank_eval___RankEvalMetric:
@@ -44554,13 +44466,15 @@ components:
       properties:
         k:
           description: Sets the maximum number of documents retrieved per query. This value replaces the `size` parameter in the query.
-          type: number
+          type: integer
+          format: int32
     _core.rank_eval___RankEvalMetricDetail:
       type: object
       properties:
         metric_score:
           description: The `metric_score`, found in the `metric_details` section, shows the contribution of this query to the global quality metric score.
           type: number
+          format: double
         unrated_docs:
           description: The `unrated_docs` section contains an `_index` and `_id` entry for each document that didn't have a `ratings` value. This can be used to ask the user to supply ratings for these documents.
           type: array
@@ -44576,8 +44490,7 @@ components:
           type: object
           additionalProperties:
             type: object
-            additionalProperties:
-              type: number
+            additionalProperties: true
       required:
         - hits
         - metric_details
@@ -44598,7 +44511,8 @@ components:
           properties:
             maximum_relevance:
               description: The highest relevance grade used in user-supplied relevance judgments.
-              type: number
+              type: integer
+              format: int32
           required:
             - maximum_relevance
     _core.rank_eval___RankEvalMetricMeanReciprocalRank:
@@ -44620,7 +44534,8 @@ components:
           properties:
             relevant_rating_threshold:
               description: Sets the rating threshold above which documents are considered to be relevant.
-              type: number
+              type: integer
+              format: int32
     _core.rank_eval___RankEvalMetricRecall:
       allOf:
         - $ref: '#/components/schemas/_core.rank_eval___RankEvalMetricRatingThreshold'
@@ -44631,7 +44546,8 @@ components:
         query:
           $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
         size:
-          type: number
+          type: integer
+          format: int32
       required:
         - query
     _core.rank_eval___RankEvalRequestItem:
@@ -44651,8 +44567,7 @@ components:
         params:
           description: The search template parameters.
           type: object
-          additionalProperties:
-            type: object
+          additionalProperties: true
       required:
         - id
         - ratings
@@ -44682,19 +44597,24 @@ components:
       properties:
         batches:
           description: The number of scroll responses shown by the reindex.
-          type: number
+          type: integer
+          format: int64
         created:
           description: The number of documents that were successfully created.
-          type: number
+          type: integer
+          format: int64
         deleted:
           description: The number of documents that were successfully deleted.
-          type: number
+          type: integer
+          format: int64
         noops:
           description: The number of documents that were ignored because the script used for the reindex operation returned a `noop` value for `ctx.op`.
-          type: number
+          type: integer
+          format: int64
         requests_per_second:
           description: The number of successful requests per second during the reindex operation.
           type: number
+          format: float
         retries:
           $ref: '#/components/schemas/_common___Retries'
         throttled:
@@ -44707,13 +44627,16 @@ components:
           $ref: '#/components/schemas/_common___DurationValueUnitMillis'
         total:
           description: The number of documents that were successfully processed.
-          type: number
+          type: integer
+          format: int64
         updated:
           description: The number of documents that were successfully updated.
-          type: number
+          type: integer
+          format: int64
         version_conflicts:
           description: The number of version conflicts that reindex hits.
-          type: number
+          type: integer
+          format: int64
       required:
         - batches
         - created
@@ -44738,7 +44661,8 @@ components:
         description:
           type: string
         id:
-          type: number
+          type: integer
+          format: int64
         node:
           $ref: '#/components/schemas/_common___Name'
         resource_stats:
@@ -44813,7 +44737,8 @@ components:
           description: |-
             The number of documents to index per batch.
             Use the `size` setting when indexing from a remote cluster. This ensures that batches fit in the on-heap buffer. The buffer defaults to a maximum size of `100MB`.
-          type: number
+          type: integer
+          format: int32
         slice:
           $ref: '#/components/schemas/_common___SlicedScroll'
         sort:
@@ -45732,8 +45657,10 @@ components:
         Defines how to fetch a source. Fetching can be disabled entirely, or the source can be filtered.
         Use this setting with the `_source_includes` and `_source_excludes` parameters.
       oneOf:
-        - type: boolean
-        - $ref: '#/components/schemas/_common___Fields'
+        - title: fetch
+          type: boolean
+        - title: fields
+          $ref: '#/components/schemas/_common___Fields'
     _core.search___SourceFilter:
       oneOf:
         - title: includes
@@ -45832,11 +45759,14 @@ components:
       type: object
       properties:
         doc_count:
-          type: number
+          type: integer
+          format: int32
         sum_doc_freq:
-          type: number
+          type: integer
+          format: int64
         sum_ttf:
-          type: number
+          type: integer
+          format: int64
       required:
         - doc_count
         - sum_doc_freq
@@ -45848,48 +45778,59 @@ components:
           description: |-
             Ignores words that appear in more than the specified number of documents.
             Default is `unbounded`.
-          type: number
+          type: integer
+          format: int32
         max_num_terms:
           description: The maximum number of terms that should be returned per field.
-          type: number
+          type: integer
+          format: int32
         max_term_freq:
           description: |-
             Ignore words with more than this frequency in the source doc.
             Default is `unbounded`.
-          type: number
+          type: integer
+          format: int32
         max_word_length:
           description: |-
             The maximum word length.
             Words longer than this value will be ignored.
             Default is `unbounded`.
-          type: number
+          type: integer
+          format: int32
         min_doc_freq:
           description: Ignore terms which do not occur in at least this many docs.
-          type: number
+          type: integer
+          format: int32
         min_term_freq:
           description: Ignore words with less than this frequency in the source doc.
-          type: number
+          type: integer
+          format: int32
         min_word_length:
           description: |-
             The minimum word length.
             Words shorter than this value will be ignored.
             Default is 0.
-          type: number
+          type: integer
+          format: int32
     _core.termvectors___Term:
       type: object
       properties:
         doc_freq:
-          type: number
+          type: integer
+          format: int32
         score:
           type: number
+          format: double
         term_freq:
-          type: number
+          type: integer
+          format: int32
         tokens:
           type: array
           items:
             $ref: '#/components/schemas/_core.termvectors___Token'
         ttf:
-          type: number
+          type: integer
+          format: int32
       required:
         - term_freq
     _core.termvectors___TermVector:
@@ -45902,19 +45843,21 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/_core.termvectors___Term'
       required:
-        - field_statistics
         - terms
     _core.termvectors___Token:
       type: object
       properties:
         end_offset:
-          type: number
+          type: integer
+          format: int32
         payload:
           type: string
         position:
-          type: number
+          type: integer
+          format: int32
         start_offset:
-          type: number
+          type: integer
+          format: int32
       required:
         - position
     _core.update_by_query_rethrottle___UpdateByQueryRethrottleNode:

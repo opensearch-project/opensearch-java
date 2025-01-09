@@ -104,10 +104,7 @@ public class TaggedUnionShape extends ObjectShapeBase {
     }
 
     public boolean canStringify() {
-        return !isDiscriminated() && getVariants().stream().allMatch(v -> {
-            var t = v.getType();
-            return t.isPotentiallyBoxedPrimitive() || t.isString() || t.isEnum();
-        });
+        return !isDiscriminated() && getVariants().stream().allMatch(v -> v.getType().canQueryParamify());
     }
 
     public boolean hasAmbiguities() {

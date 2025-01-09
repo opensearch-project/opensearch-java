@@ -14,6 +14,7 @@ import org.semver4j.Semver;
 public final class Versions {
     private Versions() {}
 
+    public static final Semver V1_0_0 = Semver.of(1, 0, 0);
     public static final Semver V2_0_0 = Semver.of(2, 0, 0);
 
     @Nonnull
