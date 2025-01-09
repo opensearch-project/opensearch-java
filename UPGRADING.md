@@ -533,3 +533,11 @@ After:
 
 ### get_script_languages.LanguageContext
 - The `language` property now accepts a `ScriptLanguage` enum instead of a `String`.
+
+### ExistsRequest
+- The `refresh` property has been corrected to be of type `Refresh` instead of `Boolean`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+
+### ExistsSourceRequest
+- The `refresh` property has been corrected to be of type `Refresh` instead of `Boolean`.
+- The `routing` property is now of type `List<String>` instead of `String`.

@@ -41,8 +41,6 @@ import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.CreateRequest;
 import org.opensearch.client.opensearch.core.CreateResponse;
-import org.opensearch.client.opensearch.core.ExistsRequest;
-import org.opensearch.client.opensearch.core.ExistsSourceRequest;
 import org.opensearch.client.opensearch.core.ExplainRequest;
 import org.opensearch.client.opensearch.core.ExplainResponse;
 import org.opensearch.client.opensearch.core.FieldCapsRequest;
@@ -192,70 +190,6 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
     public final <TDocument> CreateResponse create(Function<CreateRequest.Builder<TDocument>, ObjectBuilder<CreateRequest<TDocument>>> fn)
         throws IOException, OpenSearchException {
         return create(fn.apply(new CreateRequest.Builder<TDocument>()).build());
-    }
-
-    // ----- Endpoint: exists
-
-    /**
-     * Returns information about whether a document exists in an index.
-     *
-     *
-     */
-
-    public BooleanResponse exists(ExistsRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ExistsRequest,
-            BooleanResponse,
-            ErrorResponse>) ExistsRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about whether a document exists in an index.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ExistsRequest}
-     *
-     */
-
-    public final BooleanResponse exists(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn) throws IOException,
-        OpenSearchException {
-        return exists(fn.apply(new ExistsRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: exists_source
-
-    /**
-     * Returns information about whether a document source exists in an index.
-     *
-     *
-     */
-
-    public BooleanResponse existsSource(ExistsSourceRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            ExistsSourceRequest,
-            BooleanResponse,
-            ErrorResponse>) ExistsSourceRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about whether a document source exists in an index.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ExistsSourceRequest}
-     *
-     */
-
-    public final BooleanResponse existsSource(Function<ExistsSourceRequest.Builder, ObjectBuilder<ExistsSourceRequest>> fn)
-        throws IOException, OpenSearchException {
-        return existsSource(fn.apply(new ExistsSourceRequest.Builder()).build());
     }
 
     // ----- Endpoint: explain

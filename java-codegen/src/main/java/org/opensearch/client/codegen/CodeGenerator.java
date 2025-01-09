@@ -53,6 +53,7 @@ public class CodeGenerator {
                 or(
                     isOneOf("clear_scroll", "count", "delete", "info"),
                     contains("_by_query"),
+                    contains("exists"),
                     contains("_pit"),
                     contains("reindex"),
                     and(contains("script"), isNot("scripts_painless_execute"))

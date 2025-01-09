@@ -62,6 +62,8 @@ import org.opensearch.client.opensearch.core.DeleteRequest;
 import org.opensearch.client.opensearch.core.DeleteResponse;
 import org.opensearch.client.opensearch.core.DeleteScriptRequest;
 import org.opensearch.client.opensearch.core.DeleteScriptResponse;
+import org.opensearch.client.opensearch.core.ExistsRequest;
+import org.opensearch.client.opensearch.core.ExistsSourceRequest;
 import org.opensearch.client.opensearch.core.GetAllPitsRequest;
 import org.opensearch.client.opensearch.core.GetAllPitsResponse;
 import org.opensearch.client.opensearch.core.GetScriptContextRequest;
@@ -91,6 +93,7 @@ import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotClient;
 import org.opensearch.client.opensearch.tasks.OpenSearchTasksClient;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.util.ObjectBuilder;
 
 /**
@@ -332,6 +335,44 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
     public final DeleteScriptResponse deleteScript(Function<DeleteScriptRequest.Builder, ObjectBuilder<DeleteScriptRequest>> fn)
         throws IOException, OpenSearchException {
         return deleteScript(fn.apply(new DeleteScriptRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: exists
+
+    /**
+     * Returns information about whether a document exists in an index.
+     */
+    public BooleanResponse exists(ExistsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ExistsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about whether a document exists in an index.
+     *
+     * @param fn a function that initializes a builder to create the {@link ExistsRequest}
+     */
+    public final BooleanResponse exists(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn) throws IOException,
+        OpenSearchException {
+        return exists(fn.apply(new ExistsRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: exists_source
+
+    /**
+     * Returns information about whether a document source exists in an index.
+     */
+    public BooleanResponse existsSource(ExistsSourceRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ExistsSourceRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns information about whether a document source exists in an index.
+     *
+     * @param fn a function that initializes a builder to create the {@link ExistsSourceRequest}
+     */
+    public final BooleanResponse existsSource(Function<ExistsSourceRequest.Builder, ObjectBuilder<ExistsSourceRequest>> fn)
+        throws IOException, OpenSearchException {
+        return existsSource(fn.apply(new ExistsSourceRequest.Builder()).build());
     }
 
     // ----- Endpoint: get_all_pits
