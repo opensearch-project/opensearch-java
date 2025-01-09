@@ -30,45 +30,57 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.get_script_languages;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.ScriptLanguage;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.get_script_languages.LanguageContext
+// typedef: core.get_script_languages.LanguageContext
 
 @JsonpDeserializable
-public class LanguageContext implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class LanguageContext implements PlainJsonSerializable, ToCopyableBuilder<LanguageContext.Builder, LanguageContext> {
+
+    @Nonnull
     private final List<String> contexts;
 
-    private final String language;
+    @Nonnull
+    private final ScriptLanguage language;
 
     // ---------------------------------------------------------------------------------------------
 
     private LanguageContext(Builder builder) {
-
         this.contexts = ApiTypeHelper.unmodifiableRequired(builder.contexts, this, "contexts");
         this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
-
     }
 
-    public static LanguageContext of(Function<Builder, ObjectBuilder<LanguageContext>> fn) {
+    public static LanguageContext of(Function<LanguageContext.Builder, ObjectBuilder<LanguageContext>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code contexts}
      */
+    @Nonnull
     public final List<String> contexts() {
         return this.contexts;
     }
@@ -76,13 +88,15 @@ public class LanguageContext implements PlainJsonSerializable {
     /**
      * Required - API name: {@code language}
      */
-    public final String language() {
+    @Nonnull
+    public final ScriptLanguage language() {
         return this.language;
     }
 
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -90,38 +104,63 @@ public class LanguageContext implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.contexts)) {
-            generator.writeKey("contexts");
-            generator.writeStartArray();
-            for (String item0 : this.contexts) {
-                generator.write(item0);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("contexts");
+        generator.writeStartArray();
+        for (String item0 : this.contexts) {
+            generator.write(item0);
         }
-        generator.writeKey("language");
-        generator.write(this.language);
+        generator.writeEnd();
 
+        generator.writeKey("language");
+        this.language.serialize(generator, mapper);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link LanguageContext}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LanguageContext> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, LanguageContext> {
         private List<String> contexts;
+        private ScriptLanguage language;
 
-        private String language;
+        public Builder() {}
+
+        private Builder(LanguageContext o) {
+            this.contexts = _listCopy(o.contexts);
+            this.language = o.language;
+        }
+
+        private Builder(Builder o) {
+            this.contexts = _listCopy(o.contexts);
+            this.language = o.language;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code contexts}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>contexts</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder contexts(List<String> list) {
             this.contexts = _listAddAll(this.contexts, list);
             return this;
@@ -129,9 +168,12 @@ public class LanguageContext implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code contexts}
+         *
          * <p>
          * Adds one or more values to <code>contexts</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder contexts(String value, String... values) {
             this.contexts = _listAdd(this.contexts, value, values);
             return this;
@@ -140,17 +182,27 @@ public class LanguageContext implements PlainJsonSerializable {
         /**
          * Required - API name: {@code language}
          */
-        public final Builder language(String value) {
+        @Nonnull
+        public final Builder language(ScriptLanguage value) {
             this.language = value;
             return this;
         }
 
         /**
+         * Required - API name: {@code language}
+         */
+        @Nonnull
+        public final Builder language(Function<ScriptLanguage.Builder, ObjectBuilder<ScriptLanguage>> fn) {
+            return language(fn.apply(new ScriptLanguage.Builder()).build());
+        }
+
+        /**
          * Builds a {@link LanguageContext}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public LanguageContext build() {
             _checkSingleUse();
 
@@ -169,10 +221,23 @@ public class LanguageContext implements PlainJsonSerializable {
     );
 
     protected static void setupLanguageContextDeserializer(ObjectDeserializer<LanguageContext.Builder> op) {
-
         op.add(Builder::contexts, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "contexts");
-        op.add(Builder::language, JsonpDeserializer.stringDeserializer(), "language");
-
+        op.add(Builder::language, ScriptLanguage._DESERIALIZER, "language");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.contexts.hashCode();
+        result = 31 * result + this.language.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        LanguageContext other = (LanguageContext) o;
+        return this.contexts.equals(other.contexts) && this.language.equals(other.language);
+    }
 }

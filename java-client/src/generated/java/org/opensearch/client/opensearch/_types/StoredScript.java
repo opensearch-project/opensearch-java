@@ -30,11 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -43,50 +50,61 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.StoredScript
 
 @JsonpDeserializable
-public class StoredScript implements PlainJsonSerializable {
-    private final String lang;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class StoredScript implements PlainJsonSerializable, ToCopyableBuilder<StoredScript.Builder, StoredScript> {
 
+    @Nonnull
+    private final ScriptLanguage lang;
+
+    @Nonnull
     private final Map<String, String> options;
 
+    @Nonnull
     private final String source;
 
     // ---------------------------------------------------------------------------------------------
 
     private StoredScript(Builder builder) {
-
         this.lang = ApiTypeHelper.requireNonNull(builder.lang, this, "lang");
         this.options = ApiTypeHelper.unmodifiable(builder.options);
         this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
-
     }
 
-    public static StoredScript of(Function<Builder, ObjectBuilder<StoredScript>> fn) {
+    public static StoredScript of(Function<StoredScript.Builder, ObjectBuilder<StoredScript>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code lang}
      */
-    public final String lang() {
+    @Nonnull
+    public final ScriptLanguage lang() {
         return this.lang;
     }
 
     /**
      * API name: {@code options}
      */
+    @Nonnull
     public final Map<String, String> options() {
         return this.options;
     }
 
     /**
-     * Required - API name: {@code source}
+     * Required - The script source.
+     * <p>
+     * API name: {@code source}
+     * </p>
      */
+    @Nonnull
     public final String source() {
         return this.source;
     }
@@ -94,6 +112,7 @@ public class StoredScript implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -101,9 +120,8 @@ public class StoredScript implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("lang");
-        generator.write(this.lang);
+        this.lang.serialize(generator, mapper);
 
         if (ApiTypeHelper.isDefined(this.options)) {
             generator.writeKey("options");
@@ -111,43 +129,81 @@ public class StoredScript implements PlainJsonSerializable {
             for (Map.Entry<String, String> item0 : this.options.entrySet()) {
                 generator.writeKey(item0.getKey());
                 generator.write(item0.getValue());
-
             }
             generator.writeEnd();
-
         }
+
         generator.writeKey("source");
         generator.write(this.source);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link StoredScript}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StoredScript> {
-        private String lang;
-
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, StoredScript> {
+        private ScriptLanguage lang;
         @Nullable
         private Map<String, String> options;
-
         private String source;
+
+        public Builder() {}
+
+        private Builder(StoredScript o) {
+            this.lang = o.lang;
+            this.options = _mapCopy(o.options);
+            this.source = o.source;
+        }
+
+        private Builder(Builder o) {
+            this.lang = o.lang;
+            this.options = _mapCopy(o.options);
+            this.source = o.source;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code lang}
          */
-        public final Builder lang(String value) {
+        @Nonnull
+        public final Builder lang(ScriptLanguage value) {
             this.lang = value;
             return this;
         }
 
         /**
-         * API name: {@code options}
-         * <p>
-         * Adds all entries of <code>map</code> to <code>options</code>.
+         * Required - API name: {@code lang}
          */
+        @Nonnull
+        public final Builder lang(Function<ScriptLanguage.Builder, ObjectBuilder<ScriptLanguage>> fn) {
+            return lang(fn.apply(new ScriptLanguage.Builder()).build());
+        }
+
+        /**
+         * API name: {@code options}
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>options</code>.
+         * </p>
+         */
+        @Nonnull
         public final Builder options(Map<String, String> map) {
             this.options = _mapPutAll(this.options, map);
             return this;
@@ -155,17 +211,24 @@ public class StoredScript implements PlainJsonSerializable {
 
         /**
          * API name: {@code options}
+         *
          * <p>
          * Adds an entry to <code>options</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder options(String key, String value) {
             this.options = _mapPut(this.options, key, value);
             return this;
         }
 
         /**
-         * Required - API name: {@code source}
+         * Required - The script source.
+         * <p>
+         * API name: {@code source}
+         * </p>
          */
+        @Nonnull
         public final Builder source(String value) {
             this.source = value;
             return this;
@@ -174,9 +237,10 @@ public class StoredScript implements PlainJsonSerializable {
         /**
          * Builds a {@link StoredScript}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public StoredScript build() {
             _checkSingleUse();
 
@@ -195,11 +259,25 @@ public class StoredScript implements PlainJsonSerializable {
     );
 
     protected static void setupStoredScriptDeserializer(ObjectDeserializer<StoredScript.Builder> op) {
-
-        op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
+        op.add(Builder::lang, ScriptLanguage._DESERIALIZER, "lang");
         op.add(Builder::options, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "options");
         op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.lang.hashCode();
+        result = 31 * result + Objects.hashCode(this.options);
+        result = 31 * result + this.source.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        StoredScript other = (StoredScript) o;
+        return this.lang.equals(other.lang) && Objects.equals(this.options, other.options) && this.source.equals(other.source);
+    }
 }

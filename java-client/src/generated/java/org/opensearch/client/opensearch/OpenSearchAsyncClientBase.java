@@ -61,10 +61,20 @@ import org.opensearch.client.opensearch.core.DeletePitRequest;
 import org.opensearch.client.opensearch.core.DeletePitResponse;
 import org.opensearch.client.opensearch.core.DeleteRequest;
 import org.opensearch.client.opensearch.core.DeleteResponse;
+import org.opensearch.client.opensearch.core.DeleteScriptRequest;
+import org.opensearch.client.opensearch.core.DeleteScriptResponse;
 import org.opensearch.client.opensearch.core.GetAllPitsRequest;
 import org.opensearch.client.opensearch.core.GetAllPitsResponse;
+import org.opensearch.client.opensearch.core.GetScriptContextRequest;
+import org.opensearch.client.opensearch.core.GetScriptContextResponse;
+import org.opensearch.client.opensearch.core.GetScriptLanguagesRequest;
+import org.opensearch.client.opensearch.core.GetScriptLanguagesResponse;
+import org.opensearch.client.opensearch.core.GetScriptRequest;
+import org.opensearch.client.opensearch.core.GetScriptResponse;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
+import org.opensearch.client.opensearch.core.PutScriptRequest;
+import org.opensearch.client.opensearch.core.PutScriptResponse;
 import org.opensearch.client.opensearch.core.ReindexRequest;
 import org.opensearch.client.opensearch.core.ReindexResponse;
 import org.opensearch.client.opensearch.core.ReindexRethrottleRequest;
@@ -309,6 +319,26 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
         return deletePit(fn.apply(new DeletePitRequest.Builder()).build());
     }
 
+    // ----- Endpoint: delete_script
+
+    /**
+     * Deletes a script.
+     */
+    public CompletableFuture<DeleteScriptResponse> deleteScript(DeleteScriptRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteScriptRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Deletes a script.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteScriptRequest}
+     */
+    public final CompletableFuture<DeleteScriptResponse> deleteScript(
+        Function<DeleteScriptRequest.Builder, ObjectBuilder<DeleteScriptRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteScript(fn.apply(new DeleteScriptRequest.Builder()).build());
+    }
+
     // ----- Endpoint: get_all_pits
 
     /**
@@ -335,6 +365,81 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
         return getAllPits(new GetAllPitsRequest.Builder().build());
     }
 
+    // ----- Endpoint: get_script
+
+    /**
+     * Returns a script.
+     */
+    public CompletableFuture<GetScriptResponse> getScript(GetScriptRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, GetScriptRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns a script.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetScriptRequest}
+     */
+    public final CompletableFuture<GetScriptResponse> getScript(Function<GetScriptRequest.Builder, ObjectBuilder<GetScriptRequest>> fn)
+        throws IOException, OpenSearchException {
+        return getScript(fn.apply(new GetScriptRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: get_script_context
+
+    /**
+     * Returns all script contexts.
+     */
+    public CompletableFuture<GetScriptContextResponse> getScriptContext(GetScriptContextRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, GetScriptContextRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns all script contexts.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetScriptContextRequest}
+     */
+    public final CompletableFuture<GetScriptContextResponse> getScriptContext(
+        Function<GetScriptContextRequest.Builder, ObjectBuilder<GetScriptContextRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return getScriptContext(fn.apply(new GetScriptContextRequest.Builder()).build());
+    }
+
+    /**
+     * Returns all script contexts.
+     */
+    public final CompletableFuture<GetScriptContextResponse> getScriptContext() throws IOException, OpenSearchException {
+        return getScriptContext(new GetScriptContextRequest.Builder().build());
+    }
+
+    // ----- Endpoint: get_script_languages
+
+    /**
+     * Returns available script types, languages and contexts.
+     */
+    public CompletableFuture<GetScriptLanguagesResponse> getScriptLanguages(GetScriptLanguagesRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, GetScriptLanguagesRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Returns available script types, languages and contexts.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetScriptLanguagesRequest}
+     */
+    public final CompletableFuture<GetScriptLanguagesResponse> getScriptLanguages(
+        Function<GetScriptLanguagesRequest.Builder, ObjectBuilder<GetScriptLanguagesRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return getScriptLanguages(fn.apply(new GetScriptLanguagesRequest.Builder()).build());
+    }
+
+    /**
+     * Returns available script types, languages and contexts.
+     */
+    public final CompletableFuture<GetScriptLanguagesResponse> getScriptLanguages() throws IOException, OpenSearchException {
+        return getScriptLanguages(new GetScriptLanguagesRequest.Builder().build());
+    }
+
     // ----- Endpoint: info
 
     /**
@@ -359,6 +464,25 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
      */
     public final CompletableFuture<InfoResponse> info() throws IOException, OpenSearchException {
         return info(new InfoRequest.Builder().build());
+    }
+
+    // ----- Endpoint: put_script
+
+    /**
+     * Creates or updates a script.
+     */
+    public CompletableFuture<PutScriptResponse> putScript(PutScriptRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, PutScriptRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Creates or updates a script.
+     *
+     * @param fn a function that initializes a builder to create the {@link PutScriptRequest}
+     */
+    public final CompletableFuture<PutScriptResponse> putScript(Function<PutScriptRequest.Builder, ObjectBuilder<PutScriptRequest>> fn)
+        throws IOException, OpenSearchException {
+        return putScript(fn.apply(new PutScriptRequest.Builder()).build());
     }
 
     // ----- Endpoint: reindex

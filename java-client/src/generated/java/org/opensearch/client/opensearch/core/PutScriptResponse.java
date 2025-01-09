@@ -30,39 +30,78 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.put_script.Response
+// typedef: put_script.Response
 
 @JsonpDeserializable
-public class PutScriptResponse extends AcknowledgedResponseBase {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class PutScriptResponse extends AcknowledgedResponseBase implements ToCopyableBuilder<PutScriptResponse.Builder, PutScriptResponse> {
+
     // ---------------------------------------------------------------------------------------------
 
     private PutScriptResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static PutScriptResponse of(Function<Builder, ObjectBuilder<PutScriptResponse>> fn) {
+    public static PutScriptResponse of(Function<PutScriptResponse.Builder, ObjectBuilder<PutScriptResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PutScriptResponse}.
      */
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, PutScriptResponse> {
 
-    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<PutScriptResponse> {
+        public Builder() {}
+
+        private Builder(PutScriptResponse o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -70,9 +109,10 @@ public class PutScriptResponse extends AcknowledgedResponseBase {
         /**
          * Builds a {@link PutScriptResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PutScriptResponse build() {
             _checkSingleUse();
 
@@ -91,8 +131,22 @@ public class PutScriptResponse extends AcknowledgedResponseBase {
     );
 
     protected static void setupPutScriptResponseDeserializer(ObjectDeserializer<PutScriptResponse.Builder> op) {
-        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-
+        setupAcknowledgedResponseBaseDeserializer(op);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

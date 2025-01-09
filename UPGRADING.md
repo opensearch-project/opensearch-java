@@ -527,3 +527,9 @@ After:
 
 ### UpdateByQueryRethrottleRequest
 - The `requestsPerSecond` property has been corrected to be of type `Float` instead of `Long`.
+
+### StoredScript
+- The `lang` property now accepts a `ScriptLanguage` enum instead of a `String`.
+
+### get_script_languages.LanguageContext
+- The `language` property now accepts a `ScriptLanguage` enum instead of a `String`.

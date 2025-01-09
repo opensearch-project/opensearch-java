@@ -42,8 +42,6 @@ import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.CreateRequest;
 import org.opensearch.client.opensearch.core.CreateResponse;
-import org.opensearch.client.opensearch.core.DeleteScriptRequest;
-import org.opensearch.client.opensearch.core.DeleteScriptResponse;
 import org.opensearch.client.opensearch.core.ExistsRequest;
 import org.opensearch.client.opensearch.core.ExistsSourceRequest;
 import org.opensearch.client.opensearch.core.ExplainRequest;
@@ -52,12 +50,6 @@ import org.opensearch.client.opensearch.core.FieldCapsRequest;
 import org.opensearch.client.opensearch.core.FieldCapsResponse;
 import org.opensearch.client.opensearch.core.GetRequest;
 import org.opensearch.client.opensearch.core.GetResponse;
-import org.opensearch.client.opensearch.core.GetScriptContextRequest;
-import org.opensearch.client.opensearch.core.GetScriptContextResponse;
-import org.opensearch.client.opensearch.core.GetScriptLanguagesRequest;
-import org.opensearch.client.opensearch.core.GetScriptLanguagesResponse;
-import org.opensearch.client.opensearch.core.GetScriptRequest;
-import org.opensearch.client.opensearch.core.GetScriptResponse;
 import org.opensearch.client.opensearch.core.GetSourceRequest;
 import org.opensearch.client.opensearch.core.GetSourceResponse;
 import org.opensearch.client.opensearch.core.IndexRequest;
@@ -71,8 +63,6 @@ import org.opensearch.client.opensearch.core.MsearchTemplateResponse;
 import org.opensearch.client.opensearch.core.MtermvectorsRequest;
 import org.opensearch.client.opensearch.core.MtermvectorsResponse;
 import org.opensearch.client.opensearch.core.PingRequest;
-import org.opensearch.client.opensearch.core.PutScriptRequest;
-import org.opensearch.client.opensearch.core.PutScriptResponse;
 import org.opensearch.client.opensearch.core.RankEvalRequest;
 import org.opensearch.client.opensearch.core.RankEvalResponse;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateRequest;
@@ -199,39 +189,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
         Function<CreateRequest.Builder<TDocument>, ObjectBuilder<CreateRequest<TDocument>>> fn
     ) throws IOException, OpenSearchException {
         return create(fn.apply(new CreateRequest.Builder<TDocument>()).build());
-    }
-
-    // ----- Endpoint: delete_script
-
-    /**
-     * Deletes a script.
-     *
-     *
-     */
-
-    public CompletableFuture<DeleteScriptResponse> deleteScript(DeleteScriptRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<DeleteScriptRequest, DeleteScriptResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            DeleteScriptRequest,
-            DeleteScriptResponse,
-            ErrorResponse>) DeleteScriptRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Deletes a script.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link DeleteScriptRequest}
-     *
-     */
-
-    public final CompletableFuture<DeleteScriptResponse> deleteScript(
-        Function<DeleteScriptRequest.Builder, ObjectBuilder<DeleteScriptRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return deleteScript(fn.apply(new DeleteScriptRequest.Builder()).build());
     }
 
     // ----- Endpoint: exists
@@ -424,68 +381,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
         Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
         return get(fn.apply(new GetRequest.Builder()).build(), tDocumentClass);
-    }
-
-    // ----- Endpoint: get_script
-
-    /**
-     * Returns a script.
-     *
-     *
-     */
-
-    public CompletableFuture<GetScriptResponse> getScript(GetScriptRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetScriptRequest, GetScriptResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            GetScriptRequest,
-            GetScriptResponse,
-            ErrorResponse>) GetScriptRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns a script.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetScriptRequest}
-     *
-     */
-
-    public final CompletableFuture<GetScriptResponse> getScript(Function<GetScriptRequest.Builder, ObjectBuilder<GetScriptRequest>> fn)
-        throws IOException, OpenSearchException {
-        return getScript(fn.apply(new GetScriptRequest.Builder()).build());
-    }
-
-    // ----- Endpoint: get_script_context
-
-    /**
-     * Returns all script contexts.
-     *
-     *
-     */
-    public CompletableFuture<GetScriptContextResponse> getScriptContext() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            GetScriptContextRequest._INSTANCE,
-            GetScriptContextRequest._ENDPOINT,
-            this.transportOptions
-        );
-    }
-
-    // ----- Endpoint: get_script_languages
-
-    /**
-     * Returns available script types, languages and contexts
-     *
-     *
-     */
-    public CompletableFuture<GetScriptLanguagesResponse> getScriptLanguages() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            GetScriptLanguagesRequest._INSTANCE,
-            GetScriptLanguagesRequest._ENDPOINT,
-            this.transportOptions
-        );
     }
 
     // ----- Endpoint: get_source
@@ -739,38 +634,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
      */
     public CompletableFuture<BooleanResponse> ping() throws IOException, OpenSearchException {
         return this.transport.performRequestAsync(PingRequest._INSTANCE, PingRequest._ENDPOINT, this.transportOptions);
-    }
-
-    // ----- Endpoint: put_script
-
-    /**
-     * Creates or updates a script.
-     *
-     *
-     */
-
-    public CompletableFuture<PutScriptResponse> putScript(PutScriptRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<PutScriptRequest, PutScriptResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            PutScriptRequest,
-            PutScriptResponse,
-            ErrorResponse>) PutScriptRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Creates or updates a script.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link PutScriptRequest}
-     *
-     */
-
-    public final CompletableFuture<PutScriptResponse> putScript(Function<PutScriptRequest.Builder, ObjectBuilder<PutScriptRequest>> fn)
-        throws IOException, OpenSearchException {
-        return putScript(fn.apply(new PutScriptRequest.Builder()).build());
     }
 
     // ----- Endpoint: rank_eval

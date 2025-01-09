@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -43,30 +49,37 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch.core.get_script_context.Context;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.get_script_context.Response
+// typedef: get_script_context.Response
 
 @JsonpDeserializable
-public class GetScriptContextResponse implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class GetScriptContextResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<GetScriptContextResponse.Builder, GetScriptContextResponse> {
+
+    @Nonnull
     private final List<Context> contexts;
 
     // ---------------------------------------------------------------------------------------------
 
     private GetScriptContextResponse(Builder builder) {
-
         this.contexts = ApiTypeHelper.unmodifiableRequired(builder.contexts, this, "contexts");
-
     }
 
-    public static GetScriptContextResponse of(Function<Builder, ObjectBuilder<GetScriptContextResponse>> fn) {
+    public static GetScriptContextResponse of(Function<GetScriptContextResponse.Builder, ObjectBuilder<GetScriptContextResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code contexts}
      */
+    @Nonnull
     public final List<Context> contexts() {
         return this.contexts;
     }
@@ -74,6 +87,7 @@ public class GetScriptContextResponse implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -81,34 +95,57 @@ public class GetScriptContextResponse implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.contexts)) {
-            generator.writeKey("contexts");
-            generator.writeStartArray();
-            for (Context item0 : this.contexts) {
-                item0.serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("contexts");
+        generator.writeStartArray();
+        for (Context item0 : this.contexts) {
+            item0.serialize(generator, mapper);
         }
-
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GetScriptContextResponse}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptContextResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetScriptContextResponse> {
         private List<Context> contexts;
+
+        public Builder() {}
+
+        private Builder(GetScriptContextResponse o) {
+            this.contexts = _listCopy(o.contexts);
+        }
+
+        private Builder(Builder o) {
+            this.contexts = _listCopy(o.contexts);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code contexts}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>contexts</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder contexts(List<Context> list) {
             this.contexts = _listAddAll(this.contexts, list);
             return this;
@@ -116,9 +153,12 @@ public class GetScriptContextResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code contexts}
+         *
          * <p>
          * Adds one or more values to <code>contexts</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder contexts(Context value, Context... values) {
             this.contexts = _listAdd(this.contexts, value, values);
             return this;
@@ -126,9 +166,12 @@ public class GetScriptContextResponse implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code contexts}
+         *
          * <p>
          * Adds a value to <code>contexts</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder contexts(Function<Context.Builder, ObjectBuilder<Context>> fn) {
             return contexts(fn.apply(new Context.Builder()).build());
         }
@@ -136,9 +179,10 @@ public class GetScriptContextResponse implements PlainJsonSerializable {
         /**
          * Builds a {@link GetScriptContextResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GetScriptContextResponse build() {
             _checkSingleUse();
 
@@ -157,9 +201,21 @@ public class GetScriptContextResponse implements PlainJsonSerializable {
     );
 
     protected static void setupGetScriptContextResponseDeserializer(ObjectDeserializer<GetScriptContextResponse.Builder> op) {
-
         op.add(Builder::contexts, JsonpDeserializer.arrayDeserializer(Context._DESERIALIZER), "contexts");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.contexts.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        GetScriptContextResponse other = (GetScriptContextResponse) o;
+        return this.contexts.equals(other.contexts);
+    }
 }

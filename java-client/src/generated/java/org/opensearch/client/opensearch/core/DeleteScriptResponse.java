@@ -30,39 +30,80 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.AcknowledgedResponseBase;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.delete_script.Response
+// typedef: delete_script.Response
 
 @JsonpDeserializable
-public class DeleteScriptResponse extends AcknowledgedResponseBase {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class DeleteScriptResponse extends AcknowledgedResponseBase
+    implements
+        ToCopyableBuilder<DeleteScriptResponse.Builder, DeleteScriptResponse> {
+
     // ---------------------------------------------------------------------------------------------
 
     private DeleteScriptResponse(Builder builder) {
         super(builder);
-
     }
 
-    public static DeleteScriptResponse of(Function<Builder, ObjectBuilder<DeleteScriptResponse>> fn) {
+    public static DeleteScriptResponse of(Function<DeleteScriptResponse.Builder, ObjectBuilder<DeleteScriptResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DeleteScriptResponse}.
      */
+    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, DeleteScriptResponse> {
 
-    public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteScriptResponse> {
+        public Builder() {}
+
+        private Builder(DeleteScriptResponse o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -70,9 +111,10 @@ public class DeleteScriptResponse extends AcknowledgedResponseBase {
         /**
          * Builds a {@link DeleteScriptResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DeleteScriptResponse build() {
             _checkSingleUse();
 
@@ -91,8 +133,22 @@ public class DeleteScriptResponse extends AcknowledgedResponseBase {
     );
 
     protected static void setupDeleteScriptResponseDeserializer(ObjectDeserializer<DeleteScriptResponse.Builder> op) {
-        AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-
+        setupAcknowledgedResponseBaseDeserializer(op);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

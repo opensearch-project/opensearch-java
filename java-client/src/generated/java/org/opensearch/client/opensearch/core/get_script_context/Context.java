@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.get_script_context;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,33 +48,38 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.get_script_context.Context
+// typedef: core.get_script_context.Context
 
 @JsonpDeserializable
-public class Context implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class Context implements PlainJsonSerializable, ToCopyableBuilder<Context.Builder, Context> {
+
+    @Nonnull
     private final List<ContextMethod> methods;
 
+    @Nonnull
     private final String name;
 
     // ---------------------------------------------------------------------------------------------
 
     private Context(Builder builder) {
-
         this.methods = ApiTypeHelper.unmodifiableRequired(builder.methods, this, "methods");
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-
     }
 
-    public static Context of(Function<Builder, ObjectBuilder<Context>> fn) {
+    public static Context of(Function<Context.Builder, ObjectBuilder<Context>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code methods}
      */
+    @Nonnull
     public final List<ContextMethod> methods() {
         return this.methods;
     }
@@ -76,6 +87,7 @@ public class Context implements PlainJsonSerializable {
     /**
      * Required - API name: {@code name}
      */
+    @Nonnull
     public final String name() {
         return this.name;
     }
@@ -83,6 +95,7 @@ public class Context implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -90,38 +103,63 @@ public class Context implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.methods)) {
-            generator.writeKey("methods");
-            generator.writeStartArray();
-            for (ContextMethod item0 : this.methods) {
-                item0.serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("methods");
+        generator.writeStartArray();
+        for (ContextMethod item0 : this.methods) {
+            item0.serialize(generator, mapper);
         }
+        generator.writeEnd();
+
         generator.writeKey("name");
         generator.write(this.name);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link Context}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Context> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Context> {
         private List<ContextMethod> methods;
-
         private String name;
+
+        public Builder() {}
+
+        private Builder(Context o) {
+            this.methods = _listCopy(o.methods);
+            this.name = o.name;
+        }
+
+        private Builder(Builder o) {
+            this.methods = _listCopy(o.methods);
+            this.name = o.name;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code methods}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>methods</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder methods(List<ContextMethod> list) {
             this.methods = _listAddAll(this.methods, list);
             return this;
@@ -129,9 +167,12 @@ public class Context implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code methods}
+         *
          * <p>
          * Adds one or more values to <code>methods</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder methods(ContextMethod value, ContextMethod... values) {
             this.methods = _listAdd(this.methods, value, values);
             return this;
@@ -139,9 +180,12 @@ public class Context implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code methods}
+         *
          * <p>
          * Adds a value to <code>methods</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder methods(Function<ContextMethod.Builder, ObjectBuilder<ContextMethod>> fn) {
             return methods(fn.apply(new ContextMethod.Builder()).build());
         }
@@ -149,6 +193,7 @@ public class Context implements PlainJsonSerializable {
         /**
          * Required - API name: {@code name}
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -157,9 +202,10 @@ public class Context implements PlainJsonSerializable {
         /**
          * Builds a {@link Context}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public Context build() {
             _checkSingleUse();
 
@@ -178,10 +224,23 @@ public class Context implements PlainJsonSerializable {
     );
 
     protected static void setupContextDeserializer(ObjectDeserializer<Context.Builder> op) {
-
         op.add(Builder::methods, JsonpDeserializer.arrayDeserializer(ContextMethod._DESERIALIZER), "methods");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.methods.hashCode();
+        result = 31 * result + this.name.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Context other = (Context) o;
+        return this.methods.equals(other.methods) && this.name.equals(other.name);
+    }
 }

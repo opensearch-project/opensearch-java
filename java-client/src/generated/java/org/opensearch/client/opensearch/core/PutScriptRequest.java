@@ -30,12 +30,19 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -50,29 +57,36 @@ import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _global.put_script.Request
 
 /**
  * Creates or updates a script.
- *
  */
 @JsonpDeserializable
-public class PutScriptRequest extends RequestBase implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public final class PutScriptRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<PutScriptRequest.Builder, PutScriptRequest> {
+
+    @Nullable
+    private final Time clusterManagerTimeout;
+
     @Nullable
     private final String context;
 
+    @Nonnull
     private final String id;
 
     @Deprecated
     @Nullable
     private final Time masterTimeout;
 
-    @Nullable
-    private final Time clusterManagerTimeout;
-
+    @Nonnull
     private final StoredScript script;
 
     @Nullable
@@ -81,24 +95,36 @@ public class PutScriptRequest extends RequestBase implements PlainJsonSerializab
     // ---------------------------------------------------------------------------------------------
 
     private PutScriptRequest(Builder builder) {
-
+        super(builder);
+        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.context = builder.context;
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.masterTimeout = builder.masterTimeout;
-        this.clusterManagerTimeout = builder.clusterManagerTimeout;
         this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
         this.timeout = builder.timeout;
-
     }
 
-    public static PutScriptRequest of(Function<Builder, ObjectBuilder<PutScriptRequest>> fn) {
+    public static PutScriptRequest of(Function<PutScriptRequest.Builder, ObjectBuilder<PutScriptRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Script context
+     * Operation timeout for connection to cluster-manager node.
+     * <p>
+     * API name: {@code cluster_manager_timeout}
+     * </p>
+     */
+    @Nullable
+    public final Time clusterManagerTimeout() {
+        return this.clusterManagerTimeout;
+    }
+
+    /**
+     * Context in which the script or search template should run. To prevent errors, the API immediately compiles the script or template in
+     * this context.
      * <p>
      * API name: {@code context}
+     * </p>
      */
     @Nullable
     public final String context() {
@@ -106,18 +132,22 @@ public class PutScriptRequest extends RequestBase implements PlainJsonSerializab
     }
 
     /**
-     * Required - Script ID
+     * Required - Identifier for the stored script or search template. Must be unique within the cluster.
      * <p>
      * API name: {@code id}
+     * </p>
      */
+    @Nonnull
     public final String id() {
         return this.id;
     }
 
     /**
-     * Specify timeout for connection to master
+     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
+     * and returns an error.
      * <p>
      * API name: {@code master_timeout}
+     * </p>
      */
     @Deprecated
     @Nullable
@@ -126,26 +156,18 @@ public class PutScriptRequest extends RequestBase implements PlainJsonSerializab
     }
 
     /**
-     * Specify timeout for connection to cluster-manager
-     * <p>
-     * API name: {@code cluster_manager_timeout}
-     */
-    @Nullable
-    public final Time clusterManagerTimeout() {
-        return this.clusterManagerTimeout;
-    }
-
-    /**
      * Required - API name: {@code script}
      */
+    @Nonnull
     public final StoredScript script() {
         return this.script;
     }
 
     /**
-     * Explicit operation timeout
+     * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
      * <p>
      * API name: {@code timeout}
+     * </p>
      */
     @Nullable
     public final Time timeout() {
@@ -155,6 +177,7 @@ public class PutScriptRequest extends RequestBase implements PlainJsonSerializab
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -162,108 +185,150 @@ public class PutScriptRequest extends RequestBase implements PlainJsonSerializab
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("script");
         this.script.serialize(generator, mapper);
-
     }
-
-    public Builder toBuilder() {
-        return new Builder().context(context)
-            .id(id)
-            .masterTimeout(masterTimeout)
-            .clusterManagerTimeout(clusterManagerTimeout)
-            .script(script)
-            .timeout(timeout);
-    }
-
     // ---------------------------------------------------------------------------------------------
+
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
 
     /**
      * Builder for {@link PutScriptRequest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutScriptRequest> {
-        @Nullable
-        private String context;
-
-        private String id;
-
-        @Deprecated
-        @Nullable
-        private Time masterTimeout;
-
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PutScriptRequest> {
         @Nullable
         private Time clusterManagerTimeout;
-
+        @Nullable
+        private String context;
+        private String id;
+        @Nullable
+        private Time masterTimeout;
         private StoredScript script;
-
         @Nullable
         private Time timeout;
 
-        /**
-         * Script context
-         * <p>
-         * API name: {@code context}
-         */
-        public final Builder context(@Nullable String value) {
-            this.context = value;
+        public Builder() {}
+
+        private Builder(PutScriptRequest o) {
+            super(o);
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.context = o.context;
+            this.id = o.id;
+            this.masterTimeout = o.masterTimeout;
+            this.script = o.script;
+            this.timeout = o.timeout;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.context = o.context;
+            this.id = o.id;
+            this.masterTimeout = o.masterTimeout;
+            this.script = o.script;
+            this.timeout = o.timeout;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
             return this;
         }
 
         /**
-         * Required - Script ID
-         * <p>
-         * API name: {@code id}
-         */
-        public final Builder id(String value) {
-            this.id = value;
-            return this;
-        }
-
-        /**
-         * Specify timeout for connection to master
-         * <p>
-         * API name: {@code master_timeout}
-         */
-        @Deprecated
-        public final Builder masterTimeout(@Nullable Time value) {
-            this.masterTimeout = value;
-            return this;
-        }
-
-        /**
-         * Specify timeout for connection to master
-         * <p>
-         * API name: {@code master_timeout}
-         */
-        @Deprecated
-        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.masterTimeout(fn.apply(new Time.Builder()).build());
-        }
-
-        /**
-         * Specify timeout for connection to cluster-manager
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(@Nullable Time value) {
             this.clusterManagerTimeout = value;
             return this;
         }
 
         /**
-         * Specify timeout for connection to cluster-manager
+         * Operation timeout for connection to cluster-manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+            return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * Context in which the script or search template should run. To prevent errors, the API immediately compiles the script or template
+         * in this context.
+         * <p>
+         * API name: {@code context}
+         * </p>
+         */
+        @Nonnull
+        public final Builder context(@Nullable String value) {
+            this.context = value;
+            return this;
+        }
+
+        /**
+         * Required - Identifier for the stored script or search template. Must be unique within the cluster.
+         * <p>
+         * API name: {@code id}
+         * </p>
+         */
+        @Nonnull
+        public final Builder id(String value) {
+            this.id = value;
+            return this;
+        }
+
+        /**
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(@Nullable Time value) {
+            this.masterTimeout = value;
+            return this;
+        }
+
+        /**
+         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
+         * fails and returns an error.
+         * <p>
+         * API name: {@code master_timeout}
+         * </p>
+         */
+        @Deprecated
+        @Nonnull
+        public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return masterTimeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
          * Required - API name: {@code script}
          */
+        @Nonnull
         public final Builder script(StoredScript value) {
             this.script = value;
             return this;
@@ -272,35 +337,41 @@ public class PutScriptRequest extends RequestBase implements PlainJsonSerializab
         /**
          * Required - API name: {@code script}
          */
+        @Nonnull
         public final Builder script(Function<StoredScript.Builder, ObjectBuilder<StoredScript>> fn) {
-            return this.script(fn.apply(new StoredScript.Builder()).build());
+            return script(fn.apply(new StoredScript.Builder()).build());
         }
 
         /**
-         * Explicit operation timeout
+         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
          * <p>
          * API name: {@code timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder timeout(@Nullable Time value) {
             this.timeout = value;
             return this;
         }
 
         /**
-         * Explicit operation timeout
+         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
          * <p>
          * API name: {@code timeout}
+         * </p>
          */
+        @Nonnull
         public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.timeout(fn.apply(new Time.Builder()).build());
+            return timeout(fn.apply(new Time.Builder()).build());
         }
 
         /**
          * Builds a {@link PutScriptRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PutScriptRequest build() {
             _checkSingleUse();
 
@@ -319,24 +390,31 @@ public class PutScriptRequest extends RequestBase implements PlainJsonSerializab
     );
 
     protected static void setupPutScriptRequestDeserializer(ObjectDeserializer<PutScriptRequest.Builder> op) {
-
         op.add(Builder::script, StoredScript._DESERIALIZER, "script");
-
     }
 
     // ---------------------------------------------------------------------------------------------
+
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (this.clusterManagerTimeout != null) {
+            params.put("cluster_manager_timeout", this.clusterManagerTimeout._toJsonString());
+        }
+        if (this.masterTimeout != null) {
+            params.put("master_timeout", this.masterTimeout._toJsonString());
+        }
+        if (this.timeout != null) {
+            params.put("timeout", this.timeout._toJsonString());
+        }
+    }
 
     /**
      * Endpoint "{@code put_script}".
      */
     public static final Endpoint<PutScriptRequest, PutScriptResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "PUT";
-
-        },
-
+        request -> "PUT",
         // Request path
         request -> {
             final int _context = 1 << 0;
@@ -349,41 +427,54 @@ public class PutScriptRequest extends RequestBase implements PlainJsonSerializab
 
             if (propsSet == (_id)) {
                 StringBuilder buf = new StringBuilder();
-                buf.append("/_scripts");
-                buf.append("/");
+                buf.append("/_scripts/");
                 SimpleEndpoint.pathEncode(request.id, buf);
                 return buf.toString();
             }
             if (propsSet == (_id | _context)) {
                 StringBuilder buf = new StringBuilder();
-                buf.append("/_scripts");
-                buf.append("/");
+                buf.append("/_scripts/");
                 SimpleEndpoint.pathEncode(request.id, buf);
                 buf.append("/");
                 SimpleEndpoint.pathEncode(request.context, buf);
                 return buf.toString();
             }
+
             throw SimpleEndpoint.noPathTemplateFound("path");
-
         },
-
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
-            if (request.masterTimeout != null) {
-                params.put("master_timeout", request.masterTimeout._toJsonString());
-            }
-            if (request.clusterManagerTimeout != null) {
-                params.put("cluster_manager_timeout", request.clusterManagerTimeout._toJsonString());
-            }
-            if (request.timeout != null) {
-                params.put("timeout", request.timeout._toJsonString());
-            }
+            request.applyQueryParameters(params);
             return params;
-
         },
         SimpleEndpoint.emptyMap(),
         true,
         PutScriptResponse._DESERIALIZER
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
+        result = 31 * result + Objects.hashCode(this.context);
+        result = 31 * result + this.id.hashCode();
+        result = 31 * result + Objects.hashCode(this.masterTimeout);
+        result = 31 * result + this.script.hashCode();
+        result = 31 * result + Objects.hashCode(this.timeout);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        PutScriptRequest other = (PutScriptRequest) o;
+        return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
+            && Objects.equals(this.context, other.context)
+            && this.id.equals(other.id)
+            && Objects.equals(this.masterTimeout, other.masterTimeout)
+            && this.script.equals(other.script)
+            && Objects.equals(this.timeout, other.timeout);
+    }
 }
