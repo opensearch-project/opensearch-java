@@ -30,39 +30,53 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.EwmaMovingAverageAggregation
 
 @JsonpDeserializable
-public class EwmaMovingAverageAggregation extends MovingAverageAggregationBase implements MovingAverageAggregationVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class EwmaMovingAverageAggregation extends MovingAverageAggregationBase
+    implements
+        MovingAverageAggregationVariant,
+        ToCopyableBuilder<EwmaMovingAverageAggregation.Builder, EwmaMovingAverageAggregation> {
+
+    @Nonnull
     private final EwmaModelSettings settings;
 
     // ---------------------------------------------------------------------------------------------
 
     private EwmaMovingAverageAggregation(Builder builder) {
         super(builder);
-
         this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
-
     }
 
-    public static EwmaMovingAverageAggregation of(Function<Builder, ObjectBuilder<EwmaMovingAverageAggregation>> fn) {
+    public static EwmaMovingAverageAggregation of(
+        Function<EwmaMovingAverageAggregation.Builder, ObjectBuilder<EwmaMovingAverageAggregation>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * MovingAverageAggregation variant kind.
+     * {@link MovingAverageAggregation} variant kind.
      */
     @Override
     public MovingAverageAggregation.Kind _movingAverageAggregationKind() {
@@ -72,33 +86,67 @@ public class EwmaMovingAverageAggregation extends MovingAverageAggregationBase i
     /**
      * Required - API name: {@code settings}
      */
+    @Nonnull
     public final EwmaModelSettings settings() {
         return this.settings;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.write("model", "ewma");
         super.serializeInternal(generator, mapper);
         generator.writeKey("settings");
         this.settings.serialize(generator, mapper);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link EwmaMovingAverageAggregation}.
      */
-
     public static class Builder extends MovingAverageAggregationBase.AbstractBuilder<Builder>
         implements
-            ObjectBuilder<EwmaMovingAverageAggregation> {
+            CopyableBuilder<Builder, EwmaMovingAverageAggregation> {
         private EwmaModelSettings settings;
+
+        public Builder() {}
+
+        private Builder(EwmaMovingAverageAggregation o) {
+            super(o);
+            this.settings = o.settings;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.settings = o.settings;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code settings}
          */
+        @Nonnull
         public final Builder settings(EwmaModelSettings value) {
             this.settings = value;
             return this;
@@ -107,21 +155,18 @@ public class EwmaMovingAverageAggregation extends MovingAverageAggregationBase i
         /**
          * Required - API name: {@code settings}
          */
+        @Nonnull
         public final Builder settings(Function<EwmaModelSettings.Builder, ObjectBuilder<EwmaModelSettings>> fn) {
-            return this.settings(fn.apply(new EwmaModelSettings.Builder()).build());
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
+            return settings(fn.apply(new EwmaModelSettings.Builder()).build());
         }
 
         /**
          * Builds a {@link EwmaMovingAverageAggregation}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public EwmaMovingAverageAggregation build() {
             _checkSingleUse();
 
@@ -140,10 +185,27 @@ public class EwmaMovingAverageAggregation extends MovingAverageAggregationBase i
     );
 
     protected static void setupEwmaMovingAverageAggregationDeserializer(ObjectDeserializer<EwmaMovingAverageAggregation.Builder> op) {
-        MovingAverageAggregationBase.setupMovingAverageAggregationBaseDeserializer(op);
+        setupMovingAverageAggregationBaseDeserializer(op);
         op.add(Builder::settings, EwmaModelSettings._DESERIALIZER, "settings");
 
         op.ignore("model");
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + this.settings.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        EwmaMovingAverageAggregation other = (EwmaMovingAverageAggregation) o;
+        return this.settings.equals(other.settings);
+    }
 }

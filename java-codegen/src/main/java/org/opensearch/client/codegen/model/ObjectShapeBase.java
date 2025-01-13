@@ -90,6 +90,10 @@ public class ObjectShapeBase extends Shape {
             || (includeSingleKeyMap && singleyKeyMapField != null);
     }
 
+    public boolean hasAnyRequiredFields() {
+        return bodyFields.values().stream().anyMatch(Field::isRequired);
+    }
+
     public void setAdditionalPropertiesField(Field field) {
         additionalPropertiesField = field;
         if (field != null) {

@@ -30,11 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -43,29 +50,37 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.AdjacencyMatrixAggregation
 
 @JsonpDeserializable
-public class AdjacencyMatrixAggregation extends BucketAggregationBase implements AggregationVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class AdjacencyMatrixAggregation extends BucketAggregationBase
+    implements
+        AggregationVariant,
+        ToCopyableBuilder<AdjacencyMatrixAggregation.Builder, AdjacencyMatrixAggregation> {
+
+    @Nonnull
     private final Map<String, Query> filters;
 
     // ---------------------------------------------------------------------------------------------
 
     private AdjacencyMatrixAggregation(Builder builder) {
         super(builder);
-
         this.filters = ApiTypeHelper.unmodifiable(builder.filters);
-
     }
 
-    public static AdjacencyMatrixAggregation of(Function<Builder, ObjectBuilder<AdjacencyMatrixAggregation>> fn) {
+    public static AdjacencyMatrixAggregation of(
+        Function<AdjacencyMatrixAggregation.Builder, ObjectBuilder<AdjacencyMatrixAggregation>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Aggregation variant kind.
+     * {@link Aggregation} variant kind.
      */
     @Override
     public Aggregation.Kind _aggregationKind() {
@@ -73,14 +88,17 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
     }
 
     /**
+     * Filters used to create buckets. At least one filter is required.
+     * <p>
      * API name: {@code filters}
+     * </p>
      */
+    @Nonnull
     public final Map<String, Query> filters() {
         return this.filters;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
         if (ApiTypeHelper.isDefined(this.filters)) {
             generator.writeKey("filters");
@@ -88,66 +106,111 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
             for (Map.Entry<String, Query> item0 : this.filters.entrySet()) {
                 generator.writeKey(item0.getKey());
                 item0.getValue().serialize(generator, mapper);
-
             }
             generator.writeEnd();
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link AdjacencyMatrixAggregation}.
      */
-
     public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
         implements
-            ObjectBuilder<AdjacencyMatrixAggregation> {
+            CopyableBuilder<Builder, AdjacencyMatrixAggregation> {
         @Nullable
         private Map<String, Query> filters;
 
+        public Builder() {}
+
+        private Builder(AdjacencyMatrixAggregation o) {
+            super(o);
+            this.filters = _mapCopy(o.filters);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.filters = _mapCopy(o.filters);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
-         * API name: {@code filters}
+         * Filters used to create buckets. At least one filter is required.
          * <p>
-         * Adds all entries of <code>map</code> to <code>filters</code>.
+         * API name: {@code filters}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>filters</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder filters(Map<String, Query> map) {
             this.filters = _mapPutAll(this.filters, map);
             return this;
         }
 
         /**
+         * Filters used to create buckets. At least one filter is required.
+         * <p>
          * API name: {@code filters}
+         * </p>
+         *
          * <p>
          * Adds an entry to <code>filters</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder filters(String key, Query value) {
             this.filters = _mapPut(this.filters, key, value);
             return this;
         }
 
         /**
-         * API name: {@code filters}
+         * Filters used to create buckets. At least one filter is required.
          * <p>
-         * Adds an entry to <code>filters</code> using a builder lambda.
+         * API name: {@code filters}
+         * </p>
+         *
+         * <p>
+         * Adds a value to <code>filters</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder filters(String key, Function<Query.Builder, ObjectBuilder<Query>> fn) {
             return filters(key, fn.apply(new Query.Builder()).build());
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
         }
 
         /**
          * Builds a {@link AdjacencyMatrixAggregation}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public AdjacencyMatrixAggregation build() {
             _checkSingleUse();
 
@@ -168,7 +231,23 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
     protected static void setupAdjacencyMatrixAggregationDeserializer(ObjectDeserializer<AdjacencyMatrixAggregation.Builder> op) {
         setupBucketAggregationBaseDeserializer(op);
         op.add(Builder::filters, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "filters");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.filters);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        AdjacencyMatrixAggregation other = (AdjacencyMatrixAggregation) o;
+        return Objects.equals(this.filters, other.filters);
+    }
 }

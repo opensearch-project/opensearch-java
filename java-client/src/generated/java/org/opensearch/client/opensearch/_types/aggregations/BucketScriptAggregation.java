@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -41,34 +48,39 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.Script;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.aggregations.BucketSelectorAggregation
+// typedef: _types.aggregations.BucketScriptAggregation
 
 @JsonpDeserializable
-public class BucketSelectorAggregation extends PipelineAggregationBase implements AggregationVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class BucketScriptAggregation extends PipelineAggregationBase
+    implements
+        AggregationVariant,
+        ToCopyableBuilder<BucketScriptAggregation.Builder, BucketScriptAggregation> {
+
     @Nullable
     private final Script script;
 
     // ---------------------------------------------------------------------------------------------
 
-    private BucketSelectorAggregation(Builder builder) {
+    private BucketScriptAggregation(Builder builder) {
         super(builder);
-
         this.script = builder.script;
-
     }
 
-    public static BucketSelectorAggregation of(Function<Builder, ObjectBuilder<BucketSelectorAggregation>> fn) {
+    public static BucketScriptAggregation of(Function<BucketScriptAggregation.Builder, ObjectBuilder<BucketScriptAggregation>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Aggregation variant kind.
+     * {@link Aggregation} variant kind.
      */
     @Override
     public Aggregation.Kind _aggregationKind() {
-        return Aggregation.Kind.BucketSelector;
+        return Aggregation.Kind.BucketScript;
     }
 
     /**
@@ -80,31 +92,63 @@ public class BucketSelectorAggregation extends PipelineAggregationBase implement
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
         if (this.script != null) {
             generator.writeKey("script");
             this.script.serialize(generator, mapper);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    /**
-     * Builder for {@link BucketSelectorAggregation}.
-     */
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
 
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /**
+     * Builder for {@link BucketScriptAggregation}.
+     */
     public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
         implements
-            ObjectBuilder<BucketSelectorAggregation> {
+            CopyableBuilder<Builder, BucketScriptAggregation> {
         @Nullable
         private Script script;
+
+        public Builder() {}
+
+        private Builder(BucketScriptAggregation o) {
+            super(o);
+            this.script = o.script;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.script = o.script;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code script}
          */
+        @Nonnull
         public final Builder script(@Nullable Script value) {
             this.script = value;
             return this;
@@ -113,42 +157,55 @@ public class BucketSelectorAggregation extends PipelineAggregationBase implement
         /**
          * API name: {@code script}
          */
+        @Nonnull
         public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-            return this.script(fn.apply(new Script.Builder()).build());
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
+            return script(fn.apply(new Script.Builder()).build());
         }
 
         /**
-         * Builds a {@link BucketSelectorAggregation}.
+         * Builds a {@link BucketScriptAggregation}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public BucketSelectorAggregation build() {
+        @Override
+        @Nonnull
+        public BucketScriptAggregation build() {
             _checkSingleUse();
 
-            return new BucketSelectorAggregation(this);
+            return new BucketScriptAggregation(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link BucketSelectorAggregation}
+     * Json deserializer for {@link BucketScriptAggregation}
      */
-    public static final JsonpDeserializer<BucketSelectorAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<BucketScriptAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        BucketSelectorAggregation::setupBucketSelectorAggregationDeserializer
+        BucketScriptAggregation::setupBucketScriptAggregationDeserializer
     );
 
-    protected static void setupBucketSelectorAggregationDeserializer(ObjectDeserializer<BucketSelectorAggregation.Builder> op) {
-        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+    protected static void setupBucketScriptAggregationDeserializer(ObjectDeserializer<BucketScriptAggregation.Builder> op) {
+        setupPipelineAggregationBaseDeserializer(op);
         op.add(Builder::script, Script._DESERIALIZER, "script");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.script);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        BucketScriptAggregation other = (BucketScriptAggregation) o;
+        return Objects.equals(this.script, other.script);
+    }
 }

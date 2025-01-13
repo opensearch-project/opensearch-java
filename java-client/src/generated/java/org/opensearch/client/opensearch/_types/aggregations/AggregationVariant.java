@@ -30,17 +30,22 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
+
+import javax.annotation.Generated;
 
 /**
  * Base interface for {@link Aggregation} variants.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public interface AggregationVariant {
-
     Aggregation.Kind _aggregationKind();
 
-    default Aggregation _toAggregation() {
+    default Aggregation toAggregation() {
         return new Aggregation(this);
     }
-
 }

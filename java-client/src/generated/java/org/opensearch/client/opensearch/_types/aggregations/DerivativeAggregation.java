@@ -30,32 +30,44 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.DerivativeAggregation
 
 @JsonpDeserializable
-public class DerivativeAggregation extends PipelineAggregationBase implements AggregationVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class DerivativeAggregation extends PipelineAggregationBase
+    implements
+        AggregationVariant,
+        ToCopyableBuilder<DerivativeAggregation.Builder, DerivativeAggregation> {
+
     // ---------------------------------------------------------------------------------------------
 
     private DerivativeAggregation(Builder builder) {
         super(builder);
-
     }
 
-    public static DerivativeAggregation of(Function<Builder, ObjectBuilder<DerivativeAggregation>> fn) {
+    public static DerivativeAggregation of(Function<DerivativeAggregation.Builder, ObjectBuilder<DerivativeAggregation>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Aggregation variant kind.
+     * {@link Aggregation} variant kind.
      */
     @Override
     public Aggregation.Kind _aggregationKind() {
@@ -64,12 +76,42 @@ public class DerivativeAggregation extends PipelineAggregationBase implements Ag
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DerivativeAggregation}.
      */
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, DerivativeAggregation> {
 
-    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<DerivativeAggregation> {
+        public Builder() {}
+
+        private Builder(DerivativeAggregation o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -77,9 +119,10 @@ public class DerivativeAggregation extends PipelineAggregationBase implements Ag
         /**
          * Builds a {@link DerivativeAggregation}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DerivativeAggregation build() {
             _checkSingleUse();
 
@@ -98,8 +141,22 @@ public class DerivativeAggregation extends PipelineAggregationBase implements Ag
     );
 
     protected static void setupDerivativeAggregationDeserializer(ObjectDeserializer<DerivativeAggregation.Builder> op) {
-        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
-
+        setupPipelineAggregationBaseDeserializer(op);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

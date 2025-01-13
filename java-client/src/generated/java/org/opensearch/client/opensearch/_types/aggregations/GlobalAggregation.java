@@ -30,32 +30,44 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.GlobalAggregation
 
 @JsonpDeserializable
-public class GlobalAggregation extends BucketAggregationBase implements AggregationVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class GlobalAggregation extends BucketAggregationBase
+    implements
+        AggregationVariant,
+        ToCopyableBuilder<GlobalAggregation.Builder, GlobalAggregation> {
+
     // ---------------------------------------------------------------------------------------------
 
     private GlobalAggregation(Builder builder) {
         super(builder);
-
     }
 
-    public static GlobalAggregation of(Function<Builder, ObjectBuilder<GlobalAggregation>> fn) {
+    public static GlobalAggregation of(Function<GlobalAggregation.Builder, ObjectBuilder<GlobalAggregation>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Aggregation variant kind.
+     * {@link Aggregation} variant kind.
      */
     @Override
     public Aggregation.Kind _aggregationKind() {
@@ -64,12 +76,42 @@ public class GlobalAggregation extends BucketAggregationBase implements Aggregat
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GlobalAggregation}.
      */
+    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, GlobalAggregation> {
 
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<GlobalAggregation> {
+        public Builder() {}
+
+        private Builder(GlobalAggregation o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -77,9 +119,10 @@ public class GlobalAggregation extends BucketAggregationBase implements Aggregat
         /**
          * Builds a {@link GlobalAggregation}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GlobalAggregation build() {
             _checkSingleUse();
 
@@ -99,7 +142,21 @@ public class GlobalAggregation extends BucketAggregationBase implements Aggregat
 
     protected static void setupGlobalAggregationDeserializer(ObjectDeserializer<GlobalAggregation.Builder> op) {
         setupBucketAggregationBaseDeserializer(op);
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

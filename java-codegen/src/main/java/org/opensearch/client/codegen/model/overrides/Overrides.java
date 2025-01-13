@@ -65,9 +65,16 @@ public class Overrides {
 
                 .with(schema("_common", "GetStats"), so -> so.withProperties(p -> p.with("getTime", po -> po.withName("time"))))
 
+                .with(schema("_common", "EmptyObject"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+
+                .with(schema("_common.aggregations", "Aggregation"), so -> so.withClassName("AggregationBase"))
                 .with(
                     schema("_common.aggregations", "AggregationContainer"),
-                    so -> so.withClassName("Aggregation").withShouldGenerate(ShouldGenerate.Never)
+                    so -> so.withClassName("Aggregation").withShouldGenerate(ShouldGenerate.Always)
+                )
+                .with(
+                    schema("_common.aggregations", "AggregationContainer").append("allOf", "0"),
+                    so -> so.withProperties(p -> p.with("aggregations", po -> po.withAliases(Set.of("aggs"))))
                 )
 
                 // TODO: Remove this once figuring out how best to handle these schemas

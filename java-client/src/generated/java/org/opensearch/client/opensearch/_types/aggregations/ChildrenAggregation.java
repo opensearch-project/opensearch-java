@@ -30,22 +30,36 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.ChildrenAggregation
 
 @JsonpDeserializable
-public class ChildrenAggregation extends BucketAggregationBase implements AggregationVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ChildrenAggregation extends BucketAggregationBase
+    implements
+        AggregationVariant,
+        ToCopyableBuilder<ChildrenAggregation.Builder, ChildrenAggregation> {
+
     @Nullable
     private final String type;
 
@@ -53,17 +67,15 @@ public class ChildrenAggregation extends BucketAggregationBase implements Aggreg
 
     private ChildrenAggregation(Builder builder) {
         super(builder);
-
         this.type = builder.type;
-
     }
 
-    public static ChildrenAggregation of(Function<Builder, ObjectBuilder<ChildrenAggregation>> fn) {
+    public static ChildrenAggregation of(Function<ChildrenAggregation.Builder, ObjectBuilder<ChildrenAggregation>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Aggregation variant kind.
+     * {@link Aggregation} variant kind.
      */
     @Override
     public Aggregation.Kind _aggregationKind() {
@@ -79,45 +91,75 @@ public class ChildrenAggregation extends BucketAggregationBase implements Aggreg
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
         if (this.type != null) {
             generator.writeKey("type");
             generator.write(this.type);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ChildrenAggregation}.
      */
-
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<ChildrenAggregation> {
+    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, ChildrenAggregation> {
         @Nullable
         private String type;
+
+        public Builder() {}
+
+        private Builder(ChildrenAggregation o) {
+            super(o);
+            this.type = o.type;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.type = o.type;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code type}
          */
+        @Nonnull
         public final Builder type(@Nullable String value) {
             this.type = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
         /**
          * Builds a {@link ChildrenAggregation}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ChildrenAggregation build() {
             _checkSingleUse();
 
@@ -136,9 +178,25 @@ public class ChildrenAggregation extends BucketAggregationBase implements Aggreg
     );
 
     protected static void setupChildrenAggregationDeserializer(ObjectDeserializer<ChildrenAggregation.Builder> op) {
-        BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+        setupBucketAggregationBaseDeserializer(op);
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.type);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ChildrenAggregation other = (ChildrenAggregation) o;
+        return Objects.equals(this.type, other.type);
+    }
 }

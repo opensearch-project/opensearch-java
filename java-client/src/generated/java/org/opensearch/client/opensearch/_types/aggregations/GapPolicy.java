@@ -30,35 +30,36 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
-import org.opensearch.client.json.ObjectDeserializer;
+import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
 
-// typedef: _types.aggregations.BucketAggregationBase
+// typedef: _types.aggregations.GapPolicy
 
-/**
- * Base type for bucket aggregations. These aggregations also accept
- * sub-aggregations.
- *
- */
+@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum GapPolicy implements JsonEnum {
+    InsertZeros("insert_zeros"),
 
-public abstract class BucketAggregationBase extends AggregationBase {
-    // ---------------------------------------------------------------------------------------------
+    KeepValues("keep_values"),
 
-    protected BucketAggregationBase(AbstractBuilder<?> builder) {
-        super(builder);
+    Skip("skip");
 
+    private final String jsonValue;
+
+    GapPolicy(String jsonValue) {
+        this.jsonValue = jsonValue;
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregationBase.AbstractBuilder<
-        BuilderT> {}
-
-    // ---------------------------------------------------------------------------------------------
-    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBucketAggregationBaseDeserializer(
-        ObjectDeserializer<BuilderT> op
-    ) {
-        AggregationBase.setupAggregationBaseDeserializer(op);
-
+    public String jsonValue() {
+        return this.jsonValue;
     }
 
+    public static final JsonEnum.Deserializer<GapPolicy> _DESERIALIZER = new JsonEnum.Deserializer<>(GapPolicy.values());
 }

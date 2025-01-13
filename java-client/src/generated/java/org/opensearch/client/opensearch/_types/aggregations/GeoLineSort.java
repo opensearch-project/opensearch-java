@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,30 +47,34 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.GeoLineSort
 
 @JsonpDeserializable
-public class GeoLineSort implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class GeoLineSort implements PlainJsonSerializable, ToCopyableBuilder<GeoLineSort.Builder, GeoLineSort> {
+
+    @Nonnull
     private final String field;
 
     // ---------------------------------------------------------------------------------------------
 
     private GeoLineSort(Builder builder) {
-
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-
     }
 
-    public static GeoLineSort of(Function<Builder, ObjectBuilder<GeoLineSort>> fn) {
+    public static GeoLineSort of(Function<GeoLineSort.Builder, ObjectBuilder<GeoLineSort>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code field}
      */
+    @Nonnull
     public final String field() {
         return this.field;
     }
@@ -72,6 +82,7 @@ public class GeoLineSort implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -79,24 +90,49 @@ public class GeoLineSort implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("field");
         generator.write(this.field);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GeoLineSort}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoLineSort> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GeoLineSort> {
         private String field;
+
+        public Builder() {}
+
+        private Builder(GeoLineSort o) {
+            this.field = o.field;
+        }
+
+        private Builder(Builder o) {
+            this.field = o.field;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code field}
          */
+        @Nonnull
         public final Builder field(String value) {
             this.field = value;
             return this;
@@ -105,9 +141,10 @@ public class GeoLineSort implements PlainJsonSerializable {
         /**
          * Builds a {@link GeoLineSort}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GeoLineSort build() {
             _checkSingleUse();
 
@@ -126,9 +163,21 @@ public class GeoLineSort implements PlainJsonSerializable {
     );
 
     protected static void setupGeoLineSortDeserializer(ObjectDeserializer<GeoLineSort.Builder> op) {
-
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.field.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        GeoLineSort other = (GeoLineSort) o;
+        return this.field.equals(other.field);
+    }
 }

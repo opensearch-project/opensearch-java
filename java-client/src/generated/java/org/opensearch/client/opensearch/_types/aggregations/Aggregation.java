@@ -30,11 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonEnum;
@@ -44,6 +51,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -54,155 +62,88 @@ import org.opensearch.client.util.TaggedUnionUtils;
 // typedef: _types.aggregations.AggregationContainer
 
 @JsonpDeserializable
-public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, JsonpSerializable {
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVariant>, PlainJsonSerializable {
     /**
      * {@link Aggregation} variant kinds.
      */
-    /**
-     * {@link Aggregation} variant kinds.
-     */
-
     public enum Kind implements JsonEnum {
         AdjacencyMatrix("adjacency_matrix"),
-
         AutoDateHistogram("auto_date_histogram"),
-
         Avg("avg"),
-
         AvgBucket("avg_bucket"),
-
         Boxplot("boxplot"),
-
+        BucketCorrelation("bucket_correlation"),
+        BucketCountKsTest("bucket_count_ks_test"),
         BucketScript("bucket_script"),
-
         BucketSelector("bucket_selector"),
-
         BucketSort("bucket_sort"),
-
         Cardinality("cardinality"),
-
+        CategorizeText("categorize_text"),
         Children("children"),
-
         Composite("composite"),
-
         CumulativeCardinality("cumulative_cardinality"),
-
         CumulativeSum("cumulative_sum"),
-
         DateHistogram("date_histogram"),
-
         DateRange("date_range"),
-
         Derivative("derivative"),
-
         DiversifiedSampler("diversified_sampler"),
-
         ExtendedStats("extended_stats"),
-
         ExtendedStatsBucket("extended_stats_bucket"),
-
         Filter("filter"),
-
         Filters("filters"),
-
+        FrequentItemSets("frequent_item_sets"),
         GeoBounds("geo_bounds"),
-
         GeoCentroid("geo_centroid"),
-
         GeoDistance("geo_distance"),
-
-        GeohashGrid("geohash_grid"),
-
         GeoLine("geo_line"),
-
+        GeohashGrid("geohash_grid"),
+        GeohexGrid("geohex_grid"),
         GeotileGrid("geotile_grid"),
-
         Global("global"),
-
         Histogram("histogram"),
-
-        IpRange("ip_range"),
-
         Inference("inference"),
-
+        IpPrefix("ip_prefix"),
+        IpRange("ip_range"),
+        Line("line"),
         MatrixStats("matrix_stats"),
-
         Max("max"),
-
         MaxBucket("max_bucket"),
-
         MedianAbsoluteDeviation("median_absolute_deviation"),
-
         Min("min"),
-
         MinBucket("min_bucket"),
-
         Missing("missing"),
-
         MovingAvg("moving_avg"),
-
-        MovingPercentiles("moving_percentiles"),
-
         MovingFn("moving_fn"),
-
+        MovingPercentiles("moving_percentiles"),
         MultiTerms("multi_terms"),
-
         Nested("nested"),
-
         Normalize("normalize"),
-
         Parent("parent"),
-
         PercentileRanks("percentile_ranks"),
-
         Percentiles("percentiles"),
-
         PercentilesBucket("percentiles_bucket"),
-
         Range("range"),
-
         RareTerms("rare_terms"),
-
         Rate("rate"),
-
         ReverseNested("reverse_nested"),
-
         Sampler("sampler"),
-
         ScriptedMetric("scripted_metric"),
-
         SerialDiff("serial_diff"),
-
         SignificantTerms("significant_terms"),
-
         SignificantText("significant_text"),
-
         Stats("stats"),
-
         StatsBucket("stats_bucket"),
-
         StringStats("string_stats"),
-
         Sum("sum"),
-
         SumBucket("sum_bucket"),
-
-        Terms("terms"),
-
-        TopHits("top_hits"),
-
         TTest("t_test"),
-
+        Terms("terms"),
+        TopHits("top_hits"),
         TopMetrics("top_metrics"),
-
         ValueCount("value_count"),
-
-        WeightedAvg("weighted_avg"),
-
         VariableWidthHistogram("variable_width_histogram"),
-
-        ;
+        WeightedAvg("weighted_avg");
 
         private final String jsonValue;
 
@@ -210,14 +151,14 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
             this.jsonValue = jsonValue;
         }
 
+        @Override
         public String jsonValue() {
-            return this.jsonValue;
+            return jsonValue;
         }
-
     }
 
     private final Kind _kind;
-    private final Object _value;
+    private final AggregationVariant _value;
 
     @Override
     public final Kind _kind() {
@@ -225,35 +166,31 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     }
 
     @Override
-    public final Object _get() {
+    public final AggregationVariant _get() {
         return _value;
     }
 
+    @Nonnull
     private final Map<String, Aggregation> aggregations;
 
+    @Nonnull
     private final Map<String, JsonData> meta;
 
     public Aggregation(AggregationVariant value) {
-
         this._kind = ApiTypeHelper.requireNonNull(value._aggregationKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
-
         this.aggregations = null;
         this.meta = null;
-
     }
 
     private Aggregation(Builder builder) {
-
-        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
         this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
         this.meta = ApiTypeHelper.unmodifiable(builder.meta);
-
+        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
     }
 
-    public static Aggregation of(Function<Builder, ObjectBuilder<Aggregation>> fn) {
+    public static Aggregation of(Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -261,7 +198,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
      * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
      * <p>
      * API name: {@code aggregations}
+     * </p>
      */
+    @Nonnull
     public final Map<String, Aggregation> aggregations() {
         return this.aggregations;
     }
@@ -269,6 +208,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * API name: {@code meta}
      */
+    @Nonnull
     public final Map<String, JsonData> meta() {
         return this.meta;
     }
@@ -283,9 +223,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code adjacency_matrix} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code adjacency_matrix}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code adjacency_matrix} kind.
      */
     public AdjacencyMatrixAggregation adjacencyMatrix() {
         return TaggedUnionUtils.get(this, Kind.AdjacencyMatrix);
@@ -301,9 +239,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code auto_date_histogram} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code auto_date_histogram}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code auto_date_histogram} kind.
      */
     public AutoDateHistogramAggregation autoDateHistogram() {
         return TaggedUnionUtils.get(this, Kind.AutoDateHistogram);
@@ -319,8 +255,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code avg} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code avg} kind.
+     * @throws IllegalStateException if the current variant is not the {@code avg} kind.
      */
     public AverageAggregation avg() {
         return TaggedUnionUtils.get(this, Kind.Avg);
@@ -336,8 +271,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code avg_bucket} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code avg_bucket} kind.
+     * @throws IllegalStateException if the current variant is not the {@code avg_bucket} kind.
      */
     public AverageBucketAggregation avgBucket() {
         return TaggedUnionUtils.get(this, Kind.AvgBucket);
@@ -353,11 +287,42 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code boxplot} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code boxplot} kind.
+     * @throws IllegalStateException if the current variant is not the {@code boxplot} kind.
      */
     public BoxplotAggregation boxplot() {
         return TaggedUnionUtils.get(this, Kind.Boxplot);
+    }
+
+    /**
+     * Is this variant instance of kind {@code bucket_correlation}?
+     */
+    public boolean isBucketCorrelation() {
+        return _kind == Kind.BucketCorrelation;
+    }
+
+    /**
+     * Get the {@code bucket_correlation} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code bucket_correlation} kind.
+     */
+    public BucketCorrelationAggregation bucketCorrelation() {
+        return TaggedUnionUtils.get(this, Kind.BucketCorrelation);
+    }
+
+    /**
+     * Is this variant instance of kind {@code bucket_count_ks_test}?
+     */
+    public boolean isBucketCountKsTest() {
+        return _kind == Kind.BucketCountKsTest;
+    }
+
+    /**
+     * Get the {@code bucket_count_ks_test} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code bucket_count_ks_test} kind.
+     */
+    public BucketKsAggregation bucketCountKsTest() {
+        return TaggedUnionUtils.get(this, Kind.BucketCountKsTest);
     }
 
     /**
@@ -370,8 +335,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code bucket_script} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code bucket_script} kind.
+     * @throws IllegalStateException if the current variant is not the {@code bucket_script} kind.
      */
     public BucketScriptAggregation bucketScript() {
         return TaggedUnionUtils.get(this, Kind.BucketScript);
@@ -387,9 +351,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code bucket_selector} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code bucket_selector}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code bucket_selector} kind.
      */
     public BucketSelectorAggregation bucketSelector() {
         return TaggedUnionUtils.get(this, Kind.BucketSelector);
@@ -405,8 +367,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code bucket_sort} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code bucket_sort} kind.
+     * @throws IllegalStateException if the current variant is not the {@code bucket_sort} kind.
      */
     public BucketSortAggregation bucketSort() {
         return TaggedUnionUtils.get(this, Kind.BucketSort);
@@ -422,11 +383,26 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code cardinality} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code cardinality} kind.
+     * @throws IllegalStateException if the current variant is not the {@code cardinality} kind.
      */
     public CardinalityAggregation cardinality() {
         return TaggedUnionUtils.get(this, Kind.Cardinality);
+    }
+
+    /**
+     * Is this variant instance of kind {@code categorize_text}?
+     */
+    public boolean isCategorizeText() {
+        return _kind == Kind.CategorizeText;
+    }
+
+    /**
+     * Get the {@code categorize_text} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code categorize_text} kind.
+     */
+    public CategorizeTextAggregation categorizeText() {
+        return TaggedUnionUtils.get(this, Kind.CategorizeText);
     }
 
     /**
@@ -439,8 +415,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code children} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code children} kind.
+     * @throws IllegalStateException if the current variant is not the {@code children} kind.
      */
     public ChildrenAggregation children() {
         return TaggedUnionUtils.get(this, Kind.Children);
@@ -456,8 +431,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code composite} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code composite} kind.
+     * @throws IllegalStateException if the current variant is not the {@code composite} kind.
      */
     public CompositeAggregation composite() {
         return TaggedUnionUtils.get(this, Kind.Composite);
@@ -473,9 +447,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code cumulative_cardinality} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the
-     *             {@code cumulative_cardinality} kind.
+     * @throws IllegalStateException if the current variant is not the {@code cumulative_cardinality} kind.
      */
     public CumulativeCardinalityAggregation cumulativeCardinality() {
         return TaggedUnionUtils.get(this, Kind.CumulativeCardinality);
@@ -491,8 +463,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code cumulative_sum} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code cumulative_sum} kind.
+     * @throws IllegalStateException if the current variant is not the {@code cumulative_sum} kind.
      */
     public CumulativeSumAggregation cumulativeSum() {
         return TaggedUnionUtils.get(this, Kind.CumulativeSum);
@@ -508,8 +479,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code date_histogram} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code date_histogram} kind.
+     * @throws IllegalStateException if the current variant is not the {@code date_histogram} kind.
      */
     public DateHistogramAggregation dateHistogram() {
         return TaggedUnionUtils.get(this, Kind.DateHistogram);
@@ -525,8 +495,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code date_range} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code date_range} kind.
+     * @throws IllegalStateException if the current variant is not the {@code date_range} kind.
      */
     public DateRangeAggregation dateRange() {
         return TaggedUnionUtils.get(this, Kind.DateRange);
@@ -542,8 +511,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code derivative} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code derivative} kind.
+     * @throws IllegalStateException if the current variant is not the {@code derivative} kind.
      */
     public DerivativeAggregation derivative() {
         return TaggedUnionUtils.get(this, Kind.Derivative);
@@ -559,9 +527,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code diversified_sampler} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code diversified_sampler}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code diversified_sampler} kind.
      */
     public DiversifiedSamplerAggregation diversifiedSampler() {
         return TaggedUnionUtils.get(this, Kind.DiversifiedSampler);
@@ -577,8 +543,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code extended_stats} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code extended_stats} kind.
+     * @throws IllegalStateException if the current variant is not the {@code extended_stats} kind.
      */
     public ExtendedStatsAggregation extendedStats() {
         return TaggedUnionUtils.get(this, Kind.ExtendedStats);
@@ -594,9 +559,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code extended_stats_bucket} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the
-     *             {@code extended_stats_bucket} kind.
+     * @throws IllegalStateException if the current variant is not the {@code extended_stats_bucket} kind.
      */
     public ExtendedStatsBucketAggregation extendedStatsBucket() {
         return TaggedUnionUtils.get(this, Kind.ExtendedStatsBucket);
@@ -612,8 +575,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code filter} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code filter} kind.
+     * @throws IllegalStateException if the current variant is not the {@code filter} kind.
      */
     public Query filter() {
         return TaggedUnionUtils.get(this, Kind.Filter);
@@ -629,11 +591,26 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code filters} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code filters} kind.
+     * @throws IllegalStateException if the current variant is not the {@code filters} kind.
      */
     public FiltersAggregation filters() {
         return TaggedUnionUtils.get(this, Kind.Filters);
+    }
+
+    /**
+     * Is this variant instance of kind {@code frequent_item_sets}?
+     */
+    public boolean isFrequentItemSets() {
+        return _kind == Kind.FrequentItemSets;
+    }
+
+    /**
+     * Get the {@code frequent_item_sets} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code frequent_item_sets} kind.
+     */
+    public FrequentItemSetsAggregation frequentItemSets() {
+        return TaggedUnionUtils.get(this, Kind.FrequentItemSets);
     }
 
     /**
@@ -646,8 +623,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code geo_bounds} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code geo_bounds} kind.
+     * @throws IllegalStateException if the current variant is not the {@code geo_bounds} kind.
      */
     public GeoBoundsAggregation geoBounds() {
         return TaggedUnionUtils.get(this, Kind.GeoBounds);
@@ -663,8 +639,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code geo_centroid} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code geo_centroid} kind.
+     * @throws IllegalStateException if the current variant is not the {@code geo_centroid} kind.
      */
     public GeoCentroidAggregation geoCentroid() {
         return TaggedUnionUtils.get(this, Kind.GeoCentroid);
@@ -680,28 +655,10 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code geo_distance} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code geo_distance} kind.
+     * @throws IllegalStateException if the current variant is not the {@code geo_distance} kind.
      */
     public GeoDistanceAggregation geoDistance() {
         return TaggedUnionUtils.get(this, Kind.GeoDistance);
-    }
-
-    /**
-     * Is this variant instance of kind {@code geohash_grid}?
-     */
-    public boolean isGeohashGrid() {
-        return _kind == Kind.GeohashGrid;
-    }
-
-    /**
-     * Get the {@code geohash_grid} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code geohash_grid} kind.
-     */
-    public GeoHashGridAggregation geohashGrid() {
-        return TaggedUnionUtils.get(this, Kind.GeohashGrid);
     }
 
     /**
@@ -714,11 +671,42 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code geo_line} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code geo_line} kind.
+     * @throws IllegalStateException if the current variant is not the {@code geo_line} kind.
      */
     public GeoLineAggregation geoLine() {
         return TaggedUnionUtils.get(this, Kind.GeoLine);
+    }
+
+    /**
+     * Is this variant instance of kind {@code geohash_grid}?
+     */
+    public boolean isGeohashGrid() {
+        return _kind == Kind.GeohashGrid;
+    }
+
+    /**
+     * Get the {@code geohash_grid} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code geohash_grid} kind.
+     */
+    public GeoHashGridAggregation geohashGrid() {
+        return TaggedUnionUtils.get(this, Kind.GeohashGrid);
+    }
+
+    /**
+     * Is this variant instance of kind {@code geohex_grid}?
+     */
+    public boolean isGeohexGrid() {
+        return _kind == Kind.GeohexGrid;
+    }
+
+    /**
+     * Get the {@code geohex_grid} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code geohex_grid} kind.
+     */
+    public GeohexGridAggregation geohexGrid() {
+        return TaggedUnionUtils.get(this, Kind.GeohexGrid);
     }
 
     /**
@@ -731,8 +719,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code geotile_grid} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code geotile_grid} kind.
+     * @throws IllegalStateException if the current variant is not the {@code geotile_grid} kind.
      */
     public GeoTileGridAggregation geotileGrid() {
         return TaggedUnionUtils.get(this, Kind.GeotileGrid);
@@ -748,8 +735,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code global} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code global} kind.
+     * @throws IllegalStateException if the current variant is not the {@code global} kind.
      */
     public GlobalAggregation global() {
         return TaggedUnionUtils.get(this, Kind.Global);
@@ -765,28 +751,10 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code histogram} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code histogram} kind.
+     * @throws IllegalStateException if the current variant is not the {@code histogram} kind.
      */
     public HistogramAggregation histogram() {
         return TaggedUnionUtils.get(this, Kind.Histogram);
-    }
-
-    /**
-     * Is this variant instance of kind {@code ip_range}?
-     */
-    public boolean isIpRange() {
-        return _kind == Kind.IpRange;
-    }
-
-    /**
-     * Get the {@code ip_range} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code ip_range} kind.
-     */
-    public IpRangeAggregation ipRange() {
-        return TaggedUnionUtils.get(this, Kind.IpRange);
     }
 
     /**
@@ -799,11 +767,58 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code inference} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code inference} kind.
+     * @throws IllegalStateException if the current variant is not the {@code inference} kind.
      */
     public InferenceAggregation inference() {
         return TaggedUnionUtils.get(this, Kind.Inference);
+    }
+
+    /**
+     * Is this variant instance of kind {@code ip_prefix}?
+     */
+    public boolean isIpPrefix() {
+        return _kind == Kind.IpPrefix;
+    }
+
+    /**
+     * Get the {@code ip_prefix} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code ip_prefix} kind.
+     */
+    public IpPrefixAggregation ipPrefix() {
+        return TaggedUnionUtils.get(this, Kind.IpPrefix);
+    }
+
+    /**
+     * Is this variant instance of kind {@code ip_range}?
+     */
+    public boolean isIpRange() {
+        return _kind == Kind.IpRange;
+    }
+
+    /**
+     * Get the {@code ip_range} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code ip_range} kind.
+     */
+    public IpRangeAggregation ipRange() {
+        return TaggedUnionUtils.get(this, Kind.IpRange);
+    }
+
+    /**
+     * Is this variant instance of kind {@code line}?
+     */
+    public boolean isLine() {
+        return _kind == Kind.Line;
+    }
+
+    /**
+     * Get the {@code line} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code line} kind.
+     */
+    public GeoLineAggregation line() {
+        return TaggedUnionUtils.get(this, Kind.Line);
     }
 
     /**
@@ -816,8 +831,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code matrix_stats} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code matrix_stats} kind.
+     * @throws IllegalStateException if the current variant is not the {@code matrix_stats} kind.
      */
     public MatrixStatsAggregation matrixStats() {
         return TaggedUnionUtils.get(this, Kind.MatrixStats);
@@ -833,8 +847,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code max} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code max} kind.
+     * @throws IllegalStateException if the current variant is not the {@code max} kind.
      */
     public MaxAggregation max() {
         return TaggedUnionUtils.get(this, Kind.Max);
@@ -850,8 +863,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code max_bucket} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code max_bucket} kind.
+     * @throws IllegalStateException if the current variant is not the {@code max_bucket} kind.
      */
     public MaxBucketAggregation maxBucket() {
         return TaggedUnionUtils.get(this, Kind.MaxBucket);
@@ -867,9 +879,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code median_absolute_deviation} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the
-     *             {@code median_absolute_deviation} kind.
+     * @throws IllegalStateException if the current variant is not the {@code median_absolute_deviation} kind.
      */
     public MedianAbsoluteDeviationAggregation medianAbsoluteDeviation() {
         return TaggedUnionUtils.get(this, Kind.MedianAbsoluteDeviation);
@@ -885,8 +895,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code min} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code min} kind.
+     * @throws IllegalStateException if the current variant is not the {@code min} kind.
      */
     public MinAggregation min() {
         return TaggedUnionUtils.get(this, Kind.Min);
@@ -902,8 +911,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code min_bucket} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code min_bucket} kind.
+     * @throws IllegalStateException if the current variant is not the {@code min_bucket} kind.
      */
     public MinBucketAggregation minBucket() {
         return TaggedUnionUtils.get(this, Kind.MinBucket);
@@ -919,8 +927,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code missing} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code missing} kind.
+     * @throws IllegalStateException if the current variant is not the {@code missing} kind.
      */
     public MissingAggregation missing() {
         return TaggedUnionUtils.get(this, Kind.Missing);
@@ -936,29 +943,10 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code moving_avg} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code moving_avg} kind.
+     * @throws IllegalStateException if the current variant is not the {@code moving_avg} kind.
      */
     public MovingAverageAggregation movingAvg() {
         return TaggedUnionUtils.get(this, Kind.MovingAvg);
-    }
-
-    /**
-     * Is this variant instance of kind {@code moving_percentiles}?
-     */
-    public boolean isMovingPercentiles() {
-        return _kind == Kind.MovingPercentiles;
-    }
-
-    /**
-     * Get the {@code moving_percentiles} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code moving_percentiles}
-     *             kind.
-     */
-    public MovingPercentilesAggregation movingPercentiles() {
-        return TaggedUnionUtils.get(this, Kind.MovingPercentiles);
     }
 
     /**
@@ -971,11 +959,26 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code moving_fn} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code moving_fn} kind.
+     * @throws IllegalStateException if the current variant is not the {@code moving_fn} kind.
      */
     public MovingFunctionAggregation movingFn() {
         return TaggedUnionUtils.get(this, Kind.MovingFn);
+    }
+
+    /**
+     * Is this variant instance of kind {@code moving_percentiles}?
+     */
+    public boolean isMovingPercentiles() {
+        return _kind == Kind.MovingPercentiles;
+    }
+
+    /**
+     * Get the {@code moving_percentiles} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code moving_percentiles} kind.
+     */
+    public MovingPercentilesAggregation movingPercentiles() {
+        return TaggedUnionUtils.get(this, Kind.MovingPercentiles);
     }
 
     /**
@@ -988,8 +991,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code multi_terms} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code multi_terms} kind.
+     * @throws IllegalStateException if the current variant is not the {@code multi_terms} kind.
      */
     public MultiTermsAggregation multiTerms() {
         return TaggedUnionUtils.get(this, Kind.MultiTerms);
@@ -1005,8 +1007,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code nested} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code nested} kind.
+     * @throws IllegalStateException if the current variant is not the {@code nested} kind.
      */
     public NestedAggregation nested() {
         return TaggedUnionUtils.get(this, Kind.Nested);
@@ -1022,8 +1023,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code normalize} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code normalize} kind.
+     * @throws IllegalStateException if the current variant is not the {@code normalize} kind.
      */
     public NormalizeAggregation normalize() {
         return TaggedUnionUtils.get(this, Kind.Normalize);
@@ -1039,8 +1039,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code parent} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code parent} kind.
+     * @throws IllegalStateException if the current variant is not the {@code parent} kind.
      */
     public ParentAggregation parent() {
         return TaggedUnionUtils.get(this, Kind.Parent);
@@ -1056,9 +1055,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code percentile_ranks} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code percentile_ranks}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code percentile_ranks} kind.
      */
     public PercentileRanksAggregation percentileRanks() {
         return TaggedUnionUtils.get(this, Kind.PercentileRanks);
@@ -1074,8 +1071,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code percentiles} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code percentiles} kind.
+     * @throws IllegalStateException if the current variant is not the {@code percentiles} kind.
      */
     public PercentilesAggregation percentiles() {
         return TaggedUnionUtils.get(this, Kind.Percentiles);
@@ -1091,9 +1087,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code percentiles_bucket} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code percentiles_bucket}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code percentiles_bucket} kind.
      */
     public PercentilesBucketAggregation percentilesBucket() {
         return TaggedUnionUtils.get(this, Kind.PercentilesBucket);
@@ -1109,8 +1103,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code range} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code range} kind.
+     * @throws IllegalStateException if the current variant is not the {@code range} kind.
      */
     public RangeAggregation range() {
         return TaggedUnionUtils.get(this, Kind.Range);
@@ -1126,8 +1119,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code rare_terms} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code rare_terms} kind.
+     * @throws IllegalStateException if the current variant is not the {@code rare_terms} kind.
      */
     public RareTermsAggregation rareTerms() {
         return TaggedUnionUtils.get(this, Kind.RareTerms);
@@ -1143,8 +1135,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code rate} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code rate} kind.
+     * @throws IllegalStateException if the current variant is not the {@code rate} kind.
      */
     public RateAggregation rate() {
         return TaggedUnionUtils.get(this, Kind.Rate);
@@ -1160,8 +1151,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code reverse_nested} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code reverse_nested} kind.
+     * @throws IllegalStateException if the current variant is not the {@code reverse_nested} kind.
      */
     public ReverseNestedAggregation reverseNested() {
         return TaggedUnionUtils.get(this, Kind.ReverseNested);
@@ -1177,8 +1167,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code sampler} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code sampler} kind.
+     * @throws IllegalStateException if the current variant is not the {@code sampler} kind.
      */
     public SamplerAggregation sampler() {
         return TaggedUnionUtils.get(this, Kind.Sampler);
@@ -1194,9 +1183,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code scripted_metric} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code scripted_metric}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code scripted_metric} kind.
      */
     public ScriptedMetricAggregation scriptedMetric() {
         return TaggedUnionUtils.get(this, Kind.ScriptedMetric);
@@ -1212,8 +1199,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code serial_diff} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code serial_diff} kind.
+     * @throws IllegalStateException if the current variant is not the {@code serial_diff} kind.
      */
     public SerialDifferencingAggregation serialDiff() {
         return TaggedUnionUtils.get(this, Kind.SerialDiff);
@@ -1229,9 +1215,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code significant_terms} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code significant_terms}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code significant_terms} kind.
      */
     public SignificantTermsAggregation significantTerms() {
         return TaggedUnionUtils.get(this, Kind.SignificantTerms);
@@ -1247,9 +1231,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code significant_text} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code significant_text}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code significant_text} kind.
      */
     public SignificantTextAggregation significantText() {
         return TaggedUnionUtils.get(this, Kind.SignificantText);
@@ -1265,8 +1247,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code stats} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code stats} kind.
+     * @throws IllegalStateException if the current variant is not the {@code stats} kind.
      */
     public StatsAggregation stats() {
         return TaggedUnionUtils.get(this, Kind.Stats);
@@ -1282,8 +1263,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code stats_bucket} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code stats_bucket} kind.
+     * @throws IllegalStateException if the current variant is not the {@code stats_bucket} kind.
      */
     public StatsBucketAggregation statsBucket() {
         return TaggedUnionUtils.get(this, Kind.StatsBucket);
@@ -1299,8 +1279,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code string_stats} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code string_stats} kind.
+     * @throws IllegalStateException if the current variant is not the {@code string_stats} kind.
      */
     public StringStatsAggregation stringStats() {
         return TaggedUnionUtils.get(this, Kind.StringStats);
@@ -1316,8 +1295,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code sum} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code sum} kind.
+     * @throws IllegalStateException if the current variant is not the {@code sum} kind.
      */
     public SumAggregation sum() {
         return TaggedUnionUtils.get(this, Kind.Sum);
@@ -1333,11 +1311,26 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code sum_bucket} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code sum_bucket} kind.
+     * @throws IllegalStateException if the current variant is not the {@code sum_bucket} kind.
      */
     public SumBucketAggregation sumBucket() {
         return TaggedUnionUtils.get(this, Kind.SumBucket);
+    }
+
+    /**
+     * Is this variant instance of kind {@code t_test}?
+     */
+    public boolean isTTest() {
+        return _kind == Kind.TTest;
+    }
+
+    /**
+     * Get the {@code t_test} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code t_test} kind.
+     */
+    public TTestAggregation tTest() {
+        return TaggedUnionUtils.get(this, Kind.TTest);
     }
 
     /**
@@ -1350,8 +1343,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code terms} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code terms} kind.
+     * @throws IllegalStateException if the current variant is not the {@code terms} kind.
      */
     public TermsAggregation terms() {
         return TaggedUnionUtils.get(this, Kind.Terms);
@@ -1367,28 +1359,10 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code top_hits} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code top_hits} kind.
+     * @throws IllegalStateException if the current variant is not the {@code top_hits} kind.
      */
     public TopHitsAggregation topHits() {
         return TaggedUnionUtils.get(this, Kind.TopHits);
-    }
-
-    /**
-     * Is this variant instance of kind {@code t_test}?
-     */
-    public boolean isTTest() {
-        return _kind == Kind.TTest;
-    }
-
-    /**
-     * Get the {@code t_test} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code t_test} kind.
-     */
-    public TTestAggregation tTest() {
-        return TaggedUnionUtils.get(this, Kind.TTest);
     }
 
     /**
@@ -1401,8 +1375,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code top_metrics} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code top_metrics} kind.
+     * @throws IllegalStateException if the current variant is not the {@code top_metrics} kind.
      */
     public TopMetricsAggregation topMetrics() {
         return TaggedUnionUtils.get(this, Kind.TopMetrics);
@@ -1418,28 +1391,10 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code value_count} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code value_count} kind.
+     * @throws IllegalStateException if the current variant is not the {@code value_count} kind.
      */
     public ValueCountAggregation valueCount() {
         return TaggedUnionUtils.get(this, Kind.ValueCount);
-    }
-
-    /**
-     * Is this variant instance of kind {@code weighted_avg}?
-     */
-    public boolean isWeightedAvg() {
-        return _kind == Kind.WeightedAvg;
-    }
-
-    /**
-     * Get the {@code weighted_avg} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code weighted_avg} kind.
-     */
-    public WeightedAverageAggregation weightedAvg() {
-        return TaggedUnionUtils.get(this, Kind.WeightedAvg);
     }
 
     /**
@@ -1452,69 +1407,95 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     /**
      * Get the {@code variable_width_histogram} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the
-     *             {@code variable_width_histogram} kind.
+     * @throws IllegalStateException if the current variant is not the {@code variable_width_histogram} kind.
      */
     public VariableWidthHistogramAggregation variableWidthHistogram() {
         return TaggedUnionUtils.get(this, Kind.VariableWidthHistogram);
     }
 
+    /**
+     * Is this variant instance of kind {@code weighted_avg}?
+     */
+    public boolean isWeightedAvg() {
+        return _kind == Kind.WeightedAvg;
+    }
+
+    /**
+     * Get the {@code weighted_avg} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code weighted_avg} kind.
+     */
+    public WeightedAverageAggregation weightedAvg() {
+        return TaggedUnionUtils.get(this, Kind.WeightedAvg);
+    }
+
     @Override
-    @SuppressWarnings("unchecked")
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeStartObject();
-
         if (ApiTypeHelper.isDefined(this.aggregations)) {
             generator.writeKey("aggregations");
             generator.writeStartObject();
             for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
                 generator.writeKey(item0.getKey());
                 item0.getValue().serialize(generator, mapper);
-
             }
             generator.writeEnd();
-
         }
+
         if (ApiTypeHelper.isDefined(this.meta)) {
             generator.writeKey("meta");
             generator.writeStartObject();
             for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
                 generator.writeKey(item0.getKey());
                 item0.getValue().serialize(generator, mapper);
-
             }
             generator.writeEnd();
-
         }
-
         generator.writeKey(_kind.jsonValue());
         if (_value instanceof JsonpSerializable) {
             ((JsonpSerializable) _value).serialize(generator, mapper);
         }
-
         generator.writeEnd();
+    }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder extends ObjectBuilderBase {
         private Kind _kind;
-        private Object _value;
-
+        private AggregationVariant _value;
         @Nullable
         private Map<String, Aggregation> aggregations;
-
         @Nullable
         private Map<String, JsonData> meta;
+
+        public Builder() {}
+
+        private Builder(Aggregation o) {
+            this.aggregations = _mapCopy(o.aggregations);
+            this.meta = _mapCopy(o.meta);
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         /**
          * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
          * <p>
          * API name: {@code aggregations}
+         * </p>
+         *
          * <p>
-         * Adds all entries of <code>map</code> to <code>aggregations</code>.
+         * Adds all elements of <code>map</code> to <code>aggregations</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder aggregations(Map<String, Aggregation> map) {
             this.aggregations = _mapPutAll(this.aggregations, map);
             return this;
@@ -1524,9 +1505,13 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
          * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
          * <p>
          * API name: {@code aggregations}
+         * </p>
+         *
          * <p>
          * Adds an entry to <code>aggregations</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder aggregations(String key, Aggregation value) {
             this.aggregations = _mapPut(this.aggregations, key, value);
             return this;
@@ -1536,18 +1521,25 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
          * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
          * <p>
          * API name: {@code aggregations}
+         * </p>
+         *
          * <p>
-         * Adds an entry to <code>aggregations</code> using a builder lambda.
+         * Adds a value to <code>aggregations</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
             return aggregations(key, fn.apply(new Aggregation.Builder()).build());
         }
 
         /**
          * API name: {@code meta}
+         *
          * <p>
-         * Adds all entries of <code>map</code> to <code>meta</code>.
+         * Adds all elements of <code>map</code> to <code>meta</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder meta(Map<String, JsonData> map) {
             this.meta = _mapPutAll(this.meta, map);
             return this;
@@ -1555,9 +1547,12 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
         /**
          * API name: {@code meta}
+         *
          * <p>
          * Adds an entry to <code>meta</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder meta(String key, JsonData value) {
             this.meta = _mapPut(this.meta, key, value);
             return this;
@@ -1617,6 +1612,28 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
             return this.boxplot(fn.apply(new BoxplotAggregation.Builder()).build());
         }
 
+        public ContainerBuilder bucketCorrelation(BucketCorrelationAggregation v) {
+            this._kind = Kind.BucketCorrelation;
+            this._value = v;
+            return new ContainerBuilder();
+        }
+
+        public ContainerBuilder bucketCorrelation(
+            Function<BucketCorrelationAggregation.Builder, ObjectBuilder<BucketCorrelationAggregation>> fn
+        ) {
+            return this.bucketCorrelation(fn.apply(new BucketCorrelationAggregation.Builder()).build());
+        }
+
+        public ContainerBuilder bucketCountKsTest(BucketKsAggregation v) {
+            this._kind = Kind.BucketCountKsTest;
+            this._value = v;
+            return new ContainerBuilder();
+        }
+
+        public ContainerBuilder bucketCountKsTest(Function<BucketKsAggregation.Builder, ObjectBuilder<BucketKsAggregation>> fn) {
+            return this.bucketCountKsTest(fn.apply(new BucketKsAggregation.Builder()).build());
+        }
+
         public ContainerBuilder bucketScript(BucketScriptAggregation v) {
             this._kind = Kind.BucketScript;
             this._value = v;
@@ -1655,6 +1672,16 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
         public ContainerBuilder cardinality(Function<CardinalityAggregation.Builder, ObjectBuilder<CardinalityAggregation>> fn) {
             return this.cardinality(fn.apply(new CardinalityAggregation.Builder()).build());
+        }
+
+        public ContainerBuilder categorizeText(CategorizeTextAggregation v) {
+            this._kind = Kind.CategorizeText;
+            this._value = v;
+            return new ContainerBuilder();
+        }
+
+        public ContainerBuilder categorizeText(Function<CategorizeTextAggregation.Builder, ObjectBuilder<CategorizeTextAggregation>> fn) {
+            return this.categorizeText(fn.apply(new CategorizeTextAggregation.Builder()).build());
         }
 
         public ContainerBuilder children(ChildrenAggregation v) {
@@ -1783,6 +1810,18 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
             return this.filters(fn.apply(new FiltersAggregation.Builder()).build());
         }
 
+        public ContainerBuilder frequentItemSets(FrequentItemSetsAggregation v) {
+            this._kind = Kind.FrequentItemSets;
+            this._value = v;
+            return new ContainerBuilder();
+        }
+
+        public ContainerBuilder frequentItemSets(
+            Function<FrequentItemSetsAggregation.Builder, ObjectBuilder<FrequentItemSetsAggregation>> fn
+        ) {
+            return this.frequentItemSets(fn.apply(new FrequentItemSetsAggregation.Builder()).build());
+        }
+
         public ContainerBuilder geoBounds(GeoBoundsAggregation v) {
             this._kind = Kind.GeoBounds;
             this._value = v;
@@ -1813,6 +1852,16 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
             return this.geoDistance(fn.apply(new GeoDistanceAggregation.Builder()).build());
         }
 
+        public ContainerBuilder geoLine(GeoLineAggregation v) {
+            this._kind = Kind.GeoLine;
+            this._value = v;
+            return new ContainerBuilder();
+        }
+
+        public ContainerBuilder geoLine(Function<GeoLineAggregation.Builder, ObjectBuilder<GeoLineAggregation>> fn) {
+            return this.geoLine(fn.apply(new GeoLineAggregation.Builder()).build());
+        }
+
         public ContainerBuilder geohashGrid(GeoHashGridAggregation v) {
             this._kind = Kind.GeohashGrid;
             this._value = v;
@@ -1823,14 +1872,14 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
             return this.geohashGrid(fn.apply(new GeoHashGridAggregation.Builder()).build());
         }
 
-        public ContainerBuilder geoLine(GeoLineAggregation v) {
-            this._kind = Kind.GeoLine;
+        public ContainerBuilder geohexGrid(GeohexGridAggregation v) {
+            this._kind = Kind.GeohexGrid;
             this._value = v;
             return new ContainerBuilder();
         }
 
-        public ContainerBuilder geoLine(Function<GeoLineAggregation.Builder, ObjectBuilder<GeoLineAggregation>> fn) {
-            return this.geoLine(fn.apply(new GeoLineAggregation.Builder()).build());
+        public ContainerBuilder geohexGrid(Function<GeohexGridAggregation.Builder, ObjectBuilder<GeohexGridAggregation>> fn) {
+            return this.geohexGrid(fn.apply(new GeohexGridAggregation.Builder()).build());
         }
 
         public ContainerBuilder geotileGrid(GeoTileGridAggregation v) {
@@ -1863,6 +1912,26 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
             return this.histogram(fn.apply(new HistogramAggregation.Builder()).build());
         }
 
+        public ContainerBuilder inference(InferenceAggregation v) {
+            this._kind = Kind.Inference;
+            this._value = v;
+            return new ContainerBuilder();
+        }
+
+        public ContainerBuilder inference(Function<InferenceAggregation.Builder, ObjectBuilder<InferenceAggregation>> fn) {
+            return this.inference(fn.apply(new InferenceAggregation.Builder()).build());
+        }
+
+        public ContainerBuilder ipPrefix(IpPrefixAggregation v) {
+            this._kind = Kind.IpPrefix;
+            this._value = v;
+            return new ContainerBuilder();
+        }
+
+        public ContainerBuilder ipPrefix(Function<IpPrefixAggregation.Builder, ObjectBuilder<IpPrefixAggregation>> fn) {
+            return this.ipPrefix(fn.apply(new IpPrefixAggregation.Builder()).build());
+        }
+
         public ContainerBuilder ipRange(IpRangeAggregation v) {
             this._kind = Kind.IpRange;
             this._value = v;
@@ -1873,14 +1942,14 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
             return this.ipRange(fn.apply(new IpRangeAggregation.Builder()).build());
         }
 
-        public ContainerBuilder inference(InferenceAggregation v) {
-            this._kind = Kind.Inference;
+        public ContainerBuilder line(GeoLineAggregation v) {
+            this._kind = Kind.Line;
             this._value = v;
             return new ContainerBuilder();
         }
 
-        public ContainerBuilder inference(Function<InferenceAggregation.Builder, ObjectBuilder<InferenceAggregation>> fn) {
-            return this.inference(fn.apply(new InferenceAggregation.Builder()).build());
+        public ContainerBuilder line(Function<GeoLineAggregation.Builder, ObjectBuilder<GeoLineAggregation>> fn) {
+            return this.line(fn.apply(new GeoLineAggregation.Builder()).build());
         }
 
         public ContainerBuilder matrixStats(MatrixStatsAggregation v) {
@@ -1965,6 +2034,16 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
             return this.movingAvg(fn.apply(new MovingAverageAggregation.Builder()).build());
         }
 
+        public ContainerBuilder movingFn(MovingFunctionAggregation v) {
+            this._kind = Kind.MovingFn;
+            this._value = v;
+            return new ContainerBuilder();
+        }
+
+        public ContainerBuilder movingFn(Function<MovingFunctionAggregation.Builder, ObjectBuilder<MovingFunctionAggregation>> fn) {
+            return this.movingFn(fn.apply(new MovingFunctionAggregation.Builder()).build());
+        }
+
         public ContainerBuilder movingPercentiles(MovingPercentilesAggregation v) {
             this._kind = Kind.MovingPercentiles;
             this._value = v;
@@ -1975,16 +2054,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
             Function<MovingPercentilesAggregation.Builder, ObjectBuilder<MovingPercentilesAggregation>> fn
         ) {
             return this.movingPercentiles(fn.apply(new MovingPercentilesAggregation.Builder()).build());
-        }
-
-        public ContainerBuilder movingFn(MovingFunctionAggregation v) {
-            this._kind = Kind.MovingFn;
-            this._value = v;
-            return new ContainerBuilder();
-        }
-
-        public ContainerBuilder movingFn(Function<MovingFunctionAggregation.Builder, ObjectBuilder<MovingFunctionAggregation>> fn) {
-            return this.movingFn(fn.apply(new MovingFunctionAggregation.Builder()).build());
         }
 
         public ContainerBuilder multiTerms(MultiTermsAggregation v) {
@@ -2207,6 +2276,16 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
             return this.sumBucket(fn.apply(new SumBucketAggregation.Builder()).build());
         }
 
+        public ContainerBuilder tTest(TTestAggregation v) {
+            this._kind = Kind.TTest;
+            this._value = v;
+            return new ContainerBuilder();
+        }
+
+        public ContainerBuilder tTest(Function<TTestAggregation.Builder, ObjectBuilder<TTestAggregation>> fn) {
+            return this.tTest(fn.apply(new TTestAggregation.Builder()).build());
+        }
+
         public ContainerBuilder terms(TermsAggregation v) {
             this._kind = Kind.Terms;
             this._value = v;
@@ -2225,16 +2304,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
         public ContainerBuilder topHits(Function<TopHitsAggregation.Builder, ObjectBuilder<TopHitsAggregation>> fn) {
             return this.topHits(fn.apply(new TopHitsAggregation.Builder()).build());
-        }
-
-        public ContainerBuilder tTest(TTestAggregation v) {
-            this._kind = Kind.TTest;
-            this._value = v;
-            return new ContainerBuilder();
-        }
-
-        public ContainerBuilder tTest(Function<TTestAggregation.Builder, ObjectBuilder<TTestAggregation>> fn) {
-            return this.tTest(fn.apply(new TTestAggregation.Builder()).build());
         }
 
         public ContainerBuilder topMetrics(TopMetricsAggregation v) {
@@ -2257,16 +2326,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
             return this.valueCount(fn.apply(new ValueCountAggregation.Builder()).build());
         }
 
-        public ContainerBuilder weightedAvg(WeightedAverageAggregation v) {
-            this._kind = Kind.WeightedAvg;
-            this._value = v;
-            return new ContainerBuilder();
-        }
-
-        public ContainerBuilder weightedAvg(Function<WeightedAverageAggregation.Builder, ObjectBuilder<WeightedAverageAggregation>> fn) {
-            return this.weightedAvg(fn.apply(new WeightedAverageAggregation.Builder()).build());
-        }
-
         public ContainerBuilder variableWidthHistogram(VariableWidthHistogramAggregation v) {
             this._kind = Kind.VariableWidthHistogram;
             this._value = v;
@@ -2279,20 +2338,35 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
             return this.variableWidthHistogram(fn.apply(new VariableWidthHistogramAggregation.Builder()).build());
         }
 
+        public ContainerBuilder weightedAvg(WeightedAverageAggregation v) {
+            this._kind = Kind.WeightedAvg;
+            this._value = v;
+            return new ContainerBuilder();
+        }
+
+        public ContainerBuilder weightedAvg(Function<WeightedAverageAggregation.Builder, ObjectBuilder<WeightedAverageAggregation>> fn) {
+            return this.weightedAvg(fn.apply(new WeightedAverageAggregation.Builder()).build());
+        }
+
         protected Aggregation build() {
             _checkSingleUse();
             return new Aggregation(this);
         }
 
         public class ContainerBuilder implements ObjectBuilder<Aggregation> {
+            private ContainerBuilder() {}
 
             /**
              * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
              * <p>
              * API name: {@code aggregations}
+             * </p>
+             *
              * <p>
-             * Adds all entries of <code>map</code> to <code>aggregations</code>.
+             * Adds all elements of <code>map</code> to <code>aggregations</code>.
+             * </p>
              */
+            @Nonnull
             public final ContainerBuilder aggregations(Map<String, Aggregation> map) {
                 Builder.this.aggregations = _mapPutAll(Builder.this.aggregations, map);
                 return this;
@@ -2302,9 +2376,13 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
              * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
              * <p>
              * API name: {@code aggregations}
+             * </p>
+             *
              * <p>
              * Adds an entry to <code>aggregations</code>.
+             * </p>
              */
+            @Nonnull
             public final ContainerBuilder aggregations(String key, Aggregation value) {
                 Builder.this.aggregations = _mapPut(Builder.this.aggregations, key, value);
                 return this;
@@ -2314,18 +2392,25 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
              * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
              * <p>
              * API name: {@code aggregations}
+             * </p>
+             *
              * <p>
-             * Adds an entry to <code>aggregations</code> using a builder lambda.
+             * Adds a value to <code>aggregations</code> using a builder lambda.
+             * </p>
              */
+            @Nonnull
             public final ContainerBuilder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
                 return aggregations(key, fn.apply(new Aggregation.Builder()).build());
             }
 
             /**
              * API name: {@code meta}
+             *
              * <p>
-             * Adds all entries of <code>map</code> to <code>meta</code>.
+             * Adds all elements of <code>map</code> to <code>meta</code>.
+             * </p>
              */
+            @Nonnull
             public final ContainerBuilder meta(Map<String, JsonData> map) {
                 Builder.this.meta = _mapPutAll(Builder.this.meta, map);
                 return this;
@@ -2333,14 +2418,18 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
             /**
              * API name: {@code meta}
+             *
              * <p>
              * Adds an entry to <code>meta</code>.
+             * </p>
              */
+            @Nonnull
             public final ContainerBuilder meta(String key, JsonData value) {
                 Builder.this.meta = _mapPut(Builder.this.meta, key, value);
                 return this;
             }
 
+            @Override
             public Aggregation build() {
                 return Builder.this.build();
             }
@@ -2348,7 +2437,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
     }
 
     protected static void setupAggregationDeserializer(ObjectDeserializer<Builder> op) {
-
         op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggregations", "aggs");
         op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
         op.add(Builder::adjacencyMatrix, AdjacencyMatrixAggregation._DESERIALIZER, "adjacency_matrix");
@@ -2356,10 +2444,13 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
         op.add(Builder::avg, AverageAggregation._DESERIALIZER, "avg");
         op.add(Builder::avgBucket, AverageBucketAggregation._DESERIALIZER, "avg_bucket");
         op.add(Builder::boxplot, BoxplotAggregation._DESERIALIZER, "boxplot");
+        op.add(Builder::bucketCorrelation, BucketCorrelationAggregation._DESERIALIZER, "bucket_correlation");
+        op.add(Builder::bucketCountKsTest, BucketKsAggregation._DESERIALIZER, "bucket_count_ks_test");
         op.add(Builder::bucketScript, BucketScriptAggregation._DESERIALIZER, "bucket_script");
         op.add(Builder::bucketSelector, BucketSelectorAggregation._DESERIALIZER, "bucket_selector");
         op.add(Builder::bucketSort, BucketSortAggregation._DESERIALIZER, "bucket_sort");
         op.add(Builder::cardinality, CardinalityAggregation._DESERIALIZER, "cardinality");
+        op.add(Builder::categorizeText, CategorizeTextAggregation._DESERIALIZER, "categorize_text");
         op.add(Builder::children, ChildrenAggregation._DESERIALIZER, "children");
         op.add(Builder::composite, CompositeAggregation._DESERIALIZER, "composite");
         op.add(Builder::cumulativeCardinality, CumulativeCardinalityAggregation._DESERIALIZER, "cumulative_cardinality");
@@ -2372,16 +2463,20 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
         op.add(Builder::extendedStatsBucket, ExtendedStatsBucketAggregation._DESERIALIZER, "extended_stats_bucket");
         op.add(Builder::filter, Query._DESERIALIZER, "filter");
         op.add(Builder::filters, FiltersAggregation._DESERIALIZER, "filters");
+        op.add(Builder::frequentItemSets, FrequentItemSetsAggregation._DESERIALIZER, "frequent_item_sets");
         op.add(Builder::geoBounds, GeoBoundsAggregation._DESERIALIZER, "geo_bounds");
         op.add(Builder::geoCentroid, GeoCentroidAggregation._DESERIALIZER, "geo_centroid");
         op.add(Builder::geoDistance, GeoDistanceAggregation._DESERIALIZER, "geo_distance");
-        op.add(Builder::geohashGrid, GeoHashGridAggregation._DESERIALIZER, "geohash_grid");
         op.add(Builder::geoLine, GeoLineAggregation._DESERIALIZER, "geo_line");
+        op.add(Builder::geohashGrid, GeoHashGridAggregation._DESERIALIZER, "geohash_grid");
+        op.add(Builder::geohexGrid, GeohexGridAggregation._DESERIALIZER, "geohex_grid");
         op.add(Builder::geotileGrid, GeoTileGridAggregation._DESERIALIZER, "geotile_grid");
         op.add(Builder::global, GlobalAggregation._DESERIALIZER, "global");
         op.add(Builder::histogram, HistogramAggregation._DESERIALIZER, "histogram");
-        op.add(Builder::ipRange, IpRangeAggregation._DESERIALIZER, "ip_range");
         op.add(Builder::inference, InferenceAggregation._DESERIALIZER, "inference");
+        op.add(Builder::ipPrefix, IpPrefixAggregation._DESERIALIZER, "ip_prefix");
+        op.add(Builder::ipRange, IpRangeAggregation._DESERIALIZER, "ip_range");
+        op.add(Builder::line, GeoLineAggregation._DESERIALIZER, "line");
         op.add(Builder::matrixStats, MatrixStatsAggregation._DESERIALIZER, "matrix_stats");
         op.add(Builder::max, MaxAggregation._DESERIALIZER, "max");
         op.add(Builder::maxBucket, MaxBucketAggregation._DESERIALIZER, "max_bucket");
@@ -2390,8 +2485,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
         op.add(Builder::minBucket, MinBucketAggregation._DESERIALIZER, "min_bucket");
         op.add(Builder::missing, MissingAggregation._DESERIALIZER, "missing");
         op.add(Builder::movingAvg, MovingAverageAggregation._DESERIALIZER, "moving_avg");
-        op.add(Builder::movingPercentiles, MovingPercentilesAggregation._DESERIALIZER, "moving_percentiles");
         op.add(Builder::movingFn, MovingFunctionAggregation._DESERIALIZER, "moving_fn");
+        op.add(Builder::movingPercentiles, MovingPercentilesAggregation._DESERIALIZER, "moving_percentiles");
         op.add(Builder::multiTerms, MultiTermsAggregation._DESERIALIZER, "multi_terms");
         op.add(Builder::nested, NestedAggregation._DESERIALIZER, "nested");
         op.add(Builder::normalize, NormalizeAggregation._DESERIALIZER, "normalize");
@@ -2413,14 +2508,13 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
         op.add(Builder::stringStats, StringStatsAggregation._DESERIALIZER, "string_stats");
         op.add(Builder::sum, SumAggregation._DESERIALIZER, "sum");
         op.add(Builder::sumBucket, SumBucketAggregation._DESERIALIZER, "sum_bucket");
+        op.add(Builder::tTest, TTestAggregation._DESERIALIZER, "t_test");
         op.add(Builder::terms, TermsAggregation._DESERIALIZER, "terms");
         op.add(Builder::topHits, TopHitsAggregation._DESERIALIZER, "top_hits");
-        op.add(Builder::tTest, TTestAggregation._DESERIALIZER, "t_test");
         op.add(Builder::topMetrics, TopMetricsAggregation._DESERIALIZER, "top_metrics");
         op.add(Builder::valueCount, ValueCountAggregation._DESERIALIZER, "value_count");
-        op.add(Builder::weightedAvg, WeightedAverageAggregation._DESERIALIZER, "weighted_avg");
         op.add(Builder::variableWidthHistogram, VariableWidthHistogramAggregation._DESERIALIZER, "variable_width_histogram");
-
+        op.add(Builder::weightedAvg, WeightedAverageAggregation._DESERIALIZER, "weighted_avg");
     }
 
     public static final JsonpDeserializer<Aggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
@@ -2428,4 +2522,25 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
         Aggregation::setupAggregationDeserializer,
         Builder::build
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        result = 31 * result + Objects.hashCode(this.aggregations);
+        result = 31 * result + Objects.hashCode(this.meta);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Aggregation other = (Aggregation) o;
+        return Objects.equals(this._kind, other._kind)
+            && Objects.equals(this._value, other._value)
+            && Objects.equals(this.aggregations, other.aggregations)
+            && Objects.equals(this.meta, other.meta);
+    }
 }

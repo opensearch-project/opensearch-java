@@ -30,32 +30,44 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.CumulativeSumAggregation
 
 @JsonpDeserializable
-public class CumulativeSumAggregation extends PipelineAggregationBase implements AggregationVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class CumulativeSumAggregation extends PipelineAggregationBase
+    implements
+        AggregationVariant,
+        ToCopyableBuilder<CumulativeSumAggregation.Builder, CumulativeSumAggregation> {
+
     // ---------------------------------------------------------------------------------------------
 
     private CumulativeSumAggregation(Builder builder) {
         super(builder);
-
     }
 
-    public static CumulativeSumAggregation of(Function<Builder, ObjectBuilder<CumulativeSumAggregation>> fn) {
+    public static CumulativeSumAggregation of(Function<CumulativeSumAggregation.Builder, ObjectBuilder<CumulativeSumAggregation>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Aggregation variant kind.
+     * {@link Aggregation} variant kind.
      */
     @Override
     public Aggregation.Kind _aggregationKind() {
@@ -64,14 +76,42 @@ public class CumulativeSumAggregation extends PipelineAggregationBase implements
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link CumulativeSumAggregation}.
      */
-
     public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
         implements
-            ObjectBuilder<CumulativeSumAggregation> {
+            CopyableBuilder<Builder, CumulativeSumAggregation> {
+
+        public Builder() {}
+
+        private Builder(CumulativeSumAggregation o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -79,9 +119,10 @@ public class CumulativeSumAggregation extends PipelineAggregationBase implements
         /**
          * Builds a {@link CumulativeSumAggregation}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CumulativeSumAggregation build() {
             _checkSingleUse();
 
@@ -100,8 +141,22 @@ public class CumulativeSumAggregation extends PipelineAggregationBase implements
     );
 
     protected static void setupCumulativeSumAggregationDeserializer(ObjectDeserializer<CumulativeSumAggregation.Builder> op) {
-        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
-
+        setupPipelineAggregationBaseDeserializer(op);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

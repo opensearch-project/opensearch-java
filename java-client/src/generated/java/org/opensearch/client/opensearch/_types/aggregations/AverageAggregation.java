@@ -30,32 +30,44 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.AverageAggregation
 
 @JsonpDeserializable
-public class AverageAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class AverageAggregation extends FormatMetricAggregationBase
+    implements
+        AggregationVariant,
+        ToCopyableBuilder<AverageAggregation.Builder, AverageAggregation> {
+
     // ---------------------------------------------------------------------------------------------
 
     private AverageAggregation(Builder builder) {
         super(builder);
-
     }
 
-    public static AverageAggregation of(Function<Builder, ObjectBuilder<AverageAggregation>> fn) {
+    public static AverageAggregation of(Function<AverageAggregation.Builder, ObjectBuilder<AverageAggregation>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Aggregation variant kind.
+     * {@link Aggregation} variant kind.
      */
     @Override
     public Aggregation.Kind _aggregationKind() {
@@ -64,12 +76,42 @@ public class AverageAggregation extends FormatMetricAggregationBase implements A
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link AverageAggregation}.
      */
+    public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, AverageAggregation> {
 
-    public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<AverageAggregation> {
+        public Builder() {}
+
+        private Builder(AverageAggregation o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
@@ -77,9 +119,10 @@ public class AverageAggregation extends FormatMetricAggregationBase implements A
         /**
          * Builds a {@link AverageAggregation}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public AverageAggregation build() {
             _checkSingleUse();
 
@@ -98,8 +141,22 @@ public class AverageAggregation extends FormatMetricAggregationBase implements A
     );
 
     protected static void setupAverageAggregationDeserializer(ObjectDeserializer<AverageAggregation.Builder> op) {
-        FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
-
+        setupFormatMetricAggregationBaseDeserializer(op);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }
