@@ -7,7 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.hamcrest:hamcrest` from 2.2 to 3.0
 - Bumps `com.github.jk1.dependency-license-report` from 2.8 to 2.9
 - Bumps `org.apache.httpcomponents.client5:httpclient5` from 5.4 to 5.4.1
-- Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.3 to 5.3.1
+- Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.3 to 5.3.2 ([#1383](https://github.com/opensearch-project/opensearch-java/pull/1383))
 - Bump `org.junit:junit-bom` from 5.11.3 to 5.11.4 ([#1367](https://github.com/opensearch-project/opensearch-java/pull/1367))
 - Bump `org.owasp.dependencycheck` from 11.1.1 to 12.0.0 ([#1381](https://github.com/opensearch-project/opensearch-java/pull/1381))
 
