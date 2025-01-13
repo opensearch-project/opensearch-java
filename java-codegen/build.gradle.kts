@@ -31,7 +31,7 @@ buildscript {
 plugins {
     application
     id("com.github.jk1.dependency-license-report") version "2.9"
-    id("org.owasp.dependencycheck") version "11.1.1"
+    id("org.owasp.dependencycheck") version "12.0.0"
     id("de.undercouch.download") version "5.6.0"
 
     id("opensearch-java.spotless-conventions")
