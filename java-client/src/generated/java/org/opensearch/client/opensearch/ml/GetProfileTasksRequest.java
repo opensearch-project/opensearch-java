@@ -36,20 +36,17 @@ import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: ml.undeploy_model.Request
+// typedef: ml.get_profile_tasks.Request
 
 /**
- * Undeploys a model.
+ * Get a profile tasks.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public final class UndeployModelRequest extends RequestBase
+public final class GetProfileTasksRequest extends RequestBase
     implements
         PlainJsonSerializable,
-        ToCopyableBuilder<UndeployModelRequest.Builder, UndeployModelRequest> {
-
-    @Nullable
-    private final String modelId;
+        ToCopyableBuilder<GetProfileTasksRequest.Builder, GetProfileTasksRequest> {
 
     @Nonnull
     private final List<String> modelIds;
@@ -57,25 +54,32 @@ public final class UndeployModelRequest extends RequestBase
     @Nonnull
     private final List<String> nodeIds;
 
+    @Nullable
+    private final Boolean returnAllModels;
+
+    @Nullable
+    private final Boolean returnAllTasks;
+
+    @Nullable
+    private final String taskId;
+
+    @Nonnull
+    private final List<String> taskIds;
+
     // ---------------------------------------------------------------------------------------------
 
-    private UndeployModelRequest(Builder builder) {
+    private GetProfileTasksRequest(Builder builder) {
         super(builder);
-        this.modelId = builder.modelId;
         this.modelIds = ApiTypeHelper.unmodifiable(builder.modelIds);
         this.nodeIds = ApiTypeHelper.unmodifiable(builder.nodeIds);
+        this.returnAllModels = builder.returnAllModels;
+        this.returnAllTasks = builder.returnAllTasks;
+        this.taskId = builder.taskId;
+        this.taskIds = ApiTypeHelper.unmodifiable(builder.taskIds);
     }
 
-    public static UndeployModelRequest of(Function<UndeployModelRequest.Builder, ObjectBuilder<UndeployModelRequest>> fn) {
+    public static GetProfileTasksRequest of(Function<GetProfileTasksRequest.Builder, ObjectBuilder<GetProfileTasksRequest>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * API name: {@code model_id}
-     */
-    @Nullable
-    public final String modelId() {
-        return this.modelId;
     }
 
     /**
@@ -92,6 +96,44 @@ public final class UndeployModelRequest extends RequestBase
     @Nonnull
     public final List<String> nodeIds() {
         return this.nodeIds;
+    }
+
+    /**
+     * Whether to return all models.
+     * <p>
+     * API name: {@code return_all_models}
+     * </p>
+     */
+    @Nullable
+    public final Boolean returnAllModels() {
+        return this.returnAllModels;
+    }
+
+    /**
+     * Whether to return all tasks.
+     * <p>
+     * API name: {@code return_all_tasks}
+     * </p>
+     */
+    @Nullable
+    public final Boolean returnAllTasks() {
+        return this.returnAllTasks;
+    }
+
+    /**
+     * API name: {@code task_id}
+     */
+    @Nullable
+    public final String taskId() {
+        return this.taskId;
+    }
+
+    /**
+     * API name: {@code task_ids}
+     */
+    @Nonnull
+    public final List<String> taskIds() {
+        return this.taskIds;
     }
 
     /**
@@ -122,6 +164,25 @@ public final class UndeployModelRequest extends RequestBase
             }
             generator.writeEnd();
         }
+
+        if (this.returnAllModels != null) {
+            generator.writeKey("return_all_models");
+            generator.write(this.returnAllModels);
+        }
+
+        if (this.returnAllTasks != null) {
+            generator.writeKey("return_all_tasks");
+            generator.write(this.returnAllTasks);
+        }
+
+        if (ApiTypeHelper.isDefined(this.taskIds)) {
+            generator.writeKey("task_ids");
+            generator.writeStartArray();
+            for (String item0 : this.taskIds) {
+                generator.write(item0);
+            }
+            generator.writeEnd();
+        }
     }
     // ---------------------------------------------------------------------------------------------
 
@@ -137,30 +198,42 @@ public final class UndeployModelRequest extends RequestBase
     }
 
     /**
-     * Builder for {@link UndeployModelRequest}.
+     * Builder for {@link GetProfileTasksRequest}.
      */
-    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, UndeployModelRequest> {
-        @Nullable
-        private String modelId;
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, GetProfileTasksRequest> {
         @Nullable
         private List<String> modelIds;
         @Nullable
         private List<String> nodeIds;
+        @Nullable
+        private Boolean returnAllModels;
+        @Nullable
+        private Boolean returnAllTasks;
+        @Nullable
+        private String taskId;
+        @Nullable
+        private List<String> taskIds;
 
         public Builder() {}
 
-        private Builder(UndeployModelRequest o) {
+        private Builder(GetProfileTasksRequest o) {
             super(o);
-            this.modelId = o.modelId;
             this.modelIds = _listCopy(o.modelIds);
             this.nodeIds = _listCopy(o.nodeIds);
+            this.returnAllModels = o.returnAllModels;
+            this.returnAllTasks = o.returnAllTasks;
+            this.taskId = o.taskId;
+            this.taskIds = _listCopy(o.taskIds);
         }
 
         private Builder(Builder o) {
             super(o);
-            this.modelId = o.modelId;
             this.modelIds = _listCopy(o.modelIds);
             this.nodeIds = _listCopy(o.nodeIds);
+            this.returnAllModels = o.returnAllModels;
+            this.returnAllTasks = o.returnAllTasks;
+            this.taskId = o.taskId;
+            this.taskIds = _listCopy(o.taskIds);
         }
 
         @Override
@@ -172,15 +245,6 @@ public final class UndeployModelRequest extends RequestBase
         @Override
         @Nonnull
         protected Builder self() {
-            return this;
-        }
-
-        /**
-         * API name: {@code model_id}
-         */
-        @Nonnull
-        public final Builder modelId(@Nullable String value) {
-            this.modelId = value;
             return this;
         }
 
@@ -237,58 +301,119 @@ public final class UndeployModelRequest extends RequestBase
         }
 
         /**
-         * Builds a {@link UndeployModelRequest}.
+         * Whether to return all models.
+         * <p>
+         * API name: {@code return_all_models}
+         * </p>
+         */
+        @Nonnull
+        public final Builder returnAllModels(@Nullable Boolean value) {
+            this.returnAllModels = value;
+            return this;
+        }
+
+        /**
+         * Whether to return all tasks.
+         * <p>
+         * API name: {@code return_all_tasks}
+         * </p>
+         */
+        @Nonnull
+        public final Builder returnAllTasks(@Nullable Boolean value) {
+            this.returnAllTasks = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code task_id}
+         */
+        @Nonnull
+        public final Builder taskId(@Nullable String value) {
+            this.taskId = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code task_ids}
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>taskIds</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder taskIds(List<String> list) {
+            this.taskIds = _listAddAll(this.taskIds, list);
+            return this;
+        }
+
+        /**
+         * API name: {@code task_ids}
+         *
+         * <p>
+         * Adds one or more values to <code>taskIds</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder taskIds(String value, String... values) {
+            this.taskIds = _listAdd(this.taskIds, value, values);
+            return this;
+        }
+
+        /**
+         * Builds a {@link GetProfileTasksRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public UndeployModelRequest build() {
+        public GetProfileTasksRequest build() {
             _checkSingleUse();
 
-            return new UndeployModelRequest(this);
+            return new GetProfileTasksRequest(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link UndeployModelRequest}
+     * Json deserializer for {@link GetProfileTasksRequest}
      */
-    public static final JsonpDeserializer<UndeployModelRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<GetProfileTasksRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        UndeployModelRequest::setupUndeployModelRequestDeserializer
+        GetProfileTasksRequest::setupGetProfileTasksRequestDeserializer
     );
 
-    protected static void setupUndeployModelRequestDeserializer(ObjectDeserializer<UndeployModelRequest.Builder> op) {
+    protected static void setupGetProfileTasksRequestDeserializer(ObjectDeserializer<GetProfileTasksRequest.Builder> op) {
         op.add(Builder::modelIds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "model_ids");
         op.add(Builder::nodeIds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "node_ids");
+        op.add(Builder::returnAllModels, JsonpDeserializer.booleanDeserializer(), "return_all_models");
+        op.add(Builder::returnAllTasks, JsonpDeserializer.booleanDeserializer(), "return_all_tasks");
+        op.add(Builder::taskIds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "task_ids");
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Endpoint "{@code ml.undeploy_model}".
+     * Endpoint "{@code ml.get_profile_tasks}".
      */
-    public static final Endpoint<UndeployModelRequest, UndeployModelResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final Endpoint<GetProfileTasksRequest, GetProfileTasksResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
         // Request method
-        request -> "POST",
+        request -> "GET",
         // Request path
         request -> {
-            final int _modelId = 1 << 0;
+            final int _taskId = 1 << 0;
 
             int propsSet = 0;
 
-            if (request.modelId() != null) propsSet |= _modelId;
+            if (request.taskId() != null) propsSet |= _taskId;
 
             if (propsSet == 0) {
-                return "/_plugins/_ml/models/_undeploy";
+                return "/_plugins/_ml/profile/tasks";
             }
-            if (propsSet == (_modelId)) {
+            if (propsSet == (_taskId)) {
                 StringBuilder buf = new StringBuilder();
-                buf.append("/_plugins/_ml/models/");
-                SimpleEndpoint.pathEncode(request.modelId, buf);
-                buf.append("/_undeploy");
+                buf.append("/_plugins/_ml/profile/tasks/");
+                SimpleEndpoint.pathEncode(request.taskId, buf);
                 return buf.toString();
             }
 
@@ -302,15 +427,18 @@ public final class UndeployModelRequest extends RequestBase
         },
         SimpleEndpoint.emptyMap(),
         true,
-        UndeployModelResponse._DESERIALIZER
+        GetProfileTasksResponse._DESERIALIZER
     );
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.modelId);
         result = 31 * result + Objects.hashCode(this.modelIds);
         result = 31 * result + Objects.hashCode(this.nodeIds);
+        result = 31 * result + Objects.hashCode(this.returnAllModels);
+        result = 31 * result + Objects.hashCode(this.returnAllTasks);
+        result = 31 * result + Objects.hashCode(this.taskId);
+        result = 31 * result + Objects.hashCode(this.taskIds);
         return result;
     }
 
@@ -318,9 +446,12 @@ public final class UndeployModelRequest extends RequestBase
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        UndeployModelRequest other = (UndeployModelRequest) o;
-        return Objects.equals(this.modelId, other.modelId)
-            && Objects.equals(this.modelIds, other.modelIds)
-            && Objects.equals(this.nodeIds, other.nodeIds);
+        GetProfileTasksRequest other = (GetProfileTasksRequest) o;
+        return Objects.equals(this.modelIds, other.modelIds)
+            && Objects.equals(this.nodeIds, other.nodeIds)
+            && Objects.equals(this.returnAllModels, other.returnAllModels)
+            && Objects.equals(this.returnAllTasks, other.returnAllTasks)
+            && Objects.equals(this.taskId, other.taskId)
+            && Objects.equals(this.taskIds, other.taskIds);
     }
 }

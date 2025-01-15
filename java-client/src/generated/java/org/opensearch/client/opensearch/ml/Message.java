@@ -32,11 +32,11 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: ml.Memory
+// typedef: ml.Message
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.Builder, Memory> {
+public class Message implements PlainJsonSerializable, ToCopyableBuilder<Message.Builder, Message> {
 
     @Nonnull
     private final Map<String, JsonData> additionalInfo;
@@ -45,33 +45,45 @@ public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.B
     private final String createTime;
 
     @Nullable
+    private final String input;
+
+    @Nullable
     private final String memoryId;
 
     @Nullable
-    private final String name;
+    private final String messageId;
 
     @Nullable
-    private final String type;
+    private final String origin;
 
     @Nullable
-    private final String updatedTime;
+    private final String parentMessageId;
 
     @Nullable
-    private final String user;
+    private final String promptTemplate;
+
+    @Nullable
+    private final String response;
+
+    @Nullable
+    private final Long traceNumber;
 
     // ---------------------------------------------------------------------------------------------
 
-    private Memory(Builder builder) {
+    private Message(Builder builder) {
         this.additionalInfo = ApiTypeHelper.unmodifiable(builder.additionalInfo);
         this.createTime = builder.createTime;
+        this.input = builder.input;
         this.memoryId = builder.memoryId;
-        this.name = builder.name;
-        this.type = builder.type;
-        this.updatedTime = builder.updatedTime;
-        this.user = builder.user;
+        this.messageId = builder.messageId;
+        this.origin = builder.origin;
+        this.parentMessageId = builder.parentMessageId;
+        this.promptTemplate = builder.promptTemplate;
+        this.response = builder.response;
+        this.traceNumber = builder.traceNumber;
     }
 
-    public static Memory of(Function<Memory.Builder, ObjectBuilder<Memory>> fn) {
+    public static Message of(Function<Message.Builder, ObjectBuilder<Message>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -95,6 +107,17 @@ public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.B
     }
 
     /**
+     * The question in the message.
+     * <p>
+     * API name: {@code input}
+     * </p>
+     */
+    @Nullable
+    public final String input() {
+        return this.input;
+    }
+
+    /**
      * API name: {@code memory_id}
      */
     @Nullable
@@ -103,41 +126,66 @@ public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.B
     }
 
     /**
-     * API name: {@code name}
+     * API name: {@code message_id}
      */
     @Nullable
-    public final String name() {
-        return this.name;
+    public final String messageId() {
+        return this.messageId;
     }
 
     /**
-     * API name: {@code type}
-     */
-    @Nullable
-    public final String type() {
-        return this.type;
-    }
-
-    /**
-     * The updated time.
+     * The system name that generated the response.
      * <p>
-     * API name: {@code updated_time}
+     * API name: {@code origin}
      * </p>
      */
     @Nullable
-    public final String updatedTime() {
-        return this.updatedTime;
+    public final String origin() {
+        return this.origin;
     }
 
     /**
-     * The username of the user.
+     * The parent message ID.
      * <p>
-     * API name: {@code user}
+     * API name: {@code parent_message_id}
      * </p>
      */
     @Nullable
-    public final String user() {
-        return this.user;
+    public final String parentMessageId() {
+        return this.parentMessageId;
+    }
+
+    /**
+     * The prompt template.
+     * <p>
+     * API name: {@code prompt_template}
+     * </p>
+     */
+    @Nullable
+    public final String promptTemplate() {
+        return this.promptTemplate;
+    }
+
+    /**
+     * The answer to the question.
+     * <p>
+     * API name: {@code response}
+     * </p>
+     */
+    @Nullable
+    public final String response() {
+        return this.response;
+    }
+
+    /**
+     * The trace number.
+     * <p>
+     * API name: {@code trace_number}
+     * </p>
+     */
+    @Nullable
+    public final Long traceNumber() {
+        return this.traceNumber;
     }
 
     /**
@@ -166,29 +214,44 @@ public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.B
             generator.write(this.createTime);
         }
 
+        if (this.input != null) {
+            generator.writeKey("input");
+            generator.write(this.input);
+        }
+
         if (this.memoryId != null) {
             generator.writeKey("memory_id");
             generator.write(this.memoryId);
         }
 
-        if (this.name != null) {
-            generator.writeKey("name");
-            generator.write(this.name);
+        if (this.messageId != null) {
+            generator.writeKey("message_id");
+            generator.write(this.messageId);
         }
 
-        if (this.type != null) {
-            generator.writeKey("type");
-            generator.write(this.type);
+        if (this.origin != null) {
+            generator.writeKey("origin");
+            generator.write(this.origin);
         }
 
-        if (this.updatedTime != null) {
-            generator.writeKey("updated_time");
-            generator.write(this.updatedTime);
+        if (this.parentMessageId != null) {
+            generator.writeKey("parent_message_id");
+            generator.write(this.parentMessageId);
         }
 
-        if (this.user != null) {
-            generator.writeKey("user");
-            generator.write(this.user);
+        if (this.promptTemplate != null) {
+            generator.writeKey("prompt_template");
+            generator.write(this.promptTemplate);
+        }
+
+        if (this.response != null) {
+            generator.writeKey("response");
+            generator.write(this.response);
+        }
+
+        if (this.traceNumber != null) {
+            generator.writeKey("trace_number");
+            generator.write(this.traceNumber);
         }
     }
 
@@ -206,44 +269,56 @@ public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.B
     }
 
     /**
-     * Builder for {@link Memory}.
+     * Builder for {@link Message}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Memory> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Message> {
         @Nullable
         private Map<String, JsonData> additionalInfo;
         @Nullable
         private String createTime;
         @Nullable
+        private String input;
+        @Nullable
         private String memoryId;
         @Nullable
-        private String name;
+        private String messageId;
         @Nullable
-        private String type;
+        private String origin;
         @Nullable
-        private String updatedTime;
+        private String parentMessageId;
         @Nullable
-        private String user;
+        private String promptTemplate;
+        @Nullable
+        private String response;
+        @Nullable
+        private Long traceNumber;
 
         public Builder() {}
 
-        private Builder(Memory o) {
+        private Builder(Message o) {
             this.additionalInfo = _mapCopy(o.additionalInfo);
             this.createTime = o.createTime;
+            this.input = o.input;
             this.memoryId = o.memoryId;
-            this.name = o.name;
-            this.type = o.type;
-            this.updatedTime = o.updatedTime;
-            this.user = o.user;
+            this.messageId = o.messageId;
+            this.origin = o.origin;
+            this.parentMessageId = o.parentMessageId;
+            this.promptTemplate = o.promptTemplate;
+            this.response = o.response;
+            this.traceNumber = o.traceNumber;
         }
 
         private Builder(Builder o) {
             this.additionalInfo = _mapCopy(o.additionalInfo);
             this.createTime = o.createTime;
+            this.input = o.input;
             this.memoryId = o.memoryId;
-            this.name = o.name;
-            this.type = o.type;
-            this.updatedTime = o.updatedTime;
-            this.user = o.user;
+            this.messageId = o.messageId;
+            this.origin = o.origin;
+            this.parentMessageId = o.parentMessageId;
+            this.promptTemplate = o.promptTemplate;
+            this.response = o.response;
+            this.traceNumber = o.traceNumber;
         }
 
         @Override
@@ -291,6 +366,18 @@ public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.B
         }
 
         /**
+         * The question in the message.
+         * <p>
+         * API name: {@code input}
+         * </p>
+         */
+        @Nonnull
+        public final Builder input(@Nullable String value) {
+            this.input = value;
+            return this;
+        }
+
+        /**
          * API name: {@code memory_id}
          */
         @Nonnull
@@ -300,79 +387,109 @@ public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.B
         }
 
         /**
-         * API name: {@code name}
+         * API name: {@code message_id}
          */
         @Nonnull
-        public final Builder name(@Nullable String value) {
-            this.name = value;
+        public final Builder messageId(@Nullable String value) {
+            this.messageId = value;
             return this;
         }
 
         /**
-         * API name: {@code type}
-         */
-        @Nonnull
-        public final Builder type(@Nullable String value) {
-            this.type = value;
-            return this;
-        }
-
-        /**
-         * The updated time.
+         * The system name that generated the response.
          * <p>
-         * API name: {@code updated_time}
+         * API name: {@code origin}
          * </p>
          */
         @Nonnull
-        public final Builder updatedTime(@Nullable String value) {
-            this.updatedTime = value;
+        public final Builder origin(@Nullable String value) {
+            this.origin = value;
             return this;
         }
 
         /**
-         * The username of the user.
+         * The parent message ID.
          * <p>
-         * API name: {@code user}
+         * API name: {@code parent_message_id}
          * </p>
          */
         @Nonnull
-        public final Builder user(@Nullable String value) {
-            this.user = value;
+        public final Builder parentMessageId(@Nullable String value) {
+            this.parentMessageId = value;
             return this;
         }
 
         /**
-         * Builds a {@link Memory}.
+         * The prompt template.
+         * <p>
+         * API name: {@code prompt_template}
+         * </p>
+         */
+        @Nonnull
+        public final Builder promptTemplate(@Nullable String value) {
+            this.promptTemplate = value;
+            return this;
+        }
+
+        /**
+         * The answer to the question.
+         * <p>
+         * API name: {@code response}
+         * </p>
+         */
+        @Nonnull
+        public final Builder response(@Nullable String value) {
+            this.response = value;
+            return this;
+        }
+
+        /**
+         * The trace number.
+         * <p>
+         * API name: {@code trace_number}
+         * </p>
+         */
+        @Nonnull
+        public final Builder traceNumber(@Nullable Long value) {
+            this.traceNumber = value;
+            return this;
+        }
+
+        /**
+         * Builds a {@link Message}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public Memory build() {
+        public Message build() {
             _checkSingleUse();
 
-            return new Memory(this);
+            return new Message(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link Memory}
+     * Json deserializer for {@link Message}
      */
-    public static final JsonpDeserializer<Memory> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<Message> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        Memory::setupMemoryDeserializer
+        Message::setupMessageDeserializer
     );
 
-    protected static void setupMemoryDeserializer(ObjectDeserializer<Memory.Builder> op) {
+    protected static void setupMessageDeserializer(ObjectDeserializer<Message.Builder> op) {
         op.add(Builder::additionalInfo, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "additional_info");
         op.add(Builder::createTime, JsonpDeserializer.stringDeserializer(), "create_time");
+        op.add(Builder::input, JsonpDeserializer.stringDeserializer(), "input");
         op.add(Builder::memoryId, JsonpDeserializer.stringDeserializer(), "memory_id");
-        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-        op.add(Builder::updatedTime, JsonpDeserializer.stringDeserializer(), "updated_time");
-        op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
+        op.add(Builder::messageId, JsonpDeserializer.stringDeserializer(), "message_id");
+        op.add(Builder::origin, JsonpDeserializer.stringDeserializer(), "origin");
+        op.add(Builder::parentMessageId, JsonpDeserializer.stringDeserializer(), "parent_message_id");
+        op.add(Builder::promptTemplate, JsonpDeserializer.stringDeserializer(), "prompt_template");
+        op.add(Builder::response, JsonpDeserializer.stringDeserializer(), "response");
+        op.add(Builder::traceNumber, JsonpDeserializer.longDeserializer(), "trace_number");
     }
 
     @Override
@@ -380,11 +497,14 @@ public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.B
         int result = 17;
         result = 31 * result + Objects.hashCode(this.additionalInfo);
         result = 31 * result + Objects.hashCode(this.createTime);
+        result = 31 * result + Objects.hashCode(this.input);
         result = 31 * result + Objects.hashCode(this.memoryId);
-        result = 31 * result + Objects.hashCode(this.name);
-        result = 31 * result + Objects.hashCode(this.type);
-        result = 31 * result + Objects.hashCode(this.updatedTime);
-        result = 31 * result + Objects.hashCode(this.user);
+        result = 31 * result + Objects.hashCode(this.messageId);
+        result = 31 * result + Objects.hashCode(this.origin);
+        result = 31 * result + Objects.hashCode(this.parentMessageId);
+        result = 31 * result + Objects.hashCode(this.promptTemplate);
+        result = 31 * result + Objects.hashCode(this.response);
+        result = 31 * result + Objects.hashCode(this.traceNumber);
         return result;
     }
 
@@ -392,13 +512,16 @@ public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.B
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        Memory other = (Memory) o;
+        Message other = (Message) o;
         return Objects.equals(this.additionalInfo, other.additionalInfo)
             && Objects.equals(this.createTime, other.createTime)
+            && Objects.equals(this.input, other.input)
             && Objects.equals(this.memoryId, other.memoryId)
-            && Objects.equals(this.name, other.name)
-            && Objects.equals(this.type, other.type)
-            && Objects.equals(this.updatedTime, other.updatedTime)
-            && Objects.equals(this.user, other.user);
+            && Objects.equals(this.messageId, other.messageId)
+            && Objects.equals(this.origin, other.origin)
+            && Objects.equals(this.parentMessageId, other.parentMessageId)
+            && Objects.equals(this.promptTemplate, other.promptTemplate)
+            && Objects.equals(this.response, other.response)
+            && Objects.equals(this.traceNumber, other.traceNumber);
     }
 }

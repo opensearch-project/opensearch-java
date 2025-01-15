@@ -137,7 +137,8 @@ public final class IndicesRequest extends CatRequestBase implements ToCopyableBu
     }
 
     /**
-     * The type of index that wildcard patterns can match.
+     * The type of index that wildcard patterns can match. Supported values are <code>all</code>, <code>open</code>, <code>closed</code>,
+     * <code>hidden</code>, and <code>none</code>.
      * <p>
      * API name: {@code expand_wildcards}
      * </p>
@@ -327,7 +328,8 @@ public final class IndicesRequest extends CatRequestBase implements ToCopyableBu
         }
 
         /**
-         * The type of index that wildcard patterns can match.
+         * The type of index that wildcard patterns can match. Supported values are <code>all</code>, <code>open</code>,
+         * <code>closed</code>, <code>hidden</code>, and <code>none</code>.
          * <p>
          * API name: {@code expand_wildcards}
          * </p>
@@ -343,7 +345,8 @@ public final class IndicesRequest extends CatRequestBase implements ToCopyableBu
         }
 
         /**
-         * The type of index that wildcard patterns can match.
+         * The type of index that wildcard patterns can match. Supported values are <code>all</code>, <code>open</code>,
+         * <code>closed</code>, <code>hidden</code>, and <code>none</code>.
          * <p>
          * API name: {@code expand_wildcards}
          * </p>

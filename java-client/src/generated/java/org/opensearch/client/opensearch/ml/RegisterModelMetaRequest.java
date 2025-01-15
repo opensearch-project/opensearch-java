@@ -35,22 +35,28 @@ import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: ml.register_model.Request
+// typedef: ml.register_model_meta.Request
 
 /**
- * Registers a model.
+ * Registers model metadata.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public final class RegisterModelRequest extends RequestBase
+public final class RegisterModelMetaRequest extends RequestBase
     implements
         PlainJsonSerializable,
-        ToCopyableBuilder<RegisterModelRequest.Builder, RegisterModelRequest> {
+        ToCopyableBuilder<RegisterModelMetaRequest.Builder, RegisterModelMetaRequest> {
 
     @Nullable
     private final String description;
 
-    @Nullable
+    @Nonnull
+    private final ModelConfig modelConfig;
+
+    @Nonnull
+    private final String modelContentHashValue;
+
+    @Nonnull
     private final ModelFormat modelFormat;
 
     @Nullable
@@ -59,21 +65,30 @@ public final class RegisterModelRequest extends RequestBase
     @Nonnull
     private final String name;
 
+    private final long totalChunks;
+
+    @Nullable
+    private final String url;
+
     @Nonnull
     private final String version;
 
     // ---------------------------------------------------------------------------------------------
 
-    private RegisterModelRequest(Builder builder) {
+    private RegisterModelMetaRequest(Builder builder) {
         super(builder);
         this.description = builder.description;
-        this.modelFormat = builder.modelFormat;
+        this.modelConfig = ApiTypeHelper.requireNonNull(builder.modelConfig, this, "modelConfig");
+        this.modelContentHashValue = ApiTypeHelper.requireNonNull(builder.modelContentHashValue, this, "modelContentHashValue");
+        this.modelFormat = ApiTypeHelper.requireNonNull(builder.modelFormat, this, "modelFormat");
         this.modelGroupId = builder.modelGroupId;
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.totalChunks = ApiTypeHelper.requireNonNull(builder.totalChunks, this, "totalChunks");
+        this.url = builder.url;
         this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
     }
 
-    public static RegisterModelRequest of(Function<RegisterModelRequest.Builder, ObjectBuilder<RegisterModelRequest>> fn) {
+    public static RegisterModelMetaRequest of(Function<RegisterModelMetaRequest.Builder, ObjectBuilder<RegisterModelMetaRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -89,9 +104,28 @@ public final class RegisterModelRequest extends RequestBase
     }
 
     /**
-     * API name: {@code model_format}
+     * Required - API name: {@code model_config}
      */
-    @Nullable
+    @Nonnull
+    public final ModelConfig modelConfig() {
+        return this.modelConfig;
+    }
+
+    /**
+     * Required - The model content hash value.
+     * <p>
+     * API name: {@code model_content_hash_value}
+     * </p>
+     */
+    @Nonnull
+    public final String modelContentHashValue() {
+        return this.modelContentHashValue;
+    }
+
+    /**
+     * Required - API name: {@code model_format}
+     */
+    @Nonnull
     public final ModelFormat modelFormat() {
         return this.modelFormat;
     }
@@ -113,6 +147,27 @@ public final class RegisterModelRequest extends RequestBase
     @Nonnull
     public final String name() {
         return this.name;
+    }
+
+    /**
+     * Required - Number of chunks the model is split into.
+     * <p>
+     * API name: {@code total_chunks}
+     * </p>
+     */
+    public final long totalChunks() {
+        return this.totalChunks;
+    }
+
+    /**
+     * The model URL.
+     * <p>
+     * API name: {@code url}
+     * </p>
+     */
+    @Nullable
+    public final String url() {
+        return this.url;
     }
 
     /**
@@ -139,10 +194,14 @@ public final class RegisterModelRequest extends RequestBase
             generator.write(this.description);
         }
 
-        if (this.modelFormat != null) {
-            generator.writeKey("model_format");
-            this.modelFormat.serialize(generator, mapper);
-        }
+        generator.writeKey("model_config");
+        this.modelConfig.serialize(generator, mapper);
+
+        generator.writeKey("model_content_hash_value");
+        generator.write(this.modelContentHashValue);
+
+        generator.writeKey("model_format");
+        this.modelFormat.serialize(generator, mapper);
 
         if (this.modelGroupId != null) {
             generator.writeKey("model_group_id");
@@ -151,6 +210,14 @@ public final class RegisterModelRequest extends RequestBase
 
         generator.writeKey("name");
         generator.write(this.name);
+
+        generator.writeKey("total_chunks");
+        generator.write(this.totalChunks);
+
+        if (this.url != null) {
+            generator.writeKey("url");
+            generator.write(this.url);
+        }
 
         generator.writeKey("version");
         generator.write(this.version);
@@ -169,35 +236,47 @@ public final class RegisterModelRequest extends RequestBase
     }
 
     /**
-     * Builder for {@link RegisterModelRequest}.
+     * Builder for {@link RegisterModelMetaRequest}.
      */
-    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RegisterModelRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RegisterModelMetaRequest> {
         @Nullable
         private String description;
-        @Nullable
+        private ModelConfig modelConfig;
+        private String modelContentHashValue;
         private ModelFormat modelFormat;
         @Nullable
         private String modelGroupId;
         private String name;
+        private Long totalChunks;
+        @Nullable
+        private String url;
         private String version;
 
         public Builder() {}
 
-        private Builder(RegisterModelRequest o) {
+        private Builder(RegisterModelMetaRequest o) {
             super(o);
             this.description = o.description;
+            this.modelConfig = o.modelConfig;
+            this.modelContentHashValue = o.modelContentHashValue;
             this.modelFormat = o.modelFormat;
             this.modelGroupId = o.modelGroupId;
             this.name = o.name;
+            this.totalChunks = o.totalChunks;
+            this.url = o.url;
             this.version = o.version;
         }
 
         private Builder(Builder o) {
             super(o);
             this.description = o.description;
+            this.modelConfig = o.modelConfig;
+            this.modelContentHashValue = o.modelContentHashValue;
             this.modelFormat = o.modelFormat;
             this.modelGroupId = o.modelGroupId;
             this.name = o.name;
+            this.totalChunks = o.totalChunks;
+            this.url = o.url;
             this.version = o.version;
         }
 
@@ -226,10 +305,39 @@ public final class RegisterModelRequest extends RequestBase
         }
 
         /**
-         * API name: {@code model_format}
+         * Required - API name: {@code model_config}
          */
         @Nonnull
-        public final Builder modelFormat(@Nullable ModelFormat value) {
+        public final Builder modelConfig(ModelConfig value) {
+            this.modelConfig = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code model_config}
+         */
+        @Nonnull
+        public final Builder modelConfig(Function<ModelConfig.Builder, ObjectBuilder<ModelConfig>> fn) {
+            return modelConfig(fn.apply(new ModelConfig.Builder()).build());
+        }
+
+        /**
+         * Required - The model content hash value.
+         * <p>
+         * API name: {@code model_content_hash_value}
+         * </p>
+         */
+        @Nonnull
+        public final Builder modelContentHashValue(String value) {
+            this.modelContentHashValue = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code model_format}
+         */
+        @Nonnull
+        public final Builder modelFormat(ModelFormat value) {
             this.modelFormat = value;
             return this;
         }
@@ -256,6 +364,30 @@ public final class RegisterModelRequest extends RequestBase
         }
 
         /**
+         * Required - Number of chunks the model is split into.
+         * <p>
+         * API name: {@code total_chunks}
+         * </p>
+         */
+        @Nonnull
+        public final Builder totalChunks(long value) {
+            this.totalChunks = value;
+            return this;
+        }
+
+        /**
+         * The model URL.
+         * <p>
+         * API name: {@code url}
+         * </p>
+         */
+        @Nonnull
+        public final Builder url(@Nullable String value) {
+            this.url = value;
+            return this;
+        }
+
+        /**
          * Required - API name: {@code version}
          */
         @Nonnull
@@ -265,47 +397,51 @@ public final class RegisterModelRequest extends RequestBase
         }
 
         /**
-         * Builds a {@link RegisterModelRequest}.
+         * Builds a {@link RegisterModelMetaRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public RegisterModelRequest build() {
+        public RegisterModelMetaRequest build() {
             _checkSingleUse();
 
-            return new RegisterModelRequest(this);
+            return new RegisterModelMetaRequest(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link RegisterModelRequest}
+     * Json deserializer for {@link RegisterModelMetaRequest}
      */
-    public static final JsonpDeserializer<RegisterModelRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<RegisterModelMetaRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        RegisterModelRequest::setupRegisterModelRequestDeserializer
+        RegisterModelMetaRequest::setupRegisterModelMetaRequestDeserializer
     );
 
-    protected static void setupRegisterModelRequestDeserializer(ObjectDeserializer<RegisterModelRequest.Builder> op) {
+    protected static void setupRegisterModelMetaRequestDeserializer(ObjectDeserializer<RegisterModelMetaRequest.Builder> op) {
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+        op.add(Builder::modelConfig, ModelConfig._DESERIALIZER, "model_config");
+        op.add(Builder::modelContentHashValue, JsonpDeserializer.stringDeserializer(), "model_content_hash_value");
         op.add(Builder::modelFormat, ModelFormat._DESERIALIZER, "model_format");
         op.add(Builder::modelGroupId, JsonpDeserializer.stringDeserializer(), "model_group_id");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::totalChunks, JsonpDeserializer.longDeserializer(), "total_chunks");
+        op.add(Builder::url, JsonpDeserializer.stringDeserializer(), "url");
         op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Endpoint "{@code ml.register_model}".
+     * Endpoint "{@code ml.register_model_meta}".
      */
-    public static final Endpoint<RegisterModelRequest, RegisterModelResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final Endpoint<RegisterModelMetaRequest, RegisterModelMetaResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
         // Request method
         request -> "POST",
         // Request path
-        request -> "/_plugins/_ml/models/_register",
+        request -> "/_plugins/_ml/models/_register_meta",
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
@@ -314,16 +450,20 @@ public final class RegisterModelRequest extends RequestBase
         },
         SimpleEndpoint.emptyMap(),
         true,
-        RegisterModelResponse._DESERIALIZER
+        RegisterModelMetaResponse._DESERIALIZER
     );
 
     @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.description);
-        result = 31 * result + Objects.hashCode(this.modelFormat);
+        result = 31 * result + this.modelConfig.hashCode();
+        result = 31 * result + this.modelContentHashValue.hashCode();
+        result = 31 * result + this.modelFormat.hashCode();
         result = 31 * result + Objects.hashCode(this.modelGroupId);
         result = 31 * result + this.name.hashCode();
+        result = 31 * result + Long.hashCode(this.totalChunks);
+        result = 31 * result + Objects.hashCode(this.url);
         result = 31 * result + this.version.hashCode();
         return result;
     }
@@ -332,11 +472,15 @@ public final class RegisterModelRequest extends RequestBase
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        RegisterModelRequest other = (RegisterModelRequest) o;
+        RegisterModelMetaRequest other = (RegisterModelMetaRequest) o;
         return Objects.equals(this.description, other.description)
-            && Objects.equals(this.modelFormat, other.modelFormat)
+            && this.modelConfig.equals(other.modelConfig)
+            && this.modelContentHashValue.equals(other.modelContentHashValue)
+            && this.modelFormat.equals(other.modelFormat)
             && Objects.equals(this.modelGroupId, other.modelGroupId)
             && this.name.equals(other.name)
+            && this.totalChunks == other.totalChunks
+            && Objects.equals(this.url, other.url)
             && this.version.equals(other.version);
     }
 }

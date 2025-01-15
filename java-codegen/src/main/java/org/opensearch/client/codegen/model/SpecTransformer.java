@@ -20,6 +20,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -148,7 +149,8 @@ public class SpecTransformer {
             requestShape.getResponseType().getName(),
             group + ".Response",
             responseSchema.orElse(OpenApiSchema.ANONYMOUS_OBJECT),
-            ShouldGenerate.Always
+            ShouldGenerate.Always,
+            true
         );
     }
 
@@ -242,8 +244,8 @@ public class SpecTransformer {
             .flatMap(c -> c.get(MimeType.Json))
             .flatMap(OpenApiMediaType::getSchema)
             .ifPresent(s -> {
-                if (s.has$ref()) {
-                    var name = s.getTitle().or(() -> s.resolve().getName()).orElseThrow();
+                if (s.has$ref() && s.hasTitle()) {
+                    var name = s.getTitle().orElseThrow();
                     shape.setDelegatedBodyField(name, mapType(s));
                 } else {
                     visitInto(s.resolve(), shape);
@@ -369,11 +371,28 @@ public class SpecTransformer {
     }
 
     private Shape visit(Namespace parent, String className, String typedefName, OpenApiSchema schema, ShouldGenerate shouldGenerate) {
-        Shape shape = visitedSchemas.get(schema);
+        return visit(parent, className, typedefName, schema, shouldGenerate, false);
+    }
 
-        if (shape != null) {
+    private Shape visit(
+        Namespace parent,
+        String className,
+        String typedefName,
+        final OpenApiSchema schema,
+        ShouldGenerate shouldGenerate,
+        final boolean uncached
+    ) {
+        Shape shape;
+
+        if (!uncached && (shape = visitedSchemas.get(schema)) != null) {
             return shape;
         }
+
+        Consumer<Shape> cache = s -> {
+            if (!uncached) {
+                visitedSchemas.putIfAbsent(schema, s);
+            }
+        };
 
         LOGGER.info("Visiting Schema: {}", schema);
 
@@ -384,39 +403,40 @@ public class SpecTransformer {
 
         if (schema.isArray()) {
             shape = new ArrayShape(parent, className, mapType(schema), typedefName, description, shouldGenerate);
-            visitedSchemas.putIfAbsent(schema, shape);
+            cache.accept(shape);
         } else if (isEnum(schema)) {
             var enumShape = new EnumShape(parent, className, typedefName, description, shouldGenerate);
             shape = enumShape;
-            visitedSchemas.putIfAbsent(schema, shape);
+            cache.accept(shape);
 
             visitInto(schema, enumShape);
         } else if (isTaggedUnion) {
             var taggedUnion = new TaggedUnionShape(parent, className, typedefName, description, shouldGenerate);
             shape = taggedUnion;
-            visitedSchemas.putIfAbsent(schema, shape);
+            cache.accept(shape);
 
-            while (schema.hasAllOf()) {
-                var allOf = schema.getAllOf().orElseThrow();
+            var unionSchema = schema;
+            while (unionSchema.hasAllOf()) {
+                var allOf = unionSchema.getAllOf().orElseThrow();
                 var first = allOf.get(0);
                 var second = allOf.get(1);
 
                 if (first.has$ref()) {
                     shape.setExtendsType(mapType(first));
-                    schema = second;
+                    unionSchema = second;
                 } else if (isTaggedUnion(first)) {
-                    schema = first;
+                    unionSchema = first;
                     visitInto(second, taggedUnion);
                 } else if (isTaggedUnion(second)) {
-                    schema = second;
+                    unionSchema = second;
                     visitInto(first, taggedUnion);
                 } else {
-                    throw new IllegalStateException("allOf is not a tagged union: " + schema.getPointer());
+                    throw new IllegalStateException("allOf is not a tagged union: " + unionSchema.getPointer());
                 }
             }
 
             String discriminatingField;
-            var discriminator = schema.getDiscriminator().orElse(null);
+            var discriminator = unionSchema.getDiscriminator().orElse(null);
 
             if (discriminator != null) {
                 discriminatingField = discriminator.getPropertyName().orElse(null);
@@ -426,7 +446,7 @@ public class SpecTransformer {
                 discriminatingField = null;
             }
 
-            var oneOrAnyOf = schema.getOneOf().or(schema::getAnyOf).orElse(null);
+            var oneOrAnyOf = unionSchema.getOneOf().or(unionSchema::getAnyOf).orElse(null);
             if (oneOrAnyOf != null) {
                 oneOrAnyOf.forEach(s -> {
                     String name;
@@ -453,9 +473,9 @@ public class SpecTransformer {
                     }
                     taggedUnion.addVariant(name, mapType(s));
                 });
-            } else if (schema.isObject() && schema.getMaxProperties().orElse(Integer.MAX_VALUE) == 1) {
+            } else if (unionSchema.isObject() && unionSchema.getMaxProperties().orElse(Integer.MAX_VALUE) == 1) {
                 taggedUnion.setExternallyDiscriminated(true);
-                schema.getProperties().ifPresent(props -> props.forEach((k, v) -> taggedUnion.addVariant(k, mapType(v))));
+                unionSchema.getProperties().ifPresent(props -> props.forEach((k, v) -> taggedUnion.addVariant(k, mapType(v))));
             }
         } else if (isShortcutPropertyObject || schema.determineSingleType().orElse(null) == OpenApiSchemaType.Object) {
             if (schema.getProperties().isEmpty() && schema.getAdditionalProperties().isPresent()) {
@@ -468,24 +488,25 @@ public class SpecTransformer {
                     mapType(schema.getAdditionalProperties().orElseThrow()),
                     shouldGenerate
                 );
-                visitedSchemas.putIfAbsent(schema, shape);
+                cache.accept(shape);
             } else {
                 var objShape = new ObjectShape(parent, className, typedefName, description, shouldGenerate);
                 shape = objShape;
-                visitedSchemas.putIfAbsent(schema, shape);
+                cache.accept(shape);
 
+                var objSchema = schema;
                 if (isShortcutPropertyObject) {
                     var oneOf = schema.getOneOf().orElseThrow();
                     var shortcutProperty = oneOf.get(0).getTitle().orElseThrow();
                     objShape.setShortcutProperty(shortcutProperty);
-                    schema = oneOf.get(1);
+                    objSchema = oneOf.get(1);
                 }
 
-                visitInto(schema, objShape);
+                visitInto(objSchema, objShape);
             }
         } else {
             shape = new DelegatedShape(parent, className, typedefName, description, shouldGenerate, mapType(schema));
-            visitedSchemas.putIfAbsent(schema, shape);
+            cache.accept(shape);
         }
 
         parent.addShape(shape);
@@ -496,9 +517,13 @@ public class SpecTransformer {
     private void visitInto(OpenApiSchema schema, ObjectShapeBase shape) {
         var allOf = schema.getAllOf();
         if (allOf.isPresent()) {
-            var baseSchema = allOf.get().get(0);
-            shape.setExtendsType(mapType(baseSchema));
-            schema = allOf.get().get(1);
+            if (allOf.get().size() == 2) {
+                var baseSchema = allOf.get().get(0);
+                shape.setExtendsType(mapType(baseSchema));
+                schema = allOf.get().get(1);
+            } else if (allOf.get().size() == 1) {
+                schema = allOf.get().get(0);
+            }
         }
 
         final var properties = new HashMap<String, OpenApiSchema>();
