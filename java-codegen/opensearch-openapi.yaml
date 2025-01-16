@@ -4687,6 +4687,39 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ml.train___200'
+  /_plugins/_ml/{node_id}/stats/:
+    get:
+      operationId: ml.get_stats.2
+      x-operation-group: ml.get_stats
+      x-version-added: '1.3'
+      description: Get stats.
+      parameters:
+        - $ref: '#/components/parameters/ml.get_stats___path.node_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.get_stats___200'
+  /_plugins/_ml/{node_id}/stats/{stat}:
+    get:
+      operationId: ml.get_stats.3
+      x-operation-group: ml.get_stats
+      x-version-added: '1.3'
+      description: Get stats.
+      parameters:
+        - $ref: '#/components/parameters/ml.get_stats___path.node_id'
+        - $ref: '#/components/parameters/ml.get_stats___path.stat'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.get_stats___200'
   /_plugins/_ml/agents/_register:
     post:
       operationId: ml.register_agents.0
@@ -5615,6 +5648,37 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ml.get_profile_tasks___200'
+  /_plugins/_ml/stats:
+    get:
+      operationId: ml.get_stats.0
+      x-operation-group: ml.get_stats
+      x-version-added: '1.3'
+      description: Get stats.
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.get_stats___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+  /_plugins/_ml/stats/{stat}:
+    get:
+      operationId: ml.get_stats.1
+      x-operation-group: ml.get_stats
+      x-version-added: '1.3'
+      description: Get stats.
+      parameters:
+        - $ref: '#/components/parameters/ml.get_stats___path.stat'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.get_stats___200'
   /_plugins/_ml/tasks/{task_id}:
     delete:
       operationId: ml.delete_task.0
@@ -18584,10 +18648,6 @@ components:
     count___query.expand_wildcards:
       in: query
       name: expand_wildcards
-      description: |-
-        Type of index that wildcard patterns can match.
-        If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams.
-        Supports comma-separated values, such as `open,hidden`.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
       style: form
@@ -23800,6 +23860,26 @@ components:
       required: true
       schema:
         type: string
+    ml.get_stats___path.node_id:
+      name: node_id
+      in: path
+      required: true
+      schema:
+        type: string
+    ml.get_stats___path.stat:
+      name: stat
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+          - ml_config_index_status
+          - ml_connector_count
+          - ml_connector_index_status
+          - ml_controller_index_status
+          - ml_model_count
+          - ml_model_index_status
+          - ml_task_index_status
     ml.get_task___path.task_id:
       name: task_id
       in: path
@@ -31876,6 +31956,12 @@ components:
           schema:
             $ref: '#/components/schemas/ml._common___GetProfileResponse'
       description: ''
+    ml.get_stats___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ml._common___GetStatsResponse'
+      description: ''
     ml.get_task___200:
       content:
         application/json:
@@ -34454,6 +34540,7 @@ components:
           const: open
           description: Match open, non-hidden indexes.
     _common___ExpandWildcards:
+      description: Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
       oneOf:
         - $ref: '#/components/schemas/_common___ExpandWildcard'
         - type: array
@@ -34604,9 +34691,11 @@ components:
     _common___GeoHashPrecision:
       description: The level of geohash precision, which can be expressed as a geohash length between 1 and 12 or as a distance measure, such as "1km" or "10m".
       oneOf:
-        - type: integer
+        - title: geohash_length
+          type: integer
           format: int32
-        - type: string
+        - title: distance
+          type: string
     _common___GeoHexCell:
       description: A map hex cell (H3) reference.
       type: string
@@ -36781,7 +36870,8 @@ components:
           properties:
             buckets:
               description: The target number of buckets.
-              type: number
+              type: integer
+              format: int32
             field:
               $ref: '#/components/schemas/_common___Field'
             format:
@@ -36798,8 +36888,7 @@ components:
               type: string
             params:
               type: object
-              additionalProperties:
-                type: object
+              additionalProperties: true
             script:
               $ref: '#/components/schemas/_common___Script'
             time_zone:
@@ -36865,6 +36954,7 @@ components:
             compression:
               description: Limits the maximum number of nodes used by the underlying TDigest algorithm to `20 * compression`, enabling control of memory usage and approximation error.
               type: number
+              format: double
     _common.aggregations___BucketAggregationBase:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___Aggregation'
@@ -37153,14 +37243,16 @@ components:
           properties:
             from:
               description: Buckets in positions prior to `from` will be truncated.
-              type: number
+              type: integer
+              format: int32
             gap_policy:
               $ref: '#/components/schemas/_common.aggregations___GapPolicy'
             size:
               description: |-
                 The number of buckets to return.
                 Defaults to all buckets of the parent aggregation.
-              type: number
+              type: integer
+              format: int32
             sort:
               $ref: '#/components/schemas/_common___Sort'
     _common.aggregations___BucketsPath:
@@ -37265,16 +37357,47 @@ components:
           items:
             $ref: '#/components/schemas/_common___Void'
     _common.aggregations___CalendarInterval:
-      type: string
-      enum:
-        - day
-        - hour
-        - minute
-        - month
-        - quarter
-        - second
-        - week
-        - year
+      oneOf:
+        - title: second
+          type: string
+          enum:
+            - second
+            - 1s
+        - title: minute
+          type: string
+          enum:
+            - minute
+            - 1m
+        - title: hour
+          type: string
+          enum:
+            - hour
+            - 1h
+        - title: day
+          type: string
+          enum:
+            - day
+            - 1d
+        - title: week
+          type: string
+          enum:
+            - week
+            - 1w
+        - title: month
+          type: string
+          enum:
+            - month
+            - 1M
+        - title: quarter
+          type: string
+          enum:
+            - quarter
+            - 1q
+        - title: year
+          type: string
+          enum:
+            - year
+            - 1Y
     _common.aggregations___CardinalityAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
@@ -37293,7 +37416,8 @@ components:
               description: |-
                 A unique count below which counts are expected to be close to accurate.
                 This allows to trade memory for accuracy.
-              type: number
+              type: integer
+              format: int32
             rehash:
               type: boolean
             execution_hint:
@@ -37390,10 +37514,12 @@ components:
       properties:
         num_top_classes:
           description: Specifies the number of top class predictions to return. Defaults to 0.
-          type: number
+          type: integer
+          format: int32
         num_top_feature_importance_values:
           description: Specifies the maximum number of feature importance values per document.
-          type: number
+          type: integer
+          format: int32
         prediction_field_type:
           description: 'Specifies the type of the predicted field to write. Acceptable values are: string, number, Boolean. When Boolean is provided 1.0 is transformed to true and 0.0 to false.'
           type: string
@@ -37423,7 +37549,8 @@ components:
               $ref: '#/components/schemas/_common.aggregations___CompositeAggregateKey'
             size:
               description: The number of composite buckets that should be returned.
-              type: number
+              type: integer
+              format: int32
             sources:
               description: |-
                 The value sources used to build composite buckets.
@@ -37611,7 +37738,7 @@ components:
               description: The date format used to format `from` and `to` in the response.
               type: string
             missing:
-              $ref: '#/components/schemas/_common.aggregations___Missing'
+              $ref: '#/components/schemas/_common___FieldValue'
             ranges:
               description: Array of date ranges.
               type: array
@@ -37654,12 +37781,14 @@ components:
               $ref: '#/components/schemas/_common.aggregations___SamplerAggregationExecutionHint'
             max_docs_per_value:
               description: Limits how many documents are permitted per choice of de-duplicating value.
-              type: number
+              type: integer
+              format: int32
             script:
               $ref: '#/components/schemas/_common___Script'
             shard_size:
               description: Limits how many top-scoring documents are collected in the sample processed on each shard.
-              type: number
+              type: integer
+              format: int32
             field:
               $ref: '#/components/schemas/_common___Field'
     _common.aggregations___DoubleTermsAggregate:
@@ -37682,6 +37811,7 @@ components:
       properties:
         alpha:
           type: number
+          format: float
     _common.aggregations___EwmaMovingAverageAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MovingAverageAggregationBase'
@@ -37788,6 +37918,7 @@ components:
             sigma:
               description: The number of standard deviations above/below the mean to display.
               type: number
+              format: double
     _common.aggregations___ExtendedStatsBucketAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___ExtendedStatsAggregate'
@@ -37800,13 +37931,16 @@ components:
             sigma:
               description: The number of standard deviations above/below the mean to display.
               type: number
+              format: double
     _common.aggregations___FieldDateMath:
       description: |-
         A date range limit, represented either as a DateMath expression or a number expressed
         according to the target field's precision.
       oneOf:
-        - $ref: '#/components/schemas/_common___DateMath'
-        - type: number
+        - title: expr
+          $ref: '#/components/schemas/_common___DateMath'
+        - title: value
+          type: number
     _common.aggregations___FilterAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___SingleBucketAggregateBase'
@@ -37941,7 +38075,8 @@ components:
         - type: object
           properties:
             count:
-              type: number
+              type: integer
+              format: int64
             location:
               $ref: '#/components/schemas/_common___GeoLocation'
     _common.aggregations___GeoDistanceAggregate:
@@ -37985,10 +38120,12 @@ components:
               description: |-
                 Allows for more accurate counting of the top cells returned in the final result the aggregation.
                 Defaults to returning `max(10,(size x number-of-shards))` buckets from each shard.
-              type: number
+              type: integer
+              format: int32
             size:
               description: The maximum number of geohash buckets to return.
-              type: number
+              type: integer
+              format: int32
     _common.aggregations___GeoHashGridBucket:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketBase'
@@ -38064,7 +38201,8 @@ components:
           description: |-
             The maximum length of the line represented in the aggregation.
             Valid sizes are between 1 and 10000.
-          type: number
+          type: integer
+          format: int32
       required:
         - point
         - sort
@@ -38563,7 +38701,7 @@ components:
         field:
           $ref: '#/components/schemas/_common___Field'
         missing:
-          $ref: '#/components/schemas/_common.aggregations___Missing'
+          $ref: '#/components/schemas/_common___FieldValue'
         script:
           $ref: '#/components/schemas/_common___Script'
     _common.aggregations___MinAggregate:
@@ -38587,12 +38725,6 @@ components:
         - month
         - second
         - year
-    _common.aggregations___Missing:
-      oneOf:
-        - type: string
-        - type: number
-        - type: number
-        - type: boolean
     _common.aggregations___MissingAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___SingleBucketAggregateBase'
@@ -38605,7 +38737,7 @@ components:
             field:
               $ref: '#/components/schemas/_common___Field'
             missing:
-              $ref: '#/components/schemas/_common.aggregations___Missing'
+              $ref: '#/components/schemas/_common___FieldValue'
     _common.aggregations___MissingOrder:
       type: string
       enum:
@@ -38875,7 +39007,7 @@ components:
         field:
           $ref: '#/components/schemas/_common___Field'
         missing:
-          $ref: '#/components/schemas/_common.aggregations___Missing'
+          $ref: '#/components/schemas/_common___FieldValue'
       required:
         - field
     _common.aggregations___MultiTermsAggregate:
@@ -39123,7 +39255,7 @@ components:
               description: The maximum number of documents a term should appear in.
               type: number
             missing:
-              $ref: '#/components/schemas/_common.aggregations___Missing'
+              $ref: '#/components/schemas/_common___FieldValue'
             precision:
               description: |-
                 The precision of the internal CuckooFilters.
@@ -39723,7 +39855,7 @@ components:
               description: Only return values that are found in more than `min_doc_count` hits.
               type: number
             missing:
-              $ref: '#/components/schemas/_common.aggregations___Missing'
+              $ref: '#/components/schemas/_common___FieldValue'
             missing_order:
               $ref: '#/components/schemas/_common.aggregations___MissingOrder'
             missing_bucket:
@@ -55533,6 +55665,23 @@ components:
             - SPARSE_TOKENIZE
             - TEXT_EMBEDDING
             - TEXT_SIMILARITY
+    ml._common___AlgorithmOperations:
+      type: object
+      properties:
+        deploy:
+          $ref: '#/components/schemas/ml._common___Deploy'
+        register:
+          $ref: '#/components/schemas/ml._common___Register'
+        undeploy:
+          $ref: '#/components/schemas/ml._common___Undeploy'
+        predict:
+          $ref: '#/components/schemas/ml._common___Predict'
+        train:
+          $ref: '#/components/schemas/ml._common___Train'
+    ml._common___Algorithms:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/ml._common___AlgorithmOperations'
     ml._common___BoolQuery:
       type: object
       description: The Boolean query.
@@ -55607,6 +55756,8 @@ components:
         session_token:
           type: string
       additionalProperties: true
+    ml._common___Deploy:
+      $ref: '#/components/schemas/ml._common___ModelStats'
     ml._common___Exists:
       type: object
       description: The exists filter.
@@ -55664,6 +55815,59 @@ components:
       properties:
         nodes:
           $ref: '#/components/schemas/ml._common___Nodes'
+    ml._common___GetStatsResponse:
+      type: object
+      properties:
+        ml_model_count:
+          type: integer
+          format: int64
+          description: The model count.
+        ml_connector_index_status:
+          type: string
+          description: The connector index status.
+          enum:
+            - green
+            - non-existent
+            - red
+            - yellow
+        ml_config_index_status:
+          type: string
+          description: The config index status.
+          enum:
+            - green
+            - non-existent
+            - red
+            - yellow
+        ml_task_index_status:
+          type: string
+          description: The task index status.
+          enum:
+            - green
+            - non-existent
+            - red
+            - yellow
+        ml_connector_count:
+          type: integer
+          format: int64
+          description: The connector count.
+        ml_model_index_status:
+          type: string
+          description: The model index status.
+          enum:
+            - green
+            - non-existent
+            - red
+            - yellow
+        ml_controller_index_status:
+          type: string
+          description: The controller index status.
+          enum:
+            - green
+            - non-existent
+            - red
+            - yellow
+        nodes:
+          $ref: '#/components/schemas/ml._common___NodeStats'
     ml._common___Guardrails:
       type: object
       properties:
@@ -56001,10 +56205,35 @@ components:
           type: integer
           format: int64
           description: The estimated memory size in GPU.
+        deploy:
+          $ref: '#/components/schemas/ml._common___Deploy'
+        register:
+          $ref: '#/components/schemas/ml._common___Register'
+        undeploy:
+          $ref: '#/components/schemas/ml._common___Undeploy'
+        predict:
+          $ref: '#/components/schemas/ml._common___Predict'
+        train:
+          $ref: '#/components/schemas/ml._common___Train'
     ml._common___Models:
       type: object
       additionalProperties:
         $ref: '#/components/schemas/ml._common___ModelProfile'
+    ml._common___ModelStats:
+      type: object
+      properties:
+        ml_action_request_count:
+          type: integer
+          format: int64
+          description: The request count.
+        ml_action_failure_count:
+          type: integer
+          format: int64
+          description: The failure count.
+        ml_executing_task_count:
+          type: integer
+          format: int64
+          description: The executing task count.
     ml._common___Nested:
       type: object
       description: The nested filter.
@@ -56039,6 +56268,41 @@ components:
       type: object
       additionalProperties:
         $ref: '#/components/schemas/ml._common___Node'
+    ml._common___NodeStats:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/ml._common___NodeStatsDetails'
+    ml._common___NodeStatsDetails:
+      type: object
+      properties:
+        ml_deployed_model_count:
+          type: integer
+          format: int64
+          description: The deployed model count.
+        ml_jvm_heap_usage:
+          type: integer
+          format: int64
+          description: The JVM heap usage.
+        ml_failure_count:
+          type: integer
+          format: int64
+          description: The failure count.
+        ml_executing_task_count:
+          type: integer
+          format: int64
+          description: The executing task count.
+        ml_circuit_breaker_trigger_count:
+          type: integer
+          format: int64
+          description: The circuit breaker trigger count.
+        ml_request_count:
+          type: integer
+          format: int64
+          description: The request count.
+        algorithms:
+          $ref: '#/components/schemas/ml._common___Algorithms'
+        models:
+          $ref: '#/components/schemas/ml._common___Models'
     ml._common___Output:
       type: object
       properties:
@@ -56114,6 +56378,8 @@ components:
     ml._common___Parameters:
       type: object
       additionalProperties: true
+    ml._common___Predict:
+      $ref: '#/components/schemas/ml._common___ModelStats'
     ml._common___PredictionResult:
       type: object
       properties:
@@ -56280,6 +56546,8 @@ components:
       required:
         - limit
         - unit
+    ml._common___Register:
+      $ref: '#/components/schemas/ml._common___ModelStats'
     ml._common___Rows:
       type: object
       properties:
@@ -56720,6 +56988,8 @@ components:
         parameters:
           $ref: '#/components/schemas/ml._common___Parameters'
       additionalProperties: true
+    ml._common___Train:
+      $ref: '#/components/schemas/ml._common___ModelStats'
     ml._common___TrainParameters:
       type: object
       properties:
@@ -56756,6 +57026,8 @@ components:
           $ref: '#/components/schemas/ml._common___Status'
       required:
         - status
+    ml._common___Undeploy:
+      $ref: '#/components/schemas/ml._common___ModelStats'
     ml._common___UndeployModelNode:
       type: object
       properties:

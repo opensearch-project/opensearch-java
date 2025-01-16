@@ -56,7 +56,11 @@ public final class GetAllMemoriesRequest extends RequestBase
     }
 
     /**
+     * The maximum number of results to return. If there are fewer memories than the number set in <code>max_results</code>, the response
+     * returns only the number of memories that exist. Default is <code>10</code>.
+     * <p>
      * API name: {@code max_results}
+     * </p>
      */
     @Nullable
     public final Integer maxResults() {
@@ -64,7 +68,12 @@ public final class GetAllMemoriesRequest extends RequestBase
     }
 
     /**
+     * The index of the first memory in the sorted list of memories to return. Memories are ordered by <code>create_time</code>. For
+     * example, if memories <code>A</code>, <code>B</code>, and <code>C</code> exist, <code>next_token=1</code> returns memories
+     * <code>B</code> and <code>C</code>. Default is <code>0</code> (return all memories).
+     * <p>
      * API name: {@code next_token}
+     * </p>
      */
     @Nullable
     public final Integer nextToken() {
@@ -120,7 +129,11 @@ public final class GetAllMemoriesRequest extends RequestBase
         }
 
         /**
+         * The maximum number of results to return. If there are fewer memories than the number set in <code>max_results</code>, the
+         * response returns only the number of memories that exist. Default is <code>10</code>.
+         * <p>
          * API name: {@code max_results}
+         * </p>
          */
         @Nonnull
         public final Builder maxResults(@Nullable Integer value) {
@@ -129,7 +142,12 @@ public final class GetAllMemoriesRequest extends RequestBase
         }
 
         /**
+         * The index of the first memory in the sorted list of memories to return. Memories are ordered by <code>create_time</code>. For
+         * example, if memories <code>A</code>, <code>B</code>, and <code>C</code> exist, <code>next_token=1</code> returns memories
+         * <code>B</code> and <code>C</code>. Default is <code>0</code> (return all memories).
+         * <p>
          * API name: {@code next_token}
+         * </p>
          */
         @Nonnull
         public final Builder nextToken(@Nullable Integer value) {
