@@ -183,7 +183,8 @@ public final class SegmentReplicationRequest extends CatRequestBase
     }
 
     /**
-     * Whether to expand the wildcard expression to include concrete indexes that are open, closed, or both.
+     * The type of index that wildcard patterns can match. Supported values are <code>all</code>, <code>open</code>, <code>closed</code>,
+     * <code>hidden</code>, and <code>none</code>.
      * <p>
      * API name: {@code expand_wildcards}
      * </p>
@@ -413,7 +414,8 @@ public final class SegmentReplicationRequest extends CatRequestBase
         }
 
         /**
-         * Whether to expand the wildcard expression to include concrete indexes that are open, closed, or both.
+         * The type of index that wildcard patterns can match. Supported values are <code>all</code>, <code>open</code>,
+         * <code>closed</code>, <code>hidden</code>, and <code>none</code>.
          * <p>
          * API name: {@code expand_wildcards}
          * </p>
@@ -429,7 +431,8 @@ public final class SegmentReplicationRequest extends CatRequestBase
         }
 
         /**
-         * Whether to expand the wildcard expression to include concrete indexes that are open, closed, or both.
+         * The type of index that wildcard patterns can match. Supported values are <code>all</code>, <code>open</code>,
+         * <code>closed</code>, <code>hidden</code>, and <code>none</code>.
          * <p>
          * API name: {@code expand_wildcards}
          * </p>
