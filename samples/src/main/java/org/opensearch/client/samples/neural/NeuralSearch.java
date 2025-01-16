@@ -30,6 +30,7 @@ import org.opensearch.client.opensearch.ml.DeleteModelRequest;
 import org.opensearch.client.opensearch.ml.DeleteTaskRequest;
 import org.opensearch.client.opensearch.ml.DeployModelRequest;
 import org.opensearch.client.opensearch.ml.GetTaskRequest;
+import org.opensearch.client.opensearch.ml.ModelFormat;
 import org.opensearch.client.opensearch.ml.RegisterModelRequest;
 import org.opensearch.client.opensearch.ml.UndeployModelRequest;
 import org.opensearch.client.samples.SampleClient;
@@ -88,7 +89,7 @@ public class NeuralSearch {
                     new RegisterModelRequest.Builder().name("huggingface/sentence-transformers/msmarco-distilbert-base-tas-b")
                         .version("1.0.1")
                         .modelGroupId(modelGroupId)
-                        .modelFormat("TORCH_SCRIPT")
+                        .modelFormat(ModelFormat.TorchScript)
                         .build()
                 );
             if (!"CREATED".equals(modelRegistration.status())) throw new Exception(

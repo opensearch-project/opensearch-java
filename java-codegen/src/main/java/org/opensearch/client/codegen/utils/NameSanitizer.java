@@ -15,6 +15,7 @@ public class NameSanitizer {
     private static final Set<String> reservedWords = Set.of(
         "default",
         "if",
+        "interface",
         "native",
         "transient",
         "boolean",

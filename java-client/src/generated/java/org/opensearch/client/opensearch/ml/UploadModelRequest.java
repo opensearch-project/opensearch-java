@@ -35,17 +35,17 @@ import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: ml.register_model.Request
+// typedef: ml.upload_model.Request
 
 /**
  * Registers a model.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public final class RegisterModelRequest extends RequestBase
+public final class UploadModelRequest extends RequestBase
     implements
         PlainJsonSerializable,
-        ToCopyableBuilder<RegisterModelRequest.Builder, RegisterModelRequest> {
+        ToCopyableBuilder<UploadModelRequest.Builder, UploadModelRequest> {
 
     @Nullable
     private final String description;
@@ -64,7 +64,7 @@ public final class RegisterModelRequest extends RequestBase
 
     // ---------------------------------------------------------------------------------------------
 
-    private RegisterModelRequest(Builder builder) {
+    private UploadModelRequest(Builder builder) {
         super(builder);
         this.description = builder.description;
         this.modelFormat = builder.modelFormat;
@@ -73,7 +73,7 @@ public final class RegisterModelRequest extends RequestBase
         this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
     }
 
-    public static RegisterModelRequest of(Function<RegisterModelRequest.Builder, ObjectBuilder<RegisterModelRequest>> fn) {
+    public static UploadModelRequest of(Function<UploadModelRequest.Builder, ObjectBuilder<UploadModelRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -169,9 +169,9 @@ public final class RegisterModelRequest extends RequestBase
     }
 
     /**
-     * Builder for {@link RegisterModelRequest}.
+     * Builder for {@link UploadModelRequest}.
      */
-    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RegisterModelRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, UploadModelRequest> {
         @Nullable
         private String description;
         @Nullable
@@ -183,7 +183,7 @@ public final class RegisterModelRequest extends RequestBase
 
         public Builder() {}
 
-        private Builder(RegisterModelRequest o) {
+        private Builder(UploadModelRequest o) {
             super(o);
             this.description = o.description;
             this.modelFormat = o.modelFormat;
@@ -265,30 +265,30 @@ public final class RegisterModelRequest extends RequestBase
         }
 
         /**
-         * Builds a {@link RegisterModelRequest}.
+         * Builds a {@link UploadModelRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public RegisterModelRequest build() {
+        public UploadModelRequest build() {
             _checkSingleUse();
 
-            return new RegisterModelRequest(this);
+            return new UploadModelRequest(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link RegisterModelRequest}
+     * Json deserializer for {@link UploadModelRequest}
      */
-    public static final JsonpDeserializer<RegisterModelRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<UploadModelRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        RegisterModelRequest::setupRegisterModelRequestDeserializer
+        UploadModelRequest::setupUploadModelRequestDeserializer
     );
 
-    protected static void setupRegisterModelRequestDeserializer(ObjectDeserializer<RegisterModelRequest.Builder> op) {
+    protected static void setupUploadModelRequestDeserializer(ObjectDeserializer<UploadModelRequest.Builder> op) {
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::modelFormat, ModelFormat._DESERIALIZER, "model_format");
         op.add(Builder::modelGroupId, JsonpDeserializer.stringDeserializer(), "model_group_id");
@@ -299,13 +299,13 @@ public final class RegisterModelRequest extends RequestBase
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Endpoint "{@code ml.register_model}".
+     * Endpoint "{@code ml.upload_model}".
      */
-    public static final Endpoint<RegisterModelRequest, RegisterModelResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+    public static final Endpoint<UploadModelRequest, UploadModelResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
         // Request method
         request -> "POST",
         // Request path
-        request -> "/_plugins/_ml/models/_register",
+        request -> "/_plugins/_ml/models/_upload",
         // Request parameters
         request -> {
             Map<String, String> params = new HashMap<>();
@@ -314,7 +314,7 @@ public final class RegisterModelRequest extends RequestBase
         },
         SimpleEndpoint.emptyMap(),
         true,
-        RegisterModelResponse._DESERIALIZER
+        UploadModelResponse._DESERIALIZER
     );
 
     @Override
@@ -332,7 +332,7 @@ public final class RegisterModelRequest extends RequestBase
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        RegisterModelRequest other = (RegisterModelRequest) o;
+        UploadModelRequest other = (UploadModelRequest) o;
         return Objects.equals(this.description, other.description)
             && Objects.equals(this.modelFormat, other.modelFormat)
             && Objects.equals(this.modelGroupId, other.modelGroupId)

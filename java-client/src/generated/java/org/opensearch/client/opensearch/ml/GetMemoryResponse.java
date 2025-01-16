@@ -32,11 +32,11 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: ml.Memory
+// typedef: ml.get_memory.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.Builder, Memory> {
+public class GetMemoryResponse implements PlainJsonSerializable, ToCopyableBuilder<GetMemoryResponse.Builder, GetMemoryResponse> {
 
     @Nonnull
     private final Map<String, JsonData> additionalInfo;
@@ -61,7 +61,7 @@ public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.B
 
     // ---------------------------------------------------------------------------------------------
 
-    private Memory(Builder builder) {
+    private GetMemoryResponse(Builder builder) {
         this.additionalInfo = ApiTypeHelper.unmodifiable(builder.additionalInfo);
         this.createTime = builder.createTime;
         this.memoryId = builder.memoryId;
@@ -71,7 +71,7 @@ public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.B
         this.user = builder.user;
     }
 
-    public static Memory of(Function<Memory.Builder, ObjectBuilder<Memory>> fn) {
+    public static GetMemoryResponse of(Function<GetMemoryResponse.Builder, ObjectBuilder<GetMemoryResponse>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -206,9 +206,9 @@ public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.B
     }
 
     /**
-     * Builder for {@link Memory}.
+     * Builder for {@link GetMemoryResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Memory> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetMemoryResponse> {
         @Nullable
         private Map<String, JsonData> additionalInfo;
         @Nullable
@@ -226,7 +226,7 @@ public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.B
 
         public Builder() {}
 
-        private Builder(Memory o) {
+        private Builder(GetMemoryResponse o) {
             this.additionalInfo = _mapCopy(o.additionalInfo);
             this.createTime = o.createTime;
             this.memoryId = o.memoryId;
@@ -342,30 +342,30 @@ public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.B
         }
 
         /**
-         * Builds a {@link Memory}.
+         * Builds a {@link GetMemoryResponse}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public Memory build() {
+        public GetMemoryResponse build() {
             _checkSingleUse();
 
-            return new Memory(this);
+            return new GetMemoryResponse(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link Memory}
+     * Json deserializer for {@link GetMemoryResponse}
      */
-    public static final JsonpDeserializer<Memory> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<GetMemoryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        Memory::setupMemoryDeserializer
+        GetMemoryResponse::setupGetMemoryResponseDeserializer
     );
 
-    protected static void setupMemoryDeserializer(ObjectDeserializer<Memory.Builder> op) {
+    protected static void setupGetMemoryResponseDeserializer(ObjectDeserializer<GetMemoryResponse.Builder> op) {
         op.add(Builder::additionalInfo, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "additional_info");
         op.add(Builder::createTime, JsonpDeserializer.stringDeserializer(), "create_time");
         op.add(Builder::memoryId, JsonpDeserializer.stringDeserializer(), "memory_id");
@@ -392,7 +392,7 @@ public class Memory implements PlainJsonSerializable, ToCopyableBuilder<Memory.B
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        Memory other = (Memory) o;
+        GetMemoryResponse other = (GetMemoryResponse) o;
         return Objects.equals(this.additionalInfo, other.additionalInfo)
             && Objects.equals(this.createTime, other.createTime)
             && Objects.equals(this.memoryId, other.memoryId)
