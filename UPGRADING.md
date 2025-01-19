@@ -562,3 +562,15 @@ After:
 
 ### SearchShardsRequest
 - The `routing` property is now of type `List<String>` instead of `String`.
+
+### CompositeAggregation
+- The `after` property is now of type `Map<String, FieldValue>` instead of `Map<String, String>`.
+
+### CompositeDateHistogramAggregationSource
+- The `offset` property has been corrected to be of type `Time` instead of `Long`.
+
+### CompositeValuesSource
+- The `format` property has been removed as it only applies to certain subclasses.
+
+### InferenceConfig
+- The `InferenceConfig` class has been changed to a tagged union.

@@ -37273,10 +37273,12 @@ components:
         Aggregation buckets. By default they are returned as an array, but if the aggregation has keys configured for
         the different buckets, the result is a dictionary.
       oneOf:
-        - type: object
+        - title: keyed
+          type: object
           additionalProperties:
             $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
-        - type: array
+        - title: array
+          type: array
           items:
             $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
     _common.aggregations___BucketsRangeBucket:
@@ -37476,10 +37478,12 @@ components:
               type: number
             min_doc_count:
               description: The minimum number of documents in a bucket to be returned to the results.
-              type: number
+              type: integer
+              format: int32
             shard_min_doc_count:
               description: The minimum number of documents in a bucket to be returned from the shard before merging.
-              type: number
+              type: integer
+              format: int32
           required:
             - field
     _common.aggregations___CategorizeTextAnalyzer:
@@ -37560,7 +37564,66 @@ components:
                 type: object
                 additionalProperties:
                   $ref: '#/components/schemas/_common.aggregations___CompositeAggregationSource'
-    _common.aggregations___CompositeAggregationBase:
+    _common.aggregations___CompositeAggregationSource:
+      type: object
+      properties:
+        terms:
+          $ref: '#/components/schemas/_common.aggregations___CompositeTermsAggregationSource'
+        histogram:
+          $ref: '#/components/schemas/_common.aggregations___CompositeHistogramAggregationSource'
+        date_histogram:
+          $ref: '#/components/schemas/_common.aggregations___CompositeDateHistogramAggregationSource'
+        geotile_grid:
+          $ref: '#/components/schemas/_common.aggregations___CompositeGeoTileGridAggregationSource'
+    _common.aggregations___CompositeBucket:
+      allOf:
+        - $ref: '#/components/schemas/_common.aggregations___MultiBucketBase'
+        - type: object
+          properties:
+            key:
+              $ref: '#/components/schemas/_common.aggregations___CompositeAggregateKey'
+          required:
+            - key
+    _common.aggregations___CompositeDateHistogramAggregationSource:
+      allOf:
+        - $ref: '#/components/schemas/_common.aggregations___CompositeValuesSource'
+        - type: object
+          properties:
+            format:
+              type: string
+            calendar_interval:
+              $ref: '#/components/schemas/_common___DurationLarge'
+            fixed_interval:
+              $ref: '#/components/schemas/_common___DurationLarge'
+            offset:
+              $ref: '#/components/schemas/_common___Duration'
+            time_zone:
+              $ref: '#/components/schemas/_common___TimeZone'
+    _common.aggregations___CompositeGeoTileGridAggregationSource:
+      allOf:
+        - $ref: '#/components/schemas/_common.aggregations___CompositeValuesSource'
+        - type: object
+          properties:
+            precision:
+              type: integer
+              format: int32
+            bounds:
+              $ref: '#/components/schemas/_common___GeoBounds'
+    _common.aggregations___CompositeHistogramAggregationSource:
+      allOf:
+        - $ref: '#/components/schemas/_common.aggregations___CompositeValuesSource'
+        - type: object
+          properties:
+            interval:
+              type: number
+              format: double
+          required:
+            - interval
+    _common.aggregations___CompositeTermsAggregationSource:
+      allOf:
+        - $ref: '#/components/schemas/_common.aggregations___CompositeValuesSource'
+        - type: object
+    _common.aggregations___CompositeValuesSource:
       type: object
       properties:
         field:
@@ -37575,63 +37638,6 @@ components:
           $ref: '#/components/schemas/_common.aggregations___ValueType'
         order:
           $ref: '#/components/schemas/_common___SortOrder'
-    _common.aggregations___CompositeAggregationSource:
-      type: object
-      properties:
-        terms:
-          $ref: '#/components/schemas/_common.aggregations___CompositeTermsAggregation'
-        histogram:
-          $ref: '#/components/schemas/_common.aggregations___CompositeHistogramAggregation'
-        date_histogram:
-          $ref: '#/components/schemas/_common.aggregations___CompositeDateHistogramAggregation'
-        geotile_grid:
-          $ref: '#/components/schemas/_common.aggregations___CompositeGeoTileGridAggregation'
-    _common.aggregations___CompositeBucket:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___MultiBucketBase'
-        - type: object
-          properties:
-            key:
-              $ref: '#/components/schemas/_common.aggregations___CompositeAggregateKey'
-          required:
-            - key
-    _common.aggregations___CompositeDateHistogramAggregation:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___CompositeAggregationBase'
-        - type: object
-          properties:
-            format:
-              type: string
-            calendar_interval:
-              $ref: '#/components/schemas/_common___DurationLarge'
-            fixed_interval:
-              $ref: '#/components/schemas/_common___DurationLarge'
-            offset:
-              $ref: '#/components/schemas/_common___Duration'
-            time_zone:
-              $ref: '#/components/schemas/_common___TimeZone'
-    _common.aggregations___CompositeGeoTileGridAggregation:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___CompositeAggregationBase'
-        - type: object
-          properties:
-            precision:
-              type: number
-            bounds:
-              $ref: '#/components/schemas/_common___GeoBounds'
-    _common.aggregations___CompositeHistogramAggregation:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___CompositeAggregationBase'
-        - type: object
-          properties:
-            interval:
-              type: number
-          required:
-            - interval
-    _common.aggregations___CompositeTermsAggregation:
-      allOf:
-        - $ref: '#/components/schemas/_common.aggregations___CompositeAggregationBase'
-        - type: object
     _common.aggregations___CumulativeCardinalityAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
@@ -37694,7 +37700,8 @@ components:
               description: |-
                 Only returns buckets that have `min_doc_count` number of documents.
                 By default, all buckets between the first bucket that matches documents and the last one are returned.
-              type: number
+              type: integer
+              format: int32
             missing:
               $ref: '#/components/schemas/_common___DateTime'
             offset:
@@ -37703,8 +37710,7 @@ components:
               $ref: '#/components/schemas/_common.aggregations___AggregateOrder'
             params:
               type: object
-              additionalProperties:
-                type: object
+              additionalProperties: true
             script:
               $ref: '#/components/schemas/_common___Script'
             time_zone:
@@ -37941,6 +37947,7 @@ components:
           $ref: '#/components/schemas/_common___DateMath'
         - title: value
           type: number
+          format: double
     _common.aggregations___FilterAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___SingleBucketAggregateBase'
@@ -38237,10 +38244,12 @@ components:
               description: |-
                 Allows for more accurate counting of the top cells returned in the final result the aggregation.
                 Defaults to returning `max(10,(size x number-of-shards))` buckets from each shard.
-              type: number
+              type: integer
+              format: int32
             size:
               description: The maximum number of buckets to return.
-              type: number
+              type: integer
+              format: int32
             bounds:
               $ref: '#/components/schemas/_common___GeoBounds'
     _common.aggregations___GeoTileGridBucket:
@@ -38271,7 +38280,8 @@ components:
       properties:
         number_of_significant_value_digits:
           description: Specifies the resolution of values for the histogram in number of significant digits.
-          type: number
+          type: integer
+          format: int32
     _common.aggregations___HdrPercentileRanksAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___PercentilesAggregateBase'
@@ -38300,21 +38310,25 @@ components:
                 The interval for the buckets.
                 Must be a positive decimal.
               type: number
+              format: double
             min_doc_count:
               description: |-
                 Only returns buckets that have `min_doc_count` number of documents.
                 By default, the response will fill gaps in the histogram with empty buckets.
-              type: number
+              type: integer
+              format: int32
             missing:
               description: |-
                 The value to apply to documents that do not have a value.
                 By default, documents without a value are ignored.
               type: number
+              format: double
             offset:
               description: |-
                 By default, the bucket keys start with 0 and then continue in even spaced steps of `interval`.
                 The bucket boundaries can be shifted by using the `offset` option.
               type: number
+              format: double
             order:
               $ref: '#/components/schemas/_common.aggregations___AggregateOrder'
             script:
@@ -38340,8 +38354,10 @@ components:
       properties:
         alpha:
           type: number
+          format: float
         beta:
           type: number
+          format: float
     _common.aggregations___HoltMovingAverageAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MovingAverageAggregationBase'
@@ -38361,14 +38377,18 @@ components:
       properties:
         alpha:
           type: number
+          format: float
         beta:
           type: number
+          format: float
         gamma:
           type: number
+          format: float
         pad:
           type: boolean
         period:
-          type: number
+          type: integer
+          format: int32
         type:
           $ref: '#/components/schemas/_common.aggregations___HoltWintersType'
     _common.aggregations___HoltWintersMovingAverageAggregation:
@@ -38386,10 +38406,13 @@ components:
             - model
             - settings
     _common.aggregations___HoltWintersType:
-      type: string
-      enum:
-        - add
-        - mult
+      oneOf:
+        - title: additive
+          type: string
+          const: add
+        - title: multiplicative
+          type: string
+          const: mult
     _common.aggregations___InferenceAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
@@ -38490,7 +38513,8 @@ components:
               type: boolean
             min_doc_count:
               description: Minimum number of documents in a bucket for it to be included in the response.
-              type: number
+              type: integer
+              format: int32
           required:
             - field
             - prefix_length
@@ -38619,6 +38643,7 @@ components:
               type: object
               additionalProperties:
                 type: number
+                format: double
     _common.aggregations___MatrixStatsAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
@@ -38695,6 +38720,7 @@ components:
             compression:
               description: Limits the maximum number of nodes used by the underlying TDigest algorithm to `20 * compression`, enabling control of memory usage and approximation error.
               type: number
+              format: double
     _common.aggregations___MetricAggregationBase:
       type: object
       properties:
@@ -38762,9 +38788,11 @@ components:
             minimize:
               type: boolean
             predict:
-              type: number
+              type: integer
+              format: int32
             window:
-              type: number
+              type: integer
+              format: int32
     _common.aggregations___MovingFunctionAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___PipelineAggregationBase'
@@ -38777,10 +38805,12 @@ components:
               description: |-
                 By default, the window consists of the last n values excluding the current bucket.
                 Increasing `shift` by 1, moves the starting window position by 1 to the right.
-              type: number
+              type: integer
+              format: int32
             window:
               description: The size of window to "slide" across the histogram.
-              type: number
+              type: integer
+              format: int32
     _common.aggregations___MovingPercentilesAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___PipelineAggregationBase'
@@ -38788,12 +38818,14 @@ components:
           properties:
             window:
               description: The size of window to "slide" across the histogram.
-              type: number
+              type: integer
+              format: int32
             shift:
               description: |-
                 By default, the window consists of the last n values excluding the current bucket.
                 Increasing `shift` by 1, moves the starting window position by 1 to the right.
-              type: number
+              type: integer
+              format: int32
             keyed:
               type: boolean
     _common.aggregations___MultiBucketAggregateBaseAdjacencyMatrixBucket:
@@ -39025,21 +39057,25 @@ components:
               $ref: '#/components/schemas/_common.aggregations___AggregateOrder'
             min_doc_count:
               description: The minimum number of documents in a bucket for it to be returned.
-              type: number
+              type: integer
+              format: int32
             shard_min_doc_count:
               description: The minimum number of documents in a bucket on each shard for it to be returned.
-              type: number
+              type: integer
+              format: int32
             shard_size:
               description: |-
                 The number of candidate terms produced by each shard.
                 By default, `shard_size` will be automatically estimated based on the number of shards and the `size` parameter.
-              type: number
+              type: integer
+              format: int32
             show_term_doc_count_error:
               description: Calculates the doc count error on per term basis.
               type: boolean
             size:
               description: The number of term buckets should be returned out of the overall terms list.
-              type: number
+              type: integer
+              format: int32
             terms:
               description: The field from which to generate sets of terms.
               type: array
@@ -39449,7 +39485,8 @@ components:
               $ref: '#/components/schemas/_common___EmptyObject'
             min_doc_count:
               description: Only return terms that are found in more than `min_doc_count` hits.
-              type: number
+              type: integer
+              format: int32
             mutual_information:
               $ref: '#/components/schemas/_common.aggregations___MutualInformationHeuristic'
             percentage:
@@ -39460,7 +39497,8 @@ components:
               description: |-
                 Regulates the certainty a shard has if the term should actually be added to the candidate list or not with respect to the `min_doc_count`.
                 Terms will only be considered if their local shard frequency within the set is higher than the `shard_min_doc_count`.
-              type: number
+              type: integer
+              format: int32
             shard_size:
               description: |-
                 Can be used to control the volumes of candidate terms produced by each shard.
@@ -39507,7 +39545,8 @@ components:
               $ref: '#/components/schemas/_common___EmptyObject'
             min_doc_count:
               description: Only return values that are found in more than `min_doc_count` hits.
-              type: number
+              type: integer
+              format: int32
             mutual_information:
               $ref: '#/components/schemas/_common.aggregations___MutualInformationHeuristic'
             percentage:
@@ -39518,7 +39557,8 @@ components:
               description: |-
                 Regulates the certainty a shard has if the values should actually be added to the candidate list or not with respect to the `min_doc_count`.
                 Values will only be considered if their local shard frequency within the set is higher than the `shard_min_doc_count`.
-              type: number
+              type: integer
+              format: int32
             shard_size:
               description: |-
                 The number of candidate terms produced by each shard.
@@ -39853,7 +39893,8 @@ components:
               $ref: '#/components/schemas/_common.aggregations___TermsInclude'
             min_doc_count:
               description: Only return values that are found in more than `min_doc_count` hits.
-              type: number
+              type: integer
+              format: int32
             missing:
               $ref: '#/components/schemas/_common___FieldValue'
             missing_order:

@@ -45,6 +45,7 @@ public class Overrides {
         .withSchemas(
             s -> s.with(schema("_common", "ByteUnit"), so -> so.withClassName("Bytes"))
                 .with(schema("_common", "Duration"), so -> so.withMappedType(Types.Client.OpenSearch._Types.Time))
+                .with(schema("_common", "DurationLarge"), so -> so.withMappedType(Types.Client.OpenSearch._Types.Time))
                 .with(schema("_common", "FieldValue"), so -> so.withMappedType(Types.Client.OpenSearch._Types.FieldValue))
                 .with(schema("_common", "StringifiedBoolean"), so -> so.withMappedType(Types.Primitive.Boolean))
                 .with(schema("_common", "StringifiedDouble"), so -> so.withMappedType(Types.Primitive.Double))
@@ -76,6 +77,25 @@ public class Overrides {
                     schema("_common.aggregations", "AggregationContainer").append("allOf", "0"),
                     so -> so.withProperties(p -> p.with("aggregations", po -> po.withAliases(Set.of("aggs"))))
                 )
+                .with(
+                    schema("_common.aggregations", "BucketsQueryContainer"),
+                    so -> so.withMappedType(
+                        Types.Client.OpenSearch._Types.Aggregations.Buckets(Types.Client.OpenSearch._Types.QueryDsl.Query)
+                    )
+                )
+                .with(
+                    schema("_common.aggregations", "ExtendedBoundsdouble"),
+                    so -> so.withMappedType(Types.Client.OpenSearch._Types.Aggregations.ExtendedBounds(Types.Java.Lang.Double))
+                )
+                .with(
+                    schema("_common.aggregations", "ExtendedBoundsFieldDateMath"),
+                    so -> so.withMappedType(
+                        Types.Client.OpenSearch._Types.Aggregations.ExtendedBounds(
+                            Types.Client.OpenSearch._Types.Aggregations.FieldDateMath
+                        )
+                    )
+                )
+                .with(schema("_common.aggregations", "InferenceConfigContainer"), so -> so.withClassName("InferenceConfig"))
 
                 // TODO: Remove this once figuring out how best to handle these schemas
                 .with(schema("_common.query_dsl", "DecayFunction"), so -> so.withShouldGenerate(ShouldGenerate.Never))
