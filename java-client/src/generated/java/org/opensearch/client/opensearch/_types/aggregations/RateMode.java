@@ -30,18 +30,24 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.aggregations.RateMode
+
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum RateMode implements JsonEnum {
     Sum("sum"),
 
-    ValueCount("value_count"),
-
-    ;
+    ValueCount("value_count");
 
     private final String jsonValue;
 

@@ -30,22 +30,36 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.NestedAggregation
 
 @JsonpDeserializable
-public class NestedAggregation extends BucketAggregationBase implements AggregationVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class NestedAggregation extends BucketAggregationBase
+    implements
+        AggregationVariant,
+        ToCopyableBuilder<NestedAggregation.Builder, NestedAggregation> {
+
     @Nullable
     private final String path;
 
@@ -53,17 +67,15 @@ public class NestedAggregation extends BucketAggregationBase implements Aggregat
 
     private NestedAggregation(Builder builder) {
         super(builder);
-
         this.path = builder.path;
-
     }
 
-    public static NestedAggregation of(Function<Builder, ObjectBuilder<NestedAggregation>> fn) {
+    public static NestedAggregation of(Function<NestedAggregation.Builder, ObjectBuilder<NestedAggregation>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Aggregation variant kind.
+     * {@link Aggregation} variant kind.
      */
     @Override
     public Aggregation.Kind _aggregationKind() {
@@ -79,45 +91,75 @@ public class NestedAggregation extends BucketAggregationBase implements Aggregat
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
         if (this.path != null) {
             generator.writeKey("path");
             generator.write(this.path);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link NestedAggregation}.
      */
-
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<NestedAggregation> {
+    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, NestedAggregation> {
         @Nullable
         private String path;
+
+        public Builder() {}
+
+        private Builder(NestedAggregation o) {
+            super(o);
+            this.path = o.path;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.path = o.path;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code path}
          */
+        @Nonnull
         public final Builder path(@Nullable String value) {
             this.path = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
         /**
          * Builds a {@link NestedAggregation}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public NestedAggregation build() {
             _checkSingleUse();
 
@@ -138,7 +180,23 @@ public class NestedAggregation extends BucketAggregationBase implements Aggregat
     protected static void setupNestedAggregationDeserializer(ObjectDeserializer<NestedAggregation.Builder> op) {
         setupBucketAggregationBaseDeserializer(op);
         op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.path);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        NestedAggregation other = (NestedAggregation) o;
+        return Objects.equals(this.path, other.path);
+    }
 }

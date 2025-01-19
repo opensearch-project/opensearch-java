@@ -30,22 +30,36 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.NormalizeAggregation
 
 @JsonpDeserializable
-public class NormalizeAggregation extends PipelineAggregationBase implements AggregationVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class NormalizeAggregation extends PipelineAggregationBase
+    implements
+        AggregationVariant,
+        ToCopyableBuilder<NormalizeAggregation.Builder, NormalizeAggregation> {
+
     @Nullable
     private final NormalizeMethod method;
 
@@ -53,17 +67,15 @@ public class NormalizeAggregation extends PipelineAggregationBase implements Agg
 
     private NormalizeAggregation(Builder builder) {
         super(builder);
-
         this.method = builder.method;
-
     }
 
-    public static NormalizeAggregation of(Function<Builder, ObjectBuilder<NormalizeAggregation>> fn) {
+    public static NormalizeAggregation of(Function<NormalizeAggregation.Builder, ObjectBuilder<NormalizeAggregation>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Aggregation variant kind.
+     * {@link Aggregation} variant kind.
      */
     @Override
     public Aggregation.Kind _aggregationKind() {
@@ -79,44 +91,75 @@ public class NormalizeAggregation extends PipelineAggregationBase implements Agg
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
         if (this.method != null) {
             generator.writeKey("method");
             this.method.serialize(generator, mapper);
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link NormalizeAggregation}.
      */
-
-    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<NormalizeAggregation> {
+    public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, NormalizeAggregation> {
         @Nullable
         private NormalizeMethod method;
+
+        public Builder() {}
+
+        private Builder(NormalizeAggregation o) {
+            super(o);
+            this.method = o.method;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.method = o.method;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * API name: {@code method}
          */
+        @Nonnull
         public final Builder method(@Nullable NormalizeMethod value) {
             this.method = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
         /**
          * Builds a {@link NormalizeAggregation}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public NormalizeAggregation build() {
             _checkSingleUse();
 
@@ -135,9 +178,25 @@ public class NormalizeAggregation extends PipelineAggregationBase implements Agg
     );
 
     protected static void setupNormalizeAggregationDeserializer(ObjectDeserializer<NormalizeAggregation.Builder> op) {
-        PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
+        setupPipelineAggregationBaseDeserializer(op);
         op.add(Builder::method, NormalizeMethod._DESERIALIZER, "method");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.method);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        NormalizeAggregation other = (NormalizeAggregation) o;
+        return Objects.equals(this.method, other.method);
+    }
 }

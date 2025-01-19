@@ -574,3 +574,9 @@ After:
 
 ### InferenceConfig
 - The `InferenceConfig` class has been changed to a tagged union.
+
+### SignificantTermsAggregation
+- The `include` property is now of type `TermsInclude` instead of `List<String>`.
+
+### SignificantTextAggregation
+- The `include` property is now of type `TermsInclude` instead of `List<String>`.

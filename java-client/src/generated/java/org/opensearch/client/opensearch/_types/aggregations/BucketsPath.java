@@ -30,16 +30,24 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.json.UnionDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -50,19 +58,19 @@ import org.opensearch.client.util.TaggedUnionUtils;
 // typedef: _types.aggregations.BucketsPath
 
 /**
- * Buckets path can be expressed in different ways, and an aggregation may
- * accept some or all of these forms depending on its type. Please refer to each
- * aggregation's documentation to know what buckets path forms they accept.
- *
+ * Buckets path can be expressed in different ways, and an aggregation may accept some or all of these forms depending on its type. Refer to
+ * each aggregation's documentation to know what buckets path forms they accept.
  */
 @JsonpDeserializable
-public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, JsonpSerializable {
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, PlainJsonSerializable {
+    /**
+     * {@link BucketsPath} variant kinds.
+     */
     public enum Kind {
         Array,
         Dict,
         Single
-
     }
 
     private final Kind _kind;
@@ -84,13 +92,11 @@ public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, Jsonp
     }
 
     private BucketsPath(Builder builder) {
-
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
     }
 
-    public static BucketsPath of(Function<Builder, ObjectBuilder<BucketsPath>> fn) {
+    public static BucketsPath of(Function<BucketsPath.Builder, ObjectBuilder<BucketsPath>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -104,8 +110,7 @@ public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, Jsonp
     /**
      * Get the {@code array} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code array} kind.
+     * @throws IllegalStateException if the current variant is not the {@code array} kind.
      */
     public List<String> array() {
         return TaggedUnionUtils.get(this, Kind.Array);
@@ -121,8 +126,7 @@ public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, Jsonp
     /**
      * Get the {@code dict} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code dict} kind.
+     * @throws IllegalStateException if the current variant is not the {@code dict} kind.
      */
     public Map<String, String> dict() {
         return TaggedUnionUtils.get(this, Kind.Dict);
@@ -138,8 +142,7 @@ public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, Jsonp
     /**
      * Get the {@code single} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code single} kind.
+     * @throws IllegalStateException if the current variant is not the {@code single} kind.
      */
     public String single() {
         return TaggedUnionUtils.get(this, Kind.Single);
@@ -155,33 +158,44 @@ public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, Jsonp
                     generator.writeStartArray();
                     for (String item0 : ((List<String>) this._value)) {
                         generator.write(item0);
-
                     }
                     generator.writeEnd();
-
                     break;
                 case Dict:
                     generator.writeStartObject();
                     for (Map.Entry<String, String> item0 : ((Map<String, String>) this._value).entrySet()) {
                         generator.writeKey(item0.getKey());
                         generator.write(item0.getValue());
-
                     }
                     generator.writeEnd();
-
                     break;
                 case Single:
                     generator.write(((String) this._value));
-
                     break;
             }
         }
+    }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BucketsPath> {
         private Kind _kind;
         private Object _value;
+
+        public Builder() {}
+
+        private Builder(BucketsPath o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         public ObjectBuilder<BucketsPath> array(List<String> v) {
             this._kind = Kind.Array;
@@ -201,11 +215,11 @@ public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, Jsonp
             return this;
         }
 
+        @Override
         public BucketsPath build() {
             _checkSingleUse();
             return new BucketsPath(this);
         }
-
     }
 
     private static JsonpDeserializer<BucketsPath> buildBucketsPathDeserializer() {
@@ -219,4 +233,20 @@ public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, Jsonp
     }
 
     public static final JsonpDeserializer<BucketsPath> _DESERIALIZER = JsonpDeserializer.lazy(BucketsPath::buildBucketsPathDeserializer);
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        BucketsPath other = (BucketsPath) o;
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
 }

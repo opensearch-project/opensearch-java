@@ -30,22 +30,36 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.SamplerAggregation
 
 @JsonpDeserializable
-public class SamplerAggregation extends BucketAggregationBase implements AggregationVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SamplerAggregation extends BucketAggregationBase
+    implements
+        AggregationVariant,
+        ToCopyableBuilder<SamplerAggregation.Builder, SamplerAggregation> {
+
     @Nullable
     private final Integer shardSize;
 
@@ -53,17 +67,15 @@ public class SamplerAggregation extends BucketAggregationBase implements Aggrega
 
     private SamplerAggregation(Builder builder) {
         super(builder);
-
         this.shardSize = builder.shardSize;
-
     }
 
-    public static SamplerAggregation of(Function<Builder, ObjectBuilder<SamplerAggregation>> fn) {
+    public static SamplerAggregation of(Function<SamplerAggregation.Builder, ObjectBuilder<SamplerAggregation>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Aggregation variant kind.
+     * {@link Aggregation} variant kind.
      */
     @Override
     public Aggregation.Kind _aggregationKind() {
@@ -71,7 +83,10 @@ public class SamplerAggregation extends BucketAggregationBase implements Aggrega
     }
 
     /**
+     * Limits how many top-scoring documents are collected in the sample processed on each shard.
+     * <p>
      * API name: {@code shard_size}
+     * </p>
      */
     @Nullable
     public final Integer shardSize() {
@@ -79,45 +94,78 @@ public class SamplerAggregation extends BucketAggregationBase implements Aggrega
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
         if (this.shardSize != null) {
             generator.writeKey("shard_size");
             generator.write(this.shardSize);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SamplerAggregation}.
      */
-
-    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder> implements ObjectBuilder<SamplerAggregation> {
+    public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, SamplerAggregation> {
         @Nullable
         private Integer shardSize;
 
-        /**
-         * API name: {@code shard_size}
-         */
-        public final Builder shardSize(@Nullable Integer value) {
-            this.shardSize = value;
-            return this;
+        public Builder() {}
+
+        private Builder(SamplerAggregation o) {
+            super(o);
+            this.shardSize = o.shardSize;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.shardSize = o.shardSize;
         }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
+            return this;
+        }
+
+        /**
+         * Limits how many top-scoring documents are collected in the sample processed on each shard.
+         * <p>
+         * API name: {@code shard_size}
+         * </p>
+         */
+        @Nonnull
+        public final Builder shardSize(@Nullable Integer value) {
+            this.shardSize = value;
             return this;
         }
 
         /**
          * Builds a {@link SamplerAggregation}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SamplerAggregation build() {
             _checkSingleUse();
 
@@ -136,9 +184,25 @@ public class SamplerAggregation extends BucketAggregationBase implements Aggrega
     );
 
     protected static void setupSamplerAggregationDeserializer(ObjectDeserializer<SamplerAggregation.Builder> op) {
-        BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
+        setupBucketAggregationBaseDeserializer(op);
         op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.shardSize);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SamplerAggregation other = (SamplerAggregation) o;
+        return Objects.equals(this.shardSize, other.shardSize);
+    }
 }

@@ -30,37 +30,35 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ObjectBuilder;
 
-// typedef: _types.aggregations.PipelineAggregationBase
+// typedef: _types.aggregations.BucketPathAggregation
 
-public abstract class PipelineAggregationBase extends AggregationBase {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public abstract class BucketPathAggregation extends AggregationBase {
+
     @Nullable
     private final BucketsPath bucketsPath;
 
-    @Nullable
-    private final String format;
-
-    @Nullable
-    private final GapPolicy gapPolicy;
-
     // ---------------------------------------------------------------------------------------------
 
-    protected PipelineAggregationBase(AbstractBuilder<?> builder) {
+    protected BucketPathAggregation(AbstractBuilder<?> builder) {
         super(builder);
-
         this.bucketsPath = builder.bucketsPath;
-        this.format = builder.format;
-        this.gapPolicy = builder.gapPolicy;
-
     }
 
     /**
@@ -71,56 +69,37 @@ public abstract class PipelineAggregationBase extends AggregationBase {
         return this.bucketsPath;
     }
 
-    /**
-     * API name: {@code format}
-     */
-    @Nullable
-    public final String format() {
-        return this.format;
-    }
-
-    /**
-     * API name: {@code gap_policy}
-     */
-    @Nullable
-    public final GapPolicy gapPolicy() {
-        return this.gapPolicy;
-    }
-
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
         if (this.bucketsPath != null) {
             generator.writeKey("buckets_path");
             this.bucketsPath.serialize(generator, mapper);
-
         }
-        if (this.format != null) {
-            generator.writeKey("format");
-            generator.write(this.format);
-
-        }
-        if (this.gapPolicy != null) {
-            generator.writeKey("gap_policy");
-            this.gapPolicy.serialize(generator, mapper);
-        }
-
     }
+
+    // ---------------------------------------------------------------------------------------------
 
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregationBase.AbstractBuilder<
         BuilderT> {
         @Nullable
         private BucketsPath bucketsPath;
 
-        @Nullable
-        private String format;
+        protected AbstractBuilder() {}
 
-        @Nullable
-        private GapPolicy gapPolicy;
+        protected AbstractBuilder(BucketPathAggregation o) {
+            super(o);
+            this.bucketsPath = o.bucketsPath;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            super(o);
+            this.bucketsPath = o.bucketsPath;
+        }
 
         /**
          * API name: {@code buckets_path}
          */
+        @Nonnull
         public final BuilderT bucketsPath(@Nullable BucketsPath value) {
             this.bucketsPath = value;
             return self();
@@ -129,37 +108,36 @@ public abstract class PipelineAggregationBase extends AggregationBase {
         /**
          * API name: {@code buckets_path}
          */
+        @Nonnull
         public final BuilderT bucketsPath(Function<BucketsPath.Builder, ObjectBuilder<BucketsPath>> fn) {
-            return this.bucketsPath(fn.apply(new BucketsPath.Builder()).build());
+            return bucketsPath(fn.apply(new BucketsPath.Builder()).build());
         }
-
-        /**
-         * API name: {@code format}
-         */
-        public final BuilderT format(@Nullable String value) {
-            this.format = value;
-            return self();
-        }
-
-        /**
-         * API name: {@code gap_policy}
-         */
-        public final BuilderT gapPolicy(@Nullable GapPolicy value) {
-            this.gapPolicy = value;
-            return self();
-        }
-
     }
 
     // ---------------------------------------------------------------------------------------------
-    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPipelineAggregationBaseDeserializer(
+
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBucketPathAggregationDeserializer(
         ObjectDeserializer<BuilderT> op
     ) {
         setupAggregationBaseDeserializer(op);
         op.add(AbstractBuilder::bucketsPath, BucketsPath._DESERIALIZER, "buckets_path");
-        op.add(AbstractBuilder::format, JsonpDeserializer.stringDeserializer(), "format");
-        op.add(AbstractBuilder::gapPolicy, GapPolicy._DESERIALIZER, "gap_policy");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.bucketsPath);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        BucketPathAggregation other = (BucketPathAggregation) o;
+        return Objects.equals(this.bucketsPath, other.bucketsPath);
+    }
 }

@@ -30,30 +30,30 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.aggregations.SamplerAggregationExecutionHint
+
 @JsonpDeserializable
-public enum NormalizeMethod implements JsonEnum {
-    Rescale_0_1("rescale_0_1"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum SamplerAggregationExecutionHint implements JsonEnum {
+    BytesHash("bytes_hash"),
 
-    Rescale_0_100("rescale_0_100"),
+    GlobalOrdinals("global_ordinals"),
 
-    PercentOfSum("percent_of_sum"),
-
-    Mean("mean"),
-
-    ZScore("z-score"),
-
-    Softmax("softmax"),
-
-    ;
+    Map("map");
 
     private final String jsonValue;
 
-    NormalizeMethod(String jsonValue) {
+    SamplerAggregationExecutionHint(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -61,5 +61,7 @@ public enum NormalizeMethod implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<NormalizeMethod> _DESERIALIZER = new JsonEnum.Deserializer<>(NormalizeMethod.values());
+    public static final JsonEnum.Deserializer<SamplerAggregationExecutionHint> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        SamplerAggregationExecutionHint.values()
+    );
 }

@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,30 +48,34 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.ScriptedHeuristic
 
 @JsonpDeserializable
-public class ScriptedHeuristic implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ScriptedHeuristic implements PlainJsonSerializable, ToCopyableBuilder<ScriptedHeuristic.Builder, ScriptedHeuristic> {
+
+    @Nonnull
     private final Script script;
 
     // ---------------------------------------------------------------------------------------------
 
     private ScriptedHeuristic(Builder builder) {
-
         this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
-
     }
 
-    public static ScriptedHeuristic of(Function<Builder, ObjectBuilder<ScriptedHeuristic>> fn) {
+    public static ScriptedHeuristic of(Function<ScriptedHeuristic.Builder, ObjectBuilder<ScriptedHeuristic>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code script}
      */
+    @Nonnull
     public final Script script() {
         return this.script;
     }
@@ -73,6 +83,7 @@ public class ScriptedHeuristic implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -80,24 +91,49 @@ public class ScriptedHeuristic implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("script");
         this.script.serialize(generator, mapper);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ScriptedHeuristic}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptedHeuristic> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ScriptedHeuristic> {
         private Script script;
+
+        public Builder() {}
+
+        private Builder(ScriptedHeuristic o) {
+            this.script = o.script;
+        }
+
+        private Builder(Builder o) {
+            this.script = o.script;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code script}
          */
+        @Nonnull
         public final Builder script(Script value) {
             this.script = value;
             return this;
@@ -106,16 +142,18 @@ public class ScriptedHeuristic implements PlainJsonSerializable {
         /**
          * Required - API name: {@code script}
          */
+        @Nonnull
         public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
-            return this.script(fn.apply(new Script.Builder()).build());
+            return script(fn.apply(new Script.Builder()).build());
         }
 
         /**
          * Builds a {@link ScriptedHeuristic}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ScriptedHeuristic build() {
             _checkSingleUse();
 
@@ -134,9 +172,21 @@ public class ScriptedHeuristic implements PlainJsonSerializable {
     );
 
     protected static void setupScriptedHeuristicDeserializer(ObjectDeserializer<ScriptedHeuristic.Builder> op) {
-
         op.add(Builder::script, Script._DESERIALIZER, "script");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.script.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ScriptedHeuristic other = (ScriptedHeuristic) o;
+        return this.script.equals(other.script);
+    }
 }

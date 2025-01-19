@@ -30,11 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,19 +49,27 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.PercentilesAggregation
 
 @JsonpDeserializable
-public class PercentilesAggregation extends FormatMetricAggregationBase implements AggregationVariant {
-    @Nullable
-    private final Boolean keyed;
-
-    private final List<Double> percents;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class PercentilesAggregation extends FormatMetricAggregationBase
+    implements
+        AggregationVariant,
+        ToCopyableBuilder<PercentilesAggregation.Builder, PercentilesAggregation> {
 
     @Nullable
     private final HdrMethod hdr;
+
+    @Nullable
+    private final Boolean keyed;
+
+    @Nonnull
+    private final List<Double> percents;
 
     @Nullable
     private final TDigest tdigest;
@@ -63,39 +78,22 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 
     private PercentilesAggregation(Builder builder) {
         super(builder);
-
+        this.hdr = builder.hdr;
         this.keyed = builder.keyed;
         this.percents = ApiTypeHelper.unmodifiable(builder.percents);
-        this.hdr = builder.hdr;
         this.tdigest = builder.tdigest;
-
     }
 
-    public static PercentilesAggregation of(Function<Builder, ObjectBuilder<PercentilesAggregation>> fn) {
+    public static PercentilesAggregation of(Function<PercentilesAggregation.Builder, ObjectBuilder<PercentilesAggregation>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Aggregation variant kind.
+     * {@link Aggregation} variant kind.
      */
     @Override
     public Aggregation.Kind _aggregationKind() {
         return Aggregation.Kind.Percentiles;
-    }
-
-    /**
-     * API name: {@code keyed}
-     */
-    @Nullable
-    public final Boolean keyed() {
-        return this.keyed;
-    }
-
-    /**
-     * API name: {@code percents}
-     */
-    public final List<Double> percents() {
-        return this.percents;
     }
 
     /**
@@ -107,6 +105,29 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
     }
 
     /**
+     * By default, the aggregation associates a unique string key with each bucket and returns the ranges as a hash rather than an array.
+     * Set to <code>false</code> to disable this behavior.
+     * <p>
+     * API name: {@code keyed}
+     * </p>
+     */
+    @Nullable
+    public final Boolean keyed() {
+        return this.keyed;
+    }
+
+    /**
+     * The percentiles to calculate.
+     * <p>
+     * API name: {@code percents}
+     * </p>
+     */
+    @Nonnull
+    public final List<Double> percents() {
+        return this.percents;
+    }
+
+    /**
      * API name: {@code tdigest}
      */
     @Nullable
@@ -115,88 +136,94 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
+        if (this.hdr != null) {
+            generator.writeKey("hdr");
+            this.hdr.serialize(generator, mapper);
+        }
+
         if (this.keyed != null) {
             generator.writeKey("keyed");
             generator.write(this.keyed);
-
         }
+
         if (ApiTypeHelper.isDefined(this.percents)) {
             generator.writeKey("percents");
             generator.writeStartArray();
             for (Double item0 : this.percents) {
                 generator.write(item0);
-
             }
             generator.writeEnd();
-
         }
-        if (this.hdr != null) {
-            generator.writeKey("hdr");
-            this.hdr.serialize(generator, mapper);
 
-        }
         if (this.tdigest != null) {
             generator.writeKey("tdigest");
             this.tdigest.serialize(generator, mapper);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PercentilesAggregation}.
      */
-
     public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
         implements
-            ObjectBuilder<PercentilesAggregation> {
-        @Nullable
-        private Boolean keyed;
-
-        @Nullable
-        private List<Double> percents;
-
+            CopyableBuilder<Builder, PercentilesAggregation> {
         @Nullable
         private HdrMethod hdr;
-
+        @Nullable
+        private Boolean keyed;
+        @Nullable
+        private List<Double> percents;
         @Nullable
         private TDigest tdigest;
 
-        /**
-         * API name: {@code keyed}
-         */
-        public final Builder keyed(@Nullable Boolean value) {
-            this.keyed = value;
-            return this;
+        public Builder() {}
+
+        private Builder(PercentilesAggregation o) {
+            super(o);
+            this.hdr = o.hdr;
+            this.keyed = o.keyed;
+            this.percents = _listCopy(o.percents);
+            this.tdigest = o.tdigest;
         }
 
-        /**
-         * API name: {@code percents}
-         * <p>
-         * Adds all elements of <code>list</code> to <code>percents</code>.
-         */
-        public final Builder percents(List<Double> list) {
-            this.percents = _listAddAll(this.percents, list);
-            return this;
+        private Builder(Builder o) {
+            super(o);
+            this.hdr = o.hdr;
+            this.keyed = o.keyed;
+            this.percents = _listCopy(o.percents);
+            this.tdigest = o.tdigest;
         }
 
-        /**
-         * API name: {@code percents}
-         * <p>
-         * Adds one or more values to <code>percents</code>.
-         */
-        public final Builder percents(Double value, Double... values) {
-            this.percents = _listAdd(this.percents, value, values);
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
             return this;
         }
 
         /**
          * API name: {@code hdr}
          */
+        @Nonnull
         public final Builder hdr(@Nullable HdrMethod value) {
             this.hdr = value;
             return this;
@@ -205,13 +232,60 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
         /**
          * API name: {@code hdr}
          */
+        @Nonnull
         public final Builder hdr(Function<HdrMethod.Builder, ObjectBuilder<HdrMethod>> fn) {
-            return this.hdr(fn.apply(new HdrMethod.Builder()).build());
+            return hdr(fn.apply(new HdrMethod.Builder()).build());
+        }
+
+        /**
+         * By default, the aggregation associates a unique string key with each bucket and returns the ranges as a hash rather than an
+         * array. Set to <code>false</code> to disable this behavior.
+         * <p>
+         * API name: {@code keyed}
+         * </p>
+         */
+        @Nonnull
+        public final Builder keyed(@Nullable Boolean value) {
+            this.keyed = value;
+            return this;
+        }
+
+        /**
+         * The percentiles to calculate.
+         * <p>
+         * API name: {@code percents}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>percents</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder percents(List<Double> list) {
+            this.percents = _listAddAll(this.percents, list);
+            return this;
+        }
+
+        /**
+         * The percentiles to calculate.
+         * <p>
+         * API name: {@code percents}
+         * </p>
+         *
+         * <p>
+         * Adds one or more values to <code>percents</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder percents(Double value, Double... values) {
+            this.percents = _listAdd(this.percents, value, values);
+            return this;
         }
 
         /**
          * API name: {@code tdigest}
          */
+        @Nonnull
         public final Builder tdigest(@Nullable TDigest value) {
             this.tdigest = value;
             return this;
@@ -220,21 +294,18 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
         /**
          * API name: {@code tdigest}
          */
+        @Nonnull
         public final Builder tdigest(Function<TDigest.Builder, ObjectBuilder<TDigest>> fn) {
-            return this.tdigest(fn.apply(new TDigest.Builder()).build());
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
+            return tdigest(fn.apply(new TDigest.Builder()).build());
         }
 
         /**
          * Builds a {@link PercentilesAggregation}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PercentilesAggregation build() {
             _checkSingleUse();
 
@@ -254,11 +325,33 @@ public class PercentilesAggregation extends FormatMetricAggregationBase implemen
 
     protected static void setupPercentilesAggregationDeserializer(ObjectDeserializer<PercentilesAggregation.Builder> op) {
         setupFormatMetricAggregationBaseDeserializer(op);
+        op.add(Builder::hdr, HdrMethod._DESERIALIZER, "hdr");
         op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
         op.add(Builder::percents, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()), "percents");
-        op.add(Builder::hdr, HdrMethod._DESERIALIZER, "hdr");
         op.add(Builder::tdigest, TDigest._DESERIALIZER, "tdigest");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.hdr);
+        result = 31 * result + Objects.hashCode(this.keyed);
+        result = 31 * result + Objects.hashCode(this.percents);
+        result = 31 * result + Objects.hashCode(this.tdigest);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        PercentilesAggregation other = (PercentilesAggregation) o;
+        return Objects.equals(this.hdr, other.hdr)
+            && Objects.equals(this.keyed, other.keyed)
+            && Objects.equals(this.percents, other.percents)
+            && Objects.equals(this.tdigest, other.tdigest);
+    }
 }

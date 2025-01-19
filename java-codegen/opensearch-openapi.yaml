@@ -37261,11 +37261,14 @@ components:
         forms depending on its type. Refer to each aggregation's documentation to know what buckets
         path forms they accept.
       oneOf:
-        - type: string
-        - type: array
+        - title: single
+          type: string
+        - title: array
+          type: array
           items:
             type: string
-        - type: object
+        - title: dict
+          type: object
           additionalProperties:
             type: string
     _common.aggregations___BucketsQueryContainer:
@@ -39162,12 +39165,10 @@ components:
               type: boolean
             values:
               description: An array of values for which to calculate the percentile ranks.
-              oneOf:
-                - type: array
-                  items:
-                    type: number
-                - type: 'null'
-                - type: string
+              type: array
+              items:
+                type: number
+                format: double
             hdr:
               $ref: '#/components/schemas/_common.aggregations___HdrMethod'
             tdigest:
@@ -39202,6 +39203,7 @@ components:
               type: array
               items:
                 type: number
+                format: double
             hdr:
               $ref: '#/components/schemas/_common.aggregations___HdrMethod'
             tdigest:
@@ -39220,6 +39222,7 @@ components:
               type: array
               items:
                 type: number
+                format: double
     _common.aggregations___PipelineAggregationBase:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___BucketPathAggregation'
@@ -39247,7 +39250,8 @@ components:
               description: |-
                 The value to apply to documents that do not have a value.
                 By default, documents without a value are ignored.
-              type: number
+              type: integer
+              format: int32
             ranges:
               description: An array of ranges used to bucket documents.
               type: array
@@ -39289,7 +39293,8 @@ components:
               $ref: '#/components/schemas/_common.aggregations___TermsInclude'
             max_doc_count:
               description: The maximum number of documents a term should appear in.
-              type: number
+              type: integer
+              format: int64
             missing:
               $ref: '#/components/schemas/_common___FieldValue'
             precision:
@@ -39297,6 +39302,7 @@ components:
                 The precision of the internal CuckooFilters.
                 Smaller precision leads to better approximation, but higher memory usage.
               type: number
+              format: double
             value_type:
               type: string
     _common.aggregations___RateAggregate:
@@ -39331,7 +39337,8 @@ components:
           $ref: '#/components/schemas/_common___Field'
         num_top_feature_importance_values:
           description: Specifies the maximum number of feature importance values per document.
-          type: number
+          type: integer
+          format: int32
     _common.aggregations___ReverseNestedAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___SingleBucketAggregateBase'
@@ -39354,7 +39361,8 @@ components:
           properties:
             shard_size:
               description: Limits how many top-scoring documents are collected in the sample processed on each shard.
-              type: number
+              type: integer
+              format: int32
     _common.aggregations___SamplerAggregationExecutionHint:
       type: string
       enum:
@@ -39393,8 +39401,7 @@ components:
                 A global object with script parameters for `init`, `map` and `combine` scripts.
                 It is shared between the scripts.
               type: object
-              additionalProperties:
-                type: object
+              additionalProperties: true
             reduce_script:
               $ref: '#/components/schemas/_common___Script'
     _common.aggregations___SerialDifferencingAggregation:
@@ -39406,7 +39413,8 @@ components:
               description: |-
                 The historical bucket to subtract from the current value.
                 Must be a positive, non-zero integer.
-              type: number
+              type: integer
+              format: int32
     _common.aggregations___SignificantLongTermsAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___SignificantTermsAggregateBaseSignificantLongTermsBucket'
@@ -39486,7 +39494,7 @@ components:
             min_doc_count:
               description: Only return terms that are found in more than `min_doc_count` hits.
               type: integer
-              format: int32
+              format: int64
             mutual_information:
               $ref: '#/components/schemas/_common.aggregations___MutualInformationHeuristic'
             percentage:
@@ -39498,15 +39506,17 @@ components:
                 Regulates the certainty a shard has if the term should actually be added to the candidate list or not with respect to the `min_doc_count`.
                 Terms will only be considered if their local shard frequency within the set is higher than the `shard_min_doc_count`.
               type: integer
-              format: int32
+              format: int64
             shard_size:
               description: |-
                 Can be used to control the volumes of candidate terms produced by each shard.
                 By default, `shard_size` will be automatically estimated based on the number of shards and the `size` parameter.
-              type: number
+              type: integer
+              format: int32
             size:
               description: The number of buckets returned out of the overall terms list.
-              type: number
+              type: integer
+              format: int32
     _common.aggregations___SignificantTermsBucketBase:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketBase'
@@ -39546,7 +39556,7 @@ components:
             min_doc_count:
               description: Only return values that are found in more than `min_doc_count` hits.
               type: integer
-              format: int32
+              format: int64
             mutual_information:
               $ref: '#/components/schemas/_common.aggregations___MutualInformationHeuristic'
             percentage:
@@ -39558,15 +39568,17 @@ components:
                 Regulates the certainty a shard has if the values should actually be added to the candidate list or not with respect to the `min_doc_count`.
                 Values will only be considered if their local shard frequency within the set is higher than the `shard_min_doc_count`.
               type: integer
-              format: int32
+              format: int64
             shard_size:
               description: |-
                 The number of candidate terms produced by each shard.
                 By default, `shard_size` will be automatically estimated based on the number of shards and the `size` parameter.
-              type: number
+              type: integer
+              format: int32
             size:
               description: The number of buckets returned out of the overall terms list.
-              type: number
+              type: integer
+              format: int32
             source_fields:
               $ref: '#/components/schemas/_common___Fields'
     _common.aggregations___SimpleMovingAverageAggregation:
@@ -39942,17 +39954,22 @@ components:
               type: number
     _common.aggregations___TermsExclude:
       oneOf:
-        - type: string
-        - type: array
+        - title: regexp
+          type: string
+        - title: terms
+          type: array
           items:
             type: string
     _common.aggregations___TermsInclude:
       oneOf:
-        - type: string
-        - type: array
+        - title: regexp
+          type: string
+        - title: terms
+          type: array
           items:
             type: string
-        - $ref: '#/components/schemas/_common.aggregations___TermsPartition'
+        - title: partition
+          $ref: '#/components/schemas/_common.aggregations___TermsPartition'
     _common.aggregations___TermsPartition:
       type: object
       properties:

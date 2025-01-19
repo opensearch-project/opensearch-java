@@ -30,22 +30,36 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.SerialDifferencingAggregation
 
 @JsonpDeserializable
-public class SerialDifferencingAggregation extends PipelineAggregationBase implements AggregationVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SerialDifferencingAggregation extends PipelineAggregationBase
+    implements
+        AggregationVariant,
+        ToCopyableBuilder<SerialDifferencingAggregation.Builder, SerialDifferencingAggregation> {
+
     @Nullable
     private final Integer lag;
 
@@ -53,17 +67,17 @@ public class SerialDifferencingAggregation extends PipelineAggregationBase imple
 
     private SerialDifferencingAggregation(Builder builder) {
         super(builder);
-
         this.lag = builder.lag;
-
     }
 
-    public static SerialDifferencingAggregation of(Function<Builder, ObjectBuilder<SerialDifferencingAggregation>> fn) {
+    public static SerialDifferencingAggregation of(
+        Function<SerialDifferencingAggregation.Builder, ObjectBuilder<SerialDifferencingAggregation>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Aggregation variant kind.
+     * {@link Aggregation} variant kind.
      */
     @Override
     public Aggregation.Kind _aggregationKind() {
@@ -71,7 +85,10 @@ public class SerialDifferencingAggregation extends PipelineAggregationBase imple
     }
 
     /**
+     * The historical bucket to subtract from the current value. Must be a positive, non-zero integer.
+     * <p>
      * API name: {@code lag}
+     * </p>
      */
     @Nullable
     public final Integer lag() {
@@ -79,47 +96,78 @@ public class SerialDifferencingAggregation extends PipelineAggregationBase imple
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
         if (this.lag != null) {
             generator.writeKey("lag");
             generator.write(this.lag);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SerialDifferencingAggregation}.
      */
-
     public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
         implements
-            ObjectBuilder<SerialDifferencingAggregation> {
+            CopyableBuilder<Builder, SerialDifferencingAggregation> {
         @Nullable
         private Integer lag;
 
-        /**
-         * API name: {@code lag}
-         */
-        public final Builder lag(@Nullable Integer value) {
-            this.lag = value;
-            return this;
+        public Builder() {}
+
+        private Builder(SerialDifferencingAggregation o) {
+            super(o);
+            this.lag = o.lag;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.lag = o.lag;
         }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
+            return this;
+        }
+
+        /**
+         * The historical bucket to subtract from the current value. Must be a positive, non-zero integer.
+         * <p>
+         * API name: {@code lag}
+         * </p>
+         */
+        @Nonnull
+        public final Builder lag(@Nullable Integer value) {
+            this.lag = value;
             return this;
         }
 
         /**
          * Builds a {@link SerialDifferencingAggregation}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SerialDifferencingAggregation build() {
             _checkSingleUse();
 
@@ -140,7 +188,23 @@ public class SerialDifferencingAggregation extends PipelineAggregationBase imple
     protected static void setupSerialDifferencingAggregationDeserializer(ObjectDeserializer<SerialDifferencingAggregation.Builder> op) {
         setupPipelineAggregationBaseDeserializer(op);
         op.add(Builder::lag, JsonpDeserializer.integerDeserializer(), "lag");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.lag);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SerialDifferencingAggregation other = (SerialDifferencingAggregation) o;
+        return Objects.equals(this.lag, other.lag);
+    }
 }

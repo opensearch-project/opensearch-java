@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,29 +47,37 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch._types.EmptyObject;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.SimpleMovingAverageAggregation
 
 @JsonpDeserializable
-public class SimpleMovingAverageAggregation extends MovingAverageAggregationBase implements MovingAverageAggregationVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SimpleMovingAverageAggregation extends MovingAverageAggregationBase
+    implements
+        MovingAverageAggregationVariant,
+        ToCopyableBuilder<SimpleMovingAverageAggregation.Builder, SimpleMovingAverageAggregation> {
+
+    @Nonnull
     private final EmptyObject settings;
 
     // ---------------------------------------------------------------------------------------------
 
     private SimpleMovingAverageAggregation(Builder builder) {
         super(builder);
-
         this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
-
     }
 
-    public static SimpleMovingAverageAggregation of(Function<Builder, ObjectBuilder<SimpleMovingAverageAggregation>> fn) {
+    public static SimpleMovingAverageAggregation of(
+        Function<SimpleMovingAverageAggregation.Builder, ObjectBuilder<SimpleMovingAverageAggregation>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * MovingAverageAggregation variant kind.
+     * {@link MovingAverageAggregation} variant kind.
      */
     @Override
     public MovingAverageAggregation.Kind _movingAverageAggregationKind() {
@@ -73,33 +87,67 @@ public class SimpleMovingAverageAggregation extends MovingAverageAggregationBase
     /**
      * Required - API name: {@code settings}
      */
+    @Nonnull
     public final EmptyObject settings() {
         return this.settings;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.write("model", "simple");
         super.serializeInternal(generator, mapper);
         generator.writeKey("settings");
         this.settings.serialize(generator, mapper);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SimpleMovingAverageAggregation}.
      */
-
     public static class Builder extends MovingAverageAggregationBase.AbstractBuilder<Builder>
         implements
-            ObjectBuilder<SimpleMovingAverageAggregation> {
+            CopyableBuilder<Builder, SimpleMovingAverageAggregation> {
         private EmptyObject settings;
+
+        public Builder() {}
+
+        private Builder(SimpleMovingAverageAggregation o) {
+            super(o);
+            this.settings = o.settings;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.settings = o.settings;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code settings}
          */
+        @Nonnull
         public final Builder settings(EmptyObject value) {
             this.settings = value;
             return this;
@@ -108,21 +156,18 @@ public class SimpleMovingAverageAggregation extends MovingAverageAggregationBase
         /**
          * Required - API name: {@code settings}
          */
+        @Nonnull
         public final Builder settings(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
-            return this.settings(fn.apply(new EmptyObject.Builder()).build());
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
+            return settings(fn.apply(new EmptyObject.Builder()).build());
         }
 
         /**
          * Builds a {@link SimpleMovingAverageAggregation}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SimpleMovingAverageAggregation build() {
             _checkSingleUse();
 
@@ -141,10 +186,27 @@ public class SimpleMovingAverageAggregation extends MovingAverageAggregationBase
     );
 
     protected static void setupSimpleMovingAverageAggregationDeserializer(ObjectDeserializer<SimpleMovingAverageAggregation.Builder> op) {
-        MovingAverageAggregationBase.setupMovingAverageAggregationBaseDeserializer(op);
+        setupMovingAverageAggregationBaseDeserializer(op);
         op.add(Builder::settings, EmptyObject._DESERIALIZER, "settings");
 
         op.ignore("model");
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + this.settings.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SimpleMovingAverageAggregation other = (SimpleMovingAverageAggregation) o;
+        return this.settings.equals(other.settings);
+    }
 }
