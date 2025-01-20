@@ -38,6 +38,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<ModelProfile.Builder, ModelProfile> {
 
     @Nullable
+    private final ModelStats deploy;
+
+    @Nullable
     private final Long memorySizeEstimationCpu;
 
     @Nullable
@@ -47,13 +50,28 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
     private final String modelState;
 
     @Nullable
+    private final ModelStats predict;
+
+    @Nullable
     private final PredictRequestStats predictRequestStats;
 
     @Nullable
     private final String predictor;
 
+    @Nullable
+    private final ModelStats register;
+
     @Nonnull
     private final List<List<String>> targetWorkerNodes;
+
+    @Nullable
+    private final ModelStats train;
+
+    @Nullable
+    private final ModelStats trainPredict;
+
+    @Nullable
+    private final ModelStats undeploy;
 
     @Nonnull
     private final List<List<String>> workerNodes;
@@ -61,17 +79,31 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
     // ---------------------------------------------------------------------------------------------
 
     private ModelProfile(Builder builder) {
+        this.deploy = builder.deploy;
         this.memorySizeEstimationCpu = builder.memorySizeEstimationCpu;
         this.memorySizeEstimationGpu = builder.memorySizeEstimationGpu;
         this.modelState = builder.modelState;
+        this.predict = builder.predict;
         this.predictRequestStats = builder.predictRequestStats;
         this.predictor = builder.predictor;
+        this.register = builder.register;
         this.targetWorkerNodes = ApiTypeHelper.unmodifiable(builder.targetWorkerNodes);
+        this.train = builder.train;
+        this.trainPredict = builder.trainPredict;
+        this.undeploy = builder.undeploy;
         this.workerNodes = ApiTypeHelper.unmodifiable(builder.workerNodes);
     }
 
     public static ModelProfile of(Function<ModelProfile.Builder, ObjectBuilder<ModelProfile>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * API name: {@code deploy}
+     */
+    @Nullable
+    public final ModelStats deploy() {
+        return this.deploy;
     }
 
     /**
@@ -108,6 +140,14 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
     }
 
     /**
+     * API name: {@code predict}
+     */
+    @Nullable
+    public final ModelStats predict() {
+        return this.predict;
+    }
+
+    /**
      * API name: {@code predict_request_stats}
      */
     @Nullable
@@ -127,11 +167,43 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
     }
 
     /**
+     * API name: {@code register}
+     */
+    @Nullable
+    public final ModelStats register() {
+        return this.register;
+    }
+
+    /**
      * API name: {@code target_worker_nodes}
      */
     @Nonnull
     public final List<List<String>> targetWorkerNodes() {
         return this.targetWorkerNodes;
+    }
+
+    /**
+     * API name: {@code train}
+     */
+    @Nullable
+    public final ModelStats train() {
+        return this.train;
+    }
+
+    /**
+     * API name: {@code train_predict}
+     */
+    @Nullable
+    public final ModelStats trainPredict() {
+        return this.trainPredict;
+    }
+
+    /**
+     * API name: {@code undeploy}
+     */
+    @Nullable
+    public final ModelStats undeploy() {
+        return this.undeploy;
     }
 
     /**
@@ -153,6 +225,11 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.deploy != null) {
+            generator.writeKey("deploy");
+            this.deploy.serialize(generator, mapper);
+        }
+
         if (this.memorySizeEstimationCpu != null) {
             generator.writeKey("memory_size_estimation_cpu");
             generator.write(this.memorySizeEstimationCpu);
@@ -168,6 +245,11 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
             generator.write(this.modelState);
         }
 
+        if (this.predict != null) {
+            generator.writeKey("predict");
+            this.predict.serialize(generator, mapper);
+        }
+
         if (this.predictRequestStats != null) {
             generator.writeKey("predict_request_stats");
             this.predictRequestStats.serialize(generator, mapper);
@@ -176,6 +258,11 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         if (this.predictor != null) {
             generator.writeKey("predictor");
             generator.write(this.predictor);
+        }
+
+        if (this.register != null) {
+            generator.writeKey("register");
+            this.register.serialize(generator, mapper);
         }
 
         if (ApiTypeHelper.isDefined(this.targetWorkerNodes)) {
@@ -189,6 +276,21 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
                 generator.writeEnd();
             }
             generator.writeEnd();
+        }
+
+        if (this.train != null) {
+            generator.writeKey("train");
+            this.train.serialize(generator, mapper);
+        }
+
+        if (this.trainPredict != null) {
+            generator.writeKey("train_predict");
+            this.trainPredict.serialize(generator, mapper);
+        }
+
+        if (this.undeploy != null) {
+            generator.writeKey("undeploy");
+            this.undeploy.serialize(generator, mapper);
         }
 
         if (ApiTypeHelper.isDefined(this.workerNodes)) {
@@ -223,39 +325,63 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ModelProfile> {
         @Nullable
+        private ModelStats deploy;
+        @Nullable
         private Long memorySizeEstimationCpu;
         @Nullable
         private Long memorySizeEstimationGpu;
         @Nullable
         private String modelState;
         @Nullable
+        private ModelStats predict;
+        @Nullable
         private PredictRequestStats predictRequestStats;
         @Nullable
         private String predictor;
         @Nullable
+        private ModelStats register;
+        @Nullable
         private List<List<String>> targetWorkerNodes;
+        @Nullable
+        private ModelStats train;
+        @Nullable
+        private ModelStats trainPredict;
+        @Nullable
+        private ModelStats undeploy;
         @Nullable
         private List<List<String>> workerNodes;
 
         public Builder() {}
 
         private Builder(ModelProfile o) {
+            this.deploy = o.deploy;
             this.memorySizeEstimationCpu = o.memorySizeEstimationCpu;
             this.memorySizeEstimationGpu = o.memorySizeEstimationGpu;
             this.modelState = o.modelState;
+            this.predict = o.predict;
             this.predictRequestStats = o.predictRequestStats;
             this.predictor = o.predictor;
+            this.register = o.register;
             this.targetWorkerNodes = _listCopy(o.targetWorkerNodes);
+            this.train = o.train;
+            this.trainPredict = o.trainPredict;
+            this.undeploy = o.undeploy;
             this.workerNodes = _listCopy(o.workerNodes);
         }
 
         private Builder(Builder o) {
+            this.deploy = o.deploy;
             this.memorySizeEstimationCpu = o.memorySizeEstimationCpu;
             this.memorySizeEstimationGpu = o.memorySizeEstimationGpu;
             this.modelState = o.modelState;
+            this.predict = o.predict;
             this.predictRequestStats = o.predictRequestStats;
             this.predictor = o.predictor;
+            this.register = o.register;
             this.targetWorkerNodes = _listCopy(o.targetWorkerNodes);
+            this.train = o.train;
+            this.trainPredict = o.trainPredict;
+            this.undeploy = o.undeploy;
             this.workerNodes = _listCopy(o.workerNodes);
         }
 
@@ -263,6 +389,23 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        /**
+         * API name: {@code deploy}
+         */
+        @Nonnull
+        public final Builder deploy(@Nullable ModelStats value) {
+            this.deploy = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code deploy}
+         */
+        @Nonnull
+        public final Builder deploy(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
+            return deploy(fn.apply(new ModelStats.Builder()).build());
         }
 
         /**
@@ -302,6 +445,23 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         }
 
         /**
+         * API name: {@code predict}
+         */
+        @Nonnull
+        public final Builder predict(@Nullable ModelStats value) {
+            this.predict = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code predict}
+         */
+        @Nonnull
+        public final Builder predict(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
+            return predict(fn.apply(new ModelStats.Builder()).build());
+        }
+
+        /**
          * API name: {@code predict_request_stats}
          */
         @Nonnull
@@ -331,6 +491,23 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         }
 
         /**
+         * API name: {@code register}
+         */
+        @Nonnull
+        public final Builder register(@Nullable ModelStats value) {
+            this.register = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code register}
+         */
+        @Nonnull
+        public final Builder register(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
+            return register(fn.apply(new ModelStats.Builder()).build());
+        }
+
+        /**
          * API name: {@code target_worker_nodes}
          *
          * <p>
@@ -354,6 +531,57 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         public final Builder targetWorkerNodes(List<String> value, List<String>... values) {
             this.targetWorkerNodes = _listAdd(this.targetWorkerNodes, value, values);
             return this;
+        }
+
+        /**
+         * API name: {@code train}
+         */
+        @Nonnull
+        public final Builder train(@Nullable ModelStats value) {
+            this.train = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code train}
+         */
+        @Nonnull
+        public final Builder train(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
+            return train(fn.apply(new ModelStats.Builder()).build());
+        }
+
+        /**
+         * API name: {@code train_predict}
+         */
+        @Nonnull
+        public final Builder trainPredict(@Nullable ModelStats value) {
+            this.trainPredict = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code train_predict}
+         */
+        @Nonnull
+        public final Builder trainPredict(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
+            return trainPredict(fn.apply(new ModelStats.Builder()).build());
+        }
+
+        /**
+         * API name: {@code undeploy}
+         */
+        @Nonnull
+        public final Builder undeploy(@Nullable ModelStats value) {
+            this.undeploy = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code undeploy}
+         */
+        @Nonnull
+        public final Builder undeploy(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
+            return undeploy(fn.apply(new ModelStats.Builder()).build());
         }
 
         /**
@@ -407,16 +635,22 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
     );
 
     protected static void setupModelProfileDeserializer(ObjectDeserializer<ModelProfile.Builder> op) {
+        op.add(Builder::deploy, ModelStats._DESERIALIZER, "deploy");
         op.add(Builder::memorySizeEstimationCpu, JsonpDeserializer.longDeserializer(), "memory_size_estimation_cpu");
         op.add(Builder::memorySizeEstimationGpu, JsonpDeserializer.longDeserializer(), "memory_size_estimation_gpu");
         op.add(Builder::modelState, JsonpDeserializer.stringDeserializer(), "model_state");
+        op.add(Builder::predict, ModelStats._DESERIALIZER, "predict");
         op.add(Builder::predictRequestStats, PredictRequestStats._DESERIALIZER, "predict_request_stats");
         op.add(Builder::predictor, JsonpDeserializer.stringDeserializer(), "predictor");
+        op.add(Builder::register, ModelStats._DESERIALIZER, "register");
         op.add(
             Builder::targetWorkerNodes,
             JsonpDeserializer.arrayDeserializer(JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())),
             "target_worker_nodes"
         );
+        op.add(Builder::train, ModelStats._DESERIALIZER, "train");
+        op.add(Builder::trainPredict, ModelStats._DESERIALIZER, "train_predict");
+        op.add(Builder::undeploy, ModelStats._DESERIALIZER, "undeploy");
         op.add(
             Builder::workerNodes,
             JsonpDeserializer.arrayDeserializer(JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())),
@@ -427,12 +661,18 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.deploy);
         result = 31 * result + Objects.hashCode(this.memorySizeEstimationCpu);
         result = 31 * result + Objects.hashCode(this.memorySizeEstimationGpu);
         result = 31 * result + Objects.hashCode(this.modelState);
+        result = 31 * result + Objects.hashCode(this.predict);
         result = 31 * result + Objects.hashCode(this.predictRequestStats);
         result = 31 * result + Objects.hashCode(this.predictor);
+        result = 31 * result + Objects.hashCode(this.register);
         result = 31 * result + Objects.hashCode(this.targetWorkerNodes);
+        result = 31 * result + Objects.hashCode(this.train);
+        result = 31 * result + Objects.hashCode(this.trainPredict);
+        result = 31 * result + Objects.hashCode(this.undeploy);
         result = 31 * result + Objects.hashCode(this.workerNodes);
         return result;
     }
@@ -442,12 +682,18 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         ModelProfile other = (ModelProfile) o;
-        return Objects.equals(this.memorySizeEstimationCpu, other.memorySizeEstimationCpu)
+        return Objects.equals(this.deploy, other.deploy)
+            && Objects.equals(this.memorySizeEstimationCpu, other.memorySizeEstimationCpu)
             && Objects.equals(this.memorySizeEstimationGpu, other.memorySizeEstimationGpu)
             && Objects.equals(this.modelState, other.modelState)
+            && Objects.equals(this.predict, other.predict)
             && Objects.equals(this.predictRequestStats, other.predictRequestStats)
             && Objects.equals(this.predictor, other.predictor)
+            && Objects.equals(this.register, other.register)
             && Objects.equals(this.targetWorkerNodes, other.targetWorkerNodes)
+            && Objects.equals(this.train, other.train)
+            && Objects.equals(this.trainPredict, other.trainPredict)
+            && Objects.equals(this.undeploy, other.undeploy)
             && Objects.equals(this.workerNodes, other.workerNodes);
     }
 }
