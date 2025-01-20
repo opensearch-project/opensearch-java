@@ -210,11 +210,7 @@ public final class CountRequest extends RequestBase
     }
 
     /**
-     * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
-     * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>.
-     * <p>
      * API name: {@code expand_wildcards}
-     * </p>
      */
     @Nonnull
     public final List<ExpandWildcard> expandWildcards() {
@@ -516,11 +512,7 @@ public final class CountRequest extends RequestBase
         }
 
         /**
-         * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
-         * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>.
-         * <p>
          * API name: {@code expand_wildcards}
-         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
@@ -533,11 +525,7 @@ public final class CountRequest extends RequestBase
         }
 
         /**
-         * Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard
-         * expressions match hidden data streams. Supports comma-separated values, such as <code>open,hidden</code>.
-         * <p>
          * API name: {@code expand_wildcards}
-         * </p>
          *
          * <p>
          * Adds one or more values to <code>expandWildcards</code>.

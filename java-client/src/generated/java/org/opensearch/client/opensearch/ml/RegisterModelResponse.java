@@ -13,9 +13,11 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -37,6 +39,9 @@ public class RegisterModelResponse
         PlainJsonSerializable,
         ToCopyableBuilder<RegisterModelResponse.Builder, RegisterModelResponse> {
 
+    @Nullable
+    private final String modelId;
+
     @Nonnull
     private final String status;
 
@@ -46,12 +51,21 @@ public class RegisterModelResponse
     // ---------------------------------------------------------------------------------------------
 
     private RegisterModelResponse(Builder builder) {
+        this.modelId = builder.modelId;
         this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
         this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
     }
 
     public static RegisterModelResponse of(Function<RegisterModelResponse.Builder, ObjectBuilder<RegisterModelResponse>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * API name: {@code model_id}
+     */
+    @Nullable
+    public final String modelId() {
+        return this.modelId;
     }
 
     /**
@@ -81,6 +95,11 @@ public class RegisterModelResponse
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.modelId != null) {
+            generator.writeKey("model_id");
+            generator.write(this.modelId);
+        }
+
         generator.writeKey("status");
         generator.write(this.status);
 
@@ -105,17 +124,21 @@ public class RegisterModelResponse
      * Builder for {@link RegisterModelResponse}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RegisterModelResponse> {
+        @Nullable
+        private String modelId;
         private String status;
         private String taskId;
 
         public Builder() {}
 
         private Builder(RegisterModelResponse o) {
+            this.modelId = o.modelId;
             this.status = o.status;
             this.taskId = o.taskId;
         }
 
         private Builder(Builder o) {
+            this.modelId = o.modelId;
             this.status = o.status;
             this.taskId = o.taskId;
         }
@@ -124,6 +147,15 @@ public class RegisterModelResponse
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        /**
+         * API name: {@code model_id}
+         */
+        @Nonnull
+        public final Builder modelId(@Nullable String value) {
+            this.modelId = value;
+            return this;
         }
 
         /**
@@ -169,6 +201,7 @@ public class RegisterModelResponse
     );
 
     protected static void setupRegisterModelResponseDeserializer(ObjectDeserializer<RegisterModelResponse.Builder> op) {
+        op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
         op.add(Builder::taskId, JsonpDeserializer.stringDeserializer(), "task_id");
     }
@@ -176,6 +209,7 @@ public class RegisterModelResponse
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.modelId);
         result = 31 * result + this.status.hashCode();
         result = 31 * result + this.taskId.hashCode();
         return result;
@@ -186,6 +220,6 @@ public class RegisterModelResponse
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         RegisterModelResponse other = (RegisterModelResponse) o;
-        return this.status.equals(other.status) && this.taskId.equals(other.taskId);
+        return Objects.equals(this.modelId, other.modelId) && this.status.equals(other.status) && this.taskId.equals(other.taskId);
     }
 }
