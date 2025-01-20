@@ -65,6 +65,20 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
     }
 
     @Nonnull
+    public Optional<String> getResolvedDescription() {
+        if (description != null) {
+            return Optional.of(description);
+        }
+        if (has$ref()) {
+            return resolve().getResolvedDescription();
+        }
+        if (schema != null) {
+            return schema.getResolvedDescription();
+        }
+        return Optional.empty();
+    }
+
+    @Nonnull
     public Optional<In> getIn() {
         return Optional.ofNullable(in);
     }

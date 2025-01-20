@@ -102,6 +102,10 @@ public class Type {
         return typeParams;
     }
 
+    public boolean hasTypeParams() {
+        return typeParams != null && typeParams.length > 0;
+    }
+
     public boolean isInsidePackage(String pkg) {
         return packageName != null && packageName.startsWith(pkg);
     }
