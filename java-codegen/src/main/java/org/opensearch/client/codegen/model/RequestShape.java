@@ -204,6 +204,7 @@ public class RequestShape extends ObjectShape {
         return !fields.isEmpty();
     }
 
+    @Override
     public boolean hasAnyRequiredFields() {
         return fields.values().stream().anyMatch(Field::isRequired);
     }

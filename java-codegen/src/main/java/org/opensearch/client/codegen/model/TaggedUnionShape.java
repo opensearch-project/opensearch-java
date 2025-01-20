@@ -209,7 +209,7 @@ public class TaggedUnionShape extends ObjectShapeBase {
 
     public static class VariantInterface extends Shape {
         private final String unionClassName;
-        private boolean includeToUnionMethod;
+        private final boolean includeToUnionMethod;
 
         private VariantInterface(TaggedUnionShape union, ShouldGenerate shouldGenerate) {
             super(
@@ -223,7 +223,7 @@ public class TaggedUnionShape extends ObjectShapeBase {
             if (union.isInternallyDiscriminated()) {
                 setExtendsType(Types.Client.Json.JsonpSerializable);
             }
-            includeToUnionMethod = !union.hasFields();
+            includeToUnionMethod = !union.hasAnyRequiredFields() && !union.extendsOtherShape();
         }
 
         @Override

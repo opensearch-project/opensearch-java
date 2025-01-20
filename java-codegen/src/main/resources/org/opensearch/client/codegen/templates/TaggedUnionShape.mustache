@@ -39,11 +39,15 @@
     {{>ObjectShape/Fields}}
 
 {{/hasFields}}
-{{^hasFields}}
+{{^hasAnyRequiredFields}}
+{{^extendsOtherShape}}
 {{#discriminated}}
     public {{className}}({{variantInterfaceType}} value) {
         this._kind = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(value._{{#camelCase}}{{className}}{{/camelCase}}Kind(), this, "<variant kind>");
         this._value = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(value, this, "<variant value>");
+    {{#fields}}
+        this.{{name}} = null;
+    {{/fields}}
     }
 {{/discriminated}}
 {{^discriminated}}
@@ -53,7 +57,8 @@
     }
 {{/discriminated}}
 
-{{/hasFields}}
+{{/extendsOtherShape}}
+{{/hasAnyRequiredFields}}
     private {{className}}(Builder builder) {
         {{>ObjectShape/ConstructorImpl}}
         this._kind = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(builder._kind, builder, "<variant kind>");

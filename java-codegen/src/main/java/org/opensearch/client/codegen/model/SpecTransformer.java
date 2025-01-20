@@ -323,14 +323,14 @@ public class SpecTransformer {
         public PathParam(String name, OpenApiSchema schema, OpenApiParameter original) {
             this.name = name;
             this.schema = schema;
-            this.description = original.getDescription().orElse(null);
+            this.description = original.getResolvedDescription().orElse(null);
             this.deprecation = original.getDeprecation().orElse(null);
         }
 
         public PathParam(OpenApiParameter parameter) {
             this.name = parameter.getName().orElseThrow();
             this.schema = parameter.getSchema().orElseThrow();
-            this.description = parameter.getDescription().orElse(null);
+            this.description = parameter.getResolvedDescription().orElse(null);
             this.deprecation = parameter.getDeprecation().orElse(null);
         }
 
@@ -356,7 +356,7 @@ public class SpecTransformer {
             .withWireName(parameter.getName().orElseThrow())
             .withType(mapType(parameter.getSchema().orElseThrow()))
             .withRequired(parameter.getRequired())
-            .withDescription(parameter.getDescription().orElse(null))
+            .withDescription(parameter.getResolvedDescription().orElse(null))
             .withDeprecation(parameter.getDeprecation().orElse(null))
             .build();
     }
@@ -396,7 +396,7 @@ public class SpecTransformer {
 
         LOGGER.info("Visiting Schema: {}", schema);
 
-        var description = schema.getDescription().orElse(null);
+        var description = schema.getResolvedDescription().orElse(null);
 
         var isTaggedUnion = isTaggedUnion(schema);
         var isShortcutPropertyObject = isShortcutPropertyObject(schema);
@@ -555,7 +555,7 @@ public class SpecTransformer {
                 Field.builder()
                     .withName(valueSchema.getTitle().orElse("metadata"))
                     .withType(Types.Java.Util.Map(Types.Java.Lang.String, mapType(valueSchema)))
-                    .withDescription(valueSchema.getDescription().orElse(null))
+                    .withDescription(valueSchema.getResolvedDescription().orElse(null))
                     .build()
             );
         }
@@ -628,15 +628,16 @@ public class SpecTransformer {
         } else if (schema.hasEnums()) {
             var enums = schema.getEnums().orElseThrow();
             var description = title.isPresent() || enums.stream().map(String::toLowerCase).distinct().count() == 1
-                ? schema.getDescription().orElse(null)
+                ? schema.getResolvedDescription().orElse(null)
                 : null;
             enums.forEach(v -> shape.addVariant(title.orElse(v), v, description, isDeprecated));
         } else if (schema.hasConst()) {
             var value = (String) schema.getConst().orElseThrow();
-            shape.addVariant(title.orElse(value), value, schema.getDescription().orElse(null), isDeprecated);
+            shape.addVariant(title.orElse(value), value, schema.getResolvedDescription().orElse(null), isDeprecated);
         } else if (schema.isBoolean()) {
-            shape.addVariant(title.orElse("true"), "true", schema.getDescription().orElse(null), isDeprecated);
-            shape.addVariant(title.orElse("false"), "false", schema.getDescription().orElse(null), isDeprecated);
+            var description = schema.getResolvedDescription().orElse(null);
+            shape.addVariant(title.orElse("true"), "true", description, isDeprecated);
+            shape.addVariant(title.orElse("false"), "false", description, isDeprecated);
         }
     }
 
@@ -706,7 +707,15 @@ public class SpecTransformer {
             .map(ts -> ts.stream().filter(t -> t != OpenApiSchemaType.Null).collect(Collectors.toSet()))
             .orElse(null);
 
-        if (types == null || types.size() != 1) {
+        if (types == null || types.isEmpty()) {
+            return Types.Client.Json.JsonData;
+        }
+
+        if (types.size() == 2 && types.contains(OpenApiSchemaType.String) && types.contains(OpenApiSchemaType.Number)) {
+            return Types.Java.Lang.String;
+        }
+
+        if (types.size() > 1) {
             return Types.Client.Json.JsonData;
         }
 

@@ -582,6 +582,32 @@ public class OpenSearchMlAsyncClient extends ApiClient<OpenSearchTransport, Open
         return getProfileTasks(new GetProfileTasksRequest.Builder().build());
     }
 
+    // ----- Endpoint: ml.get_stats
+
+    /**
+     * Get stats.
+     */
+    public CompletableFuture<GetStatsResponse> getStats(GetStatsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, GetStatsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Get stats.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetStatsRequest}
+     */
+    public final CompletableFuture<GetStatsResponse> getStats(Function<GetStatsRequest.Builder, ObjectBuilder<GetStatsRequest>> fn)
+        throws IOException, OpenSearchException {
+        return getStats(fn.apply(new GetStatsRequest.Builder()).build());
+    }
+
+    /**
+     * Get stats.
+     */
+    public final CompletableFuture<GetStatsResponse> getStats() throws IOException, OpenSearchException {
+        return getStats(new GetStatsRequest.Builder().build());
+    }
+
     // ----- Endpoint: ml.get_task
 
     /**

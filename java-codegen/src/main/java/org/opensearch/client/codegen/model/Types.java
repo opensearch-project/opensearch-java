@@ -170,11 +170,36 @@ public final class Types {
 
             public static final class _Types {
                 public static final String PACKAGE = OpenSearch.PACKAGE + "._types";
+
                 public static final Type ErrorResponse = type(PACKAGE, "ErrorResponse");
                 public static final Type FieldValue = type(PACKAGE, "FieldValue");
                 public static final Type OpenSearchException = type(PACKAGE, "OpenSearchException");
                 public static final Type RequestBase = type(PACKAGE, "RequestBase");
                 public static final Type Time = type(PACKAGE, "Time");
+
+                public static final class Aggregations {
+                    public static final String PACKAGE = _Types.PACKAGE + ".aggregations";
+
+                    public static final Type Buckets = type(PACKAGE, "Buckets");
+
+                    public static Type Buckets(Type bucketType) {
+                        return Buckets.withTypeParameters(bucketType);
+                    }
+
+                    public static final Type ExtendedBounds = type(PACKAGE, "ExtendedBounds");
+
+                    public static Type ExtendedBounds(Type valueType) {
+                        return ExtendedBounds.withTypeParameters(valueType);
+                    }
+
+                    public static final Type FieldDateMath = type(PACKAGE, "FieldDateMath");
+                }
+
+                public static final class QueryDsl {
+                    public static final String PACKAGE = _Types.PACKAGE + ".query_dsl";
+
+                    public static final Type Query = type(PACKAGE, "Query");
+                }
             }
 
             public static final class Cat {
