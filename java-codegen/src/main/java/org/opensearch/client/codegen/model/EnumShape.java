@@ -115,9 +115,12 @@ public class EnumShape extends Shape {
 
         private static String toEnumConstant(String name) {
             switch (name) {
-                case "rescale_0_1": return "Rescale_0_1";
-                case "rescale_0_100": return "Rescale_0_100";
-                default: return Strings.toPascalCase(name);
+                case "rescale_0_1":
+                    return "Rescale_0_1";
+                case "rescale_0_100":
+                    return "Rescale_0_100";
+                default:
+                    return Strings.toPascalCase(name);
             }
         }
     }

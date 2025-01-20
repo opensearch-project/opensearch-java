@@ -489,7 +489,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
                 .size(0)
                 .aggregations(
                     "price",
-                    _3 -> _3.aggregations(Map.of("price", TermsAggregation.of(_4 -> _4.field("price"))._toAggregation()))
+                    _3 -> _3.aggregations(Map.of("price", TermsAggregation.of(_4 -> _4.field("price")).toAggregation()))
                         .filter(
                             BoolQuery.of(
                                 _5 -> _5.filter(

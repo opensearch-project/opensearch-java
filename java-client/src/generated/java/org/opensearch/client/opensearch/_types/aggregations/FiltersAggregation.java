@@ -299,7 +299,7 @@ public class FiltersAggregation extends BucketAggregationBase
 
     protected static void setupFiltersAggregationDeserializer(ObjectDeserializer<FiltersAggregation.Builder> op) {
         setupBucketAggregationBaseDeserializer(op);
-        op.add(Builder::filters, Buckets._DESERIALIZER, "filters");
+        op.add(Builder::filters, Buckets.createBucketsDeserializer(Query._DESERIALIZER), "filters");
         op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
         op.add(Builder::otherBucket, JsonpDeserializer.booleanDeserializer(), "other_bucket");
         op.add(Builder::otherBucketKey, JsonpDeserializer.stringDeserializer(), "other_bucket_key");

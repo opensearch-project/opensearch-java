@@ -82,20 +82,6 @@ public class AggregationBuilders {
     }
 
     /**
-     * Creates a builder for the {@link BucketCorrelationAggregation bucket_correlation} {@code Aggregation} variant.
-     */
-    public static BucketCorrelationAggregation.Builder bucketCorrelation() {
-        return new BucketCorrelationAggregation.Builder();
-    }
-
-    /**
-     * Creates a builder for the {@link BucketKsAggregation bucket_count_ks_test} {@code Aggregation} variant.
-     */
-    public static BucketKsAggregation.Builder bucketCountKsTest() {
-        return new BucketKsAggregation.Builder();
-    }
-
-    /**
      * Creates a builder for the {@link BucketScriptAggregation bucket_script} {@code Aggregation} variant.
      */
     public static BucketScriptAggregation.Builder bucketScript() {
@@ -121,13 +107,6 @@ public class AggregationBuilders {
      */
     public static CardinalityAggregation.Builder cardinality() {
         return new CardinalityAggregation.Builder();
-    }
-
-    /**
-     * Creates a builder for the {@link CategorizeTextAggregation categorize_text} {@code Aggregation} variant.
-     */
-    public static CategorizeTextAggregation.Builder categorizeText() {
-        return new CategorizeTextAggregation.Builder();
     }
 
     /**
@@ -215,13 +194,6 @@ public class AggregationBuilders {
     }
 
     /**
-     * Creates a builder for the {@link FrequentItemSetsAggregation frequent_item_sets} {@code Aggregation} variant.
-     */
-    public static FrequentItemSetsAggregation.Builder frequentItemSets() {
-        return new FrequentItemSetsAggregation.Builder();
-    }
-
-    /**
      * Creates a builder for the {@link GeoBoundsAggregation geo_bounds} {@code Aggregation} variant.
      */
     public static GeoBoundsAggregation.Builder geoBounds() {
@@ -257,13 +229,6 @@ public class AggregationBuilders {
     }
 
     /**
-     * Creates a builder for the {@link GeohexGridAggregation geohex_grid} {@code Aggregation} variant.
-     */
-    public static GeohexGridAggregation.Builder geohexGrid() {
-        return new GeohexGridAggregation.Builder();
-    }
-
-    /**
      * Creates a builder for the {@link GeoTileGridAggregation geotile_grid} {@code Aggregation} variant.
      */
     public static GeoTileGridAggregation.Builder geotileGrid() {
@@ -289,13 +254,6 @@ public class AggregationBuilders {
      */
     public static InferenceAggregation.Builder inference() {
         return new InferenceAggregation.Builder();
-    }
-
-    /**
-     * Creates a builder for the {@link IpPrefixAggregation ip_prefix} {@code Aggregation} variant.
-     */
-    public static IpPrefixAggregation.Builder ipPrefix() {
-        return new IpPrefixAggregation.Builder();
     }
 
     /**

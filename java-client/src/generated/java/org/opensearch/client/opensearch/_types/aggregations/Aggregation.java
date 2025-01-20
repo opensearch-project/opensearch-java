@@ -73,13 +73,10 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         Avg("avg"),
         AvgBucket("avg_bucket"),
         Boxplot("boxplot"),
-        BucketCorrelation("bucket_correlation"),
-        BucketCountKsTest("bucket_count_ks_test"),
         BucketScript("bucket_script"),
         BucketSelector("bucket_selector"),
         BucketSort("bucket_sort"),
         Cardinality("cardinality"),
-        CategorizeText("categorize_text"),
         Children("children"),
         Composite("composite"),
         CumulativeCardinality("cumulative_cardinality"),
@@ -92,18 +89,15 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         ExtendedStatsBucket("extended_stats_bucket"),
         Filter("filter"),
         Filters("filters"),
-        FrequentItemSets("frequent_item_sets"),
         GeoBounds("geo_bounds"),
         GeoCentroid("geo_centroid"),
         GeoDistance("geo_distance"),
         GeoLine("geo_line"),
         GeohashGrid("geohash_grid"),
-        GeohexGrid("geohex_grid"),
         GeotileGrid("geotile_grid"),
         Global("global"),
         Histogram("histogram"),
         Inference("inference"),
-        IpPrefix("ip_prefix"),
         IpRange("ip_range"),
         Line("line"),
         MatrixStats("matrix_stats"),
@@ -294,38 +288,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
     }
 
     /**
-     * Is this variant instance of kind {@code bucket_correlation}?
-     */
-    public boolean isBucketCorrelation() {
-        return _kind == Kind.BucketCorrelation;
-    }
-
-    /**
-     * Get the {@code bucket_correlation} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code bucket_correlation} kind.
-     */
-    public BucketCorrelationAggregation bucketCorrelation() {
-        return TaggedUnionUtils.get(this, Kind.BucketCorrelation);
-    }
-
-    /**
-     * Is this variant instance of kind {@code bucket_count_ks_test}?
-     */
-    public boolean isBucketCountKsTest() {
-        return _kind == Kind.BucketCountKsTest;
-    }
-
-    /**
-     * Get the {@code bucket_count_ks_test} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code bucket_count_ks_test} kind.
-     */
-    public BucketKsAggregation bucketCountKsTest() {
-        return TaggedUnionUtils.get(this, Kind.BucketCountKsTest);
-    }
-
-    /**
      * Is this variant instance of kind {@code bucket_script}?
      */
     public boolean isBucketScript() {
@@ -387,22 +349,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
      */
     public CardinalityAggregation cardinality() {
         return TaggedUnionUtils.get(this, Kind.Cardinality);
-    }
-
-    /**
-     * Is this variant instance of kind {@code categorize_text}?
-     */
-    public boolean isCategorizeText() {
-        return _kind == Kind.CategorizeText;
-    }
-
-    /**
-     * Get the {@code categorize_text} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code categorize_text} kind.
-     */
-    public CategorizeTextAggregation categorizeText() {
-        return TaggedUnionUtils.get(this, Kind.CategorizeText);
     }
 
     /**
@@ -598,22 +544,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
     }
 
     /**
-     * Is this variant instance of kind {@code frequent_item_sets}?
-     */
-    public boolean isFrequentItemSets() {
-        return _kind == Kind.FrequentItemSets;
-    }
-
-    /**
-     * Get the {@code frequent_item_sets} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code frequent_item_sets} kind.
-     */
-    public FrequentItemSetsAggregation frequentItemSets() {
-        return TaggedUnionUtils.get(this, Kind.FrequentItemSets);
-    }
-
-    /**
      * Is this variant instance of kind {@code geo_bounds}?
      */
     public boolean isGeoBounds() {
@@ -694,22 +624,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
     }
 
     /**
-     * Is this variant instance of kind {@code geohex_grid}?
-     */
-    public boolean isGeohexGrid() {
-        return _kind == Kind.GeohexGrid;
-    }
-
-    /**
-     * Get the {@code geohex_grid} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code geohex_grid} kind.
-     */
-    public GeohexGridAggregation geohexGrid() {
-        return TaggedUnionUtils.get(this, Kind.GeohexGrid);
-    }
-
-    /**
      * Is this variant instance of kind {@code geotile_grid}?
      */
     public boolean isGeotileGrid() {
@@ -771,22 +685,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
      */
     public InferenceAggregation inference() {
         return TaggedUnionUtils.get(this, Kind.Inference);
-    }
-
-    /**
-     * Is this variant instance of kind {@code ip_prefix}?
-     */
-    public boolean isIpPrefix() {
-        return _kind == Kind.IpPrefix;
-    }
-
-    /**
-     * Get the {@code ip_prefix} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code ip_prefix} kind.
-     */
-    public IpPrefixAggregation ipPrefix() {
-        return TaggedUnionUtils.get(this, Kind.IpPrefix);
     }
 
     /**
@@ -1612,28 +1510,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
             return this.boxplot(fn.apply(new BoxplotAggregation.Builder()).build());
         }
 
-        public ContainerBuilder bucketCorrelation(BucketCorrelationAggregation v) {
-            this._kind = Kind.BucketCorrelation;
-            this._value = v;
-            return new ContainerBuilder();
-        }
-
-        public ContainerBuilder bucketCorrelation(
-            Function<BucketCorrelationAggregation.Builder, ObjectBuilder<BucketCorrelationAggregation>> fn
-        ) {
-            return this.bucketCorrelation(fn.apply(new BucketCorrelationAggregation.Builder()).build());
-        }
-
-        public ContainerBuilder bucketCountKsTest(BucketKsAggregation v) {
-            this._kind = Kind.BucketCountKsTest;
-            this._value = v;
-            return new ContainerBuilder();
-        }
-
-        public ContainerBuilder bucketCountKsTest(Function<BucketKsAggregation.Builder, ObjectBuilder<BucketKsAggregation>> fn) {
-            return this.bucketCountKsTest(fn.apply(new BucketKsAggregation.Builder()).build());
-        }
-
         public ContainerBuilder bucketScript(BucketScriptAggregation v) {
             this._kind = Kind.BucketScript;
             this._value = v;
@@ -1672,16 +1548,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
 
         public ContainerBuilder cardinality(Function<CardinalityAggregation.Builder, ObjectBuilder<CardinalityAggregation>> fn) {
             return this.cardinality(fn.apply(new CardinalityAggregation.Builder()).build());
-        }
-
-        public ContainerBuilder categorizeText(CategorizeTextAggregation v) {
-            this._kind = Kind.CategorizeText;
-            this._value = v;
-            return new ContainerBuilder();
-        }
-
-        public ContainerBuilder categorizeText(Function<CategorizeTextAggregation.Builder, ObjectBuilder<CategorizeTextAggregation>> fn) {
-            return this.categorizeText(fn.apply(new CategorizeTextAggregation.Builder()).build());
         }
 
         public ContainerBuilder children(ChildrenAggregation v) {
@@ -1810,18 +1676,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
             return this.filters(fn.apply(new FiltersAggregation.Builder()).build());
         }
 
-        public ContainerBuilder frequentItemSets(FrequentItemSetsAggregation v) {
-            this._kind = Kind.FrequentItemSets;
-            this._value = v;
-            return new ContainerBuilder();
-        }
-
-        public ContainerBuilder frequentItemSets(
-            Function<FrequentItemSetsAggregation.Builder, ObjectBuilder<FrequentItemSetsAggregation>> fn
-        ) {
-            return this.frequentItemSets(fn.apply(new FrequentItemSetsAggregation.Builder()).build());
-        }
-
         public ContainerBuilder geoBounds(GeoBoundsAggregation v) {
             this._kind = Kind.GeoBounds;
             this._value = v;
@@ -1872,16 +1726,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
             return this.geohashGrid(fn.apply(new GeoHashGridAggregation.Builder()).build());
         }
 
-        public ContainerBuilder geohexGrid(GeohexGridAggregation v) {
-            this._kind = Kind.GeohexGrid;
-            this._value = v;
-            return new ContainerBuilder();
-        }
-
-        public ContainerBuilder geohexGrid(Function<GeohexGridAggregation.Builder, ObjectBuilder<GeohexGridAggregation>> fn) {
-            return this.geohexGrid(fn.apply(new GeohexGridAggregation.Builder()).build());
-        }
-
         public ContainerBuilder geotileGrid(GeoTileGridAggregation v) {
             this._kind = Kind.GeotileGrid;
             this._value = v;
@@ -1920,16 +1764,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
 
         public ContainerBuilder inference(Function<InferenceAggregation.Builder, ObjectBuilder<InferenceAggregation>> fn) {
             return this.inference(fn.apply(new InferenceAggregation.Builder()).build());
-        }
-
-        public ContainerBuilder ipPrefix(IpPrefixAggregation v) {
-            this._kind = Kind.IpPrefix;
-            this._value = v;
-            return new ContainerBuilder();
-        }
-
-        public ContainerBuilder ipPrefix(Function<IpPrefixAggregation.Builder, ObjectBuilder<IpPrefixAggregation>> fn) {
-            return this.ipPrefix(fn.apply(new IpPrefixAggregation.Builder()).build());
         }
 
         public ContainerBuilder ipRange(IpRangeAggregation v) {
@@ -2444,13 +2278,10 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         op.add(Builder::avg, AverageAggregation._DESERIALIZER, "avg");
         op.add(Builder::avgBucket, AverageBucketAggregation._DESERIALIZER, "avg_bucket");
         op.add(Builder::boxplot, BoxplotAggregation._DESERIALIZER, "boxplot");
-        op.add(Builder::bucketCorrelation, BucketCorrelationAggregation._DESERIALIZER, "bucket_correlation");
-        op.add(Builder::bucketCountKsTest, BucketKsAggregation._DESERIALIZER, "bucket_count_ks_test");
         op.add(Builder::bucketScript, BucketScriptAggregation._DESERIALIZER, "bucket_script");
         op.add(Builder::bucketSelector, BucketSelectorAggregation._DESERIALIZER, "bucket_selector");
         op.add(Builder::bucketSort, BucketSortAggregation._DESERIALIZER, "bucket_sort");
         op.add(Builder::cardinality, CardinalityAggregation._DESERIALIZER, "cardinality");
-        op.add(Builder::categorizeText, CategorizeTextAggregation._DESERIALIZER, "categorize_text");
         op.add(Builder::children, ChildrenAggregation._DESERIALIZER, "children");
         op.add(Builder::composite, CompositeAggregation._DESERIALIZER, "composite");
         op.add(Builder::cumulativeCardinality, CumulativeCardinalityAggregation._DESERIALIZER, "cumulative_cardinality");
@@ -2463,18 +2294,15 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         op.add(Builder::extendedStatsBucket, ExtendedStatsBucketAggregation._DESERIALIZER, "extended_stats_bucket");
         op.add(Builder::filter, Query._DESERIALIZER, "filter");
         op.add(Builder::filters, FiltersAggregation._DESERIALIZER, "filters");
-        op.add(Builder::frequentItemSets, FrequentItemSetsAggregation._DESERIALIZER, "frequent_item_sets");
         op.add(Builder::geoBounds, GeoBoundsAggregation._DESERIALIZER, "geo_bounds");
         op.add(Builder::geoCentroid, GeoCentroidAggregation._DESERIALIZER, "geo_centroid");
         op.add(Builder::geoDistance, GeoDistanceAggregation._DESERIALIZER, "geo_distance");
         op.add(Builder::geoLine, GeoLineAggregation._DESERIALIZER, "geo_line");
         op.add(Builder::geohashGrid, GeoHashGridAggregation._DESERIALIZER, "geohash_grid");
-        op.add(Builder::geohexGrid, GeohexGridAggregation._DESERIALIZER, "geohex_grid");
         op.add(Builder::geotileGrid, GeoTileGridAggregation._DESERIALIZER, "geotile_grid");
         op.add(Builder::global, GlobalAggregation._DESERIALIZER, "global");
         op.add(Builder::histogram, HistogramAggregation._DESERIALIZER, "histogram");
         op.add(Builder::inference, InferenceAggregation._DESERIALIZER, "inference");
-        op.add(Builder::ipPrefix, IpPrefixAggregation._DESERIALIZER, "ip_prefix");
         op.add(Builder::ipRange, IpRangeAggregation._DESERIALIZER, "ip_range");
         op.add(Builder::line, GeoLineAggregation._DESERIALIZER, "line");
         op.add(Builder::matrixStats, MatrixStatsAggregation._DESERIALIZER, "matrix_stats");
