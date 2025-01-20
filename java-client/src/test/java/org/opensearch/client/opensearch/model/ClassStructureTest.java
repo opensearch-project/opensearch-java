@@ -236,14 +236,14 @@ public class ClassStructureTest extends ModelTestCase {
         ValueCountAggregation countC = ValueCountAggregation.of(v -> v.field("c"));
 
         Map<String, Aggregation> aggs = new HashMap<>();
-        aggs.put("aggA", countA._toAggregation());
-        aggs.put("aggB", countB._toAggregation());
+        aggs.put("aggA", countA.toAggregation());
+        aggs.put("aggB", countB.toAggregation());
 
         {
             // Appending doesn't modify the original collection
             SearchRequest search = SearchRequest.of(
                 b -> b.aggregations(aggs)
-                    .aggregations("aggC", countC._toAggregation())
+                    .aggregations("aggC", countC.toAggregation())
                     .aggregations("aggD", a -> a.valueCount(c -> c.field("d")))
             );
 
