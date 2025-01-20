@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,13 +47,17 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.TermsPartition
 
 @JsonpDeserializable
-public class TermsPartition implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class TermsPartition implements PlainJsonSerializable, ToCopyableBuilder<TermsPartition.Builder, TermsPartition> {
+
     private final long numPartitions;
 
     private final long partition;
@@ -55,25 +65,29 @@ public class TermsPartition implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private TermsPartition(Builder builder) {
-
         this.numPartitions = ApiTypeHelper.requireNonNull(builder.numPartitions, this, "numPartitions");
         this.partition = ApiTypeHelper.requireNonNull(builder.partition, this, "partition");
-
     }
 
-    public static TermsPartition of(Function<Builder, ObjectBuilder<TermsPartition>> fn) {
+    public static TermsPartition of(Function<TermsPartition.Builder, ObjectBuilder<TermsPartition>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code num_partitions}
+     * Required - The number of partitions.
+     * <p>
+     * API name: {@code num_partitions}
+     * </p>
      */
     public final long numPartitions() {
         return this.numPartitions;
     }
 
     /**
-     * Required - API name: {@code partition}
+     * Required - The partition number for this request.
+     * <p>
+     * API name: {@code partition}
+     * </p>
      */
     public final long partition() {
         return this.partition;
@@ -82,6 +96,7 @@ public class TermsPartition implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -89,37 +104,70 @@ public class TermsPartition implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("num_partitions");
         generator.write(this.numPartitions);
 
         generator.writeKey("partition");
         generator.write(this.partition);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link TermsPartition}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsPartition> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TermsPartition> {
         private Long numPartitions;
-
         private Long partition;
 
+        public Builder() {}
+
+        private Builder(TermsPartition o) {
+            this.numPartitions = o.numPartitions;
+            this.partition = o.partition;
+        }
+
+        private Builder(Builder o) {
+            this.numPartitions = o.numPartitions;
+            this.partition = o.partition;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
-         * Required - API name: {@code num_partitions}
+         * Required - The number of partitions.
+         * <p>
+         * API name: {@code num_partitions}
+         * </p>
          */
+        @Nonnull
         public final Builder numPartitions(long value) {
             this.numPartitions = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code partition}
+         * Required - The partition number for this request.
+         * <p>
+         * API name: {@code partition}
+         * </p>
          */
+        @Nonnull
         public final Builder partition(long value) {
             this.partition = value;
             return this;
@@ -128,9 +176,10 @@ public class TermsPartition implements PlainJsonSerializable {
         /**
          * Builds a {@link TermsPartition}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public TermsPartition build() {
             _checkSingleUse();
 
@@ -149,10 +198,23 @@ public class TermsPartition implements PlainJsonSerializable {
     );
 
     protected static void setupTermsPartitionDeserializer(ObjectDeserializer<TermsPartition.Builder> op) {
-
         op.add(Builder::numPartitions, JsonpDeserializer.longDeserializer(), "num_partitions");
         op.add(Builder::partition, JsonpDeserializer.longDeserializer(), "partition");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Long.hashCode(this.numPartitions);
+        result = 31 * result + Long.hashCode(this.partition);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        TermsPartition other = (TermsPartition) o;
+        return this.numPartitions == other.numPartitions && this.partition == other.partition;
+    }
 }

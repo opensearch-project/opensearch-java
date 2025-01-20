@@ -30,17 +30,50 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
-/**
- * Builders for {@link TermsExclude} variants.
- * <p>
- * Variants <code>terms</code>, <code>regexp</code> are not available here as
- * they don't have a dedicated class. Use {@link TermsExclude}'s builder for
- * these.
- *
- */
-public class TermsExcludeBuilders {
-    private TermsExcludeBuilders() {}
+import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.aggregations.ValueType
+
+@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum ValueType implements JsonEnum {
+    Boolean("boolean"),
+
+    Date("date"),
+
+    DateNanos("date_nanos"),
+
+    Double("double"),
+
+    GeoPoint("geo_point"),
+
+    Ip("ip"),
+
+    Long("long"),
+
+    Number("number"),
+
+    Numeric("numeric"),
+
+    String("string");
+
+    private final String jsonValue;
+
+    ValueType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
+
+    public String jsonValue() {
+        return this.jsonValue;
+    }
+
+    public static final JsonEnum.Deserializer<ValueType> _DESERIALIZER = new JsonEnum.Deserializer<>(ValueType.values());
 }

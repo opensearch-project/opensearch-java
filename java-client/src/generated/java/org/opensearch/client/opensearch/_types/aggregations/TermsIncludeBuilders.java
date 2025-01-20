@@ -30,44 +30,31 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
-import org.opensearch.client.json.JsonEnum;
-import org.opensearch.client.json.JsonpDeserializable;
+import javax.annotation.Generated;
 
-@JsonpDeserializable
-public enum ValueType implements JsonEnum {
-    String("string"),
+/**
+ * <p>
+ * Builders for {@link TermsInclude} variants.
+ * </p>
+ * <p>
+ * Variants <code>regexp</code>, <code>terms</code> are not available here as they don't have a dedicated class. Use {@link TermsInclude}'s
+ * builder for these.
+ * </p>
+ */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class TermsIncludeBuilders {
+    private TermsIncludeBuilders() {}
 
-    Long("long"),
-
-    Double("double"),
-
-    Number("number"),
-
-    Date("date"),
-
-    DateNanos("date_nanos"),
-
-    Ip("ip"),
-
-    Numeric("numeric"),
-
-    GeoPoint("geo_point"),
-
-    Boolean("boolean"),
-
-    ;
-
-    private final String jsonValue;
-
-    ValueType(String jsonValue) {
-        this.jsonValue = jsonValue;
+    /**
+     * Creates a builder for the {@link TermsPartition partition} {@code TermsInclude} variant.
+     */
+    public static TermsPartition.Builder partition() {
+        return new TermsPartition.Builder();
     }
-
-    public String jsonValue() {
-        return this.jsonValue;
-    }
-
-    public static final JsonEnum.Deserializer<ValueType> _DESERIALIZER = new JsonEnum.Deserializer<>(ValueType.values());
 }

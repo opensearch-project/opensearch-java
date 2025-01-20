@@ -30,22 +30,30 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.aggregations.TTestType
+
 @JsonpDeserializable
-public enum TermsAggregationCollectMode implements JsonEnum {
-    DepthFirst("depth_first"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum TTestType implements JsonEnum {
+    Heteroscedastic("heteroscedastic"),
 
-    BreadthFirst("breadth_first"),
+    Homoscedastic("homoscedastic"),
 
-    ;
+    Paired("paired");
 
     private final String jsonValue;
 
-    TermsAggregationCollectMode(String jsonValue) {
+    TTestType(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -53,7 +61,5 @@ public enum TermsAggregationCollectMode implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<TermsAggregationCollectMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-        TermsAggregationCollectMode.values()
-    );
+    public static final JsonEnum.Deserializer<TTestType> _DESERIALIZER = new JsonEnum.Deserializer<>(TTestType.values());
 }

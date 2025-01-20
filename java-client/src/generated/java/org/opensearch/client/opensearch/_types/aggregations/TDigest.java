@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -41,30 +48,36 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.aggregations.TDigest
 
 @JsonpDeserializable
-public class TDigest implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class TDigest implements PlainJsonSerializable, ToCopyableBuilder<TDigest.Builder, TDigest> {
+
     @Nullable
     private final Integer compression;
 
     // ---------------------------------------------------------------------------------------------
 
     private TDigest(Builder builder) {
-
         this.compression = builder.compression;
-
     }
 
-    public static TDigest of(Function<Builder, ObjectBuilder<TDigest>> fn) {
+    public static TDigest of(Function<TDigest.Builder, ObjectBuilder<TDigest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
+     * Limits the maximum number of nodes used by the underlying TDigest algorithm to <code>20 * compression</code>, enabling control of
+     * memory usage and approximation error.
+     * <p>
      * API name: {@code compression}
+     * </p>
      */
     @Nullable
     public final Integer compression() {
@@ -74,6 +87,7 @@ public class TDigest implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -81,28 +95,56 @@ public class TDigest implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (this.compression != null) {
             generator.writeKey("compression");
             generator.write(this.compression);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link TDigest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TDigest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TDigest> {
         @Nullable
         private Integer compression;
 
+        public Builder() {}
+
+        private Builder(TDigest o) {
+            this.compression = o.compression;
+        }
+
+        private Builder(Builder o) {
+            this.compression = o.compression;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
+         * Limits the maximum number of nodes used by the underlying TDigest algorithm to <code>20 * compression</code>, enabling control of
+         * memory usage and approximation error.
+         * <p>
          * API name: {@code compression}
+         * </p>
          */
+        @Nonnull
         public final Builder compression(@Nullable Integer value) {
             this.compression = value;
             return this;
@@ -111,9 +153,10 @@ public class TDigest implements PlainJsonSerializable {
         /**
          * Builds a {@link TDigest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public TDigest build() {
             _checkSingleUse();
 
@@ -132,9 +175,21 @@ public class TDigest implements PlainJsonSerializable {
     );
 
     protected static void setupTDigestDeserializer(ObjectDeserializer<TDigest.Builder> op) {
-
         op.add(Builder::compression, JsonpDeserializer.integerDeserializer(), "compression");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.compression);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        TDigest other = (TDigest) o;
+        return Objects.equals(this.compression, other.compression);
+    }
 }

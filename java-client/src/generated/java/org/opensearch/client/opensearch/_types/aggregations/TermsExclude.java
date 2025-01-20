@@ -30,16 +30,23 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.json.UnionDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -50,12 +57,14 @@ import org.opensearch.client.util.TaggedUnionUtils;
 // typedef: _types.aggregations.TermsExclude
 
 @JsonpDeserializable
-public class TermsExclude implements TaggedUnion<TermsExclude.Kind, Object>, JsonpSerializable {
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class TermsExclude implements TaggedUnion<TermsExclude.Kind, Object>, PlainJsonSerializable {
+    /**
+     * {@link TermsExclude} variant kinds.
+     */
     public enum Kind {
-        Terms,
-        Regexp
-
+        Regexp,
+        Terms
     }
 
     private final Kind _kind;
@@ -76,44 +85,24 @@ public class TermsExclude implements TaggedUnion<TermsExclude.Kind, Object>, Jso
         this._value = value;
     }
 
-    public String _toJsonString() {
-        switch (_kind) {
-            case Terms:
-                return this.terms().stream().map(v -> v).collect(Collectors.joining(","));
-            case Regexp:
-                return this.regexp();
-
-            default:
-                throw new IllegalStateException("Unknown kind " + _kind);
-        }
-    }
-
     private TermsExclude(Builder builder) {
-
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
     }
 
-    public static TermsExclude of(Function<Builder, ObjectBuilder<TermsExclude>> fn) {
+    public static TermsExclude of(Function<TermsExclude.Builder, ObjectBuilder<TermsExclude>> fn) {
         return fn.apply(new Builder()).build();
     }
 
-    /**
-     * Is this variant instance of kind {@code terms}?
-     */
-    public boolean isTerms() {
-        return _kind == Kind.Terms;
-    }
-
-    /**
-     * Get the {@code terms} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code terms} kind.
-     */
-    public List<String> terms() {
-        return TaggedUnionUtils.get(this, Kind.Terms);
+    public String _toJsonString() {
+        switch (_kind) {
+            case Regexp:
+                return this.regexp();
+            case Terms:
+                return String.join(",", this.terms());
+            default:
+                throw new IllegalStateException("Unknown kind " + _kind);
+        }
     }
 
     /**
@@ -126,11 +115,26 @@ public class TermsExclude implements TaggedUnion<TermsExclude.Kind, Object>, Jso
     /**
      * Get the {@code regexp} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code regexp} kind.
+     * @throws IllegalStateException if the current variant is not the {@code regexp} kind.
      */
     public String regexp() {
         return TaggedUnionUtils.get(this, Kind.Regexp);
+    }
+
+    /**
+     * Is this variant instance of kind {@code terms}?
+     */
+    public boolean isTerms() {
+        return _kind == Kind.Terms;
+    }
+
+    /**
+     * Get the {@code terms} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code terms} kind.
+     */
+    public List<String> terms() {
+        return TaggedUnionUtils.get(this, Kind.Terms);
     }
 
     @Override
@@ -139,32 +143,39 @@ public class TermsExclude implements TaggedUnion<TermsExclude.Kind, Object>, Jso
             ((JsonpSerializable) _value).serialize(generator, mapper);
         } else {
             switch (_kind) {
+                case Regexp:
+                    generator.write(((String) this._value));
+                    break;
                 case Terms:
                     generator.writeStartArray();
                     for (String item0 : ((List<String>) this._value)) {
                         generator.write(item0);
-
                     }
                     generator.writeEnd();
-
-                    break;
-                case Regexp:
-                    generator.write(((String) this._value));
-
                     break;
             }
         }
+    }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsExclude> {
         private Kind _kind;
         private Object _value;
 
-        public ObjectBuilder<TermsExclude> terms(List<String> v) {
-            this._kind = Kind.Terms;
-            this._value = v;
-            return this;
+        public Builder() {}
+
+        private Builder(TermsExclude o) {
+            this._kind = o._kind;
+            this._value = o._value;
         }
 
         public ObjectBuilder<TermsExclude> regexp(String v) {
@@ -173,19 +184,41 @@ public class TermsExclude implements TaggedUnion<TermsExclude.Kind, Object>, Jso
             return this;
         }
 
+        public ObjectBuilder<TermsExclude> terms(List<String> v) {
+            this._kind = Kind.Terms;
+            this._value = v;
+            return this;
+        }
+
+        @Override
         public TermsExclude build() {
             _checkSingleUse();
             return new TermsExclude(this);
         }
-
     }
 
     private static JsonpDeserializer<TermsExclude> buildTermsExcludeDeserializer() {
         return new UnionDeserializer.Builder<TermsExclude, Kind, Object>(TermsExclude::new, false).addMember(
-            Kind.Terms,
-            JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())
-        ).addMember(Kind.Regexp, JsonpDeserializer.stringDeserializer()).build();
+            Kind.Regexp,
+            JsonpDeserializer.stringDeserializer()
+        ).addMember(Kind.Terms, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())).build();
     }
 
     public static final JsonpDeserializer<TermsExclude> _DESERIALIZER = JsonpDeserializer.lazy(TermsExclude::buildTermsExcludeDeserializer);
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        TermsExclude other = (TermsExclude) o;
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
 }

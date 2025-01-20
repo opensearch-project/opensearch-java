@@ -30,22 +30,28 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.aggregations;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-@JsonpDeserializable
-public enum TermsAggregationExecutionHint implements JsonEnum {
-    Map("map"),
+// typedef: _types.aggregations.TermsAggregationExecutionHint
 
+@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum TermsAggregationExecutionHint implements JsonEnum {
     GlobalOrdinals("global_ordinals"),
 
     GlobalOrdinalsHash("global_ordinals_hash"),
 
     GlobalOrdinalsLowCardinality("global_ordinals_low_cardinality"),
 
-    ;
+    Map("map");
 
     private final String jsonValue;
 
