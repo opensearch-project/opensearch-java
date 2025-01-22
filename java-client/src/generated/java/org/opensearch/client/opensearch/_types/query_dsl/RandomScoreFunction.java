@@ -30,22 +30,39 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.query_dsl.RandomScoreFunction
 
 @JsonpDeserializable
-public class RandomScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class RandomScoreFunction
+    implements
+        FunctionScoreVariant,
+        PlainJsonSerializable,
+        ToCopyableBuilder<RandomScoreFunction.Builder, RandomScoreFunction> {
+
     @Nullable
     private final String field;
 
@@ -55,19 +72,16 @@ public class RandomScoreFunction extends ScoreFunctionBase implements FunctionSc
     // ---------------------------------------------------------------------------------------------
 
     private RandomScoreFunction(Builder builder) {
-        super(builder);
-
         this.field = builder.field;
         this.seed = builder.seed;
-
     }
 
-    public static RandomScoreFunction of(Function<Builder, ObjectBuilder<RandomScoreFunction>> fn) {
+    public static RandomScoreFunction of(Function<RandomScoreFunction.Builder, ObjectBuilder<RandomScoreFunction>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * FunctionScore variant kind.
+     * {@link FunctionScore} variant kind.
      */
     @Override
     public FunctionScore.Kind _functionScoreKind() {
@@ -90,42 +104,72 @@ public class RandomScoreFunction extends ScoreFunctionBase implements FunctionSc
         return this.seed;
     }
 
-    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-        super.serializeInternal(generator, mapper);
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.field != null) {
             generator.writeKey("field");
             generator.write(this.field);
-
         }
+
         if (this.seed != null) {
             generator.writeKey("seed");
             generator.write(this.seed);
-
         }
-
-    }
-
-    public Builder toBuilder() {
-        return new Builder().field(field).seed(seed);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RandomScoreFunction}.
      */
-
-    public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder> implements ObjectBuilder<RandomScoreFunction> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RandomScoreFunction> {
         @Nullable
         private String field;
-
         @Nullable
         private String seed;
+
+        public Builder() {}
+
+        private Builder(RandomScoreFunction o) {
+            this.field = o.field;
+            this.seed = o.seed;
+        }
+
+        private Builder(Builder o) {
+            this.field = o.field;
+            this.seed = o.seed;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * API name: {@code field}
          */
+        @Nonnull
         public final Builder field(@Nullable String value) {
             this.field = value;
             return this;
@@ -134,22 +178,19 @@ public class RandomScoreFunction extends ScoreFunctionBase implements FunctionSc
         /**
          * API name: {@code seed}
          */
+        @Nonnull
         public final Builder seed(@Nullable String value) {
             this.seed = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
         /**
          * Builds a {@link RandomScoreFunction}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RandomScoreFunction build() {
             _checkSingleUse();
 
@@ -168,10 +209,23 @@ public class RandomScoreFunction extends ScoreFunctionBase implements FunctionSc
     );
 
     protected static void setupRandomScoreFunctionDeserializer(ObjectDeserializer<RandomScoreFunction.Builder> op) {
-        setupScoreFunctionBaseDeserializer(op);
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::seed, JsonpDeserializer.stringDeserializer(), "seed");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.field);
+        result = 31 * result + Objects.hashCode(this.seed);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RandomScoreFunction other = (RandomScoreFunction) o;
+        return Objects.equals(this.field, other.field) && Objects.equals(this.seed, other.seed);
+    }
 }

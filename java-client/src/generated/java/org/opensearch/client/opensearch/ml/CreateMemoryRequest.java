@@ -84,6 +84,7 @@ public final class CreateMemoryRequest extends RequestBase
             generator.write(this.name);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

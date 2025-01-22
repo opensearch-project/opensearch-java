@@ -30,60 +30,60 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
+
+import javax.annotation.Generated;
 
 /**
  * Builders for {@link FunctionScore} variants.
  */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public class FunctionScoreBuilders {
     private FunctionScoreBuilders() {}
 
     /**
-     * Creates a builder for the {@link DecayFunction exp} {@code FunctionScore}
-     * variant.
+     * Creates a builder for the {@link DecayFunction exp} {@code FunctionScore} variant.
      */
     public static DecayFunction.Builder exp() {
         return new DecayFunction.Builder();
     }
 
     /**
-     * Creates a builder for the {@link DecayFunction gauss} {@code FunctionScore}
-     * variant.
-     */
-    public static DecayFunction.Builder gauss() {
-        return new DecayFunction.Builder();
-    }
-
-    /**
-     * Creates a builder for the {@link DecayFunction linear} {@code FunctionScore}
-     * variant.
-     */
-    public static DecayFunction.Builder linear() {
-        return new DecayFunction.Builder();
-    }
-
-    /**
-     * Creates a builder for the {@link FieldValueFactorScoreFunction
-     * field_value_factor} {@code FunctionScore} variant.
+     * Creates a builder for the {@link FieldValueFactorScoreFunction field_value_factor} {@code FunctionScore} variant.
      */
     public static FieldValueFactorScoreFunction.Builder fieldValueFactor() {
         return new FieldValueFactorScoreFunction.Builder();
     }
 
     /**
-     * Creates a builder for the {@link RandomScoreFunction random_score}
-     * {@code FunctionScore} variant.
+     * Creates a builder for the {@link DecayFunction gauss} {@code FunctionScore} variant.
+     */
+    public static DecayFunction.Builder gauss() {
+        return new DecayFunction.Builder();
+    }
+
+    /**
+     * Creates a builder for the {@link DecayFunction linear} {@code FunctionScore} variant.
+     */
+    public static DecayFunction.Builder linear() {
+        return new DecayFunction.Builder();
+    }
+
+    /**
+     * Creates a builder for the {@link RandomScoreFunction random_score} {@code FunctionScore} variant.
      */
     public static RandomScoreFunction.Builder randomScore() {
         return new RandomScoreFunction.Builder();
     }
 
     /**
-     * Creates a builder for the {@link ScriptScoreFunction script_score}
-     * {@code FunctionScore} variant.
+     * Creates a builder for the {@link ScriptScoreFunction script_score} {@code FunctionScore} variant.
      */
     public static ScriptScoreFunction.Builder scriptScore() {
         return new ScriptScoreFunction.Builder();
     }
-
 }

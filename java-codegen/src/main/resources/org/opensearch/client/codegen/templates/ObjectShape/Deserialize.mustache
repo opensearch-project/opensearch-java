@@ -1,3 +1,4 @@
+{{^canBeSingleton}}
 {{^abstract}}
     /**
      * Json deserializer for {@link {{className}}}
@@ -35,3 +36,12 @@
         op.shortcutProperty({{#quoted}}{{.}}{{/quoted}});
     {{/shortcutProperty}}
     }
+{{/canBeSingleton}}
+{{#isEmptyObject}}
+    /**
+    * Singleton instance for {@link {{className}}}.
+    */
+    public static final {{className}} _INSTANCE = builder().build();
+
+    public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.JsonpDeserializer}}.emptyObject({{className}}._INSTANCE);
+{{/isEmptyObject}}

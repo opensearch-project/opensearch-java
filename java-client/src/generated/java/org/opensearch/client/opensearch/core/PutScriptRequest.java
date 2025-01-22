@@ -188,6 +188,7 @@ public final class PutScriptRequest extends RequestBase
         generator.writeKey("script");
         this.script.serialize(generator, mapper);
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

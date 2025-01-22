@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,29 +47,39 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.query_dsl.RankFeatureFunctionLogarithm
 
 @JsonpDeserializable
-public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class RankFeatureFunctionLogarithm extends RankFeatureFunction
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<RankFeatureFunctionLogarithm.Builder, RankFeatureFunctionLogarithm> {
+
     private final float scalingFactor;
 
     // ---------------------------------------------------------------------------------------------
 
     private RankFeatureFunctionLogarithm(Builder builder) {
-
+        super(builder);
         this.scalingFactor = ApiTypeHelper.requireNonNull(builder.scalingFactor, this, "scalingFactor");
-
     }
 
-    public static RankFeatureFunctionLogarithm of(Function<Builder, ObjectBuilder<RankFeatureFunctionLogarithm>> fn) {
+    public static RankFeatureFunctionLogarithm of(
+        Function<RankFeatureFunctionLogarithm.Builder, ObjectBuilder<RankFeatureFunctionLogarithm>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code scaling_factor}
+     * Required - Configurable scaling factor.
+     * <p>
+     * API name: {@code scaling_factor}
+     * </p>
      */
     public final float scalingFactor() {
         return this.scalingFactor;
@@ -72,6 +88,7 @@ public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -79,28 +96,63 @@ public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
+        super.serializeInternal(generator, mapper);
         generator.writeKey("scaling_factor");
         generator.write(this.scalingFactor);
-
-    }
-
-    public Builder toBuilder() {
-        return new Builder().scalingFactor(scalingFactor);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RankFeatureFunctionLogarithm}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionLogarithm> {
+    public static class Builder extends RankFeatureFunction.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, RankFeatureFunctionLogarithm> {
         private Float scalingFactor;
 
+        public Builder() {}
+
+        private Builder(RankFeatureFunctionLogarithm o) {
+            super(o);
+            this.scalingFactor = o.scalingFactor;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.scalingFactor = o.scalingFactor;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
-         * Required - API name: {@code scaling_factor}
+         * Required - Configurable scaling factor.
+         * <p>
+         * API name: {@code scaling_factor}
+         * </p>
          */
+        @Nonnull
         public final Builder scalingFactor(float value) {
             this.scalingFactor = value;
             return this;
@@ -109,9 +161,10 @@ public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements
         /**
          * Builds a {@link RankFeatureFunctionLogarithm}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RankFeatureFunctionLogarithm build() {
             _checkSingleUse();
 
@@ -130,9 +183,25 @@ public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements
     );
 
     protected static void setupRankFeatureFunctionLogarithmDeserializer(ObjectDeserializer<RankFeatureFunctionLogarithm.Builder> op) {
-
+        setupRankFeatureFunctionDeserializer(op);
         op.add(Builder::scalingFactor, JsonpDeserializer.floatDeserializer(), "scaling_factor");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Float.hashCode(this.scalingFactor);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RankFeatureFunctionLogarithm other = (RankFeatureFunctionLogarithm) o;
+        return this.scalingFactor == other.scalingFactor;
+    }
 }

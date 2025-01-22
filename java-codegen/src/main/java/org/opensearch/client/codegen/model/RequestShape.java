@@ -107,6 +107,11 @@ public class RequestShape extends ObjectShape {
     }
 
     @Override
+    public boolean shouldImplementJsonSerializableInner() {
+        return hasFieldsToSerialize();
+    }
+
+    @Override
     public boolean hasFieldsToSerialize() {
         return hasRequestBody();
     }

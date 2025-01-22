@@ -293,6 +293,7 @@ public final class PutTemplateRequest extends RequestBase
             generator.write(this.version);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

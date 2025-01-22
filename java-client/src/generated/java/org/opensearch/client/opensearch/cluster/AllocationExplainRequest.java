@@ -198,6 +198,7 @@ public final class AllocationExplainRequest extends RequestBase
             generator.write(this.shard);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

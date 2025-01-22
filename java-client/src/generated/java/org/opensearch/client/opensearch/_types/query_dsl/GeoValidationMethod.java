@@ -30,40 +30,38 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
-import jakarta.json.stream.JsonGenerator;
+import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
-import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.util.ObjectBuilder;
+
+// typedef: _types.query_dsl.GeoValidationMethod
 
 @JsonpDeserializable
-public class RankFeatureFunctionLinear extends RankFeatureFunction implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum GeoValidationMethod implements JsonEnum {
+    Coerce("coerce"),
 
-    public static final class Builder implements ObjectBuilder<RankFeatureFunctionLinear> {
-        @Override
-        public RankFeatureFunctionLinear build() {
-            return RankFeatureFunctionLinear._INSTANCE;
-        }
+    IgnoreMalformed("ignore_malformed"),
+
+    Strict("strict");
+
+    private final String jsonValue;
+
+    GeoValidationMethod(String jsonValue) {
+        this.jsonValue = jsonValue;
     }
 
-    /**
-     * Serialize this object to JSON.
-     */
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        generator.writeEnd();
+    public String jsonValue() {
+        return this.jsonValue;
     }
 
-    /**
-     * Singleton instance for empty class {@link RankFeatureFunctionLinear}.
-     */
-    public static final RankFeatureFunctionLinear _INSTANCE = new RankFeatureFunctionLinear();
-
-    public static final JsonpDeserializer<RankFeatureFunctionLinear> _DESERIALIZER = JsonpDeserializer.emptyObject(
-        RankFeatureFunctionLinear._INSTANCE
+    public static final JsonEnum.Deserializer<GeoValidationMethod> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        GeoValidationMethod.values()
     );
-
 }

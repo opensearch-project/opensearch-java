@@ -211,6 +211,7 @@ public final class RegisterAgentsRequest extends RequestBase
         generator.writeKey("type");
         generator.write(this.type);
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

@@ -43,8 +43,17 @@
 {{^extendsOtherShape}}
 {{#discriminated}}
     public {{className}}({{variantInterfaceType}} value) {
+    {{#isOptionalExternallyDiscriminated}}
+        if (value != null) {
+    {{/isOptionalExternallyDiscriminated}}
         this._kind = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(value._{{#camelCase}}{{className}}{{/camelCase}}Kind(), this, "<variant kind>");
         this._value = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(value, this, "<variant value>");
+    {{#isOptionalExternallyDiscriminated}}
+        } else {
+            this._kind = null;
+            this._value = null;
+        }
+    {{/isOptionalExternallyDiscriminated}}
     {{#fields}}
         this.{{name}} = null;
     {{/fields}}
@@ -61,8 +70,17 @@
 {{/hasAnyRequiredFields}}
     private {{className}}(Builder builder) {
         {{>ObjectShape/ConstructorImpl}}
+    {{#isOptionalExternallyDiscriminated}}
+        if (builder._kind != null) {
+    {{/isOptionalExternallyDiscriminated}}
         this._kind = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(builder._value, builder, "<variant value>");
+    {{#isOptionalExternallyDiscriminated}}
+        } else {
+            this._kind = null;
+            this._value = null;
+        }
+    {{/isOptionalExternallyDiscriminated}}
     }
 
     public static {{className}} of({{type.builderFnType}} fn) {
@@ -114,7 +132,7 @@
 
     {{>ObjectShape/Builder/HelperCtor}}
 
-    public static class Builder extends {{#extendsOtherShape}}{{extendsType}}.AbstractBuilder<Builder>{{/extendsOtherShape}}{{^extendsOtherShape}}{{TYPES.Client.Util.ObjectBuilderBase}}{{/extendsOtherShape}}{{^needsContainerBuilder}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{/needsContainerBuilder}} {
+    public static class Builder extends {{#extendsOtherShape}}{{extendsType}}.AbstractBuilder<Builder>{{/extendsOtherShape}}{{^extendsOtherShape}}{{TYPES.Client.Util.ObjectBuilderBase}}{{/extendsOtherShape}}{{#needsContainerBuilder}}{{#isOptionalExternallyDiscriminated}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{/isOptionalExternallyDiscriminated}}{{/needsContainerBuilder}}{{^needsContainerBuilder}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{/needsContainerBuilder}} {
         private Kind _kind;
         private {{variantBaseType}} _value;
         {{>ObjectShape/Builder/Fields}}
@@ -151,7 +169,7 @@
 
     {{/variants}}
         {{^needsContainerBuilder}}@Override
-        public{{/needsContainerBuilder}}{{#needsContainerBuilder}}protected{{/needsContainerBuilder}} {{className}} build() {
+        public{{/needsContainerBuilder}}{{#needsContainerBuilder}}{{#isOptionalExternallyDiscriminated}}public{{/isOptionalExternallyDiscriminated}}{{^isOptionalExternallyDiscriminated}}protected{{/isOptionalExternallyDiscriminated}}{{/needsContainerBuilder}} {{className}} build() {
             _checkSingleUse();
             return new {{className}}(this);
         }

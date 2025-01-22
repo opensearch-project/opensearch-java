@@ -314,6 +314,7 @@ public final class ValidateQueryRequest extends RequestBase
             this.query.serialize(generator, mapper);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

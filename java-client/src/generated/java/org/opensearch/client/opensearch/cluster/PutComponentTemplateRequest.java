@@ -255,6 +255,7 @@ public final class PutComponentTemplateRequest extends RequestBase
             generator.write(this.version);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

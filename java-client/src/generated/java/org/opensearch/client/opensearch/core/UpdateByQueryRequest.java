@@ -700,6 +700,7 @@ public final class UpdateByQueryRequest extends RequestBase
             this.slice.serialize(generator, mapper);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

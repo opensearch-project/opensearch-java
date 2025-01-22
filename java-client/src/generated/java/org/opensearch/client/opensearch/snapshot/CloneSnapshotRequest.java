@@ -185,6 +185,7 @@ public final class CloneSnapshotRequest extends RequestBase
         generator.writeKey("indices");
         generator.write(this.indices);
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

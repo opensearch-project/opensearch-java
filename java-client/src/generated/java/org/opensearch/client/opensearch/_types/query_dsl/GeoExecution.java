@@ -30,24 +30,28 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.query_dsl.GeoExecution
+
 @JsonpDeserializable
-public enum GeoValidationMethod implements JsonEnum {
-    Coerce("coerce"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum GeoExecution implements JsonEnum {
+    Indexed("indexed"),
 
-    IgnoreMalformed("ignore_malformed"),
-
-    Strict("strict"),
-
-    ;
+    Memory("memory");
 
     private final String jsonValue;
 
-    GeoValidationMethod(String jsonValue) {
+    GeoExecution(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -55,7 +59,5 @@ public enum GeoValidationMethod implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<GeoValidationMethod> _DESERIALIZER = new JsonEnum.Deserializer<>(
-        GeoValidationMethod.values()
-    );
+    public static final JsonEnum.Deserializer<GeoExecution> _DESERIALIZER = new JsonEnum.Deserializer<>(GeoExecution.values());
 }

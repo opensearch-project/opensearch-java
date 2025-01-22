@@ -229,6 +229,7 @@ public final class RerouteRequest extends RequestBase
             generator.writeEnd();
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

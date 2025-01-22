@@ -314,6 +314,7 @@ public final class PutIndexTemplateRequest extends RequestBase
             generator.write(this.version);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

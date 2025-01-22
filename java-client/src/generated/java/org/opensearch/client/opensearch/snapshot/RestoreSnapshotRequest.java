@@ -465,6 +465,7 @@ public final class RestoreSnapshotRequest extends RequestBase
             generator.write(this.storageType);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

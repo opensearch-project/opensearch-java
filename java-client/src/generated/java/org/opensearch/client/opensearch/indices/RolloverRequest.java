@@ -290,6 +290,7 @@ public final class RolloverRequest extends RequestBase
             generator.writeEnd();
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

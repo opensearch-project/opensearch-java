@@ -44,7 +44,7 @@ public class GetTaskResponse implements PlainJsonSerializable, ToCopyableBuilder
     private final String error;
 
     @Nullable
-    private final String functionName;
+    private final FunctionName functionName;
 
     @Nullable
     private final Boolean isAsync;
@@ -106,7 +106,7 @@ public class GetTaskResponse implements PlainJsonSerializable, ToCopyableBuilder
      * API name: {@code function_name}
      */
     @Nullable
-    public final String functionName() {
+    public final FunctionName functionName() {
         return this.functionName;
     }
 
@@ -192,7 +192,7 @@ public class GetTaskResponse implements PlainJsonSerializable, ToCopyableBuilder
 
         if (this.functionName != null) {
             generator.writeKey("function_name");
-            generator.write(this.functionName);
+            this.functionName.serialize(generator, mapper);
         }
 
         if (this.isAsync != null) {
@@ -259,7 +259,7 @@ public class GetTaskResponse implements PlainJsonSerializable, ToCopyableBuilder
         @Nullable
         private String error;
         @Nullable
-        private String functionName;
+        private FunctionName functionName;
         @Nullable
         private Boolean isAsync;
         @Nullable
@@ -330,7 +330,7 @@ public class GetTaskResponse implements PlainJsonSerializable, ToCopyableBuilder
          * API name: {@code function_name}
          */
         @Nonnull
-        public final Builder functionName(@Nullable String value) {
+        public final Builder functionName(@Nullable FunctionName value) {
             this.functionName = value;
             return this;
         }
@@ -445,7 +445,7 @@ public class GetTaskResponse implements PlainJsonSerializable, ToCopyableBuilder
     protected static void setupGetTaskResponseDeserializer(ObjectDeserializer<GetTaskResponse.Builder> op) {
         op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
         op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
-        op.add(Builder::functionName, JsonpDeserializer.stringDeserializer(), "function_name");
+        op.add(Builder::functionName, FunctionName._DESERIALIZER, "function_name");
         op.add(Builder::isAsync, JsonpDeserializer.booleanDeserializer(), "is_async");
         op.add(Builder::lastUpdateTime, JsonpDeserializer.longDeserializer(), "last_update_time");
         op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");

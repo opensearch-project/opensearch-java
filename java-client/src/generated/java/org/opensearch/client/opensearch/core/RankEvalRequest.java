@@ -215,6 +215,7 @@ public final class RankEvalRequest extends RequestBase
         }
         generator.writeEnd();
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

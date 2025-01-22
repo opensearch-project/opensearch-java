@@ -127,6 +127,7 @@ public final class PitSegmentsRequest extends CatRequestBase
         }
         generator.writeEnd();
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

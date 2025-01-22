@@ -474,7 +474,7 @@ public class SpecTransformer {
                     taggedUnion.addVariant(name, mapType(s));
                 });
             } else if (unionSchema.isObject() && unionSchema.getMaxProperties().orElse(Integer.MAX_VALUE) == 1) {
-                taggedUnion.setExternallyDiscriminated(true);
+                taggedUnion.setExternallyDiscriminated(unionSchema.getMinProperties().orElse(0) == 1 ? TaggedUnionShape.ExternallyDiscriminated.REQUIRED : TaggedUnionShape.ExternallyDiscriminated.OPTIONAL);
                 unionSchema.getProperties().ifPresent(props -> props.forEach((k, v) -> taggedUnion.addVariant(k, mapType(v))));
             }
         } else if (isShortcutPropertyObject || schema.determineSingleType().orElse(null) == OpenApiSchemaType.Object) {
@@ -959,9 +959,8 @@ public class SpecTransformer {
 
         }
         if (schema.isObject() && schema.getProperties().isPresent()) {
-            var minProperties = schema.getMinProperties().orElse(0);
             var maxProperties = schema.getMaxProperties().orElse(Integer.MAX_VALUE);
-            return minProperties == 1 && maxProperties == 1;
+            return maxProperties == 1;
         }
         return false;
     }

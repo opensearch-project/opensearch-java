@@ -309,6 +309,7 @@ public final class CreateSnapshotRequest extends RequestBase
             generator.write(this.partial);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

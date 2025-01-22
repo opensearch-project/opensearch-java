@@ -30,17 +30,36 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
-/**
- * Base interface for {@link FunctionScore} variants.
- */
-public interface FunctionScoreVariant {
+import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
 
-    FunctionScore.Kind _functionScoreKind();
+// typedef: _types.query_dsl.RangeRelation
 
-    default FunctionScore _toFunctionScore() {
-        return new FunctionScore(this);
+@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum RangeRelation implements JsonEnum {
+    Contains("contains"),
+
+    Intersects("intersects"),
+
+    Within("within");
+
+    private final String jsonValue;
+
+    RangeRelation(String jsonValue) {
+        this.jsonValue = jsonValue;
     }
 
+    public String jsonValue() {
+        return this.jsonValue;
+    }
+
+    public static final JsonEnum.Deserializer<RangeRelation> _DESERIALIZER = new JsonEnum.Deserializer<>(RangeRelation.values());
 }

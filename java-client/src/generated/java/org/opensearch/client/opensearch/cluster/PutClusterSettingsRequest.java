@@ -200,6 +200,7 @@ public final class PutClusterSettingsRequest extends RequestBase
             generator.writeEnd();
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

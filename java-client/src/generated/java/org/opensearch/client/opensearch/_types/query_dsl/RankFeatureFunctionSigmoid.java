@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,47 +47,61 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSigmoid
 
 @JsonpDeserializable
-public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements PlainJsonSerializable {
-    private final float pivot;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class RankFeatureFunctionSigmoid extends RankFeatureFunction
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<RankFeatureFunctionSigmoid.Builder, RankFeatureFunctionSigmoid> {
 
     private final float exponent;
+
+    private final float pivot;
 
     // ---------------------------------------------------------------------------------------------
 
     private RankFeatureFunctionSigmoid(Builder builder) {
-
-        this.pivot = ApiTypeHelper.requireNonNull(builder.pivot, this, "pivot");
+        super(builder);
         this.exponent = ApiTypeHelper.requireNonNull(builder.exponent, this, "exponent");
-
+        this.pivot = ApiTypeHelper.requireNonNull(builder.pivot, this, "pivot");
     }
 
-    public static RankFeatureFunctionSigmoid of(Function<Builder, ObjectBuilder<RankFeatureFunctionSigmoid>> fn) {
+    public static RankFeatureFunctionSigmoid of(
+        Function<RankFeatureFunctionSigmoid.Builder, ObjectBuilder<RankFeatureFunctionSigmoid>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code pivot}
-     */
-    public final float pivot() {
-        return this.pivot;
-    }
-
-    /**
-     * Required - API name: {@code exponent}
+     * Required - Configurable Exponent.
+     * <p>
+     * API name: {@code exponent}
+     * </p>
      */
     public final float exponent() {
         return this.exponent;
     }
 
     /**
+     * Required - Configurable pivot value so that the result will be less than 0.5.
+     * <p>
+     * API name: {@code pivot}
+     * </p>
+     */
+    public final float pivot() {
+        return this.pivot;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -89,52 +109,93 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements P
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.writeKey("pivot");
-        generator.write(this.pivot);
-
+        super.serializeInternal(generator, mapper);
         generator.writeKey("exponent");
         generator.write(this.exponent);
 
-    }
-
-    public Builder toBuilder() {
-        return new Builder().pivot(pivot).exponent(exponent);
+        generator.writeKey("pivot");
+        generator.write(this.pivot);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link RankFeatureFunctionSigmoid}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionSigmoid> {
+    public static class Builder extends RankFeatureFunction.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, RankFeatureFunctionSigmoid> {
+        private Float exponent;
         private Float pivot;
 
-        private Float exponent;
+        public Builder() {}
 
-        /**
-         * Required - API name: {@code pivot}
-         */
-        public final Builder pivot(float value) {
-            this.pivot = value;
+        private Builder(RankFeatureFunctionSigmoid o) {
+            super(o);
+            this.exponent = o.exponent;
+            this.pivot = o.pivot;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.exponent = o.exponent;
+            this.pivot = o.pivot;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
             return this;
         }
 
         /**
-         * Required - API name: {@code exponent}
+         * Required - Configurable Exponent.
+         * <p>
+         * API name: {@code exponent}
+         * </p>
          */
+        @Nonnull
         public final Builder exponent(float value) {
             this.exponent = value;
             return this;
         }
 
         /**
+         * Required - Configurable pivot value so that the result will be less than 0.5.
+         * <p>
+         * API name: {@code pivot}
+         * </p>
+         */
+        @Nonnull
+        public final Builder pivot(float value) {
+            this.pivot = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link RankFeatureFunctionSigmoid}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RankFeatureFunctionSigmoid build() {
             _checkSingleUse();
 
@@ -153,10 +214,27 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements P
     );
 
     protected static void setupRankFeatureFunctionSigmoidDeserializer(ObjectDeserializer<RankFeatureFunctionSigmoid.Builder> op) {
-
-        op.add(Builder::pivot, JsonpDeserializer.floatDeserializer(), "pivot");
+        setupRankFeatureFunctionDeserializer(op);
         op.add(Builder::exponent, JsonpDeserializer.floatDeserializer(), "exponent");
-
+        op.add(Builder::pivot, JsonpDeserializer.floatDeserializer(), "pivot");
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Float.hashCode(this.exponent);
+        result = 31 * result + Float.hashCode(this.pivot);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RankFeatureFunctionSigmoid other = (RankFeatureFunctionSigmoid) o;
+        return this.exponent == other.exponent && this.pivot == other.pivot;
+    }
 }

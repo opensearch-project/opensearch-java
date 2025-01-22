@@ -1,15 +1,18 @@
-{{^extendsOtherShape}}
+{{#shouldImplementJsonSerializable}}
     /**
      * Serialize this object to JSON.
      */
     @Override
     public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
         generator.writeStartObject();
+    {{^isEmptyObject}}
         serializeInternal(generator, mapper);
+    {{/isEmptyObject}}
         generator.writeEnd();
     }
 
-{{/extendsOtherShape}}
+{{/shouldImplementJsonSerializable}}
+{{#hasFieldsToSerialize}}
     protected void serializeInternal({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
 {{#singleKeyMap}}
     generator.writeStartObject(this.{{name}});
@@ -28,3 +31,4 @@
     generator.writeEnd();
 {{/singleKeyMap}}
     }
+{{/hasFieldsToSerialize}}

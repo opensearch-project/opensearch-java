@@ -28,8 +28,20 @@ public class ObjectShape extends ObjectShapeBase {
             .collect(Collectors.toSet());
     }
 
-    public boolean shouldImplementJsonSerializable() {
-        return hasFieldsToSerialize() && !extendsOtherShape();
+    public final boolean shouldImplementJsonSerializable() {
+        return !superImplementsJsonSerializable() && shouldImplementJsonSerializableInner();
+    }
+
+    protected boolean shouldImplementJsonSerializableInner() {
+        return hasFieldsToSerialize() || !extendedByOtherShape();
+    }
+
+    public boolean implementsJsonSerializable() {
+        return shouldImplementJsonSerializableInner() || superImplementsJsonSerializable();
+    }
+
+    private boolean superImplementsJsonSerializable() {
+        return extendsOtherShape() && getExtendsType().getTargetShape().map(s -> ((ObjectShape) s).implementsJsonSerializable()).orElse(false);
     }
 
     public Collection<Type> getImplementsTypes() {
@@ -39,7 +51,7 @@ public class ObjectShape extends ObjectShapeBase {
             types.add(Types.Client.Json.PlainJsonSerializable);
         }
 
-        if (!isAbstract() && !canBeSingleton()) {
+        if (!isAbstract()) {
             types.add(Types.Client.Util.ToCopyableBuilder(getType().getBuilderType(), getType()));
         }
 
@@ -66,6 +78,10 @@ public class ObjectShape extends ObjectShapeBase {
         }
 
         return extendsType.getTargetShape().map(s -> ((ObjectShape) s).canBeSingleton()).orElse(false);
+    }
+
+    public boolean isEmptyObject() {
+        return canBeSingleton() && !extendedByOtherShape();
     }
 
     public boolean shouldImplementPlainDeserializable() {

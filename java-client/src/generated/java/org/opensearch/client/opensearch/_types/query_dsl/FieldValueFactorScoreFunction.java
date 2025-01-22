@@ -30,27 +30,45 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.query_dsl.FieldValueFactorScoreFunction
 
 @JsonpDeserializable
-public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
-    private final String field;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class FieldValueFactorScoreFunction
+    implements
+        FunctionScoreVariant,
+        PlainJsonSerializable,
+        ToCopyableBuilder<FieldValueFactorScoreFunction.Builder, FieldValueFactorScoreFunction> {
 
     @Nullable
-    private final Double factor;
+    private final Float factor;
+
+    @Nonnull
+    private final String field;
 
     @Nullable
     private final Double missing;
@@ -61,21 +79,20 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
     // ---------------------------------------------------------------------------------------------
 
     private FieldValueFactorScoreFunction(Builder builder) {
-        super(builder);
-
-        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
         this.factor = builder.factor;
+        this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
         this.missing = builder.missing;
         this.modifier = builder.modifier;
-
     }
 
-    public static FieldValueFactorScoreFunction of(Function<Builder, ObjectBuilder<FieldValueFactorScoreFunction>> fn) {
+    public static FieldValueFactorScoreFunction of(
+        Function<FieldValueFactorScoreFunction.Builder, ObjectBuilder<FieldValueFactorScoreFunction>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * FunctionScore variant kind.
+     * {@link FunctionScore} variant kind.
      */
     @Override
     public FunctionScore.Kind _functionScoreKind() {
@@ -83,22 +100,30 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
     }
 
     /**
+     * Optional factor to multiply the field value with.
+     * <p>
+     * API name: {@code factor}
+     * </p>
+     */
+    @Nullable
+    public final Float factor() {
+        return this.factor;
+    }
+
+    /**
      * Required - API name: {@code field}
      */
+    @Nonnull
     public final String field() {
         return this.field;
     }
 
     /**
-     * API name: {@code factor}
-     */
-    @Nullable
-    public final Double factor() {
-        return this.factor;
-    }
-
-    /**
+     * Value used if the document doesn't have that field. The modifier and factor are still applied to it as though it were read from the
+     * document.
+     * <p>
      * API name: {@code missing}
+     * </p>
      */
     @Nullable
     public final Double missing() {
@@ -113,70 +138,112 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
         return this.modifier;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        super.serializeInternal(generator, mapper);
-        generator.writeKey("field");
-        generator.write(this.field);
-
         if (this.factor != null) {
             generator.writeKey("factor");
             generator.write(this.factor);
-
         }
+
+        generator.writeKey("field");
+        generator.write(this.field);
+
         if (this.missing != null) {
             generator.writeKey("missing");
             generator.write(this.missing);
-
         }
+
         if (this.modifier != null) {
             generator.writeKey("modifier");
             this.modifier.serialize(generator, mapper);
         }
-
-    }
-
-    public Builder toBuilder() {
-        return new Builder().field(field).factor(factor).missing(missing).modifier(modifier);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link FieldValueFactorScoreFunction}.
      */
-
-    public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder> implements ObjectBuilder<FieldValueFactorScoreFunction> {
-        private String field;
-
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, FieldValueFactorScoreFunction> {
         @Nullable
-        private Double factor;
-
+        private Float factor;
+        private String field;
         @Nullable
         private Double missing;
-
         @Nullable
         private FieldValueFactorModifier modifier;
+
+        public Builder() {}
+
+        private Builder(FieldValueFactorScoreFunction o) {
+            this.factor = o.factor;
+            this.field = o.field;
+            this.missing = o.missing;
+            this.modifier = o.modifier;
+        }
+
+        private Builder(Builder o) {
+            this.factor = o.factor;
+            this.field = o.field;
+            this.missing = o.missing;
+            this.modifier = o.modifier;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        /**
+         * Optional factor to multiply the field value with.
+         * <p>
+         * API name: {@code factor}
+         * </p>
+         */
+        @Nonnull
+        public final Builder factor(@Nullable Float value) {
+            this.factor = value;
+            return this;
+        }
 
         /**
          * Required - API name: {@code field}
          */
+        @Nonnull
         public final Builder field(String value) {
             this.field = value;
             return this;
         }
 
         /**
-         * API name: {@code factor}
-         */
-        public final Builder factor(@Nullable Double value) {
-            this.factor = value;
-            return this;
-        }
-
-        /**
+         * Value used if the document doesn't have that field. The modifier and factor are still applied to it as though it were read from
+         * the document.
+         * <p>
          * API name: {@code missing}
+         * </p>
          */
+        @Nonnull
         public final Builder missing(@Nullable Double value) {
             this.missing = value;
             return this;
@@ -185,22 +252,19 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
         /**
          * API name: {@code modifier}
          */
+        @Nonnull
         public final Builder modifier(@Nullable FieldValueFactorModifier value) {
             this.modifier = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
             return this;
         }
 
         /**
          * Builds a {@link FieldValueFactorScoreFunction}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public FieldValueFactorScoreFunction build() {
             _checkSingleUse();
 
@@ -219,12 +283,30 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
     );
 
     protected static void setupFieldValueFactorScoreFunctionDeserializer(ObjectDeserializer<FieldValueFactorScoreFunction.Builder> op) {
-        ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
+        op.add(Builder::factor, JsonpDeserializer.floatDeserializer(), "factor");
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-        op.add(Builder::factor, JsonpDeserializer.doubleDeserializer(), "factor");
         op.add(Builder::missing, JsonpDeserializer.doubleDeserializer(), "missing");
         op.add(Builder::modifier, FieldValueFactorModifier._DESERIALIZER, "modifier");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.factor);
+        result = 31 * result + this.field.hashCode();
+        result = 31 * result + Objects.hashCode(this.missing);
+        result = 31 * result + Objects.hashCode(this.modifier);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        FieldValueFactorScoreFunction other = (FieldValueFactorScoreFunction) o;
+        return Objects.equals(this.factor, other.factor)
+            && this.field.equals(other.field)
+            && Objects.equals(this.missing, other.missing)
+            && Objects.equals(this.modifier, other.modifier);
+    }
 }

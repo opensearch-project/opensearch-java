@@ -268,6 +268,7 @@ public final class PutPipelineRequest extends RequestBase
             generator.write(this.version);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

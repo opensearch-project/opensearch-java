@@ -217,6 +217,7 @@ public final class CreateRepositoryRequest extends RequestBase
         generator.writeKey("type");
         generator.write(this.type);
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

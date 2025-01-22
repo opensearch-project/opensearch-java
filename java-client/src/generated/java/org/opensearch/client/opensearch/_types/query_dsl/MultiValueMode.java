@@ -30,18 +30,38 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
-import org.opensearch.client.util.ObjectBuilderBase;
+import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
 
-// typedef: _types.query_dsl.RankFeatureFunction
+// typedef: _types.query_dsl.MultiValueMode
 
-public abstract class RankFeatureFunction {
-    public RankFeatureFunction() {}
+@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum MultiValueMode implements JsonEnum {
+    Avg("avg"),
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
-        protected abstract BuilderT self();
+    Max("max"),
 
+    Min("min"),
+
+    Sum("sum");
+
+    private final String jsonValue;
+
+    MultiValueMode(String jsonValue) {
+        this.jsonValue = jsonValue;
     }
 
+    public String jsonValue() {
+        return this.jsonValue;
+    }
+
+    public static final JsonEnum.Deserializer<MultiValueMode> _DESERIALIZER = new JsonEnum.Deserializer<>(MultiValueMode.values());
 }

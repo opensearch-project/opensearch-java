@@ -30,32 +30,22 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
-import org.opensearch.client.json.JsonEnum;
-import org.opensearch.client.json.JsonpDeserializable;
+import javax.annotation.Generated;
 
-@JsonpDeserializable
-public enum MultiValueMode implements JsonEnum {
-    Min("min"),
+/**
+ * Base interface for {@link FunctionScore} variants.
+ */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public interface FunctionScoreVariant {
+    FunctionScore.Kind _functionScoreKind();
 
-    Max("max"),
-
-    Avg("avg"),
-
-    Sum("sum"),
-
-    ;
-
-    private final String jsonValue;
-
-    MultiValueMode(String jsonValue) {
-        this.jsonValue = jsonValue;
+    default FunctionScore toFunctionScore() {
+        return new FunctionScore(this);
     }
-
-    public String jsonValue() {
-        return this.jsonValue;
-    }
-
-    public static final JsonEnum.Deserializer<MultiValueMode> _DESERIALIZER = new JsonEnum.Deserializer<>(MultiValueMode.values());
 }
