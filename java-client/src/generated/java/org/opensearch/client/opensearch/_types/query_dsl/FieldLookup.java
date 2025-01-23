@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,13 +49,18 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.query_dsl.FieldLookup
 
 @JsonpDeserializable
-public class FieldLookup implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class FieldLookup implements PlainJsonSerializable, ToCopyableBuilder<FieldLookup.Builder, FieldLookup> {
+
+    @Nonnull
     private final String id;
 
     @Nullable
@@ -63,21 +75,20 @@ public class FieldLookup implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private FieldLookup(Builder builder) {
-
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.index = builder.index;
         this.path = builder.path;
         this.routing = builder.routing;
-
     }
 
-    public static FieldLookup of(Function<Builder, ObjectBuilder<FieldLookup>> fn) {
+    public static FieldLookup of(Function<FieldLookup.Builder, ObjectBuilder<FieldLookup>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code id}
      */
+    @Nonnull
     public final String id() {
         return this.id;
     }
@@ -109,6 +120,7 @@ public class FieldLookup implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -116,53 +128,76 @@ public class FieldLookup implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("id");
         generator.write(this.id);
 
         if (this.index != null) {
             generator.writeKey("index");
             generator.write(this.index);
-
         }
+
         if (this.path != null) {
             generator.writeKey("path");
             generator.write(this.path);
-
         }
+
         if (this.routing != null) {
             generator.writeKey("routing");
             generator.write(this.routing);
-
         }
-
-    }
-
-    public Builder toBuilder() {
-        return new Builder().id(id).index(index).path(path).routing(routing);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link FieldLookup}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldLookup> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, FieldLookup> {
         private String id;
-
         @Nullable
         private String index;
-
         @Nullable
         private String path;
-
         @Nullable
         private String routing;
+
+        public Builder() {}
+
+        private Builder(FieldLookup o) {
+            this.id = o.id;
+            this.index = o.index;
+            this.path = o.path;
+            this.routing = o.routing;
+        }
+
+        private Builder(Builder o) {
+            this.id = o.id;
+            this.index = o.index;
+            this.path = o.path;
+            this.routing = o.routing;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code id}
          */
+        @Nonnull
         public final Builder id(String value) {
             this.id = value;
             return this;
@@ -171,6 +206,7 @@ public class FieldLookup implements PlainJsonSerializable {
         /**
          * API name: {@code index}
          */
+        @Nonnull
         public final Builder index(@Nullable String value) {
             this.index = value;
             return this;
@@ -179,6 +215,7 @@ public class FieldLookup implements PlainJsonSerializable {
         /**
          * API name: {@code path}
          */
+        @Nonnull
         public final Builder path(@Nullable String value) {
             this.path = value;
             return this;
@@ -187,6 +224,7 @@ public class FieldLookup implements PlainJsonSerializable {
         /**
          * API name: {@code routing}
          */
+        @Nonnull
         public final Builder routing(@Nullable String value) {
             this.routing = value;
             return this;
@@ -195,9 +233,10 @@ public class FieldLookup implements PlainJsonSerializable {
         /**
          * Builds a {@link FieldLookup}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public FieldLookup build() {
             _checkSingleUse();
 
@@ -216,12 +255,30 @@ public class FieldLookup implements PlainJsonSerializable {
     );
 
     protected static void setupFieldLookupDeserializer(ObjectDeserializer<FieldLookup.Builder> op) {
-
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
         op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
         op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.id.hashCode();
+        result = 31 * result + Objects.hashCode(this.index);
+        result = 31 * result + Objects.hashCode(this.path);
+        result = 31 * result + Objects.hashCode(this.routing);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        FieldLookup other = (FieldLookup) o;
+        return this.id.equals(other.id)
+            && Objects.equals(this.index, other.index)
+            && Objects.equals(this.path, other.path)
+            && Objects.equals(this.routing, other.routing);
+    }
 }

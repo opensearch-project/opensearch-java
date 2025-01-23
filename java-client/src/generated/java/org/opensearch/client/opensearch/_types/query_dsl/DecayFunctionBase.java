@@ -30,26 +30,34 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.query_dsl.DecayFunctionBase
 
-public abstract class DecayFunctionBase extends ScoreFunctionBase {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public abstract class DecayFunctionBase implements PlainJsonSerializable {
+
     @Nullable
     private final MultiValueMode multiValueMode;
 
     // ---------------------------------------------------------------------------------------------
 
     protected DecayFunctionBase(AbstractBuilder<?> builder) {
-        super(builder);
-
         this.multiValueMode = builder.multiValueMode;
-
     }
 
     /**
@@ -60,36 +68,70 @@ public abstract class DecayFunctionBase extends ScoreFunctionBase {
         return this.multiValueMode;
     }
 
-    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
 
-        super.serializeInternal(generator, mapper);
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.multiValueMode != null) {
             generator.writeKey("multi_value_mode");
             this.multiValueMode.serialize(generator, mapper);
         }
-
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ScoreFunctionBase.AbstractBuilder<
-        BuilderT> {
+    // ---------------------------------------------------------------------------------------------
+
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         @Nullable
         private MultiValueMode multiValueMode;
+
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(DecayFunctionBase o) {
+            this.multiValueMode = o.multiValueMode;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            this.multiValueMode = o.multiValueMode;
+        }
+
+        @Nonnull
+        protected abstract BuilderT self();
 
         /**
          * API name: {@code multi_value_mode}
          */
+        @Nonnull
         public final BuilderT multiValueMode(@Nullable MultiValueMode value) {
             this.multiValueMode = value;
             return self();
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
-    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDecayFunctionBaseDeserializer(ObjectDeserializer<BuilderT> op) {
-        ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
-        op.add(AbstractBuilder::multiValueMode, MultiValueMode._DESERIALIZER, "multi_value_mode");
 
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDecayFunctionBaseDeserializer(ObjectDeserializer<BuilderT> op) {
+        op.add(AbstractBuilder::multiValueMode, MultiValueMode._DESERIALIZER, "multi_value_mode");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.multiValueMode);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        DecayFunctionBase other = (DecayFunctionBase) o;
+        return Objects.equals(this.multiValueMode, other.multiValueMode);
+    }
 }

@@ -30,24 +30,36 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.query_dsl.TermsQuery
 
 @JsonpDeserializable
-public class TermsQuery extends QueryBase implements QueryVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBuilder<TermsQuery.Builder, TermsQuery> {
+
+    @Nonnull
     private final String field;
 
+    @Nonnull
     private final TermsQueryField terms;
 
     // ---------------------------------------------------------------------------------------------
@@ -56,15 +68,14 @@ public class TermsQuery extends QueryBase implements QueryVariant {
         super(builder);
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
         this.terms = ApiTypeHelper.requireNonNull(builder.terms, this, "terms");
-
     }
 
-    public static TermsQuery of(Function<Builder, ObjectBuilder<TermsQuery>> fn) {
+    public static TermsQuery of(Function<TermsQuery.Builder, ObjectBuilder<TermsQuery>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Query variant kind.
+     * {@link Query} variant kind.
      */
     @Override
     public Query.Kind _queryKind() {
@@ -74,6 +85,7 @@ public class TermsQuery extends QueryBase implements QueryVariant {
     /**
      * Required -
      */
+    @Nonnull
     public final String field() {
         return this.field;
     }
@@ -81,31 +93,35 @@ public class TermsQuery extends QueryBase implements QueryVariant {
     /**
      * Required -
      */
+    @Nonnull
     public final TermsQueryField terms() {
         return this.terms;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        super.serializeInternal(generator, mapper);
         generator.writeKey(this.field);
         this.terms.serialize(generator, mapper);
-
-        super.serializeInternal(generator, mapper);
-
-    }
-
-    public Builder toBuilder() {
-        return new Builder(this);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link TermsQuery}.
      */
-
-    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TermsQuery> {
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, TermsQuery> {
         private String field;
-
         private TermsQueryField terms;
 
         public Builder() {}
@@ -116,9 +132,28 @@ public class TermsQuery extends QueryBase implements QueryVariant {
             this.terms = o.terms;
         }
 
+        private Builder(Builder o) {
+            super(o);
+            this.field = o.field;
+            this.terms = o.terms;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * Required -
          */
+        @Nonnull
         public final Builder field(String value) {
             this.field = value;
             return this;
@@ -127,6 +162,7 @@ public class TermsQuery extends QueryBase implements QueryVariant {
         /**
          * Required -
          */
+        @Nonnull
         public final Builder terms(TermsQueryField value) {
             this.terms = value;
             return this;
@@ -135,21 +171,18 @@ public class TermsQuery extends QueryBase implements QueryVariant {
         /**
          * Required -
          */
+        @Nonnull
         public final Builder terms(Function<TermsQueryField.Builder, ObjectBuilder<TermsQueryField>> fn) {
-            return this.terms(fn.apply(new TermsQueryField.Builder()).build());
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
+            return terms(fn.apply(new TermsQueryField.Builder()).build());
         }
 
         /**
          * Builds a {@link TermsQuery}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public TermsQuery build() {
             _checkSingleUse();
 
@@ -168,13 +201,29 @@ public class TermsQuery extends QueryBase implements QueryVariant {
     );
 
     protected static void setupTermsQueryDeserializer(ObjectDeserializer<TermsQuery.Builder> op) {
-        QueryBase.setupQueryBaseDeserializer(op);
-
+        setupQueryBaseDeserializer(op);
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
             builder.field(name);
             builder.terms(TermsQueryField._DESERIALIZER.deserialize(parser, mapper));
         });
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + this.field.hashCode();
+        result = 31 * result + this.terms.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        TermsQuery other = (TermsQuery) o;
+        return this.field.equals(other.field) && this.terms.equals(other.terms);
+    }
 }

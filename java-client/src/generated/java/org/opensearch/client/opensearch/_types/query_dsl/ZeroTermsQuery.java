@@ -45,18 +45,24 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum ZeroTermsQuery implements JsonEnum {
-    All("all"),
+    All("all", "ALL"),
 
-    None("none");
+    None("none", "NONE");
 
     private final String jsonValue;
+    private final String[] aliases;
 
-    ZeroTermsQuery(String jsonValue) {
+    ZeroTermsQuery(String jsonValue, String... aliases) {
         this.jsonValue = jsonValue;
+        this.aliases = aliases;
     }
 
     public String jsonValue() {
         return this.jsonValue;
+    }
+
+    public String[] aliases() {
+        return this.aliases;
     }
 
     public static final JsonEnum.Deserializer<ZeroTermsQuery> _DESERIALIZER = new JsonEnum.Deserializer<>(ZeroTermsQuery.values());

@@ -30,11 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -43,30 +49,34 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.GeoLocation;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.query_dsl.GeoPolygonPoints
 
 @JsonpDeserializable
-public class GeoPolygonPoints implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class GeoPolygonPoints implements PlainJsonSerializable, ToCopyableBuilder<GeoPolygonPoints.Builder, GeoPolygonPoints> {
+
+    @Nonnull
     private final List<GeoLocation> points;
 
     // ---------------------------------------------------------------------------------------------
 
     private GeoPolygonPoints(Builder builder) {
-
         this.points = ApiTypeHelper.unmodifiableRequired(builder.points, this, "points");
-
     }
 
-    public static GeoPolygonPoints of(Function<Builder, ObjectBuilder<GeoPolygonPoints>> fn) {
+    public static GeoPolygonPoints of(Function<GeoPolygonPoints.Builder, ObjectBuilder<GeoPolygonPoints>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code points}
      */
+    @Nonnull
     public final List<GeoLocation> points() {
         return this.points;
     }
@@ -74,6 +84,7 @@ public class GeoPolygonPoints implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -81,38 +92,57 @@ public class GeoPolygonPoints implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.points)) {
-            generator.writeKey("points");
-            generator.writeStartArray();
-            for (GeoLocation item0 : this.points) {
-                item0.serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("points");
+        generator.writeStartArray();
+        for (GeoLocation item0 : this.points) {
+            item0.serialize(generator, mapper);
         }
-
-    }
-
-    public Builder toBuilder() {
-        return new Builder().points(points);
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GeoPolygonPoints}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoPolygonPoints> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GeoPolygonPoints> {
         private List<GeoLocation> points;
+
+        public Builder() {}
+
+        private Builder(GeoPolygonPoints o) {
+            this.points = _listCopy(o.points);
+        }
+
+        private Builder(Builder o) {
+            this.points = _listCopy(o.points);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code points}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>points</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder points(List<GeoLocation> list) {
             this.points = _listAddAll(this.points, list);
             return this;
@@ -120,9 +150,12 @@ public class GeoPolygonPoints implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code points}
+         *
          * <p>
          * Adds one or more values to <code>points</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder points(GeoLocation value, GeoLocation... values) {
             this.points = _listAdd(this.points, value, values);
             return this;
@@ -130,9 +163,12 @@ public class GeoPolygonPoints implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code points}
+         *
          * <p>
          * Adds a value to <code>points</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder points(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
             return points(fn.apply(new GeoLocation.Builder()).build());
         }
@@ -140,9 +176,10 @@ public class GeoPolygonPoints implements PlainJsonSerializable {
         /**
          * Builds a {@link GeoPolygonPoints}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GeoPolygonPoints build() {
             _checkSingleUse();
 
@@ -161,9 +198,21 @@ public class GeoPolygonPoints implements PlainJsonSerializable {
     );
 
     protected static void setupGeoPolygonPointsDeserializer(ObjectDeserializer<GeoPolygonPoints.Builder> op) {
-
         op.add(Builder::points, JsonpDeserializer.arrayDeserializer(GeoLocation._DESERIALIZER), "points");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.points.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        GeoPolygonPoints other = (GeoPolygonPoints) o;
+        return this.points.equals(other.points);
+    }
 }

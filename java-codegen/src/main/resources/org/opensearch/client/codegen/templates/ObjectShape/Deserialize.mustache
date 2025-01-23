@@ -16,14 +16,20 @@
         setup{{extendsType.name}}Deserializer(op{{#extendsType.typeParams}}, {{>Type/deserializer}}{{/extendsType.typeParams}});
     {{/extendsOtherShape}}
     {{>ObjectShape/Deserialize/Fields}}
-    {{#additionalPropertiesField}}
+    {{#additionalProperties}}
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-            if (builder.{{name}} == null) {
-                builder.{{name}} = new {{TYPES.Java.Util.HashMap}}<>();
+        {{#singleton}}
+            builder.{{keyName}}(name);
+            builder.{{valueName}}({{#valueType}}{{>Type/deserializer}}{{/valueType}}.deserialize(parser, mapper));
+        {{/singleton}}
+        {{^singleton}}
+            if (builder.{{valueName}} == null) {
+                builder.{{valueName}} = new {{TYPES.Java.Util.HashMap}}<>();
             }
-            builder.{{name}}.put(name, {{#type.mapValueType}}{{>Type/deserializer}}{{/type.mapValueType}}.deserialize(parser, mapper));
+            builder.{{valueName}}.put(name, {{#valueType}}{{>Type/deserializer}}{{/valueType}}.deserialize(parser, mapper));
+        {{/singleton}}
         });
-    {{/additionalPropertiesField}}
+    {{/additionalProperties}}
     {{#distinctDiscriminatorFieldValues}}
 
         op.ignore({{#quoted}}{{key}}{{/quoted}});

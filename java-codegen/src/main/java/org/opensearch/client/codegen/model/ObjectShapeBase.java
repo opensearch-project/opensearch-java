@@ -11,17 +11,21 @@ package org.opensearch.client.codegen.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
+import org.opensearch.client.codegen.utils.NameSanitizer;
 
 public class ObjectShapeBase extends Shape {
     protected final Map<String, Field> bodyFields = new TreeMap<>();
+    private final Set<String> bodyFieldWireNames = new HashSet<>();
     protected Field singleyKeyMapField;
-    protected Field additionalPropertiesField;
+    protected AdditionalProperties additionalProperties;
     private String shortcutProperty;
 
     public ObjectShapeBase(Namespace parent, String className, String typedefName, String description, ShouldGenerate shouldGenerate) {
@@ -44,7 +48,12 @@ public class ObjectShapeBase extends Shape {
 
     public void addBodyField(Field field) {
         bodyFields.put(field.getName(), field);
+        bodyFieldWireNames.add(field.getWireName());
         tryAddReference(ReferenceKind.Field, field.getType());
+    }
+
+    public boolean hasBodyFieldWithWireName(String wireName) {
+        return bodyFieldWireNames.contains(wireName);
     }
 
     private Set<String> getDiscriminatingFieldNames() {
@@ -69,8 +78,8 @@ public class ObjectShapeBase extends Shape {
 
     public Collection<Field> getFields(boolean includeSingleKeyMap) {
         var fields = new ArrayList<>(getBodyFields());
-        if (additionalPropertiesField != null) {
-            fields.add(additionalPropertiesField);
+        if (additionalProperties != null) {
+            fields.addAll(additionalProperties.getFields());
         }
         if (includeSingleKeyMap && singleyKeyMapField != null) {
             fields.add(singleyKeyMapField);
@@ -86,7 +95,7 @@ public class ObjectShapeBase extends Shape {
     public boolean hasFields(boolean includeSingleKeyMap) {
         var discriminatingFields = getDiscriminatingFieldNames();
         return bodyFields.size() > discriminatingFields.size()
-            || additionalPropertiesField != null
+            || additionalProperties != null
             || (includeSingleKeyMap && singleyKeyMapField != null);
     }
 
@@ -94,15 +103,16 @@ public class ObjectShapeBase extends Shape {
         return bodyFields.values().stream().anyMatch(Field::isRequired);
     }
 
-    public void setAdditionalPropertiesField(Field field) {
-        additionalPropertiesField = field;
-        if (field != null) {
-            tryAddReference(ReferenceKind.Field, field.getType());
+    public void setAdditionalProperties(AdditionalProperties additionalProperties) {
+        this.additionalProperties = additionalProperties;
+        if (additionalProperties != null) {
+            tryAddReference(ReferenceKind.Field, additionalProperties.keyType);
+            tryAddReference(ReferenceKind.Field, additionalProperties.valueType);
         }
     }
 
-    public Field getAdditionalPropertiesField() {
-        return additionalPropertiesField;
+    public AdditionalProperties getAdditionalProperties() {
+        return additionalProperties;
     }
 
     public String getShortcutProperty() {
@@ -118,7 +128,7 @@ public class ObjectShapeBase extends Shape {
     }
 
     public boolean hasFieldsToSerialize() {
-        return !bodyFields.isEmpty() || additionalPropertiesField != null;
+        return !bodyFields.isEmpty() || additionalProperties != null;
     }
 
     public Collection<Field> getFieldsToDeserialize() {
@@ -148,6 +158,55 @@ public class ObjectShapeBase extends Shape {
 
         public BuilderSetter(Type builderType, Field field) {
             this(builderType, "this", field);
+        }
+    }
+
+    public static class AdditionalProperties {
+        private final String keyName;
+        private final Type keyType;
+        private final String keyDescription;
+        private final String valueName;
+        private final Type valueType;
+        private final String valueDescription;
+        private final boolean singleton;
+
+        public AdditionalProperties(
+            String keyName,
+            Type keyType,
+            String keyDescription,
+            String valueName,
+            Type valueType,
+            String valueDescription,
+            boolean singleton
+        ) {
+            this.keyName = NameSanitizer.fieldName(keyName);
+            this.keyType = keyType;
+            this.keyDescription = keyDescription;
+            this.valueName = NameSanitizer.fieldName(valueName);
+            this.valueType = valueType;
+            this.valueDescription = valueDescription;
+            this.singleton = singleton;
+        }
+
+        public List<Field> getFields() {
+            if (singleton) {
+                return List.of(
+                    Field.builder().withName(keyName).withType(keyType).withDescription(keyDescription).withRequired(true).build(),
+                    Field.builder().withName(valueName).withType(valueType).withDescription(valueDescription).withRequired(true).build()
+                );
+            } else {
+                return List.of(
+                    Field.builder()
+                        .withName(valueName)
+                        .withType(getMapType())
+                        .withDescription(valueDescription)
+                        .build()
+                );
+            }
+        }
+
+        public Type getMapType() {
+            return Types.Java.Util.Map(keyType, valueType);
         }
     }
 }

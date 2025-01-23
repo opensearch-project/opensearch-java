@@ -30,24 +30,39 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.query_dsl.DecayFunction
 
 @JsonpDeserializable
-public class DecayFunction extends DecayFunctionBase implements FunctionScoreVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class DecayFunction extends DecayFunctionBase
+    implements
+        FunctionScoreVariant,
+        ToCopyableBuilder<DecayFunction.Builder, DecayFunction> {
+
+    @Nonnull
     private final String field;
 
+    @Nonnull
     private final DecayPlacement placement;
 
     // ---------------------------------------------------------------------------------------------
@@ -56,15 +71,14 @@ public class DecayFunction extends DecayFunctionBase implements FunctionScoreVar
         super(builder);
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
         this.placement = ApiTypeHelper.requireNonNull(builder.placement, this, "placement");
-
     }
 
-    public static DecayFunction of(Function<Builder, ObjectBuilder<DecayFunction>> fn) {
+    public static DecayFunction of(Function<DecayFunction.Builder, ObjectBuilder<DecayFunction>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * FunctionScore variant kind.
+     * {@link FunctionScore} variant kind.
      */
     @Override
     public FunctionScore.Kind _functionScoreKind() {
@@ -74,6 +88,7 @@ public class DecayFunction extends DecayFunctionBase implements FunctionScoreVar
     /**
      * Required -
      */
+    @Nonnull
     public final String field() {
         return this.field;
     }
@@ -81,36 +96,67 @@ public class DecayFunction extends DecayFunctionBase implements FunctionScoreVar
     /**
      * Required -
      */
+    @Nonnull
     public final DecayPlacement placement() {
         return this.placement;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        super.serializeInternal(generator, mapper);
         generator.writeKey(this.field);
         this.placement.serialize(generator, mapper);
-
-        super.serializeInternal(generator, mapper);
-
-    }
-
-    public Builder toBuilder() {
-        return new Builder().field(field).placement(placement);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DecayFunction}.
      */
-
-    public static class Builder extends DecayFunctionBase.AbstractBuilder<Builder> implements ObjectBuilder<DecayFunction> {
+    public static class Builder extends DecayFunctionBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, DecayFunction> {
         private String field;
-
         private DecayPlacement placement;
+
+        public Builder() {}
+
+        private Builder(DecayFunction o) {
+            super(o);
+            this.field = o.field;
+            this.placement = o.placement;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.field = o.field;
+            this.placement = o.placement;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required -
          */
+        @Nonnull
         public final Builder field(String value) {
             this.field = value;
             return this;
@@ -119,6 +165,7 @@ public class DecayFunction extends DecayFunctionBase implements FunctionScoreVar
         /**
          * Required -
          */
+        @Nonnull
         public final Builder placement(DecayPlacement value) {
             this.placement = value;
             return this;
@@ -127,21 +174,18 @@ public class DecayFunction extends DecayFunctionBase implements FunctionScoreVar
         /**
          * Required -
          */
+        @Nonnull
         public final Builder placement(Function<DecayPlacement.Builder, ObjectBuilder<DecayPlacement>> fn) {
-            return this.placement(fn.apply(new DecayPlacement.Builder()).build());
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
+            return placement(fn.apply(new DecayPlacement.Builder()).build());
         }
 
         /**
          * Builds a {@link DecayFunction}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DecayFunction build() {
             _checkSingleUse();
 
@@ -161,12 +205,28 @@ public class DecayFunction extends DecayFunctionBase implements FunctionScoreVar
 
     protected static void setupDecayFunctionDeserializer(ObjectDeserializer<DecayFunction.Builder> op) {
         setupDecayFunctionBaseDeserializer(op);
-
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
             builder.field(name);
             builder.placement(DecayPlacement._DESERIALIZER.deserialize(parser, mapper));
         });
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + this.field.hashCode();
+        result = 31 * result + this.placement.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        DecayFunction other = (DecayFunction) o;
+        return this.field.equals(other.field) && this.placement.equals(other.placement);
+    }
 }

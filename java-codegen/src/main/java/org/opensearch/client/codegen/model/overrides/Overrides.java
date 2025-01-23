@@ -99,29 +99,29 @@ public class Overrides {
                 .with(schema("_common.aggregations", "PercentageScoreHeuristic"), so -> so.withShouldGenerate(ShouldGenerate.Never))
 
                 // TODO: Remove this once figuring out how best to handle these schemas
-//                .with(schema("_common.query_dsl", "DecayFunction"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+                // .with(schema("_common.query_dsl", "DecayFunction"), so -> so.withShouldGenerate(ShouldGenerate.Never))
                 .with(
                     schema("_common.query_dsl", "FunctionScoreContainer"),
-                    so -> so/*.withShouldGenerate(ShouldGenerate.Never)*/.withClassName("FunctionScore")
+                    so -> so/* .withShouldGenerate(ShouldGenerate.Never) */.withClassName("FunctionScore")
                 )
-//                .with(schema("_common.query_dsl", "GeoBoundingBoxQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
-//                .with(schema("_common.query_dsl", "GeoDistanceQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
-//                .with(schema("_common.query_dsl", "GeoPolygonQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
-//                .with(schema("_common.query_dsl", "GeoShapeQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
-//                .with(schema("_common.query_dsl", "RangeQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
-//                .with(schema("_common.query_dsl", "RankFeatureFunctionLinear"), so -> so.withShouldGenerate(ShouldGenerate.Never))
-//                .with(schema("_common.query_dsl", "RankFeatureFunctionLogarithm"), so -> so.withShouldGenerate(ShouldGenerate.Never))
-//                .with(schema("_common.query_dsl", "RankFeatureFunctionSaturation"), so -> so.withShouldGenerate(ShouldGenerate.Never))
-//                .with(schema("_common.query_dsl", "RankFeatureFunctionSigmoid"), so -> so.withShouldGenerate(ShouldGenerate.Never))
-                .with(
-                    schema("_common.query_dsl", "SpanGapQuery"),
-                    so -> so.withMappedType(
-                        t -> t.withPackage(Types.Client.OpenSearch._Types.PACKAGE + ".query_dsl").withName("SpanGapQuery")
-                    )
-                )
-//                .with(schema("_common.query_dsl", "TermsQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+                // .with(schema("_common.query_dsl", "GeoBoundingBoxQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+                // .with(schema("_common.query_dsl", "GeoDistanceQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+                // .with(schema("_common.query_dsl", "GeoPolygonQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+                // .with(schema("_common.query_dsl", "GeoShapeQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+                // .with(schema("_common.query_dsl", "RangeQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+                // .with(schema("_common.query_dsl", "RankFeatureFunctionLinear"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+                // .with(schema("_common.query_dsl", "RankFeatureFunctionLogarithm"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+                // .with(schema("_common.query_dsl", "RankFeatureFunctionSaturation"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+                // .with(schema("_common.query_dsl", "RankFeatureFunctionSigmoid"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+//                .with(
+//                    schema("_common.query_dsl", "SpanGapQuery"),
+//                    so -> so.withMappedType(
+//                        t -> t.withPackage(Types.Client.OpenSearch._Types.PACKAGE + ".query_dsl").withName("SpanGapQuery")
+//                    )
+//                )
+                // .with(schema("_common.query_dsl", "TermsQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
                 .with(schema("_common.query_dsl", "TermsQueryField"), so -> so.withShouldGenerate(ShouldGenerate.Always))
-//                .with(schema("_common.query_dsl", "XyShapeQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+                // .with(schema("_common.query_dsl", "XyShapeQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
 
                 .with(schema("_common.query_dsl", "FieldValueFactorModifier"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(schema("_common.query_dsl", "IntervalsContainer"), so -> so.withClassName("Intervals"))

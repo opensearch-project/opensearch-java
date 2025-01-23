@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -41,36 +48,40 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.query_dsl.GeoShapeQuery
 
 @JsonpDeserializable
-public class GeoShapeQuery extends QueryBase implements QueryVariant {
-    private final String field;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class GeoShapeQuery extends QueryBase implements QueryVariant, ToCopyableBuilder<GeoShapeQuery.Builder, GeoShapeQuery> {
 
-    private final GeoShapeFieldQuery shape;
+    @Nonnull
+    private final String field;
 
     @Nullable
     private final Boolean ignoreUnmapped;
+
+    @Nonnull
+    private final GeoShapeQueryField shape;
 
     // ---------------------------------------------------------------------------------------------
 
     private GeoShapeQuery(Builder builder) {
         super(builder);
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-        this.shape = ApiTypeHelper.requireNonNull(builder.shape, this, "shape");
-
         this.ignoreUnmapped = builder.ignoreUnmapped;
-
+        this.shape = ApiTypeHelper.requireNonNull(builder.shape, this, "shape");
     }
 
-    public static GeoShapeQuery of(Function<Builder, ObjectBuilder<GeoShapeQuery>> fn) {
+    public static GeoShapeQuery of(Function<GeoShapeQuery.Builder, ObjectBuilder<GeoShapeQuery>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Query variant kind.
+     * {@link Query} variant kind.
      */
     @Override
     public Query.Kind _queryKind() {
@@ -80,15 +91,9 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
     /**
      * Required -
      */
+    @Nonnull
     public final String field() {
         return this.field;
-    }
-
-    /**
-     * Required -
-     */
-    public final GeoShapeFieldQuery shape() {
-        return this.shape;
     }
 
     /**
@@ -99,55 +104,97 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
         return this.ignoreUnmapped;
     }
 
+    /**
+     * Required -
+     */
+    @Nonnull
+    public final GeoShapeQueryField shape() {
+        return this.shape;
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        super.serializeInternal(generator, mapper);
         generator.writeKey(this.field);
         this.shape.serialize(generator, mapper);
-
-        super.serializeInternal(generator, mapper);
         if (this.ignoreUnmapped != null) {
             generator.writeKey("ignore_unmapped");
             generator.write(this.ignoreUnmapped);
-
         }
-
-    }
-
-    public Builder toBuilder() {
-        return new Builder(this);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GeoShapeQuery}.
      */
-
-    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoShapeQuery> {
+    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, GeoShapeQuery> {
         private String field;
-
-        private GeoShapeFieldQuery shape;
+        @Nullable
+        private Boolean ignoreUnmapped;
+        private GeoShapeQueryField shape;
 
         public Builder() {}
 
         private Builder(GeoShapeQuery o) {
             super(o);
             this.field = o.field;
-            this.shape = o.shape;
             this.ignoreUnmapped = o.ignoreUnmapped;
+            this.shape = o.shape;
         }
 
-        /**
-         * Required -
-         */
-        public final Builder field(String value) {
-            this.field = value;
+        private Builder(Builder o) {
+            super(o);
+            this.field = o.field;
+            this.ignoreUnmapped = o.ignoreUnmapped;
+            this.shape = o.shape;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
             return this;
         }
 
         /**
          * Required -
          */
-        public final Builder shape(GeoShapeFieldQuery value) {
+        @Nonnull
+        public final Builder field(String value) {
+            this.field = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code ignore_unmapped}
+         */
+        @Nonnull
+        public final Builder ignoreUnmapped(@Nullable Boolean value) {
+            this.ignoreUnmapped = value;
+            return this;
+        }
+
+        /**
+         * Required -
+         */
+        @Nonnull
+        public final Builder shape(GeoShapeQueryField value) {
             this.shape = value;
             return this;
         }
@@ -155,32 +202,18 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
         /**
          * Required -
          */
-        public final Builder shape(Function<GeoShapeFieldQuery.Builder, ObjectBuilder<GeoShapeFieldQuery>> fn) {
-            return this.shape(fn.apply(new GeoShapeFieldQuery.Builder()).build());
-        }
-
-        @Nullable
-        private Boolean ignoreUnmapped;
-
-        /**
-         * API name: {@code ignore_unmapped}
-         */
-        public final Builder ignoreUnmapped(@Nullable Boolean value) {
-            this.ignoreUnmapped = value;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
+        @Nonnull
+        public final Builder shape(Function<GeoShapeQueryField.Builder, ObjectBuilder<GeoShapeQueryField>> fn) {
+            return shape(fn.apply(new GeoShapeQueryField.Builder()).build());
         }
 
         /**
          * Builds a {@link GeoShapeQuery}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GeoShapeQuery build() {
             _checkSingleUse();
 
@@ -199,14 +232,33 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
     );
 
     protected static void setupGeoShapeQueryDeserializer(ObjectDeserializer<GeoShapeQuery.Builder> op) {
-        QueryBase.setupQueryBaseDeserializer(op);
+        setupQueryBaseDeserializer(op);
         op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
-
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
             builder.field(name);
-            builder.shape(GeoShapeFieldQuery._DESERIALIZER.deserialize(parser, mapper));
+            builder.shape(GeoShapeQueryField._DESERIALIZER.deserialize(parser, mapper));
         });
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + this.field.hashCode();
+        result = 31 * result + Objects.hashCode(this.ignoreUnmapped);
+        result = 31 * result + this.shape.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        GeoShapeQuery other = (GeoShapeQuery) o;
+        return this.field.equals(other.field)
+            && Objects.equals(this.ignoreUnmapped, other.ignoreUnmapped)
+            && this.shape.equals(other.shape);
+    }
 }

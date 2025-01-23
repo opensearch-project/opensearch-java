@@ -43336,10 +43336,18 @@ components:
               $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
           required:
             - filter
-    _common.query_dsl___DateDecayFunction:
-      allOf:
-        - $ref: '#/components/schemas/_common.query_dsl___DecayFunctionBase'
-        - type: object
+    _common.query_dsl___DateDecayPlacement:
+      type: object
+      properties:
+        decay:
+          type: number
+          format: double
+        offset:
+          $ref: '#/components/schemas/_common___Duration'
+        origin:
+          $ref: '#/components/schemas/_common___DateTime'
+        scale:
+          $ref: '#/components/schemas/_common___Duration'
     _common.query_dsl___DateRangeQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___RangeQueryBase'
@@ -43366,15 +43374,26 @@ components:
             time_zone:
               $ref: '#/components/schemas/_common___TimeZone'
     _common.query_dsl___DecayFunction:
-      oneOf:
-        - $ref: '#/components/schemas/_common.query_dsl___DateDecayFunction'
-        - $ref: '#/components/schemas/_common.query_dsl___NumericDecayFunction'
-        - $ref: '#/components/schemas/_common.query_dsl___GeoDecayFunction'
+      allOf:
+        - $ref: '#/components/schemas/_common.query_dsl___DecayFunctionBase'
+        - type: object
+          propertyNames:
+            title: field
+            type: string
+          additionalProperties:
+            title: placement
+            $ref: '#/components/schemas/_common.query_dsl___DecayPlacement'
+          minProperties: 1
     _common.query_dsl___DecayFunctionBase:
       type: object
       properties:
         multi_value_mode:
           $ref: '#/components/schemas/_common.query_dsl___MultiValueMode'
+    _common.query_dsl___DecayPlacement:
+      anyOf:
+        - $ref: '#/components/schemas/_common.query_dsl___DateDecayPlacement'
+        - $ref: '#/components/schemas/_common.query_dsl___GeoDecayPlacement'
+        - $ref: '#/components/schemas/_common.query_dsl___NumericDecayPlacement'
     _common.query_dsl___DisMaxQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
@@ -43446,6 +43465,19 @@ components:
               type: boolean
           required:
             - field
+    _common.query_dsl___FieldLookup:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/_common___Id'
+        index:
+          $ref: '#/components/schemas/_common___IndexName'
+        path:
+          $ref: '#/components/schemas/_common___Field'
+        routing:
+          $ref: '#/components/schemas/_common___Routing'
+      required:
+        - id
     _common.query_dsl___FieldValueFactorModifier:
       type: string
       enum:
@@ -43584,13 +43616,25 @@ components:
               $ref: '#/components/schemas/_common.query_dsl___GeoValidationMethod'
             ignore_unmapped:
               $ref: '#/components/schemas/_common.query_dsl___IgnoreUnmapped'
+          propertyNames:
+            title: field
+            type: string
           additionalProperties:
+            title: bounding_box
             $ref: '#/components/schemas/_common___GeoBounds'
           minProperties: 1
-    _common.query_dsl___GeoDecayFunction:
-      allOf:
-        - $ref: '#/components/schemas/_common.query_dsl___DecayFunctionBase'
-        - type: object
+    _common.query_dsl___GeoDecayPlacement:
+      type: object
+      properties:
+        decay:
+          type: number
+          format: double
+        offset:
+          $ref: '#/components/schemas/_common___Distance'
+        origin:
+          $ref: '#/components/schemas/_common___GeoLocation'
+        scale:
+          $ref: '#/components/schemas/_common___Distance'
     _common.query_dsl___GeoDistanceQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
@@ -43604,7 +43648,11 @@ components:
               $ref: '#/components/schemas/_common.query_dsl___GeoValidationMethod'
             ignore_unmapped:
               $ref: '#/components/schemas/_common.query_dsl___IgnoreUnmapped'
+          propertyNames:
+            title: field
+            type: string
           additionalProperties:
+            title: location
             $ref: '#/components/schemas/_common___GeoLocation'
           minProperties: 2
           required:
@@ -43614,6 +43662,15 @@ components:
       enum:
         - indexed
         - memory
+    _common.query_dsl___GeoPolygonPoints:
+      type: object
+      properties:
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/_common___GeoLocation'
+      required:
+        - points
     _common.query_dsl___GeoPolygonQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
@@ -43623,6 +43680,13 @@ components:
               $ref: '#/components/schemas/_common.query_dsl___GeoValidationMethod'
             ignore_unmapped:
               $ref: '#/components/schemas/_common.query_dsl___IgnoreUnmapped'
+          propertyNames:
+            title: field
+            type: string
+          additionalProperties:
+            title: polygon
+            $ref: '#/components/schemas/_common.query_dsl___GeoPolygonPoints'
+          minProperties: 1
     _common.query_dsl___GeoShape:
       type: object
       properties:
@@ -43630,15 +43694,6 @@ components:
           type: string
         coordinates:
           type: array
-    _common.query_dsl___GeoShapeField:
-      type: object
-      properties:
-        shape:
-          $ref: '#/components/schemas/_common.query_dsl___GeoShape'
-        relation:
-          $ref: '#/components/schemas/_common___GeoShapeRelation'
-      required:
-        - shape
     _common.query_dsl___GeoShapeQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
@@ -43646,9 +43701,24 @@ components:
           properties:
             ignore_unmapped:
               $ref: '#/components/schemas/_common.query_dsl___IgnoreUnmapped'
+          propertyNames:
+            title: field
+            type: string
           additionalProperties:
-            $ref: '#/components/schemas/_common.query_dsl___GeoShapeField'
+            title: shape
+            $ref: '#/components/schemas/_common.query_dsl___GeoShapeQueryField'
           minProperties: 1
+    _common.query_dsl___GeoShapeQueryField:
+      type: object
+      properties:
+        indexed_shape:
+          $ref: '#/components/schemas/_common.query_dsl___FieldLookup'
+        shape:
+          $ref: '#/components/schemas/_common.query_dsl___GeoShape'
+        relation:
+          $ref: '#/components/schemas/_common___GeoShapeRelation'
+      required:
+        - shape
     _common.query_dsl___GeoValidationMethod:
       type: string
       enum:
@@ -44318,29 +44388,46 @@ components:
             gt:
               description: Greater than.
               type: number
+              format: double
             gte:
               description: Greater than or equal to.
               type: number
+              format: double
             lt:
               description: Less than.
               type: number
+              format: double
             lte:
               description: Less than or equal to.
               type: number
+              format: double
             from:
-              type:
-                - 'null'
-                - number
-                - string
+              oneOf:
+                - type: number
+                  format: double
+                - type: string
+                - type: 'null'
             to:
-              type:
-                - 'null'
-                - number
-                - string
-    _common.query_dsl___NumericDecayFunction:
-      allOf:
-        - $ref: '#/components/schemas/_common.query_dsl___DecayFunctionBase'
-        - type: object
+              oneOf:
+                - type: number
+                  format: double
+                - type: string
+                - type: 'null'
+    _common.query_dsl___NumericDecayPlacement:
+      type: object
+      properties:
+        decay:
+          type: number
+          format: double
+        offset:
+          type: number
+          format: double
+        origin:
+          type: number
+          format: double
+        scale:
+          type: number
+          format: double
     _common.query_dsl___Operator:
       type: string
       enum:
@@ -45050,7 +45137,10 @@ components:
     _common.query_dsl___SpanGapQuery:
       description: Can only be used as a clause in a `span_near` query.
       type: object
+      propertyNames:
+        $ref: '#/components/schemas/_common___Field'
       additionalProperties:
+        title: span_width
         type: integer
         format: int32
       minProperties: 1
@@ -45210,7 +45300,11 @@ components:
           properties:
             _name: {}
             boost: {}
+          propertyNames:
+            title: field
+            type: string
           additionalProperties:
+            title: terms
             $ref: '#/components/schemas/_common.query_dsl___TermsQueryField'
           minProperties: 1
     _common.query_dsl___TermsQueryField:
@@ -45292,29 +45386,39 @@ components:
           type: string
         coordinates:
           type: array
-    _common.query_dsl___XyShapeField:
+    _common.query_dsl___XyShapeQuery:
+      x-version-added: '2.4'
+      allOf:
+        - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
+        - type: object
+          properties:
+            ignore_unmapped:
+              type: boolean
+          propertyNames:
+            title: field
+            type: string
+          additionalProperties:
+            title: xy_shape
+            $ref: '#/components/schemas/_common.query_dsl___XyShapeQueryField'
+          minProperties: 1
+    _common.query_dsl___XyShapeQueryField:
       type: object
       properties:
+        indexed_shape:
+          $ref: '#/components/schemas/_common.query_dsl___FieldLookup'
         shape:
           $ref: '#/components/schemas/_common.query_dsl___XyShape'
         relation:
           $ref: '#/components/schemas/_common___GeoShapeRelation'
       required:
         - shape
-    _common.query_dsl___XyShapeQuery:
-      x-version-added: '2.4'
-      allOf:
-        - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
-        - type: object
-          additionalProperties:
-            $ref: '#/components/schemas/_common.query_dsl___XyShapeField'
-          minProperties: 1
-          maxProperties: 1
     _common.query_dsl___ZeroTermsQuery:
       type: string
       enum:
         - all
+        - ALL
         - none
+        - NONE
     _core.bulk___CreateOperation:
       $ref: '#/components/schemas/_core.bulk___WriteOperation'
     _core.bulk___DeleteOperation:

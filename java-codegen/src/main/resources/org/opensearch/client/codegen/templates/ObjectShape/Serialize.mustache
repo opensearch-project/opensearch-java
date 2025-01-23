@@ -23,9 +23,15 @@
 {{#extendsOtherShape}}
     super.serializeInternal(generator, mapper);
 {{/extendsOtherShape}}
-{{#additionalPropertiesField}}
-    {{#type.directSerializer}}this.{{name}}{{/type.directSerializer}}
-{{/additionalPropertiesField}}
+{{#additionalProperties}}
+    {{#singleton}}
+        generator.writeKey(this.{{keyName}});
+        {{#valueType.directSerializer}}this.{{valueName}}{{/valueType.directSerializer}}
+    {{/singleton}}
+    {{^singleton}}
+        {{#mapType.directSerializer}}this.{{valueName}}{{/mapType.directSerializer}}
+    {{/singleton}}
+{{/additionalProperties}}
 {{>ObjectShape/Serialize/Fields}}
 {{#singleKeyMap}}
     generator.writeEnd();

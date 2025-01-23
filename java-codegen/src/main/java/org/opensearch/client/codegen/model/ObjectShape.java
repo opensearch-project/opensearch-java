@@ -41,7 +41,8 @@ public class ObjectShape extends ObjectShapeBase {
     }
 
     private boolean superImplementsJsonSerializable() {
-        return extendsOtherShape() && getExtendsType().getTargetShape().map(s -> ((ObjectShape) s).implementsJsonSerializable()).orElse(false);
+        return extendsOtherShape()
+            && getExtendsType().getTargetShape().map(s -> ((ObjectShape) s).implementsJsonSerializable()).orElse(false);
     }
 
     public Collection<Type> getImplementsTypes() {
@@ -67,7 +68,7 @@ public class ObjectShape extends ObjectShapeBase {
             return false;
         }
 
-        if (additionalPropertiesField != null) {
+        if (additionalProperties != null) {
             return false;
         }
 
