@@ -15,14 +15,8 @@ jobs:
       fail-fast: false
       matrix:
         entry:
-          - { opensearch_ref: '1.x', java: 11 }
-          # See please https://docs.gradle.org/8.10/userguide/upgrading_version_8.html#minimum_daemon_jvm_version
-          - { opensearch_ref: '2.x', java: 11, gradle-runtime: 17 }
-          - { opensearch_ref: '2.x', java: 17 }
+          - { opensearch_ref: '1.x', java: 21 }
           - { opensearch_ref: '2.x', java: 21 }
-          # See please https://docs.gradle.org/8.10/userguide/upgrading_version_8.html#minimum_daemon_jvm_version
-          - { opensearch_ref: 'main', java: 11, gradle-runtime: 17 }
-          - { opensearch_ref: 'main', java: 17 }
           - { opensearch_ref: 'main', java: 21 }
     steps:
       - name: Set up JDK ${{ matrix.entry.java }}
