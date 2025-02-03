@@ -15,14 +15,14 @@ jobs:
       fail-fast: false
       matrix:
         entry:
-          - { opensearch_ref: '1.x', java: 21 }
-          - { opensearch_ref: '2.x', java: 21 }
-          - { opensearch_ref: 'main', java: 21 }
+          - { opensearch_ref: '1.x', opensearch_jdk: 11, client_jdk: 21 }
+          - { opensearch_ref: '2.x', opensearch_jdk: 21, client_jdk: 21 }
+          - { opensearch_ref: 'main', opensearch_jdk: 21, client_jdk: 21 }
     steps:
-      - name: Set up JDK ${{ matrix.entry.java }}
+      - name: Set up JDK ${{ matrix.entry.opensearch_jdk }}
         uses: actions/setup-java@v4
         with:
-          java-version: ${{ matrix.entry.java }}
+          java-version: ${{ matrix.entry.opensearch_jdk }}
           distribution: 'temurin'
 
       - name: Checkout OpenSearch
@@ -51,15 +51,15 @@ jobs:
           java-version: ${{ matrix.entry.gradle-runtime }}
           distribution: temurin
 
-      - name: Set JAVA${{ matrix.entry.java }}_HOME
+      - name: Set JAVA${{ matrix.entry.opensearch_jdk }}_HOME
         shell: bash
         run: |
-          echo "JAVA${{ matrix.entry.java }}_HOME=$JAVA_HOME_${{ matrix.entry.java }}_${{ runner.arch }}" >> $GITHUB_ENV
+          echo "JAVA${{ matrix.entry.opensearch_jdk }}_HOME=$JAVA_HOME_${{ matrix.entry.opensearch_jdk }}_${{ runner.arch }}" >> $GITHUB_ENV
 
       - name: Assemble OpenSearch
         if: steps.cache-restore.outputs.cache-hit != 'true'
         working-directory: opensearch
-        run: ./gradlew :distribution:archives:linux-tar:assemble -Druntime.java=${{ matrix.java }}
+        run: ./gradlew :distribution:archives:linux-tar:assemble -Druntime.java=${{ matrix.opensearch_jdk }}
 
       - name: Save cached build
         if: steps.cache-restore.outputs.cache-hit != 'true'
@@ -79,6 +79,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: opensearch-java
+
+      - name: Set up JDK ${{ matrix.entry.client_jdk }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.entry.client_jdk }}
+          distribution: 'temurin'
 
       - name: Run Integration Test
         run: |
