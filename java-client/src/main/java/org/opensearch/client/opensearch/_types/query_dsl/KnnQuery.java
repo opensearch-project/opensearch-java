@@ -38,6 +38,8 @@ public class KnnQuery extends QueryBase implements QueryVariant {
     private final Map<String, JsonData> methodParameters;
     @Nullable
     private final KnnQueryRescore rescore;
+    @Nullable
+    private final Boolean expandNestedDocs;
 
     private KnnQuery(Builder builder) {
         super(builder);
@@ -50,6 +52,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         this.filter = builder.filter;
         this.methodParameters = ApiTypeHelper.unmodifiable(builder.methodParameters);
         this.rescore = builder.rescore;
+        this.expandNestedDocs = builder.expandNestedDocs;
     }
 
     public static KnnQuery of(Function<Builder, ObjectBuilder<KnnQuery>> fn) {
@@ -127,6 +130,11 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         return this.rescore;
     }
 
+    @Nullable
+    public final Boolean expandNestedDocs() {
+        return this.expandNestedDocs;
+    }
+
     @Override
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject(this.field);
@@ -169,6 +177,10 @@ public class KnnQuery extends QueryBase implements QueryVariant {
             this.rescore.serialize(generator, mapper);
         }
 
+        if (this.expandNestedDocs != null) {
+            generator.write("expand_nested_docs", this.expandNestedDocs);
+        }
+
         generator.writeEnd();
     }
 
@@ -180,7 +192,8 @@ public class KnnQuery extends QueryBase implements QueryVariant {
             .maxDistance(maxDistance)
             .filter(filter)
             .methodParameters(methodParameters)
-            .rescore(rescore);
+            .rescore(rescore)
+            .expandNestedDocs(expandNestedDocs);
     }
 
     /**
@@ -203,6 +216,8 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         private Map<String, JsonData> methodParameters;
         @Nullable
         private KnnQueryRescore rescore;
+        @Nullable
+        private Boolean expandNestedDocs;
 
         /**
          * Required - The target field.
@@ -288,6 +303,11 @@ public class KnnQuery extends QueryBase implements QueryVariant {
             return this.rescore(fn.apply(new KnnQueryRescore.Builder()).build());
         }
 
+        public Builder expandNestedDocs(@Nullable Boolean value) {
+            this.expandNestedDocs = value;
+            return this;
+        }
+
         @Override
         protected Builder self() {
             return this;
@@ -327,6 +347,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         op.add(Builder::filter, Query._DESERIALIZER, "filter");
         op.add(Builder::methodParameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "method_parameters");
         op.add(Builder::rescore, KnnQueryRescore._DESERIALIZER, "rescore");
+        op.add(Builder::expandNestedDocs, JsonpDeserializer.booleanDeserializer(), "expand_nested_docs");
 
         op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
     }
