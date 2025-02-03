@@ -6,7 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Dependencies
 - Bump `org.junit:junit-bom` from 5.11.3 to 5.11.4 ([#1367](https://github.com/opensearch-project/opensearch-java/pull/1367))
-- Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.3 to 5.3.2 ([#1383](https://github.com/opensearch-project/opensearch-java/pull/1383))
+- Bumps `org.apache.httpcomponents.core5:httpcore5` from 5.3 to 5.3.3 ([#1383](https://github.com/opensearch-project/opensearch-java/pull/1383), [#1402](https://github.com/opensearch-project/opensearch-java/pull/1402))
 - Bump `org.owasp.dependencycheck` from 11.1.1 to 12.0.1 ([#1381](https://github.com/opensearch-project/opensearch-java/pull/1381), [#1393](https://github.com/opensearch-project/opensearch-java/pull/1393))
 
 ### Changed
