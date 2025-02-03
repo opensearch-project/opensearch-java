@@ -9,8 +9,11 @@
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -31,6 +34,10 @@ public class KnnQuery extends QueryBase implements QueryVariant {
     private final Float maxDistance;
     @Nullable
     private final Query filter;
+    @Nonnull
+    private final Map<String, JsonData> methodParameters;
+    @Nullable
+    private final KnnQueryRescore rescore;
 
     private KnnQuery(Builder builder) {
         super(builder);
@@ -41,6 +48,8 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         this.minScore = builder.minScore;
         this.maxDistance = builder.maxDistance;
         this.filter = builder.filter;
+        this.methodParameters = ApiTypeHelper.unmodifiable(builder.methodParameters);
+        this.rescore = builder.rescore;
     }
 
     public static KnnQuery of(Function<Builder, ObjectBuilder<KnnQuery>> fn) {
@@ -108,6 +117,16 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         return this.filter;
     }
 
+    @Nonnull
+    public final Map<String, JsonData> methodParameters() {
+        return this.methodParameters;
+    }
+
+    @Nullable
+    public final KnnQueryRescore rescore() {
+        return this.rescore;
+    }
+
     @Override
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject(this.field);
@@ -138,11 +157,30 @@ public class KnnQuery extends QueryBase implements QueryVariant {
             this.filter.serialize(generator, mapper);
         }
 
+        if (ApiTypeHelper.isDefined(this.methodParameters)) {
+            for (Map.Entry<String, JsonData> entry : this.methodParameters.entrySet()) {
+                generator.writeKey(entry.getKey());
+                entry.getValue().serialize(generator, mapper);
+            }
+        }
+
+        if (this.rescore != null) {
+            generator.writeKey("rescore");
+            this.rescore.serialize(generator, mapper);
+        }
+
         generator.writeEnd();
     }
 
     public Builder toBuilder() {
-        return toBuilder(new Builder()).field(field).vector(vector).k(k).minScore(minScore).maxDistance(maxDistance).filter(filter);
+        return toBuilder(new Builder()).field(field)
+            .vector(vector)
+            .k(k)
+            .minScore(minScore)
+            .maxDistance(maxDistance)
+            .filter(filter)
+            .methodParameters(methodParameters)
+            .rescore(rescore);
     }
 
     /**
@@ -161,6 +199,10 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         private Float maxDistance;
         @Nullable
         private Query filter;
+        @Nullable
+        private Map<String, JsonData> methodParameters;
+        @Nullable
+        private KnnQueryRescore rescore;
 
         /**
          * Required - The target field.
@@ -227,6 +269,25 @@ public class KnnQuery extends QueryBase implements QueryVariant {
             return this;
         }
 
+        public Builder methodParameters(@Nonnull Map<String, JsonData> value) {
+            this.methodParameters = _mapPutAll(this.methodParameters, value);
+            return this;
+        }
+
+        public Builder methodParameters(String key, JsonData value) {
+            this.methodParameters = _mapPut(this.methodParameters, key, value);
+            return this;
+        }
+
+        public Builder rescore(@Nullable KnnQueryRescore value) {
+            this.rescore = value;
+            return this;
+        }
+
+        public Builder rescore(Function<KnnQueryRescore.Builder, ObjectBuilder<KnnQueryRescore>> fn) {
+            return this.rescore(fn.apply(new KnnQueryRescore.Builder()).build());
+        }
+
         @Override
         protected Builder self() {
             return this;
@@ -264,6 +325,8 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         op.add(Builder::minScore, JsonpDeserializer.floatDeserializer(), "min_score");
         op.add(Builder::maxDistance, JsonpDeserializer.floatDeserializer(), "max_distance");
         op.add(Builder::filter, Query._DESERIALIZER, "filter");
+        op.add(Builder::methodParameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "method_parameters");
+        op.add(Builder::rescore, KnnQueryRescore._DESERIALIZER, "rescore");
 
         op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
     }
