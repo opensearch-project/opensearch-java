@@ -225,6 +225,28 @@ public abstract class PropertyBase implements PlainJsonSerializable {
         @Nullable
         private Map<String, Property> fields;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(PropertyBase o) {
+            this.dynamic = o.dynamic;
+            this.fields = _mapCopy(o.fields);
+            this.ignoreAbove = o.ignoreAbove;
+            this.localMetadata = _mapCopy(o.localMetadata);
+            this.meta = _mapCopy(o.meta);
+            this.name = o.name;
+            this.properties = _mapCopy(o.properties);
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            this.dynamic = o.dynamic;
+            this.fields = _mapCopy(o.fields);
+            this.ignoreAbove = o.ignoreAbove;
+            this.localMetadata = _mapCopy(o.localMetadata);
+            this.meta = _mapCopy(o.meta);
+            this.name = o.name;
+            this.properties = _mapCopy(o.properties);
+        }
+
         /**
          * API name: {@code local_metadata}
          * <p>
