@@ -183,8 +183,7 @@ public final class SegmentReplicationRequest extends CatRequestBase
     }
 
     /**
-     * The type of index that wildcard patterns can match. Supported values are <code>all</code>, <code>open</code>, <code>closed</code>,
-     * <code>hidden</code>, and <code>none</code>.
+     * Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
      * <p>
      * API name: {@code expand_wildcards}
      * </p>
@@ -414,8 +413,7 @@ public final class SegmentReplicationRequest extends CatRequestBase
         }
 
         /**
-         * The type of index that wildcard patterns can match. Supported values are <code>all</code>, <code>open</code>,
-         * <code>closed</code>, <code>hidden</code>, and <code>none</code>.
+         * Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
          * <p>
          * API name: {@code expand_wildcards}
          * </p>
@@ -431,8 +429,7 @@ public final class SegmentReplicationRequest extends CatRequestBase
         }
 
         /**
-         * The type of index that wildcard patterns can match. Supported values are <code>all</code>, <code>open</code>,
-         * <code>closed</code>, <code>hidden</code>, and <code>none</code>.
+         * Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
          * <p>
          * API name: {@code expand_wildcards}
          * </p>

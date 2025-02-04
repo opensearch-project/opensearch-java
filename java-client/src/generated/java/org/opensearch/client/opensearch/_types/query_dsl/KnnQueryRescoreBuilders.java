@@ -34,44 +34,27 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch._types;
+package org.opensearch.client.opensearch._types.query_dsl;
 
 import javax.annotation.Generated;
-import org.opensearch.client.json.JsonEnum;
-import org.opensearch.client.json.JsonpDeserializable;
-
-// typedef: _types.TimeUnit
 
 /**
- * Specifies the time units, for example, <code>5d</code> or <code>7h</code>. For more information, see
- * <a href="https://opensearch.org/docs/latest/api-reference/units/">Supported units</a>.
+ * <p>
+ * Builders for {@link KnnQueryRescore} variants.
+ * </p>
+ * <p>
+ * Variants <code>enable</code> are not available here as they don't have a dedicated class. Use {@link KnnQueryRescore}'s builder for
+ * these.
+ * </p>
  */
-@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public enum TimeUnit implements JsonEnum {
-    Days("d"),
+public class KnnQueryRescoreBuilders {
+    private KnnQueryRescoreBuilders() {}
 
-    Hours("h"),
-
-    Microseconds("micros"),
-
-    Milliseconds("ms"),
-
-    Minutes("m"),
-
-    Nanoseconds("nanos"),
-
-    Seconds("s");
-
-    private final String jsonValue;
-
-    TimeUnit(String jsonValue) {
-        this.jsonValue = jsonValue;
+    /**
+     * Creates a builder for the {@link RescoreContext context} {@code KnnQueryRescore} variant.
+     */
+    public static RescoreContext.Builder context() {
+        return new RescoreContext.Builder();
     }
-
-    public String jsonValue() {
-        return this.jsonValue;
-    }
-
-    public static final JsonEnum.Deserializer<TimeUnit> _DESERIALIZER = new JsonEnum.Deserializer<>(TimeUnit.values());
 }

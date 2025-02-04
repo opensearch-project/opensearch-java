@@ -195,13 +195,7 @@ public class ObjectShapeBase extends Shape {
                     Field.builder().withName(valueName).withType(valueType).withDescription(valueDescription).withRequired(true).build()
                 );
             } else {
-                return List.of(
-                    Field.builder()
-                        .withName(valueName)
-                        .withType(getMapType())
-                        .withDescription(valueDescription)
-                        .build()
-                );
+                return List.of(Field.builder().withName(valueName).withType(getMapType()).withDescription(valueDescription).build());
             }
         }
 

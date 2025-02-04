@@ -124,10 +124,9 @@ public final class PutComponentTemplateRequest extends RequestBase
     }
 
     /**
-     * This setting overrides the value of the <code>action.auto_create_index</code> cluster setting. If set to <code>true</code> in a
-     * template, then indexes can be automatically created using that template even if auto-creation of indexes is disabled using
-     * <code>actions.auto_create_index</code>. If set to <code>false</code> then data streams matching the template must always be
-     * explicitly created.
+     * This setting overrides the <code>action.auto_create_index</code> cluster setting. When set to <code>true</code> in a component
+     * template, indexes are automatically created using that template. When set to <code>false</code>, data streams matching the component
+     * template must always be explicitly created.
      * <p>
      * API name: {@code allow_auto_create}
      * </p>
@@ -138,7 +137,9 @@ public final class PutComponentTemplateRequest extends RequestBase
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -149,7 +150,7 @@ public final class PutComponentTemplateRequest extends RequestBase
     }
 
     /**
-     * If <code>true</code>, this request cannot replace or update existing component templates.
+     * When <code>true</code>, this request cannot replace or update existing component templates.
      * <p>
      * API name: {@code create}
      * </p>
@@ -160,8 +161,9 @@ public final class PutComponentTemplateRequest extends RequestBase
     }
 
     /**
-     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
-     * and returns an error.
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -181,10 +183,10 @@ public final class PutComponentTemplateRequest extends RequestBase
     }
 
     /**
-     * Required - Name of the component template to create. OpenSearch includes the following built-in component templates:
+     * Required - The name of the component template to create. OpenSearch includes the following built-in component templates:
      * <code>logs-mappings</code>;
-     * 'logs-settings<code>; </code>metrics-mappings<code>; </code>metrics-settings<code>;</code>synthetics-mapping<code>; </code>synthetics-settings<code>. OpenSearch Agent uses these templates to configure backing indexes for its data streams. If you use OpenSearch Agent and want to overwrite one of these templates, set the </code>version<code>for your replacement template higher than the current version. If you don't use OpenSearch Agent and want to disable all built-in component and index templates, set</code>stack.templates.enabled<code>to</code>false`
-     * using the cluster update settings API.
+     * 'logs-settings<code>; </code>metrics-mappings<code>; </code>metrics-settings<code>;</code>synthetics-mapping<code>; </code>synthetics-settings<code>. OpenSearch uses these templates to configure backing indexes for its data streams. If you want to overwrite one of these templates, set the replacement template </code>version<code>to a higher value than the current version. If you want to disable all built-in component and index templates, set</code>stack.templates.enabled<code>to</code>false`
+     * using the Cluster Update Settings API.
      * <p>
      * API name: {@code name}
      * </p>
@@ -203,7 +205,9 @@ public final class PutComponentTemplateRequest extends RequestBase
     }
 
     /**
-     * Operation timeout.
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code timeout}
      * </p>
@@ -333,10 +337,9 @@ public final class PutComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * This setting overrides the value of the <code>action.auto_create_index</code> cluster setting. If set to <code>true</code> in a
-         * template, then indexes can be automatically created using that template even if auto-creation of indexes is disabled using
-         * <code>actions.auto_create_index</code>. If set to <code>false</code> then data streams matching the template must always be
-         * explicitly created.
+         * This setting overrides the <code>action.auto_create_index</code> cluster setting. When set to <code>true</code> in a component
+         * template, indexes are automatically created using that template. When set to <code>false</code>, data streams matching the
+         * component template must always be explicitly created.
          * <p>
          * API name: {@code allow_auto_create}
          * </p>
@@ -348,7 +351,9 @@ public final class PutComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -360,7 +365,9 @@ public final class PutComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -371,7 +378,7 @@ public final class PutComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * If <code>true</code>, this request cannot replace or update existing component templates.
+         * When <code>true</code>, this request cannot replace or update existing component templates.
          * <p>
          * API name: {@code create}
          * </p>
@@ -383,8 +390,9 @@ public final class PutComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
-         * fails and returns an error.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -397,8 +405,9 @@ public final class PutComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
-         * fails and returns an error.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -436,10 +445,10 @@ public final class PutComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Required - Name of the component template to create. OpenSearch includes the following built-in component templates:
+         * Required - The name of the component template to create. OpenSearch includes the following built-in component templates:
          * <code>logs-mappings</code>;
-         * 'logs-settings<code>; </code>metrics-mappings<code>; </code>metrics-settings<code>;</code>synthetics-mapping<code>; </code>synthetics-settings<code>. OpenSearch Agent uses these templates to configure backing indexes for its data streams. If you use OpenSearch Agent and want to overwrite one of these templates, set the </code>version<code>for your replacement template higher than the current version. If you don't use OpenSearch Agent and want to disable all built-in component and index templates, set</code>stack.templates.enabled<code>to</code>false`
-         * using the cluster update settings API.
+         * 'logs-settings<code>; </code>metrics-mappings<code>; </code>metrics-settings<code>;</code>synthetics-mapping<code>; </code>synthetics-settings<code>. OpenSearch uses these templates to configure backing indexes for its data streams. If you want to overwrite one of these templates, set the replacement template </code>version<code>to a higher value than the current version. If you want to disable all built-in component and index templates, set</code>stack.templates.enabled<code>to</code>false`
+         * using the Cluster Update Settings API.
          * <p>
          * API name: {@code name}
          * </p>
@@ -468,7 +477,9 @@ public final class PutComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Operation timeout.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code timeout}
          * </p>
@@ -480,7 +491,9 @@ public final class PutComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Operation timeout.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code timeout}
          * </p>

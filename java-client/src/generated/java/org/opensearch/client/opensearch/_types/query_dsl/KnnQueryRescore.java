@@ -34,7 +34,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch._types;
+package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -53,20 +53,17 @@ import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
 
-// typedef: _types.WaitForActiveShards
+// typedef: _types.query_dsl.KnnQueryRescore
 
-/**
- * Waits until the specified number of shards is active before returning a response. Use <code>all</code> for all shards.
- */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class WaitForActiveShards implements TaggedUnion<WaitForActiveShards.Kind, Object>, PlainJsonSerializable {
+public class KnnQueryRescore implements TaggedUnion<KnnQueryRescore.Kind, Object>, PlainJsonSerializable {
     /**
-     * {@link WaitForActiveShards} variant kinds.
+     * {@link KnnQueryRescore} variant kinds.
      */
     public enum Kind {
-        Count,
-        Option
+        Context,
+        Enable
     }
 
     private final Kind _kind;
@@ -82,61 +79,50 @@ public class WaitForActiveShards implements TaggedUnion<WaitForActiveShards.Kind
         return _value;
     }
 
-    private WaitForActiveShards(Kind kind, Object value) {
+    private KnnQueryRescore(Kind kind, Object value) {
         this._kind = kind;
         this._value = value;
     }
 
-    private WaitForActiveShards(Builder builder) {
+    private KnnQueryRescore(Builder builder) {
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
     }
 
-    public static WaitForActiveShards of(Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+    public static KnnQueryRescore of(Function<KnnQueryRescore.Builder, ObjectBuilder<KnnQueryRescore>> fn) {
         return fn.apply(new Builder()).build();
     }
 
-    public String _toJsonString() {
-        switch (_kind) {
-            case Count:
-                return String.valueOf(this.count());
-            case Option:
-                return this.option().jsonValue();
-            default:
-                throw new IllegalStateException("Unknown kind " + _kind);
-        }
-    }
-
     /**
-     * Is this variant instance of kind {@code count}?
+     * Is this variant instance of kind {@code context}?
      */
-    public boolean isCount() {
-        return _kind == Kind.Count;
+    public boolean isContext() {
+        return _kind == Kind.Context;
     }
 
     /**
-     * Get the {@code count} variant value.
+     * Get the {@code context} variant value.
      *
-     * @throws IllegalStateException if the current variant is not the {@code count} kind.
+     * @throws IllegalStateException if the current variant is not the {@code context} kind.
      */
-    public Integer count() {
-        return TaggedUnionUtils.get(this, Kind.Count);
+    public RescoreContext context() {
+        return TaggedUnionUtils.get(this, Kind.Context);
     }
 
     /**
-     * Is this variant instance of kind {@code option}?
+     * Is this variant instance of kind {@code enable}?
      */
-    public boolean isOption() {
-        return _kind == Kind.Option;
+    public boolean isEnable() {
+        return _kind == Kind.Enable;
     }
 
     /**
-     * Get the {@code option} variant value.
+     * Get the {@code enable} variant value.
      *
-     * @throws IllegalStateException if the current variant is not the {@code option} kind.
+     * @throws IllegalStateException if the current variant is not the {@code enable} kind.
      */
-    public WaitForActiveShardOptions option() {
-        return TaggedUnionUtils.get(this, Kind.Option);
+    public Boolean enable() {
+        return TaggedUnionUtils.get(this, Kind.Enable);
     }
 
     @Override
@@ -145,8 +131,8 @@ public class WaitForActiveShards implements TaggedUnion<WaitForActiveShards.Kind
             ((JsonpSerializable) _value).serialize(generator, mapper);
         } else {
             switch (_kind) {
-                case Count:
-                    generator.write(((Integer) this._value));
+                case Enable:
+                    generator.write(((Boolean) this._value));
                     break;
             }
         }
@@ -162,45 +148,49 @@ public class WaitForActiveShards implements TaggedUnion<WaitForActiveShards.Kind
         return new Builder();
     }
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WaitForActiveShards> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KnnQueryRescore> {
         private Kind _kind;
         private Object _value;
 
         public Builder() {}
 
-        private Builder(WaitForActiveShards o) {
+        private Builder(KnnQueryRescore o) {
             this._kind = o._kind;
             this._value = o._value;
         }
 
-        public ObjectBuilder<WaitForActiveShards> count(Integer v) {
-            this._kind = Kind.Count;
+        public ObjectBuilder<KnnQueryRescore> context(RescoreContext v) {
+            this._kind = Kind.Context;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<WaitForActiveShards> option(WaitForActiveShardOptions v) {
-            this._kind = Kind.Option;
+        public ObjectBuilder<KnnQueryRescore> context(Function<RescoreContext.Builder, ObjectBuilder<RescoreContext>> fn) {
+            return this.context(fn.apply(new RescoreContext.Builder()).build());
+        }
+
+        public ObjectBuilder<KnnQueryRescore> enable(Boolean v) {
+            this._kind = Kind.Enable;
             this._value = v;
             return this;
         }
 
         @Override
-        public WaitForActiveShards build() {
+        public KnnQueryRescore build() {
             _checkSingleUse();
-            return new WaitForActiveShards(this);
+            return new KnnQueryRescore(this);
         }
     }
 
-    private static JsonpDeserializer<WaitForActiveShards> buildWaitForActiveShardsDeserializer() {
-        return new UnionDeserializer.Builder<WaitForActiveShards, Kind, Object>(WaitForActiveShards::new, false).addMember(
-            Kind.Count,
-            JsonpDeserializer.integerDeserializer()
-        ).addMember(Kind.Option, WaitForActiveShardOptions._DESERIALIZER).build();
+    private static JsonpDeserializer<KnnQueryRescore> buildKnnQueryRescoreDeserializer() {
+        return new UnionDeserializer.Builder<KnnQueryRescore, Kind, Object>(KnnQueryRescore::new, false).addMember(
+            Kind.Context,
+            RescoreContext._DESERIALIZER
+        ).addMember(Kind.Enable, JsonpDeserializer.booleanDeserializer()).build();
     }
 
-    public static final JsonpDeserializer<WaitForActiveShards> _DESERIALIZER = JsonpDeserializer.lazy(
-        WaitForActiveShards::buildWaitForActiveShardsDeserializer
+    public static final JsonpDeserializer<KnnQueryRescore> _DESERIALIZER = JsonpDeserializer.lazy(
+        KnnQueryRescore::buildKnnQueryRescoreDeserializer
     );
 
     @Override
@@ -215,7 +205,7 @@ public class WaitForActiveShards implements TaggedUnion<WaitForActiveShards.Kind
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        WaitForActiveShards other = (WaitForActiveShards) o;
+        KnnQueryRescore other = (KnnQueryRescore) o;
         return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
     }
 }

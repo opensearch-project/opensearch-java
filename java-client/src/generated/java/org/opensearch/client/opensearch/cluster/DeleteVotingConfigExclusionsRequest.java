@@ -56,7 +56,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: cluster.delete_voting_config_exclusions.Request
 
 /**
- * Clears cluster voting config exclusions.
+ * Clears any cluster voting configuration exclusions.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public final class DeleteVotingConfigExclusionsRequest extends RequestBase
@@ -81,8 +81,8 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase
 
     /**
      * Specifies whether to wait for all excluded nodes to be removed from the cluster before clearing the voting configuration exclusions
-     * list. Defaults to true, meaning that all excluded nodes must be removed from the cluster before this API takes any action. If set to
-     * <code>false</code> then the voting configuration exclusions list is cleared even if some excluded nodes are still in the cluster.
+     * list. When <code>true</code>, all excluded nodes are removed from the cluster before this API takes any action. When
+     * <code>false</code>, the voting configuration exclusions list is cleared even if some excluded nodes are still in the cluster.
      * <p>
      * API name: {@code wait_for_removal}
      * </p>
@@ -140,9 +140,8 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase
 
         /**
          * Specifies whether to wait for all excluded nodes to be removed from the cluster before clearing the voting configuration
-         * exclusions list. Defaults to true, meaning that all excluded nodes must be removed from the cluster before this API takes any
-         * action. If set to <code>false</code> then the voting configuration exclusions list is cleared even if some excluded nodes are
-         * still in the cluster.
+         * exclusions list. When <code>true</code>, all excluded nodes are removed from the cluster before this API takes any action. When
+         * <code>false</code>, the voting configuration exclusions list is cleared even if some excluded nodes are still in the cluster.
          * <p>
          * API name: {@code wait_for_removal}
          * </p>

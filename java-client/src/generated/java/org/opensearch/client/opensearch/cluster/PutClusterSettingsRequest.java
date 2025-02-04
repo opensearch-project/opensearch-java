@@ -109,7 +109,9 @@ public final class PutClusterSettingsRequest extends RequestBase
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -120,7 +122,7 @@ public final class PutClusterSettingsRequest extends RequestBase
     }
 
     /**
-     * Return settings in flat format.
+     * Returns settings in a flat format.
      * <p>
      * API name: {@code flat_settings}
      * </p>
@@ -131,7 +133,9 @@ public final class PutClusterSettingsRequest extends RequestBase
     }
 
     /**
-     * Explicit operation timeout for connection to cluster-manager node
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -151,7 +155,9 @@ public final class PutClusterSettingsRequest extends RequestBase
     }
 
     /**
-     * Explicit operation timeout
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code timeout}
      * </p>
@@ -268,7 +274,9 @@ public final class PutClusterSettingsRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -280,7 +288,9 @@ public final class PutClusterSettingsRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -291,7 +301,7 @@ public final class PutClusterSettingsRequest extends RequestBase
         }
 
         /**
-         * Return settings in flat format.
+         * Returns settings in a flat format.
          * <p>
          * API name: {@code flat_settings}
          * </p>
@@ -303,7 +313,9 @@ public final class PutClusterSettingsRequest extends RequestBase
         }
 
         /**
-         * Explicit operation timeout for connection to cluster-manager node
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -316,7 +328,9 @@ public final class PutClusterSettingsRequest extends RequestBase
         }
 
         /**
-         * Explicit operation timeout for connection to cluster-manager node
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -354,7 +368,9 @@ public final class PutClusterSettingsRequest extends RequestBase
         }
 
         /**
-         * Explicit operation timeout
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code timeout}
          * </p>
@@ -366,7 +382,9 @@ public final class PutClusterSettingsRequest extends RequestBase
         }
 
         /**
-         * Explicit operation timeout
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code timeout}
          * </p>

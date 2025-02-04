@@ -104,8 +104,9 @@ public final class DeleteComponentTemplateRequest extends RequestBase
     }
 
     /**
-     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
-     * and returns an error.
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -117,7 +118,7 @@ public final class DeleteComponentTemplateRequest extends RequestBase
     }
 
     /**
-     * Required - Name of the component template to delete. Wildcard (*) expressions are supported.
+     * Required - The name of the component template to delete. Supports wildcard (*) expressions.
      * <p>
      * API name: {@code name}
      * </p>
@@ -128,7 +129,9 @@ public final class DeleteComponentTemplateRequest extends RequestBase
     }
 
     /**
-     * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code timeout}
      * </p>
@@ -219,8 +222,9 @@ public final class DeleteComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
-         * fails and returns an error.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -233,8 +237,9 @@ public final class DeleteComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
-         * fails and returns an error.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -246,7 +251,7 @@ public final class DeleteComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Required - Name of the component template to delete. Wildcard (*) expressions are supported.
+         * Required - The name of the component template to delete. Supports wildcard (*) expressions.
          * <p>
          * API name: {@code name}
          * </p>
@@ -258,7 +263,9 @@ public final class DeleteComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code timeout}
          * </p>
@@ -270,7 +277,9 @@ public final class DeleteComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code timeout}
          * </p>

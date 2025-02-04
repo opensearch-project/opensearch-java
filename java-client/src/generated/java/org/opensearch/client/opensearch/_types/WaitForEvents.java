@@ -42,6 +42,9 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: _types.WaitForEvents
 
+/**
+ * Waits until all currently queued events with the given priority are processed.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum WaitForEvents implements JsonEnum {

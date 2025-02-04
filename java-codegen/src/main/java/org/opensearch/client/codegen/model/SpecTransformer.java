@@ -482,7 +482,9 @@ public class SpecTransformer {
                 unionSchema.getProperties().ifPresent(props -> props.forEach((k, v) -> taggedUnion.addVariant(k, mapType(v))));
             }
         } else if (isShortcutPropertyObject || schema.determineSingleType().orElse(null) == OpenApiSchemaType.Object) {
-            if (schema.getProperties().isEmpty() && schema.getAdditionalProperties().isPresent() && schema.getMaxProperties().orElse(Integer.MAX_VALUE) > 1) {
+            if (schema.getProperties().isEmpty()
+                && schema.getAdditionalProperties().isPresent()
+                && schema.getMaxProperties().orElse(Integer.MAX_VALUE) > 1) {
                 shape = new DictionaryResponseShape(
                     parent,
                     className,
@@ -562,10 +564,11 @@ public class SpecTransformer {
         if (!additionalProperties.isEmpty()) {
             var singleton = additionalProperties.stream().allMatch(Triple::getRight);
             var keySchema = additionalProperties.size() == 1
-                    ? additionalProperties.get(0).getLeft()
-                    : OpenApiSchema.builder()
+                ? additionalProperties.get(0).getLeft()
+                : OpenApiSchema.builder()
                     .withPointer(schema.getPointer().append("propertyNames"))
-                    .withOneOf(additionalProperties.stream().map(Triple::getLeft).collect(Collectors.toList())).build();
+                    .withOneOf(additionalProperties.stream().map(Triple::getLeft).collect(Collectors.toList()))
+                    .build();
             var resolvedKeySchema = keySchema.resolve();
             var keyName = keySchema.getTitle().or(resolvedKeySchema::getName).orElse("key");
 
@@ -573,7 +576,8 @@ public class SpecTransformer {
                 ? additionalProperties.get(0).getMiddle()
                 : OpenApiSchema.builder()
                     .withPointer(schema.getPointer().append("additionalProperties"))
-                    .withOneOf(additionalProperties.stream().map(Triple::getMiddle).collect(Collectors.toList())).build();
+                    .withOneOf(additionalProperties.stream().map(Triple::getMiddle).collect(Collectors.toList()))
+                    .build();
 
             shape.setAdditionalProperties(
                 new ObjectShapeBase.AdditionalProperties(
@@ -619,6 +623,8 @@ public class SpecTransformer {
             return required;
         }
 
+        var schemaOverrides = overrides.getSchema(schema.getPointer()).orElse(null);
+
         schema.getProperties().ifPresent(props -> props.forEach((propName, propSchema) -> {
             var resolvedPropSchema = propSchema.resolve();
             var isRemoved = propSchema.getVersionRemoved()
@@ -626,7 +632,7 @@ public class SpecTransformer {
                 .map(ver -> ver.isLowerThanOrEqualTo(Versions.V2_0_0))
                 .orElse(false);
 
-            if (isRemoved) {
+            if (isRemoved || schemaOverrides != null && schemaOverrides.getProperty(propName).shouldIgnore()) {
                 return;
             }
 

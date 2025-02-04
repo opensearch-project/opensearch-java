@@ -96,7 +96,9 @@ public final class GetComponentTemplateRequest extends RequestBase
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -118,8 +120,8 @@ public final class GetComponentTemplateRequest extends RequestBase
     }
 
     /**
-     * If <code>true</code>, the request retrieves information from the local node only. If <code>false</code>, information is retrieved
-     * from the cluster-manager node.
+     * When <code>true</code>, the request retrieves information from the local node only. When <code>false</code>, information is retrieved
+     * from the cluster manager node.
      * <p>
      * API name: {@code local}
      * </p>
@@ -130,8 +132,9 @@ public final class GetComponentTemplateRequest extends RequestBase
     }
 
     /**
-     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
-     * and returns an error.
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -143,7 +146,7 @@ public final class GetComponentTemplateRequest extends RequestBase
     }
 
     /**
-     * Name of the component template to retrieve. Wildcard (<code>*</code>) expressions are supported.
+     * The name of the component template to retrieve. Wildcard (<code>*</code>) expressions are supported.
      * <p>
      * API name: {@code name}
      * </p>
@@ -216,7 +219,9 @@ public final class GetComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -228,7 +233,9 @@ public final class GetComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -251,8 +258,8 @@ public final class GetComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * If <code>true</code>, the request retrieves information from the local node only. If <code>false</code>, information is retrieved
-         * from the cluster-manager node.
+         * When <code>true</code>, the request retrieves information from the local node only. When <code>false</code>, information is
+         * retrieved from the cluster manager node.
          * <p>
          * API name: {@code local}
          * </p>
@@ -264,8 +271,9 @@ public final class GetComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
-         * fails and returns an error.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -278,8 +286,9 @@ public final class GetComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
-         * fails and returns an error.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -291,7 +300,7 @@ public final class GetComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * Name of the component template to retrieve. Wildcard (<code>*</code>) expressions are supported.
+         * The name of the component template to retrieve. Wildcard (<code>*</code>) expressions are supported.
          * <p>
          * API name: {@code name}
          * </p>

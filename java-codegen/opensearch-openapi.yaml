@@ -1389,7 +1389,7 @@ paths:
       operationId: cluster.allocation_explain.0
       x-operation-group: cluster.allocation_explain
       x-version-added: '1.0'
-      description: Provides explanations for shard allocations in the cluster.
+      description: Explains how shards are allocated in the current cluster and provides an explanation for why unassigned shards can't be allocated to a node.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-allocation/
       parameters:
@@ -1409,7 +1409,7 @@ paths:
       operationId: cluster.allocation_explain.1
       x-operation-group: cluster.allocation_explain
       x-version-added: '1.0'
-      description: Provides explanations for shard allocations in the cluster.
+      description: Explains how shards are allocated in the current cluster and provides an explanation for why unassigned shards can't be allocated to a node.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-allocation/
       parameters:
@@ -1430,7 +1430,7 @@ paths:
       operationId: cluster.delete_decommission_awareness.0
       x-operation-group: cluster.delete_decommission_awareness
       x-version-added: '1.0'
-      description: Delete any existing decommission.
+      description: Recommissions a decommissioned zone.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-decommission/#example-decommissioning-and-recommissioning-a-zone
       responses:
@@ -1447,7 +1447,7 @@ paths:
       operationId: cluster.get_decommission_awareness.0
       x-operation-group: cluster.get_decommission_awareness
       x-version-added: '1.0'
-      description: Get details and status of decommissioned attribute.
+      description: Retrieves the decommission status for all zones.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-decommission/#example-getting-zone-decommission-status
       parameters:
@@ -1465,7 +1465,7 @@ paths:
       operationId: cluster.put_decommission_awareness.0
       x-operation-group: cluster.put_decommission_awareness
       x-version-added: '1.0'
-      description: Decommissions an awareness attribute.
+      description: Decommissions a cluster zone based on awareness. This can greatly benefit multi-zone deployments, where awareness attributes can aid in applying new upgrades to a cluster in a controlled fashion.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-decommission/#example-decommissioning-and-recommissioning-a-zone
       parameters:
@@ -1601,8 +1601,8 @@ paths:
       x-operation-group: cluster.pending_tasks
       x-version-added: '1.0'
       description: |-
-        Returns a list of any cluster-level changes (e.g. create index, update mapping,
-        allocate or fail shard) which have not yet been executed.
+        Returns a list of pending cluster-level tasks, such as index creation, mapping updates,
+        or new allocations.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -1748,7 +1748,7 @@ paths:
       operationId: cluster.state.0
       x-operation-group: cluster.state
       x-version-added: '1.0'
-      description: Returns a comprehensive information about the state of the cluster.
+      description: Returns comprehensive information about the state of the cluster.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -1774,7 +1774,7 @@ paths:
       operationId: cluster.state.1
       x-operation-group: cluster.state
       x-version-added: '1.0'
-      description: Returns a comprehensive information about the state of the cluster.
+      description: Returns comprehensive information about the state of the cluster.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -1801,7 +1801,7 @@ paths:
       operationId: cluster.state.2
       x-operation-group: cluster.state
       x-version-added: '1.0'
-      description: Returns a comprehensive information about the state of the cluster.
+      description: Returns comprehensive information about the state of the cluster.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -1829,7 +1829,7 @@ paths:
       operationId: cluster.stats.0
       x-operation-group: cluster.stats
       x-version-added: '1.0'
-      description: Returns high-level overview of cluster statistics.
+      description: Returns a high-level overview of cluster statistics.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/
       parameters:
@@ -1848,7 +1848,7 @@ paths:
       operationId: cluster.stats.3
       x-operation-group: cluster.stats
       x-version-added: '2.18'
-      description: Returns high-level overview of cluster statistics.
+      description: Returns a high-level overview of cluster statistics.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/
       parameters:
@@ -1870,7 +1870,7 @@ paths:
       operationId: cluster.stats.2
       x-operation-group: cluster.stats
       x-version-added: '2.18'
-      description: Returns high-level overview of cluster statistics.
+      description: Returns a high-level overview of cluster statistics.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/
       parameters:
@@ -1891,7 +1891,7 @@ paths:
       operationId: cluster.stats.1
       x-operation-group: cluster.stats
       x-version-added: '1.0'
-      description: Returns high-level overview of cluster statistics.
+      description: Returns a high-level overview of cluster statistics.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/
       parameters:
@@ -1911,7 +1911,7 @@ paths:
       operationId: cluster.delete_voting_config_exclusions.0
       x-operation-group: cluster.delete_voting_config_exclusions
       x-version-added: '1.0'
-      description: Clears cluster voting config exclusions.
+      description: Clears any cluster voting configuration exclusions.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -1928,7 +1928,7 @@ paths:
       operationId: cluster.post_voting_config_exclusions.0
       x-operation-group: cluster.post_voting_config_exclusions
       x-version-added: '1.0'
-      description: Updates the cluster voting config exclusions by node ids or node names.
+      description: Updates the cluster voting configuration by excluding certain node IDs or names.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -3704,7 +3704,7 @@ paths:
       operationId: asynchronous_search.stats.0
       x-operation-group: asynchronous_search.stats
       x-version-added: '1.0'
-      description: Monitors any asynchronous searches that are `running`, `completed`, `persisted`.
+      description: Monitors any asynchronous searches that are `running`, `completed`, or `persisted`.
       externalDocs:
         url: https://opensearch.org/docs/latest/search-plugins/async/index/#monitor-stats
       responses:
@@ -4639,6 +4639,7 @@ paths:
     post:
       operationId: ml.predict.0
       x-operation-group: ml.predict
+      x-version-added: '1.3'
       description: Predicts new data with trained model.
       parameters:
         - $ref: '#/components/parameters/ml.predict___path.algorithm_name'
@@ -4657,6 +4658,7 @@ paths:
     post:
       operationId: ml.train_predict.0
       x-operation-group: ml.train_predict
+      x-version-added: '1.3'
       description: Trains a model and predicts against the same training dataset.
       parameters:
         - $ref: '#/components/parameters/ml.train_predict___path.algorithm_name'
@@ -4674,6 +4676,7 @@ paths:
     post:
       operationId: ml.train.0
       x-operation-group: ml.train
+      x-version-added: '1.3'
       description: Trains a model synchronously.
       parameters:
         - $ref: '#/components/parameters/ml.train___path.algorithm_name'
@@ -7334,6 +7337,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/security.create_user___200'
+        '201':
+          $ref: '#/components/responses/security.create_user___201'
   /_plugins/_security/api/internalusers/{username}/authtoken:
     post:
       operationId: security.generate_user_token.0
@@ -13504,7 +13509,7 @@ paths:
       operationId: asynchronous_search.stats.0_superseded
       x-operation-group: asynchronous_search.stats
       x-version-added: '1.0'
-      description: Monitors any asynchronous searches that are `running`, `completed`, `persisted`.
+      description: Monitors any asynchronous searches that are `running`, `completed`, or `persisted`.
       externalDocs:
         url: https://opensearch.org/docs/latest/search-plugins/async/index/#monitor-stats
       responses:
@@ -14529,6 +14534,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/security.create_user___200'
+        '201':
+          $ref: '#/components/responses/security.create_user___201'
       deprecated: true
       x-ignorable: true
     patch:
@@ -15987,19 +15994,19 @@ components:
       description: |-
         The amount of time that the result is saved in the cluster. For example, `2d` means that the results are stored in the cluster for 48 hours. 
         The saved search results are deleted after this period or if the search is canceled. Note that this includes the query execution time. 
-        If the query overruns this time, the process cancels this query automatically.
+        If the query exceeds this amount of time, the process cancels this query automatically.
       schema:
         type: string
     asynchronous_search.search___query.keep_on_completion:
       name: keep_on_completion
       in: query
-      description: Whether you want to save the results in the cluster after the search is complete. You can examine the stored results at a later time.
+      description: Whether to save the results in the cluster after the search is complete. You can examine the stored results at a later time.
       schema:
         type: boolean
     asynchronous_search.search___query.wait_for_completion_timeout:
       name: wait_for_completion_timeout
       in: query
-      description: The amount of time that you plan to wait for the results. You can poll the remaining results based on an ID. The maximum value is 300 seconds. Default is `1s`.
+      description: The amount of time to wait for the results. You can poll the remaining results based on an ID. The maximum value is 300 seconds. Default is `1s`.
       schema:
         type: string
     bulk_stream___path.index:
@@ -16194,7 +16201,6 @@ components:
     cat.aliases___path.name:
       in: path
       name: name
-      description: A comma-separated list of aliases to retrieve. Supports wildcards (`*`).  To retrieve all aliases, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Names'
@@ -16202,7 +16208,6 @@ components:
     cat.aliases___query.expand_wildcards:
       in: query
       name: expand_wildcards
-      description: Expands wildcard expressions to concrete indexes. Combine multiple values with commas. Supported values are `all`, `open`, `closed`, `hidden`, and `none`.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
       style: form
@@ -16674,7 +16679,6 @@ components:
     cat.indices___query.expand_wildcards:
       in: query
       name: expand_wildcards
-      description: The type of index that wildcard patterns can match.  Supported values are `all`, `open`, `closed`, `hidden`, and `none`.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
       style: form
@@ -17418,7 +17422,6 @@ components:
     cat.segment_replication___query.expand_wildcards:
       name: expand_wildcards
       in: query
-      description: The type of index that wildcard patterns can match. Supported values are `all`, `open`, `closed`, `hidden`, and `none`.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
     cat.segment_replication___query.format:
@@ -17600,10 +17603,6 @@ components:
     cat.shards___path.index:
       in: path
       name: index
-      description: |-
-        A comma-separated list of data streams, indexes, and aliases used to limit the request.
-        Supports wildcards (`*`).
-        To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -17679,7 +17678,6 @@ components:
     cat.shards___query.time:
       name: time
       in: query
-      description: Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
       schema:
         $ref: '#/components/schemas/_common___TimeUnit'
     cat.shards___query.v:
@@ -18057,7 +18055,7 @@ components:
     cluster.allocation_explain___query.include_disk_info:
       in: query
       name: include_disk_info
-      description: If `true`, returns information about disk usage and shard sizes.
+      description: When `true`, returns information about disk usage and shard sizes.
       schema:
         type: boolean
         default: false
@@ -18065,7 +18063,7 @@ components:
     cluster.allocation_explain___query.include_yes_decisions:
       in: query
       name: include_yes_decisions
-      description: If `true`, returns YES decisions in explanation.
+      description: When `true`, returns any `YES` decisions in the allocation explanation.
       schema:
         type: boolean
         default: false
@@ -18074,8 +18072,8 @@ components:
       in: path
       name: name
       description: |-
-        Name of the component template to delete.
-        Wildcard (*) expressions are supported.
+        The name of the component template to delete.
+        Supports wildcard (*) expressions.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -18090,9 +18088,6 @@ components:
     cluster.delete_component_template___query.master_timeout:
       in: query
       name: master_timeout
-      description: |-
-        Period to wait for a connection to the cluster-manager node.
-        If no response is received before the timeout expires, the request fails and returns an error.
       deprecated: true
       schema:
         $ref: '#/components/schemas/_common___Duration'
@@ -18102,9 +18097,6 @@ components:
     cluster.delete_component_template___query.timeout:
       in: query
       name: timeout
-      description: |-
-        Period to wait for a response.
-        If no response is received before the timeout expires, the request fails and returns an error.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
@@ -18114,8 +18106,8 @@ components:
       description: |-
         Specifies whether to wait for all excluded nodes to be removed from the
         cluster before clearing the voting configuration exclusions list.
-        Defaults to true, meaning that all excluded nodes must be removed from
-        the cluster before this API takes any action. If set to `false` then the
+        When `true`, all excluded nodes are removed from
+        the cluster before this API takes any action. When `false`, the
         voting configuration exclusions list is cleared even if some excluded
         nodes are still in the cluster.
       schema:
@@ -18126,7 +18118,7 @@ components:
       in: path
       name: name
       description: |-
-        Name of the component template to check existence of.
+        The name of the component template.
         Wildcard (*) expressions are supported.
       required: true
       schema:
@@ -18135,7 +18127,6 @@ components:
     cluster.exists_component_template___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
@@ -18143,8 +18134,8 @@ components:
       in: query
       name: local
       description: |-
-        If `true`, the request retrieves information from the local node only.
-        Defaults to false, which means information is retrieved from the cluster-manager node.
+        When `true`, the request retrieves information from the local node only.
+        When `false, information is retrieved from the cluster manager node.
       schema:
         type: boolean
         default: false
@@ -18152,10 +18143,6 @@ components:
     cluster.exists_component_template___query.master_timeout:
       in: query
       name: master_timeout
-      description: |-
-        Period to wait for a connection to the cluster-manager node. If no response is
-        received before the timeout expires, the request fails and returns an
-        error.
       deprecated: true
       schema:
         $ref: '#/components/schemas/_common___Duration'
@@ -18166,7 +18153,7 @@ components:
       in: path
       name: name
       description: |-
-        Name of the component template to retrieve.
+        The name of the component template to retrieve.
         Wildcard (`*`) expressions are supported.
       required: true
       schema:
@@ -18175,7 +18162,6 @@ components:
     cluster.get_component_template___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
@@ -18191,8 +18177,8 @@ components:
       in: query
       name: local
       description: |-
-        If `true`, the request retrieves information from the local node only.
-        If `false`, information is retrieved from the cluster-manager node.
+        When `true`, the request retrieves information from the local node only.
+        When `false`, information is retrieved from the cluster manager node.
       schema:
         type: boolean
         default: false
@@ -18200,9 +18186,6 @@ components:
     cluster.get_component_template___query.master_timeout:
       in: query
       name: master_timeout
-      description: |-
-        Period to wait for a connection to the cluster-manager node.
-        If no response is received before the timeout expires, the request fails and returns an error.
       deprecated: true
       schema:
         $ref: '#/components/schemas/_common___Duration'
@@ -18212,22 +18195,21 @@ components:
     cluster.get_decommission_awareness___path.awareness_attribute_name:
       name: awareness_attribute_name
       in: path
-      description: Awareness attribute name.
+      description: The name of the awareness attribute.
       schema:
         type: string
-        description: Awareness attribute name.
+        description: The name of the awareness attribute.
       required: true
     cluster.get_settings___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cluster.get_settings___query.flat_settings:
       in: query
       name: flat_settings
-      description: If `true`, returns settings in flat format.
+      description: When `true`, returns cluster settings in a flat format.
       schema:
         type: boolean
         default: false
@@ -18235,7 +18217,7 @@ components:
     cluster.get_settings___query.include_defaults:
       in: query
       name: include_defaults
-      description: If `true`, returns default cluster settings from the local node.
+      description: When `true`, returns default cluster settings from the local node.
       schema:
         type: boolean
         default: false
@@ -18243,9 +18225,6 @@ components:
     cluster.get_settings___query.master_timeout:
       in: query
       name: master_timeout
-      description: |-
-        Period to wait for a connection to the cluster-manager node.
-        If no response is received before the timeout expires, the request fails and returns an error.
       deprecated: true
       schema:
         $ref: '#/components/schemas/_common___Duration'
@@ -18255,24 +18234,20 @@ components:
     cluster.get_settings___query.timeout:
       in: query
       name: timeout
-      description: |-
-        Period to wait for a response.
-        If no response is received before the timeout expires, the request fails and returns an error.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
     cluster.get_weighted_routing___path.attribute:
       name: attribute
       in: path
-      description: Awareness attribute name.
+      description: The name of the awareness attribute.
       schema:
         type: string
-        description: Awareness attribute name.
+        description: The name of the awareness attribute.
       required: true
     cluster.health___path.index:
       in: path
       name: index
-      description: Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*) are supported. To target all data streams and indexes in a cluster, omit this parameter or use `_all` or `*`.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -18280,35 +18255,33 @@ components:
     cluster.health___query.awareness_attribute:
       name: awareness_attribute
       in: query
-      description: The awareness attribute for which the health is required.
+      description: The name of the awareness attribute for which to return the cluster health status (for example, `zone`). Applicable only if `level` is set to `awareness_attributes`.
       schema:
         type: string
-        description: The awareness attribute for which the health is required.
+        description: The name of the awareness attribute for which to return the cluster health status (for example, `zone`). Applicable only if `level` is set to `awareness_attributes`.
     cluster.health___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cluster.health___query.expand_wildcards:
       in: query
       name: expand_wildcards
-      description: Whether to expand wildcard expression to concrete indexes that are open, closed or both.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
       style: form
     cluster.health___query.level:
       in: query
       name: level
-      description: Can be one of cluster, indexes or shards. Controls the details level of the health information returned.
       schema:
         $ref: '#/components/schemas/cluster.health___Level'
+        default: cluster
       style: form
     cluster.health___query.local:
       in: query
       name: local
-      description: If `true`, the request retrieves information from the local node only. Defaults to false, which means information is retrieved from the cluster-manager node.
+      description: Whether to return information from the local node only instead of from the cluster manager node.
       schema:
         type: boolean
         default: false
@@ -18316,7 +18289,6 @@ components:
     cluster.health___query.master_timeout:
       in: query
       name: master_timeout
-      description: Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
       deprecated: true
       schema:
         $ref: '#/components/schemas/_common___Duration'
@@ -18326,42 +18298,40 @@ components:
     cluster.health___query.timeout:
       in: query
       name: timeout
-      description: Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
     cluster.health___query.wait_for_active_shards:
       in: query
       name: wait_for_active_shards
-      description: A number controlling to how many active shards to wait for, all to wait for all shards in the cluster to be active, or 0 to not wait.
       schema:
         $ref: '#/components/schemas/_common___WaitForActiveShards'
       style: form
     cluster.health___query.wait_for_events:
       in: query
       name: wait_for_events
-      description: Can be one of immediate, urgent, high, normal, low, languid. Wait until all currently queued events with the given priority are processed.
       schema:
         $ref: '#/components/schemas/_common___WaitForEvents'
       style: form
     cluster.health___query.wait_for_no_initializing_shards:
       in: query
       name: wait_for_no_initializing_shards
-      description: A Boolean value which controls whether to wait (until the timeout provided) for the cluster to have no shard initializations. Defaults to false, which means it will not wait for initializing shards.
+      description: Whether to wait until there are no initializing shards in the cluster.
       schema:
         type: boolean
+        default: false
       style: form
     cluster.health___query.wait_for_no_relocating_shards:
       in: query
       name: wait_for_no_relocating_shards
-      description: A Boolean value which controls whether to wait (until the timeout provided) for the cluster to have no shard relocations. Defaults to false, which means it will not wait for relocating shards.
+      description: Whether to wait until there are no relocating shards in the cluster.
       schema:
         type: boolean
       style: form
     cluster.health___query.wait_for_nodes:
       in: query
       name: wait_for_nodes
-      description: The request waits until the specified number N of nodes is available. It also accepts >=N, <=N, >N and <N. Alternatively, it is possible to use ge(N), le(N), gt(N) and lt(N) notation.
+      description: Waits until the specified number of nodes (`N`) is available. Accepts `>=N`, `<=N`, `>N`, and `<N`. You can also use `ge(N)`, `le(N)`, `gt(N)`, and `lt(N)` notation.
       schema:
         oneOf:
           - type: string
@@ -18370,14 +18340,13 @@ components:
     cluster.health___query.wait_for_status:
       in: query
       name: wait_for_status
-      description: One of green, yellow or red. Will wait (until the timeout provided) until the status of the cluster changes to the one provided or better, i.e. green > yellow > red. By default, will not wait for any status.
+      description: Waits until the cluster health reaches the specified status or better.
       schema:
         $ref: '#/components/schemas/_common___HealthStatus'
       style: form
     cluster.pending_tasks___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
@@ -18385,8 +18354,8 @@ components:
       in: query
       name: local
       description: |-
-        If `true`, the request retrieves information from the local node only.
-        If `false`, information is retrieved from the cluster-manager node.
+        When `true`, the request retrieves information from the local node only.
+        When `false`, information is retrieved from the cluster manager node.
       schema:
         type: boolean
         default: false
@@ -18394,9 +18363,6 @@ components:
     cluster.pending_tasks___query.master_timeout:
       in: query
       name: master_timeout
-      description: |-
-        Period to wait for a connection to the cluster-manager node.
-        If no response is received before the timeout expires, the request fails and returns an error.
       deprecated: true
       schema:
         $ref: '#/components/schemas/_common___Duration'
@@ -18407,8 +18373,8 @@ components:
       in: query
       name: node_ids
       description: |-
-        A comma-separated list of the persistent ids of the nodes to exclude
-        from the voting configuration. If specified, you may not also specify `node_names`.
+        A comma-separated list of node IDs to exclude
+        from the voting configuration. When using this setting, you cannot also specify `node_names`.
       schema:
         $ref: '#/components/schemas/_common___Ids'
       style: form
@@ -18416,8 +18382,8 @@ components:
       in: query
       name: node_names
       description: |-
-        A comma-separated list of the names of the nodes to exclude from the
-        voting configuration. If specified, you may not also specify `node_ids`.
+        A comma-separated list of node names to exclude from the
+        voting configuration. When using this setting, you cannot also specify `node_ids`.
       schema:
         $ref: '#/components/schemas/_common___Names'
       style: form
@@ -18427,7 +18393,7 @@ components:
       description: |-
         When adding a voting configuration exclusion, the API waits for the
         specified nodes to be excluded from the voting configuration before
-        returning. If the timeout expires before the appropriate condition
+        returning a response. If the timeout expires before the appropriate condition
         is satisfied, the request fails and returns an error.
       schema:
         $ref: '#/components/schemas/_common___Duration'
@@ -18436,11 +18402,11 @@ components:
       in: path
       name: name
       description: |-
-        Name of the component template to create.
+        The name of the component template to create.
         OpenSearch includes the following built-in component templates: `logs-mappings`; 'logs-settings`; `metrics-mappings`; `metrics-settings`;`synthetics-mapping`; `synthetics-settings`.
-        OpenSearch Agent uses these templates to configure backing indexes for its data streams.
-        If you use OpenSearch Agent and want to overwrite one of these templates, set the `version` for your replacement template higher than the current version.
-        If you don't use OpenSearch Agent and want to disable all built-in component and index templates, set `stack.templates.enabled` to `false` using the cluster update settings API.
+        OpenSearch uses these templates to configure backing indexes for its data streams.
+        If you want to overwrite one of these templates, set the replacement template `version` to a higher value than the current version.
+        If you want to disable all built-in component and index templates, set `stack.templates.enabled` to `false` using the Cluster Update Settings API.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -18448,14 +18414,13 @@ components:
     cluster.put_component_template___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cluster.put_component_template___query.create:
       in: query
       name: create
-      description: If `true`, this request cannot replace or update existing component templates.
+      description: When `true`, this request cannot replace or update existing component templates.
       schema:
         type: boolean
         default: false
@@ -18463,9 +18428,6 @@ components:
     cluster.put_component_template___query.master_timeout:
       in: query
       name: master_timeout
-      description: |-
-        Period to wait for a connection to the cluster-manager node.
-        If no response is received before the timeout expires, the request fails and returns an error.
       deprecated: true
       schema:
         $ref: '#/components/schemas/_common___Duration'
@@ -18475,36 +18437,34 @@ components:
     cluster.put_component_template___query.timeout:
       name: timeout
       in: query
-      description: Operation timeout.
       schema:
         $ref: '#/components/schemas/_common___Duration'
     cluster.put_decommission_awareness___path.awareness_attribute_name:
       name: awareness_attribute_name
       in: path
-      description: Awareness attribute name.
+      description: The name of the awareness attribute.
       schema:
         type: string
-        description: Awareness attribute name.
+        description: The name of the awareness attribute.
       required: true
     cluster.put_decommission_awareness___path.awareness_attribute_value:
       name: awareness_attribute_value
       in: path
-      description: Awareness attribute value.
+      description: The value of the awareness attribute.
       schema:
         type: string
-        description: Awareness attribute value.
+        description: The value of the awareness attribute.
       required: true
     cluster.put_settings___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cluster.put_settings___query.flat_settings:
       in: query
       name: flat_settings
-      description: Return settings in flat format.
+      description: Returns settings in a flat format.
       schema:
         type: boolean
         default: false
@@ -18512,7 +18472,6 @@ components:
     cluster.put_settings___query.master_timeout:
       in: query
       name: master_timeout
-      description: Explicit operation timeout for connection to cluster-manager node
       deprecated: true
       schema:
         $ref: '#/components/schemas/_common___Duration'
@@ -18522,43 +18481,40 @@ components:
     cluster.put_settings___query.timeout:
       in: query
       name: timeout
-      description: Explicit operation timeout
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
     cluster.put_weighted_routing___path.attribute:
       name: attribute
       in: path
-      description: Awareness attribute name.
+      description: The name of the awareness attribute.
       schema:
         type: string
-        description: Awareness attribute name.
+        description: The name of the awareness attribute.
       required: true
     cluster.reroute___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cluster.reroute___query.dry_run:
       in: query
       name: dry_run
-      description: If `true`, then the request simulates the operation only and returns the resulting state.
+      description: When `true`, the request simulates the operation and returns the resulting state.
       schema:
         type: boolean
       style: form
     cluster.reroute___query.explain:
       in: query
       name: explain
-      description: If `true`, then the response contains an explanation of why the commands can or cannot be executed.
+      description: When `true`, the response contains an explanation of why certain commands can or cannot be executed.
       schema:
         type: boolean
       style: form
     cluster.reroute___query.master_timeout:
       in: query
       name: master_timeout
-      description: Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails and returns an error.
       deprecated: true
       schema:
         $ref: '#/components/schemas/_common___Duration'
@@ -18579,21 +18535,19 @@ components:
     cluster.reroute___query.retry_failed:
       in: query
       name: retry_failed
-      description: If `true`, then retries allocation of shards that are blocked due to too many subsequent allocation failures.
+      description: When `true`, retries shard allocation if it was blocked because of too many subsequent failures.
       schema:
         type: boolean
       style: form
     cluster.reroute___query.timeout:
       in: query
       name: timeout
-      description: Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
     cluster.state___path.index:
       in: path
       name: index
-      description: A comma-separated list of index names; use `_all` or empty string to perform the operation on all indexes
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -18601,7 +18555,7 @@ components:
     cluster.state___path.metric:
       in: path
       name: metric
-      description: Limit the information returned to the specified metrics
+      description: Limits the information returned to only the specified metrics.
       required: true
       schema:
         type: array
@@ -18611,28 +18565,26 @@ components:
     cluster.state___query.allow_no_indices:
       in: query
       name: allow_no_indices
-      description: Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes `_all` string or when no indexes have been specified)
+      description: Whether to ignore a wildcard index expression that resolves into no concrete indexes. This includes the `_all` string or when no indexes have been specified.
       schema:
         type: boolean
       style: form
     cluster.state___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     cluster.state___query.expand_wildcards:
       in: query
       name: expand_wildcards
-      description: Whether to expand wildcard expression to concrete indexes that are open, closed or both.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
       style: form
     cluster.state___query.flat_settings:
       in: query
       name: flat_settings
-      description: Return settings in flat format.
+      description: Returns settings in a flat format.
       schema:
         type: boolean
         default: false
@@ -18640,14 +18592,14 @@ components:
     cluster.state___query.ignore_unavailable:
       in: query
       name: ignore_unavailable
-      description: Whether specified concrete indexes should be ignored when unavailable (missing or closed)
+      description: Whether the specified concrete indexes should be ignored when unavailable (missing or closed).
       schema:
         type: boolean
       style: form
     cluster.state___query.local:
       in: query
       name: local
-      description: Return local information, do not retrieve the state from cluster-manager node.
+      description: Whether to return information from the local node only instead of from the cluster manager node.
       schema:
         type: boolean
         default: false
@@ -18655,7 +18607,6 @@ components:
     cluster.state___query.master_timeout:
       in: query
       name: master_timeout
-      description: Specify timeout for connection to cluster manager.
       deprecated: true
       schema:
         $ref: '#/components/schemas/_common___Duration'
@@ -18679,7 +18630,7 @@ components:
     cluster.stats___path.index_metric:
       in: path
       name: index_metric
-      description: Limit the information returned for indexes metric to the specific index metrics. It can be used only if indexes (or all) metric is specified.
+      description: A comma-separated list of index metric groups, for example, `docs,store`.
       required: true
       schema:
         type: array
@@ -18699,7 +18650,6 @@ components:
     cluster.stats___path.node_id:
       in: path
       name: node_id
-      description: Comma-separated list of node filters used to limit returned information. Defaults to all nodes in the cluster.
       required: true
       schema:
         $ref: '#/components/schemas/_common___NodeIds'
@@ -18707,7 +18657,7 @@ components:
     cluster.stats___query.flat_settings:
       in: query
       name: flat_settings
-      description: If `true`, returns settings in flat format.
+      description: When `true`, returns settings in a flat format.
       schema:
         type: boolean
         default: false
@@ -18716,7 +18666,7 @@ components:
       in: query
       name: timeout
       description: |-
-        Period to wait for each node to respond.
+        The amount of time to wait for each node to respond.
         If a node does not respond before its timeout expires, the response does not include its stats.
         However, timed out nodes are included in the response's `_nodes.failed` property. Defaults to no timeout.
       schema:
@@ -27704,13 +27654,13 @@ components:
               index:
                 $ref: '#/components/schemas/_common___IndexName'
               primary:
-                description: If `true`, returns explanation for the primary shard for the given shard ID.
+                description: When `true`, returns a routing explanation for the primary shard based on the node ID.
                 type: boolean
               shard:
                 description: Specifies the ID of the shard that you would like an explanation for.
                 type: integer
                 format: int32
-            description: The index, shard, and primary flag to explain. Empty means 'explain the first unassigned shard'
+            description: The index, shard, and primary flag for which to generate an explanation. Leave this empty to generate an explanation for the first unassigned shard.
     cluster.delete_weighted_routing:
       content:
         application/json:
@@ -27724,10 +27674,9 @@ components:
             properties:
               allow_auto_create:
                 description: |-
-                  This setting overrides the value of the `action.auto_create_index` cluster setting.
-                  If set to `true` in a template, then indexes can be automatically created using that
-                  template even if auto-creation of indexes is disabled using `actions.auto_create_index`.
-                  If set to `false` then data streams matching the template must always be explicitly created.
+                  This setting overrides the `action.auto_create_index` cluster setting.
+                  When set to `true` in a component template, indexes are automatically created using that
+                  template. When set to `false`, data streams matching the component template must always be explicitly created.
                 type: boolean
               template:
                 $ref: '#/components/schemas/indices._common___IndexState'
@@ -27737,7 +27686,7 @@ components:
                 $ref: '#/components/schemas/_common___Metadata'
             required:
               - template
-            description: The template definition
+            description: The template definition.
       required: true
     cluster.put_settings:
       content:
@@ -27751,7 +27700,7 @@ components:
               transient:
                 type: object
                 additionalProperties: {}
-            description: The settings to be updated. Can be either `transient` or `persistent` (survives cluster restart).
+            description: The cluster settings to update.
       required: true
     cluster.put_weighted_routing:
       content:
@@ -27765,7 +27714,7 @@ components:
             type: object
             properties:
               commands:
-                description: Defines the commands to perform.
+                description: Defines the reroute commands to perform, either `move`, `cancel`, or `allocate`.
                 type: array
                 items:
                   $ref: '#/components/schemas/cluster.reroute___Command'
@@ -30516,9 +30465,8 @@ components:
                       $ref: '#/components/schemas/cluster.reroute___RerouteExplanation'
                   state:
                     description: |-
-                      There aren't any guarantees on the output/structure of the raw cluster state.
-                      Here you will find the internal representation of the cluster, which can
-                      differ from the external representation.
+                      Shows the internal representation of the structure, which can
+                      differ from the external representation.                  
       description: ''
     cluster.state___200:
       content:
@@ -30534,22 +30482,22 @@ components:
               - type: object
                 properties:
                   cluster_name:
-                    description: Name of the cluster, based on the Cluster name setting setting.
+                    description: The name of the cluster.
                     $ref: '#/components/schemas/_common___Name'
                   cluster_uuid:
-                    description: Unique identifier for the cluster.
+                    description: The unique identifier of the cluster.
                     $ref: '#/components/schemas/_common___Uuid'
                   indices:
-                    description: Contains statistics about indexes with shards assigned to selected nodes.
+                    description: Displays statistics about indexes in the cluster.
                     $ref: '#/components/schemas/cluster.stats___ClusterIndices'
                   nodes:
-                    description: Contains statistics about nodes selected by the request's node filters.
+                    description: Displays statistics about nodes selected by the request's node filters.
                     $ref: '#/components/schemas/cluster.stats___ClusterNodes'
                   status:
-                    description: Health status of the cluster, based on the state of its primary and replica shards.
+                    description: The health status of the cluster, based on the state of its primary and replica shards.
                     $ref: '#/components/schemas/_common___HealthStatus'
                   timestamp:
-                    description: Unix timestamp, in milliseconds, for the last time the cluster statistics were refreshed.
+                    description: The Unix timestamp, in milliseconds, indicating when any cluster statistics were last refreshed.
                     $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
                 required:
                   - cluster_name
@@ -33258,6 +33206,12 @@ components:
           schema:
             $ref: '#/components/schemas/security._common___Ok'
       description: ''
+    security.create_user___201:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/security._common___Created'
+      description: ''
     security.delete_action_group___200:
       content:
         application/json:
@@ -34942,6 +34896,10 @@ components:
           $ref: '#/components/schemas/_common___SortOrder'
         unit:
           $ref: '#/components/schemas/_common___DistanceUnit'
+      additionalProperties:
+        type: array
+        items:
+          $ref: '#/components/schemas/_common___GeoLocation'
     _common___GeoDistanceType:
       type: string
       enum:
@@ -35020,6 +34978,11 @@ components:
           format: int64
         getTime:
           $ref: '#/components/schemas/_common___Duration'
+          deprecated: true
+          x-version-deprecated: '2.19'
+        time:
+          $ref: '#/components/schemas/_common___Duration'
+          x-version-added: '2.19'
         time_in_millis:
           $ref: '#/components/schemas/_common___DurationValueUnitMillis'
         exists_total:
@@ -35154,6 +35117,10 @@ components:
     _common___IndexName:
       type: string
     _common___Indices:
+      description: |-
+        A comma-separated list of data streams, indexes, and aliases used to limit the request.
+        Supports wildcards (`*`).
+        To target all data streams and indexes, omit this parameter or use `*` or `_all`.
       oneOf:
         - $ref: '#/components/schemas/_common___IndexName'
         - type: array
@@ -35242,6 +35209,7 @@ components:
         - lat
         - lon
     _common___Level:
+      description: Specifies the level of detail of the returned information.
       type: string
       enum:
         - cluster
@@ -35321,6 +35289,7 @@ components:
     _common___Name:
       type: string
     _common___Names:
+      description: A comma-separated list of aliases to retrieve. Supports wildcards (`*`).  To retrieve all aliases, omit this parameter or use `*` or `_all`.
       oneOf:
         - $ref: '#/components/schemas/_common___Name'
         - type: array
@@ -35368,6 +35337,7 @@ components:
     _common___NodeId:
       type: string
     _common___NodeIds:
+      description: A comma-separated list of node IDs used to filter results. Supports [node filters](https://opensearch.org/docs/latest/api-reference/nodes-apis/index/#node-filters).
       oneOf:
         - $ref: '#/components/schemas/_common___NodeId'
         - type: array
@@ -36567,6 +36537,7 @@ components:
       description: Time of day, expressed as HH:MM:SS.
       type: string
     _common___TimeUnit:
+      description: Specifies the time units, for example, `5d` or `7h`. For more information, see [Supported units](https://opensearch.org/docs/latest/api-reference/units/).
       oneOf:
         - title: nanoseconds
           type: string
@@ -36695,12 +36666,14 @@ components:
         - all
         - index-setting
     _common___WaitForActiveShards:
+      description: Waits until the specified number of shards is active before returning a response. Use `all` for all shards.
       oneOf:
         - title: count
           type: integer
         - title: option
           $ref: '#/components/schemas/_common___WaitForActiveShardOptions'
     _common___WaitForEvents:
+      description: Waits until all currently queued events with the given priority are processed.
       type: string
       enum:
         - high
@@ -43988,26 +43961,26 @@ components:
               format: float
               x-version-added: '2.14'
             filter:
-              description: The filters for the k-NN search query.
-              oneOf:
-                - $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
+              description: The filter for the k-NN search query.
+              $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
             method_parameters:
               type: object
               x-version-added: '2.16'
-              additionalProperties:
-                type: integer
-                format: int32
+              additionalProperties: true
             rescore:
-              type: object
+              $ref: '#/components/schemas/_common.query_dsl___KnnQueryRescore'
               x-version-added: '2.17'
-              additionalProperties:
-                type: number
-                format: float
+            expand_nested_docs:
+              type: boolean
+              x-version-added: '2.19'
           required:
             - vector
+    _common.query_dsl___KnnQueryRescore:
+      oneOf:
+        - title: enable
+          type: boolean
+        - title: context
+          $ref: '#/components/schemas/_common.query_dsl___RescoreContext'
     _common.query_dsl___Like:
       description: Text that we want similar documents for or a lookup to a document's field for the text.
       oneOf:
@@ -44990,6 +44963,12 @@ components:
                   type: string
               required:
                 - value
+    _common.query_dsl___RescoreContext:
+      type: object
+      properties:
+        oversample_factor:
+          type: number
+          format: float
     _common.query_dsl___ScriptQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
