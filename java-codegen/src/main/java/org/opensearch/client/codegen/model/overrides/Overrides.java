@@ -119,6 +119,7 @@ public class Overrides {
                 )
 
                 .with(schema("_common.query_dsl", "QueryContainer"), so -> so.withClassName("Query"))
+                .with(schema("_common.query_dsl", "RangeQuery").append("allOf", "1"), so -> so.withProperties(p -> p.with("from", po -> po.withMappedType(Types.Client.Json.JsonData)).with("to", po -> po.withMappedType(Types.Client.Json.JsonData))))
 
                 .with(schema("_core.mtermvectors", "Operation"), so -> so.withClassName("MultiTermVectorsOperation"))
                 .with(schema("_core.mtermvectors", "TermVectorsResult"), so -> so.withClassName("MultiTermVectorsResult"))

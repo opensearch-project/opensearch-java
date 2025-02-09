@@ -30,16 +30,25 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
 
 // typedef: _types.query_dsl.RangeQueryBase
 
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class RangeQueryBase extends QueryBase {
+
     @Nullable
     private final RangeRelation relation;
 
@@ -47,9 +56,7 @@ public abstract class RangeQueryBase extends QueryBase {
 
     protected RangeQueryBase(AbstractBuilder<?> builder) {
         super(builder);
-
         this.relation = builder.relation;
-
     }
 
     /**
@@ -61,14 +68,14 @@ public abstract class RangeQueryBase extends QueryBase {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
         if (this.relation != null) {
             generator.writeKey("relation");
             this.relation.serialize(generator, mapper);
         }
-
     }
+
+    // ---------------------------------------------------------------------------------------------
 
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends QueryBase.AbstractBuilder<
         BuilderT> {
@@ -82,21 +89,43 @@ public abstract class RangeQueryBase extends QueryBase {
             this.relation = o.relation;
         }
 
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            super(o);
+            this.relation = o.relation;
+        }
+
         /**
          * API name: {@code relation}
          */
+        @Nonnull
         public final BuilderT relation(@Nullable RangeRelation value) {
             this.relation = value;
             return self();
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
+
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRangeQueryBaseDeserializer(ObjectDeserializer<BuilderT> op) {
         setupQueryBaseDeserializer(op);
         op.add(AbstractBuilder::relation, RangeRelation._DESERIALIZER, "relation");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.relation);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        RangeQueryBase other = (RangeQueryBase) o;
+        return Objects.equals(this.relation, other.relation);
+    }
 }

@@ -36512,9 +36512,7 @@ components:
         - status
         - task_id
     _common___TaskId:
-      oneOf:
-        - type: string
-        - type: number
+      type: string
     _common___TermFrequencyNormalization:
       type: string
       enum:
@@ -43321,31 +43319,29 @@ components:
           $ref: '#/components/schemas/_common___DateTime'
         scale:
           $ref: '#/components/schemas/_common___Duration'
-    _common.query_dsl___DateRangeQuery:
-      allOf:
-        - $ref: '#/components/schemas/_common.query_dsl___RangeQueryBase'
-        - type: object
-          properties:
-            gt:
-              $ref: '#/components/schemas/_common___DateMath'
-            gte:
-              $ref: '#/components/schemas/_common___DateMath'
-            lt:
-              $ref: '#/components/schemas/_common___DateMath'
-            lte:
-              $ref: '#/components/schemas/_common___DateMath'
-            from:
-              oneOf:
-                - $ref: '#/components/schemas/_common___DateMath'
-                - type: 'null'
-            to:
-              oneOf:
-                - $ref: '#/components/schemas/_common___DateMath'
-                - type: 'null'
-            format:
-              $ref: '#/components/schemas/_common___DateFormat'
-            time_zone:
-              $ref: '#/components/schemas/_common___TimeZone'
+    _common.query_dsl___DateRangeQueryParameters:
+      type: object
+      properties:
+        gt:
+          $ref: '#/components/schemas/_common___DateMath'
+        gte:
+          $ref: '#/components/schemas/_common___DateMath'
+        lt:
+          $ref: '#/components/schemas/_common___DateMath'
+        lte:
+          $ref: '#/components/schemas/_common___DateMath'
+        from:
+          oneOf:
+            - $ref: '#/components/schemas/_common___DateMath'
+            - type: 'null'
+        to:
+          oneOf:
+            - $ref: '#/components/schemas/_common___DateMath'
+            - type: 'null'
+        format:
+          $ref: '#/components/schemas/_common___DateFormat'
+        time_zone:
+          $ref: '#/components/schemas/_common___TimeZone'
     _common.query_dsl___DecayFunction:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___DecayFunctionBase'
@@ -44353,39 +44349,37 @@ components:
               format: float
             filter:
               $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
-    _common.query_dsl___NumberRangeQuery:
-      allOf:
-        - $ref: '#/components/schemas/_common.query_dsl___RangeQueryBase'
-        - type: object
-          properties:
-            gt:
-              description: Greater than.
-              type: number
+    _common.query_dsl___NumberRangeQueryParameters:
+      type: object
+      properties:
+        gt:
+          description: Greater than.
+          type: number
+          format: double
+        gte:
+          description: Greater than or equal to.
+          type: number
+          format: double
+        lt:
+          description: Less than.
+          type: number
+          format: double
+        lte:
+          description: Less than or equal to.
+          type: number
+          format: double
+        from:
+          oneOf:
+            - type: number
               format: double
-            gte:
-              description: Greater than or equal to.
-              type: number
+            - type: string
+            - type: 'null'
+        to:
+          oneOf:
+            - type: number
               format: double
-            lt:
-              description: Less than.
-              type: number
-              format: double
-            lte:
-              description: Less than or equal to.
-              type: number
-              format: double
-            from:
-              oneOf:
-                - type: number
-                  format: double
-                - type: string
-                - type: 'null'
-            to:
-              oneOf:
-                - type: number
-                  format: double
-                - type: string
-                - type: 'null'
+            - type: string
+            - type: 'null'
     _common.query_dsl___NumericDecayPlacement:
       type: object
       properties:
@@ -44861,9 +44855,11 @@ components:
               format: int32
             - type: string
     _common.query_dsl___RangeQuery:
-      oneOf:
-        - $ref: '#/components/schemas/_common.query_dsl___DateRangeQuery'
-        - $ref: '#/components/schemas/_common.query_dsl___NumberRangeQuery'
+      allOf:
+        - $ref: '#/components/schemas/_common.query_dsl___RangeQueryBase'
+        - oneOf:
+            - $ref: '#/components/schemas/_common.query_dsl___NumberRangeQueryParameters'
+            - $ref: '#/components/schemas/_common.query_dsl___DateRangeQueryParameters'
     _common.query_dsl___RangeQueryBase:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
