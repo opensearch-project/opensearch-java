@@ -174,7 +174,7 @@ public final class GetStatsRequest extends RequestBase implements ToCopyableBuil
                 StringBuilder buf = new StringBuilder();
                 buf.append("/_plugins/_ml/");
                 SimpleEndpoint.pathEncode(request.nodeId, buf);
-                buf.append("/stats/");
+                buf.append("/stats");
                 return buf.toString();
             }
             if (propsSet == (_nodeId | _stat)) {

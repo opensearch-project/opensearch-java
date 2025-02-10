@@ -89,8 +89,7 @@ public class RerouteResponse extends AcknowledgedResponseBase implements ToCopya
     }
 
     /**
-     * There aren't any guarantees on the output/structure of the raw cluster state. Here you will find the internal representation of the
-     * cluster, which can differ from the external representation.
+     * Shows the internal representation of the structure, which can differ from the external representation.
      * <p>
      * API name: {@code state}
      * </p>
@@ -206,8 +205,7 @@ public class RerouteResponse extends AcknowledgedResponseBase implements ToCopya
         }
 
         /**
-         * There aren't any guarantees on the output/structure of the raw cluster state. Here you will find the internal representation of
-         * the cluster, which can differ from the external representation.
+         * Shows the internal representation of the structure, which can differ from the external representation.
          * <p>
          * API name: {@code state}
          * </p>

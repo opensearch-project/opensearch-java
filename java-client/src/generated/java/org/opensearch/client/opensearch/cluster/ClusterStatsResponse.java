@@ -98,7 +98,7 @@ public class ClusterStatsResponse extends NodesResponseBase
     }
 
     /**
-     * Required - Name of the cluster, based on the Cluster name setting setting.
+     * Required - The name of the cluster.
      * <p>
      * API name: {@code cluster_name}
      * </p>
@@ -109,7 +109,7 @@ public class ClusterStatsResponse extends NodesResponseBase
     }
 
     /**
-     * Required - Unique identifier for the cluster.
+     * Required - The unique identifier of the cluster.
      * <p>
      * API name: {@code cluster_uuid}
      * </p>
@@ -120,7 +120,7 @@ public class ClusterStatsResponse extends NodesResponseBase
     }
 
     /**
-     * Contains statistics about indexes with shards assigned to selected nodes.
+     * Displays statistics about indexes in the cluster.
      * <p>
      * API name: {@code indices}
      * </p>
@@ -131,7 +131,7 @@ public class ClusterStatsResponse extends NodesResponseBase
     }
 
     /**
-     * Contains statistics about nodes selected by the request's node filters.
+     * Displays statistics about nodes selected by the request's node filters.
      * <p>
      * API name: {@code nodes}
      * </p>
@@ -142,7 +142,7 @@ public class ClusterStatsResponse extends NodesResponseBase
     }
 
     /**
-     * Required - Health status of the cluster, based on the state of its primary and replica shards.
+     * Required - The health status of the cluster, based on the state of its primary and replica shards.
      * <p>
      * API name: {@code status}
      * </p>
@@ -153,7 +153,7 @@ public class ClusterStatsResponse extends NodesResponseBase
     }
 
     /**
-     * Required - Unix timestamp, in milliseconds, for the last time the cluster statistics were refreshed.
+     * Required - The Unix timestamp, in milliseconds, indicating when any cluster statistics were last refreshed.
      * <p>
      * API name: {@code timestamp}
      * </p>
@@ -250,7 +250,7 @@ public class ClusterStatsResponse extends NodesResponseBase
         }
 
         /**
-         * Required - Name of the cluster, based on the Cluster name setting setting.
+         * Required - The name of the cluster.
          * <p>
          * API name: {@code cluster_name}
          * </p>
@@ -262,7 +262,7 @@ public class ClusterStatsResponse extends NodesResponseBase
         }
 
         /**
-         * Required - Unique identifier for the cluster.
+         * Required - The unique identifier of the cluster.
          * <p>
          * API name: {@code cluster_uuid}
          * </p>
@@ -274,7 +274,7 @@ public class ClusterStatsResponse extends NodesResponseBase
         }
 
         /**
-         * Contains statistics about indexes with shards assigned to selected nodes.
+         * Displays statistics about indexes in the cluster.
          * <p>
          * API name: {@code indices}
          * </p>
@@ -286,7 +286,7 @@ public class ClusterStatsResponse extends NodesResponseBase
         }
 
         /**
-         * Contains statistics about indexes with shards assigned to selected nodes.
+         * Displays statistics about indexes in the cluster.
          * <p>
          * API name: {@code indices}
          * </p>
@@ -297,7 +297,7 @@ public class ClusterStatsResponse extends NodesResponseBase
         }
 
         /**
-         * Contains statistics about nodes selected by the request's node filters.
+         * Displays statistics about nodes selected by the request's node filters.
          * <p>
          * API name: {@code nodes}
          * </p>
@@ -309,7 +309,7 @@ public class ClusterStatsResponse extends NodesResponseBase
         }
 
         /**
-         * Contains statistics about nodes selected by the request's node filters.
+         * Displays statistics about nodes selected by the request's node filters.
          * <p>
          * API name: {@code nodes}
          * </p>
@@ -320,7 +320,7 @@ public class ClusterStatsResponse extends NodesResponseBase
         }
 
         /**
-         * Required - Health status of the cluster, based on the state of its primary and replica shards.
+         * Required - The health status of the cluster, based on the state of its primary and replica shards.
          * <p>
          * API name: {@code status}
          * </p>
@@ -332,7 +332,7 @@ public class ClusterStatsResponse extends NodesResponseBase
         }
 
         /**
-         * Required - Unix timestamp, in milliseconds, for the last time the cluster statistics were refreshed.
+         * Required - The Unix timestamp, in milliseconds, indicating when any cluster statistics were last refreshed.
          * <p>
          * API name: {@code timestamp}
          * </p>

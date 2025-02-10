@@ -29,11 +29,11 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: ml.Train
+// typedef: ml.ModelStats
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class Train implements PlainJsonSerializable, ToCopyableBuilder<Train.Builder, Train> {
+public class ModelStats implements PlainJsonSerializable, ToCopyableBuilder<ModelStats.Builder, ModelStats> {
 
     @Nullable
     private final Long mlActionFailureCount;
@@ -46,13 +46,13 @@ public class Train implements PlainJsonSerializable, ToCopyableBuilder<Train.Bui
 
     // ---------------------------------------------------------------------------------------------
 
-    private Train(Builder builder) {
+    private ModelStats(Builder builder) {
         this.mlActionFailureCount = builder.mlActionFailureCount;
         this.mlActionRequestCount = builder.mlActionRequestCount;
         this.mlExecutingTaskCount = builder.mlExecutingTaskCount;
     }
 
-    public static Train of(Function<Train.Builder, ObjectBuilder<Train>> fn) {
+    public static ModelStats of(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -130,9 +130,9 @@ public class Train implements PlainJsonSerializable, ToCopyableBuilder<Train.Bui
     }
 
     /**
-     * Builder for {@link Train}.
+     * Builder for {@link ModelStats}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Train> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ModelStats> {
         @Nullable
         private Long mlActionFailureCount;
         @Nullable
@@ -142,7 +142,7 @@ public class Train implements PlainJsonSerializable, ToCopyableBuilder<Train.Bui
 
         public Builder() {}
 
-        private Builder(Train o) {
+        private Builder(ModelStats o) {
             this.mlActionFailureCount = o.mlActionFailureCount;
             this.mlActionRequestCount = o.mlActionRequestCount;
             this.mlExecutingTaskCount = o.mlExecutingTaskCount;
@@ -197,30 +197,30 @@ public class Train implements PlainJsonSerializable, ToCopyableBuilder<Train.Bui
         }
 
         /**
-         * Builds a {@link Train}.
+         * Builds a {@link ModelStats}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public Train build() {
+        public ModelStats build() {
             _checkSingleUse();
 
-            return new Train(this);
+            return new ModelStats(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link Train}
+     * Json deserializer for {@link ModelStats}
      */
-    public static final JsonpDeserializer<Train> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<ModelStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        Train::setupTrainDeserializer
+        ModelStats::setupModelStatsDeserializer
     );
 
-    protected static void setupTrainDeserializer(ObjectDeserializer<Train.Builder> op) {
+    protected static void setupModelStatsDeserializer(ObjectDeserializer<ModelStats.Builder> op) {
         op.add(Builder::mlActionFailureCount, JsonpDeserializer.longDeserializer(), "ml_action_failure_count");
         op.add(Builder::mlActionRequestCount, JsonpDeserializer.longDeserializer(), "ml_action_request_count");
         op.add(Builder::mlExecutingTaskCount, JsonpDeserializer.longDeserializer(), "ml_executing_task_count");
@@ -239,7 +239,7 @@ public class Train implements PlainJsonSerializable, ToCopyableBuilder<Train.Bui
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        Train other = (Train) o;
+        ModelStats other = (ModelStats) o;
         return Objects.equals(this.mlActionFailureCount, other.mlActionFailureCount)
             && Objects.equals(this.mlActionRequestCount, other.mlActionRequestCount)
             && Objects.equals(this.mlExecutingTaskCount, other.mlExecutingTaskCount);

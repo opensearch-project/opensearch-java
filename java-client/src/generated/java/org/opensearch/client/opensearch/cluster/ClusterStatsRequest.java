@@ -60,7 +60,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: cluster.stats.Request
 
 /**
- * Returns high-level overview of cluster statistics.
+ * Returns a high-level overview of cluster statistics.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public final class ClusterStatsRequest extends RequestBase implements ToCopyableBuilder<ClusterStatsRequest.Builder, ClusterStatsRequest> {
@@ -96,7 +96,7 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * If <code>true</code>, returns settings in flat format.
+     * When <code>true</code>, returns settings in a flat format.
      * <p>
      * API name: {@code flat_settings}
      * </p>
@@ -107,8 +107,7 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * Limit the information returned for indexes metric to the specific index metrics. It can be used only if indexes (or all) metric is
-     * specified.
+     * A comma-separated list of index metric groups, for example, <code>docs,store</code>.
      * <p>
      * API name: {@code index_metric}
      * </p>
@@ -130,7 +129,8 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * Comma-separated list of node filters used to limit returned information. Defaults to all nodes in the cluster.
+     * A comma-separated list of node IDs used to filter results. Supports
+     * <a href="https://opensearch.org/docs/latest/api-reference/nodes-apis/index/#node-filters">node filters</a>.
      * <p>
      * API name: {@code node_id}
      * </p>
@@ -141,8 +141,9 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * Period to wait for each node to respond. If a node does not respond before its timeout expires, the response does not include its
-     * stats. However, timed out nodes are included in the response's <code>_nodes.failed</code> property. Defaults to no timeout.
+     * The amount of time to wait for each node to respond. If a node does not respond before its timeout expires, the response does not
+     * include its stats. However, timed out nodes are included in the response's <code>_nodes.failed</code> property. Defaults to no
+     * timeout.
      * <p>
      * API name: {@code timeout}
      * </p>
@@ -213,7 +214,7 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * If <code>true</code>, returns settings in flat format.
+         * When <code>true</code>, returns settings in a flat format.
          * <p>
          * API name: {@code flat_settings}
          * </p>
@@ -225,8 +226,7 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Limit the information returned for indexes metric to the specific index metrics. It can be used only if indexes (or all) metric
-         * is specified.
+         * A comma-separated list of index metric groups, for example, <code>docs,store</code>.
          * <p>
          * API name: {@code index_metric}
          * </p>
@@ -242,8 +242,7 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Limit the information returned for indexes metric to the specific index metrics. It can be used only if indexes (or all) metric
-         * is specified.
+         * A comma-separated list of index metric groups, for example, <code>docs,store</code>.
          * <p>
          * API name: {@code index_metric}
          * </p>
@@ -291,7 +290,8 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Comma-separated list of node filters used to limit returned information. Defaults to all nodes in the cluster.
+         * A comma-separated list of node IDs used to filter results. Supports
+         * <a href="https://opensearch.org/docs/latest/api-reference/nodes-apis/index/#node-filters">node filters</a>.
          * <p>
          * API name: {@code node_id}
          * </p>
@@ -307,7 +307,8 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Comma-separated list of node filters used to limit returned information. Defaults to all nodes in the cluster.
+         * A comma-separated list of node IDs used to filter results. Supports
+         * <a href="https://opensearch.org/docs/latest/api-reference/nodes-apis/index/#node-filters">node filters</a>.
          * <p>
          * API name: {@code node_id}
          * </p>
@@ -323,8 +324,9 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Period to wait for each node to respond. If a node does not respond before its timeout expires, the response does not include its
-         * stats. However, timed out nodes are included in the response's <code>_nodes.failed</code> property. Defaults to no timeout.
+         * The amount of time to wait for each node to respond. If a node does not respond before its timeout expires, the response does not
+         * include its stats. However, timed out nodes are included in the response's <code>_nodes.failed</code> property. Defaults to no
+         * timeout.
          * <p>
          * API name: {@code timeout}
          * </p>
@@ -336,8 +338,9 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Period to wait for each node to respond. If a node does not respond before its timeout expires, the response does not include its
-         * stats. However, timed out nodes are included in the response's <code>_nodes.failed</code> property. Defaults to no timeout.
+         * The amount of time to wait for each node to respond. If a node does not respond before its timeout expires, the response does not
+         * include its stats. However, timed out nodes are included in the response's <code>_nodes.failed</code> property. Defaults to no
+         * timeout.
          * <p>
          * API name: {@code timeout}
          * </p>

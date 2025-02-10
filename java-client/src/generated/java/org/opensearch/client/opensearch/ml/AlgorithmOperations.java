@@ -36,27 +36,35 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBuilder<AlgorithmOperations.Builder, AlgorithmOperations> {
 
     @Nullable
-    private final Deploy deploy;
+    private final ModelStats deploy;
 
     @Nullable
-    private final Predict predict;
+    private final ModelStats execute;
 
     @Nullable
-    private final Register register;
+    private final ModelStats predict;
 
     @Nullable
-    private final Train train;
+    private final ModelStats register;
 
     @Nullable
-    private final Undeploy undeploy;
+    private final ModelStats train;
+
+    @Nullable
+    private final ModelStats trainPredict;
+
+    @Nullable
+    private final ModelStats undeploy;
 
     // ---------------------------------------------------------------------------------------------
 
     private AlgorithmOperations(Builder builder) {
         this.deploy = builder.deploy;
+        this.execute = builder.execute;
         this.predict = builder.predict;
         this.register = builder.register;
         this.train = builder.train;
+        this.trainPredict = builder.trainPredict;
         this.undeploy = builder.undeploy;
     }
 
@@ -68,15 +76,23 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
      * API name: {@code deploy}
      */
     @Nullable
-    public final Deploy deploy() {
+    public final ModelStats deploy() {
         return this.deploy;
+    }
+
+    /**
+     * API name: {@code execute}
+     */
+    @Nullable
+    public final ModelStats execute() {
+        return this.execute;
     }
 
     /**
      * API name: {@code predict}
      */
     @Nullable
-    public final Predict predict() {
+    public final ModelStats predict() {
         return this.predict;
     }
 
@@ -84,7 +100,7 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
      * API name: {@code register}
      */
     @Nullable
-    public final Register register() {
+    public final ModelStats register() {
         return this.register;
     }
 
@@ -92,15 +108,23 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
      * API name: {@code train}
      */
     @Nullable
-    public final Train train() {
+    public final ModelStats train() {
         return this.train;
+    }
+
+    /**
+     * API name: {@code train_predict}
+     */
+    @Nullable
+    public final ModelStats trainPredict() {
+        return this.trainPredict;
     }
 
     /**
      * API name: {@code undeploy}
      */
     @Nullable
-    public final Undeploy undeploy() {
+    public final ModelStats undeploy() {
         return this.undeploy;
     }
 
@@ -120,6 +144,11 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
             this.deploy.serialize(generator, mapper);
         }
 
+        if (this.execute != null) {
+            generator.writeKey("execute");
+            this.execute.serialize(generator, mapper);
+        }
+
         if (this.predict != null) {
             generator.writeKey("predict");
             this.predict.serialize(generator, mapper);
@@ -133,6 +162,11 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
         if (this.train != null) {
             generator.writeKey("train");
             this.train.serialize(generator, mapper);
+        }
+
+        if (this.trainPredict != null) {
+            generator.writeKey("train_predict");
+            this.trainPredict.serialize(generator, mapper);
         }
 
         if (this.undeploy != null) {
@@ -159,31 +193,39 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AlgorithmOperations> {
         @Nullable
-        private Deploy deploy;
+        private ModelStats deploy;
         @Nullable
-        private Predict predict;
+        private ModelStats execute;
         @Nullable
-        private Register register;
+        private ModelStats predict;
         @Nullable
-        private Train train;
+        private ModelStats register;
         @Nullable
-        private Undeploy undeploy;
+        private ModelStats train;
+        @Nullable
+        private ModelStats trainPredict;
+        @Nullable
+        private ModelStats undeploy;
 
         public Builder() {}
 
         private Builder(AlgorithmOperations o) {
             this.deploy = o.deploy;
+            this.execute = o.execute;
             this.predict = o.predict;
             this.register = o.register;
             this.train = o.train;
+            this.trainPredict = o.trainPredict;
             this.undeploy = o.undeploy;
         }
 
         private Builder(Builder o) {
             this.deploy = o.deploy;
+            this.execute = o.execute;
             this.predict = o.predict;
             this.register = o.register;
             this.train = o.train;
+            this.trainPredict = o.trainPredict;
             this.undeploy = o.undeploy;
         }
 
@@ -197,7 +239,7 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
          * API name: {@code deploy}
          */
         @Nonnull
-        public final Builder deploy(@Nullable Deploy value) {
+        public final Builder deploy(@Nullable ModelStats value) {
             this.deploy = value;
             return this;
         }
@@ -206,15 +248,32 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
          * API name: {@code deploy}
          */
         @Nonnull
-        public final Builder deploy(Function<Deploy.Builder, ObjectBuilder<Deploy>> fn) {
-            return deploy(fn.apply(new Deploy.Builder()).build());
+        public final Builder deploy(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
+            return deploy(fn.apply(new ModelStats.Builder()).build());
+        }
+
+        /**
+         * API name: {@code execute}
+         */
+        @Nonnull
+        public final Builder execute(@Nullable ModelStats value) {
+            this.execute = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code execute}
+         */
+        @Nonnull
+        public final Builder execute(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
+            return execute(fn.apply(new ModelStats.Builder()).build());
         }
 
         /**
          * API name: {@code predict}
          */
         @Nonnull
-        public final Builder predict(@Nullable Predict value) {
+        public final Builder predict(@Nullable ModelStats value) {
             this.predict = value;
             return this;
         }
@@ -223,15 +282,15 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
          * API name: {@code predict}
          */
         @Nonnull
-        public final Builder predict(Function<Predict.Builder, ObjectBuilder<Predict>> fn) {
-            return predict(fn.apply(new Predict.Builder()).build());
+        public final Builder predict(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
+            return predict(fn.apply(new ModelStats.Builder()).build());
         }
 
         /**
          * API name: {@code register}
          */
         @Nonnull
-        public final Builder register(@Nullable Register value) {
+        public final Builder register(@Nullable ModelStats value) {
             this.register = value;
             return this;
         }
@@ -240,15 +299,15 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
          * API name: {@code register}
          */
         @Nonnull
-        public final Builder register(Function<Register.Builder, ObjectBuilder<Register>> fn) {
-            return register(fn.apply(new Register.Builder()).build());
+        public final Builder register(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
+            return register(fn.apply(new ModelStats.Builder()).build());
         }
 
         /**
          * API name: {@code train}
          */
         @Nonnull
-        public final Builder train(@Nullable Train value) {
+        public final Builder train(@Nullable ModelStats value) {
             this.train = value;
             return this;
         }
@@ -257,15 +316,32 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
          * API name: {@code train}
          */
         @Nonnull
-        public final Builder train(Function<Train.Builder, ObjectBuilder<Train>> fn) {
-            return train(fn.apply(new Train.Builder()).build());
+        public final Builder train(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
+            return train(fn.apply(new ModelStats.Builder()).build());
+        }
+
+        /**
+         * API name: {@code train_predict}
+         */
+        @Nonnull
+        public final Builder trainPredict(@Nullable ModelStats value) {
+            this.trainPredict = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code train_predict}
+         */
+        @Nonnull
+        public final Builder trainPredict(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
+            return trainPredict(fn.apply(new ModelStats.Builder()).build());
         }
 
         /**
          * API name: {@code undeploy}
          */
         @Nonnull
-        public final Builder undeploy(@Nullable Undeploy value) {
+        public final Builder undeploy(@Nullable ModelStats value) {
             this.undeploy = value;
             return this;
         }
@@ -274,8 +350,8 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
          * API name: {@code undeploy}
          */
         @Nonnull
-        public final Builder undeploy(Function<Undeploy.Builder, ObjectBuilder<Undeploy>> fn) {
-            return undeploy(fn.apply(new Undeploy.Builder()).build());
+        public final Builder undeploy(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
+            return undeploy(fn.apply(new ModelStats.Builder()).build());
         }
 
         /**
@@ -303,20 +379,24 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
     );
 
     protected static void setupAlgorithmOperationsDeserializer(ObjectDeserializer<AlgorithmOperations.Builder> op) {
-        op.add(Builder::deploy, Deploy._DESERIALIZER, "deploy");
-        op.add(Builder::predict, Predict._DESERIALIZER, "predict");
-        op.add(Builder::register, Register._DESERIALIZER, "register");
-        op.add(Builder::train, Train._DESERIALIZER, "train");
-        op.add(Builder::undeploy, Undeploy._DESERIALIZER, "undeploy");
+        op.add(Builder::deploy, ModelStats._DESERIALIZER, "deploy");
+        op.add(Builder::execute, ModelStats._DESERIALIZER, "execute");
+        op.add(Builder::predict, ModelStats._DESERIALIZER, "predict");
+        op.add(Builder::register, ModelStats._DESERIALIZER, "register");
+        op.add(Builder::train, ModelStats._DESERIALIZER, "train");
+        op.add(Builder::trainPredict, ModelStats._DESERIALIZER, "train_predict");
+        op.add(Builder::undeploy, ModelStats._DESERIALIZER, "undeploy");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.deploy);
+        result = 31 * result + Objects.hashCode(this.execute);
         result = 31 * result + Objects.hashCode(this.predict);
         result = 31 * result + Objects.hashCode(this.register);
         result = 31 * result + Objects.hashCode(this.train);
+        result = 31 * result + Objects.hashCode(this.trainPredict);
         result = 31 * result + Objects.hashCode(this.undeploy);
         return result;
     }
@@ -327,9 +407,11 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
         if (o == null || this.getClass() != o.getClass()) return false;
         AlgorithmOperations other = (AlgorithmOperations) o;
         return Objects.equals(this.deploy, other.deploy)
+            && Objects.equals(this.execute, other.execute)
             && Objects.equals(this.predict, other.predict)
             && Objects.equals(this.register, other.register)
             && Objects.equals(this.train, other.train)
+            && Objects.equals(this.trainPredict, other.trainPredict)
             && Objects.equals(this.undeploy, other.undeploy);
     }
 }

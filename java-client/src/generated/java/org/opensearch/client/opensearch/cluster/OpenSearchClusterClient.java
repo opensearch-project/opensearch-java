@@ -68,14 +68,16 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     // ----- Endpoint: cluster.allocation_explain
 
     /**
-     * Provides explanations for shard allocations in the cluster.
+     * Explains how shards are allocated in the current cluster and provides an explanation for why unassigned shards can't be allocated to
+     * a node.
      */
     public AllocationExplainResponse allocationExplain(AllocationExplainRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequest(request, AllocationExplainRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Provides explanations for shard allocations in the cluster.
+     * Explains how shards are allocated in the current cluster and provides an explanation for why unassigned shards can't be allocated to
+     * a node.
      *
      * @param fn a function that initializes a builder to create the {@link AllocationExplainRequest}
      */
@@ -86,7 +88,8 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     }
 
     /**
-     * Provides explanations for shard allocations in the cluster.
+     * Explains how shards are allocated in the current cluster and provides an explanation for why unassigned shards can't be allocated to
+     * a node.
      */
     public final AllocationExplainResponse allocationExplain() throws IOException, OpenSearchException {
         return allocationExplain(new AllocationExplainRequest.Builder().build());
@@ -116,7 +119,7 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     // ----- Endpoint: cluster.delete_voting_config_exclusions
 
     /**
-     * Clears cluster voting config exclusions.
+     * Clears any cluster voting configuration exclusions.
      */
     public BooleanResponse deleteVotingConfigExclusions(DeleteVotingConfigExclusionsRequest request) throws IOException,
         OpenSearchException {
@@ -124,7 +127,7 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     }
 
     /**
-     * Clears cluster voting config exclusions.
+     * Clears any cluster voting configuration exclusions.
      *
      * @param fn a function that initializes a builder to create the {@link DeleteVotingConfigExclusionsRequest}
      */
@@ -135,7 +138,7 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     }
 
     /**
-     * Clears cluster voting config exclusions.
+     * Clears any cluster voting configuration exclusions.
      */
     public final BooleanResponse deleteVotingConfigExclusions() throws IOException, OpenSearchException {
         return deleteVotingConfigExclusions(new DeleteVotingConfigExclusionsRequest.Builder().build());
@@ -244,16 +247,14 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     // ----- Endpoint: cluster.pending_tasks
 
     /**
-     * Returns a list of any cluster-level changes (e.g. create index, update mapping, allocate or fail shard) which have not yet been
-     * executed.
+     * Returns a list of pending cluster-level tasks, such as index creation, mapping updates, or new allocations.
      */
     public PendingTasksResponse pendingTasks(PendingTasksRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequest(request, PendingTasksRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Returns a list of any cluster-level changes (e.g. create index, update mapping, allocate or fail shard) which have not yet been
-     * executed.
+     * Returns a list of pending cluster-level tasks, such as index creation, mapping updates, or new allocations.
      *
      * @param fn a function that initializes a builder to create the {@link PendingTasksRequest}
      */
@@ -263,8 +264,7 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     }
 
     /**
-     * Returns a list of any cluster-level changes (e.g. create index, update mapping, allocate or fail shard) which have not yet been
-     * executed.
+     * Returns a list of pending cluster-level tasks, such as index creation, mapping updates, or new allocations.
      */
     public final PendingTasksResponse pendingTasks() throws IOException, OpenSearchException {
         return pendingTasks(new PendingTasksRequest.Builder().build());
@@ -273,14 +273,14 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     // ----- Endpoint: cluster.post_voting_config_exclusions
 
     /**
-     * Updates the cluster voting config exclusions by node ids or node names.
+     * Updates the cluster voting configuration by excluding certain node IDs or names.
      */
     public BooleanResponse postVotingConfigExclusions(PostVotingConfigExclusionsRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequest(request, PostVotingConfigExclusionsRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Updates the cluster voting config exclusions by node ids or node names.
+     * Updates the cluster voting configuration by excluding certain node IDs or names.
      *
      * @param fn a function that initializes a builder to create the {@link PostVotingConfigExclusionsRequest}
      */
@@ -291,7 +291,7 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     }
 
     /**
-     * Updates the cluster voting config exclusions by node ids or node names.
+     * Updates the cluster voting configuration by excluding certain node IDs or names.
      */
     public final BooleanResponse postVotingConfigExclusions() throws IOException, OpenSearchException {
         return postVotingConfigExclusions(new PostVotingConfigExclusionsRequest.Builder().build());
@@ -399,14 +399,14 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     // ----- Endpoint: cluster.state
 
     /**
-     * Returns a comprehensive information about the state of the cluster.
+     * Returns comprehensive information about the state of the cluster.
      */
     public StateResponse state(StateRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequest(request, StateRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Returns a comprehensive information about the state of the cluster.
+     * Returns comprehensive information about the state of the cluster.
      *
      * @param fn a function that initializes a builder to create the {@link StateRequest}
      */
@@ -416,7 +416,7 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     }
 
     /**
-     * Returns a comprehensive information about the state of the cluster.
+     * Returns comprehensive information about the state of the cluster.
      */
     public final StateResponse state() throws IOException, OpenSearchException {
         return state(new StateRequest.Builder().build());
@@ -425,14 +425,14 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     // ----- Endpoint: cluster.stats
 
     /**
-     * Returns high-level overview of cluster statistics.
+     * Returns a high-level overview of cluster statistics.
      */
     public ClusterStatsResponse stats(ClusterStatsRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequest(request, ClusterStatsRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Returns high-level overview of cluster statistics.
+     * Returns a high-level overview of cluster statistics.
      *
      * @param fn a function that initializes a builder to create the {@link ClusterStatsRequest}
      */
@@ -442,7 +442,7 @@ public class OpenSearchClusterClient extends ApiClient<OpenSearchTransport, Open
     }
 
     /**
-     * Returns high-level overview of cluster statistics.
+     * Returns a high-level overview of cluster statistics.
      */
     public final ClusterStatsResponse stats() throws IOException, OpenSearchException {
         return stats(new ClusterStatsRequest.Builder().build());

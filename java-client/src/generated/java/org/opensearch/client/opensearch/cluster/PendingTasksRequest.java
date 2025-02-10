@@ -55,7 +55,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: cluster.pending_tasks.Request
 
 /**
- * Returns a list of any cluster-level changes (e.g. create index, update mapping, allocate or fail shard) which have not yet been executed.
+ * Returns a list of pending cluster-level tasks, such as index creation, mapping updates, or new allocations.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public final class PendingTasksRequest extends RequestBase implements ToCopyableBuilder<PendingTasksRequest.Builder, PendingTasksRequest> {
@@ -84,7 +84,9 @@ public final class PendingTasksRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -95,8 +97,8 @@ public final class PendingTasksRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * If <code>true</code>, the request retrieves information from the local node only. If <code>false</code>, information is retrieved
-     * from the cluster-manager node.
+     * When <code>true</code>, the request retrieves information from the local node only. When <code>false</code>, information is retrieved
+     * from the cluster manager node.
      * <p>
      * API name: {@code local}
      * </p>
@@ -107,8 +109,9 @@ public final class PendingTasksRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
-     * and returns an error.
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -172,7 +175,9 @@ public final class PendingTasksRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -184,7 +189,9 @@ public final class PendingTasksRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -195,8 +202,8 @@ public final class PendingTasksRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * If <code>true</code>, the request retrieves information from the local node only. If <code>false</code>, information is retrieved
-         * from the cluster-manager node.
+         * When <code>true</code>, the request retrieves information from the local node only. When <code>false</code>, information is
+         * retrieved from the cluster manager node.
          * <p>
          * API name: {@code local}
          * </p>
@@ -208,8 +215,9 @@ public final class PendingTasksRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
-         * fails and returns an error.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -222,8 +230,9 @@ public final class PendingTasksRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
-         * fails and returns an error.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>
