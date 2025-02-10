@@ -96,7 +96,6 @@ public class RankFeatureFunctionLogarithm extends RankFeatureFunction
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         generator.writeKey("scaling_factor");
         generator.write(this.scalingFactor);
     }
@@ -183,7 +182,6 @@ public class RankFeatureFunctionLogarithm extends RankFeatureFunction
     );
 
     protected static void setupRankFeatureFunctionLogarithmDeserializer(ObjectDeserializer<RankFeatureFunctionLogarithm.Builder> op) {
-        setupRankFeatureFunctionDeserializer(op);
         op.add(Builder::scalingFactor, JsonpDeserializer.floatDeserializer(), "scaling_factor");
     }
 

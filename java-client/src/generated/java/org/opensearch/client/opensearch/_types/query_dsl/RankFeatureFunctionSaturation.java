@@ -99,7 +99,6 @@ public class RankFeatureFunctionSaturation extends RankFeatureFunction
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         if (this.pivot != null) {
             generator.writeKey("pivot");
             generator.write(this.pivot);
@@ -189,7 +188,6 @@ public class RankFeatureFunctionSaturation extends RankFeatureFunction
     );
 
     protected static void setupRankFeatureFunctionSaturationDeserializer(ObjectDeserializer<RankFeatureFunctionSaturation.Builder> op) {
-        setupRankFeatureFunctionDeserializer(op);
         op.add(Builder::pivot, JsonpDeserializer.floatDeserializer(), "pivot");
     }
 

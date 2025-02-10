@@ -20,9 +20,9 @@
 {{#distinctDiscriminatorFieldValues}}
     generator.write({{#quoted}}{{key}}{{/quoted}}, {{#quoted}}{{value}}{{/quoted}});
 {{/distinctDiscriminatorFieldValues}}
-{{#extendsOtherShape}}
+{{#superImplementsJsonSerializable}}
     super.serializeInternal(generator, mapper);
-{{/extendsOtherShape}}
+{{/superImplementsJsonSerializable}}
 {{#additionalProperties}}
     {{#singleton}}
         generator.writeKey(this.{{keyName}});

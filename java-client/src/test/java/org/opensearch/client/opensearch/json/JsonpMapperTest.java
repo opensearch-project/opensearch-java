@@ -247,7 +247,7 @@ public class JsonpMapperTest extends Assert {
     public void testRangeQuery() {
 
         String expectedStringValue =
-            "{\"aggregations\":{},\"query\":{\"range\":{\"rangeField\":{\"gte\":10.5,\"lte\":30,\"from\":\"2024-01-01T00:00:00Z\",\"format\":\"strict_date_optional_time\"}}},\"terminate_after\":5}";
+            "{\"aggregations\":{},\"query\":{\"range\":{\"rangeField\":{\"format\":\"strict_date_optional_time\",\"from\":\"2024-01-01T00:00:00Z\",\"gte\":10.5,\"lte\":30}}},\"terminate_after\":5}";
 
         SearchRequest searchRequest = SearchRequest.of(
             request -> request.index("index1", "index2")

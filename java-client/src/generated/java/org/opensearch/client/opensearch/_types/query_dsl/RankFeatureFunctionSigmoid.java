@@ -109,7 +109,6 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         generator.writeKey("exponent");
         generator.write(this.exponent);
 
@@ -214,7 +213,6 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction
     );
 
     protected static void setupRankFeatureFunctionSigmoidDeserializer(ObjectDeserializer<RankFeatureFunctionSigmoid.Builder> op) {
-        setupRankFeatureFunctionDeserializer(op);
         op.add(Builder::exponent, JsonpDeserializer.floatDeserializer(), "exponent");
         op.add(Builder::pivot, JsonpDeserializer.floatDeserializer(), "pivot");
     }

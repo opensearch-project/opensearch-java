@@ -12,9 +12,9 @@
 {{#extendedByOtherShape}}
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<BuilderT> op) {
 {{/extendedByOtherShape}}
-    {{#extendsOtherShape}}
+    {{#superImplementsJsonSerializable}}
         setup{{extendsType.name}}Deserializer(op{{#extendsType.typeParams}}, {{>Type/deserializer}}{{/extendsType.typeParams}});
-    {{/extendsOtherShape}}
+    {{/superImplementsJsonSerializable}}
     {{>ObjectShape/Deserialize/Fields}}
     {{#additionalProperties}}
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {

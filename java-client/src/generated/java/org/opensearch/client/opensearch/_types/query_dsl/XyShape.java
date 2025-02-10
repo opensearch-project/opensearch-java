@@ -19,6 +19,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -38,7 +39,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class XyShape implements PlainJsonSerializable, ToCopyableBuilder<XyShape.Builder, XyShape> {
 
     @Nonnull
-    private final List<String> coordinates;
+    private final List<JsonData> coordinates;
 
     @Nullable
     private final String type;
@@ -58,7 +59,7 @@ public class XyShape implements PlainJsonSerializable, ToCopyableBuilder<XyShape
      * API name: {@code coordinates}
      */
     @Nonnull
-    public final List<String> coordinates() {
+    public final List<JsonData> coordinates() {
         return this.coordinates;
     }
 
@@ -84,8 +85,8 @@ public class XyShape implements PlainJsonSerializable, ToCopyableBuilder<XyShape
         if (ApiTypeHelper.isDefined(this.coordinates)) {
             generator.writeKey("coordinates");
             generator.writeStartArray();
-            for (String item0 : this.coordinates) {
-                generator.write(item0);
+            for (JsonData item0 : this.coordinates) {
+                item0.serialize(generator, mapper);
             }
             generator.writeEnd();
         }
@@ -114,7 +115,7 @@ public class XyShape implements PlainJsonSerializable, ToCopyableBuilder<XyShape
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, XyShape> {
         @Nullable
-        private List<String> coordinates;
+        private List<JsonData> coordinates;
         @Nullable
         private String type;
 
@@ -144,7 +145,7 @@ public class XyShape implements PlainJsonSerializable, ToCopyableBuilder<XyShape
          * </p>
          */
         @Nonnull
-        public final Builder coordinates(List<String> list) {
+        public final Builder coordinates(List<JsonData> list) {
             this.coordinates = _listAddAll(this.coordinates, list);
             return this;
         }
@@ -157,7 +158,7 @@ public class XyShape implements PlainJsonSerializable, ToCopyableBuilder<XyShape
          * </p>
          */
         @Nonnull
-        public final Builder coordinates(String value, String... values) {
+        public final Builder coordinates(JsonData value, JsonData... values) {
             this.coordinates = _listAdd(this.coordinates, value, values);
             return this;
         }
@@ -196,7 +197,7 @@ public class XyShape implements PlainJsonSerializable, ToCopyableBuilder<XyShape
     );
 
     protected static void setupXyShapeDeserializer(ObjectDeserializer<XyShape.Builder> op) {
-        op.add(Builder::coordinates, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "coordinates");
+        op.add(Builder::coordinates, JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER), "coordinates");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
     }
 

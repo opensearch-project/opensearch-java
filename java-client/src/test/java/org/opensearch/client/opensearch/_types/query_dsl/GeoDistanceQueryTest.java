@@ -18,6 +18,7 @@ public class GeoDistanceQueryTest extends ModelTestCase {
     public void toBuilder() {
         GeoDistanceQuery origin = new GeoDistanceQuery.Builder().field("field")
             .location(new GeoLocation.Builder().coords(Collections.singletonList(1.0)).build())
+            .distance("1km")
             .build();
         GeoDistanceQuery copied = origin.toBuilder().build();
 

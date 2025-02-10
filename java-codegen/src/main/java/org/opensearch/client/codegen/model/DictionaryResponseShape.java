@@ -40,4 +40,8 @@ public class DictionaryResponseShape extends Shape {
     public boolean extendsOtherShape() {
         return true;
     }
+
+    public boolean superImplementsJsonSerializable() {
+        return true;
+    }
 }

@@ -833,7 +833,7 @@ public class SpecTransformer {
     }
 
     private Type mapArray(OpenApiSchema schema) {
-        var items = schema.getItems().map(i -> mapType(i, true)).orElse(Types.Java.Lang.String);
+        var items = schema.getItems().map(i -> mapType(i, true)).orElse(Types.Client.Json.JsonData);
         return Types.Java.Util.List(items);
     }
 

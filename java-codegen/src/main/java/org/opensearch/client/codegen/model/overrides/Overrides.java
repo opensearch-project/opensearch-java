@@ -53,11 +53,6 @@ public class Overrides {
                 .with(schema("_common", "StringifiedLong"), so -> so.withMappedType(Types.Primitive.Long))
                 .with(schema("_common", "StringifiedEpochTimeUnitMillis"), so -> so.withMappedType(Types.Primitive.Long))
 
-                .with(schema("_common", "DistanceUnit"), so -> so.withShouldGenerate(ShouldGenerate.Always))
-                .with(schema("_common", "GeoBounds"), so -> so.withShouldGenerate(ShouldGenerate.Always))
-                .with(schema("_common", "GeoDistanceType"), so -> so.withShouldGenerate(ShouldGenerate.Always))
-                .with(schema("_common", "GeoShapeRelation"), so -> so.withShouldGenerate(ShouldGenerate.Always))
-
                 .with(schema("_common", "ScriptSort"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(
                     schema("_common", "SortOptions"),
@@ -70,8 +65,6 @@ public class Overrides {
                         p -> p.with("getTime", po -> po.withIgnore(true)).with("time", po -> po.withAliases(Set.of("getTime")))
                     )
                 )
-
-                .with(schema("_common", "EmptyObject"), so -> so.withShouldGenerate(ShouldGenerate.Never))
 
                 .with(schema("_common.aggregations", "Aggregation"), so -> so.withClassName("AggregationBase"))
                 .with(
@@ -101,16 +94,9 @@ public class Overrides {
                     )
                 )
                 .with(schema("_common.aggregations", "InferenceConfigContainer"), so -> so.withClassName("InferenceConfig"))
-                .with(schema("_common.aggregations", "PercentageScoreHeuristic"), so -> so.withShouldGenerate(ShouldGenerate.Never))
 
-                .with(
-                    schema("_common.query_dsl", "FunctionScoreContainer"),
-                    so -> so.withClassName("FunctionScore")
-                )
+                .with(schema("_common.query_dsl", "FunctionScoreContainer"), so -> so.withClassName("FunctionScore"))
 
-                .with(schema("_common.query_dsl", "TermsQueryField"), so -> so.withShouldGenerate(ShouldGenerate.Always))
-
-                .with(schema("_common.query_dsl", "FieldValueFactorModifier"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(schema("_common.query_dsl", "IntervalsContainer"), so -> so.withClassName("Intervals"))
 
                 .with(
@@ -119,7 +105,13 @@ public class Overrides {
                 )
 
                 .with(schema("_common.query_dsl", "QueryContainer"), so -> so.withClassName("Query"))
-                .with(schema("_common.query_dsl", "RangeQuery").append("allOf", "1"), so -> so.withProperties(p -> p.with("from", po -> po.withMappedType(Types.Client.Json.JsonData)).with("to", po -> po.withMappedType(Types.Client.Json.JsonData))))
+                .with(
+                    schema("_common.query_dsl", "RangeQuery").append("allOf", "1"),
+                    so -> so.withProperties(
+                        p -> p.with("from", po -> po.withMappedType(Types.Client.Json.JsonData))
+                            .with("to", po -> po.withMappedType(Types.Client.Json.JsonData))
+                    )
+                )
 
                 .with(schema("_core.mtermvectors", "Operation"), so -> so.withClassName("MultiTermVectorsOperation"))
                 .with(schema("_core.mtermvectors", "TermVectorsResult"), so -> so.withClassName("MultiTermVectorsResult"))
