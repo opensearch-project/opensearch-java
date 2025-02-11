@@ -13,8 +13,6 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -26,51 +24,43 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.opensearch._types.RequestBase;
-import org.opensearch.client.transport.Endpoint;
-import org.opensearch.client.transport.endpoints.SimpleEndpoint;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: ml.update_memory.Request
+// typedef: ml.ColumnMeta
 
-/**
- * Update a memory.
- */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public final class UpdateMemoryRequest extends RequestBase
-    implements
-        PlainJsonSerializable,
-        ToCopyableBuilder<UpdateMemoryRequest.Builder, UpdateMemoryRequest> {
+public class ColumnMeta implements PlainJsonSerializable, ToCopyableBuilder<ColumnMeta.Builder, ColumnMeta> {
 
-    @Nonnull
-    private final String memoryId;
+    @Nullable
+    private final String columnType;
 
     @Nullable
     private final String name;
 
     // ---------------------------------------------------------------------------------------------
 
-    private UpdateMemoryRequest(Builder builder) {
-        super(builder);
-        this.memoryId = ApiTypeHelper.requireNonNull(builder.memoryId, this, "memoryId");
+    private ColumnMeta(Builder builder) {
+        this.columnType = builder.columnType;
         this.name = builder.name;
     }
 
-    public static UpdateMemoryRequest of(Function<UpdateMemoryRequest.Builder, ObjectBuilder<UpdateMemoryRequest>> fn) {
+    public static ColumnMeta of(Function<ColumnMeta.Builder, ObjectBuilder<ColumnMeta>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code memory_id}
+     * The column type.
+     * <p>
+     * API name: {@code column_type}
+     * </p>
      */
-    @Nonnull
-    public final String memoryId() {
-        return this.memoryId;
+    @Nullable
+    public final String columnType() {
+        return this.columnType;
     }
 
     /**
@@ -92,6 +82,11 @@ public final class UpdateMemoryRequest extends RequestBase
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.columnType != null) {
+            generator.writeKey("column_type");
+            generator.write(this.columnType);
+        }
+
         if (this.name != null) {
             generator.writeKey("name");
             generator.write(this.name);
@@ -112,24 +107,23 @@ public final class UpdateMemoryRequest extends RequestBase
     }
 
     /**
-     * Builder for {@link UpdateMemoryRequest}.
+     * Builder for {@link ColumnMeta}.
      */
-    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, UpdateMemoryRequest> {
-        private String memoryId;
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ColumnMeta> {
+        @Nullable
+        private String columnType;
         @Nullable
         private String name;
 
         public Builder() {}
 
-        private Builder(UpdateMemoryRequest o) {
-            super(o);
-            this.memoryId = o.memoryId;
+        private Builder(ColumnMeta o) {
+            this.columnType = o.columnType;
             this.name = o.name;
         }
 
         private Builder(Builder o) {
-            super(o);
-            this.memoryId = o.memoryId;
+            this.columnType = o.columnType;
             this.name = o.name;
         }
 
@@ -139,18 +133,15 @@ public final class UpdateMemoryRequest extends RequestBase
             return new Builder(this);
         }
 
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
-        }
-
         /**
-         * Required - API name: {@code memory_id}
+         * The column type.
+         * <p>
+         * API name: {@code column_type}
+         * </p>
          */
         @Nonnull
-        public final Builder memoryId(String value) {
-            this.memoryId = value;
+        public final Builder columnType(@Nullable String value) {
+            this.columnType = value;
             return this;
         }
 
@@ -164,63 +155,38 @@ public final class UpdateMemoryRequest extends RequestBase
         }
 
         /**
-         * Builds a {@link UpdateMemoryRequest}.
+         * Builds a {@link ColumnMeta}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public UpdateMemoryRequest build() {
+        public ColumnMeta build() {
             _checkSingleUse();
 
-            return new UpdateMemoryRequest(this);
+            return new ColumnMeta(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link UpdateMemoryRequest}
+     * Json deserializer for {@link ColumnMeta}
      */
-    public static final JsonpDeserializer<UpdateMemoryRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<ColumnMeta> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        UpdateMemoryRequest::setupUpdateMemoryRequestDeserializer
+        ColumnMeta::setupColumnMetaDeserializer
     );
 
-    protected static void setupUpdateMemoryRequestDeserializer(ObjectDeserializer<UpdateMemoryRequest.Builder> op) {
+    protected static void setupColumnMetaDeserializer(ObjectDeserializer<ColumnMeta.Builder> op) {
+        op.add(Builder::columnType, JsonpDeserializer.stringDeserializer(), "column_type");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
     }
-
-    // ---------------------------------------------------------------------------------------------
-
-    /**
-     * Endpoint "{@code ml.update_memory}".
-     */
-    public static final Endpoint<UpdateMemoryRequest, UpdateMemoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-        // Request method
-        request -> "PUT",
-        // Request path
-        request -> {
-            StringBuilder buf = new StringBuilder();
-            buf.append("/_plugins/_ml/memory/");
-            SimpleEndpoint.pathEncode(request.memoryId, buf);
-            return buf.toString();
-        },
-        // Request parameters
-        request -> {
-            Map<String, String> params = new HashMap<>();
-            request.applyQueryParameters(params);
-            return params;
-        },
-        SimpleEndpoint.emptyMap(),
-        true,
-        UpdateMemoryResponse._DESERIALIZER
-    );
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + this.memoryId.hashCode();
+        result = 31 * result + Objects.hashCode(this.columnType);
         result = 31 * result + Objects.hashCode(this.name);
         return result;
     }
@@ -229,7 +195,7 @@ public final class UpdateMemoryRequest extends RequestBase
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        UpdateMemoryRequest other = (UpdateMemoryRequest) o;
-        return this.memoryId.equals(other.memoryId) && Objects.equals(this.name, other.name);
+        ColumnMeta other = (ColumnMeta) o;
+        return Objects.equals(this.columnType, other.columnType) && Objects.equals(this.name, other.name);
     }
 }

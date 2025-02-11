@@ -106,6 +106,7 @@ public final class UploadChunkRequest extends RequestBase
         generator.writeKey("chunk");
         generator.write(this.chunk);
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

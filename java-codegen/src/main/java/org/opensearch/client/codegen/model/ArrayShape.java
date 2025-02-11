@@ -43,11 +43,6 @@ public class ArrayShape extends ObjectShape {
         return List.of(Types.Client.Json.JsonpDeserializable);
     }
 
-    @Override
-    public boolean shouldImplementJsonSerializable() {
-        return true;
-    }
-
     public Field getValueBodyField() {
         return valueBodyField;
     }

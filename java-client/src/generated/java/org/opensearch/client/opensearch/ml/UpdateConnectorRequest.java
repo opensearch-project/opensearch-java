@@ -280,6 +280,7 @@ public final class UpdateConnectorRequest extends RequestBase
             generator.write(this.version);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

@@ -199,6 +199,7 @@ public final class CreateConnectorRequest extends RequestBase
         generator.writeKey("version");
         generator.write(this.version);
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

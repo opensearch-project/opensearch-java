@@ -171,6 +171,7 @@ public final class RegisterModelGroupRequest extends RequestBase
         generator.writeKey("name");
         generator.write(this.name);
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

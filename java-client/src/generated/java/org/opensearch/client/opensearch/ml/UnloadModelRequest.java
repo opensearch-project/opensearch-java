@@ -123,6 +123,7 @@ public final class UnloadModelRequest extends RequestBase
             generator.writeEnd();
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

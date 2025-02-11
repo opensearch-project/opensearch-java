@@ -468,6 +468,12 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> {
         }
 
         @Nonnull
+        public Builder withOneOf(@Nullable List<OpenApiSchema> oneOf) {
+            this.oneOf = oneOf;
+            return this;
+        }
+
+        @Nonnull
         public Builder withAllOf(OpenApiSchema... allOf) {
             return withAllOf(List.of(allOf));
         }

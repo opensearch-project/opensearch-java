@@ -262,6 +262,7 @@ public final class UpdateModelRequest extends RequestBase
             this.rateLimiter.serialize(generator, mapper);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

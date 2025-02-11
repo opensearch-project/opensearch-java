@@ -13,8 +13,6 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -26,46 +24,54 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.opensearch._types.ErrorResponse;
-import org.opensearch.client.opensearch._types.RequestBase;
-import org.opensearch.client.transport.Endpoint;
-import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: ml.create_memory.Request
+// typedef: ml.ByteBuffer
 
-/**
- * Create a memory.
- */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public final class CreateMemoryRequest extends RequestBase
-    implements
-        PlainJsonSerializable,
-        ToCopyableBuilder<CreateMemoryRequest.Builder, CreateMemoryRequest> {
+public class ByteBuffer implements PlainJsonSerializable, ToCopyableBuilder<ByteBuffer.Builder, ByteBuffer> {
 
     @Nullable
-    private final String name;
+    private final String array;
+
+    @Nullable
+    private final String order;
 
     // ---------------------------------------------------------------------------------------------
 
-    private CreateMemoryRequest(Builder builder) {
-        super(builder);
-        this.name = builder.name;
+    private ByteBuffer(Builder builder) {
+        this.array = builder.array;
+        this.order = builder.order;
     }
 
-    public static CreateMemoryRequest of(Function<CreateMemoryRequest.Builder, ObjectBuilder<CreateMemoryRequest>> fn) {
+    public static ByteBuffer of(Function<ByteBuffer.Builder, ObjectBuilder<ByteBuffer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * API name: {@code name}
+     * The byte buffer array.
+     * <p>
+     * API name: {@code array}
+     * </p>
      */
     @Nullable
-    public final String name() {
-        return this.name;
+    public final String array() {
+        return this.array;
+    }
+
+    /**
+     * The byte buffer order.
+     * <p>
+     * API name: {@code order}
+     * </p>
+     */
+    @Nullable
+    public final String order() {
+        return this.order;
     }
 
     /**
@@ -79,9 +85,14 @@ public final class CreateMemoryRequest extends RequestBase
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.name != null) {
-            generator.writeKey("name");
-            generator.write(this.name);
+        if (this.array != null) {
+            generator.writeKey("array");
+            generator.write(this.array);
+        }
+
+        if (this.order != null) {
+            generator.writeKey("order");
+            generator.write(this.order);
         }
     }
 
@@ -99,22 +110,24 @@ public final class CreateMemoryRequest extends RequestBase
     }
 
     /**
-     * Builder for {@link CreateMemoryRequest}.
+     * Builder for {@link ByteBuffer}.
      */
-    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, CreateMemoryRequest> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ByteBuffer> {
         @Nullable
-        private String name;
+        private String array;
+        @Nullable
+        private String order;
 
         public Builder() {}
 
-        private Builder(CreateMemoryRequest o) {
-            super(o);
-            this.name = o.name;
+        private Builder(ByteBuffer o) {
+            this.array = o.array;
+            this.order = o.order;
         }
 
         private Builder(Builder o) {
-            super(o);
-            this.name = o.name;
+            this.array = o.array;
+            this.order = o.order;
         }
 
         @Override
@@ -123,74 +136,64 @@ public final class CreateMemoryRequest extends RequestBase
             return new Builder(this);
         }
 
-        @Override
-        @Nonnull
-        protected Builder self() {
-            return this;
-        }
-
         /**
-         * API name: {@code name}
+         * The byte buffer array.
+         * <p>
+         * API name: {@code array}
+         * </p>
          */
         @Nonnull
-        public final Builder name(@Nullable String value) {
-            this.name = value;
+        public final Builder array(@Nullable String value) {
+            this.array = value;
             return this;
         }
 
         /**
-         * Builds a {@link CreateMemoryRequest}.
+         * The byte buffer order.
+         * <p>
+         * API name: {@code order}
+         * </p>
+         */
+        @Nonnull
+        public final Builder order(@Nullable String value) {
+            this.order = value;
+            return this;
+        }
+
+        /**
+         * Builds a {@link ByteBuffer}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public CreateMemoryRequest build() {
+        public ByteBuffer build() {
             _checkSingleUse();
 
-            return new CreateMemoryRequest(this);
+            return new ByteBuffer(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link CreateMemoryRequest}
+     * Json deserializer for {@link ByteBuffer}
      */
-    public static final JsonpDeserializer<CreateMemoryRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<ByteBuffer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        CreateMemoryRequest::setupCreateMemoryRequestDeserializer
+        ByteBuffer::setupByteBufferDeserializer
     );
 
-    protected static void setupCreateMemoryRequestDeserializer(ObjectDeserializer<CreateMemoryRequest.Builder> op) {
-        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+    protected static void setupByteBufferDeserializer(ObjectDeserializer<ByteBuffer.Builder> op) {
+        op.add(Builder::array, JsonpDeserializer.stringDeserializer(), "array");
+        op.add(Builder::order, JsonpDeserializer.stringDeserializer(), "order");
     }
-
-    // ---------------------------------------------------------------------------------------------
-
-    /**
-     * Endpoint "{@code ml.create_memory}".
-     */
-    public static final Endpoint<CreateMemoryRequest, CreateMemoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-        // Request method
-        request -> "POST",
-        // Request path
-        request -> "/_plugins/_ml/memory",
-        // Request parameters
-        request -> {
-            Map<String, String> params = new HashMap<>();
-            request.applyQueryParameters(params);
-            return params;
-        },
-        SimpleEndpoint.emptyMap(),
-        true,
-        CreateMemoryResponse._DESERIALIZER
-    );
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.name);
+        result = 31 * result + Objects.hashCode(this.array);
+        result = 31 * result + Objects.hashCode(this.order);
         return result;
     }
 
@@ -198,7 +201,7 @@ public final class CreateMemoryRequest extends RequestBase
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        CreateMemoryRequest other = (CreateMemoryRequest) o;
-        return Objects.equals(this.name, other.name);
+        ByteBuffer other = (ByteBuffer) o;
+        return Objects.equals(this.array, other.array) && Objects.equals(this.order, other.order);
     }
 }

@@ -172,6 +172,7 @@ public final class GetProfileRequest extends RequestBase
             generator.writeEnd();
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override
