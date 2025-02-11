@@ -157,6 +157,7 @@ public final class RenderSearchTemplateRequest extends RequestBase
             generator.write(this.source);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

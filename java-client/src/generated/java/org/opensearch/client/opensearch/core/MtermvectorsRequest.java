@@ -324,6 +324,7 @@ public final class MtermvectorsRequest extends RequestBase
             generator.writeEnd();
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

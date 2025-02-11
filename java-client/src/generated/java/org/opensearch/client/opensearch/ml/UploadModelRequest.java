@@ -155,6 +155,7 @@ public final class UploadModelRequest extends RequestBase
         generator.writeKey("version");
         generator.write(this.version);
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

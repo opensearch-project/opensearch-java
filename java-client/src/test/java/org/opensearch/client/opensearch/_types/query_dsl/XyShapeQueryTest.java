@@ -33,14 +33,13 @@
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import org.junit.Test;
-import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 
 public class XyShapeQueryTest extends ModelTestCase {
     @Test
     public void toBuilder() {
         XyShapeQuery origin = new XyShapeQuery.Builder().field("field")
-            .xyShape(new XyShapeFieldQuery.Builder().xyShape(JsonData.of("{}")).build())
+            .xyShape(new XyShapeQueryField.Builder().shape(XyShape.builder().build()).build())
             .build();
         XyShapeQuery copied = origin.toBuilder().build();
 

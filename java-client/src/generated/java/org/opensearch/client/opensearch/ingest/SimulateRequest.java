@@ -165,6 +165,7 @@ public final class SimulateRequest extends RequestBase
             this.pipeline.serialize(generator, mapper);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

@@ -448,6 +448,7 @@ public final class PutMappingRequest extends RequestBase
             this.source.serialize(generator, mapper);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

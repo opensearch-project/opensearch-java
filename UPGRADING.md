@@ -128,7 +128,6 @@ After:
 - The `minScore` property has been corrected to be of type `Float` instead of `Double`.
 
 ### KnnQuery
-- The `filter` property is now of type `List<Query>` instead of `Query`.
 - The `vector` property is now of type `List<Float>` instead of `float[]`.
 
 ### LikeDocument
@@ -580,3 +579,13 @@ After:
 
 ### SignificantTextAggregation
 - The `include` property is now of type `TermsInclude` instead of `List<String>`.
+
+### XyShapeFieldQuery renamed to XyShapeQueryField
+- The `XyShapeFieldQuery` class has been renamed to `XyShapeQueryField`, this affects:
+  - `XyShapeQuery`'s `xyShape` field.
+- The `xyShape` property has been renamed to `shape` and is now of type `XyShape` instead of `JsonData`.
+
+### GeoShapeFieldQuery renamed to GeoShapeQueryField
+- The `GeoShapeFieldQuery` class has been renamed to `GeoShapeQueryField`, this affects:
+  - `GeoShapeQuery`'s `shape` field.
+- The `shape` property is now of type `GeoShape` instead of `JsonData`.

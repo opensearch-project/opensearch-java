@@ -310,6 +310,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase
             generator.write(this.version);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

@@ -299,6 +299,44 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
         return deployModel(fn.apply(new DeployModelRequest.Builder()).build());
     }
 
+    // ----- Endpoint: ml.execute_agent
+
+    /**
+     * Execute an agent.
+     */
+    public ExecuteAgentResponse executeAgent(ExecuteAgentRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, ExecuteAgentRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Execute an agent.
+     *
+     * @param fn a function that initializes a builder to create the {@link ExecuteAgentRequest}
+     */
+    public final ExecuteAgentResponse executeAgent(Function<ExecuteAgentRequest.Builder, ObjectBuilder<ExecuteAgentRequest>> fn)
+        throws IOException, OpenSearchException {
+        return executeAgent(fn.apply(new ExecuteAgentRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.get_agent
+
+    /**
+     * Get an agent.
+     */
+    public GetAgentResponse getAgent(GetAgentRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, GetAgentRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Get an agent.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetAgentRequest}
+     */
+    public final GetAgentResponse getAgent(Function<GetAgentRequest.Builder, ObjectBuilder<GetAgentRequest>> fn) throws IOException,
+        OpenSearchException {
+        return getAgent(fn.apply(new GetAgentRequest.Builder()).build());
+    }
+
     // ----- Endpoint: ml.get_all_memories
 
     /**
@@ -342,6 +380,32 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
     public final GetAllMessagesResponse getAllMessages(Function<GetAllMessagesRequest.Builder, ObjectBuilder<GetAllMessagesRequest>> fn)
         throws IOException, OpenSearchException {
         return getAllMessages(fn.apply(new GetAllMessagesRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.get_all_tools
+
+    /**
+     * Get tools.
+     */
+    public GetAllToolsResponse getAllTools(GetAllToolsRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, GetAllToolsRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Get tools.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetAllToolsRequest}
+     */
+    public final GetAllToolsResponse getAllTools(Function<GetAllToolsRequest.Builder, ObjectBuilder<GetAllToolsRequest>> fn)
+        throws IOException, OpenSearchException {
+        return getAllTools(fn.apply(new GetAllToolsRequest.Builder()).build());
+    }
+
+    /**
+     * Get tools.
+     */
+    public final GetAllToolsResponse getAllTools() throws IOException, OpenSearchException {
+        return getAllTools(new GetAllToolsRequest.Builder().build());
     }
 
     // ----- Endpoint: ml.get_connector
@@ -600,6 +664,25 @@ public class OpenSearchMlClient extends ApiClient<OpenSearchTransport, OpenSearc
     public final GetTaskResponse getTask(Function<GetTaskRequest.Builder, ObjectBuilder<GetTaskRequest>> fn) throws IOException,
         OpenSearchException {
         return getTask(fn.apply(new GetTaskRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: ml.get_tool
+
+    /**
+     * Get tools.
+     */
+    public GetToolResponse getTool(GetToolRequest request) throws IOException, OpenSearchException {
+        return this.transport.performRequest(request, GetToolRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Get tools.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetToolRequest}
+     */
+    public final GetToolResponse getTool(Function<GetToolRequest.Builder, ObjectBuilder<GetToolRequest>> fn) throws IOException,
+        OpenSearchException {
+        return getTool(fn.apply(new GetToolRequest.Builder()).build());
     }
 
     // ----- Endpoint: ml.load_model

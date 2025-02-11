@@ -1,15 +1,18 @@
-{{^extendsOtherShape}}
+{{#shouldImplementJsonSerializable}}
     /**
      * Serialize this object to JSON.
      */
     @Override
     public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
         generator.writeStartObject();
+    {{^isEmptyObject}}
         serializeInternal(generator, mapper);
+    {{/isEmptyObject}}
         generator.writeEnd();
     }
 
-{{/extendsOtherShape}}
+{{/shouldImplementJsonSerializable}}
+{{#hasFieldsToSerialize}}
     protected void serializeInternal({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
 {{#singleKeyMap}}
     generator.writeStartObject(this.{{name}});
@@ -17,14 +20,21 @@
 {{#distinctDiscriminatorFieldValues}}
     generator.write({{#quoted}}{{key}}{{/quoted}}, {{#quoted}}{{value}}{{/quoted}});
 {{/distinctDiscriminatorFieldValues}}
-{{#extendsOtherShape}}
+{{#superImplementsJsonSerializable}}
     super.serializeInternal(generator, mapper);
-{{/extendsOtherShape}}
-{{#additionalPropertiesField}}
-    {{#type.directSerializer}}this.{{name}}{{/type.directSerializer}}
-{{/additionalPropertiesField}}
+{{/superImplementsJsonSerializable}}
+{{#additionalProperties}}
+    {{#singleton}}
+        generator.writeKey(this.{{keyName}});
+        {{#valueType.directSerializer}}this.{{valueName}}{{/valueType.directSerializer}}
+    {{/singleton}}
+    {{^singleton}}
+        {{#mapType.directSerializer}}this.{{valueName}}{{/mapType.directSerializer}}
+    {{/singleton}}
+{{/additionalProperties}}
 {{>ObjectShape/Serialize/Fields}}
 {{#singleKeyMap}}
     generator.writeEnd();
 {{/singleKeyMap}}
     }
+{{/hasFieldsToSerialize}}

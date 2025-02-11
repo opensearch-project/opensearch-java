@@ -60,7 +60,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: cluster.state.Request
 
 /**
- * Returns a comprehensive information about the state of the cluster.
+ * Returns comprehensive information about the state of the cluster.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public final class StateRequest extends RequestBase implements ToCopyableBuilder<StateRequest.Builder, StateRequest> {
@@ -121,8 +121,8 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
     }
 
     /**
-     * Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes <code>_all</code> string or when
-     * no indexes have been specified)
+     * Whether to ignore a wildcard index expression that resolves into no concrete indexes. This includes the <code>_all</code> string or
+     * when no indexes have been specified.
      * <p>
      * API name: {@code allow_no_indices}
      * </p>
@@ -133,7 +133,9 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -144,7 +146,7 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
     }
 
     /**
-     * Whether to expand wildcard expression to concrete indexes that are open, closed or both.
+     * Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
      * <p>
      * API name: {@code expand_wildcards}
      * </p>
@@ -155,7 +157,7 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
     }
 
     /**
-     * Return settings in flat format.
+     * Returns settings in a flat format.
      * <p>
      * API name: {@code flat_settings}
      * </p>
@@ -166,7 +168,7 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
     }
 
     /**
-     * Whether specified concrete indexes should be ignored when unavailable (missing or closed)
+     * Whether the specified concrete indexes should be ignored when unavailable (missing or closed).
      * <p>
      * API name: {@code ignore_unavailable}
      * </p>
@@ -177,7 +179,8 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
     }
 
     /**
-     * A comma-separated list of index names; use <code>_all</code> or empty string to perform the operation on all indexes
+     * A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+     * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
      * <p>
      * API name: {@code index}
      * </p>
@@ -188,7 +191,7 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
     }
 
     /**
-     * Return local information, do not retrieve the state from cluster-manager node.
+     * Whether to return information from the local node only instead of from the cluster manager node.
      * <p>
      * API name: {@code local}
      * </p>
@@ -199,7 +202,9 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
     }
 
     /**
-     * Specify timeout for connection to cluster manager.
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -211,7 +216,7 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
     }
 
     /**
-     * Limit the information returned to the specified metrics
+     * Limits the information returned to only the specified metrics.
      * <p>
      * API name: {@code metric}
      * </p>
@@ -328,8 +333,8 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Whether to ignore if a wildcard indexes expression resolves into no concrete indexes. (This includes <code>_all</code> string or
-         * when no indexes have been specified)
+         * Whether to ignore a wildcard index expression that resolves into no concrete indexes. This includes the <code>_all</code> string
+         * or when no indexes have been specified.
          * <p>
          * API name: {@code allow_no_indices}
          * </p>
@@ -341,7 +346,9 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -353,7 +360,9 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -364,7 +373,7 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Whether to expand wildcard expression to concrete indexes that are open, closed or both.
+         * Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
          * <p>
          * API name: {@code expand_wildcards}
          * </p>
@@ -380,7 +389,7 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Whether to expand wildcard expression to concrete indexes that are open, closed or both.
+         * Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
          * <p>
          * API name: {@code expand_wildcards}
          * </p>
@@ -396,7 +405,7 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Return settings in flat format.
+         * Returns settings in a flat format.
          * <p>
          * API name: {@code flat_settings}
          * </p>
@@ -408,7 +417,7 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Whether specified concrete indexes should be ignored when unavailable (missing or closed)
+         * Whether the specified concrete indexes should be ignored when unavailable (missing or closed).
          * <p>
          * API name: {@code ignore_unavailable}
          * </p>
@@ -420,7 +429,8 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * A comma-separated list of index names; use <code>_all</code> or empty string to perform the operation on all indexes
+         * A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
          * </p>
@@ -436,7 +446,8 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * A comma-separated list of index names; use <code>_all</code> or empty string to perform the operation on all indexes
+         * A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
          * </p>
@@ -452,7 +463,7 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Return local information, do not retrieve the state from cluster-manager node.
+         * Whether to return information from the local node only instead of from the cluster manager node.
          * <p>
          * API name: {@code local}
          * </p>
@@ -464,7 +475,9 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Specify timeout for connection to cluster manager.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -477,7 +490,9 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Specify timeout for connection to cluster manager.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -489,7 +504,7 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Limit the information returned to the specified metrics
+         * Limits the information returned to only the specified metrics.
          * <p>
          * API name: {@code metric}
          * </p>
@@ -505,7 +520,7 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Limit the information returned to the specified metrics
+         * Limits the information returned to only the specified metrics.
          * <p>
          * API name: {@code metric}
          * </p>

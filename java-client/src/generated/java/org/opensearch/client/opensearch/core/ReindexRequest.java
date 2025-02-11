@@ -320,6 +320,7 @@ public final class ReindexRequest extends RequestBase
         generator.writeKey("source");
         this.source.serialize(generator, mapper);
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

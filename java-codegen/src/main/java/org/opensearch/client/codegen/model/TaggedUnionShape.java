@@ -27,7 +27,7 @@ public class TaggedUnionShape extends ObjectShapeBase {
     @Nullable
     private String discriminatingField;
     private String defaultVariant;
-    private boolean externallyDiscriminated;
+    private ExternallyDiscriminated externallyDiscriminated;
 
     public TaggedUnionShape(Namespace parent, String className, String typedefName, String description, ShouldGenerate shouldGenerate) {
         super(parent, className, typedefName, description, shouldGenerate);
@@ -86,10 +86,14 @@ public class TaggedUnionShape extends ObjectShapeBase {
     }
 
     public boolean isExternallyDiscriminated() {
-        return externallyDiscriminated;
+        return externallyDiscriminated != null;
     }
 
-    public void setExternallyDiscriminated(boolean externallyDiscriminated) {
+    public boolean isOptionalExternallyDiscriminated() {
+        return externallyDiscriminated == ExternallyDiscriminated.OPTIONAL;
+    }
+
+    public void setExternallyDiscriminated(ExternallyDiscriminated externallyDiscriminated) {
         this.externallyDiscriminated = externallyDiscriminated;
     }
 
@@ -248,5 +252,10 @@ public class TaggedUnionShape extends ObjectShapeBase {
         public String toString() {
             return new ToStringBuilder(this).append("unionClassName", unionClassName).toString();
         }
+    }
+
+    public enum ExternallyDiscriminated {
+        OPTIONAL,
+        REQUIRED
     }
 }

@@ -55,6 +55,9 @@ import org.opensearch.client.util.TaggedUnionUtils;
 
 // typedef: _types.WaitForActiveShards
 
+/**
+ * Waits until the specified number of shards is active before returning a response. Use <code>all</code> for all shards.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class WaitForActiveShards implements TaggedUnion<WaitForActiveShards.Kind, Object>, PlainJsonSerializable {

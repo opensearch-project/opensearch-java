@@ -81,8 +81,7 @@ public final class AliasesRequest extends CatRequestBase implements ToCopyableBu
     }
 
     /**
-     * Expands wildcard expressions to concrete indexes. Combine multiple values with commas. Supported values are <code>all</code>,
-     * <code>open</code>, <code>closed</code>, <code>hidden</code>, and <code>none</code>.
+     * Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
      * <p>
      * API name: {@code expand_wildcards}
      * </p>
@@ -153,8 +152,7 @@ public final class AliasesRequest extends CatRequestBase implements ToCopyableBu
         }
 
         /**
-         * Expands wildcard expressions to concrete indexes. Combine multiple values with commas. Supported values are <code>all</code>,
-         * <code>open</code>, <code>closed</code>, <code>hidden</code>, and <code>none</code>.
+         * Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
          * <p>
          * API name: {@code expand_wildcards}
          * </p>
@@ -170,8 +168,7 @@ public final class AliasesRequest extends CatRequestBase implements ToCopyableBu
         }
 
         /**
-         * Expands wildcard expressions to concrete indexes. Combine multiple values with commas. Supported values are <code>all</code>,
-         * <code>open</code>, <code>closed</code>, <code>hidden</code>, and <code>none</code>.
+         * Specifies the type of index that wildcard expressions can match. Supports comma-separated values.
          * <p>
          * API name: {@code expand_wildcards}
          * </p>

@@ -474,11 +474,17 @@ public class SpecTransformer {
                     taggedUnion.addVariant(name, mapType(s));
                 });
             } else if (unionSchema.isObject() && unionSchema.getMaxProperties().orElse(Integer.MAX_VALUE) == 1) {
-                taggedUnion.setExternallyDiscriminated(true);
+                taggedUnion.setExternallyDiscriminated(
+                    unionSchema.getMinProperties().orElse(0) == 1
+                        ? TaggedUnionShape.ExternallyDiscriminated.REQUIRED
+                        : TaggedUnionShape.ExternallyDiscriminated.OPTIONAL
+                );
                 unionSchema.getProperties().ifPresent(props -> props.forEach((k, v) -> taggedUnion.addVariant(k, mapType(v))));
             }
         } else if (isShortcutPropertyObject || schema.determineSingleType().orElse(null) == OpenApiSchemaType.Object) {
-            if (schema.getProperties().isEmpty() && schema.getAdditionalProperties().isPresent()) {
+            if (schema.getProperties().isEmpty()
+                && schema.getAdditionalProperties().isPresent()
+                && schema.getMaxProperties().orElse(Integer.MAX_VALUE) > 1) {
                 shape = new DictionaryResponseShape(
                     parent,
                     className,
@@ -526,13 +532,19 @@ public class SpecTransformer {
             }
         }
 
+        var superShape = shape.extendsOtherShape() ? (ObjectShapeBase) shape.getExtendsType().getTargetShape().orElseThrow() : null;
+
         final var properties = new HashMap<String, OpenApiSchema>();
-        final var additionalProperties = new ArrayList<OpenApiSchema>();
+        final var additionalProperties = new ArrayList<Triple<OpenApiSchema, OpenApiSchema, Boolean>>();
         final var required = collectObjectProperties(schema, properties, additionalProperties);
 
         final var overrides = this.overrides.getSchema(schema.getPointer());
 
         properties.forEach((k, v) -> {
+            if (superShape != null && superShape.hasBodyFieldWithWireName(k)) {
+                return;
+            }
+
             var propOverrides = overrides.map(so -> so.getProperty(k));
 
             var type = propOverrides.flatMap(PropertyOverride::getMappedType).orElseGet(() -> mapType(v));
@@ -550,13 +562,33 @@ public class SpecTransformer {
         });
 
         if (!additionalProperties.isEmpty()) {
-            var valueSchema = additionalProperties.size() == 1 ? additionalProperties.get(0) : OpenApiSchema.ANONYMOUS_UNTYPED;
-            shape.setAdditionalPropertiesField(
-                Field.builder()
-                    .withName(valueSchema.getTitle().orElse("metadata"))
-                    .withType(Types.Java.Util.Map(Types.Java.Lang.String, mapType(valueSchema)))
-                    .withDescription(valueSchema.getResolvedDescription().orElse(null))
-                    .build()
+            var singleton = additionalProperties.stream().allMatch(Triple::getRight);
+            var keySchema = additionalProperties.size() == 1
+                ? additionalProperties.get(0).getLeft()
+                : OpenApiSchema.builder()
+                    .withPointer(schema.getPointer().append("propertyNames"))
+                    .withOneOf(additionalProperties.stream().map(Triple::getLeft).collect(Collectors.toList()))
+                    .build();
+            var resolvedKeySchema = keySchema.resolve();
+            var keyName = keySchema.getTitle().or(resolvedKeySchema::getName).orElse("key");
+
+            var valueSchema = additionalProperties.size() == 1
+                ? additionalProperties.get(0).getMiddle()
+                : OpenApiSchema.builder()
+                    .withPointer(schema.getPointer().append("additionalProperties"))
+                    .withOneOf(additionalProperties.stream().map(Triple::getMiddle).collect(Collectors.toList()))
+                    .build();
+
+            shape.setAdditionalProperties(
+                new ObjectShapeBase.AdditionalProperties(
+                    keyName,
+                    mapType(keySchema),
+                    keySchema.getResolvedDescription().orElse(null),
+                    valueSchema.getTitle().orElse("metadata"),
+                    mapType(valueSchema),
+                    valueSchema.getResolvedDescription().orElse(null),
+                    singleton
+                )
             );
         }
     }
@@ -564,7 +596,7 @@ public class SpecTransformer {
     private Set<String> collectObjectProperties(
         OpenApiSchema schema,
         Map<String, OpenApiSchema> properties,
-        List<OpenApiSchema> additionalProperties
+        List<Triple<OpenApiSchema, OpenApiSchema, Boolean>> additionalProperties
     ) {
         if (schema.has$ref()) {
             return collectObjectProperties(schema.resolve(), properties, additionalProperties);
@@ -591,6 +623,8 @@ public class SpecTransformer {
             return required;
         }
 
+        var schemaOverrides = overrides.getSchema(schema.getPointer()).orElse(null);
+
         schema.getProperties().ifPresent(props -> props.forEach((propName, propSchema) -> {
             var resolvedPropSchema = propSchema.resolve();
             var isRemoved = propSchema.getVersionRemoved()
@@ -598,7 +632,7 @@ public class SpecTransformer {
                 .map(ver -> ver.isLowerThanOrEqualTo(Versions.V2_0_0))
                 .orElse(false);
 
-            if (isRemoved) {
+            if (isRemoved || schemaOverrides != null && schemaOverrides.getProperty(propName).shouldIgnore()) {
                 return;
             }
 
@@ -614,9 +648,15 @@ public class SpecTransformer {
             properties.put(propName, propSchema);
         }));
 
-        schema.getAdditionalProperties().ifPresent(additionalProperties::add);
+        var required = schema.getRequired().orElseGet(Collections::emptySet);
 
-        return schema.getRequired().orElseGet(Collections::emptySet);
+        schema.getAdditionalProperties().ifPresent(propertySchema -> {
+            var nameSchema = schema.getPropertyNames().orElse(OpenApiSchema.ANONYMOUS_STRING);
+            var singleton = schema.getMinProperties().orElse(0) - required.size() == 1;
+            additionalProperties.add(Triple.of(nameSchema, propertySchema, singleton));
+        });
+
+        return required;
     }
 
     private void visitInto(OpenApiSchema schema, EnumShape shape) {
@@ -793,7 +833,7 @@ public class SpecTransformer {
     }
 
     private Type mapArray(OpenApiSchema schema) {
-        var items = schema.getItems().map(i -> mapType(i, true)).orElse(Types.Java.Lang.String);
+        var items = schema.getItems().map(i -> mapType(i, true)).orElse(Types.Client.Json.JsonData);
         return Types.Java.Util.List(items);
     }
 
@@ -959,9 +999,8 @@ public class SpecTransformer {
 
         }
         if (schema.isObject() && schema.getProperties().isPresent()) {
-            var minProperties = schema.getMinProperties().orElse(0);
             var maxProperties = schema.getMaxProperties().orElse(Integer.MAX_VALUE);
-            return minProperties == 1 && maxProperties == 1;
+            return maxProperties == 1;
         }
         return false;
     }

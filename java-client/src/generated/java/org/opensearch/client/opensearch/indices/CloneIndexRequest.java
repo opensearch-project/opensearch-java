@@ -269,6 +269,7 @@ public final class CloneIndexRequest extends RequestBase
             generator.writeEnd();
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

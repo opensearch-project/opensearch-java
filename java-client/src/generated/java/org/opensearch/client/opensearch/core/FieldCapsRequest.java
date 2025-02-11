@@ -213,6 +213,7 @@ public final class FieldCapsRequest extends RequestBase
             this.indexFilter.serialize(generator, mapper);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

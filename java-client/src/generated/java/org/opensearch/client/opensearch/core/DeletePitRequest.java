@@ -110,6 +110,7 @@ public final class DeletePitRequest extends RequestBase
         }
         generator.writeEnd();
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

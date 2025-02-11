@@ -184,6 +184,7 @@ public final class GetProfileTasksRequest extends RequestBase
             generator.writeEnd();
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

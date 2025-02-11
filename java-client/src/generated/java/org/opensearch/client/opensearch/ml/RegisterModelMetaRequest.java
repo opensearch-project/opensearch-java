@@ -222,6 +222,7 @@ public final class RegisterModelMetaRequest extends RequestBase
         generator.writeKey("version");
         generator.write(this.version);
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

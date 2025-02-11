@@ -300,6 +300,7 @@ public final class AnalyzeRequest extends RequestBase
             this.tokenizer.serialize(generator, mapper);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

@@ -302,6 +302,7 @@ public final class PutAliasRequest extends RequestBase
             generator.write(this.searchRouting);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

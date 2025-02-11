@@ -97,6 +97,7 @@ public final class UpdateMemoryRequest extends RequestBase
             generator.write(this.name);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

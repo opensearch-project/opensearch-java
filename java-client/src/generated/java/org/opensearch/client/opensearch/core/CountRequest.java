@@ -345,6 +345,7 @@ public final class CountRequest extends RequestBase
             this.query.serialize(generator, mapper);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

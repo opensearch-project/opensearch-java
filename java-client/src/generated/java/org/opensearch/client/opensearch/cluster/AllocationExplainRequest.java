@@ -61,7 +61,8 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: cluster.allocation_explain.Request
 
 /**
- * Provides explanations for shard allocations in the cluster.
+ * Explains how shards are allocated in the current cluster and provides an explanation for why unassigned shards can't be allocated to a
+ * node.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
@@ -116,7 +117,7 @@ public final class AllocationExplainRequest extends RequestBase
     }
 
     /**
-     * If <code>true</code>, returns information about disk usage and shard sizes.
+     * When <code>true</code>, returns information about disk usage and shard sizes.
      * <p>
      * API name: {@code include_disk_info}
      * </p>
@@ -127,7 +128,7 @@ public final class AllocationExplainRequest extends RequestBase
     }
 
     /**
-     * If <code>true</code>, returns YES decisions in explanation.
+     * When <code>true</code>, returns any <code>YES</code> decisions in the allocation explanation.
      * <p>
      * API name: {@code include_yes_decisions}
      * </p>
@@ -146,7 +147,7 @@ public final class AllocationExplainRequest extends RequestBase
     }
 
     /**
-     * If <code>true</code>, returns explanation for the primary shard for the given shard ID.
+     * When <code>true</code>, returns a routing explanation for the primary shard based on the node ID.
      * <p>
      * API name: {@code primary}
      * </p>
@@ -198,6 +199,7 @@ public final class AllocationExplainRequest extends RequestBase
             generator.write(this.shard);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override
@@ -275,7 +277,7 @@ public final class AllocationExplainRequest extends RequestBase
         }
 
         /**
-         * If <code>true</code>, returns information about disk usage and shard sizes.
+         * When <code>true</code>, returns information about disk usage and shard sizes.
          * <p>
          * API name: {@code include_disk_info}
          * </p>
@@ -287,7 +289,7 @@ public final class AllocationExplainRequest extends RequestBase
         }
 
         /**
-         * If <code>true</code>, returns YES decisions in explanation.
+         * When <code>true</code>, returns any <code>YES</code> decisions in the allocation explanation.
          * <p>
          * API name: {@code include_yes_decisions}
          * </p>
@@ -308,7 +310,7 @@ public final class AllocationExplainRequest extends RequestBase
         }
 
         /**
-         * If <code>true</code>, returns explanation for the primary shard for the given shard ID.
+         * When <code>true</code>, returns a routing explanation for the primary shard based on the node ID.
          * <p>
          * API name: {@code primary}
          * </p>

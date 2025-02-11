@@ -114,6 +114,7 @@ public final class ClearScrollRequest extends RequestBase
             generator.writeEnd();
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

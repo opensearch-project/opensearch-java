@@ -44,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -60,11 +61,14 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuilder<KnnQuery.Builder, KnnQuery> {
 
+    @Nullable
+    private final Boolean expandNestedDocs;
+
     @Nonnull
     private final String field;
 
-    @Nonnull
-    private final List<Query> filter;
+    @Nullable
+    private final Query filter;
 
     @Nullable
     private final Integer k;
@@ -73,13 +77,13 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
     private final Float maxDistance;
 
     @Nonnull
-    private final Map<String, Integer> methodParameters;
+    private final Map<String, JsonData> methodParameters;
 
     @Nullable
     private final Float minScore;
 
-    @Nonnull
-    private final Map<String, Float> rescore;
+    @Nullable
+    private final KnnQueryRescore rescore;
 
     @Nonnull
     private final List<Float> vector;
@@ -88,13 +92,14 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
 
     private KnnQuery(Builder builder) {
         super(builder);
+        this.expandNestedDocs = builder.expandNestedDocs;
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-        this.filter = ApiTypeHelper.unmodifiable(builder.filter);
+        this.filter = builder.filter;
         this.k = builder.k;
         this.maxDistance = builder.maxDistance;
         this.methodParameters = ApiTypeHelper.unmodifiable(builder.methodParameters);
         this.minScore = builder.minScore;
-        this.rescore = ApiTypeHelper.unmodifiable(builder.rescore);
+        this.rescore = builder.rescore;
         this.vector = ApiTypeHelper.unmodifiableRequired(builder.vector, this, "vector");
     }
 
@@ -111,6 +116,14 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
     }
 
     /**
+     * API name: {@code expand_nested_docs}
+     */
+    @Nullable
+    public final Boolean expandNestedDocs() {
+        return this.expandNestedDocs;
+    }
+
+    /**
      * Required - The target field
      */
     @Nonnull
@@ -119,13 +132,13 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
     }
 
     /**
-     * The filters for the k-NN search query.
+     * The filter for the k-NN search query.
      * <p>
      * API name: {@code filter}
      * </p>
      */
-    @Nonnull
-    public final List<Query> filter() {
+    @Nullable
+    public final Query filter() {
         return this.filter;
     }
 
@@ -155,7 +168,7 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
      * API name: {@code method_parameters}
      */
     @Nonnull
-    public final Map<String, Integer> methodParameters() {
+    public final Map<String, JsonData> methodParameters() {
         return this.methodParameters;
     }
 
@@ -173,8 +186,8 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
     /**
      * API name: {@code rescore}
      */
-    @Nonnull
-    public final Map<String, Float> rescore() {
+    @Nullable
+    public final KnnQueryRescore rescore() {
         return this.rescore;
     }
 
@@ -189,13 +202,14 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject(this.field);
         super.serializeInternal(generator, mapper);
-        if (ApiTypeHelper.isDefined(this.filter)) {
+        if (this.expandNestedDocs != null) {
+            generator.writeKey("expand_nested_docs");
+            generator.write(this.expandNestedDocs);
+        }
+
+        if (this.filter != null) {
             generator.writeKey("filter");
-            generator.writeStartArray();
-            for (Query item0 : this.filter) {
-                item0.serialize(generator, mapper);
-            }
-            generator.writeEnd();
+            this.filter.serialize(generator, mapper);
         }
 
         if (this.k != null) {
@@ -211,9 +225,9 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
         if (ApiTypeHelper.isDefined(this.methodParameters)) {
             generator.writeKey("method_parameters");
             generator.writeStartObject();
-            for (Map.Entry<String, Integer> item0 : this.methodParameters.entrySet()) {
+            for (Map.Entry<String, JsonData> item0 : this.methodParameters.entrySet()) {
                 generator.writeKey(item0.getKey());
-                generator.write(item0.getValue());
+                item0.getValue().serialize(generator, mapper);
             }
             generator.writeEnd();
         }
@@ -223,14 +237,9 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
             generator.write(this.minScore);
         }
 
-        if (ApiTypeHelper.isDefined(this.rescore)) {
+        if (this.rescore != null) {
             generator.writeKey("rescore");
-            generator.writeStartObject();
-            for (Map.Entry<String, Float> item0 : this.rescore.entrySet()) {
-                generator.writeKey(item0.getKey());
-                generator.write(item0.getValue());
-            }
-            generator.writeEnd();
+            this.rescore.serialize(generator, mapper);
         }
 
         generator.writeKey("vector");
@@ -259,44 +268,48 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
      * Builder for {@link KnnQuery}.
      */
     public static class Builder extends QueryBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, KnnQuery> {
+        @Nullable
+        private Boolean expandNestedDocs;
         private String field;
         @Nullable
-        private List<Query> filter;
+        private Query filter;
         @Nullable
         private Integer k;
         @Nullable
         private Float maxDistance;
         @Nullable
-        private Map<String, Integer> methodParameters;
+        private Map<String, JsonData> methodParameters;
         @Nullable
         private Float minScore;
         @Nullable
-        private Map<String, Float> rescore;
+        private KnnQueryRescore rescore;
         private List<Float> vector;
 
         public Builder() {}
 
         private Builder(KnnQuery o) {
             super(o);
+            this.expandNestedDocs = o.expandNestedDocs;
             this.field = o.field;
-            this.filter = _listCopy(o.filter);
+            this.filter = o.filter;
             this.k = o.k;
             this.maxDistance = o.maxDistance;
             this.methodParameters = _mapCopy(o.methodParameters);
             this.minScore = o.minScore;
-            this.rescore = _mapCopy(o.rescore);
+            this.rescore = o.rescore;
             this.vector = _listCopy(o.vector);
         }
 
         private Builder(Builder o) {
             super(o);
+            this.expandNestedDocs = o.expandNestedDocs;
             this.field = o.field;
-            this.filter = _listCopy(o.filter);
+            this.filter = o.filter;
             this.k = o.k;
             this.maxDistance = o.maxDistance;
             this.methodParameters = _mapCopy(o.methodParameters);
             this.minScore = o.minScore;
-            this.rescore = _mapCopy(o.rescore);
+            this.rescore = o.rescore;
             this.vector = _listCopy(o.vector);
         }
 
@@ -313,6 +326,15 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
         }
 
         /**
+         * API name: {@code expand_nested_docs}
+         */
+        @Nonnull
+        public final Builder expandNestedDocs(@Nullable Boolean value) {
+            this.expandNestedDocs = value;
+            return this;
+        }
+
+        /**
          * Required - The target field
          */
         @Nonnull
@@ -322,45 +344,21 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
         }
 
         /**
-         * The filters for the k-NN search query.
+         * The filter for the k-NN search query.
          * <p>
          * API name: {@code filter}
          * </p>
-         *
-         * <p>
-         * Adds all elements of <code>list</code> to <code>filter</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder filter(List<Query> list) {
-            this.filter = _listAddAll(this.filter, list);
+        public final Builder filter(@Nullable Query value) {
+            this.filter = value;
             return this;
         }
 
         /**
-         * The filters for the k-NN search query.
+         * The filter for the k-NN search query.
          * <p>
          * API name: {@code filter}
-         * </p>
-         *
-         * <p>
-         * Adds one or more values to <code>filter</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder filter(Query value, Query... values) {
-            this.filter = _listAdd(this.filter, value, values);
-            return this;
-        }
-
-        /**
-         * The filters for the k-NN search query.
-         * <p>
-         * API name: {@code filter}
-         * </p>
-         *
-         * <p>
-         * Adds a value to <code>filter</code> using a builder lambda.
          * </p>
          */
         @Nonnull
@@ -400,7 +398,7 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
          * </p>
          */
         @Nonnull
-        public final Builder methodParameters(Map<String, Integer> map) {
+        public final Builder methodParameters(Map<String, JsonData> map) {
             this.methodParameters = _mapPutAll(this.methodParameters, map);
             return this;
         }
@@ -413,7 +411,7 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
          * </p>
          */
         @Nonnull
-        public final Builder methodParameters(String key, Integer value) {
+        public final Builder methodParameters(String key, JsonData value) {
             this.methodParameters = _mapPut(this.methodParameters, key, value);
             return this;
         }
@@ -432,28 +430,19 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
 
         /**
          * API name: {@code rescore}
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>rescore</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder rescore(Map<String, Float> map) {
-            this.rescore = _mapPutAll(this.rescore, map);
+        public final Builder rescore(@Nullable KnnQueryRescore value) {
+            this.rescore = value;
             return this;
         }
 
         /**
          * API name: {@code rescore}
-         *
-         * <p>
-         * Adds an entry to <code>rescore</code>.
-         * </p>
          */
         @Nonnull
-        public final Builder rescore(String key, Float value) {
-            this.rescore = _mapPut(this.rescore, key, value);
-            return this;
+        public final Builder rescore(Function<KnnQueryRescore.Builder, ObjectBuilder<KnnQueryRescore>> fn) {
+            return rescore(fn.apply(new KnnQueryRescore.Builder()).build());
         }
 
         /**
@@ -508,16 +497,13 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
 
     protected static void setupKnnQueryDeserializer(ObjectDeserializer<KnnQuery.Builder> op) {
         setupQueryBaseDeserializer(op);
-        op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
+        op.add(Builder::expandNestedDocs, JsonpDeserializer.booleanDeserializer(), "expand_nested_docs");
+        op.add(Builder::filter, Query._DESERIALIZER, "filter");
         op.add(Builder::k, JsonpDeserializer.integerDeserializer(), "k");
         op.add(Builder::maxDistance, JsonpDeserializer.floatDeserializer(), "max_distance");
-        op.add(
-            Builder::methodParameters,
-            JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
-            "method_parameters"
-        );
+        op.add(Builder::methodParameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "method_parameters");
         op.add(Builder::minScore, JsonpDeserializer.floatDeserializer(), "min_score");
-        op.add(Builder::rescore, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.floatDeserializer()), "rescore");
+        op.add(Builder::rescore, KnnQueryRescore._DESERIALIZER, "rescore");
         op.add(Builder::vector, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.floatDeserializer()), "vector");
         op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
     }
@@ -525,6 +511,7 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
     @Override
     public int hashCode() {
         int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.expandNestedDocs);
         result = 31 * result + this.field.hashCode();
         result = 31 * result + Objects.hashCode(this.filter);
         result = 31 * result + Objects.hashCode(this.k);
@@ -544,7 +531,8 @@ public class KnnQuery extends QueryBase implements QueryVariant, ToCopyableBuild
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         KnnQuery other = (KnnQuery) o;
-        return this.field.equals(other.field)
+        return Objects.equals(this.expandNestedDocs, other.expandNestedDocs)
+            && this.field.equals(other.field)
             && Objects.equals(this.filter, other.filter)
             && Objects.equals(this.k, other.k)
             && Objects.equals(this.maxDistance, other.maxDistance)

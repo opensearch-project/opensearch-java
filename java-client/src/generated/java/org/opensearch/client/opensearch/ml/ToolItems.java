@@ -39,6 +39,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolItems.Builder, ToolItems> {
 
+    @Nullable
+    private final Boolean includeOutputInAgentResponse;
+
     @Nonnull
     private final Map<String, JsonData> metadata;
 
@@ -54,6 +57,7 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
     // ---------------------------------------------------------------------------------------------
 
     private ToolItems(Builder builder) {
+        this.includeOutputInAgentResponse = builder.includeOutputInAgentResponse;
         this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
         this.name = builder.name;
         this.parameters = ApiTypeHelper.unmodifiable(builder.parameters);
@@ -62,6 +66,14 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
 
     public static ToolItems of(Function<ToolItems.Builder, ObjectBuilder<ToolItems>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * API name: {@code include_output_in_agent_response}
+     */
+    @Nullable
+    public final Boolean includeOutputInAgentResponse() {
+        return this.includeOutputInAgentResponse;
     }
 
     @Nonnull
@@ -108,6 +120,11 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
             generator.writeKey(item0.getKey());
             item0.getValue().serialize(generator, mapper);
         }
+        if (this.includeOutputInAgentResponse != null) {
+            generator.writeKey("include_output_in_agent_response");
+            generator.write(this.includeOutputInAgentResponse);
+        }
+
         if (this.name != null) {
             generator.writeKey("name");
             generator.write(this.name);
@@ -147,6 +164,8 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ToolItems> {
         @Nullable
+        private Boolean includeOutputInAgentResponse;
+        @Nullable
         private Map<String, JsonData> metadata;
         @Nullable
         private String name;
@@ -158,6 +177,7 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
         public Builder() {}
 
         private Builder(ToolItems o) {
+            this.includeOutputInAgentResponse = o.includeOutputInAgentResponse;
             this.metadata = _mapCopy(o.metadata);
             this.name = o.name;
             this.parameters = _mapCopy(o.parameters);
@@ -165,6 +185,7 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
         }
 
         private Builder(Builder o) {
+            this.includeOutputInAgentResponse = o.includeOutputInAgentResponse;
             this.metadata = _mapCopy(o.metadata);
             this.name = o.name;
             this.parameters = _mapCopy(o.parameters);
@@ -175,6 +196,15 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        /**
+         * API name: {@code include_output_in_agent_response}
+         */
+        @Nonnull
+        public final Builder includeOutputInAgentResponse(@Nullable Boolean value) {
+            this.includeOutputInAgentResponse = value;
+            return this;
         }
 
         /**
@@ -270,6 +300,7 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
     );
 
     protected static void setupToolItemsDeserializer(ObjectDeserializer<ToolItems.Builder> op) {
+        op.add(Builder::includeOutputInAgentResponse, JsonpDeserializer.booleanDeserializer(), "include_output_in_agent_response");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "parameters");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
@@ -284,6 +315,7 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.includeOutputInAgentResponse);
         result = 31 * result + Objects.hashCode(this.metadata);
         result = 31 * result + Objects.hashCode(this.name);
         result = 31 * result + Objects.hashCode(this.parameters);
@@ -296,7 +328,8 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         ToolItems other = (ToolItems) o;
-        return Objects.equals(this.metadata, other.metadata)
+        return Objects.equals(this.includeOutputInAgentResponse, other.includeOutputInAgentResponse)
+            && Objects.equals(this.metadata, other.metadata)
             && Objects.equals(this.name, other.name)
             && Objects.equals(this.parameters, other.parameters)
             && Objects.equals(this.type, other.type);

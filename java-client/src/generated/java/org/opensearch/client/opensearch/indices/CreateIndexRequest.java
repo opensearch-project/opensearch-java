@@ -233,6 +233,7 @@ public final class CreateIndexRequest extends RequestBase
             this.settings.serialize(generator, mapper);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

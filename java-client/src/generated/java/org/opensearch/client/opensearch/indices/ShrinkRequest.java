@@ -284,6 +284,7 @@ public final class ShrinkRequest extends RequestBase
             generator.writeEnd();
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

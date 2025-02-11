@@ -59,7 +59,7 @@ import org.opensearch.client.util.TaggedUnionUtils;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class SpanQuery implements TaggedUnion<SpanQuery.Kind, Object>, PlainJsonSerializable {
+public class SpanQuery implements TaggedUnion<SpanQuery.Kind, SpanQueryVariant>, PlainJsonSerializable {
     /**
      * {@link SpanQuery} variant kinds.
      */
@@ -88,7 +88,7 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, Object>, PlainJson
     }
 
     private final Kind _kind;
-    private final Object _value;
+    private final SpanQueryVariant _value;
 
     @Override
     public final Kind _kind() {
@@ -96,7 +96,7 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, Object>, PlainJson
     }
 
     @Override
-    public final Object _get() {
+    public final SpanQueryVariant _get() {
         return _value;
     }
 
@@ -296,7 +296,7 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, Object>, PlainJson
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SpanQuery> {
         private Kind _kind;
-        private Object _value;
+        private SpanQueryVariant _value;
 
         public Builder() {}
 

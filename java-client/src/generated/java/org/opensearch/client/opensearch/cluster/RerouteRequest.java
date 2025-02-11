@@ -120,7 +120,9 @@ public final class RerouteRequest extends RequestBase
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -131,7 +133,7 @@ public final class RerouteRequest extends RequestBase
     }
 
     /**
-     * Defines the commands to perform.
+     * Defines the reroute commands to perform, either <code>move</code>, <code>cancel</code>, or <code>allocate</code>.
      * <p>
      * API name: {@code commands}
      * </p>
@@ -142,7 +144,7 @@ public final class RerouteRequest extends RequestBase
     }
 
     /**
-     * If <code>true</code>, then the request simulates the operation only and returns the resulting state.
+     * When <code>true</code>, the request simulates the operation and returns the resulting state.
      * <p>
      * API name: {@code dry_run}
      * </p>
@@ -153,7 +155,7 @@ public final class RerouteRequest extends RequestBase
     }
 
     /**
-     * If <code>true</code>, then the response contains an explanation of why the commands can or cannot be executed.
+     * When <code>true</code>, the response contains an explanation of why certain commands can or cannot be executed.
      * <p>
      * API name: {@code explain}
      * </p>
@@ -164,8 +166,9 @@ public final class RerouteRequest extends RequestBase
     }
 
     /**
-     * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request fails
-     * and returns an error.
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -188,7 +191,7 @@ public final class RerouteRequest extends RequestBase
     }
 
     /**
-     * If <code>true</code>, then retries allocation of shards that are blocked due to too many subsequent allocation failures.
+     * When <code>true</code>, retries shard allocation if it was blocked because of too many subsequent failures.
      * <p>
      * API name: {@code retry_failed}
      * </p>
@@ -199,7 +202,9 @@ public final class RerouteRequest extends RequestBase
     }
 
     /**
-     * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+     * &quot;-1&quot; to indicate an unspecified value.
      * <p>
      * API name: {@code timeout}
      * </p>
@@ -229,6 +234,7 @@ public final class RerouteRequest extends RequestBase
             generator.writeEnd();
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override
@@ -302,7 +308,9 @@ public final class RerouteRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -314,7 +322,9 @@ public final class RerouteRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -325,7 +335,7 @@ public final class RerouteRequest extends RequestBase
         }
 
         /**
-         * Defines the commands to perform.
+         * Defines the reroute commands to perform, either <code>move</code>, <code>cancel</code>, or <code>allocate</code>.
          * <p>
          * API name: {@code commands}
          * </p>
@@ -341,7 +351,7 @@ public final class RerouteRequest extends RequestBase
         }
 
         /**
-         * Defines the commands to perform.
+         * Defines the reroute commands to perform, either <code>move</code>, <code>cancel</code>, or <code>allocate</code>.
          * <p>
          * API name: {@code commands}
          * </p>
@@ -357,7 +367,7 @@ public final class RerouteRequest extends RequestBase
         }
 
         /**
-         * Defines the commands to perform.
+         * Defines the reroute commands to perform, either <code>move</code>, <code>cancel</code>, or <code>allocate</code>.
          * <p>
          * API name: {@code commands}
          * </p>
@@ -372,7 +382,7 @@ public final class RerouteRequest extends RequestBase
         }
 
         /**
-         * If <code>true</code>, then the request simulates the operation only and returns the resulting state.
+         * When <code>true</code>, the request simulates the operation and returns the resulting state.
          * <p>
          * API name: {@code dry_run}
          * </p>
@@ -384,7 +394,7 @@ public final class RerouteRequest extends RequestBase
         }
 
         /**
-         * If <code>true</code>, then the response contains an explanation of why the commands can or cannot be executed.
+         * When <code>true</code>, the response contains an explanation of why certain commands can or cannot be executed.
          * <p>
          * API name: {@code explain}
          * </p>
@@ -396,8 +406,9 @@ public final class RerouteRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
-         * fails and returns an error.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -410,8 +421,9 @@ public final class RerouteRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a connection to the cluster-manager node. If no response is received before the timeout expires, the request
-         * fails and returns an error.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -455,7 +467,7 @@ public final class RerouteRequest extends RequestBase
         }
 
         /**
-         * If <code>true</code>, then retries allocation of shards that are blocked due to too many subsequent allocation failures.
+         * When <code>true</code>, retries shard allocation if it was blocked because of too many subsequent failures.
          * <p>
          * API name: {@code retry_failed}
          * </p>
@@ -467,7 +479,9 @@ public final class RerouteRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code timeout}
          * </p>
@@ -479,7 +493,9 @@ public final class RerouteRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
+         * &quot;-1&quot; to indicate an unspecified value.
          * <p>
          * API name: {@code timeout}
          * </p>

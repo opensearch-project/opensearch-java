@@ -154,7 +154,7 @@ public class GetStats implements PlainJsonSerializable, ToCopyableBuilder<GetSta
     }
 
     /**
-     * API name: {@code getTime}
+     * API name: {@code time}
      */
     @Nullable
     public final Time time() {
@@ -212,7 +212,7 @@ public class GetStats implements PlainJsonSerializable, ToCopyableBuilder<GetSta
         generator.write(this.missingTotal);
 
         if (this.time != null) {
-            generator.writeKey("getTime");
+            generator.writeKey("time");
             this.time.serialize(generator, mapper);
         }
 
@@ -368,7 +368,7 @@ public class GetStats implements PlainJsonSerializable, ToCopyableBuilder<GetSta
         }
 
         /**
-         * API name: {@code getTime}
+         * API name: {@code time}
          */
         @Nonnull
         public final Builder time(@Nullable Time value) {
@@ -377,7 +377,7 @@ public class GetStats implements PlainJsonSerializable, ToCopyableBuilder<GetSta
         }
 
         /**
-         * API name: {@code getTime}
+         * API name: {@code time}
          */
         @Nonnull
         public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -434,7 +434,7 @@ public class GetStats implements PlainJsonSerializable, ToCopyableBuilder<GetSta
         op.add(Builder::missingTime, Time._DESERIALIZER, "missing_time");
         op.add(Builder::missingTimeInMillis, JsonpDeserializer.longDeserializer(), "missing_time_in_millis");
         op.add(Builder::missingTotal, JsonpDeserializer.longDeserializer(), "missing_total");
-        op.add(Builder::time, Time._DESERIALIZER, "getTime");
+        op.add(Builder::time, Time._DESERIALIZER, "time", "getTime");
         op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
         op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
     }

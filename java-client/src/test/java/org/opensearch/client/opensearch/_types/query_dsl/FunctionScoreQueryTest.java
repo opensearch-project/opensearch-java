@@ -22,7 +22,7 @@ public class FunctionScoreQueryTest extends ModelTestCase {
 
     @Test
     public void canSupportWeightFunction() {
-        Query functionScoreQuery = FunctionScoreQuery.of(fs -> fs.functions(f -> f.weight(5d))).toQuery();
+        Query functionScoreQuery = FunctionScoreQuery.of(fs -> fs.functions(f -> f.weight(5f))).toQuery();
 
         String json = "{\"function_score\":{\"functions\":[{\"weight\":5.0}]}}";
 
@@ -37,7 +37,7 @@ public class FunctionScoreQueryTest extends ModelTestCase {
     @Test
     public void canSupportFunctionVariant() {
         Query functionScoreQuery = FunctionScoreQuery.of(
-            fs -> fs.functions(f -> f.weight(3d).linear(l -> l.field("field").placement(p -> p.decay(8.0))))
+            fs -> fs.functions(f -> f.weight(3f).linear(l -> l.field("field").placement(p -> p.decay(8.0))))
         ).toQuery();
 
         String json = "{\"function_score\":{\"functions\":[{\"weight\":3.0,\"linear\":{\"field\":{\"decay\":8.0}}}]}}";

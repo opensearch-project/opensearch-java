@@ -663,6 +663,7 @@ public final class DeleteByQueryRequest extends RequestBase
             this.slice.serialize(generator, mapper);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

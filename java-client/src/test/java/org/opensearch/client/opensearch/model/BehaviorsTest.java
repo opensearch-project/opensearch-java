@@ -64,11 +64,14 @@ public class BehaviorsTest extends ModelTestCase {
     public void testAdditionalPropertyOnClass() {
         XyShapeQuery q = new XyShapeQuery.Builder().queryName("query-name")
             .field("field-name")
-            .xyShape(_0 -> _0.relation(GeoShapeRelation.Disjoint))
+            .xyShape(_0 -> _0.relation(GeoShapeRelation.Disjoint).shape(s -> s))
             .ignoreUnmapped(true)
             .build();
 
-        q = checkJsonRoundtrip(q, "{\"field-name\":{\"relation\":\"disjoint\"},\"_name\":\"query-name\",\"ignore_unmapped\":true}");
+        q = checkJsonRoundtrip(
+            q,
+            "{\"_name\":\"query-name\",\"field-name\":{\"relation\":\"disjoint\",\"shape\":{}},\"ignore_unmapped\":true}"
+        );
 
         assertEquals("query-name", q.queryName());
         assertTrue(q.ignoreUnmapped());

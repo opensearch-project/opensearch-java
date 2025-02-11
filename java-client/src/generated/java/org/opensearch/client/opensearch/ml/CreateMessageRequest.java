@@ -183,6 +183,7 @@ public final class CreateMessageRequest extends RequestBase
             generator.write(this.response);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

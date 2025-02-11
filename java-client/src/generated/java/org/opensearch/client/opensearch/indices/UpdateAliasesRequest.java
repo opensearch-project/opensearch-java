@@ -167,6 +167,7 @@ public final class UpdateAliasesRequest extends RequestBase
             generator.writeEnd();
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

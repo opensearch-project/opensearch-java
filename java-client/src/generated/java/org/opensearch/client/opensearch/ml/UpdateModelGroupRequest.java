@@ -209,6 +209,7 @@ public final class UpdateModelGroupRequest extends RequestBase
             generator.write(this.name);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

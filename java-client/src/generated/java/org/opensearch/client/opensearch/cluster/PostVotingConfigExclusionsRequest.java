@@ -59,7 +59,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: cluster.post_voting_config_exclusions.Request
 
 /**
- * Updates the cluster voting config exclusions by node ids or node names.
+ * Updates the cluster voting configuration by excluding certain node IDs or names.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public final class PostVotingConfigExclusionsRequest extends RequestBase
@@ -91,8 +91,8 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase
     }
 
     /**
-     * A comma-separated list of the persistent ids of the nodes to exclude from the voting configuration. If specified, you may not also
-     * specify <code>node_names</code>.
+     * A comma-separated list of node IDs to exclude from the voting configuration. When using this setting, you cannot also specify
+     * <code>node_names</code>.
      * <p>
      * API name: {@code node_ids}
      * </p>
@@ -103,7 +103,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase
     }
 
     /**
-     * A comma-separated list of the names of the nodes to exclude from the voting configuration. If specified, you may not also specify
+     * A comma-separated list of node names to exclude from the voting configuration. When using this setting, you cannot also specify
      * <code>node_ids</code>.
      * <p>
      * API name: {@code node_names}
@@ -116,7 +116,8 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase
 
     /**
      * When adding a voting configuration exclusion, the API waits for the specified nodes to be excluded from the voting configuration
-     * before returning. If the timeout expires before the appropriate condition is satisfied, the request fails and returns an error.
+     * before returning a response. If the timeout expires before the appropriate condition is satisfied, the request fails and returns an
+     * error.
      * <p>
      * API name: {@code timeout}
      * </p>
@@ -181,8 +182,8 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase
         }
 
         /**
-         * A comma-separated list of the persistent ids of the nodes to exclude from the voting configuration. If specified, you may not
-         * also specify <code>node_names</code>.
+         * A comma-separated list of node IDs to exclude from the voting configuration. When using this setting, you cannot also specify
+         * <code>node_names</code>.
          * <p>
          * API name: {@code node_ids}
          * </p>
@@ -198,8 +199,8 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase
         }
 
         /**
-         * A comma-separated list of the persistent ids of the nodes to exclude from the voting configuration. If specified, you may not
-         * also specify <code>node_names</code>.
+         * A comma-separated list of node IDs to exclude from the voting configuration. When using this setting, you cannot also specify
+         * <code>node_names</code>.
          * <p>
          * API name: {@code node_ids}
          * </p>
@@ -215,7 +216,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase
         }
 
         /**
-         * A comma-separated list of the names of the nodes to exclude from the voting configuration. If specified, you may not also specify
+         * A comma-separated list of node names to exclude from the voting configuration. When using this setting, you cannot also specify
          * <code>node_ids</code>.
          * <p>
          * API name: {@code node_names}
@@ -232,7 +233,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase
         }
 
         /**
-         * A comma-separated list of the names of the nodes to exclude from the voting configuration. If specified, you may not also specify
+         * A comma-separated list of node names to exclude from the voting configuration. When using this setting, you cannot also specify
          * <code>node_ids</code>.
          * <p>
          * API name: {@code node_names}
@@ -250,7 +251,8 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase
 
         /**
          * When adding a voting configuration exclusion, the API waits for the specified nodes to be excluded from the voting configuration
-         * before returning. If the timeout expires before the appropriate condition is satisfied, the request fails and returns an error.
+         * before returning a response. If the timeout expires before the appropriate condition is satisfied, the request fails and returns
+         * an error.
          * <p>
          * API name: {@code timeout}
          * </p>
@@ -263,7 +265,8 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase
 
         /**
          * When adding a voting configuration exclusion, the API waits for the specified nodes to be excluded from the voting configuration
-         * before returning. If the timeout expires before the appropriate condition is satisfied, the request fails and returns an error.
+         * before returning a response. If the timeout expires before the appropriate condition is satisfied, the request fails and returns
+         * an error.
          * <p>
          * API name: {@code timeout}
          * </p>

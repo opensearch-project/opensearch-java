@@ -143,6 +143,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase
             generator.write(this.secureSettingsPassword);
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override

@@ -123,6 +123,7 @@ public final class UndeployModelRequest extends RequestBase
             generator.writeEnd();
         }
     }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override
