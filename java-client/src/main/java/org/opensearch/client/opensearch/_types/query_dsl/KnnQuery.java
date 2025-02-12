@@ -166,10 +166,13 @@ public class KnnQuery extends QueryBase implements QueryVariant {
         }
 
         if (ApiTypeHelper.isDefined(this.methodParameters)) {
+            generator.writeKey("method_parameters");
+            generator.writeStartObject();
             for (Map.Entry<String, JsonData> entry : this.methodParameters.entrySet()) {
                 generator.writeKey(entry.getKey());
                 entry.getValue().serialize(generator, mapper);
             }
+            generator.writeEnd();
         }
 
         if (this.rescore != null) {
