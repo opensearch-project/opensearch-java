@@ -39,7 +39,12 @@ import org.opensearch.common.settings.Settings;
 import org.opensearch.test.rest.OpenSearchRestTestCase;
 
 public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCase implements OpenSearchTransportSupport {
-    private static final List<String> systemIndices = List.of(".opensearch-observability", ".opendistro_security", ".plugins-ml-config");
+    private static final List<String> systemIndices = List.of(
+        ".opensearch-observability",
+        ".opendistro_security",
+        ".plugins-ml-config",
+        ".ql-datasources"
+    );
     private static OpenSearchClient javaClient;
     private static OpenSearchClient adminJavaClient;
 

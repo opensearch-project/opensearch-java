@@ -98,7 +98,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
      * @return The minimum score allowed for the returned search results.
      */
     @Nullable
-    private final Float minScore() {
+    public final Float minScore() {
         return this.minScore;
     }
 
@@ -107,7 +107,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
      * @return The maximum distance allowed between the vector and each ofthe returned search results.
      */
     @Nullable
-    private final Float maxDistance() {
+    public final Float maxDistance() {
         return this.maxDistance;
     }
 
