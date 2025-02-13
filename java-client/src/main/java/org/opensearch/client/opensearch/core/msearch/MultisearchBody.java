@@ -112,6 +112,8 @@ public class MultisearchBody implements PlainJsonSerializable {
 
     private final List<FieldAndFormat> fields;
 
+    private final List<FieldAndFormat> docvalueFields;
+
     private final List<Map<String, Double>> indicesBoost;
 
     @Nullable
@@ -149,6 +151,7 @@ public class MultisearchBody implements PlainJsonSerializable {
         this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
         this.explain = builder.explain;
         this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+        this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
         this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
         this.collapse = builder.collapse;
         this.version = builder.version;
@@ -308,6 +311,16 @@ public class MultisearchBody implements PlainJsonSerializable {
      */
     public final List<FieldAndFormat> fields() {
         return this.fields;
+    }
+
+    /**
+     * Array of wildcard (*) patterns. The request returns doc values for field
+     * names matching these patterns in the hits.fields property of the response.
+     * <p>
+     * API name: {@code docvalue_fields}
+     */
+    public final List<FieldAndFormat> docvalueFields() {
+        return this.docvalueFields;
     }
 
     /**
@@ -501,6 +514,17 @@ public class MultisearchBody implements PlainJsonSerializable {
             generator.writeEnd();
         }
 
+        if (ApiTypeHelper.isDefined(this.docvalueFields)) {
+            generator.writeKey("docvalue_fields");
+            generator.writeStartArray();
+            for (FieldAndFormat item0 : this.docvalueFields) {
+                item0.serialize(generator, mapper);
+
+            }
+            generator.writeEnd();
+
+        }
+
         if (ApiTypeHelper.isDefined(this.indicesBoost)) {
             generator.writeKey("indices_boost");
             generator.writeStartArray();
@@ -615,6 +639,9 @@ public class MultisearchBody implements PlainJsonSerializable {
 
         @Nullable
         private List<FieldAndFormat> fields;
+
+        @Nullable
+        private List<FieldAndFormat> docvalueFields;
 
         @Nullable
         private List<Map<String, Double>> indicesBoost;
@@ -954,6 +981,44 @@ public class MultisearchBody implements PlainJsonSerializable {
         }
 
         /**
+         * Array of wildcard (*) patterns. The request returns doc values for field
+         * names matching these patterns in the hits.fields property of the response.
+         * <p>
+         * API name: {@code docvalue_fields}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>docvalueFields</code>.
+         */
+        public final Builder docvalueFields(List<FieldAndFormat> list) {
+            this.docvalueFields = _listAddAll(this.docvalueFields, list);
+            return this;
+        }
+
+        /**
+         * Array of wildcard (*) patterns. The request returns doc values for field
+         * names matching these patterns in the hits.fields property of the response.
+         * <p>
+         * API name: {@code docvalue_fields}
+         * <p>
+         * Adds one or more values to <code>docvalueFields</code>.
+         */
+        public final Builder docvalueFields(FieldAndFormat value, FieldAndFormat... values) {
+            this.docvalueFields = _listAdd(this.docvalueFields, value, values);
+            return this;
+        }
+
+        /**
+         * Array of wildcard (*) patterns. The request returns doc values for field
+         * names matching these patterns in the hits.fields property of the response.
+         * <p>
+         * API name: {@code docvalue_fields}
+         * <p>
+         * Adds a value to <code>docvalueFields</code> using a builder lambda.
+         */
+        public final Builder docvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+            return docvalueFields(fn.apply(new FieldAndFormat.Builder()).build());
+        }
+
+        /**
          * Boosts the _score of documents from specified indices.
          * <p>
          * API name: {@code indices_boost}
@@ -1106,6 +1171,7 @@ public class MultisearchBody implements PlainJsonSerializable {
         op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stored_fields");
         op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
         op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
+        op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "docvalue_fields");
         op.add(
             Builder::indicesBoost,
             JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer())),
