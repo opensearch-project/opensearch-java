@@ -248,6 +248,21 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
     }
 
     @Test
+    public void shouldReturnMultiSearchesDocvalueFields() throws Exception {
+        String index = "multiple_searches_request_docvalue_fields";
+        createTestDocuments(index);
+
+        RequestItem sortedItemsQuery = createMSearchFuzzyRequest(b -> b.docvalueFields(FieldAndFormat.of(f -> f.field("name"))));
+
+        MsearchResponse<ShopItem> response = sendMSearchRequest(index, List.of(sortedItemsQuery));
+        assertEquals(1, response.responses().size());
+        assertEquals(3, response.responses().get(0).result().hits().hits().size());
+        assertThat(response.responses().get(0).result().hits().hits().get(0).fields(), hasKey("name"));
+        assertThat(response.responses().get(0).result().hits().hits().get(1).fields(), hasKey("name"));
+        assertThat(response.responses().get(0).result().hits().hits().get(2).fields(), hasKey("name"));
+    }
+
+    @Test
     public void shouldReturnMultiSearchesStoredFields() throws Exception {
         String index = "multiple_searches_request_stored_fields";
         createTestDocuments(index);
