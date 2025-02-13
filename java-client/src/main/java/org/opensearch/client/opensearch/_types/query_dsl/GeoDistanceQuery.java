@@ -62,6 +62,9 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
     @Nullable
     private final GeoValidationMethod validationMethod;
 
+    @Nullable
+    private final Boolean ignoreUnmapped;
+
     // ---------------------------------------------------------------------------------------------
 
     private GeoDistanceQuery(Builder builder) {
@@ -72,7 +75,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
         this.distance = builder.distance;
         this.distanceType = builder.distanceType;
         this.validationMethod = builder.validationMethod;
-
+        this.ignoreUnmapped = builder.ignoreUnmapped;
     }
 
     public static GeoDistanceQuery of(Function<Builder, ObjectBuilder<GeoDistanceQuery>> fn) {
@@ -125,6 +128,14 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
         return this.validationMethod;
     }
 
+    /**
+     * API name: {@code ignore_unmapped}
+     */
+    @Nullable
+    public final Boolean ignoreUnmapped() {
+        return this.ignoreUnmapped;
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeKey(this.field);
         this.location.serialize(generator, mapper);
@@ -144,10 +155,19 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
             this.validationMethod.serialize(generator, mapper);
         }
 
+        if (this.ignoreUnmapped != null) {
+            generator.writeKey("ignore_unmapped");
+            generator.write(this.ignoreUnmapped);
+        }
     }
 
     public Builder toBuilder() {
-        return toBuilder(new Builder()).field(field).location(location);
+        return toBuilder(new Builder()).field(field)
+            .location(location)
+            .distance(distance)
+            .distanceType(distanceType)
+            .validationMethod(validationMethod)
+            .ignoreUnmapped(ignoreUnmapped);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -193,6 +213,9 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
         @Nullable
         private GeoValidationMethod validationMethod;
 
+        @Nullable
+        private Boolean ignoreUnmapped;
+
         /**
          * API name: {@code distance}
          */
@@ -214,6 +237,14 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
          */
         public final Builder validationMethod(@Nullable GeoValidationMethod value) {
             this.validationMethod = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code ignore_unmapped}
+         */
+        public final Builder ignoreUnmapped(@Nullable Boolean value) {
+            this.ignoreUnmapped = value;
             return this;
         }
 
@@ -250,6 +281,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
         op.add(Builder::distance, JsonpDeserializer.stringDeserializer(), "distance");
         op.add(Builder::distanceType, GeoDistanceType._DESERIALIZER, "distance_type");
         op.add(Builder::validationMethod, GeoValidationMethod._DESERIALIZER, "validation_method");
+        op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
             builder.field(name);
