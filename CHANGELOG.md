@@ -15,6 +15,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Fixed serialization of `KnnQuery`'s `method_parameters` property ([#1427](https://github.com/opensearch-project/opensearch-java/pull/1427))
+- Fixed deserializing `GeoValidationMethod` enum values when uppercase ([#1431](https://github.com/opensearch-project/opensearch-java/pull/1431))
 
 ### Security
 
