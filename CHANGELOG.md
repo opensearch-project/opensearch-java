@@ -3,11 +3,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
-- Added support for `GeoDistanceQuery`'s `ignore_unmapped` property ([#1430](https://github.com/opensearch-project/opensearch-java/pull/1430))
-- Added support for docvalue_fields in msearch ([#1429](https://github.com/opensearch-project/opensearch-java/pull/1429)])
 
 ### Dependencies
-- Bump `commons-logging:commons-logging` from 1.3.4 to 1.3.5 ([#1418](https://github.com/opensearch-project/opensearch-java/pull/1418))
 
 ### Changed
 
@@ -16,10 +13,20 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
-- Fixed serialization of `KnnQuery`'s `method_parameters` property ([#1427](https://github.com/opensearch-project/opensearch-java/pull/1427))
-- Fixed deserializing `GeoValidationMethod` enum values when uppercase ([#1431](https://github.com/opensearch-project/opensearch-java/pull/1431))
 
 ### Security
+
+## [2.21.0] - 02/14/2025
+### Added
+- Added support for `GeoDistanceQuery`'s `ignore_unmapped` property ([#1430](https://github.com/opensearch-project/opensearch-java/pull/1430))
+- Added support for docvalue_fields in msearch ([#1429](https://github.com/opensearch-project/opensearch-java/pull/1429))
+
+### Dependencies
+- Bump `commons-logging:commons-logging` from 1.3.4 to 1.3.5 ([#1418](https://github.com/opensearch-project/opensearch-java/pull/1418))
+
+### Fixed
+- Fixed serialization of `KnnQuery`'s `method_parameters` property ([#1427](https://github.com/opensearch-project/opensearch-java/pull/1427))
+- Fixed deserializing `GeoValidationMethod` enum values when uppercase ([#1431](https://github.com/opensearch-project/opensearch-java/pull/1431))
 
 ## [2.20.0] - 02/04/2025
 ### Added
@@ -567,7 +574,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
  
 ### Security
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.20.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.21.0...2.x
+[2.21.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.20.0...v2.21.0
 [2.20.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.19.0...v2.20.0
 [2.19.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.18.0...v2.19.0
 [2.18.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.17.0...v2.18.0
