@@ -30,16 +30,22 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
-/**
- * Builders for {@link TrackHits} variants.
- * <p>
- * Variants <code>count</code>, <code>enabled</code> are not available here as
- * they don't have a dedicated class. Use {@link TrackHits}'s builder for these.
- *
- */
-public class TrackHitsBuilders {
-    private TrackHitsBuilders() {}
+import javax.annotation.Generated;
 
+/**
+ * Base interface for {@link FieldSuggester} variants.
+ */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public interface FieldSuggesterVariant {
+    FieldSuggester.Kind _fieldSuggesterKind();
+
+    default FieldSuggester toFieldSuggester() {
+        return new FieldSuggester(this);
+    }
 }

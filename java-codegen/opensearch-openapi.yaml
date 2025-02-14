@@ -4635,6 +4635,24 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/knn.warmup___200'
+  /_plugins/_ml/_execute/{algorithm_name}:
+    post:
+      operationId: ml.execute_algorithm.0
+      x-operation-group: ml.execute_algorithm
+      x-version-added: '2.0'
+      description: Execute an algorithm.
+      parameters:
+        - $ref: '#/components/parameters/ml.execute_algorithm___path.algorithm_name'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ml.execute_algorithm'
+      responses:
+        '200':
+          $ref: '#/components/responses/ml.execute_algorithm___200'
   /_plugins/_ml/_predict/{algorithm_name}/{model_id}:
     post:
       operationId: ml.predict.0
@@ -23846,6 +23864,15 @@ components:
       required: true
       schema:
         type: string
+    ml.execute_algorithm___path.algorithm_name:
+      name: algorithm_name
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+          - anomaly_localization
+          - local_sample_calculator
     ml.get_agent___path.agent_id:
       name: agent_id
       in: path
@@ -28405,6 +28432,62 @@ components:
                 description: Whether to provide verbose output.
             required:
               - parameters
+    ml.execute_algorithm:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              operation:
+                type: string
+                description: The calculator operation.
+                enum:
+                  - max
+                  - min
+                  - sum
+              input_data:
+                type: array
+                items:
+                  type: number
+                description: The input data.
+              index_name:
+                type: string
+                description: The index name.
+              attribute_field_names:
+                type: array
+                items:
+                  type: string
+                description: The attribute field names
+              aggregations:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ml._common___Aggregation'
+              time_field_name:
+                type: string
+                description: The time field name.
+              start_time:
+                type: integer
+                format: int64
+                description: The start time.
+              end_time:
+                type: integer
+                format: int64
+                description: The end time.
+              min_time_interval:
+                type: integer
+                format: int64
+                description: The minimum time interval.
+              num_outputs:
+                type: integer
+                format: int64
+                description: The number of outputs.
+              metrics:
+                type: array
+                items:
+                  type: array
+                  items:
+                    type: number
+                description: The metrics input.
     ml.get_profile:
       content:
         application/json:
@@ -32026,6 +32109,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ml._common___PredictResponse'
+      description: ''
+    ml.execute_algorithm___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ml._common___ExecuteAlgorithmResponse'
       description: ''
     ml.get_agent___200:
       content:
@@ -46574,6 +46663,27 @@ components:
         - name
         - reason
         - time_in_nanos
+    _core.search___CompletionContext:
+      oneOf:
+        - title: context
+          $ref: '#/components/schemas/_core.search___Context'
+        - type: object
+          properties:
+            boost:
+              type: number
+              format: double
+            context:
+              $ref: '#/components/schemas/_core.search___Context'
+            neighbours:
+              type: array
+              items:
+                $ref: '#/components/schemas/_common___GeoHashPrecision'
+            precision:
+              $ref: '#/components/schemas/_common___GeoHashPrecision'
+            prefix:
+              type: boolean
+          required:
+            - context
     _core.search___CompletionSuggest:
       allOf:
         - $ref: '#/components/schemas/_core.search___SuggestBase'
@@ -46587,6 +46697,23 @@ components:
                     $ref: '#/components/schemas/_core.search___CompletionSuggestOption'
           required:
             - options
+    _core.search___CompletionSuggester:
+      allOf:
+        - $ref: '#/components/schemas/_core.search___SuggesterBase'
+        - type: object
+          properties:
+            contexts:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  $ref: '#/components/schemas/_core.search___CompletionContext'
+            fuzzy:
+              $ref: '#/components/schemas/_core.search___SuggestFuzziness'
+            regex:
+              type: string
+            skip_duplicates:
+              type: boolean
     _core.search___CompletionSuggestOption:
       type: object
       properties:
@@ -46623,8 +46750,44 @@ components:
     _core.search___Context:
       description: Text or location that we want similar documents for or a lookup to a document's field for the text.
       oneOf:
-        - type: string
-        - $ref: '#/components/schemas/_common___GeoLocation'
+        - title: category
+          type: string
+        - title: location
+          $ref: '#/components/schemas/_common___GeoLocation'
+    _core.search___DirectGenerator:
+      type: object
+      properties:
+        field:
+          type: string
+        max_edits:
+          type: integer
+          format: int32
+        max_inspections:
+          type: number
+          format: float
+        max_term_freq:
+          type: number
+          format: float
+        min_doc_freq:
+          type: number
+          format: float
+        min_word_length:
+          type: integer
+          format: int32
+        post_filter:
+          type: string
+        pre_filter:
+          type: string
+        prefix_length:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        suggest_mode:
+          $ref: '#/components/schemas/_common___SuggestMode'
+      required:
+        - field
     _core.search___FetchProfile:
       type: object
       properties:
@@ -46699,6 +46862,26 @@ components:
           type: integer
       required:
         - field
+    _core.search___FieldSuggester:
+      allOf:
+        - type: object
+          properties:
+            prefix:
+              type: string
+            regex:
+              type: string
+            text:
+              type: string
+        - type: object
+          properties:
+            completion:
+              $ref: '#/components/schemas/_core.search___CompletionSuggester'
+            phrase:
+              $ref: '#/components/schemas/_core.search___PhraseSuggester'
+            term:
+              $ref: '#/components/schemas/_core.search___TermSuggester'
+          minProperties: 1
+          maxProperties: 1
     _core.search___Highlight:
       allOf:
         - $ref: '#/components/schemas/_core.search___HighlightBase'
@@ -46973,6 +47156,30 @@ components:
           $ref: '#/components/schemas/_core.search___HitsMetadata'
       required:
         - hits
+    _core.search___LaplaceSmoothingModel:
+      type: object
+      properties:
+        alpha:
+          type: number
+          format: double
+      required:
+        - alpha
+    _core.search___LinearInterpolationSmoothingModel:
+      type: object
+      properties:
+        bigram_lambda:
+          type: number
+          format: double
+        trigram_lambda:
+          type: number
+          format: double
+        unigram_lambda:
+          type: number
+          format: double
+      required:
+        - bigram_lambda
+        - trigram_lambda
+        - unigram_lambda
     _core.search___NestedIdentity:
       type: object
       properties:
@@ -46999,6 +47206,74 @@ components:
                     $ref: '#/components/schemas/_core.search___PhraseSuggestOption'
           required:
             - options
+    _core.search___PhraseSuggestCollate:
+      type: object
+      properties:
+        params:
+          type: object
+          additionalProperties: true
+        prune:
+          type: boolean
+        query:
+          $ref: '#/components/schemas/_core.search___PhraseSuggestCollateQuery'
+      required:
+        - query
+    _core.search___PhraseSuggestCollateQuery:
+      type: object
+      properties:
+        id:
+          type: string
+        source:
+          type: string
+    _core.search___PhraseSuggester:
+      allOf:
+        - $ref: '#/components/schemas/_core.search___SuggesterBase'
+        - type: object
+          properties:
+            collate:
+              $ref: '#/components/schemas/_core.search___PhraseSuggestCollate'
+            confidence:
+              type: number
+              format: double
+            direct_generator:
+              type: array
+              items:
+                $ref: '#/components/schemas/_core.search___DirectGenerator'
+            force_unigrams:
+              type: boolean
+            gram_size:
+              type: integer
+              format: int32
+            highlight:
+              $ref: '#/components/schemas/_core.search___PhraseSuggestHighlight'
+            max_errors:
+              type: number
+              format: double
+            real_word_error_likelihood:
+              type: number
+              format: double
+            separator:
+              type: string
+            shard_size:
+              type: integer
+              format: int32
+            smoothing:
+              $ref: '#/components/schemas/_core.search___SmoothingModel'
+            text:
+              type: string
+            token_limit:
+              type: integer
+              format: int32
+    _core.search___PhraseSuggestHighlight:
+      type: object
+      properties:
+        post_tag:
+          type: string
+        pre_tag:
+          type: string
+      required:
+        - post_tag
+        - pre_tag
     _core.search___PhraseSuggestOption:
       type: object
       properties:
@@ -47250,6 +47525,17 @@ components:
         - aggregations
         - id
         - searches
+    _core.search___SmoothingModel:
+      type: object
+      properties:
+        laplace:
+          $ref: '#/components/schemas/_core.search___LaplaceSmoothingModel'
+        linear_interpolation:
+          $ref: '#/components/schemas/_core.search___LinearInterpolationSmoothingModel'
+        stupid_backoff:
+          $ref: '#/components/schemas/_core.search___StupidBackoffSmoothingModel'
+      minProperties: 1
+      maxProperties: 1
     _core.search___SourceConfig:
       description: Defines how to fetch a source. Fetching can be disabled entirely, or the source can be filtered.
       oneOf:
@@ -47276,6 +47562,22 @@ components:
               $ref: '#/components/schemas/_common___Fields'
             includes:
               $ref: '#/components/schemas/_common___Fields'
+    _core.search___StringDistance:
+      type: string
+      enum:
+        - internal
+        - damerau_levenshtein
+        - levenshtein
+        - jaro_winkler
+        - ngram
+    _core.search___StupidBackoffSmoothingModel:
+      type: object
+      properties:
+        discount:
+          type: number
+          format: double
+      required:
+        - discount
     _core.search___Suggest:
       oneOf:
         - $ref: '#/components/schemas/_core.search___CompletionSuggest'
@@ -47302,6 +47604,48 @@ components:
         text:
           description: The global suggest text, which avoids repetition when the same text is used in several suggesters.
           type: string
+      additionalProperties:
+        title: suggesters
+        description: The named suggesters.
+        $ref: '#/components/schemas/_core.search___FieldSuggester'
+    _core.search___SuggesterBase:
+      type: object
+      properties:
+        analyzer:
+          type: string
+        field:
+          type: string
+        size:
+          type: integer
+          format: int32
+      required:
+        - field
+    _core.search___SuggestFuzziness:
+      type: object
+      properties:
+        fuzziness:
+          type: string
+        min_length:
+          type: integer
+          format: int32
+        prefix_length:
+          type: integer
+          format: int32
+        transpositions:
+          type: boolean
+        unicode_aware:
+          type: boolean
+      required:
+        - fuzziness
+        - min_length
+        - prefix_length
+        - transpositions
+        - unicode_aware
+    _core.search___SuggestSort:
+      type: string
+      enum:
+        - score
+        - frequency
     _core.search___TermSuggest:
       allOf:
         - $ref: '#/components/schemas/_core.search___SuggestBase'
@@ -47315,6 +47659,42 @@ components:
                     $ref: '#/components/schemas/_core.search___TermSuggestOption'
           required:
             - options
+    _core.search___TermSuggester:
+      allOf:
+        - $ref: '#/components/schemas/_core.search___SuggesterBase'
+        - type: object
+          properties:
+            lowercase_terms:
+              type: boolean
+            max_edits:
+              type: integer
+              format: int32
+            max_inspections:
+              type: integer
+              format: int32
+            max_term_freq:
+              type: number
+              format: float
+            min_doc_freq:
+              type: number
+              format: float
+            min_word_length:
+              type: integer
+              format: int32
+            prefix_length:
+              type: integer
+              format: int32
+            shard_size:
+              type: integer
+              format: int32
+            sort:
+              $ref: '#/components/schemas/_core.search___SuggestSort'
+            string_distance:
+              $ref: '#/components/schemas/_core.search___StringDistance'
+            suggest_mode:
+              $ref: '#/components/schemas/_common___SuggestMode'
+            text:
+              type: string
     _core.search___TermSuggestOption:
       type: object
       properties:
@@ -47346,10 +47726,13 @@ components:
         - relation
         - value
     _core.search___TotalHitsRelation:
-      type: string
-      enum:
-        - eq
-        - gte
+      oneOf:
+        - type: string
+          const: eq
+          description: Accurate.
+        - type: string
+          const: gte
+          description: Lower bound, including returned events or sequences.
     _core.search___TrackHits:
       description: |-
         The number of hits matching the query. When `true`, the exact
@@ -47357,8 +47740,10 @@ components:
         response does not include the total number of hits matching the query.
         Default is `10,000` hits.
       oneOf:
-        - type: boolean
-        - type: integer
+        - title: enabled
+          type: boolean
+        - title: count
+          type: integer
           format: int32
     _core.termvectors___FieldStatistics:
       type: object
@@ -55688,6 +56073,8 @@ components:
       properties:
         sum:
           $ref: '#/components/schemas/ml._common___Aggregation'
+        max:
+          $ref: '#/components/schemas/ml._common___Aggregation'
         field:
           type: string
           description: The field name.
@@ -55712,6 +56099,8 @@ components:
         train:
           $ref: '#/components/schemas/ml._common___ModelStats'
         train_predict:
+          $ref: '#/components/schemas/ml._common___ModelStats'
+        execute:
           $ref: '#/components/schemas/ml._common___ModelStats'
     ml._common___Algorithms:
       type: object
@@ -55739,6 +56128,25 @@ components:
           description: Query that should appear in matching documents.
           items:
             $ref: '#/components/schemas/ml._common___Filter'
+    ml._common___Buckets:
+      type: object
+      properties:
+        start_time:
+          type: integer
+          format: int64
+          description: The start time.
+        end_time:
+          type: integer
+          format: int64
+          description: The end time.
+        overall_aggregate_value:
+          type: number
+          format: double
+          description: The overall aggregate value.
+        entities:
+          type: array
+          items:
+            $ref: '#/components/schemas/ml._common___Entity'
     ml._common___ByteBuffer:
       type: object
       properties:
@@ -55791,6 +56199,47 @@ components:
         session_token:
           type: string
       additionalProperties: true
+    ml._common___Entity:
+      type: object
+      properties:
+        key:
+          type: array
+          items:
+            type: string
+        contribution_value:
+          type: number
+          format: double
+          description: The contribution value.
+        base_value:
+          type: number
+          format: double
+          description: The base value.
+        new_value:
+          type: number
+          format: double
+          description: The new value.
+    ml._common___ExecuteAlgorithmResponse:
+      oneOf:
+        - $ref: '#/components/schemas/ml._common___ExecuteLocalSampleCalculatorResponse'
+        - type: object
+          properties:
+            results:
+              type: array
+              items:
+                $ref: '#/components/schemas/ml._common___ExecuteAnomalyLocalizationResponse'
+    ml._common___ExecuteAnomalyLocalizationResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        result:
+          $ref: '#/components/schemas/ml._common___Result'
+    ml._common___ExecuteLocalSampleCalculatorResponse:
+      type: object
+      properties:
+        result:
+          type: number
+          description: The result.
     ml._common___Exists:
       type: object
       description: The exists filter.
@@ -56303,6 +56752,8 @@ components:
           $ref: '#/components/schemas/ml._common___ModelStats'
         train_predict:
           $ref: '#/components/schemas/ml._common___ModelStats'
+        execute:
+          $ref: '#/components/schemas/ml._common___ModelStats'
     ml._common___Models:
       type: object
       additionalProperties:
@@ -56636,6 +57087,13 @@ components:
       required:
         - limit
         - unit
+    ml._common___Result:
+      type: object
+      properties:
+        buckets:
+          type: array
+          items:
+            $ref: '#/components/schemas/ml._common___Buckets'
     ml._common___Rows:
       type: object
       properties:

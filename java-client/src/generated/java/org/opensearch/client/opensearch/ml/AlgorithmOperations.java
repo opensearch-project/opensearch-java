@@ -39,6 +39,9 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
     private final ModelStats deploy;
 
     @Nullable
+    private final ModelStats execute;
+
+    @Nullable
     private final ModelStats predict;
 
     @Nullable
@@ -57,6 +60,7 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
 
     private AlgorithmOperations(Builder builder) {
         this.deploy = builder.deploy;
+        this.execute = builder.execute;
         this.predict = builder.predict;
         this.register = builder.register;
         this.train = builder.train;
@@ -74,6 +78,14 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
     @Nullable
     public final ModelStats deploy() {
         return this.deploy;
+    }
+
+    /**
+     * API name: {@code execute}
+     */
+    @Nullable
+    public final ModelStats execute() {
+        return this.execute;
     }
 
     /**
@@ -132,6 +144,11 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
             this.deploy.serialize(generator, mapper);
         }
 
+        if (this.execute != null) {
+            generator.writeKey("execute");
+            this.execute.serialize(generator, mapper);
+        }
+
         if (this.predict != null) {
             generator.writeKey("predict");
             this.predict.serialize(generator, mapper);
@@ -178,6 +195,8 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
         @Nullable
         private ModelStats deploy;
         @Nullable
+        private ModelStats execute;
+        @Nullable
         private ModelStats predict;
         @Nullable
         private ModelStats register;
@@ -192,6 +211,7 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
 
         private Builder(AlgorithmOperations o) {
             this.deploy = o.deploy;
+            this.execute = o.execute;
             this.predict = o.predict;
             this.register = o.register;
             this.train = o.train;
@@ -201,6 +221,7 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
 
         private Builder(Builder o) {
             this.deploy = o.deploy;
+            this.execute = o.execute;
             this.predict = o.predict;
             this.register = o.register;
             this.train = o.train;
@@ -229,6 +250,23 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
         @Nonnull
         public final Builder deploy(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
             return deploy(fn.apply(new ModelStats.Builder()).build());
+        }
+
+        /**
+         * API name: {@code execute}
+         */
+        @Nonnull
+        public final Builder execute(@Nullable ModelStats value) {
+            this.execute = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code execute}
+         */
+        @Nonnull
+        public final Builder execute(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
+            return execute(fn.apply(new ModelStats.Builder()).build());
         }
 
         /**
@@ -342,6 +380,7 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
 
     protected static void setupAlgorithmOperationsDeserializer(ObjectDeserializer<AlgorithmOperations.Builder> op) {
         op.add(Builder::deploy, ModelStats._DESERIALIZER, "deploy");
+        op.add(Builder::execute, ModelStats._DESERIALIZER, "execute");
         op.add(Builder::predict, ModelStats._DESERIALIZER, "predict");
         op.add(Builder::register, ModelStats._DESERIALIZER, "register");
         op.add(Builder::train, ModelStats._DESERIALIZER, "train");
@@ -353,6 +392,7 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.deploy);
+        result = 31 * result + Objects.hashCode(this.execute);
         result = 31 * result + Objects.hashCode(this.predict);
         result = 31 * result + Objects.hashCode(this.register);
         result = 31 * result + Objects.hashCode(this.train);
@@ -367,6 +407,7 @@ public class AlgorithmOperations implements PlainJsonSerializable, ToCopyableBui
         if (o == null || this.getClass() != o.getClass()) return false;
         AlgorithmOperations other = (AlgorithmOperations) o;
         return Objects.equals(this.deploy, other.deploy)
+            && Objects.equals(this.execute, other.execute)
             && Objects.equals(this.predict, other.predict)
             && Objects.equals(this.register, other.register)
             && Objects.equals(this.train, other.train)

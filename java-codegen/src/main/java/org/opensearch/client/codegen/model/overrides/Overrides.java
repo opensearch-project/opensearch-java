@@ -123,6 +123,10 @@ public class Overrides {
                     so -> so.withAliasProvider(k -> k.endsWith("cludes") ? Set.of(k.substring(0, k.length() - 1)) : null)
                 )
 
+                .with(schema("_core.search", "Suggester"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+                .with(schema("_core.search", "TotalHits"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+                .with(schema("_core.search", "TrackHits"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+
                 .with(schema("cluster.health", "Level"), so -> so.withClassName("ClusterHealthLevel"))
                 .with(schema("cluster.reroute", "Metric"), so -> so.withClassName("ClusterRerouteMetric"))
                 .with(schema("cluster.state", "Metric"), so -> so.withClassName("ClusterStateMetric"))

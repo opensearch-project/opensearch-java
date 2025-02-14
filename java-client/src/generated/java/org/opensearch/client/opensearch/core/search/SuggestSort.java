@@ -30,28 +30,28 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: core.search.SuggestSort
+
 @JsonpDeserializable
-public enum TotalHitsRelation implements JsonEnum {
-    /**
-     * Accurate
-     */
-    Eq("eq"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum SuggestSort implements JsonEnum {
+    Frequency("frequency"),
 
-    /**
-     * Lower bound, including returned events or sequences
-     */
-    Gte("gte"),
-
-    ;
+    Score("score");
 
     private final String jsonValue;
 
-    TotalHitsRelation(String jsonValue) {
+    SuggestSort(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -59,5 +59,5 @@ public enum TotalHitsRelation implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<TotalHitsRelation> _DESERIALIZER = new JsonEnum.Deserializer<>(TotalHitsRelation.values());
+    public static final JsonEnum.Deserializer<SuggestSort> _DESERIALIZER = new JsonEnum.Deserializer<>(SuggestSort.values());
 }

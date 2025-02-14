@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -41,32 +48,25 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
 
-// typedef: _global.search._types.SmoothingModelContainer
+// typedef: core.search.SmoothingModel
 
 @JsonpDeserializable
-public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>, JsonpSerializable {
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, SmoothingModelVariant>, PlainJsonSerializable {
     /**
      * {@link SmoothingModel} variant kinds.
      */
-    /**
-     * {@link SmoothingModel} variant kinds.
-     */
-
     public enum Kind implements JsonEnum {
         Laplace("laplace"),
-
         LinearInterpolation("linear_interpolation"),
-
-        StupidBackoff("stupid_backoff"),
-
-        ;
+        StupidBackoff("stupid_backoff");
 
         private final String jsonValue;
 
@@ -74,14 +74,14 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
             this.jsonValue = jsonValue;
         }
 
+        @Override
         public String jsonValue() {
-            return this.jsonValue;
+            return jsonValue;
         }
-
     }
 
     private final Kind _kind;
-    private final Object _value;
+    private final SmoothingModelVariant _value;
 
     @Override
     public final Kind _kind() {
@@ -89,25 +89,21 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
     }
 
     @Override
-    public final Object _get() {
+    public final SmoothingModelVariant _get() {
         return _value;
     }
 
     public SmoothingModel(SmoothingModelVariant value) {
-
         this._kind = ApiTypeHelper.requireNonNull(value._smoothingModelKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
-
     }
 
     private SmoothingModel(Builder builder) {
-
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
     }
 
-    public static SmoothingModel of(Function<Builder, ObjectBuilder<SmoothingModel>> fn) {
+    public static SmoothingModel of(Function<SmoothingModel.Builder, ObjectBuilder<SmoothingModel>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -121,8 +117,7 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
     /**
      * Get the {@code laplace} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code laplace} kind.
+     * @throws IllegalStateException if the current variant is not the {@code laplace} kind.
      */
     public LaplaceSmoothingModel laplace() {
         return TaggedUnionUtils.get(this, Kind.Laplace);
@@ -138,9 +133,7 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
     /**
      * Get the {@code linear_interpolation} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code linear_interpolation}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code linear_interpolation} kind.
      */
     public LinearInterpolationSmoothingModel linearInterpolation() {
         return TaggedUnionUtils.get(this, Kind.LinearInterpolation);
@@ -156,31 +149,42 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
     /**
      * Get the {@code stupid_backoff} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code stupid_backoff} kind.
+     * @throws IllegalStateException if the current variant is not the {@code stupid_backoff} kind.
      */
     public StupidBackoffSmoothingModel stupidBackoff() {
         return TaggedUnionUtils.get(this, Kind.StupidBackoff);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeStartObject();
-
         generator.writeKey(_kind.jsonValue());
         if (_value instanceof JsonpSerializable) {
             ((JsonpSerializable) _value).serialize(generator, mapper);
         }
-
         generator.writeEnd();
+    }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SmoothingModel> {
         private Kind _kind;
-        private Object _value;
+        private SmoothingModelVariant _value;
+
+        public Builder() {}
+
+        private Builder(SmoothingModel o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         public ObjectBuilder<SmoothingModel> laplace(LaplaceSmoothingModel v) {
             this._kind = Kind.Laplace;
@@ -216,19 +220,17 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
             return this.stupidBackoff(fn.apply(new StupidBackoffSmoothingModel.Builder()).build());
         }
 
+        @Override
         public SmoothingModel build() {
             _checkSingleUse();
             return new SmoothingModel(this);
         }
-
     }
 
     protected static void setupSmoothingModelDeserializer(ObjectDeserializer<Builder> op) {
-
         op.add(Builder::laplace, LaplaceSmoothingModel._DESERIALIZER, "laplace");
         op.add(Builder::linearInterpolation, LinearInterpolationSmoothingModel._DESERIALIZER, "linear_interpolation");
         op.add(Builder::stupidBackoff, StupidBackoffSmoothingModel._DESERIALIZER, "stupid_backoff");
-
     }
 
     public static final JsonpDeserializer<SmoothingModel> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
@@ -236,4 +238,20 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
         SmoothingModel::setupSmoothingModelDeserializer,
         Builder::build
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SmoothingModel other = (SmoothingModel) o;
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
 }

@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,33 +47,41 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.search._types.PhraseSuggestHighlight
+// typedef: core.search.PhraseSuggestHighlight
 
 @JsonpDeserializable
-public class PhraseSuggestHighlight implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class PhraseSuggestHighlight
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<PhraseSuggestHighlight.Builder, PhraseSuggestHighlight> {
+
+    @Nonnull
     private final String postTag;
 
+    @Nonnull
     private final String preTag;
 
     // ---------------------------------------------------------------------------------------------
 
     private PhraseSuggestHighlight(Builder builder) {
-
         this.postTag = ApiTypeHelper.requireNonNull(builder.postTag, this, "postTag");
         this.preTag = ApiTypeHelper.requireNonNull(builder.preTag, this, "preTag");
-
     }
 
-    public static PhraseSuggestHighlight of(Function<Builder, ObjectBuilder<PhraseSuggestHighlight>> fn) {
+    public static PhraseSuggestHighlight of(Function<PhraseSuggestHighlight.Builder, ObjectBuilder<PhraseSuggestHighlight>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code post_tag}
      */
+    @Nonnull
     public final String postTag() {
         return this.postTag;
     }
@@ -75,6 +89,7 @@ public class PhraseSuggestHighlight implements PlainJsonSerializable {
     /**
      * Required - API name: {@code pre_tag}
      */
+    @Nonnull
     public final String preTag() {
         return this.preTag;
     }
@@ -82,6 +97,7 @@ public class PhraseSuggestHighlight implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -89,29 +105,55 @@ public class PhraseSuggestHighlight implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("post_tag");
         generator.write(this.postTag);
 
         generator.writeKey("pre_tag");
         generator.write(this.preTag);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PhraseSuggestHighlight}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PhraseSuggestHighlight> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PhraseSuggestHighlight> {
         private String postTag;
-
         private String preTag;
+
+        public Builder() {}
+
+        private Builder(PhraseSuggestHighlight o) {
+            this.postTag = o.postTag;
+            this.preTag = o.preTag;
+        }
+
+        private Builder(Builder o) {
+            this.postTag = o.postTag;
+            this.preTag = o.preTag;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code post_tag}
          */
+        @Nonnull
         public final Builder postTag(String value) {
             this.postTag = value;
             return this;
@@ -120,6 +162,7 @@ public class PhraseSuggestHighlight implements PlainJsonSerializable {
         /**
          * Required - API name: {@code pre_tag}
          */
+        @Nonnull
         public final Builder preTag(String value) {
             this.preTag = value;
             return this;
@@ -128,9 +171,10 @@ public class PhraseSuggestHighlight implements PlainJsonSerializable {
         /**
          * Builds a {@link PhraseSuggestHighlight}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PhraseSuggestHighlight build() {
             _checkSingleUse();
 
@@ -149,10 +193,23 @@ public class PhraseSuggestHighlight implements PlainJsonSerializable {
     );
 
     protected static void setupPhraseSuggestHighlightDeserializer(ObjectDeserializer<PhraseSuggestHighlight.Builder> op) {
-
         op.add(Builder::postTag, JsonpDeserializer.stringDeserializer(), "post_tag");
         op.add(Builder::preTag, JsonpDeserializer.stringDeserializer(), "pre_tag");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.postTag.hashCode();
+        result = 31 * result + this.preTag.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        PhraseSuggestHighlight other = (PhraseSuggestHighlight) o;
+        return this.postTag.equals(other.postTag) && this.preTag.equals(other.preTag);
+    }
 }

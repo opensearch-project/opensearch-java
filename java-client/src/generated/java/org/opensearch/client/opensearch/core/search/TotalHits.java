@@ -30,10 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -41,13 +47,18 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.search._types.TotalHits
+// typedef: core.search.TotalHits
 
 @JsonpDeserializable
-public class TotalHits implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class TotalHits implements PlainJsonSerializable, ToCopyableBuilder<TotalHits.Builder, TotalHits> {
+
+    @Nonnull
     private final TotalHitsRelation relation;
 
     private final long value;
@@ -55,19 +66,18 @@ public class TotalHits implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private TotalHits(Builder builder) {
-
         this.relation = ApiTypeHelper.requireNonNull(builder.relation, this, "relation");
         this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
-
     }
 
-    public static TotalHits of(Function<Builder, ObjectBuilder<TotalHits>> fn) {
+    public static TotalHits of(Function<TotalHits.Builder, ObjectBuilder<TotalHits>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code relation}
      */
+    @Nonnull
     public final TotalHitsRelation relation() {
         return this.relation;
     }
@@ -82,6 +92,7 @@ public class TotalHits implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -89,28 +100,55 @@ public class TotalHits implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("relation");
         this.relation.serialize(generator, mapper);
+
         generator.writeKey("value");
         generator.write(this.value);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link TotalHits}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TotalHits> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TotalHits> {
         private TotalHitsRelation relation;
-
         private Long value;
+
+        public Builder() {}
+
+        private Builder(TotalHits o) {
+            this.relation = o.relation;
+            this.value = o.value;
+        }
+
+        private Builder(Builder o) {
+            this.relation = o.relation;
+            this.value = o.value;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code relation}
          */
+        @Nonnull
         public final Builder relation(TotalHitsRelation value) {
             this.relation = value;
             return this;
@@ -119,6 +157,7 @@ public class TotalHits implements PlainJsonSerializable {
         /**
          * Required - API name: {@code value}
          */
+        @Nonnull
         public final Builder value(long value) {
             this.value = value;
             return this;
@@ -127,9 +166,10 @@ public class TotalHits implements PlainJsonSerializable {
         /**
          * Builds a {@link TotalHits}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public TotalHits build() {
             _checkSingleUse();
 
@@ -148,10 +188,23 @@ public class TotalHits implements PlainJsonSerializable {
     );
 
     protected static void setupTotalHitsDeserializer(ObjectDeserializer<TotalHits.Builder> op) {
-
         op.add(Builder::relation, TotalHitsRelation._DESERIALIZER, "relation");
         op.add(Builder::value, JsonpDeserializer.longDeserializer(), "value");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.relation.hashCode();
+        result = 31 * result + Long.hashCode(this.value);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        TotalHits other = (TotalHits) o;
+        return this.relation.equals(other.relation) && this.value == other.value;
+    }
 }

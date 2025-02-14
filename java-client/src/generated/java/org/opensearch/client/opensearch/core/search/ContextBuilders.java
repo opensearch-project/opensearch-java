@@ -30,34 +30,31 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
-import org.opensearch.client.json.JsonEnum;
-import org.opensearch.client.json.JsonpDeserializable;
+import javax.annotation.Generated;
+import org.opensearch.client.opensearch._types.GeoLocation;
 
-@JsonpDeserializable
-public enum StringDistance implements JsonEnum {
-    Internal("internal"),
+/**
+ * <p>
+ * Builders for {@link Context} variants.
+ * </p>
+ * <p>
+ * Variants <code>category</code> are not available here as they don't have a dedicated class. Use {@link Context}'s builder for these.
+ * </p>
+ */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ContextBuilders {
+    private ContextBuilders() {}
 
-    DamerauLevenshtein("damerau_levenshtein"),
-
-    Levenshtein("levenshtein"),
-
-    JaroWinkler("jaro_winkler"),
-
-    Ngram("ngram"),
-
-    ;
-
-    private final String jsonValue;
-
-    StringDistance(String jsonValue) {
-        this.jsonValue = jsonValue;
+    /**
+     * Creates a builder for the {@link GeoLocation location} {@code Context} variant.
+     */
+    public static GeoLocation.Builder location() {
+        return new GeoLocation.Builder();
     }
-
-    public String jsonValue() {
-        return this.jsonValue;
-    }
-
-    public static final JsonEnum.Deserializer<StringDistance> _DESERIALIZER = new JsonEnum.Deserializer<>(StringDistance.values());
 }

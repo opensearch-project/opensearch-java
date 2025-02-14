@@ -30,14 +30,22 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.json.UnionDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -45,22 +53,21 @@ import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
 
-// typedef: _global.search._types.TrackHits
+// typedef: core.search.TrackHits
 
 /**
- * Number of hits matching the query to count accurately. If true, the exact
- * number of hits is returned at the cost of some performance. If false, the
- * response does not include the total number of hits matching the query.
- * Defaults to 10,000 hits.
- *
+ * The number of hits matching the query. When <code>true</code>, the exact number of hits is returned at the cost of some performance. When
+ * <code>false</code>, the response does not include the total number of hits matching the query. Default is <code>10,000</code> hits.
  */
 @JsonpDeserializable
-public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, JsonpSerializable {
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, PlainJsonSerializable {
+    /**
+     * {@link TrackHits} variant kinds.
+     */
     public enum Kind {
         Count,
         Enabled
-
     }
 
     private final Kind _kind;
@@ -81,27 +88,24 @@ public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, JsonpSeri
         this._value = value;
     }
 
+    private TrackHits(Builder builder) {
+        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+    }
+
+    public static TrackHits of(Function<TrackHits.Builder, ObjectBuilder<TrackHits>> fn) {
+        return fn.apply(new Builder()).build();
+    }
+
     public String _toJsonString() {
         switch (_kind) {
             case Count:
                 return String.valueOf(this.count());
             case Enabled:
                 return String.valueOf(this.enabled());
-
             default:
                 throw new IllegalStateException("Unknown kind " + _kind);
         }
-    }
-
-    private TrackHits(Builder builder) {
-
-        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
-    }
-
-    public static TrackHits of(Function<Builder, ObjectBuilder<TrackHits>> fn) {
-        return fn.apply(new Builder()).build();
     }
 
     /**
@@ -114,8 +118,7 @@ public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, JsonpSeri
     /**
      * Get the {@code count} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code count} kind.
+     * @throws IllegalStateException if the current variant is not the {@code count} kind.
      */
     public Integer count() {
         return TaggedUnionUtils.get(this, Kind.Count);
@@ -131,8 +134,7 @@ public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, JsonpSeri
     /**
      * Get the {@code enabled} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code enabled} kind.
+     * @throws IllegalStateException if the current variant is not the {@code enabled} kind.
      */
     public Boolean enabled() {
         return TaggedUnionUtils.get(this, Kind.Enabled);
@@ -146,20 +148,34 @@ public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, JsonpSeri
             switch (_kind) {
                 case Count:
                     generator.write(((Integer) this._value));
-
                     break;
                 case Enabled:
                     generator.write(((Boolean) this._value));
-
                     break;
             }
         }
+    }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrackHits> {
         private Kind _kind;
         private Object _value;
+
+        public Builder() {}
+
+        private Builder(TrackHits o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         public ObjectBuilder<TrackHits> count(Integer v) {
             this._kind = Kind.Count;
@@ -173,11 +189,11 @@ public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, JsonpSeri
             return this;
         }
 
+        @Override
         public TrackHits build() {
             _checkSingleUse();
             return new TrackHits(this);
         }
-
     }
 
     private static JsonpDeserializer<TrackHits> buildTrackHitsDeserializer() {
@@ -188,4 +204,20 @@ public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, JsonpSeri
     }
 
     public static final JsonpDeserializer<TrackHits> _DESERIALIZER = JsonpDeserializer.lazy(TrackHits::buildTrackHitsDeserializer);
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        TrackHits other = (TrackHits) o;
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
 }

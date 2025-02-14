@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -41,13 +48,20 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.search._types.PhraseSuggestCollateQuery
+// typedef: core.search.PhraseSuggestCollateQuery
 
 @JsonpDeserializable
-public class PhraseSuggestCollateQuery implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class PhraseSuggestCollateQuery
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<PhraseSuggestCollateQuery.Builder, PhraseSuggestCollateQuery> {
+
     @Nullable
     private final String id;
 
@@ -57,13 +71,11 @@ public class PhraseSuggestCollateQuery implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private PhraseSuggestCollateQuery(Builder builder) {
-
         this.id = builder.id;
         this.source = builder.source;
-
     }
 
-    public static PhraseSuggestCollateQuery of(Function<Builder, ObjectBuilder<PhraseSuggestCollateQuery>> fn) {
+    public static PhraseSuggestCollateQuery of(Function<PhraseSuggestCollateQuery.Builder, ObjectBuilder<PhraseSuggestCollateQuery>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -86,6 +98,7 @@ public class PhraseSuggestCollateQuery implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -93,36 +106,61 @@ public class PhraseSuggestCollateQuery implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (this.id != null) {
             generator.writeKey("id");
             generator.write(this.id);
-
         }
+
         if (this.source != null) {
             generator.writeKey("source");
             generator.write(this.source);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PhraseSuggestCollateQuery}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PhraseSuggestCollateQuery> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PhraseSuggestCollateQuery> {
         @Nullable
         private String id;
-
         @Nullable
         private String source;
+
+        public Builder() {}
+
+        private Builder(PhraseSuggestCollateQuery o) {
+            this.id = o.id;
+            this.source = o.source;
+        }
+
+        private Builder(Builder o) {
+            this.id = o.id;
+            this.source = o.source;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * API name: {@code id}
          */
+        @Nonnull
         public final Builder id(@Nullable String value) {
             this.id = value;
             return this;
@@ -131,6 +169,7 @@ public class PhraseSuggestCollateQuery implements PlainJsonSerializable {
         /**
          * API name: {@code source}
          */
+        @Nonnull
         public final Builder source(@Nullable String value) {
             this.source = value;
             return this;
@@ -139,9 +178,10 @@ public class PhraseSuggestCollateQuery implements PlainJsonSerializable {
         /**
          * Builds a {@link PhraseSuggestCollateQuery}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PhraseSuggestCollateQuery build() {
             _checkSingleUse();
 
@@ -160,10 +200,23 @@ public class PhraseSuggestCollateQuery implements PlainJsonSerializable {
     );
 
     protected static void setupPhraseSuggestCollateQueryDeserializer(ObjectDeserializer<PhraseSuggestCollateQuery.Builder> op) {
-
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
         op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.id);
+        result = 31 * result + Objects.hashCode(this.source);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        PhraseSuggestCollateQuery other = (PhraseSuggestCollateQuery) o;
+        return Objects.equals(this.id, other.id) && Objects.equals(this.source, other.source);
+    }
 }

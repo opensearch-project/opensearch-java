@@ -30,41 +30,39 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
+import javax.annotation.Generated;
+
 /**
- * Builders for {@link FieldSuggester} variants.
- * <p>
- * Variants <code>prefix</code>, <code>regex</code>, <code>text</code> are not
- * available here as they don't have a dedicated class. Use
- * {@link FieldSuggester}'s builder for these.
- *
+ * Builders for {@link SmoothingModel} variants.
  */
-public class FieldSuggesterBuilders {
-    private FieldSuggesterBuilders() {}
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SmoothingModelBuilders {
+    private SmoothingModelBuilders() {}
 
     /**
-     * Creates a builder for the {@link CompletionSuggester completion}
-     * {@code FieldSuggester} variant.
+     * Creates a builder for the {@link LaplaceSmoothingModel laplace} {@code SmoothingModel} variant.
      */
-    public static CompletionSuggester.Builder completion() {
-        return new CompletionSuggester.Builder();
+    public static LaplaceSmoothingModel.Builder laplace() {
+        return new LaplaceSmoothingModel.Builder();
     }
 
     /**
-     * Creates a builder for the {@link PhraseSuggester phrase}
-     * {@code FieldSuggester} variant.
+     * Creates a builder for the {@link LinearInterpolationSmoothingModel linear_interpolation} {@code SmoothingModel} variant.
      */
-    public static PhraseSuggester.Builder phrase() {
-        return new PhraseSuggester.Builder();
+    public static LinearInterpolationSmoothingModel.Builder linearInterpolation() {
+        return new LinearInterpolationSmoothingModel.Builder();
     }
 
     /**
-     * Creates a builder for the {@link TermSuggester term} {@code FieldSuggester}
-     * variant.
+     * Creates a builder for the {@link StupidBackoffSmoothingModel stupid_backoff} {@code SmoothingModel} variant.
      */
-    public static TermSuggester.Builder term() {
-        return new TermSuggester.Builder();
+    public static StupidBackoffSmoothingModel.Builder stupidBackoff() {
+        return new StupidBackoffSmoothingModel.Builder();
     }
-
 }

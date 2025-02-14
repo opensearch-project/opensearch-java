@@ -30,14 +30,22 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.json.UnionDeserializer;
 import org.opensearch.client.opensearch._types.GeoLocation;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -46,20 +54,20 @@ import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
 
-// typedef: _global.search._types.Context
+// typedef: core.search.Context
 
 /**
- * Text or location that we want similar documents for or a lookup to a
- * document's field for the text.
- *
+ * Text or location that we want similar documents for or a lookup to a document's field for the text.
  */
 @JsonpDeserializable
-public class Context implements TaggedUnion<Context.Kind, Object>, JsonpSerializable {
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class Context implements TaggedUnion<Context.Kind, Object>, PlainJsonSerializable {
+    /**
+     * {@link Context} variant kinds.
+     */
     public enum Kind {
-        Location,
-        Category
-
+        Category,
+        Location
     }
 
     private final Kind _kind;
@@ -81,31 +89,12 @@ public class Context implements TaggedUnion<Context.Kind, Object>, JsonpSerializ
     }
 
     private Context(Builder builder) {
-
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
     }
 
-    public static Context of(Function<Builder, ObjectBuilder<Context>> fn) {
+    public static Context of(Function<Context.Builder, ObjectBuilder<Context>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * Is this variant instance of kind {@code location}?
-     */
-    public boolean isLocation() {
-        return _kind == Kind.Location;
-    }
-
-    /**
-     * Get the {@code location} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code location} kind.
-     */
-    public GeoLocation location() {
-        return TaggedUnionUtils.get(this, Kind.Location);
     }
 
     /**
@@ -118,11 +107,26 @@ public class Context implements TaggedUnion<Context.Kind, Object>, JsonpSerializ
     /**
      * Get the {@code category} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code category} kind.
+     * @throws IllegalStateException if the current variant is not the {@code category} kind.
      */
     public String category() {
         return TaggedUnionUtils.get(this, Kind.Category);
+    }
+
+    /**
+     * Is this variant instance of kind {@code location}?
+     */
+    public boolean isLocation() {
+        return _kind == Kind.Location;
+    }
+
+    /**
+     * Get the {@code location} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code location} kind.
+     */
+    public GeoLocation location() {
+        return TaggedUnionUtils.get(this, Kind.Location);
     }
 
     @Override
@@ -133,16 +137,37 @@ public class Context implements TaggedUnion<Context.Kind, Object>, JsonpSerializ
             switch (_kind) {
                 case Category:
                     generator.write(((String) this._value));
-
                     break;
             }
         }
+    }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Context> {
         private Kind _kind;
         private Object _value;
+
+        public Builder() {}
+
+        private Builder(Context o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
+
+        public ObjectBuilder<Context> category(String v) {
+            this._kind = Kind.Category;
+            this._value = v;
+            return this;
+        }
 
         public ObjectBuilder<Context> location(GeoLocation v) {
             this._kind = Kind.Location;
@@ -154,24 +179,35 @@ public class Context implements TaggedUnion<Context.Kind, Object>, JsonpSerializ
             return this.location(fn.apply(new GeoLocation.Builder()).build());
         }
 
-        public ObjectBuilder<Context> category(String v) {
-            this._kind = Kind.Category;
-            this._value = v;
-            return this;
-        }
-
+        @Override
         public Context build() {
             _checkSingleUse();
             return new Context(this);
         }
-
     }
 
     private static JsonpDeserializer<Context> buildContextDeserializer() {
-        return new UnionDeserializer.Builder<Context, Kind, Object>(Context::new, true).addMember(Kind.Location, GeoLocation._DESERIALIZER)
-            .addMember(Kind.Category, JsonpDeserializer.stringDeserializer())
-            .build();
+        return new UnionDeserializer.Builder<Context, Kind, Object>(Context::new, true).addMember(
+            Kind.Category,
+            JsonpDeserializer.stringDeserializer()
+        ).addMember(Kind.Location, GeoLocation._DESERIALIZER).build();
     }
 
     public static final JsonpDeserializer<Context> _DESERIALIZER = JsonpDeserializer.lazy(Context::buildContextDeserializer);
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Context other = (Context) o;
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
 }

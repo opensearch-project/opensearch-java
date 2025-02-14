@@ -30,17 +30,22 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
+import javax.annotation.Generated;
+
 /**
- * Base interface for {@link FieldSuggester} variants.
+ * Base interface for {@link SmoothingModel} variants.
  */
-public interface FieldSuggesterVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public interface SmoothingModelVariant {
+    SmoothingModel.Kind _smoothingModelKind();
 
-    FieldSuggester.Kind _fieldSuggesterKind();
-
-    default FieldSuggester _toFieldSuggester() {
-        return new FieldSuggester(this);
+    default SmoothingModel toSmoothingModel() {
+        return new SmoothingModel(this);
     }
-
 }

@@ -30,40 +30,52 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.search._types.LaplaceSmoothingModel
+// typedef: core.search.LaplaceSmoothingModel
 
 @JsonpDeserializable
-public class LaplaceSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class LaplaceSmoothingModel
+    implements
+        SmoothingModelVariant,
+        PlainJsonSerializable,
+        ToCopyableBuilder<LaplaceSmoothingModel.Builder, LaplaceSmoothingModel> {
+
     private final double alpha;
 
     // ---------------------------------------------------------------------------------------------
 
     private LaplaceSmoothingModel(Builder builder) {
-
         this.alpha = ApiTypeHelper.requireNonNull(builder.alpha, this, "alpha");
-
     }
 
-    public static LaplaceSmoothingModel of(Function<Builder, ObjectBuilder<LaplaceSmoothingModel>> fn) {
+    public static LaplaceSmoothingModel of(Function<LaplaceSmoothingModel.Builder, ObjectBuilder<LaplaceSmoothingModel>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * SmoothingModel variant kind.
+     * {@link SmoothingModel} variant kind.
      */
     @Override
     public SmoothingModel.Kind _smoothingModelKind() {
@@ -80,6 +92,7 @@ public class LaplaceSmoothingModel implements SmoothingModelVariant, JsonpSerial
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -87,24 +100,49 @@ public class LaplaceSmoothingModel implements SmoothingModelVariant, JsonpSerial
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("alpha");
         generator.write(this.alpha);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link LaplaceSmoothingModel}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LaplaceSmoothingModel> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, LaplaceSmoothingModel> {
         private Double alpha;
+
+        public Builder() {}
+
+        private Builder(LaplaceSmoothingModel o) {
+            this.alpha = o.alpha;
+        }
+
+        private Builder(Builder o) {
+            this.alpha = o.alpha;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code alpha}
          */
+        @Nonnull
         public final Builder alpha(double value) {
             this.alpha = value;
             return this;
@@ -113,9 +151,10 @@ public class LaplaceSmoothingModel implements SmoothingModelVariant, JsonpSerial
         /**
          * Builds a {@link LaplaceSmoothingModel}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public LaplaceSmoothingModel build() {
             _checkSingleUse();
 
@@ -134,9 +173,21 @@ public class LaplaceSmoothingModel implements SmoothingModelVariant, JsonpSerial
     );
 
     protected static void setupLaplaceSmoothingModelDeserializer(ObjectDeserializer<LaplaceSmoothingModel.Builder> op) {
-
         op.add(Builder::alpha, JsonpDeserializer.doubleDeserializer(), "alpha");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Double.hashCode(this.alpha);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        LaplaceSmoothingModel other = (LaplaceSmoothingModel) o;
+        return this.alpha == other.alpha;
+    }
 }

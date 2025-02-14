@@ -30,17 +30,36 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch.core.search;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
-/**
- * Base interface for {@link SmoothingModel} variants.
- */
-public interface SmoothingModelVariant {
+package org.opensearch.client.opensearch._types;
 
-    SmoothingModel.Kind _smoothingModelKind();
+import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
 
-    default SmoothingModel _toSmoothingModel() {
-        return new SmoothingModel(this);
+// typedef: _types.SuggestMode
+
+@JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum SuggestMode implements JsonEnum {
+    Always("always"),
+
+    Missing("missing"),
+
+    Popular("popular");
+
+    private final String jsonValue;
+
+    SuggestMode(String jsonValue) {
+        this.jsonValue = jsonValue;
     }
 
+    public String jsonValue() {
+        return this.jsonValue;
+    }
+
+    public static final JsonEnum.Deserializer<SuggestMode> _DESERIALIZER = new JsonEnum.Deserializer<>(SuggestMode.values());
 }

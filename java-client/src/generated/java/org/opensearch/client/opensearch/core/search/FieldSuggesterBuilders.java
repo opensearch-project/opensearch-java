@@ -30,36 +30,39 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
+import javax.annotation.Generated;
+
 /**
- * Builders for {@link SmoothingModel} variants.
+ * Builders for {@link FieldSuggester} variants.
  */
-public class SmoothingModelBuilders {
-    private SmoothingModelBuilders() {}
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class FieldSuggesterBuilders {
+    private FieldSuggesterBuilders() {}
 
     /**
-     * Creates a builder for the {@link LaplaceSmoothingModel laplace}
-     * {@code SmoothingModel} variant.
+     * Creates a builder for the {@link CompletionSuggester completion} {@code FieldSuggester} variant.
      */
-    public static LaplaceSmoothingModel.Builder laplace() {
-        return new LaplaceSmoothingModel.Builder();
+    public static CompletionSuggester.Builder completion() {
+        return new CompletionSuggester.Builder();
     }
 
     /**
-     * Creates a builder for the {@link LinearInterpolationSmoothingModel
-     * linear_interpolation} {@code SmoothingModel} variant.
+     * Creates a builder for the {@link PhraseSuggester phrase} {@code FieldSuggester} variant.
      */
-    public static LinearInterpolationSmoothingModel.Builder linearInterpolation() {
-        return new LinearInterpolationSmoothingModel.Builder();
+    public static PhraseSuggester.Builder phrase() {
+        return new PhraseSuggester.Builder();
     }
 
     /**
-     * Creates a builder for the {@link StupidBackoffSmoothingModel stupid_backoff}
-     * {@code SmoothingModel} variant.
+     * Creates a builder for the {@link TermSuggester term} {@code FieldSuggester} variant.
      */
-    public static StupidBackoffSmoothingModel.Builder stupidBackoff() {
-        return new StupidBackoffSmoothingModel.Builder();
+    public static TermSuggester.Builder term() {
+        return new TermSuggester.Builder();
     }
-
 }
