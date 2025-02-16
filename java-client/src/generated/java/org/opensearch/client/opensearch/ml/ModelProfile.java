@@ -41,6 +41,9 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
     private final ModelStats deploy;
 
     @Nullable
+    private final ModelStats execute;
+
+    @Nullable
     private final Long memorySizeEstimationCpu;
 
     @Nullable
@@ -80,6 +83,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
 
     private ModelProfile(Builder builder) {
         this.deploy = builder.deploy;
+        this.execute = builder.execute;
         this.memorySizeEstimationCpu = builder.memorySizeEstimationCpu;
         this.memorySizeEstimationGpu = builder.memorySizeEstimationGpu;
         this.modelState = builder.modelState;
@@ -104,6 +108,14 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
     @Nullable
     public final ModelStats deploy() {
         return this.deploy;
+    }
+
+    /**
+     * API name: {@code execute}
+     */
+    @Nullable
+    public final ModelStats execute() {
+        return this.execute;
     }
 
     /**
@@ -230,6 +242,11 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
             this.deploy.serialize(generator, mapper);
         }
 
+        if (this.execute != null) {
+            generator.writeKey("execute");
+            this.execute.serialize(generator, mapper);
+        }
+
         if (this.memorySizeEstimationCpu != null) {
             generator.writeKey("memory_size_estimation_cpu");
             generator.write(this.memorySizeEstimationCpu);
@@ -327,6 +344,8 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         @Nullable
         private ModelStats deploy;
         @Nullable
+        private ModelStats execute;
+        @Nullable
         private Long memorySizeEstimationCpu;
         @Nullable
         private Long memorySizeEstimationGpu;
@@ -355,6 +374,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
 
         private Builder(ModelProfile o) {
             this.deploy = o.deploy;
+            this.execute = o.execute;
             this.memorySizeEstimationCpu = o.memorySizeEstimationCpu;
             this.memorySizeEstimationGpu = o.memorySizeEstimationGpu;
             this.modelState = o.modelState;
@@ -371,6 +391,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
 
         private Builder(Builder o) {
             this.deploy = o.deploy;
+            this.execute = o.execute;
             this.memorySizeEstimationCpu = o.memorySizeEstimationCpu;
             this.memorySizeEstimationGpu = o.memorySizeEstimationGpu;
             this.modelState = o.modelState;
@@ -406,6 +427,23 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         @Nonnull
         public final Builder deploy(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
             return deploy(fn.apply(new ModelStats.Builder()).build());
+        }
+
+        /**
+         * API name: {@code execute}
+         */
+        @Nonnull
+        public final Builder execute(@Nullable ModelStats value) {
+            this.execute = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code execute}
+         */
+        @Nonnull
+        public final Builder execute(Function<ModelStats.Builder, ObjectBuilder<ModelStats>> fn) {
+            return execute(fn.apply(new ModelStats.Builder()).build());
         }
 
         /**
@@ -636,6 +674,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
 
     protected static void setupModelProfileDeserializer(ObjectDeserializer<ModelProfile.Builder> op) {
         op.add(Builder::deploy, ModelStats._DESERIALIZER, "deploy");
+        op.add(Builder::execute, ModelStats._DESERIALIZER, "execute");
         op.add(Builder::memorySizeEstimationCpu, JsonpDeserializer.longDeserializer(), "memory_size_estimation_cpu");
         op.add(Builder::memorySizeEstimationGpu, JsonpDeserializer.longDeserializer(), "memory_size_estimation_gpu");
         op.add(Builder::modelState, JsonpDeserializer.stringDeserializer(), "model_state");
@@ -662,6 +701,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.deploy);
+        result = 31 * result + Objects.hashCode(this.execute);
         result = 31 * result + Objects.hashCode(this.memorySizeEstimationCpu);
         result = 31 * result + Objects.hashCode(this.memorySizeEstimationGpu);
         result = 31 * result + Objects.hashCode(this.modelState);
@@ -683,6 +723,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         if (o == null || this.getClass() != o.getClass()) return false;
         ModelProfile other = (ModelProfile) o;
         return Objects.equals(this.deploy, other.deploy)
+            && Objects.equals(this.execute, other.execute)
             && Objects.equals(this.memorySizeEstimationCpu, other.memorySizeEstimationCpu)
             && Objects.equals(this.memorySizeEstimationGpu, other.memorySizeEstimationGpu)
             && Objects.equals(this.modelState, other.modelState)

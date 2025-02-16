@@ -49,7 +49,7 @@ public class CodeGenerator {
             namespace(is("ml")),
             name(
                 // TODO: search_models is complex and ideally should re-use the search structures
-                not(or(contains("predict"), contains("search"), contains("train"), isOneOf("chunk_model")))
+                not(or(contains("predict"), contains("search"), contains("train"), isOneOf("chunk_model", "execute_algorithm")))
             )
         )
     );
