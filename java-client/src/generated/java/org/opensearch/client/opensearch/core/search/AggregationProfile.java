@@ -30,11 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -43,53 +50,77 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.search._types.AggregationProfile
+// typedef: core.search.AggregationProfile
 
 @JsonpDeserializable
-public class AggregationProfile implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class AggregationProfile implements PlainJsonSerializable, ToCopyableBuilder<AggregationProfile.Builder, AggregationProfile> {
+
+    @Nonnull
     private final AggregationBreakdown breakdown;
 
-    private final String description;
-
-    private final long timeInNanos;
-
-    private final String type;
+    @Nonnull
+    private final List<AggregationProfile> children;
 
     @Nullable
     private final AggregationProfileDebug debug;
 
-    private final List<AggregationProfile> children;
+    @Nonnull
+    private final String description;
+
+    private final long timeInNanos;
+
+    @Nonnull
+    private final String type;
 
     // ---------------------------------------------------------------------------------------------
 
     private AggregationProfile(Builder builder) {
-
         this.breakdown = ApiTypeHelper.requireNonNull(builder.breakdown, this, "breakdown");
+        this.children = ApiTypeHelper.unmodifiable(builder.children);
+        this.debug = builder.debug;
         this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
         this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-        this.debug = builder.debug;
-        this.children = ApiTypeHelper.unmodifiable(builder.children);
-
     }
 
-    public static AggregationProfile of(Function<Builder, ObjectBuilder<AggregationProfile>> fn) {
+    public static AggregationProfile of(Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code breakdown}
      */
+    @Nonnull
     public final AggregationBreakdown breakdown() {
         return this.breakdown;
     }
 
     /**
+     * API name: {@code children}
+     */
+    @Nonnull
+    public final List<AggregationProfile> children() {
+        return this.children;
+    }
+
+    /**
+     * API name: {@code debug}
+     */
+    @Nullable
+    public final AggregationProfileDebug debug() {
+        return this.debug;
+    }
+
+    /**
      * Required - API name: {@code description}
      */
+    @Nonnull
     public final String description() {
         return this.description;
     }
@@ -104,28 +135,15 @@ public class AggregationProfile implements PlainJsonSerializable {
     /**
      * Required - API name: {@code type}
      */
+    @Nonnull
     public final String type() {
         return this.type;
     }
 
     /**
-     * API name: {@code debug}
-     */
-    @Nullable
-    public final AggregationProfileDebug debug() {
-        return this.debug;
-    }
-
-    /**
-     * API name: {@code children}
-     */
-    public final List<AggregationProfile> children() {
-        return this.children;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -133,9 +151,22 @@ public class AggregationProfile implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("breakdown");
         this.breakdown.serialize(generator, mapper);
+
+        if (ApiTypeHelper.isDefined(this.children)) {
+            generator.writeKey("children");
+            generator.writeStartArray();
+            for (AggregationProfile item0 : this.children) {
+                item0.serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
+
+        if (this.debug != null) {
+            generator.writeKey("debug");
+            this.debug.serialize(generator, mapper);
+        }
 
         generator.writeKey("description");
         generator.write(this.description);
@@ -145,49 +176,64 @@ public class AggregationProfile implements PlainJsonSerializable {
 
         generator.writeKey("type");
         generator.write(this.type);
-
-        if (this.debug != null) {
-            generator.writeKey("debug");
-            this.debug.serialize(generator, mapper);
-
-        }
-        if (ApiTypeHelper.isDefined(this.children)) {
-            generator.writeKey("children");
-            generator.writeStartArray();
-            for (AggregationProfile item0 : this.children) {
-                item0.serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
-        }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link AggregationProfile}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AggregationProfile> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AggregationProfile> {
         private AggregationBreakdown breakdown;
-
-        private String description;
-
-        private Long timeInNanos;
-
-        private String type;
-
-        @Nullable
-        private AggregationProfileDebug debug;
-
         @Nullable
         private List<AggregationProfile> children;
+        @Nullable
+        private AggregationProfileDebug debug;
+        private String description;
+        private Long timeInNanos;
+        private String type;
+
+        public Builder() {}
+
+        private Builder(AggregationProfile o) {
+            this.breakdown = o.breakdown;
+            this.children = _listCopy(o.children);
+            this.debug = o.debug;
+            this.description = o.description;
+            this.timeInNanos = o.timeInNanos;
+            this.type = o.type;
+        }
+
+        private Builder(Builder o) {
+            this.breakdown = o.breakdown;
+            this.children = _listCopy(o.children);
+            this.debug = o.debug;
+            this.description = o.description;
+            this.timeInNanos = o.timeInNanos;
+            this.type = o.type;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code breakdown}
          */
+        @Nonnull
         public final Builder breakdown(AggregationBreakdown value) {
             this.breakdown = value;
             return this;
@@ -196,37 +242,53 @@ public class AggregationProfile implements PlainJsonSerializable {
         /**
          * Required - API name: {@code breakdown}
          */
+        @Nonnull
         public final Builder breakdown(Function<AggregationBreakdown.Builder, ObjectBuilder<AggregationBreakdown>> fn) {
-            return this.breakdown(fn.apply(new AggregationBreakdown.Builder()).build());
+            return breakdown(fn.apply(new AggregationBreakdown.Builder()).build());
         }
 
         /**
-         * Required - API name: {@code description}
+         * API name: {@code children}
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>children</code>.
+         * </p>
          */
-        public final Builder description(String value) {
-            this.description = value;
+        @Nonnull
+        public final Builder children(List<AggregationProfile> list) {
+            this.children = _listAddAll(this.children, list);
             return this;
         }
 
         /**
-         * Required - API name: {@code time_in_nanos}
+         * API name: {@code children}
+         *
+         * <p>
+         * Adds one or more values to <code>children</code>.
+         * </p>
          */
-        public final Builder timeInNanos(long value) {
-            this.timeInNanos = value;
+        @Nonnull
+        public final Builder children(AggregationProfile value, AggregationProfile... values) {
+            this.children = _listAdd(this.children, value, values);
             return this;
         }
 
         /**
-         * Required - API name: {@code type}
+         * API name: {@code children}
+         *
+         * <p>
+         * Adds a value to <code>children</code> using a builder lambda.
+         * </p>
          */
-        public final Builder type(String value) {
-            this.type = value;
-            return this;
+        @Nonnull
+        public final Builder children(Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn) {
+            return children(fn.apply(new AggregationProfile.Builder()).build());
         }
 
         /**
          * API name: {@code debug}
          */
+        @Nonnull
         public final Builder debug(@Nullable AggregationProfileDebug value) {
             this.debug = value;
             return this;
@@ -235,45 +297,45 @@ public class AggregationProfile implements PlainJsonSerializable {
         /**
          * API name: {@code debug}
          */
+        @Nonnull
         public final Builder debug(Function<AggregationProfileDebug.Builder, ObjectBuilder<AggregationProfileDebug>> fn) {
-            return this.debug(fn.apply(new AggregationProfileDebug.Builder()).build());
+            return debug(fn.apply(new AggregationProfileDebug.Builder()).build());
         }
 
         /**
-         * API name: {@code children}
-         * <p>
-         * Adds all elements of <code>list</code> to <code>children</code>.
+         * Required - API name: {@code description}
          */
-        public final Builder children(List<AggregationProfile> list) {
-            this.children = _listAddAll(this.children, list);
+        @Nonnull
+        public final Builder description(String value) {
+            this.description = value;
             return this;
         }
 
         /**
-         * API name: {@code children}
-         * <p>
-         * Adds one or more values to <code>children</code>.
+         * Required - API name: {@code time_in_nanos}
          */
-        public final Builder children(AggregationProfile value, AggregationProfile... values) {
-            this.children = _listAdd(this.children, value, values);
+        @Nonnull
+        public final Builder timeInNanos(long value) {
+            this.timeInNanos = value;
             return this;
         }
 
         /**
-         * API name: {@code children}
-         * <p>
-         * Adds a value to <code>children</code> using a builder lambda.
+         * Required - API name: {@code type}
          */
-        public final Builder children(Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn) {
-            return children(fn.apply(new AggregationProfile.Builder()).build());
+        @Nonnull
+        public final Builder type(String value) {
+            this.type = value;
+            return this;
         }
 
         /**
          * Builds a {@link AggregationProfile}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public AggregationProfile build() {
             _checkSingleUse();
 
@@ -292,14 +354,36 @@ public class AggregationProfile implements PlainJsonSerializable {
     );
 
     protected static void setupAggregationProfileDeserializer(ObjectDeserializer<AggregationProfile.Builder> op) {
-
         op.add(Builder::breakdown, AggregationBreakdown._DESERIALIZER, "breakdown");
+        op.add(Builder::children, JsonpDeserializer.arrayDeserializer(AggregationProfile._DESERIALIZER), "children");
+        op.add(Builder::debug, AggregationProfileDebug._DESERIALIZER, "debug");
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::timeInNanos, JsonpDeserializer.longDeserializer(), "time_in_nanos");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-        op.add(Builder::debug, AggregationProfileDebug._DESERIALIZER, "debug");
-        op.add(Builder::children, JsonpDeserializer.arrayDeserializer(AggregationProfile._DESERIALIZER), "children");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.breakdown.hashCode();
+        result = 31 * result + Objects.hashCode(this.children);
+        result = 31 * result + Objects.hashCode(this.debug);
+        result = 31 * result + this.description.hashCode();
+        result = 31 * result + Long.hashCode(this.timeInNanos);
+        result = 31 * result + this.type.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        AggregationProfile other = (AggregationProfile) o;
+        return this.breakdown.equals(other.breakdown)
+            && Objects.equals(this.children, other.children)
+            && Objects.equals(this.debug, other.debug)
+            && this.description.equals(other.description)
+            && this.timeInNanos == other.timeInNanos
+            && this.type.equals(other.type);
+    }
 }

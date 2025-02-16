@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,43 +49,47 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.search._types.PhraseSuggestOption
+// typedef: core.search.PhraseSuggestOption
 
 @JsonpDeserializable
-public class PhraseSuggestOption implements PlainJsonSerializable {
-    private final String text;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class PhraseSuggestOption implements PlainJsonSerializable, ToCopyableBuilder<PhraseSuggestOption.Builder, PhraseSuggestOption> {
+
+    @Nullable
+    private final Boolean collateMatch;
 
     @Nullable
     private final String highlighted;
 
     private final double score;
 
-    @Nullable
-    private final Boolean collateMatch;
+    @Nonnull
+    private final String text;
 
     // ---------------------------------------------------------------------------------------------
 
     private PhraseSuggestOption(Builder builder) {
-
-        this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
+        this.collateMatch = builder.collateMatch;
         this.highlighted = builder.highlighted;
         this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
-        this.collateMatch = builder.collateMatch;
-
+        this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
     }
 
-    public static PhraseSuggestOption of(Function<Builder, ObjectBuilder<PhraseSuggestOption>> fn) {
+    public static PhraseSuggestOption of(Function<PhraseSuggestOption.Builder, ObjectBuilder<PhraseSuggestOption>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code text}
+     * API name: {@code collate_match}
      */
-    public final String text() {
-        return this.text;
+    @Nullable
+    public final Boolean collateMatch() {
+        return this.collateMatch;
     }
 
     /**
@@ -97,15 +108,17 @@ public class PhraseSuggestOption implements PlainJsonSerializable {
     }
 
     /**
-     * API name: {@code collate_match}
+     * Required - API name: {@code text}
      */
-    public final Boolean collateMatch() {
-        return this.collateMatch;
+    @Nonnull
+    public final String text() {
+        return this.text;
     }
 
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -113,9 +126,10 @@ public class PhraseSuggestOption implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.writeKey("text");
-        generator.write(this.text);
+        if (this.collateMatch != null) {
+            generator.writeKey("collate_match");
+            generator.write(this.collateMatch);
+        }
 
         if (this.highlighted != null) {
             generator.writeKey("highlighted");
@@ -125,40 +139,69 @@ public class PhraseSuggestOption implements PlainJsonSerializable {
         generator.writeKey("score");
         generator.write(this.score);
 
-        if (this.collateMatch != null) {
-            generator.writeKey("collate_match");
-            generator.write(this.collateMatch);
-        }
+        generator.writeKey("text");
+        generator.write(this.text);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PhraseSuggestOption}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PhraseSuggestOption> {
-        private String text;
-
-        @Nullable
-        private String highlighted;
-
-        private Double score;
-
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PhraseSuggestOption> {
         @Nullable
         private Boolean collateMatch;
+        @Nullable
+        private String highlighted;
+        private Double score;
+        private String text;
+
+        public Builder() {}
+
+        private Builder(PhraseSuggestOption o) {
+            this.collateMatch = o.collateMatch;
+            this.highlighted = o.highlighted;
+            this.score = o.score;
+            this.text = o.text;
+        }
+
+        private Builder(Builder o) {
+            this.collateMatch = o.collateMatch;
+            this.highlighted = o.highlighted;
+            this.score = o.score;
+            this.text = o.text;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
-         * Required - API name: {@code text}
+         * API name: {@code collate_match}
          */
-        public final Builder text(String value) {
-            this.text = value;
+        @Nonnull
+        public final Builder collateMatch(@Nullable Boolean value) {
+            this.collateMatch = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code highlighted}
+         * API name: {@code highlighted}
          */
+        @Nonnull
         public final Builder highlighted(@Nullable String value) {
             this.highlighted = value;
             return this;
@@ -167,25 +210,28 @@ public class PhraseSuggestOption implements PlainJsonSerializable {
         /**
          * Required - API name: {@code score}
          */
+        @Nonnull
         public final Builder score(double value) {
             this.score = value;
             return this;
         }
 
         /**
-         * API name: {@code collate_match}
+         * Required - API name: {@code text}
          */
-        public final Builder collateMatch(@Nullable Boolean value) {
-            this.collateMatch = value;
+        @Nonnull
+        public final Builder text(String value) {
+            this.text = value;
             return this;
         }
 
         /**
          * Builds a {@link PhraseSuggestOption}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PhraseSuggestOption build() {
             _checkSingleUse();
 
@@ -204,12 +250,30 @@ public class PhraseSuggestOption implements PlainJsonSerializable {
     );
 
     protected static void setupPhraseSuggestOptionDeserializer(ObjectDeserializer<PhraseSuggestOption.Builder> op) {
-
-        op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
+        op.add(Builder::collateMatch, JsonpDeserializer.booleanDeserializer(), "collate_match");
         op.add(Builder::highlighted, JsonpDeserializer.stringDeserializer(), "highlighted");
         op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "score");
-        op.add(Builder::collateMatch, JsonpDeserializer.booleanDeserializer(), "collate_match");
-
+        op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.collateMatch);
+        result = 31 * result + Objects.hashCode(this.highlighted);
+        result = 31 * result + Double.hashCode(this.score);
+        result = 31 * result + this.text.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        PhraseSuggestOption other = (PhraseSuggestOption) o;
+        return Objects.equals(this.collateMatch, other.collateMatch)
+            && Objects.equals(this.highlighted, other.highlighted)
+            && this.score == other.score
+            && this.text.equals(other.text);
+    }
 }

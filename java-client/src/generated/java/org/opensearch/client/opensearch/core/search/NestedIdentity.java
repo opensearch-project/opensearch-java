@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,46 +49,43 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.search._types.NestedIdentity
+// typedef: core.search.NestedIdentity
 
 @JsonpDeserializable
-public class NestedIdentity implements PlainJsonSerializable {
-    private final String field;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class NestedIdentity implements PlainJsonSerializable, ToCopyableBuilder<NestedIdentity.Builder, NestedIdentity> {
 
-    private final int offset;
+    @Nonnull
+    private final String field;
 
     @Nullable
     private final NestedIdentity nested;
 
+    private final int offset;
+
     // ---------------------------------------------------------------------------------------------
 
     private NestedIdentity(Builder builder) {
-
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-        this.offset = ApiTypeHelper.requireNonNull(builder.offset, this, "offset");
         this.nested = builder.nested;
-
+        this.offset = ApiTypeHelper.requireNonNull(builder.offset, this, "offset");
     }
 
-    public static NestedIdentity of(Function<Builder, ObjectBuilder<NestedIdentity>> fn) {
+    public static NestedIdentity of(Function<NestedIdentity.Builder, ObjectBuilder<NestedIdentity>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code field}
      */
+    @Nonnull
     public final String field() {
         return this.field;
-    }
-
-    /**
-     * Required - API name: {@code offset}
-     */
-    public final int offset() {
-        return this.offset;
     }
 
     /**
@@ -93,8 +97,16 @@ public class NestedIdentity implements PlainJsonSerializable {
     }
 
     /**
+     * Required - API name: {@code offset}
+     */
+    public final int offset() {
+        return this.offset;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -102,54 +114,73 @@ public class NestedIdentity implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("field");
         generator.write(this.field);
-
-        generator.writeKey("offset");
-        generator.write(this.offset);
 
         if (this.nested != null) {
             generator.writeKey("_nested");
             this.nested.serialize(generator, mapper);
-
         }
 
+        generator.writeKey("offset");
+        generator.write(this.offset);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link NestedIdentity}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NestedIdentity> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NestedIdentity> {
         private String field;
-
-        private Integer offset;
-
         @Nullable
         private NestedIdentity nested;
+        private Integer offset;
+
+        public Builder() {}
+
+        private Builder(NestedIdentity o) {
+            this.field = o.field;
+            this.nested = o.nested;
+            this.offset = o.offset;
+        }
+
+        private Builder(Builder o) {
+            this.field = o.field;
+            this.nested = o.nested;
+            this.offset = o.offset;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code field}
          */
+        @Nonnull
         public final Builder field(String value) {
             this.field = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code offset}
-         */
-        public final Builder offset(int value) {
-            this.offset = value;
-            return this;
-        }
-
-        /**
          * API name: {@code _nested}
          */
+        @Nonnull
         public final Builder nested(@Nullable NestedIdentity value) {
             this.nested = value;
             return this;
@@ -158,16 +189,27 @@ public class NestedIdentity implements PlainJsonSerializable {
         /**
          * API name: {@code _nested}
          */
+        @Nonnull
         public final Builder nested(Function<NestedIdentity.Builder, ObjectBuilder<NestedIdentity>> fn) {
-            return this.nested(fn.apply(new NestedIdentity.Builder()).build());
+            return nested(fn.apply(new NestedIdentity.Builder()).build());
+        }
+
+        /**
+         * Required - API name: {@code offset}
+         */
+        @Nonnull
+        public final Builder offset(int value) {
+            this.offset = value;
+            return this;
         }
 
         /**
          * Builds a {@link NestedIdentity}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public NestedIdentity build() {
             _checkSingleUse();
 
@@ -186,11 +228,25 @@ public class NestedIdentity implements PlainJsonSerializable {
     );
 
     protected static void setupNestedIdentityDeserializer(ObjectDeserializer<NestedIdentity.Builder> op) {
-
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-        op.add(Builder::offset, JsonpDeserializer.integerDeserializer(), "offset");
         op.add(Builder::nested, NestedIdentity._DESERIALIZER, "_nested");
-
+        op.add(Builder::offset, JsonpDeserializer.integerDeserializer(), "offset");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.field.hashCode();
+        result = 31 * result + Objects.hashCode(this.nested);
+        result = 31 * result + Integer.hashCode(this.offset);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        NestedIdentity other = (NestedIdentity) o;
+        return this.field.equals(other.field) && Objects.equals(this.nested, other.nested) && this.offset == other.offset;
+    }
 }

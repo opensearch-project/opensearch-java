@@ -125,7 +125,9 @@ public class TaggedUnionShape extends ObjectShapeBase {
             if (t.isString() || t.isEnum()) {
                 return true;
             }
-            return t.getTargetShape().filter(shape -> shape instanceof TaggedUnionShape && ((TaggedUnionShape) shape).countStringOrEnumVariants() > 0).isPresent();
+            return t.getTargetShape()
+                .filter(shape -> shape instanceof TaggedUnionShape && ((TaggedUnionShape) shape).countStringOrEnumVariants() > 0)
+                .isPresent();
         }).count();
     }
 

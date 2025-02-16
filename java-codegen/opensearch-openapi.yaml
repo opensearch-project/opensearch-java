@@ -46559,7 +46559,7 @@ components:
         delegate:
           type: string
         delegate_debug:
-          $ref: '#/components/schemas/_core.search___AggregationProfileDebug'
+          $ref: '#/components/schemas/_core.search___AggregationProfileDelegateDebug'
         chars_fetched:
           type: integer
           format: int32
@@ -46600,6 +46600,11 @@ components:
           type: array
           items:
             type: string
+        map_reducer:
+          type: string
+    _core.search___AggregationProfileDelegateDebug:
+      type: object
+      properties:
         segments_with_doc_count_field:
           type: integer
           format: int32
@@ -46616,8 +46621,6 @@ components:
         segments_collected:
           type: integer
           format: int32
-        map_reducer:
-          type: string
     _core.search___AggregationProfileDelegateDebugFilter:
       type: object
       properties:
@@ -46814,9 +46817,11 @@ components:
       type: object
       properties:
         load_source:
-          type: number
+          type: integer
+          format: int32
         load_source_count:
-          type: number
+          type: integer
+          format: int32
         load_stored_fields:
           type: integer
           format: int32
@@ -47281,7 +47286,7 @@ components:
           type: string
         score:
           type: number
-          format: float
+          format: double
         highlighted:
           type: string
         collate_match:
@@ -47580,9 +47585,12 @@ components:
         - discount
     _core.search___Suggest:
       oneOf:
-        - $ref: '#/components/schemas/_core.search___CompletionSuggest'
-        - $ref: '#/components/schemas/_core.search___PhraseSuggest'
-        - $ref: '#/components/schemas/_core.search___TermSuggest'
+        - title: completion
+          $ref: '#/components/schemas/_core.search___CompletionSuggest'
+        - title: phrase
+          $ref: '#/components/schemas/_core.search___PhraseSuggest'
+        - title: term
+          $ref: '#/components/schemas/_core.search___TermSuggest'
     _core.search___SuggestBase:
       type: object
       properties:
@@ -47702,16 +47710,15 @@ components:
           type: string
         score:
           type: number
-          format: float
-        freq:
-          type: number
           format: double
+        freq:
+          type: integer
+          format: int64
         highlighted:
           type: string
         collate_match:
           type: boolean
       required:
-        - freq
         - score
         - text
     _core.search___TotalHits:

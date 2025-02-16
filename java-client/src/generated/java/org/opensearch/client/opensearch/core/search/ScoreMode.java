@@ -30,12 +30,20 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: core.search.ScoreMode
+
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum ScoreMode implements JsonEnum {
     Avg("avg"),
 
@@ -45,9 +53,7 @@ public enum ScoreMode implements JsonEnum {
 
     Multiply("multiply"),
 
-    Total("total"),
-
-    ;
+    Total("total");
 
     private final String jsonValue;
 

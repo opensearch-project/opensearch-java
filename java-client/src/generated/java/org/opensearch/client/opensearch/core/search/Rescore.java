@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,13 +49,18 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.search._types.Rescore
+// typedef: core.search.Rescore
 
 @JsonpDeserializable
-public class Rescore implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class Rescore implements PlainJsonSerializable, ToCopyableBuilder<Rescore.Builder, Rescore> {
+
+    @Nonnull
     private final RescoreQuery query;
 
     @Nullable
@@ -57,19 +69,18 @@ public class Rescore implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private Rescore(Builder builder) {
-
         this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
         this.windowSize = builder.windowSize;
-
     }
 
-    public static Rescore of(Function<Builder, ObjectBuilder<Rescore>> fn) {
+    public static Rescore of(Function<Rescore.Builder, ObjectBuilder<Rescore>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code query}
      */
+    @Nonnull
     public final RescoreQuery query() {
         return this.query;
     }
@@ -85,6 +96,7 @@ public class Rescore implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -92,33 +104,58 @@ public class Rescore implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("query");
         this.query.serialize(generator, mapper);
 
         if (this.windowSize != null) {
             generator.writeKey("window_size");
             generator.write(this.windowSize);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link Rescore}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Rescore> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Rescore> {
         private RescoreQuery query;
-
         @Nullable
         private Integer windowSize;
+
+        public Builder() {}
+
+        private Builder(Rescore o) {
+            this.query = o.query;
+            this.windowSize = o.windowSize;
+        }
+
+        private Builder(Builder o) {
+            this.query = o.query;
+            this.windowSize = o.windowSize;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code query}
          */
+        @Nonnull
         public final Builder query(RescoreQuery value) {
             this.query = value;
             return this;
@@ -127,13 +164,15 @@ public class Rescore implements PlainJsonSerializable {
         /**
          * Required - API name: {@code query}
          */
+        @Nonnull
         public final Builder query(Function<RescoreQuery.Builder, ObjectBuilder<RescoreQuery>> fn) {
-            return this.query(fn.apply(new RescoreQuery.Builder()).build());
+            return query(fn.apply(new RescoreQuery.Builder()).build());
         }
 
         /**
          * API name: {@code window_size}
          */
+        @Nonnull
         public final Builder windowSize(@Nullable Integer value) {
             this.windowSize = value;
             return this;
@@ -142,9 +181,10 @@ public class Rescore implements PlainJsonSerializable {
         /**
          * Builds a {@link Rescore}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public Rescore build() {
             _checkSingleUse();
 
@@ -163,10 +203,23 @@ public class Rescore implements PlainJsonSerializable {
     );
 
     protected static void setupRescoreDeserializer(ObjectDeserializer<Rescore.Builder> op) {
-
         op.add(Builder::query, RescoreQuery._DESERIALIZER, "query");
         op.add(Builder::windowSize, JsonpDeserializer.integerDeserializer(), "window_size");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.query.hashCode();
+        result = 31 * result + Objects.hashCode(this.windowSize);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Rescore other = (Rescore) o;
+        return this.query.equals(other.query) && Objects.equals(this.windowSize, other.windowSize);
+    }
 }

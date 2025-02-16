@@ -30,11 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -43,56 +50,48 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.search._types.ShardProfile
+// typedef: core.search.ShardProfile
 
 @JsonpDeserializable
-public class ShardProfile implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ShardProfile implements PlainJsonSerializable, ToCopyableBuilder<ShardProfile.Builder, ShardProfile> {
+
+    @Nonnull
     private final List<AggregationProfile> aggregations;
-
-    private final String id;
-
-    private final List<SearchProfile> searches;
 
     @Nullable
     private final FetchProfile fetch;
 
+    @Nonnull
+    private final String id;
+
+    @Nonnull
+    private final List<SearchProfile> searches;
+
     // ---------------------------------------------------------------------------------------------
 
     private ShardProfile(Builder builder) {
-
         this.aggregations = ApiTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
+        this.fetch = builder.fetch;
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.searches = ApiTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
-        this.fetch = builder.fetch;
-
     }
 
-    public static ShardProfile of(Function<Builder, ObjectBuilder<ShardProfile>> fn) {
+    public static ShardProfile of(Function<ShardProfile.Builder, ObjectBuilder<ShardProfile>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * Required - API name: {@code aggregations}
      */
+    @Nonnull
     public final List<AggregationProfile> aggregations() {
         return this.aggregations;
-    }
-
-    /**
-     * Required - API name: {@code id}
-     */
-    public final String id() {
-        return this.id;
-    }
-
-    /**
-     * Required - API name: {@code searches}
-     */
-    public final List<SearchProfile> searches() {
-        return this.searches;
     }
 
     /**
@@ -104,8 +103,25 @@ public class ShardProfile implements PlainJsonSerializable {
     }
 
     /**
+     * Required - API name: {@code id}
+     */
+    @Nonnull
+    public final String id() {
+        return this.id;
+    }
+
+    /**
+     * Required - API name: {@code searches}
+     */
+    @Nonnull
+    public final List<SearchProfile> searches() {
+        return this.searches;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -113,59 +129,82 @@ public class ShardProfile implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        if (ApiTypeHelper.isDefined(this.aggregations)) {
-            generator.writeKey("aggregations");
-            generator.writeStartArray();
-            for (AggregationProfile item0 : this.aggregations) {
-                item0.serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("aggregations");
+        generator.writeStartArray();
+        for (AggregationProfile item0 : this.aggregations) {
+            item0.serialize(generator, mapper);
         }
-        generator.writeKey("id");
-        generator.write(this.id);
+        generator.writeEnd();
 
-        if (ApiTypeHelper.isDefined(this.searches)) {
-            generator.writeKey("searches");
-            generator.writeStartArray();
-            for (SearchProfile item0 : this.searches) {
-                item0.serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
-        }
         if (this.fetch != null) {
             generator.writeKey("fetch");
             this.fetch.serialize(generator, mapper);
-
         }
 
+        generator.writeKey("id");
+        generator.write(this.id);
+
+        generator.writeKey("searches");
+        generator.writeStartArray();
+        for (SearchProfile item0 : this.searches) {
+            item0.serialize(generator, mapper);
+        }
+        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ShardProfile}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardProfile> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardProfile> {
         private List<AggregationProfile> aggregations;
-
-        private String id;
-
-        private List<SearchProfile> searches;
-
         @Nullable
         private FetchProfile fetch;
+        private String id;
+        private List<SearchProfile> searches;
+
+        public Builder() {}
+
+        private Builder(ShardProfile o) {
+            this.aggregations = _listCopy(o.aggregations);
+            this.fetch = o.fetch;
+            this.id = o.id;
+            this.searches = _listCopy(o.searches);
+        }
+
+        private Builder(Builder o) {
+            this.aggregations = _listCopy(o.aggregations);
+            this.fetch = o.fetch;
+            this.id = o.id;
+            this.searches = _listCopy(o.searches);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - API name: {@code aggregations}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>aggregations</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder aggregations(List<AggregationProfile> list) {
             this.aggregations = _listAddAll(this.aggregations, list);
             return this;
@@ -173,9 +212,12 @@ public class ShardProfile implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code aggregations}
+         *
          * <p>
          * Adds one or more values to <code>aggregations</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder aggregations(AggregationProfile value, AggregationProfile... values) {
             this.aggregations = _listAdd(this.aggregations, value, values);
             return this;
@@ -183,53 +225,20 @@ public class ShardProfile implements PlainJsonSerializable {
 
         /**
          * Required - API name: {@code aggregations}
+         *
          * <p>
          * Adds a value to <code>aggregations</code> using a builder lambda.
+         * </p>
          */
+        @Nonnull
         public final Builder aggregations(Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn) {
             return aggregations(fn.apply(new AggregationProfile.Builder()).build());
         }
 
         /**
-         * Required - API name: {@code id}
-         */
-        public final Builder id(String value) {
-            this.id = value;
-            return this;
-        }
-
-        /**
-         * Required - API name: {@code searches}
-         * <p>
-         * Adds all elements of <code>list</code> to <code>searches</code>.
-         */
-        public final Builder searches(List<SearchProfile> list) {
-            this.searches = _listAddAll(this.searches, list);
-            return this;
-        }
-
-        /**
-         * Required - API name: {@code searches}
-         * <p>
-         * Adds one or more values to <code>searches</code>.
-         */
-        public final Builder searches(SearchProfile value, SearchProfile... values) {
-            this.searches = _listAdd(this.searches, value, values);
-            return this;
-        }
-
-        /**
-         * Required - API name: {@code searches}
-         * <p>
-         * Adds a value to <code>searches</code> using a builder lambda.
-         */
-        public final Builder searches(Function<SearchProfile.Builder, ObjectBuilder<SearchProfile>> fn) {
-            return searches(fn.apply(new SearchProfile.Builder()).build());
-        }
-
-        /**
          * API name: {@code fetch}
          */
+        @Nonnull
         public final Builder fetch(@Nullable FetchProfile value) {
             this.fetch = value;
             return this;
@@ -238,16 +247,65 @@ public class ShardProfile implements PlainJsonSerializable {
         /**
          * API name: {@code fetch}
          */
+        @Nonnull
         public final Builder fetch(Function<FetchProfile.Builder, ObjectBuilder<FetchProfile>> fn) {
-            return this.fetch(fn.apply(new FetchProfile.Builder()).build());
+            return fetch(fn.apply(new FetchProfile.Builder()).build());
+        }
+
+        /**
+         * Required - API name: {@code id}
+         */
+        @Nonnull
+        public final Builder id(String value) {
+            this.id = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code searches}
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>searches</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder searches(List<SearchProfile> list) {
+            this.searches = _listAddAll(this.searches, list);
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code searches}
+         *
+         * <p>
+         * Adds one or more values to <code>searches</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder searches(SearchProfile value, SearchProfile... values) {
+            this.searches = _listAdd(this.searches, value, values);
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code searches}
+         *
+         * <p>
+         * Adds a value to <code>searches</code> using a builder lambda.
+         * </p>
+         */
+        @Nonnull
+        public final Builder searches(Function<SearchProfile.Builder, ObjectBuilder<SearchProfile>> fn) {
+            return searches(fn.apply(new SearchProfile.Builder()).build());
         }
 
         /**
          * Builds a {@link ShardProfile}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ShardProfile build() {
             _checkSingleUse();
 
@@ -266,12 +324,30 @@ public class ShardProfile implements PlainJsonSerializable {
     );
 
     protected static void setupShardProfileDeserializer(ObjectDeserializer<ShardProfile.Builder> op) {
-
         op.add(Builder::aggregations, JsonpDeserializer.arrayDeserializer(AggregationProfile._DESERIALIZER), "aggregations");
+        op.add(Builder::fetch, FetchProfile._DESERIALIZER, "fetch");
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
         op.add(Builder::searches, JsonpDeserializer.arrayDeserializer(SearchProfile._DESERIALIZER), "searches");
-        op.add(Builder::fetch, FetchProfile._DESERIALIZER, "fetch");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.aggregations.hashCode();
+        result = 31 * result + Objects.hashCode(this.fetch);
+        result = 31 * result + this.id.hashCode();
+        result = 31 * result + this.searches.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ShardProfile other = (ShardProfile) o;
+        return this.aggregations.equals(other.aggregations)
+            && Objects.equals(this.fetch, other.fetch)
+            && this.id.equals(other.id)
+            && this.searches.equals(other.searches);
+    }
 }
