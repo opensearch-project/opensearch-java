@@ -116,10 +116,19 @@ public class TaggedUnionShape extends ObjectShapeBase {
             return false;
         }
 
+        return countStringOrEnumVariants() > 1;
+    }
+
+    private long countStringOrEnumVariants() {
         return getVariants().stream().filter(v -> {
             var t = v.getType();
-            return t.isString() || t.isEnum();
-        }).count() > 1;
+            if (t.isString() || t.isEnum()) {
+                return true;
+            }
+            return t.getTargetShape()
+                .filter(shape -> shape instanceof TaggedUnionShape && ((TaggedUnionShape) shape).countStringOrEnumVariants() > 0)
+                .isPresent();
+        }).count();
     }
 
     public Collection<BuilderSetter> getContainerBuilderSetters() {

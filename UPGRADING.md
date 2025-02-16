@@ -589,3 +589,7 @@ After:
 - The `GeoShapeFieldQuery` class has been renamed to `GeoShapeQueryField`, this affects:
   - `GeoShapeQuery`'s `shape` field.
 - The `shape` property is now of type `GeoShape` instead of `JsonData`.
+
+### RescoreQuery
+- The `queryWeight` and `rescoreQueryWeight` properties have been corrected to be of type `Float` instead of `Double`.
+- The `query` property has been renamed to `rescoreQuery` to match the JSON property naming.
