@@ -86,7 +86,7 @@ public class AggregationProfileDebug
     private final String delegate;
 
     @Nullable
-    private final AggregationProfileDelegateDebug delegateDebug;
+    private final AggregationProfileDebug delegateDebug;
 
     @Nullable
     private final Integer emptyCollectorsUsed;
@@ -96,6 +96,9 @@ public class AggregationProfileDebug
 
     @Nullable
     private final Integer extractNs;
+
+    @Nonnull
+    private final List<AggregationProfileDelegateDebugFilter> filters;
 
     @Nullable
     private final Boolean hasFilter;
@@ -114,6 +117,18 @@ public class AggregationProfileDebug
 
     @Nullable
     private final String resultStrategy;
+
+    @Nullable
+    private final Integer segmentsCollected;
+
+    @Nullable
+    private final Integer segmentsCounted;
+
+    @Nullable
+    private final Integer segmentsWithDeletedDocs;
+
+    @Nullable
+    private final Integer segmentsWithDocCountField;
 
     @Nullable
     private final Integer segmentsWithMultiValuedOrds;
@@ -147,12 +162,17 @@ public class AggregationProfileDebug
         this.emptyCollectorsUsed = builder.emptyCollectorsUsed;
         this.extractCount = builder.extractCount;
         this.extractNs = builder.extractNs;
+        this.filters = ApiTypeHelper.unmodifiable(builder.filters);
         this.hasFilter = builder.hasFilter;
         this.mapReducer = builder.mapReducer;
         this.numericCollectorsUsed = builder.numericCollectorsUsed;
         this.ordinalsCollectorsOverheadTooHigh = builder.ordinalsCollectorsOverheadTooHigh;
         this.ordinalsCollectorsUsed = builder.ordinalsCollectorsUsed;
         this.resultStrategy = builder.resultStrategy;
+        this.segmentsCollected = builder.segmentsCollected;
+        this.segmentsCounted = builder.segmentsCounted;
+        this.segmentsWithDeletedDocs = builder.segmentsWithDeletedDocs;
+        this.segmentsWithDocCountField = builder.segmentsWithDocCountField;
         this.segmentsWithMultiValuedOrds = builder.segmentsWithMultiValuedOrds;
         this.segmentsWithSingleValuedOrds = builder.segmentsWithSingleValuedOrds;
         this.stringHashingCollectorsUsed = builder.stringHashingCollectorsUsed;
@@ -225,7 +245,7 @@ public class AggregationProfileDebug
      * API name: {@code delegate_debug}
      */
     @Nullable
-    public final AggregationProfileDelegateDebug delegateDebug() {
+    public final AggregationProfileDebug delegateDebug() {
         return this.delegateDebug;
     }
 
@@ -251,6 +271,14 @@ public class AggregationProfileDebug
     @Nullable
     public final Integer extractNs() {
         return this.extractNs;
+    }
+
+    /**
+     * API name: {@code filters}
+     */
+    @Nonnull
+    public final List<AggregationProfileDelegateDebugFilter> filters() {
+        return this.filters;
     }
 
     /**
@@ -299,6 +327,38 @@ public class AggregationProfileDebug
     @Nullable
     public final String resultStrategy() {
         return this.resultStrategy;
+    }
+
+    /**
+     * API name: {@code segments_collected}
+     */
+    @Nullable
+    public final Integer segmentsCollected() {
+        return this.segmentsCollected;
+    }
+
+    /**
+     * API name: {@code segments_counted}
+     */
+    @Nullable
+    public final Integer segmentsCounted() {
+        return this.segmentsCounted;
+    }
+
+    /**
+     * API name: {@code segments_with_deleted_docs}
+     */
+    @Nullable
+    public final Integer segmentsWithDeletedDocs() {
+        return this.segmentsWithDeletedDocs;
+    }
+
+    /**
+     * API name: {@code segments_with_doc_count_field}
+     */
+    @Nullable
+    public final Integer segmentsWithDocCountField() {
+        return this.segmentsWithDocCountField;
     }
 
     /**
@@ -419,6 +479,15 @@ public class AggregationProfileDebug
             generator.write(this.extractNs);
         }
 
+        if (ApiTypeHelper.isDefined(this.filters)) {
+            generator.writeKey("filters");
+            generator.writeStartArray();
+            for (AggregationProfileDelegateDebugFilter item0 : this.filters) {
+                item0.serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
+
         if (this.hasFilter != null) {
             generator.writeKey("has_filter");
             generator.write(this.hasFilter);
@@ -447,6 +516,26 @@ public class AggregationProfileDebug
         if (this.resultStrategy != null) {
             generator.writeKey("result_strategy");
             generator.write(this.resultStrategy);
+        }
+
+        if (this.segmentsCollected != null) {
+            generator.writeKey("segments_collected");
+            generator.write(this.segmentsCollected);
+        }
+
+        if (this.segmentsCounted != null) {
+            generator.writeKey("segments_counted");
+            generator.write(this.segmentsCounted);
+        }
+
+        if (this.segmentsWithDeletedDocs != null) {
+            generator.writeKey("segments_with_deleted_docs");
+            generator.write(this.segmentsWithDeletedDocs);
+        }
+
+        if (this.segmentsWithDocCountField != null) {
+            generator.writeKey("segments_with_doc_count_field");
+            generator.write(this.segmentsWithDocCountField);
         }
 
         if (this.segmentsWithMultiValuedOrds != null) {
@@ -512,13 +601,15 @@ public class AggregationProfileDebug
         @Nullable
         private String delegate;
         @Nullable
-        private AggregationProfileDelegateDebug delegateDebug;
+        private AggregationProfileDebug delegateDebug;
         @Nullable
         private Integer emptyCollectorsUsed;
         @Nullable
         private Integer extractCount;
         @Nullable
         private Integer extractNs;
+        @Nullable
+        private List<AggregationProfileDelegateDebugFilter> filters;
         @Nullable
         private Boolean hasFilter;
         @Nullable
@@ -531,6 +622,14 @@ public class AggregationProfileDebug
         private Integer ordinalsCollectorsUsed;
         @Nullable
         private String resultStrategy;
+        @Nullable
+        private Integer segmentsCollected;
+        @Nullable
+        private Integer segmentsCounted;
+        @Nullable
+        private Integer segmentsWithDeletedDocs;
+        @Nullable
+        private Integer segmentsWithDocCountField;
         @Nullable
         private Integer segmentsWithMultiValuedOrds;
         @Nullable
@@ -558,12 +657,17 @@ public class AggregationProfileDebug
             this.emptyCollectorsUsed = o.emptyCollectorsUsed;
             this.extractCount = o.extractCount;
             this.extractNs = o.extractNs;
+            this.filters = _listCopy(o.filters);
             this.hasFilter = o.hasFilter;
             this.mapReducer = o.mapReducer;
             this.numericCollectorsUsed = o.numericCollectorsUsed;
             this.ordinalsCollectorsOverheadTooHigh = o.ordinalsCollectorsOverheadTooHigh;
             this.ordinalsCollectorsUsed = o.ordinalsCollectorsUsed;
             this.resultStrategy = o.resultStrategy;
+            this.segmentsCollected = o.segmentsCollected;
+            this.segmentsCounted = o.segmentsCounted;
+            this.segmentsWithDeletedDocs = o.segmentsWithDeletedDocs;
+            this.segmentsWithDocCountField = o.segmentsWithDocCountField;
             this.segmentsWithMultiValuedOrds = o.segmentsWithMultiValuedOrds;
             this.segmentsWithSingleValuedOrds = o.segmentsWithSingleValuedOrds;
             this.stringHashingCollectorsUsed = o.stringHashingCollectorsUsed;
@@ -584,12 +688,17 @@ public class AggregationProfileDebug
             this.emptyCollectorsUsed = o.emptyCollectorsUsed;
             this.extractCount = o.extractCount;
             this.extractNs = o.extractNs;
+            this.filters = _listCopy(o.filters);
             this.hasFilter = o.hasFilter;
             this.mapReducer = o.mapReducer;
             this.numericCollectorsUsed = o.numericCollectorsUsed;
             this.ordinalsCollectorsOverheadTooHigh = o.ordinalsCollectorsOverheadTooHigh;
             this.ordinalsCollectorsUsed = o.ordinalsCollectorsUsed;
             this.resultStrategy = o.resultStrategy;
+            this.segmentsCollected = o.segmentsCollected;
+            this.segmentsCounted = o.segmentsCounted;
+            this.segmentsWithDeletedDocs = o.segmentsWithDeletedDocs;
+            this.segmentsWithDocCountField = o.segmentsWithDocCountField;
             this.segmentsWithMultiValuedOrds = o.segmentsWithMultiValuedOrds;
             this.segmentsWithSingleValuedOrds = o.segmentsWithSingleValuedOrds;
             this.stringHashingCollectorsUsed = o.stringHashingCollectorsUsed;
@@ -688,7 +797,7 @@ public class AggregationProfileDebug
          * API name: {@code delegate_debug}
          */
         @Nonnull
-        public final Builder delegateDebug(@Nullable AggregationProfileDelegateDebug value) {
+        public final Builder delegateDebug(@Nullable AggregationProfileDebug value) {
             this.delegateDebug = value;
             return this;
         }
@@ -697,10 +806,8 @@ public class AggregationProfileDebug
          * API name: {@code delegate_debug}
          */
         @Nonnull
-        public final Builder delegateDebug(
-            Function<AggregationProfileDelegateDebug.Builder, ObjectBuilder<AggregationProfileDelegateDebug>> fn
-        ) {
-            return delegateDebug(fn.apply(new AggregationProfileDelegateDebug.Builder()).build());
+        public final Builder delegateDebug(Function<AggregationProfileDebug.Builder, ObjectBuilder<AggregationProfileDebug>> fn) {
+            return delegateDebug(fn.apply(new AggregationProfileDebug.Builder()).build());
         }
 
         /**
@@ -728,6 +835,46 @@ public class AggregationProfileDebug
         public final Builder extractNs(@Nullable Integer value) {
             this.extractNs = value;
             return this;
+        }
+
+        /**
+         * API name: {@code filters}
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>filters</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder filters(List<AggregationProfileDelegateDebugFilter> list) {
+            this.filters = _listAddAll(this.filters, list);
+            return this;
+        }
+
+        /**
+         * API name: {@code filters}
+         *
+         * <p>
+         * Adds one or more values to <code>filters</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder filters(AggregationProfileDelegateDebugFilter value, AggregationProfileDelegateDebugFilter... values) {
+            this.filters = _listAdd(this.filters, value, values);
+            return this;
+        }
+
+        /**
+         * API name: {@code filters}
+         *
+         * <p>
+         * Adds a value to <code>filters</code> using a builder lambda.
+         * </p>
+         */
+        @Nonnull
+        public final Builder filters(
+            Function<AggregationProfileDelegateDebugFilter.Builder, ObjectBuilder<AggregationProfileDelegateDebugFilter>> fn
+        ) {
+            return filters(fn.apply(new AggregationProfileDelegateDebugFilter.Builder()).build());
         }
 
         /**
@@ -781,6 +928,42 @@ public class AggregationProfileDebug
         @Nonnull
         public final Builder resultStrategy(@Nullable String value) {
             this.resultStrategy = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code segments_collected}
+         */
+        @Nonnull
+        public final Builder segmentsCollected(@Nullable Integer value) {
+            this.segmentsCollected = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code segments_counted}
+         */
+        @Nonnull
+        public final Builder segmentsCounted(@Nullable Integer value) {
+            this.segmentsCounted = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code segments_with_deleted_docs}
+         */
+        @Nonnull
+        public final Builder segmentsWithDeletedDocs(@Nullable Integer value) {
+            this.segmentsWithDeletedDocs = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code segments_with_doc_count_field}
+         */
+        @Nonnull
+        public final Builder segmentsWithDocCountField(@Nullable Integer value) {
+            this.segmentsWithDocCountField = value;
             return this;
         }
 
@@ -874,10 +1057,11 @@ public class AggregationProfileDebug
             "deferred_aggregators"
         );
         op.add(Builder::delegate, JsonpDeserializer.stringDeserializer(), "delegate");
-        op.add(Builder::delegateDebug, AggregationProfileDelegateDebug._DESERIALIZER, "delegate_debug");
+        op.add(Builder::delegateDebug, AggregationProfileDebug._DESERIALIZER, "delegate_debug");
         op.add(Builder::emptyCollectorsUsed, JsonpDeserializer.integerDeserializer(), "empty_collectors_used");
         op.add(Builder::extractCount, JsonpDeserializer.integerDeserializer(), "extract_count");
         op.add(Builder::extractNs, JsonpDeserializer.integerDeserializer(), "extract_ns");
+        op.add(Builder::filters, JsonpDeserializer.arrayDeserializer(AggregationProfileDelegateDebugFilter._DESERIALIZER), "filters");
         op.add(Builder::hasFilter, JsonpDeserializer.booleanDeserializer(), "has_filter");
         op.add(Builder::mapReducer, JsonpDeserializer.stringDeserializer(), "map_reducer");
         op.add(Builder::numericCollectorsUsed, JsonpDeserializer.integerDeserializer(), "numeric_collectors_used");
@@ -888,6 +1072,10 @@ public class AggregationProfileDebug
         );
         op.add(Builder::ordinalsCollectorsUsed, JsonpDeserializer.integerDeserializer(), "ordinals_collectors_used");
         op.add(Builder::resultStrategy, JsonpDeserializer.stringDeserializer(), "result_strategy");
+        op.add(Builder::segmentsCollected, JsonpDeserializer.integerDeserializer(), "segments_collected");
+        op.add(Builder::segmentsCounted, JsonpDeserializer.integerDeserializer(), "segments_counted");
+        op.add(Builder::segmentsWithDeletedDocs, JsonpDeserializer.integerDeserializer(), "segments_with_deleted_docs");
+        op.add(Builder::segmentsWithDocCountField, JsonpDeserializer.integerDeserializer(), "segments_with_doc_count_field");
         op.add(Builder::segmentsWithMultiValuedOrds, JsonpDeserializer.integerDeserializer(), "segments_with_multi_valued_ords");
         op.add(Builder::segmentsWithSingleValuedOrds, JsonpDeserializer.integerDeserializer(), "segments_with_single_valued_ords");
         op.add(Builder::stringHashingCollectorsUsed, JsonpDeserializer.integerDeserializer(), "string_hashing_collectors_used");
@@ -910,12 +1098,17 @@ public class AggregationProfileDebug
         result = 31 * result + Objects.hashCode(this.emptyCollectorsUsed);
         result = 31 * result + Objects.hashCode(this.extractCount);
         result = 31 * result + Objects.hashCode(this.extractNs);
+        result = 31 * result + Objects.hashCode(this.filters);
         result = 31 * result + Objects.hashCode(this.hasFilter);
         result = 31 * result + Objects.hashCode(this.mapReducer);
         result = 31 * result + Objects.hashCode(this.numericCollectorsUsed);
         result = 31 * result + Objects.hashCode(this.ordinalsCollectorsOverheadTooHigh);
         result = 31 * result + Objects.hashCode(this.ordinalsCollectorsUsed);
         result = 31 * result + Objects.hashCode(this.resultStrategy);
+        result = 31 * result + Objects.hashCode(this.segmentsCollected);
+        result = 31 * result + Objects.hashCode(this.segmentsCounted);
+        result = 31 * result + Objects.hashCode(this.segmentsWithDeletedDocs);
+        result = 31 * result + Objects.hashCode(this.segmentsWithDocCountField);
         result = 31 * result + Objects.hashCode(this.segmentsWithMultiValuedOrds);
         result = 31 * result + Objects.hashCode(this.segmentsWithSingleValuedOrds);
         result = 31 * result + Objects.hashCode(this.stringHashingCollectorsUsed);
@@ -941,12 +1134,17 @@ public class AggregationProfileDebug
             && Objects.equals(this.emptyCollectorsUsed, other.emptyCollectorsUsed)
             && Objects.equals(this.extractCount, other.extractCount)
             && Objects.equals(this.extractNs, other.extractNs)
+            && Objects.equals(this.filters, other.filters)
             && Objects.equals(this.hasFilter, other.hasFilter)
             && Objects.equals(this.mapReducer, other.mapReducer)
             && Objects.equals(this.numericCollectorsUsed, other.numericCollectorsUsed)
             && Objects.equals(this.ordinalsCollectorsOverheadTooHigh, other.ordinalsCollectorsOverheadTooHigh)
             && Objects.equals(this.ordinalsCollectorsUsed, other.ordinalsCollectorsUsed)
             && Objects.equals(this.resultStrategy, other.resultStrategy)
+            && Objects.equals(this.segmentsCollected, other.segmentsCollected)
+            && Objects.equals(this.segmentsCounted, other.segmentsCounted)
+            && Objects.equals(this.segmentsWithDeletedDocs, other.segmentsWithDeletedDocs)
+            && Objects.equals(this.segmentsWithDocCountField, other.segmentsWithDocCountField)
             && Objects.equals(this.segmentsWithMultiValuedOrds, other.segmentsWithMultiValuedOrds)
             && Objects.equals(this.segmentsWithSingleValuedOrds, other.segmentsWithSingleValuedOrds)
             && Objects.equals(this.stringHashingCollectorsUsed, other.stringHashingCollectorsUsed)

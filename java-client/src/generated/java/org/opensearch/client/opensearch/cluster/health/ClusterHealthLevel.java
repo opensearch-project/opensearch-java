@@ -42,6 +42,9 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: cluster.health.Level
 
+/**
+ * Controls the amount of detail included in the cluster health response.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum ClusterHealthLevel implements JsonEnum {
