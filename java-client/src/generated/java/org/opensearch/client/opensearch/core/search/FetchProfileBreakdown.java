@@ -63,10 +63,10 @@ public class FetchProfileBreakdown
         ToCopyableBuilder<FetchProfileBreakdown.Builder, FetchProfileBreakdown> {
 
     @Nullable
-    private final Integer loadSource;
+    private final Number loadSource;
 
     @Nullable
-    private final Integer loadSourceCount;
+    private final Number loadSourceCount;
 
     @Nullable
     private final Integer loadStoredFields;
@@ -107,7 +107,7 @@ public class FetchProfileBreakdown
      * API name: {@code load_source}
      */
     @Nullable
-    public final Integer loadSource() {
+    public final Number loadSource() {
         return this.loadSource;
     }
 
@@ -115,7 +115,7 @@ public class FetchProfileBreakdown
      * API name: {@code load_source_count}
      */
     @Nullable
-    public final Integer loadSourceCount() {
+    public final Number loadSourceCount() {
         return this.loadSourceCount;
     }
 
@@ -180,12 +180,12 @@ public class FetchProfileBreakdown
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.loadSource != null) {
             generator.writeKey("load_source");
-            generator.write(this.loadSource);
+            generator.write(this.loadSource.doubleValue());
         }
 
         if (this.loadSourceCount != null) {
             generator.writeKey("load_source_count");
-            generator.write(this.loadSourceCount);
+            generator.write(this.loadSourceCount.doubleValue());
         }
 
         if (this.loadStoredFields != null) {
@@ -237,9 +237,9 @@ public class FetchProfileBreakdown
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, FetchProfileBreakdown> {
         @Nullable
-        private Integer loadSource;
+        private Number loadSource;
         @Nullable
-        private Integer loadSourceCount;
+        private Number loadSourceCount;
         @Nullable
         private Integer loadStoredFields;
         @Nullable
@@ -287,7 +287,7 @@ public class FetchProfileBreakdown
          * API name: {@code load_source}
          */
         @Nonnull
-        public final Builder loadSource(@Nullable Integer value) {
+        public final Builder loadSource(@Nullable Number value) {
             this.loadSource = value;
             return this;
         }
@@ -296,7 +296,7 @@ public class FetchProfileBreakdown
          * API name: {@code load_source_count}
          */
         @Nonnull
-        public final Builder loadSourceCount(@Nullable Integer value) {
+        public final Builder loadSourceCount(@Nullable Number value) {
             this.loadSourceCount = value;
             return this;
         }
@@ -380,8 +380,8 @@ public class FetchProfileBreakdown
     );
 
     protected static void setupFetchProfileBreakdownDeserializer(ObjectDeserializer<FetchProfileBreakdown.Builder> op) {
-        op.add(Builder::loadSource, JsonpDeserializer.integerDeserializer(), "load_source");
-        op.add(Builder::loadSourceCount, JsonpDeserializer.integerDeserializer(), "load_source_count");
+        op.add(Builder::loadSource, JsonpDeserializer.numberDeserializer(), "load_source");
+        op.add(Builder::loadSourceCount, JsonpDeserializer.numberDeserializer(), "load_source_count");
         op.add(Builder::loadStoredFields, JsonpDeserializer.integerDeserializer(), "load_stored_fields");
         op.add(Builder::loadStoredFieldsCount, JsonpDeserializer.integerDeserializer(), "load_stored_fields_count");
         op.add(Builder::nextReader, JsonpDeserializer.integerDeserializer(), "next_reader");

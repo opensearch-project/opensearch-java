@@ -45,14 +45,8 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum TotalHitsRelation implements JsonEnum {
-    /**
-     * Accurate.
-     */
     Eq("eq"),
 
-    /**
-     * Lower bound, including returned events or sequences.
-     */
     Gte("gte");
 
     private final String jsonValue;

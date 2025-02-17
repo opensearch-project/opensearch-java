@@ -18421,7 +18421,7 @@ components:
       name: name
       description: |-
         The name of the component template to create.
-        OpenSearch includes the following built-in component templates: `logs-mappings`; 'logs-settings`; `metrics-mappings`; `metrics-settings`;`synthetics-mapping`; `synthetics-settings`.
+        OpenSearch includes the following built-in component templates: `logs-mappings`; `logs-settings`; `metrics-mappings`; `metrics-settings`; `synthetics-mapping`; `synthetics-settings`.
         OpenSearch uses these templates to configure backing indexes for its data streams.
         If you want to overwrite one of these templates, set the replacement template `version` to a higher value than the current version.
         If you want to disable all built-in component and index templates, set `stack.templates.enabled` to `false` using the Cluster Update Settings API.
@@ -46559,7 +46559,7 @@ components:
         delegate:
           type: string
         delegate_debug:
-          $ref: '#/components/schemas/_core.search___AggregationProfileDelegateDebug'
+          $ref: '#/components/schemas/_core.search___AggregationProfileDebug'
         chars_fetched:
           type: integer
           format: int32
@@ -46600,11 +46600,6 @@ components:
           type: array
           items:
             type: string
-        map_reducer:
-          type: string
-    _core.search___AggregationProfileDelegateDebug:
-      type: object
-      properties:
         segments_with_doc_count_field:
           type: integer
           format: int32
@@ -46621,6 +46616,8 @@ components:
         segments_collected:
           type: integer
           format: int32
+        map_reducer:
+          type: string
     _core.search___AggregationProfileDelegateDebugFilter:
       type: object
       properties:
@@ -46666,27 +46663,6 @@ components:
         - name
         - reason
         - time_in_nanos
-    _core.search___CompletionContext:
-      oneOf:
-        - title: context
-          $ref: '#/components/schemas/_core.search___Context'
-        - type: object
-          properties:
-            boost:
-              type: number
-              format: double
-            context:
-              $ref: '#/components/schemas/_core.search___Context'
-            neighbours:
-              type: array
-              items:
-                $ref: '#/components/schemas/_common___GeoHashPrecision'
-            precision:
-              $ref: '#/components/schemas/_common___GeoHashPrecision'
-            prefix:
-              type: boolean
-          required:
-            - context
     _core.search___CompletionSuggest:
       allOf:
         - $ref: '#/components/schemas/_core.search___SuggestBase'
@@ -46700,23 +46676,6 @@ components:
                     $ref: '#/components/schemas/_core.search___CompletionSuggestOption'
           required:
             - options
-    _core.search___CompletionSuggester:
-      allOf:
-        - $ref: '#/components/schemas/_core.search___SuggesterBase'
-        - type: object
-          properties:
-            contexts:
-              type: object
-              additionalProperties:
-                type: array
-                items:
-                  $ref: '#/components/schemas/_core.search___CompletionContext'
-            fuzzy:
-              $ref: '#/components/schemas/_core.search___SuggestFuzziness'
-            regex:
-              type: string
-            skip_duplicates:
-              type: boolean
     _core.search___CompletionSuggestOption:
       type: object
       properties:
@@ -46753,44 +46712,8 @@ components:
     _core.search___Context:
       description: Text or location that we want similar documents for or a lookup to a document's field for the text.
       oneOf:
-        - title: category
-          type: string
-        - title: location
-          $ref: '#/components/schemas/_common___GeoLocation'
-    _core.search___DirectGenerator:
-      type: object
-      properties:
-        field:
-          type: string
-        max_edits:
-          type: integer
-          format: int32
-        max_inspections:
-          type: number
-          format: float
-        max_term_freq:
-          type: number
-          format: float
-        min_doc_freq:
-          type: number
-          format: float
-        min_word_length:
-          type: integer
-          format: int32
-        post_filter:
-          type: string
-        pre_filter:
-          type: string
-        prefix_length:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int32
-        suggest_mode:
-          $ref: '#/components/schemas/_common___SuggestMode'
-      required:
-        - field
+        - type: string
+        - $ref: '#/components/schemas/_common___GeoLocation'
     _core.search___FetchProfile:
       type: object
       properties:
@@ -46817,11 +46740,9 @@ components:
       type: object
       properties:
         load_source:
-          type: integer
-          format: int32
+          type: number
         load_source_count:
-          type: integer
-          format: int32
+          type: number
         load_stored_fields:
           type: integer
           format: int32
@@ -46867,26 +46788,6 @@ components:
           type: integer
       required:
         - field
-    _core.search___FieldSuggester:
-      allOf:
-        - type: object
-          properties:
-            prefix:
-              type: string
-            regex:
-              type: string
-            text:
-              type: string
-        - type: object
-          properties:
-            completion:
-              $ref: '#/components/schemas/_core.search___CompletionSuggester'
-            phrase:
-              $ref: '#/components/schemas/_core.search___PhraseSuggester'
-            term:
-              $ref: '#/components/schemas/_core.search___TermSuggester'
-          minProperties: 1
-          maxProperties: 1
     _core.search___Highlight:
       allOf:
         - $ref: '#/components/schemas/_core.search___HighlightBase'
@@ -47161,30 +47062,6 @@ components:
           $ref: '#/components/schemas/_core.search___HitsMetadata'
       required:
         - hits
-    _core.search___LaplaceSmoothingModel:
-      type: object
-      properties:
-        alpha:
-          type: number
-          format: double
-      required:
-        - alpha
-    _core.search___LinearInterpolationSmoothingModel:
-      type: object
-      properties:
-        bigram_lambda:
-          type: number
-          format: double
-        trigram_lambda:
-          type: number
-          format: double
-        unigram_lambda:
-          type: number
-          format: double
-      required:
-        - bigram_lambda
-        - trigram_lambda
-        - unigram_lambda
     _core.search___NestedIdentity:
       type: object
       properties:
@@ -47211,74 +47088,6 @@ components:
                     $ref: '#/components/schemas/_core.search___PhraseSuggestOption'
           required:
             - options
-    _core.search___PhraseSuggestCollate:
-      type: object
-      properties:
-        params:
-          type: object
-          additionalProperties: true
-        prune:
-          type: boolean
-        query:
-          $ref: '#/components/schemas/_core.search___PhraseSuggestCollateQuery'
-      required:
-        - query
-    _core.search___PhraseSuggestCollateQuery:
-      type: object
-      properties:
-        id:
-          type: string
-        source:
-          type: string
-    _core.search___PhraseSuggester:
-      allOf:
-        - $ref: '#/components/schemas/_core.search___SuggesterBase'
-        - type: object
-          properties:
-            collate:
-              $ref: '#/components/schemas/_core.search___PhraseSuggestCollate'
-            confidence:
-              type: number
-              format: double
-            direct_generator:
-              type: array
-              items:
-                $ref: '#/components/schemas/_core.search___DirectGenerator'
-            force_unigrams:
-              type: boolean
-            gram_size:
-              type: integer
-              format: int32
-            highlight:
-              $ref: '#/components/schemas/_core.search___PhraseSuggestHighlight'
-            max_errors:
-              type: number
-              format: double
-            real_word_error_likelihood:
-              type: number
-              format: double
-            separator:
-              type: string
-            shard_size:
-              type: integer
-              format: int32
-            smoothing:
-              $ref: '#/components/schemas/_core.search___SmoothingModel'
-            text:
-              type: string
-            token_limit:
-              type: integer
-              format: int32
-    _core.search___PhraseSuggestHighlight:
-      type: object
-      properties:
-        post_tag:
-          type: string
-        pre_tag:
-          type: string
-      required:
-        - post_tag
-        - pre_tag
     _core.search___PhraseSuggestOption:
       type: object
       properties:
@@ -47286,7 +47095,7 @@ components:
           type: string
         score:
           type: number
-          format: double
+          format: float
         highlighted:
           type: string
         collate_match:
@@ -47530,17 +47339,6 @@ components:
         - aggregations
         - id
         - searches
-    _core.search___SmoothingModel:
-      type: object
-      properties:
-        laplace:
-          $ref: '#/components/schemas/_core.search___LaplaceSmoothingModel'
-        linear_interpolation:
-          $ref: '#/components/schemas/_core.search___LinearInterpolationSmoothingModel'
-        stupid_backoff:
-          $ref: '#/components/schemas/_core.search___StupidBackoffSmoothingModel'
-      minProperties: 1
-      maxProperties: 1
     _core.search___SourceConfig:
       description: Defines how to fetch a source. Fetching can be disabled entirely, or the source can be filtered.
       oneOf:
@@ -47567,30 +47365,11 @@ components:
               $ref: '#/components/schemas/_common___Fields'
             includes:
               $ref: '#/components/schemas/_common___Fields'
-    _core.search___StringDistance:
-      type: string
-      enum:
-        - internal
-        - damerau_levenshtein
-        - levenshtein
-        - jaro_winkler
-        - ngram
-    _core.search___StupidBackoffSmoothingModel:
-      type: object
-      properties:
-        discount:
-          type: number
-          format: double
-      required:
-        - discount
     _core.search___Suggest:
       oneOf:
-        - title: completion
-          $ref: '#/components/schemas/_core.search___CompletionSuggest'
-        - title: phrase
-          $ref: '#/components/schemas/_core.search___PhraseSuggest'
-        - title: term
-          $ref: '#/components/schemas/_core.search___TermSuggest'
+        - $ref: '#/components/schemas/_core.search___CompletionSuggest'
+        - $ref: '#/components/schemas/_core.search___PhraseSuggest'
+        - $ref: '#/components/schemas/_core.search___TermSuggest'
     _core.search___SuggestBase:
       type: object
       properties:
@@ -47612,48 +47391,6 @@ components:
         text:
           description: The global suggest text, which avoids repetition when the same text is used in several suggesters.
           type: string
-      additionalProperties:
-        title: suggesters
-        description: The named suggesters.
-        $ref: '#/components/schemas/_core.search___FieldSuggester'
-    _core.search___SuggesterBase:
-      type: object
-      properties:
-        analyzer:
-          type: string
-        field:
-          type: string
-        size:
-          type: integer
-          format: int32
-      required:
-        - field
-    _core.search___SuggestFuzziness:
-      type: object
-      properties:
-        fuzziness:
-          type: string
-        min_length:
-          type: integer
-          format: int32
-        prefix_length:
-          type: integer
-          format: int32
-        transpositions:
-          type: boolean
-        unicode_aware:
-          type: boolean
-      required:
-        - fuzziness
-        - min_length
-        - prefix_length
-        - transpositions
-        - unicode_aware
-    _core.search___SuggestSort:
-      type: string
-      enum:
-        - score
-        - frequency
     _core.search___TermSuggest:
       allOf:
         - $ref: '#/components/schemas/_core.search___SuggestBase'
@@ -47667,42 +47404,6 @@ components:
                     $ref: '#/components/schemas/_core.search___TermSuggestOption'
           required:
             - options
-    _core.search___TermSuggester:
-      allOf:
-        - $ref: '#/components/schemas/_core.search___SuggesterBase'
-        - type: object
-          properties:
-            lowercase_terms:
-              type: boolean
-            max_edits:
-              type: integer
-              format: int32
-            max_inspections:
-              type: integer
-              format: int32
-            max_term_freq:
-              type: number
-              format: float
-            min_doc_freq:
-              type: number
-              format: float
-            min_word_length:
-              type: integer
-              format: int32
-            prefix_length:
-              type: integer
-              format: int32
-            shard_size:
-              type: integer
-              format: int32
-            sort:
-              $ref: '#/components/schemas/_core.search___SuggestSort'
-            string_distance:
-              $ref: '#/components/schemas/_core.search___StringDistance'
-            suggest_mode:
-              $ref: '#/components/schemas/_common___SuggestMode'
-            text:
-              type: string
     _core.search___TermSuggestOption:
       type: object
       properties:
@@ -47710,15 +47411,16 @@ components:
           type: string
         score:
           type: number
-          format: double
+          format: float
         freq:
-          type: integer
-          format: int64
+          type: number
+          format: double
         highlighted:
           type: string
         collate_match:
           type: boolean
       required:
+        - freq
         - score
         - text
     _core.search___TotalHits:
@@ -47733,13 +47435,10 @@ components:
         - relation
         - value
     _core.search___TotalHitsRelation:
-      oneOf:
-        - type: string
-          const: eq
-          description: Accurate.
-        - type: string
-          const: gte
-          description: Lower bound, including returned events or sequences.
+      type: string
+      enum:
+        - eq
+        - gte
     _core.search___TrackHits:
       description: |-
         The number of hits matching the query. When `true`, the exact
@@ -47747,10 +47446,8 @@ components:
         response does not include the total number of hits matching the query.
         Default is `10,000` hits.
       oneOf:
-        - title: enabled
-          type: boolean
-        - title: count
-          type: integer
+        - type: boolean
+        - type: integer
           format: int32
     _core.termvectors___FieldStatistics:
       type: object
@@ -50557,6 +50254,7 @@ components:
         - status
         - unassigned_shards
     cluster.health___Level:
+      description: Controls the amount of detail included in the cluster health response.
       type: string
       enum:
         - awareness_attributes

@@ -184,7 +184,10 @@ public final class HealthRequest extends RequestBase implements ToCopyableBuilde
     }
 
     /**
+     * Controls the amount of detail included in the cluster health response.
+     * <p>
      * API name: {@code level}
+     * </p>
      */
     @Nullable
     public final ClusterHealthLevel level() {
@@ -500,7 +503,10 @@ public final class HealthRequest extends RequestBase implements ToCopyableBuilde
         }
 
         /**
+         * Controls the amount of detail included in the cluster health response.
+         * <p>
          * API name: {@code level}
+         * </p>
          */
         @Nonnull
         public final Builder level(@Nullable ClusterHealthLevel value) {
