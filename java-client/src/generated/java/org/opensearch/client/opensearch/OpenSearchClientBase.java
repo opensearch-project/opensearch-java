@@ -100,6 +100,7 @@ import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestClient;
 import org.opensearch.client.opensearch.ml.OpenSearchMlClient;
 import org.opensearch.client.opensearch.nodes.OpenSearchNodesClient;
+import org.opensearch.client.opensearch.search_pipeline.OpenSearchSearchPipelineClient;
 import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotClient;
 import org.opensearch.client.opensearch.tasks.OpenSearchTasksClient;
 import org.opensearch.client.transport.OpenSearchTransport;
@@ -144,6 +145,10 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
 
     public OpenSearchNodesClient nodes() {
         return new OpenSearchNodesClient(this.transport, this.transportOptions);
+    }
+
+    public OpenSearchSearchPipelineClient searchPipeline() {
+        return new OpenSearchSearchPipelineClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchSnapshotClient snapshot() {

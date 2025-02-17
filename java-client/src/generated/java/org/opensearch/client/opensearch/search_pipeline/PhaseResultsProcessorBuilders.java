@@ -34,37 +34,21 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.cluster.health;
+package org.opensearch.client.opensearch.search_pipeline;
 
 import javax.annotation.Generated;
-import org.opensearch.client.json.JsonEnum;
-import org.opensearch.client.json.JsonpDeserializable;
-
-// typedef: cluster.health.Level
 
 /**
- * Controls the amount of detail included in the cluster health response.
+ * Builders for {@link PhaseResultsProcessor} variants.
  */
-@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public enum ClusterHealthLevel implements JsonEnum {
-    AwarenessAttributes("awareness_attributes"),
+public class PhaseResultsProcessorBuilders {
+    private PhaseResultsProcessorBuilders() {}
 
-    Cluster("cluster"),
-
-    Indices("indices"),
-
-    Shards("shards");
-
-    private final String jsonValue;
-
-    ClusterHealthLevel(String jsonValue) {
-        this.jsonValue = jsonValue;
+    /**
+     * Creates a builder for the {@link NormalizationPhaseResultsProcessor normalization-processor} {@code PhaseResultsProcessor} variant.
+     */
+    public static NormalizationPhaseResultsProcessor.Builder normalizationProcessor() {
+        return new NormalizationPhaseResultsProcessor.Builder();
     }
-
-    public String jsonValue() {
-        return this.jsonValue;
-    }
-
-    public static final JsonEnum.Deserializer<ClusterHealthLevel> _DESERIALIZER = new JsonEnum.Deserializer<>(ClusterHealthLevel.values());
 }
