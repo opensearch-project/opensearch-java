@@ -63,13 +63,12 @@ public class TermSuggestOption implements PlainJsonSerializable, ToCopyableBuild
     @Nullable
     private final Boolean collateMatch;
 
-    @Nullable
-    private final Long freq;
+    private final double freq;
 
     @Nullable
     private final String highlighted;
 
-    private final double score;
+    private final float score;
 
     @Nonnull
     private final String text;
@@ -78,7 +77,7 @@ public class TermSuggestOption implements PlainJsonSerializable, ToCopyableBuild
 
     private TermSuggestOption(Builder builder) {
         this.collateMatch = builder.collateMatch;
-        this.freq = builder.freq;
+        this.freq = ApiTypeHelper.requireNonNull(builder.freq, this, "freq");
         this.highlighted = builder.highlighted;
         this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
         this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
@@ -97,10 +96,9 @@ public class TermSuggestOption implements PlainJsonSerializable, ToCopyableBuild
     }
 
     /**
-     * API name: {@code freq}
+     * Required - API name: {@code freq}
      */
-    @Nullable
-    public final Long freq() {
+    public final double freq() {
         return this.freq;
     }
 
@@ -115,7 +113,7 @@ public class TermSuggestOption implements PlainJsonSerializable, ToCopyableBuild
     /**
      * Required - API name: {@code score}
      */
-    public final double score() {
+    public final float score() {
         return this.score;
     }
 
@@ -143,10 +141,8 @@ public class TermSuggestOption implements PlainJsonSerializable, ToCopyableBuild
             generator.write(this.collateMatch);
         }
 
-        if (this.freq != null) {
-            generator.writeKey("freq");
-            generator.write(this.freq);
-        }
+        generator.writeKey("freq");
+        generator.write(this.freq);
 
         if (this.highlighted != null) {
             generator.writeKey("highlighted");
@@ -179,11 +175,10 @@ public class TermSuggestOption implements PlainJsonSerializable, ToCopyableBuild
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TermSuggestOption> {
         @Nullable
         private Boolean collateMatch;
-        @Nullable
-        private Long freq;
+        private Double freq;
         @Nullable
         private String highlighted;
-        private Double score;
+        private Float score;
         private String text;
 
         public Builder() {}
@@ -220,10 +215,10 @@ public class TermSuggestOption implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * API name: {@code freq}
+         * Required - API name: {@code freq}
          */
         @Nonnull
-        public final Builder freq(@Nullable Long value) {
+        public final Builder freq(double value) {
             this.freq = value;
             return this;
         }
@@ -241,7 +236,7 @@ public class TermSuggestOption implements PlainJsonSerializable, ToCopyableBuild
          * Required - API name: {@code score}
          */
         @Nonnull
-        public final Builder score(double value) {
+        public final Builder score(float value) {
             this.score = value;
             return this;
         }
@@ -281,9 +276,9 @@ public class TermSuggestOption implements PlainJsonSerializable, ToCopyableBuild
 
     protected static void setupTermSuggestOptionDeserializer(ObjectDeserializer<TermSuggestOption.Builder> op) {
         op.add(Builder::collateMatch, JsonpDeserializer.booleanDeserializer(), "collate_match");
-        op.add(Builder::freq, JsonpDeserializer.longDeserializer(), "freq");
+        op.add(Builder::freq, JsonpDeserializer.doubleDeserializer(), "freq");
         op.add(Builder::highlighted, JsonpDeserializer.stringDeserializer(), "highlighted");
-        op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "score");
+        op.add(Builder::score, JsonpDeserializer.floatDeserializer(), "score");
         op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
     }
 
@@ -291,9 +286,9 @@ public class TermSuggestOption implements PlainJsonSerializable, ToCopyableBuild
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.collateMatch);
-        result = 31 * result + Objects.hashCode(this.freq);
+        result = 31 * result + Double.hashCode(this.freq);
         result = 31 * result + Objects.hashCode(this.highlighted);
-        result = 31 * result + Double.hashCode(this.score);
+        result = 31 * result + Float.hashCode(this.score);
         result = 31 * result + this.text.hashCode();
         return result;
     }
@@ -304,7 +299,7 @@ public class TermSuggestOption implements PlainJsonSerializable, ToCopyableBuild
         if (o == null || this.getClass() != o.getClass()) return false;
         TermSuggestOption other = (TermSuggestOption) o;
         return Objects.equals(this.collateMatch, other.collateMatch)
-            && Objects.equals(this.freq, other.freq)
+            && this.freq == other.freq
             && Objects.equals(this.highlighted, other.highlighted)
             && this.score == other.score
             && this.text.equals(other.text);

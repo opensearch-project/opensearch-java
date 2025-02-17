@@ -37,21 +37,18 @@
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import org.opensearch.client.json.JsonpDeserializable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.json.UnionDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import org.opensearch.client.util.TaggedUnion;
-import org.opensearch.client.util.TaggedUnionUtils;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: core.search.TrackHits
 
@@ -59,103 +56,41 @@ import org.opensearch.client.util.TaggedUnionUtils;
  * The number of hits matching the query. When <code>true</code>, the exact number of hits is returned at the cost of some performance. When
  * <code>false</code>, the response does not include the total number of hits matching the query. Default is <code>10,000</code> hits.
  */
-@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, PlainJsonSerializable {
-    /**
-     * {@link TrackHits} variant kinds.
-     */
-    public enum Kind {
-        Count,
-        Enabled
-    }
+public class TrackHits implements PlainJsonSerializable, ToCopyableBuilder<TrackHits.Builder, TrackHits> {
 
-    private final Kind _kind;
-    private final Object _value;
+    @Nonnull
+    private final JsonData valueBody;
 
-    @Override
-    public final Kind _kind() {
-        return _kind;
-    }
-
-    @Override
-    public final Object _get() {
-        return _value;
-    }
-
-    private TrackHits(Kind kind, Object value) {
-        this._kind = kind;
-        this._value = value;
-    }
+    // ---------------------------------------------------------------------------------------------
 
     private TrackHits(Builder builder) {
-        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
     }
 
     public static TrackHits of(Function<TrackHits.Builder, ObjectBuilder<TrackHits>> fn) {
         return fn.apply(new Builder()).build();
     }
 
-    public String _toJsonString() {
-        switch (_kind) {
-            case Count:
-                return String.valueOf(this.count());
-            case Enabled:
-                return String.valueOf(this.enabled());
-            default:
-                throw new IllegalStateException("Unknown kind " + _kind);
-        }
+    /**
+     * Required - Response value.
+     */
+    @Nonnull
+    public final JsonData valueBody() {
+        return this.valueBody;
     }
 
     /**
-     * Is this variant instance of kind {@code count}?
+     * Serialize this value to JSON.
      */
-    public boolean isCount() {
-        return _kind == Kind.Count;
-    }
-
-    /**
-     * Get the {@code count} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code count} kind.
-     */
-    public Integer count() {
-        return TaggedUnionUtils.get(this, Kind.Count);
-    }
-
-    /**
-     * Is this variant instance of kind {@code enabled}?
-     */
-    public boolean isEnabled() {
-        return _kind == Kind.Enabled;
-    }
-
-    /**
-     * Get the {@code enabled} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code enabled} kind.
-     */
-    public Boolean enabled() {
-        return TaggedUnionUtils.get(this, Kind.Enabled);
-    }
-
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        if (_value instanceof JsonpSerializable) {
-            ((JsonpSerializable) _value).serialize(generator, mapper);
-        } else {
-            switch (_kind) {
-                case Count:
-                    generator.write(((Integer) this._value));
-                    break;
-                case Enabled:
-                    generator.write(((Boolean) this._value));
-                    break;
-            }
-        }
+        this.valueBody.serialize(generator, mapper);
     }
 
+    // ---------------------------------------------------------------------------------------------
+
+    @Override
     @Nonnull
     public Builder toBuilder() {
         return new Builder(this);
@@ -166,50 +101,67 @@ public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, PlainJson
         return new Builder();
     }
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrackHits> {
-        private Kind _kind;
-        private Object _value;
+    /**
+     * Builder for {@link TrackHits}.
+     */
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TrackHits> {
+        private JsonData valueBody;
 
         public Builder() {}
 
         private Builder(TrackHits o) {
-            this._kind = o._kind;
-            this._value = o._value;
+            this.valueBody = o.valueBody;
         }
 
-        public ObjectBuilder<TrackHits> count(Integer v) {
-            this._kind = Kind.Count;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<TrackHits> enabled(Boolean v) {
-            this._kind = Kind.Enabled;
-            this._value = v;
-            return this;
+        private Builder(Builder o) {
+            this.valueBody = o.valueBody;
         }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        /**
+         * Required - Response value.
+         */
+        @Nonnull
+        public final Builder valueBody(JsonData value) {
+            this.valueBody = value;
+            return this;
+        }
+
+        /**
+         * Builds a {@link TrackHits}.
+         *
+         * @throws NullPointerException if some of the required fields are null.
+         */
+        @Override
+        @Nonnull
         public TrackHits build() {
             _checkSingleUse();
+
             return new TrackHits(this);
         }
     }
 
-    private static JsonpDeserializer<TrackHits> buildTrackHitsDeserializer() {
-        return new UnionDeserializer.Builder<TrackHits, Kind, Object>(TrackHits::new, false).addMember(
-            Kind.Count,
-            JsonpDeserializer.integerDeserializer()
-        ).addMember(Kind.Enabled, JsonpDeserializer.booleanDeserializer()).build();
-    }
+    // ---------------------------------------------------------------------------------------------
 
-    public static final JsonpDeserializer<TrackHits> _DESERIALIZER = JsonpDeserializer.lazy(TrackHits::buildTrackHitsDeserializer);
+    public static final JsonpDeserializer<TrackHits> _DESERIALIZER = createTrackHitsDeserializer();
+
+    protected static JsonpDeserializer<TrackHits> createTrackHitsDeserializer() {
+        JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
+        return JsonpDeserializer.of(
+            valueDeserializer.acceptedEvents(),
+            (parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build()
+        );
+    }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this._kind);
-        result = 31 * result + Objects.hashCode(this._value);
+        result = 31 * result + this.valueBody.hashCode();
         return result;
     }
 
@@ -217,7 +169,6 @@ public class TrackHits implements TaggedUnion<TrackHits.Kind, Object>, PlainJson
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        TrackHits other = (TrackHits) o;
-        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+        return true;
     }
 }

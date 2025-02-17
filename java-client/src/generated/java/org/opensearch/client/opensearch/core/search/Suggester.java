@@ -37,8 +37,6 @@
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -50,7 +48,6 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -62,29 +59,17 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class Suggester implements PlainJsonSerializable, ToCopyableBuilder<Suggester.Builder, Suggester> {
 
-    @Nonnull
-    private final Map<String, FieldSuggester> suggesters;
-
     @Nullable
     private final String text;
 
     // ---------------------------------------------------------------------------------------------
 
     private Suggester(Builder builder) {
-        this.suggesters = ApiTypeHelper.unmodifiable(builder.suggesters);
         this.text = builder.text;
     }
 
     public static Suggester of(Function<Suggester.Builder, ObjectBuilder<Suggester>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * The named suggesters.
-     */
-    @Nonnull
-    public final Map<String, FieldSuggester> suggesters() {
-        return this.suggesters;
     }
 
     /**
@@ -109,10 +94,6 @@ public class Suggester implements PlainJsonSerializable, ToCopyableBuilder<Sugge
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        for (Map.Entry<String, FieldSuggester> item0 : this.suggesters.entrySet()) {
-            generator.writeKey(item0.getKey());
-            item0.getValue().serialize(generator, mapper);
-        }
         if (this.text != null) {
             generator.writeKey("text");
             generator.write(this.text);
@@ -137,19 +118,15 @@ public class Suggester implements PlainJsonSerializable, ToCopyableBuilder<Sugge
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Suggester> {
         @Nullable
-        private Map<String, FieldSuggester> suggesters;
-        @Nullable
         private String text;
 
         public Builder() {}
 
         private Builder(Suggester o) {
-            this.suggesters = _mapCopy(o.suggesters);
             this.text = o.text;
         }
 
         private Builder(Builder o) {
-            this.suggesters = _mapCopy(o.suggesters);
             this.text = o.text;
         }
 
@@ -157,44 +134,6 @@ public class Suggester implements PlainJsonSerializable, ToCopyableBuilder<Sugge
         @Nonnull
         public Builder copy() {
             return new Builder(this);
-        }
-
-        /**
-         * The named suggesters.
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>suggesters</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder suggesters(Map<String, FieldSuggester> map) {
-            this.suggesters = _mapPutAll(this.suggesters, map);
-            return this;
-        }
-
-        /**
-         * The named suggesters.
-         *
-         * <p>
-         * Adds an entry to <code>suggesters</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder suggesters(String key, FieldSuggester value) {
-            this.suggesters = _mapPut(this.suggesters, key, value);
-            return this;
-        }
-
-        /**
-         * The named suggesters.
-         *
-         * <p>
-         * Adds a value to <code>suggesters</code> using a builder lambda.
-         * </p>
-         */
-        @Nonnull
-        public final Builder suggesters(String key, Function<FieldSuggester.Builder, ObjectBuilder<FieldSuggester>> fn) {
-            return suggesters(key, fn.apply(new FieldSuggester.Builder()).build());
         }
 
         /**
@@ -235,18 +174,11 @@ public class Suggester implements PlainJsonSerializable, ToCopyableBuilder<Sugge
 
     protected static void setupSuggesterDeserializer(ObjectDeserializer<Suggester.Builder> op) {
         op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
-        op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-            if (builder.suggesters == null) {
-                builder.suggesters = new HashMap<>();
-            }
-            builder.suggesters.put(name, FieldSuggester._DESERIALIZER.deserialize(parser, mapper));
-        });
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.suggesters);
         result = 31 * result + Objects.hashCode(this.text);
         return result;
     }
@@ -256,6 +188,6 @@ public class Suggester implements PlainJsonSerializable, ToCopyableBuilder<Sugge
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         Suggester other = (Suggester) o;
-        return Objects.equals(this.suggesters, other.suggesters) && Objects.equals(this.text, other.text);
+        return Objects.equals(this.text, other.text);
     }
 }
