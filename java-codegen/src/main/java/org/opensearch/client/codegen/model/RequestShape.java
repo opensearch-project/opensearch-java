@@ -238,6 +238,12 @@ public class RequestShape extends ObjectShape {
         Objects.requireNonNull(operationGroup, "operationGroup must not be null");
 
         switch (operationGroup.toString()) {
+            case "cluster.get_settings":
+                return "GetClusterSettings";
+            case "cluster.put_settings":
+                return "PutClusterSettings";
+            case "cluster.stats":
+                return "ClusterStats";
             case "indices.clone":
                 return "CloneIndex";
             case "indices.close":

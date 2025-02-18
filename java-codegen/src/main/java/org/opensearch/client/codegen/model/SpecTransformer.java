@@ -23,7 +23,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.annotation.Nonnull;
-import org.apache.commons.lang3.NotImplementedException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.model.overrides.Overrides;
@@ -388,7 +387,8 @@ public class SpecTransformer {
                 visitInto(schema, objShape);
             }
         } else {
-            throw new NotImplementedException("Unsupported schema: " + schema);
+            shape = new DelegatedShape(parent, className, typedefName, description, shouldGenerate, mapType(schema));
+            visitedSchemas.putIfAbsent(schema, shape);
         }
 
         parent.addShape(shape);
