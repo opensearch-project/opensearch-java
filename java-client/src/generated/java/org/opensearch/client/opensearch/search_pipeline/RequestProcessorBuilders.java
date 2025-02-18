@@ -34,37 +34,42 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.cluster.health;
+package org.opensearch.client.opensearch.search_pipeline;
 
 import javax.annotation.Generated;
-import org.opensearch.client.json.JsonEnum;
-import org.opensearch.client.json.JsonpDeserializable;
-
-// typedef: cluster.health.Level
 
 /**
- * Controls the amount of detail included in the cluster health response.
+ * Builders for {@link RequestProcessor} variants.
  */
-@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public enum ClusterHealthLevel implements JsonEnum {
-    AwarenessAttributes("awareness_attributes"),
+public class RequestProcessorBuilders {
+    private RequestProcessorBuilders() {}
 
-    Cluster("cluster"),
-
-    Indices("indices"),
-
-    Shards("shards");
-
-    private final String jsonValue;
-
-    ClusterHealthLevel(String jsonValue) {
-        this.jsonValue = jsonValue;
+    /**
+     * Creates a builder for the {@link FilterQueryRequestProcessor filter_query} {@code RequestProcessor} variant.
+     */
+    public static FilterQueryRequestProcessor.Builder filterQuery() {
+        return new FilterQueryRequestProcessor.Builder();
     }
 
-    public String jsonValue() {
-        return this.jsonValue;
+    /**
+     * Creates a builder for the {@link NeuralQueryEnricherRequestProcessor neural_query_enricher} {@code RequestProcessor} variant.
+     */
+    public static NeuralQueryEnricherRequestProcessor.Builder neuralQueryEnricher() {
+        return new NeuralQueryEnricherRequestProcessor.Builder();
     }
 
-    public static final JsonEnum.Deserializer<ClusterHealthLevel> _DESERIALIZER = new JsonEnum.Deserializer<>(ClusterHealthLevel.values());
+    /**
+     * Creates a builder for the {@link OversampleRequestProcessor oversample} {@code RequestProcessor} variant.
+     */
+    public static OversampleRequestProcessor.Builder oversample() {
+        return new OversampleRequestProcessor.Builder();
+    }
+
+    /**
+     * Creates a builder for the {@link SearchScriptRequestProcessor script} {@code RequestProcessor} variant.
+     */
+    public static SearchScriptRequestProcessor.Builder script() {
+        return new SearchScriptRequestProcessor.Builder();
+    }
 }

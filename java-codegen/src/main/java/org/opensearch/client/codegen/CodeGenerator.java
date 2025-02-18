@@ -100,6 +100,7 @@ public class CodeGenerator {
                 isNot("hot_threads")
             )
         ),
+        namespace(is("search_pipeline")),
         namespace(is("snapshot")),
         namespace(is("tasks"))
     );

@@ -34,31 +34,26 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.cluster.health;
+package org.opensearch.client.opensearch.search_pipeline;
 
 import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-// typedef: cluster.health.Level
+// typedef: search_pipeline.ScoreCombinationTechnique
 
-/**
- * Controls the amount of detail included in the cluster health response.
- */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public enum ClusterHealthLevel implements JsonEnum {
-    AwarenessAttributes("awareness_attributes"),
+public enum ScoreCombinationTechnique implements JsonEnum {
+    ArithmeticMean("arithmetic_mean"),
 
-    Cluster("cluster"),
+    GeometricMean("geometric_mean"),
 
-    Indices("indices"),
-
-    Shards("shards");
+    HarmonicMean("harmonic_mean");
 
     private final String jsonValue;
 
-    ClusterHealthLevel(String jsonValue) {
+    ScoreCombinationTechnique(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -66,5 +61,7 @@ public enum ClusterHealthLevel implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<ClusterHealthLevel> _DESERIALIZER = new JsonEnum.Deserializer<>(ClusterHealthLevel.values());
+    public static final JsonEnum.Deserializer<ScoreCombinationTechnique> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        ScoreCombinationTechnique.values()
+    );
 }

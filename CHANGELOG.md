@@ -43,6 +43,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ## [Unreleased 2.x]
 ### Added
+- Added support for the Search Pipeline APIs ([#1442](https://github.com/opensearch-project/opensearch-java/pull/1442))
 
 ### Dependencies
 
