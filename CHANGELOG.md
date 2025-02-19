@@ -3,6 +3,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
+- Added `toBuilder()` and `Builder.copy()` methods to all generated classes ([#1300](https://github.com/opensearch-project/opensearch-java/pull/1300))
+- Added support for additional ML APIs ([#1443](https://github.com/opensearch-project/opensearch-java/pull/1443))
 
 ### Dependencies
 
