@@ -65,6 +65,7 @@ public class Overrides {
                         p -> p.with("getTime", po -> po.withIgnore(true)).with("time", po -> po.withAliases(Set.of("getTime")))
                     )
                 )
+                .with(schema("_common", "PhaseTook"), so -> so.withShouldGenerate(ShouldGenerate.Always))
 
                 .with(schema("_common.aggregations", "Aggregation"), so -> so.withClassName("AggregationBase"))
                 .with(
