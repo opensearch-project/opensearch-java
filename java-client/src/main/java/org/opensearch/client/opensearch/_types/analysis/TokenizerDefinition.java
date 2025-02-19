@@ -82,6 +82,8 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
 
         Pattern("pattern"),
 
+        SimplePattern("simple_pattern"),
+        SimplePatternSplit("simple_pattern_split"),
         Standard("standard"),
 
         UaxUrlEmail("uax_url_email"),
@@ -324,6 +326,54 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     }
 
     /**
+     * Is this variant instance of kind {@code simple_pattern}?
+     */
+    public boolean isSimplePattern() {
+        return _kind == Kind.SimplePattern;
+    }
+
+    /**
+     * Get the {@code simple_pattern} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code simple_pattern} kind.
+     */
+    public SimplePatternTokenizer simplePattern() {
+        return TaggedUnionUtils.get(this, Kind.SimplePattern);
+    }
+
+    /**
+     * Is this variant instance of kind {@code simple_pattern_split}?
+     */
+    public boolean isSimplePatternSplit() {
+        return _kind == Kind.SimplePatternSplit;
+    }
+
+    /**
+     * Get the {@code simple_pattern_split} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code simple_pattern_split} kind.
+     */
+    public SimplePatternSplitTokenizer simplePatternSplit() {
+        return TaggedUnionUtils.get(this, Kind.SimplePatternSplit);
+    }
+
+    /**
+     * Is this variant instance of kind {@code smartcn_tokenizer}?
+     */
+    public boolean isSmartcn() {
+        return _kind == Kind.SmartcnTokenizer;
+    }
+
+    /**
+     * Get the {@code smartcn_tokenizer} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code smartcn_tokenizer} kind.
+     */
+    public SmartcnTokenizer smartcn() {
+        return TaggedUnionUtils.get(this, Kind.SmartcnTokenizer);
+    }
+
+    /**
      * Is this variant instance of kind {@code standard}?
      */
     public boolean isStandard() {
@@ -499,6 +549,40 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
             return this.pattern(fn.apply(new PatternTokenizer.Builder()).build());
         }
 
+        public ObjectBuilder<TokenizerDefinition> simplePattern(SimplePatternTokenizer v) {
+            this._kind = Kind.SimplePattern;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<TokenizerDefinition> simplePattern(
+            Function<SimplePatternTokenizer.Builder, ObjectBuilder<SimplePatternTokenizer>> fn
+        ) {
+            return this.simplePattern(fn.apply(new SimplePatternTokenizer.Builder()).build());
+        }
+
+        public ObjectBuilder<TokenizerDefinition> simplePatternSplit(SimplePatternSplitTokenizer v) {
+            this._kind = Kind.SimplePatternSplit;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<TokenizerDefinition> simplePatternSplit(
+            Function<SimplePatternSplitTokenizer.Builder, ObjectBuilder<SimplePatternSplitTokenizer>> fn
+        ) {
+            return this.simplePatternSplit(fn.apply(new SimplePatternSplitTokenizer.Builder()).build());
+        }
+
+        public ObjectBuilder<TokenizerDefinition> smartcnTokenizer(SmartcnTokenizer v) {
+            this._kind = Kind.SmartcnTokenizer;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<TokenizerDefinition> smartcnTokenizer(Function<SmartcnTokenizer.Builder, ObjectBuilder<SmartcnTokenizer>> fn) {
+            return this.smartcnTokenizer(fn.apply(new SmartcnTokenizer.Builder()).build());
+        }
+
         public ObjectBuilder<TokenizerDefinition> standard(StandardTokenizer v) {
             this._kind = Kind.Standard;
             this._value = v;
@@ -531,16 +615,7 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
             return this.whitespace(fn.apply(new WhitespaceTokenizer.Builder()).build());
         }
 
-        public ObjectBuilder<TokenizerDefinition> smartcn(SmartcnTokenizer v) {
-            this._kind = Kind.SmartcnTokenizer;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<TokenizerDefinition> smartcn(Function<SmartcnTokenizer.Builder, ObjectBuilder<SmartcnTokenizer>> fn) {
-            return this.smartcn(fn.apply(new SmartcnTokenizer.Builder()).build());
-        }
-
+        @Override
         public TokenizerDefinition build() {
             _checkSingleUse();
             return new TokenizerDefinition(this);
@@ -561,11 +636,12 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
         op.add(Builder::noriTokenizer, NoriTokenizer._DESERIALIZER, "nori_tokenizer");
         op.add(Builder::pathHierarchy, PathHierarchyTokenizer._DESERIALIZER, "path_hierarchy");
         op.add(Builder::pattern, PatternTokenizer._DESERIALIZER, "pattern");
+        op.add(Builder::simplePattern, SimplePatternTokenizer._DESERIALIZER, "simple_pattern");
+        op.add(Builder::simplePatternSplit, SimplePatternSplitTokenizer._DESERIALIZER, "simple_pattern_split");
+        op.add(Builder::smartcnTokenizer, SmartcnTokenizer._DESERIALIZER, "smartcn_tokenizer");
         op.add(Builder::standard, StandardTokenizer._DESERIALIZER, "standard");
         op.add(Builder::uaxUrlEmail, UaxEmailUrlTokenizer._DESERIALIZER, "uax_url_email");
         op.add(Builder::whitespace, WhitespaceTokenizer._DESERIALIZER, "whitespace");
-        op.add(Builder::smartcn, SmartcnTokenizer._DESERIALIZER, Kind.SmartcnTokenizer.jsonValue());
-
         op.setTypeProperty("type", null);
 
     }

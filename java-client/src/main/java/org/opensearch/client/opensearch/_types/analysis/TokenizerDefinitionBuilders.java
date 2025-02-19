@@ -127,8 +127,28 @@ public class TokenizerDefinitionBuilders {
     }
 
     /**
-     * Creates a builder for the {@link StandardTokenizer standard}
-     * {@code TokenizerDefinition} variant.
+     * Creates a builder for the {@link SimplePatternTokenizer simple_pattern} {@code TokenizerDefinition} variant.
+     */
+    public static SimplePatternTokenizer.Builder simplePattern() {
+        return new SimplePatternTokenizer.Builder();
+    }
+
+    /**
+     * Creates a builder for the {@link SimplePatternSplitTokenizer simple_pattern_split} {@code TokenizerDefinition} variant.
+     */
+    public static SimplePatternSplitTokenizer.Builder simplePatternSplit() {
+        return new SimplePatternSplitTokenizer.Builder();
+    }
+
+    /**
+     * Creates a builder for the {@link SmartcnTokenizer smartcn_tokenizer} {@code TokenizerDefinition} variant.
+     */
+    public static SmartcnTokenizer.Builder smartcn() {
+        return new SmartcnTokenizer.Builder();
+    }
+
+    /**
+     * Creates a builder for the {@link StandardTokenizer standard} {@code TokenizerDefinition} variant.
      */
     public static StandardTokenizer.Builder standard() {
         return new StandardTokenizer.Builder();
