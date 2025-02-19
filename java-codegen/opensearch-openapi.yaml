@@ -41530,6 +41530,32 @@ components:
           $ref: '#/components/schemas/_common___VersionString'
       required:
         - type
+    _common.analysis___SimplePatternSplitTokenizer:
+      allOf:
+        - $ref: '#/components/schemas/_common.analysis___TokenizerBase'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - simple_pattern_split
+              pattern:
+                type: string
+          required:
+            - type
+    _common.analysis___SimplePatternTokenizer:
+      allOf:
+        - $ref: '#/components/schemas/_common.analysis___TokenizerBase'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - simple_pattern
+              pattern:
+                type: string
+          required:
+            - type
     _common.analysis___SmartcnAnalyzer:
       type: object
       properties:
@@ -41873,6 +41899,8 @@ components:
         - $ref: '#/components/schemas/_common.analysis___WhitespaceTokenizer'
         - $ref: '#/components/schemas/_common.analysis___KuromojiTokenizer'
         - $ref: '#/components/schemas/_common.analysis___PatternTokenizer'
+        - $ref: '#/components/schemas/_common.analysis___SimplePatternTokenizer'
+        - $ref: '#/components/schemas/_common.analysis___SimplePatternSplitTokenizer'
         - $ref: '#/components/schemas/_common.analysis___IcuTokenizer'
         - $ref: '#/components/schemas/_common.analysis___SmartcnTokenizer'
     _common.analysis___TrimTokenFilter:
@@ -61115,12 +61143,14 @@ components:
         - recipe
         - weight
     search_pipeline._common___PhaseResultsProcessor:
-      type: object
-      properties:
-        normalization-processor:
-          $ref: '#/components/schemas/search_pipeline._common___NormalizationPhaseResultsProcessor'
-      minProperties: 1
-      maxProperties: 1
+      oneOf:
+        - type: object
+          title: normalization-processor
+          properties:
+            normalization-processor:
+              $ref: '#/components/schemas/search_pipeline._common___NormalizationPhaseResultsProcessor'
+          required:
+            - normalization-processor
     search_pipeline._common___RenameFieldResponseProcessor:
       type: object
       properties:
@@ -61138,18 +61168,35 @@ components:
         - field
         - target_field
     search_pipeline._common___RequestProcessor:
-      type: object
-      properties:
-        filter_query:
-          $ref: '#/components/schemas/search_pipeline._common___FilterQueryRequestProcessor'
-        neural_query_enricher:
-          $ref: '#/components/schemas/search_pipeline._common___NeuralQueryEnricherRequestProcessor'
-        script:
-          $ref: '#/components/schemas/search_pipeline._common___SearchScriptRequestProcessor'
-        oversample:
-          $ref: '#/components/schemas/search_pipeline._common___OversampleRequestProcessor'
-      minProperties: 1
-      maxProperties: 1
+      oneOf:
+        - type: object
+          title: filter_query
+          properties:
+            filter_query:
+              $ref: '#/components/schemas/search_pipeline._common___FilterQueryRequestProcessor'
+          required:
+            - filter_query
+        - type: object
+          title: neural_query_enricher
+          properties:
+            neural_query_enricher:
+              $ref: '#/components/schemas/search_pipeline._common___NeuralQueryEnricherRequestProcessor'
+          required:
+            - neural_query_enricher
+        - type: object
+          title: script
+          properties:
+            script:
+              $ref: '#/components/schemas/search_pipeline._common___SearchScriptRequestProcessor'
+          required:
+            - script
+        - type: object
+          title: oversample
+          properties:
+            oversample:
+              $ref: '#/components/schemas/search_pipeline._common___OversampleRequestProcessor'
+          required:
+            - oversample
     search_pipeline._common___RerankContext:
       type: object
       properties:
@@ -61173,26 +61220,63 @@ components:
         context:
           $ref: '#/components/schemas/search_pipeline._common___RerankContext'
     search_pipeline._common___ResponseProcessor:
-      type: object
-      properties:
-        personalize_search_ranking:
-          $ref: '#/components/schemas/search_pipeline._common___PersonalizeSearchRankingResponseProcessor'
-        retrieval_augmented_generation:
-          $ref: '#/components/schemas/search_pipeline._common___RetrievalAugmentedGenerationResponseProcessor'
-        rename_field:
-          $ref: '#/components/schemas/search_pipeline._common___RenameFieldResponseProcessor'
-        rerank:
-          $ref: '#/components/schemas/search_pipeline._common___RerankResponseProcessor'
-        collapse:
-          $ref: '#/components/schemas/search_pipeline._common___CollapseResponseProcessor'
-        truncate_hits:
-          $ref: '#/components/schemas/search_pipeline._common___TruncateHitsResponseProcessor'
-        sort:
-          $ref: '#/components/schemas/search_pipeline._common___SortResponseProcessor'
-        split:
-          $ref: '#/components/schemas/search_pipeline._common___SplitResponseProcessor'
-      minProperties: 1
-      maxProperties: 1
+      oneOf:
+        - type: object
+          title: personalize_search_ranking
+          properties:
+            personalize_search_ranking:
+              $ref: '#/components/schemas/search_pipeline._common___PersonalizeSearchRankingResponseProcessor'
+          required:
+            - personalize_search_ranking
+        - type: object
+          title: retrieval_augmented_generation
+          properties:
+            retrieval_augmented_generation:
+              $ref: '#/components/schemas/search_pipeline._common___RetrievalAugmentedGenerationResponseProcessor'
+          required:
+            - retrieval_augmented_generation
+        - type: object
+          title: rename_field
+          properties:
+            rename_field:
+              $ref: '#/components/schemas/search_pipeline._common___RenameFieldResponseProcessor'
+          required:
+            - rename_field
+        - type: object
+          title: rerank
+          properties:
+            rerank:
+              $ref: '#/components/schemas/search_pipeline._common___RerankResponseProcessor'
+          required:
+            - rerank
+        - type: object
+          title: collapse
+          properties:
+            collapse:
+              $ref: '#/components/schemas/search_pipeline._common___CollapseResponseProcessor'
+          required:
+            - collapse
+        - type: object
+          title: truncate_hits
+          properties:
+            truncate_hits:
+              $ref: '#/components/schemas/search_pipeline._common___TruncateHitsResponseProcessor'
+          required:
+            - truncate_hits
+        - type: object
+          title: sort
+          properties:
+            sort:
+              $ref: '#/components/schemas/search_pipeline._common___SortResponseProcessor'
+          required:
+            - sort
+        - type: object
+          title: split
+          properties:
+            split:
+              $ref: '#/components/schemas/search_pipeline._common___SplitResponseProcessor'
+          required:
+            - split
     search_pipeline._common___RetrievalAugmentedGenerationResponseProcessor:
       type: object
       properties:
