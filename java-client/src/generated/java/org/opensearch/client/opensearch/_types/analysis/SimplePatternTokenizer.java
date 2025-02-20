@@ -37,9 +37,11 @@
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -58,10 +60,14 @@ public class SimplePatternTokenizer extends TokenizerBase
         TokenizerDefinitionVariant,
         ToCopyableBuilder<SimplePatternTokenizer.Builder, SimplePatternTokenizer> {
 
+    @Nullable
+    private final String pattern;
+
     // ---------------------------------------------------------------------------------------------
 
     private SimplePatternTokenizer(Builder builder) {
         super(builder);
+        this.pattern = builder.pattern;
     }
 
     public static SimplePatternTokenizer of(Function<SimplePatternTokenizer.Builder, ObjectBuilder<SimplePatternTokenizer>> fn) {
@@ -76,9 +82,21 @@ public class SimplePatternTokenizer extends TokenizerBase
         return TokenizerDefinition.Kind.SimplePattern;
     }
 
+    /**
+     * API name: {@code pattern}
+     */
+    @Nullable
+    public final String pattern() {
+        return this.pattern;
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.write("type", "simple_pattern");
         super.serializeInternal(generator, mapper);
+        if (this.pattern != null) {
+            generator.writeKey("pattern");
+            generator.write(this.pattern);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -98,15 +116,19 @@ public class SimplePatternTokenizer extends TokenizerBase
      * Builder for {@link SimplePatternTokenizer}.
      */
     public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, SimplePatternTokenizer> {
+        @Nullable
+        private String pattern;
 
         public Builder() {}
 
         private Builder(SimplePatternTokenizer o) {
             super(o);
+            this.pattern = o.pattern;
         }
 
         private Builder(Builder o) {
             super(o);
+            this.pattern = o.pattern;
         }
 
         @Override
@@ -118,6 +140,15 @@ public class SimplePatternTokenizer extends TokenizerBase
         @Override
         @Nonnull
         protected Builder self() {
+            return this;
+        }
+
+        /**
+         * API name: {@code pattern}
+         */
+        @Nonnull
+        public final Builder pattern(@Nullable String value) {
+            this.pattern = value;
             return this;
         }
 
@@ -147,6 +178,7 @@ public class SimplePatternTokenizer extends TokenizerBase
 
     protected static void setupSimplePatternTokenizerDeserializer(ObjectDeserializer<SimplePatternTokenizer.Builder> op) {
         setupTokenizerBaseDeserializer(op);
+        op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");
 
         op.ignore("type");
     }
@@ -154,6 +186,7 @@ public class SimplePatternTokenizer extends TokenizerBase
     @Override
     public int hashCode() {
         int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.pattern);
         return result;
     }
 
@@ -164,6 +197,7 @@ public class SimplePatternTokenizer extends TokenizerBase
         }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        return true;
+        SimplePatternTokenizer other = (SimplePatternTokenizer) o;
+        return Objects.equals(this.pattern, other.pattern);
     }
 }

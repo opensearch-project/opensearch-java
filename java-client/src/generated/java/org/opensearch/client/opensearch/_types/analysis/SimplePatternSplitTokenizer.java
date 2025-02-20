@@ -37,9 +37,11 @@
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -58,10 +60,14 @@ public class SimplePatternSplitTokenizer extends TokenizerBase
         TokenizerDefinitionVariant,
         ToCopyableBuilder<SimplePatternSplitTokenizer.Builder, SimplePatternSplitTokenizer> {
 
+    @Nullable
+    private final String pattern;
+
     // ---------------------------------------------------------------------------------------------
 
     private SimplePatternSplitTokenizer(Builder builder) {
         super(builder);
+        this.pattern = builder.pattern;
     }
 
     public static SimplePatternSplitTokenizer of(
@@ -78,9 +84,21 @@ public class SimplePatternSplitTokenizer extends TokenizerBase
         return TokenizerDefinition.Kind.SimplePatternSplit;
     }
 
+    /**
+     * API name: {@code pattern}
+     */
+    @Nullable
+    public final String pattern() {
+        return this.pattern;
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.write("type", "simple_pattern_split");
         super.serializeInternal(generator, mapper);
+        if (this.pattern != null) {
+            generator.writeKey("pattern");
+            generator.write(this.pattern);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -102,15 +120,19 @@ public class SimplePatternSplitTokenizer extends TokenizerBase
     public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
         implements
             CopyableBuilder<Builder, SimplePatternSplitTokenizer> {
+        @Nullable
+        private String pattern;
 
         public Builder() {}
 
         private Builder(SimplePatternSplitTokenizer o) {
             super(o);
+            this.pattern = o.pattern;
         }
 
         private Builder(Builder o) {
             super(o);
+            this.pattern = o.pattern;
         }
 
         @Override
@@ -122,6 +144,15 @@ public class SimplePatternSplitTokenizer extends TokenizerBase
         @Override
         @Nonnull
         protected Builder self() {
+            return this;
+        }
+
+        /**
+         * API name: {@code pattern}
+         */
+        @Nonnull
+        public final Builder pattern(@Nullable String value) {
+            this.pattern = value;
             return this;
         }
 
@@ -151,6 +182,7 @@ public class SimplePatternSplitTokenizer extends TokenizerBase
 
     protected static void setupSimplePatternSplitTokenizerDeserializer(ObjectDeserializer<SimplePatternSplitTokenizer.Builder> op) {
         setupTokenizerBaseDeserializer(op);
+        op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");
 
         op.ignore("type");
     }
@@ -158,6 +190,7 @@ public class SimplePatternSplitTokenizer extends TokenizerBase
     @Override
     public int hashCode() {
         int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.pattern);
         return result;
     }
 
@@ -168,6 +201,7 @@ public class SimplePatternSplitTokenizer extends TokenizerBase
         }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        return true;
+        SimplePatternSplitTokenizer other = (SimplePatternSplitTokenizer) o;
+        return Objects.equals(this.pattern, other.pattern);
     }
 }
