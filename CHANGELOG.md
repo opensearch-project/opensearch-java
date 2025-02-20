@@ -7,6 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added support for additional ML APIs ([#1443](https://github.com/opensearch-project/opensearch-java/pull/1443))
 - Added support for the Search Pipeline APIs ([#1442](https://github.com/opensearch-project/opensearch-java/pull/1442))
 - Added support for `simple_pattern` and `simple_pattern_split` tokenizers ([#1448](https://github.com/opensearch-project/opensearch-java/pull/1448), [#1451](https://github.com/opensearch-project/opensearch-java/pull/1451))
+- Added support for the Search response `phase_took` field ([#1449](https://github.com/opensearch-project/opensearch-java/pull/1449)) 
 
 ### Dependencies
 
