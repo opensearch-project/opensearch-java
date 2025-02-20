@@ -45,6 +45,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Added
 - Added support for the Search Pipeline APIs ([#1442](https://github.com/opensearch-project/opensearch-java/pull/1442))
 - Added support for `simple_pattern` and `simple_pattern_split` tokenizers ([#1448](https://github.com/opensearch-project/opensearch-java/pull/1448))
+- Added support for the Search response `phase_took` field ([#1449](https://github.com/opensearch-project/opensearch-java/pull/1449)) 
 
 ### Dependencies
 
