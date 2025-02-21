@@ -33,31 +33,29 @@
 package org.opensearch.client.opensearch.cat;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.RequestBase;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 
 // typedef: cat._types.CatRequestBase
 
 public abstract class CatRequestBase extends RequestBase {
-    @Nonnull
-    private final List<String> headers;
-    @Nonnull
-    private final List<String> sort;
+    @Nullable
+    private final String headers;
+    @Nullable
+    private final String sort;
 
     public CatRequestBase() {
-        this.headers = ApiTypeHelper.undefinedList();
-        this.sort = ApiTypeHelper.undefinedList();
+        this.headers = null;
+        this.sort = null;
     }
 
     protected CatRequestBase(AbstractBuilder<?> builder) {
         super(builder);
-        this.headers = ApiTypeHelper.unmodifiable(builder.headers);
-        this.sort = ApiTypeHelper.unmodifiable(builder.sort);
+        this.headers = builder.headers;
+        this.sort = builder.sort;
     }
 
     /**
@@ -65,9 +63,9 @@ public abstract class CatRequestBase extends RequestBase {
      * <p>
      * API name: {@code h}
      */
-    @Nonnull
+    @Nullable
     public final String headers() {
-        return String.join(",", this.headers);
+        return this.headers;
     }
 
     /**
@@ -76,9 +74,9 @@ public abstract class CatRequestBase extends RequestBase {
      * API name: {@code s}
      * <p>
      */
-    @Nonnull
+    @Nullable
     public final String sort() {
-        return String.join(",", this.sort);
+        return this.sort;
     }
 
     protected abstract static class CatRequestBaseBuilder<BuilderT extends CatRequestBaseBuilder<BuilderT>> extends AbstractBuilder<
@@ -89,22 +87,22 @@ public abstract class CatRequestBase extends RequestBase {
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends RequestBase.AbstractBuilder<
         BuilderT> {
         @Nullable
-        protected List<String> headers;
+        protected String headers;
         @Nullable
-        protected List<String> sort;
+        protected String sort;
 
         protected AbstractBuilder() {}
 
         protected AbstractBuilder(CatRequestBase o) {
             super(o);
-            this.headers = _listCopy(o.headers);
-            this.sort = _listCopy(o.sort);
+            this.headers = o.headers;
+            this.sort = o.sort;
         }
 
         protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
             super(o);
-            this.headers = _listCopy(o.headers);
-            this.sort = _listCopy(o.sort);
+            this.headers = o.headers;
+            this.sort = o.sort;
         }
 
         /**
@@ -114,20 +112,8 @@ public abstract class CatRequestBase extends RequestBase {
          * <p>
          */
         @Nonnull
-        public final BuilderT headers(List<String> values) {
-            this.headers = _listAddAll(this.headers, values);
-            return self();
-        }
-
-        /**
-         * A comma-separated list of specific headers to limits the output
-         * <p>
-         * API name: {@code h}
-         * <p>
-         */
-        @Nonnull
-        public final BuilderT headers(String value, String... values) {
-            this.headers = _listAdd(this.headers, value, values);
+        public final BuilderT headers(@Nullable String headers) {
+            this.headers = headers;
             return self();
         }
 
@@ -138,20 +124,8 @@ public abstract class CatRequestBase extends RequestBase {
          * <p>
          */
         @Nonnull
-        public final BuilderT sort(List<String> values) {
-            this.sort = _listAddAll(this.sort, values);
-            return self();
-        }
-
-        /**
-         * A comma-separated list of headers to sort the returned information
-         * <p>
-         * API name: {@code s}
-         * <p>
-         */
-        @Nonnull
-        public final BuilderT sort(String value, String... values) {
-            this.sort = _listAdd(this.sort, value, values);
+        public final BuilderT sort(@Nullable String sort) {
+            this.sort = sort;
             return self();
         }
     }
@@ -159,11 +133,11 @@ public abstract class CatRequestBase extends RequestBase {
     @Override
     protected void applyQueryParameters(@Nonnull Map<String, String> params) {
         super.applyQueryParameters(params);
-        if (ApiTypeHelper.isDefined(headers)) {
-            params.put("h", String.join(",", headers));
+        if (headers != null && !headers.trim().isEmpty()) {
+            params.put("h", headers);
         }
-        if (ApiTypeHelper.isDefined(sort)) {
-            params.put("s", String.join(",", sort));
+        if (sort != null && !sort.trim().isEmpty()) {
+            params.put("s", sort);
         }
         params.put("format", "json");
     }
