@@ -20,11 +20,12 @@ import javax.annotation.Nullable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
+import org.opensearch.client.codegen.utils.JavaAbstractionLevel;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class Namespace {
-    private static final Set<String> PARTIAL_NAMESPACES = Set.of("", "snapshot", "indices");
+    private static final Set<String> PARTIAL_NAMESPACES = Set.of("", "cat", "indices", "nodes");
 
     private final Namespace parent;
     private final String name;
@@ -138,8 +139,8 @@ public class Namespace {
         }
 
         @Override
-        public boolean isAbstract() {
-            return base;
+        public JavaAbstractionLevel getAbstractionLevel() {
+            return base ? JavaAbstractionLevel.Abstract : JavaAbstractionLevel.Concrete;
         }
 
         @Override

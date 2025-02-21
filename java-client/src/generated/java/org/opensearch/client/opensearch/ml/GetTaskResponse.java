@@ -26,14 +26,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.get_task.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GetTaskResponse implements PlainJsonSerializable {
+public class GetTaskResponse implements PlainJsonSerializable, ToCopyableBuilder<GetTaskResponse.Builder, GetTaskResponse> {
 
     @Nullable
     private final Long createTime;
@@ -42,7 +44,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
     private final String error;
 
     @Nullable
-    private final String functionName;
+    private final FunctionName functionName;
 
     @Nullable
     private final Boolean isAsync;
@@ -104,7 +106,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
      * API name: {@code function_name}
      */
     @Nullable
-    public final String functionName() {
+    public final FunctionName functionName() {
         return this.functionName;
     }
 
@@ -190,7 +192,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
 
         if (this.functionName != null) {
             generator.writeKey("function_name");
-            generator.write(this.functionName);
+            this.functionName.serialize(generator, mapper);
         }
 
         if (this.isAsync != null) {
@@ -237,16 +239,27 @@ public class GetTaskResponse implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GetTaskResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTaskResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetTaskResponse> {
         @Nullable
         private Long createTime;
         @Nullable
         private String error;
         @Nullable
-        private String functionName;
+        private FunctionName functionName;
         @Nullable
         private Boolean isAsync;
         @Nullable
@@ -261,9 +274,44 @@ public class GetTaskResponse implements PlainJsonSerializable {
         @Nullable
         private List<List<String>> workerNode;
 
+        public Builder() {}
+
+        private Builder(GetTaskResponse o) {
+            this.createTime = o.createTime;
+            this.error = o.error;
+            this.functionName = o.functionName;
+            this.isAsync = o.isAsync;
+            this.lastUpdateTime = o.lastUpdateTime;
+            this.modelId = o.modelId;
+            this.state = o.state;
+            this.taskId = o.taskId;
+            this.taskType = o.taskType;
+            this.workerNode = _listCopy(o.workerNode);
+        }
+
+        private Builder(Builder o) {
+            this.createTime = o.createTime;
+            this.error = o.error;
+            this.functionName = o.functionName;
+            this.isAsync = o.isAsync;
+            this.lastUpdateTime = o.lastUpdateTime;
+            this.modelId = o.modelId;
+            this.state = o.state;
+            this.taskId = o.taskId;
+            this.taskType = o.taskType;
+            this.workerNode = _listCopy(o.workerNode);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code create_time}
          */
+        @Nonnull
         public final Builder createTime(@Nullable Long value) {
             this.createTime = value;
             return this;
@@ -272,6 +320,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
         /**
          * API name: {@code error}
          */
+        @Nonnull
         public final Builder error(@Nullable String value) {
             this.error = value;
             return this;
@@ -280,7 +329,8 @@ public class GetTaskResponse implements PlainJsonSerializable {
         /**
          * API name: {@code function_name}
          */
-        public final Builder functionName(@Nullable String value) {
+        @Nonnull
+        public final Builder functionName(@Nullable FunctionName value) {
             this.functionName = value;
             return this;
         }
@@ -288,6 +338,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
         /**
          * API name: {@code is_async}
          */
+        @Nonnull
         public final Builder isAsync(@Nullable Boolean value) {
             this.isAsync = value;
             return this;
@@ -296,6 +347,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
         /**
          * API name: {@code last_update_time}
          */
+        @Nonnull
         public final Builder lastUpdateTime(@Nullable Long value) {
             this.lastUpdateTime = value;
             return this;
@@ -304,6 +356,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
         /**
          * API name: {@code model_id}
          */
+        @Nonnull
         public final Builder modelId(@Nullable String value) {
             this.modelId = value;
             return this;
@@ -312,6 +365,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
         /**
          * Required - API name: {@code state}
          */
+        @Nonnull
         public final Builder state(String value) {
             this.state = value;
             return this;
@@ -320,6 +374,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
         /**
          * API name: {@code task_id}
          */
+        @Nonnull
         public final Builder taskId(@Nullable String value) {
             this.taskId = value;
             return this;
@@ -331,6 +386,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
          * API name: {@code task_type}
          * </p>
          */
+        @Nonnull
         public final Builder taskType(@Nullable String value) {
             this.taskType = value;
             return this;
@@ -343,6 +399,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
          * Adds all elements of <code>list</code> to <code>workerNode</code>.
          * </p>
          */
+        @Nonnull
         public final Builder workerNode(List<List<String>> list) {
             this.workerNode = _listAddAll(this.workerNode, list);
             return this;
@@ -355,6 +412,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
          * Adds one or more values to <code>workerNode</code>.
          * </p>
          */
+        @Nonnull
         public final Builder workerNode(List<String> value, List<String>... values) {
             this.workerNode = _listAdd(this.workerNode, value, values);
             return this;
@@ -365,6 +423,8 @@ public class GetTaskResponse implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GetTaskResponse build() {
             _checkSingleUse();
 
@@ -385,7 +445,7 @@ public class GetTaskResponse implements PlainJsonSerializable {
     protected static void setupGetTaskResponseDeserializer(ObjectDeserializer<GetTaskResponse.Builder> op) {
         op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
         op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
-        op.add(Builder::functionName, JsonpDeserializer.stringDeserializer(), "function_name");
+        op.add(Builder::functionName, FunctionName._DESERIALIZER, "function_name");
         op.add(Builder::isAsync, JsonpDeserializer.booleanDeserializer(), "is_async");
         op.add(Builder::lastUpdateTime, JsonpDeserializer.longDeserializer(), "last_update_time");
         op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");

@@ -1,49 +1,121 @@
 {{^abstract}}
+    {{>ObjectShape/Builder/HelperCtor}}
+
     /**
     * Builder for {@link {{className}}}.
     */
-    {{#extendsOtherShape}}
-        public static class Builder extends {{extendsType}}.AbstractBuilder<Builder>
-                                    implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{#shouldImplementPlainDeserializable}}, {{TYPES.Client.Json.PlainDeserializable}}<Builder>{{/shouldImplementPlainDeserializable}} {
-            {{>ObjectShape/Builder/Fields}}
+    {{#extendedByOtherShape}}
+        public static class Builder extends {{type}}.AbstractBuilder<Builder>
+                                    implements {{TYPES.Client.Util.CopyableBuilder}}<Builder, {{className}}>{{#shouldImplementPlainDeserializable}}, {{TYPES.Client.Json.PlainDeserializable}}<Builder>{{/shouldImplementPlainDeserializable}}{
+            public Builder() {}
+
+            private Builder({{className}} o) {
+                super(o);
+            }
+
+            private Builder(Builder o) {
+                super(o);
+            }
+
+            @Override
+            @{{TYPES.Javax.Annotation.Nonnull}}
+            public Builder copy() {
+                return new Builder(this);
+            }
 
             {{>ObjectShape/Builder/SelfImpl}}
 
             {{>ObjectShape/Builder/BuildImpl}}
         }
-    {{/extendsOtherShape}}
-    {{^extendsOtherShape}}
-        {{#extendedByOtherShape}}
-            public static class Builder extends {{type}}.AbstractBuilder<Builder>
-                                        implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{#shouldImplementPlainDeserializable}}, {{TYPES.Client.Json.PlainDeserializable}}<Builder>{{/shouldImplementPlainDeserializable}}
-            {
+    {{/extendedByOtherShape}}
+    {{^extendedByOtherShape}}
+        {{#doesExtendType}}
+            public static class Builder extends {{extendsType}}.AbstractBuilder<Builder>
+                                        implements {{TYPES.Client.Util.CopyableBuilder}}<Builder, {{className}}> {{#shouldImplementPlainDeserializable}}, {{TYPES.Client.Json.PlainDeserializable}}<Builder>{{/shouldImplementPlainDeserializable}} {
+                {{>ObjectShape/Builder/Fields}}
+
+                public Builder() {}
+
+                private Builder({{className}} o) {
+                    {{>ObjectShape/Builder/CopyCtorImpl}}
+                }
+
+                private Builder(Builder o) {
+                    {{>ObjectShape/Builder/CopyCtorImpl}}
+                }
+
+                @Override
+                @{{TYPES.Javax.Annotation.Nonnull}}
+                public Builder copy() {
+                    return new Builder(this);
+                }
+
                 {{>ObjectShape/Builder/SelfImpl}}
+
+            {{#concreteBuilderSetters}}
+                {{>ObjectShape/Builder/Setter}}
+            {{/concreteBuilderSetters}}
 
                 {{>ObjectShape/Builder/BuildImpl}}
             }
-        {{/extendedByOtherShape}}
-        {{^extendedByOtherShape}}
+        {{/doesExtendType}}
+        {{^doesExtendType}}
             public static class Builder extends {{TYPES.Client.Util.ObjectBuilderBase}}
-                                        implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{#shouldImplementPlainDeserializable}}, {{TYPES.Client.Json.PlainDeserializable}}<Builder>{{/shouldImplementPlainDeserializable}}
-            {
+                                        implements {{TYPES.Client.Util.CopyableBuilder}}<Builder, {{className}}>{{#shouldImplementPlainDeserializable}}, {{TYPES.Client.Json.PlainDeserializable}}<Builder>{{/shouldImplementPlainDeserializable}} {
+                {{>ObjectShape/Builder/Fields}}
+
+                public Builder() {}
+
+                private Builder({{className}} o) {
+                    {{>ObjectShape/Builder/CopyCtorImpl}}
+                }
+
+                private Builder(Builder o) {
+                    {{>ObjectShape/Builder/CopyCtorImpl}}
+                }
+
+                @Override
+                @{{TYPES.Javax.Annotation.Nonnull}}
+                public Builder copy() {
+                    return new Builder(this);
+                }
+
             {{#shouldImplementPlainDeserializable}}
                 {{>ObjectShape/Builder/SelfImpl}}
 
             {{/shouldImplementPlainDeserializable}}
-                {{>ObjectShape/Builder/Fields}}
+
+            {{#concreteBuilderSetters}}
+                {{>ObjectShape/Builder/Setter}}
+            {{/concreteBuilderSetters}}
 
                 {{>ObjectShape/Builder/BuildImpl}}
             }
-        {{/extendedByOtherShape}}
-    {{/extendsOtherShape}}
+        {{/doesExtendType}}
+    {{/extendedByOtherShape}}
 {{/abstract}}
 {{#extendedByOtherShape}}
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-        extends {{#extendsOtherShape}}{{extendsType}}.AbstractBuilder<BuilderT>{{/extendsOtherShape}}{{^extendsOtherShape}}{{TYPES.Client.Util.ObjectBuilderBase}}{{/extendsOtherShape}} {
+        extends {{#doesExtendType}}{{extendsType}}.AbstractBuilder<BuilderT>{{/doesExtendType}}{{^doesExtendType}}{{TYPES.Client.Util.ObjectBuilderBase}}{{/doesExtendType}} {
         {{>ObjectShape/Builder/Fields}}
-    {{^extendsOtherShape}}
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder({{className}} o) {
+            {{>ObjectShape/Builder/CopyCtorImpl}}
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            {{>ObjectShape/Builder/CopyCtorImpl}}
+        }
+    {{^doesExtendType}}
+
+        @{{TYPES.Javax.Annotation.Nonnull}}
         protected abstract BuilderT self();
-    {{/extendsOtherShape}}
+    {{/doesExtendType}}
+
+    {{#abstractBuilderSetters}}
+        {{>ObjectShape/Builder/Setter}}
+    {{/abstractBuilderSetters}}
     }
 {{/extendedByOtherShape}}

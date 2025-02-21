@@ -102,6 +102,10 @@ public class Type {
         return typeParams;
     }
 
+    public boolean hasTypeParams() {
+        return typeParams != null && typeParams.length > 0;
+    }
+
     public boolean isInsidePackage(String pkg) {
         return packageName != null && packageName.startsWith(pkg);
     }
@@ -245,6 +249,16 @@ public class Type {
 
     public Type withTypeParameters(Type... typeParams) {
         return toBuilder().withTypeParameters(typeParams).build();
+    }
+
+    public boolean canQueryParamify() {
+        if (isString() || isEnum() || isPotentiallyBoxedPrimitive() || isNumber()) {
+            return true;
+        }
+        if (isList()) {
+            return getListValueType().canQueryParamify();
+        }
+        return false;
     }
 
     public Mustache.Lambda queryParamify() {

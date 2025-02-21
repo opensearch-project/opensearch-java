@@ -25,14 +25,19 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.get_model_group.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class GetModelGroupResponse implements PlainJsonSerializable {
+public class GetModelGroupResponse
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<GetModelGroupResponse.Builder, GetModelGroupResponse> {
 
     @Nonnull
     private final String access;
@@ -51,6 +56,9 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
     @Nonnull
     private final String name;
 
+    @Nullable
+    private final Owner owner;
+
     // ---------------------------------------------------------------------------------------------
 
     private GetModelGroupResponse(Builder builder) {
@@ -60,6 +68,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
         this.lastUpdatedTime = builder.lastUpdatedTime;
         this.latestVersion = ApiTypeHelper.requireNonNull(builder.latestVersion, this, "latestVersion");
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.owner = builder.owner;
     }
 
     public static GetModelGroupResponse of(Function<GetModelGroupResponse.Builder, ObjectBuilder<GetModelGroupResponse>> fn) {
@@ -126,6 +135,14 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
     }
 
     /**
+     * API name: {@code owner}
+     */
+    @Nullable
+    public final Owner owner() {
+        return this.owner;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     @Override
@@ -157,14 +174,30 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
 
         generator.writeKey("name");
         generator.write(this.name);
+
+        if (this.owner != null) {
+            generator.writeKey("owner");
+            this.owner.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link GetModelGroupResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetModelGroupResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetModelGroupResponse> {
         private String access;
         @Nullable
         private Long createdTime;
@@ -173,6 +206,36 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
         private Long lastUpdatedTime;
         private Integer latestVersion;
         private String name;
+        @Nullable
+        private Owner owner;
+
+        public Builder() {}
+
+        private Builder(GetModelGroupResponse o) {
+            this.access = o.access;
+            this.createdTime = o.createdTime;
+            this.description = o.description;
+            this.lastUpdatedTime = o.lastUpdatedTime;
+            this.latestVersion = o.latestVersion;
+            this.name = o.name;
+            this.owner = o.owner;
+        }
+
+        private Builder(Builder o) {
+            this.access = o.access;
+            this.createdTime = o.createdTime;
+            this.description = o.description;
+            this.lastUpdatedTime = o.lastUpdatedTime;
+            this.latestVersion = o.latestVersion;
+            this.name = o.name;
+            this.owner = o.owner;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * Required - The model group access.
@@ -180,6 +243,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
          * API name: {@code access}
          * </p>
          */
+        @Nonnull
         public final Builder access(String value) {
             this.access = value;
             return this;
@@ -188,6 +252,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
         /**
          * API name: {@code created_time}
          */
+        @Nonnull
         public final Builder createdTime(@Nullable Long value) {
             this.createdTime = value;
             return this;
@@ -199,6 +264,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
          * API name: {@code description}
          * </p>
          */
+        @Nonnull
         public final Builder description(String value) {
             this.description = value;
             return this;
@@ -207,6 +273,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
         /**
          * API name: {@code last_updated_time}
          */
+        @Nonnull
         public final Builder lastUpdatedTime(@Nullable Long value) {
             this.lastUpdatedTime = value;
             return this;
@@ -218,6 +285,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
          * API name: {@code latest_version}
          * </p>
          */
+        @Nonnull
         public final Builder latestVersion(int value) {
             this.latestVersion = value;
             return this;
@@ -229,9 +297,27 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
          * API name: {@code name}
          * </p>
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
+        }
+
+        /**
+         * API name: {@code owner}
+         */
+        @Nonnull
+        public final Builder owner(@Nullable Owner value) {
+            this.owner = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code owner}
+         */
+        @Nonnull
+        public final Builder owner(Function<Owner.Builder, ObjectBuilder<Owner>> fn) {
+            return owner(fn.apply(new Owner.Builder()).build());
         }
 
         /**
@@ -239,6 +325,8 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GetModelGroupResponse build() {
             _checkSingleUse();
 
@@ -263,6 +351,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
         op.add(Builder::lastUpdatedTime, JsonpDeserializer.longDeserializer(), "last_updated_time");
         op.add(Builder::latestVersion, JsonpDeserializer.integerDeserializer(), "latest_version");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::owner, Owner._DESERIALIZER, "owner");
     }
 
     @Override
@@ -274,6 +363,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
         result = 31 * result + Objects.hashCode(this.lastUpdatedTime);
         result = 31 * result + Integer.hashCode(this.latestVersion);
         result = 31 * result + this.name.hashCode();
+        result = 31 * result + Objects.hashCode(this.owner);
         return result;
     }
 
@@ -287,6 +377,7 @@ public class GetModelGroupResponse implements PlainJsonSerializable {
             && this.description.equals(other.description)
             && Objects.equals(this.lastUpdatedTime, other.lastUpdatedTime)
             && this.latestVersion == other.latestVersion
-            && this.name.equals(other.name);
+            && this.name.equals(other.name)
+            && Objects.equals(this.owner, other.owner);
     }
 }

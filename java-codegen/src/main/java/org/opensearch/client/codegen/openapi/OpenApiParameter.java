@@ -12,6 +12,7 @@ import static org.opensearch.client.codegen.utils.Functional.ifNonnull;
 
 import io.swagger.v3.oas.models.parameters.Parameter;
 import java.util.Optional;
+import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.model.Deprecation;
@@ -64,6 +65,20 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
     }
 
     @Nonnull
+    public Optional<String> getResolvedDescription() {
+        if (description != null) {
+            return Optional.of(description);
+        }
+        if (has$ref()) {
+            return resolve().getResolvedDescription();
+        }
+        if (schema != null) {
+            return schema.getResolvedDescription();
+        }
+        return Optional.empty();
+    }
+
+    @Nonnull
     public Optional<In> getIn() {
         return Optional.ofNullable(in);
     }
@@ -87,7 +102,17 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
 
     @Nonnull
     public Optional<Deprecation> getDeprecation() {
-        if (versionDeprecated == null && deprecationMessage == null) return Optional.empty();
+        if (versionDeprecated == null) return Optional.empty();
         return Optional.of(new Deprecation(deprecationMessage, versionDeprecated));
+    }
+
+    public boolean isOverloaded() {
+        return schema != null && schema.hasAnyOf() && schema.getAnyOf().orElseThrow().stream().allMatch(OpenApiSchema::hasTitle);
+    }
+
+    private static final Set<String> GLOBAL_CAT_PARAMETERS = Set.of("format", "h", "help", "local", "s", "v");
+
+    public boolean isGlobalCatParameter() {
+        return GLOBAL_CAT_PARAMETERS.contains(name);
     }
 }

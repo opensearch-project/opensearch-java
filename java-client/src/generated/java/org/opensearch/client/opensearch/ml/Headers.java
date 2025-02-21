@@ -28,14 +28,16 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.Headers
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class Headers implements PlainJsonSerializable {
+public class Headers implements PlainJsonSerializable, ToCopyableBuilder<Headers.Builder, Headers> {
 
     @Nullable
     private final String contentType;
@@ -62,8 +64,6 @@ public class Headers implements PlainJsonSerializable {
         return this.contentType;
     }
 
-    /**
-                                    */
     @Nonnull
     public final Map<String, JsonData> metadata() {
         return this.metadata;
@@ -92,18 +92,48 @@ public class Headers implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link Headers}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Headers> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Headers> {
         @Nullable
         private String contentType;
         @Nullable
         private Map<String, JsonData> metadata;
 
+        public Builder() {}
+
+        private Builder(Headers o) {
+            this.contentType = o.contentType;
+            this.metadata = _mapCopy(o.metadata);
+        }
+
+        private Builder(Builder o) {
+            this.contentType = o.contentType;
+            this.metadata = _mapCopy(o.metadata);
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code content_type}
          */
+        @Nonnull
         public final Builder contentType(@Nullable String value) {
             this.contentType = value;
             return this;
@@ -115,6 +145,7 @@ public class Headers implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>metadata</code>.
          * </p>
          */
+        @Nonnull
         public final Builder metadata(Map<String, JsonData> map) {
             this.metadata = _mapPutAll(this.metadata, map);
             return this;
@@ -126,6 +157,7 @@ public class Headers implements PlainJsonSerializable {
          * Adds an entry to <code>metadata</code>.
          * </p>
          */
+        @Nonnull
         public final Builder metadata(String key, JsonData value) {
             this.metadata = _mapPut(this.metadata, key, value);
             return this;
@@ -136,6 +168,8 @@ public class Headers implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public Headers build() {
             _checkSingleUse();
 

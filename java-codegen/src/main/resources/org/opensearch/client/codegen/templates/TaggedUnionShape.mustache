@@ -18,6 +18,10 @@
         }
         {{/discriminated}}
     }
+{{#referencingDiscriminatedUnions}}
+
+    {{>ObjectShape/DiscriminatedUnionInterfaceImpl}}
+{{/referencingDiscriminatedUnions}}
 
     private final Kind _kind;
     private final {{variantBaseType}} _value;
@@ -31,11 +35,28 @@
     public final {{variantBaseType}} _get() {
         return _value;
     }
+{{#hasFields}}
+    {{>ObjectShape/Fields}}
 
+{{/hasFields}}
+{{^hasAnyRequiredFields}}
+{{^extendsOtherShape}}
 {{#discriminated}}
-    public {{className}}({{variantBaseType}} value) {
+    public {{className}}({{variantInterfaceType}} value) {
+    {{#isOptionalExternallyDiscriminated}}
+        if (value != null) {
+    {{/isOptionalExternallyDiscriminated}}
         this._kind = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(value._{{#camelCase}}{{className}}{{/camelCase}}Kind(), this, "<variant kind>");
         this._value = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(value, this, "<variant value>");
+    {{#isOptionalExternallyDiscriminated}}
+        } else {
+            this._kind = null;
+            this._value = null;
+        }
+    {{/isOptionalExternallyDiscriminated}}
+    {{#fields}}
+        this.{{name}} = null;
+    {{/fields}}
     }
 {{/discriminated}}
 {{^discriminated}}
@@ -45,9 +66,21 @@
     }
 {{/discriminated}}
 
+{{/extendsOtherShape}}
+{{/hasAnyRequiredFields}}
     private {{className}}(Builder builder) {
+        {{>ObjectShape/ConstructorImpl}}
+    {{#isOptionalExternallyDiscriminated}}
+        if (builder._kind != null) {
+    {{/isOptionalExternallyDiscriminated}}
         this._kind = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(builder._value, builder, "<variant value>");
+    {{#isOptionalExternallyDiscriminated}}
+        } else {
+            this._kind = null;
+            this._value = null;
+        }
+    {{/isOptionalExternallyDiscriminated}}
     }
 
     public static {{className}} of({{type.builderFnType}} fn) {
@@ -67,7 +100,11 @@
     }
 
 {{/canStringify}}
-    {{#variants}}
+{{#hasFields}}
+    {{>ObjectShape/Getters}}
+
+{{/hasFields}}
+{{#variants}}
     /**
      * Is this variant instance of kind {@code {{name}}}?
      */
@@ -84,75 +121,76 @@
         return {{TYPES.Client.Util.TaggedUnionUtils}}.get(this, Kind.{{#pascalCase}}{{name}}{{/pascalCase}});
     }
 
-    {{/variants}}
+{{/variants}}
 
-    @Override
-    public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
-    {{#discriminated}}
-        mapper.serialize(_value, generator);
-    {{/discriminated}}
-    {{^discriminated}}
-        if (_value instanceof {{TYPES.Client.Json.JsonpSerializable}}) {
-            (({{TYPES.Client.Json.JsonpSerializable}}) _value).serialize(generator, mapper);
-        }{{#nonShapeVariants}}{{#-first}} else {
-            switch (_kind) {
-        {{/-first}}
-                case {{#pascalCase}}{{name}}{{/pascalCase}}:
-                    {{#type.serializer}}(({{type}}) this._value){{/type.serializer}}
-                    break;
-        {{#-last}}
-            }
-        }
-        {{/-last}}
-        {{/nonShapeVariants}}
-    {{/discriminated}}
+    {{>TaggedUnionShape/Serialize}}
+
+    @{{TYPES.Javax.Annotation.Nonnull}}
+    public Builder toBuilder() {
+        return new Builder(this);
     }
 
-    public static class Builder extends {{TYPES.Client.Util.ObjectBuilderBase}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
+    {{>ObjectShape/Builder/HelperCtor}}
+
+    public static class Builder extends {{#extendsOtherShape}}{{extendsType}}.AbstractBuilder<Builder>{{/extendsOtherShape}}{{^extendsOtherShape}}{{TYPES.Client.Util.ObjectBuilderBase}}{{/extendsOtherShape}}{{#needsContainerBuilder}}{{#isOptionalExternallyDiscriminated}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{/isOptionalExternallyDiscriminated}}{{/needsContainerBuilder}}{{^needsContainerBuilder}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{/needsContainerBuilder}} {
         private Kind _kind;
         private {{variantBaseType}} _value;
+        {{>ObjectShape/Builder/Fields}}
 
-        {{#variants}}
-        public {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{#asFieldName}}{{name}}{{/asFieldName}}({{type}} v) {
+        public Builder() {}
+
+        private Builder({{className}} o) {
+            {{>ObjectShape/Builder/CopyCtorImpl}}
+            this._kind = o._kind;
+            this._value = o._value;
+        }
+
+    {{#extendsOtherShape}}
+        {{>ObjectShape/Builder/SelfImpl}}
+
+    {{/extendsOtherShape}}
+
+    {{#concreteBuilderSetters}}
+        {{>ObjectShape/Builder/Setter}}
+    {{/concreteBuilderSetters}}
+
+    {{#variants}}
+        public {{^needsContainerBuilder}}{{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{/needsContainerBuilder}}{{#needsContainerBuilder}}ContainerBuilder{{/needsContainerBuilder}} {{#asFieldName}}{{name}}{{/asFieldName}}({{type}} v) {
             this._kind = Kind.{{#pascalCase}}{{name}}{{/pascalCase}};
             this._value = v;
-            return this;
+            return {{^needsContainerBuilder}}this{{/needsContainerBuilder}}{{#needsContainerBuilder}}new ContainerBuilder(){{/needsContainerBuilder}};
         }
         {{#type.hasBuilder}}
 
-        public {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {{#asFieldName}}{{name}}{{/asFieldName}}({{type.builderFnType}} fn) {
+        public {{^needsContainerBuilder}}{{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{/needsContainerBuilder}}{{#needsContainerBuilder}}ContainerBuilder{{/needsContainerBuilder}} {{#asFieldName}}{{name}}{{/asFieldName}}({{type.builderFnType}} fn) {
             return this.{{#asFieldName}}{{name}}{{/asFieldName}}(fn.apply(new {{type.builderType}}()).build());
         }
         {{/type.hasBuilder}}
 
-        {{/variants}}
-        @Override
-        public {{className}} build() {
+    {{/variants}}
+        {{^needsContainerBuilder}}@Override
+        public{{/needsContainerBuilder}}{{#needsContainerBuilder}}{{#isOptionalExternallyDiscriminated}}public{{/isOptionalExternallyDiscriminated}}{{^isOptionalExternallyDiscriminated}}protected{{/isOptionalExternallyDiscriminated}}{{/needsContainerBuilder}} {{className}} build() {
             _checkSingleUse();
             return new {{className}}(this);
         }
+    {{#needsContainerBuilder}}
+
+        public class ContainerBuilder implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
+            private ContainerBuilder() {}
+
+        {{#containerBuilderSetters}}
+            {{>ObjectShape/Builder/Setter}}
+        {{/containerBuilderSetters}}
+
+            @Override
+            public {{className}} build() {
+                return Builder.this.build();
+            }
+        }
+    {{/needsContainerBuilder}}
     }
 
-{{#discriminated}}
-    protected static void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<Builder> op) {
-    {{#variants}}
-        op.add(Builder::{{#asFieldName}}{{name}}{{/asFieldName}}, {{type}}._DESERIALIZER, {{#quoted}}{{name}}{{/quoted}});
-    {{/variants}}
-
-        op.setTypeProperty({{#quoted}}{{discriminatingField}}{{/quoted}}, {{#defaultVariant}}Kind.{{#pascalCase}}{{name}}{{/pascalCase}}.jsonValue(){{/defaultVariant}}{{^defaultVariant}}null{{/defaultVariant}});
-    }
-
-    public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.ObjectBuilderDeserializer}}.lazy(Builder::new, {{className}}::setup{{className}}Deserializer, Builder::build);
-{{/discriminated}}
-{{^discriminated}}
-    private static {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> build{{className}}Deserializer() {
-        return new {{TYPES.Client.Json.UnionDeserializer.builderType}}<{{className}}, Kind, Object>({{className}}::new, {{hasAmbiguities}})
-            {{#variants}}.addMember(Kind.{{#pascalCase}}{{name}}{{/pascalCase}}, {{#type}}{{>Type/deserializer}}{{/type}}){{/variants}}
-            .build();
-    }
-
-    public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.JsonpDeserializer}}.lazy({{className}}::build{{className}}Deserializer);
-{{/discriminated}}
+    {{>TaggedUnionShape/Deserialize}}
 
     {{>TaggedUnionShape/HashCode}}
 

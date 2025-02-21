@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -32,8 +33,9 @@ import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.create_connector.Request
 
@@ -42,7 +44,10 @@ import org.opensearch.client.util.ObjectBuilderBase;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CreateConnectorRequest extends RequestBase implements PlainJsonSerializable {
+public final class CreateConnectorRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<CreateConnectorRequest.Builder, CreateConnectorRequest> {
 
     @Nonnull
     private final List<Action> actions;
@@ -70,6 +75,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
     // ---------------------------------------------------------------------------------------------
 
     private CreateConnectorRequest(Builder builder) {
+        super(builder);
         this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
         this.clientConfig = builder.clientConfig;
         this.credential = ApiTypeHelper.requireNonNull(builder.credential, this, "credential");
@@ -193,12 +199,24 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
         generator.writeKey("version");
         generator.write(this.version);
     }
+
     // ---------------------------------------------------------------------------------------------
+
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
 
     /**
      * Builder for {@link CreateConnectorRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateConnectorRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, CreateConnectorRequest> {
         private List<Action> actions;
         @Nullable
         private ClientConfig clientConfig;
@@ -209,6 +227,44 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
         private String protocol;
         private Integer version;
 
+        public Builder() {}
+
+        private Builder(CreateConnectorRequest o) {
+            super(o);
+            this.actions = _listCopy(o.actions);
+            this.clientConfig = o.clientConfig;
+            this.credential = o.credential;
+            this.description = o.description;
+            this.name = o.name;
+            this.parameters = _mapCopy(o.parameters);
+            this.protocol = o.protocol;
+            this.version = o.version;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.actions = _listCopy(o.actions);
+            this.clientConfig = o.clientConfig;
+            this.credential = o.credential;
+            this.description = o.description;
+            this.name = o.name;
+            this.parameters = _mapCopy(o.parameters);
+            this.protocol = o.protocol;
+            this.version = o.version;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * Required - API name: {@code actions}
          *
@@ -216,6 +272,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
          * Adds all elements of <code>list</code> to <code>actions</code>.
          * </p>
          */
+        @Nonnull
         public final Builder actions(List<Action> list) {
             this.actions = _listAddAll(this.actions, list);
             return this;
@@ -228,6 +285,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
          * Adds one or more values to <code>actions</code>.
          * </p>
          */
+        @Nonnull
         public final Builder actions(Action value, Action... values) {
             this.actions = _listAdd(this.actions, value, values);
             return this;
@@ -240,6 +298,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
          * Adds a value to <code>actions</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder actions(Function<Action.Builder, ObjectBuilder<Action>> fn) {
             return actions(fn.apply(new Action.Builder()).build());
         }
@@ -247,6 +306,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
         /**
          * API name: {@code client_config}
          */
+        @Nonnull
         public final Builder clientConfig(@Nullable ClientConfig value) {
             this.clientConfig = value;
             return this;
@@ -255,6 +315,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
         /**
          * API name: {@code client_config}
          */
+        @Nonnull
         public final Builder clientConfig(Function<ClientConfig.Builder, ObjectBuilder<ClientConfig>> fn) {
             return clientConfig(fn.apply(new ClientConfig.Builder()).build());
         }
@@ -262,6 +323,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
         /**
          * Required - API name: {@code credential}
          */
+        @Nonnull
         public final Builder credential(Credential value) {
             this.credential = value;
             return this;
@@ -270,6 +332,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
         /**
          * Required - API name: {@code credential}
          */
+        @Nonnull
         public final Builder credential(Function<Credential.Builder, ObjectBuilder<Credential>> fn) {
             return credential(fn.apply(new Credential.Builder()).build());
         }
@@ -277,6 +340,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
         /**
          * Required - API name: {@code description}
          */
+        @Nonnull
         public final Builder description(String value) {
             this.description = value;
             return this;
@@ -285,6 +349,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
         /**
          * Required - API name: {@code name}
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -297,6 +362,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
          * Adds all elements of <code>map</code> to <code>parameters</code>.
          * </p>
          */
+        @Nonnull
         public final Builder parameters(Map<String, JsonData> map) {
             this.parameters = _mapPutAll(this.parameters, map);
             return this;
@@ -309,6 +375,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
          * Adds an entry to <code>parameters</code>.
          * </p>
          */
+        @Nonnull
         public final Builder parameters(String key, JsonData value) {
             this.parameters = _mapPut(this.parameters, key, value);
             return this;
@@ -317,6 +384,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
         /**
          * Required - API name: {@code protocol}
          */
+        @Nonnull
         public final Builder protocol(String value) {
             this.protocol = value;
             return this;
@@ -325,6 +393,7 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
         /**
          * Required - API name: {@code version}
          */
+        @Nonnull
         public final Builder version(int value) {
             this.version = value;
             return this;
@@ -335,6 +404,8 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public CreateConnectorRequest build() {
             _checkSingleUse();
 
@@ -374,7 +445,11 @@ public class CreateConnectorRequest extends RequestBase implements PlainJsonSeri
         // Request path
         request -> "/_plugins/_ml/connectors/_create",
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         true,
         CreateConnectorResponse._DESERIALIZER

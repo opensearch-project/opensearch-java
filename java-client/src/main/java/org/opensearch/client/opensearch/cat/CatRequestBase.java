@@ -34,18 +34,16 @@ package org.opensearch.client.opensearch.cat;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: cat._types.CatRequestBase
 
 public abstract class CatRequestBase extends RequestBase {
-
     @Nullable
     private final String headers;
-
     @Nullable
     private final String sort;
 
@@ -54,21 +52,10 @@ public abstract class CatRequestBase extends RequestBase {
         this.sort = null;
     }
 
-    public CatRequestBase(CatRequestBaseBuilder<?> builder) {
+    protected CatRequestBase(AbstractBuilder<?> builder) {
+        super(builder);
         this.headers = builder.headers;
         this.sort = builder.sort;
-    }
-
-    protected final Map<String, String> queryParameters() {
-        Map<String, String> params = new HashMap<>();
-        if (headers != null && !headers.trim().isEmpty()) {
-            params.put("h", headers);
-        }
-        if (sort != null && !sort.trim().isEmpty()) {
-            params.put("s", sort);
-        }
-        params.put("format", "json");
-        return params;
     }
 
     /**
@@ -76,6 +63,7 @@ public abstract class CatRequestBase extends RequestBase {
      * <p>
      * API name: {@code h}
      */
+    @Nullable
     public final String headers() {
         return this.headers;
     }
@@ -86,21 +74,36 @@ public abstract class CatRequestBase extends RequestBase {
      * API name: {@code s}
      * <p>
      */
+    @Nullable
     public final String sort() {
         return this.sort;
     }
 
-    protected abstract static class CatRequestBaseBuilder<BuilderT extends CatRequestBaseBuilder> extends ObjectBuilderBase
-        implements
-            ObjectBuilder {
+    protected abstract static class CatRequestBaseBuilder<BuilderT extends CatRequestBaseBuilder<BuilderT>> extends AbstractBuilder<
+        BuilderT> implements ObjectBuilder {
 
+    }
+
+    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends RequestBase.AbstractBuilder<
+        BuilderT> {
         @Nullable
         protected String headers;
-
         @Nullable
         protected String sort;
 
-        protected abstract BuilderT self();
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(CatRequestBase o) {
+            super(o);
+            this.headers = o.headers;
+            this.sort = o.sort;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            super(o);
+            this.headers = o.headers;
+            this.sort = o.sort;
+        }
 
         /**
          * A comma-separated list of specific headers to limits the output
@@ -108,6 +111,7 @@ public abstract class CatRequestBase extends RequestBase {
          * API name: {@code h}
          * <p>
          */
+        @Nonnull
         public final BuilderT headers(@Nullable String headers) {
             this.headers = headers;
             return self();
@@ -119,11 +123,28 @@ public abstract class CatRequestBase extends RequestBase {
          * API name: {@code s}
          * <p>
          */
+        @Nonnull
         public final BuilderT sort(@Nullable String sort) {
             this.sort = sort;
             return self();
         }
-
     }
 
+    @Override
+    protected void applyQueryParameters(@Nonnull Map<String, String> params) {
+        super.applyQueryParameters(params);
+        if (headers != null && !headers.trim().isEmpty()) {
+            params.put("h", headers);
+        }
+        if (sort != null && !sort.trim().isEmpty()) {
+            params.put("s", sort);
+        }
+        params.put("format", "json");
+    }
+
+    protected final Map<String, String> queryParameters() {
+        Map<String, String> params = new HashMap<>();
+        applyQueryParameters(params);
+        return params;
+    }
 }

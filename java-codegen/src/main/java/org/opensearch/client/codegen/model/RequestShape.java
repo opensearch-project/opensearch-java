@@ -8,8 +8,11 @@
 
 package org.opensearch.client.codegen.model;
 
+import static org.opensearch.client.codegen.utils.Strings.toPascalCase;
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -19,11 +22,14 @@ import java.util.TreeMap;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang3.tuple.Pair;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
+import org.opensearch.client.codegen.utils.JavaAbstractionLevel;
 import org.opensearch.client.codegen.utils.Streams;
-import org.opensearch.client.codegen.utils.Strings;
 
 public class RequestShape extends ObjectShape {
+    private static final Logger LOGGER = LogManager.getLogger();
     @Nonnull
     private final OperationGroup operationGroup;
     @Nonnull
@@ -37,6 +43,8 @@ public class RequestShape extends ObjectShape {
     @Nonnull
     private final Map<String, Field> fields = new TreeMap<>();
     private boolean isBooleanRequest;
+    @Nullable
+    private Field delegatedBodyField;
 
     public RequestShape(
         @Nonnull Namespace parent,
@@ -95,23 +103,27 @@ public class RequestShape extends ObjectShape {
 
     @Override
     public boolean canBeSingleton() {
-        return !hasRequestBody() && !hasQueryParams() && hasSinglePath() && !getFirstPath().hasParams();
+        return false;
     }
 
     @Override
-    public Collection<Field> getFieldsToDeserialize() {
-        var fields = new TreeMap<>(bodyFields);
-        fields.putAll(pathParams);
-        return fields.values();
+    public boolean shouldImplementJsonSerializableInner() {
+        return hasFieldsToSerialize();
+    }
+
+    @Override
+    public boolean hasFieldsToSerialize() {
+        return hasRequestBody();
     }
 
     public boolean hasRequestBody() {
-        return !getBodyFields().isEmpty();
+        return hasDelegatedBodyField() || !getBodyFields().isEmpty();
     }
 
     public void addQueryParam(Field field) {
-        queryParams.put(field.getName(), field);
-        addField(field);
+        if (addField(field)) {
+            queryParams.put(field.getName(), field);
+        }
     }
 
     public Collection<Field> getQueryParams() {
@@ -139,8 +151,9 @@ public class RequestShape extends ObjectShape {
     }
 
     public void addPathParam(Field field) {
-        pathParams.put(field.getName(), field);
-        addField(field);
+        if (addField(field)) {
+            pathParams.put(field.getName(), field);
+        }
     }
 
     public Collection<Pair<String, Integer>> getIndexedPathParams() {
@@ -158,13 +171,32 @@ public class RequestShape extends ObjectShape {
 
     @Override
     public void addBodyField(Field field) {
-        super.addBodyField(field);
-        addField(field);
+        if (addField(field)) {
+            super.addBodyField(field);
+        }
     }
 
-    private void addField(Field field) {
+    public void setDelegatedBodyField(String name, Type type) {
+        this.delegatedBodyField = Field.builder().withName(name).withType(type).withRequired(true).withDescription("Request body.").build();
+        addField(this.delegatedBodyField);
+    }
+
+    public boolean hasDelegatedBodyField() {
+        return delegatedBodyField != null;
+    }
+
+    public Field getDelegatedBodyField() {
+        return delegatedBodyField;
+    }
+
+    private boolean addField(Field field) {
+        if (fields.containsKey(field.getName())) {
+            LOGGER.warn("Attempted to add duplicate field {} to request {}", field.getName(), getOperationGroup());
+            return false;
+        }
         fields.put(field.getName(), field);
         tryAddReference(ReferenceKind.Field, field.getType());
+        return true;
     }
 
     @Override
@@ -172,12 +204,36 @@ public class RequestShape extends ObjectShape {
         return fields.values();
     }
 
+    @Override
+    public boolean hasFields() {
+        return !fields.isEmpty();
+    }
+
+    @Override
     public boolean hasAnyRequiredFields() {
         return fields.values().stream().anyMatch(Field::isRequired);
     }
 
     public Type getJsonEndpointType() {
         return Types.Client.Transport.JsonEndpoint(getType(), getResponseType(), Types.Client.OpenSearch._Types.ErrorResponse);
+    }
+
+    public Deprecation getDeprecation() {
+        var deprecations = new ArrayList<Deprecation>(httpPaths.size());
+        for (var httpPath : httpPaths) {
+            var deprecation = httpPath.getDeprecation();
+            if (deprecation == null) {
+                return null;
+            }
+            deprecations.add(deprecation);
+        }
+        deprecations.sort(Comparator.comparing(Deprecation::getVersion));
+        return deprecations.get(deprecations.size() - 1);
+    }
+
+    @Override
+    public JavaAbstractionLevel getAbstractionLevel() {
+        return JavaAbstractionLevel.Final;
     }
 
     @Nonnull
@@ -193,23 +249,43 @@ public class RequestShape extends ObjectShape {
     @Nonnull
     private static String classBaseName(@Nonnull OperationGroup operationGroup) {
         Objects.requireNonNull(operationGroup, "operationGroup must not be null");
-        switch (operationGroup.toString()) {
-            case "indices.create":
-                return "CreateIndex";
-            case "indices.delete":
-                return "DeleteIndex";
-            case "indices.get":
-                return "GetIndex";
-            case "snapshot.clone":
-                return "CloneSnapshot";
-            case "snapshot.create":
-                return "CreateSnapshot";
-            case "snapshot.get":
-                return "GetSnapshot";
-            case "tasks.get":
-                return "GetTasks";
+
+        var ns = operationGroup.getNamespace().orElse("");
+        var name = operationGroup.getName();
+
+        switch (name) {
+            case "clone":
+            case "close":
+            case "create":
+            case "delete":
+            case "get":
+            case "restore":
+                return toPascalCase(name) + toPascalCase(itemForNamespace(ns));
+
+            case "info":
+                return ns.isEmpty() ? toPascalCase(name) : toPascalCase(ns) + toPascalCase(name);
+
+            case "stats":
+            case "status":
+            case "usage":
+                return toPascalCase(ns) + toPascalCase(name);
+
+            case "get_settings":
+            case "put_settings":
+                return toPascalCase(name.replace("_", "_" + ns + "_"));
+
             default:
-                return Strings.toPascalCase(operationGroup.getName());
+                return toPascalCase(name);
+        }
+    }
+
+    @Nonnull
+    private static String itemForNamespace(@Nonnull String namespace) {
+        switch (namespace) {
+            case "indices":
+                return "index";
+            default:
+                return namespace;
         }
     }
 }

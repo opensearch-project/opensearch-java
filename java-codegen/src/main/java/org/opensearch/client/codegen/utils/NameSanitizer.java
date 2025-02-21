@@ -14,6 +14,8 @@ import javax.annotation.Nonnull;
 public class NameSanitizer {
     private static final Set<String> reservedWords = Set.of(
         "default",
+        "if",
+        "interface",
         "native",
         "transient",
         "boolean",
@@ -27,10 +29,13 @@ public class NameSanitizer {
     );
 
     @Nonnull
-    public static String wireNameToField(@Nonnull String wireName) {
-        var name = Strings.toCamelCase(wireName);
+    public static String fieldName(@Nonnull String name) {
+        name = Strings.toCamelCase(name);
         if (reservedWords.contains(name)) {
             name += "_";
+        }
+        if (Character.isDigit(name.charAt(0))) {
+            name = "_" + name;
         }
         return name;
     }

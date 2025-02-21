@@ -17,7 +17,12 @@
                 {{TYPES.Client.Json.JsonpDeserializer}}.stringDeserializer()
             {{/isString}}
             {{^isString}}
-                {{name}}._DESERIALIZER
+                {{#hasTypeParams}}
+                    {{name}}.create{{name}}Deserializer({{#typeParams}}{{>Type/deserializer}}{{^-last}}, {{/-last}}{{/typeParams}})
+                {{/hasTypeParams}}
+                {{^hasTypeParams}}
+                    {{name}}._DESERIALIZER
+                {{/hasTypeParams}}
             {{/isString}}
         {{/isNumber}}
     {{/isListOrMap}}

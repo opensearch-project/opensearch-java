@@ -12,6 +12,8 @@
 
 package org.opensearch.client.opensearch.ml;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
@@ -20,8 +22,9 @@ import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.delete_agent.Request
 
@@ -29,7 +32,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  * Delete an agent.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteAgentRequest extends RequestBase {
+public final class DeleteAgentRequest extends RequestBase implements ToCopyableBuilder<DeleteAgentRequest.Builder, DeleteAgentRequest> {
 
     @Nonnull
     private final String agentId;
@@ -37,6 +40,7 @@ public class DeleteAgentRequest extends RequestBase {
     // ---------------------------------------------------------------------------------------------
 
     private DeleteAgentRequest(Builder builder) {
+        super(builder);
         this.agentId = ApiTypeHelper.requireNonNull(builder.agentId, this, "agentId");
     }
 
@@ -54,15 +58,51 @@ public class DeleteAgentRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DeleteAgentRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteAgentRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, DeleteAgentRequest> {
         private String agentId;
+
+        public Builder() {}
+
+        private Builder(DeleteAgentRequest o) {
+            super(o);
+            this.agentId = o.agentId;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.agentId = o.agentId;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code agent_id}
          */
+        @Nonnull
         public final Builder agentId(String value) {
             this.agentId = value;
             return this;
@@ -73,6 +113,8 @@ public class DeleteAgentRequest extends RequestBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DeleteAgentRequest build() {
             _checkSingleUse();
 
@@ -96,7 +138,11 @@ public class DeleteAgentRequest extends RequestBase {
             return buf.toString();
         },
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         false,
         DeleteAgentResponse._DESERIALIZER

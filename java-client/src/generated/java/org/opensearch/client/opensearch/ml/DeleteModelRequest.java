@@ -12,6 +12,8 @@
 
 package org.opensearch.client.opensearch.ml;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
@@ -20,8 +22,9 @@ import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.delete_model.Request
 
@@ -29,7 +32,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  * Deletes a model.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class DeleteModelRequest extends RequestBase {
+public final class DeleteModelRequest extends RequestBase implements ToCopyableBuilder<DeleteModelRequest.Builder, DeleteModelRequest> {
 
     @Nonnull
     private final String modelId;
@@ -37,6 +40,7 @@ public class DeleteModelRequest extends RequestBase {
     // ---------------------------------------------------------------------------------------------
 
     private DeleteModelRequest(Builder builder) {
+        super(builder);
         this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
     }
 
@@ -54,15 +58,51 @@ public class DeleteModelRequest extends RequestBase {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link DeleteModelRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteModelRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, DeleteModelRequest> {
         private String modelId;
+
+        public Builder() {}
+
+        private Builder(DeleteModelRequest o) {
+            super(o);
+            this.modelId = o.modelId;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.modelId = o.modelId;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
 
         /**
          * Required - API name: {@code model_id}
          */
+        @Nonnull
         public final Builder modelId(String value) {
             this.modelId = value;
             return this;
@@ -73,6 +113,8 @@ public class DeleteModelRequest extends RequestBase {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public DeleteModelRequest build() {
             _checkSingleUse();
 
@@ -96,7 +138,11 @@ public class DeleteModelRequest extends RequestBase {
             return buf.toString();
         },
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         false,
         DeleteModelResponse._DESERIALIZER

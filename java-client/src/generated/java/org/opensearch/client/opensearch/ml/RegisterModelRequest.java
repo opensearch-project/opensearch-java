@@ -13,6 +13,8 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -29,8 +31,9 @@ import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.register_model.Request
 
@@ -39,13 +42,22 @@ import org.opensearch.client.util.ObjectBuilderBase;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RegisterModelRequest extends RequestBase implements PlainJsonSerializable {
+public final class RegisterModelRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<RegisterModelRequest.Builder, RegisterModelRequest> {
+
+    @Nullable
+    private final String connectorId;
 
     @Nullable
     private final String description;
 
-    @Nonnull
-    private final String modelFormat;
+    @Nullable
+    private final String functionName;
+
+    @Nullable
+    private final ModelFormat modelFormat;
 
     @Nullable
     private final String modelGroupId;
@@ -53,21 +65,35 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
     @Nonnull
     private final String name;
 
-    @Nonnull
+    @Nullable
     private final String version;
 
     // ---------------------------------------------------------------------------------------------
 
     private RegisterModelRequest(Builder builder) {
+        super(builder);
+        this.connectorId = builder.connectorId;
         this.description = builder.description;
-        this.modelFormat = ApiTypeHelper.requireNonNull(builder.modelFormat, this, "modelFormat");
+        this.functionName = builder.functionName;
+        this.modelFormat = builder.modelFormat;
         this.modelGroupId = builder.modelGroupId;
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-        this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+        this.version = builder.version;
     }
 
     public static RegisterModelRequest of(Function<RegisterModelRequest.Builder, ObjectBuilder<RegisterModelRequest>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * The connector ID.
+     * <p>
+     * API name: {@code connector_id}
+     * </p>
+     */
+    @Nullable
+    public final String connectorId() {
+        return this.connectorId;
     }
 
     /**
@@ -82,21 +108,26 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
     }
 
     /**
-     * Required - The portable format of the model file.
+     * The function name.
      * <p>
-     * API name: {@code model_format}
+     * API name: {@code function_name}
      * </p>
      */
-    @Nonnull
-    public final String modelFormat() {
+    @Nullable
+    public final String functionName() {
+        return this.functionName;
+    }
+
+    /**
+     * API name: {@code model_format}
+     */
+    @Nullable
+    public final ModelFormat modelFormat() {
         return this.modelFormat;
     }
 
     /**
-     * The ID of the model group to which to register the model.
-     * <p>
      * API name: {@code model_group_id}
-     * </p>
      */
     @Nullable
     public final String modelGroupId() {
@@ -115,12 +146,9 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
     }
 
     /**
-     * Required - The model version.
-     * <p>
      * API name: {@code version}
-     * </p>
      */
-    @Nonnull
+    @Nullable
     public final String version() {
         return this.version;
     }
@@ -136,13 +164,25 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.connectorId != null) {
+            generator.writeKey("connector_id");
+            generator.write(this.connectorId);
+        }
+
         if (this.description != null) {
             generator.writeKey("description");
             generator.write(this.description);
         }
 
-        generator.writeKey("model_format");
-        generator.write(this.modelFormat);
+        if (this.functionName != null) {
+            generator.writeKey("function_name");
+            generator.write(this.functionName);
+        }
+
+        if (this.modelFormat != null) {
+            generator.writeKey("model_format");
+            this.modelFormat.serialize(generator, mapper);
+        }
 
         if (this.modelGroupId != null) {
             generator.writeKey("model_group_id");
@@ -152,22 +192,90 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
         generator.writeKey("name");
         generator.write(this.name);
 
-        generator.writeKey("version");
-        generator.write(this.version);
+        if (this.version != null) {
+            generator.writeKey("version");
+            generator.write(this.version);
+        }
     }
+
     // ---------------------------------------------------------------------------------------------
+
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
 
     /**
      * Builder for {@link RegisterModelRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RegisterModelRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RegisterModelRequest> {
+        @Nullable
+        private String connectorId;
         @Nullable
         private String description;
-        private String modelFormat;
+        @Nullable
+        private String functionName;
+        @Nullable
+        private ModelFormat modelFormat;
         @Nullable
         private String modelGroupId;
         private String name;
+        @Nullable
         private String version;
+
+        public Builder() {}
+
+        private Builder(RegisterModelRequest o) {
+            super(o);
+            this.connectorId = o.connectorId;
+            this.description = o.description;
+            this.functionName = o.functionName;
+            this.modelFormat = o.modelFormat;
+            this.modelGroupId = o.modelGroupId;
+            this.name = o.name;
+            this.version = o.version;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.connectorId = o.connectorId;
+            this.description = o.description;
+            this.functionName = o.functionName;
+            this.modelFormat = o.modelFormat;
+            this.modelGroupId = o.modelGroupId;
+            this.name = o.name;
+            this.version = o.version;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
+        /**
+         * The connector ID.
+         * <p>
+         * API name: {@code connector_id}
+         * </p>
+         */
+        @Nonnull
+        public final Builder connectorId(@Nullable String value) {
+            this.connectorId = value;
+            return this;
+        }
 
         /**
          * The model description.
@@ -175,28 +283,37 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
          * API name: {@code description}
          * </p>
          */
+        @Nonnull
         public final Builder description(@Nullable String value) {
             this.description = value;
             return this;
         }
 
         /**
-         * Required - The portable format of the model file.
+         * The function name.
          * <p>
-         * API name: {@code model_format}
+         * API name: {@code function_name}
          * </p>
          */
-        public final Builder modelFormat(String value) {
+        @Nonnull
+        public final Builder functionName(@Nullable String value) {
+            this.functionName = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code model_format}
+         */
+        @Nonnull
+        public final Builder modelFormat(@Nullable ModelFormat value) {
             this.modelFormat = value;
             return this;
         }
 
         /**
-         * The ID of the model group to which to register the model.
-         * <p>
          * API name: {@code model_group_id}
-         * </p>
          */
+        @Nonnull
         public final Builder modelGroupId(@Nullable String value) {
             this.modelGroupId = value;
             return this;
@@ -208,18 +325,17 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
          * API name: {@code name}
          * </p>
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
         }
 
         /**
-         * Required - The model version.
-         * <p>
          * API name: {@code version}
-         * </p>
          */
-        public final Builder version(String value) {
+        @Nonnull
+        public final Builder version(@Nullable String value) {
             this.version = value;
             return this;
         }
@@ -229,6 +345,8 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RegisterModelRequest build() {
             _checkSingleUse();
 
@@ -247,8 +365,10 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
     );
 
     protected static void setupRegisterModelRequestDeserializer(ObjectDeserializer<RegisterModelRequest.Builder> op) {
+        op.add(Builder::connectorId, JsonpDeserializer.stringDeserializer(), "connector_id");
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-        op.add(Builder::modelFormat, JsonpDeserializer.stringDeserializer(), "model_format");
+        op.add(Builder::functionName, JsonpDeserializer.stringDeserializer(), "function_name");
+        op.add(Builder::modelFormat, ModelFormat._DESERIALIZER, "model_format");
         op.add(Builder::modelGroupId, JsonpDeserializer.stringDeserializer(), "model_group_id");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
@@ -265,7 +385,11 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
         // Request path
         request -> "/_plugins/_ml/models/_register",
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         true,
         RegisterModelResponse._DESERIALIZER
@@ -274,11 +398,13 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.connectorId);
         result = 31 * result + Objects.hashCode(this.description);
-        result = 31 * result + this.modelFormat.hashCode();
+        result = 31 * result + Objects.hashCode(this.functionName);
+        result = 31 * result + Objects.hashCode(this.modelFormat);
         result = 31 * result + Objects.hashCode(this.modelGroupId);
         result = 31 * result + this.name.hashCode();
-        result = 31 * result + this.version.hashCode();
+        result = 31 * result + Objects.hashCode(this.version);
         return result;
     }
 
@@ -287,10 +413,12 @@ public class RegisterModelRequest extends RequestBase implements PlainJsonSerial
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         RegisterModelRequest other = (RegisterModelRequest) o;
-        return Objects.equals(this.description, other.description)
-            && this.modelFormat.equals(other.modelFormat)
+        return Objects.equals(this.connectorId, other.connectorId)
+            && Objects.equals(this.description, other.description)
+            && Objects.equals(this.functionName, other.functionName)
+            && Objects.equals(this.modelFormat, other.modelFormat)
             && Objects.equals(this.modelGroupId, other.modelGroupId)
             && this.name.equals(other.name)
-            && this.version.equals(other.version);
+            && Objects.equals(this.version, other.version);
     }
 }

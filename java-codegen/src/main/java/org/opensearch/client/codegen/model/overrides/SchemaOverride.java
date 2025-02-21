@@ -19,6 +19,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.model.Type;
 import org.opensearch.client.codegen.openapi.JsonPointer;
+import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.builder.ObjectBuilder;
 import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.builder.ObjectMapBuilderBase;
@@ -45,26 +46,19 @@ public final class SchemaOverride {
 
     @Nonnull
     public PropertyOverride getProperty(@Nonnull String key) {
-        var orig = properties.get(key);
-        Type mappedType = null;
-        Set<String> aliases = null;
-        if (orig != null) {
-            mappedType = orig.getMappedType().orElse(null);
-            aliases = orig.getAliases().map(HashSet::new).orElse(null);
+        var aliases = aliasProvider != null ? aliasProvider.apply(key) : null;
+
+        if (aliases == null) {
+            return properties.getOrDefault(key, PropertyOverride.EMPTY);
         }
 
-        if (aliasProvider != null) {
-            var providerAliases = aliasProvider.apply(key);
-            if (providerAliases != null) {
-                if (aliases == null) {
-                    aliases = new HashSet<>(providerAliases);
-                } else {
-                    aliases.addAll(providerAliases);
-                }
-            }
-        }
+        aliases = new HashSet<>(aliases);
 
-        return PropertyOverride.builder().withMappedType(mappedType).withAliases(aliases).build();
+        var orig = Maps.tryGet(properties, key);
+
+        orig.flatMap(PropertyOverride::getAliases).ifPresent(aliases::addAll);
+
+        return orig.map(PropertyOverride::toBuilder).orElseGet(PropertyOverride::builder).withAliases(aliases).build();
     }
 
     @Nonnull

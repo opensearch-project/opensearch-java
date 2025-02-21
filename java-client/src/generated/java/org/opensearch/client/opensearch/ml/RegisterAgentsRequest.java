@@ -13,6 +13,7 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -32,8 +33,9 @@ import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.register_agents.Request
 
@@ -42,7 +44,10 @@ import org.opensearch.client.util.ObjectBuilderBase;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RegisterAgentsRequest extends RequestBase implements PlainJsonSerializable {
+public final class RegisterAgentsRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<RegisterAgentsRequest.Builder, RegisterAgentsRequest> {
 
     @Nullable
     private final String appType;
@@ -71,6 +76,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
     // ---------------------------------------------------------------------------------------------
 
     private RegisterAgentsRequest(Builder builder) {
+        super(builder);
         this.appType = builder.appType;
         this.description = builder.description;
         this.llm = builder.llm;
@@ -205,12 +211,24 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
         generator.writeKey("type");
         generator.write(this.type);
     }
+
     // ---------------------------------------------------------------------------------------------
+
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
 
     /**
      * Builder for {@link RegisterAgentsRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RegisterAgentsRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RegisterAgentsRequest> {
         @Nullable
         private String appType;
         @Nullable
@@ -226,9 +244,48 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
         private List<ToolItems> tools;
         private String type;
 
+        public Builder() {}
+
+        private Builder(RegisterAgentsRequest o) {
+            super(o);
+            this.appType = o.appType;
+            this.description = o.description;
+            this.llm = o.llm;
+            this.memory = o.memory;
+            this.name = o.name;
+            this.parameters = _mapCopy(o.parameters);
+            this.tools = _listCopy(o.tools);
+            this.type = o.type;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.appType = o.appType;
+            this.description = o.description;
+            this.llm = o.llm;
+            this.memory = o.memory;
+            this.name = o.name;
+            this.parameters = _mapCopy(o.parameters);
+            this.tools = _listCopy(o.tools);
+            this.type = o.type;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * API name: {@code app_type}
          */
+        @Nonnull
         public final Builder appType(@Nullable String value) {
             this.appType = value;
             return this;
@@ -237,6 +294,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
         /**
          * API name: {@code description}
          */
+        @Nonnull
         public final Builder description(@Nullable String value) {
             this.description = value;
             return this;
@@ -245,6 +303,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
         /**
          * API name: {@code llm}
          */
+        @Nonnull
         public final Builder llm(@Nullable LLM value) {
             this.llm = value;
             return this;
@@ -253,6 +312,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
         /**
          * API name: {@code llm}
          */
+        @Nonnull
         public final Builder llm(Function<LLM.Builder, ObjectBuilder<LLM>> fn) {
             return llm(fn.apply(new LLM.Builder()).build());
         }
@@ -260,6 +320,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
         /**
          * API name: {@code memory}
          */
+        @Nonnull
         public final Builder memory(@Nullable Memory value) {
             this.memory = value;
             return this;
@@ -268,6 +329,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
         /**
          * API name: {@code memory}
          */
+        @Nonnull
         public final Builder memory(Function<Memory.Builder, ObjectBuilder<Memory>> fn) {
             return memory(fn.apply(new Memory.Builder()).build());
         }
@@ -275,6 +337,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
         /**
          * Required - API name: {@code name}
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -287,6 +350,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
          * Adds all elements of <code>map</code> to <code>parameters</code>.
          * </p>
          */
+        @Nonnull
         public final Builder parameters(Map<String, JsonData> map) {
             this.parameters = _mapPutAll(this.parameters, map);
             return this;
@@ -299,6 +363,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
          * Adds an entry to <code>parameters</code>.
          * </p>
          */
+        @Nonnull
         public final Builder parameters(String key, JsonData value) {
             this.parameters = _mapPut(this.parameters, key, value);
             return this;
@@ -311,6 +376,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
          * Adds all elements of <code>list</code> to <code>tools</code>.
          * </p>
          */
+        @Nonnull
         public final Builder tools(List<ToolItems> list) {
             this.tools = _listAddAll(this.tools, list);
             return this;
@@ -323,6 +389,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
          * Adds one or more values to <code>tools</code>.
          * </p>
          */
+        @Nonnull
         public final Builder tools(ToolItems value, ToolItems... values) {
             this.tools = _listAdd(this.tools, value, values);
             return this;
@@ -335,6 +402,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
          * Adds a value to <code>tools</code> using a builder lambda.
          * </p>
          */
+        @Nonnull
         public final Builder tools(Function<ToolItems.Builder, ObjectBuilder<ToolItems>> fn) {
             return tools(fn.apply(new ToolItems.Builder()).build());
         }
@@ -342,6 +410,7 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
         /**
          * Required - API name: {@code type}
          */
+        @Nonnull
         public final Builder type(String value) {
             this.type = value;
             return this;
@@ -352,6 +421,8 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RegisterAgentsRequest build() {
             _checkSingleUse();
 
@@ -391,7 +462,11 @@ public class RegisterAgentsRequest extends RequestBase implements PlainJsonSeria
         // Request path
         request -> "/_plugins/_ml/agents/_register",
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         true,
         RegisterAgentsResponse._DESERIALIZER

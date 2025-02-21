@@ -28,14 +28,22 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.ToolItems
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ToolItems implements PlainJsonSerializable {
+public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolItems.Builder, ToolItems> {
+
+    @Nullable
+    private final Boolean includeOutputInAgentResponse;
+
+    @Nonnull
+    private final Map<String, JsonData> metadata;
 
     @Nullable
     private final String name;
@@ -46,20 +54,31 @@ public class ToolItems implements PlainJsonSerializable {
     @Nullable
     private final String type;
 
-    @Nonnull
-    private final Map<String, JsonData> metadata;
-
     // ---------------------------------------------------------------------------------------------
 
     private ToolItems(Builder builder) {
+        this.includeOutputInAgentResponse = builder.includeOutputInAgentResponse;
+        this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
         this.name = builder.name;
         this.parameters = ApiTypeHelper.unmodifiable(builder.parameters);
         this.type = builder.type;
-        this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
     }
 
     public static ToolItems of(Function<ToolItems.Builder, ObjectBuilder<ToolItems>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * API name: {@code include_output_in_agent_response}
+     */
+    @Nullable
+    public final Boolean includeOutputInAgentResponse() {
+        return this.includeOutputInAgentResponse;
+    }
+
+    @Nonnull
+    public final Map<String, JsonData> metadata() {
+        return this.metadata;
     }
 
     /**
@@ -87,13 +106,6 @@ public class ToolItems implements PlainJsonSerializable {
     }
 
     /**
-                                    */
-    @Nonnull
-    public final Map<String, JsonData> metadata() {
-        return this.metadata;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
     @Override
@@ -108,6 +120,11 @@ public class ToolItems implements PlainJsonSerializable {
             generator.writeKey(item0.getKey());
             item0.getValue().serialize(generator, mapper);
         }
+        if (this.includeOutputInAgentResponse != null) {
+            generator.writeKey("include_output_in_agent_response");
+            generator.write(this.includeOutputInAgentResponse);
+        }
+
         if (this.name != null) {
             generator.writeKey("name");
             generator.write(this.name);
@@ -131,22 +148,93 @@ public class ToolItems implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ToolItems}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ToolItems> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ToolItems> {
+        @Nullable
+        private Boolean includeOutputInAgentResponse;
+        @Nullable
+        private Map<String, JsonData> metadata;
         @Nullable
         private String name;
         @Nullable
         private Map<String, JsonData> parameters;
         @Nullable
         private String type;
-        @Nullable
-        private Map<String, JsonData> metadata;
+
+        public Builder() {}
+
+        private Builder(ToolItems o) {
+            this.includeOutputInAgentResponse = o.includeOutputInAgentResponse;
+            this.metadata = _mapCopy(o.metadata);
+            this.name = o.name;
+            this.parameters = _mapCopy(o.parameters);
+            this.type = o.type;
+        }
+
+        private Builder(Builder o) {
+            this.includeOutputInAgentResponse = o.includeOutputInAgentResponse;
+            this.metadata = _mapCopy(o.metadata);
+            this.name = o.name;
+            this.parameters = _mapCopy(o.parameters);
+            this.type = o.type;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        /**
+         * API name: {@code include_output_in_agent_response}
+         */
+        @Nonnull
+        public final Builder includeOutputInAgentResponse(@Nullable Boolean value) {
+            this.includeOutputInAgentResponse = value;
+            return this;
+        }
+
+        /**
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>metadata</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder metadata(Map<String, JsonData> map) {
+            this.metadata = _mapPutAll(this.metadata, map);
+            return this;
+        }
+
+        /**
+         *
+         * <p>
+         * Adds an entry to <code>metadata</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder metadata(String key, JsonData value) {
+            this.metadata = _mapPut(this.metadata, key, value);
+            return this;
+        }
 
         /**
          * API name: {@code name}
          */
+        @Nonnull
         public final Builder name(@Nullable String value) {
             this.name = value;
             return this;
@@ -159,6 +247,7 @@ public class ToolItems implements PlainJsonSerializable {
          * Adds all elements of <code>map</code> to <code>parameters</code>.
          * </p>
          */
+        @Nonnull
         public final Builder parameters(Map<String, JsonData> map) {
             this.parameters = _mapPutAll(this.parameters, map);
             return this;
@@ -171,6 +260,7 @@ public class ToolItems implements PlainJsonSerializable {
          * Adds an entry to <code>parameters</code>.
          * </p>
          */
+        @Nonnull
         public final Builder parameters(String key, JsonData value) {
             this.parameters = _mapPut(this.parameters, key, value);
             return this;
@@ -179,30 +269,9 @@ public class ToolItems implements PlainJsonSerializable {
         /**
          * API name: {@code type}
          */
+        @Nonnull
         public final Builder type(@Nullable String value) {
             this.type = value;
-            return this;
-        }
-
-        /**
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>metadata</code>.
-         * </p>
-         */
-        public final Builder metadata(Map<String, JsonData> map) {
-            this.metadata = _mapPutAll(this.metadata, map);
-            return this;
-        }
-
-        /**
-         *
-         * <p>
-         * Adds an entry to <code>metadata</code>.
-         * </p>
-         */
-        public final Builder metadata(String key, JsonData value) {
-            this.metadata = _mapPut(this.metadata, key, value);
             return this;
         }
 
@@ -211,6 +280,8 @@ public class ToolItems implements PlainJsonSerializable {
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ToolItems build() {
             _checkSingleUse();
 
@@ -229,6 +300,7 @@ public class ToolItems implements PlainJsonSerializable {
     );
 
     protected static void setupToolItemsDeserializer(ObjectDeserializer<ToolItems.Builder> op) {
+        op.add(Builder::includeOutputInAgentResponse, JsonpDeserializer.booleanDeserializer(), "include_output_in_agent_response");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "parameters");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
@@ -243,10 +315,11 @@ public class ToolItems implements PlainJsonSerializable {
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.includeOutputInAgentResponse);
+        result = 31 * result + Objects.hashCode(this.metadata);
         result = 31 * result + Objects.hashCode(this.name);
         result = 31 * result + Objects.hashCode(this.parameters);
         result = 31 * result + Objects.hashCode(this.type);
-        result = 31 * result + Objects.hashCode(this.metadata);
         return result;
     }
 
@@ -255,9 +328,10 @@ public class ToolItems implements PlainJsonSerializable {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         ToolItems other = (ToolItems) o;
-        return Objects.equals(this.name, other.name)
+        return Objects.equals(this.includeOutputInAgentResponse, other.includeOutputInAgentResponse)
+            && Objects.equals(this.metadata, other.metadata)
+            && Objects.equals(this.name, other.name)
             && Objects.equals(this.parameters, other.parameters)
-            && Objects.equals(this.type, other.type)
-            && Objects.equals(this.metadata, other.metadata);
+            && Objects.equals(this.type, other.type);
     }
 }

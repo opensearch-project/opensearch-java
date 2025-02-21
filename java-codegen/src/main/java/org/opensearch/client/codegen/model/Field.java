@@ -8,62 +8,61 @@
 
 package org.opensearch.client.codegen.model;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Function;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.utils.Markdown;
 import org.opensearch.client.codegen.utils.NameSanitizer;
 import org.opensearch.client.codegen.utils.Strings;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilder;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
+import org.opensearch.client.codegen.utils.builder.SetBuilder;
 
 public class Field {
-    @Nonnull
+    @Nullable
     private final String wireName;
     @Nonnull
+    private final String name;
+    @Nonnull
     private final Type type;
-    private boolean required;
+    private final boolean required;
     @Nullable
     private final String description;
     @Nullable
     private final Deprecation deprecation;
-    private final boolean isAdditionalProperties;
-    private final Set<String> aliases = new HashSet<>();
+    @Nullable
+    private final Set<String> aliases;
 
-    public Field(
-        @Nonnull String wireName,
-        @Nonnull Type type,
-        boolean required,
-        @Nullable String description,
-        @Nullable Deprecation deprecation
-    ) {
-        this(wireName, type, required, description, deprecation, false);
+    private Field(@Nonnull Builder builder) {
+        Objects.requireNonNull(builder, "builder must not be null");
+        if (builder.wireName != null) {
+            this.wireName = Strings.requireNonBlank(builder.wireName, "wireName must not be blank");
+            this.name = builder.name != null
+                ? Strings.requireNonBlank(builder.name, "name must not be blank")
+                : NameSanitizer.fieldName(wireName);
+        } else {
+            this.wireName = null;
+            this.name = NameSanitizer.fieldName(Strings.requireNonBlank(builder.name, "name must not be blank"));
+        }
+        this.type = Objects.requireNonNull(builder.type, "type must not be null");
+        this.required = builder.required;
+        this.description = builder.description;
+        this.deprecation = builder.deprecation;
+        this.aliases = builder.aliases;
     }
 
-    public Field(
-        @Nonnull String wireName,
-        @Nonnull Type type,
-        boolean required,
-        @Nullable String description,
-        @Nullable Deprecation deprecation,
-        boolean isAdditionalProperties
-    ) {
-        this.wireName = Strings.requireNonBlank(wireName, "wireName must not be null");
-        this.type = Objects.requireNonNull(type, "type must not be null");
-        this.required = required;
-        this.description = description != null ? Markdown.toJavaDocHtml(description) : null;
-        this.deprecation = deprecation;
-        this.isAdditionalProperties = isAdditionalProperties;
-    }
-
-    @Nonnull
+    @Nullable
     public String getWireName() {
         return wireName;
     }
 
     @Nonnull
     public String getName() {
-        return NameSanitizer.wireNameToField(wireName);
+        return name;
     }
 
     @Nonnull
@@ -73,10 +72,6 @@ public class Field {
 
     public boolean isRequired() {
         return required;
-    }
-
-    public void setRequired(boolean required) {
-        this.required = required;
     }
 
     @Nullable
@@ -89,7 +84,92 @@ public class Field {
         return deprecation;
     }
 
-    public void addAlias(String alias) {
-        aliases.add(alias);
+    @Nonnull
+    public Set<String> getAliases() {
+        return aliases != null ? Collections.unmodifiableSet(aliases) : Collections.emptySet();
+    }
+
+    public boolean needsJavaDocSummary() {
+        return required || description != null || wireName != null;
+    }
+
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static final class Builder extends ObjectBuilderBase<Field, Builder> {
+        private String wireName;
+        private String name;
+        private Type type;
+        private boolean required;
+        private String description;
+        private Deprecation deprecation;
+        private Set<String> aliases;
+
+        private Builder() {}
+
+        private Builder(Field f) {
+            this.wireName = f.wireName;
+            this.name = f.name;
+            this.type = f.type;
+            this.required = f.required;
+            this.description = f.description;
+            this.deprecation = f.deprecation;
+            this.aliases = f.aliases != null ? new HashSet<>(f.aliases) : null;
+        }
+
+        @Nonnull
+        @Override
+        protected Field construct() {
+            return new Field(this);
+        }
+
+        @Nonnull
+        public Builder withWireName(@Nullable String wireName) {
+            this.wireName = wireName;
+            return this;
+        }
+
+        @Nonnull
+        public Builder withName(@Nullable String name) {
+            this.name = name;
+            return this;
+        }
+
+        @Nonnull
+        public Builder withType(@Nullable Type type) {
+            this.type = type;
+            return this;
+        }
+
+        @Nonnull
+        public Builder withRequired(boolean required) {
+            this.required = required;
+            return this;
+        }
+
+        @Nonnull
+        public Builder withDescription(@Nullable String description) {
+            this.description = description != null ? Markdown.toJavaDocHtml(description) : null;
+            return this;
+        }
+
+        @Nonnull
+        public Builder withDeprecation(@Nullable Deprecation deprecation) {
+            this.deprecation = deprecation;
+            return this;
+        }
+
+        @Nonnull
+        public Builder withAliases(@Nonnull Function<SetBuilder<String>, ObjectBuilder<Set<String>>> fn) {
+            this.aliases = Objects.requireNonNull(fn, "fn must not be null").apply(new SetBuilder<>()).build();
+            return this;
+        }
     }
 }

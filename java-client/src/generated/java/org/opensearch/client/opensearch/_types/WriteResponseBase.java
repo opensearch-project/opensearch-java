@@ -201,9 +201,37 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         private ShardStatistics shards;
         private Long version;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(WriteResponseBase o) {
+            this.forcedRefresh = o.forcedRefresh;
+            this.id = o.id;
+            this.index = o.index;
+            this.primaryTerm = o.primaryTerm;
+            this.result = o.result;
+            this.seqNo = o.seqNo;
+            this.shards = o.shards;
+            this.version = o.version;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            this.forcedRefresh = o.forcedRefresh;
+            this.id = o.id;
+            this.index = o.index;
+            this.primaryTerm = o.primaryTerm;
+            this.result = o.result;
+            this.seqNo = o.seqNo;
+            this.shards = o.shards;
+            this.version = o.version;
+        }
+
+        @Nonnull
+        protected abstract BuilderT self();
+
         /**
          * API name: {@code forced_refresh}
          */
+        @Nonnull
         public final BuilderT forcedRefresh(@Nullable Boolean value) {
             this.forcedRefresh = value;
             return self();
@@ -212,6 +240,7 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         /**
          * Required - API name: {@code _id}
          */
+        @Nonnull
         public final BuilderT id(String value) {
             this.id = value;
             return self();
@@ -220,6 +249,7 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         /**
          * Required - API name: {@code _index}
          */
+        @Nonnull
         public final BuilderT index(String value) {
             this.index = value;
             return self();
@@ -228,6 +258,7 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         /**
          * Required - API name: {@code _primary_term}
          */
+        @Nonnull
         public final BuilderT primaryTerm(long value) {
             this.primaryTerm = value;
             return self();
@@ -236,6 +267,7 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         /**
          * Required - API name: {@code result}
          */
+        @Nonnull
         public final BuilderT result(Result value) {
             this.result = value;
             return self();
@@ -244,6 +276,7 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         /**
          * Required - API name: {@code _seq_no}
          */
+        @Nonnull
         public final BuilderT seqNo(long value) {
             this.seqNo = value;
             return self();
@@ -252,6 +285,7 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         /**
          * Required - API name: {@code _shards}
          */
+        @Nonnull
         public final BuilderT shards(ShardStatistics value) {
             this.shards = value;
             return self();
@@ -260,6 +294,7 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         /**
          * Required - API name: {@code _shards}
          */
+        @Nonnull
         public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
             return shards(fn.apply(new ShardStatistics.Builder()).build());
         }
@@ -267,12 +302,11 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         /**
          * Required - API name: {@code _version}
          */
+        @Nonnull
         public final BuilderT version(long value) {
             this.version = value;
             return self();
         }
-
-        protected abstract BuilderT self();
     }
 
     // ---------------------------------------------------------------------------------------------

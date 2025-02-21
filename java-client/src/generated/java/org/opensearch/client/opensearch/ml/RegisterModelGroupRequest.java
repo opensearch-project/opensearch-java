@@ -13,7 +13,9 @@
 package org.opensearch.client.opensearch.ml;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -30,8 +32,9 @@ import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: ml.register_model_group.Request
 
@@ -40,7 +43,10 @@ import org.opensearch.client.util.ObjectBuilderBase;
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RegisterModelGroupRequest extends RequestBase implements PlainJsonSerializable {
+public final class RegisterModelGroupRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<RegisterModelGroupRequest.Builder, RegisterModelGroupRequest> {
 
     @Nullable
     private final String accessMode;
@@ -60,6 +66,7 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
     // ---------------------------------------------------------------------------------------------
 
     private RegisterModelGroupRequest(Builder builder) {
+        super(builder);
         this.accessMode = builder.accessMode;
         this.addAllBackendRoles = builder.addAllBackendRoles;
         this.backendRoles = ApiTypeHelper.unmodifiable(builder.backendRoles);
@@ -164,12 +171,26 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
         generator.writeKey("name");
         generator.write(this.name);
     }
+
     // ---------------------------------------------------------------------------------------------
+
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
 
     /**
      * Builder for {@link RegisterModelGroupRequest}.
      */
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RegisterModelGroupRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, RegisterModelGroupRequest> {
         @Nullable
         private String accessMode;
         @Nullable
@@ -180,12 +201,45 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
         private String description;
         private String name;
 
+        public Builder() {}
+
+        private Builder(RegisterModelGroupRequest o) {
+            super(o);
+            this.accessMode = o.accessMode;
+            this.addAllBackendRoles = o.addAllBackendRoles;
+            this.backendRoles = _listCopy(o.backendRoles);
+            this.description = o.description;
+            this.name = o.name;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.accessMode = o.accessMode;
+            this.addAllBackendRoles = o.addAllBackendRoles;
+            this.backendRoles = _listCopy(o.backendRoles);
+            this.description = o.description;
+            this.name = o.name;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
          * The model group access mode.
          * <p>
          * API name: {@code access_mode}
          * </p>
          */
+        @Nonnull
         public final Builder accessMode(@Nullable String value) {
             this.accessMode = value;
             return this;
@@ -197,6 +251,7 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
          * API name: {@code add_all_backend_roles}
          * </p>
          */
+        @Nonnull
         public final Builder addAllBackendRoles(@Nullable Boolean value) {
             this.addAllBackendRoles = value;
             return this;
@@ -212,6 +267,7 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
          * Adds all elements of <code>list</code> to <code>backendRoles</code>.
          * </p>
          */
+        @Nonnull
         public final Builder backendRoles(List<String> list) {
             this.backendRoles = _listAddAll(this.backendRoles, list);
             return this;
@@ -227,6 +283,7 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
          * Adds one or more values to <code>backendRoles</code>.
          * </p>
          */
+        @Nonnull
         public final Builder backendRoles(String value, String... values) {
             this.backendRoles = _listAdd(this.backendRoles, value, values);
             return this;
@@ -238,6 +295,7 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
          * API name: {@code description}
          * </p>
          */
+        @Nonnull
         public final Builder description(@Nullable String value) {
             this.description = value;
             return this;
@@ -249,6 +307,7 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
          * API name: {@code name}
          * </p>
          */
+        @Nonnull
         public final Builder name(String value) {
             this.name = value;
             return this;
@@ -259,6 +318,8 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
          *
          * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public RegisterModelGroupRequest build() {
             _checkSingleUse();
 
@@ -295,7 +356,11 @@ public class RegisterModelGroupRequest extends RequestBase implements PlainJsonS
         // Request path
         request -> "/_plugins/_ml/model_groups/_register",
         // Request parameters
-        SimpleEndpoint.emptyMap(),
+        request -> {
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
+        },
         SimpleEndpoint.emptyMap(),
         true,
         RegisterModelGroupResponse._DESERIALIZER

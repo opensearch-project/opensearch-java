@@ -6,19 +6,6 @@
         {{^extendsOtherShape}}
         int result = 17;
         {{/extendsOtherShape}}
-        {{#fields}}
-            result = 31 * result +
-            {{#required}}
-                {{#type.isPrimitive}}
-                    {{type.boxed}}.hashCode(this.{{name}});
-                {{/type.isPrimitive}}
-                {{^type.isPrimitive}}
-                    this.{{name}}.hashCode();
-                {{/type.isPrimitive}}
-            {{/required}}
-            {{^required}}
-                {{TYPES.Java.Util.Objects}}.hashCode(this.{{name}});
-            {{/required}}
-        {{/fields}}
+        {{>ObjectShape/HashCode/Fields}}
         return result;
     }
