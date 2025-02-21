@@ -259,6 +259,7 @@ public class RequestShape extends ObjectShape {
             case "create":
             case "delete":
             case "get":
+            case "put":
             case "restore":
                 return toPascalCase(name) + toPascalCase(itemForNamespace(ns));
 

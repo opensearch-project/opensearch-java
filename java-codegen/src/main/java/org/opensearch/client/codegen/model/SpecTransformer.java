@@ -447,7 +447,7 @@ public class SpecTransformer {
             }
 
             var oneOrAnyOf = unionSchema.getOneOf().or(unionSchema::getAnyOf).orElse(null);
-            if (oneOrAnyOf != null) {
+            if (!isExternallyTaggedUnion(unionSchema)) {
                 oneOrAnyOf.forEach(s -> {
                     String name;
                     if (discriminatingField != null) {
@@ -473,13 +473,22 @@ public class SpecTransformer {
                     }
                     taggedUnion.addVariant(name, mapType(s));
                 });
-            } else if (unionSchema.isObject() && unionSchema.getMaxProperties().orElse(Integer.MAX_VALUE) == 1) {
-                taggedUnion.setExternallyDiscriminated(
-                    unionSchema.getMinProperties().orElse(0) == 1
-                        ? TaggedUnionShape.ExternallyDiscriminated.REQUIRED
-                        : TaggedUnionShape.ExternallyDiscriminated.OPTIONAL
-                );
-                unionSchema.getProperties().ifPresent(props -> props.forEach((k, v) -> taggedUnion.addVariant(k, mapType(v))));
+            } else {
+                if (unionSchema.isObject()) {
+                    taggedUnion.setExternallyDiscriminated(
+                        unionSchema.getMinProperties().orElse(0) == 1
+                            ? TaggedUnionShape.ExternallyDiscriminated.REQUIRED
+                            : TaggedUnionShape.ExternallyDiscriminated.OPTIONAL
+                    );
+                    unionSchema.getProperties().ifPresent(props -> props.forEach((k, v) -> taggedUnion.addVariant(k, mapType(v))));
+                } else {
+                    taggedUnion.setExternallyDiscriminated(TaggedUnionShape.ExternallyDiscriminated.REQUIRED);
+                    oneOrAnyOf.forEach(s -> {
+                        var prop = s.getProperties().flatMap(m -> m.entrySet().stream().findFirst()).orElseThrow();
+
+                        taggedUnion.addVariant(prop.getKey(), mapType(prop.getValue()));
+                    });
+                }
             }
         } else if (isShortcutPropertyObject || schema.determineSingleType().orElse(null) == OpenApiSchemaType.Object) {
             if (schema.getProperties().isEmpty()
@@ -976,7 +985,8 @@ public class SpecTransformer {
             if (schema.getDiscriminator().isPresent()) {
                 return true;
             }
-            return isTaggedUnion(schema.getOneOf().orElseThrow());
+            var oneOf = schema.getOneOf().orElseThrow();
+            return isTaggedUnion(oneOf) || isExternallyTaggedUnion(oneOf);
         }
         if (schema.hasAnyOf()) {
             return isTaggedUnion(schema.getAnyOf().orElseThrow());
@@ -996,7 +1006,18 @@ public class SpecTransformer {
             }
 
             return isTaggedUnion(first) && second.isObject() || first.isObject() && isTaggedUnion(second);
+        }
 
+        return isExternallyTaggedUnion(schema);
+    }
+
+    private static boolean isTaggedUnion(List<OpenApiSchema> oneOfAnyOf) {
+        return oneOfAnyOf.stream().allMatch(OpenApiSchema::hasTitle);
+    }
+
+    private static boolean isExternallyTaggedUnion(OpenApiSchema schema) {
+        if (schema.hasOneOf()) {
+            return isExternallyTaggedUnion(schema.getOneOf().orElseThrow());
         }
         if (schema.isObject() && schema.getProperties().isPresent()) {
             var maxProperties = schema.getMaxProperties().orElse(Integer.MAX_VALUE);
@@ -1005,7 +1026,13 @@ public class SpecTransformer {
         return false;
     }
 
-    private static boolean isTaggedUnion(List<OpenApiSchema> oneOfAnyOf) {
-        return oneOfAnyOf.stream().allMatch(OpenApiSchema::hasTitle);
+    private static boolean isExternallyTaggedUnion(List<OpenApiSchema> oneOf) {
+        return oneOf.stream().allMatch(SpecTransformer::isExternallyTaggedUnionVariant);
+    }
+
+    private static boolean isExternallyTaggedUnionVariant(OpenApiSchema schema) {
+        return schema.isObject()
+            && schema.getProperties().map(Map::size).orElse(0) == 1
+            && schema.getRequired().map(Set::size).orElse(0) == 1;
     }
 }

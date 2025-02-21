@@ -143,7 +143,10 @@ public class Overrides {
                     so -> so.withProperties(p -> p.with("_name", po -> po.withName("queryName")))
                 )
 
-                .with(schema("_common.query_dsl", "QueryContainer"), so -> so.withClassName("Query"))
+                .with(
+                    schema("_common.query_dsl", "QueryContainer"),
+                    so -> so.withClassName("Query").withShouldGenerate(ShouldGenerate.Never)
+                )
                 .with(
                     schema("_common.query_dsl", "RangeQuery").append("allOf", "1"),
                     so -> so.withProperties(

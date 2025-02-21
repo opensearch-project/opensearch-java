@@ -2,7 +2,7 @@
     {{unionClassName}}.Kind _{{#camelCase}}{{unionClassName}}{{/camelCase}}Kind();
 {{#includeToUnionMethod}}
 
-    default {{unionClassName}} to{{unionClassName}}() {
+    default {{unionClassName}} _to{{unionClassName}}() {
         return new {{unionClassName}}(this);
     }
 {{/includeToUnionMethod}}

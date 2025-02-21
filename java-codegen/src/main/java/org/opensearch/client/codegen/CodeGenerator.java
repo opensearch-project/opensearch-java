@@ -51,7 +51,8 @@ public class CodeGenerator {
                 // TODO: search_models is complex and ideally should re-use the search structures
                 not(or(contains("predict"), contains("search"), contains("train"), isOneOf("chunk_model", "execute_algorithm")))
             )
-        )
+        ),
+        namespace(is("search_pipeline"))
     );
 
     public static void main(String[] args) {
