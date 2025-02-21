@@ -30,30 +30,30 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.analysis.NoriDecompoundMode
+
 @JsonpDeserializable
-public enum TokenChar implements JsonEnum {
-    Letter("letter"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum NoriDecompoundMode implements JsonEnum {
+    Discard("discard"),
 
-    Digit("digit"),
+    Mixed("mixed"),
 
-    Whitespace("whitespace"),
-
-    Punctuation("punctuation"),
-
-    Symbol("symbol"),
-
-    Custom("custom"),
-
-    ;
+    None("none");
 
     private final String jsonValue;
 
-    TokenChar(String jsonValue) {
+    NoriDecompoundMode(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -61,5 +61,5 @@ public enum TokenChar implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<TokenChar> _DESERIALIZER = new JsonEnum.Deserializer<>(TokenChar.values());
+    public static final JsonEnum.Deserializer<NoriDecompoundMode> _DESERIALIZER = new JsonEnum.Deserializer<>(NoriDecompoundMode.values());
 }

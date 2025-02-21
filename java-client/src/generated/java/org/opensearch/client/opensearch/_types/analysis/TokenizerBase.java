@@ -30,9 +30,16 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -42,16 +49,16 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.analysis.TokenizerBase
 
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class TokenizerBase implements PlainJsonSerializable {
+
     @Nullable
     private final String version;
 
     // ---------------------------------------------------------------------------------------------
 
     protected TokenizerBase(AbstractBuilder<?> builder) {
-
         this.version = builder.version;
-
     }
 
     /**
@@ -65,6 +72,7 @@ public abstract class TokenizerBase implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -72,36 +80,59 @@ public abstract class TokenizerBase implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (this.version != null) {
             generator.writeKey("version");
             generator.write(this.version);
-
         }
-
     }
+
+    // ---------------------------------------------------------------------------------------------
 
     protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         @Nullable
         private String version;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(TokenizerBase o) {
+            this.version = o.version;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            this.version = o.version;
+        }
+
+        @Nonnull
+        protected abstract BuilderT self();
+
         /**
          * API name: {@code version}
          */
+        @Nonnull
         public final BuilderT version(@Nullable String value) {
             this.version = value;
             return self();
         }
-
-        protected abstract BuilderT self();
-
     }
 
     // ---------------------------------------------------------------------------------------------
+
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupTokenizerBaseDeserializer(ObjectDeserializer<BuilderT> op) {
-
         op.add(AbstractBuilder::version, JsonpDeserializer.stringDeserializer(), "version");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.version);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        TokenizerBase other = (TokenizerBase) o;
+        return Objects.equals(this.version, other.version);
+    }
 }

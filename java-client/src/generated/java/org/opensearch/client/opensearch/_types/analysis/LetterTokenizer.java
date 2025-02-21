@@ -30,86 +30,140 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.analysis.LowercaseTokenizer
+// typedef: _types.analysis.LetterTokenizer
 
 @JsonpDeserializable
-public class LowercaseTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class LetterTokenizer extends TokenizerBase
+    implements
+        TokenizerDefinitionVariant,
+        ToCopyableBuilder<LetterTokenizer.Builder, LetterTokenizer> {
+
     // ---------------------------------------------------------------------------------------------
 
-    private LowercaseTokenizer(Builder builder) {
+    private LetterTokenizer(Builder builder) {
         super(builder);
-
     }
 
-    public static LowercaseTokenizer of(Function<Builder, ObjectBuilder<LowercaseTokenizer>> fn) {
+    public static LetterTokenizer of(Function<LetterTokenizer.Builder, ObjectBuilder<LetterTokenizer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * TokenizerDefinition variant kind.
+     * {@link TokenizerDefinition} variant kind.
      */
     @Override
     public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
-        return TokenizerDefinition.Kind.Lowercase;
+        return TokenizerDefinition.Kind.Letter;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.write("type", "lowercase");
+        generator.write("type", "letter");
         super.serializeInternal(generator, mapper);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    /**
-     * Builder for {@link LowercaseTokenizer}.
-     */
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
 
-    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<LowercaseTokenizer> {
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /**
+     * Builder for {@link LetterTokenizer}.
+     */
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, LetterTokenizer> {
+
+        public Builder() {}
+
+        private Builder(LetterTokenizer o) {
+            super(o);
+        }
+
+        private Builder(Builder o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
 
         /**
-         * Builds a {@link LowercaseTokenizer}.
+         * Builds a {@link LetterTokenizer}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
-        public LowercaseTokenizer build() {
+        @Override
+        @Nonnull
+        public LetterTokenizer build() {
             _checkSingleUse();
 
-            return new LowercaseTokenizer(this);
+            return new LetterTokenizer(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link LowercaseTokenizer}
+     * Json deserializer for {@link LetterTokenizer}
      */
-    public static final JsonpDeserializer<LowercaseTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<LetterTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        LowercaseTokenizer::setupLowercaseTokenizerDeserializer
+        LetterTokenizer::setupLetterTokenizerDeserializer
     );
 
-    protected static void setupLowercaseTokenizerDeserializer(ObjectDeserializer<LowercaseTokenizer.Builder> op) {
+    protected static void setupLetterTokenizerDeserializer(ObjectDeserializer<LetterTokenizer.Builder> op) {
         setupTokenizerBaseDeserializer(op);
 
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

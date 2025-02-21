@@ -30,20 +30,26 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.analysis.KuromojiTokenizationMode
+
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum KuromojiTokenizationMode implements JsonEnum {
-    Normal("normal"),
-
-    Search("search"),
-
     Extended("extended"),
 
-    ;
+    Normal("normal"),
+
+    Search("search");
 
     private final String jsonValue;
 

@@ -30,44 +30,56 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.analysis.UaxEmailUrlTokenizer
+// typedef: _types.analysis.WhitespaceTokenizer
 
 @JsonpDeserializable
-public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class WhitespaceTokenizer extends TokenizerBase
+    implements
+        TokenizerDefinitionVariant,
+        ToCopyableBuilder<WhitespaceTokenizer.Builder, WhitespaceTokenizer> {
+
     @Nullable
     private final Integer maxTokenLength;
 
     // ---------------------------------------------------------------------------------------------
 
-    private UaxEmailUrlTokenizer(Builder builder) {
+    private WhitespaceTokenizer(Builder builder) {
         super(builder);
-
         this.maxTokenLength = builder.maxTokenLength;
-
     }
 
-    public static UaxEmailUrlTokenizer of(Function<Builder, ObjectBuilder<UaxEmailUrlTokenizer>> fn) {
+    public static WhitespaceTokenizer of(Function<WhitespaceTokenizer.Builder, ObjectBuilder<WhitespaceTokenizer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * TokenizerDefinition variant kind.
+     * {@link TokenizerDefinition} variant kind.
      */
     @Override
     public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
-        return TokenizerDefinition.Kind.UaxUrlEmail;
+        return TokenizerDefinition.Kind.Whitespace;
     }
 
     /**
@@ -79,68 +91,113 @@ public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerDefi
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-        generator.write("type", "uax_url_email");
+        generator.write("type", "whitespace");
         super.serializeInternal(generator, mapper);
         if (this.maxTokenLength != null) {
             generator.writeKey("max_token_length");
             generator.write(this.maxTokenLength);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    /**
-     * Builder for {@link UaxEmailUrlTokenizer}.
-     */
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
 
-    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<UaxEmailUrlTokenizer> {
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    /**
+     * Builder for {@link WhitespaceTokenizer}.
+     */
+    public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, WhitespaceTokenizer> {
         @Nullable
         private Integer maxTokenLength;
 
-        /**
-         * API name: {@code max_token_length}
-         */
-        public final Builder maxTokenLength(@Nullable Integer value) {
-            this.maxTokenLength = value;
-            return this;
+        public Builder() {}
+
+        private Builder(WhitespaceTokenizer o) {
+            super(o);
+            this.maxTokenLength = o.maxTokenLength;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.maxTokenLength = o.maxTokenLength;
         }
 
         @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder self() {
             return this;
         }
 
         /**
-         * Builds a {@link UaxEmailUrlTokenizer}.
-         *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * API name: {@code max_token_length}
          */
-        public UaxEmailUrlTokenizer build() {
+        @Nonnull
+        public final Builder maxTokenLength(@Nullable Integer value) {
+            this.maxTokenLength = value;
+            return this;
+        }
+
+        /**
+         * Builds a {@link WhitespaceTokenizer}.
+         *
+         * @throws NullPointerException if some of the required fields are null.
+         */
+        @Override
+        @Nonnull
+        public WhitespaceTokenizer build() {
             _checkSingleUse();
 
-            return new UaxEmailUrlTokenizer(this);
+            return new WhitespaceTokenizer(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link UaxEmailUrlTokenizer}
+     * Json deserializer for {@link WhitespaceTokenizer}
      */
-    public static final JsonpDeserializer<UaxEmailUrlTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<WhitespaceTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        UaxEmailUrlTokenizer::setupUaxEmailUrlTokenizerDeserializer
+        WhitespaceTokenizer::setupWhitespaceTokenizerDeserializer
     );
 
-    protected static void setupUaxEmailUrlTokenizerDeserializer(ObjectDeserializer<UaxEmailUrlTokenizer.Builder> op) {
-        TokenizerBase.setupTokenizerBaseDeserializer(op);
+    protected static void setupWhitespaceTokenizerDeserializer(ObjectDeserializer<WhitespaceTokenizer.Builder> op) {
+        setupTokenizerBaseDeserializer(op);
         op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
 
         op.ignore("type");
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.maxTokenLength);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        WhitespaceTokenizer other = (WhitespaceTokenizer) o;
+        return Objects.equals(this.maxTokenLength, other.maxTokenLength);
+    }
 }

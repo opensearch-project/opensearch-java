@@ -5,7 +5,7 @@
     {{/extendsOtherShape}}
     {{>ObjectShape/Deserialize/Fields}}
     {{#variants}}
-        op.add(Builder::{{#asFieldName}}{{name}}{{/asFieldName}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{name}}{{/quoted}});
+        op.add(Builder::{{#asBuilderMethodName}}{{name}}{{/asBuilderMethodName}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{name}}{{/quoted}});
     {{/variants}}
     {{#internallyDiscriminated}}
         op.setTypeProperty({{#quoted}}{{discriminatingField}}{{/quoted}}, {{#defaultVariant}}Kind.{{#pascalCase}}{{name}}{{/pascalCase}}.jsonValue(){{/defaultVariant}}{{^defaultVariant}}null{{/defaultVariant}});
