@@ -155,15 +155,15 @@
     {{/concreteBuilderSetters}}
 
     {{#variants}}
-        public {{^needsContainerBuilder}}{{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{/needsContainerBuilder}}{{#needsContainerBuilder}}ContainerBuilder{{/needsContainerBuilder}} {{#asFieldName}}{{name}}{{/asFieldName}}({{type}} v) {
+        public {{^needsContainerBuilder}}{{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{/needsContainerBuilder}}{{#needsContainerBuilder}}ContainerBuilder{{/needsContainerBuilder}} {{#asBuilderMethodName}}{{name}}{{/asBuilderMethodName}}({{type}} v) {
             this._kind = Kind.{{#pascalCase}}{{name}}{{/pascalCase}};
             this._value = v;
             return {{^needsContainerBuilder}}this{{/needsContainerBuilder}}{{#needsContainerBuilder}}new ContainerBuilder(){{/needsContainerBuilder}};
         }
         {{#type.hasBuilder}}
 
-        public {{^needsContainerBuilder}}{{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{/needsContainerBuilder}}{{#needsContainerBuilder}}ContainerBuilder{{/needsContainerBuilder}} {{#asFieldName}}{{name}}{{/asFieldName}}({{type.builderFnType}} fn) {
-            return this.{{#asFieldName}}{{name}}{{/asFieldName}}(fn.apply(new {{type.builderType}}()).build());
+        public {{^needsContainerBuilder}}{{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{/needsContainerBuilder}}{{#needsContainerBuilder}}ContainerBuilder{{/needsContainerBuilder}} {{#asBuilderMethodName}}{{name}}{{/asBuilderMethodName}}({{type.builderFnType}} fn) {
+            return this.{{#asBuilderMethodName}}{{name}}{{/asBuilderMethodName}}(fn.apply(new {{type.builderType}}()).build());
         }
         {{/type.hasBuilder}}
 

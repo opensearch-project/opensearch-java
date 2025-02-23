@@ -108,6 +108,8 @@ public class Overrides {
                 )
                 .with(schema("_common.aggregations", "InferenceConfigContainer"), so -> so.withClassName("InferenceConfig"))
 
+                .with(schema("_common.analysis", "TokenizerDefinition"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+
                 // TODO: Remove this once figuring out how best to handle these schemas
                 .with(schema("_common.query_dsl", "DecayFunction"), so -> so.withShouldGenerate(ShouldGenerate.Never))
                 .with(

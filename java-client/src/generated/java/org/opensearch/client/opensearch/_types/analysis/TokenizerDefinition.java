@@ -30,17 +30,24 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -50,47 +57,29 @@ import org.opensearch.client.util.TaggedUnionUtils;
 // typedef: _types.analysis.TokenizerDefinition
 
 @JsonpDeserializable
-public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind, TokenizerDefinitionVariant>, JsonpSerializable {
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind, TokenizerDefinitionVariant>, PlainJsonSerializable {
     /**
      * {@link TokenizerDefinition} variant kinds.
      */
-    /**
-     * {@link TokenizerDefinition} variant kinds.
-     */
-
     public enum Kind implements JsonEnum {
         CharGroup("char_group"),
-
         EdgeNgram("edge_ngram"),
-
         IcuTokenizer("icu_tokenizer"),
-
         Keyword("keyword"),
-
         KuromojiTokenizer("kuromoji_tokenizer"),
-
         Letter("letter"),
-
         Lowercase("lowercase"),
-
         Ngram("ngram"),
-
         NoriTokenizer("nori_tokenizer"),
-
         PathHierarchy("path_hierarchy"),
-
         Pattern("pattern"),
-
-        Standard("standard"),
-
-        UaxUrlEmail("uax_url_email"),
-
-        Whitespace("whitespace"),
-
+        SimplePattern("simple_pattern"),
+        SimplePatternSplit("simple_pattern_split"),
         SmartcnTokenizer("smartcn_tokenizer"),
-
-        ;
+        Standard("standard"),
+        UaxUrlEmail("uax_url_email"),
+        Whitespace("whitespace");
 
         private final String jsonValue;
 
@@ -98,10 +87,10 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
             this.jsonValue = jsonValue;
         }
 
+        @Override
         public String jsonValue() {
-            return this.jsonValue;
+            return jsonValue;
         }
-
     }
 
     private final Kind _kind;
@@ -118,20 +107,16 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     }
 
     public TokenizerDefinition(TokenizerDefinitionVariant value) {
-
         this._kind = ApiTypeHelper.requireNonNull(value._tokenizerDefinitionKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
-
     }
 
     private TokenizerDefinition(Builder builder) {
-
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
     }
 
-    public static TokenizerDefinition of(Function<Builder, ObjectBuilder<TokenizerDefinition>> fn) {
+    public static TokenizerDefinition of(Function<TokenizerDefinition.Builder, ObjectBuilder<TokenizerDefinition>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -145,8 +130,7 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     /**
      * Get the {@code char_group} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code char_group} kind.
+     * @throws IllegalStateException if the current variant is not the {@code char_group} kind.
      */
     public CharGroupTokenizer charGroup() {
         return TaggedUnionUtils.get(this, Kind.CharGroup);
@@ -162,8 +146,7 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     /**
      * Get the {@code edge_ngram} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code edge_ngram} kind.
+     * @throws IllegalStateException if the current variant is not the {@code edge_ngram} kind.
      */
     public EdgeNGramTokenizer edgeNgram() {
         return TaggedUnionUtils.get(this, Kind.EdgeNgram);
@@ -179,8 +162,7 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     /**
      * Get the {@code icu_tokenizer} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code icu_tokenizer} kind.
+     * @throws IllegalStateException if the current variant is not the {@code icu_tokenizer} kind.
      */
     public IcuTokenizer icuTokenizer() {
         return TaggedUnionUtils.get(this, Kind.IcuTokenizer);
@@ -196,8 +178,7 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     /**
      * Get the {@code keyword} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code keyword} kind.
+     * @throws IllegalStateException if the current variant is not the {@code keyword} kind.
      */
     public KeywordTokenizer keyword() {
         return TaggedUnionUtils.get(this, Kind.Keyword);
@@ -213,9 +194,7 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     /**
      * Get the {@code kuromoji_tokenizer} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code kuromoji_tokenizer}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code kuromoji_tokenizer} kind.
      */
     public KuromojiTokenizer kuromojiTokenizer() {
         return TaggedUnionUtils.get(this, Kind.KuromojiTokenizer);
@@ -231,8 +210,7 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     /**
      * Get the {@code letter} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code letter} kind.
+     * @throws IllegalStateException if the current variant is not the {@code letter} kind.
      */
     public LetterTokenizer letter() {
         return TaggedUnionUtils.get(this, Kind.Letter);
@@ -248,8 +226,7 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     /**
      * Get the {@code lowercase} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code lowercase} kind.
+     * @throws IllegalStateException if the current variant is not the {@code lowercase} kind.
      */
     public LowercaseTokenizer lowercase() {
         return TaggedUnionUtils.get(this, Kind.Lowercase);
@@ -265,8 +242,7 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     /**
      * Get the {@code ngram} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code ngram} kind.
+     * @throws IllegalStateException if the current variant is not the {@code ngram} kind.
      */
     public NGramTokenizer ngram() {
         return TaggedUnionUtils.get(this, Kind.Ngram);
@@ -282,8 +258,7 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     /**
      * Get the {@code nori_tokenizer} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code nori_tokenizer} kind.
+     * @throws IllegalStateException if the current variant is not the {@code nori_tokenizer} kind.
      */
     public NoriTokenizer noriTokenizer() {
         return TaggedUnionUtils.get(this, Kind.NoriTokenizer);
@@ -299,8 +274,7 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     /**
      * Get the {@code path_hierarchy} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code path_hierarchy} kind.
+     * @throws IllegalStateException if the current variant is not the {@code path_hierarchy} kind.
      */
     public PathHierarchyTokenizer pathHierarchy() {
         return TaggedUnionUtils.get(this, Kind.PathHierarchy);
@@ -316,11 +290,58 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     /**
      * Get the {@code pattern} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code pattern} kind.
+     * @throws IllegalStateException if the current variant is not the {@code pattern} kind.
      */
     public PatternTokenizer pattern() {
         return TaggedUnionUtils.get(this, Kind.Pattern);
+    }
+
+    /**
+     * Is this variant instance of kind {@code simple_pattern}?
+     */
+    public boolean isSimplePattern() {
+        return _kind == Kind.SimplePattern;
+    }
+
+    /**
+     * Get the {@code simple_pattern} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code simple_pattern} kind.
+     */
+    public SimplePatternTokenizer simplePattern() {
+        return TaggedUnionUtils.get(this, Kind.SimplePattern);
+    }
+
+    /**
+     * Is this variant instance of kind {@code simple_pattern_split}?
+     */
+    public boolean isSimplePatternSplit() {
+        return _kind == Kind.SimplePatternSplit;
+    }
+
+    /**
+     * Get the {@code simple_pattern_split} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code simple_pattern_split} kind.
+     */
+    public SimplePatternSplitTokenizer simplePatternSplit() {
+        return TaggedUnionUtils.get(this, Kind.SimplePatternSplit);
+    }
+
+    /**
+     * Is this variant instance of kind {@code smartcn_tokenizer}?
+     */
+    public boolean isSmartcnTokenizer() {
+        return _kind == Kind.SmartcnTokenizer;
+    }
+
+    /**
+     * Get the {@code smartcn_tokenizer} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code smartcn_tokenizer} kind.
+     */
+    public SmartcnTokenizer smartcnTokenizer() {
+        return TaggedUnionUtils.get(this, Kind.SmartcnTokenizer);
     }
 
     /**
@@ -333,8 +354,7 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     /**
      * Get the {@code standard} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code standard} kind.
+     * @throws IllegalStateException if the current variant is not the {@code standard} kind.
      */
     public StandardTokenizer standard() {
         return TaggedUnionUtils.get(this, Kind.Standard);
@@ -350,8 +370,7 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     /**
      * Get the {@code uax_url_email} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code uax_url_email} kind.
+     * @throws IllegalStateException if the current variant is not the {@code uax_url_email} kind.
      */
     public UaxEmailUrlTokenizer uaxUrlEmail() {
         return TaggedUnionUtils.get(this, Kind.UaxUrlEmail);
@@ -367,8 +386,7 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
     /**
      * Get the {@code whitespace} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code whitespace} kind.
+     * @throws IllegalStateException if the current variant is not the {@code whitespace} kind.
      */
     public WhitespaceTokenizer whitespace() {
         return TaggedUnionUtils.get(this, Kind.Whitespace);
@@ -376,14 +394,29 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
 
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-
         mapper.serialize(_value, generator);
+    }
 
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TokenizerDefinition> {
         private Kind _kind;
         private TokenizerDefinitionVariant _value;
+
+        public Builder() {}
+
+        private Builder(TokenizerDefinition o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         public ObjectBuilder<TokenizerDefinition> charGroup(CharGroupTokenizer v) {
             this._kind = Kind.CharGroup;
@@ -499,6 +532,40 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
             return this.pattern(fn.apply(new PatternTokenizer.Builder()).build());
         }
 
+        public ObjectBuilder<TokenizerDefinition> simplePattern(SimplePatternTokenizer v) {
+            this._kind = Kind.SimplePattern;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<TokenizerDefinition> simplePattern(
+            Function<SimplePatternTokenizer.Builder, ObjectBuilder<SimplePatternTokenizer>> fn
+        ) {
+            return this.simplePattern(fn.apply(new SimplePatternTokenizer.Builder()).build());
+        }
+
+        public ObjectBuilder<TokenizerDefinition> simplePatternSplit(SimplePatternSplitTokenizer v) {
+            this._kind = Kind.SimplePatternSplit;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<TokenizerDefinition> simplePatternSplit(
+            Function<SimplePatternSplitTokenizer.Builder, ObjectBuilder<SimplePatternSplitTokenizer>> fn
+        ) {
+            return this.simplePatternSplit(fn.apply(new SimplePatternSplitTokenizer.Builder()).build());
+        }
+
+        public ObjectBuilder<TokenizerDefinition> smartcn(SmartcnTokenizer v) {
+            this._kind = Kind.SmartcnTokenizer;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<TokenizerDefinition> smartcn(Function<SmartcnTokenizer.Builder, ObjectBuilder<SmartcnTokenizer>> fn) {
+            return this.smartcn(fn.apply(new SmartcnTokenizer.Builder()).build());
+        }
+
         public ObjectBuilder<TokenizerDefinition> standard(StandardTokenizer v) {
             this._kind = Kind.Standard;
             this._value = v;
@@ -531,25 +598,14 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
             return this.whitespace(fn.apply(new WhitespaceTokenizer.Builder()).build());
         }
 
-        public ObjectBuilder<TokenizerDefinition> smartcn(SmartcnTokenizer v) {
-            this._kind = Kind.SmartcnTokenizer;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<TokenizerDefinition> smartcn(Function<SmartcnTokenizer.Builder, ObjectBuilder<SmartcnTokenizer>> fn) {
-            return this.smartcn(fn.apply(new SmartcnTokenizer.Builder()).build());
-        }
-
+        @Override
         public TokenizerDefinition build() {
             _checkSingleUse();
             return new TokenizerDefinition(this);
         }
-
     }
 
     protected static void setupTokenizerDefinitionDeserializer(ObjectDeserializer<Builder> op) {
-
         op.add(Builder::charGroup, CharGroupTokenizer._DESERIALIZER, "char_group");
         op.add(Builder::edgeNgram, EdgeNGramTokenizer._DESERIALIZER, "edge_ngram");
         op.add(Builder::icuTokenizer, IcuTokenizer._DESERIALIZER, "icu_tokenizer");
@@ -561,13 +617,13 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
         op.add(Builder::noriTokenizer, NoriTokenizer._DESERIALIZER, "nori_tokenizer");
         op.add(Builder::pathHierarchy, PathHierarchyTokenizer._DESERIALIZER, "path_hierarchy");
         op.add(Builder::pattern, PatternTokenizer._DESERIALIZER, "pattern");
+        op.add(Builder::simplePattern, SimplePatternTokenizer._DESERIALIZER, "simple_pattern");
+        op.add(Builder::simplePatternSplit, SimplePatternSplitTokenizer._DESERIALIZER, "simple_pattern_split");
+        op.add(Builder::smartcn, SmartcnTokenizer._DESERIALIZER, "smartcn_tokenizer");
         op.add(Builder::standard, StandardTokenizer._DESERIALIZER, "standard");
         op.add(Builder::uaxUrlEmail, UaxEmailUrlTokenizer._DESERIALIZER, "uax_url_email");
         op.add(Builder::whitespace, WhitespaceTokenizer._DESERIALIZER, "whitespace");
-        op.add(Builder::smartcn, SmartcnTokenizer._DESERIALIZER, Kind.SmartcnTokenizer.jsonValue());
-
         op.setTypeProperty("type", null);
-
     }
 
     public static final JsonpDeserializer<TokenizerDefinition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
@@ -575,4 +631,20 @@ public class TokenizerDefinition implements TaggedUnion<TokenizerDefinition.Kind
         TokenizerDefinition::setupTokenizerDefinitionDeserializer,
         Builder::build
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        TokenizerDefinition other = (TokenizerDefinition) o;
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
 }

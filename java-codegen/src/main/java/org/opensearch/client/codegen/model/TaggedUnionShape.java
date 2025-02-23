@@ -8,6 +8,7 @@
 
 package org.opensearch.client.codegen.model;
 
+import com.samskivert.mustache.Mustache;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -18,8 +19,10 @@ import javax.annotation.Nullable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
+import org.opensearch.client.codegen.renderer.lambdas.TemplateStringLambda;
 import org.opensearch.client.codegen.utils.JavaClassKind;
 import org.opensearch.client.codegen.utils.Lists;
+import org.opensearch.client.codegen.utils.NameSanitizer;
 import org.opensearch.client.codegen.utils.Strings;
 
 public class TaggedUnionShape extends ObjectShapeBase {
@@ -266,5 +269,9 @@ public class TaggedUnionShape extends ObjectShapeBase {
     public enum ExternallyDiscriminated {
         OPTIONAL,
         REQUIRED
+    }
+
+    public Mustache.Lambda asBuilderMethodName() {
+        return TemplateStringLambda.asMustacheLambda(s -> s.equals("smartcn_tokenizer") ? "smartcn" : NameSanitizer.fieldName(s));
     }
 }
