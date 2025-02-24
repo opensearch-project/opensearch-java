@@ -22,6 +22,7 @@ import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ClusterStatistics;
+import org.opensearch.client.opensearch._types.PhaseTook;
 import org.opensearch.client.opensearch._types.ShardStatistics;
 import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -72,6 +73,9 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
     @Nullable
     private final JsonpSerializer<TDocument> tDocumentSerializer;
 
+    @Nullable
+    private final PhaseTook phaseTook;
+
     // ---------------------------------------------------------------------------------------------
 
     protected SearchResult(AbstractBuilder<TDocument, ?> builder) {
@@ -92,6 +96,7 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
         this.suggest = ApiTypeHelper.unmodifiable(builder.suggest);
         this.terminatedEarly = builder.terminatedEarly;
         this.tDocumentSerializer = builder.tDocumentSerializer;
+        this.phaseTook = builder.phaseTook;
 
     }
 
@@ -208,6 +213,14 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
     }
 
     /**
+     * API name: {@code phase_took}
+     */
+    @Nullable
+    public final PhaseTook phaseTook() {
+        return this.phaseTook;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -310,6 +323,10 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
 
         }
 
+        if (this.phaseTook != null) {
+            generator.writeKey("phase_took");
+            this.phaseTook.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -359,6 +376,9 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
 
         @Nullable
         private JsonpSerializer<TDocument> tDocumentSerializer;
+
+        @Nullable
+        private PhaseTook phaseTook;
 
         /**
          * Required - API name: {@code took}
@@ -574,6 +594,21 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
             return self();
         }
 
+        /**
+         * API name: {@code phase_took}
+         */
+        public final BuilderT phaseTook(@Nullable PhaseTook value) {
+            this.phaseTook = value;
+            return self();
+        }
+
+        /**
+         * API name: {@code phase_took}
+         */
+        public final BuilderT phaseTook(Function<PhaseTook.Builder, ObjectBuilder<PhaseTook>> fn) {
+            return this.phaseTook(fn.apply(new PhaseTook.Builder()).build());
+        }
+
         protected abstract BuilderT self();
 
     }
@@ -603,9 +638,8 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
             ExternallyTaggedUnion.<Suggest<TDocument>>arrayDeserializer(Suggest.createSuggestDeserializer(tDocumentDeserializer)),
             "suggest"
         );
-        ;
         op.add(AbstractBuilder::terminatedEarly, JsonpDeserializer.booleanDeserializer(), "terminated_early");
-
+        op.add(AbstractBuilder::phaseTook, PhaseTook._DESERIALIZER, "phase_took");
     }
 
 }
