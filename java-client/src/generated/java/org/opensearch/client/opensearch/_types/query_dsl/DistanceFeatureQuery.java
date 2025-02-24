@@ -67,7 +67,7 @@ public class DistanceFeatureQuery extends QueryBase
     private final JsonData origin;
 
     @Nonnull
-    private final JsonData pivot;
+    private final String pivot;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -110,7 +110,7 @@ public class DistanceFeatureQuery extends QueryBase
      * Required - API name: {@code pivot}
      */
     @Nonnull
-    public final JsonData pivot() {
+    public final String pivot() {
         return this.pivot;
     }
 
@@ -123,7 +123,7 @@ public class DistanceFeatureQuery extends QueryBase
         this.origin.serialize(generator, mapper);
 
         generator.writeKey("pivot");
-        this.pivot.serialize(generator, mapper);
+        generator.write(this.pivot);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -145,7 +145,7 @@ public class DistanceFeatureQuery extends QueryBase
     public static class Builder extends QueryBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, DistanceFeatureQuery> {
         private String field;
         private JsonData origin;
-        private JsonData pivot;
+        private String pivot;
 
         public Builder() {}
 
@@ -197,7 +197,7 @@ public class DistanceFeatureQuery extends QueryBase
          * Required - API name: {@code pivot}
          */
         @Nonnull
-        public final Builder pivot(JsonData value) {
+        public final Builder pivot(String value) {
             this.pivot = value;
             return this;
         }
@@ -230,7 +230,7 @@ public class DistanceFeatureQuery extends QueryBase
         setupQueryBaseDeserializer(op);
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::origin, JsonData._DESERIALIZER, "origin");
-        op.add(Builder::pivot, JsonData._DESERIALIZER, "pivot");
+        op.add(Builder::pivot, JsonpDeserializer.stringDeserializer(), "pivot");
     }
 
     @Override

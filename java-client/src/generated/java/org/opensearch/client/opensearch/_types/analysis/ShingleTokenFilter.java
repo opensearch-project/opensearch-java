@@ -64,10 +64,10 @@ public class ShingleTokenFilter extends TokenFilterBase
     private final String fillerToken;
 
     @Nullable
-    private final String maxShingleSize;
+    private final Integer maxShingleSize;
 
     @Nullable
-    private final String minShingleSize;
+    private final Integer minShingleSize;
 
     @Nullable
     private final Boolean outputUnigrams;
@@ -114,7 +114,7 @@ public class ShingleTokenFilter extends TokenFilterBase
      * API name: {@code max_shingle_size}
      */
     @Nullable
-    public final String maxShingleSize() {
+    public final Integer maxShingleSize() {
         return this.maxShingleSize;
     }
 
@@ -122,7 +122,7 @@ public class ShingleTokenFilter extends TokenFilterBase
      * API name: {@code min_shingle_size}
      */
     @Nullable
-    public final String minShingleSize() {
+    public final Integer minShingleSize() {
         return this.minShingleSize;
     }
 
@@ -204,9 +204,9 @@ public class ShingleTokenFilter extends TokenFilterBase
         @Nullable
         private String fillerToken;
         @Nullable
-        private String maxShingleSize;
+        private Integer maxShingleSize;
         @Nullable
-        private String minShingleSize;
+        private Integer minShingleSize;
         @Nullable
         private Boolean outputUnigrams;
         @Nullable
@@ -261,7 +261,7 @@ public class ShingleTokenFilter extends TokenFilterBase
          * API name: {@code max_shingle_size}
          */
         @Nonnull
-        public final Builder maxShingleSize(@Nullable String value) {
+        public final Builder maxShingleSize(@Nullable Integer value) {
             this.maxShingleSize = value;
             return this;
         }
@@ -270,7 +270,7 @@ public class ShingleTokenFilter extends TokenFilterBase
          * API name: {@code min_shingle_size}
          */
         @Nonnull
-        public final Builder minShingleSize(@Nullable String value) {
+        public final Builder minShingleSize(@Nullable Integer value) {
             this.minShingleSize = value;
             return this;
         }
@@ -329,8 +329,8 @@ public class ShingleTokenFilter extends TokenFilterBase
     protected static void setupShingleTokenFilterDeserializer(ObjectDeserializer<ShingleTokenFilter.Builder> op) {
         setupTokenFilterBaseDeserializer(op);
         op.add(Builder::fillerToken, JsonpDeserializer.stringDeserializer(), "filler_token");
-        op.add(Builder::maxShingleSize, JsonpDeserializer.stringDeserializer(), "max_shingle_size");
-        op.add(Builder::minShingleSize, JsonpDeserializer.stringDeserializer(), "min_shingle_size");
+        op.add(Builder::maxShingleSize, JsonpDeserializer.integerDeserializer(), "max_shingle_size");
+        op.add(Builder::minShingleSize, JsonpDeserializer.integerDeserializer(), "min_shingle_size");
         op.add(Builder::outputUnigrams, JsonpDeserializer.booleanDeserializer(), "output_unigrams");
         op.add(Builder::outputUnigramsIfNoShingles, JsonpDeserializer.booleanDeserializer(), "output_unigrams_if_no_shingles");
         op.add(Builder::tokenSeparator, JsonpDeserializer.stringDeserializer(), "token_separator");

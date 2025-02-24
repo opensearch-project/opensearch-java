@@ -79,7 +79,7 @@ public class DocumentSimulation implements PlainJsonSerializable, ToCopyableBuil
     private final Map<String, JsonData> source;
 
     @Nullable
-    private final String version;
+    private final Long version;
 
     @Nullable
     private final VersionType versionType;
@@ -150,7 +150,7 @@ public class DocumentSimulation implements PlainJsonSerializable, ToCopyableBuil
      * API name: {@code _version}
      */
     @Nullable
-    public final String version() {
+    public final Long version() {
         return this.version;
     }
 
@@ -230,7 +230,7 @@ public class DocumentSimulation implements PlainJsonSerializable, ToCopyableBuil
         private String routing;
         private Map<String, JsonData> source;
         @Nullable
-        private String version;
+        private Long version;
         @Nullable
         private VersionType versionType;
 
@@ -345,7 +345,7 @@ public class DocumentSimulation implements PlainJsonSerializable, ToCopyableBuil
          * API name: {@code _version}
          */
         @Nonnull
-        public final Builder version(@Nullable String value) {
+        public final Builder version(@Nullable Long value) {
             this.version = value;
             return this;
         }
@@ -389,7 +389,7 @@ public class DocumentSimulation implements PlainJsonSerializable, ToCopyableBuil
         op.add(Builder::ingest, Ingest._DESERIALIZER, "_ingest");
         op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
         op.add(Builder::source, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_source");
-        op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "_version");
+        op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
         op.add(Builder::versionType, VersionType._DESERIALIZER, "_version_type");
     }
 

@@ -481,8 +481,10 @@ public class DateHistogramAggregation extends BucketAggregationBase
          * API name: {@code extended_bounds}
          */
         @Nonnull
-        public final Builder extendedBounds(Function<ExtendedBounds.Builder, ObjectBuilder<ExtendedBounds<FieldDateMath>>> fn) {
-            return extendedBounds(fn.apply(new ExtendedBounds.Builder()).build());
+        public final Builder extendedBounds(
+            Function<ExtendedBounds.Builder<FieldDateMath>, ObjectBuilder<ExtendedBounds<FieldDateMath>>> fn
+        ) {
+            return extendedBounds(fn.apply(new ExtendedBounds.Builder<FieldDateMath>()).build());
         }
 
         /**
@@ -537,8 +539,8 @@ public class DateHistogramAggregation extends BucketAggregationBase
          * API name: {@code hard_bounds}
          */
         @Nonnull
-        public final Builder hardBounds(Function<ExtendedBounds.Builder, ObjectBuilder<ExtendedBounds<FieldDateMath>>> fn) {
-            return hardBounds(fn.apply(new ExtendedBounds.Builder()).build());
+        public final Builder hardBounds(Function<ExtendedBounds.Builder<FieldDateMath>, ObjectBuilder<ExtendedBounds<FieldDateMath>>> fn) {
+            return hardBounds(fn.apply(new ExtendedBounds.Builder<FieldDateMath>()).build());
         }
 
         /**

@@ -501,7 +501,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         );
         SearchResponse<Product> searchResponse = javaClient().search(searchRequest, Product.class);
 
-        Aggregate prices = searchResponse.aggregations().get("price")._get()._toAggregate();
+        Aggregate prices = searchResponse.aggregations().get("price")._get().toAggregate();
         assertEquals(2, searchResponse.aggregations().get("price").filter().docCount());
         assertEquals(1, prices.filter().aggregations().get("price").dterms().buckets().array().get(0).docCount());
         assertEquals(1, prices.filter().aggregations().get("price").dterms().buckets().array().get(1).docCount());
@@ -731,7 +731,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 
         String index = "test-phrase-suggester";
 
-        ShingleTokenFilter shingleTokenFilter = new ShingleTokenFilter.Builder().minShingleSize("2").maxShingleSize("3").build();
+        ShingleTokenFilter shingleTokenFilter = new ShingleTokenFilter.Builder().minShingleSize(2).maxShingleSize(3).build();
 
         Analyzer analyzer = new Analyzer.Builder().custom(
             new CustomAnalyzer.Builder().tokenizer("standard").filter(Arrays.asList("lowercase", "shingle")).build()

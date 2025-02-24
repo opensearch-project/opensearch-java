@@ -42,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -67,7 +68,7 @@ public class SuggestContext implements PlainJsonSerializable, ToCopyableBuilder<
     private final String path;
 
     @Nullable
-    private final String precision;
+    private final JsonData precision;
 
     @Nonnull
     private final String type;
@@ -105,7 +106,7 @@ public class SuggestContext implements PlainJsonSerializable, ToCopyableBuilder<
      * API name: {@code precision}
      */
     @Nullable
-    public final String precision() {
+    public final JsonData precision() {
         return this.precision;
     }
 
@@ -138,7 +139,7 @@ public class SuggestContext implements PlainJsonSerializable, ToCopyableBuilder<
 
         if (this.precision != null) {
             generator.writeKey("precision");
-            generator.write(this.precision);
+            this.precision.serialize(generator, mapper);
         }
 
         generator.writeKey("type");
@@ -166,7 +167,7 @@ public class SuggestContext implements PlainJsonSerializable, ToCopyableBuilder<
         @Nullable
         private String path;
         @Nullable
-        private String precision;
+        private JsonData precision;
         private String type;
 
         public Builder() {}
@@ -213,7 +214,7 @@ public class SuggestContext implements PlainJsonSerializable, ToCopyableBuilder<
          * API name: {@code precision}
          */
         @Nonnull
-        public final Builder precision(@Nullable String value) {
+        public final Builder precision(@Nullable JsonData value) {
             this.precision = value;
             return this;
         }
@@ -254,7 +255,7 @@ public class SuggestContext implements PlainJsonSerializable, ToCopyableBuilder<
     protected static void setupSuggestContextDeserializer(ObjectDeserializer<SuggestContext.Builder> op) {
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
-        op.add(Builder::precision, JsonpDeserializer.stringDeserializer(), "precision");
+        op.add(Builder::precision, JsonData._DESERIALIZER, "precision");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
     }
 

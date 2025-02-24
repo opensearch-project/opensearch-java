@@ -64,7 +64,7 @@ public class SnapshotsRecord implements PlainJsonSerializable, ToCopyableBuilder
     private final Time duration;
 
     @Nullable
-    private final String endEpoch;
+    private final Long endEpoch;
 
     @Nullable
     private final String endTime;
@@ -85,7 +85,7 @@ public class SnapshotsRecord implements PlainJsonSerializable, ToCopyableBuilder
     private final String repository;
 
     @Nullable
-    private final String startEpoch;
+    private final Long startEpoch;
 
     @Nullable
     private final String startTime;
@@ -133,7 +133,7 @@ public class SnapshotsRecord implements PlainJsonSerializable, ToCopyableBuilder
      * API name: {@code end_epoch}
      */
     @Nullable
-    public final String endEpoch() {
+    public final Long endEpoch() {
         return this.endEpoch;
     }
 
@@ -204,7 +204,7 @@ public class SnapshotsRecord implements PlainJsonSerializable, ToCopyableBuilder
      * API name: {@code start_epoch}
      */
     @Nullable
-    public final String startEpoch() {
+    public final Long startEpoch() {
         return this.startEpoch;
     }
 
@@ -349,7 +349,7 @@ public class SnapshotsRecord implements PlainJsonSerializable, ToCopyableBuilder
         @Nullable
         private Time duration;
         @Nullable
-        private String endEpoch;
+        private Long endEpoch;
         @Nullable
         private String endTime;
         @Nullable
@@ -363,7 +363,7 @@ public class SnapshotsRecord implements PlainJsonSerializable, ToCopyableBuilder
         @Nullable
         private String repository;
         @Nullable
-        private String startEpoch;
+        private Long startEpoch;
         @Nullable
         private String startTime;
         @Nullable
@@ -434,7 +434,7 @@ public class SnapshotsRecord implements PlainJsonSerializable, ToCopyableBuilder
          * API name: {@code end_epoch}
          */
         @Nonnull
-        public final Builder endEpoch(@Nullable String value) {
+        public final Builder endEpoch(@Nullable Long value) {
             this.endEpoch = value;
             return this;
         }
@@ -512,7 +512,7 @@ public class SnapshotsRecord implements PlainJsonSerializable, ToCopyableBuilder
          * API name: {@code start_epoch}
          */
         @Nonnull
-        public final Builder startEpoch(@Nullable String value) {
+        public final Builder startEpoch(@Nullable Long value) {
             this.startEpoch = value;
             return this;
         }
@@ -591,14 +591,14 @@ public class SnapshotsRecord implements PlainJsonSerializable, ToCopyableBuilder
 
     protected static void setupSnapshotsRecordDeserializer(ObjectDeserializer<SnapshotsRecord.Builder> op) {
         op.add(Builder::duration, Time._DESERIALIZER, "duration");
-        op.add(Builder::endEpoch, JsonpDeserializer.stringDeserializer(), "end_epoch");
+        op.add(Builder::endEpoch, JsonpDeserializer.longDeserializer(), "end_epoch");
         op.add(Builder::endTime, JsonpDeserializer.stringDeserializer(), "end_time");
         op.add(Builder::failedShards, JsonpDeserializer.stringDeserializer(), "failed_shards");
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
         op.add(Builder::indices, JsonpDeserializer.stringDeserializer(), "indices");
         op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
         op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
-        op.add(Builder::startEpoch, JsonpDeserializer.stringDeserializer(), "start_epoch");
+        op.add(Builder::startEpoch, JsonpDeserializer.longDeserializer(), "start_epoch");
         op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time");
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
         op.add(Builder::successfulShards, JsonpDeserializer.stringDeserializer(), "successful_shards");
