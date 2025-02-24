@@ -106,7 +106,7 @@ public final class HealthRequest extends RequestBase implements ToCopyableBuilde
     private final Boolean waitForNoRelocatingShards;
 
     @Nullable
-    private final String waitForNodes;
+    private final WaitForNodes waitForNodes;
 
     @Nullable
     private final HealthStatus waitForStatus;
@@ -283,7 +283,7 @@ public final class HealthRequest extends RequestBase implements ToCopyableBuilde
      * </p>
      */
     @Nullable
-    public final String waitForNodes() {
+    public final WaitForNodes waitForNodes() {
         return this.waitForNodes;
     }
 
@@ -340,7 +340,7 @@ public final class HealthRequest extends RequestBase implements ToCopyableBuilde
         @Nullable
         private Boolean waitForNoRelocatingShards;
         @Nullable
-        private String waitForNodes;
+        private WaitForNodes waitForNodes;
         @Nullable
         private HealthStatus waitForStatus;
 
@@ -644,9 +644,22 @@ public final class HealthRequest extends RequestBase implements ToCopyableBuilde
          * </p>
          */
         @Nonnull
-        public final Builder waitForNodes(@Nullable String value) {
+        public final Builder waitForNodes(@Nullable WaitForNodes value) {
             this.waitForNodes = value;
             return this;
+        }
+
+        /**
+         * Waits until the specified number of nodes (<code>N</code>) is available. Accepts <code>&gt;=N</code>, <code>&lt;=N</code>,
+         * <code>&gt;N</code>, and <code>&lt;N</code>. You can also use <code>ge(N)</code>, <code>le(N)</code>, <code>gt(N)</code>, and
+         * <code>lt(N)</code> notation.
+         * <p>
+         * API name: {@code wait_for_nodes}
+         * </p>
+         */
+        @Nonnull
+        public final Builder waitForNodes(Function<WaitForNodes.Builder, ObjectBuilder<WaitForNodes>> fn) {
+            return waitForNodes(fn.apply(new WaitForNodes.Builder()).build());
         }
 
         /**
@@ -714,7 +727,7 @@ public final class HealthRequest extends RequestBase implements ToCopyableBuilde
             params.put("wait_for_no_relocating_shards", String.valueOf(this.waitForNoRelocatingShards));
         }
         if (this.waitForNodes != null) {
-            params.put("wait_for_nodes", this.waitForNodes);
+            params.put("wait_for_nodes", this.waitForNodes._toJsonString());
         }
         if (this.waitForStatus != null) {
             params.put("wait_for_status", this.waitForStatus.jsonValue());

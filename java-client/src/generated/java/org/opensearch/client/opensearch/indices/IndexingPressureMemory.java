@@ -42,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -63,7 +64,7 @@ public class IndexingPressureMemory
         ToCopyableBuilder<IndexingPressureMemory.Builder, IndexingPressureMemory> {
 
     @Nullable
-    private final String limit;
+    private final JsonData limit;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -84,7 +85,7 @@ public class IndexingPressureMemory
      * </p>
      */
     @Nullable
-    public final String limit() {
+    public final JsonData limit() {
         return this.limit;
     }
 
@@ -101,7 +102,7 @@ public class IndexingPressureMemory
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.limit != null) {
             generator.writeKey("limit");
-            generator.write(this.limit);
+            this.limit.serialize(generator, mapper);
         }
     }
 
@@ -123,7 +124,7 @@ public class IndexingPressureMemory
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IndexingPressureMemory> {
         @Nullable
-        private String limit;
+        private JsonData limit;
 
         public Builder() {}
 
@@ -150,7 +151,7 @@ public class IndexingPressureMemory
          * </p>
          */
         @Nonnull
-        public final Builder limit(@Nullable String value) {
+        public final Builder limit(@Nullable JsonData value) {
             this.limit = value;
             return this;
         }
@@ -180,7 +181,7 @@ public class IndexingPressureMemory
     );
 
     protected static void setupIndexingPressureMemoryDeserializer(ObjectDeserializer<IndexingPressureMemory.Builder> op) {
-        op.add(Builder::limit, JsonpDeserializer.stringDeserializer(), "limit");
+        op.add(Builder::limit, JsonData._DESERIALIZER, "limit");
     }
 
     @Override

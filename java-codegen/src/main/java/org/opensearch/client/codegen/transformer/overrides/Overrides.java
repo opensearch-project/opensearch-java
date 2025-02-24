@@ -74,6 +74,7 @@ public class Overrides {
                 )
                 .with(schema("_common", "PhaseTook"), so -> so.withShouldGenerate(ShouldGenerate.Always))
 
+                .with(schema("_common.aggregations", "Aggregate"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(schema("_common.aggregations", "Aggregation"), so -> so.withClassName("AggregationBase"))
                 .with(
                     schema("_common.aggregations", "AggregationContainer"),

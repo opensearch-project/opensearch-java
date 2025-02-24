@@ -63,7 +63,7 @@ public class CountRecord implements PlainJsonSerializable, ToCopyableBuilder<Cou
     private final String count;
 
     @Nullable
-    private final String epoch;
+    private final Long epoch;
 
     @Nullable
     private final String timestamp;
@@ -95,7 +95,7 @@ public class CountRecord implements PlainJsonSerializable, ToCopyableBuilder<Cou
      * API name: {@code epoch}
      */
     @Nullable
-    public final String epoch() {
+    public final Long epoch() {
         return this.epoch;
     }
 
@@ -154,7 +154,7 @@ public class CountRecord implements PlainJsonSerializable, ToCopyableBuilder<Cou
         @Nullable
         private String count;
         @Nullable
-        private String epoch;
+        private Long epoch;
         @Nullable
         private String timestamp;
 
@@ -194,7 +194,7 @@ public class CountRecord implements PlainJsonSerializable, ToCopyableBuilder<Cou
          * API name: {@code epoch}
          */
         @Nonnull
-        public final Builder epoch(@Nullable String value) {
+        public final Builder epoch(@Nullable Long value) {
             this.epoch = value;
             return this;
         }
@@ -234,7 +234,7 @@ public class CountRecord implements PlainJsonSerializable, ToCopyableBuilder<Cou
 
     protected static void setupCountRecordDeserializer(ObjectDeserializer<CountRecord.Builder> op) {
         op.add(Builder::count, JsonpDeserializer.stringDeserializer(), "count");
-        op.add(Builder::epoch, JsonpDeserializer.stringDeserializer(), "epoch");
+        op.add(Builder::epoch, JsonpDeserializer.longDeserializer(), "epoch");
         op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
     }
 
