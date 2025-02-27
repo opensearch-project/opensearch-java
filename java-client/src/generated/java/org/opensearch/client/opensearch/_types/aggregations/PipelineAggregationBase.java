@@ -99,8 +99,8 @@ public abstract class PipelineAggregationBase extends BucketPathAggregation {
 
     // ---------------------------------------------------------------------------------------------
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends
-        BucketPathAggregation.AbstractBuilder<BuilderT> {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends BucketPathAggregation.AbstractBuilder<
+        BuilderT> {
         @Nullable
         private String format;
         @Nullable
