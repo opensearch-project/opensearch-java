@@ -80,8 +80,7 @@ public abstract class CatRequestBase extends RequestBase {
         return this.sort;
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends RequestBase.AbstractBuilder<
-        BuilderT> {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends RequestBase.AbstractBuilder<BuilderT> {
         @Nullable
         protected List<String> headers;
         @Nullable
