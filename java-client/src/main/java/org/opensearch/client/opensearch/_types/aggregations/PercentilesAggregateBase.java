@@ -68,7 +68,7 @@ public abstract class PercentilesAggregateBase extends AggregateBase {
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregateBase.AbstractBuilder<
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregateBase.AbstractBuilder<
         BuilderT> {
         private Percentiles values;
 

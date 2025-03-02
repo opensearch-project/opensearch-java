@@ -147,7 +147,7 @@ public abstract class IndexShardStatsBase extends IndexStatsBase {
 
     // ---------------------------------------------------------------------------------------------
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends IndexStatsBase.AbstractBuilder<
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends IndexStatsBase.AbstractBuilder<
         BuilderT> {
         @Nullable
         private ShardCommit commit;

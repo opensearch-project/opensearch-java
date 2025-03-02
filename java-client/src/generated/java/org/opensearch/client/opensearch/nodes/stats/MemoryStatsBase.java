@@ -191,7 +191,7 @@ public abstract class MemoryStatsBase implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         @Nullable
         private String free;
         @Nullable

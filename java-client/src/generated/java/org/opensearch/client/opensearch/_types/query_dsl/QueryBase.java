@@ -109,7 +109,7 @@ public abstract class QueryBase implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         @Nullable
         private Float boost;
         @Nullable

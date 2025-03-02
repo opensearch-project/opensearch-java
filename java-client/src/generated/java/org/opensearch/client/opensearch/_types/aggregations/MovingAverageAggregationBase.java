@@ -112,7 +112,7 @@ public abstract class MovingAverageAggregationBase extends PipelineAggregationBa
 
     // ---------------------------------------------------------------------------------------------
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends
         PipelineAggregationBase.AbstractBuilder<BuilderT> {
         @Nullable
         private Boolean minimize;
