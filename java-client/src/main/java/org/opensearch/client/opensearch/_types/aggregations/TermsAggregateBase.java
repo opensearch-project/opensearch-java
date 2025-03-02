@@ -85,7 +85,7 @@ public abstract class TermsAggregateBase<TBucket> extends MultiBucketAggregateBa
 
     }
 
-    protected abstract static class AbstractBuilder<TBucket, BuilderT extends AbstractBuilder<TBucket, BuilderT>> extends
+    public abstract static class AbstractBuilder<TBucket, BuilderT extends AbstractBuilder<TBucket, BuilderT>> extends
         MultiBucketAggregateBase.AbstractBuilder<TBucket, BuilderT> {
         @Nullable
         private Long docCountErrorUpperBound;

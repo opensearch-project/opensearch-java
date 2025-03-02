@@ -118,7 +118,7 @@ public abstract class ScriptStatsBase implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         private Long cacheEvictions;
         private Long compilationLimitTriggered;
         private Long compilations;
