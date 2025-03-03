@@ -23114,7 +23114,7 @@ components:
       in: query
       description: The default operator for query string query (AND or OR).
       schema:
-        $ref: '#/components/schemas/knn._common___DefaultOperator'
+        $ref: '#/components/schemas/_common.query_dsl___Operator'
     knn.search_models___query.df:
       name: df
       in: query
@@ -23242,7 +23242,7 @@ components:
       in: query
       description: Search operation type.
       schema:
-        $ref: '#/components/schemas/knn._common___SearchType'
+        $ref: '#/components/schemas/_common___SearchType'
     knn.search_models___query.seq_no_primary_term:
       name: seq_no_primary_term
       in: query
@@ -23304,7 +23304,7 @@ components:
       in: query
       description: Specify suggest mode.
       schema:
-        $ref: '#/components/schemas/knn._common___SuggestMode'
+        $ref: '#/components/schemas/_common___SuggestMode'
     knn.search_models___query.suggest_size:
       name: suggest_size
       in: query
@@ -30808,7 +30808,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/flow_framework.common___FlowFrameworkDeleteResponse'
+            $ref: '#/components/schemas/_common___WriteResponseBase'
       description: ''
     flow_framework.delete___400:
       description: Work Flow Id Null Error
@@ -35618,6 +35618,11 @@ components:
             - string
         opensearch_version:
           $ref: '#/components/schemas/_common___VersionString'
+        optional_extended_plugins:
+          type: array
+          items:
+            type: string
+          x-version-added: '2.19'
       required:
         - classname
         - description
@@ -36987,152 +36992,437 @@ components:
               type: object
               additionalProperties:
                 $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
+            aggs:
+              description: |-
+                Sub-aggregations for this aggregation.
+                Only applies to bucket aggregations.
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
             meta:
               $ref: '#/components/schemas/_common___Metadata'
         - type: object
-          properties:
-            adjacency_matrix:
-              $ref: '#/components/schemas/_common.aggregations___AdjacencyMatrixAggregation'
-            auto_date_histogram:
-              $ref: '#/components/schemas/_common.aggregations___AutoDateHistogramAggregation'
-            avg:
-              $ref: '#/components/schemas/_common.aggregations___AverageAggregation'
-            avg_bucket:
-              $ref: '#/components/schemas/_common.aggregations___AverageBucketAggregation'
-            boxplot:
-              $ref: '#/components/schemas/_common.aggregations___BoxplotAggregation'
-            bucket_script:
-              $ref: '#/components/schemas/_common.aggregations___BucketScriptAggregation'
-            bucket_selector:
-              $ref: '#/components/schemas/_common.aggregations___BucketSelectorAggregation'
-            bucket_sort:
-              $ref: '#/components/schemas/_common.aggregations___BucketSortAggregation'
-            cardinality:
-              $ref: '#/components/schemas/_common.aggregations___CardinalityAggregation'
-            children:
-              $ref: '#/components/schemas/_common.aggregations___ChildrenAggregation'
-            composite:
-              $ref: '#/components/schemas/_common.aggregations___CompositeAggregation'
-            cumulative_cardinality:
-              $ref: '#/components/schemas/_common.aggregations___CumulativeCardinalityAggregation'
-            cumulative_sum:
-              $ref: '#/components/schemas/_common.aggregations___CumulativeSumAggregation'
-            date_histogram:
-              $ref: '#/components/schemas/_common.aggregations___DateHistogramAggregation'
-            date_range:
-              $ref: '#/components/schemas/_common.aggregations___DateRangeAggregation'
-            derivative:
-              $ref: '#/components/schemas/_common.aggregations___DerivativeAggregation'
-            diversified_sampler:
-              $ref: '#/components/schemas/_common.aggregations___DiversifiedSamplerAggregation'
-            extended_stats:
-              $ref: '#/components/schemas/_common.aggregations___ExtendedStatsAggregation'
-            extended_stats_bucket:
-              $ref: '#/components/schemas/_common.aggregations___ExtendedStatsBucketAggregation'
-            filter:
-              $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
-            filters:
-              $ref: '#/components/schemas/_common.aggregations___FiltersAggregation'
-            geo_bounds:
-              $ref: '#/components/schemas/_common.aggregations___GeoBoundsAggregation'
-            geo_centroid:
-              $ref: '#/components/schemas/_common.aggregations___GeoCentroidAggregation'
-            geo_distance:
-              $ref: '#/components/schemas/_common.aggregations___GeoDistanceAggregation'
-            geohash_grid:
-              $ref: '#/components/schemas/_common.aggregations___GeoHashGridAggregation'
-            geo_line:
-              $ref: '#/components/schemas/_common.aggregations___GeoLineAggregation'
-            geotile_grid:
-              $ref: '#/components/schemas/_common.aggregations___GeoTileGridAggregation'
-            global:
-              $ref: '#/components/schemas/_common.aggregations___GlobalAggregation'
-            histogram:
-              $ref: '#/components/schemas/_common.aggregations___HistogramAggregation'
-            ip_range:
-              $ref: '#/components/schemas/_common.aggregations___IpRangeAggregation'
-            inference:
-              $ref: '#/components/schemas/_common.aggregations___InferenceAggregation'
-            line:
-              $ref: '#/components/schemas/_common.aggregations___GeoLineAggregation'
-            matrix_stats:
-              $ref: '#/components/schemas/_common.aggregations___MatrixStatsAggregation'
-            max:
-              $ref: '#/components/schemas/_common.aggregations___MaxAggregation'
-            max_bucket:
-              $ref: '#/components/schemas/_common.aggregations___MaxBucketAggregation'
-            median_absolute_deviation:
-              $ref: '#/components/schemas/_common.aggregations___MedianAbsoluteDeviationAggregation'
-            min:
-              $ref: '#/components/schemas/_common.aggregations___MinAggregation'
-            min_bucket:
-              $ref: '#/components/schemas/_common.aggregations___MinBucketAggregation'
-            missing:
-              $ref: '#/components/schemas/_common.aggregations___MissingAggregation'
-            moving_avg:
-              $ref: '#/components/schemas/_common.aggregations___MovingAverageAggregation'
-            moving_percentiles:
-              $ref: '#/components/schemas/_common.aggregations___MovingPercentilesAggregation'
-            moving_fn:
-              $ref: '#/components/schemas/_common.aggregations___MovingFunctionAggregation'
-            multi_terms:
-              $ref: '#/components/schemas/_common.aggregations___MultiTermsAggregation'
-            nested:
-              $ref: '#/components/schemas/_common.aggregations___NestedAggregation'
-            normalize:
-              $ref: '#/components/schemas/_common.aggregations___NormalizeAggregation'
-            parent:
-              $ref: '#/components/schemas/_common.aggregations___ParentAggregation'
-            percentile_ranks:
-              $ref: '#/components/schemas/_common.aggregations___PercentileRanksAggregation'
-            percentiles:
-              $ref: '#/components/schemas/_common.aggregations___PercentilesAggregation'
-            percentiles_bucket:
-              $ref: '#/components/schemas/_common.aggregations___PercentilesBucketAggregation'
-            range:
-              $ref: '#/components/schemas/_common.aggregations___RangeAggregation'
-            rare_terms:
-              $ref: '#/components/schemas/_common.aggregations___RareTermsAggregation'
-            rate:
-              $ref: '#/components/schemas/_common.aggregations___RateAggregation'
-            reverse_nested:
-              $ref: '#/components/schemas/_common.aggregations___ReverseNestedAggregation'
-            sampler:
-              $ref: '#/components/schemas/_common.aggregations___SamplerAggregation'
-            scripted_metric:
-              $ref: '#/components/schemas/_common.aggregations___ScriptedMetricAggregation'
-            serial_diff:
-              $ref: '#/components/schemas/_common.aggregations___SerialDifferencingAggregation'
-            significant_terms:
-              $ref: '#/components/schemas/_common.aggregations___SignificantTermsAggregation'
-            significant_text:
-              $ref: '#/components/schemas/_common.aggregations___SignificantTextAggregation'
-            stats:
-              $ref: '#/components/schemas/_common.aggregations___StatsAggregation'
-            stats_bucket:
-              $ref: '#/components/schemas/_common.aggregations___StatsBucketAggregation'
-            string_stats:
-              $ref: '#/components/schemas/_common.aggregations___StringStatsAggregation'
-            sum:
-              $ref: '#/components/schemas/_common.aggregations___SumAggregation'
-            sum_bucket:
-              $ref: '#/components/schemas/_common.aggregations___SumBucketAggregation'
-            terms:
-              $ref: '#/components/schemas/_common.aggregations___TermsAggregation'
-            top_hits:
-              $ref: '#/components/schemas/_common.aggregations___TopHitsAggregation'
-            t_test:
-              $ref: '#/components/schemas/_common.aggregations___TTestAggregation'
-            top_metrics:
-              $ref: '#/components/schemas/_common.aggregations___TopMetricsAggregation'
-            value_count:
-              $ref: '#/components/schemas/_common.aggregations___ValueCountAggregation'
-            weighted_avg:
-              $ref: '#/components/schemas/_common.aggregations___WeightedAverageAggregation'
-            variable_width_histogram:
-              $ref: '#/components/schemas/_common.aggregations___VariableWidthHistogramAggregation'
-          minProperties: 1
-          maxProperties: 1
+          oneOf:
+            - properties:
+                adjacency_matrix:
+                  $ref: '#/components/schemas/_common.aggregations___AdjacencyMatrixAggregation'
+              required:
+                - adjacency_matrix
+              unevaluatedProperties: true
+            - properties:
+                auto_date_histogram:
+                  $ref: '#/components/schemas/_common.aggregations___AutoDateHistogramAggregation'
+              required:
+                - auto_date_histogram
+              unevaluatedProperties: true
+            - properties:
+                avg:
+                  $ref: '#/components/schemas/_common.aggregations___AverageAggregation'
+              required:
+                - avg
+              unevaluatedProperties: true
+            - properties:
+                avg_bucket:
+                  $ref: '#/components/schemas/_common.aggregations___AverageBucketAggregation'
+              required:
+                - avg_bucket
+              unevaluatedProperties: true
+            - properties:
+                boxplot:
+                  $ref: '#/components/schemas/_common.aggregations___BoxplotAggregation'
+              required:
+                - boxplot
+              unevaluatedProperties: true
+            - properties:
+                bucket_script:
+                  $ref: '#/components/schemas/_common.aggregations___BucketScriptAggregation'
+              required:
+                - bucket_script
+              unevaluatedProperties: true
+            - properties:
+                bucket_selector:
+                  $ref: '#/components/schemas/_common.aggregations___BucketSelectorAggregation'
+              required:
+                - bucket_selector
+              unevaluatedProperties: true
+            - properties:
+                bucket_sort:
+                  $ref: '#/components/schemas/_common.aggregations___BucketSortAggregation'
+              required:
+                - bucket_sort
+              unevaluatedProperties: true
+            - properties:
+                cardinality:
+                  $ref: '#/components/schemas/_common.aggregations___CardinalityAggregation'
+              required:
+                - cardinality
+              unevaluatedProperties: true
+            - properties:
+                children:
+                  $ref: '#/components/schemas/_common.aggregations___ChildrenAggregation'
+              required:
+                - children
+              unevaluatedProperties: true
+            - properties:
+                composite:
+                  $ref: '#/components/schemas/_common.aggregations___CompositeAggregation'
+              required:
+                - composite
+              unevaluatedProperties: true
+            - properties:
+                cumulative_cardinality:
+                  $ref: '#/components/schemas/_common.aggregations___CumulativeCardinalityAggregation'
+              required:
+                - cumulative_cardinality
+              unevaluatedProperties: true
+            - properties:
+                cumulative_sum:
+                  $ref: '#/components/schemas/_common.aggregations___CumulativeSumAggregation'
+              required:
+                - cumulative_sum
+              unevaluatedProperties: true
+            - properties:
+                date_histogram:
+                  $ref: '#/components/schemas/_common.aggregations___DateHistogramAggregation'
+              required:
+                - date_histogram
+              unevaluatedProperties: true
+            - properties:
+                date_range:
+                  $ref: '#/components/schemas/_common.aggregations___DateRangeAggregation'
+              required:
+                - date_range
+              unevaluatedProperties: true
+            - properties:
+                derivative:
+                  $ref: '#/components/schemas/_common.aggregations___DerivativeAggregation'
+              required:
+                - derivative
+              unevaluatedProperties: true
+            - properties:
+                diversified_sampler:
+                  $ref: '#/components/schemas/_common.aggregations___DiversifiedSamplerAggregation'
+              required:
+                - diversified_sampler
+              unevaluatedProperties: true
+            - properties:
+                extended_stats:
+                  $ref: '#/components/schemas/_common.aggregations___ExtendedStatsAggregation'
+              required:
+                - extended_stats
+              unevaluatedProperties: true
+            - properties:
+                extended_stats_bucket:
+                  $ref: '#/components/schemas/_common.aggregations___ExtendedStatsBucketAggregation'
+              required:
+                - extended_stats_bucket
+              unevaluatedProperties: true
+            - properties:
+                filter:
+                  $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
+              required:
+                - filter
+              unevaluatedProperties: true
+            - properties:
+                filters:
+                  $ref: '#/components/schemas/_common.aggregations___FiltersAggregation'
+              required:
+                - filters
+              unevaluatedProperties: true
+            - properties:
+                geo_bounds:
+                  $ref: '#/components/schemas/_common.aggregations___GeoBoundsAggregation'
+              required:
+                - geo_bounds
+              unevaluatedProperties: true
+            - properties:
+                geo_centroid:
+                  $ref: '#/components/schemas/_common.aggregations___GeoCentroidAggregation'
+              required:
+                - geo_centroid
+              unevaluatedProperties: true
+            - properties:
+                geo_distance:
+                  $ref: '#/components/schemas/_common.aggregations___GeoDistanceAggregation'
+              required:
+                - geo_distance
+              unevaluatedProperties: true
+            - properties:
+                geohash_grid:
+                  $ref: '#/components/schemas/_common.aggregations___GeoHashGridAggregation'
+              required:
+                - geohash_grid
+              unevaluatedProperties: true
+            - properties:
+                geo_line:
+                  $ref: '#/components/schemas/_common.aggregations___GeoLineAggregation'
+              required:
+                - geo_line
+              unevaluatedProperties: true
+            - properties:
+                geotile_grid:
+                  $ref: '#/components/schemas/_common.aggregations___GeoTileGridAggregation'
+              required:
+                - geotile_grid
+              unevaluatedProperties: true
+            - properties:
+                global:
+                  $ref: '#/components/schemas/_common.aggregations___GlobalAggregation'
+              required:
+                - global
+              unevaluatedProperties: true
+            - properties:
+                histogram:
+                  $ref: '#/components/schemas/_common.aggregations___HistogramAggregation'
+              required:
+                - histogram
+              unevaluatedProperties: true
+            - properties:
+                ip_range:
+                  $ref: '#/components/schemas/_common.aggregations___IpRangeAggregation'
+              required:
+                - ip_range
+              unevaluatedProperties: true
+            - properties:
+                inference:
+                  $ref: '#/components/schemas/_common.aggregations___InferenceAggregation'
+              required:
+                - inference
+              unevaluatedProperties: true
+            - properties:
+                line:
+                  $ref: '#/components/schemas/_common.aggregations___GeoLineAggregation'
+              required:
+                - line
+              unevaluatedProperties: true
+            - properties:
+                matrix_stats:
+                  $ref: '#/components/schemas/_common.aggregations___MatrixStatsAggregation'
+              required:
+                - matrix_stats
+              unevaluatedProperties: true
+            - properties:
+                max:
+                  $ref: '#/components/schemas/_common.aggregations___MaxAggregation'
+              required:
+                - max
+              unevaluatedProperties: true
+            - properties:
+                max_bucket:
+                  $ref: '#/components/schemas/_common.aggregations___MaxBucketAggregation'
+              required:
+                - max_bucket
+              unevaluatedProperties: true
+            - properties:
+                median_absolute_deviation:
+                  $ref: '#/components/schemas/_common.aggregations___MedianAbsoluteDeviationAggregation'
+              required:
+                - median_absolute_deviation
+              unevaluatedProperties: true
+            - properties:
+                min:
+                  $ref: '#/components/schemas/_common.aggregations___MinAggregation'
+              required:
+                - min
+              unevaluatedProperties: true
+            - properties:
+                min_bucket:
+                  $ref: '#/components/schemas/_common.aggregations___MinBucketAggregation'
+              required:
+                - min_bucket
+              unevaluatedProperties: true
+            - properties:
+                missing:
+                  $ref: '#/components/schemas/_common.aggregations___MissingAggregation'
+              required:
+                - missing
+              unevaluatedProperties: true
+            - properties:
+                moving_avg:
+                  $ref: '#/components/schemas/_common.aggregations___MovingAverageAggregation'
+              required:
+                - moving_avg
+              unevaluatedProperties: true
+            - properties:
+                moving_percentiles:
+                  $ref: '#/components/schemas/_common.aggregations___MovingPercentilesAggregation'
+              required:
+                - moving_percentiles
+              unevaluatedProperties: true
+            - properties:
+                moving_fn:
+                  $ref: '#/components/schemas/_common.aggregations___MovingFunctionAggregation'
+              required:
+                - moving_fn
+              unevaluatedProperties: true
+            - properties:
+                multi_terms:
+                  $ref: '#/components/schemas/_common.aggregations___MultiTermsAggregation'
+              required:
+                - multi_terms
+              unevaluatedProperties: true
+            - properties:
+                nested:
+                  $ref: '#/components/schemas/_common.aggregations___NestedAggregation'
+              required:
+                - nested
+              unevaluatedProperties: true
+            - properties:
+                normalize:
+                  $ref: '#/components/schemas/_common.aggregations___NormalizeAggregation'
+              required:
+                - normalize
+              unevaluatedProperties: true
+            - properties:
+                parent:
+                  $ref: '#/components/schemas/_common.aggregations___ParentAggregation'
+              required:
+                - parent
+              unevaluatedProperties: true
+            - properties:
+                percentile_ranks:
+                  $ref: '#/components/schemas/_common.aggregations___PercentileRanksAggregation'
+              required:
+                - percentile_ranks
+              unevaluatedProperties: true
+            - properties:
+                percentiles:
+                  $ref: '#/components/schemas/_common.aggregations___PercentilesAggregation'
+              required:
+                - percentiles
+              unevaluatedProperties: true
+            - properties:
+                percentiles_bucket:
+                  $ref: '#/components/schemas/_common.aggregations___PercentilesBucketAggregation'
+              required:
+                - percentiles_bucket
+              unevaluatedProperties: true
+            - properties:
+                range:
+                  $ref: '#/components/schemas/_common.aggregations___RangeAggregation'
+              required:
+                - range
+              unevaluatedProperties: true
+            - properties:
+                rare_terms:
+                  $ref: '#/components/schemas/_common.aggregations___RareTermsAggregation'
+              required:
+                - rare_terms
+              unevaluatedProperties: true
+            - properties:
+                rate:
+                  $ref: '#/components/schemas/_common.aggregations___RateAggregation'
+              required:
+                - rate
+              unevaluatedProperties: true
+            - properties:
+                reverse_nested:
+                  $ref: '#/components/schemas/_common.aggregations___ReverseNestedAggregation'
+              required:
+                - reverse_nested
+              unevaluatedProperties: true
+            - properties:
+                sampler:
+                  $ref: '#/components/schemas/_common.aggregations___SamplerAggregation'
+              required:
+                - sampler
+              unevaluatedProperties: true
+            - properties:
+                scripted_metric:
+                  $ref: '#/components/schemas/_common.aggregations___ScriptedMetricAggregation'
+              required:
+                - scripted_metric
+              unevaluatedProperties: true
+            - properties:
+                serial_diff:
+                  $ref: '#/components/schemas/_common.aggregations___SerialDifferencingAggregation'
+              required:
+                - serial_diff
+              unevaluatedProperties: true
+            - properties:
+                significant_terms:
+                  $ref: '#/components/schemas/_common.aggregations___SignificantTermsAggregation'
+              required:
+                - significant_terms
+              unevaluatedProperties: true
+            - properties:
+                significant_text:
+                  $ref: '#/components/schemas/_common.aggregations___SignificantTextAggregation'
+              required:
+                - significant_text
+              unevaluatedProperties: true
+            - properties:
+                stats:
+                  $ref: '#/components/schemas/_common.aggregations___StatsAggregation'
+              required:
+                - stats
+              unevaluatedProperties: true
+            - properties:
+                stats_bucket:
+                  $ref: '#/components/schemas/_common.aggregations___StatsBucketAggregation'
+              required:
+                - stats_bucket
+              unevaluatedProperties: true
+            - properties:
+                string_stats:
+                  $ref: '#/components/schemas/_common.aggregations___StringStatsAggregation'
+              required:
+                - string_stats
+              unevaluatedProperties: true
+            - properties:
+                sum:
+                  $ref: '#/components/schemas/_common.aggregations___SumAggregation'
+              required:
+                - sum
+              unevaluatedProperties: true
+            - properties:
+                sum_bucket:
+                  $ref: '#/components/schemas/_common.aggregations___SumBucketAggregation'
+              required:
+                - sum_bucket
+              unevaluatedProperties: true
+            - properties:
+                terms:
+                  $ref: '#/components/schemas/_common.aggregations___TermsAggregation'
+              required:
+                - terms
+              unevaluatedProperties: true
+            - properties:
+                top_hits:
+                  $ref: '#/components/schemas/_common.aggregations___TopHitsAggregation'
+              required:
+                - top_hits
+              unevaluatedProperties: true
+            - properties:
+                t_test:
+                  $ref: '#/components/schemas/_common.aggregations___TTestAggregation'
+              required:
+                - t_test
+              unevaluatedProperties: true
+            - properties:
+                top_metrics:
+                  $ref: '#/components/schemas/_common.aggregations___TopMetricsAggregation'
+              required:
+                - top_metrics
+              unevaluatedProperties: true
+            - properties:
+                value_count:
+                  $ref: '#/components/schemas/_common.aggregations___ValueCountAggregation'
+              required:
+                - value_count
+              unevaluatedProperties: true
+            - properties:
+                weighted_avg:
+                  $ref: '#/components/schemas/_common.aggregations___WeightedAverageAggregation'
+              required:
+                - weighted_avg
+              unevaluatedProperties: true
+            - properties:
+                variable_width_histogram:
+                  $ref: '#/components/schemas/_common.aggregations___VariableWidthHistogramAggregation'
+              required:
+                - variable_width_histogram
+              unevaluatedProperties: true
     _common.aggregations___AggregationRange:
       type: object
       properties:
@@ -39580,6 +39870,8 @@ components:
               type: number
           required:
             - doc_count
+          additionalProperties:
+            $ref: '#/components/schemas/_common.aggregations___Aggregate'
     _common.aggregations___SingleMetricAggregateBase:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
@@ -51661,32 +51953,6 @@ components:
           description: A map of workflows. Presently, only the provision key is supported. The value for the workflow key is a key-value map that includes fields for `user_params` and lists of nodes and edges.
       required:
         - name
-    flow_framework.common___FlowFrameworkDeleteResponse:
-      type: object
-      properties:
-        _index:
-          type: string
-          description: The name of the index where the document was stored.
-        _id:
-          type: string
-          description: The unique identifier of the deleted document.
-        _version:
-          type: integer
-          description: The version of the document after the deletion.
-        result:
-          type: string
-          description: The result of the deletion operation.
-          enum:
-            - deleted
-            - not_found
-        _shards:
-          $ref: '#/components/schemas/flow_framework.common___shards'
-        _seq_no:
-          type: integer
-          description: The sequence number assigned to the document after the deletion.
-        _primary_term:
-          type: integer
-          description: The primary term assigned to the document after the deletion.
     flow_framework.common___FlowFrameworkGetResponse:
       type: object
       properties:
@@ -51768,17 +52034,20 @@ components:
       description: Provision the workflow as part of the request.
       type: boolean
       default: false
-    flow_framework.common___query:
-      type: object
-      description: The search query to match workflows. Use `match_all` to retrieve all workflows, or `match` to search by specific fields like `use_case`.
-      properties:
-        match:
-          type: object
-        match_all:
-          type: object
     flow_framework.common___Reprovision:
       type: boolean
       default: false
+    flow_framework.common___ResourcesCreated:
+      type: object
+      properties:
+        workflow_step_name:
+          type: string
+        workflow_step_id:
+          type: string
+        resource_type:
+          type: string
+        resource_id:
+          type: string
     flow_framework.common___SearchStateResponse:
       type: object
       properties:
@@ -51790,11 +52059,17 @@ components:
           type: string
         user:
           $ref: '#/components/schemas/flow_framework.common___user'
+        provision_start_time:
+          $ref: '#/components/schemas/_common___DateTime'
+        provision_end_time:
+          $ref: '#/components/schemas/_common___DateTime'
+        resources_created:
+          $ref: '#/components/schemas/flow_framework.common___ResourcesCreated'
     flow_framework.common___SearchWorkflowRequest:
       type: object
       properties:
         query:
-          $ref: '#/components/schemas/flow_framework.common___query'
+          $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
     flow_framework.common___shards:
       type: object
       properties:
@@ -55271,6 +55546,13 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/_common___ActionStatusOptions'
+    insights._common___GroupingType:
+      type: string
+      enum:
+        - NONE
+        - SIMILARITY
+        - none
+        - similarity
     insights._common___Measurement:
       type: object
       properties:
@@ -55454,6 +55736,10 @@ components:
     insights._common___TopQuery:
       type: object
       properties:
+        id:
+          type: string
+        group_by:
+          $ref: '#/components/schemas/insights._common___GroupingType'
         timestamp:
           type: integer
           description: The timestamp of the query execution.
@@ -55904,12 +56190,6 @@ components:
         conditions:
           type: object
           additionalProperties: true
-    knn._common___DefaultOperator:
-      type: string
-      description: The default operator for query string query (AND or OR).
-      enum:
-        - AND
-        - OR
     knn._common___DeletedModel:
       type: object
       properties:
@@ -55954,6 +56234,20 @@ components:
           $ref: '#/components/schemas/knn._common___GraphMergeStats'
         refresh:
           $ref: '#/components/schemas/knn._common___GraphRefreshStats'
+    knn._common___KnnMethod:
+      type: object
+      properties:
+        name:
+          type: string
+        space_type:
+          type: string
+        engine:
+          type: string
+        parameters:
+          type: object
+          additionalProperties: true
+      required:
+        - name
     knn._common___NodeStats:
       type: object
       properties:
@@ -56024,12 +56318,6 @@ components:
           type: number
         script_compilation_errors:
           type: number
-    knn._common___SearchType:
-      type: string
-      description: Search operation type.
-      enum:
-        - dfs_query_then_fetch
-        - query_then_fetch
     knn._common___Stats:
       type: object
       properties:
@@ -56047,13 +56335,6 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/knn._common___NodeStats'
-    knn._common___SuggestMode:
-      type: string
-      description: Specify suggest mode.
-      enum:
-        - always
-        - missing
-        - popular
     knn._common___TrainedModel:
       type: object
       properties:
@@ -56077,7 +56358,7 @@ components:
         compression_level:
           type: string
         method:
-          type: string
+          $ref: '#/components/schemas/knn._common___KnnMethod'
         spaceType:
           type: string
       required:

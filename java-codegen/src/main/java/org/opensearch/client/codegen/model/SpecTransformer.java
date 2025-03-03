@@ -474,20 +474,20 @@ public class SpecTransformer {
                     taggedUnion.addVariant(name, mapType(s));
                 });
             } else {
-                if (unionSchema.isObject()) {
-                    taggedUnion.setExternallyDiscriminated(
-                        unionSchema.getMinProperties().orElse(0) == 1
-                            ? TaggedUnionShape.ExternallyDiscriminated.REQUIRED
-                            : TaggedUnionShape.ExternallyDiscriminated.OPTIONAL
-                    );
-                    unionSchema.getProperties().ifPresent(props -> props.forEach((k, v) -> taggedUnion.addVariant(k, mapType(v))));
-                } else {
+                if (oneOrAnyOf != null) {
                     taggedUnion.setExternallyDiscriminated(TaggedUnionShape.ExternallyDiscriminated.REQUIRED);
                     oneOrAnyOf.forEach(s -> {
                         var prop = s.getProperties().flatMap(m -> m.entrySet().stream().findFirst()).orElseThrow();
 
                         taggedUnion.addVariant(prop.getKey(), mapType(prop.getValue()));
                     });
+                } else {
+                    taggedUnion.setExternallyDiscriminated(
+                        unionSchema.getMinProperties().orElse(0) == 1
+                            ? TaggedUnionShape.ExternallyDiscriminated.REQUIRED
+                            : TaggedUnionShape.ExternallyDiscriminated.OPTIONAL
+                    );
+                    unionSchema.getProperties().ifPresent(props -> props.forEach((k, v) -> taggedUnion.addVariant(k, mapType(v))));
                 }
             }
         } else if (isShortcutPropertyObject || schema.determineSingleType().orElse(null) == OpenApiSchemaType.Object) {
@@ -1031,8 +1031,6 @@ public class SpecTransformer {
     }
 
     private static boolean isExternallyTaggedUnionVariant(OpenApiSchema schema) {
-        return schema.isObject()
-            && schema.getProperties().map(Map::size).orElse(0) == 1
-            && schema.getRequired().map(Set::size).orElse(0) == 1;
+        return schema.getProperties().map(Map::size).orElse(0) == 1 && schema.getRequired().map(Set::size).orElse(0) == 1;
     }
 }
