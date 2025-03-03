@@ -88,6 +88,9 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
     private final String opensearchVersion;
 
     @Nonnull
+    private final List<String> optionalExtendedPlugins;
+
+    @Nonnull
     private final String version;
 
     // ---------------------------------------------------------------------------------------------
@@ -102,6 +105,7 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
         this.licensed = builder.licensed;
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.opensearchVersion = ApiTypeHelper.requireNonNull(builder.opensearchVersion, this, "opensearchVersion");
+        this.optionalExtendedPlugins = ApiTypeHelper.unmodifiable(builder.optionalExtendedPlugins);
         this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
     }
 
@@ -181,6 +185,14 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
     }
 
     /**
+     * API name: {@code optional_extended_plugins}
+     */
+    @Nonnull
+    public final List<String> optionalExtendedPlugins() {
+        return this.optionalExtendedPlugins;
+    }
+
+    /**
      * Required - API name: {@code version}
      */
     @Nonnull
@@ -234,6 +246,15 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
         generator.writeKey("opensearch_version");
         generator.write(this.opensearchVersion);
 
+        if (ApiTypeHelper.isDefined(this.optionalExtendedPlugins)) {
+            generator.writeKey("optional_extended_plugins");
+            generator.writeStartArray();
+            for (String item0 : this.optionalExtendedPlugins) {
+                generator.write(item0);
+            }
+            generator.writeEnd();
+        }
+
         generator.writeKey("version");
         generator.write(this.version);
     }
@@ -266,6 +287,8 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
         private Boolean licensed;
         private String name;
         private String opensearchVersion;
+        @Nullable
+        private List<String> optionalExtendedPlugins;
         private String version;
 
         public Builder() {}
@@ -280,6 +303,7 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
             this.licensed = o.licensed;
             this.name = o.name;
             this.opensearchVersion = o.opensearchVersion;
+            this.optionalExtendedPlugins = _listCopy(o.optionalExtendedPlugins);
             this.version = o.version;
         }
 
@@ -293,6 +317,7 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
             this.licensed = o.licensed;
             this.name = o.name;
             this.opensearchVersion = o.opensearchVersion;
+            this.optionalExtendedPlugins = _listCopy(o.optionalExtendedPlugins);
             this.version = o.version;
         }
 
@@ -401,6 +426,32 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
         }
 
         /**
+         * API name: {@code optional_extended_plugins}
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>optionalExtendedPlugins</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder optionalExtendedPlugins(List<String> list) {
+            this.optionalExtendedPlugins = _listAddAll(this.optionalExtendedPlugins, list);
+            return this;
+        }
+
+        /**
+         * API name: {@code optional_extended_plugins}
+         *
+         * <p>
+         * Adds one or more values to <code>optionalExtendedPlugins</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder optionalExtendedPlugins(String value, String... values) {
+            this.optionalExtendedPlugins = _listAdd(this.optionalExtendedPlugins, value, values);
+            return this;
+        }
+
+        /**
          * Required - API name: {@code version}
          */
         @Nonnull
@@ -443,6 +494,11 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
         op.add(Builder::licensed, JsonpDeserializer.booleanDeserializer(), "licensed");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::opensearchVersion, JsonpDeserializer.stringDeserializer(), "opensearch_version");
+        op.add(
+            Builder::optionalExtendedPlugins,
+            JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+            "optional_extended_plugins"
+        );
         op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
     }
 
@@ -458,6 +514,7 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
         result = 31 * result + Objects.hashCode(this.licensed);
         result = 31 * result + this.name.hashCode();
         result = 31 * result + this.opensearchVersion.hashCode();
+        result = 31 * result + Objects.hashCode(this.optionalExtendedPlugins);
         result = 31 * result + this.version.hashCode();
         return result;
     }
@@ -476,6 +533,7 @@ public class PluginStats implements PlainJsonSerializable, ToCopyableBuilder<Plu
             && Objects.equals(this.licensed, other.licensed)
             && this.name.equals(other.name)
             && this.opensearchVersion.equals(other.opensearchVersion)
+            && Objects.equals(this.optionalExtendedPlugins, other.optionalExtendedPlugins)
             && this.version.equals(other.version);
     }
 }

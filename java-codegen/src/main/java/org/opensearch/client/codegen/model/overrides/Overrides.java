@@ -74,7 +74,9 @@ public class Overrides {
                 )
                 .with(
                     schema("_common.aggregations", "AggregationContainer").append("allOf", "0"),
-                    so -> so.withProperties(p -> p.with("aggregations", po -> po.withAliases(Set.of("aggs"))))
+                    so -> so.withProperties(
+                        p -> p.with("aggregations", po -> po.withAliases(Set.of("aggs"))).with("aggs", po -> po.withIgnore(true))
+                    )
                 )
                 .with(
                     schema("_common.aggregations", "BucketsQueryContainer"),
