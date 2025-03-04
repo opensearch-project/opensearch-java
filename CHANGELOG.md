@@ -13,6 +13,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.junit:junit-bom` from 5.11.4 to 5.12.0 ([#1456](https://github.com/opensearch-project/opensearch-java/pull/1456))
 
 ### Changed
+- Changed abstract builders visibility to public ([#1464](https://github.com/opensearch-project/opensearch-java/pull/1464))
 
 ### Deprecated
 
