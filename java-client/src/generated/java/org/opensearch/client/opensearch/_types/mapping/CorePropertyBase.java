@@ -118,7 +118,7 @@ public abstract class CorePropertyBase extends PropertyBase {
 
     // ---------------------------------------------------------------------------------------------
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends PropertyBase.AbstractBuilder<
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends PropertyBase.AbstractBuilder<
         BuilderT> {
         @Nullable
         private List<String> copyTo;

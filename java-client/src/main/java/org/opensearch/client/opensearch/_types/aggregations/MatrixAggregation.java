@@ -99,7 +99,7 @@ public abstract class MatrixAggregation extends AggregationBase {
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregationBase.AbstractBuilder<
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregationBase.AbstractBuilder<
         BuilderT> {
         @Nullable
         private List<String> fields;

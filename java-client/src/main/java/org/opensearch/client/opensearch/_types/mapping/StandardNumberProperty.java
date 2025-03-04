@@ -108,7 +108,7 @@ public abstract class StandardNumberProperty extends NumberPropertyBase {
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends NumberPropertyBase.AbstractBuilder<
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends NumberPropertyBase.AbstractBuilder<
         BuilderT> {
         @Nullable
         private Boolean coerce;
