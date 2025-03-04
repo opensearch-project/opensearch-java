@@ -79,7 +79,7 @@ public abstract class AcknowledgedResponseBase implements PlainJsonSerializable 
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         private Boolean acknowledged;
 
         /**

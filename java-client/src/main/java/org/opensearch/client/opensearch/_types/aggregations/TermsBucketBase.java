@@ -72,7 +72,7 @@ public abstract class TermsBucketBase extends MultiBucketBase {
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends MultiBucketBase.AbstractBuilder<
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends MultiBucketBase.AbstractBuilder<
         BuilderT> {
         @Nullable
         private Long docCountError;

@@ -95,7 +95,7 @@
     {{/extendedByOtherShape}}
 {{/abstract}}
 {{#extendedByOtherShape}}
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
         extends {{#doesExtendType}}{{extendsType}}.AbstractBuilder<BuilderT>{{/doesExtendType}}{{^doesExtendType}}{{TYPES.Client.Util.ObjectBuilderBase}}{{/doesExtendType}} {
         {{>ObjectShape/Builder/Fields}}
 

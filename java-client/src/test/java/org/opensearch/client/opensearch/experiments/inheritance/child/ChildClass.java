@@ -66,7 +66,7 @@ public class ChildClass extends BaseClass implements JsonpSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
-    protected abstract static class AbstractBuilder<T extends AbstractBuilder<T>> extends BaseClass.AbstractBuilder<T> {
+    public abstract static class AbstractBuilder<T extends AbstractBuilder<T>> extends BaseClass.AbstractBuilder<T> {
 
         private String childField;
 

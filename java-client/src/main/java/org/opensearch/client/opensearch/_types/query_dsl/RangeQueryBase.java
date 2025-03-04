@@ -70,8 +70,7 @@ public abstract class RangeQueryBase extends QueryBase {
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends QueryBase.AbstractBuilder<
-        BuilderT> {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends QueryBase.AbstractBuilder<BuilderT> {
         @Nullable
         private RangeRelation relation;
 

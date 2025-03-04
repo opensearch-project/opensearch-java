@@ -156,7 +156,7 @@ public abstract class CompositeValuesSource implements PlainJsonSerializable {
      * Builder for {@link CompositeValuesSource}.
      */
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
 
         @Nullable
         private String field;

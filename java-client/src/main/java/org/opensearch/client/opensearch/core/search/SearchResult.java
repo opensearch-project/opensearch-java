@@ -331,7 +331,7 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
-    protected abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> extends
+    public abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> extends
         ObjectBuilderBase {
         private Long took;
 

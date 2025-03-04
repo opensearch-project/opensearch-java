@@ -203,7 +203,7 @@ public abstract class PropertyBase implements PlainJsonSerializable {
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         @Nullable
         private Map<String, JsonData> localMetadata;
 

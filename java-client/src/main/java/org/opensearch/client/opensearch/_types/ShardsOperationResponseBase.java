@@ -77,7 +77,7 @@ public abstract class ShardsOperationResponseBase implements PlainJsonSerializab
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         private ShardStatistics shards;
 
         /**

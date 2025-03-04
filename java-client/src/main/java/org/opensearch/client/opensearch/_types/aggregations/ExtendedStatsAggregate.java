@@ -288,7 +288,7 @@ public class ExtendedStatsAggregate extends StatsAggregate implements AggregateV
         }
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends StatsAggregate.AbstractBuilder<
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends StatsAggregate.AbstractBuilder<
         BuilderT> {
         private Double sumOfSquares;
 

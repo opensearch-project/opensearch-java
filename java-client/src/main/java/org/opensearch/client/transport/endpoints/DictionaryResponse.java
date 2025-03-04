@@ -98,7 +98,7 @@ public abstract class DictionaryResponse<TKey, TValue> implements PlainJsonSeria
         }
     }
 
-    protected abstract static class AbstractBuilder<TKey, TValue, BuilderT extends AbstractBuilder<TKey, TValue, BuilderT>> extends
+    public abstract static class AbstractBuilder<TKey, TValue, BuilderT extends AbstractBuilder<TKey, TValue, BuilderT>> extends
         ObjectBuilderBase {
 
         private Map<String, TValue> result;

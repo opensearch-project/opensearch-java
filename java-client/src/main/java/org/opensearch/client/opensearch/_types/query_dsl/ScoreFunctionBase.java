@@ -100,7 +100,7 @@ public abstract class ScoreFunctionBase implements PlainJsonSerializable {
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         @Nullable
         private Query filter;
 
