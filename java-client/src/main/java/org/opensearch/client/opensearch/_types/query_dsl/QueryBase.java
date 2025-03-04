@@ -102,7 +102,7 @@ public abstract class QueryBase implements PlainJsonSerializable {
         return builder.queryName(queryName).boost(boost);
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         @Nullable
         private Float boost;
 

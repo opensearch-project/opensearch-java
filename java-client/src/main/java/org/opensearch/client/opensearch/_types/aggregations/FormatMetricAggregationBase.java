@@ -72,8 +72,8 @@ public abstract class FormatMetricAggregationBase extends MetricAggregationBase 
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends
-        MetricAggregationBase.AbstractBuilder<BuilderT> {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends MetricAggregationBase.AbstractBuilder<
+        BuilderT> {
         @Nullable
         private String format;
 

@@ -100,7 +100,7 @@ public abstract class MultiBucketBase implements PlainJsonSerializable {
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         @Nullable
         protected Map<String, Aggregate> aggregations = new HashMap<>();
 

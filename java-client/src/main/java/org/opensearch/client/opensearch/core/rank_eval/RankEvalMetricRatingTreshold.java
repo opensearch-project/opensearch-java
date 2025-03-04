@@ -75,7 +75,7 @@ public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends RankEvalMetricBase.AbstractBuilder<
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends RankEvalMetricBase.AbstractBuilder<
         BuilderT> {
         @Nullable
         private Integer relevantRatingThreshold;

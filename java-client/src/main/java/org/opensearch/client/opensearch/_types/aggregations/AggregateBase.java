@@ -88,7 +88,7 @@ public abstract class AggregateBase implements PlainJsonSerializable {
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         @Nullable
         private Map<String, JsonData> meta;
 

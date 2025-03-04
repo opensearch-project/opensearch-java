@@ -69,7 +69,7 @@ public abstract class BaseClass implements JsonpSerializable {
 
     // This is class protected as it's only of interest to subclasses. Yet public members are visible
     // from the outside on public subclasses.
-    protected abstract static class AbstractBuilder<T extends AbstractBuilder<T>> {
+    public abstract static class AbstractBuilder<T extends AbstractBuilder<T>> {
 
         private String baseField;
 

@@ -70,7 +70,7 @@ public abstract class DecayFunctionBase extends ScoreFunctionBase {
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ScoreFunctionBase.AbstractBuilder<
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ScoreFunctionBase.AbstractBuilder<
         BuilderT> {
         @Nullable
         private MultiValueMode multiValueMode;
