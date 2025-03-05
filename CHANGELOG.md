@@ -3,18 +3,10 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
-- Added `toBuilder()` and `Builder.copy()` methods to all generated classes ([#1300](https://github.com/opensearch-project/opensearch-java/pull/1300))
-- Added support for additional ML APIs ([#1443](https://github.com/opensearch-project/opensearch-java/pull/1443))
-- Added support for the Search Pipeline APIs ([#1442](https://github.com/opensearch-project/opensearch-java/pull/1442))
-- Added support for `simple_pattern` and `simple_pattern_split` tokenizers ([#1448](https://github.com/opensearch-project/opensearch-java/pull/1448), [#1451](https://github.com/opensearch-project/opensearch-java/pull/1451))
-- Added support for the Search response `phase_took` field ([#1449](https://github.com/opensearch-project/opensearch-java/pull/1449)) 
-- Added support for `GeoDistanceSort`'s `nested` and `validation_method` fields ([#1470](https://github.com/opensearch-project/opensearch-java/pull/1470))
 
 ### Dependencies
-- Bump `org.junit:junit-bom` from 5.11.4 to 5.12.0 ([#1456](https://github.com/opensearch-project/opensearch-java/pull/1456))
 
 ### Changed
-- Changed abstract builders visibility to public ([#1464](https://github.com/opensearch-project/opensearch-java/pull/1464))
 
 ### Deprecated
 
@@ -23,6 +15,21 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Fixed
 
 ### Security
+
+## [2.22.0] - 03/05/2025
+### Added
+- Added `toBuilder()` and `Builder.copy()` methods to all generated classes ([#1300](https://github.com/opensearch-project/opensearch-java/pull/1300))
+- Added support for additional ML APIs ([#1443](https://github.com/opensearch-project/opensearch-java/pull/1443))
+- Added support for the Search Pipeline APIs ([#1442](https://github.com/opensearch-project/opensearch-java/pull/1442))
+- Added support for `simple_pattern` and `simple_pattern_split` tokenizers ([#1448](https://github.com/opensearch-project/opensearch-java/pull/1448), [#1451](https://github.com/opensearch-project/opensearch-java/pull/1451))
+- Added support for the Search response `phase_took` field ([#1449](https://github.com/opensearch-project/opensearch-java/pull/1449))
+- Added support for `GeoDistanceSort`'s `nested` and `validation_method` fields ([#1470](https://github.com/opensearch-project/opensearch-java/pull/1470))
+
+### Dependencies
+- Bump `org.junit:junit-bom` from 5.11.4 to 5.12.0 ([#1456](https://github.com/opensearch-project/opensearch-java/pull/1456))
+
+### Changed
+- Changed abstract builders visibility to public ([#1464](https://github.com/opensearch-project/opensearch-java/pull/1464))
 
 ## [2.21.0] - 02/14/2025
 ### Added
@@ -582,7 +589,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
  
 ### Security
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.21.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.22.0...2.x
+[2.22.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.21.0...v2.22.0
 [2.21.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.20.0...v2.21.0
 [2.20.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.19.0...v2.20.0
 [2.19.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.18.0...v2.19.0
