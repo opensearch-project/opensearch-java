@@ -35,6 +35,7 @@ package org.opensearch.client.opensearch._types;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,6 +43,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.query_dsl.GeoValidationMethod;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -69,6 +71,12 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
     @Nullable
     private final DistanceUnit unit;
 
+    @Nullable
+    private final GeoValidationMethod validationMethod;
+
+    @Nullable
+    private final NestedSortValue nested;
+
     // ---------------------------------------------------------------------------------------------
 
     private GeoDistanceSort(Builder builder) {
@@ -81,7 +89,8 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
         this.ignoreUnmapped = builder.ignoreUnmapped;
         this.order = builder.order;
         this.unit = builder.unit;
-
+        this.validationMethod = builder.validationMethod;
+        this.nested = builder.nested;
     }
 
     public static GeoDistanceSort of(Function<Builder, ObjectBuilder<GeoDistanceSort>> fn) {
@@ -151,6 +160,22 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
     }
 
     /**
+     * API name: {@code validation_method}
+     */
+    @Nullable
+    public final GeoValidationMethod validationMethod() {
+        return this.validationMethod;
+    }
+
+    /**
+     * API name: {@code nested}
+     */
+    @Nullable
+    public final NestedSortValue nested() {
+        return this.nested;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -189,7 +214,14 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
             generator.writeKey("unit");
             this.unit.serialize(generator, mapper);
         }
-
+        if (this.validationMethod != null) {
+            generator.writeKey("validation_method");
+            this.validationMethod.serialize(generator, mapper);
+        }
+        if (this.nested != null) {
+            generator.writeKey("nested");
+            this.nested.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -249,6 +281,12 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
         @Nullable
         private DistanceUnit unit;
 
+        @Nullable
+        private GeoValidationMethod validationMethod;
+
+        @Nullable
+        private NestedSortValue nested;
+
         /**
          * API name: {@code mode}
          */
@@ -290,6 +328,29 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
         }
 
         /**
+         * API name: {@code validation_method}
+         */
+        public final Builder validationMethod(@Nullable GeoValidationMethod value) {
+            this.validationMethod = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code nested}
+         */
+        public final Builder nested(@Nullable NestedSortValue value) {
+            this.nested = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code nested}
+         */
+        public final Builder nested(@Nonnull Function<NestedSortValue.Builder, ObjectBuilder<NestedSortValue>> fn) {
+            return nested(fn.apply(new NestedSortValue.Builder()).build());
+        }
+
+        /**
          * Builds a {@link GeoDistanceSort}.
          *
          * @throws NullPointerException
@@ -319,6 +380,8 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
         op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
         op.add(Builder::order, SortOrder._DESERIALIZER, "order");
         op.add(Builder::unit, DistanceUnit._DESERIALIZER, "unit");
+        op.add(Builder::validationMethod, GeoValidationMethod._DESERIALIZER, "validation_method");
+        op.add(Builder::nested, NestedSortValue._DESERIALIZER, "nested");
 
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
             builder.field(name);
