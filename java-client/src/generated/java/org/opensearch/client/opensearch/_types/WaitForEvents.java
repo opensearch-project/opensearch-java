@@ -48,16 +48,34 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum WaitForEvents implements JsonEnum {
+    /**
+     * High priority, processed after urgent events.
+     */
     High("high"),
 
+    /**
+     * Highest priority, processed as soon as possible.
+     */
     Immediate("immediate"),
 
+    /**
+     * Lowest priority, processed after all other events.
+     */
     Languid("languid"),
 
+    /**
+     * Low priority, processed after normal events.
+     */
     Low("low"),
 
+    /**
+     * Default priority, processed after high priority events.
+     */
     Normal("normal"),
 
+    /**
+     * Very high priority, processed after immediate events.
+     */
     Urgent("urgent");
 
     private final String jsonValue;
