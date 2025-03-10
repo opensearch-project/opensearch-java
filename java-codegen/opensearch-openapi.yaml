@@ -18604,7 +18604,7 @@ components:
       style: form
     cluster.state___query.cluster_manager_timeout:
       name: cluster_manager_timeout
-      description: The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters]({https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
+      description: The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
       in: query
       schema:
         $ref: '#/components/schemas/_common___Duration'
