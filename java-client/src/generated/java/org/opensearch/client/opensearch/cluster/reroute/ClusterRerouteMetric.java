@@ -45,22 +45,49 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum ClusterRerouteMetric implements JsonEnum {
+    /**
+     * Returns all available metrics.
+     */
     All("_all"),
 
+    /**
+     * Returns information about cluster-level blocks.
+     */
     Blocks("blocks"),
 
+    /**
+     * Returns information about the current cluster manager node.
+     */
     ClusterManagerNode("cluster_manager_node"),
 
+    /**
+     * The alias for <code>cluster_manager_node</code>. Deprecated, but maintained for backwards compatibility.
+     */
     MasterNode("master_node"),
 
+    /**
+     * Returns the cluster state metadata.
+     */
     Metadata("metadata"),
 
+    /**
+     * Returns information about nodes in the cluster.
+     */
     Nodes("nodes"),
 
+    /**
+     * Returns the node-level shard allocations.
+     */
     RoutingNodes("routing_nodes"),
 
+    /**
+     * Returns index-level shard allocations.
+     */
     RoutingTable("routing_table"),
 
+    /**
+     * Returns the cluster state version.
+     */
     Version("version");
 
     private final String jsonValue;

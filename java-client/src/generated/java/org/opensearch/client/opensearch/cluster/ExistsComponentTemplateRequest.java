@@ -95,9 +95,8 @@ public final class ExistsComponentTemplateRequest extends RequestBase
     }
 
     /**
-     * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
-     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
-     * &quot;-1&quot; to indicate an unspecified value.
+     * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+     * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -202,9 +201,8 @@ public final class ExistsComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
-         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
-         * &quot;-1&quot; to indicate an unspecified value.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -216,9 +214,8 @@ public final class ExistsComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
-         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
-         * &quot;-1&quot; to indicate an unspecified value.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>

@@ -128,7 +128,8 @@ public final class AllocationExplainRequest extends RequestBase
     }
 
     /**
-     * When <code>true</code>, returns any <code>YES</code> decisions in the allocation explanation.
+     * When <code>true</code>, returns any <code>YES</code> decisions in the allocation explanation. <code>YES</code> decisions indicate
+     * when a particular shard allocation attempt was successful for the given node.
      * <p>
      * API name: {@code include_yes_decisions}
      * </p>
@@ -289,7 +290,8 @@ public final class AllocationExplainRequest extends RequestBase
         }
 
         /**
-         * When <code>true</code>, returns any <code>YES</code> decisions in the allocation explanation.
+         * When <code>true</code>, returns any <code>YES</code> decisions in the allocation explanation. <code>YES</code> decisions indicate
+         * when a particular shard allocation attempt was successful for the given node.
          * <p>
          * API name: {@code include_yes_decisions}
          * </p>
