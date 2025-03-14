@@ -1107,7 +1107,11 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             if (t instanceof Error) {
                 throw (Error) t;
             }
-            exception = (Exception) t;
+            if (t instanceof Exception) {
+                exception = (Exception) t;
+            } else {
+                exception = new RuntimeException("Unexpected throwable caught in execution", t);
+            }
         }
         if (exception instanceof ConnectTimeoutException) {
             ConnectTimeoutException e = new ConnectTimeoutException(exception.getMessage());

@@ -694,7 +694,11 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             if (t instanceof Error) {
                 throw (Error) t;
             }
-            exception = (Exception) t;
+            if (t instanceof Exception) {
+                exception = (Exception) t;
+            } else {
+                exception = new RuntimeException("Unexpected throwable caught in execution", t);
+            }
         }
         if (exception instanceof SocketTimeoutException) {
             SocketTimeoutException e = new SocketTimeoutException(exception.getMessage());
