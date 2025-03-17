@@ -7,6 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.hamcrest:hamcrest` from 2.2 to 3.0
 - Bumps `com.github.jk1.dependency-license-report` from 2.8 to 2.9
 - Bump `org.owasp.dependencycheck` from 12.0.2 to 12.1.0 ([#1440](https://github.com/opensearch-project/opensearch-java/pull/1440))
+- Bump `org.junit:junit-bom` from 5.12.0 to 5.12.1 ([#1486](https://github.com/opensearch-project/opensearch-java/pull/1486))
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
