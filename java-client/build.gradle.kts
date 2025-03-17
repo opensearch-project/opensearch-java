@@ -186,7 +186,7 @@ dependencies {
     api("commons-logging:commons-logging:1.3.5")
     compileOnly("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
     testImplementation("org.hamcrest:hamcrest:3.0")
-    testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.8.2") {
+    testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.8.3") {
         exclude(group = "junit")
     }
     testImplementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
