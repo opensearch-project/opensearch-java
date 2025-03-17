@@ -15,6 +15,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.UndeclaredThrowableException;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.URI;
@@ -1110,7 +1111,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             if (t instanceof Exception) {
                 exception = (Exception) t;
             } else {
-                exception = new RuntimeException("Unexpected throwable caught in execution", t);
+                exception = new UndeclaredThrowableException(t);
             }
         }
         if (exception instanceof ConnectTimeoutException) {
