@@ -92,7 +92,7 @@ public final class CancelRequest extends RequestBase implements ToCopyableBuilde
     }
 
     /**
-     * Comma-separated list or wildcard expression of actions used to limit the request.
+     * A comma-separated list of actions that should be returned. Keep empty to return all.
      * <p>
      * API name: {@code actions}
      * </p>
@@ -103,7 +103,9 @@ public final class CancelRequest extends RequestBase implements ToCopyableBuilde
     }
 
     /**
-     * Comma-separated list of node IDs or names used to limit the request.
+     * A comma-separated list of node IDs or names to limit the returned information. Use <code>_local</code> to return information from the
+     * node you're connecting to, specify the node name to get information from specific nodes, or keep the parameter empty to get
+     * information from all nodes.
      * <p>
      * API name: {@code nodes}
      * </p>
@@ -114,7 +116,7 @@ public final class CancelRequest extends RequestBase implements ToCopyableBuilde
     }
 
     /**
-     * Parent task ID used to limit the tasks.
+     * Returns tasks with a specified parent task ID (node_id:task_number). Keep empty or set to -1 to return all.
      * <p>
      * API name: {@code parent_task_id}
      * </p>
@@ -125,7 +127,7 @@ public final class CancelRequest extends RequestBase implements ToCopyableBuilde
     }
 
     /**
-     * ID of the task.
+     * The ID of the task.
      * <p>
      * API name: {@code task_id}
      * </p>
@@ -136,7 +138,7 @@ public final class CancelRequest extends RequestBase implements ToCopyableBuilde
     }
 
     /**
-     * Should the request block until the cancellation of the task and its descendant tasks is completed. Defaults to false
+     * Waits for the matching task to complete. When <code>true</code>, the request is blocked until the task has completed.
      * <p>
      * API name: {@code wait_for_completion}
      * </p>
@@ -207,7 +209,7 @@ public final class CancelRequest extends RequestBase implements ToCopyableBuilde
         }
 
         /**
-         * Comma-separated list or wildcard expression of actions used to limit the request.
+         * A comma-separated list of actions that should be returned. Keep empty to return all.
          * <p>
          * API name: {@code actions}
          * </p>
@@ -223,7 +225,7 @@ public final class CancelRequest extends RequestBase implements ToCopyableBuilde
         }
 
         /**
-         * Comma-separated list or wildcard expression of actions used to limit the request.
+         * A comma-separated list of actions that should be returned. Keep empty to return all.
          * <p>
          * API name: {@code actions}
          * </p>
@@ -239,7 +241,9 @@ public final class CancelRequest extends RequestBase implements ToCopyableBuilde
         }
 
         /**
-         * Comma-separated list of node IDs or names used to limit the request.
+         * A comma-separated list of node IDs or names to limit the returned information. Use <code>_local</code> to return information from
+         * the node you're connecting to, specify the node name to get information from specific nodes, or keep the parameter empty to get
+         * information from all nodes.
          * <p>
          * API name: {@code nodes}
          * </p>
@@ -255,7 +259,9 @@ public final class CancelRequest extends RequestBase implements ToCopyableBuilde
         }
 
         /**
-         * Comma-separated list of node IDs or names used to limit the request.
+         * A comma-separated list of node IDs or names to limit the returned information. Use <code>_local</code> to return information from
+         * the node you're connecting to, specify the node name to get information from specific nodes, or keep the parameter empty to get
+         * information from all nodes.
          * <p>
          * API name: {@code nodes}
          * </p>
@@ -271,7 +277,7 @@ public final class CancelRequest extends RequestBase implements ToCopyableBuilde
         }
 
         /**
-         * Parent task ID used to limit the tasks.
+         * Returns tasks with a specified parent task ID (node_id:task_number). Keep empty or set to -1 to return all.
          * <p>
          * API name: {@code parent_task_id}
          * </p>
@@ -283,7 +289,7 @@ public final class CancelRequest extends RequestBase implements ToCopyableBuilde
         }
 
         /**
-         * ID of the task.
+         * The ID of the task.
          * <p>
          * API name: {@code task_id}
          * </p>
@@ -295,7 +301,7 @@ public final class CancelRequest extends RequestBase implements ToCopyableBuilde
         }
 
         /**
-         * Should the request block until the cancellation of the task and its descendant tasks is completed. Defaults to false
+         * Waits for the matching task to complete. When <code>true</code>, the request is blocked until the task has completed.
          * <p>
          * API name: {@code wait_for_completion}
          * </p>
