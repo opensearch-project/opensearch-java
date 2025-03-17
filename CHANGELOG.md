@@ -13,7 +13,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
-
+- Fixed ClassCastException in extractAndWrapCause when handling ExecutionException ([#1483](https://github.com/opensearch-project/opensearch-java/pull/1483))
 ### Security
 
 ## [2.22.0] - 03/05/2025
