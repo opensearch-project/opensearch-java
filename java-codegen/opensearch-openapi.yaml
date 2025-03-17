@@ -4635,6 +4635,74 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/knn.warmup___200'
+  /_plugins/_ltr/{node_id}/stats:
+    get:
+      operationId: ltr.stats.2
+      x-operation-group: ltr.stats
+      x-version-added: '1.0'
+      description: Provides information about the current status of the LTR plugin.
+      parameters:
+        - $ref: '#/components/parameters/ltr.stats___path.node_id'
+        - $ref: '#/components/parameters/ltr.stats___query.timeout'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.stats___200'
+  /_plugins/_ltr/{node_id}/stats/{stat}:
+    get:
+      operationId: ltr.stats.3
+      x-operation-group: ltr.stats
+      x-version-added: '1.0'
+      description: Provides information about the current status of the LTR plugin.
+      parameters:
+        - $ref: '#/components/parameters/ltr.stats___path.node_id'
+        - $ref: '#/components/parameters/ltr.stats___path.stat'
+        - $ref: '#/components/parameters/ltr.stats___query.timeout'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.stats___200'
+  /_plugins/_ltr/stats:
+    get:
+      operationId: ltr.stats.0
+      x-operation-group: ltr.stats
+      x-version-added: '1.0'
+      description: Provides information about the current status of the LTR plugin.
+      parameters:
+        - $ref: '#/components/parameters/ltr.stats___query.timeout'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.stats___200'
+  /_plugins/_ltr/stats/{stat}:
+    get:
+      operationId: ltr.stats.1
+      x-operation-group: ltr.stats
+      x-version-added: '1.0'
+      description: Provides information about the current status of the LTR plugin.
+      parameters:
+        - $ref: '#/components/parameters/ltr.stats___path.stat'
+        - $ref: '#/components/parameters/ltr.stats___query.timeout'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.stats___200'
   /_plugins/_ml/_execute/{algorithm_name}:
     post:
       operationId: ml.execute_algorithm.0
@@ -23731,6 +23799,36 @@ components:
         type: boolean
         default: false
         description: Verbose mode. Display column headers.
+    ltr.stats___path.node_id:
+      name: node_id
+      in: path
+      description: Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
+      schema:
+        type: array
+        description: Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
+        items:
+          type: string
+      required: true
+    ltr.stats___path.stat:
+      name: stat
+      in: path
+      description: Comma-separated list of stats to retrieve; use `_all` or empty string to retrieve all stats.
+      schema:
+        type: array
+        description: Comma-separated list of stats to retrieve; use `_all` or empty string to retrieve all stats.
+        items:
+          type: string
+          enum:
+            - cache
+            - request_error_count
+            - request_total_count
+      required: true
+    ltr.stats___query.timeout:
+      name: timeout
+      in: query
+      description: The time in milliseconds to wait for a response.
+      schema:
+        $ref: '#/components/schemas/_common___Duration'
     mget___path.index:
       in: path
       name: index
@@ -26274,52 +26372,53 @@ components:
     sm.create_policy___path.policy_name:
       name: policy_name
       in: path
-      description: The name of the snapshot management policy.
+      description: The snapshot management policy name.
       required: true
       schema:
         type: string
     sm.delete_policy___path.policy_name:
       name: policy_name
       in: path
-      description: The name of the snapshot management policy.
+      description: The snapshot management policy name.
       required: true
       schema:
         type: string
     sm.explain_policy___path.policy_name:
       name: policy_name
       in: path
-      description: The name of the snapshot management policy.
+      description: The snapshot management policy name.
       required: true
       schema:
         type: string
     sm.get_policies___query.from:
       name: from
       in: query
-      description: 'The starting index (default: 0)'
+      description: The index to retrieve snapshot management policies from.
       schema:
+        default: 0
         type: integer
     sm.get_policies___query.queryString:
       name: queryString
       in: query
-      description: A query string to filter policies.
+      description: Filters the returned snapshot management policies based on query string.
       schema:
         type: string
     sm.get_policies___query.size:
       name: size
       in: query
-      description: The number of policies to return.
+      description: The number of snapshot management policies to return.
       schema:
         type: integer
     sm.get_policies___query.sortField:
       name: sortField
       in: query
-      description: The field to sort on.
+      description: The name of the query field to sort on.
       schema:
         type: string
     sm.get_policies___query.sortOrder:
       name: sortOrder
       in: query
-      description: The order of sorting.
+      description: The order to sort the snapshot management policy result.
       schema:
         type: string
         enum:
@@ -26329,28 +26428,28 @@ components:
     sm.get_policy___path.policy_name:
       name: policy_name
       in: path
-      description: The name of the snapshot management policy.
+      description: The snapshot management name.
       required: true
       schema:
         type: string
     sm.start_policy___path.policy_name:
       name: policy_name
       in: path
-      description: The name of the snapshot management policy.
+      description: The snapshot management policy name.
       required: true
       schema:
         type: string
     sm.stop_policy___path.policy_name:
       name: policy_name
       in: path
-      description: The name of the snapshot management policy.
+      description: The snapshot management policy name.
       required: true
       schema:
         type: string
     sm.update_policy___path.policy_name:
       name: policy_name
       in: path
-      description: The name of the snapshot management policy.
+      description: The snapshot management policy name.
       required: true
       schema:
         type: string
@@ -26858,7 +26957,7 @@ components:
     tasks.cancel___path.task_id:
       in: path
       name: task_id
-      description: ID of the task.
+      description: The ID of the task.
       required: true
       schema:
         $ref: '#/components/schemas/_common___TaskId'
@@ -26866,14 +26965,14 @@ components:
     tasks.cancel___query.actions:
       in: query
       name: actions
-      description: Comma-separated list or wildcard expression of actions used to limit the request.
+      description: A comma-separated list of actions that should be returned. Keep empty to return all.
       schema:
         $ref: '#/components/schemas/_common___StringOrStringArray'
       style: form
     tasks.cancel___query.nodes:
       in: query
       name: nodes
-      description: Comma-separated list of node IDs or names used to limit the request.
+      description: A comma-separated list of node IDs or names to limit the returned information. Use `_local` to return information from the node you're connecting to, specify the node name to get information from specific nodes, or keep the parameter empty to get information from all nodes.
       schema:
         type: array
         items:
@@ -26882,14 +26981,14 @@ components:
     tasks.cancel___query.parent_task_id:
       in: query
       name: parent_task_id
-      description: Parent task ID used to limit the tasks.
+      description: Returns tasks with a specified parent task ID (node_id:task_number). Keep empty or set to -1 to return all.
       schema:
         type: string
       style: form
     tasks.cancel___query.wait_for_completion:
       in: query
       name: wait_for_completion
-      description: Should the request block until the cancellation of the task and its descendant tasks is completed. Defaults to false
+      description: Waits for the matching task to complete. When `true`, the request is blocked until the task has completed.
       schema:
         type: boolean
         default: false
@@ -26897,7 +26996,7 @@ components:
     tasks.get___path.task_id:
       in: path
       name: task_id
-      description: ID of the task.
+      description: The ID of the task.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Id'
@@ -26905,16 +27004,15 @@ components:
     tasks.get___query.timeout:
       in: query
       name: timeout
-      description: |-
-        Period to wait for a response.
-        If no response is received before the timeout expires, the request fails and returns an error.
+      description: The amount of time to wait for a response.
       schema:
+        default: 30s
         $ref: '#/components/schemas/_common___Duration'
       style: form
     tasks.get___query.wait_for_completion:
       in: query
       name: wait_for_completion
-      description: If `true`, the request blocks until the task has completed.
+      description: Waits for the matching task to complete. When `true`, the request is blocked until the task has completed.
       schema:
         type: boolean
         default: false
@@ -26922,14 +27020,14 @@ components:
     tasks.list___query.actions:
       in: query
       name: actions
-      description: Comma-separated list or wildcard expression of actions used to limit the request.
+      description: A comma-separated list of actions that should be returned. Keep empty to return all.
       schema:
         $ref: '#/components/schemas/_common___StringOrStringArray'
       style: form
     tasks.list___query.detailed:
       in: query
       name: detailed
-      description: If `true`, the response includes detailed information about shard recoveries.
+      description: When `true`, the response includes detailed information about shard recoveries.
       schema:
         type: boolean
         default: false
@@ -26937,39 +27035,40 @@ components:
     tasks.list___query.group_by:
       in: query
       name: group_by
-      description: Key used to group tasks in the response.
+      description: Groups tasks by parent/child relationships or nodes.
       schema:
         $ref: '#/components/schemas/tasks._common___GroupBy'
+        default: nodes
       style: form
     tasks.list___query.nodes:
       name: nodes
       in: query
-      description: Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
+      description: A comma-separated list of node IDs or names to limit the returned information. Use `_local` to return information from the node you're connecting to, specify the node name to get information from specific nodes, or keep the parameter empty to get information from all nodes.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
+        description: A comma-separated list of node IDs or names to limit the returned information. Use `_local` to return information from the node you're connecting to, specify the node name to get information from specific nodes, or keep the parameter empty to get information from all nodes.
       explode: true
     tasks.list___query.parent_task_id:
       in: query
       name: parent_task_id
-      description: Parent task ID used to limit returned information. To return all tasks, omit this parameter or use a value of `-1`.
+      description: Returns tasks with a specified parent task ID (node_id:task_number). Keep empty or set to -1 to return all.
       schema:
         $ref: '#/components/schemas/_common___Id'
       style: form
     tasks.list___query.timeout:
       in: query
       name: timeout
-      description: Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+      description: The amount of time to wait for a response.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
     tasks.list___query.wait_for_completion:
       in: query
       name: wait_for_completion
-      description: If `true`, the request blocks until the operation is complete.
+      description: Waits for the matching task to complete. When `true`, the request is blocked until the task has completed.
       schema:
         type: boolean
         default: false
@@ -31976,6 +32075,12 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/cat.shards___ShardsRecord'
+      description: ''
+    ltr.stats___200:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___Stats'
       description: ''
     mget___200:
       content:
@@ -56404,6 +56509,67 @@ components:
         - dimension
         - training_field
         - training_index
+    ltr._common___CacheStat:
+      type: object
+      properties:
+        eviction_count:
+          type: integer
+        miss_count:
+          type: integer
+        entry_count:
+          type: integer
+        memory_usage_in_bytes:
+          type: integer
+        hit_count:
+          type: integer
+    ltr._common___CacheStats:
+      type: object
+      properties:
+        feature:
+          $ref: '#/components/schemas/ltr._common___CacheStat'
+        featureset:
+          $ref: '#/components/schemas/ltr._common___CacheStat'
+        model:
+          $ref: '#/components/schemas/ltr._common___CacheStat'
+    ltr._common___NodeStats:
+      type: object
+      properties:
+        cache:
+          $ref: '#/components/schemas/ltr._common___CacheStats'
+        request_total_count:
+          type: integer
+        request_error_count:
+          type: integer
+    ltr._common___Stats:
+      type: object
+      properties:
+        _nodes:
+          $ref: '#/components/schemas/_common___NodeStatistics'
+        cluster_name:
+          $ref: '#/components/schemas/_common___Name'
+        stores:
+          $ref: '#/components/schemas/ltr._common___StoreStats'
+        status:
+          type: string
+        nodes:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ltr._common___NodeStats'
+    ltr._common___StoreStat:
+      type: object
+      properties:
+        model_count:
+          type: integer
+        featureset_count:
+          type: integer
+        feature_count:
+          type: integer
+        status:
+          type: string
+    ltr._common___StoreStats:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/ltr._common___StoreStat'
     ml._common___Action:
       type: object
       properties:

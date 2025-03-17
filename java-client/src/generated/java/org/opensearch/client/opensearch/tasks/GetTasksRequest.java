@@ -84,7 +84,7 @@ public final class GetTasksRequest extends RequestBase implements ToCopyableBuil
     }
 
     /**
-     * Required - ID of the task.
+     * Required - The ID of the task.
      * <p>
      * API name: {@code task_id}
      * </p>
@@ -95,7 +95,7 @@ public final class GetTasksRequest extends RequestBase implements ToCopyableBuil
     }
 
     /**
-     * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+     * The amount of time to wait for a response.
      * <p>
      * API name: {@code timeout}
      * </p>
@@ -106,7 +106,7 @@ public final class GetTasksRequest extends RequestBase implements ToCopyableBuil
     }
 
     /**
-     * If <code>true</code>, the request blocks until the task has completed.
+     * Waits for the matching task to complete. When <code>true</code>, the request is blocked until the task has completed.
      * <p>
      * API name: {@code wait_for_completion}
      * </p>
@@ -168,7 +168,7 @@ public final class GetTasksRequest extends RequestBase implements ToCopyableBuil
         }
 
         /**
-         * Required - ID of the task.
+         * Required - The ID of the task.
          * <p>
          * API name: {@code task_id}
          * </p>
@@ -180,7 +180,7 @@ public final class GetTasksRequest extends RequestBase implements ToCopyableBuil
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * The amount of time to wait for a response.
          * <p>
          * API name: {@code timeout}
          * </p>
@@ -192,7 +192,7 @@ public final class GetTasksRequest extends RequestBase implements ToCopyableBuil
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * The amount of time to wait for a response.
          * <p>
          * API name: {@code timeout}
          * </p>
@@ -203,7 +203,7 @@ public final class GetTasksRequest extends RequestBase implements ToCopyableBuil
         }
 
         /**
-         * If <code>true</code>, the request blocks until the task has completed.
+         * Waits for the matching task to complete. When <code>true</code>, the request is blocked until the task has completed.
          * <p>
          * API name: {@code wait_for_completion}
          * </p>
