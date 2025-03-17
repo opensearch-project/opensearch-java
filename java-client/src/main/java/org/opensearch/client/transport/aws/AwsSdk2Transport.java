@@ -14,6 +14,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.UndeclaredThrowableException;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.URI;
@@ -694,7 +695,11 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             if (t instanceof Error) {
                 throw (Error) t;
             }
-            exception = (Exception) t;
+            if (t instanceof Exception) {
+                exception = (Exception) t;
+            } else {
+                exception = new UndeclaredThrowableException(t);
+            }
         }
         if (exception instanceof SocketTimeoutException) {
             SocketTimeoutException e = new SocketTimeoutException(exception.getMessage());
