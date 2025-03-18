@@ -31,7 +31,7 @@
  */
 
 allprojects {
-    group = "org.opensearch.client"
+    group = "com.walmart.platform.data"
 
     // Release manager provides a $VERSION. If not present, it's a local or CI snapshot build.
     version = System.getenv("VERSION") ?: System.getProperty("version") + "-SNAPSHOT"
