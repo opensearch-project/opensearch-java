@@ -1,4 +1,4 @@
-package org.opensearch.client.transport.httpclient5;
+package org.opensearch.client.opensearch.integTest.httpclient5;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -14,6 +14,8 @@ import org.apache.hc.core5.http.HttpHost;
 import org.junit.Test;
 import org.opensearch.client.transport.client_metrics.MetricOptions;
 import org.opensearch.client.transport.client_metrics.MetricTag;
+import org.opensearch.client.transport.httpclient5.ApacheHttpClient5Transport;
+import org.opensearch.client.transport.httpclient5.ApacheHttpClient5TransportBuilder;
 
 public class ApacheHttpClient5TransportTest {
     @Test
