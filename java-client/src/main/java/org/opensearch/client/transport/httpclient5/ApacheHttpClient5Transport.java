@@ -8,6 +8,10 @@
 
 package org.opensearch.client.transport.httpclient5;
 
+import static org.opensearch.client.transport.client_metrics.ExecutionMetricContext.DEFAULT_EMPTY_STATUS_CODE;
+import static org.opensearch.client.transport.client_metrics.MetricConstants.DEFAULT_REGISTRY;
+import static org.opensearch.client.transport.client_metrics.MetricTag.CLIENT_ID;
+
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Tags;
 import jakarta.json.stream.JsonGenerator;
@@ -109,10 +113,6 @@ import org.opensearch.client.transport.httpclient5.internal.HttpUriRequestProduc
 import org.opensearch.client.transport.httpclient5.internal.Node;
 import org.opensearch.client.transport.httpclient5.internal.NodeSelector;
 import org.opensearch.client.util.MissingRequiredPropertyException;
-
-import static org.opensearch.client.transport.client_metrics.ExecutionMetricContext.DEFAULT_EMPTY_STATUS_CODE;
-import static org.opensearch.client.transport.client_metrics.MetricConstants.DEFAULT_REGISTRY;
-import static org.opensearch.client.transport.client_metrics.MetricTag.CLIENT_ID;
 
 /**
  * Apache HttpClient 5 based client transport.
@@ -225,7 +225,6 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             future.completeExceptionally(ex);
         }
 
-
         return future.thenApply(r -> {
             try {
                 return (ResponseT) prepareResponse(r, endpoint);
@@ -295,11 +294,11 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
                     long endTime = System.currentTimeMillis();
                     try {
                         prepareRequestMetricContext(
-                                ((OpenSearchRequestFuture<Response>) listener).getContext(),
-                                request,
-                                httpResponse,
-                                hostName,
-                                endTime - startTime
+                            ((OpenSearchRequestFuture<Response>) listener).getContext(),
+                            request,
+                            httpResponse,
+                            hostName,
+                            endTime - startTime
                         );
                         ResponseOrResponseException responseOrResponseException = convertResponse(
                             request,
@@ -326,14 +325,14 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
                     long endTime = System.currentTimeMillis();
                     try {
                         ((OpenSearchRequestFuture<Response>) listener).getContext()
-                                .addNetworkRequestContext(
-                                        new NetworkRequestMetricContext(
-                                                hostName,
-                                                failure,
-                                                DEFAULT_EMPTY_STATUS_CODE,
-                                                Duration.ofMillis(endTime - startTime)
-                                        )
-                                );
+                            .addNetworkRequestContext(
+                                new NetworkRequestMetricContext(
+                                    hostName,
+                                    failure,
+                                    DEFAULT_EMPTY_STATUS_CODE,
+                                    Duration.ofMillis(endTime - startTime)
+                                )
+                            );
                         onFailure(context.node);
                         if (nodeTuple.nodes.hasNext()) {
                             performRequestAsync(nodeTuple, options, request, warningsHandler, listener);
@@ -349,14 +348,14 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
                 public void cancelled() {
                     CancellationException cancellationException = new CancellationException("request was cancelled");
                     ((OpenSearchRequestFuture<Response>) listener).getContext()
-                            .addNetworkRequestContext(
-                                    new NetworkRequestMetricContext(
-                                            hostName,
-                                            cancellationException,
-                                            DEFAULT_EMPTY_STATUS_CODE,
-                                            Duration.ofMillis(System.currentTimeMillis() - startTime)
-                                    )
-                            );
+                        .addNetworkRequestContext(
+                            new NetworkRequestMetricContext(
+                                hostName,
+                                cancellationException,
+                                DEFAULT_EMPTY_STATUS_CODE,
+                                Duration.ofMillis(System.currentTimeMillis() - startTime)
+                            )
+                        );
                     listener.completeExceptionally(cancellationException);
                 }
             }
@@ -368,17 +367,17 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
     }
 
     private void prepareRequestMetricContext(
-            RequestMetricContext requestMetricContext,
-            HttpUriRequestBase request,
-            ClassicHttpResponse httpResponse,
-            String hostName,
-            long executionTimeMS
+        RequestMetricContext requestMetricContext,
+        HttpUriRequestBase request,
+        ClassicHttpResponse httpResponse,
+        String hostName,
+        long executionTimeMS
     ) {
         NetworkRequestMetricContext networkRequestMetricContext = new NetworkRequestMetricContext(
-                hostName,
-                null,
-                httpResponse.getCode(),
-                Duration.ofMillis(executionTimeMS)
+            hostName,
+            null,
+            httpResponse.getCode(),
+            Duration.ofMillis(executionTimeMS)
         );
         // Because we compress data as it is being streamed, we can't obtain compressed size efficiently
         if (request.getEntity() != null && !compressionEnabled) {
@@ -969,6 +968,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             return numInactive;
         };
     }
+
     private static class RequestContext {
         private final Node node;
         private final AsyncRequestProducer requestProducer;

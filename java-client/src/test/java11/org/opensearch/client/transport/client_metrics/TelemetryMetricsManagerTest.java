@@ -1,3 +1,11 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
 package org.opensearch.client.transport.client_metrics;
 
 import static org.junit.Assert.assertEquals;
@@ -53,7 +61,7 @@ public class TelemetryMetricsManagerTest {
         context.setRequestExecutionTime(totalExecLatency);
         context.setStatusCode(200);
         context.addNetworkRequestContext(
-                new NetworkRequestMetricContext("localhost", new HttpConnectTimeoutException("error"), -1, errorLatency)
+            new NetworkRequestMetricContext("localhost", new HttpConnectTimeoutException("error"), -1, errorLatency)
         );
         context.addNetworkRequestContext(new NetworkRequestMetricContext("localhost2", null, 200, totalExecLatency.minus(errorLatency)));
 
@@ -72,9 +80,9 @@ public class TelemetryMetricsManagerTest {
 
         // Verify NETWORK_REQUEST meter
         List<Meter> meters = findMeters(
-                stubRegistry,
-                MetricName.NETWORK_REQUEST.toString(),
-                Tags.of(MetricTag.REQUEST.toString(), requestName)
+            stubRegistry,
+            MetricName.NETWORK_REQUEST.toString(),
+            Tags.of(MetricTag.REQUEST.toString(), requestName)
         );
         Set<String> hosts = new HashSet<>(Arrays.asList("localhost", "localhost2"));
         assertEquals(2, meters.size());
@@ -93,9 +101,9 @@ public class TelemetryMetricsManagerTest {
             } else {
                 assertEquals("200", status);
                 assertEquals(
-                        totalExecLatency.minus(errorLatency).toMillis(),
-                        ((Timer) networkRequestMeter).totalTime(TimeUnit.MILLISECONDS),
-                        0
+                    totalExecLatency.minus(errorLatency).toMillis(),
+                    ((Timer) networkRequestMeter).totalTime(TimeUnit.MILLISECONDS),
+                    0
                 );
             }
         }
@@ -110,7 +118,7 @@ public class TelemetryMetricsManagerTest {
         context.setRequestExecutionTime(Duration.ofMillis(50));
         context.setThrowable(new IOException("IO Errors"));
         context.addNetworkRequestContext(
-                new NetworkRequestMetricContext("localhost", new IOException("IO Errors"), -1, Duration.ofMillis(1))
+            new NetworkRequestMetricContext("localhost", new IOException("IO Errors"), -1, Duration.ofMillis(1))
         );
 
         TelemetryMetricsManager.recordRequestMetrics(requestName, meterOptions, context, MetricGroup.ALL);
@@ -143,7 +151,7 @@ public class TelemetryMetricsManagerTest {
         context.setStatusCode(409);
         context.setThrowable(new TransportException("Error"));
         context.addNetworkRequestContext(
-                new NetworkRequestMetricContext("localhost", new TransportException("Error"), 409, Duration.ofMillis(1))
+            new NetworkRequestMetricContext("localhost", new TransportException("Error"), 409, Duration.ofMillis(1))
         );
 
         TelemetryMetricsManager.recordRequestMetrics(requestName, meterOptions, context, MetricGroup.ALL);
@@ -172,9 +180,9 @@ public class TelemetryMetricsManagerTest {
         String requestName = "testRequest";
         RequestMetricContext context = new RequestMetricContext();
         MeterOptions meterOptions = new MeterOptions(
-                new double[] { 0.80, 0.85 },
-                Tags.of("CommonTag", "CommonTagValue"),
-                EnumSet.of(MetricTag.HOST_CONTACTED, MetricTag.HOST)
+            new double[] { 0.80, 0.85 },
+            Tags.of("CommonTag", "CommonTagValue"),
+            EnumSet.of(MetricTag.HOST_CONTACTED, MetricTag.HOST)
         );
         context.setRequestExecutionTime(Duration.ofMillis(150));
         context.setStatusCode(409);
@@ -182,7 +190,7 @@ public class TelemetryMetricsManagerTest {
         context.addNetworkRequestContext(new NetworkRequestMetricContext("localhost", null, 409, Duration.ofMillis(1)));
         context.addNetworkRequestContext(new NetworkRequestMetricContext("localhost1", null, 409, Duration.ofMillis(1)));
         context.addNetworkRequestContext(
-                new NetworkRequestMetricContext("localhost2", new TransportException("Error"), 409, Duration.ofMillis(1))
+            new NetworkRequestMetricContext("localhost2", new TransportException("Error"), 409, Duration.ofMillis(1))
         );
 
         TelemetryMetricsManager.recordRequestMetrics(requestName, meterOptions, context, MetricGroup.ALL);
@@ -220,18 +228,18 @@ public class TelemetryMetricsManagerTest {
         MeterOptions meterOptions = new MeterOptions(new double[] { 0.80, 0.85 }, Tags.of("CommonTag", "CommonTagValue"), null);
 
         NetworkRequestMetricContext networkRequestMetricContextFail = new NetworkRequestMetricContext(
-                "host1",
-                null,
-                500,
-                Duration.ofMillis(10)
+            "host1",
+            null,
+            500,
+            Duration.ofMillis(10)
         );
         networkRequestMetricContextFail.setRequestPayloadSize(500);
 
         NetworkRequestMetricContext networkRequestMetricContextSuccess = new NetworkRequestMetricContext(
-                "host1",
-                null,
-                200,
-                Duration.ofMillis(20)
+            "host1",
+            null,
+            200,
+            Duration.ofMillis(20)
         );
         networkRequestMetricContextSuccess.setRequestPayloadSize(500);
         networkRequestMetricContextSuccess.setResponsePayloadSize(200);
@@ -244,15 +252,15 @@ public class TelemetryMetricsManagerTest {
         TelemetryMetricsManager.recordRequestMetrics(requestName, meterOptions, requestMetricContext, MetricGroup.ALL);
 
         DistributionSummary requestPayloadMeter = (DistributionSummary) findMeter(
-                stubRegistry,
-                MetricName.REQUEST_PAYLOAD_SIZE.toString(),
-                Tags.empty()
+            stubRegistry,
+            MetricName.REQUEST_PAYLOAD_SIZE.toString(),
+            Tags.empty()
         ).get();
         assertEquals(2, requestPayloadMeter.count());
         DistributionSummary responsePayloadMeter = (DistributionSummary) findMeter(
-                stubRegistry,
-                MetricName.RESPONSE_PAYLOAD_SIZE.toString(),
-                Tags.empty()
+            stubRegistry,
+            MetricName.RESPONSE_PAYLOAD_SIZE.toString(),
+            Tags.empty()
         ).get();
         assertEquals(1, responsePayloadMeter.count());
     }

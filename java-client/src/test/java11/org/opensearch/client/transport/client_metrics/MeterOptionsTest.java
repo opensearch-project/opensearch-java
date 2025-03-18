@@ -1,3 +1,11 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
 package org.opensearch.client.transport.client_metrics;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -11,9 +19,9 @@ public class MeterOptionsTest {
     @Test
     public void testMeterOptions() {
         MeterOptions meterOptions = new MeterOptions(
-                new double[] { 0.80, 0.85 },
-                Tags.of("test1", "test2"),
-                EnumSet.of(MetricTag.CLIENT_ID)
+            new double[] { 0.80, 0.85 },
+            Tags.of("test1", "test2"),
+            EnumSet.of(MetricTag.CLIENT_ID)
         );
         assertArrayEquals(new double[] { 0.80, 0.85 }, meterOptions.getPercentiles(), 0);
         assertEquals(Tags.of("test1", "test2"), meterOptions.getCommonTags());

@@ -8,15 +8,14 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.TreeSet;
-
-import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -101,6 +100,7 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
         }
         return Settings.builder().put(defaultSettings).put(additionalMetricsSettings).build();
     }
+
     @Override
     protected String getProtocol() {
         return isHttps() ? "https" : "http";
@@ -148,6 +148,7 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
         customAsyncClients.add(customAsyncClient);
         return customAsyncClient;
     }
+
     protected String getTestRestCluster() {
         String cluster = System.getProperty("tests.rest.cluster");
         if (cluster == null || cluster.isEmpty()) {
@@ -159,6 +160,7 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
     public MeterRegistry getStubRegistry() {
         return stubRegistry;
     }
+
     @After
     protected void wipeAllOSIndices() throws IOException {
         // wipe all data streams first, otherwise deleting backing indices will encounter exception

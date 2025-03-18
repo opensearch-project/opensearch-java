@@ -15,6 +15,7 @@ import static org.opensearch.client.opensearch.integTest.OpenSearchJavaClientTes
 import static org.opensearch.test.rest.OpenSearchRestTestCase.CLIENT_PATH_PREFIX;
 import static org.opensearch.test.rest.OpenSearchRestTestCase.CLIENT_SOCKET_TIMEOUT;
 
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
@@ -25,8 +26,6 @@ import java.util.Map;
 import java.util.Optional;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
-
-import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import org.apache.hc.client5.http.auth.AuthScope;
 import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
 import org.apache.hc.client5.http.impl.auth.BasicCredentialsProvider;
@@ -124,9 +123,9 @@ interface HttpClient5TransportSupport extends OpenSearchTransportSupport {
         }
         if (settings.hasValue(METRICS_ENABLED) && settings.getAsBoolean(METRICS_ENABLED, false)) {
             MetricOptions.MetricOptionsBuilder metricOptionsBuilder = MetricOptions.builder()
-                    .setMeterRegistry(new SimpleMeterRegistry())
-                    .setPercentiles(0.95)
-                    .setMetricsEnabled(true);
+                .setMeterRegistry(new SimpleMeterRegistry())
+                .setPercentiles(0.95)
+                .setMetricsEnabled(true);
             if (settings.hasValue(CUSTOM_CLIENT_ID)) {
                 metricOptionsBuilder.setClientId(settings.get(CUSTOM_CLIENT_ID));
             }
