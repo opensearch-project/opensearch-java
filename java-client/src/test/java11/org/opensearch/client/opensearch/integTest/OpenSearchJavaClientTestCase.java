@@ -14,6 +14,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.TreeSet;
+
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -27,6 +30,7 @@ import org.opensearch.Version;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.RestClientBuilder;
 import org.opensearch.client.opensearch.IOUtils;
+import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch.cat.IndicesResponse;
@@ -35,16 +39,24 @@ import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
 import org.opensearch.client.opensearch.nodes.NodesInfoResponse;
 import org.opensearch.client.opensearch.nodes.info.NodeInfo;
+import org.opensearch.client.transport.client_metrics.TelemetryMetricsManager;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.test.rest.OpenSearchRestTestCase;
 
 public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCase implements OpenSearchTransportSupport {
+
+    public static String METRICS_ENABLED = "metrics.enabled";
+    public static String CUSTOM_CLIENT_ID = "custom.client.id";
+    public static String METRICS_GROUPS = "metrics.groups";
+    public static String COMPRESSION_ENABLED = "compression.enabled";
     private static final List<String> systemIndices = List.of(".opensearch-observability", ".opendistro_security", ".plugins-ml-config");
     private static OpenSearchClient javaClient;
+    private static final List<OpenSearchAsyncClient> customAsyncClients = new ArrayList<>();
     private static OpenSearchClient adminJavaClient;
 
     private static TreeSet<Version> nodeVersions;
     private static List<HttpHost> clusterHosts;
+    private MeterRegistry stubRegistry = new SimpleMeterRegistry();
 
     @Before
     public void initJavaClient() throws IOException {
@@ -75,6 +87,20 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
         }
     }
 
+    protected HttpHost[] getDefaultHosts() {
+        if (clusterHosts != null) {
+            return clusterHosts.toArray(new HttpHost[clusterHosts.size()]);
+        }
+        return new HttpHost[0];
+    }
+
+    protected Settings restClientSettingsWithMetrics(Settings additionalMetricsSettings) {
+        Settings defaultSettings = Settings.builder().put(restClientSettings()).put(METRICS_ENABLED, true).build();
+        if (additionalMetricsSettings == null || additionalMetricsSettings.isEmpty()) {
+            return defaultSettings;
+        }
+        return Settings.builder().put(defaultSettings).put(additionalMetricsSettings).build();
+    }
     @Override
     protected String getProtocol() {
         return isHttps() ? "https" : "http";
@@ -117,6 +143,11 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
         return adminJavaClient;
     }
 
+    protected synchronized OpenSearchAsyncClient getCustomAsyncClient(HttpHost[] hosts, Settings clientSettings) throws IOException {
+        OpenSearchAsyncClient customAsyncClient = buildAsyncJavaClient(clientSettings, hosts);
+        customAsyncClients.add(customAsyncClient);
+        return customAsyncClient;
+    }
     protected String getTestRestCluster() {
         String cluster = System.getProperty("tests.rest.cluster");
         if (cluster == null || cluster.isEmpty()) {
@@ -125,6 +156,9 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
         return cluster;
     }
 
+    public MeterRegistry getStubRegistry() {
+        return stubRegistry;
+    }
     @After
     protected void wipeAllOSIndices() throws IOException {
         // wipe all data streams first, otherwise deleting backing indices will encounter exception
@@ -139,6 +173,8 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
                 adminJavaClient().indices().delete(new DeleteIndexRequest.Builder().index(index.index()).build());
             }
         }
+        TelemetryMetricsManager.removeRegistry(stubRegistry);
+        cleanUpCustomAsyncClients();
     }
 
     @AfterClass
@@ -162,6 +198,17 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
     @Override
     protected boolean preserveIndicesUponCompletion() {
         return true;
+    }
+
+    private synchronized void cleanUpCustomAsyncClients() {
+        if (!customAsyncClients.isEmpty()) {
+            for (OpenSearchAsyncClient client : customAsyncClients) {
+                try {
+                    IOUtils.closeQueitly(client._transport());
+                } catch (Exception ignored) {}
+            }
+            customAsyncClients.clear();
+        }
     }
 
     protected Version getServerVersion() throws IOException {
