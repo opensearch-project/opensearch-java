@@ -43665,6 +43665,8 @@ components:
                 - wildcard
             null_value:
               type: string
+            normalizer:
+              type: string
           required:
             - type
     _common.mapping___XyPointProperty:
