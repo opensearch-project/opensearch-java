@@ -44,6 +44,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ## [Unreleased 2.x]
 ### Added
+- Added `normalizer` to wildcard field ([#1489](https://github.com/opensearch-project/opensearch-java/pull/1489))
 
 ### Dependencies
 
