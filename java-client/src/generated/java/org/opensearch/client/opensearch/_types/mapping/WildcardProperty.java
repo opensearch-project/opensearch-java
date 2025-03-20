@@ -61,12 +61,16 @@ public class WildcardProperty extends DocValuesPropertyBase
         ToCopyableBuilder<WildcardProperty.Builder, WildcardProperty> {
 
     @Nullable
+    private final String normalizer;
+
+    @Nullable
     private final String nullValue;
 
     // ---------------------------------------------------------------------------------------------
 
     private WildcardProperty(Builder builder) {
         super(builder);
+        this.normalizer = builder.normalizer;
         this.nullValue = builder.nullValue;
     }
 
@@ -83,6 +87,14 @@ public class WildcardProperty extends DocValuesPropertyBase
     }
 
     /**
+     * API name: {@code normalizer}
+     */
+    @Nullable
+    public final String normalizer() {
+        return this.normalizer;
+    }
+
+    /**
      * API name: {@code null_value}
      */
     @Nullable
@@ -93,6 +105,11 @@ public class WildcardProperty extends DocValuesPropertyBase
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.write("type", "wildcard");
         super.serializeInternal(generator, mapper);
+        if (this.normalizer != null) {
+            generator.writeKey("normalizer");
+            generator.write(this.normalizer);
+        }
+
         if (this.nullValue != null) {
             generator.writeKey("null_value");
             generator.write(this.nullValue);
@@ -119,17 +136,21 @@ public class WildcardProperty extends DocValuesPropertyBase
         implements
             CopyableBuilder<Builder, WildcardProperty> {
         @Nullable
+        private String normalizer;
+        @Nullable
         private String nullValue;
 
         public Builder() {}
 
         private Builder(WildcardProperty o) {
             super(o);
+            this.normalizer = o.normalizer;
             this.nullValue = o.nullValue;
         }
 
         private Builder(Builder o) {
             super(o);
+            this.normalizer = o.normalizer;
             this.nullValue = o.nullValue;
         }
 
@@ -142,6 +163,15 @@ public class WildcardProperty extends DocValuesPropertyBase
         @Override
         @Nonnull
         protected Builder self() {
+            return this;
+        }
+
+        /**
+         * API name: {@code normalizer}
+         */
+        @Nonnull
+        public final Builder normalizer(@Nullable String value) {
+            this.normalizer = value;
             return this;
         }
 
@@ -180,6 +210,7 @@ public class WildcardProperty extends DocValuesPropertyBase
 
     protected static void setupWildcardPropertyDeserializer(ObjectDeserializer<WildcardProperty.Builder> op) {
         setupDocValuesPropertyBaseDeserializer(op);
+        op.add(Builder::normalizer, JsonpDeserializer.stringDeserializer(), "normalizer");
         op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
 
         op.ignore("type");
@@ -188,6 +219,7 @@ public class WildcardProperty extends DocValuesPropertyBase
     @Override
     public int hashCode() {
         int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.normalizer);
         result = 31 * result + Objects.hashCode(this.nullValue);
         return result;
     }
@@ -200,6 +232,6 @@ public class WildcardProperty extends DocValuesPropertyBase
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         WildcardProperty other = (WildcardProperty) o;
-        return Objects.equals(this.nullValue, other.nullValue);
+        return Objects.equals(this.normalizer, other.normalizer) && Objects.equals(this.nullValue, other.nullValue);
     }
 }
