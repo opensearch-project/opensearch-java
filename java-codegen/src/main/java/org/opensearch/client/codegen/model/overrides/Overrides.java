@@ -58,6 +58,7 @@ public class Overrides {
                 .with(schema("_common.mapping", "PropertyBase"), so -> so.withShouldGenerate(ShouldGenerate.Never))
                 .with(schema("_common.mapping", "IcuCollationKeywordProperty"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(schema("_common.mapping", "KnnVectorProperty"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+                .with(schema("_common.mapping", "WildcardProperty"), so -> so.withShouldGenerate(ShouldGenerate.Always))
 
                 // TODO: Remove this to generate query types
                 .with(schema("_common", "DistanceUnit"), so -> so.withShouldGenerate(ShouldGenerate.Never))
