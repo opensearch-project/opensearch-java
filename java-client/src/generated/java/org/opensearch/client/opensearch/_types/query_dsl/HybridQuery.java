@@ -59,6 +59,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class HybridQuery extends QueryBase implements QueryVariant, ToCopyableBuilder<HybridQuery.Builder, HybridQuery> {
 
+    @Nullable
+    private final Number paginationDepth;
+
     @Nonnull
     private final List<Query> queries;
 
@@ -66,6 +69,7 @@ public class HybridQuery extends QueryBase implements QueryVariant, ToCopyableBu
 
     private HybridQuery(Builder builder) {
         super(builder);
+        this.paginationDepth = builder.paginationDepth;
         this.queries = ApiTypeHelper.unmodifiable(builder.queries);
     }
 
@@ -82,6 +86,14 @@ public class HybridQuery extends QueryBase implements QueryVariant, ToCopyableBu
     }
 
     /**
+     * API name: {@code pagination_depth}
+     */
+    @Nullable
+    public final Number paginationDepth() {
+        return this.paginationDepth;
+    }
+
+    /**
      * API name: {@code queries}
      */
     @Nonnull
@@ -91,6 +103,11 @@ public class HybridQuery extends QueryBase implements QueryVariant, ToCopyableBu
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         super.serializeInternal(generator, mapper);
+        if (this.paginationDepth != null) {
+            generator.writeKey("pagination_depth");
+            generator.write(this.paginationDepth.doubleValue());
+        }
+
         if (ApiTypeHelper.isDefined(this.queries)) {
             generator.writeKey("queries");
             generator.writeStartArray();
@@ -119,17 +136,21 @@ public class HybridQuery extends QueryBase implements QueryVariant, ToCopyableBu
      */
     public static class Builder extends QueryBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, HybridQuery> {
         @Nullable
+        private Number paginationDepth;
+        @Nullable
         private List<Query> queries;
 
         public Builder() {}
 
         private Builder(HybridQuery o) {
             super(o);
+            this.paginationDepth = o.paginationDepth;
             this.queries = _listCopy(o.queries);
         }
 
         private Builder(Builder o) {
             super(o);
+            this.paginationDepth = o.paginationDepth;
             this.queries = _listCopy(o.queries);
         }
 
@@ -142,6 +163,15 @@ public class HybridQuery extends QueryBase implements QueryVariant, ToCopyableBu
         @Override
         @Nonnull
         protected Builder self() {
+            return this;
+        }
+
+        /**
+         * API name: {@code pagination_depth}
+         */
+        @Nonnull
+        public final Builder paginationDepth(@Nullable Number value) {
+            this.paginationDepth = value;
             return this;
         }
 
@@ -209,12 +239,14 @@ public class HybridQuery extends QueryBase implements QueryVariant, ToCopyableBu
 
     protected static void setupHybridQueryDeserializer(ObjectDeserializer<HybridQuery.Builder> op) {
         setupQueryBaseDeserializer(op);
+        op.add(Builder::paginationDepth, JsonpDeserializer.numberDeserializer(), "pagination_depth");
         op.add(Builder::queries, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "queries");
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(this.paginationDepth);
         result = 31 * result + Objects.hashCode(this.queries);
         return result;
     }
@@ -227,6 +259,6 @@ public class HybridQuery extends QueryBase implements QueryVariant, ToCopyableBu
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         HybridQuery other = (HybridQuery) o;
-        return Objects.equals(this.queries, other.queries);
+        return Objects.equals(this.paginationDepth, other.paginationDepth) && Objects.equals(this.queries, other.queries);
     }
 }
