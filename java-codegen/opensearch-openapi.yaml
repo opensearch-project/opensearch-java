@@ -44296,6 +44296,8 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
+            pagination_depth:
+              type: number
     _common.query_dsl___IdsQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
