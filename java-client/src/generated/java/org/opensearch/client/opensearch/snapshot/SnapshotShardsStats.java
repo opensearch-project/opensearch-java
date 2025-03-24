@@ -37,16 +37,17 @@
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -58,27 +59,33 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class SnapshotShardsStats implements PlainJsonSerializable, ToCopyableBuilder<SnapshotShardsStats.Builder, SnapshotShardsStats> {
 
-    private final long done;
+    @Nullable
+    private final Long done;
 
-    private final long failed;
+    @Nullable
+    private final Long failed;
 
-    private final long finalizing;
+    @Nullable
+    private final Long finalizing;
 
-    private final long initializing;
+    @Nullable
+    private final Long initializing;
 
-    private final long started;
+    @Nullable
+    private final Long started;
 
-    private final long total;
+    @Nullable
+    private final Long total;
 
     // ---------------------------------------------------------------------------------------------
 
     private SnapshotShardsStats(Builder builder) {
-        this.done = ApiTypeHelper.requireNonNull(builder.done, this, "done");
-        this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
-        this.finalizing = ApiTypeHelper.requireNonNull(builder.finalizing, this, "finalizing");
-        this.initializing = ApiTypeHelper.requireNonNull(builder.initializing, this, "initializing");
-        this.started = ApiTypeHelper.requireNonNull(builder.started, this, "started");
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.done = builder.done;
+        this.failed = builder.failed;
+        this.finalizing = builder.finalizing;
+        this.initializing = builder.initializing;
+        this.started = builder.started;
+        this.total = builder.total;
     }
 
     public static SnapshotShardsStats of(Function<SnapshotShardsStats.Builder, ObjectBuilder<SnapshotShardsStats>> fn) {
@@ -86,44 +93,68 @@ public class SnapshotShardsStats implements PlainJsonSerializable, ToCopyableBui
     }
 
     /**
-     * Required - API name: {@code done}
+     * The number of completed shard snapshots.
+     * <p>
+     * API name: {@code done}
+     * </p>
      */
-    public final long done() {
+    @Nullable
+    public final Long done() {
         return this.done;
     }
 
     /**
-     * Required - API name: {@code failed}
+     * The number of failed shard snapshots.
+     * <p>
+     * API name: {@code failed}
+     * </p>
      */
-    public final long failed() {
+    @Nullable
+    public final Long failed() {
         return this.failed;
     }
 
     /**
-     * Required - API name: {@code finalizing}
+     * The number of finalizing shard snapshots.
+     * <p>
+     * API name: {@code finalizing}
+     * </p>
      */
-    public final long finalizing() {
+    @Nullable
+    public final Long finalizing() {
         return this.finalizing;
     }
 
     /**
-     * Required - API name: {@code initializing}
+     * The number of initializing shard snapshots.
+     * <p>
+     * API name: {@code initializing}
+     * </p>
      */
-    public final long initializing() {
+    @Nullable
+    public final Long initializing() {
         return this.initializing;
     }
 
     /**
-     * Required - API name: {@code started}
+     * The number of started shard snapshots.
+     * <p>
+     * API name: {@code started}
+     * </p>
      */
-    public final long started() {
+    @Nullable
+    public final Long started() {
         return this.started;
     }
 
     /**
-     * Required - API name: {@code total}
+     * The total number of shard snapshots.
+     * <p>
+     * API name: {@code total}
+     * </p>
      */
-    public final long total() {
+    @Nullable
+    public final Long total() {
         return this.total;
     }
 
@@ -138,23 +169,35 @@ public class SnapshotShardsStats implements PlainJsonSerializable, ToCopyableBui
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("done");
-        generator.write(this.done);
+        if (this.done != null) {
+            generator.writeKey("done");
+            generator.write(this.done);
+        }
 
-        generator.writeKey("failed");
-        generator.write(this.failed);
+        if (this.failed != null) {
+            generator.writeKey("failed");
+            generator.write(this.failed);
+        }
 
-        generator.writeKey("finalizing");
-        generator.write(this.finalizing);
+        if (this.finalizing != null) {
+            generator.writeKey("finalizing");
+            generator.write(this.finalizing);
+        }
 
-        generator.writeKey("initializing");
-        generator.write(this.initializing);
+        if (this.initializing != null) {
+            generator.writeKey("initializing");
+            generator.write(this.initializing);
+        }
 
-        generator.writeKey("started");
-        generator.write(this.started);
+        if (this.started != null) {
+            generator.writeKey("started");
+            generator.write(this.started);
+        }
 
-        generator.writeKey("total");
-        generator.write(this.total);
+        if (this.total != null) {
+            generator.writeKey("total");
+            generator.write(this.total);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -174,11 +217,17 @@ public class SnapshotShardsStats implements PlainJsonSerializable, ToCopyableBui
      * Builder for {@link SnapshotShardsStats}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotShardsStats> {
+        @Nullable
         private Long done;
+        @Nullable
         private Long failed;
+        @Nullable
         private Long finalizing;
+        @Nullable
         private Long initializing;
+        @Nullable
         private Long started;
+        @Nullable
         private Long total;
 
         public Builder() {}
@@ -208,55 +257,73 @@ public class SnapshotShardsStats implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code done}
+         * The number of completed shard snapshots.
+         * <p>
+         * API name: {@code done}
+         * </p>
          */
         @Nonnull
-        public final Builder done(long value) {
+        public final Builder done(@Nullable Long value) {
             this.done = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code failed}
+         * The number of failed shard snapshots.
+         * <p>
+         * API name: {@code failed}
+         * </p>
          */
         @Nonnull
-        public final Builder failed(long value) {
+        public final Builder failed(@Nullable Long value) {
             this.failed = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code finalizing}
+         * The number of finalizing shard snapshots.
+         * <p>
+         * API name: {@code finalizing}
+         * </p>
          */
         @Nonnull
-        public final Builder finalizing(long value) {
+        public final Builder finalizing(@Nullable Long value) {
             this.finalizing = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code initializing}
+         * The number of initializing shard snapshots.
+         * <p>
+         * API name: {@code initializing}
+         * </p>
          */
         @Nonnull
-        public final Builder initializing(long value) {
+        public final Builder initializing(@Nullable Long value) {
             this.initializing = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code started}
+         * The number of started shard snapshots.
+         * <p>
+         * API name: {@code started}
+         * </p>
          */
         @Nonnull
-        public final Builder started(long value) {
+        public final Builder started(@Nullable Long value) {
             this.started = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code total}
+         * The total number of shard snapshots.
+         * <p>
+         * API name: {@code total}
+         * </p>
          */
         @Nonnull
-        public final Builder total(long value) {
+        public final Builder total(@Nullable Long value) {
             this.total = value;
             return this;
         }
@@ -297,12 +364,12 @@ public class SnapshotShardsStats implements PlainJsonSerializable, ToCopyableBui
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Long.hashCode(this.done);
-        result = 31 * result + Long.hashCode(this.failed);
-        result = 31 * result + Long.hashCode(this.finalizing);
-        result = 31 * result + Long.hashCode(this.initializing);
-        result = 31 * result + Long.hashCode(this.started);
-        result = 31 * result + Long.hashCode(this.total);
+        result = 31 * result + Objects.hashCode(this.done);
+        result = 31 * result + Objects.hashCode(this.failed);
+        result = 31 * result + Objects.hashCode(this.finalizing);
+        result = 31 * result + Objects.hashCode(this.initializing);
+        result = 31 * result + Objects.hashCode(this.started);
+        result = 31 * result + Objects.hashCode(this.total);
         return result;
     }
 
@@ -311,11 +378,11 @@ public class SnapshotShardsStats implements PlainJsonSerializable, ToCopyableBui
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         SnapshotShardsStats other = (SnapshotShardsStats) o;
-        return this.done == other.done
-            && this.failed == other.failed
-            && this.finalizing == other.finalizing
-            && this.initializing == other.initializing
-            && this.started == other.started
-            && this.total == other.total;
+        return Objects.equals(this.done, other.done)
+            && Objects.equals(this.failed, other.failed)
+            && Objects.equals(this.finalizing, other.finalizing)
+            && Objects.equals(this.initializing, other.initializing)
+            && Objects.equals(this.started, other.started)
+            && Objects.equals(this.total, other.total);
     }
 }

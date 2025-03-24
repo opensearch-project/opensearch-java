@@ -57,7 +57,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: snapshot.get_repository.Request
 
 /**
- * Returns information about a repository.
+ * Returns information about a snapshot repository.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public final class GetRepositoryRequest extends RequestBase
@@ -92,7 +92,8 @@ public final class GetRepositoryRequest extends RequestBase
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+     * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -103,7 +104,7 @@ public final class GetRepositoryRequest extends RequestBase
     }
 
     /**
-     * Return local information, do not retrieve the state from cluster-manager node.
+     * Whether to get information from the local node.
      * <p>
      * API name: {@code local}
      * </p>
@@ -126,7 +127,7 @@ public final class GetRepositoryRequest extends RequestBase
     }
 
     /**
-     * A comma-separated list of repository names
+     * A comma-separated list of repository names.
      * <p>
      * API name: {@code repository}
      * </p>
@@ -193,7 +194,8 @@ public final class GetRepositoryRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -205,7 +207,8 @@ public final class GetRepositoryRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -216,7 +219,7 @@ public final class GetRepositoryRequest extends RequestBase
         }
 
         /**
-         * Return local information, do not retrieve the state from cluster-manager node.
+         * Whether to get information from the local node.
          * <p>
          * API name: {@code local}
          * </p>
@@ -253,7 +256,7 @@ public final class GetRepositoryRequest extends RequestBase
         }
 
         /**
-         * A comma-separated list of repository names
+         * A comma-separated list of repository names.
          * <p>
          * API name: {@code repository}
          * </p>
@@ -269,7 +272,7 @@ public final class GetRepositoryRequest extends RequestBase
         }
 
         /**
-         * A comma-separated list of repository names
+         * A comma-separated list of repository names.
          * <p>
          * API name: {@code repository}
          * </p>

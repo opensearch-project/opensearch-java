@@ -55,7 +55,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: ingest.get_pipeline.Request
 
 /**
- * Returns a pipeline.
+ * Returns an ingest pipeline.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public final class GetPipelineRequest extends RequestBase implements ToCopyableBuilder<GetPipelineRequest.Builder, GetPipelineRequest> {
@@ -84,7 +84,7 @@ public final class GetPipelineRequest extends RequestBase implements ToCopyableB
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * The amount of time allowed to establish a connection to the cluster manager node.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -95,7 +95,7 @@ public final class GetPipelineRequest extends RequestBase implements ToCopyableB
     }
 
     /**
-     * Comma-separated list of pipeline IDs to retrieve. Wildcard (<code>*</code>) expressions are supported. To get all ingest pipelines,
+     * A comma-separated list of pipeline IDs to retrieve. Wildcard (<code>*</code>) expressions are supported. To get all ingest pipelines,
      * omit this parameter or use <code>*</code>.
      * <p>
      * API name: {@code id}
@@ -172,7 +172,7 @@ public final class GetPipelineRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time allowed to establish a connection to the cluster manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -184,7 +184,7 @@ public final class GetPipelineRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time allowed to establish a connection to the cluster manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -195,7 +195,7 @@ public final class GetPipelineRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * Comma-separated list of pipeline IDs to retrieve. Wildcard (<code>*</code>) expressions are supported. To get all ingest
+         * A comma-separated list of pipeline IDs to retrieve. Wildcard (<code>*</code>) expressions are supported. To get all ingest
          * pipelines, omit this parameter or use <code>*</code>.
          * <p>
          * API name: {@code id}

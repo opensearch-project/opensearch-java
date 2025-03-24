@@ -98,7 +98,8 @@ public final class GetSnapshotRequest extends RequestBase implements ToCopyableB
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+     * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -109,7 +110,7 @@ public final class GetSnapshotRequest extends RequestBase implements ToCopyableB
     }
 
     /**
-     * If <code>false</code>, the request returns an error for any snapshots that are unavailable.
+     * When <code>false</code>, the request returns an error for any snapshots that are unavailable.
      * <p>
      * API name: {@code ignore_unavailable}
      * </p>
@@ -133,7 +134,7 @@ public final class GetSnapshotRequest extends RequestBase implements ToCopyableB
     }
 
     /**
-     * Required - Comma-separated list of snapshot repository names used to limit the request. Wildcard (*) expressions are supported.
+     * Required - A comma-separated list of snapshot repository names used to limit the request. Wildcard (*) expressions are supported.
      * <p>
      * API name: {@code repository}
      * </p>
@@ -146,7 +147,7 @@ public final class GetSnapshotRequest extends RequestBase implements ToCopyableB
     /**
      * Required -
      * <p>
-     * Comma-separated list of snapshot names to retrieve. Also accepts wildcards (<code>*</code>).
+     * A comma-separated list of snapshot names to retrieve. Also accepts wildcard expressions. (<code>*</code>).
      * </p>
      * <ul>
      * <li>To get information about all snapshots in a registered repository, use a wildcard (<code>*</code>) or <code>_all</code>.</li>
@@ -162,8 +163,8 @@ public final class GetSnapshotRequest extends RequestBase implements ToCopyableB
     }
 
     /**
-     * If <code>true</code>, returns additional information about each snapshot such as the version of OpenSearch which took the snapshot,
-     * the start and end times of the snapshot, and the number of shards snapshotted.
+     * When <code>true</code>, returns additional information about each snapshot such as the version of OpenSearch which took the snapshot,
+     * the start and end times of the snapshot, and the number of shards contained in the snapshot.
      * <p>
      * API name: {@code verbose}
      * </p>
@@ -236,7 +237,8 @@ public final class GetSnapshotRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -248,7 +250,8 @@ public final class GetSnapshotRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -259,7 +262,7 @@ public final class GetSnapshotRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * If <code>false</code>, the request returns an error for any snapshots that are unavailable.
+         * When <code>false</code>, the request returns an error for any snapshots that are unavailable.
          * <p>
          * API name: {@code ignore_unavailable}
          * </p>
@@ -298,7 +301,7 @@ public final class GetSnapshotRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * Required - Comma-separated list of snapshot repository names used to limit the request. Wildcard (*) expressions are supported.
+         * Required - A comma-separated list of snapshot repository names used to limit the request. Wildcard (*) expressions are supported.
          * <p>
          * API name: {@code repository}
          * </p>
@@ -312,7 +315,7 @@ public final class GetSnapshotRequest extends RequestBase implements ToCopyableB
         /**
          * Required -
          * <p>
-         * Comma-separated list of snapshot names to retrieve. Also accepts wildcards (<code>*</code>).
+         * A comma-separated list of snapshot names to retrieve. Also accepts wildcard expressions. (<code>*</code>).
          * </p>
          * <ul>
          * <li>To get information about all snapshots in a registered repository, use a wildcard (<code>*</code>) or <code>_all</code>.</li>
@@ -335,7 +338,7 @@ public final class GetSnapshotRequest extends RequestBase implements ToCopyableB
         /**
          * Required -
          * <p>
-         * Comma-separated list of snapshot names to retrieve. Also accepts wildcards (<code>*</code>).
+         * A comma-separated list of snapshot names to retrieve. Also accepts wildcard expressions. (<code>*</code>).
          * </p>
          * <ul>
          * <li>To get information about all snapshots in a registered repository, use a wildcard (<code>*</code>) or <code>_all</code>.</li>
@@ -356,8 +359,8 @@ public final class GetSnapshotRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * If <code>true</code>, returns additional information about each snapshot such as the version of OpenSearch which took the
-         * snapshot, the start and end times of the snapshot, and the number of shards snapshotted.
+         * When <code>true</code>, returns additional information about each snapshot such as the version of OpenSearch which took the
+         * snapshot, the start and end times of the snapshot, and the number of shards contained in the snapshot.
          * <p>
          * API name: {@code verbose}
          * </p>

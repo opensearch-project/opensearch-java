@@ -56,7 +56,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: ingest.delete_pipeline.Request
 
 /**
- * Deletes a pipeline.
+ * Deletes an ingest pipeline.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public final class DeletePipelineRequest extends RequestBase
@@ -91,7 +91,7 @@ public final class DeletePipelineRequest extends RequestBase
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * The amount of time allowed to establish a connection to the cluster manager node.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -102,8 +102,8 @@ public final class DeletePipelineRequest extends RequestBase
     }
 
     /**
-     * Required - Pipeline ID or wildcard expression of pipeline IDs used to limit the request. To delete all ingest pipelines in a cluster,
-     * use a value of <code>*</code>.
+     * Required - The pipeline ID or wildcard expression of pipeline IDs used to limit the request. To delete all ingest pipelines in a
+     * cluster, use a value of <code>*</code>.
      * <p>
      * API name: {@code id}
      * </p>
@@ -127,7 +127,7 @@ public final class DeletePipelineRequest extends RequestBase
     }
 
     /**
-     * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+     * The amount of time to wait for a response.
      * <p>
      * API name: {@code timeout}
      * </p>
@@ -193,7 +193,7 @@ public final class DeletePipelineRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time allowed to establish a connection to the cluster manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -205,7 +205,7 @@ public final class DeletePipelineRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time allowed to establish a connection to the cluster manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -216,7 +216,7 @@ public final class DeletePipelineRequest extends RequestBase
         }
 
         /**
-         * Required - Pipeline ID or wildcard expression of pipeline IDs used to limit the request. To delete all ingest pipelines in a
+         * Required - The pipeline ID or wildcard expression of pipeline IDs used to limit the request. To delete all ingest pipelines in a
          * cluster, use a value of <code>*</code>.
          * <p>
          * API name: {@code id}
@@ -256,7 +256,7 @@ public final class DeletePipelineRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * The amount of time to wait for a response.
          * <p>
          * API name: {@code timeout}
          * </p>
@@ -268,7 +268,7 @@ public final class DeletePipelineRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * The amount of time to wait for a response.
          * <p>
          * API name: {@code timeout}
          * </p>

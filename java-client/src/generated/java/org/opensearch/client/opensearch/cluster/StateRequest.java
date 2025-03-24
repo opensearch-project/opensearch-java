@@ -156,7 +156,9 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
     }
 
     /**
-     * Returns settings in a flat format.
+     * Whether to return settings in the flat form, which can improve readability, especially for heavily nested settings. For example, the
+     * flat form of <code>&quot;cluster&quot;: { &quot;max_shards_per_node&quot;: 500 }</code> is
+     * <code>&quot;cluster.max_shards_per_node&quot;: &quot;500&quot;</code>.
      * <p>
      * API name: {@code flat_settings}
      * </p>
@@ -215,7 +217,8 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
     }
 
     /**
-     * Limits the information returned to only the specified metrics.
+     * Limits the information returned to only the
+     * <a href="https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/#metric-groups">specified metric groups</a>.
      * <p>
      * API name: {@code metric}
      * </p>
@@ -402,7 +405,9 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Returns settings in a flat format.
+         * Whether to return settings in the flat form, which can improve readability, especially for heavily nested settings. For example,
+         * the flat form of <code>&quot;cluster&quot;: { &quot;max_shards_per_node&quot;: 500 }</code> is
+         * <code>&quot;cluster.max_shards_per_node&quot;: &quot;500&quot;</code>.
          * <p>
          * API name: {@code flat_settings}
          * </p>
@@ -501,7 +506,8 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Limits the information returned to only the specified metrics.
+         * Limits the information returned to only the
+         * <a href="https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/#metric-groups">specified metric groups</a>.
          * <p>
          * API name: {@code metric}
          * </p>
@@ -517,7 +523,8 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Limits the information returned to only the specified metrics.
+         * Limits the information returned to only the
+         * <a href="https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/#metric-groups">specified metric groups</a>.
          * <p>
          * API name: {@code metric}
          * </p>

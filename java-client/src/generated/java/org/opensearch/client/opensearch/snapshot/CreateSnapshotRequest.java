@@ -65,7 +65,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: snapshot.create.Request
 
 /**
- * Creates a snapshot in a repository.
+ * Creates a snapshot within an existing repository.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
@@ -130,7 +130,8 @@ public final class CreateSnapshotRequest extends RequestBase
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+     * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -141,10 +142,10 @@ public final class CreateSnapshotRequest extends RequestBase
     }
 
     /**
-     * Feature states to include in the snapshot. Each feature state includes one or more system indexes containing related data. You can
-     * view a list of eligible features using the get features API. If <code>include_global_state</code> is <code>true</code>, all current
-     * feature states are included by default. If <code>include_global_state</code> is <code>false</code>, no feature states are included by
-     * default.
+     * A list of feature states to include in the snapshot. Each feature state includes one or more system indexes which contain related
+     * data. You can view a list of features using the Get Feature API.<br />
+     * If <code>include_global_state</code> is <code>true</code>, all current feature states are included by default. If
+     * <code>include_global_state</code> is <code>false</code>, no feature states are included by default.
      * <p>
      * API name: {@code feature_states}
      * </p>
@@ -155,8 +156,8 @@ public final class CreateSnapshotRequest extends RequestBase
     }
 
     /**
-     * If <code>true</code>, the request ignores data streams and indexes in <code>indexes</code> that are missing or closed. If
-     * <code>false</code>, the request returns an error for any data stream or index that is missing or closed.
+     * When <code>true</code>, the request ignores any data streams and indexes that are missing or closed. When <code>false</code>, the
+     * request returns an error for any data streams or indexes that is missing or closed.
      * <p>
      * API name: {@code ignore_unavailable}
      * </p>
@@ -167,9 +168,9 @@ public final class CreateSnapshotRequest extends RequestBase
     }
 
     /**
-     * If <code>true</code>, the current cluster state is included in the snapshot. The cluster state includes persistent cluster settings,
-     * composable index templates, legacy index templates, ingest pipelines, and ILM policies. It also includes data stored in system
-     * indexes, such as Watches and task records (configurable with <code>feature_states</code>).
+     * When <code>true</code>, includes the current cluster state in the snapshot. The cluster state includes persistent cluster settings,
+     * composable index templates, legacy index templates, ingest pipelines, and ILM policies. The cluster state also includes data stored
+     * in system indexes, such as watches and task records (configurable with <code>feature_states</code>).
      * <p>
      * API name: {@code include_global_state}
      * </p>
@@ -209,9 +210,9 @@ public final class CreateSnapshotRequest extends RequestBase
     }
 
     /**
-     * If <code>true</code>, allows restoring a partial snapshot of indexes with unavailable shards. Only shards that were successfully
-     * included in the snapshot will be restored. All missing shards will be recreated as empty. If <code>false</code>, the entire restore
-     * operation will fail if one or more indexes included in the snapshot do not have all primary shards available.
+     * When <code>true</code>, enables the restoration of a partial snapshot from indexes with unavailable shards. Only shards that were
+     * successfully included in the snapshot will be restored. All missing shards will be recreated as empty. When <code>false</code>, the
+     * entire restore operation will fail if one or more indexes included in the snapshot do not have all primary shards available.
      * <p>
      * API name: {@code partial}
      * </p>
@@ -222,7 +223,7 @@ public final class CreateSnapshotRequest extends RequestBase
     }
 
     /**
-     * Required - Repository for the snapshot.
+     * Required - The name of the repository where the snapshot will be stored.
      * <p>
      * API name: {@code repository}
      * </p>
@@ -233,7 +234,7 @@ public final class CreateSnapshotRequest extends RequestBase
     }
 
     /**
-     * Required - Name of the snapshot. Must be unique in the repository.
+     * Required - The name of the snapshot. Must be unique in the repository.
      * <p>
      * API name: {@code snapshot}
      * </p>
@@ -244,7 +245,7 @@ public final class CreateSnapshotRequest extends RequestBase
     }
 
     /**
-     * If <code>true</code>, the request returns a response when the snapshot is complete. If <code>false</code>, the request returns a
+     * When <code>true</code>, the request returns a response when the snapshot is complete. When <code>false</code>, the request returns a
      * response when the snapshot initializes.
      * <p>
      * API name: {@code wait_for_completion}
@@ -393,7 +394,8 @@ public final class CreateSnapshotRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -405,7 +407,8 @@ public final class CreateSnapshotRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -416,10 +419,10 @@ public final class CreateSnapshotRequest extends RequestBase
         }
 
         /**
-         * Feature states to include in the snapshot. Each feature state includes one or more system indexes containing related data. You
-         * can view a list of eligible features using the get features API. If <code>include_global_state</code> is <code>true</code>, all
-         * current feature states are included by default. If <code>include_global_state</code> is <code>false</code>, no feature states are
-         * included by default.
+         * A list of feature states to include in the snapshot. Each feature state includes one or more system indexes which contain related
+         * data. You can view a list of features using the Get Feature API.<br />
+         * If <code>include_global_state</code> is <code>true</code>, all current feature states are included by default. If
+         * <code>include_global_state</code> is <code>false</code>, no feature states are included by default.
          * <p>
          * API name: {@code feature_states}
          * </p>
@@ -435,10 +438,10 @@ public final class CreateSnapshotRequest extends RequestBase
         }
 
         /**
-         * Feature states to include in the snapshot. Each feature state includes one or more system indexes containing related data. You
-         * can view a list of eligible features using the get features API. If <code>include_global_state</code> is <code>true</code>, all
-         * current feature states are included by default. If <code>include_global_state</code> is <code>false</code>, no feature states are
-         * included by default.
+         * A list of feature states to include in the snapshot. Each feature state includes one or more system indexes which contain related
+         * data. You can view a list of features using the Get Feature API.<br />
+         * If <code>include_global_state</code> is <code>true</code>, all current feature states are included by default. If
+         * <code>include_global_state</code> is <code>false</code>, no feature states are included by default.
          * <p>
          * API name: {@code feature_states}
          * </p>
@@ -454,8 +457,8 @@ public final class CreateSnapshotRequest extends RequestBase
         }
 
         /**
-         * If <code>true</code>, the request ignores data streams and indexes in <code>indexes</code> that are missing or closed. If
-         * <code>false</code>, the request returns an error for any data stream or index that is missing or closed.
+         * When <code>true</code>, the request ignores any data streams and indexes that are missing or closed. When <code>false</code>, the
+         * request returns an error for any data streams or indexes that is missing or closed.
          * <p>
          * API name: {@code ignore_unavailable}
          * </p>
@@ -467,9 +470,9 @@ public final class CreateSnapshotRequest extends RequestBase
         }
 
         /**
-         * If <code>true</code>, the current cluster state is included in the snapshot. The cluster state includes persistent cluster
-         * settings, composable index templates, legacy index templates, ingest pipelines, and ILM policies. It also includes data stored in
-         * system indexes, such as Watches and task records (configurable with <code>feature_states</code>).
+         * When <code>true</code>, includes the current cluster state in the snapshot. The cluster state includes persistent cluster
+         * settings, composable index templates, legacy index templates, ingest pipelines, and ILM policies. The cluster state also includes
+         * data stored in system indexes, such as watches and task records (configurable with <code>feature_states</code>).
          * <p>
          * API name: {@code include_global_state}
          * </p>
@@ -560,9 +563,9 @@ public final class CreateSnapshotRequest extends RequestBase
         }
 
         /**
-         * If <code>true</code>, allows restoring a partial snapshot of indexes with unavailable shards. Only shards that were successfully
-         * included in the snapshot will be restored. All missing shards will be recreated as empty. If <code>false</code>, the entire
-         * restore operation will fail if one or more indexes included in the snapshot do not have all primary shards available.
+         * When <code>true</code>, enables the restoration of a partial snapshot from indexes with unavailable shards. Only shards that were
+         * successfully included in the snapshot will be restored. All missing shards will be recreated as empty. When <code>false</code>,
+         * the entire restore operation will fail if one or more indexes included in the snapshot do not have all primary shards available.
          * <p>
          * API name: {@code partial}
          * </p>
@@ -574,7 +577,7 @@ public final class CreateSnapshotRequest extends RequestBase
         }
 
         /**
-         * Required - Repository for the snapshot.
+         * Required - The name of the repository where the snapshot will be stored.
          * <p>
          * API name: {@code repository}
          * </p>
@@ -586,7 +589,7 @@ public final class CreateSnapshotRequest extends RequestBase
         }
 
         /**
-         * Required - Name of the snapshot. Must be unique in the repository.
+         * Required - The name of the snapshot. Must be unique in the repository.
          * <p>
          * API name: {@code snapshot}
          * </p>
@@ -598,8 +601,8 @@ public final class CreateSnapshotRequest extends RequestBase
         }
 
         /**
-         * If <code>true</code>, the request returns a response when the snapshot is complete. If <code>false</code>, the request returns a
-         * response when the snapshot initializes.
+         * When <code>true</code>, the request returns a response when the snapshot is complete. When <code>false</code>, the request
+         * returns a response when the snapshot initializes.
          * <p>
          * API name: {@code wait_for_completion}
          * </p>

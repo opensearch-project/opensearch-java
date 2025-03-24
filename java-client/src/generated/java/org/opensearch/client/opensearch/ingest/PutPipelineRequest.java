@@ -65,7 +65,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: ingest.put_pipeline.Request
 
 /**
- * Creates or updates a pipeline.
+ * Creates or updates an ingest pipeline.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
@@ -122,7 +122,7 @@ public final class PutPipelineRequest extends RequestBase
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * The amount of time allowed to establish a connection to the cluster manager node.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -133,7 +133,7 @@ public final class PutPipelineRequest extends RequestBase
     }
 
     /**
-     * Description of the ingest pipeline.
+     * The description for the ingest pipeline.
      * <p>
      * API name: {@code description}
      * </p>
@@ -144,7 +144,7 @@ public final class PutPipelineRequest extends RequestBase
     }
 
     /**
-     * Required - ID of the ingest pipeline to create or update.
+     * Required - The ID of the ingest pipeline.
      * <p>
      * API name: {@code id}
      * </p>
@@ -176,10 +176,9 @@ public final class PutPipelineRequest extends RequestBase
     }
 
     /**
-     * Processors to run immediately after a processor failure. Each processor supports a processor-level <code>on_failure</code> value. If
-     * a processor without an <code>on_failure</code> value fails, OpenSearch uses this pipeline-level parameter as a fallback. The
-     * processors in this parameter run sequentially in the order specified. OpenSearch will not attempt to run the pipeline's remaining
-     * processors.
+     * The new processor to run immediately after another processor fails. The processors specified in the <code>on_failure</code> parameter
+     * run sequentially in the order specified. If no pipeline are specified in <code>on_failure</code> array is specified, OpenSearch will
+     * not attempt to run the pipeline's remaining processors.
      * <p>
      * API name: {@code on_failure}
      * </p>
@@ -190,7 +189,7 @@ public final class PutPipelineRequest extends RequestBase
     }
 
     /**
-     * Processors used to perform transformations on documents before indexing. Processors run sequentially in the order specified.
+     * The processors used to perform transformations on documents before indexing. Processors run sequentially in the order specified.
      * <p>
      * API name: {@code processors}
      * </p>
@@ -201,7 +200,7 @@ public final class PutPipelineRequest extends RequestBase
     }
 
     /**
-     * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+     * The amount of time to wait for a response.
      * <p>
      * API name: {@code timeout}
      * </p>
@@ -345,7 +344,7 @@ public final class PutPipelineRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time allowed to establish a connection to the cluster manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -357,7 +356,7 @@ public final class PutPipelineRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time allowed to establish a connection to the cluster manager node.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -368,7 +367,7 @@ public final class PutPipelineRequest extends RequestBase
         }
 
         /**
-         * Description of the ingest pipeline.
+         * The description for the ingest pipeline.
          * <p>
          * API name: {@code description}
          * </p>
@@ -380,7 +379,7 @@ public final class PutPipelineRequest extends RequestBase
         }
 
         /**
-         * Required - ID of the ingest pipeline to create or update.
+         * Required - The ID of the ingest pipeline.
          * <p>
          * API name: {@code id}
          * </p>
@@ -445,10 +444,9 @@ public final class PutPipelineRequest extends RequestBase
         }
 
         /**
-         * Processors to run immediately after a processor failure. Each processor supports a processor-level <code>on_failure</code> value.
-         * If a processor without an <code>on_failure</code> value fails, OpenSearch uses this pipeline-level parameter as a fallback. The
-         * processors in this parameter run sequentially in the order specified. OpenSearch will not attempt to run the pipeline's remaining
-         * processors.
+         * The new processor to run immediately after another processor fails. The processors specified in the <code>on_failure</code>
+         * parameter run sequentially in the order specified. If no pipeline are specified in <code>on_failure</code> array is specified,
+         * OpenSearch will not attempt to run the pipeline's remaining processors.
          * <p>
          * API name: {@code on_failure}
          * </p>
@@ -464,10 +462,9 @@ public final class PutPipelineRequest extends RequestBase
         }
 
         /**
-         * Processors to run immediately after a processor failure. Each processor supports a processor-level <code>on_failure</code> value.
-         * If a processor without an <code>on_failure</code> value fails, OpenSearch uses this pipeline-level parameter as a fallback. The
-         * processors in this parameter run sequentially in the order specified. OpenSearch will not attempt to run the pipeline's remaining
-         * processors.
+         * The new processor to run immediately after another processor fails. The processors specified in the <code>on_failure</code>
+         * parameter run sequentially in the order specified. If no pipeline are specified in <code>on_failure</code> array is specified,
+         * OpenSearch will not attempt to run the pipeline's remaining processors.
          * <p>
          * API name: {@code on_failure}
          * </p>
@@ -483,10 +480,9 @@ public final class PutPipelineRequest extends RequestBase
         }
 
         /**
-         * Processors to run immediately after a processor failure. Each processor supports a processor-level <code>on_failure</code> value.
-         * If a processor without an <code>on_failure</code> value fails, OpenSearch uses this pipeline-level parameter as a fallback. The
-         * processors in this parameter run sequentially in the order specified. OpenSearch will not attempt to run the pipeline's remaining
-         * processors.
+         * The new processor to run immediately after another processor fails. The processors specified in the <code>on_failure</code>
+         * parameter run sequentially in the order specified. If no pipeline are specified in <code>on_failure</code> array is specified,
+         * OpenSearch will not attempt to run the pipeline's remaining processors.
          * <p>
          * API name: {@code on_failure}
          * </p>
@@ -501,7 +497,7 @@ public final class PutPipelineRequest extends RequestBase
         }
 
         /**
-         * Processors used to perform transformations on documents before indexing. Processors run sequentially in the order specified.
+         * The processors used to perform transformations on documents before indexing. Processors run sequentially in the order specified.
          * <p>
          * API name: {@code processors}
          * </p>
@@ -517,7 +513,7 @@ public final class PutPipelineRequest extends RequestBase
         }
 
         /**
-         * Processors used to perform transformations on documents before indexing. Processors run sequentially in the order specified.
+         * The processors used to perform transformations on documents before indexing. Processors run sequentially in the order specified.
          * <p>
          * API name: {@code processors}
          * </p>
@@ -533,7 +529,7 @@ public final class PutPipelineRequest extends RequestBase
         }
 
         /**
-         * Processors used to perform transformations on documents before indexing. Processors run sequentially in the order specified.
+         * The processors used to perform transformations on documents before indexing. Processors run sequentially in the order specified.
          * <p>
          * API name: {@code processors}
          * </p>
@@ -548,7 +544,7 @@ public final class PutPipelineRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * The amount of time to wait for a response.
          * <p>
          * API name: {@code timeout}
          * </p>
@@ -560,7 +556,7 @@ public final class PutPipelineRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * The amount of time to wait for a response.
          * <p>
          * API name: {@code timeout}
          * </p>

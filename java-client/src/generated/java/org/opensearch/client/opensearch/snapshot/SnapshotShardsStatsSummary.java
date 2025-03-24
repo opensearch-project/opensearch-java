@@ -49,7 +49,6 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.Time;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -64,31 +63,33 @@ public class SnapshotShardsStatsSummary
         PlainJsonSerializable,
         ToCopyableBuilder<SnapshotShardsStatsSummary.Builder, SnapshotShardsStatsSummary> {
 
-    @Nonnull
+    @Nullable
     private final SnapshotShardsStatsSummaryItem incremental;
 
     @Nullable
     private final SnapshotShardsStatsSummaryItem processed;
 
-    private final long startTimeInMillis;
+    @Nullable
+    private final Long startTimeInMillis;
 
     @Nullable
     private final Time time;
 
-    private final long timeInMillis;
+    @Nullable
+    private final Long timeInMillis;
 
-    @Nonnull
+    @Nullable
     private final SnapshotShardsStatsSummaryItem total;
 
     // ---------------------------------------------------------------------------------------------
 
     private SnapshotShardsStatsSummary(Builder builder) {
-        this.incremental = ApiTypeHelper.requireNonNull(builder.incremental, this, "incremental");
+        this.incremental = builder.incremental;
         this.processed = builder.processed;
-        this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+        this.startTimeInMillis = builder.startTimeInMillis;
         this.time = builder.time;
-        this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
-        this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+        this.timeInMillis = builder.timeInMillis;
+        this.total = builder.total;
     }
 
     public static SnapshotShardsStatsSummary of(
@@ -98,15 +99,21 @@ public class SnapshotShardsStatsSummary
     }
 
     /**
-     * Required - API name: {@code incremental}
+     * The incremental statistics for the shard snapshot.
+     * <p>
+     * API name: {@code incremental}
+     * </p>
      */
-    @Nonnull
+    @Nullable
     public final SnapshotShardsStatsSummaryItem incremental() {
         return this.incremental;
     }
 
     /**
+     * The processed statistics for the shard snapshot.
+     * <p>
      * API name: {@code processed}
+     * </p>
      */
     @Nullable
     public final SnapshotShardsStatsSummaryItem processed() {
@@ -114,14 +121,21 @@ public class SnapshotShardsStatsSummary
     }
 
     /**
-     * Required - API name: {@code start_time_in_millis}
+     * When the shard snapshot started in milliseconds.
+     * <p>
+     * API name: {@code start_time_in_millis}
+     * </p>
      */
-    public final long startTimeInMillis() {
+    @Nullable
+    public final Long startTimeInMillis() {
         return this.startTimeInMillis;
     }
 
     /**
+     * The total time taken for the shard snapshot.
+     * <p>
      * API name: {@code time}
+     * </p>
      */
     @Nullable
     public final Time time() {
@@ -129,16 +143,23 @@ public class SnapshotShardsStatsSummary
     }
 
     /**
-     * Required - API name: {@code time_in_millis}
+     * The total time taken for the shard snapshot in milliseconds.
+     * <p>
+     * API name: {@code time_in_millis}
+     * </p>
      */
-    public final long timeInMillis() {
+    @Nullable
+    public final Long timeInMillis() {
         return this.timeInMillis;
     }
 
     /**
-     * Required - API name: {@code total}
+     * The total statistics for the shard snapshot.
+     * <p>
+     * API name: {@code total}
+     * </p>
      */
-    @Nonnull
+    @Nullable
     public final SnapshotShardsStatsSummaryItem total() {
         return this.total;
     }
@@ -154,27 +175,35 @@ public class SnapshotShardsStatsSummary
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("incremental");
-        this.incremental.serialize(generator, mapper);
+        if (this.incremental != null) {
+            generator.writeKey("incremental");
+            this.incremental.serialize(generator, mapper);
+        }
 
         if (this.processed != null) {
             generator.writeKey("processed");
             this.processed.serialize(generator, mapper);
         }
 
-        generator.writeKey("start_time_in_millis");
-        generator.write(this.startTimeInMillis);
+        if (this.startTimeInMillis != null) {
+            generator.writeKey("start_time_in_millis");
+            generator.write(this.startTimeInMillis);
+        }
 
         if (this.time != null) {
             generator.writeKey("time");
             this.time.serialize(generator, mapper);
         }
 
-        generator.writeKey("time_in_millis");
-        generator.write(this.timeInMillis);
+        if (this.timeInMillis != null) {
+            generator.writeKey("time_in_millis");
+            generator.write(this.timeInMillis);
+        }
 
-        generator.writeKey("total");
-        this.total.serialize(generator, mapper);
+        if (this.total != null) {
+            generator.writeKey("total");
+            this.total.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -194,13 +223,17 @@ public class SnapshotShardsStatsSummary
      * Builder for {@link SnapshotShardsStatsSummary}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotShardsStatsSummary> {
+        @Nullable
         private SnapshotShardsStatsSummaryItem incremental;
         @Nullable
         private SnapshotShardsStatsSummaryItem processed;
+        @Nullable
         private Long startTimeInMillis;
         @Nullable
         private Time time;
+        @Nullable
         private Long timeInMillis;
+        @Nullable
         private SnapshotShardsStatsSummaryItem total;
 
         public Builder() {}
@@ -230,16 +263,22 @@ public class SnapshotShardsStatsSummary
         }
 
         /**
-         * Required - API name: {@code incremental}
+         * The incremental statistics for the shard snapshot.
+         * <p>
+         * API name: {@code incremental}
+         * </p>
          */
         @Nonnull
-        public final Builder incremental(SnapshotShardsStatsSummaryItem value) {
+        public final Builder incremental(@Nullable SnapshotShardsStatsSummaryItem value) {
             this.incremental = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code incremental}
+         * The incremental statistics for the shard snapshot.
+         * <p>
+         * API name: {@code incremental}
+         * </p>
          */
         @Nonnull
         public final Builder incremental(
@@ -249,7 +288,10 @@ public class SnapshotShardsStatsSummary
         }
 
         /**
+         * The processed statistics for the shard snapshot.
+         * <p>
          * API name: {@code processed}
+         * </p>
          */
         @Nonnull
         public final Builder processed(@Nullable SnapshotShardsStatsSummaryItem value) {
@@ -258,7 +300,10 @@ public class SnapshotShardsStatsSummary
         }
 
         /**
+         * The processed statistics for the shard snapshot.
+         * <p>
          * API name: {@code processed}
+         * </p>
          */
         @Nonnull
         public final Builder processed(Function<SnapshotShardsStatsSummaryItem.Builder, ObjectBuilder<SnapshotShardsStatsSummaryItem>> fn) {
@@ -266,16 +311,22 @@ public class SnapshotShardsStatsSummary
         }
 
         /**
-         * Required - API name: {@code start_time_in_millis}
+         * When the shard snapshot started in milliseconds.
+         * <p>
+         * API name: {@code start_time_in_millis}
+         * </p>
          */
         @Nonnull
-        public final Builder startTimeInMillis(long value) {
+        public final Builder startTimeInMillis(@Nullable Long value) {
             this.startTimeInMillis = value;
             return this;
         }
 
         /**
+         * The total time taken for the shard snapshot.
+         * <p>
          * API name: {@code time}
+         * </p>
          */
         @Nonnull
         public final Builder time(@Nullable Time value) {
@@ -284,7 +335,10 @@ public class SnapshotShardsStatsSummary
         }
 
         /**
+         * The total time taken for the shard snapshot.
+         * <p>
          * API name: {@code time}
+         * </p>
          */
         @Nonnull
         public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -292,25 +346,34 @@ public class SnapshotShardsStatsSummary
         }
 
         /**
-         * Required - API name: {@code time_in_millis}
+         * The total time taken for the shard snapshot in milliseconds.
+         * <p>
+         * API name: {@code time_in_millis}
+         * </p>
          */
         @Nonnull
-        public final Builder timeInMillis(long value) {
+        public final Builder timeInMillis(@Nullable Long value) {
             this.timeInMillis = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code total}
+         * The total statistics for the shard snapshot.
+         * <p>
+         * API name: {@code total}
+         * </p>
          */
         @Nonnull
-        public final Builder total(SnapshotShardsStatsSummaryItem value) {
+        public final Builder total(@Nullable SnapshotShardsStatsSummaryItem value) {
             this.total = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code total}
+         * The total statistics for the shard snapshot.
+         * <p>
+         * API name: {@code total}
+         * </p>
          */
         @Nonnull
         public final Builder total(Function<SnapshotShardsStatsSummaryItem.Builder, ObjectBuilder<SnapshotShardsStatsSummaryItem>> fn) {
@@ -353,12 +416,12 @@ public class SnapshotShardsStatsSummary
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + this.incremental.hashCode();
+        result = 31 * result + Objects.hashCode(this.incremental);
         result = 31 * result + Objects.hashCode(this.processed);
-        result = 31 * result + Long.hashCode(this.startTimeInMillis);
+        result = 31 * result + Objects.hashCode(this.startTimeInMillis);
         result = 31 * result + Objects.hashCode(this.time);
-        result = 31 * result + Long.hashCode(this.timeInMillis);
-        result = 31 * result + this.total.hashCode();
+        result = 31 * result + Objects.hashCode(this.timeInMillis);
+        result = 31 * result + Objects.hashCode(this.total);
         return result;
     }
 
@@ -367,11 +430,11 @@ public class SnapshotShardsStatsSummary
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         SnapshotShardsStatsSummary other = (SnapshotShardsStatsSummary) o;
-        return this.incremental.equals(other.incremental)
+        return Objects.equals(this.incremental, other.incremental)
             && Objects.equals(this.processed, other.processed)
-            && this.startTimeInMillis == other.startTimeInMillis
+            && Objects.equals(this.startTimeInMillis, other.startTimeInMillis)
             && Objects.equals(this.time, other.time)
-            && this.timeInMillis == other.timeInMillis
-            && this.total.equals(other.total);
+            && Objects.equals(this.timeInMillis, other.timeInMillis)
+            && Objects.equals(this.total, other.total);
     }
 }

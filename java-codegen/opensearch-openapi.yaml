@@ -2644,7 +2644,7 @@ paths:
       operationId: ingest.get_pipeline.0
       x-operation-group: ingest.get_pipeline
       x-version-added: '1.0'
-      description: Returns a pipeline.
+      description: Returns an ingest pipeline.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/ingest-apis/get-ingest/
       parameters:
@@ -2663,7 +2663,7 @@ paths:
       operationId: ingest.simulate.0
       x-operation-group: ingest.simulate
       x-version-added: '1.0'
-      description: Allows to simulate a pipeline with example documents.
+      description: Simulates an ingest pipeline with example documents.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/ingest-apis/simulate-ingest/
       parameters:
@@ -2682,7 +2682,7 @@ paths:
       operationId: ingest.simulate.1
       x-operation-group: ingest.simulate
       x-version-added: '1.0'
-      description: Allows to simulate a pipeline with example documents.
+      description: Simulates an ingest pipeline with example documents.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/ingest-apis/simulate-ingest/
       parameters:
@@ -2702,7 +2702,7 @@ paths:
       operationId: ingest.delete_pipeline.0
       x-operation-group: ingest.delete_pipeline
       x-version-added: '1.0'
-      description: Deletes a pipeline.
+      description: Deletes an ingest pipeline.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/ingest-apis/delete-ingest/
       parameters:
@@ -2722,7 +2722,7 @@ paths:
       operationId: ingest.get_pipeline.1
       x-operation-group: ingest.get_pipeline
       x-version-added: '1.0'
-      description: Returns a pipeline.
+      description: Returns an ingest pipeline.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/ingest-apis/get-ingest/
       parameters:
@@ -2741,7 +2741,7 @@ paths:
       operationId: ingest.put_pipeline.0
       x-operation-group: ingest.put_pipeline
       x-version-added: '1.0'
-      description: Creates or updates a pipeline.
+      description: Creates or updates an ingest pipeline.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/ingest-apis/create-update-ingest/
       parameters:
@@ -2764,7 +2764,7 @@ paths:
       operationId: ingest.simulate.2
       x-operation-group: ingest.simulate
       x-version-added: '1.0'
-      description: Allows to simulate a pipeline with example documents.
+      description: Simulates an ingest pipeline with example documents.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/ingest-apis/simulate-ingest/
       parameters:
@@ -2784,7 +2784,7 @@ paths:
       operationId: ingest.simulate.3
       x-operation-group: ingest.simulate
       x-version-added: '1.0'
-      description: Allows to simulate a pipeline with example documents.
+      description: Simulates an ingest pipeline with example documents.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/ingest-apis/simulate-ingest/
       parameters:
@@ -2805,7 +2805,7 @@ paths:
       operationId: ingest.processor_grok.0
       x-operation-group: ingest.processor_grok
       x-version-added: '1.0'
-      description: Returns a list of the built-in patterns.
+      description: Returns a list of built-in grok patterns.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -10092,7 +10092,7 @@ paths:
       operationId: snapshot.get_repository.0
       x-operation-group: snapshot.get_repository
       x-version-added: '1.0'
-      description: Returns information about a repository.
+      description: Returns information about a snapshot repository.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/snapshots/get-snapshot-repository/
       parameters:
@@ -10132,7 +10132,7 @@ paths:
       operationId: snapshot.delete_repository.0
       x-operation-group: snapshot.delete_repository
       x-version-added: '1.0'
-      description: Deletes a repository.
+      description: Deletes a snapshot repository.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/snapshots/delete-snapshot-repository/
       parameters:
@@ -10152,7 +10152,7 @@ paths:
       operationId: snapshot.get_repository.1
       x-operation-group: snapshot.get_repository
       x-version-added: '1.0'
-      description: Returns information about a repository.
+      description: Returns information about a snapshot repository.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/snapshots/get-snapshot-repository/
       parameters:
@@ -10172,7 +10172,7 @@ paths:
       operationId: snapshot.create_repository.0
       x-operation-group: snapshot.create_repository
       x-version-added: '1.0'
-      description: Creates a repository.
+      description: Creates a snapshot repository.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/snapshots/create-repository/
       parameters:
@@ -10195,7 +10195,7 @@ paths:
       operationId: snapshot.create_repository.1
       x-operation-group: snapshot.create_repository
       x-version-added: '1.0'
-      description: Creates a repository.
+      description: Creates a snapshot repository.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/snapshots/create-repository/
       parameters:
@@ -10219,7 +10219,7 @@ paths:
       operationId: snapshot.cleanup_repository.0
       x-operation-group: snapshot.cleanup_repository
       x-version-added: '1.0'
-      description: Removes stale data from repository.
+      description: Removes any stale data from a snapshot repository.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -10324,7 +10324,7 @@ paths:
       operationId: snapshot.create.0
       x-operation-group: snapshot.create
       x-version-added: '1.0'
-      description: Creates a snapshot in a repository.
+      description: Creates a snapshot within an existing repository.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/snapshots/create-snapshot/
       parameters:
@@ -10347,7 +10347,7 @@ paths:
       operationId: snapshot.create.1
       x-operation-group: snapshot.create
       x-version-added: '1.0'
-      description: Creates a snapshot in a repository.
+      description: Creates a snapshot within an existing repository.
       externalDocs:
         url: https://opensearch.org/docs/latest/api-reference/snapshots/create-snapshot/
       parameters:
@@ -10371,7 +10371,7 @@ paths:
       operationId: snapshot.clone.0
       x-operation-group: snapshot.clone
       x-version-added: '1.0'
-      description: Clones indexes from one snapshot into another snapshot in the same repository.
+      description: Creates a clone of all or part of a snapshot in the same repository as the original snapshot.
       externalDocs:
         url: https://opensearch.org/docs/latest
       parameters:
@@ -18301,7 +18301,9 @@ components:
     cluster.get_settings___query.flat_settings:
       in: query
       name: flat_settings
-      description: When `true`, returns cluster settings in a flat format.
+      description: |-
+        Whether to return settings in the flat form, which can improve readability, especially for heavily nested settings.
+        For example, the flat form of `"cluster": { "max_shards_per_node": 500 }` is `"cluster.max_shards_per_node": "500"`.
       schema:
         type: boolean
         default: false
@@ -18472,7 +18474,7 @@ components:
       name: node_ids
       description: |-
         A comma-separated list of node IDs to exclude
-        from the voting configuration. When using this setting, you cannot also specify `node_names`.
+        from the voting configuration. When using this setting, you cannot also specify `node_names`. Either `node_ids` or `node_names` are required to receive a valid response.
       schema:
         $ref: '#/components/schemas/_common___Ids'
       style: form
@@ -18481,7 +18483,7 @@ components:
       name: node_names
       description: |-
         A comma-separated list of node names to exclude from the
-        voting configuration. When using this setting, you cannot also specify `node_ids`.
+        voting configuration. When using this setting, you cannot also specify `node_ids`. Either `node_ids` or `node_names` are required to receive a valid response.
       schema:
         $ref: '#/components/schemas/_common___Names'
       style: form
@@ -18501,10 +18503,10 @@ components:
       name: name
       description: |-
         The name of the component template to create.
-        OpenSearch includes the following built-in component templates: `logs-mappings`; `logs-settings`; `metrics-mappings`; `metrics-settings`; `synthetics-mapping`; `synthetics-settings`.
+        OpenSearch includes the following built-in component templates: `logs-mappings`, `logs-settings`, `metrics-mappings`, `metrics-settings`, `synthetics-mapping`, and `synthetics-settings`.
         OpenSearch uses these templates to configure backing indexes for its data streams.
         If you want to overwrite one of these templates, set the replacement template `version` to a higher value than the current version.
-        If you want to disable all built-in component and index templates, set `stack.templates.enabled` to `false` using the Cluster Update Settings API.
+        If you want to disable all built-in component and index templates, set `stack.templates.enabled` to `false` using the [Cluster Update Settings API](https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-settings/).
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -18564,7 +18566,9 @@ components:
     cluster.put_settings___query.flat_settings:
       in: query
       name: flat_settings
-      description: Returns settings in a flat format.
+      description: |-
+        Whether to return settings in the flat form, which can improve readability, especially for heavily nested settings.
+        For example, the flat form of `"cluster": { "max_shards_per_node": 500 }` is `"cluster.max_shards_per_node": "500"`.
       schema:
         type: boolean
         default: false
@@ -18656,7 +18660,7 @@ components:
     cluster.state___path.metric:
       in: path
       name: metric
-      description: Limits the information returned to only the specified metrics.
+      description: Limits the information returned to only the [specified metric groups](https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/#metric-groups).
       required: true
       schema:
         type: array
@@ -18686,7 +18690,9 @@ components:
     cluster.state___query.flat_settings:
       in: query
       name: flat_settings
-      description: Returns settings in a flat format.
+      description: |-
+        Whether to return settings in the flat form, which can improve readability, especially for heavily nested settings.
+        For example, the flat form of `"cluster": { "max_shards_per_node": 500 }` is `"cluster.max_shards_per_node": "500"`.
       schema:
         type: boolean
         default: false
@@ -18732,7 +18738,7 @@ components:
     cluster.stats___path.index_metric:
       in: path
       name: index_metric
-      description: A comma-separated list of index metric groups, for example, `docs,store`.
+      description: A comma-separated list of [index metric groups](https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/#index-metric-groups), for example, `docs,store`.
       required: true
       schema:
         type: array
@@ -18759,7 +18765,9 @@ components:
     cluster.stats___query.flat_settings:
       in: query
       name: flat_settings
-      description: When `true`, returns settings in a flat format.
+      description: |-
+        Whether to return settings in the flat form, which can improve readability, especially for heavily nested settings.
+        For example, the flat form of `"cluster": { "max_shards_per_node": 500 }` is `"cluster.max_shards_per_node": "500"`.
       schema:
         type: boolean
         default: false
@@ -22810,7 +22818,7 @@ components:
       in: path
       name: id
       description: |-
-        Pipeline ID or wildcard expression of pipeline IDs used to limit the request.
+        The pipeline ID or wildcard expression of pipeline IDs used to limit the request.
         To delete all ingest pipelines in a cluster, use a value of `*`.
       required: true
       schema:
@@ -22819,7 +22827,7 @@ components:
     ingest.delete_pipeline___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
@@ -22838,9 +22846,7 @@ components:
     ingest.delete_pipeline___query.timeout:
       in: query
       name: timeout
-      description: |-
-        Period to wait for a response.
-        If no response is received before the timeout expires, the request fails and returns an error.
+      description: The amount of time to wait for a response.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
@@ -22848,7 +22854,7 @@ components:
       in: path
       name: id
       description: |-
-        Comma-separated list of pipeline IDs to retrieve.
+        A comma-separated list of pipeline IDs to retrieve.
         Wildcard (`*`) expressions are supported.
         To get all ingest pipelines, omit this parameter or use `*`.
       required: true
@@ -22858,7 +22864,7 @@ components:
     ingest.get_pipeline___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
@@ -22877,14 +22883,14 @@ components:
     ingest.processor_grok___query.s:
       name: s
       in: query
-      description: Sort returned patterns by key name.
+      description: Determines how to sort returned grok patterns by key name.
       schema:
         type: boolean
         default: false
     ingest.put_pipeline___path.id:
       in: path
       name: id
-      description: ID of the ingest pipeline to create or update.
+      description: The ID of the ingest pipeline.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Id'
@@ -22892,7 +22898,7 @@ components:
     ingest.put_pipeline___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time allowed to establish a connection to the cluster manager node.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
@@ -22909,7 +22915,7 @@ components:
     ingest.put_pipeline___query.timeout:
       in: query
       name: timeout
-      description: Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+      description: The amount of time to wait for a response.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
@@ -22917,7 +22923,7 @@ components:
       in: path
       name: id
       description: |-
-        Pipeline to test.
+        The pipeline to test.
         If you don't specify a `pipeline` in the request body, this parameter is required.
       required: true
       schema:
@@ -22926,7 +22932,7 @@ components:
     ingest.simulate___query.verbose:
       in: query
       name: verbose
-      description: If `true`, the response includes output data for each processor in the executed pipeline.
+      description: When `true`, the response includes output data for each processor in the pipeline
       schema:
         type: boolean
         default: false
@@ -26478,7 +26484,7 @@ components:
     snapshot.cleanup_repository___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
@@ -26495,14 +26501,14 @@ components:
     snapshot.cleanup_repository___query.timeout:
       in: query
       name: timeout
-      description: Period to wait for a response.
+      description: The amount of time to wait for a response.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
     snapshot.clone___path.repository:
       in: path
       name: repository
-      description: A repository name
+      description: The name of repository which will contain the snapshots clone.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -26510,7 +26516,7 @@ components:
     snapshot.clone___path.snapshot:
       in: path
       name: snapshot
-      description: The name of the snapshot to clone from
+      description: The name of the original snapshot.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -26518,7 +26524,7 @@ components:
     snapshot.clone___path.target_snapshot:
       in: path
       name: target_snapshot
-      description: The name of the cloned snapshot to create
+      description: The name of the cloned snapshot.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -26526,7 +26532,7 @@ components:
     snapshot.clone___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
@@ -26543,7 +26549,7 @@ components:
     snapshot.create_repository___path.repository:
       in: path
       name: repository
-      description: A repository name
+      description: The name for the newly registered repository.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -26551,7 +26557,7 @@ components:
     snapshot.create_repository___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
@@ -26568,21 +26574,21 @@ components:
     snapshot.create_repository___query.timeout:
       in: query
       name: timeout
-      description: Explicit operation timeout
+      description: The amount of time to wait for a response.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
     snapshot.create_repository___query.verify:
       in: query
       name: verify
-      description: Whether to verify the repository after creation
+      description: When `true`, verifies the creation of the snapshot repository.
       schema:
         type: boolean
       style: form
     snapshot.create___path.repository:
       in: path
       name: repository
-      description: Repository for the snapshot.
+      description: The name of the repository where the snapshot will be stored.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -26590,7 +26596,7 @@ components:
     snapshot.create___path.snapshot:
       in: path
       name: snapshot
-      description: Name of the snapshot. Must be unique in the repository.
+      description: The name of the snapshot. Must be unique in the repository.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -26598,7 +26604,7 @@ components:
     snapshot.create___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
@@ -26615,7 +26621,7 @@ components:
     snapshot.create___query.wait_for_completion:
       in: query
       name: wait_for_completion
-      description: If `true`, the request returns a response when the snapshot is complete. If `false`, the request returns a response when the snapshot initializes.
+      description: When `true`, the request returns a response when the snapshot is complete. When `false`, the request returns a response when the snapshot initializes.
       schema:
         type: boolean
         default: false
@@ -26623,7 +26629,7 @@ components:
     snapshot.delete_repository___path.repository:
       in: path
       name: repository
-      description: Name of the snapshot repository to unregister. Wildcard (`*`) patterns are supported.
+      description: The name of the snapshot repository to unregister. Wildcard (`*`) patterns are supported.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Names'
@@ -26631,7 +26637,7 @@ components:
     snapshot.delete_repository___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
@@ -26648,14 +26654,14 @@ components:
     snapshot.delete_repository___query.timeout:
       in: query
       name: timeout
-      description: Explicit operation timeout
+      description: The amount of time to wait for a response.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
     snapshot.delete___path.repository:
       in: path
       name: repository
-      description: A repository name
+      description: The name of the snapshot repository to delete.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -26663,7 +26669,7 @@ components:
     snapshot.delete___path.snapshot:
       in: path
       name: snapshot
-      description: A comma-separated list of snapshot names
+      description: A comma-separated list of snapshot names to delete from the repository.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -26671,7 +26677,7 @@ components:
     snapshot.delete___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
@@ -26688,7 +26694,7 @@ components:
     snapshot.get_repository___path.repository:
       in: path
       name: repository
-      description: A comma-separated list of repository names
+      description: A comma-separated list of repository names.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Names'
@@ -26696,14 +26702,14 @@ components:
     snapshot.get_repository___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     snapshot.get_repository___query.local:
       in: query
       name: local
-      description: Return local information, do not retrieve the state from cluster-manager node.
+      description: Whether to get information from the local node.
       schema:
         type: boolean
         default: false
@@ -26721,7 +26727,7 @@ components:
     snapshot.get___path.repository:
       in: path
       name: repository
-      description: Comma-separated list of snapshot repository names used to limit the request. Wildcard (*) expressions are supported.
+      description: A comma-separated list of snapshot repository names used to limit the request. Wildcard (*) expressions are supported.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -26730,7 +26736,7 @@ components:
       in: path
       name: snapshot
       description: |-
-        Comma-separated list of snapshot names to retrieve. Also accepts wildcards (`*`).
+        A comma-separated list of snapshot names to retrieve. Also accepts wildcard expressions. (`*`).
         - To get information about all snapshots in a registered repository, use a wildcard (`*`) or `_all`.
         - To get information about any snapshots that are currently running, use `_current`.
       required: true
@@ -26740,14 +26746,14 @@ components:
     snapshot.get___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     snapshot.get___query.ignore_unavailable:
       in: query
       name: ignore_unavailable
-      description: If `false`, the request returns an error for any snapshots that are unavailable.
+      description: When `false`, the request returns an error for any snapshots that are unavailable.
       schema:
         type: boolean
         default: false
@@ -26765,14 +26771,14 @@ components:
     snapshot.get___query.verbose:
       in: query
       name: verbose
-      description: If `true`, returns additional information about each snapshot such as the version of OpenSearch which took the snapshot, the start and end times of the snapshot, and the number of shards snapshotted.
+      description: When `true`, returns additional information about each snapshot such as the version of OpenSearch which took the snapshot, the start and end times of the snapshot, and the number of shards contained in the snapshot.
       schema:
         type: boolean
       style: form
     snapshot.restore___path.repository:
       in: path
       name: repository
-      description: A repository name
+      description: The name of the repository containing the snapshot
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -26780,7 +26786,7 @@ components:
     snapshot.restore___path.snapshot:
       in: path
       name: snapshot
-      description: A snapshot name
+      description: The name of the snapshot to restore.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -26788,7 +26794,7 @@ components:
     snapshot.restore___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
@@ -26805,7 +26811,7 @@ components:
     snapshot.restore___query.wait_for_completion:
       in: query
       name: wait_for_completion
-      description: Should this request wait until the operation has completed before returning
+      description: -| Whether to return a response after the restore operation has completed. When `false`, the request returns a response when the restore operation initializes. When `true`, the request returns a response when the restore operation completes.
       schema:
         type: boolean
         default: false
@@ -26813,7 +26819,7 @@ components:
     snapshot.status___path.repository:
       in: path
       name: repository
-      description: A repository name
+      description: The name of the repository containing the snapshot.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -26821,7 +26827,7 @@ components:
     snapshot.status___path.snapshot:
       in: path
       name: snapshot
-      description: A comma-separated list of snapshot names
+      description: A comma-separated list of snapshot names.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Names'
@@ -26829,14 +26835,14 @@ components:
     snapshot.status___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
     snapshot.status___query.ignore_unavailable:
       in: query
       name: ignore_unavailable
-      description: Whether to ignore unavailable snapshots, defaults to `false` which means a SnapshotMissingException is thrown
+      description: Whether to ignore any unavailable snapshots, When `false`, a `SnapshotMissingException` is thrown.
       schema:
         type: boolean
         default: false
@@ -26854,7 +26860,7 @@ components:
     snapshot.verify_repository___path.repository:
       in: path
       name: repository
-      description: A repository name
+      description: The name of the repository containing the snapshot.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Name'
@@ -26862,7 +26868,7 @@ components:
     snapshot.verify_repository___query.cluster_manager_timeout:
       name: cluster_manager_timeout
       in: query
-      description: Operation timeout for connection to cluster-manager node.
+      description: The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see [Common parameters](https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units).
       schema:
         $ref: '#/components/schemas/_common___Duration'
       x-version-added: '2.0'
@@ -26879,7 +26885,7 @@ components:
     snapshot.verify_repository___query.timeout:
       in: query
       name: timeout
-      description: Explicit operation timeout
+      description: The amount of time to wait for a response.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
@@ -26957,7 +26963,7 @@ components:
     tasks.cancel___path.task_id:
       in: path
       name: task_id
-      description: The ID of the task.
+      description: The task ID.
       required: true
       schema:
         $ref: '#/components/schemas/_common___TaskId'
@@ -26972,7 +26978,7 @@ components:
     tasks.cancel___query.nodes:
       in: query
       name: nodes
-      description: A comma-separated list of node IDs or names to limit the returned information. Use `_local` to return information from the node you're connecting to, specify the node name to get information from specific nodes, or keep the parameter empty to get information from all nodes.
+      description: A comma-separated list of node IDs or names used to limit the returned information. Use `_local` to return information from the node you're connecting to, specify the node name to get information from a specific node, or keep the parameter empty to get information from all nodes.
       schema:
         type: array
         items:
@@ -26981,7 +26987,7 @@ components:
     tasks.cancel___query.parent_task_id:
       in: query
       name: parent_task_id
-      description: Returns tasks with a specified parent task ID (node_id:task_number). Keep empty or set to -1 to return all.
+      description: Returns tasks with a specified parent task ID (`node_id:task_number`). Keep empty or set to -1 to return all.
       schema:
         type: string
       style: form
@@ -26996,7 +27002,7 @@ components:
     tasks.get___path.task_id:
       in: path
       name: task_id
-      description: The ID of the task.
+      description: The task ID.
       required: true
       schema:
         $ref: '#/components/schemas/_common___Id'
@@ -27043,18 +27049,18 @@ components:
     tasks.list___query.nodes:
       name: nodes
       in: query
-      description: A comma-separated list of node IDs or names to limit the returned information. Use `_local` to return information from the node you're connecting to, specify the node name to get information from specific nodes, or keep the parameter empty to get information from all nodes.
+      description: A comma-separated list of node IDs or names used to limit the returned information. Use `_local` to return information from the node you're connecting to, specify the node name to get information from a specific node, or keep the parameter empty to get information from all nodes.
       style: form
       schema:
         type: array
         items:
           type: string
-        description: A comma-separated list of node IDs or names to limit the returned information. Use `_local` to return information from the node you're connecting to, specify the node name to get information from specific nodes, or keep the parameter empty to get information from all nodes.
+        description: A comma-separated list of node IDs or names used to limit the returned information. Use `_local` to return information from the node you're connecting to, specify the node name to get information from a specific node, or keep the parameter empty to get information from all nodes.
       explode: true
     tasks.list___query.parent_task_id:
       in: query
       name: parent_task_id
-      description: Returns tasks with a specified parent task ID (node_id:task_number). Keep empty or set to -1 to return all.
+      description: Returns tasks with a specified parent task ID (`node_id:task_number`). Keep empty or set to -1 to return all.
       schema:
         $ref: '#/components/schemas/_common___Id'
       style: form
@@ -28330,21 +28336,23 @@ components:
               _meta:
                 $ref: '#/components/schemas/_common___Metadata'
               description:
-                description: Description of the ingest pipeline.
+                description: The description for the ingest pipeline.
                 type: string
               on_failure:
-                description: Processors to run immediately after a processor failure. Each processor supports a processor-level `on_failure` value. If a processor without an `on_failure` value fails, OpenSearch uses this pipeline-level parameter as a fallback. The processors in this parameter run sequentially in the order specified. OpenSearch will not attempt to run the pipeline's remaining processors.
+                description: |-
+                  The new processor to run immediately after another processor fails. The processors specified in the `on_failure` parameter run sequentially in the order specified. 
+                  If no pipeline are specified in `on_failure` array is specified, OpenSearch will not attempt to run the pipeline's remaining processors.
                 type: array
                 items:
                   $ref: '#/components/schemas/ingest._common___ProcessorContainer'
               processors:
-                description: Processors used to perform transformations on documents before indexing. Processors run sequentially in the order specified.
+                description: The processors used to perform transformations on documents before indexing. Processors run sequentially in the order specified.
                 type: array
                 items:
                   $ref: '#/components/schemas/ingest._common___ProcessorContainer'
               version:
                 $ref: '#/components/schemas/_common___VersionNumber'
-            description: The ingest definition
+            description: The ingest definition.
       required: true
     ingest.simulate:
       content:
@@ -28353,7 +28361,7 @@ components:
             type: object
             properties:
               docs:
-                description: Sample documents to test in the pipeline.
+                description: A list of sample documents to test in the pipeline.
                 type: array
                 items:
                   $ref: '#/components/schemas/ingest.simulate___Document'
@@ -29815,7 +29823,7 @@ components:
                 type: string
             required:
               - indices
-            description: The snapshot clone definition
+            description: The snapshot clone definition.
       required: true
     snapshot.create:
       content:
@@ -29824,24 +29832,36 @@ components:
             type: object
             properties:
               ignore_unavailable:
-                description: If `true`, the request ignores data streams and indexes in `indexes` that are missing or closed. If `false`, the request returns an error for any data stream or index that is missing or closed.
+                description: |-
+                  When `true`, the request ignores any data streams and indexes that are missing or closed. 
+                  When `false`, the request returns an error for any data streams or indexes that is missing or closed.
                 type: boolean
               include_global_state:
-                description: If `true`, the current cluster state is included in the snapshot. The cluster state includes persistent cluster settings, composable index templates, legacy index templates, ingest pipelines, and ILM policies. It also includes data stored in system indexes, such as Watches and task records (configurable with `feature_states`).
+                description: |-
+                  When `true`, includes the current cluster state in the snapshot. 
+                  The cluster state includes persistent cluster settings, composable index templates, legacy index templates, ingest pipelines, and ILM policies. 
+                  The cluster state also includes data stored in system indexes, such as watches and task records (configurable with `feature_states`).
                 type: boolean
+                default: true
               indices:
                 $ref: '#/components/schemas/_common___Indices'
               feature_states:
-                description: Feature states to include in the snapshot. Each feature state includes one or more system indexes containing related data. You can view a list of eligible features using the get features API. If `include_global_state` is `true`, all current feature states are included by default. If `include_global_state` is `false`, no feature states are included by default.
+                description: |-
+                  A list of feature states to include in the snapshot. Each feature state includes one or more system indexes which contain related data. You can view a list of features using the Get Feature API.  
+                  If `include_global_state` is `true`, all current feature states are included by default. If `include_global_state` is `false`, no feature states are included by default.
                 type: array
                 items:
                   type: string
               metadata:
                 $ref: '#/components/schemas/_common___Metadata'
               partial:
-                description: If `true`, allows restoring a partial snapshot of indexes with unavailable shards. Only shards that were successfully included in the snapshot will be restored. All missing shards will be recreated as empty. If `false`, the entire restore operation will fail if one or more indexes included in the snapshot do not have all primary shards available.
+                description: |-
+                  When `true`, enables the restoration of a partial snapshot from indexes with unavailable shards. 
+                  Only shards that were successfully included in the snapshot will be restored. All missing shards will be recreated as empty. 
+                  When `false`, the entire restore operation will fail if one or more indexes included in the snapshot do not have all primary shards available.
                 type: boolean
-            description: The snapshot definition
+                default: false
+            description: The snapshot definition.
     snapshot.create_repository:
       content:
         application/json:
@@ -29857,7 +29877,7 @@ components:
             required:
               - settings
               - type
-            description: The repository definition
+            description: The repository definition.
       required: true
     snapshot.restore:
       content:
@@ -29866,32 +29886,46 @@ components:
             type: object
             properties:
               ignore_index_settings:
-                description: A comma-delimited list of index settings that you don't want to restore from a snapshot.
+                description: A comma-delimited list of index settings to ignore when restoring indexes from a snapshot.
                 type: array
                 items:
                   type: string
               ignore_unavailable:
                 type: boolean
-                description: How to handle data streams or indexes that are missing or closed. If `false`, the request returns an error for any data stream or index that is missing or closed. If `true`, the request ignores data streams and indexes in indexes that are missing or closed. Defaults to `false`.
+                default: false
+                description: |-
+                  How to handle data streams or indexes that are missing or closed. 
+                  When `false`, the request returns an error for any data stream or index that is missing or closed. 
+                  When `true`, the request ignores data streams and indexes in indexes that are missing or closed. 
               include_aliases:
                 type: boolean
-                description: How to handle index aliases from the original snapshot. If `true`, index aliases from the original snapshot are restored. If `false`, aliases along with associated indexes are not restored. Defaults to `true`.
+                default: true
+                description: |-
+                  How to handle index aliases from the original snapshot. 
+                  When `true`, index aliases from the original snapshot are restored. 
+                  When `false`, aliases along with associated indexes are not restored. 
               include_global_state:
                 type: boolean
-                description: Whether to restore the current cluster state. If `false`, the cluster state is not restored. If true, the current cluster state is restored. Defaults to `false`.
+                default: false
+                description: |-
+                  Whether to restore the current cluster state. When `false`, the cluster state is not restored. 
+                  When `true`, the current cluster state is restored. 
               index_settings:
-                description: A comma-delimited list of settings to add or change in all restored indexes. Use this parameter to override index settings during snapshot restoration. For data streams, these index settings are applied to the restored backing indexes.
+                description: |-
+                  A comma-delimited list of settings to add or change in all restored indexes. 
+                  Use this parameter to override index settings during snapshot restoration. 
+                  For data streams, these index settings are applied to the restored backing indexes.
                 $ref: '#/components/schemas/indices._common___IndexSettings'
               indices:
-                description: A comma-delimited list of data streams and indexes to restore from the snapshot. Multi-index syntax is supported. By default, a restore operation includes all data streams and indexes in the snapshot. If this argument is provided, the restore operation only includes the data streams and indexes that you specify.
                 $ref: '#/components/schemas/_common___Indices'
               partial:
                 type: boolean
+                default: false
                 description: |-
                   How the restore operation will behave if indexes in the snapshot do not have all primary shards available.
-                  If `false`, the entire restore operation fails if any indexes in the snapshot do not have all primary shards available.
-                  If `true`, allows the restoration of a partial snapshot of indexes with unavailable shards. Only shards that were successfully included in the snapshot are restored. All missing shards are recreated as empty. By default, the entire restore operation fails if one or more indexes included in the snapshot do not have all primary shards available. To change this behavior, set `partial` to `true`.
-                  Defaults to `false`.
+                  When `false`, the entire restore operation fails if any indexes in the snapshot do not have all primary shards available.
+                  When `true`, allows the restoration of a partial snapshot of indexes with unavailable shards. Only shards that were successfully included in the snapshot are restored. 
+                  All missing shards are recreated as empty. By default, the entire restore operation fails if one or more indexes included in the snapshot do not have all primary shards available. To change this behavior, set `partial` to `true`.
               rename_pattern:
                 type: string
                 description: |-
@@ -29921,12 +29955,12 @@ components:
               storage_type:
                 x-version-added: '2.7'
                 type: string
+                default: local
                 description: |-
                   Where will be the authoritative store of the restored indexes' data.
                   A value of `local` indicates that all snapshot metadata and index data will be downloaded to local storage.
                   A value of `remote_snapshot` indicates that snapshot metadata will be downloaded to the cluster, but the remote repository will remain the authoritative store of the index data. Data will be downloaded and cached as necessary to service queries. At least one node in the cluster must be configured with the search role in order to restore a snapshot using the type `remote_snapshot`.
-                  Defaults to `local`.
-            description: Details of what to restore
+            description: Determines which settings and indexes to restore when restoring a snapshot
     sql.close:
       content:
         application/json:
@@ -62684,24 +62718,32 @@ components:
       properties:
         error:
           type: string
+          description: An error message that describes the bad request.
         status:
           type: integer
+          description: The HTTP status code.
     sm._common___CreateUpdatePolicyRequest:
       type: object
       properties:
         description:
           type: string
+          description: A user-provided description of the snapshot policy.
         creation:
           $ref: '#/components/schemas/sm._common___CreationConfig'
+          description: The configuration for the snapshot creation schedule.
         deletion:
           $ref: '#/components/schemas/sm._common___DeletionConfig'
+          description: The configuration for snapshot deletion rules and schedule.
         snapshot_config:
           $ref: '#/components/schemas/sm._common___SnapshotConfig'
+          description: The core configuration for how snapshots should be created and managed.
         notification:
           $ref: '#/components/schemas/sm._common___NotificationConfig'
+          description: The configuration for notification settings and conditions.
         enabled:
           type: boolean
-          description: 'Whether the policy should be enabled at creation. Default: true'
+          description: Whether the policy should be enabled at creation.
+          default: true
       required:
         - creation
         - snapshot_config
@@ -62712,7 +62754,7 @@ components:
           $ref: '#/components/schemas/sm._common___CronSchedule'
         time_limit:
           type: string
-          description: Maximum time for snapshot creation.
+          description: The maximum amount of time for allowed snapshot creation.
       required:
         - schedule
     sm._common___CronExpression:
@@ -62720,8 +62762,10 @@ components:
       properties:
         expression:
           type: string
+          description: The cron expression that defines the schedule.
         timezone:
           type: string
+          description: The timezone used for the cron schedule.
       required:
         - expression
         - timezone
@@ -62735,20 +62779,28 @@ components:
       properties:
         _index:
           type: string
+          description: The index name where the policy was stored.
         _id:
           type: string
+          description: The ID of the deleted policy.
         _version:
           type: integer
+          description: The version number of the operation.
         result:
           type: string
+          description: The result of the delete operation.
         forced_refresh:
           type: boolean
+          description: Whether a refresh was forced after the operation.
         _shards:
           $ref: '#/components/schemas/sm._common___ShardsInfo'
+          description: Information about shard operations.
         _seq_no:
           type: integer
+          description: The sequence number for optimistic concurrency control.
         _primary_term:
           type: integer
+          description: The primary term for optimistic concurrency control.
       required:
         - _id
         - _index
@@ -62776,13 +62828,16 @@ components:
           $ref: '#/components/schemas/sm._common___DeletionCondition'
         time_limit:
           type: string
+          description: The maximum amount of time allowed for snapshot deletion operations.
     sm._common___ExecutionInfo:
       type: object
       properties:
         message:
           type: string
+          description: A detailed message about the policy execution result.
         cause:
           type: string
+          description: The reason policy execution failed, if applicable.
     sm._common___ExecutionMetadata:
       type: object
       properties:
@@ -62808,8 +62863,10 @@ components:
       properties:
         total_policies:
           type: integer
+          description: The total number of policies found.
         policies:
           type: array
+          description: A list of snapshot management policies.
           items:
             $ref: '#/components/schemas/sm._common___ListedPolicy'
       required:
@@ -62820,10 +62877,13 @@ components:
       properties:
         start_time:
           type: integer
+          description: When the interval schedule should start.
         period:
           type: integer
+          description: The number of time units between executions.
         unit:
           type: string
+          description: The time unit for the interval period (Days, Hours, or Minutes).
           enum:
             - Days
             - Hours
@@ -62842,12 +62902,16 @@ components:
       properties:
         _id:
           type: string
+          description: The policy ID.
         _seq_no:
           type: integer
+          description: The sequence number for optimistic concurrency control.
         _primary_term:
           type: integer
+          description: The primary term for optimistic concurrency control.
         sm_policy:
           $ref: '#/components/schemas/sm._common___SMPolicy'
+          description: The complete snapshot management policy configuration.
       required:
         - _id
         - sm_policy
@@ -62856,12 +62920,15 @@ components:
       properties:
         root_cause:
           type: array
+          description: An array of root causes for the error.
           items:
             $ref: '#/components/schemas/sm._common___RootCause'
         type:
           type: string
+          description: The error type.
         reason:
           type: string
+          description: The detailed reason for the error.
       required:
         - reason
         - type
@@ -62870,8 +62937,10 @@ components:
       properties:
         error:
           $ref: '#/components/schemas/sm._common___NotFoundError'
+          description: The detailed error information.
         status:
           type: integer
+          description: The HTTP status code.
       required:
         - error
         - status
@@ -62888,15 +62957,19 @@ components:
         creation:
           type: boolean
           default: true
+          description: Whether to send notifications for a successful snapshot creation.
         deletion:
           type: boolean
           default: false
+          description: Whether to send notifications for a successful snapshot deletion.
         failure:
           type: boolean
           default: false
+          description: Whether to send notifications for failed operations.
         time_limit_exceeded:
           type: boolean
           default: false
+          description: Whether to send notifications when operations exceed time limits.
     sm._common___NotificationConfig:
       type: object
       properties:
@@ -62916,14 +62989,19 @@ components:
       properties:
         _id:
           type: string
+          description: The policy ID.
         _version:
           type: integer
+          description: The version number of the policy document.
         _seq_no:
           type: integer
+          description: The sequence number for optimistic concurrency control.
         _primary_term:
           type: integer
+          description: The primary term for optimistic concurrency control.
         sm_policy:
           $ref: '#/components/schemas/sm._common___SMPolicy'
+          description: The complete snapshot management policy configuration.
       required:
         - _id
         - _primary_term
@@ -62935,49 +63013,59 @@ components:
       properties:
         count:
           type: integer
+          description: The number of retry attempts made.
     sm._common___RootCause:
       type: object
       properties:
         type:
           type: string
+          description: The type of the root cause error.
         reason:
           type: string
+          description: Detailed explanation of the root cause.
     sm._common___ShardsInfo:
       type: object
       properties:
         total:
           type: integer
+          description: The total number of shards.
         successful:
           type: integer
+          description: The number of shards that completed successfully.
         failed:
           type: integer
+          description: The number of shards that failed.
     sm._common___SMPolicy:
       type: object
       properties:
         name:
           type: string
+          description: The unique identifier for the snapshot policy.
         description:
           type: string
         schema_version:
           type: integer
+          description: The version number of the policy schema.
         creation:
           $ref: '#/components/schemas/sm._common___CreationConfig'
         deletion:
           $ref: '#/components/schemas/sm._common___DeletionConfig'
-          description: Configuration for snapshot deletion, optional.
+          description: The configuration for snapshot deletion.
         snapshot_config:
           $ref: '#/components/schemas/sm._common___SnapshotConfig'
         notification:
           $ref: '#/components/schemas/sm._common___NotificationConfig'
         schedule:
           $ref: '#/components/schemas/sm._common___IntervalSchedule'
-          description: System-generated schedule metadata returned by the API.
+          description: The system-generated schedule metadata returned by the API.
         enabled:
           type: boolean
         last_updated_time:
           type: integer
+          description: When the policy was last modified.
         enabled_time:
           type: integer
+          description: When the policy was last enabled.
       required:
         - creation
         - description
@@ -63017,228 +63105,255 @@ components:
       properties:
         current_state:
           type: string
+          description: The current state of the policy execution.
         trigger:
           $ref: '#/components/schemas/sm._common___TriggerMetadata'
+          description: Any information about what triggered the policy execution.
         latest_execution:
           $ref: '#/components/schemas/sm._common___ExecutionMetadata'
+          description: Details about the most recent policy execution.
         retry:
           $ref: '#/components/schemas/sm._common___RetryMetadata'
+          description: Information about any retry attempts that occurred.
     sm._common___TriggerMetadata:
       type: object
       properties:
         time:
           type: integer
+          description: When the policy was triggered.
     snapshot._common___FileCountSnapshotStats:
       type: object
       properties:
         file_count:
           type: integer
           format: int32
+          description: The number of files in the snapshot.
         size_in_bytes:
           $ref: '#/components/schemas/_common___ByteCount'
-      required:
-        - file_count
-        - size_in_bytes
+          description: The total size of files in the snapshot.
     snapshot._common___Repository:
       type: object
+      description: The name of the repository to store the snapshot.
       properties:
         type:
           type: string
+          description: The type of the snapshot repository.
         uuid:
           $ref: '#/components/schemas/_common___Uuid'
+          description: The unique identifier for the repository.
         settings:
           $ref: '#/components/schemas/snapshot._common___RepositorySettings'
-      required:
-        - settings
-        - type
+          description: The configuration settings for the repository.
     snapshot._common___RepositorySettings:
       type: object
+      description: The settings for the snapshot repository.
       properties:
         chunk_size:
           type: string
+          description: The chunk size for the repository.
         compress:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
+          description: Whether compression is enabled for the repository.
         concurrent_streams:
           $ref: '#/components/schemas/_common___StringifiedInteger'
+          description: The number of concurrent streams for the repository.
         location:
           type: string
+          description: The location where snapshots are stored.
         read_only:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
-      required:
-        - location
+          description: Whether the repository is read-only.
     snapshot._common___SnapshotIndexStats:
       type: object
       properties:
         shards:
           type: object
+          description: The status of individual shards in the snapshot.
           additionalProperties:
             $ref: '#/components/schemas/snapshot._common___SnapshotShardsStatus'
         shards_stats:
           $ref: '#/components/schemas/snapshot._common___SnapshotShardsStats'
+          description: The statistics about snapshot shards.
         stats:
           $ref: '#/components/schemas/snapshot._common___SnapshotStats'
-      required:
-        - shards
-        - shards_stats
-        - stats
+          description: The detailed statistics about the snapshot.
     snapshot._common___SnapshotInfo:
       type: object
       properties:
         data_streams:
           type: array
+          description: The list of data streams included in the snapshot.
           items:
             type: string
         duration:
           $ref: '#/components/schemas/_common___Duration'
+          description: The total time taken to complete the snapshot.
         duration_in_millis:
           $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+          description: The total time taken to complete the snapshot in milliseconds.
         end_time:
           $ref: '#/components/schemas/_common___DateTime'
+          description: The time when the snapshot completed.
         end_time_in_millis:
           $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+          description: The time when the snapshot completed in milliseconds.
         failures:
           type: array
+          description: The list of shard failures that occurred during the snapshot.
           items:
             $ref: '#/components/schemas/snapshot._common___SnapshotShardFailure'
         include_global_state:
           type: boolean
+          description: Whether the snapshot includes the cluster state.
         indices:
           type: array
+          description: The list of indexes included in the snapshot.
           items:
             $ref: '#/components/schemas/_common___IndexName'
         metadata:
           $ref: '#/components/schemas/_common___Metadata'
+          description: The custom metadata attached to the snapshot.
         pinned_timestamp:
           $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+          description: The timestamp when the snapshot was pinned.
         reason:
           type: string
+          description: The reason for the snapshot creation.
         remote_store_index_shallow_copy:
           type: boolean
+          description: Whether the snapshot uses remote store index shallow copy.
         snapshot:
           $ref: '#/components/schemas/_common___Name'
+          description: The name of the snapshot.
         shards:
           $ref: '#/components/schemas/_common___ShardStatistics'
+          description: The statistics about the shards included in the snapshot.
         start_time:
           $ref: '#/components/schemas/_common___DateTime'
+          description: The time when the snapshot started.
         start_time_in_millis:
           $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+          description: The time when the snapshot started in milliseconds.
         state:
           type: string
+          description: The current state of the snapshot.
         uuid:
           $ref: '#/components/schemas/_common___Uuid'
+          description: The unique identifier for the snapshot.
         version:
           $ref: '#/components/schemas/_common___VersionString'
+          description: The version of OpenSearch when the snapshot was created.
         version_id:
           $ref: '#/components/schemas/_common___VersionNumber'
-      required:
-        - data_streams
-        - snapshot
-        - uuid
+          description: The internal version number of OpenSearch when the snapshot was created.
     snapshot._common___SnapshotShardFailure:
       type: object
       properties:
         index:
           $ref: '#/components/schemas/_common___IndexName'
+          description: The name of the index containing the failed shard.
         node_id:
           $ref: '#/components/schemas/_common___Id'
+          description: The ID of the node where the shard failure occurred.
         reason:
           type: string
+          description: The reason for the shard failure.
         shard_id:
           $ref: '#/components/schemas/_common___Id'
+          description: The ID of the failed shard.
         status:
           type: string
-      required:
-        - index
-        - reason
-        - shard_id
-        - status
+          description: The status of the failed shard.
     snapshot._common___SnapshotShardsStats:
       type: object
       properties:
         done:
           type: integer
           format: int64
+          description: The number of completed shard snapshots.
         failed:
           type: integer
           format: int64
+          description: The number of failed shard snapshots.
         finalizing:
           type: integer
           format: int64
+          description: The number of finalizing shard snapshots.
         initializing:
           type: integer
           format: int64
+          description: The number of initializing shard snapshots.
         started:
           type: integer
           format: int64
+          description: The number of started shard snapshots.
         total:
           type: integer
           format: int64
-      required:
-        - done
-        - failed
-        - finalizing
-        - initializing
-        - started
-        - total
+          description: The total number of shard snapshots.
     snapshot._common___SnapshotShardsStatsStage:
       oneOf:
         - type: string
           const: DONE
-          description: Number of shards in the snapshot that were successfully stored in the repository.
+          description: The number of shards in the snapshot that were successfully stored in the repository.
         - type: string
           const: FAILURE
-          description: Number of shards in the snapshot that were not successfully stored in the repository.
+          description: The number of shards in the snapshot that were not successfully stored in the repository.
         - type: string
           const: FINALIZE
-          description: Number of shards in the snapshot that are in the finalizing stage of being stored in the repository.
+          description: The number of shards in the snapshot that are in the finalizing stage of being stored in the repository.
         - type: string
           const: INIT
-          description: Number of shards in the snapshot that are in the initializing stage of being stored in the repository.
+          description: The number of shards in the snapshot that are in the initializing stage of being stored in the repository.
         - type: string
           const: STARTED
-          description: Number of shards in the snapshot that are in the started stage of being stored in the repository.
+          description: The number of shards in the snapshot that are in the started stage of being stored in the repository.
     snapshot._common___SnapshotShardsStatsSummary:
       type: object
       properties:
         incremental:
           $ref: '#/components/schemas/snapshot._common___SnapshotShardsStatsSummaryItem'
+          description: The incremental statistics for the shard snapshot.
         processed:
           $ref: '#/components/schemas/snapshot._common___SnapshotShardsStatsSummaryItem'
+          description: The processed statistics for the shard snapshot.
         total:
           $ref: '#/components/schemas/snapshot._common___SnapshotShardsStatsSummaryItem'
+          description: The total statistics for the shard snapshot.
         start_time_in_millis:
           $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+          description: When the shard snapshot started in milliseconds.
         time:
           $ref: '#/components/schemas/_common___Duration'
+          description: The total time taken for the shard snapshot.
         time_in_millis:
           $ref: '#/components/schemas/_common___DurationValueUnitMillis'
-      required:
-        - incremental
-        - start_time_in_millis
-        - time_in_millis
-        - total
+          description: The total time taken for the shard snapshot in milliseconds.
     snapshot._common___SnapshotShardsStatsSummaryItem:
       type: object
       properties:
         file_count:
           type: integer
           format: int64
+          description: The number of files in the shard snapshot.
         size_in_bytes:
           $ref: '#/components/schemas/_common___ByteCount'
-      required:
-        - file_count
-        - size_in_bytes
+          description: The total size of files in the shard snapshot.
     snapshot._common___SnapshotShardsStatus:
       type: object
       properties:
         node:
           $ref: '#/components/schemas/_common___NodeId'
+          description: The ID of the node containing the shard.
         reason:
           type: string
+          description: The reason for the current shard status.
         stage:
           $ref: '#/components/schemas/snapshot._common___SnapshotShardsStatsStage'
+          description: The current stage of the shard snapshot.
         stats:
           $ref: '#/components/schemas/snapshot._common___SnapshotShardsStatsSummary'
+          description: The statistical summary of the shard snapshot.
       required:
         - stage
         - stats
@@ -63247,61 +63362,62 @@ components:
       properties:
         incremental:
           $ref: '#/components/schemas/snapshot._common___FileCountSnapshotStats'
+          description: The incremental statistics for the snapshot.
         processed:
           $ref: '#/components/schemas/snapshot._common___FileCountSnapshotStats'
+          description: The processed statistics for the snapshot.
         start_time_in_millis:
           $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+          description: When the snapshot started in milliseconds.
         time:
           $ref: '#/components/schemas/_common___Duration'
+          description: The total time taken for the snapshot.
         time_in_millis:
           $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+          description: The total time taken for the snapshot in milliseconds.
         total:
           $ref: '#/components/schemas/snapshot._common___FileCountSnapshotStats'
-      required:
-        - incremental
-        - start_time_in_millis
-        - time_in_millis
-        - total
+          description: The total statistics for the snapshot.
     snapshot._common___SnapshotStatus:
       type: object
       properties:
         include_global_state:
           type: boolean
+          description: Whether the snapshot includes the cluster state.
         indices:
           type: object
+          description: The status of indexes in the snapshot.
           additionalProperties:
             $ref: '#/components/schemas/snapshot._common___SnapshotIndexStats'
         repository:
           type: string
+          description: The name of the repository containing the snapshot.
         shards_stats:
           $ref: '#/components/schemas/snapshot._common___SnapshotShardsStats'
+          description: The statistics about snapshot shards.
         snapshot:
           type: string
+          description: The name of the snapshot.
         state:
           type: string
+          description: The current state of the snapshot.
         stats:
           $ref: '#/components/schemas/snapshot._common___SnapshotStats'
+          description: The detailed statistics about the snapshot.
         uuid:
           $ref: '#/components/schemas/_common___Uuid'
-      required:
-        - indices
-        - repository
-        - shards_stats
-        - snapshot
-        - state
-        - stats
-        - uuid
+          description: The unique identifier for the snapshot.
     snapshot.cleanup_repository___CleanupRepositoryResults:
       type: object
       properties:
         deleted_blobs:
-          description: Number of binary large objects (blobs) removed during cleanup.
           type: integer
           format: int64
+          description: The number of binary large objects (blobs) removed during cleanup.
         deleted_bytes:
-          description: Number of bytes freed by cleanup operations.
           type: integer
           format: int64
+          description: The number of bytes freed by cleanup operations.
       required:
         - deleted_blobs
         - deleted_bytes
@@ -63310,12 +63426,15 @@ components:
       properties:
         indices:
           type: array
+          description: The list of indexes that were restored.
           items:
             $ref: '#/components/schemas/_common___IndexName'
         snapshot:
           type: string
+          description: The name of the snapshot that was restored.
         shards:
           $ref: '#/components/schemas/_common___ShardStatistics'
+          description: Any statistics about the restored shards.
       required:
         - indices
         - shards
@@ -63325,6 +63444,7 @@ components:
       properties:
         name:
           $ref: '#/components/schemas/_common___Name'
+          description: The name of the node that verified the repository.
       required:
         - name
     sql._common___Cursor:

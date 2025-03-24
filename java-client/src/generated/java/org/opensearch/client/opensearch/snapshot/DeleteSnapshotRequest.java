@@ -91,7 +91,8 @@ public final class DeleteSnapshotRequest extends RequestBase
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+     * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -114,7 +115,7 @@ public final class DeleteSnapshotRequest extends RequestBase
     }
 
     /**
-     * Required - A repository name
+     * Required - The name of the snapshot repository to delete.
      * <p>
      * API name: {@code repository}
      * </p>
@@ -125,7 +126,7 @@ public final class DeleteSnapshotRequest extends RequestBase
     }
 
     /**
-     * Required - A comma-separated list of snapshot names
+     * Required - A comma-separated list of snapshot names to delete from the repository.
      * <p>
      * API name: {@code snapshot}
      * </p>
@@ -190,7 +191,8 @@ public final class DeleteSnapshotRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -202,7 +204,8 @@ public final class DeleteSnapshotRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -238,7 +241,7 @@ public final class DeleteSnapshotRequest extends RequestBase
         }
 
         /**
-         * Required - A repository name
+         * Required - The name of the snapshot repository to delete.
          * <p>
          * API name: {@code repository}
          * </p>
@@ -250,7 +253,7 @@ public final class DeleteSnapshotRequest extends RequestBase
         }
 
         /**
-         * Required - A comma-separated list of snapshot names
+         * Required - A comma-separated list of snapshot names to delete from the repository.
          * <p>
          * API name: {@code snapshot}
          * </p>

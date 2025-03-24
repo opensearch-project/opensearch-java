@@ -96,7 +96,8 @@ public final class SnapshotStatusRequest extends RequestBase
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+     * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -107,7 +108,7 @@ public final class SnapshotStatusRequest extends RequestBase
     }
 
     /**
-     * Whether to ignore unavailable snapshots, defaults to <code>false</code> which means a SnapshotMissingException is thrown
+     * Whether to ignore any unavailable snapshots, When <code>false</code>, a <code>SnapshotMissingException</code> is thrown.
      * <p>
      * API name: {@code ignore_unavailable}
      * </p>
@@ -130,7 +131,7 @@ public final class SnapshotStatusRequest extends RequestBase
     }
 
     /**
-     * A repository name
+     * The name of the repository containing the snapshot.
      * <p>
      * API name: {@code repository}
      * </p>
@@ -141,7 +142,7 @@ public final class SnapshotStatusRequest extends RequestBase
     }
 
     /**
-     * A comma-separated list of snapshot names
+     * A comma-separated list of snapshot names.
      * <p>
      * API name: {@code snapshot}
      * </p>
@@ -212,7 +213,8 @@ public final class SnapshotStatusRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -224,7 +226,8 @@ public final class SnapshotStatusRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -235,7 +238,7 @@ public final class SnapshotStatusRequest extends RequestBase
         }
 
         /**
-         * Whether to ignore unavailable snapshots, defaults to <code>false</code> which means a SnapshotMissingException is thrown
+         * Whether to ignore any unavailable snapshots, When <code>false</code>, a <code>SnapshotMissingException</code> is thrown.
          * <p>
          * API name: {@code ignore_unavailable}
          * </p>
@@ -272,7 +275,7 @@ public final class SnapshotStatusRequest extends RequestBase
         }
 
         /**
-         * A repository name
+         * The name of the repository containing the snapshot.
          * <p>
          * API name: {@code repository}
          * </p>
@@ -284,7 +287,7 @@ public final class SnapshotStatusRequest extends RequestBase
         }
 
         /**
-         * A comma-separated list of snapshot names
+         * A comma-separated list of snapshot names.
          * <p>
          * API name: {@code snapshot}
          * </p>
@@ -300,7 +303,7 @@ public final class SnapshotStatusRequest extends RequestBase
         }
 
         /**
-         * A comma-separated list of snapshot names
+         * A comma-separated list of snapshot names.
          * <p>
          * API name: {@code snapshot}
          * </p>
