@@ -68,14 +68,14 @@ public class OpenSearchIngestAsyncClient extends ApiClient<OpenSearchTransport, 
     // ----- Endpoint: ingest.delete_pipeline
 
     /**
-     * Deletes a pipeline.
+     * Deletes an ingest pipeline.
      */
     public CompletableFuture<DeletePipelineResponse> deletePipeline(DeletePipelineRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequestAsync(request, DeletePipelineRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Deletes a pipeline.
+     * Deletes an ingest pipeline.
      *
      * @param fn a function that initializes a builder to create the {@link DeletePipelineRequest}
      */
@@ -88,14 +88,14 @@ public class OpenSearchIngestAsyncClient extends ApiClient<OpenSearchTransport, 
     // ----- Endpoint: ingest.get_pipeline
 
     /**
-     * Returns a pipeline.
+     * Returns an ingest pipeline.
      */
     public CompletableFuture<GetPipelineResponse> getPipeline(GetPipelineRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequestAsync(request, GetPipelineRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Returns a pipeline.
+     * Returns an ingest pipeline.
      *
      * @param fn a function that initializes a builder to create the {@link GetPipelineRequest}
      */
@@ -106,7 +106,7 @@ public class OpenSearchIngestAsyncClient extends ApiClient<OpenSearchTransport, 
     }
 
     /**
-     * Returns a pipeline.
+     * Returns an ingest pipeline.
      */
     public final CompletableFuture<GetPipelineResponse> getPipeline() throws IOException, OpenSearchException {
         return getPipeline(new GetPipelineRequest.Builder().build());
@@ -115,14 +115,14 @@ public class OpenSearchIngestAsyncClient extends ApiClient<OpenSearchTransport, 
     // ----- Endpoint: ingest.processor_grok
 
     /**
-     * Returns a list of the built-in patterns.
+     * Returns a list of built-in grok patterns.
      */
     public CompletableFuture<ProcessorGrokResponse> processorGrok(ProcessorGrokRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequestAsync(request, ProcessorGrokRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Returns a list of the built-in patterns.
+     * Returns a list of built-in grok patterns.
      *
      * @param fn a function that initializes a builder to create the {@link ProcessorGrokRequest}
      */
@@ -133,7 +133,7 @@ public class OpenSearchIngestAsyncClient extends ApiClient<OpenSearchTransport, 
     }
 
     /**
-     * Returns a list of the built-in patterns.
+     * Returns a list of built-in grok patterns.
      */
     public final CompletableFuture<ProcessorGrokResponse> processorGrok() throws IOException, OpenSearchException {
         return processorGrok(new ProcessorGrokRequest.Builder().build());
@@ -142,14 +142,14 @@ public class OpenSearchIngestAsyncClient extends ApiClient<OpenSearchTransport, 
     // ----- Endpoint: ingest.put_pipeline
 
     /**
-     * Creates or updates a pipeline.
+     * Creates or updates an ingest pipeline.
      */
     public CompletableFuture<PutPipelineResponse> putPipeline(PutPipelineRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequestAsync(request, PutPipelineRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Creates or updates a pipeline.
+     * Creates or updates an ingest pipeline.
      *
      * @param fn a function that initializes a builder to create the {@link PutPipelineRequest}
      */
@@ -162,14 +162,14 @@ public class OpenSearchIngestAsyncClient extends ApiClient<OpenSearchTransport, 
     // ----- Endpoint: ingest.simulate
 
     /**
-     * Allows to simulate a pipeline with example documents.
+     * Simulates an ingest pipeline with example documents.
      */
     public CompletableFuture<SimulateResponse> simulate(SimulateRequest request) throws IOException, OpenSearchException {
         return this.transport.performRequestAsync(request, SimulateRequest._ENDPOINT, this.transportOptions);
     }
 
     /**
-     * Allows to simulate a pipeline with example documents.
+     * Simulates an ingest pipeline with example documents.
      *
      * @param fn a function that initializes a builder to create the {@link SimulateRequest}
      */
@@ -179,7 +179,7 @@ public class OpenSearchIngestAsyncClient extends ApiClient<OpenSearchTransport, 
     }
 
     /**
-     * Allows to simulate a pipeline with example documents.
+     * Simulates an ingest pipeline with example documents.
      */
     public final CompletableFuture<SimulateResponse> simulate() throws IOException, OpenSearchException {
         return simulate(new SimulateRequest.Builder().build());

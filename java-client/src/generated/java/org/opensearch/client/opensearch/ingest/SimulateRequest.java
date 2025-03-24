@@ -64,7 +64,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: ingest.simulate.Request
 
 /**
- * Allows to simulate a pipeline with example documents.
+ * Simulates an ingest pipeline with example documents.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
@@ -100,7 +100,7 @@ public final class SimulateRequest extends RequestBase
     }
 
     /**
-     * Sample documents to test in the pipeline.
+     * A list of sample documents to test in the pipeline.
      * <p>
      * API name: {@code docs}
      * </p>
@@ -111,7 +111,7 @@ public final class SimulateRequest extends RequestBase
     }
 
     /**
-     * Pipeline to test. If you don't specify a <code>pipeline</code> in the request body, this parameter is required.
+     * The pipeline to test. If you don't specify a <code>pipeline</code> in the request body, this parameter is required.
      * <p>
      * API name: {@code id}
      * </p>
@@ -130,7 +130,7 @@ public final class SimulateRequest extends RequestBase
     }
 
     /**
-     * If <code>true</code>, the response includes output data for each processor in the executed pipeline.
+     * When <code>true</code>, the response includes output data for each processor in the pipeline
      * <p>
      * API name: {@code verbose}
      * </p>
@@ -223,7 +223,7 @@ public final class SimulateRequest extends RequestBase
         }
 
         /**
-         * Sample documents to test in the pipeline.
+         * A list of sample documents to test in the pipeline.
          * <p>
          * API name: {@code docs}
          * </p>
@@ -239,7 +239,7 @@ public final class SimulateRequest extends RequestBase
         }
 
         /**
-         * Sample documents to test in the pipeline.
+         * A list of sample documents to test in the pipeline.
          * <p>
          * API name: {@code docs}
          * </p>
@@ -255,7 +255,7 @@ public final class SimulateRequest extends RequestBase
         }
 
         /**
-         * Sample documents to test in the pipeline.
+         * A list of sample documents to test in the pipeline.
          * <p>
          * API name: {@code docs}
          * </p>
@@ -270,7 +270,7 @@ public final class SimulateRequest extends RequestBase
         }
 
         /**
-         * Pipeline to test. If you don't specify a <code>pipeline</code> in the request body, this parameter is required.
+         * The pipeline to test. If you don't specify a <code>pipeline</code> in the request body, this parameter is required.
          * <p>
          * API name: {@code id}
          * </p>
@@ -299,7 +299,7 @@ public final class SimulateRequest extends RequestBase
         }
 
         /**
-         * If <code>true</code>, the response includes output data for each processor in the executed pipeline.
+         * When <code>true</code>, the response includes output data for each processor in the pipeline
          * <p>
          * API name: {@code verbose}
          * </p>

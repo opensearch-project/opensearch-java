@@ -96,7 +96,9 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * When <code>true</code>, returns settings in a flat format.
+     * Whether to return settings in the flat form, which can improve readability, especially for heavily nested settings. For example, the
+     * flat form of <code>&quot;cluster&quot;: { &quot;max_shards_per_node&quot;: 500 }</code> is
+     * <code>&quot;cluster.max_shards_per_node&quot;: &quot;500&quot;</code>.
      * <p>
      * API name: {@code flat_settings}
      * </p>
@@ -107,7 +109,9 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * A comma-separated list of index metric groups, for example, <code>docs,store</code>.
+     * A comma-separated list of
+     * <a href="https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/#index-metric-groups">index metric groups</a>,
+     * for example, <code>docs,store</code>.
      * <p>
      * API name: {@code index_metric}
      * </p>
@@ -214,7 +218,9 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * When <code>true</code>, returns settings in a flat format.
+         * Whether to return settings in the flat form, which can improve readability, especially for heavily nested settings. For example,
+         * the flat form of <code>&quot;cluster&quot;: { &quot;max_shards_per_node&quot;: 500 }</code> is
+         * <code>&quot;cluster.max_shards_per_node&quot;: &quot;500&quot;</code>.
          * <p>
          * API name: {@code flat_settings}
          * </p>
@@ -226,7 +232,9 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * A comma-separated list of index metric groups, for example, <code>docs,store</code>.
+         * A comma-separated list of
+         * <a href="https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/#index-metric-groups">index metric
+         * groups</a>, for example, <code>docs,store</code>.
          * <p>
          * API name: {@code index_metric}
          * </p>
@@ -242,7 +250,9 @@ public final class ClusterStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * A comma-separated list of index metric groups, for example, <code>docs,store</code>.
+         * A comma-separated list of
+         * <a href="https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-stats/#index-metric-groups">index metric
+         * groups</a>, for example, <code>docs,store</code>.
          * <p>
          * API name: {@code index_metric}
          * </p>

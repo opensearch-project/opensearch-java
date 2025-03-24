@@ -121,7 +121,9 @@ public final class PutClusterSettingsRequest extends RequestBase
     }
 
     /**
-     * Returns settings in a flat format.
+     * Whether to return settings in the flat form, which can improve readability, especially for heavily nested settings. For example, the
+     * flat form of <code>&quot;cluster&quot;: { &quot;max_shards_per_node&quot;: 500 }</code> is
+     * <code>&quot;cluster.max_shards_per_node&quot;: &quot;500&quot;</code>.
      * <p>
      * API name: {@code flat_settings}
      * </p>
@@ -298,7 +300,9 @@ public final class PutClusterSettingsRequest extends RequestBase
         }
 
         /**
-         * Returns settings in a flat format.
+         * Whether to return settings in the flat form, which can improve readability, especially for heavily nested settings. For example,
+         * the flat form of <code>&quot;cluster&quot;: { &quot;max_shards_per_node&quot;: 500 }</code> is
+         * <code>&quot;cluster.max_shards_per_node&quot;: &quot;500&quot;</code>.
          * <p>
          * API name: {@code flat_settings}
          * </p>

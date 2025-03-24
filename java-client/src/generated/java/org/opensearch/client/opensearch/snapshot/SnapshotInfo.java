@@ -104,7 +104,7 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     @Nullable
     private final ShardStatistics shards;
 
-    @Nonnull
+    @Nullable
     private final String snapshot;
 
     @Nullable
@@ -116,7 +116,7 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     @Nullable
     private final String state;
 
-    @Nonnull
+    @Nullable
     private final String uuid;
 
     @Nullable
@@ -128,7 +128,7 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     // ---------------------------------------------------------------------------------------------
 
     private SnapshotInfo(Builder builder) {
-        this.dataStreams = ApiTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
+        this.dataStreams = ApiTypeHelper.unmodifiable(builder.dataStreams);
         this.duration = builder.duration;
         this.durationInMillis = builder.durationInMillis;
         this.endTime = builder.endTime;
@@ -141,11 +141,11 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         this.reason = builder.reason;
         this.remoteStoreIndexShallowCopy = builder.remoteStoreIndexShallowCopy;
         this.shards = builder.shards;
-        this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+        this.snapshot = builder.snapshot;
         this.startTime = builder.startTime;
         this.startTimeInMillis = builder.startTimeInMillis;
         this.state = builder.state;
-        this.uuid = ApiTypeHelper.requireNonNull(builder.uuid, this, "uuid");
+        this.uuid = builder.uuid;
         this.version = builder.version;
         this.versionId = builder.versionId;
     }
@@ -155,7 +155,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
-     * Required - API name: {@code data_streams}
+     * The list of data streams included in the snapshot.
+     * <p>
+     * API name: {@code data_streams}
+     * </p>
      */
     @Nonnull
     public final List<String> dataStreams() {
@@ -163,7 +166,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
+     * The total time taken to complete the snapshot.
+     * <p>
      * API name: {@code duration}
+     * </p>
      */
     @Nullable
     public final Time duration() {
@@ -171,7 +177,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
+     * The total time taken to complete the snapshot in milliseconds.
+     * <p>
      * API name: {@code duration_in_millis}
+     * </p>
      */
     @Nullable
     public final Long durationInMillis() {
@@ -179,7 +188,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
+     * The time when the snapshot completed.
+     * <p>
      * API name: {@code end_time}
+     * </p>
      */
     @Nullable
     public final String endTime() {
@@ -187,7 +199,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
+     * The time when the snapshot completed in milliseconds.
+     * <p>
      * API name: {@code end_time_in_millis}
+     * </p>
      */
     @Nullable
     public final Long endTimeInMillis() {
@@ -195,7 +210,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
+     * The list of shard failures that occurred during the snapshot.
+     * <p>
      * API name: {@code failures}
+     * </p>
      */
     @Nonnull
     public final List<SnapshotShardFailure> failures() {
@@ -203,7 +221,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
+     * Whether the snapshot includes the cluster state.
+     * <p>
      * API name: {@code include_global_state}
+     * </p>
      */
     @Nullable
     public final Boolean includeGlobalState() {
@@ -211,7 +232,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
+     * The list of indexes included in the snapshot.
+     * <p>
      * API name: {@code indices}
+     * </p>
      */
     @Nonnull
     public final List<String> indices() {
@@ -219,7 +243,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
+     * The custom metadata attached to the snapshot.
+     * <p>
      * API name: {@code metadata}
+     * </p>
      */
     @Nonnull
     public final Map<String, JsonData> metadata() {
@@ -227,7 +254,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
+     * The timestamp when the snapshot was pinned.
+     * <p>
      * API name: {@code pinned_timestamp}
+     * </p>
      */
     @Nullable
     public final Long pinnedTimestamp() {
@@ -235,7 +265,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
+     * The reason for the snapshot creation.
+     * <p>
      * API name: {@code reason}
+     * </p>
      */
     @Nullable
     public final String reason() {
@@ -243,7 +276,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
+     * Whether the snapshot uses remote store index shallow copy.
+     * <p>
      * API name: {@code remote_store_index_shallow_copy}
+     * </p>
      */
     @Nullable
     public final Boolean remoteStoreIndexShallowCopy() {
@@ -251,7 +287,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
+     * The statistics about the shards included in the snapshot.
+     * <p>
      * API name: {@code shards}
+     * </p>
      */
     @Nullable
     public final ShardStatistics shards() {
@@ -259,15 +298,21 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
-     * Required - API name: {@code snapshot}
+     * The name of the snapshot.
+     * <p>
+     * API name: {@code snapshot}
+     * </p>
      */
-    @Nonnull
+    @Nullable
     public final String snapshot() {
         return this.snapshot;
     }
 
     /**
+     * The time when the snapshot started.
+     * <p>
      * API name: {@code start_time}
+     * </p>
      */
     @Nullable
     public final String startTime() {
@@ -275,7 +320,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
+     * The time when the snapshot started in milliseconds.
+     * <p>
      * API name: {@code start_time_in_millis}
+     * </p>
      */
     @Nullable
     public final Long startTimeInMillis() {
@@ -283,7 +331,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
+     * The current state of the snapshot.
+     * <p>
      * API name: {@code state}
+     * </p>
      */
     @Nullable
     public final String state() {
@@ -291,15 +342,21 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
-     * Required - API name: {@code uuid}
+     * The unique identifier for the snapshot.
+     * <p>
+     * API name: {@code uuid}
+     * </p>
      */
-    @Nonnull
+    @Nullable
     public final String uuid() {
         return this.uuid;
     }
 
     /**
+     * The version of OpenSearch when the snapshot was created.
+     * <p>
      * API name: {@code version}
+     * </p>
      */
     @Nullable
     public final String version() {
@@ -307,7 +364,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     /**
+     * The internal version number of OpenSearch when the snapshot was created.
+     * <p>
      * API name: {@code version_id}
+     * </p>
      */
     @Nullable
     public final Long versionId() {
@@ -325,12 +385,14 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("data_streams");
-        generator.writeStartArray();
-        for (String item0 : this.dataStreams) {
-            generator.write(item0);
+        if (ApiTypeHelper.isDefined(this.dataStreams)) {
+            generator.writeKey("data_streams");
+            generator.writeStartArray();
+            for (String item0 : this.dataStreams) {
+                generator.write(item0);
+            }
+            generator.writeEnd();
         }
-        generator.writeEnd();
 
         if (this.duration != null) {
             generator.writeKey("duration");
@@ -405,8 +467,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
             this.shards.serialize(generator, mapper);
         }
 
-        generator.writeKey("snapshot");
-        generator.write(this.snapshot);
+        if (this.snapshot != null) {
+            generator.writeKey("snapshot");
+            generator.write(this.snapshot);
+        }
 
         if (this.startTime != null) {
             generator.writeKey("start_time");
@@ -423,8 +487,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
             generator.write(this.state);
         }
 
-        generator.writeKey("uuid");
-        generator.write(this.uuid);
+        if (this.uuid != null) {
+            generator.writeKey("uuid");
+            generator.write(this.uuid);
+        }
 
         if (this.version != null) {
             generator.writeKey("version");
@@ -454,6 +520,7 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
      * Builder for {@link SnapshotInfo}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotInfo> {
+        @Nullable
         private List<String> dataStreams;
         @Nullable
         private Time duration;
@@ -479,6 +546,7 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         private Boolean remoteStoreIndexShallowCopy;
         @Nullable
         private ShardStatistics shards;
+        @Nullable
         private String snapshot;
         @Nullable
         private String startTime;
@@ -486,6 +554,7 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         private Long startTimeInMillis;
         @Nullable
         private String state;
+        @Nullable
         private String uuid;
         @Nullable
         private String version;
@@ -547,7 +616,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
-         * Required - API name: {@code data_streams}
+         * The list of data streams included in the snapshot.
+         * <p>
+         * API name: {@code data_streams}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>dataStreams</code>.
@@ -560,7 +632,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
-         * Required - API name: {@code data_streams}
+         * The list of data streams included in the snapshot.
+         * <p>
+         * API name: {@code data_streams}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>dataStreams</code>.
@@ -573,7 +648,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The total time taken to complete the snapshot.
+         * <p>
          * API name: {@code duration}
+         * </p>
          */
         @Nonnull
         public final Builder duration(@Nullable Time value) {
@@ -582,7 +660,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The total time taken to complete the snapshot.
+         * <p>
          * API name: {@code duration}
+         * </p>
          */
         @Nonnull
         public final Builder duration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -590,7 +671,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The total time taken to complete the snapshot in milliseconds.
+         * <p>
          * API name: {@code duration_in_millis}
+         * </p>
          */
         @Nonnull
         public final Builder durationInMillis(@Nullable Long value) {
@@ -599,7 +683,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The time when the snapshot completed.
+         * <p>
          * API name: {@code end_time}
+         * </p>
          */
         @Nonnull
         public final Builder endTime(@Nullable String value) {
@@ -608,7 +695,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The time when the snapshot completed in milliseconds.
+         * <p>
          * API name: {@code end_time_in_millis}
+         * </p>
          */
         @Nonnull
         public final Builder endTimeInMillis(@Nullable Long value) {
@@ -617,7 +707,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The list of shard failures that occurred during the snapshot.
+         * <p>
          * API name: {@code failures}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>failures</code>.
@@ -630,7 +723,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The list of shard failures that occurred during the snapshot.
+         * <p>
          * API name: {@code failures}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>failures</code>.
@@ -643,7 +739,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The list of shard failures that occurred during the snapshot.
+         * <p>
          * API name: {@code failures}
+         * </p>
          *
          * <p>
          * Adds a value to <code>failures</code> using a builder lambda.
@@ -655,7 +754,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * Whether the snapshot includes the cluster state.
+         * <p>
          * API name: {@code include_global_state}
+         * </p>
          */
         @Nonnull
         public final Builder includeGlobalState(@Nullable Boolean value) {
@@ -664,7 +766,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The list of indexes included in the snapshot.
+         * <p>
          * API name: {@code indices}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>indices</code>.
@@ -677,7 +782,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The list of indexes included in the snapshot.
+         * <p>
          * API name: {@code indices}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>indices</code>.
@@ -690,7 +798,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The custom metadata attached to the snapshot.
+         * <p>
          * API name: {@code metadata}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>metadata</code>.
@@ -703,7 +814,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The custom metadata attached to the snapshot.
+         * <p>
          * API name: {@code metadata}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>metadata</code>.
@@ -716,7 +830,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The timestamp when the snapshot was pinned.
+         * <p>
          * API name: {@code pinned_timestamp}
+         * </p>
          */
         @Nonnull
         public final Builder pinnedTimestamp(@Nullable Long value) {
@@ -725,7 +842,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The reason for the snapshot creation.
+         * <p>
          * API name: {@code reason}
+         * </p>
          */
         @Nonnull
         public final Builder reason(@Nullable String value) {
@@ -734,7 +854,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * Whether the snapshot uses remote store index shallow copy.
+         * <p>
          * API name: {@code remote_store_index_shallow_copy}
+         * </p>
          */
         @Nonnull
         public final Builder remoteStoreIndexShallowCopy(@Nullable Boolean value) {
@@ -743,7 +866,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The statistics about the shards included in the snapshot.
+         * <p>
          * API name: {@code shards}
+         * </p>
          */
         @Nonnull
         public final Builder shards(@Nullable ShardStatistics value) {
@@ -752,7 +878,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The statistics about the shards included in the snapshot.
+         * <p>
          * API name: {@code shards}
+         * </p>
          */
         @Nonnull
         public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
@@ -760,16 +889,22 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
-         * Required - API name: {@code snapshot}
+         * The name of the snapshot.
+         * <p>
+         * API name: {@code snapshot}
+         * </p>
          */
         @Nonnull
-        public final Builder snapshot(String value) {
+        public final Builder snapshot(@Nullable String value) {
             this.snapshot = value;
             return this;
         }
 
         /**
+         * The time when the snapshot started.
+         * <p>
          * API name: {@code start_time}
+         * </p>
          */
         @Nonnull
         public final Builder startTime(@Nullable String value) {
@@ -778,7 +913,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The time when the snapshot started in milliseconds.
+         * <p>
          * API name: {@code start_time_in_millis}
+         * </p>
          */
         @Nonnull
         public final Builder startTimeInMillis(@Nullable Long value) {
@@ -787,7 +925,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The current state of the snapshot.
+         * <p>
          * API name: {@code state}
+         * </p>
          */
         @Nonnull
         public final Builder state(@Nullable String value) {
@@ -796,16 +937,22 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
-         * Required - API name: {@code uuid}
+         * The unique identifier for the snapshot.
+         * <p>
+         * API name: {@code uuid}
+         * </p>
          */
         @Nonnull
-        public final Builder uuid(String value) {
+        public final Builder uuid(@Nullable String value) {
             this.uuid = value;
             return this;
         }
 
         /**
+         * The version of OpenSearch when the snapshot was created.
+         * <p>
          * API name: {@code version}
+         * </p>
          */
         @Nonnull
         public final Builder version(@Nullable String value) {
@@ -814,7 +961,10 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         }
 
         /**
+         * The internal version number of OpenSearch when the snapshot was created.
+         * <p>
          * API name: {@code version_id}
+         * </p>
          */
         @Nonnull
         public final Builder versionId(@Nullable Long value) {
@@ -872,7 +1022,7 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + this.dataStreams.hashCode();
+        result = 31 * result + Objects.hashCode(this.dataStreams);
         result = 31 * result + Objects.hashCode(this.duration);
         result = 31 * result + Objects.hashCode(this.durationInMillis);
         result = 31 * result + Objects.hashCode(this.endTime);
@@ -885,11 +1035,11 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         result = 31 * result + Objects.hashCode(this.reason);
         result = 31 * result + Objects.hashCode(this.remoteStoreIndexShallowCopy);
         result = 31 * result + Objects.hashCode(this.shards);
-        result = 31 * result + this.snapshot.hashCode();
+        result = 31 * result + Objects.hashCode(this.snapshot);
         result = 31 * result + Objects.hashCode(this.startTime);
         result = 31 * result + Objects.hashCode(this.startTimeInMillis);
         result = 31 * result + Objects.hashCode(this.state);
-        result = 31 * result + this.uuid.hashCode();
+        result = 31 * result + Objects.hashCode(this.uuid);
         result = 31 * result + Objects.hashCode(this.version);
         result = 31 * result + Objects.hashCode(this.versionId);
         return result;
@@ -900,7 +1050,7 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         SnapshotInfo other = (SnapshotInfo) o;
-        return this.dataStreams.equals(other.dataStreams)
+        return Objects.equals(this.dataStreams, other.dataStreams)
             && Objects.equals(this.duration, other.duration)
             && Objects.equals(this.durationInMillis, other.durationInMillis)
             && Objects.equals(this.endTime, other.endTime)
@@ -913,11 +1063,11 @@ public class SnapshotInfo implements PlainJsonSerializable, ToCopyableBuilder<Sn
             && Objects.equals(this.reason, other.reason)
             && Objects.equals(this.remoteStoreIndexShallowCopy, other.remoteStoreIndexShallowCopy)
             && Objects.equals(this.shards, other.shards)
-            && this.snapshot.equals(other.snapshot)
+            && Objects.equals(this.snapshot, other.snapshot)
             && Objects.equals(this.startTime, other.startTime)
             && Objects.equals(this.startTimeInMillis, other.startTimeInMillis)
             && Objects.equals(this.state, other.state)
-            && this.uuid.equals(other.uuid)
+            && Objects.equals(this.uuid, other.uuid)
             && Objects.equals(this.version, other.version)
             && Objects.equals(this.versionId, other.versionId);
     }

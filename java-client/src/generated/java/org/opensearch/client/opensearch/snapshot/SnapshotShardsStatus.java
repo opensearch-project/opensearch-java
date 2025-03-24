@@ -86,7 +86,10 @@ public class SnapshotShardsStatus implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
+     * The ID of the node containing the shard.
+     * <p>
      * API name: {@code node}
+     * </p>
      */
     @Nullable
     public final String node() {
@@ -94,7 +97,10 @@ public class SnapshotShardsStatus implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
+     * The reason for the current shard status.
+     * <p>
      * API name: {@code reason}
+     * </p>
      */
     @Nullable
     public final String reason() {
@@ -102,7 +108,10 @@ public class SnapshotShardsStatus implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
-     * Required - API name: {@code stage}
+     * Required - The current stage of the shard snapshot.
+     * <p>
+     * API name: {@code stage}
+     * </p>
      */
     @Nonnull
     public final SnapshotShardsStatsStage stage() {
@@ -110,7 +119,10 @@ public class SnapshotShardsStatus implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
-     * Required - API name: {@code stats}
+     * Required - The statistical summary of the shard snapshot.
+     * <p>
+     * API name: {@code stats}
+     * </p>
      */
     @Nonnull
     public final SnapshotShardsStatsSummary stats() {
@@ -192,7 +204,10 @@ public class SnapshotShardsStatus implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
+         * The ID of the node containing the shard.
+         * <p>
          * API name: {@code node}
+         * </p>
          */
         @Nonnull
         public final Builder node(@Nullable String value) {
@@ -201,7 +216,10 @@ public class SnapshotShardsStatus implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
+         * The reason for the current shard status.
+         * <p>
          * API name: {@code reason}
+         * </p>
          */
         @Nonnull
         public final Builder reason(@Nullable String value) {
@@ -210,7 +228,10 @@ public class SnapshotShardsStatus implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Required - API name: {@code stage}
+         * Required - The current stage of the shard snapshot.
+         * <p>
+         * API name: {@code stage}
+         * </p>
          */
         @Nonnull
         public final Builder stage(SnapshotShardsStatsStage value) {
@@ -219,7 +240,10 @@ public class SnapshotShardsStatus implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Required - API name: {@code stats}
+         * Required - The statistical summary of the shard snapshot.
+         * <p>
+         * API name: {@code stats}
+         * </p>
          */
         @Nonnull
         public final Builder stats(SnapshotShardsStatsSummary value) {
@@ -228,7 +252,10 @@ public class SnapshotShardsStatus implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Required - API name: {@code stats}
+         * Required - The statistical summary of the shard snapshot.
+         * <p>
+         * API name: {@code stats}
+         * </p>
          */
         @Nonnull
         public final Builder stats(Function<SnapshotShardsStatsSummary.Builder, ObjectBuilder<SnapshotShardsStatsSummary>> fn) {

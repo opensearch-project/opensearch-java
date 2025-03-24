@@ -72,7 +72,10 @@ public class CompactNodeInfo implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Required - API name: {@code name}
+     * Required - The name of the node that verified the repository.
+     * <p>
+     * API name: {@code name}
+     * </p>
      */
     @Nonnull
     public final String name() {
@@ -130,7 +133,10 @@ public class CompactNodeInfo implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - API name: {@code name}
+         * Required - The name of the node that verified the repository.
+         * <p>
+         * API name: {@code name}
+         * </p>
          */
         @Nonnull
         public final Builder name(String value) {

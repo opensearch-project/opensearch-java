@@ -183,11 +183,12 @@ public final class PutComponentTemplateRequest extends RequestBase
 
     /**
      * Required - The name of the component template to create. OpenSearch includes the following built-in component templates:
-     * <code>logs-mappings</code>; <code>logs-settings</code>; <code>metrics-mappings</code>; <code>metrics-settings</code>;
-     * <code>synthetics-mapping</code>; <code>synthetics-settings</code>. OpenSearch uses these templates to configure backing indexes for
-     * its data streams. If you want to overwrite one of these templates, set the replacement template <code>version</code> to a higher
+     * <code>logs-mappings</code>, <code>logs-settings</code>, <code>metrics-mappings</code>, <code>metrics-settings</code>,
+     * <code>synthetics-mapping</code>, and <code>synthetics-settings</code>. OpenSearch uses these templates to configure backing indexes
+     * for its data streams. If you want to overwrite one of these templates, set the replacement template <code>version</code> to a higher
      * value than the current version. If you want to disable all built-in component and index templates, set
-     * <code>stack.templates.enabled</code> to <code>false</code> using the Cluster Update Settings API.
+     * <code>stack.templates.enabled</code> to <code>false</code> using the
+     * <a href="https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-settings/">Cluster Update Settings API</a>.
      * <p>
      * API name: {@code name}
      * </p>
@@ -445,11 +446,12 @@ public final class PutComponentTemplateRequest extends RequestBase
 
         /**
          * Required - The name of the component template to create. OpenSearch includes the following built-in component templates:
-         * <code>logs-mappings</code>; <code>logs-settings</code>; <code>metrics-mappings</code>; <code>metrics-settings</code>;
-         * <code>synthetics-mapping</code>; <code>synthetics-settings</code>. OpenSearch uses these templates to configure backing indexes
-         * for its data streams. If you want to overwrite one of these templates, set the replacement template <code>version</code> to a
-         * higher value than the current version. If you want to disable all built-in component and index templates, set
-         * <code>stack.templates.enabled</code> to <code>false</code> using the Cluster Update Settings API.
+         * <code>logs-mappings</code>, <code>logs-settings</code>, <code>metrics-mappings</code>, <code>metrics-settings</code>,
+         * <code>synthetics-mapping</code>, and <code>synthetics-settings</code>. OpenSearch uses these templates to configure backing
+         * indexes for its data streams. If you want to overwrite one of these templates, set the replacement template <code>version</code>
+         * to a higher value than the current version. If you want to disable all built-in component and index templates, set
+         * <code>stack.templates.enabled</code> to <code>false</code> using the
+         * <a href="https://opensearch.org/docs/latest/api-reference/cluster-api/cluster-settings/">Cluster Update Settings API</a>.
          * <p>
          * API name: {@code name}
          * </p>

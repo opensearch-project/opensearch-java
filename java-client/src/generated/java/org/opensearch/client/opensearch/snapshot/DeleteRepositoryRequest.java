@@ -57,7 +57,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: snapshot.delete_repository.Request
 
 /**
- * Deletes a repository.
+ * Deletes a snapshot repository.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public final class DeleteRepositoryRequest extends RequestBase
@@ -92,7 +92,8 @@ public final class DeleteRepositoryRequest extends RequestBase
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+     * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -115,7 +116,7 @@ public final class DeleteRepositoryRequest extends RequestBase
     }
 
     /**
-     * Required - Name of the snapshot repository to unregister. Wildcard (<code>*</code>) patterns are supported.
+     * Required - The name of the snapshot repository to unregister. Wildcard (<code>*</code>) patterns are supported.
      * <p>
      * API name: {@code repository}
      * </p>
@@ -126,7 +127,7 @@ public final class DeleteRepositoryRequest extends RequestBase
     }
 
     /**
-     * Explicit operation timeout
+     * The amount of time to wait for a response.
      * <p>
      * API name: {@code timeout}
      * </p>
@@ -192,7 +193,8 @@ public final class DeleteRepositoryRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -204,7 +206,8 @@ public final class DeleteRepositoryRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -240,7 +243,7 @@ public final class DeleteRepositoryRequest extends RequestBase
         }
 
         /**
-         * Required - Name of the snapshot repository to unregister. Wildcard (<code>*</code>) patterns are supported.
+         * Required - The name of the snapshot repository to unregister. Wildcard (<code>*</code>) patterns are supported.
          * <p>
          * API name: {@code repository}
          * </p>
@@ -256,7 +259,7 @@ public final class DeleteRepositoryRequest extends RequestBase
         }
 
         /**
-         * Required - Name of the snapshot repository to unregister. Wildcard (<code>*</code>) patterns are supported.
+         * Required - The name of the snapshot repository to unregister. Wildcard (<code>*</code>) patterns are supported.
          * <p>
          * API name: {@code repository}
          * </p>
@@ -272,7 +275,7 @@ public final class DeleteRepositoryRequest extends RequestBase
         }
 
         /**
-         * Explicit operation timeout
+         * The amount of time to wait for a response.
          * <p>
          * API name: {@code timeout}
          * </p>
@@ -284,7 +287,7 @@ public final class DeleteRepositoryRequest extends RequestBase
         }
 
         /**
-         * Explicit operation timeout
+         * The amount of time to wait for a response.
          * <p>
          * API name: {@code timeout}
          * </p>

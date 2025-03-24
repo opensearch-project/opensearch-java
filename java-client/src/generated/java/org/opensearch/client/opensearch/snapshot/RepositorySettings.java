@@ -48,7 +48,6 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -56,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.RepositorySettings
 
+/**
+ * The settings for the snapshot repository.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuilder<RepositorySettings.Builder, RepositorySettings> {
@@ -69,7 +71,7 @@ public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuil
     @Nullable
     private final Integer concurrentStreams;
 
-    @Nonnull
+    @Nullable
     private final String location;
 
     @Nullable
@@ -81,7 +83,7 @@ public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuil
         this.chunkSize = builder.chunkSize;
         this.compress = builder.compress;
         this.concurrentStreams = builder.concurrentStreams;
-        this.location = ApiTypeHelper.requireNonNull(builder.location, this, "location");
+        this.location = builder.location;
         this.readOnly = builder.readOnly;
     }
 
@@ -90,7 +92,10 @@ public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The chunk size for the repository.
+     * <p>
      * API name: {@code chunk_size}
+     * </p>
      */
     @Nullable
     public final String chunkSize() {
@@ -98,7 +103,10 @@ public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * Whether compression is enabled for the repository.
+     * <p>
      * API name: {@code compress}
+     * </p>
      */
     @Nullable
     public final Boolean compress() {
@@ -106,7 +114,10 @@ public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The number of concurrent streams for the repository.
+     * <p>
      * API name: {@code concurrent_streams}
+     * </p>
      */
     @Nullable
     public final Integer concurrentStreams() {
@@ -114,15 +125,21 @@ public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
-     * Required - API name: {@code location}
+     * The location where snapshots are stored.
+     * <p>
+     * API name: {@code location}
+     * </p>
      */
-    @Nonnull
+    @Nullable
     public final String location() {
         return this.location;
     }
 
     /**
+     * Whether the repository is read-only.
+     * <p>
      * API name: {@code read_only}
+     * </p>
      */
     @Nullable
     public final Boolean readOnly() {
@@ -155,8 +172,10 @@ public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuil
             generator.write(this.concurrentStreams);
         }
 
-        generator.writeKey("location");
-        generator.write(this.location);
+        if (this.location != null) {
+            generator.writeKey("location");
+            generator.write(this.location);
+        }
 
         if (this.readOnly != null) {
             generator.writeKey("read_only");
@@ -187,6 +206,7 @@ public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuil
         private Boolean compress;
         @Nullable
         private Integer concurrentStreams;
+        @Nullable
         private String location;
         @Nullable
         private Boolean readOnly;
@@ -216,7 +236,10 @@ public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The chunk size for the repository.
+         * <p>
          * API name: {@code chunk_size}
+         * </p>
          */
         @Nonnull
         public final Builder chunkSize(@Nullable String value) {
@@ -225,7 +248,10 @@ public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * Whether compression is enabled for the repository.
+         * <p>
          * API name: {@code compress}
+         * </p>
          */
         @Nonnull
         public final Builder compress(@Nullable Boolean value) {
@@ -234,7 +260,10 @@ public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The number of concurrent streams for the repository.
+         * <p>
          * API name: {@code concurrent_streams}
+         * </p>
          */
         @Nonnull
         public final Builder concurrentStreams(@Nullable Integer value) {
@@ -243,16 +272,22 @@ public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * Required - API name: {@code location}
+         * The location where snapshots are stored.
+         * <p>
+         * API name: {@code location}
+         * </p>
          */
         @Nonnull
-        public final Builder location(String value) {
+        public final Builder location(@Nullable String value) {
             this.location = value;
             return this;
         }
 
         /**
+         * Whether the repository is read-only.
+         * <p>
          * API name: {@code read_only}
+         * </p>
          */
         @Nonnull
         public final Builder readOnly(@Nullable Boolean value) {
@@ -298,7 +333,7 @@ public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuil
         result = 31 * result + Objects.hashCode(this.chunkSize);
         result = 31 * result + Objects.hashCode(this.compress);
         result = 31 * result + Objects.hashCode(this.concurrentStreams);
-        result = 31 * result + this.location.hashCode();
+        result = 31 * result + Objects.hashCode(this.location);
         result = 31 * result + Objects.hashCode(this.readOnly);
         return result;
     }
@@ -311,7 +346,7 @@ public class RepositorySettings implements PlainJsonSerializable, ToCopyableBuil
         return Objects.equals(this.chunkSize, other.chunkSize)
             && Objects.equals(this.compress, other.compress)
             && Objects.equals(this.concurrentStreams, other.concurrentStreams)
-            && this.location.equals(other.location)
+            && Objects.equals(this.location, other.location)
             && Objects.equals(this.readOnly, other.readOnly);
     }
 }
