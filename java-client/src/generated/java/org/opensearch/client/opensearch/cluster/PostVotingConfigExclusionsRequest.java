@@ -92,7 +92,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase
 
     /**
      * A comma-separated list of node IDs to exclude from the voting configuration. When using this setting, you cannot also specify
-     * <code>node_names</code>.
+     * <code>node_names</code>. Either <code>node_ids</code> or <code>node_names</code> are required to receive a valid response.
      * <p>
      * API name: {@code node_ids}
      * </p>
@@ -104,7 +104,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase
 
     /**
      * A comma-separated list of node names to exclude from the voting configuration. When using this setting, you cannot also specify
-     * <code>node_ids</code>.
+     * <code>node_ids</code>. Either <code>node_ids</code> or <code>node_names</code> are required to receive a valid response.
      * <p>
      * API name: {@code node_names}
      * </p>
@@ -183,7 +183,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase
 
         /**
          * A comma-separated list of node IDs to exclude from the voting configuration. When using this setting, you cannot also specify
-         * <code>node_names</code>.
+         * <code>node_names</code>. Either <code>node_ids</code> or <code>node_names</code> are required to receive a valid response.
          * <p>
          * API name: {@code node_ids}
          * </p>
@@ -200,7 +200,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase
 
         /**
          * A comma-separated list of node IDs to exclude from the voting configuration. When using this setting, you cannot also specify
-         * <code>node_names</code>.
+         * <code>node_names</code>. Either <code>node_ids</code> or <code>node_names</code> are required to receive a valid response.
          * <p>
          * API name: {@code node_ids}
          * </p>
@@ -217,7 +217,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase
 
         /**
          * A comma-separated list of node names to exclude from the voting configuration. When using this setting, you cannot also specify
-         * <code>node_ids</code>.
+         * <code>node_ids</code>. Either <code>node_ids</code> or <code>node_names</code> are required to receive a valid response.
          * <p>
          * API name: {@code node_names}
          * </p>
@@ -234,7 +234,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase
 
         /**
          * A comma-separated list of node names to exclude from the voting configuration. When using this setting, you cannot also specify
-         * <code>node_ids</code>.
+         * <code>node_ids</code>. Either <code>node_ids</code> or <code>node_names</code> are required to receive a valid response.
          * <p>
          * API name: {@code node_names}
          * </p>

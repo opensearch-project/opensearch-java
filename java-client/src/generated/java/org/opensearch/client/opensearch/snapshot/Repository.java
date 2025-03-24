@@ -48,7 +48,6 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -56,14 +55,17 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: snapshot.Repository
 
+/**
+ * The name of the repository to store the snapshot.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class Repository implements PlainJsonSerializable, ToCopyableBuilder<Repository.Builder, Repository> {
 
-    @Nonnull
+    @Nullable
     private final RepositorySettings settings;
 
-    @Nonnull
+    @Nullable
     private final String type;
 
     @Nullable
@@ -72,8 +74,8 @@ public class Repository implements PlainJsonSerializable, ToCopyableBuilder<Repo
     // ---------------------------------------------------------------------------------------------
 
     private Repository(Builder builder) {
-        this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
-        this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+        this.settings = builder.settings;
+        this.type = builder.type;
         this.uuid = builder.uuid;
     }
 
@@ -82,23 +84,32 @@ public class Repository implements PlainJsonSerializable, ToCopyableBuilder<Repo
     }
 
     /**
-     * Required - API name: {@code settings}
+     * The configuration settings for the repository.
+     * <p>
+     * API name: {@code settings}
+     * </p>
      */
-    @Nonnull
+    @Nullable
     public final RepositorySettings settings() {
         return this.settings;
     }
 
     /**
-     * Required - API name: {@code type}
+     * The type of the snapshot repository.
+     * <p>
+     * API name: {@code type}
+     * </p>
      */
-    @Nonnull
+    @Nullable
     public final String type() {
         return this.type;
     }
 
     /**
+     * The unique identifier for the repository.
+     * <p>
      * API name: {@code uuid}
+     * </p>
      */
     @Nullable
     public final String uuid() {
@@ -116,11 +127,15 @@ public class Repository implements PlainJsonSerializable, ToCopyableBuilder<Repo
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("settings");
-        this.settings.serialize(generator, mapper);
+        if (this.settings != null) {
+            generator.writeKey("settings");
+            this.settings.serialize(generator, mapper);
+        }
 
-        generator.writeKey("type");
-        generator.write(this.type);
+        if (this.type != null) {
+            generator.writeKey("type");
+            generator.write(this.type);
+        }
 
         if (this.uuid != null) {
             generator.writeKey("uuid");
@@ -145,7 +160,9 @@ public class Repository implements PlainJsonSerializable, ToCopyableBuilder<Repo
      * Builder for {@link Repository}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Repository> {
+        @Nullable
         private RepositorySettings settings;
+        @Nullable
         private String type;
         @Nullable
         private String uuid;
@@ -171,16 +188,22 @@ public class Repository implements PlainJsonSerializable, ToCopyableBuilder<Repo
         }
 
         /**
-         * Required - API name: {@code settings}
+         * The configuration settings for the repository.
+         * <p>
+         * API name: {@code settings}
+         * </p>
          */
         @Nonnull
-        public final Builder settings(RepositorySettings value) {
+        public final Builder settings(@Nullable RepositorySettings value) {
             this.settings = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code settings}
+         * The configuration settings for the repository.
+         * <p>
+         * API name: {@code settings}
+         * </p>
          */
         @Nonnull
         public final Builder settings(Function<RepositorySettings.Builder, ObjectBuilder<RepositorySettings>> fn) {
@@ -188,16 +211,22 @@ public class Repository implements PlainJsonSerializable, ToCopyableBuilder<Repo
         }
 
         /**
-         * Required - API name: {@code type}
+         * The type of the snapshot repository.
+         * <p>
+         * API name: {@code type}
+         * </p>
          */
         @Nonnull
-        public final Builder type(String value) {
+        public final Builder type(@Nullable String value) {
             this.type = value;
             return this;
         }
 
         /**
+         * The unique identifier for the repository.
+         * <p>
          * API name: {@code uuid}
+         * </p>
          */
         @Nonnull
         public final Builder uuid(@Nullable String value) {
@@ -238,8 +267,8 @@ public class Repository implements PlainJsonSerializable, ToCopyableBuilder<Repo
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + this.settings.hashCode();
-        result = 31 * result + this.type.hashCode();
+        result = 31 * result + Objects.hashCode(this.settings);
+        result = 31 * result + Objects.hashCode(this.type);
         result = 31 * result + Objects.hashCode(this.uuid);
         return result;
     }
@@ -249,6 +278,8 @@ public class Repository implements PlainJsonSerializable, ToCopyableBuilder<Repo
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         Repository other = (Repository) o;
-        return this.settings.equals(other.settings) && this.type.equals(other.type) && Objects.equals(this.uuid, other.uuid);
+        return Objects.equals(this.settings, other.settings)
+            && Objects.equals(this.type, other.type)
+            && Objects.equals(this.uuid, other.uuid);
     }
 }

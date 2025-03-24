@@ -38,9 +38,11 @@ package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -62,18 +64,18 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
     @Nonnull
     private final Map<String, SnapshotShardsStatus> shards;
 
-    @Nonnull
+    @Nullable
     private final SnapshotShardsStats shardsStats;
 
-    @Nonnull
+    @Nullable
     private final SnapshotStats stats;
 
     // ---------------------------------------------------------------------------------------------
 
     private SnapshotIndexStats(Builder builder) {
-        this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
-        this.shardsStats = ApiTypeHelper.requireNonNull(builder.shardsStats, this, "shardsStats");
-        this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
+        this.shards = ApiTypeHelper.unmodifiable(builder.shards);
+        this.shardsStats = builder.shardsStats;
+        this.stats = builder.stats;
     }
 
     public static SnapshotIndexStats of(Function<SnapshotIndexStats.Builder, ObjectBuilder<SnapshotIndexStats>> fn) {
@@ -81,7 +83,10 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
-     * Required - API name: {@code shards}
+     * The status of individual shards in the snapshot.
+     * <p>
+     * API name: {@code shards}
+     * </p>
      */
     @Nonnull
     public final Map<String, SnapshotShardsStatus> shards() {
@@ -89,17 +94,23 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
-     * Required - API name: {@code shards_stats}
+     * The statistics about snapshot shards.
+     * <p>
+     * API name: {@code shards_stats}
+     * </p>
      */
-    @Nonnull
+    @Nullable
     public final SnapshotShardsStats shardsStats() {
         return this.shardsStats;
     }
 
     /**
-     * Required - API name: {@code stats}
+     * The detailed statistics about the snapshot.
+     * <p>
+     * API name: {@code stats}
+     * </p>
      */
-    @Nonnull
+    @Nullable
     public final SnapshotStats stats() {
         return this.stats;
     }
@@ -115,19 +126,25 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("shards");
-        generator.writeStartObject();
-        for (Map.Entry<String, SnapshotShardsStatus> item0 : this.shards.entrySet()) {
-            generator.writeKey(item0.getKey());
-            item0.getValue().serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.shards)) {
+            generator.writeKey("shards");
+            generator.writeStartObject();
+            for (Map.Entry<String, SnapshotShardsStatus> item0 : this.shards.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
         }
-        generator.writeEnd();
 
-        generator.writeKey("shards_stats");
-        this.shardsStats.serialize(generator, mapper);
+        if (this.shardsStats != null) {
+            generator.writeKey("shards_stats");
+            this.shardsStats.serialize(generator, mapper);
+        }
 
-        generator.writeKey("stats");
-        this.stats.serialize(generator, mapper);
+        if (this.stats != null) {
+            generator.writeKey("stats");
+            this.stats.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -147,8 +164,11 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
      * Builder for {@link SnapshotIndexStats}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotIndexStats> {
+        @Nullable
         private Map<String, SnapshotShardsStatus> shards;
+        @Nullable
         private SnapshotShardsStats shardsStats;
+        @Nullable
         private SnapshotStats stats;
 
         public Builder() {}
@@ -172,7 +192,10 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * Required - API name: {@code shards}
+         * The status of individual shards in the snapshot.
+         * <p>
+         * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>shards</code>.
@@ -185,7 +208,10 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * Required - API name: {@code shards}
+         * The status of individual shards in the snapshot.
+         * <p>
+         * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>shards</code>.
@@ -198,7 +224,10 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * Required - API name: {@code shards}
+         * The status of individual shards in the snapshot.
+         * <p>
+         * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds a value to <code>shards</code> using a builder lambda.
@@ -210,16 +239,22 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * Required - API name: {@code shards_stats}
+         * The statistics about snapshot shards.
+         * <p>
+         * API name: {@code shards_stats}
+         * </p>
          */
         @Nonnull
-        public final Builder shardsStats(SnapshotShardsStats value) {
+        public final Builder shardsStats(@Nullable SnapshotShardsStats value) {
             this.shardsStats = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code shards_stats}
+         * The statistics about snapshot shards.
+         * <p>
+         * API name: {@code shards_stats}
+         * </p>
          */
         @Nonnull
         public final Builder shardsStats(Function<SnapshotShardsStats.Builder, ObjectBuilder<SnapshotShardsStats>> fn) {
@@ -227,16 +262,22 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * Required - API name: {@code stats}
+         * The detailed statistics about the snapshot.
+         * <p>
+         * API name: {@code stats}
+         * </p>
          */
         @Nonnull
-        public final Builder stats(SnapshotStats value) {
+        public final Builder stats(@Nullable SnapshotStats value) {
             this.stats = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code stats}
+         * The detailed statistics about the snapshot.
+         * <p>
+         * API name: {@code stats}
+         * </p>
          */
         @Nonnull
         public final Builder stats(Function<SnapshotStats.Builder, ObjectBuilder<SnapshotStats>> fn) {
@@ -276,9 +317,9 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + this.shards.hashCode();
-        result = 31 * result + this.shardsStats.hashCode();
-        result = 31 * result + this.stats.hashCode();
+        result = 31 * result + Objects.hashCode(this.shards);
+        result = 31 * result + Objects.hashCode(this.shardsStats);
+        result = 31 * result + Objects.hashCode(this.stats);
         return result;
     }
 
@@ -287,6 +328,8 @@ public class SnapshotIndexStats implements PlainJsonSerializable, ToCopyableBuil
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         SnapshotIndexStats other = (SnapshotIndexStats) o;
-        return this.shards.equals(other.shards) && this.shardsStats.equals(other.shardsStats) && this.stats.equals(other.stats);
+        return Objects.equals(this.shards, other.shards)
+            && Objects.equals(this.shardsStats, other.shardsStats)
+            && Objects.equals(this.stats, other.stats);
     }
 }

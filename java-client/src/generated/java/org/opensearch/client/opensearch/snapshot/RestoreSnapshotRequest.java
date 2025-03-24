@@ -158,7 +158,8 @@ public final class RestoreSnapshotRequest extends RequestBase
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+     * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -169,7 +170,7 @@ public final class RestoreSnapshotRequest extends RequestBase
     }
 
     /**
-     * A comma-delimited list of index settings that you don't want to restore from a snapshot.
+     * A comma-delimited list of index settings to ignore when restoring indexes from a snapshot.
      * <p>
      * API name: {@code ignore_index_settings}
      * </p>
@@ -180,9 +181,9 @@ public final class RestoreSnapshotRequest extends RequestBase
     }
 
     /**
-     * How to handle data streams or indexes that are missing or closed. If <code>false</code>, the request returns an error for any data
-     * stream or index that is missing or closed. If <code>true</code>, the request ignores data streams and indexes in indexes that are
-     * missing or closed. Defaults to <code>false</code>.
+     * How to handle data streams or indexes that are missing or closed. When <code>false</code>, the request returns an error for any data
+     * stream or index that is missing or closed. When <code>true</code>, the request ignores data streams and indexes in indexes that are
+     * missing or closed.
      * <p>
      * API name: {@code ignore_unavailable}
      * </p>
@@ -193,8 +194,8 @@ public final class RestoreSnapshotRequest extends RequestBase
     }
 
     /**
-     * How to handle index aliases from the original snapshot. If <code>true</code>, index aliases from the original snapshot are restored.
-     * If <code>false</code>, aliases along with associated indexes are not restored. Defaults to <code>true</code>.
+     * How to handle index aliases from the original snapshot. When <code>true</code>, index aliases from the original snapshot are
+     * restored. When <code>false</code>, aliases along with associated indexes are not restored.
      * <p>
      * API name: {@code include_aliases}
      * </p>
@@ -205,8 +206,8 @@ public final class RestoreSnapshotRequest extends RequestBase
     }
 
     /**
-     * Whether to restore the current cluster state. If <code>false</code>, the cluster state is not restored. If true, the current cluster
-     * state is restored. Defaults to <code>false</code>.
+     * Whether to restore the current cluster state. When <code>false</code>, the cluster state is not restored. When <code>true</code>, the
+     * current cluster state is restored.
      * <p>
      * API name: {@code include_global_state}
      * </p>
@@ -229,12 +230,7 @@ public final class RestoreSnapshotRequest extends RequestBase
     }
 
     /**
-     * A comma-delimited list of data streams and indexes to restore from the snapshot. Multi-index syntax is supported. By default, a
-     * restore operation includes all data streams and indexes in the snapshot. If this argument is provided, the restore operation only
-     * includes the data streams and indexes that you specify.
-     * <p>
      * API name: {@code indices}
-     * </p>
      */
     @Nonnull
     public final List<String> indices() {
@@ -254,12 +250,12 @@ public final class RestoreSnapshotRequest extends RequestBase
     }
 
     /**
-     * How the restore operation will behave if indexes in the snapshot do not have all primary shards available. If <code>false</code>, the
-     * entire restore operation fails if any indexes in the snapshot do not have all primary shards available. If <code>true</code>, allows
-     * the restoration of a partial snapshot of indexes with unavailable shards. Only shards that were successfully included in the snapshot
-     * are restored. All missing shards are recreated as empty. By default, the entire restore operation fails if one or more indexes
-     * included in the snapshot do not have all primary shards available. To change this behavior, set <code>partial</code> to
-     * <code>true</code>. Defaults to <code>false</code>.
+     * How the restore operation will behave if indexes in the snapshot do not have all primary shards available. When <code>false</code>,
+     * the entire restore operation fails if any indexes in the snapshot do not have all primary shards available. When <code>true</code>,
+     * allows the restoration of a partial snapshot of indexes with unavailable shards. Only shards that were successfully included in the
+     * snapshot are restored. All missing shards are recreated as empty. By default, the entire restore operation fails if one or more
+     * indexes included in the snapshot do not have all primary shards available. To change this behavior, set <code>partial</code> to
+     * <code>true</code>.
      * <p>
      * API name: {@code partial}
      * </p>
@@ -322,7 +318,7 @@ public final class RestoreSnapshotRequest extends RequestBase
     }
 
     /**
-     * Required - A repository name
+     * Required - The name of the repository containing the snapshot
      * <p>
      * API name: {@code repository}
      * </p>
@@ -333,7 +329,7 @@ public final class RestoreSnapshotRequest extends RequestBase
     }
 
     /**
-     * Required - A snapshot name
+     * Required - The name of the snapshot to restore.
      * <p>
      * API name: {@code snapshot}
      * </p>
@@ -360,7 +356,7 @@ public final class RestoreSnapshotRequest extends RequestBase
      * metadata and index data will be downloaded to local storage. A value of <code>remote_snapshot</code> indicates that snapshot metadata
      * will be downloaded to the cluster, but the remote repository will remain the authoritative store of the index data. Data will be
      * downloaded and cached as necessary to service queries. At least one node in the cluster must be configured with the search role in
-     * order to restore a snapshot using the type <code>remote_snapshot</code>. Defaults to <code>local</code>.
+     * order to restore a snapshot using the type <code>remote_snapshot</code>.
      * <p>
      * API name: {@code storage_type}
      * </p>
@@ -371,7 +367,8 @@ public final class RestoreSnapshotRequest extends RequestBase
     }
 
     /**
-     * Should this request wait until the operation has completed before returning
+     * -| Whether to return a response after the restore operation has completed. When <code>false</code>, the request returns a response
+     * when the restore operation initializes. When <code>true</code>, the request returns a response when the restore operation completes.
      * <p>
      * API name: {@code wait_for_completion}
      * </p>
@@ -577,7 +574,8 @@ public final class RestoreSnapshotRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -589,7 +587,8 @@ public final class RestoreSnapshotRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -600,7 +599,7 @@ public final class RestoreSnapshotRequest extends RequestBase
         }
 
         /**
-         * A comma-delimited list of index settings that you don't want to restore from a snapshot.
+         * A comma-delimited list of index settings to ignore when restoring indexes from a snapshot.
          * <p>
          * API name: {@code ignore_index_settings}
          * </p>
@@ -616,7 +615,7 @@ public final class RestoreSnapshotRequest extends RequestBase
         }
 
         /**
-         * A comma-delimited list of index settings that you don't want to restore from a snapshot.
+         * A comma-delimited list of index settings to ignore when restoring indexes from a snapshot.
          * <p>
          * API name: {@code ignore_index_settings}
          * </p>
@@ -632,9 +631,9 @@ public final class RestoreSnapshotRequest extends RequestBase
         }
 
         /**
-         * How to handle data streams or indexes that are missing or closed. If <code>false</code>, the request returns an error for any
-         * data stream or index that is missing or closed. If <code>true</code>, the request ignores data streams and indexes in indexes
-         * that are missing or closed. Defaults to <code>false</code>.
+         * How to handle data streams or indexes that are missing or closed. When <code>false</code>, the request returns an error for any
+         * data stream or index that is missing or closed. When <code>true</code>, the request ignores data streams and indexes in indexes
+         * that are missing or closed.
          * <p>
          * API name: {@code ignore_unavailable}
          * </p>
@@ -646,8 +645,8 @@ public final class RestoreSnapshotRequest extends RequestBase
         }
 
         /**
-         * How to handle index aliases from the original snapshot. If <code>true</code>, index aliases from the original snapshot are
-         * restored. If <code>false</code>, aliases along with associated indexes are not restored. Defaults to <code>true</code>.
+         * How to handle index aliases from the original snapshot. When <code>true</code>, index aliases from the original snapshot are
+         * restored. When <code>false</code>, aliases along with associated indexes are not restored.
          * <p>
          * API name: {@code include_aliases}
          * </p>
@@ -659,8 +658,8 @@ public final class RestoreSnapshotRequest extends RequestBase
         }
 
         /**
-         * Whether to restore the current cluster state. If <code>false</code>, the cluster state is not restored. If true, the current
-         * cluster state is restored. Defaults to <code>false</code>.
+         * Whether to restore the current cluster state. When <code>false</code>, the cluster state is not restored. When <code>true</code>,
+         * the current cluster state is restored.
          * <p>
          * API name: {@code include_global_state}
          * </p>
@@ -697,12 +696,7 @@ public final class RestoreSnapshotRequest extends RequestBase
         }
 
         /**
-         * A comma-delimited list of data streams and indexes to restore from the snapshot. Multi-index syntax is supported. By default, a
-         * restore operation includes all data streams and indexes in the snapshot. If this argument is provided, the restore operation only
-         * includes the data streams and indexes that you specify.
-         * <p>
          * API name: {@code indices}
-         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>indices</code>.
@@ -715,12 +709,7 @@ public final class RestoreSnapshotRequest extends RequestBase
         }
 
         /**
-         * A comma-delimited list of data streams and indexes to restore from the snapshot. Multi-index syntax is supported. By default, a
-         * restore operation includes all data streams and indexes in the snapshot. If this argument is provided, the restore operation only
-         * includes the data streams and indexes that you specify.
-         * <p>
          * API name: {@code indices}
-         * </p>
          *
          * <p>
          * Adds one or more values to <code>indices</code>.
@@ -758,12 +747,12 @@ public final class RestoreSnapshotRequest extends RequestBase
         }
 
         /**
-         * How the restore operation will behave if indexes in the snapshot do not have all primary shards available. If <code>false</code>,
-         * the entire restore operation fails if any indexes in the snapshot do not have all primary shards available. If <code>true</code>,
-         * allows the restoration of a partial snapshot of indexes with unavailable shards. Only shards that were successfully included in
-         * the snapshot are restored. All missing shards are recreated as empty. By default, the entire restore operation fails if one or
-         * more indexes included in the snapshot do not have all primary shards available. To change this behavior, set <code>partial</code>
-         * to <code>true</code>. Defaults to <code>false</code>.
+         * How the restore operation will behave if indexes in the snapshot do not have all primary shards available. When
+         * <code>false</code>, the entire restore operation fails if any indexes in the snapshot do not have all primary shards available.
+         * When <code>true</code>, allows the restoration of a partial snapshot of indexes with unavailable shards. Only shards that were
+         * successfully included in the snapshot are restored. All missing shards are recreated as empty. By default, the entire restore
+         * operation fails if one or more indexes included in the snapshot do not have all primary shards available. To change this
+         * behavior, set <code>partial</code> to <code>true</code>.
          * <p>
          * API name: {@code partial}
          * </p>
@@ -831,7 +820,7 @@ public final class RestoreSnapshotRequest extends RequestBase
         }
 
         /**
-         * Required - A repository name
+         * Required - The name of the repository containing the snapshot
          * <p>
          * API name: {@code repository}
          * </p>
@@ -843,7 +832,7 @@ public final class RestoreSnapshotRequest extends RequestBase
         }
 
         /**
-         * Required - A snapshot name
+         * Required - The name of the snapshot to restore.
          * <p>
          * API name: {@code snapshot}
          * </p>
@@ -872,7 +861,7 @@ public final class RestoreSnapshotRequest extends RequestBase
          * metadata and index data will be downloaded to local storage. A value of <code>remote_snapshot</code> indicates that snapshot
          * metadata will be downloaded to the cluster, but the remote repository will remain the authoritative store of the index data. Data
          * will be downloaded and cached as necessary to service queries. At least one node in the cluster must be configured with the
-         * search role in order to restore a snapshot using the type <code>remote_snapshot</code>. Defaults to <code>local</code>.
+         * search role in order to restore a snapshot using the type <code>remote_snapshot</code>.
          * <p>
          * API name: {@code storage_type}
          * </p>
@@ -884,7 +873,9 @@ public final class RestoreSnapshotRequest extends RequestBase
         }
 
         /**
-         * Should this request wait until the operation has completed before returning
+         * -| Whether to return a response after the restore operation has completed. When <code>false</code>, the request returns a
+         * response when the restore operation initializes. When <code>true</code>, the request returns a response when the restore
+         * operation completes.
          * <p>
          * API name: {@code wait_for_completion}
          * </p>

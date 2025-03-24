@@ -84,7 +84,7 @@ public final class GetTasksRequest extends RequestBase implements ToCopyableBuil
     }
 
     /**
-     * Required - The ID of the task.
+     * Required - The task ID.
      * <p>
      * API name: {@code task_id}
      * </p>
@@ -168,7 +168,7 @@ public final class GetTasksRequest extends RequestBase implements ToCopyableBuil
         }
 
         /**
-         * Required - The ID of the task.
+         * Required - The task ID.
          * <p>
          * API name: {@code task_id}
          * </p>

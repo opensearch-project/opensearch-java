@@ -63,7 +63,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: snapshot.clone.Request
 
 /**
- * Clones indexes from one snapshot into another snapshot in the same repository.
+ * Creates a clone of all or part of a snapshot in the same repository as the original snapshot.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
@@ -108,7 +108,8 @@ public final class CloneSnapshotRequest extends RequestBase
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+     * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -139,7 +140,7 @@ public final class CloneSnapshotRequest extends RequestBase
     }
 
     /**
-     * Required - A repository name
+     * Required - The name of repository which will contain the snapshots clone.
      * <p>
      * API name: {@code repository}
      * </p>
@@ -150,7 +151,7 @@ public final class CloneSnapshotRequest extends RequestBase
     }
 
     /**
-     * Required - The name of the snapshot to clone from
+     * Required - The name of the original snapshot.
      * <p>
      * API name: {@code snapshot}
      * </p>
@@ -161,7 +162,7 @@ public final class CloneSnapshotRequest extends RequestBase
     }
 
     /**
-     * Required - The name of the cloned snapshot to create
+     * Required - The name of the cloned snapshot.
      * <p>
      * API name: {@code target_snapshot}
      * </p>
@@ -247,7 +248,8 @@ public final class CloneSnapshotRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -259,7 +261,8 @@ public final class CloneSnapshotRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -304,7 +307,7 @@ public final class CloneSnapshotRequest extends RequestBase
         }
 
         /**
-         * Required - A repository name
+         * Required - The name of repository which will contain the snapshots clone.
          * <p>
          * API name: {@code repository}
          * </p>
@@ -316,7 +319,7 @@ public final class CloneSnapshotRequest extends RequestBase
         }
 
         /**
-         * Required - The name of the snapshot to clone from
+         * Required - The name of the original snapshot.
          * <p>
          * API name: {@code snapshot}
          * </p>
@@ -328,7 +331,7 @@ public final class CloneSnapshotRequest extends RequestBase
         }
 
         /**
-         * Required - The name of the cloned snapshot to create
+         * Required - The name of the cloned snapshot.
          * <p>
          * API name: {@code target_snapshot}
          * </p>

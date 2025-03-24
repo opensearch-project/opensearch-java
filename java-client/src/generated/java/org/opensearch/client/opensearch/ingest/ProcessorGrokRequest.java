@@ -54,7 +54,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: ingest.processor_grok.Request
 
 /**
- * Returns a list of the built-in patterns.
+ * Returns a list of built-in grok patterns.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public final class ProcessorGrokRequest extends RequestBase
@@ -76,7 +76,7 @@ public final class ProcessorGrokRequest extends RequestBase
     }
 
     /**
-     * Sort returned patterns by key name.
+     * Determines how to sort returned grok patterns by key name.
      * <p>
      * API name: {@code s}
      * </p>
@@ -131,7 +131,7 @@ public final class ProcessorGrokRequest extends RequestBase
         }
 
         /**
-         * Sort returned patterns by key name.
+         * Determines how to sort returned grok patterns by key name.
          * <p>
          * API name: {@code s}
          * </p>

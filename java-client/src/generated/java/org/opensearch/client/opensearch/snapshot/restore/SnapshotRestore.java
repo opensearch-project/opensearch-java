@@ -82,7 +82,10 @@ public class SnapshotRestore implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Required - API name: {@code indices}
+     * Required - The list of indexes that were restored.
+     * <p>
+     * API name: {@code indices}
+     * </p>
      */
     @Nonnull
     public final List<String> indices() {
@@ -90,7 +93,10 @@ public class SnapshotRestore implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Required - API name: {@code shards}
+     * Required - Any statistics about the restored shards.
+     * <p>
+     * API name: {@code shards}
+     * </p>
      */
     @Nonnull
     public final ShardStatistics shards() {
@@ -98,7 +104,10 @@ public class SnapshotRestore implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Required - API name: {@code snapshot}
+     * Required - The name of the snapshot that was restored.
+     * <p>
+     * API name: {@code snapshot}
+     * </p>
      */
     @Nonnull
     public final String snapshot() {
@@ -172,7 +181,10 @@ public class SnapshotRestore implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - API name: {@code indices}
+         * Required - The list of indexes that were restored.
+         * <p>
+         * API name: {@code indices}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>indices</code>.
@@ -185,7 +197,10 @@ public class SnapshotRestore implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - API name: {@code indices}
+         * Required - The list of indexes that were restored.
+         * <p>
+         * API name: {@code indices}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>indices</code>.
@@ -198,7 +213,10 @@ public class SnapshotRestore implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - API name: {@code shards}
+         * Required - Any statistics about the restored shards.
+         * <p>
+         * API name: {@code shards}
+         * </p>
          */
         @Nonnull
         public final Builder shards(ShardStatistics value) {
@@ -207,7 +225,10 @@ public class SnapshotRestore implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - API name: {@code shards}
+         * Required - Any statistics about the restored shards.
+         * <p>
+         * API name: {@code shards}
+         * </p>
          */
         @Nonnull
         public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
@@ -215,7 +236,10 @@ public class SnapshotRestore implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - API name: {@code snapshot}
+         * Required - The name of the snapshot that was restored.
+         * <p>
+         * API name: {@code snapshot}
+         * </p>
          */
         @Nonnull
         public final Builder snapshot(String value) {

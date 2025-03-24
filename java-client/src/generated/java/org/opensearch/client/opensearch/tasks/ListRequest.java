@@ -134,8 +134,8 @@ public final class ListRequest extends RequestBase implements ToCopyableBuilder<
     }
 
     /**
-     * A comma-separated list of node IDs or names to limit the returned information. Use <code>_local</code> to return information from the
-     * node you're connecting to, specify the node name to get information from specific nodes, or keep the parameter empty to get
+     * A comma-separated list of node IDs or names used to limit the returned information. Use <code>_local</code> to return information
+     * from the node you're connecting to, specify the node name to get information from a specific node, or keep the parameter empty to get
      * information from all nodes.
      * <p>
      * API name: {@code nodes}
@@ -147,7 +147,7 @@ public final class ListRequest extends RequestBase implements ToCopyableBuilder<
     }
 
     /**
-     * Returns tasks with a specified parent task ID (node_id:task_number). Keep empty or set to -1 to return all.
+     * Returns tasks with a specified parent task ID (<code>node_id:task_number</code>). Keep empty or set to -1 to return all.
      * <p>
      * API name: {@code parent_task_id}
      * </p>
@@ -304,9 +304,9 @@ public final class ListRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         /**
-         * A comma-separated list of node IDs or names to limit the returned information. Use <code>_local</code> to return information from
-         * the node you're connecting to, specify the node name to get information from specific nodes, or keep the parameter empty to get
-         * information from all nodes.
+         * A comma-separated list of node IDs or names used to limit the returned information. Use <code>_local</code> to return information
+         * from the node you're connecting to, specify the node name to get information from a specific node, or keep the parameter empty to
+         * get information from all nodes.
          * <p>
          * API name: {@code nodes}
          * </p>
@@ -322,9 +322,9 @@ public final class ListRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         /**
-         * A comma-separated list of node IDs or names to limit the returned information. Use <code>_local</code> to return information from
-         * the node you're connecting to, specify the node name to get information from specific nodes, or keep the parameter empty to get
-         * information from all nodes.
+         * A comma-separated list of node IDs or names used to limit the returned information. Use <code>_local</code> to return information
+         * from the node you're connecting to, specify the node name to get information from a specific node, or keep the parameter empty to
+         * get information from all nodes.
          * <p>
          * API name: {@code nodes}
          * </p>
@@ -340,7 +340,7 @@ public final class ListRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         /**
-         * Returns tasks with a specified parent task ID (node_id:task_number). Keep empty or set to -1 to return all.
+         * Returns tasks with a specified parent task ID (<code>node_id:task_number</code>). Keep empty or set to -1 to return all.
          * <p>
          * API name: {@code parent_task_id}
          * </p>

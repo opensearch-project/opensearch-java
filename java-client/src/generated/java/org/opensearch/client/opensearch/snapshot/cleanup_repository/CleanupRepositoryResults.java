@@ -77,7 +77,7 @@ public class CleanupRepositoryResults
     }
 
     /**
-     * Required - Number of binary large objects (blobs) removed during cleanup.
+     * Required - The number of binary large objects (blobs) removed during cleanup.
      * <p>
      * API name: {@code deleted_blobs}
      * </p>
@@ -87,7 +87,7 @@ public class CleanupRepositoryResults
     }
 
     /**
-     * Required - Number of bytes freed by cleanup operations.
+     * Required - The number of bytes freed by cleanup operations.
      * <p>
      * API name: {@code deleted_bytes}
      * </p>
@@ -153,7 +153,7 @@ public class CleanupRepositoryResults
         }
 
         /**
-         * Required - Number of binary large objects (blobs) removed during cleanup.
+         * Required - The number of binary large objects (blobs) removed during cleanup.
          * <p>
          * API name: {@code deleted_blobs}
          * </p>
@@ -165,7 +165,7 @@ public class CleanupRepositoryResults
         }
 
         /**
-         * Required - Number of bytes freed by cleanup operations.
+         * Required - The number of bytes freed by cleanup operations.
          * <p>
          * API name: {@code deleted_bytes}
          * </p>

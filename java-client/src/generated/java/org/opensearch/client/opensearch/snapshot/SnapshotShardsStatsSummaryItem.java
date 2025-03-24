@@ -37,16 +37,17 @@
 package org.opensearch.client.opensearch.snapshot;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -61,15 +62,17 @@ public class SnapshotShardsStatsSummaryItem
         PlainJsonSerializable,
         ToCopyableBuilder<SnapshotShardsStatsSummaryItem.Builder, SnapshotShardsStatsSummaryItem> {
 
-    private final long fileCount;
+    @Nullable
+    private final Long fileCount;
 
-    private final long sizeInBytes;
+    @Nullable
+    private final Long sizeInBytes;
 
     // ---------------------------------------------------------------------------------------------
 
     private SnapshotShardsStatsSummaryItem(Builder builder) {
-        this.fileCount = ApiTypeHelper.requireNonNull(builder.fileCount, this, "fileCount");
-        this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+        this.fileCount = builder.fileCount;
+        this.sizeInBytes = builder.sizeInBytes;
     }
 
     public static SnapshotShardsStatsSummaryItem of(
@@ -79,16 +82,24 @@ public class SnapshotShardsStatsSummaryItem
     }
 
     /**
-     * Required - API name: {@code file_count}
+     * The number of files in the shard snapshot.
+     * <p>
+     * API name: {@code file_count}
+     * </p>
      */
-    public final long fileCount() {
+    @Nullable
+    public final Long fileCount() {
         return this.fileCount;
     }
 
     /**
-     * Required - API name: {@code size_in_bytes}
+     * The total size of files in the shard snapshot.
+     * <p>
+     * API name: {@code size_in_bytes}
+     * </p>
      */
-    public final long sizeInBytes() {
+    @Nullable
+    public final Long sizeInBytes() {
         return this.sizeInBytes;
     }
 
@@ -103,11 +114,15 @@ public class SnapshotShardsStatsSummaryItem
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("file_count");
-        generator.write(this.fileCount);
+        if (this.fileCount != null) {
+            generator.writeKey("file_count");
+            generator.write(this.fileCount);
+        }
 
-        generator.writeKey("size_in_bytes");
-        generator.write(this.sizeInBytes);
+        if (this.sizeInBytes != null) {
+            generator.writeKey("size_in_bytes");
+            generator.write(this.sizeInBytes);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -127,7 +142,9 @@ public class SnapshotShardsStatsSummaryItem
      * Builder for {@link SnapshotShardsStatsSummaryItem}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SnapshotShardsStatsSummaryItem> {
+        @Nullable
         private Long fileCount;
+        @Nullable
         private Long sizeInBytes;
 
         public Builder() {}
@@ -149,19 +166,25 @@ public class SnapshotShardsStatsSummaryItem
         }
 
         /**
-         * Required - API name: {@code file_count}
+         * The number of files in the shard snapshot.
+         * <p>
+         * API name: {@code file_count}
+         * </p>
          */
         @Nonnull
-        public final Builder fileCount(long value) {
+        public final Builder fileCount(@Nullable Long value) {
             this.fileCount = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code size_in_bytes}
+         * The total size of files in the shard snapshot.
+         * <p>
+         * API name: {@code size_in_bytes}
+         * </p>
          */
         @Nonnull
-        public final Builder sizeInBytes(long value) {
+        public final Builder sizeInBytes(@Nullable Long value) {
             this.sizeInBytes = value;
             return this;
         }
@@ -198,8 +221,8 @@ public class SnapshotShardsStatsSummaryItem
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Long.hashCode(this.fileCount);
-        result = 31 * result + Long.hashCode(this.sizeInBytes);
+        result = 31 * result + Objects.hashCode(this.fileCount);
+        result = 31 * result + Objects.hashCode(this.sizeInBytes);
         return result;
     }
 
@@ -208,6 +231,6 @@ public class SnapshotShardsStatsSummaryItem
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         SnapshotShardsStatsSummaryItem other = (SnapshotShardsStatsSummaryItem) o;
-        return this.fileCount == other.fileCount && this.sizeInBytes == other.sizeInBytes;
+        return Objects.equals(this.fileCount, other.fileCount) && Objects.equals(this.sizeInBytes, other.sizeInBytes);
     }
 }

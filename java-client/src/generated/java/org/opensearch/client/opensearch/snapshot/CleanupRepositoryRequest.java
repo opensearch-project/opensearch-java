@@ -56,7 +56,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: snapshot.cleanup_repository.Request
 
 /**
- * Removes stale data from repository.
+ * Removes any stale data from a snapshot repository.
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public final class CleanupRepositoryRequest extends RequestBase
@@ -91,7 +91,8 @@ public final class CleanupRepositoryRequest extends RequestBase
     }
 
     /**
-     * Operation timeout for connection to cluster-manager node.
+     * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+     * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
      * <p>
      * API name: {@code cluster_manager_timeout}
      * </p>
@@ -125,7 +126,7 @@ public final class CleanupRepositoryRequest extends RequestBase
     }
 
     /**
-     * Period to wait for a response.
+     * The amount of time to wait for a response.
      * <p>
      * API name: {@code timeout}
      * </p>
@@ -191,7 +192,8 @@ public final class CleanupRepositoryRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -203,7 +205,8 @@ public final class CleanupRepositoryRequest extends RequestBase
         }
 
         /**
-         * Operation timeout for connection to cluster-manager node.
+         * The amount of time to wait for a response from the cluster manager node. For more information about supported time units, see
+         * <a href="https://opensearch.org/docs/latest/api-reference/common-parameters/#time-units">Common parameters</a>.
          * <p>
          * API name: {@code cluster_manager_timeout}
          * </p>
@@ -251,7 +254,7 @@ public final class CleanupRepositoryRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a response.
+         * The amount of time to wait for a response.
          * <p>
          * API name: {@code timeout}
          * </p>
@@ -263,7 +266,7 @@ public final class CleanupRepositoryRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a response.
+         * The amount of time to wait for a response.
          * <p>
          * API name: {@code timeout}
          * </p>
