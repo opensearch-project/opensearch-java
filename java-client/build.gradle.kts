@@ -43,7 +43,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.0.0-alpha1-SNAPSHOT")
+        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.0.0-beta1-SNAPSHOT")
     }
 }
 
@@ -176,11 +176,11 @@ val integrationTest = task<Test>("integrationTest") {
             System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
 }
 
-val opensearchVersion = "3.0.0-SNAPSHOT"
+val opensearchVersion = "3.0.0-beta1-SNAPSHOT"
 
 dependencies {
-    val jacksonVersion = "2.17.0"
-    val jacksonDatabindVersion = "2.17.0"
+    val jacksonVersion = "2.18.3"
+    val jacksonDatabindVersion = "2.18.3"
 
     // Apache 2.0
     api("commons-logging:commons-logging:1.3.5")
@@ -246,10 +246,6 @@ dependencies {
     testImplementation("junit", "junit" , "4.13.2") {
         exclude(group = "org.hamcrest")
     }
-
-    // The Bouncy Castle License (MIT): https://www.bouncycastle.org/licence.html
-    testImplementation("org.bouncycastle", "bcprov-lts8on", "2.73.6")
-    testImplementation("org.bouncycastle", "bcpkix-lts8on", "2.73.6")
 }
 
 licenseReport {
@@ -361,8 +357,8 @@ publishing {
     }
 }
 
-if (runtimeJavaVersion >= JavaVersion.VERSION_11) {
-  val java11: SourceSet = sourceSets.create("java11") {
+if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
+  val java21: SourceSet = sourceSets.create("java21") {
     java {
       compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
       runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
@@ -370,8 +366,8 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_11) {
     }
   }
 
-  configurations[java11.implementationConfigurationName].extendsFrom(configurations.testImplementation.get())
-  configurations[java11.runtimeOnlyConfigurationName].extendsFrom(configurations.testRuntimeOnly.get())
+  configurations[java21.implementationConfigurationName].extendsFrom(configurations.testImplementation.get())
+  configurations[java21.runtimeOnlyConfigurationName].extendsFrom(configurations.testRuntimeOnly.get())
 
   dependencies {
     testImplementation("org.opensearch.test", "framework", opensearchVersion) {
@@ -379,23 +375,29 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_11) {
     }
   }
 
-  tasks.named<JavaCompile>("compileJava11Java") {
-    targetCompatibility = JavaVersion.VERSION_11.toString()
-    sourceCompatibility = JavaVersion.VERSION_11.toString()
+  tasks.named<JavaCompile>("compileJava21Java") {
+    targetCompatibility = JavaVersion.VERSION_21.toString()
+    sourceCompatibility = JavaVersion.VERSION_21.toString()
   }
   
   tasks.named<JavaCompile>("compileTestJava") {
-    targetCompatibility = JavaVersion.VERSION_11.toString()
-    sourceCompatibility = JavaVersion.VERSION_11.toString()
-  }
+    targetCompatibility = JavaVersion.VERSION_21.toString()
+    sourceCompatibility = JavaVersion.VERSION_21.toString()
+ }
   
   tasks.named<Test>("integrationTest") {
-    testClassesDirs += java11.output.classesDirs
-    classpath = sourceSets["java11"].runtimeClasspath
-  }
+    testClassesDirs += java21.output.classesDirs
+    classpath = sourceSets["java21"].runtimeClasspath
+ }
   
   tasks.named<Test>("unitTest") {
-    testClassesDirs += java11.output.classesDirs
-    classpath = sourceSets["java11"].runtimeClasspath
+    testClassesDirs += java21.output.classesDirs
+    classpath = sourceSets["java21"].runtimeClasspath
+ }
+} else {
+  dependencies {
+    // The Bouncy Castle License (MIT): https://www.bouncycastle.org/licence.html
+    testImplementation("org.bouncycastle", "bcprov-lts8on", "2.73.6")
+    testImplementation("org.bouncycastle", "bcpkix-lts8on", "2.73.6")
   }
 }

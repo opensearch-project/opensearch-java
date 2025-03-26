@@ -8,6 +8,7 @@
 
 package org.opensearch.client.transport.util;
 
+import java.lang.reflect.UndeclaredThrowableException;
 import java.math.BigInteger;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -15,6 +16,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.Provider;
 import java.security.PublicKey;
+import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.time.ZonedDateTime;
@@ -35,13 +37,12 @@ import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
 import org.bouncycastle.cert.jcajce.JcaX509ExtensionUtils;
 import org.bouncycastle.cert.jcajce.JcaX509v3CertificateBuilder;
 import org.bouncycastle.crypto.CryptoServicesRegistrar;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.OperatorCreationException;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 
 public class SelfSignedCertificateAuthority {
-    private static final Provider BC_PROVIDER = new BouncyCastleProvider();
+    private static final Provider BC_PROVIDER = createProvider();
     private static final String KEY_ALGORITHM = "RSA";
     private static final String SIGNATURE_ALGORITHM = "SHA256with" + KEY_ALGORITHM;
 
@@ -73,6 +74,20 @@ public class SelfSignedCertificateAuthority {
             .build(signer);
         authorityKeyIdentifier = extUtils.createAuthorityKeyIdentifier(certificate);
         this.certificate = converter.getCertificate(certificate);
+    }
+
+    private static Provider createProvider() {
+        try {
+            try {
+                return (Provider) Class.forName("org.bouncycastle.jce.provider.BouncyCastleProvider").newInstance();
+            } catch (ClassNotFoundException e) {
+                final Class<?> clazz = Class.forName("org.bouncycastle.jcajce.provider.BouncyCastleFipsProvider");
+                CryptoServicesRegistrar.setSecureRandom(new SecureRandom());
+                return (Provider) clazz.newInstance();
+            }
+        } catch (Exception ex) {
+            throw new UndeclaredThrowableException(ex);
+        }
     }
 
     public X509Certificate getCertificate() {

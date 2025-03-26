@@ -22,6 +22,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -46,8 +48,6 @@ import org.apache.hc.core5.io.CloseMode;
 import org.apache.hc.core5.ssl.SSLContextBuilder;
 import org.bouncycastle.asn1.x500.X500Name;
 import org.bouncycastle.asn1.x509.GeneralName;
-import org.bouncycastle.crypto.SavableDigest;
-import org.bouncycastle.crypto.digests.SHA256Digest;
 import org.bouncycastle.util.encoders.Hex;
 import org.junit.After;
 import org.junit.Before;
@@ -488,11 +488,10 @@ public class AwsSdk2TransportTests {
         }
     }
 
-    private static String sha256Hex(byte[] data) {
-        SavableDigest digest = SHA256Digest.newInstance();
+    private static String sha256Hex(byte[] data) throws NoSuchAlgorithmException {
+        final MessageDigest digest = MessageDigest.getInstance("SHA-256");
         digest.update(data, 0, data.length);
-        byte[] hash = new byte[digest.getDigestSize()];
-        digest.doFinal(hash, 0);
+        byte[] hash = digest.digest();
         return Hex.toHexString(hash);
     }
 
