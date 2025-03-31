@@ -9,6 +9,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.owasp.dependencycheck` from 12.0.2 to 12.1.0 ([#1440](https://github.com/opensearch-project/opensearch-java/pull/1440))
 - Bump `org.junit:junit-bom` from 5.12.0 to 5.12.1 ([#1486](https://github.com/opensearch-project/opensearch-java/pull/1486))
 - Bump `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.8.2 to 2.8.3 ([#1487](https://github.com/opensearch-project/opensearch-java/pull/1487))
+- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.2 to 5.4.3 ([#1507](https://github.com/opensearch-project/opensearch-java/pull/1507))
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
