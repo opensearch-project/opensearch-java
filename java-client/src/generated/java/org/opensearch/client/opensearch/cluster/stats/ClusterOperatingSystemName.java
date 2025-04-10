@@ -37,9 +37,11 @@
 package org.opensearch.client.opensearch.cluster.stats;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -63,14 +65,14 @@ public class ClusterOperatingSystemName
 
     private final int count;
 
-    @Nonnull
+    @Nullable
     private final String name;
 
     // ---------------------------------------------------------------------------------------------
 
     private ClusterOperatingSystemName(Builder builder) {
         this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.name = builder.name;
     }
 
     public static ClusterOperatingSystemName of(
@@ -90,9 +92,9 @@ public class ClusterOperatingSystemName
     }
 
     /**
-     * Required - API name: {@code name}
+     * API name: {@code name}
      */
-    @Nonnull
+    @Nullable
     public final String name() {
         return this.name;
     }
@@ -111,8 +113,10 @@ public class ClusterOperatingSystemName
         generator.writeKey("count");
         generator.write(this.count);
 
-        generator.writeKey("name");
-        generator.write(this.name);
+        if (this.name != null) {
+            generator.writeKey("name");
+            generator.write(this.name);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -133,6 +137,7 @@ public class ClusterOperatingSystemName
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ClusterOperatingSystemName> {
         private Integer count;
+        @Nullable
         private String name;
 
         public Builder() {}
@@ -166,10 +171,10 @@ public class ClusterOperatingSystemName
         }
 
         /**
-         * Required - API name: {@code name}
+         * API name: {@code name}
          */
         @Nonnull
-        public final Builder name(String value) {
+        public final Builder name(@Nullable String value) {
             this.name = value;
             return this;
         }
@@ -207,7 +212,7 @@ public class ClusterOperatingSystemName
     public int hashCode() {
         int result = 17;
         result = 31 * result + Integer.hashCode(this.count);
-        result = 31 * result + this.name.hashCode();
+        result = 31 * result + Objects.hashCode(this.name);
         return result;
     }
 
@@ -216,6 +221,6 @@ public class ClusterOperatingSystemName
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         ClusterOperatingSystemName other = (ClusterOperatingSystemName) o;
-        return this.count == other.count && this.name.equals(other.name);
+        return this.count == other.count && Objects.equals(this.name, other.name);
     }
 }

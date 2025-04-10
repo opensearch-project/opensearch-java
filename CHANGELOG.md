@@ -42,6 +42,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
 - Fixed deserializing `tasks.ListResponse` when using `GroupBy.None` ([#1187](https://github.com/opensearch-project/opensearch-java/pull/1187))
+- Fixed getting cluster stats against AOS due to missing properties ([#1520](https://github.com/opensearch-project/opensearch-java/pull/1520))
 
 ### Security
 

@@ -37,9 +37,11 @@
 package org.opensearch.client.opensearch.cluster.stats;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -63,14 +65,14 @@ public class ClusterOperatingSystemPrettyName
 
     private final int count;
 
-    @Nonnull
+    @Nullable
     private final String prettyName;
 
     // ---------------------------------------------------------------------------------------------
 
     private ClusterOperatingSystemPrettyName(Builder builder) {
         this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-        this.prettyName = ApiTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
+        this.prettyName = builder.prettyName;
     }
 
     public static ClusterOperatingSystemPrettyName of(
@@ -90,9 +92,9 @@ public class ClusterOperatingSystemPrettyName
     }
 
     /**
-     * Required - API name: {@code pretty_name}
+     * API name: {@code pretty_name}
      */
-    @Nonnull
+    @Nullable
     public final String prettyName() {
         return this.prettyName;
     }
@@ -111,8 +113,10 @@ public class ClusterOperatingSystemPrettyName
         generator.writeKey("count");
         generator.write(this.count);
 
-        generator.writeKey("pretty_name");
-        generator.write(this.prettyName);
+        if (this.prettyName != null) {
+            generator.writeKey("pretty_name");
+            generator.write(this.prettyName);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -133,6 +137,7 @@ public class ClusterOperatingSystemPrettyName
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ClusterOperatingSystemPrettyName> {
         private Integer count;
+        @Nullable
         private String prettyName;
 
         public Builder() {}
@@ -166,10 +171,10 @@ public class ClusterOperatingSystemPrettyName
         }
 
         /**
-         * Required - API name: {@code pretty_name}
+         * API name: {@code pretty_name}
          */
         @Nonnull
-        public final Builder prettyName(String value) {
+        public final Builder prettyName(@Nullable String value) {
             this.prettyName = value;
             return this;
         }
@@ -209,7 +214,7 @@ public class ClusterOperatingSystemPrettyName
     public int hashCode() {
         int result = 17;
         result = 31 * result + Integer.hashCode(this.count);
-        result = 31 * result + this.prettyName.hashCode();
+        result = 31 * result + Objects.hashCode(this.prettyName);
         return result;
     }
 
@@ -218,6 +223,6 @@ public class ClusterOperatingSystemPrettyName
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         ClusterOperatingSystemPrettyName other = (ClusterOperatingSystemPrettyName) o;
-        return this.count == other.count && this.prettyName.equals(other.prettyName);
+        return this.count == other.count && Objects.equals(this.prettyName, other.prettyName);
     }
 }
