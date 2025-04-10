@@ -60,17 +60,22 @@ public class NodeJvmInfo implements PlainJsonSerializable {
 
     private final long startTimeInMillis;
 
+    @Nullable
     private final String version;
 
+    @Nullable
     private final String vmName;
 
+    @Nullable
     private final String vmVendor;
 
+    @Nullable
     private final String vmVersion;
 
     private final boolean bundledJdk;
 
-    private final boolean usingBundledJdk;
+    @Nullable
+    private final Boolean usingBundledJdk;
 
     @Nullable
     private final Boolean usingCompressedOrdinaryObjectPointers;
@@ -81,19 +86,19 @@ public class NodeJvmInfo implements PlainJsonSerializable {
 
     private NodeJvmInfo(Builder builder) {
 
-        this.gcCollectors = ApiTypeHelper.unmodifiableRequired(builder.gcCollectors, this, "gcCollectors");
+        this.gcCollectors = ApiTypeHelper.unmodifiable(builder.gcCollectors);
         this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
-        this.memoryPools = ApiTypeHelper.unmodifiableRequired(builder.memoryPools, this, "memoryPools");
+        this.memoryPools = ApiTypeHelper.unmodifiable(builder.memoryPools);
         this.pid = ApiTypeHelper.requireNonNull(builder.pid, this, "pid");
         this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
-        this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
-        this.vmName = ApiTypeHelper.requireNonNull(builder.vmName, this, "vmName");
-        this.vmVendor = ApiTypeHelper.requireNonNull(builder.vmVendor, this, "vmVendor");
-        this.vmVersion = ApiTypeHelper.requireNonNull(builder.vmVersion, this, "vmVersion");
+        this.version = builder.version;
+        this.vmName = builder.vmName;
+        this.vmVendor = builder.vmVendor;
+        this.vmVersion = builder.vmVersion;
         this.bundledJdk = ApiTypeHelper.requireNonNull(builder.bundledJdk, this, "bundledJdk");
-        this.usingBundledJdk = ApiTypeHelper.requireNonNull(builder.usingBundledJdk, this, "usingBundledJdk");
+        this.usingBundledJdk = builder.usingBundledJdk;
         this.usingCompressedOrdinaryObjectPointers = builder.usingCompressedOrdinaryObjectPointers;
-        this.inputArguments = ApiTypeHelper.unmodifiableRequired(builder.inputArguments, this, "inputArguments");
+        this.inputArguments = ApiTypeHelper.unmodifiable(builder.inputArguments);
 
     }
 
@@ -102,7 +107,7 @@ public class NodeJvmInfo implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code gc_collectors}
+     * API name: {@code gc_collectors}
      */
     public final List<String> gcCollectors() {
         return this.gcCollectors;
@@ -116,7 +121,7 @@ public class NodeJvmInfo implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code memory_pools}
+     * API name: {@code memory_pools}
      */
     public final List<String> memoryPools() {
         return this.memoryPools;
@@ -137,29 +142,33 @@ public class NodeJvmInfo implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code version}
+     * API name: {@code version}
      */
+    @Nullable
     public final String version() {
         return this.version;
     }
 
     /**
-     * Required - API name: {@code vm_name}
+     * API name: {@code vm_name}
      */
+    @Nullable
     public final String vmName() {
         return this.vmName;
     }
 
     /**
-     * Required - API name: {@code vm_vendor}
+     * API name: {@code vm_vendor}
      */
+    @Nullable
     public final String vmVendor() {
         return this.vmVendor;
     }
 
     /**
-     * Required - API name: {@code vm_version}
+     * API name: {@code vm_version}
      */
+    @Nullable
     public final String vmVersion() {
         return this.vmVersion;
     }
@@ -172,9 +181,10 @@ public class NodeJvmInfo implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code using_bundled_jdk}
+     * API name: {@code using_bundled_jdk}
      */
-    public final boolean usingBundledJdk() {
+    @Nullable
+    public final Boolean usingBundledJdk() {
         return this.usingBundledJdk;
     }
 
@@ -187,7 +197,7 @@ public class NodeJvmInfo implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code input_arguments}
+     * API name: {@code input_arguments}
      */
     public final List<String> inputArguments() {
         return this.inputArguments;
@@ -233,23 +243,34 @@ public class NodeJvmInfo implements PlainJsonSerializable {
         generator.writeKey("start_time_in_millis");
         generator.write(this.startTimeInMillis);
 
-        generator.writeKey("version");
-        generator.write(this.version);
+        if (this.version != null) {
+            generator.writeKey("version");
+            generator.write(this.version);
+        }
 
-        generator.writeKey("vm_name");
-        generator.write(this.vmName);
+        if (this.vmName != null) {
+            generator.writeKey("vm_name");
+            generator.write(this.vmName);
+        }
 
-        generator.writeKey("vm_vendor");
-        generator.write(this.vmVendor);
+        if (this.vmVendor != null) {
+            generator.writeKey("vm_vendor");
+            generator.write(this.vmVendor);
+        }
 
-        generator.writeKey("vm_version");
-        generator.write(this.vmVersion);
+        if (this.vmVersion != null) {
+            generator.writeKey("vm_version");
+            generator.write(this.vmVersion);
+        }
 
         generator.writeKey("bundled_jdk");
         generator.write(this.bundledJdk);
 
-        generator.writeKey("using_bundled_jdk");
-        generator.write(this.usingBundledJdk);
+        if (this.usingBundledJdk != null) {
+            generator.writeKey("using_bundled_jdk");
+            generator.write(this.usingBundledJdk);
+
+        }
 
         if (this.usingCompressedOrdinaryObjectPointers != null) {
             generator.writeKey("using_compressed_ordinary_object_pointers");
@@ -276,35 +297,43 @@ public class NodeJvmInfo implements PlainJsonSerializable {
      */
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeJvmInfo> {
+        @Nullable
         private List<String> gcCollectors;
 
         private NodeInfoJvmMemory mem;
 
+        @Nullable
         private List<String> memoryPools;
 
         private Integer pid;
 
         private Long startTimeInMillis;
 
+        @Nullable
         private String version;
 
+        @Nullable
         private String vmName;
 
+        @Nullable
         private String vmVendor;
 
+        @Nullable
         private String vmVersion;
 
         private Boolean bundledJdk;
 
+        @Nullable
         private Boolean usingBundledJdk;
 
         @Nullable
         private Boolean usingCompressedOrdinaryObjectPointers;
 
+        @Nullable
         private List<String> inputArguments;
 
         /**
-         * Required - API name: {@code gc_collectors}
+         * API name: {@code gc_collectors}
          * <p>
          * Adds all elements of <code>list</code> to <code>gcCollectors</code>.
          */
@@ -314,7 +343,7 @@ public class NodeJvmInfo implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code gc_collectors}
+         * API name: {@code gc_collectors}
          * <p>
          * Adds one or more values to <code>gcCollectors</code>.
          */
@@ -339,7 +368,7 @@ public class NodeJvmInfo implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code memory_pools}
+         * API name: {@code memory_pools}
          * <p>
          * Adds all elements of <code>list</code> to <code>memoryPools</code>.
          */
@@ -349,7 +378,7 @@ public class NodeJvmInfo implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code memory_pools}
+         * API name: {@code memory_pools}
          * <p>
          * Adds one or more values to <code>memoryPools</code>.
          */
@@ -375,33 +404,33 @@ public class NodeJvmInfo implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code version}
+         * API name: {@code version}
          */
-        public final Builder version(String value) {
+        public final Builder version(@Nullable String value) {
             this.version = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code vm_name}
+         * API name: {@code vm_name}
          */
-        public final Builder vmName(String value) {
+        public final Builder vmName(@Nullable String value) {
             this.vmName = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code vm_vendor}
+         * API name: {@code vm_vendor}
          */
-        public final Builder vmVendor(String value) {
+        public final Builder vmVendor(@Nullable String value) {
             this.vmVendor = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code vm_version}
+         * API name: {@code vm_version}
          */
-        public final Builder vmVersion(String value) {
+        public final Builder vmVersion(@Nullable String value) {
             this.vmVersion = value;
             return this;
         }
@@ -415,9 +444,9 @@ public class NodeJvmInfo implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code using_bundled_jdk}
+         * API name: {@code using_bundled_jdk}
          */
-        public final Builder usingBundledJdk(boolean value) {
+        public final Builder usingBundledJdk(@Nullable Boolean value) {
             this.usingBundledJdk = value;
             return this;
         }
@@ -431,7 +460,7 @@ public class NodeJvmInfo implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code input_arguments}
+         * API name: {@code input_arguments}
          * <p>
          * Adds all elements of <code>list</code> to <code>inputArguments</code>.
          */
@@ -441,7 +470,7 @@ public class NodeJvmInfo implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code input_arguments}
+         * API name: {@code input_arguments}
          * <p>
          * Adds one or more values to <code>inputArguments</code>.
          */
