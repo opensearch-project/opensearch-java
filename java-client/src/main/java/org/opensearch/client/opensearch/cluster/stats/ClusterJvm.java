@@ -45,6 +45,8 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
+import javax.annotation.Nullable;
+
 // typedef: cluster.stats.ClusterJvm
 
 @JsonpDeserializable
@@ -64,7 +66,7 @@ public class ClusterJvm implements PlainJsonSerializable {
         this.maxUptimeInMillis = ApiTypeHelper.requireNonNull(builder.maxUptimeInMillis, this, "maxUptimeInMillis");
         this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
         this.threads = ApiTypeHelper.requireNonNull(builder.threads, this, "threads");
-        this.versions = ApiTypeHelper.unmodifiableRequired(builder.versions, this, "versions");
+        this.versions = ApiTypeHelper.unmodifiable(builder.versions);
 
     }
 
@@ -94,7 +96,7 @@ public class ClusterJvm implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code versions}
+     * API name: {@code versions}
      */
     public final List<ClusterJvmVersion> versions() {
         return this.versions;
@@ -146,6 +148,7 @@ public class ClusterJvm implements PlainJsonSerializable {
 
         private Long threads;
 
+        @Nullable
         private List<ClusterJvmVersion> versions;
 
         /**
@@ -180,7 +183,7 @@ public class ClusterJvm implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code versions}
+         * API name: {@code versions}
          * <p>
          * Adds all elements of <code>list</code> to <code>versions</code>.
          */
@@ -190,7 +193,7 @@ public class ClusterJvm implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code versions}
+         * API name: {@code versions}
          * <p>
          * Adds one or more values to <code>versions</code>.
          */
@@ -200,7 +203,7 @@ public class ClusterJvm implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code versions}
+         * API name: {@code versions}
          * <p>
          * Adds a value to <code>versions</code> using a builder lambda.
          */

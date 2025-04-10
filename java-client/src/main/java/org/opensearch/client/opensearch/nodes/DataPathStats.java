@@ -44,6 +44,8 @@ import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
+import javax.annotation.Nullable;
+
 // typedef: nodes._types.DataPathStats
 
 @JsonpDeserializable
@@ -52,8 +54,10 @@ public class DataPathStats implements PlainJsonSerializable {
 
     private final long freeInBytes;
 
+    @Nullable
     private final String mount;
 
+    @Nullable
     private final String path;
 
     private final long totalInBytes;
@@ -66,8 +70,8 @@ public class DataPathStats implements PlainJsonSerializable {
 
         this.availableInBytes = ApiTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes");
         this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
-        this.mount = ApiTypeHelper.requireNonNull(builder.mount, this, "mount");
-        this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
+        this.mount = builder.mount;
+        this.path = builder.path;
         this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
         this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
@@ -92,15 +96,17 @@ public class DataPathStats implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code mount}
+     * API name: {@code mount}
      */
+    @Nullable
     public final String mount() {
         return this.mount;
     }
 
     /**
-     * Required - API name: {@code path}
+     * API name: {@code path}
      */
+    @Nullable
     public final String path() {
         return this.path;
     }
@@ -136,11 +142,15 @@ public class DataPathStats implements PlainJsonSerializable {
         generator.writeKey("free_in_bytes");
         generator.write(this.freeInBytes);
 
-        generator.writeKey("mount");
-        generator.write(this.mount);
+        if (this.mount != null) {
+            generator.writeKey("mount");
+            generator.write(this.mount);
+        }
 
-        generator.writeKey("path");
-        generator.write(this.path);
+        if (this.path != null) {
+            generator.writeKey("path");
+            generator.write(this.path);
+        }
 
         generator.writeKey("total_in_bytes");
         generator.write(this.totalInBytes);
@@ -162,8 +172,10 @@ public class DataPathStats implements PlainJsonSerializable {
 
         private Long freeInBytes;
 
+        @Nullable
         private String mount;
 
+        @Nullable
         private String path;
 
         private Long totalInBytes;
@@ -187,17 +199,17 @@ public class DataPathStats implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code mount}
+         * API name: {@code mount}
          */
-        public final Builder mount(String value) {
+        public final Builder mount(@Nullable String value) {
             this.mount = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code path}
+         * API name: {@code path}
          */
-        public final Builder path(String value) {
+        public final Builder path(@Nullable String value) {
             this.path = value;
             return this;
         }
