@@ -34,6 +34,7 @@ package org.opensearch.client.opensearch.cluster.stats;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -43,8 +44,6 @@ import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-
-import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterOperatingSystemName
 
