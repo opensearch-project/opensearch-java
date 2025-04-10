@@ -82,7 +82,7 @@ public class ClusterJvm implements PlainJsonSerializable, ToCopyableBuilder<Clus
         this.maxUptimeInMillis = ApiTypeHelper.requireNonNull(builder.maxUptimeInMillis, this, "maxUptimeInMillis");
         this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
         this.threads = ApiTypeHelper.requireNonNull(builder.threads, this, "threads");
-        this.versions = ApiTypeHelper.unmodifiableRequired(builder.versions, this, "versions");
+        this.versions = ApiTypeHelper.unmodifiable(builder.versions);
     }
 
     public static ClusterJvm of(Function<ClusterJvm.Builder, ObjectBuilder<ClusterJvm>> fn) {
@@ -123,7 +123,7 @@ public class ClusterJvm implements PlainJsonSerializable, ToCopyableBuilder<Clus
     }
 
     /**
-     * Required - Contains statistics about the JVM versions used by selected nodes.
+     * Contains statistics about the JVM versions used by selected nodes.
      * <p>
      * API name: {@code versions}
      * </p>
@@ -158,12 +158,14 @@ public class ClusterJvm implements PlainJsonSerializable, ToCopyableBuilder<Clus
         generator.writeKey("threads");
         generator.write(this.threads);
 
-        generator.writeKey("versions");
-        generator.writeStartArray();
-        for (ClusterJvmVersion item0 : this.versions) {
-            item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.versions)) {
+            generator.writeKey("versions");
+            generator.writeStartArray();
+            for (ClusterJvmVersion item0 : this.versions) {
+                item0.serialize(generator, mapper);
+            }
+            generator.writeEnd();
         }
-        generator.writeEnd();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -188,6 +190,7 @@ public class ClusterJvm implements PlainJsonSerializable, ToCopyableBuilder<Clus
         private Long maxUptimeInMillis;
         private ClusterJvmMemory mem;
         private Long threads;
+        @Nullable
         private List<ClusterJvmVersion> versions;
 
         public Builder() {}
@@ -270,7 +273,7 @@ public class ClusterJvm implements PlainJsonSerializable, ToCopyableBuilder<Clus
         }
 
         /**
-         * Required - Contains statistics about the JVM versions used by selected nodes.
+         * Contains statistics about the JVM versions used by selected nodes.
          * <p>
          * API name: {@code versions}
          * </p>
@@ -286,7 +289,7 @@ public class ClusterJvm implements PlainJsonSerializable, ToCopyableBuilder<Clus
         }
 
         /**
-         * Required - Contains statistics about the JVM versions used by selected nodes.
+         * Contains statistics about the JVM versions used by selected nodes.
          * <p>
          * API name: {@code versions}
          * </p>
@@ -302,7 +305,7 @@ public class ClusterJvm implements PlainJsonSerializable, ToCopyableBuilder<Clus
         }
 
         /**
-         * Required - Contains statistics about the JVM versions used by selected nodes.
+         * Contains statistics about the JVM versions used by selected nodes.
          * <p>
          * API name: {@code versions}
          * </p>
@@ -355,7 +358,7 @@ public class ClusterJvm implements PlainJsonSerializable, ToCopyableBuilder<Clus
         result = 31 * result + Long.hashCode(this.maxUptimeInMillis);
         result = 31 * result + this.mem.hashCode();
         result = 31 * result + Long.hashCode(this.threads);
-        result = 31 * result + this.versions.hashCode();
+        result = 31 * result + Objects.hashCode(this.versions);
         return result;
     }
 
@@ -368,6 +371,6 @@ public class ClusterJvm implements PlainJsonSerializable, ToCopyableBuilder<Clus
             && this.maxUptimeInMillis == other.maxUptimeInMillis
             && this.mem.equals(other.mem)
             && this.threads == other.threads
-            && this.versions.equals(other.versions);
+            && Objects.equals(this.versions, other.versions);
     }
 }
