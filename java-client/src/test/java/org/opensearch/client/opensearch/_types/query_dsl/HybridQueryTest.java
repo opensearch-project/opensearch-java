@@ -27,7 +27,7 @@ public class HybridQueryTest extends ModelTestCase {
                     .toQuery(),
                 new KnnQuery.Builder().field("passage_embedding").vector(new float[] { 0.01f, 0.02f }).k(2).build().toQuery()
             )
-        ).build();
+        ).paginationDepth(100).build();
         HybridQuery copied = origin.toBuilder().build();
 
         assertEquals(toJson(copied), toJson(origin));

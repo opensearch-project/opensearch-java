@@ -109,6 +109,18 @@ public abstract class QueryBase implements PlainJsonSerializable {
         @Nullable
         private String queryName;
 
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder(QueryBase o) {
+            this.boost = o.boost;
+            this.queryName = o.queryName;
+        }
+
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            this.boost = o.boost;
+            this.queryName = o.queryName;
+        }
+
         /**
          * API name: {@code boost}
          */
