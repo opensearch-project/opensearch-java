@@ -145,9 +145,7 @@ public class Overrides {
 
                 .with(
                     schema("_common.query_dsl", "QueryBase"),
-                    so -> so
-                            .withShouldGenerate(ShouldGenerate.Never)
-                            .withProperties(p -> p.with("_name", po -> po.withName("queryName")))
+                    so -> so.withShouldGenerate(ShouldGenerate.Never).withProperties(p -> p.with("_name", po -> po.withName("queryName")))
                 )
 
                 .with(
