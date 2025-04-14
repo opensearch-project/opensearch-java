@@ -227,7 +227,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
 
         return future.thenApply(r -> {
             try {
-                return (ResponseT) prepareResponse(r, endpoint);
+                return prepareResponse(r, endpoint);
             } catch (final IOException ex) {
                 throw new CompletionException(ex);
             }
