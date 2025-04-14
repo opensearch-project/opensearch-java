@@ -60,7 +60,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class HybridQuery extends QueryBase implements QueryVariant, ToCopyableBuilder<HybridQuery.Builder, HybridQuery> {
 
     @Nullable
-    private final Number paginationDepth;
+    private final Integer paginationDepth;
 
     @Nonnull
     private final List<Query> queries;
@@ -89,7 +89,7 @@ public class HybridQuery extends QueryBase implements QueryVariant, ToCopyableBu
      * API name: {@code pagination_depth}
      */
     @Nullable
-    public final Number paginationDepth() {
+    public final Integer paginationDepth() {
         return this.paginationDepth;
     }
 
@@ -105,7 +105,7 @@ public class HybridQuery extends QueryBase implements QueryVariant, ToCopyableBu
         super.serializeInternal(generator, mapper);
         if (this.paginationDepth != null) {
             generator.writeKey("pagination_depth");
-            generator.write(this.paginationDepth.doubleValue());
+            generator.write(this.paginationDepth);
         }
 
         if (ApiTypeHelper.isDefined(this.queries)) {
@@ -136,7 +136,7 @@ public class HybridQuery extends QueryBase implements QueryVariant, ToCopyableBu
      */
     public static class Builder extends QueryBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, HybridQuery> {
         @Nullable
-        private Number paginationDepth;
+        private Integer paginationDepth;
         @Nullable
         private List<Query> queries;
 
@@ -170,7 +170,7 @@ public class HybridQuery extends QueryBase implements QueryVariant, ToCopyableBu
          * API name: {@code pagination_depth}
          */
         @Nonnull
-        public final Builder paginationDepth(@Nullable Number value) {
+        public final Builder paginationDepth(@Nullable Integer value) {
             this.paginationDepth = value;
             return this;
         }
@@ -239,7 +239,7 @@ public class HybridQuery extends QueryBase implements QueryVariant, ToCopyableBu
 
     protected static void setupHybridQueryDeserializer(ObjectDeserializer<HybridQuery.Builder> op) {
         setupQueryBaseDeserializer(op);
-        op.add(Builder::paginationDepth, JsonpDeserializer.numberDeserializer(), "pagination_depth");
+        op.add(Builder::paginationDepth, JsonpDeserializer.integerDeserializer(), "pagination_depth");
         op.add(Builder::queries, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "queries");
     }
 

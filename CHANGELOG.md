@@ -46,6 +46,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Added
 - Added `normalizer` to wildcard field ([#1489](https://github.com/opensearch-project/opensearch-java/pull/1489))
 - Added `paginationDepth` to `HybridQuery` ([#1490](https://github.com/opensearch-project/opensearch-java/pull/1490))
+
 ### Dependencies
 
 ### Changed
@@ -56,6 +57,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Fixed ClassCastException in extractAndWrapCause when handling ExecutionException ([#1483](https://github.com/opensearch-project/opensearch-java/pull/1483))
+
 ### Security
 
 ## [2.22.0] - 03/05/2025
