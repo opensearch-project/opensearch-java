@@ -58,6 +58,7 @@ public class Overrides {
                 .with(schema("_common.mapping", "PropertyBase"), so -> so.withShouldGenerate(ShouldGenerate.Never))
                 .with(schema("_common.mapping", "IcuCollationKeywordProperty"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(schema("_common.mapping", "KnnVectorProperty"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+                .with(schema("_common.mapping", "WildcardProperty"), so -> so.withShouldGenerate(ShouldGenerate.Always))
 
                 // TODO: Remove this to generate query types
                 .with(schema("_common", "DistanceUnit"), so -> so.withShouldGenerate(ShouldGenerate.Never))
@@ -122,6 +123,7 @@ public class Overrides {
                 .with(schema("_common.query_dsl", "GeoDistanceQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
                 .with(schema("_common.query_dsl", "GeoPolygonQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
                 .with(schema("_common.query_dsl", "GeoShapeQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+                .with(schema("_common.query_dsl", "HybridQuery"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(schema("_common.query_dsl", "RangeQuery"), so -> so.withShouldGenerate(ShouldGenerate.Never))
                 .with(schema("_common.query_dsl", "RankFeatureFunctionLinear"), so -> so.withShouldGenerate(ShouldGenerate.Never))
                 .with(schema("_common.query_dsl", "RankFeatureFunctionLogarithm"), so -> so.withShouldGenerate(ShouldGenerate.Never))
@@ -143,7 +145,7 @@ public class Overrides {
 
                 .with(
                     schema("_common.query_dsl", "QueryBase"),
-                    so -> so.withProperties(p -> p.with("_name", po -> po.withName("queryName")))
+                    so -> so.withShouldGenerate(ShouldGenerate.Never).withProperties(p -> p.with("_name", po -> po.withName("queryName")))
                 )
 
                 .with(
