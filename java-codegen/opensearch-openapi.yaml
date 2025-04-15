@@ -43246,6 +43246,8 @@ components:
                 - wildcard
             null_value:
               type: string
+            normalizer:
+              type: string
           required:
             - type
     _common.mapping___XyPointProperty:
@@ -43875,6 +43877,9 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
+            pagination_depth:
+              type: integer
+              format: int32
     _common.query_dsl___IdsQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
