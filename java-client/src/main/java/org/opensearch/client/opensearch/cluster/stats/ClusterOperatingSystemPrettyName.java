@@ -34,6 +34,7 @@ package org.opensearch.client.opensearch.cluster.stats;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -50,6 +51,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 public class ClusterOperatingSystemPrettyName implements PlainJsonSerializable {
     private final int count;
 
+    @Nullable
     private final String prettyName;
 
     // ---------------------------------------------------------------------------------------------
@@ -57,7 +59,7 @@ public class ClusterOperatingSystemPrettyName implements PlainJsonSerializable {
     private ClusterOperatingSystemPrettyName(Builder builder) {
 
         this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-        this.prettyName = ApiTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
+        this.prettyName = builder.prettyName;
 
     }
 
@@ -73,8 +75,9 @@ public class ClusterOperatingSystemPrettyName implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code pretty_name}
+     * API name: {@code pretty_name}
      */
+    @Nullable
     public final String prettyName() {
         return this.prettyName;
     }
@@ -93,8 +96,10 @@ public class ClusterOperatingSystemPrettyName implements PlainJsonSerializable {
         generator.writeKey("count");
         generator.write(this.count);
 
-        generator.writeKey("pretty_name");
-        generator.write(this.prettyName);
+        if (this.prettyName != null) {
+            generator.writeKey("pretty_name");
+            generator.write(this.prettyName);
+        }
 
     }
 
@@ -107,6 +112,7 @@ public class ClusterOperatingSystemPrettyName implements PlainJsonSerializable {
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterOperatingSystemPrettyName> {
         private Integer count;
 
+        @Nullable
         private String prettyName;
 
         /**
@@ -118,9 +124,9 @@ public class ClusterOperatingSystemPrettyName implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code pretty_name}
+         * API name: {@code pretty_name}
          */
-        public final Builder prettyName(String value) {
+        public final Builder prettyName(@Nullable String value) {
             this.prettyName = value;
             return this;
         }

@@ -36,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -85,7 +86,7 @@ public class ClusterNodes implements PlainJsonSerializable {
         this.networkTypes = ApiTypeHelper.requireNonNull(builder.networkTypes, this, "networkTypes");
         this.os = ApiTypeHelper.requireNonNull(builder.os, this, "os");
         this.packagingTypes = ApiTypeHelper.unmodifiableRequired(builder.packagingTypes, this, "packagingTypes");
-        this.plugins = ApiTypeHelper.unmodifiableRequired(builder.plugins, this, "plugins");
+        this.plugins = ApiTypeHelper.unmodifiable(builder.plugins);
         this.process = ApiTypeHelper.requireNonNull(builder.process, this, "process");
         this.versions = ApiTypeHelper.unmodifiableRequired(builder.versions, this, "versions");
 
@@ -171,7 +172,7 @@ public class ClusterNodes implements PlainJsonSerializable {
     }
 
     /**
-     * Required - Contains statistics about installed plugins and modules by
+     * Contains statistics about installed plugins and modules by
      * selected nodes.
      * <p>
      * API name: {@code plugins}
@@ -297,6 +298,7 @@ public class ClusterNodes implements PlainJsonSerializable {
 
         private List<NodePackagingType> packagingTypes;
 
+        @Nullable
         private List<PluginStats> plugins;
 
         private ClusterProcess process;
@@ -484,7 +486,7 @@ public class ClusterNodes implements PlainJsonSerializable {
         }
 
         /**
-         * Required - Contains statistics about installed plugins and modules by
+         * Contains statistics about installed plugins and modules by
          * selected nodes.
          * <p>
          * API name: {@code plugins}
@@ -497,7 +499,7 @@ public class ClusterNodes implements PlainJsonSerializable {
         }
 
         /**
-         * Required - Contains statistics about installed plugins and modules by
+         * Contains statistics about installed plugins and modules by
          * selected nodes.
          * <p>
          * API name: {@code plugins}
@@ -510,7 +512,7 @@ public class ClusterNodes implements PlainJsonSerializable {
         }
 
         /**
-         * Required - Contains statistics about installed plugins and modules by
+         * Contains statistics about installed plugins and modules by
          * selected nodes.
          * <p>
          * API name: {@code plugins}

@@ -63,6 +63,7 @@ public class Stats implements PlainJsonSerializable {
     @Nullable
     private final FileSystem fs;
 
+    @Nullable
     private final String host;
 
     @Nullable
@@ -100,6 +101,7 @@ public class Stats implements PlainJsonSerializable {
     @Nullable
     private final Transport transport;
 
+    @Nullable
     private final String transportAddress;
 
     @Nullable
@@ -112,11 +114,11 @@ public class Stats implements PlainJsonSerializable {
         this.adaptiveSelection = builder.adaptiveSelection;
         this.breakers = builder.breakers;
         this.fs = builder.fs;
-        this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
+        this.host = builder.host;
         this.http = builder.http;
         this.indices = builder.indices;
         this.ingest = builder.ingest;
-        this.ip = ApiTypeHelper.unmodifiableRequired(builder.ip, this, "ip");
+        this.ip = ApiTypeHelper.unmodifiable(builder.ip);
         this.jvm = builder.jvm;
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
         this.os = builder.os;
@@ -126,7 +128,7 @@ public class Stats implements PlainJsonSerializable {
         this.threadPool = builder.threadPool;
         this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
         this.transport = builder.transport;
-        this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+        this.transportAddress = builder.transportAddress;
         this.attributes = builder.attributes;
 
     }
@@ -160,8 +162,9 @@ public class Stats implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code host}
+     * API name: {@code host}
      */
+    @Nullable
     public final String host() {
         return this.host;
     }
@@ -191,7 +194,7 @@ public class Stats implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code ip}
+     * API name: {@code ip}
      */
     public final List<String> ip() {
         return this.ip;
@@ -267,8 +270,9 @@ public class Stats implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code transport_address}
+     * API name: {@code transport_address}
      */
+    @Nullable
     public final String transportAddress() {
         return this.transportAddress;
     }
@@ -395,8 +399,10 @@ public class Stats implements PlainJsonSerializable {
             this.transport.serialize(generator, mapper);
         }
 
-        generator.writeKey("transport_address");
-        generator.write(this.transportAddress);
+        if (this.transportAddress != null) {
+            generator.writeKey("transport_address");
+            generator.write(this.transportAddress);
+        }
 
         if (ApiTypeHelper.isDefined(this.attributes)) {
             generator.writeKey("attributes");
@@ -429,6 +435,7 @@ public class Stats implements PlainJsonSerializable {
         @Nullable
         private FileSystem fs;
 
+        @Nullable
         private String host;
 
         @Nullable
@@ -440,6 +447,7 @@ public class Stats implements PlainJsonSerializable {
         @Nullable
         private Ingest ingest;
 
+        @Nullable
         private List<String> ip;
 
         @Nullable
@@ -466,6 +474,7 @@ public class Stats implements PlainJsonSerializable {
         @Nullable
         private Transport transport;
 
+        @Nullable
         private String transportAddress;
 
         @Nullable
@@ -545,9 +554,9 @@ public class Stats implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code host}
+         * API name: {@code host}
          */
-        public final Builder host(String value) {
+        public final Builder host(@Nullable String value) {
             this.host = value;
             return this;
         }
@@ -598,7 +607,7 @@ public class Stats implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code ip}
+         * API name: {@code ip}
          * <p>
          * Adds all elements of <code>list</code> to <code>ip</code>.
          */
@@ -608,7 +617,7 @@ public class Stats implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code ip}
+         * API name: {@code ip}
          * <p>
          * Adds one or more values to <code>ip</code>.
          */
@@ -758,9 +767,9 @@ public class Stats implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code transport_address}
+         * API name: {@code transport_address}
          */
-        public final Builder transportAddress(String value) {
+        public final Builder transportAddress(@Nullable String value) {
             this.transportAddress = value;
             return this;
         }

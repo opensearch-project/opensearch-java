@@ -49,6 +49,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 @JsonpDeserializable
 public class NodeOperatingSystemInfo implements PlainJsonSerializable {
+    @Nullable
     private final String arch;
 
     private final int availableProcessors;
@@ -56,12 +57,15 @@ public class NodeOperatingSystemInfo implements PlainJsonSerializable {
     @Nullable
     private final Integer allocatedProcessors;
 
+    @Nullable
     private final String name;
 
+    @Nullable
     private final String prettyName;
 
     private final int refreshIntervalInMillis;
 
+    @Nullable
     private final String version;
 
     @Nullable
@@ -77,13 +81,13 @@ public class NodeOperatingSystemInfo implements PlainJsonSerializable {
 
     private NodeOperatingSystemInfo(Builder builder) {
 
-        this.arch = ApiTypeHelper.requireNonNull(builder.arch, this, "arch");
+        this.arch = builder.arch;
         this.availableProcessors = ApiTypeHelper.requireNonNull(builder.availableProcessors, this, "availableProcessors");
         this.allocatedProcessors = builder.allocatedProcessors;
-        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-        this.prettyName = ApiTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
+        this.name = builder.name;
+        this.prettyName = builder.prettyName;
         this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this, "refreshIntervalInMillis");
-        this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+        this.version = builder.version;
         this.cpu = builder.cpu;
         this.mem = builder.mem;
         this.swap = builder.swap;
@@ -95,10 +99,11 @@ public class NodeOperatingSystemInfo implements PlainJsonSerializable {
     }
 
     /**
-     * Required - Name of the JVM architecture (ex: amd64, x86)
+     * Name of the JVM architecture (ex: amd64, x86)
      * <p>
      * API name: {@code arch}
      */
+    @Nullable
     public final String arch() {
         return this.arch;
     }
@@ -125,17 +130,19 @@ public class NodeOperatingSystemInfo implements PlainJsonSerializable {
     }
 
     /**
-     * Required - Name of the operating system (ex: Linux, Windows, Mac OS X)
+     * Name of the operating system (ex: Linux, Windows, Mac OS X)
      * <p>
      * API name: {@code name}
      */
+    @Nullable
     public final String name() {
         return this.name;
     }
 
     /**
-     * Required - API name: {@code pretty_name}
+     * API name: {@code pretty_name}
      */
+    @Nullable
     public final String prettyName() {
         return this.prettyName;
     }
@@ -150,10 +157,11 @@ public class NodeOperatingSystemInfo implements PlainJsonSerializable {
     }
 
     /**
-     * Required - Version of the operating system
+     * Version of the operating system
      * <p>
      * API name: {@code version}
      */
+    @Nullable
     public final String version() {
         return this.version;
     }
@@ -193,8 +201,10 @@ public class NodeOperatingSystemInfo implements PlainJsonSerializable {
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-        generator.writeKey("arch");
-        generator.write(this.arch);
+        if (this.arch != null) {
+            generator.writeKey("arch");
+            generator.write(this.arch);
+        }
 
         generator.writeKey("available_processors");
         generator.write(this.availableProcessors);
@@ -204,17 +214,24 @@ public class NodeOperatingSystemInfo implements PlainJsonSerializable {
             generator.write(this.allocatedProcessors);
 
         }
-        generator.writeKey("name");
-        generator.write(this.name);
 
-        generator.writeKey("pretty_name");
-        generator.write(this.prettyName);
+        if (this.name != null) {
+            generator.writeKey("name");
+            generator.write(this.name);
+        }
+
+        if (this.prettyName != null) {
+            generator.writeKey("pretty_name");
+            generator.write(this.prettyName);
+        }
 
         generator.writeKey("refresh_interval_in_millis");
         generator.write(this.refreshIntervalInMillis);
 
-        generator.writeKey("version");
-        generator.write(this.version);
+        if (this.version != null) {
+            generator.writeKey("version");
+            generator.write(this.version);
+        }
 
         if (this.cpu != null) {
             generator.writeKey("cpu");
@@ -241,6 +258,7 @@ public class NodeOperatingSystemInfo implements PlainJsonSerializable {
      */
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeOperatingSystemInfo> {
+        @Nullable
         private String arch;
 
         private Integer availableProcessors;
@@ -248,12 +266,15 @@ public class NodeOperatingSystemInfo implements PlainJsonSerializable {
         @Nullable
         private Integer allocatedProcessors;
 
+        @Nullable
         private String name;
 
+        @Nullable
         private String prettyName;
 
         private Integer refreshIntervalInMillis;
 
+        @Nullable
         private String version;
 
         @Nullable
@@ -266,11 +287,11 @@ public class NodeOperatingSystemInfo implements PlainJsonSerializable {
         private NodeInfoMemory swap;
 
         /**
-         * Required - Name of the JVM architecture (ex: amd64, x86)
+         * Name of the JVM architecture (ex: amd64, x86)
          * <p>
          * API name: {@code arch}
          */
-        public final Builder arch(String value) {
+        public final Builder arch(@Nullable String value) {
             this.arch = value;
             return this;
         }
@@ -298,19 +319,19 @@ public class NodeOperatingSystemInfo implements PlainJsonSerializable {
         }
 
         /**
-         * Required - Name of the operating system (ex: Linux, Windows, Mac OS X)
+         * Name of the operating system (ex: Linux, Windows, Mac OS X)
          * <p>
          * API name: {@code name}
          */
-        public final Builder name(String value) {
+        public final Builder name(@Nullable String value) {
             this.name = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code pretty_name}
+         * API name: {@code pretty_name}
          */
-        public final Builder prettyName(String value) {
+        public final Builder prettyName(@Nullable String value) {
             this.prettyName = value;
             return this;
         }
@@ -326,11 +347,11 @@ public class NodeOperatingSystemInfo implements PlainJsonSerializable {
         }
 
         /**
-         * Required - Version of the operating system
+         * Version of the operating system
          * <p>
          * API name: {@code version}
          */
-        public final Builder version(String value) {
+        public final Builder version(@Nullable String value) {
             this.version = value;
             return this;
         }

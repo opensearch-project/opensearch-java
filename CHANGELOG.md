@@ -21,6 +21,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Fixed ClassCastException in extractAndWrapCause when handling ExecutionException ([#1483](https://github.com/opensearch-project/opensearch-java/pull/1483))
+- Fixed getting cluster & node stats and node info against AOS due to missing properties ([#1520](https://github.com/opensearch-project/opensearch-java/pull/1520), [#1521](https://github.com/opensearch-project/opensearch-java/pull/1521))
 
 ### Security
 

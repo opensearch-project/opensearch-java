@@ -34,6 +34,7 @@ package org.opensearch.client.opensearch.cluster.stats;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -50,6 +51,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 public class ClusterOperatingSystemName implements PlainJsonSerializable {
     private final int count;
 
+    @Nullable
     private final String name;
 
     // ---------------------------------------------------------------------------------------------
@@ -57,7 +59,7 @@ public class ClusterOperatingSystemName implements PlainJsonSerializable {
     private ClusterOperatingSystemName(Builder builder) {
 
         this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-        this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.name = builder.name;
 
     }
 
@@ -73,8 +75,9 @@ public class ClusterOperatingSystemName implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code name}
+     * API name: {@code name}
      */
+    @Nullable
     public final String name() {
         return this.name;
     }
@@ -93,8 +96,10 @@ public class ClusterOperatingSystemName implements PlainJsonSerializable {
         generator.writeKey("count");
         generator.write(this.count);
 
-        generator.writeKey("name");
-        generator.write(this.name);
+        if (this.name != null) {
+            generator.writeKey("name");
+            generator.write(this.name);
+        }
 
     }
 
@@ -107,6 +112,7 @@ public class ClusterOperatingSystemName implements PlainJsonSerializable {
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterOperatingSystemName> {
         private Integer count;
 
+        @Nullable
         private String name;
 
         /**
@@ -118,9 +124,9 @@ public class ClusterOperatingSystemName implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code name}
+         * API name: {@code name}
          */
-        public final Builder name(String value) {
+        public final Builder name(@Nullable String value) {
             this.name = value;
             return this;
         }
