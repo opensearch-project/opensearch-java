@@ -180,7 +180,10 @@ public class TaskResponse implements PlainJsonSerializable, ToCopyableBuilder<Ta
     }
 
     /**
-     * Required - API name: {@code failures}
+     * Required - The list of failures that occurred during the operation.
+     * <p>
+     * API name: {@code failures}
+     * </p>
      */
     @Nonnull
     public final List<BulkByScrollFailure> failures() {
@@ -247,7 +250,10 @@ public class TaskResponse implements PlainJsonSerializable, ToCopyableBuilder<Ta
     }
 
     /**
+     * The amount time before the throttling will end.
+     * <p>
      * API name: {@code throttled_until}
+     * </p>
      */
     @Nullable
     public final Time throttledUntil() {
@@ -255,21 +261,30 @@ public class TaskResponse implements PlainJsonSerializable, ToCopyableBuilder<Ta
     }
 
     /**
-     * Required - API name: {@code throttled_until_millis}
+     * Required - When the throttling will end in milliseconds.
+     * <p>
+     * API name: {@code throttled_until_millis}
+     * </p>
      */
     public final long throttledUntilMillis() {
         return this.throttledUntilMillis;
     }
 
     /**
-     * Required - API name: {@code timed_out}
+     * Required - Whether the operation timed out.
+     * <p>
+     * API name: {@code timed_out}
+     * </p>
      */
     public final boolean timedOut() {
         return this.timedOut;
     }
 
     /**
-     * Required - API name: {@code took}
+     * Required - The time taken by the operation in milliseconds.
+     * <p>
+     * API name: {@code took}
+     * </p>
      */
     public final long took() {
         return this.took;
@@ -539,7 +554,10 @@ public class TaskResponse implements PlainJsonSerializable, ToCopyableBuilder<Ta
         }
 
         /**
-         * Required - API name: {@code failures}
+         * Required - The list of failures that occurred during the operation.
+         * <p>
+         * API name: {@code failures}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>failures</code>.
@@ -552,7 +570,10 @@ public class TaskResponse implements PlainJsonSerializable, ToCopyableBuilder<Ta
         }
 
         /**
-         * Required - API name: {@code failures}
+         * Required - The list of failures that occurred during the operation.
+         * <p>
+         * API name: {@code failures}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>failures</code>.
@@ -565,7 +586,10 @@ public class TaskResponse implements PlainJsonSerializable, ToCopyableBuilder<Ta
         }
 
         /**
-         * Required - API name: {@code failures}
+         * Required - The list of failures that occurred during the operation.
+         * <p>
+         * API name: {@code failures}
+         * </p>
          *
          * <p>
          * Adds a value to <code>failures</code> using a builder lambda.
@@ -693,7 +717,10 @@ public class TaskResponse implements PlainJsonSerializable, ToCopyableBuilder<Ta
         }
 
         /**
+         * The amount time before the throttling will end.
+         * <p>
          * API name: {@code throttled_until}
+         * </p>
          */
         @Nonnull
         public final Builder throttledUntil(@Nullable Time value) {
@@ -702,7 +729,10 @@ public class TaskResponse implements PlainJsonSerializable, ToCopyableBuilder<Ta
         }
 
         /**
+         * The amount time before the throttling will end.
+         * <p>
          * API name: {@code throttled_until}
+         * </p>
          */
         @Nonnull
         public final Builder throttledUntil(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -710,7 +740,10 @@ public class TaskResponse implements PlainJsonSerializable, ToCopyableBuilder<Ta
         }
 
         /**
-         * Required - API name: {@code throttled_until_millis}
+         * Required - When the throttling will end in milliseconds.
+         * <p>
+         * API name: {@code throttled_until_millis}
+         * </p>
          */
         @Nonnull
         public final Builder throttledUntilMillis(long value) {
@@ -719,7 +752,10 @@ public class TaskResponse implements PlainJsonSerializable, ToCopyableBuilder<Ta
         }
 
         /**
-         * Required - API name: {@code timed_out}
+         * Required - Whether the operation timed out.
+         * <p>
+         * API name: {@code timed_out}
+         * </p>
          */
         @Nonnull
         public final Builder timedOut(boolean value) {
@@ -728,7 +764,10 @@ public class TaskResponse implements PlainJsonSerializable, ToCopyableBuilder<Ta
         }
 
         /**
-         * Required - API name: {@code took}
+         * Required - The time taken by the operation in milliseconds.
+         * <p>
+         * API name: {@code took}
+         * </p>
          */
         @Nonnull
         public final Builder took(long value) {

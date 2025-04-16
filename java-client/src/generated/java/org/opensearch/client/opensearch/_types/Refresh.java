@@ -45,10 +45,19 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum Refresh implements JsonEnum {
+    /**
+     * Do not refresh the affected shards.
+     */
     False("false"),
 
+    /**
+     * Refresh the affected shards immediately.
+     */
     True("true"),
 
+    /**
+     * Wait for the changes to become visible before replying.
+     */
     WaitFor("wait_for");
 
     private final String jsonValue;

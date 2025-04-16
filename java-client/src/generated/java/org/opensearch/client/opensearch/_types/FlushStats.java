@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.FlushStats
 
+/**
+ * The statistics about flush operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class FlushStats implements PlainJsonSerializable, ToCopyableBuilder<FlushStats.Builder, FlushStats> {
@@ -83,14 +86,20 @@ public class FlushStats implements PlainJsonSerializable, ToCopyableBuilder<Flus
     }
 
     /**
-     * Required - API name: {@code periodic}
+     * Required - The number of periodic flush operations.
+     * <p>
+     * API name: {@code periodic}
+     * </p>
      */
     public final long periodic() {
         return this.periodic;
     }
 
     /**
-     * Required - API name: {@code total}
+     * Required - The total number of flush operations.
+     * <p>
+     * API name: {@code total}
+     * </p>
      */
     public final long total() {
         return this.total;
@@ -183,7 +192,10 @@ public class FlushStats implements PlainJsonSerializable, ToCopyableBuilder<Flus
         }
 
         /**
-         * Required - API name: {@code periodic}
+         * Required - The number of periodic flush operations.
+         * <p>
+         * API name: {@code periodic}
+         * </p>
          */
         @Nonnull
         public final Builder periodic(long value) {
@@ -192,7 +204,10 @@ public class FlushStats implements PlainJsonSerializable, ToCopyableBuilder<Flus
         }
 
         /**
-         * Required - API name: {@code total}
+         * Required - The total number of flush operations.
+         * <p>
+         * API name: {@code total}
+         * </p>
          */
         @Nonnull
         public final Builder total(long value) {

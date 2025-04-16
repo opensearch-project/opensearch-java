@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.ThreadInfo
 
+/**
+ * The information about thread usage.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ThreadInfo implements PlainJsonSerializable, ToCopyableBuilder<ThreadInfo.Builder, ThreadInfo> {
@@ -76,7 +79,10 @@ public class ThreadInfo implements PlainJsonSerializable, ToCopyableBuilder<Thre
     }
 
     /**
-     * Required - API name: {@code active_threads}
+     * Required - The number of currently active threads.
+     * <p>
+     * API name: {@code active_threads}
+     * </p>
      */
     @Nonnull
     public final Number activeThreads() {
@@ -84,7 +90,10 @@ public class ThreadInfo implements PlainJsonSerializable, ToCopyableBuilder<Thre
     }
 
     /**
-     * Required - API name: {@code thread_executions}
+     * Required - The number of thread executions.
+     * <p>
+     * API name: {@code thread_executions}
+     * </p>
      */
     @Nonnull
     public final Number threadExecutions() {
@@ -148,7 +157,10 @@ public class ThreadInfo implements PlainJsonSerializable, ToCopyableBuilder<Thre
         }
 
         /**
-         * Required - API name: {@code active_threads}
+         * Required - The number of currently active threads.
+         * <p>
+         * API name: {@code active_threads}
+         * </p>
          */
         @Nonnull
         public final Builder activeThreads(Number value) {
@@ -157,7 +169,10 @@ public class ThreadInfo implements PlainJsonSerializable, ToCopyableBuilder<Thre
         }
 
         /**
-         * Required - API name: {@code thread_executions}
+         * Required - The number of thread executions.
+         * <p>
+         * API name: {@code thread_executions}
+         * </p>
          */
         @Nonnull
         public final Builder threadExecutions(Number value) {

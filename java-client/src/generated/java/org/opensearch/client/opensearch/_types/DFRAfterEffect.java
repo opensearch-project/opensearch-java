@@ -45,10 +45,19 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum DFRAfterEffect implements JsonEnum {
+    /**
+     * The basic after effect.
+     */
     B("b"),
 
+    /**
+     * The Laplace after effect.
+     */
     L("l"),
 
+    /**
+     * No after effect.
+     */
     No("no");
 
     private final String jsonValue;

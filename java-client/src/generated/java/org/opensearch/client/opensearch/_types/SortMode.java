@@ -45,14 +45,29 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum SortMode implements JsonEnum {
+    /**
+     * Use the average of all values.
+     */
     Avg("avg"),
 
+    /**
+     * Use the maximum value.
+     */
     Max("max"),
 
+    /**
+     * Use the median value.
+     */
     Median("median"),
 
+    /**
+     * Use the minimum value.
+     */
     Min("min"),
 
+    /**
+     * Use the sum of all values.
+     */
     Sum("sum");
 
     private final String jsonValue;

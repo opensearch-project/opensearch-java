@@ -45,14 +45,29 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum Result implements JsonEnum {
+    /**
+     * The document was created.
+     */
     Created("created"),
 
+    /**
+     * The document was deleted.
+     */
     Deleted("deleted"),
 
+    /**
+     * The update operation didn't change anything.
+     */
     NoOp("noop"),
 
+    /**
+     * The document was not found.
+     */
     NotFound("not_found"),
 
+    /**
+     * The document was updated.
+     */
     Updated("updated");
 
     private final String jsonValue;

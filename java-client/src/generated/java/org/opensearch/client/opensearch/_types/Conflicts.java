@@ -45,8 +45,14 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum Conflicts implements JsonEnum {
+    /**
+     * Abort the operation on version conflicts.
+     */
     Abort("abort"),
 
+    /**
+     * Proceed with the operation on version conflicts.
+     */
     Proceed("proceed");
 
     private final String jsonValue;

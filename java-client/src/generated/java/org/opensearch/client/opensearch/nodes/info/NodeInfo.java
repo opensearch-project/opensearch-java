@@ -44,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -125,10 +126,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
     private final Map<String, NodeThreadPoolInfo> threadPool;
 
     @Nullable
-    private final Long totalIndexingBuffer;
+    private final JsonData totalIndexingBuffer;
 
     @Nullable
-    private final String totalIndexingBufferInBytes;
+    private final JsonData totalIndexingBufferInBytes;
 
     @Nullable
     private final NodeInfoTransport transport;
@@ -344,7 +345,7 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
      * </p>
      */
     @Nullable
-    public final Long totalIndexingBuffer() {
+    public final JsonData totalIndexingBuffer() {
         return this.totalIndexingBuffer;
     }
 
@@ -352,7 +353,7 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
      * API name: {@code total_indexing_buffer_in_bytes}
      */
     @Nullable
-    public final String totalIndexingBufferInBytes() {
+    public final JsonData totalIndexingBufferInBytes() {
         return this.totalIndexingBufferInBytes;
     }
 
@@ -512,12 +513,12 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
 
         if (this.totalIndexingBuffer != null) {
             generator.writeKey("total_indexing_buffer");
-            generator.write(this.totalIndexingBuffer);
+            this.totalIndexingBuffer.serialize(generator, mapper);
         }
 
         if (this.totalIndexingBufferInBytes != null) {
             generator.writeKey("total_indexing_buffer_in_bytes");
-            generator.write(this.totalIndexingBufferInBytes);
+            this.totalIndexingBufferInBytes.serialize(generator, mapper);
         }
 
         if (this.transport != null) {
@@ -588,9 +589,9 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         @Nullable
         private Map<String, NodeThreadPoolInfo> threadPool;
         @Nullable
-        private Long totalIndexingBuffer;
+        private JsonData totalIndexingBuffer;
         @Nullable
-        private String totalIndexingBufferInBytes;
+        private JsonData totalIndexingBufferInBytes;
         @Nullable
         private NodeInfoTransport transport;
         @Nullable
@@ -1066,7 +1067,7 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
          * </p>
          */
         @Nonnull
-        public final Builder totalIndexingBuffer(@Nullable Long value) {
+        public final Builder totalIndexingBuffer(@Nullable JsonData value) {
             this.totalIndexingBuffer = value;
             return this;
         }
@@ -1075,7 +1076,7 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
          * API name: {@code total_indexing_buffer_in_bytes}
          */
         @Nonnull
-        public final Builder totalIndexingBufferInBytes(@Nullable String value) {
+        public final Builder totalIndexingBufferInBytes(@Nullable JsonData value) {
             this.totalIndexingBufferInBytes = value;
             return this;
         }
@@ -1160,8 +1161,8 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         op.add(Builder::searchPipelines, NodeInfoSearchPipelines._DESERIALIZER, "search_pipelines");
         op.add(Builder::settings, NodeInfoSettings._DESERIALIZER, "settings");
         op.add(Builder::threadPool, JsonpDeserializer.stringMapDeserializer(NodeThreadPoolInfo._DESERIALIZER), "thread_pool");
-        op.add(Builder::totalIndexingBuffer, JsonpDeserializer.longDeserializer(), "total_indexing_buffer");
-        op.add(Builder::totalIndexingBufferInBytes, JsonpDeserializer.stringDeserializer(), "total_indexing_buffer_in_bytes");
+        op.add(Builder::totalIndexingBuffer, JsonData._DESERIALIZER, "total_indexing_buffer");
+        op.add(Builder::totalIndexingBufferInBytes, JsonData._DESERIALIZER, "total_indexing_buffer_in_bytes");
         op.add(Builder::transport, NodeInfoTransport._DESERIALIZER, "transport");
         op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
         op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");

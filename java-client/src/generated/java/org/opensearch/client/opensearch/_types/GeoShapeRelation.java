@@ -45,12 +45,24 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum GeoShapeRelation implements JsonEnum {
+    /**
+     * The shape contains the query shape.
+     */
     Contains("contains"),
 
+    /**
+     * The shape has no points in common with the query shape.
+     */
     Disjoint("disjoint"),
 
+    /**
+     * The shape shares any points in common with the query shape.
+     */
     Intersects("intersects"),
 
+    /**
+     * The shape is within the query shape.
+     */
     Within("within");
 
     private final String jsonValue;

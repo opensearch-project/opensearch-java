@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.RecoveryStats
 
+/**
+ * The statistics about recovery operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RecoveryStats implements PlainJsonSerializable, ToCopyableBuilder<RecoveryStats.Builder, RecoveryStats> {
@@ -83,21 +86,30 @@ public class RecoveryStats implements PlainJsonSerializable, ToCopyableBuilder<R
     }
 
     /**
-     * Required - API name: {@code current_as_source}
+     * Required - The number of ongoing recoveries for which this node is the source.
+     * <p>
+     * API name: {@code current_as_source}
+     * </p>
      */
     public final long currentAsSource() {
         return this.currentAsSource;
     }
 
     /**
-     * Required - API name: {@code current_as_target}
+     * Required - The number of ongoing recoveries for which this node is the target.
+     * <p>
+     * API name: {@code current_as_target}
+     * </p>
      */
     public final long currentAsTarget() {
         return this.currentAsTarget;
     }
 
     /**
+     * The total amount of time recovery operations have been throttled.
+     * <p>
      * API name: {@code throttle_time}
+     * </p>
      */
     @Nullable
     public final Time throttleTime() {
@@ -105,7 +117,10 @@ public class RecoveryStats implements PlainJsonSerializable, ToCopyableBuilder<R
     }
 
     /**
-     * Required - API name: {@code throttle_time_in_millis}
+     * Required - The total amount of time recovery operations have been throttled in milliseconds.
+     * <p>
+     * API name: {@code throttle_time_in_millis}
+     * </p>
      */
     public final long throttleTimeInMillis() {
         return this.throttleTimeInMillis;
@@ -183,7 +198,10 @@ public class RecoveryStats implements PlainJsonSerializable, ToCopyableBuilder<R
         }
 
         /**
-         * Required - API name: {@code current_as_source}
+         * Required - The number of ongoing recoveries for which this node is the source.
+         * <p>
+         * API name: {@code current_as_source}
+         * </p>
          */
         @Nonnull
         public final Builder currentAsSource(long value) {
@@ -192,7 +210,10 @@ public class RecoveryStats implements PlainJsonSerializable, ToCopyableBuilder<R
         }
 
         /**
-         * Required - API name: {@code current_as_target}
+         * Required - The number of ongoing recoveries for which this node is the target.
+         * <p>
+         * API name: {@code current_as_target}
+         * </p>
          */
         @Nonnull
         public final Builder currentAsTarget(long value) {
@@ -201,7 +222,10 @@ public class RecoveryStats implements PlainJsonSerializable, ToCopyableBuilder<R
         }
 
         /**
+         * The total amount of time recovery operations have been throttled.
+         * <p>
          * API name: {@code throttle_time}
+         * </p>
          */
         @Nonnull
         public final Builder throttleTime(@Nullable Time value) {
@@ -210,7 +234,10 @@ public class RecoveryStats implements PlainJsonSerializable, ToCopyableBuilder<R
         }
 
         /**
+         * The total amount of time recovery operations have been throttled.
+         * <p>
          * API name: {@code throttle_time}
+         * </p>
          */
         @Nonnull
         public final Builder throttleTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -218,7 +245,10 @@ public class RecoveryStats implements PlainJsonSerializable, ToCopyableBuilder<R
         }
 
         /**
-         * Required - API name: {@code throttle_time_in_millis}
+         * Required - The total amount of time recovery operations have been throttled in milliseconds.
+         * <p>
+         * API name: {@code throttle_time_in_millis}
+         * </p>
          */
         @Nonnull
         public final Builder throttleTimeInMillis(long value) {

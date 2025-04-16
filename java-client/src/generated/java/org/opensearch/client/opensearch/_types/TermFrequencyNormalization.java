@@ -45,14 +45,29 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum TermFrequencyNormalization implements JsonEnum {
+    /**
+     * The first normalization of Hazm.
+     */
     H1("h1"),
 
+    /**
+     * The second normalization of Hazm.
+     */
     H2("h2"),
 
+    /**
+     * The third normalization of Hazm.
+     */
     H3("h3"),
 
+    /**
+     * No normalization.
+     */
     No("no"),
 
+    /**
+     * The Zipfian normalization.
+     */
     Z("z");
 
     private final String jsonValue;

@@ -280,7 +280,10 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
     }
 
     /**
+     * The amount time before the throttling will end.
+     * <p>
      * API name: {@code throttled_until}
+     * </p>
      */
     @Nullable
     public final Time throttledUntil() {
@@ -288,7 +291,10 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
     }
 
     /**
+     * When the throttling will end in milliseconds.
+     * <p>
      * API name: {@code throttled_until_millis}
+     * </p>
      */
     @Nullable
     public final Long throttledUntilMillis() {
@@ -750,7 +756,10 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
         }
 
         /**
+         * The amount time before the throttling will end.
+         * <p>
          * API name: {@code throttled_until}
+         * </p>
          */
         @Nonnull
         public final Builder throttledUntil(@Nullable Time value) {
@@ -759,7 +768,10 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
         }
 
         /**
+         * The amount time before the throttling will end.
+         * <p>
          * API name: {@code throttled_until}
+         * </p>
          */
         @Nonnull
         public final Builder throttledUntil(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -767,7 +779,10 @@ public class Status implements PlainJsonSerializable, ToCopyableBuilder<Status.B
         }
 
         /**
+         * When the throttling will end in milliseconds.
+         * <p>
          * API name: {@code throttled_until_millis}
+         * </p>
          */
         @Nonnull
         public final Builder throttledUntilMillis(@Nullable Long value) {

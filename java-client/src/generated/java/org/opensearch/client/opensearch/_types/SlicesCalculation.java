@@ -45,6 +45,9 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum SlicesCalculation implements JsonEnum {
+    /**
+     * Automatically determine the number of slices.
+     */
     Auto("auto");
 
     private final String jsonValue;

@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.RequestCacheStats
 
+/**
+ * The statistics about request cache operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RequestCacheStats implements PlainJsonSerializable, ToCopyableBuilder<RequestCacheStats.Builder, RequestCacheStats> {
@@ -86,21 +89,30 @@ public class RequestCacheStats implements PlainJsonSerializable, ToCopyableBuild
     }
 
     /**
-     * Required - API name: {@code evictions}
+     * Required - The number of request cache evictions.
+     * <p>
+     * API name: {@code evictions}
+     * </p>
      */
     public final long evictions() {
         return this.evictions;
     }
 
     /**
-     * Required - API name: {@code hit_count}
+     * Required - The number of request cache hits.
+     * <p>
+     * API name: {@code hit_count}
+     * </p>
      */
     public final long hitCount() {
         return this.hitCount;
     }
 
     /**
+     * The size of the request cache in a human-readable format.
+     * <p>
      * API name: {@code memory_size}
+     * </p>
      */
     @Nullable
     public final String memorySize() {
@@ -108,14 +120,20 @@ public class RequestCacheStats implements PlainJsonSerializable, ToCopyableBuild
     }
 
     /**
-     * Required - API name: {@code memory_size_in_bytes}
+     * Required - The size of the request cache in bytes.
+     * <p>
+     * API name: {@code memory_size_in_bytes}
+     * </p>
      */
     public final long memorySizeInBytes() {
         return this.memorySizeInBytes;
     }
 
     /**
-     * Required - API name: {@code miss_count}
+     * Required - The number of request cache misses.
+     * <p>
+     * API name: {@code miss_count}
+     * </p>
      */
     public final long missCount() {
         return this.missCount;
@@ -199,7 +217,10 @@ public class RequestCacheStats implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * Required - API name: {@code evictions}
+         * Required - The number of request cache evictions.
+         * <p>
+         * API name: {@code evictions}
+         * </p>
          */
         @Nonnull
         public final Builder evictions(long value) {
@@ -208,7 +229,10 @@ public class RequestCacheStats implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * Required - API name: {@code hit_count}
+         * Required - The number of request cache hits.
+         * <p>
+         * API name: {@code hit_count}
+         * </p>
          */
         @Nonnull
         public final Builder hitCount(long value) {
@@ -217,7 +241,10 @@ public class RequestCacheStats implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
+         * The size of the request cache in a human-readable format.
+         * <p>
          * API name: {@code memory_size}
+         * </p>
          */
         @Nonnull
         public final Builder memorySize(@Nullable String value) {
@@ -226,7 +253,10 @@ public class RequestCacheStats implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * Required - API name: {@code memory_size_in_bytes}
+         * Required - The size of the request cache in bytes.
+         * <p>
+         * API name: {@code memory_size_in_bytes}
+         * </p>
          */
         @Nonnull
         public final Builder memorySizeInBytes(long value) {
@@ -235,7 +265,10 @@ public class RequestCacheStats implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * Required - API name: {@code miss_count}
+         * Required - The number of request cache misses.
+         * <p>
+         * API name: {@code miss_count}
+         * </p>
          */
         @Nonnull
         public final Builder missCount(long value) {

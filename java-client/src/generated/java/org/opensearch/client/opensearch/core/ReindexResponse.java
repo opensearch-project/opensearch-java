@@ -196,7 +196,10 @@ public class ReindexResponse implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * The list of failures that occurred during the operation.
+     * <p>
      * API name: {@code failures}
+     * </p>
      */
     @Nonnull
     public final List<BulkByScrollFailure> failures() {
@@ -274,7 +277,10 @@ public class ReindexResponse implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * The amount time before the throttling will end.
+     * <p>
      * API name: {@code throttled_until}
+     * </p>
      */
     @Nullable
     public final Time throttledUntil() {
@@ -282,7 +288,10 @@ public class ReindexResponse implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * When the throttling will end in milliseconds.
+     * <p>
      * API name: {@code throttled_until_millis}
+     * </p>
      */
     @Nullable
     public final Long throttledUntilMillis() {
@@ -290,7 +299,10 @@ public class ReindexResponse implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * Whether the operation timed out.
+     * <p>
      * API name: {@code timed_out}
+     * </p>
      */
     @Nullable
     public final Boolean timedOut() {
@@ -298,7 +310,10 @@ public class ReindexResponse implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * The time taken by the operation in milliseconds.
+     * <p>
      * API name: {@code took}
+     * </p>
      */
     @Nullable
     public final Long took() {
@@ -616,7 +631,10 @@ public class ReindexResponse implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The list of failures that occurred during the operation.
+         * <p>
          * API name: {@code failures}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>failures</code>.
@@ -629,7 +647,10 @@ public class ReindexResponse implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The list of failures that occurred during the operation.
+         * <p>
          * API name: {@code failures}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>failures</code>.
@@ -642,7 +663,10 @@ public class ReindexResponse implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The list of failures that occurred during the operation.
+         * <p>
          * API name: {@code failures}
+         * </p>
          *
          * <p>
          * Adds a value to <code>failures</code> using a builder lambda.
@@ -779,7 +803,10 @@ public class ReindexResponse implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The amount time before the throttling will end.
+         * <p>
          * API name: {@code throttled_until}
+         * </p>
          */
         @Nonnull
         public final Builder throttledUntil(@Nullable Time value) {
@@ -788,7 +815,10 @@ public class ReindexResponse implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The amount time before the throttling will end.
+         * <p>
          * API name: {@code throttled_until}
+         * </p>
          */
         @Nonnull
         public final Builder throttledUntil(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -796,7 +826,10 @@ public class ReindexResponse implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * When the throttling will end in milliseconds.
+         * <p>
          * API name: {@code throttled_until_millis}
+         * </p>
          */
         @Nonnull
         public final Builder throttledUntilMillis(@Nullable Long value) {
@@ -805,7 +838,10 @@ public class ReindexResponse implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * Whether the operation timed out.
+         * <p>
          * API name: {@code timed_out}
+         * </p>
          */
         @Nonnull
         public final Builder timedOut(@Nullable Boolean value) {
@@ -814,7 +850,10 @@ public class ReindexResponse implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The time taken by the operation in milliseconds.
+         * <p>
          * API name: {@code took}
+         * </p>
          */
         @Nonnull
         public final Builder took(@Nullable Long value) {

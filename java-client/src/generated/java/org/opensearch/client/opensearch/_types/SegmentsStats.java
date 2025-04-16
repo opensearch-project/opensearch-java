@@ -58,6 +58,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.SegmentsStats
 
+/**
+ * The statistics about segments.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class SegmentsStats implements PlainJsonSerializable, ToCopyableBuilder<SegmentsStats.Builder, SegmentsStats> {
@@ -174,7 +177,10 @@ public class SegmentsStats implements PlainJsonSerializable, ToCopyableBuilder<S
     }
 
     /**
+     * The human-readable amount of memory used for doc values.
+     * <p>
      * API name: {@code doc_values_memory}
+     * </p>
      */
     @Nullable
     public final String docValuesMemory() {
@@ -221,7 +227,10 @@ public class SegmentsStats implements PlainJsonSerializable, ToCopyableBuilder<S
     }
 
     /**
+     * The maximum amount of memory, in bytes, used by index writers.
+     * <p>
      * API name: {@code index_writer_max_memory_in_bytes}
+     * </p>
      */
     @Nullable
     public final Long indexWriterMaxMemoryInBytes() {
@@ -229,7 +238,10 @@ public class SegmentsStats implements PlainJsonSerializable, ToCopyableBuilder<S
     }
 
     /**
+     * The human-readable amount of memory used by index writers.
+     * <p>
      * API name: {@code index_writer_memory}
+     * </p>
      */
     @Nullable
     public final String indexWriterMemory() {
@@ -676,7 +688,10 @@ public class SegmentsStats implements PlainJsonSerializable, ToCopyableBuilder<S
         }
 
         /**
+         * The human-readable amount of memory used for doc values.
+         * <p>
          * API name: {@code doc_values_memory}
+         * </p>
          */
         @Nonnull
         public final Builder docValuesMemory(@Nullable String value) {
@@ -765,7 +780,10 @@ public class SegmentsStats implements PlainJsonSerializable, ToCopyableBuilder<S
         }
 
         /**
+         * The maximum amount of memory, in bytes, used by index writers.
+         * <p>
          * API name: {@code index_writer_max_memory_in_bytes}
+         * </p>
          */
         @Nonnull
         public final Builder indexWriterMaxMemoryInBytes(@Nullable Long value) {
@@ -774,7 +792,10 @@ public class SegmentsStats implements PlainJsonSerializable, ToCopyableBuilder<S
         }
 
         /**
+         * The human-readable amount of memory used by index writers.
+         * <p>
          * API name: {@code index_writer_memory}
+         * </p>
          */
         @Nonnull
         public final Builder indexWriterMemory(@Nullable String value) {

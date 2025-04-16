@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.BulkByScrollTaskStatus
 
+/**
+ * The status of a bulk by scroll task.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class BulkByScrollTaskStatus
@@ -228,7 +231,10 @@ public class BulkByScrollTaskStatus
     }
 
     /**
+     * The amount time before the throttling will end.
+     * <p>
      * API name: {@code throttled_until}
+     * </p>
      */
     @Nullable
     public final Time throttledUntil() {
@@ -236,7 +242,10 @@ public class BulkByScrollTaskStatus
     }
 
     /**
-     * Required - API name: {@code throttled_until_millis}
+     * Required - When the throttling will end in milliseconds.
+     * <p>
+     * API name: {@code throttled_until_millis}
+     * </p>
      */
     public final long throttledUntilMillis() {
         return this.throttledUntilMillis;
@@ -600,7 +609,10 @@ public class BulkByScrollTaskStatus
         }
 
         /**
+         * The amount time before the throttling will end.
+         * <p>
          * API name: {@code throttled_until}
+         * </p>
          */
         @Nonnull
         public final Builder throttledUntil(@Nullable Time value) {
@@ -609,7 +621,10 @@ public class BulkByScrollTaskStatus
         }
 
         /**
+         * The amount time before the throttling will end.
+         * <p>
          * API name: {@code throttled_until}
+         * </p>
          */
         @Nonnull
         public final Builder throttledUntil(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -617,7 +632,10 @@ public class BulkByScrollTaskStatus
         }
 
         /**
-         * Required - API name: {@code throttled_until_millis}
+         * Required - When the throttling will end in milliseconds.
+         * <p>
+         * API name: {@code throttled_until_millis}
+         * </p>
          */
         @Nonnull
         public final Builder throttledUntilMillis(long value) {

@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.OpenSearchVersionInfo
 
+/**
+ * The version information for OpenSearch.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class OpenSearchVersionInfo
@@ -120,7 +123,10 @@ public class OpenSearchVersionInfo
     }
 
     /**
-     * Required - API name: {@code build_date}
+     * Required - When the version was built.
+     * <p>
+     * API name: {@code build_date}
+     * </p>
      */
     @Nonnull
     public final String buildDate() {
@@ -128,7 +134,10 @@ public class OpenSearchVersionInfo
     }
 
     /**
+     * The flavor of the build.
+     * <p>
      * API name: {@code build_flavor}
+     * </p>
      */
     @Nullable
     public final String buildFlavor() {
@@ -136,7 +145,10 @@ public class OpenSearchVersionInfo
     }
 
     /**
-     * Required - API name: {@code build_hash}
+     * Required - The hash of the build.
+     * <p>
+     * API name: {@code build_hash}
+     * </p>
      */
     @Nonnull
     public final String buildHash() {
@@ -144,14 +156,20 @@ public class OpenSearchVersionInfo
     }
 
     /**
-     * Required - API name: {@code build_snapshot}
+     * Required - Whether this is a snapshot build.
+     * <p>
+     * API name: {@code build_snapshot}
+     * </p>
      */
     public final boolean buildSnapshot() {
         return this.buildSnapshot;
     }
 
     /**
-     * Required - API name: {@code build_type}
+     * Required - The type of the build.
+     * <p>
+     * API name: {@code build_type}
+     * </p>
      */
     @Nonnull
     public final String buildType() {
@@ -159,7 +177,10 @@ public class OpenSearchVersionInfo
     }
 
     /**
-     * Required - API name: {@code distribution}
+     * Required - The distribution name.
+     * <p>
+     * API name: {@code distribution}
+     * </p>
      */
     @Nonnull
     public final String distribution() {
@@ -167,7 +188,10 @@ public class OpenSearchVersionInfo
     }
 
     /**
-     * Required - API name: {@code lucene_version}
+     * Required - The version of Lucene being used.
+     * <p>
+     * API name: {@code lucene_version}
+     * </p>
      */
     @Nonnull
     public final String luceneVersion() {
@@ -175,7 +199,10 @@ public class OpenSearchVersionInfo
     }
 
     /**
-     * Required - API name: {@code minimum_index_compatibility_version}
+     * Required - The minimum compatible index version.
+     * <p>
+     * API name: {@code minimum_index_compatibility_version}
+     * </p>
      */
     @Nonnull
     public final String minimumIndexCompatibilityVersion() {
@@ -183,7 +210,10 @@ public class OpenSearchVersionInfo
     }
 
     /**
-     * Required - API name: {@code minimum_wire_compatibility_version}
+     * Required - The minimum compatible wire protocol version.
+     * <p>
+     * API name: {@code minimum_wire_compatibility_version}
+     * </p>
      */
     @Nonnull
     public final String minimumWireCompatibilityVersion() {
@@ -191,7 +221,10 @@ public class OpenSearchVersionInfo
     }
 
     /**
-     * Required - API name: {@code number}
+     * Required - The version number.
+     * <p>
+     * API name: {@code number}
+     * </p>
      */
     @Nonnull
     public final String number() {
@@ -306,7 +339,10 @@ public class OpenSearchVersionInfo
         }
 
         /**
-         * Required - API name: {@code build_date}
+         * Required - When the version was built.
+         * <p>
+         * API name: {@code build_date}
+         * </p>
          */
         @Nonnull
         public final Builder buildDate(String value) {
@@ -315,7 +351,10 @@ public class OpenSearchVersionInfo
         }
 
         /**
+         * The flavor of the build.
+         * <p>
          * API name: {@code build_flavor}
+         * </p>
          */
         @Nonnull
         public final Builder buildFlavor(@Nullable String value) {
@@ -324,7 +363,10 @@ public class OpenSearchVersionInfo
         }
 
         /**
-         * Required - API name: {@code build_hash}
+         * Required - The hash of the build.
+         * <p>
+         * API name: {@code build_hash}
+         * </p>
          */
         @Nonnull
         public final Builder buildHash(String value) {
@@ -333,7 +375,10 @@ public class OpenSearchVersionInfo
         }
 
         /**
-         * Required - API name: {@code build_snapshot}
+         * Required - Whether this is a snapshot build.
+         * <p>
+         * API name: {@code build_snapshot}
+         * </p>
          */
         @Nonnull
         public final Builder buildSnapshot(boolean value) {
@@ -342,7 +387,10 @@ public class OpenSearchVersionInfo
         }
 
         /**
-         * Required - API name: {@code build_type}
+         * Required - The type of the build.
+         * <p>
+         * API name: {@code build_type}
+         * </p>
          */
         @Nonnull
         public final Builder buildType(String value) {
@@ -351,7 +399,10 @@ public class OpenSearchVersionInfo
         }
 
         /**
-         * Required - API name: {@code distribution}
+         * Required - The distribution name.
+         * <p>
+         * API name: {@code distribution}
+         * </p>
          */
         @Nonnull
         public final Builder distribution(String value) {
@@ -360,7 +411,10 @@ public class OpenSearchVersionInfo
         }
 
         /**
-         * Required - API name: {@code lucene_version}
+         * Required - The version of Lucene being used.
+         * <p>
+         * API name: {@code lucene_version}
+         * </p>
          */
         @Nonnull
         public final Builder luceneVersion(String value) {
@@ -369,7 +423,10 @@ public class OpenSearchVersionInfo
         }
 
         /**
-         * Required - API name: {@code minimum_index_compatibility_version}
+         * Required - The minimum compatible index version.
+         * <p>
+         * API name: {@code minimum_index_compatibility_version}
+         * </p>
          */
         @Nonnull
         public final Builder minimumIndexCompatibilityVersion(String value) {
@@ -378,7 +435,10 @@ public class OpenSearchVersionInfo
         }
 
         /**
-         * Required - API name: {@code minimum_wire_compatibility_version}
+         * Required - The minimum compatible wire protocol version.
+         * <p>
+         * API name: {@code minimum_wire_compatibility_version}
+         * </p>
          */
         @Nonnull
         public final Builder minimumWireCompatibilityVersion(String value) {
@@ -387,7 +447,10 @@ public class OpenSearchVersionInfo
         }
 
         /**
-         * Required - API name: {@code number}
+         * Required - The version number.
+         * <p>
+         * API name: {@code number}
+         * </p>
          */
         @Nonnull
         public final Builder number(String value) {

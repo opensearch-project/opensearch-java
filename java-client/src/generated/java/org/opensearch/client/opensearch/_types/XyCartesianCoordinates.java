@@ -30,6 +30,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.XyCartesianCoordinates
 
+/**
+ * The Cartesian coordinates specified using x and y values.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class XyCartesianCoordinates

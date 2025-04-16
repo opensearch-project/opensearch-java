@@ -56,7 +56,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: _types.DocStatus
 
 /**
- * The item level REST category class codes during indexing.
+ * The item level HTTP response status code during indexing.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
@@ -92,7 +92,10 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
     }
 
     /**
+     * The number of informational responses.
+     * <p>
      * API name: {@code 1xx}
+     * </p>
      */
     @Nullable
     public final Integer _1xx() {
@@ -100,7 +103,10 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
     }
 
     /**
+     * The number of successful responses.
+     * <p>
      * API name: {@code 2xx}
+     * </p>
      */
     @Nullable
     public final Integer _2xx() {
@@ -108,7 +114,10 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
     }
 
     /**
+     * The number of redirection responses.
+     * <p>
      * API name: {@code 3xx}
+     * </p>
      */
     @Nullable
     public final Integer _3xx() {
@@ -116,7 +125,10 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
     }
 
     /**
+     * The number of client error responses.
+     * <p>
      * API name: {@code 4xx}
+     * </p>
      */
     @Nullable
     public final Integer _4xx() {
@@ -124,7 +136,10 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
     }
 
     /**
+     * The number of server error responses.
+     * <p>
      * API name: {@code 5xx}
+     * </p>
      */
     @Nullable
     public final Integer _5xx() {
@@ -221,7 +236,10 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
         }
 
         /**
+         * The number of informational responses.
+         * <p>
          * API name: {@code 1xx}
+         * </p>
          */
         @Nonnull
         public final Builder _1xx(@Nullable Integer value) {
@@ -230,7 +248,10 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
         }
 
         /**
+         * The number of successful responses.
+         * <p>
          * API name: {@code 2xx}
+         * </p>
          */
         @Nonnull
         public final Builder _2xx(@Nullable Integer value) {
@@ -239,7 +260,10 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
         }
 
         /**
+         * The number of redirection responses.
+         * <p>
          * API name: {@code 3xx}
+         * </p>
          */
         @Nonnull
         public final Builder _3xx(@Nullable Integer value) {
@@ -248,7 +272,10 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
         }
 
         /**
+         * The number of client error responses.
+         * <p>
          * API name: {@code 4xx}
+         * </p>
          */
         @Nonnull
         public final Builder _4xx(@Nullable Integer value) {
@@ -257,7 +284,10 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
         }
 
         /**
+         * The number of server error responses.
+         * <p>
          * API name: {@code 5xx}
+         * </p>
          */
         @Nonnull
         public final Builder _5xx(@Nullable Integer value) {

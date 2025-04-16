@@ -100,7 +100,7 @@ public class NodeAttributes implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
-     * Required - Lists node attributes.
+     * Required - A list of node attributes.
      * <p>
      * API name: {@code attributes}
      * </p>
@@ -119,7 +119,10 @@ public class NodeAttributes implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
+     * The roles of the node.
+     * <p>
      * API name: {@code external_id}
+     * </p>
      */
     @Nullable
     public final String externalId() {
@@ -263,7 +266,7 @@ public class NodeAttributes implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - Lists node attributes.
+         * Required - A list of node attributes.
          * <p>
          * API name: {@code attributes}
          * </p>
@@ -279,7 +282,7 @@ public class NodeAttributes implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - Lists node attributes.
+         * Required - A list of node attributes.
          * <p>
          * API name: {@code attributes}
          * </p>
@@ -304,7 +307,10 @@ public class NodeAttributes implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
+         * The roles of the node.
+         * <p>
          * API name: {@code external_id}
+         * </p>
          */
         @Nonnull
         public final Builder externalId(@Nullable String value) {

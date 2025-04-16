@@ -45,35 +45,77 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum NodeRole implements JsonEnum {
+    /**
+     * The node can act as a client node.
+     */
     Client("client"),
 
+    /**
+     * The node can act as a cluster manager.
+     */
     ClusterManager("cluster_manager"),
 
+    /**
+     * The node only performs coordination tasks.
+     */
     CoordinatingOnly("coordinating_only"),
 
+    /**
+     * The node can store data.
+     */
     Data("data"),
 
+    /**
+     * The node can store cold data.
+     */
     DataCold("data_cold"),
 
+    /**
+     * The node can store content data.
+     */
     DataContent("data_content"),
 
+    /**
+     * The node can store frozen data.
+     */
     DataFrozen("data_frozen"),
 
+    /**
+     * The node can store hot data.
+     */
     DataHot("data_hot"),
 
+    /**
+     * The node can store warm data.
+     */
     DataWarm("data_warm"),
 
+    /**
+     * The node can perform ingest operations.
+     */
     Ingest("ingest"),
 
     @Deprecated
     Master("master"),
 
+    /**
+     * The node can perform machine learning operations.
+     */
     Ml("ml"),
 
+    /**
+     * The node can act as a remote cluster client.
+     */
     RemoteClusterClient("remote_cluster_client"),
 
+    /**
+     * The node can perform transform operations.
+     */
     Transform("transform"),
 
+    /**
+     * The node can only vote in cluster decisions.
+     */
     VotingOnly("voting_only");
 
     private final String jsonValue;

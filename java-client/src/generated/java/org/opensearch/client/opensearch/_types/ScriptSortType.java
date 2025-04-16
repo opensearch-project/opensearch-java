@@ -45,10 +45,19 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum ScriptSortType implements JsonEnum {
+    /**
+     * The script returns a numeric value.
+     */
     Number("number"),
 
+    /**
+     * The script returns a string value.
+     */
     String("string"),
 
+    /**
+     * The script returns a version value.
+     */
     Version("version");
 
     private final String jsonValue;

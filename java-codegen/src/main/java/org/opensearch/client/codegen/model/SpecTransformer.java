@@ -530,6 +530,20 @@ public class SpecTransformer {
     }
 
     private void visitInto(OpenApiSchema schema, ObjectShapeBase shape) {
+        var oneOf = schema.getOneOf().orElse(null);
+        if (oneOf != null && oneOf.stream().allMatch(s -> s.getAllOf().map(a -> a.size() == 2).orElse(false))) {
+            var baseSchema = oneOf.get(0).getAllOf().orElseThrow().get(0);
+            shape.setExtendsType(mapType(baseSchema));
+            var subSchemas = oneOf.stream().map(s -> s.getAllOf().orElseThrow().get(1)).collect(Collectors.toList());
+            schema = OpenApiSchema.builder()
+                .withPointer(schema.getPointer())
+                .withAllOf(
+                    baseSchema,
+                    OpenApiSchema.builder().withPointer(schema.getPointer().append("allOf", "1")).withOneOf(subSchemas).build()
+                )
+                .build();
+        }
+
         var allOf = schema.getAllOf();
         if (allOf.isPresent()) {
             if (allOf.get().size() == 2) {
