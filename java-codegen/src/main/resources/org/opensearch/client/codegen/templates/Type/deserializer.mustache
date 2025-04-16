@@ -1,29 +1,34 @@
-{{#isPotentiallyBoxedPrimitive}}
-    {{TYPES.Client.Json.JsonpDeserializer}}.{{#toLower}}{{boxed.name}}{{/toLower}}Deserializer()
-{{/isPotentiallyBoxedPrimitive}}
-{{^isPotentiallyBoxedPrimitive}}
-    {{#isList}}
-        {{TYPES.Client.Json.JsonpDeserializer}}.arrayDeserializer({{#listValueType}}{{>Type/deserializer}}{{/listValueType}})
-    {{/isList}}
-    {{#isMap}}
-        {{TYPES.Client.Json.JsonpDeserializer}}.stringMapDeserializer({{#mapValueType}}{{>Type/deserializer}}{{/mapValueType}})
-    {{/isMap}}
-    {{^isListOrMap}}
-        {{#isNumber}}
-            {{TYPES.Client.Json.JsonpDeserializer}}.numberDeserializer()
-        {{/isNumber}}
-        {{^isNumber}}
-            {{#isString}}
-                {{TYPES.Client.Json.JsonpDeserializer}}.stringDeserializer()
-            {{/isString}}
-            {{^isString}}
-                {{#hasTypeParams}}
-                    {{name}}.create{{name}}Deserializer({{#typeParams}}{{>Type/deserializer}}{{^-last}}, {{/-last}}{{/typeParams}})
-                {{/hasTypeParams}}
-                {{^hasTypeParams}}
-                    {{name}}._DESERIALIZER
-                {{/hasTypeParams}}
-            {{/isString}}
-        {{/isNumber}}
-    {{/isListOrMap}}
-{{/isPotentiallyBoxedPrimitive}}
+{{^isTypeParameterRef}}
+    {{#isPotentiallyBoxedPrimitive}}
+        {{TYPES.Client.Json.JsonpDeserializer}}.{{#toLower}}{{boxed.name}}{{/toLower}}Deserializer()
+    {{/isPotentiallyBoxedPrimitive}}
+    {{^isPotentiallyBoxedPrimitive}}
+        {{#isList}}
+            {{TYPES.Client.Json.JsonpDeserializer}}.arrayDeserializer({{#listValueType}}{{>Type/deserializer}}{{/listValueType}})
+        {{/isList}}
+        {{#isMap}}
+            {{TYPES.Client.Json.JsonpDeserializer}}.stringMapDeserializer({{#mapValueType}}{{>Type/deserializer}}{{/mapValueType}})
+        {{/isMap}}
+        {{^isListOrMap}}
+            {{#isNumber}}
+                {{TYPES.Client.Json.JsonpDeserializer}}.numberDeserializer()
+            {{/isNumber}}
+            {{^isNumber}}
+                {{#isString}}
+                    {{TYPES.Client.Json.JsonpDeserializer}}.stringDeserializer()
+                {{/isString}}
+                {{^isString}}
+                    {{#hasTypeParams}}
+                        {{name}}.create{{name}}Deserializer({{#typeParams}}{{>Type/deserializer}}{{^-last}}, {{/-last}}{{/typeParams}})
+                    {{/hasTypeParams}}
+                    {{^hasTypeParams}}
+                        {{name}}._DESERIALIZER
+                    {{/hasTypeParams}}
+                {{/isString}}
+            {{/isNumber}}
+        {{/isListOrMap}}
+    {{/isPotentiallyBoxedPrimitive}}
+{{/isTypeParameterRef}}
+{{#isTypeParameterRef}}
+    {{#camelCase}}{{name}}{{/camelCase}}Deserializer
+{{/isTypeParameterRef}}

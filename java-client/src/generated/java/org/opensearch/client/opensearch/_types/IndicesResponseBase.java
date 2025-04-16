@@ -48,6 +48,9 @@ import org.opensearch.client.util.ObjectBuilder;
 
 // typedef: _types.IndicesResponseBase
 
+/**
+ * The base response for index operations.
+ */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 

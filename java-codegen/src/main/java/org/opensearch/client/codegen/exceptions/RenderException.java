@@ -9,7 +9,7 @@
 package org.opensearch.client.codegen.exceptions;
 
 public class RenderException extends Exception {
-    public RenderException(String msg, Exception inner) {
+    public RenderException(String msg, Throwable inner) {
         super(msg, inner);
     }
 }

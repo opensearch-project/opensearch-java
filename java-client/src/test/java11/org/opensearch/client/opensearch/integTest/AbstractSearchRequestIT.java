@@ -100,9 +100,9 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
             CompositeAggregate compositeAggregation = entry.getValue().composite();
             List<CompositeBucket> buckets = compositeAggregation.buckets().array();
             assertEquals(2, buckets.size());
-            assertEquals(1, Integer.parseInt(buckets.get(0).key().get("quantity").toString()));
+            assertEquals(1, buckets.get(0).key().get("quantity").longValue());
             assertEquals(1, buckets.get(0).docCount());
-            assertEquals(2, Integer.parseInt(buckets.get(1).key().get("quantity").toString()));
+            assertEquals(2, buckets.get(1).key().get("quantity").longValue());
             assertEquals(1, buckets.get(1).docCount());
         }
         List<CompositeBucket> buckets = response.aggregations()
@@ -113,9 +113,9 @@ public abstract class AbstractSearchRequestIT extends OpenSearchJavaClientTestCa
             .flatMap(List::stream)
             .collect(Collectors.toList());
         assertEquals(2, buckets.size());
-        assertEquals(1, Integer.parseInt(buckets.get(0).key().get("quantity").toString()));
+        assertEquals(1, buckets.get(0).key().get("quantity").longValue());
         assertEquals(1, buckets.get(0).docCount());
-        assertEquals(2, Integer.parseInt(buckets.get(1).key().get("quantity").toString()));
+        assertEquals(2, buckets.get(1).key().get("quantity").longValue());
         assertEquals(1, buckets.get(1).docCount());
     }
 

@@ -1,4 +1,4 @@
-{{#fields}}
+{{#hashableFields}}
     result = 31 * result +
     {{#required}}
         {{#type.isPrimitive}}
@@ -11,4 +11,4 @@
     {{^required}}
         {{TYPES.Java.Util.Objects}}.hashCode(this.{{name}});
     {{/required}}
-{{/fields}}
+{{/hashableFields}}

@@ -8,7 +8,7 @@
         if(this == o) return true;
         if(o == null || this.getClass() != o.getClass()) return false;
         {{#hasFields}}
-            {{className}} other = ({{className}})o;
+            {{className}}{{#typeParameters}}<?>{{/typeParameters}} other = ({{className}}{{#typeParameters}}<?>{{/typeParameters}})o;
             return {{>ObjectShape/Equals/Fields}};
         {{/hasFields}}
         {{^hasFields}}

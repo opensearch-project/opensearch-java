@@ -42,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -60,13 +61,13 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class AggregationRange implements PlainJsonSerializable, ToCopyableBuilder<AggregationRange.Builder, AggregationRange> {
 
     @Nullable
-    private final String from;
+    private final JsonData from;
 
     @Nullable
     private final String key;
 
     @Nullable
-    private final String to;
+    private final JsonData to;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -87,7 +88,7 @@ public class AggregationRange implements PlainJsonSerializable, ToCopyableBuilde
      * </p>
      */
     @Nullable
-    public final String from() {
+    public final JsonData from() {
         return this.from;
     }
 
@@ -109,7 +110,7 @@ public class AggregationRange implements PlainJsonSerializable, ToCopyableBuilde
      * </p>
      */
     @Nullable
-    public final String to() {
+    public final JsonData to() {
         return this.to;
     }
 
@@ -126,7 +127,7 @@ public class AggregationRange implements PlainJsonSerializable, ToCopyableBuilde
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.from != null) {
             generator.writeKey("from");
-            generator.write(this.from);
+            this.from.serialize(generator, mapper);
         }
 
         if (this.key != null) {
@@ -136,7 +137,7 @@ public class AggregationRange implements PlainJsonSerializable, ToCopyableBuilde
 
         if (this.to != null) {
             generator.writeKey("to");
-            generator.write(this.to);
+            this.to.serialize(generator, mapper);
         }
     }
 
@@ -158,11 +159,11 @@ public class AggregationRange implements PlainJsonSerializable, ToCopyableBuilde
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AggregationRange> {
         @Nullable
-        private String from;
+        private JsonData from;
         @Nullable
         private String key;
         @Nullable
-        private String to;
+        private JsonData to;
 
         public Builder() {}
 
@@ -191,7 +192,7 @@ public class AggregationRange implements PlainJsonSerializable, ToCopyableBuilde
          * </p>
          */
         @Nonnull
-        public final Builder from(@Nullable String value) {
+        public final Builder from(@Nullable JsonData value) {
             this.from = value;
             return this;
         }
@@ -215,7 +216,7 @@ public class AggregationRange implements PlainJsonSerializable, ToCopyableBuilde
          * </p>
          */
         @Nonnull
-        public final Builder to(@Nullable String value) {
+        public final Builder to(@Nullable JsonData value) {
             this.to = value;
             return this;
         }
@@ -245,9 +246,9 @@ public class AggregationRange implements PlainJsonSerializable, ToCopyableBuilde
     );
 
     protected static void setupAggregationRangeDeserializer(ObjectDeserializer<AggregationRange.Builder> op) {
-        op.add(Builder::from, JsonpDeserializer.stringDeserializer(), "from");
+        op.add(Builder::from, JsonData._DESERIALIZER, "from");
         op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
-        op.add(Builder::to, JsonpDeserializer.stringDeserializer(), "to");
+        op.add(Builder::to, JsonData._DESERIALIZER, "to");
     }
 
     @Override

@@ -231,8 +231,8 @@ public class FiltersAggregation extends BucketAggregationBase
          * API name: {@code filters}
          */
         @Nonnull
-        public final Builder filters(Function<Buckets.Builder, ObjectBuilder<Buckets<Query>>> fn) {
-            return filters(fn.apply(new Buckets.Builder()).build());
+        public final Builder filters(Function<Buckets.Builder<Query>, ObjectBuilder<Buckets<Query>>> fn) {
+            return filters(fn.apply(new Buckets.Builder<Query>()).build());
         }
 
         /**

@@ -16,11 +16,13 @@ import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.model.Deprecation;
+import org.opensearch.client.codegen.utils.Clone;
 import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.Versions;
+import org.opensearch.client.codegen.utils.builder.ToBuilder;
 import org.semver4j.Semver;
 
-public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
+public final class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> implements ToBuilder<OpenApiParameter.Builder> {
     @Nullable
     private final String name;
     @Nullable
@@ -30,7 +32,7 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
     @Nullable
     private final Boolean isRequired;
     @Nullable
-    private final OpenApiSchema schema;
+    private OpenApiSchema schema;
     @Nullable
     private final Boolean isDeprecated;
     @Nullable
@@ -40,18 +42,37 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
     @Nullable
     private final Boolean isGlobal;
 
-    protected OpenApiParameter(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer, @Nonnull Parameter parameter) {
-        super(parent, pointer, parameter.get$ref(), OpenApiParameter.class);
+    private OpenApiParameter(@Nonnull Builder builder) {
+        super(builder, OpenApiParameter.class);
+        this.name = builder.name;
+        this.description = builder.description;
+        this.in = builder.in;
+        this.isRequired = builder.isRequired;
+        setSchema(builder.schema);
+        this.isDeprecated = builder.isDeprecated;
+        this.versionDeprecated = builder.versionDeprecated;
+        this.deprecationMessage = builder.deprecationMessage;
+        this.isGlobal = builder.isGlobal;
+    }
+
+    OpenApiParameter(@Nonnull Parameter parameter) {
+        super(parameter.get$ref(), OpenApiParameter.class);
         this.name = parameter.getName();
         this.description = parameter.getDescription();
         this.in = ifNonnull(parameter.getIn(), In::from);
         this.isRequired = parameter.getRequired();
-        this.schema = child("schema", parameter.getSchema(), OpenApiSchema::new);
+        setSchema(ifNonnull(parameter.getSchema(), OpenApiSchema::new));
         this.isDeprecated = parameter.getDeprecated();
         var extensions = parameter.getExtensions();
         this.versionDeprecated = Maps.tryGet(extensions, "x-version-deprecated").map(v -> Versions.coerce((String) v)).orElse(null);
         this.deprecationMessage = Maps.tryGet(extensions, "x-deprecation-message").map(String::valueOf).orElse(null);
         this.isGlobal = (Boolean) Maps.tryGet(extensions, "x-global").orElse(null);
+    }
+
+    @Override
+    void initialize(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer) {
+        super.initialize(parent, pointer);
+        initializeChild("schema", schema);
     }
 
     @Nonnull
@@ -92,6 +113,11 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
         return Optional.ofNullable(schema);
     }
 
+    public void setSchema(@Nullable OpenApiSchema schema) {
+        this.schema = schema;
+        initializeChild("schema", schema);
+    }
+
     public boolean isGlobal() {
         return isGlobal != null && isGlobal;
     }
@@ -114,5 +140,101 @@ public class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> {
 
     public boolean isGlobalCatParameter() {
         return GLOBAL_CAT_PARAMETERS.contains(name);
+    }
+
+    @Override
+    public @Nonnull OpenApiParameter clone() {
+        return toBuilder().build();
+    }
+
+    @Override
+    public @Nonnull Builder toBuilder() {
+        return super.toBuilder(builder()).withName(name)
+            .withDescription(description)
+            .withIn(in)
+            .withRequired(isRequired)
+            .withSchema(ifNonnull(schema, Clone::clone))
+            .withDeprecated(isDeprecated)
+            .withVersionDeprecated(versionDeprecated)
+            .withDeprecationMessage(deprecationMessage)
+            .withGlobal(isGlobal);
+    }
+
+    public static @Nonnull Builder builder() {
+        return new Builder();
+    }
+
+    public static final class Builder extends OpenApiRefElement.AbstractBuilder<OpenApiParameter, Builder> {
+        @Nullable
+        private String name;
+        @Nullable
+        private String description;
+        @Nullable
+        private In in;
+        @Nullable
+        private Boolean isRequired;
+        @Nullable
+        private OpenApiSchema schema;
+        @Nullable
+        private Boolean isDeprecated;
+        @Nullable
+        private Semver versionDeprecated;
+        @Nullable
+        private String deprecationMessage;
+        @Nullable
+        private Boolean isGlobal;
+
+        private Builder() {}
+
+        @Nonnull
+        @Override
+        protected OpenApiParameter construct() {
+            return new OpenApiParameter(this);
+        }
+
+        public @Nonnull Builder withName(@Nullable String name) {
+            this.name = name;
+            return this;
+        }
+
+        public @Nonnull Builder withDescription(@Nullable String description) {
+            this.description = description;
+            return this;
+        }
+
+        public @Nonnull Builder withIn(@Nullable In in) {
+            this.in = in;
+            return this;
+        }
+
+        public @Nonnull Builder withRequired(@Nullable Boolean isRequired) {
+            this.isRequired = isRequired;
+            return this;
+        }
+
+        public @Nonnull Builder withSchema(@Nullable OpenApiSchema schema) {
+            this.schema = schema;
+            return this;
+        }
+
+        public @Nonnull Builder withDeprecated(@Nullable Boolean isDeprecated) {
+            this.isDeprecated = isDeprecated;
+            return this;
+        }
+
+        public @Nonnull Builder withVersionDeprecated(@Nullable Semver versionDeprecated) {
+            this.versionDeprecated = versionDeprecated;
+            return this;
+        }
+
+        public @Nonnull Builder withDeprecationMessage(@Nullable String deprecationMessage) {
+            this.deprecationMessage = deprecationMessage;
+            return this;
+        }
+
+        public @Nonnull Builder withGlobal(@Nullable Boolean isGlobal) {
+            this.isGlobal = isGlobal;
+            return this;
+        }
     }
 }

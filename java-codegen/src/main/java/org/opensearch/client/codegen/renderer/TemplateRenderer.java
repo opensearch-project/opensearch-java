@@ -9,7 +9,6 @@
 package org.opensearch.client.codegen.renderer;
 
 import com.samskivert.mustache.Mustache;
-import com.samskivert.mustache.MustacheException;
 import com.samskivert.mustache.Template;
 import java.io.File;
 import java.io.FileWriter;
@@ -49,7 +48,7 @@ public final class TemplateRenderer {
         try {
             var template = templateCache.computeIfAbsent(templateName, compiler::loadTemplate);
             template.execute(context, this.context, out);
-        } catch (MustacheException e) {
+        } catch (Throwable e) {
             throw new RenderException("Failed to render: " + context, e);
         }
     }

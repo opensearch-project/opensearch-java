@@ -8,16 +8,16 @@
 
 package org.opensearch.client.codegen.openapi;
 
+import static org.opensearch.client.codegen.utils.Functional.ifNonnull;
+
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.OpenAPIV3Parser;
 import io.swagger.v3.parser.core.models.ParseOptions;
 import java.net.URI;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -26,9 +26,12 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
+import org.opensearch.client.codegen.utils.Clone;
 import org.opensearch.client.codegen.utils.Maps;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
+import org.opensearch.client.codegen.utils.builder.ToBuilder;
 
-public class OpenApiSpecification extends OpenApiElement<OpenApiSpecification> {
+public final class OpenApiSpecification extends OpenApiElement<OpenApiSpecification> implements ToBuilder<OpenApiSpecification.Builder> {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final ParseOptions PARSE_OPTIONS = new ParseOptions();
     private static final OpenAPIV3Parser PARSER = new OpenAPIV3Parser();
@@ -50,47 +53,59 @@ public class OpenApiSpecification extends OpenApiElement<OpenApiSpecification> {
     }
 
     @Nonnull
-    private final Set<JsonPointer> cachedElements = new HashSet<>();
-    @Nonnull
-    private final Map<Class<?>, Map<JsonPointer, OpenApiElement<?>>> elementCache = new HashMap<>();
-    @Nonnull
     private final URI location;
     @Nullable
-    private final Map<String, OpenApiPath> paths;
+    private Map<String, OpenApiPath> paths;
     @Nullable
-    private final OpenApiComponents components;
+    private OpenApiComponents components;
+    @Nonnull
+    private final Map<OpenApiElement<?>, JsonPointer> elementPointerLookup = new HashMap<>();
+    @Nonnull
+    private final Map<JsonPointer, OpenApiElement<?>> pointerElementLookup = new HashMap<>();
 
-    private OpenApiSpecification(@Nonnull URI location, @Nonnull OpenAPI openApi) {
-        super(null, JsonPointer.ROOT);
-        this.location = Objects.requireNonNull(location, "location must not be null");
-        Objects.requireNonNull(openApi, "openAPI must not be null");
-        this.paths = children("paths", openApi.getPaths(), OpenApiPath::new);
-        this.components = child("components", openApi.getComponents(), OpenApiComponents::new);
+    private OpenApiSpecification(@Nonnull Builder builder) {
+        super();
+        this.location = Objects.requireNonNull(builder.location, "location must not be null");
+        setPaths(builder.paths);
+        setComponents(builder.components);
     }
 
-    @Nonnull
+    private OpenApiSpecification(@Nonnull URI location, @Nonnull OpenAPI openApi) {
+        super();
+        this.location = Objects.requireNonNull(location, "location must not be null");
+        Objects.requireNonNull(openApi, "openAPI must not be null");
+        setPaths(children(openApi.getPaths(), OpenApiPath::new));
+        setComponents(ifNonnull(openApi.getComponents(), OpenApiComponents::new));
+    }
+
     @Override
-    protected Optional<OpenApiSpecification> getSpecification() {
+    Optional<OpenApiSpecification> getSpecification() {
         return Optional.of(this);
     }
 
-    <T extends OpenApiElement<T>> void addElement(@Nonnull JsonPointer pointer, @Nonnull T component) {
-        Objects.requireNonNull(pointer, "pointer must not be null");
-        Objects.requireNonNull(component, "component must not be null");
-        if (!cachedElements.add(pointer)) {
-            throw new IllegalStateException("Component with pointer `" + pointer + "` has already been registered");
-        }
-        elementCache.computeIfAbsent(component.getClass(), k -> new HashMap<>()).put(pointer, component);
+    @Override
+    void initialize(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer) {
+        super.initialize(parent, pointer);
+        initializeChildren("paths", paths);
+        initializeChild("components", components);
     }
 
-    @Nonnull
-    public <T extends OpenApiElement<T>> T getElement(@Nonnull JsonPointer pointer, @Nonnull Class<T> type) {
-        Objects.requireNonNull(pointer, "pointer must not be null");
-        Objects.requireNonNull(type, "type must not be null");
-        return Optional.ofNullable(elementCache.get(type))
-            .flatMap(m -> Optional.ofNullable(m.get(pointer)))
-            .map(type::cast)
-            .orElseThrow(() -> new IllegalStateException("Unable to resolve component of type `" + type + "` with pointer: " + pointer));
+    void registerElement(@Nonnull OpenApiElement<?> element) {
+        removeElement(element);
+        var currPointer = element.getPointer();
+        elementPointerLookup.put(element, currPointer);
+        pointerElementLookup.put(currPointer, element);
+    }
+
+    void removeElement(@Nonnull OpenApiElement<?> element) {
+        var ptr = elementPointerLookup.remove(element);
+        if (ptr != null) {
+            pointerElementLookup.remove(ptr);
+        }
+    }
+
+    public Optional<OpenApiElement<?>> getElement(@Nonnull JsonPointer pointer) {
+        return Optional.ofNullable(pointerElementLookup.get(pointer));
     }
 
     @Nonnull
@@ -98,9 +113,19 @@ public class OpenApiSpecification extends OpenApiElement<OpenApiSpecification> {
         return Maps.unmodifiableOpt(paths);
     }
 
+    public void setPaths(@Nullable Map<String, OpenApiPath> paths) {
+        this.paths = paths;
+        initializeChildren("paths", paths);
+    }
+
     @Nonnull
     public Optional<OpenApiComponents> getComponents() {
         return Optional.ofNullable(components);
+    }
+
+    public void setComponents(@Nullable OpenApiComponents components) {
+        this.components = components;
+        initializeChild("components", components);
     }
 
     @Nonnull
@@ -131,5 +156,52 @@ public class OpenApiSpecification extends OpenApiElement<OpenApiSpecification> {
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("location", location).toString();
+    }
+
+    @Override
+    public @Nonnull OpenApiSpecification clone() {
+        return toBuilder().build();
+    }
+
+    @Override
+    public @Nonnull Builder toBuilder() {
+        return builder().withLocation(location)
+            .withPaths(ifNonnull(paths, Clone::clone))
+            .withComponents(ifNonnull(components, Clone::clone));
+    }
+
+    public static @Nonnull Builder builder() {
+        return new Builder();
+    }
+
+    public static final class Builder extends ObjectBuilderBase<OpenApiSpecification, Builder> {
+        private URI location;
+        @Nullable
+        private Map<String, OpenApiPath> paths;
+        @Nullable
+        private OpenApiComponents components;
+
+        private Builder() {}
+
+        @Nonnull
+        @Override
+        protected OpenApiSpecification construct() {
+            return new OpenApiSpecification(this);
+        }
+
+        public @Nonnull Builder withLocation(@Nonnull URI location) {
+            this.location = Objects.requireNonNull(location, "location must not be null");
+            return this;
+        }
+
+        public @Nonnull Builder withPaths(@Nullable Map<String, OpenApiPath> paths) {
+            this.paths = paths;
+            return this;
+        }
+
+        public @Nonnull Builder withComponents(@Nullable OpenApiComponents components) {
+            this.components = components;
+            return this;
+        }
     }
 }

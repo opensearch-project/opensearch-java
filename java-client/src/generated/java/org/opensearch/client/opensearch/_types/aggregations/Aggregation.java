@@ -92,14 +92,11 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         GeoBounds("geo_bounds"),
         GeoCentroid("geo_centroid"),
         GeoDistance("geo_distance"),
-        GeoLine("geo_line"),
         GeohashGrid("geohash_grid"),
         GeotileGrid("geotile_grid"),
         Global("global"),
         Histogram("histogram"),
-        Inference("inference"),
         IpRange("ip_range"),
-        Line("line"),
         MatrixStats("matrix_stats"),
         Max("max"),
         MaxBucket("max_bucket"),
@@ -128,13 +125,11 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         SignificantText("significant_text"),
         Stats("stats"),
         StatsBucket("stats_bucket"),
-        StringStats("string_stats"),
         Sum("sum"),
         SumBucket("sum_bucket"),
         TTest("t_test"),
         Terms("terms"),
         TopHits("top_hits"),
-        TopMetrics("top_metrics"),
         ValueCount("value_count"),
         VariableWidthHistogram("variable_width_histogram"),
         WeightedAvg("weighted_avg");
@@ -592,22 +587,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
     }
 
     /**
-     * Is this variant instance of kind {@code geo_line}?
-     */
-    public boolean isGeoLine() {
-        return _kind == Kind.GeoLine;
-    }
-
-    /**
-     * Get the {@code geo_line} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code geo_line} kind.
-     */
-    public GeoLineAggregation geoLine() {
-        return TaggedUnionUtils.get(this, Kind.GeoLine);
-    }
-
-    /**
      * Is this variant instance of kind {@code geohash_grid}?
      */
     public boolean isGeohashGrid() {
@@ -672,22 +651,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
     }
 
     /**
-     * Is this variant instance of kind {@code inference}?
-     */
-    public boolean isInference() {
-        return _kind == Kind.Inference;
-    }
-
-    /**
-     * Get the {@code inference} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code inference} kind.
-     */
-    public InferenceAggregation inference() {
-        return TaggedUnionUtils.get(this, Kind.Inference);
-    }
-
-    /**
      * Is this variant instance of kind {@code ip_range}?
      */
     public boolean isIpRange() {
@@ -701,22 +664,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
      */
     public IpRangeAggregation ipRange() {
         return TaggedUnionUtils.get(this, Kind.IpRange);
-    }
-
-    /**
-     * Is this variant instance of kind {@code line}?
-     */
-    public boolean isLine() {
-        return _kind == Kind.Line;
-    }
-
-    /**
-     * Get the {@code line} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code line} kind.
-     */
-    public GeoLineAggregation line() {
-        return TaggedUnionUtils.get(this, Kind.Line);
     }
 
     /**
@@ -1168,22 +1115,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
     }
 
     /**
-     * Is this variant instance of kind {@code string_stats}?
-     */
-    public boolean isStringStats() {
-        return _kind == Kind.StringStats;
-    }
-
-    /**
-     * Get the {@code string_stats} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code string_stats} kind.
-     */
-    public StringStatsAggregation stringStats() {
-        return TaggedUnionUtils.get(this, Kind.StringStats);
-    }
-
-    /**
      * Is this variant instance of kind {@code sum}?
      */
     public boolean isSum() {
@@ -1261,22 +1192,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
      */
     public TopHitsAggregation topHits() {
         return TaggedUnionUtils.get(this, Kind.TopHits);
-    }
-
-    /**
-     * Is this variant instance of kind {@code top_metrics}?
-     */
-    public boolean isTopMetrics() {
-        return _kind == Kind.TopMetrics;
-    }
-
-    /**
-     * Get the {@code top_metrics} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code top_metrics} kind.
-     */
-    public TopMetricsAggregation topMetrics() {
-        return TaggedUnionUtils.get(this, Kind.TopMetrics);
     }
 
     /**
@@ -1706,16 +1621,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
             return this.geoDistance(fn.apply(new GeoDistanceAggregation.Builder()).build());
         }
 
-        public ContainerBuilder geoLine(GeoLineAggregation v) {
-            this._kind = Kind.GeoLine;
-            this._value = v;
-            return new ContainerBuilder();
-        }
-
-        public ContainerBuilder geoLine(Function<GeoLineAggregation.Builder, ObjectBuilder<GeoLineAggregation>> fn) {
-            return this.geoLine(fn.apply(new GeoLineAggregation.Builder()).build());
-        }
-
         public ContainerBuilder geohashGrid(GeoHashGridAggregation v) {
             this._kind = Kind.GeohashGrid;
             this._value = v;
@@ -1756,16 +1661,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
             return this.histogram(fn.apply(new HistogramAggregation.Builder()).build());
         }
 
-        public ContainerBuilder inference(InferenceAggregation v) {
-            this._kind = Kind.Inference;
-            this._value = v;
-            return new ContainerBuilder();
-        }
-
-        public ContainerBuilder inference(Function<InferenceAggregation.Builder, ObjectBuilder<InferenceAggregation>> fn) {
-            return this.inference(fn.apply(new InferenceAggregation.Builder()).build());
-        }
-
         public ContainerBuilder ipRange(IpRangeAggregation v) {
             this._kind = Kind.IpRange;
             this._value = v;
@@ -1774,16 +1669,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
 
         public ContainerBuilder ipRange(Function<IpRangeAggregation.Builder, ObjectBuilder<IpRangeAggregation>> fn) {
             return this.ipRange(fn.apply(new IpRangeAggregation.Builder()).build());
-        }
-
-        public ContainerBuilder line(GeoLineAggregation v) {
-            this._kind = Kind.Line;
-            this._value = v;
-            return new ContainerBuilder();
-        }
-
-        public ContainerBuilder line(Function<GeoLineAggregation.Builder, ObjectBuilder<GeoLineAggregation>> fn) {
-            return this.line(fn.apply(new GeoLineAggregation.Builder()).build());
         }
 
         public ContainerBuilder matrixStats(MatrixStatsAggregation v) {
@@ -2080,16 +1965,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
             return this.statsBucket(fn.apply(new StatsBucketAggregation.Builder()).build());
         }
 
-        public ContainerBuilder stringStats(StringStatsAggregation v) {
-            this._kind = Kind.StringStats;
-            this._value = v;
-            return new ContainerBuilder();
-        }
-
-        public ContainerBuilder stringStats(Function<StringStatsAggregation.Builder, ObjectBuilder<StringStatsAggregation>> fn) {
-            return this.stringStats(fn.apply(new StringStatsAggregation.Builder()).build());
-        }
-
         public ContainerBuilder sum(SumAggregation v) {
             this._kind = Kind.Sum;
             this._value = v;
@@ -2138,16 +2013,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
 
         public ContainerBuilder topHits(Function<TopHitsAggregation.Builder, ObjectBuilder<TopHitsAggregation>> fn) {
             return this.topHits(fn.apply(new TopHitsAggregation.Builder()).build());
-        }
-
-        public ContainerBuilder topMetrics(TopMetricsAggregation v) {
-            this._kind = Kind.TopMetrics;
-            this._value = v;
-            return new ContainerBuilder();
-        }
-
-        public ContainerBuilder topMetrics(Function<TopMetricsAggregation.Builder, ObjectBuilder<TopMetricsAggregation>> fn) {
-            return this.topMetrics(fn.apply(new TopMetricsAggregation.Builder()).build());
         }
 
         public ContainerBuilder valueCount(ValueCountAggregation v) {
@@ -2297,14 +2162,11 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         op.add(Builder::geoBounds, GeoBoundsAggregation._DESERIALIZER, "geo_bounds");
         op.add(Builder::geoCentroid, GeoCentroidAggregation._DESERIALIZER, "geo_centroid");
         op.add(Builder::geoDistance, GeoDistanceAggregation._DESERIALIZER, "geo_distance");
-        op.add(Builder::geoLine, GeoLineAggregation._DESERIALIZER, "geo_line");
         op.add(Builder::geohashGrid, GeoHashGridAggregation._DESERIALIZER, "geohash_grid");
         op.add(Builder::geotileGrid, GeoTileGridAggregation._DESERIALIZER, "geotile_grid");
         op.add(Builder::global, GlobalAggregation._DESERIALIZER, "global");
         op.add(Builder::histogram, HistogramAggregation._DESERIALIZER, "histogram");
-        op.add(Builder::inference, InferenceAggregation._DESERIALIZER, "inference");
         op.add(Builder::ipRange, IpRangeAggregation._DESERIALIZER, "ip_range");
-        op.add(Builder::line, GeoLineAggregation._DESERIALIZER, "line");
         op.add(Builder::matrixStats, MatrixStatsAggregation._DESERIALIZER, "matrix_stats");
         op.add(Builder::max, MaxAggregation._DESERIALIZER, "max");
         op.add(Builder::maxBucket, MaxBucketAggregation._DESERIALIZER, "max_bucket");
@@ -2333,13 +2195,11 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         op.add(Builder::significantText, SignificantTextAggregation._DESERIALIZER, "significant_text");
         op.add(Builder::stats, StatsAggregation._DESERIALIZER, "stats");
         op.add(Builder::statsBucket, StatsBucketAggregation._DESERIALIZER, "stats_bucket");
-        op.add(Builder::stringStats, StringStatsAggregation._DESERIALIZER, "string_stats");
         op.add(Builder::sum, SumAggregation._DESERIALIZER, "sum");
         op.add(Builder::sumBucket, SumBucketAggregation._DESERIALIZER, "sum_bucket");
         op.add(Builder::tTest, TTestAggregation._DESERIALIZER, "t_test");
         op.add(Builder::terms, TermsAggregation._DESERIALIZER, "terms");
         op.add(Builder::topHits, TopHitsAggregation._DESERIALIZER, "top_hits");
-        op.add(Builder::topMetrics, TopMetricsAggregation._DESERIALIZER, "top_metrics");
         op.add(Builder::valueCount, ValueCountAggregation._DESERIALIZER, "value_count");
         op.add(Builder::variableWidthHistogram, VariableWidthHistogramAggregation._DESERIALIZER, "variable_width_histogram");
         op.add(Builder::weightedAvg, WeightedAverageAggregation._DESERIALIZER, "weighted_avg");

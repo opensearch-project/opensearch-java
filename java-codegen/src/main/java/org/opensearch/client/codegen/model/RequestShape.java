@@ -24,7 +24,10 @@ import javax.annotation.Nullable;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
+import org.opensearch.client.codegen.model.types.Type;
+import org.opensearch.client.codegen.model.types.TypeRef;
+import org.opensearch.client.codegen.model.types.Types;
+import org.opensearch.client.codegen.transformer.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.JavaAbstractionLevel;
 import org.opensearch.client.codegen.utils.Streams;
 
@@ -176,7 +179,7 @@ public class RequestShape extends ObjectShape {
         }
     }
 
-    public void setDelegatedBodyField(String name, Type type) {
+    public void setDelegatedBodyField(String name, TypeRef type) {
         this.delegatedBodyField = Field.builder().withName(name).withType(type).withRequired(true).withDescription("Request body.").build();
         addField(this.delegatedBodyField);
     }
@@ -210,12 +213,17 @@ public class RequestShape extends ObjectShape {
     }
 
     @Override
+    public Collection<Field> getHashableFields() {
+        return getFields();
+    }
+
+    @Override
     public boolean hasAnyRequiredFields() {
         return fields.values().stream().anyMatch(Field::isRequired);
     }
 
     public Type getJsonEndpointType() {
-        return Types.Client.Transport.JsonEndpoint(getType(), getResponseType(), Types.Client.OpenSearch._Types.ErrorResponse);
+        return Types.Client.Transport.JsonEndpoint(getMaterializedType(), getResponseType(), Types.Client.OpenSearch._Types.ErrorResponse);
     }
 
     public Deprecation getDeprecation() {

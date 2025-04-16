@@ -215,13 +215,6 @@ public class AggregationBuilders {
     }
 
     /**
-     * Creates a builder for the {@link GeoLineAggregation geo_line} {@code Aggregation} variant.
-     */
-    public static GeoLineAggregation.Builder geoLine() {
-        return new GeoLineAggregation.Builder();
-    }
-
-    /**
      * Creates a builder for the {@link GeoHashGridAggregation geohash_grid} {@code Aggregation} variant.
      */
     public static GeoHashGridAggregation.Builder geohashGrid() {
@@ -250,24 +243,10 @@ public class AggregationBuilders {
     }
 
     /**
-     * Creates a builder for the {@link InferenceAggregation inference} {@code Aggregation} variant.
-     */
-    public static InferenceAggregation.Builder inference() {
-        return new InferenceAggregation.Builder();
-    }
-
-    /**
      * Creates a builder for the {@link IpRangeAggregation ip_range} {@code Aggregation} variant.
      */
     public static IpRangeAggregation.Builder ipRange() {
         return new IpRangeAggregation.Builder();
-    }
-
-    /**
-     * Creates a builder for the {@link GeoLineAggregation line} {@code Aggregation} variant.
-     */
-    public static GeoLineAggregation.Builder line() {
-        return new GeoLineAggregation.Builder();
     }
 
     /**
@@ -467,13 +446,6 @@ public class AggregationBuilders {
     }
 
     /**
-     * Creates a builder for the {@link StringStatsAggregation string_stats} {@code Aggregation} variant.
-     */
-    public static StringStatsAggregation.Builder stringStats() {
-        return new StringStatsAggregation.Builder();
-    }
-
-    /**
      * Creates a builder for the {@link SumAggregation sum} {@code Aggregation} variant.
      */
     public static SumAggregation.Builder sum() {
@@ -506,13 +478,6 @@ public class AggregationBuilders {
      */
     public static TopHitsAggregation.Builder topHits() {
         return new TopHitsAggregation.Builder();
-    }
-
-    /**
-     * Creates a builder for the {@link TopMetricsAggregation top_metrics} {@code Aggregation} variant.
-     */
-    public static TopMetricsAggregation.Builder topMetrics() {
-        return new TopMetricsAggregation.Builder();
     }
 
     /**
