@@ -45,8 +45,14 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum OpType implements JsonEnum {
+    /**
+     * Create a new document.
+     */
     Create("create"),
 
+    /**
+     * Create a new document or replace an existing one.
+     */
     Index("index");
 
     private final String jsonValue;
