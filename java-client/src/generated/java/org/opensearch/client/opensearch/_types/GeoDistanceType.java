@@ -45,8 +45,14 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum GeoDistanceType implements JsonEnum {
+    /**
+     * The arc calculation method uses great circle distance.
+     */
     Arc("arc"),
 
+    /**
+     * The plane calculation method uses faster but less accurate flat-earth distance.
+     */
     Plane("plane");
 
     private final String jsonValue;

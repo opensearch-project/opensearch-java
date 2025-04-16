@@ -45,10 +45,19 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum DFIIndependenceMeasure implements JsonEnum {
+    /**
+     * The chi-squared measure of independence.
+     */
     Chisquared("chisquared"),
 
+    /**
+     * The saturated measure of independence.
+     */
     Saturated("saturated"),
 
+    /**
+     * The standardized measure of independence.
+     */
     Standardized("standardized");
 
     private final String jsonValue;

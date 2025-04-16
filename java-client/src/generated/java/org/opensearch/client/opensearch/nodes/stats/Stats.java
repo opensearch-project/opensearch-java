@@ -77,7 +77,7 @@ public class Stats implements PlainJsonSerializable, ToCopyableBuilder<Stats.Bui
     private final Map<String, Breaker> breakers;
 
     @Nonnull
-    private final Map<String, ShardCacheStats> caches;
+    private final Map<String, CacheStats> caches;
 
     @Nullable
     private final ShardClusterManagerThrottlingStats clusterManagerThrottling;
@@ -254,7 +254,7 @@ public class Stats implements PlainJsonSerializable, ToCopyableBuilder<Stats.Bui
      * API name: {@code caches}
      */
     @Nonnull
-    public final Map<String, ShardCacheStats> caches() {
+    public final Map<String, CacheStats> caches() {
         return this.caches;
     }
 
@@ -545,7 +545,7 @@ public class Stats implements PlainJsonSerializable, ToCopyableBuilder<Stats.Bui
         if (ApiTypeHelper.isDefined(this.caches)) {
             generator.writeKey("caches");
             generator.writeStartObject();
-            for (Map.Entry<String, ShardCacheStats> item0 : this.caches.entrySet()) {
+            for (Map.Entry<String, CacheStats> item0 : this.caches.entrySet()) {
                 generator.writeKey(item0.getKey());
                 item0.getValue().serialize(generator, mapper);
             }
@@ -746,7 +746,7 @@ public class Stats implements PlainJsonSerializable, ToCopyableBuilder<Stats.Bui
         @Nullable
         private Map<String, Breaker> breakers;
         @Nullable
-        private Map<String, ShardCacheStats> caches;
+        private Map<String, CacheStats> caches;
         @Nullable
         private ShardClusterManagerThrottlingStats clusterManagerThrottling;
         @Nullable
@@ -1039,7 +1039,7 @@ public class Stats implements PlainJsonSerializable, ToCopyableBuilder<Stats.Bui
          * </p>
          */
         @Nonnull
-        public final Builder caches(Map<String, ShardCacheStats> map) {
+        public final Builder caches(Map<String, CacheStats> map) {
             this.caches = _mapPutAll(this.caches, map);
             return this;
         }
@@ -1052,7 +1052,7 @@ public class Stats implements PlainJsonSerializable, ToCopyableBuilder<Stats.Bui
          * </p>
          */
         @Nonnull
-        public final Builder caches(String key, ShardCacheStats value) {
+        public final Builder caches(String key, CacheStats value) {
             this.caches = _mapPut(this.caches, key, value);
             return this;
         }
@@ -1065,8 +1065,8 @@ public class Stats implements PlainJsonSerializable, ToCopyableBuilder<Stats.Bui
          * </p>
          */
         @Nonnull
-        public final Builder caches(String key, Function<ShardCacheStats.Builder, ObjectBuilder<ShardCacheStats>> fn) {
-            return caches(key, fn.apply(new ShardCacheStats.Builder()).build());
+        public final Builder caches(String key, Function<CacheStats.Builder, ObjectBuilder<CacheStats>> fn) {
+            return caches(key, fn.apply(new CacheStats.Builder()).build());
         }
 
         /**
@@ -1654,7 +1654,7 @@ public class Stats implements PlainJsonSerializable, ToCopyableBuilder<Stats.Bui
         op.add(Builder::admissionControl, ShardAdmissionControlStats._DESERIALIZER, "admission_control");
         op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "attributes");
         op.add(Builder::breakers, JsonpDeserializer.stringMapDeserializer(Breaker._DESERIALIZER), "breakers");
-        op.add(Builder::caches, JsonpDeserializer.stringMapDeserializer(ShardCacheStats._DESERIALIZER), "caches");
+        op.add(Builder::caches, JsonpDeserializer.stringMapDeserializer(CacheStats._DESERIALIZER), "caches");
         op.add(Builder::clusterManagerThrottling, ShardClusterManagerThrottlingStats._DESERIALIZER, "cluster_manager_throttling");
         op.add(Builder::discovery, Discovery._DESERIALIZER, "discovery");
         op.add(Builder::fs, FileSystem._DESERIALIZER, "fs");

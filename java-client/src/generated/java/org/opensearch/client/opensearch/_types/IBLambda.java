@@ -45,8 +45,14 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum IBLambda implements JsonEnum {
+    /**
+     * The document frequency Lambda.
+     */
     Df("df"),
 
+    /**
+     * The total term frequency Lambda.
+     */
     Ttf("ttf");
 
     private final String jsonValue;

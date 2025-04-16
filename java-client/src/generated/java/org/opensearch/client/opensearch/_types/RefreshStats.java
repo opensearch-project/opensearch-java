@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.RefreshStats
 
+/**
+ * The statistics about refresh operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RefreshStats implements PlainJsonSerializable, ToCopyableBuilder<RefreshStats.Builder, RefreshStats> {
@@ -93,14 +96,20 @@ public class RefreshStats implements PlainJsonSerializable, ToCopyableBuilder<Re
     }
 
     /**
-     * Required - API name: {@code external_total}
+     * Required - The total number of external refresh operations.
+     * <p>
+     * API name: {@code external_total}
+     * </p>
      */
     public final long externalTotal() {
         return this.externalTotal;
     }
 
     /**
+     * The total amount of time spent on external refresh operations.
+     * <p>
      * API name: {@code external_total_time}
+     * </p>
      */
     @Nullable
     public final Time externalTotalTime() {
@@ -108,28 +117,40 @@ public class RefreshStats implements PlainJsonSerializable, ToCopyableBuilder<Re
     }
 
     /**
-     * Required - API name: {@code external_total_time_in_millis}
+     * Required - The total amount of time spent on external refresh operations in milliseconds.
+     * <p>
+     * API name: {@code external_total_time_in_millis}
+     * </p>
      */
     public final long externalTotalTimeInMillis() {
         return this.externalTotalTimeInMillis;
     }
 
     /**
-     * Required - API name: {@code listeners}
+     * Required - The number of refresh listeners.
+     * <p>
+     * API name: {@code listeners}
+     * </p>
      */
     public final long listeners() {
         return this.listeners;
     }
 
     /**
-     * Required - API name: {@code total}
+     * Required - The total number of refresh operations.
+     * <p>
+     * API name: {@code total}
+     * </p>
      */
     public final long total() {
         return this.total;
     }
 
     /**
+     * The total amount of time spent on refresh operations.
+     * <p>
      * API name: {@code total_time}
+     * </p>
      */
     @Nullable
     public final Time totalTime() {
@@ -137,7 +158,10 @@ public class RefreshStats implements PlainJsonSerializable, ToCopyableBuilder<Re
     }
 
     /**
-     * Required - API name: {@code total_time_in_millis}
+     * Required - The total amount of time spent on refresh operations in milliseconds.
+     * <p>
+     * API name: {@code total_time_in_millis}
+     * </p>
      */
     public final long totalTimeInMillis() {
         return this.totalTimeInMillis;
@@ -236,7 +260,10 @@ public class RefreshStats implements PlainJsonSerializable, ToCopyableBuilder<Re
         }
 
         /**
-         * Required - API name: {@code external_total}
+         * Required - The total number of external refresh operations.
+         * <p>
+         * API name: {@code external_total}
+         * </p>
          */
         @Nonnull
         public final Builder externalTotal(long value) {
@@ -245,7 +272,10 @@ public class RefreshStats implements PlainJsonSerializable, ToCopyableBuilder<Re
         }
 
         /**
+         * The total amount of time spent on external refresh operations.
+         * <p>
          * API name: {@code external_total_time}
+         * </p>
          */
         @Nonnull
         public final Builder externalTotalTime(@Nullable Time value) {
@@ -254,7 +284,10 @@ public class RefreshStats implements PlainJsonSerializable, ToCopyableBuilder<Re
         }
 
         /**
+         * The total amount of time spent on external refresh operations.
+         * <p>
          * API name: {@code external_total_time}
+         * </p>
          */
         @Nonnull
         public final Builder externalTotalTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -262,7 +295,10 @@ public class RefreshStats implements PlainJsonSerializable, ToCopyableBuilder<Re
         }
 
         /**
-         * Required - API name: {@code external_total_time_in_millis}
+         * Required - The total amount of time spent on external refresh operations in milliseconds.
+         * <p>
+         * API name: {@code external_total_time_in_millis}
+         * </p>
          */
         @Nonnull
         public final Builder externalTotalTimeInMillis(long value) {
@@ -271,7 +307,10 @@ public class RefreshStats implements PlainJsonSerializable, ToCopyableBuilder<Re
         }
 
         /**
-         * Required - API name: {@code listeners}
+         * Required - The number of refresh listeners.
+         * <p>
+         * API name: {@code listeners}
+         * </p>
          */
         @Nonnull
         public final Builder listeners(long value) {
@@ -280,7 +319,10 @@ public class RefreshStats implements PlainJsonSerializable, ToCopyableBuilder<Re
         }
 
         /**
-         * Required - API name: {@code total}
+         * Required - The total number of refresh operations.
+         * <p>
+         * API name: {@code total}
+         * </p>
          */
         @Nonnull
         public final Builder total(long value) {
@@ -289,7 +331,10 @@ public class RefreshStats implements PlainJsonSerializable, ToCopyableBuilder<Re
         }
 
         /**
+         * The total amount of time spent on refresh operations.
+         * <p>
          * API name: {@code total_time}
+         * </p>
          */
         @Nonnull
         public final Builder totalTime(@Nullable Time value) {
@@ -298,7 +343,10 @@ public class RefreshStats implements PlainJsonSerializable, ToCopyableBuilder<Re
         }
 
         /**
+         * The total amount of time spent on refresh operations.
+         * <p>
          * API name: {@code total_time}
+         * </p>
          */
         @Nonnull
         public final Builder totalTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -306,7 +354,10 @@ public class RefreshStats implements PlainJsonSerializable, ToCopyableBuilder<Re
         }
 
         /**
-         * Required - API name: {@code total_time_in_millis}
+         * Required - The total amount of time spent on refresh operations in milliseconds.
+         * <p>
+         * API name: {@code total_time_in_millis}
+         * </p>
          */
         @Nonnull
         public final Builder totalTimeInMillis(long value) {

@@ -50,6 +50,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.EmptyObject
 
+/**
+ * An empty object with no properties.
+ */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class EmptyObject implements PlainJsonSerializable, ToCopyableBuilder<EmptyObject.Builder, EmptyObject> {
 

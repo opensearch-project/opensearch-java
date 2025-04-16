@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.Retries
 
+/**
+ * The retry statistics for bulk and search operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class Retries implements PlainJsonSerializable, ToCopyableBuilder<Retries.Builder, Retries> {
@@ -74,14 +77,20 @@ public class Retries implements PlainJsonSerializable, ToCopyableBuilder<Retries
     }
 
     /**
-     * Required - API name: {@code bulk}
+     * Required - The number of bulk operation retries.
+     * <p>
+     * API name: {@code bulk}
+     * </p>
      */
     public final long bulk() {
         return this.bulk;
     }
 
     /**
-     * Required - API name: {@code search}
+     * Required - The number of search operation retries.
+     * <p>
+     * API name: {@code search}
+     * </p>
      */
     public final long search() {
         return this.search;
@@ -144,7 +153,10 @@ public class Retries implements PlainJsonSerializable, ToCopyableBuilder<Retries
         }
 
         /**
-         * Required - API name: {@code bulk}
+         * Required - The number of bulk operation retries.
+         * <p>
+         * API name: {@code bulk}
+         * </p>
          */
         @Nonnull
         public final Builder bulk(long value) {
@@ -153,7 +165,10 @@ public class Retries implements PlainJsonSerializable, ToCopyableBuilder<Retries
         }
 
         /**
-         * Required - API name: {@code search}
+         * Required - The number of search operation retries.
+         * <p>
+         * API name: {@code search}
+         * </p>
          */
         @Nonnull
         public final Builder search(long value) {

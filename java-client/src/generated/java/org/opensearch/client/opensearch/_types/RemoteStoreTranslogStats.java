@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.RemoteStoreTranslogStats
 
+/**
+ * The statistics related to remote translog operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RemoteStoreTranslogStats

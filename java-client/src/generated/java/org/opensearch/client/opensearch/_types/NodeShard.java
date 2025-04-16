@@ -59,6 +59,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.NodeShard
 
+/**
+ * The information about a shard on a node.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeShard.Builder, NodeShard> {
@@ -138,7 +141,10 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
     }
 
     /**
+     * The recovery source information for this shard.
+     * <p>
      * API name: {@code recovery_source}
+     * </p>
      */
     @Nonnull
     public final Map<String, String> recoverySource() {
@@ -353,7 +359,10 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
         }
 
         /**
+         * The recovery source information for this shard.
+         * <p>
          * API name: {@code recovery_source}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>recoverySource</code>.
@@ -366,7 +375,10 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
         }
 
         /**
+         * The recovery source information for this shard.
+         * <p>
          * API name: {@code recovery_source}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>recoverySource</code>.

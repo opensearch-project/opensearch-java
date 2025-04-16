@@ -87,7 +87,10 @@ public class NestedSortValue implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * The filter to apply to nested objects.
+     * <p>
      * API name: {@code filter}
+     * </p>
      */
     @Nullable
     public final Query filter() {
@@ -95,7 +98,10 @@ public class NestedSortValue implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * The maximum number of children to consider for sorting.
+     * <p>
      * API name: {@code max_children}
+     * </p>
      */
     @Nullable
     public final Integer maxChildren() {
@@ -103,7 +109,10 @@ public class NestedSortValue implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * How to sort hierarchical nested objects.
+     * <p>
      * API name: {@code nested}
+     * </p>
      */
     @Nullable
     public final NestedSortValue nested() {
@@ -111,7 +120,10 @@ public class NestedSortValue implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Required - API name: {@code path}
+     * Required - The path to the nested objects.
+     * <p>
+     * API name: {@code path}
+     * </p>
      */
     @Nonnull
     public final String path() {
@@ -196,7 +208,10 @@ public class NestedSortValue implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The filter to apply to nested objects.
+         * <p>
          * API name: {@code filter}
+         * </p>
          */
         @Nonnull
         public final Builder filter(@Nullable Query value) {
@@ -205,7 +220,10 @@ public class NestedSortValue implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The filter to apply to nested objects.
+         * <p>
          * API name: {@code filter}
+         * </p>
          */
         @Nonnull
         public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
@@ -213,7 +231,10 @@ public class NestedSortValue implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The maximum number of children to consider for sorting.
+         * <p>
          * API name: {@code max_children}
+         * </p>
          */
         @Nonnull
         public final Builder maxChildren(@Nullable Integer value) {
@@ -222,7 +243,10 @@ public class NestedSortValue implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * How to sort hierarchical nested objects.
+         * <p>
          * API name: {@code nested}
+         * </p>
          */
         @Nonnull
         public final Builder nested(@Nullable NestedSortValue value) {
@@ -231,7 +255,10 @@ public class NestedSortValue implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * How to sort hierarchical nested objects.
+         * <p>
          * API name: {@code nested}
+         * </p>
          */
         @Nonnull
         public final Builder nested(Function<NestedSortValue.Builder, ObjectBuilder<NestedSortValue>> fn) {
@@ -239,7 +266,10 @@ public class NestedSortValue implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - API name: {@code path}
+         * Required - The path to the nested objects.
+         * <p>
+         * API name: {@code path}
+         * </p>
          */
         @Nonnull
         public final Builder path(String value) {

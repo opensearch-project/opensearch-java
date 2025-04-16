@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.MergesStats
 
+/**
+ * The statistics about merge operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<MergesStats.Builder, MergesStats> {
@@ -132,21 +135,30 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
     }
 
     /**
-     * Required - API name: {@code current}
+     * Required - The number of current merge operations.
+     * <p>
+     * API name: {@code current}
+     * </p>
      */
     public final long current() {
         return this.current;
     }
 
     /**
-     * Required - API name: {@code current_docs}
+     * Required - The number of documents in current merge operations.
+     * <p>
+     * API name: {@code current_docs}
+     * </p>
      */
     public final long currentDocs() {
         return this.currentDocs;
     }
 
     /**
+     * The size of current merge operations in a human-readable format.
+     * <p>
      * API name: {@code current_size}
+     * </p>
      */
     @Nullable
     public final String currentSize() {
@@ -154,21 +166,30 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
     }
 
     /**
-     * Required - API name: {@code current_size_in_bytes}
+     * Required - The size of current merge operations in bytes.
+     * <p>
+     * API name: {@code current_size_in_bytes}
+     * </p>
      */
     public final long currentSizeInBytes() {
         return this.currentSizeInBytes;
     }
 
     /**
-     * Required - API name: {@code total}
+     * Required - The total number of merge operations.
+     * <p>
+     * API name: {@code total}
+     * </p>
      */
     public final long total() {
         return this.total;
     }
 
     /**
+     * The total auto-throttle size in a human-readable format.
+     * <p>
      * API name: {@code total_auto_throttle}
+     * </p>
      */
     @Nullable
     public final String totalAutoThrottle() {
@@ -176,21 +197,30 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
     }
 
     /**
-     * Required - API name: {@code total_auto_throttle_in_bytes}
+     * Required - The total auto-throttle size in bytes.
+     * <p>
+     * API name: {@code total_auto_throttle_in_bytes}
+     * </p>
      */
     public final long totalAutoThrottleInBytes() {
         return this.totalAutoThrottleInBytes;
     }
 
     /**
-     * Required - API name: {@code total_docs}
+     * Required - The total number of documents that have been merged.
+     * <p>
+     * API name: {@code total_docs}
+     * </p>
      */
     public final long totalDocs() {
         return this.totalDocs;
     }
 
     /**
+     * The total size of merge operations in a human-readable format.
+     * <p>
      * API name: {@code total_size}
+     * </p>
      */
     @Nullable
     public final String totalSize() {
@@ -198,14 +228,20 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
     }
 
     /**
-     * Required - API name: {@code total_size_in_bytes}
+     * Required - The total size of merge operations in bytes.
+     * <p>
+     * API name: {@code total_size_in_bytes}
+     * </p>
      */
     public final long totalSizeInBytes() {
         return this.totalSizeInBytes;
     }
 
     /**
+     * The total amount of time merge operations have been stopped.
+     * <p>
      * API name: {@code total_stopped_time}
+     * </p>
      */
     @Nullable
     public final Time totalStoppedTime() {
@@ -213,14 +249,20 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
     }
 
     /**
-     * Required - API name: {@code total_stopped_time_in_millis}
+     * Required - The total amount of time merge operations have been stopped in milliseconds.
+     * <p>
+     * API name: {@code total_stopped_time_in_millis}
+     * </p>
      */
     public final long totalStoppedTimeInMillis() {
         return this.totalStoppedTimeInMillis;
     }
 
     /**
+     * The total amount of time merge operations have been throttled.
+     * <p>
      * API name: {@code total_throttled_time}
+     * </p>
      */
     @Nullable
     public final Time totalThrottledTime() {
@@ -228,14 +270,20 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
     }
 
     /**
-     * Required - API name: {@code total_throttled_time_in_millis}
+     * Required - The total amount of time merge operations have been throttled in milliseconds.
+     * <p>
+     * API name: {@code total_throttled_time_in_millis}
+     * </p>
      */
     public final long totalThrottledTimeInMillis() {
         return this.totalThrottledTimeInMillis;
     }
 
     /**
+     * The total amount of time spent on merge operations.
+     * <p>
      * API name: {@code total_time}
+     * </p>
      */
     @Nullable
     public final Time totalTime() {
@@ -243,14 +291,20 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
     }
 
     /**
-     * Required - API name: {@code total_time_in_millis}
+     * Required - The total amount of time spent on merge operations in milliseconds.
+     * <p>
+     * API name: {@code total_time_in_millis}
+     * </p>
      */
     public final long totalTimeInMillis() {
         return this.totalTimeInMillis;
     }
 
     /**
+     * The number of unreferenced file cleanups performed.
+     * <p>
      * API name: {@code unreferenced_file_cleanups_performed}
+     * </p>
      */
     @Nullable
     public final Long unreferencedFileCleanupsPerformed() {
@@ -425,7 +479,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
-         * Required - API name: {@code current}
+         * Required - The number of current merge operations.
+         * <p>
+         * API name: {@code current}
+         * </p>
          */
         @Nonnull
         public final Builder current(long value) {
@@ -434,7 +491,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
-         * Required - API name: {@code current_docs}
+         * Required - The number of documents in current merge operations.
+         * <p>
+         * API name: {@code current_docs}
+         * </p>
          */
         @Nonnull
         public final Builder currentDocs(long value) {
@@ -443,7 +503,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
+         * The size of current merge operations in a human-readable format.
+         * <p>
          * API name: {@code current_size}
+         * </p>
          */
         @Nonnull
         public final Builder currentSize(@Nullable String value) {
@@ -452,7 +515,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
-         * Required - API name: {@code current_size_in_bytes}
+         * Required - The size of current merge operations in bytes.
+         * <p>
+         * API name: {@code current_size_in_bytes}
+         * </p>
          */
         @Nonnull
         public final Builder currentSizeInBytes(long value) {
@@ -461,7 +527,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
-         * Required - API name: {@code total}
+         * Required - The total number of merge operations.
+         * <p>
+         * API name: {@code total}
+         * </p>
          */
         @Nonnull
         public final Builder total(long value) {
@@ -470,7 +539,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
+         * The total auto-throttle size in a human-readable format.
+         * <p>
          * API name: {@code total_auto_throttle}
+         * </p>
          */
         @Nonnull
         public final Builder totalAutoThrottle(@Nullable String value) {
@@ -479,7 +551,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
-         * Required - API name: {@code total_auto_throttle_in_bytes}
+         * Required - The total auto-throttle size in bytes.
+         * <p>
+         * API name: {@code total_auto_throttle_in_bytes}
+         * </p>
          */
         @Nonnull
         public final Builder totalAutoThrottleInBytes(long value) {
@@ -488,7 +563,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
-         * Required - API name: {@code total_docs}
+         * Required - The total number of documents that have been merged.
+         * <p>
+         * API name: {@code total_docs}
+         * </p>
          */
         @Nonnull
         public final Builder totalDocs(long value) {
@@ -497,7 +575,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
+         * The total size of merge operations in a human-readable format.
+         * <p>
          * API name: {@code total_size}
+         * </p>
          */
         @Nonnull
         public final Builder totalSize(@Nullable String value) {
@@ -506,7 +587,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
-         * Required - API name: {@code total_size_in_bytes}
+         * Required - The total size of merge operations in bytes.
+         * <p>
+         * API name: {@code total_size_in_bytes}
+         * </p>
          */
         @Nonnull
         public final Builder totalSizeInBytes(long value) {
@@ -515,7 +599,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
+         * The total amount of time merge operations have been stopped.
+         * <p>
          * API name: {@code total_stopped_time}
+         * </p>
          */
         @Nonnull
         public final Builder totalStoppedTime(@Nullable Time value) {
@@ -524,7 +611,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
+         * The total amount of time merge operations have been stopped.
+         * <p>
          * API name: {@code total_stopped_time}
+         * </p>
          */
         @Nonnull
         public final Builder totalStoppedTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -532,7 +622,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
-         * Required - API name: {@code total_stopped_time_in_millis}
+         * Required - The total amount of time merge operations have been stopped in milliseconds.
+         * <p>
+         * API name: {@code total_stopped_time_in_millis}
+         * </p>
          */
         @Nonnull
         public final Builder totalStoppedTimeInMillis(long value) {
@@ -541,7 +634,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
+         * The total amount of time merge operations have been throttled.
+         * <p>
          * API name: {@code total_throttled_time}
+         * </p>
          */
         @Nonnull
         public final Builder totalThrottledTime(@Nullable Time value) {
@@ -550,7 +646,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
+         * The total amount of time merge operations have been throttled.
+         * <p>
          * API name: {@code total_throttled_time}
+         * </p>
          */
         @Nonnull
         public final Builder totalThrottledTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -558,7 +657,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
-         * Required - API name: {@code total_throttled_time_in_millis}
+         * Required - The total amount of time merge operations have been throttled in milliseconds.
+         * <p>
+         * API name: {@code total_throttled_time_in_millis}
+         * </p>
          */
         @Nonnull
         public final Builder totalThrottledTimeInMillis(long value) {
@@ -567,7 +669,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
+         * The total amount of time spent on merge operations.
+         * <p>
          * API name: {@code total_time}
+         * </p>
          */
         @Nonnull
         public final Builder totalTime(@Nullable Time value) {
@@ -576,7 +681,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
+         * The total amount of time spent on merge operations.
+         * <p>
          * API name: {@code total_time}
+         * </p>
          */
         @Nonnull
         public final Builder totalTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -584,7 +692,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
-         * Required - API name: {@code total_time_in_millis}
+         * Required - The total amount of time spent on merge operations in milliseconds.
+         * <p>
+         * API name: {@code total_time_in_millis}
+         * </p>
          */
         @Nonnull
         public final Builder totalTimeInMillis(long value) {
@@ -593,7 +704,10 @@ public class MergesStats implements PlainJsonSerializable, ToCopyableBuilder<Mer
         }
 
         /**
+         * The number of unreferenced file cleanups performed.
+         * <p>
          * API name: {@code unreferenced_file_cleanups_performed}
+         * </p>
          */
         @Nonnull
         public final Builder unreferencedFileCleanupsPerformed(@Nullable Long value) {

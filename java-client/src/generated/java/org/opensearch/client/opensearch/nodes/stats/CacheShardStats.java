@@ -34,70 +34,33 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch._types;
+package org.opensearch.client.opensearch.nodes.stats;
 
-import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
-import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.WktGeoBounds
+// typedef: nodes.stats.CacheShardStats
 
-/**
- * The geographical bounds specified using Well-Known Text (WKT) format.
- */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class WktGeoBounds implements PlainJsonSerializable, ToCopyableBuilder<WktGeoBounds.Builder, WktGeoBounds> {
-
-    @Nonnull
-    private final String wkt;
+public class CacheShardStats extends CacheStatsBase implements ToCopyableBuilder<CacheShardStats.Builder, CacheShardStats> {
 
     // ---------------------------------------------------------------------------------------------
 
-    private WktGeoBounds(Builder builder) {
-        this.wkt = ApiTypeHelper.requireNonNull(builder.wkt, this, "wkt");
+    private CacheShardStats(Builder builder) {
+        super(builder);
     }
 
-    public static WktGeoBounds of(Function<WktGeoBounds.Builder, ObjectBuilder<WktGeoBounds>> fn) {
+    public static CacheShardStats of(Function<CacheShardStats.Builder, ObjectBuilder<CacheShardStats>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * Required - The WKT string representation of the geographical bounds.
-     * <p>
-     * API name: {@code wkt}
-     * </p>
-     */
-    @Nonnull
-    public final String wkt() {
-        return this.wkt;
-    }
-
-    /**
-     * Serialize this object to JSON.
-     */
-    @Override
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        serializeInternal(generator, mapper);
-        generator.writeEnd();
-    }
-
-    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeKey("wkt");
-        generator.write(this.wkt);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -114,19 +77,18 @@ public class WktGeoBounds implements PlainJsonSerializable, ToCopyableBuilder<Wk
     }
 
     /**
-     * Builder for {@link WktGeoBounds}.
+     * Builder for {@link CacheShardStats}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, WktGeoBounds> {
-        private String wkt;
+    public static class Builder extends CacheStatsBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, CacheShardStats> {
 
         public Builder() {}
 
-        private Builder(WktGeoBounds o) {
-            this.wkt = o.wkt;
+        private Builder(CacheShardStats o) {
+            super(o);
         }
 
         private Builder(Builder o) {
-            this.wkt = o.wkt;
+            super(o);
         }
 
         @Override
@@ -135,58 +97,53 @@ public class WktGeoBounds implements PlainJsonSerializable, ToCopyableBuilder<Wk
             return new Builder(this);
         }
 
-        /**
-         * Required - The WKT string representation of the geographical bounds.
-         * <p>
-         * API name: {@code wkt}
-         * </p>
-         */
+        @Override
         @Nonnull
-        public final Builder wkt(String value) {
-            this.wkt = value;
+        protected Builder self() {
             return this;
         }
 
         /**
-         * Builds a {@link WktGeoBounds}.
+         * Builds a {@link CacheShardStats}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public WktGeoBounds build() {
+        public CacheShardStats build() {
             _checkSingleUse();
 
-            return new WktGeoBounds(this);
+            return new CacheShardStats(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link WktGeoBounds}
+     * Json deserializer for {@link CacheShardStats}
      */
-    public static final JsonpDeserializer<WktGeoBounds> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<CacheShardStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        WktGeoBounds::setupWktGeoBoundsDeserializer
+        CacheShardStats::setupCacheShardStatsDeserializer
     );
 
-    protected static void setupWktGeoBoundsDeserializer(ObjectDeserializer<WktGeoBounds.Builder> op) {
-        op.add(Builder::wkt, JsonpDeserializer.stringDeserializer(), "wkt");
+    protected static void setupCacheShardStatsDeserializer(ObjectDeserializer<CacheShardStats.Builder> op) {
+        setupCacheStatsBaseDeserializer(op);
     }
 
     @Override
     public int hashCode() {
-        int result = 17;
-        result = 31 * result + this.wkt.hashCode();
+        int result = super.hashCode();
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        WktGeoBounds other = (WktGeoBounds) o;
-        return this.wkt.equals(other.wkt);
+        return true;
     }
 }

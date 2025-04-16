@@ -52,6 +52,9 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.BaseNode
 
+/**
+ * The base information about a node.
+ */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class BaseNode implements PlainJsonSerializable {
 
@@ -85,7 +88,10 @@ public abstract class BaseNode implements PlainJsonSerializable {
     }
 
     /**
+     * The attributes of the node.
+     * <p>
      * API name: {@code attributes}
+     * </p>
      */
     @Nonnull
     public final Map<String, String> attributes() {
@@ -220,7 +226,10 @@ public abstract class BaseNode implements PlainJsonSerializable {
         protected abstract BuilderT self();
 
         /**
+         * The attributes of the node.
+         * <p>
          * API name: {@code attributes}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>attributes</code>.
@@ -233,7 +242,10 @@ public abstract class BaseNode implements PlainJsonSerializable {
         }
 
         /**
+         * The attributes of the node.
+         * <p>
          * API name: {@code attributes}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>attributes</code>.

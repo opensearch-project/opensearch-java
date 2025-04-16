@@ -45,12 +45,24 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum ActionStatusOptions implements JsonEnum {
+    /**
+     * The action failed.
+     */
     Failure("failure"),
 
+    /**
+     * The action was simulated.
+     */
     Simulated("simulated"),
 
+    /**
+     * The action succeeded.
+     */
     Success("success"),
 
+    /**
+     * The action was throttled.
+     */
     Throttled("throttled");
 
     private final String jsonValue;

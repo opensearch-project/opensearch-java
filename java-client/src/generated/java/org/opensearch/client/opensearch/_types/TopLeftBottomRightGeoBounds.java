@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.TopLeftBottomRightGeoBounds
 
+/**
+ * The geographical bounds specified using upper-left and lower-right points.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class TopLeftBottomRightGeoBounds
@@ -81,7 +84,10 @@ public class TopLeftBottomRightGeoBounds
     }
 
     /**
-     * Required - API name: {@code bottom_right}
+     * Required - The lower-right corner coordinates.
+     * <p>
+     * API name: {@code bottom_right}
+     * </p>
      */
     @Nonnull
     public final GeoLocation bottomRight() {
@@ -89,7 +95,10 @@ public class TopLeftBottomRightGeoBounds
     }
 
     /**
-     * Required - API name: {@code top_left}
+     * Required - The upper-left corner coordinates.
+     * <p>
+     * API name: {@code top_left}
+     * </p>
      */
     @Nonnull
     public final GeoLocation topLeft() {
@@ -153,7 +162,10 @@ public class TopLeftBottomRightGeoBounds
         }
 
         /**
-         * Required - API name: {@code bottom_right}
+         * Required - The lower-right corner coordinates.
+         * <p>
+         * API name: {@code bottom_right}
+         * </p>
          */
         @Nonnull
         public final Builder bottomRight(GeoLocation value) {
@@ -162,7 +174,10 @@ public class TopLeftBottomRightGeoBounds
         }
 
         /**
-         * Required - API name: {@code bottom_right}
+         * Required - The lower-right corner coordinates.
+         * <p>
+         * API name: {@code bottom_right}
+         * </p>
          */
         @Nonnull
         public final Builder bottomRight(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
@@ -170,7 +185,10 @@ public class TopLeftBottomRightGeoBounds
         }
 
         /**
-         * Required - API name: {@code top_left}
+         * Required - The upper-left corner coordinates.
+         * <p>
+         * API name: {@code top_left}
+         * </p>
          */
         @Nonnull
         public final Builder topLeft(GeoLocation value) {
@@ -179,7 +197,10 @@ public class TopLeftBottomRightGeoBounds
         }
 
         /**
-         * Required - API name: {@code top_left}
+         * Required - The upper-left corner coordinates.
+         * <p>
+         * API name: {@code top_left}
+         * </p>
          */
         @Nonnull
         public final Builder topLeft(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {

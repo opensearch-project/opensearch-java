@@ -45,8 +45,14 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum IBDistribution implements JsonEnum {
+    /**
+     * The log-logistic distribution.
+     */
     Ll("ll"),
 
+    /**
+     * The smoothed power-law distribution.
+     */
     Spl("spl");
 
     private final String jsonValue;

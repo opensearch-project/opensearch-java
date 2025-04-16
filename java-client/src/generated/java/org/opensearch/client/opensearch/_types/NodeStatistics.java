@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.NodeStatistics
 
+/**
+ * The statistics about node operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeStatistics implements PlainJsonSerializable, ToCopyableBuilder<NodeStatistics.Builder, NodeStatistics> {

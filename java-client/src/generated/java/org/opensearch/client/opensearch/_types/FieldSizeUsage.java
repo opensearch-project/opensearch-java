@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.FieldSizeUsage
 
+/**
+ * The memory usage statistics for a field.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class FieldSizeUsage implements PlainJsonSerializable, ToCopyableBuilder<FieldSizeUsage.Builder, FieldSizeUsage> {
@@ -77,7 +80,10 @@ public class FieldSizeUsage implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
+     * The human-readable size of memory used.
+     * <p>
      * API name: {@code size}
+     * </p>
      */
     @Nullable
     public final String size() {
@@ -85,7 +91,10 @@ public class FieldSizeUsage implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
-     * Required - API name: {@code size_in_bytes}
+     * Required - The size of memory used in bytes.
+     * <p>
+     * API name: {@code size_in_bytes}
+     * </p>
      */
     public final long sizeInBytes() {
         return this.sizeInBytes;
@@ -151,7 +160,10 @@ public class FieldSizeUsage implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
+         * The human-readable size of memory used.
+         * <p>
          * API name: {@code size}
+         * </p>
          */
         @Nonnull
         public final Builder size(@Nullable String value) {
@@ -160,7 +172,10 @@ public class FieldSizeUsage implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code size_in_bytes}
+         * Required - The size of memory used in bytes.
+         * <p>
+         * API name: {@code size_in_bytes}
+         * </p>
          */
         @Nonnull
         public final Builder sizeInBytes(long value) {

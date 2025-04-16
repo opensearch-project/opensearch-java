@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.FielddataStats
 
+/**
+ * The statistics about field data memory usage.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class FielddataStats implements PlainJsonSerializable, ToCopyableBuilder<FielddataStats.Builder, FielddataStats> {
@@ -86,7 +89,10 @@ public class FielddataStats implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
+     * The number of times field data was evicted from memory.
+     * <p>
      * API name: {@code evictions}
+     * </p>
      */
     @Nullable
     public final Long evictions() {
@@ -102,7 +108,10 @@ public class FielddataStats implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
+     * The human-readable amount of memory used for field data.
+     * <p>
      * API name: {@code memory_size}
+     * </p>
      */
     @Nullable
     public final String memorySize() {
@@ -110,7 +119,10 @@ public class FielddataStats implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
-     * Required - API name: {@code memory_size_in_bytes}
+     * Required - The amount of memory used for field data in bytes.
+     * <p>
+     * API name: {@code memory_size_in_bytes}
+     * </p>
      */
     public final long memorySizeInBytes() {
         return this.memorySizeInBytes;
@@ -199,7 +211,10 @@ public class FielddataStats implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
+         * The number of times field data was evicted from memory.
+         * <p>
          * API name: {@code evictions}
+         * </p>
          */
         @Nonnull
         public final Builder evictions(@Nullable Long value) {
@@ -246,7 +261,10 @@ public class FielddataStats implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
+         * The human-readable amount of memory used for field data.
+         * <p>
          * API name: {@code memory_size}
+         * </p>
          */
         @Nonnull
         public final Builder memorySize(@Nullable String value) {
@@ -255,7 +273,10 @@ public class FielddataStats implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code memory_size_in_bytes}
+         * Required - The amount of memory used for field data in bytes.
+         * <p>
+         * API name: {@code memory_size_in_bytes}
+         * </p>
          */
         @Nonnull
         public final Builder memorySizeInBytes(long value) {
