@@ -3,6 +3,21 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.23.0] - 04/17/2025
+### Added
 - Added `normalizer` to wildcard field ([#1489](https://github.com/opensearch-project/opensearch-java/pull/1489))
 - Added `paginationDepth` to `HybridQuery` ([#1490](https://github.com/opensearch-project/opensearch-java/pull/1490))
 
@@ -13,17 +28,9 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.apache.httpcomponents.core5:httpcore5-h2` from 5.3.3 to 5.3.4 ([#1498](https://github.com/opensearch-project/opensearch-java/pull/1498))
 - Bump `org.apache.httpcomponents.core5:httpcore5` from 5.3.3 to 5.3.4 ([#1497](https://github.com/opensearch-project/opensearch-java/pull/1497))
 
-### Changed
-
-### Deprecated
-
-### Removed
-
 ### Fixed
 - Fixed ClassCastException in extractAndWrapCause when handling ExecutionException ([#1483](https://github.com/opensearch-project/opensearch-java/pull/1483))
 - Fixed getting cluster & node stats and node info against AOS due to missing properties ([#1520](https://github.com/opensearch-project/opensearch-java/pull/1520), [#1521](https://github.com/opensearch-project/opensearch-java/pull/1521))
-
-### Security
 
 ## [2.22.0] - 03/05/2025
 ### Added
@@ -598,7 +605,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
  
 ### Security
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.22.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.23.0...2.x
+[2.23.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.22.0...v2.23.0
 [2.22.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.21.0...v2.22.0
 [2.21.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.20.0...v2.21.0
 [2.20.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.19.0...v2.20.0
