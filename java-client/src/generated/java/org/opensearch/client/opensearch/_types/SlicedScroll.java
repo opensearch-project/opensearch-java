@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.SlicedScroll
 
+/**
+ * The configuration for a sliced scroll request.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class SlicedScroll implements PlainJsonSerializable, ToCopyableBuilder<SlicedScroll.Builder, SlicedScroll> {
@@ -80,7 +83,10 @@ public class SlicedScroll implements PlainJsonSerializable, ToCopyableBuilder<Sl
     }
 
     /**
+     * The field to slice on.
+     * <p>
      * API name: {@code field}
+     * </p>
      */
     @Nullable
     public final String field() {
@@ -88,14 +94,20 @@ public class SlicedScroll implements PlainJsonSerializable, ToCopyableBuilder<Sl
     }
 
     /**
-     * Required - API name: {@code id}
+     * Required - The ID of the slice.
+     * <p>
+     * API name: {@code id}
+     * </p>
      */
     public final int id() {
         return this.id;
     }
 
     /**
-     * Required - API name: {@code max}
+     * Required - The maximum number of slices.
+     * <p>
+     * API name: {@code max}
+     * </p>
      */
     public final int max() {
         return this.max;
@@ -167,7 +179,10 @@ public class SlicedScroll implements PlainJsonSerializable, ToCopyableBuilder<Sl
         }
 
         /**
+         * The field to slice on.
+         * <p>
          * API name: {@code field}
+         * </p>
          */
         @Nonnull
         public final Builder field(@Nullable String value) {
@@ -176,7 +191,10 @@ public class SlicedScroll implements PlainJsonSerializable, ToCopyableBuilder<Sl
         }
 
         /**
-         * Required - API name: {@code id}
+         * Required - The ID of the slice.
+         * <p>
+         * API name: {@code id}
+         * </p>
          */
         @Nonnull
         public final Builder id(int value) {
@@ -185,7 +203,10 @@ public class SlicedScroll implements PlainJsonSerializable, ToCopyableBuilder<Sl
         }
 
         /**
-         * Required - API name: {@code max}
+         * Required - The maximum number of slices.
+         * <p>
+         * API name: {@code max}
+         * </p>
          */
         @Nonnull
         public final Builder max(int value) {

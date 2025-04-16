@@ -143,7 +143,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant, ToCopya
      * <li>As a <code>{lat, long}</code> object.</li>
      * <li>As a geohash value.</li>
      * <li>As a <code>[lon, lat]</code> array.</li>
-     * <li>As a string in <code>&quot;&lt;lat&gt;, &lt;lon&gt;&quot;</code> or WKT point format.</li>
+     * <li>As a string in <code>&lt;lat&gt;, &lt;lon&gt;</code> or WKT point format.</li>
      * </ul>
      */
     @Nonnull
@@ -288,7 +288,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant, ToCopya
          * <li>As a <code>{lat, long}</code> object.</li>
          * <li>As a geohash value.</li>
          * <li>As a <code>[lon, lat]</code> array.</li>
-         * <li>As a string in <code>&quot;&lt;lat&gt;, &lt;lon&gt;&quot;</code> or WKT point format.</li>
+         * <li>As a string in <code>&lt;lat&gt;, &lt;lon&gt;</code> or WKT point format.</li>
          * </ul>
          */
         @Nonnull
@@ -306,7 +306,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant, ToCopya
          * <li>As a <code>{lat, long}</code> object.</li>
          * <li>As a geohash value.</li>
          * <li>As a <code>[lon, lat]</code> array.</li>
-         * <li>As a string in <code>&quot;&lt;lat&gt;, &lt;lon&gt;&quot;</code> or WKT point format.</li>
+         * <li>As a string in <code>&lt;lat&gt;, &lt;lon&gt;</code> or WKT point format.</li>
          * </ul>
          */
         @Nonnull

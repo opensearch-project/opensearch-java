@@ -49,6 +49,9 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.ShardsOperationResponseBase
 
+/**
+ * The base response for operations involving shards.
+ */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class ShardsOperationResponseBase implements PlainJsonSerializable {
 

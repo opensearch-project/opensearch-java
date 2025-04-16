@@ -98,7 +98,10 @@ public class ScriptSort implements SortOptionsVariant, PlainJsonSerializable, To
     }
 
     /**
+     * The mode for sorting on array or multi-valued fields.
+     * <p>
      * API name: {@code mode}
+     * </p>
      */
     @Nullable
     public final SortMode mode() {
@@ -106,7 +109,10 @@ public class ScriptSort implements SortOptionsVariant, PlainJsonSerializable, To
     }
 
     /**
+     * The nested path and filter for nested sorting.
+     * <p>
      * API name: {@code nested}
+     * </p>
      */
     @Nullable
     public final NestedSortValue nested() {
@@ -122,7 +128,10 @@ public class ScriptSort implements SortOptionsVariant, PlainJsonSerializable, To
     }
 
     /**
-     * Required - API name: {@code script}
+     * Required - The script to use for sorting.
+     * <p>
+     * API name: {@code script}
+     * </p>
      */
     @Nonnull
     public final Script script() {
@@ -130,7 +139,10 @@ public class ScriptSort implements SortOptionsVariant, PlainJsonSerializable, To
     }
 
     /**
+     * The type of the script sort value.
+     * <p>
      * API name: {@code type}
+     * </p>
      */
     @Nullable
     public final ScriptSortType type() {
@@ -224,7 +236,10 @@ public class ScriptSort implements SortOptionsVariant, PlainJsonSerializable, To
         }
 
         /**
+         * The mode for sorting on array or multi-valued fields.
+         * <p>
          * API name: {@code mode}
+         * </p>
          */
         @Nonnull
         public final Builder mode(@Nullable SortMode value) {
@@ -233,7 +248,10 @@ public class ScriptSort implements SortOptionsVariant, PlainJsonSerializable, To
         }
 
         /**
+         * The nested path and filter for nested sorting.
+         * <p>
          * API name: {@code nested}
+         * </p>
          */
         @Nonnull
         public final Builder nested(@Nullable NestedSortValue value) {
@@ -242,7 +260,10 @@ public class ScriptSort implements SortOptionsVariant, PlainJsonSerializable, To
         }
 
         /**
+         * The nested path and filter for nested sorting.
+         * <p>
          * API name: {@code nested}
+         * </p>
          */
         @Nonnull
         public final Builder nested(Function<NestedSortValue.Builder, ObjectBuilder<NestedSortValue>> fn) {
@@ -259,7 +280,10 @@ public class ScriptSort implements SortOptionsVariant, PlainJsonSerializable, To
         }
 
         /**
-         * Required - API name: {@code script}
+         * Required - The script to use for sorting.
+         * <p>
+         * API name: {@code script}
+         * </p>
          */
         @Nonnull
         public final Builder script(Script value) {
@@ -268,7 +292,10 @@ public class ScriptSort implements SortOptionsVariant, PlainJsonSerializable, To
         }
 
         /**
-         * Required - API name: {@code script}
+         * Required - The script to use for sorting.
+         * <p>
+         * API name: {@code script}
+         * </p>
          */
         @Nonnull
         public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
@@ -276,7 +303,10 @@ public class ScriptSort implements SortOptionsVariant, PlainJsonSerializable, To
         }
 
         /**
+         * The type of the script sort value.
+         * <p>
          * API name: {@code type}
+         * </p>
          */
         @Nonnull
         public final Builder type(@Nullable ScriptSortType value) {

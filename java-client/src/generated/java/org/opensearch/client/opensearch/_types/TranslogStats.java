@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.TranslogStats
 
+/**
+ * The statistics about translog operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class TranslogStats implements PlainJsonSerializable, ToCopyableBuilder<TranslogStats.Builder, TranslogStats> {
@@ -97,14 +100,20 @@ public class TranslogStats implements PlainJsonSerializable, ToCopyableBuilder<T
     }
 
     /**
-     * Required - API name: {@code earliest_last_modified_age}
+     * Required - The age of the oldest translog entry.
+     * <p>
+     * API name: {@code earliest_last_modified_age}
+     * </p>
      */
     public final long earliestLastModifiedAge() {
         return this.earliestLastModifiedAge;
     }
 
     /**
-     * Required - API name: {@code operations}
+     * Required - The number of operations in the translog.
+     * <p>
+     * API name: {@code operations}
+     * </p>
      */
     public final int operations() {
         return this.operations;
@@ -119,7 +128,10 @@ public class TranslogStats implements PlainJsonSerializable, ToCopyableBuilder<T
     }
 
     /**
+     * The size of the translog in a human-readable format.
+     * <p>
      * API name: {@code size}
+     * </p>
      */
     @Nullable
     public final String size() {
@@ -127,21 +139,30 @@ public class TranslogStats implements PlainJsonSerializable, ToCopyableBuilder<T
     }
 
     /**
-     * Required - API name: {@code size_in_bytes}
+     * Required - The size of the translog in bytes.
+     * <p>
+     * API name: {@code size_in_bytes}
+     * </p>
      */
     public final long sizeInBytes() {
         return this.sizeInBytes;
     }
 
     /**
-     * Required - API name: {@code uncommitted_operations}
+     * Required - The number of uncommitted operations in the translog.
+     * <p>
+     * API name: {@code uncommitted_operations}
+     * </p>
      */
     public final int uncommittedOperations() {
         return this.uncommittedOperations;
     }
 
     /**
+     * The size of uncommitted operations in a human-readable format.
+     * <p>
      * API name: {@code uncommitted_size}
+     * </p>
      */
     @Nullable
     public final String uncommittedSize() {
@@ -149,7 +170,10 @@ public class TranslogStats implements PlainJsonSerializable, ToCopyableBuilder<T
     }
 
     /**
-     * Required - API name: {@code uncommitted_size_in_bytes}
+     * Required - The size of uncommitted operations in bytes.
+     * <p>
+     * API name: {@code uncommitted_size_in_bytes}
+     * </p>
      */
     public final long uncommittedSizeInBytes() {
         return this.uncommittedSizeInBytes;
@@ -257,7 +281,10 @@ public class TranslogStats implements PlainJsonSerializable, ToCopyableBuilder<T
         }
 
         /**
-         * Required - API name: {@code earliest_last_modified_age}
+         * Required - The age of the oldest translog entry.
+         * <p>
+         * API name: {@code earliest_last_modified_age}
+         * </p>
          */
         @Nonnull
         public final Builder earliestLastModifiedAge(long value) {
@@ -266,7 +293,10 @@ public class TranslogStats implements PlainJsonSerializable, ToCopyableBuilder<T
         }
 
         /**
-         * Required - API name: {@code operations}
+         * Required - The number of operations in the translog.
+         * <p>
+         * API name: {@code operations}
+         * </p>
          */
         @Nonnull
         public final Builder operations(int value) {
@@ -292,7 +322,10 @@ public class TranslogStats implements PlainJsonSerializable, ToCopyableBuilder<T
         }
 
         /**
+         * The size of the translog in a human-readable format.
+         * <p>
          * API name: {@code size}
+         * </p>
          */
         @Nonnull
         public final Builder size(@Nullable String value) {
@@ -301,7 +334,10 @@ public class TranslogStats implements PlainJsonSerializable, ToCopyableBuilder<T
         }
 
         /**
-         * Required - API name: {@code size_in_bytes}
+         * Required - The size of the translog in bytes.
+         * <p>
+         * API name: {@code size_in_bytes}
+         * </p>
          */
         @Nonnull
         public final Builder sizeInBytes(long value) {
@@ -310,7 +346,10 @@ public class TranslogStats implements PlainJsonSerializable, ToCopyableBuilder<T
         }
 
         /**
-         * Required - API name: {@code uncommitted_operations}
+         * Required - The number of uncommitted operations in the translog.
+         * <p>
+         * API name: {@code uncommitted_operations}
+         * </p>
          */
         @Nonnull
         public final Builder uncommittedOperations(int value) {
@@ -319,7 +358,10 @@ public class TranslogStats implements PlainJsonSerializable, ToCopyableBuilder<T
         }
 
         /**
+         * The size of uncommitted operations in a human-readable format.
+         * <p>
          * API name: {@code uncommitted_size}
+         * </p>
          */
         @Nonnull
         public final Builder uncommittedSize(@Nullable String value) {
@@ -328,7 +370,10 @@ public class TranslogStats implements PlainJsonSerializable, ToCopyableBuilder<T
         }
 
         /**
-         * Required - API name: {@code uncommitted_size_in_bytes}
+         * Required - The size of uncommitted operations in bytes.
+         * <p>
+         * API name: {@code uncommitted_size_in_bytes}
+         * </p>
          */
         @Nonnull
         public final Builder uncommittedSizeInBytes(long value) {

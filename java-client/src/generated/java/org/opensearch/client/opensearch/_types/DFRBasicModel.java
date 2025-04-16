@@ -45,18 +45,39 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum DFRBasicModel implements JsonEnum {
+    /**
+     * The Bose-Einstein model.
+     */
     Be("be"),
 
+    /**
+     * The divergence from independence model.
+     */
     D("d"),
 
+    /**
+     * The geometric model.
+     */
     G("g"),
 
+    /**
+     * The inverse frequency model.
+     */
     If("if"),
 
+    /**
+     * The inverse document frequency model.
+     */
     In("in"),
 
+    /**
+     * The inverse expected document frequency model.
+     */
     Ine("ine"),
 
+    /**
+     * The Poisson model.
+     */
     P("p");
 
     private final String jsonValue;

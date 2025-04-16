@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.QueryCacheStats
 
+/**
+ * The statistics about query cache usage.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class QueryCacheStats implements PlainJsonSerializable, ToCopyableBuilder<QueryCacheStats.Builder, QueryCacheStats> {
@@ -136,7 +139,10 @@ public class QueryCacheStats implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * The human-readable amount of memory used for the query cache.
+     * <p>
      * API name: {@code memory_size}
+     * </p>
      */
     @Nullable
     public final String memorySize() {
@@ -318,7 +324,10 @@ public class QueryCacheStats implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The human-readable amount of memory used for the query cache.
+         * <p>
          * API name: {@code memory_size}
+         * </p>
          */
         @Nonnull
         public final Builder memorySize(@Nullable String value) {

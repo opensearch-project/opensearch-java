@@ -204,8 +204,8 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
 
     /**
      * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
-     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
-     * &quot;-1&quot; to indicate an unspecified value.
+     * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts <code>0</code> without a unit and
+     * <code>-1</code> to indicate an unspecified value.
      * <p>
      * API name: {@code master_timeout}
      * </p>
@@ -478,8 +478,8 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
 
         /**
          * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
-         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
-         * &quot;-1&quot; to indicate an unspecified value.
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts <code>0</code> without a unit and
+         * <code>-1</code> to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>
@@ -493,8 +493,8 @@ public final class StateRequest extends RequestBase implements ToCopyableBuilder
 
         /**
          * A duration. Units can be <code>nanos</code>, <code>micros</code>, <code>ms</code> (milliseconds), <code>s</code> (seconds),
-         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts &quot;0&quot; without a unit and
-         * &quot;-1&quot; to indicate an unspecified value.
+         * <code>m</code> (minutes), <code>h</code> (hours) and <code>d</code> (days). Also accepts <code>0</code> without a unit and
+         * <code>-1</code> to indicate an unspecified value.
          * <p>
          * API name: {@code master_timeout}
          * </p>

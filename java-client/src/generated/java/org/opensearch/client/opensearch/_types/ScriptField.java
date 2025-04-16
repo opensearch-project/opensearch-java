@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.ScriptField
 
+/**
+ * The configuration for a script field.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ScriptField implements PlainJsonSerializable, ToCopyableBuilder<ScriptField.Builder, ScriptField> {
@@ -78,7 +81,10 @@ public class ScriptField implements PlainJsonSerializable, ToCopyableBuilder<Scr
     }
 
     /**
+     * Whether to ignore failures during script execution.
+     * <p>
      * API name: {@code ignore_failure}
+     * </p>
      */
     @Nullable
     public final Boolean ignoreFailure() {
@@ -86,7 +92,10 @@ public class ScriptField implements PlainJsonSerializable, ToCopyableBuilder<Scr
     }
 
     /**
-     * Required - API name: {@code script}
+     * Required - The script to execute for this field.
+     * <p>
+     * API name: {@code script}
+     * </p>
      */
     @Nonnull
     public final Script script() {
@@ -153,7 +162,10 @@ public class ScriptField implements PlainJsonSerializable, ToCopyableBuilder<Scr
         }
 
         /**
+         * Whether to ignore failures during script execution.
+         * <p>
          * API name: {@code ignore_failure}
+         * </p>
          */
         @Nonnull
         public final Builder ignoreFailure(@Nullable Boolean value) {
@@ -162,7 +174,10 @@ public class ScriptField implements PlainJsonSerializable, ToCopyableBuilder<Scr
         }
 
         /**
-         * Required - API name: {@code script}
+         * Required - The script to execute for this field.
+         * <p>
+         * API name: {@code script}
+         * </p>
          */
         @Nonnull
         public final Builder script(Script value) {
@@ -171,7 +186,10 @@ public class ScriptField implements PlainJsonSerializable, ToCopyableBuilder<Scr
         }
 
         /**
-         * Required - API name: {@code script}
+         * Required - The script to execute for this field.
+         * <p>
+         * API name: {@code script}
+         * </p>
          */
         @Nonnull
         public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {

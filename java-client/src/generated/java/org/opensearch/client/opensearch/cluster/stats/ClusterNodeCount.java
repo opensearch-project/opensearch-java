@@ -102,6 +102,9 @@ public class ClusterNodeCount implements PlainJsonSerializable, ToCopyableBuilde
     @Nullable
     private final Integer votingOnly;
 
+    @Nullable
+    private final Integer warm;
+
     // ---------------------------------------------------------------------------------------------
 
     private ClusterNodeCount(Builder builder) {
@@ -121,6 +124,7 @@ public class ClusterNodeCount implements PlainJsonSerializable, ToCopyableBuilde
         this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
         this.transform = builder.transform;
         this.votingOnly = builder.votingOnly;
+        this.warm = builder.warm;
     }
 
     public static ClusterNodeCount of(Function<ClusterNodeCount.Builder, ObjectBuilder<ClusterNodeCount>> fn) {
@@ -250,6 +254,14 @@ public class ClusterNodeCount implements PlainJsonSerializable, ToCopyableBuilde
     }
 
     /**
+     * API name: {@code warm}
+     */
+    @Nullable
+    public final Integer warm() {
+        return this.warm;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     @Override
@@ -327,6 +339,11 @@ public class ClusterNodeCount implements PlainJsonSerializable, ToCopyableBuilde
             generator.writeKey("voting_only");
             generator.write(this.votingOnly);
         }
+
+        if (this.warm != null) {
+            generator.writeKey("warm");
+            generator.write(this.warm);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -372,6 +389,8 @@ public class ClusterNodeCount implements PlainJsonSerializable, ToCopyableBuilde
         private Integer transform;
         @Nullable
         private Integer votingOnly;
+        @Nullable
+        private Integer warm;
 
         public Builder() {}
 
@@ -392,6 +411,7 @@ public class ClusterNodeCount implements PlainJsonSerializable, ToCopyableBuilde
             this.total = o.total;
             this.transform = o.transform;
             this.votingOnly = o.votingOnly;
+            this.warm = o.warm;
         }
 
         private Builder(Builder o) {
@@ -411,6 +431,7 @@ public class ClusterNodeCount implements PlainJsonSerializable, ToCopyableBuilde
             this.total = o.total;
             this.transform = o.transform;
             this.votingOnly = o.votingOnly;
+            this.warm = o.warm;
         }
 
         @Override
@@ -564,6 +585,15 @@ public class ClusterNodeCount implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
+         * API name: {@code warm}
+         */
+        @Nonnull
+        public final Builder warm(@Nullable Integer value) {
+            this.warm = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link ClusterNodeCount}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -604,6 +634,7 @@ public class ClusterNodeCount implements PlainJsonSerializable, ToCopyableBuilde
         op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
         op.add(Builder::transform, JsonpDeserializer.integerDeserializer(), "transform");
         op.add(Builder::votingOnly, JsonpDeserializer.integerDeserializer(), "voting_only");
+        op.add(Builder::warm, JsonpDeserializer.integerDeserializer(), "warm");
     }
 
     @Override
@@ -625,6 +656,7 @@ public class ClusterNodeCount implements PlainJsonSerializable, ToCopyableBuilde
         result = 31 * result + Integer.hashCode(this.total);
         result = 31 * result + Objects.hashCode(this.transform);
         result = 31 * result + Objects.hashCode(this.votingOnly);
+        result = 31 * result + Objects.hashCode(this.warm);
         return result;
     }
 
@@ -648,6 +680,7 @@ public class ClusterNodeCount implements PlainJsonSerializable, ToCopyableBuilde
             && Objects.equals(this.search, other.search)
             && this.total == other.total
             && Objects.equals(this.transform, other.transform)
-            && Objects.equals(this.votingOnly, other.votingOnly);
+            && Objects.equals(this.votingOnly, other.votingOnly)
+            && Objects.equals(this.warm, other.warm);
     }
 }

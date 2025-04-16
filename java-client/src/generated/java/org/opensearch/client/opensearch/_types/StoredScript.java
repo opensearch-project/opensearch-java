@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.StoredScript
 
+/**
+ * The definition of a stored script.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class StoredScript implements PlainJsonSerializable, ToCopyableBuilder<StoredScript.Builder, StoredScript> {
@@ -91,7 +94,10 @@ public class StoredScript implements PlainJsonSerializable, ToCopyableBuilder<St
     }
 
     /**
+     * The options for the script.
+     * <p>
      * API name: {@code options}
+     * </p>
      */
     @Nonnull
     public final Map<String, String> options() {
@@ -99,7 +105,7 @@ public class StoredScript implements PlainJsonSerializable, ToCopyableBuilder<St
     }
 
     /**
-     * Required - The script source.
+     * Required - The location of the source code for the script.
      * <p>
      * API name: {@code source}
      * </p>
@@ -197,7 +203,10 @@ public class StoredScript implements PlainJsonSerializable, ToCopyableBuilder<St
         }
 
         /**
+         * The options for the script.
+         * <p>
          * API name: {@code options}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>options</code>.
@@ -210,7 +219,10 @@ public class StoredScript implements PlainJsonSerializable, ToCopyableBuilder<St
         }
 
         /**
+         * The options for the script.
+         * <p>
          * API name: {@code options}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>options</code>.
@@ -223,7 +235,7 @@ public class StoredScript implements PlainJsonSerializable, ToCopyableBuilder<St
         }
 
         /**
-         * Required - The script source.
+         * Required - The location of the source code for the script.
          * <p>
          * API name: {@code source}
          * </p>

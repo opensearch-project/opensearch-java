@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.RequestStats
 
+/**
+ * The statistics about request operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RequestStats implements PlainJsonSerializable, ToCopyableBuilder<RequestStats.Builder, RequestStats> {
@@ -85,7 +88,10 @@ public class RequestStats implements PlainJsonSerializable, ToCopyableBuilder<Re
     }
 
     /**
+     * The number of current request operations.
+     * <p>
      * API name: {@code current}
+     * </p>
      */
     @Nullable
     public final Long current() {
@@ -93,7 +99,10 @@ public class RequestStats implements PlainJsonSerializable, ToCopyableBuilder<Re
     }
 
     /**
+     * The total time spent on request operations.
+     * <p>
      * API name: {@code time}
+     * </p>
      */
     @Nullable
     public final Time time() {
@@ -101,7 +110,10 @@ public class RequestStats implements PlainJsonSerializable, ToCopyableBuilder<Re
     }
 
     /**
+     * The total time spent on request operations in milliseconds.
+     * <p>
      * API name: {@code time_in_millis}
+     * </p>
      */
     @Nullable
     public final Long timeInMillis() {
@@ -109,7 +121,10 @@ public class RequestStats implements PlainJsonSerializable, ToCopyableBuilder<Re
     }
 
     /**
+     * The total number of request operations.
+     * <p>
      * API name: {@code total}
+     * </p>
      */
     @Nullable
     public final Long total() {
@@ -197,7 +212,10 @@ public class RequestStats implements PlainJsonSerializable, ToCopyableBuilder<Re
         }
 
         /**
+         * The number of current request operations.
+         * <p>
          * API name: {@code current}
+         * </p>
          */
         @Nonnull
         public final Builder current(@Nullable Long value) {
@@ -206,7 +224,10 @@ public class RequestStats implements PlainJsonSerializable, ToCopyableBuilder<Re
         }
 
         /**
+         * The total time spent on request operations.
+         * <p>
          * API name: {@code time}
+         * </p>
          */
         @Nonnull
         public final Builder time(@Nullable Time value) {
@@ -215,7 +236,10 @@ public class RequestStats implements PlainJsonSerializable, ToCopyableBuilder<Re
         }
 
         /**
+         * The total time spent on request operations.
+         * <p>
          * API name: {@code time}
+         * </p>
          */
         @Nonnull
         public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -223,7 +247,10 @@ public class RequestStats implements PlainJsonSerializable, ToCopyableBuilder<Re
         }
 
         /**
+         * The total time spent on request operations in milliseconds.
+         * <p>
          * API name: {@code time_in_millis}
+         * </p>
          */
         @Nonnull
         public final Builder timeInMillis(@Nullable Long value) {
@@ -232,7 +259,10 @@ public class RequestStats implements PlainJsonSerializable, ToCopyableBuilder<Re
         }
 
         /**
+         * The total number of request operations.
+         * <p>
          * API name: {@code total}
+         * </p>
          */
         @Nonnull
         public final Builder total(@Nullable Long value) {

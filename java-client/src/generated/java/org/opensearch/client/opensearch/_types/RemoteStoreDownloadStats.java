@@ -57,7 +57,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: _types.RemoteStoreDownloadStats
 
 /**
- * Statistics related to downloads to the remote segment store.
+ * Any statistics related to downloads to the remote segment store.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")

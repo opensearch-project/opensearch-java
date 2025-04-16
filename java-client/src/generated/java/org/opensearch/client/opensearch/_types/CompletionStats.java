@@ -82,7 +82,10 @@ public class CompletionStats implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * The per-field completion statistics.
+     * <p>
      * API name: {@code fields}
+     * </p>
      */
     @Nonnull
     public final Map<String, FieldSizeUsage> fields() {
@@ -90,7 +93,10 @@ public class CompletionStats implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * The human-readable size of memory used for completion.
+     * <p>
      * API name: {@code size}
+     * </p>
      */
     @Nullable
     public final String size() {
@@ -181,7 +187,10 @@ public class CompletionStats implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The per-field completion statistics.
+         * <p>
          * API name: {@code fields}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>fields</code>.
@@ -194,7 +203,10 @@ public class CompletionStats implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The per-field completion statistics.
+         * <p>
          * API name: {@code fields}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>fields</code>.
@@ -207,7 +219,10 @@ public class CompletionStats implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The per-field completion statistics.
+         * <p>
          * API name: {@code fields}
+         * </p>
          *
          * <p>
          * Adds a value to <code>fields</code> using a builder lambda.
@@ -219,7 +234,10 @@ public class CompletionStats implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The human-readable size of memory used for completion.
+         * <p>
          * API name: {@code size}
+         * </p>
          */
         @Nonnull
         public final Builder size(@Nullable String value) {

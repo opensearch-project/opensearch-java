@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.TaskFailure
 
+/**
+ * The details of a task failure.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class TaskFailure implements PlainJsonSerializable, ToCopyableBuilder<TaskFailure.Builder, TaskFailure> {
@@ -99,7 +102,10 @@ public class TaskFailure implements PlainJsonSerializable, ToCopyableBuilder<Tas
     }
 
     /**
-     * Required - API name: {@code status}
+     * Required - The status of the failed task.
+     * <p>
+     * API name: {@code status}
+     * </p>
      */
     @Nonnull
     public final String status() {
@@ -107,7 +113,10 @@ public class TaskFailure implements PlainJsonSerializable, ToCopyableBuilder<Tas
     }
 
     /**
-     * Required - API name: {@code task_id}
+     * Required - The ID of the failed task.
+     * <p>
+     * API name: {@code task_id}
+     * </p>
      */
     public final int taskId() {
         return this.taskId;
@@ -208,7 +217,10 @@ public class TaskFailure implements PlainJsonSerializable, ToCopyableBuilder<Tas
         }
 
         /**
-         * Required - API name: {@code status}
+         * Required - The status of the failed task.
+         * <p>
+         * API name: {@code status}
+         * </p>
          */
         @Nonnull
         public final Builder status(String value) {
@@ -217,7 +229,10 @@ public class TaskFailure implements PlainJsonSerializable, ToCopyableBuilder<Tas
         }
 
         /**
-         * Required - API name: {@code task_id}
+         * Required - The ID of the failed task.
+         * <p>
+         * API name: {@code task_id}
+         * </p>
          */
         @Nonnull
         public final Builder taskId(int value) {

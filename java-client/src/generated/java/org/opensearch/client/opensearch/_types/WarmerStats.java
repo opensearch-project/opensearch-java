@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.WarmerStats
 
+/**
+ * The statistics about index warmer operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class WarmerStats implements PlainJsonSerializable, ToCopyableBuilder<WarmerStats.Builder, WarmerStats> {
@@ -83,21 +86,30 @@ public class WarmerStats implements PlainJsonSerializable, ToCopyableBuilder<War
     }
 
     /**
-     * Required - API name: {@code current}
+     * Required - The number of current warmer operations.
+     * <p>
+     * API name: {@code current}
+     * </p>
      */
     public final long current() {
         return this.current;
     }
 
     /**
-     * Required - API name: {@code total}
+     * Required - The total number of warmer operations.
+     * <p>
+     * API name: {@code total}
+     * </p>
      */
     public final long total() {
         return this.total;
     }
 
     /**
+     * The total time spent on warmer operations.
+     * <p>
      * API name: {@code total_time}
+     * </p>
      */
     @Nullable
     public final Time totalTime() {
@@ -105,7 +117,10 @@ public class WarmerStats implements PlainJsonSerializable, ToCopyableBuilder<War
     }
 
     /**
-     * Required - API name: {@code total_time_in_millis}
+     * Required - The total time spent on warmer operations in milliseconds.
+     * <p>
+     * API name: {@code total_time_in_millis}
+     * </p>
      */
     public final long totalTimeInMillis() {
         return this.totalTimeInMillis;
@@ -183,7 +198,10 @@ public class WarmerStats implements PlainJsonSerializable, ToCopyableBuilder<War
         }
 
         /**
-         * Required - API name: {@code current}
+         * Required - The number of current warmer operations.
+         * <p>
+         * API name: {@code current}
+         * </p>
          */
         @Nonnull
         public final Builder current(long value) {
@@ -192,7 +210,10 @@ public class WarmerStats implements PlainJsonSerializable, ToCopyableBuilder<War
         }
 
         /**
-         * Required - API name: {@code total}
+         * Required - The total number of warmer operations.
+         * <p>
+         * API name: {@code total}
+         * </p>
          */
         @Nonnull
         public final Builder total(long value) {
@@ -201,7 +222,10 @@ public class WarmerStats implements PlainJsonSerializable, ToCopyableBuilder<War
         }
 
         /**
+         * The total time spent on warmer operations.
+         * <p>
          * API name: {@code total_time}
+         * </p>
          */
         @Nonnull
         public final Builder totalTime(@Nullable Time value) {
@@ -210,7 +234,10 @@ public class WarmerStats implements PlainJsonSerializable, ToCopyableBuilder<War
         }
 
         /**
+         * The total time spent on warmer operations.
+         * <p>
          * API name: {@code total_time}
+         * </p>
          */
         @Nonnull
         public final Builder totalTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -218,7 +245,10 @@ public class WarmerStats implements PlainJsonSerializable, ToCopyableBuilder<War
         }
 
         /**
-         * Required - API name: {@code total_time_in_millis}
+         * Required - The total time spent on warmer operations in milliseconds.
+         * <p>
+         * API name: {@code total_time_in_millis}
+         * </p>
          */
         @Nonnull
         public final Builder totalTimeInMillis(long value) {

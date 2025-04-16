@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.CoordsGeoBounds
 
+/**
+ * The geographical bounds specified using coordinate values.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CoordsGeoBounds implements PlainJsonSerializable, ToCopyableBuilder<CoordsGeoBounds.Builder, CoordsGeoBounds> {
@@ -80,28 +83,40 @@ public class CoordsGeoBounds implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Required - API name: {@code bottom}
+     * Required - The bottom boundary latitude.
+     * <p>
+     * API name: {@code bottom}
+     * </p>
      */
     public final double bottom() {
         return this.bottom;
     }
 
     /**
-     * Required - API name: {@code left}
+     * Required - The left boundary longitude.
+     * <p>
+     * API name: {@code left}
+     * </p>
      */
     public final double left() {
         return this.left;
     }
 
     /**
-     * Required - API name: {@code right}
+     * Required - The right boundary longitude.
+     * <p>
+     * API name: {@code right}
+     * </p>
      */
     public final double right() {
         return this.right;
     }
 
     /**
-     * Required - API name: {@code top}
+     * Required - The top boundary latitude.
+     * <p>
+     * API name: {@code top}
+     * </p>
      */
     public final double top() {
         return this.top;
@@ -176,7 +191,10 @@ public class CoordsGeoBounds implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - API name: {@code bottom}
+         * Required - The bottom boundary latitude.
+         * <p>
+         * API name: {@code bottom}
+         * </p>
          */
         @Nonnull
         public final Builder bottom(double value) {
@@ -185,7 +203,10 @@ public class CoordsGeoBounds implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - API name: {@code left}
+         * Required - The left boundary longitude.
+         * <p>
+         * API name: {@code left}
+         * </p>
          */
         @Nonnull
         public final Builder left(double value) {
@@ -194,7 +215,10 @@ public class CoordsGeoBounds implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - API name: {@code right}
+         * Required - The right boundary longitude.
+         * <p>
+         * API name: {@code right}
+         * </p>
          */
         @Nonnull
         public final Builder right(double value) {
@@ -203,7 +227,10 @@ public class CoordsGeoBounds implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - API name: {@code top}
+         * Required - The top boundary latitude.
+         * <p>
+         * API name: {@code top}
+         * </p>
          */
         @Nonnull
         public final Builder top(double value) {

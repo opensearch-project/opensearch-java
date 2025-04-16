@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.SearchStats
 
+/**
+ * The statistics about search operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<SearchStats.Builder, SearchStats> {
@@ -269,7 +272,10 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
     }
 
     /**
+     * The search statistics grouped by search groups.
+     * <p>
      * API name: {@code groups}
+     * </p>
      */
     @Nonnull
     public final Map<String, SearchStats> groups() {
@@ -422,7 +428,10 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
     }
 
     /**
+     * The total number of idle search reactivations.
+     * <p>
      * API name: {@code search_idle_reactivate_count_total}
+     * </p>
      */
     @Nullable
     public final Long searchIdleReactivateCountTotal() {
@@ -875,7 +884,10 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         }
 
         /**
+         * The search statistics grouped by search groups.
+         * <p>
          * API name: {@code groups}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>groups</code>.
@@ -888,7 +900,10 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         }
 
         /**
+         * The search statistics grouped by search groups.
+         * <p>
          * API name: {@code groups}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>groups</code>.
@@ -901,7 +916,10 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         }
 
         /**
+         * The search statistics grouped by search groups.
+         * <p>
          * API name: {@code groups}
+         * </p>
          *
          * <p>
          * Adds a value to <code>groups</code> using a builder lambda.
@@ -1143,7 +1161,10 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
         }
 
         /**
+         * The total number of idle search reactivations.
+         * <p>
          * API name: {@code search_idle_reactivate_count_total}
+         * </p>
          */
         @Nonnull
         public final Builder searchIdleReactivateCountTotal(@Nullable Long value) {

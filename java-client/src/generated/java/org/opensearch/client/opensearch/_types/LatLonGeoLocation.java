@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.LatLonGeoLocation
 
+/**
+ * The geographical location specified using latitude and longitude.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class LatLonGeoLocation implements PlainJsonSerializable, ToCopyableBuilder<LatLonGeoLocation.Builder, LatLonGeoLocation> {
@@ -74,7 +77,7 @@ public class LatLonGeoLocation implements PlainJsonSerializable, ToCopyableBuild
     }
 
     /**
-     * Required - Latitude
+     * Required - The latitude coordinate.
      * <p>
      * API name: {@code lat}
      * </p>
@@ -84,7 +87,7 @@ public class LatLonGeoLocation implements PlainJsonSerializable, ToCopyableBuild
     }
 
     /**
-     * Required - Longitude
+     * Required - The longitude coordinate.
      * <p>
      * API name: {@code lon}
      * </p>
@@ -150,7 +153,7 @@ public class LatLonGeoLocation implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * Required - Latitude
+         * Required - The latitude coordinate.
          * <p>
          * API name: {@code lat}
          * </p>
@@ -162,7 +165,7 @@ public class LatLonGeoLocation implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * Required - Longitude
+         * Required - The longitude coordinate.
          * <p>
          * API name: {@code lon}
          * </p>

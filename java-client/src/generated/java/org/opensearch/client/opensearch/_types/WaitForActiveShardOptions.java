@@ -45,8 +45,14 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum WaitForActiveShardOptions implements JsonEnum {
+    /**
+     * Wait for all shards to be active.
+     */
     All("all"),
 
+    /**
+     * Wait for the number of shards specified in the index settings.
+     */
     IndexSetting("index-setting");
 
     private final String jsonValue;

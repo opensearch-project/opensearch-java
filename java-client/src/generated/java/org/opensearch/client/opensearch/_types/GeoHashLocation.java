@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.GeoHashLocation
 
+/**
+ * The geographical location specified using a geohash.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GeoHashLocation implements PlainJsonSerializable, ToCopyableBuilder<GeoHashLocation.Builder, GeoHashLocation> {

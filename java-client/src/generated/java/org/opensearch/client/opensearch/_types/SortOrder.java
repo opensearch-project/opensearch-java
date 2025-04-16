@@ -42,6 +42,9 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: _types.SortOrder
 
+/**
+ * The direction of the sort order.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum SortOrder implements JsonEnum {

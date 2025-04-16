@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.GetStats
 
+/**
+ * The statistics about get operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class GetStats implements PlainJsonSerializable, ToCopyableBuilder<GetStats.Builder, GetStats> {
@@ -103,7 +106,10 @@ public class GetStats implements PlainJsonSerializable, ToCopyableBuilder<GetSta
     }
 
     /**
-     * Required - API name: {@code current}
+     * Required - The number of current get operations.
+     * <p>
+     * API name: {@code current}
+     * </p>
      */
     public final long current() {
         return this.current;
@@ -125,7 +131,10 @@ public class GetStats implements PlainJsonSerializable, ToCopyableBuilder<GetSta
     }
 
     /**
-     * Required - API name: {@code exists_total}
+     * Required - The total number of successful get operations.
+     * <p>
+     * API name: {@code exists_total}
+     * </p>
      */
     public final long existsTotal() {
         return this.existsTotal;
@@ -147,7 +156,10 @@ public class GetStats implements PlainJsonSerializable, ToCopyableBuilder<GetSta
     }
 
     /**
-     * Required - API name: {@code missing_total}
+     * Required - The total number of failed get operations due to missing documents.
+     * <p>
+     * API name: {@code missing_total}
+     * </p>
      */
     public final long missingTotal() {
         return this.missingTotal;
@@ -169,7 +181,10 @@ public class GetStats implements PlainJsonSerializable, ToCopyableBuilder<GetSta
     }
 
     /**
-     * Required - API name: {@code total}
+     * Required - The total number of get operations.
+     * <p>
+     * API name: {@code total}
+     * </p>
      */
     public final long total() {
         return this.total;
@@ -289,7 +304,10 @@ public class GetStats implements PlainJsonSerializable, ToCopyableBuilder<GetSta
         }
 
         /**
-         * Required - API name: {@code current}
+         * Required - The number of current get operations.
+         * <p>
+         * API name: {@code current}
+         * </p>
          */
         @Nonnull
         public final Builder current(long value) {
@@ -324,7 +342,10 @@ public class GetStats implements PlainJsonSerializable, ToCopyableBuilder<GetSta
         }
 
         /**
-         * Required - API name: {@code exists_total}
+         * Required - The total number of successful get operations.
+         * <p>
+         * API name: {@code exists_total}
+         * </p>
          */
         @Nonnull
         public final Builder existsTotal(long value) {
@@ -359,7 +380,10 @@ public class GetStats implements PlainJsonSerializable, ToCopyableBuilder<GetSta
         }
 
         /**
-         * Required - API name: {@code missing_total}
+         * Required - The total number of failed get operations due to missing documents.
+         * <p>
+         * API name: {@code missing_total}
+         * </p>
          */
         @Nonnull
         public final Builder missingTotal(long value) {
@@ -394,7 +418,10 @@ public class GetStats implements PlainJsonSerializable, ToCopyableBuilder<GetSta
         }
 
         /**
-         * Required - API name: {@code total}
+         * Required - The total number of get operations.
+         * <p>
+         * API name: {@code total}
+         * </p>
          */
         @Nonnull
         public final Builder total(long value) {

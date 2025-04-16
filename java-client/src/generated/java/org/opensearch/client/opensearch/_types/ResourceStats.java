@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.ResourceStats
 
+/**
+ * The statistics about resource usage.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ResourceStats implements PlainJsonSerializable, ToCopyableBuilder<ResourceStats.Builder, ResourceStats> {

@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.WktGeoBounds
 
+/**
+ * The geographical bounds specified using Well-Known Text (WKT) format.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class WktGeoBounds implements PlainJsonSerializable, ToCopyableBuilder<WktGeoBounds.Builder, WktGeoBounds> {
@@ -72,7 +75,10 @@ public class WktGeoBounds implements PlainJsonSerializable, ToCopyableBuilder<Wk
     }
 
     /**
-     * Required - API name: {@code wkt}
+     * Required - The WKT string representation of the geographical bounds.
+     * <p>
+     * API name: {@code wkt}
+     * </p>
      */
     @Nonnull
     public final String wkt() {
@@ -130,7 +136,10 @@ public class WktGeoBounds implements PlainJsonSerializable, ToCopyableBuilder<Wk
         }
 
         /**
-         * Required - API name: {@code wkt}
+         * Required - The WKT string representation of the geographical bounds.
+         * <p>
+         * API name: {@code wkt}
+         * </p>
          */
         @Nonnull
         public final Builder wkt(String value) {

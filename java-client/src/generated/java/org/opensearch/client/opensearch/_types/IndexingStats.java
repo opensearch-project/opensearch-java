@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.IndexingStats
 
+/**
+ * The statistics about indexing operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<IndexingStats.Builder, IndexingStats> {
@@ -116,7 +119,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
-     * Required - API name: {@code delete_current}
+     * Required - The number of current delete operations.
+     * <p>
+     * API name: {@code delete_current}
+     * </p>
      */
     public final long deleteCurrent() {
         return this.deleteCurrent;
@@ -138,7 +144,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
-     * Required - API name: {@code delete_total}
+     * Required - The total number of delete operations.
+     * <p>
+     * API name: {@code delete_total}
+     * </p>
      */
     public final long deleteTotal() {
         return this.deleteTotal;
@@ -153,21 +162,30 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
-     * Required - API name: {@code index_current}
+     * Required - The number of current indexing operations.
+     * <p>
+     * API name: {@code index_current}
+     * </p>
      */
     public final long indexCurrent() {
         return this.indexCurrent;
     }
 
     /**
-     * Required - API name: {@code index_failed}
+     * Required - The number of failed indexing operations.
+     * <p>
+     * API name: {@code index_failed}
+     * </p>
      */
     public final long indexFailed() {
         return this.indexFailed;
     }
 
     /**
+     * The total amount of time spent on indexing operations.
+     * <p>
      * API name: {@code index_time}
+     * </p>
      */
     @Nullable
     public final Time indexTime() {
@@ -175,35 +193,50 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
-     * Required - API name: {@code index_time_in_millis}
+     * Required - The total amount of time spent on indexing operations in milliseconds.
+     * <p>
+     * API name: {@code index_time_in_millis}
+     * </p>
      */
     public final long indexTimeInMillis() {
         return this.indexTimeInMillis;
     }
 
     /**
-     * Required - API name: {@code index_total}
+     * Required - The total number of indexing operations.
+     * <p>
+     * API name: {@code index_total}
+     * </p>
      */
     public final long indexTotal() {
         return this.indexTotal;
     }
 
     /**
-     * Required - API name: {@code is_throttled}
+     * Required - Whether indexing is currently throttled.
+     * <p>
+     * API name: {@code is_throttled}
+     * </p>
      */
     public final boolean isThrottled() {
         return this.isThrottled;
     }
 
     /**
-     * Required - API name: {@code noop_update_total}
+     * Required - The total number of noop update operations.
+     * <p>
+     * API name: {@code noop_update_total}
+     * </p>
      */
     public final long noopUpdateTotal() {
         return this.noopUpdateTotal;
     }
 
     /**
+     * The total amount of time spent throttling indexing operations.
+     * <p>
      * API name: {@code throttle_time}
+     * </p>
      */
     @Nullable
     public final Time throttleTime() {
@@ -211,7 +244,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
-     * Required - API name: {@code throttle_time_in_millis}
+     * Required - The total amount of time spent throttling indexing operations in milliseconds.
+     * <p>
+     * API name: {@code throttle_time_in_millis}
+     * </p>
      */
     public final long throttleTimeInMillis() {
         return this.throttleTimeInMillis;
@@ -358,7 +394,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
-         * Required - API name: {@code delete_current}
+         * Required - The number of current delete operations.
+         * <p>
+         * API name: {@code delete_current}
+         * </p>
          */
         @Nonnull
         public final Builder deleteCurrent(long value) {
@@ -393,7 +432,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
-         * Required - API name: {@code delete_total}
+         * Required - The total number of delete operations.
+         * <p>
+         * API name: {@code delete_total}
+         * </p>
          */
         @Nonnull
         public final Builder deleteTotal(long value) {
@@ -419,7 +461,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
-         * Required - API name: {@code index_current}
+         * Required - The number of current indexing operations.
+         * <p>
+         * API name: {@code index_current}
+         * </p>
          */
         @Nonnull
         public final Builder indexCurrent(long value) {
@@ -428,7 +473,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
-         * Required - API name: {@code index_failed}
+         * Required - The number of failed indexing operations.
+         * <p>
+         * API name: {@code index_failed}
+         * </p>
          */
         @Nonnull
         public final Builder indexFailed(long value) {
@@ -437,7 +485,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
+         * The total amount of time spent on indexing operations.
+         * <p>
          * API name: {@code index_time}
+         * </p>
          */
         @Nonnull
         public final Builder indexTime(@Nullable Time value) {
@@ -446,7 +497,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
+         * The total amount of time spent on indexing operations.
+         * <p>
          * API name: {@code index_time}
+         * </p>
          */
         @Nonnull
         public final Builder indexTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -454,7 +508,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
-         * Required - API name: {@code index_time_in_millis}
+         * Required - The total amount of time spent on indexing operations in milliseconds.
+         * <p>
+         * API name: {@code index_time_in_millis}
+         * </p>
          */
         @Nonnull
         public final Builder indexTimeInMillis(long value) {
@@ -463,7 +520,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
-         * Required - API name: {@code index_total}
+         * Required - The total number of indexing operations.
+         * <p>
+         * API name: {@code index_total}
+         * </p>
          */
         @Nonnull
         public final Builder indexTotal(long value) {
@@ -472,7 +532,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
-         * Required - API name: {@code is_throttled}
+         * Required - Whether indexing is currently throttled.
+         * <p>
+         * API name: {@code is_throttled}
+         * </p>
          */
         @Nonnull
         public final Builder isThrottled(boolean value) {
@@ -481,7 +544,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
-         * Required - API name: {@code noop_update_total}
+         * Required - The total number of noop update operations.
+         * <p>
+         * API name: {@code noop_update_total}
+         * </p>
          */
         @Nonnull
         public final Builder noopUpdateTotal(long value) {
@@ -490,7 +556,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
+         * The total amount of time spent throttling indexing operations.
+         * <p>
          * API name: {@code throttle_time}
+         * </p>
          */
         @Nonnull
         public final Builder throttleTime(@Nullable Time value) {
@@ -499,7 +568,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
+         * The total amount of time spent throttling indexing operations.
+         * <p>
          * API name: {@code throttle_time}
+         * </p>
          */
         @Nonnull
         public final Builder throttleTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -507,7 +579,10 @@ public class IndexingStats implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
-         * Required - API name: {@code throttle_time_in_millis}
+         * Required - The total amount of time spent throttling indexing operations in milliseconds.
+         * <p>
+         * API name: {@code throttle_time_in_millis}
+         * </p>
          */
         @Nonnull
         public final Builder throttleTimeInMillis(long value) {
