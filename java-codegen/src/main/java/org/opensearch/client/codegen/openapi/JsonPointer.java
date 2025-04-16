@@ -16,8 +16,9 @@ import java.util.WeakHashMap;
 import javax.annotation.Nonnull;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.tuple.Pair;
 
-public class JsonPointer {
+public final class JsonPointer {
     private static final WeakHashMap<JsonPointer, WeakReference<JsonPointer>> PARENT_CACHE = new WeakHashMap<>();
     @Nonnull
     public static final JsonPointer ROOT = new JsonPointer(new String[0]);
@@ -68,8 +69,7 @@ public class JsonPointer {
         var parent = Optional.ofNullable(PARENT_CACHE.get(this)).flatMap(ref -> Optional.ofNullable(ref.get()));
 
         if (parent.isEmpty()) {
-            var newKeys = new String[this.keys.length - 1];
-            System.arraycopy(this.keys, 0, newKeys, 0, newKeys.length);
+            var newKeys = Arrays.copyOfRange(this.keys, 0, this.keys.length - 1);
             parent = Optional.of(new JsonPointer(newKeys));
             PARENT_CACHE.put(this, new WeakReference<>(parent.get()));
         }
@@ -89,6 +89,29 @@ public class JsonPointer {
     public boolean isDirectChildOf(@Nonnull JsonPointer other) {
         Objects.requireNonNull(other, "other must not be null");
         return getParent().map(other::equals).orElse(false);
+    }
+
+    @Nonnull
+    public Optional<Pair<String, Optional<JsonPointer>>> splitFirst() {
+        switch (keys.length) {
+            case 0:
+                return Optional.empty();
+            case 1:
+                return Optional.of(Pair.of(keys[0], Optional.empty()));
+            default:
+                var rest = Arrays.copyOfRange(keys, 1, keys.length);
+                return Optional.of(Pair.of(keys[0], Optional.of(new JsonPointer(rest))));
+        }
+    }
+
+    public boolean contains(@Nonnull String key) {
+        Objects.requireNonNull(key, "key must not be null");
+        for (var k : keys) {
+            if (k.equals(key)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

@@ -63,12 +63,15 @@
     private {{className}}(Kind kind, Object value) {
         this._kind = kind;
         this._value = value;
+    {{#fields}}
+        this.{{name}} = null;
+    {{/fields}}
     }
 {{/discriminated}}
 
 {{/extendsOtherShape}}
 {{/hasAnyRequiredFields}}
-    private {{className}}(Builder builder) {
+    private {{className}}(Builder{{#typeParameters}}{{.}}{{/typeParameters}} builder) {
         {{>ObjectShape/ConstructorImpl}}
     {{#isOptionalExternallyDiscriminated}}
         if (builder._kind != null) {
@@ -83,8 +86,8 @@
     {{/isOptionalExternallyDiscriminated}}
     }
 
-    public static {{className}} of({{type.builderFnType}} fn) {
-        return fn.apply(new Builder()).build();
+    public static{{#typeParameters}} {{.}}{{/typeParameters}} {{selfType}} of({{selfType.builderFnType}} fn) {
+        return fn.apply(new Builder{{#typeParameters}}<>{{/typeParameters}}()).build();
     }
 
 {{#canStringify}}
@@ -126,20 +129,20 @@
     {{>TaggedUnionShape/Serialize}}
 
     @{{TYPES.Javax.Annotation.Nonnull}}
-    public Builder toBuilder() {
-        return new Builder(this);
+    public Builder{{#typeParameters}}{{.}}{{/typeParameters}} toBuilder() {
+        return new Builder{{#typeParameters}}<>{{/typeParameters}}(this);
     }
 
     {{>ObjectShape/Builder/HelperCtor}}
 
-    public static class Builder extends {{#extendsOtherShape}}{{extendsType}}.AbstractBuilder<Builder>{{/extendsOtherShape}}{{^extendsOtherShape}}{{TYPES.Client.Util.ObjectBuilderBase}}{{/extendsOtherShape}}{{#needsContainerBuilder}}{{#isOptionalExternallyDiscriminated}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{/isOptionalExternallyDiscriminated}}{{/needsContainerBuilder}}{{^needsContainerBuilder}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{/needsContainerBuilder}} {
+    public static class Builder{{#typeParameters}}{{.}}{{/typeParameters}} extends {{#extendsOtherShape}}{{extendsType}}.AbstractBuilder<Builder>{{/extendsOtherShape}}{{^extendsOtherShape}}{{TYPES.Client.Util.ObjectBuilderBase}}{{/extendsOtherShape}}{{#needsContainerBuilder}}{{#isOptionalExternallyDiscriminated}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{selfType}}>{{/isOptionalExternallyDiscriminated}}{{/needsContainerBuilder}}{{^needsContainerBuilder}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{selfType}}>{{/needsContainerBuilder}} {
         private Kind _kind;
         private {{variantBaseType}} _value;
         {{>ObjectShape/Builder/Fields}}
 
         public Builder() {}
 
-        private Builder({{className}} o) {
+        private Builder({{selfType}} o) {
             {{>ObjectShape/Builder/CopyCtorImpl}}
             this._kind = o._kind;
             this._value = o._value;
@@ -155,27 +158,27 @@
     {{/concreteBuilderSetters}}
 
     {{#variants}}
-        public {{^needsContainerBuilder}}{{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{/needsContainerBuilder}}{{#needsContainerBuilder}}ContainerBuilder{{/needsContainerBuilder}} {{#asFieldName}}{{name}}{{/asFieldName}}({{type}} v) {
+        public {{^needsContainerBuilder}}{{TYPES.Client.Util.ObjectBuilder}}<{{selfType}}>{{/needsContainerBuilder}}{{#needsContainerBuilder}}ContainerBuilder{{/needsContainerBuilder}} {{#asFieldName}}{{name}}{{/asFieldName}}({{type}} v) {
             this._kind = Kind.{{#pascalCase}}{{name}}{{/pascalCase}};
             this._value = v;
             return {{^needsContainerBuilder}}this{{/needsContainerBuilder}}{{#needsContainerBuilder}}new ContainerBuilder(){{/needsContainerBuilder}};
         }
         {{#type.hasBuilder}}
 
-        public {{^needsContainerBuilder}}{{TYPES.Client.Util.ObjectBuilder}}<{{className}}>{{/needsContainerBuilder}}{{#needsContainerBuilder}}ContainerBuilder{{/needsContainerBuilder}} {{#asFieldName}}{{name}}{{/asFieldName}}({{type.builderFnType}} fn) {
+        public {{^needsContainerBuilder}}{{TYPES.Client.Util.ObjectBuilder}}<{{selfType}}>{{/needsContainerBuilder}}{{#needsContainerBuilder}}ContainerBuilder{{/needsContainerBuilder}} {{#asFieldName}}{{name}}{{/asFieldName}}({{type.builderFnType}} fn) {
             return this.{{#asFieldName}}{{name}}{{/asFieldName}}(fn.apply(new {{type.builderType}}()).build());
         }
         {{/type.hasBuilder}}
 
     {{/variants}}
         {{^needsContainerBuilder}}@Override
-        public{{/needsContainerBuilder}}{{#needsContainerBuilder}}{{#isOptionalExternallyDiscriminated}}public{{/isOptionalExternallyDiscriminated}}{{^isOptionalExternallyDiscriminated}}protected{{/isOptionalExternallyDiscriminated}}{{/needsContainerBuilder}} {{className}} build() {
+        public{{/needsContainerBuilder}}{{#needsContainerBuilder}}{{#isOptionalExternallyDiscriminated}}public{{/isOptionalExternallyDiscriminated}}{{^isOptionalExternallyDiscriminated}}protected{{/isOptionalExternallyDiscriminated}}{{/needsContainerBuilder}} {{selfType}} build() {
             _checkSingleUse();
-            return new {{className}}(this);
+            return new {{className}}{{#typeParameters}}<>{{/typeParameters}}(this);
         }
     {{#needsContainerBuilder}}
 
-        public class ContainerBuilder implements {{TYPES.Client.Util.ObjectBuilder}}<{{className}}> {
+        public class ContainerBuilder implements {{TYPES.Client.Util.ObjectBuilder}}<{{selfType}}> {
             private ContainerBuilder() {}
 
         {{#containerBuilderSetters}}
@@ -183,7 +186,7 @@
         {{/containerBuilderSetters}}
 
             @Override
-            public {{className}} build() {
+            public {{selfType}} build() {
                 return Builder.this.build();
             }
         }
@@ -192,7 +195,7 @@
 
     {{>TaggedUnionShape/Deserialize}}
 
-    {{>TaggedUnionShape/HashCode}}
+    {{>ObjectShape/HashCode}}
 
-    {{>TaggedUnionShape/Equals}}
+    {{>ObjectShape/Equals}}
 }

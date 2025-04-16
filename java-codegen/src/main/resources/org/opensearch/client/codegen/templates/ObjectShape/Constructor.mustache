@@ -1,14 +1,14 @@
 {{^extendedByOtherShape}}
-    private {{className}}(Builder builder) {
+    private {{className}}(Builder{{#typeParameters}}{{.}}{{/typeParameters}} builder) {
 {{/extendedByOtherShape}}
 {{#extendedByOtherShape}}
-    protected {{className}}(AbstractBuilder<?> builder) {
+    protected {{className}}(AbstractBuilder<{{#typeParameters}}{{#typeParameterDefinitions}}{{.}}, {{/typeParameterDefinitions}}{{/typeParameters}}?> builder) {
 {{/extendedByOtherShape}}
         {{>ObjectShape/ConstructorImpl}}
     }
 {{^abstract}}
 
-    public static {{className}} {{#extendedByOtherShape}}{{#camelCase}}{{className}}{{/camelCase}}Of{{/extendedByOtherShape}}{{^extendedByOtherShape}}of{{/extendedByOtherShape}}({{type.builderFnType}} fn) {
-        return fn.apply(new Builder()).build();
+    public static{{#typeParameters}} {{.}}{{/typeParameters}} {{selfType}} {{#extendedByOtherShape}}{{#camelCase}}{{className}}{{/camelCase}}Of{{/extendedByOtherShape}}{{^extendedByOtherShape}}of{{/extendedByOtherShape}}({{selfType.builderFnType}} fn) {
+        return fn.apply(new Builder{{#typeParameters}}<>{{/typeParameters}}()).build();
     }
 {{/abstract}}

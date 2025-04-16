@@ -6,7 +6,7 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.codegen.model.overrides;
+package org.opensearch.client.codegen.transformer.overrides;
 
 import java.util.Collections;
 import java.util.Map;
@@ -17,7 +17,8 @@ import java.util.function.Function;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.model.OperationGroup;
-import org.opensearch.client.codegen.model.Types;
+import org.opensearch.client.codegen.model.types.Type;
+import org.opensearch.client.codegen.model.types.Types;
 import org.opensearch.client.codegen.openapi.JsonPointer;
 import org.opensearch.client.codegen.openapi.OpenApiSchema;
 import org.opensearch.client.codegen.utils.builder.ObjectBuilder;
@@ -44,14 +45,20 @@ public class Overrides {
     )
         .withSchemas(
             s -> s.with(schema("_common", "ByteUnit"), so -> so.withClassName("Bytes"))
+                .with(schema("_common", "DateTime"), so -> so.withMappedType(Types.Java.Lang.String))
                 .with(schema("_common", "Duration"), so -> so.withMappedType(Types.Client.OpenSearch._Types.Time))
                 .with(schema("_common", "DurationLarge"), so -> so.withMappedType(Types.Client.OpenSearch._Types.Time))
                 .with(schema("_common", "FieldValue"), so -> so.withMappedType(Types.Client.OpenSearch._Types.FieldValue))
+                .with(schema("_common", "Fuzziness"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(schema("_common", "MinimumShouldMatch"), so -> so.withMappedType(Types.Java.Lang.String))
                 .with(schema("_common", "StringifiedBoolean"), so -> so.withMappedType(Types.Primitive.Boolean))
                 .with(schema("_common", "StringifiedDouble"), so -> so.withMappedType(Types.Primitive.Double))
+                .with(schema("_common", "StringifiedEpochTimeUnitMillis"), so -> so.withMappedType(Types.Primitive.Long))
+                .with(schema("_common", "StringifiedEpochTimeUnitSeconds"), so -> so.withMappedType(Types.Primitive.Long))
                 .with(schema("_common", "StringifiedInteger"), so -> so.withMappedType(Types.Primitive.Int))
                 .with(schema("_common", "StringifiedLong"), so -> so.withMappedType(Types.Primitive.Long))
-                .with(schema("_common", "StringifiedEpochTimeUnitMillis"), so -> so.withMappedType(Types.Primitive.Long))
+                .with(schema("_common", "StringifiedVersionNumber"), so -> so.withMappedType(Types.Primitive.Long))
+                .with(schema("_common", "Void"), so -> so.withMappedType(Types.Primitive.Void))
 
                 .with(schema("_common", "ScriptSort"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(
@@ -78,25 +85,6 @@ public class Overrides {
                         p -> p.with("aggregations", po -> po.withAliases(Set.of("aggs"))).with("aggs", po -> po.withIgnore(true))
                     )
                 )
-                .with(
-                    schema("_common.aggregations", "BucketsQueryContainer"),
-                    so -> so.withMappedType(
-                        Types.Client.OpenSearch._Types.Aggregations.Buckets(Types.Client.OpenSearch._Types.QueryDsl.Query)
-                    )
-                )
-                .with(
-                    schema("_common.aggregations", "ExtendedBoundsdouble"),
-                    so -> so.withMappedType(Types.Client.OpenSearch._Types.Aggregations.ExtendedBounds(Types.Java.Lang.Double))
-                )
-                .with(
-                    schema("_common.aggregations", "ExtendedBoundsFieldDateMath"),
-                    so -> so.withMappedType(
-                        Types.Client.OpenSearch._Types.Aggregations.ExtendedBounds(
-                            Types.Client.OpenSearch._Types.Aggregations.FieldDateMath
-                        )
-                    )
-                )
-                .with(schema("_common.aggregations", "InferenceConfigContainer"), so -> so.withClassName("InferenceConfig"))
 
                 .with(schema("_common.query_dsl", "FunctionScoreContainer"), so -> so.withClassName("FunctionScore"))
 
@@ -132,6 +120,17 @@ public class Overrides {
                 .with(schema("_core.search", "Rescore"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(schema("_core.search", "Suggester"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(schema("_core.search", "TermSuggestOption"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+                .with(
+                    schema("_core.search", "HitsMetadata"),
+                    so -> so.withProperties(
+                        p -> p.with(
+                            "total",
+                            po -> po.withMappedType(
+                                Type.builder().withPackage(Types.Client.OpenSearch.PACKAGE + ".core.search").withName("TotalHits").build()
+                            )
+                        )
+                    )
+                )
                 .with(schema("_core.search", "TotalHits"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(schema("_core.search", "TrackHits"), so -> so.withShouldGenerate(ShouldGenerate.Always))
 
@@ -162,13 +161,6 @@ public class Overrides {
                     so -> so.withProperties(p -> p.with("_nodes", po -> po.withName("nodeStats")))
                 )
                 .with(schema("nodes.info", "Metric"), so -> so.withClassName("NodesInfoMetric"))
-                .with(
-                    schema("nodes.info", "NodeInfo"),
-                    so -> so.withProperties(
-                        p -> p.with("total_indexing_buffer", po -> po.withMappedType(Types.Client.Json.JsonData))
-                            .with("total_indexing_buffer_in_bytes", po -> po.withMappedType(Types.Client.Json.JsonData))
-                    )
-                )
                 .with(schema("nodes.stats", "IndexMetric"), so -> so.withClassName("NodesStatsIndexMetric"))
                 .with(schema("nodes.stats", "Metric"), so -> so.withClassName("NodesStatsMetric"))
                 .with(schema("nodes.usage", "Metric"), so -> so.withClassName("NodesUsageMetric"))

@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.codegen.model.types.TypeRef;
 import org.opensearch.client.codegen.utils.Markdown;
 import org.opensearch.client.codegen.utils.NameSanitizer;
 import org.opensearch.client.codegen.utils.Strings;
@@ -28,7 +29,7 @@ public class Field {
     @Nonnull
     private final String name;
     @Nonnull
-    private final Type type;
+    private final TypeRef type;
     private final boolean required;
     @Nullable
     private final String description;
@@ -46,7 +47,8 @@ public class Field {
                 : NameSanitizer.fieldName(wireName);
         } else {
             this.wireName = null;
-            this.name = NameSanitizer.fieldName(Strings.requireNonBlank(builder.name, "name must not be blank"));
+            var name = Strings.requireNonBlank(builder.name, "name must not be blank");
+            this.name = builder.verbatimName ? name : NameSanitizer.fieldName(name);
         }
         this.type = Objects.requireNonNull(builder.type, "type must not be null");
         this.required = builder.required;
@@ -66,7 +68,7 @@ public class Field {
     }
 
     @Nonnull
-    public Type getType() {
+    public TypeRef getType() {
         return required ? type : type.getBoxed();
     }
 
@@ -106,7 +108,8 @@ public class Field {
     public static final class Builder extends ObjectBuilderBase<Field, Builder> {
         private String wireName;
         private String name;
-        private Type type;
+        private boolean verbatimName;
+        private TypeRef type;
         private boolean required;
         private String description;
         private Deprecation deprecation;
@@ -139,11 +142,19 @@ public class Field {
         @Nonnull
         public Builder withName(@Nullable String name) {
             this.name = name;
+            this.verbatimName = false;
             return this;
         }
 
         @Nonnull
-        public Builder withType(@Nullable Type type) {
+        public Builder withName(@Nullable String name, boolean verbatimName) {
+            this.name = name;
+            this.verbatimName = verbatimName;
+            return this;
+        }
+
+        @Nonnull
+        public Builder withType(@Nullable TypeRef type) {
             this.type = type;
             return this;
         }

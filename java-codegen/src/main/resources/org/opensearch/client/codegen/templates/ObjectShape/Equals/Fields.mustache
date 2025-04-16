@@ -1,4 +1,4 @@
-{{#fields}}
+{{#hashableFields}}
     {{^-first}}
         &&
     {{/-first}}
@@ -13,4 +13,4 @@
     {{^required}}
         {{TYPES.Java.Util.Objects}}.equals(this.{{name}}, other.{{name}})
     {{/required}}
-{{/fields}}
+{{/hashableFields}}

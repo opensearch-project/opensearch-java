@@ -18,7 +18,10 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
-import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
+import org.opensearch.client.codegen.model.types.Type;
+import org.opensearch.client.codegen.model.types.TypeRef;
+import org.opensearch.client.codegen.model.types.Types;
+import org.opensearch.client.codegen.transformer.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.NameSanitizer;
 
 public class ObjectShapeBase extends Shape {
@@ -32,7 +35,7 @@ public class ObjectShapeBase extends Shape {
         super(parent, className, typedefName, description, shouldGenerate);
     }
 
-    public void setSingleKeyMap(String fieldName, Type type) {
+    public void setSingleKeyMap(String fieldName, TypeRef type) {
         singleyKeyMapField = Field.builder()
             .withName(fieldName)
             .withType(type)
@@ -73,30 +76,50 @@ public class ObjectShapeBase extends Shape {
     }
 
     public Collection<Field> getFields() {
-        return getFields(true);
+        return getFields(true, true, true);
     }
 
-    public Collection<Field> getFields(boolean includeSingleKeyMap) {
+    public Collection<Field> getFieldsExcludingAdditionalProperties() {
+        return getFields(false, true, true);
+    }
+
+    public Collection<Field> getHashableFields() {
+        return getFields(true, true, false);
+    }
+
+    public Collection<Field> getFields(
+        boolean includeAdditionalProperties,
+        boolean includeSingleKeyMap,
+        boolean includeTypeParameterSerializerFields
+    ) {
         var fields = new ArrayList<>(getBodyFields());
-        if (additionalProperties != null) {
+        if (includeAdditionalProperties && additionalProperties != null) {
             fields.addAll(additionalProperties.getFields());
         }
         if (includeSingleKeyMap && singleyKeyMapField != null) {
             fields.add(singleyKeyMapField);
+        }
+        if (includeTypeParameterSerializerFields) {
+            fields.addAll(getTypeParameterSerializerFields());
         }
         fields.sort(Comparator.comparing(Field::getName));
         return fields;
     }
 
     public boolean hasFields() {
-        return hasFields(true);
+        return hasFields(true, true, true);
     }
 
-    public boolean hasFields(boolean includeSingleKeyMap) {
+    public boolean hasFields(
+        boolean includeAdditionalProperties,
+        boolean includeSingleKeyMap,
+        boolean includeTypeParameterSerializerFields
+    ) {
         var discriminatingFields = getDiscriminatingFieldNames();
         return bodyFields.size() > discriminatingFields.size()
-            || additionalProperties != null
-            || (includeSingleKeyMap && singleyKeyMapField != null);
+            || (includeAdditionalProperties && additionalProperties != null)
+            || (includeSingleKeyMap && singleyKeyMapField != null)
+            || (includeTypeParameterSerializerFields && hasTypeParameters());
     }
 
     public boolean hasAnyRequiredFields() {
@@ -136,7 +159,7 @@ public class ObjectShapeBase extends Shape {
     }
 
     public Collection<BuilderSetter> getConcreteBuilderSetters() {
-        var builderT = Type.builder().withName("Builder").build();
+        var builderT = Type.builder().withName("Builder").withTypeParameters(getSelfType().getTypeParams()).build();
         return getFields().stream().map(f -> new BuilderSetter(builderT, f)).collect(Collectors.toList());
     }
 
@@ -163,19 +186,19 @@ public class ObjectShapeBase extends Shape {
 
     public static class AdditionalProperties {
         private final String keyName;
-        private final Type keyType;
+        private final TypeRef keyType;
         private final String keyDescription;
         private final String valueName;
-        private final Type valueType;
+        private final TypeRef valueType;
         private final String valueDescription;
         private final boolean singleton;
 
         public AdditionalProperties(
             String keyName,
-            Type keyType,
+            TypeRef keyType,
             String keyDescription,
             String valueName,
-            Type valueType,
+            TypeRef valueType,
             String valueDescription,
             boolean singleton
         ) {
@@ -199,8 +222,14 @@ public class ObjectShapeBase extends Shape {
             }
         }
 
-        public Type getMapType() {
+        public TypeRef getMapType() {
             return Types.Java.Util.Map(keyType, valueType);
+        }
+
+        public boolean usesTypedKeys() {
+            return valueType.getTargetShape()
+                .map(s -> s instanceof TaggedUnionShape && ((TaggedUnionShape) s).usesTypedKeys())
+                .orElse(false);
         }
     }
 }

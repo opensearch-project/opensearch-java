@@ -8,28 +8,44 @@
 
 package org.opensearch.client.codegen.openapi;
 
+import static org.opensearch.client.codegen.utils.Functional.ifNonnull;
+
 import io.swagger.v3.oas.models.PathItem;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.codegen.utils.Clone;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Maps;
+import org.opensearch.client.codegen.utils.builder.ToBuilder;
 
-public class OpenApiPath extends OpenApiRefElement<OpenApiPath> {
-    @Nonnull
-    private final String httpPath;
+public final class OpenApiPath extends OpenApiRefElement<OpenApiPath> implements ToBuilder<OpenApiPath.Builder> {
+    private String httpPath;
     @Nullable
-    private final Map<HttpMethod, OpenApiOperation> operations;
+    private Map<HttpMethod, OpenApiOperation> operations;
     @Nullable
-    private final List<OpenApiParameter> parameters;
+    private List<OpenApiParameter> parameters;
 
-    protected OpenApiPath(@Nonnull OpenApiSpecification parent, @Nonnull JsonPointer pointer, @Nonnull PathItem pathItem) {
-        super(parent, pointer, pathItem.get$ref(), OpenApiPath.class);
+    private OpenApiPath(@Nonnull Builder builder) {
+        super(builder, OpenApiPath.class);
+        setOperations(builder.operations);
+        setParameters(builder.parameters);
+    }
+
+    OpenApiPath(@Nonnull PathItem pathItem) {
+        super(pathItem.get$ref(), OpenApiPath.class);
+        setOperations(children(pathItem.readOperationsMap(), HttpMethod::from, OpenApiOperation::new));
+        setParameters(children(pathItem.getParameters(), OpenApiParameter::new));
+    }
+
+    @Override
+    void initialize(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer) {
+        super.initialize(parent, pointer);
         this.httpPath = pointer.getLastKey().orElseThrow();
-        this.operations = children(pathItem.readOperationsMap(), HttpMethod::from, OpenApiOperation::new);
-        this.parameters = children("parameters", pathItem.getParameters(), OpenApiParameter::new);
+        initializeOperations();
+        initializeChildren("parameters", parameters);
     }
 
     @Nonnull
@@ -42,8 +58,66 @@ public class OpenApiPath extends OpenApiRefElement<OpenApiPath> {
         return Maps.unmodifiableOpt(operations);
     }
 
+    public void setOperations(@Nullable Map<HttpMethod, OpenApiOperation> operations) {
+        this.operations = operations;
+        initializeOperations();
+    }
+
+    private void initializeOperations() {
+        if (operations == null) {
+            return;
+        }
+        var ptr = getPointer();
+        operations.forEach((key, value) -> value.initialize(this, ptr.append(key.toString())));
+    }
+
     @Nonnull
     public Optional<List<OpenApiParameter>> getParameters() {
         return Lists.unmodifiableOpt(parameters);
+    }
+
+    public void setParameters(@Nullable List<OpenApiParameter> parameters) {
+        this.parameters = parameters;
+        initializeChildren("parameters", parameters);
+    }
+
+    @Override
+    public @Nonnull OpenApiPath clone() {
+        return toBuilder().build();
+    }
+
+    @Override
+    public @Nonnull Builder toBuilder() {
+        return super.toBuilder(builder()).withOperations(ifNonnull(operations, Clone::clone))
+            .withParameters(ifNonnull(parameters, Clone::clone));
+    }
+
+    public static @Nonnull Builder builder() {
+        return new Builder();
+    }
+
+    public static final class Builder extends OpenApiRefElement.AbstractBuilder<OpenApiPath, Builder> {
+        @Nullable
+        private Map<HttpMethod, OpenApiOperation> operations;
+        @Nullable
+        private List<OpenApiParameter> parameters;
+
+        private Builder() {}
+
+        @Nonnull
+        @Override
+        protected OpenApiPath construct() {
+            return new OpenApiPath(this);
+        }
+
+        public @Nonnull Builder withOperations(@Nullable Map<HttpMethod, OpenApiOperation> operations) {
+            this.operations = operations;
+            return this;
+        }
+
+        public @Nonnull Builder withParameters(@Nullable List<OpenApiParameter> parameters) {
+            this.parameters = parameters;
+            return this;
+        }
     }
 }

@@ -29,7 +29,12 @@
         {{#valueType.directSerializer}}this.{{valueName}}{{/valueType.directSerializer}}
     {{/singleton}}
     {{^singleton}}
-        {{#mapType.directSerializer}}this.{{valueName}}{{/mapType.directSerializer}}
+        {{#usesTypedKeys}}
+            {{TYPES.Client.Json.ExternallyTaggedUnion}}.serializeTypedKeysInner(this.{{valueName}}, generator, mapper);
+        {{/usesTypedKeys}}
+        {{^usesTypedKeys}}
+            {{#mapType.directSerializer}}this.{{valueName}}{{/mapType.directSerializer}}
+        {{/usesTypedKeys}}
     {{/singleton}}
 {{/additionalProperties}}
 {{>ObjectShape/Serialize/Fields}}

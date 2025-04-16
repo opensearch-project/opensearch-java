@@ -5,8 +5,8 @@
  */
 @Override
 @{{TYPES.Javax.Annotation.Nonnull}}
-public {{className}} build() {
+public {{selfType}} build() {
     _checkSingleUse();
 
-    return new {{className}}(this);
+    return new {{className}}{{#typeParameters}}<>{{/typeParameters}}(this);
 }

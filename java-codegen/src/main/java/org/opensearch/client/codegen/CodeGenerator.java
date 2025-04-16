@@ -38,10 +38,11 @@ import org.opensearch.client.codegen.exceptions.ApiSpecificationParseException;
 import org.opensearch.client.codegen.exceptions.RenderException;
 import org.opensearch.client.codegen.model.Namespace;
 import org.opensearch.client.codegen.model.OperationGroup;
-import org.opensearch.client.codegen.model.ShapeRenderingContext;
-import org.opensearch.client.codegen.model.SpecTransformer;
-import org.opensearch.client.codegen.model.overrides.Overrides;
 import org.opensearch.client.codegen.openapi.OpenApiSpecification;
+import org.opensearch.client.codegen.openapi.rewriter.SpecificationRewriter;
+import org.opensearch.client.codegen.renderer.ShapeRenderingContext;
+import org.opensearch.client.codegen.transformer.SpecTransformer;
+import org.opensearch.client.codegen.transformer.overrides.Overrides;
 import org.opensearch.client.codegen.utils.matcher.Matcher;
 
 public class CodeGenerator {
@@ -181,6 +182,7 @@ public class CodeGenerator {
 
     private static Namespace parseSpec(URI location) throws ApiSpecificationParseException {
         var spec = OpenApiSpecification.retrieve(location);
+        spec = SpecificationRewriter.rewrite(spec, Overrides.OVERRIDES);
         var transformer = new SpecTransformer(OPERATION_MATCHER, Overrides.OVERRIDES);
         transformer.visit(spec);
         return transformer.getRoot();

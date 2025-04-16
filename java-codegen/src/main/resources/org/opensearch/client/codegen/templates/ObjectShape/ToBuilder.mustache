@@ -1,7 +1,7 @@
 {{^abstract}}
     @Override
     @{{TYPES.Javax.Annotation.Nonnull}}
-    public Builder toBuilder() {
-        return new Builder(this);
+    public Builder{{#typeParameters}}{{.}}{{/typeParameters}} toBuilder() {
+        return new Builder{{#typeParameters}}<>{{/typeParameters}}(this);
     }
 {{/abstract}}

@@ -17,7 +17,11 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.opensearch.client.codegen.exceptions.RenderException;
-import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
+import org.opensearch.client.codegen.model.types.Type;
+import org.opensearch.client.codegen.model.types.TypeRef;
+import org.opensearch.client.codegen.model.types.Types;
+import org.opensearch.client.codegen.renderer.ShapeRenderingContext;
+import org.opensearch.client.codegen.transformer.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.JavaClassKind;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
@@ -33,7 +37,7 @@ public class TaggedUnionShape extends ObjectShapeBase {
         super(parent, className, typedefName, description, shouldGenerate);
     }
 
-    public void addVariant(String name, Type type) {
+    public void addVariant(String name, TypeRef type) {
         variants.put(name, new Variant(name, type.getBoxed()));
         tryAddReference(ReferenceKind.UnionVariant, type);
     }
@@ -55,14 +59,14 @@ public class TaggedUnionShape extends ObjectShapeBase {
     }
 
     @Override
-    public Collection<Type> getAnnotations() {
-        return List.of(Types.Client.Json.JsonpDeserializable);
+    public Collection<TypeRef> getAnnotations() {
+        return !usesTypedKeys() && !hasTypeParameters() ? List.of(Types.Client.Json.JsonpDeserializable) : List.of();
     }
 
     @Override
-    public Collection<Type> getImplementsTypes() {
-        var types = new ArrayList<Type>();
-        types.add(Types.Client.Util.TaggedUnion(getType().getNestedType("Kind"), getVariantBaseType()));
+    public Collection<TypeRef> getImplementsTypes() {
+        var types = new ArrayList<TypeRef>();
+        types.add(Types.Client.Util.TaggedUnion(getMaterializedType().getNestedType("Kind"), getVariantBaseType()));
         types.addAll(super.getImplementsTypes());
         types.add(Types.Client.Json.PlainJsonSerializable);
         return types;
@@ -91,6 +95,10 @@ public class TaggedUnionShape extends ObjectShapeBase {
 
     public boolean isOptionalExternallyDiscriminated() {
         return externallyDiscriminated == ExternallyDiscriminated.OPTIONAL;
+    }
+
+    public boolean usesTypedKeys() {
+        return externallyDiscriminated == ExternallyDiscriminated.TYPED_KEYS;
     }
 
     public void setExternallyDiscriminated(ExternallyDiscriminated externallyDiscriminated) {
@@ -133,11 +141,25 @@ public class TaggedUnionShape extends ObjectShapeBase {
 
     public Collection<BuilderSetter> getContainerBuilderSetters() {
         var builderT = Type.builder().withName("ContainerBuilder").build();
-        return getFields(false).stream().map(f -> new BuilderSetter(builderT, "Builder.this", f)).collect(Collectors.toList());
+        return getFields(true, false, true).stream().map(f -> new BuilderSetter(builderT, "Builder.this", f)).collect(Collectors.toList());
     }
 
     public boolean needsContainerBuilder() {
-        return hasFields(false);
+        return hasFields(true, false, true);
+    }
+
+    @Override
+    public boolean hasFields() {
+        return true;
+    }
+
+    @Override
+    public Collection<Field> getHashableFields() {
+        var fields = new ArrayList<Field>();
+        fields.add(Field.builder().withName("_kind", true).withType(getMaterializedType().getNestedType("Kind")).build());
+        fields.add(Field.builder().withName("_value", true).withType(getVariantBaseType()).build());
+        fields.addAll(super.getHashableFields());
+        return fields;
     }
 
     @Override
@@ -157,9 +179,9 @@ public class TaggedUnionShape extends ObjectShapeBase {
 
     public static class Variant {
         private final String name;
-        private final Type type;
+        private final TypeRef type;
 
-        protected Variant(String name, Type type) {
+        protected Variant(String name, TypeRef type) {
             this.name = name;
             this.type = type;
         }
@@ -168,7 +190,7 @@ public class TaggedUnionShape extends ObjectShapeBase {
             return name;
         }
 
-        public Type getType() {
+        public TypeRef getType() {
             return type;
         }
 
@@ -265,6 +287,7 @@ public class TaggedUnionShape extends ObjectShapeBase {
 
     public enum ExternallyDiscriminated {
         OPTIONAL,
-        REQUIRED
+        REQUIRED,
+        TYPED_KEYS
     }
 }
