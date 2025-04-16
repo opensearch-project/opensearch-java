@@ -321,6 +321,9 @@ After:
 ### OperatingSystemMemoryInfo
 - The `freePercent` and `usedPercent` properties have been corrected to be of type `double` instead of `int`.
 
+### NodeInfo
+- The `totalIndexingBuffer` and `totalIndexingBufferInBytes` properties are now of type `JsonData` to handle OpenSearch 3.0 where they've correctly as previously their values were swapped.
+
 ### NodeInfoSettingsHttpType
 - The `NodeInfoSettingsHttpType` class is now an untagged union between `String` and `NodeInfoSettingsHttpTypeConfig`.
 
@@ -593,3 +596,7 @@ After:
 ### RescoreQuery
 - The `queryWeight` and `rescoreQueryWeight` properties have been corrected to be of type `Float` instead of `Double`.
 - The `query` property has been renamed to `rescoreQuery` to match the JSON property naming.
+
+### ShardCacheStats renamed to CacheStats
+- The `ShardCacheStats` class has been renamed to `CacheStats`, this affects:
+  - `nodes.stats.Stats`'s `caches` field.

@@ -6277,7 +6277,7 @@ paths:
       operationId: ppl.query.0
       x-operation-group: ppl.query
       x-version-added: '1.0'
-      description: Executes a PPL query against OpenSearch indexes.
+      description: Send a PPL query to the PPL plugin.
       externalDocs:
         url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
       parameters:
@@ -6298,7 +6298,7 @@ paths:
       operationId: ppl.explain.0
       x-operation-group: ppl.explain
       x-version-added: '1.0'
-      description: Returns the execution plan for a PPL query.
+      description: Shows how a query is executed against OpenSearch.
       externalDocs:
         url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
       parameters:
@@ -6319,7 +6319,7 @@ paths:
       operationId: ppl.get_stats.0
       x-operation-group: ppl.get_stats
       x-version-added: '1.0'
-      description: Retrieves performance metrics for the PPL plugin.
+      description: Collect metrics for the plugin within the interval.
       externalDocs:
         url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
       parameters:
@@ -6337,7 +6337,7 @@ paths:
       operationId: ppl.post_stats.1
       x-operation-group: ppl.post_stats
       x-version-added: '1.0'
-      description: Retrieves filtered performance metrics for the PPL plugin.
+      description: By a stats endpoint, you are able to collect metrics for the plugin within the interval.
       externalDocs:
         url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
       parameters:
@@ -14095,7 +14095,7 @@ paths:
       operationId: ppl.query.0_superseded
       x-operation-group: ppl.query
       x-version-added: '1.0'
-      description: Executes a PPL query against OpenSearch indexes.
+      description: Send a PPL query to the PPL plugin.
       externalDocs:
         url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
       parameters:
@@ -14118,7 +14118,7 @@ paths:
       operationId: ppl.explain.0_superseded
       x-operation-group: ppl.explain
       x-version-added: '1.0'
-      description: Returns the execution plan for a PPL query.
+      description: Shows how a query is executed against OpenSearch.
       externalDocs:
         url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
       parameters:
@@ -14141,7 +14141,7 @@ paths:
       operationId: ppl.get_stats.0_superseded
       x-operation-group: ppl.get_stats
       x-version-added: '1.0'
-      description: Retrieves performance metrics for the PPL plugin.
+      description: Collect metrics for the plugin within the interval.
       externalDocs:
         url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
       parameters:
@@ -14161,7 +14161,7 @@ paths:
       operationId: ppl.post_stats.1_superseded
       x-operation-group: ppl.post_stats
       x-version-added: '1.0'
-      description: Retrieves filtered performance metrics for the PPL plugin.
+      description: By a stats endpoint, you are able to collect metrics for the plugin within the interval.
       externalDocs:
         url: https://opensearch.org/docs/latest/search-plugins/sql/monitoring/
       parameters:
@@ -24989,52 +24989,52 @@ components:
     ppl.explain___query.format:
       name: format
       in: query
-      description: Specifies the response format (JSON, YAML).
+      description: A short version of the Accept header (for example, `json`, `yaml`).
       schema:
         type: string
     ppl.explain___query.sanitize:
       name: sanitize
       in: query
-      description: Whether to escape special characters in the results.
+      description: Specifies whether to escape special characters in the results.
       schema:
         type: boolean
         default: true
     ppl.get_stats___query.format:
       name: format
       in: query
-      description: Specifies the response format (JSON, YAML).
+      description: A short version of the Accept header (for example, `json`, `yaml`).
       schema:
         type: string
     ppl.get_stats___query.sanitize:
       name: sanitize
       in: query
-      description: Whether to escape special characters in the results.
+      description: Specifies whether to escape special characters in the results.
       schema:
         type: boolean
         default: true
     ppl.post_stats___query.format:
       name: format
       in: query
-      description: Specifies the response format (JSON, YAML).
+      description: A short version of the Accept header (for example, `json`, `yaml`).
       schema:
         type: string
     ppl.post_stats___query.sanitize:
       name: sanitize
       in: query
-      description: Whether to escape special characters in the results.
+      description: Specifies whether to escape special characters in the results.
       schema:
         type: boolean
         default: true
     ppl.query___query.format:
       name: format
       in: query
-      description: Specifies the response format (JSON OR YAML).
+      description: A short version of the Accept header (for example, `json`, `yaml`).
       schema:
         type: string
     ppl.query___query.sanitize:
       name: sanitize
       in: query
-      description: Whether to sanitize special characters in the results.
+      description: Specifies whether to escape special characters in the results.
       schema:
         type: boolean
         default: true
@@ -29212,21 +29212,18 @@ components:
           schema:
             $ref: '#/components/schemas/observability._common___ObservabilityObject'
     ppl.explain:
-      description: Contains the PPL query to explain.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/sql._common___Explain'
       required: true
     ppl.post_stats:
-      description: Defines the statistics collection parameters.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/sql._common___Stats'
       required: true
     ppl.query:
-      description: Contains the PPL query to execute.
       content:
         application/json:
           schema:
@@ -32922,25 +32919,25 @@ components:
         application/json: {}
       description: ''
     ppl.explain___200:
-      description: Returns the query execution plan.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/sql._common___ExplainResponse'
+      description: ''
     ppl.get_stats___200:
-      description: Returns plugin performance metrics.
       content:
         text/plain:
           schema:
             type: string
+      description: ''
     ppl.post_stats___200:
-      description: Returns filtered plugin performance metrics.
       content:
         text/plain:
           schema:
             type: string
+      description: ''
     ppl.query___200:
-      description: Returns query results and metadata.
+      description: ''
       content:
         application/json:
           schema:
@@ -34856,7 +34853,6 @@ components:
       required:
         - size_in_bytes
     _common___Conflicts:
-      type: string
       oneOf:
         - type: string
           const: abort
@@ -35357,7 +35353,6 @@ components:
           description: The location specified as a string in `lat,lon` or WKT format.
           type: string
     _common___GeoShapeRelation:
-      type: string
       oneOf:
         - type: string
           const: contains
@@ -35984,7 +35979,6 @@ components:
         - minimum_wire_compatibility_version
         - number
     _common___OpType:
-      type: string
       oneOf:
         - type: string
           const: create
@@ -36459,7 +36453,6 @@ components:
       enum:
         - index_or_alias
     _common___Result:
-      type: string
       oneOf:
         - type: string
           const: created
@@ -36950,7 +36943,6 @@ components:
           $ref: '#/components/schemas/_common___SlicesCalculation'
           description: The method to calculate the number of slices.
     _common___SlicesCalculation:
-      type: string
       oneOf:
         - type: string
           const: auto

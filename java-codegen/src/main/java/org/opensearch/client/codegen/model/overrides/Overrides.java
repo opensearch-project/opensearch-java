@@ -162,6 +162,13 @@ public class Overrides {
                     so -> so.withProperties(p -> p.with("_nodes", po -> po.withName("nodeStats")))
                 )
                 .with(schema("nodes.info", "Metric"), so -> so.withClassName("NodesInfoMetric"))
+                .with(
+                    schema("nodes.info", "NodeInfo"),
+                    so -> so.withProperties(
+                        p -> p.with("total_indexing_buffer", po -> po.withMappedType(Types.Client.Json.JsonData))
+                            .with("total_indexing_buffer_in_bytes", po -> po.withMappedType(Types.Client.Json.JsonData))
+                    )
+                )
                 .with(schema("nodes.stats", "IndexMetric"), so -> so.withClassName("NodesStatsIndexMetric"))
                 .with(schema("nodes.stats", "Metric"), so -> so.withClassName("NodesStatsMetric"))
                 .with(schema("nodes.usage", "Metric"), so -> so.withClassName("NodesUsageMetric"))

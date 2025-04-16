@@ -38,26 +38,19 @@ package org.opensearch.client.opensearch.nodes.stats;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.util.CopyableBuilder;
-import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
-import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: nodes.stats.ShardCacheStats
+// typedef: nodes.stats.CacheStatsBase
 
-@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ShardCacheStats implements PlainJsonSerializable, ToCopyableBuilder<ShardCacheStats.Builder, ShardCacheStats> {
+public abstract class CacheStatsBase implements PlainJsonSerializable {
 
     @Nullable
     private final Long evictions;
@@ -77,23 +70,15 @@ public class ShardCacheStats implements PlainJsonSerializable, ToCopyableBuilder
     @Nullable
     private final Long sizeInBytes;
 
-    @Nullable
-    private final String storeName;
-
     // ---------------------------------------------------------------------------------------------
 
-    private ShardCacheStats(Builder builder) {
+    protected CacheStatsBase(AbstractBuilder<?> builder) {
         this.evictions = builder.evictions;
         this.hitCount = builder.hitCount;
         this.itemCount = builder.itemCount;
         this.missCount = builder.missCount;
         this.size = builder.size;
         this.sizeInBytes = builder.sizeInBytes;
-        this.storeName = builder.storeName;
-    }
-
-    public static ShardCacheStats of(Function<ShardCacheStats.Builder, ObjectBuilder<ShardCacheStats>> fn) {
-        return fn.apply(new Builder()).build();
     }
 
     /**
@@ -145,14 +130,6 @@ public class ShardCacheStats implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * API name: {@code store_name}
-     */
-    @Nullable
-    public final String storeName() {
-        return this.storeName;
-    }
-
-    /**
      * Serialize this object to JSON.
      */
     @Override
@@ -192,30 +169,11 @@ public class ShardCacheStats implements PlainJsonSerializable, ToCopyableBuilder
             generator.writeKey("size_in_bytes");
             generator.write(this.sizeInBytes);
         }
-
-        if (this.storeName != null) {
-            generator.writeKey("store_name");
-            generator.write(this.storeName);
-        }
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    @Override
-    @Nonnull
-    public Builder toBuilder() {
-        return new Builder(this);
-    }
-
-    @Nonnull
-    public static Builder builder() {
-        return new Builder();
-    }
-
-    /**
-     * Builder for {@link ShardCacheStats}.
-     */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardCacheStats> {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         @Nullable
         private Long evictions;
         @Nullable
@@ -228,132 +186,94 @@ public class ShardCacheStats implements PlainJsonSerializable, ToCopyableBuilder
         private String size;
         @Nullable
         private Long sizeInBytes;
-        @Nullable
-        private String storeName;
 
-        public Builder() {}
+        protected AbstractBuilder() {}
 
-        private Builder(ShardCacheStats o) {
+        protected AbstractBuilder(CacheStatsBase o) {
             this.evictions = o.evictions;
             this.hitCount = o.hitCount;
             this.itemCount = o.itemCount;
             this.missCount = o.missCount;
             this.size = o.size;
             this.sizeInBytes = o.sizeInBytes;
-            this.storeName = o.storeName;
         }
 
-        private Builder(Builder o) {
+        protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
             this.evictions = o.evictions;
             this.hitCount = o.hitCount;
             this.itemCount = o.itemCount;
             this.missCount = o.missCount;
             this.size = o.size;
             this.sizeInBytes = o.sizeInBytes;
-            this.storeName = o.storeName;
         }
 
-        @Override
         @Nonnull
-        public Builder copy() {
-            return new Builder(this);
-        }
+        protected abstract BuilderT self();
 
         /**
          * API name: {@code evictions}
          */
         @Nonnull
-        public final Builder evictions(@Nullable Long value) {
+        public final BuilderT evictions(@Nullable Long value) {
             this.evictions = value;
-            return this;
+            return self();
         }
 
         /**
          * API name: {@code hit_count}
          */
         @Nonnull
-        public final Builder hitCount(@Nullable Long value) {
+        public final BuilderT hitCount(@Nullable Long value) {
             this.hitCount = value;
-            return this;
+            return self();
         }
 
         /**
          * API name: {@code item_count}
          */
         @Nonnull
-        public final Builder itemCount(@Nullable Long value) {
+        public final BuilderT itemCount(@Nullable Long value) {
             this.itemCount = value;
-            return this;
+            return self();
         }
 
         /**
          * API name: {@code miss_count}
          */
         @Nonnull
-        public final Builder missCount(@Nullable Long value) {
+        public final BuilderT missCount(@Nullable Long value) {
             this.missCount = value;
-            return this;
+            return self();
         }
 
         /**
          * API name: {@code size}
          */
         @Nonnull
-        public final Builder size(@Nullable String value) {
+        public final BuilderT size(@Nullable String value) {
             this.size = value;
-            return this;
+            return self();
         }
 
         /**
          * API name: {@code size_in_bytes}
          */
         @Nonnull
-        public final Builder sizeInBytes(@Nullable Long value) {
+        public final BuilderT sizeInBytes(@Nullable Long value) {
             this.sizeInBytes = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code store_name}
-         */
-        @Nonnull
-        public final Builder storeName(@Nullable String value) {
-            this.storeName = value;
-            return this;
-        }
-
-        /**
-         * Builds a {@link ShardCacheStats}.
-         *
-         * @throws NullPointerException if some of the required fields are null.
-         */
-        @Override
-        @Nonnull
-        public ShardCacheStats build() {
-            _checkSingleUse();
-
-            return new ShardCacheStats(this);
+            return self();
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    /**
-     * Json deserializer for {@link ShardCacheStats}
-     */
-    public static final JsonpDeserializer<ShardCacheStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-        Builder::new,
-        ShardCacheStats::setupShardCacheStatsDeserializer
-    );
-
-    protected static void setupShardCacheStatsDeserializer(ObjectDeserializer<ShardCacheStats.Builder> op) {
-        op.add(Builder::evictions, JsonpDeserializer.longDeserializer(), "evictions");
-        op.add(Builder::hitCount, JsonpDeserializer.longDeserializer(), "hit_count");
-        op.add(Builder::itemCount, JsonpDeserializer.longDeserializer(), "item_count");
-        op.add(Builder::missCount, JsonpDeserializer.longDeserializer(), "miss_count");
-        op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
-        op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
-        op.add(Builder::storeName, JsonpDeserializer.stringDeserializer(), "store_name");
+    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupCacheStatsBaseDeserializer(ObjectDeserializer<BuilderT> op) {
+        op.add(AbstractBuilder::evictions, JsonpDeserializer.longDeserializer(), "evictions");
+        op.add(AbstractBuilder::hitCount, JsonpDeserializer.longDeserializer(), "hit_count");
+        op.add(AbstractBuilder::itemCount, JsonpDeserializer.longDeserializer(), "item_count");
+        op.add(AbstractBuilder::missCount, JsonpDeserializer.longDeserializer(), "miss_count");
+        op.add(AbstractBuilder::size, JsonpDeserializer.stringDeserializer(), "size");
+        op.add(AbstractBuilder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
     }
 
     @Override
@@ -365,7 +285,6 @@ public class ShardCacheStats implements PlainJsonSerializable, ToCopyableBuilder
         result = 31 * result + Objects.hashCode(this.missCount);
         result = 31 * result + Objects.hashCode(this.size);
         result = 31 * result + Objects.hashCode(this.sizeInBytes);
-        result = 31 * result + Objects.hashCode(this.storeName);
         return result;
     }
 
@@ -373,13 +292,12 @@ public class ShardCacheStats implements PlainJsonSerializable, ToCopyableBuilder
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        ShardCacheStats other = (ShardCacheStats) o;
+        CacheStatsBase other = (CacheStatsBase) o;
         return Objects.equals(this.evictions, other.evictions)
             && Objects.equals(this.hitCount, other.hitCount)
             && Objects.equals(this.itemCount, other.itemCount)
             && Objects.equals(this.missCount, other.missCount)
             && Objects.equals(this.size, other.size)
-            && Objects.equals(this.sizeInBytes, other.sizeInBytes)
-            && Objects.equals(this.storeName, other.storeName);
+            && Objects.equals(this.sizeInBytes, other.sizeInBytes);
     }
 }
