@@ -6,16 +6,12 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.codegen.model;
+package org.opensearch.client.codegen.renderer;
 
 import java.io.File;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
-import org.opensearch.client.codegen.renderer.JavaCodeFormatter;
-import org.opensearch.client.codegen.renderer.TemplateLoader;
-import org.opensearch.client.codegen.renderer.TemplateRenderer;
-import org.opensearch.client.codegen.renderer.TemplateValueFormatter;
 import org.opensearch.client.codegen.utils.Strings;
 import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 

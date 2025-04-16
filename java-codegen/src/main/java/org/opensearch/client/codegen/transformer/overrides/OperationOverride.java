@@ -6,7 +6,7 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.codegen.model.overrides;
+package org.opensearch.client.codegen.transformer.overrides;
 
 import java.util.Collections;
 import java.util.Map;

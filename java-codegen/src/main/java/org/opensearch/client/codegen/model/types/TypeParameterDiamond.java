@@ -6,7 +6,7 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.codegen.model;
+package org.opensearch.client.codegen.model.types;
 
 import java.util.Objects;
 import java.util.function.Function;
@@ -16,7 +16,7 @@ import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 
 public final class TypeParameterDiamond {
     @Nonnull
-    private final Either<Type[], TypeParameterDefinition[]> params;
+    private final Either<TypeRef[], TypeParameterDefinition[]> params;
 
     private TypeParameterDiamond(Builder builder) {
         this.params = Objects.requireNonNull(builder.params, "params must not be null");
@@ -35,8 +35,12 @@ public final class TypeParameterDiamond {
         out.append(">");
     }
 
-    public Type[] getParamTypes() {
+    public TypeRef[] getParamTypes() {
         return params.getLeft();
+    }
+
+    public TypeParameterDefinition[] getTypeParameterDefinitions() {
+        return params.getRight();
     }
 
     @Override
@@ -52,7 +56,7 @@ public final class TypeParameterDiamond {
     }
 
     public static class Builder extends ObjectBuilderBase<TypeParameterDiamond, Builder> {
-        private Either<Type[], TypeParameterDefinition[]> params;
+        private Either<TypeRef[], TypeParameterDefinition[]> params;
 
         private Builder() {}
 
@@ -63,7 +67,7 @@ public final class TypeParameterDiamond {
         }
 
         @Nonnull
-        public Builder withParams(@Nonnull Type... params) {
+        public Builder withParams(@Nonnull TypeRef... params) {
             this.params = Either.left(Objects.requireNonNull(params, "params must not be null"));
             return this;
         }

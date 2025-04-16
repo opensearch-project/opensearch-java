@@ -4,43 +4,48 @@ public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{T
     mapper.serialize(_value, generator);
 {{/internallyDiscriminated}}
 {{^internallyDiscriminated}}
-    {{#externallyDiscriminated}}
-        generator.writeStartObject();
-    {{/externallyDiscriminated}}
-    {{#singleKeyMap}}
-        generator.writeStartObject(this.{{name}});
-    {{/singleKeyMap}}
-    {{#extendsOtherShape}}
-        super.serializeInternal(generator, mapper);
-    {{/extendsOtherShape}}
-    {{>ObjectShape/Serialize/Fields}}
-    {{#isOptionalExternallyDiscriminated}}
-        if (_kind != null) {
-    {{/isOptionalExternallyDiscriminated}}
-    {{#externallyDiscriminated}}
-        generator.writeKey(_kind.jsonValue());
-    {{/externallyDiscriminated}}
-    if (_value instanceof {{TYPES.Client.Json.JsonpSerializable}}) {
-    (({{TYPES.Client.Json.JsonpSerializable}}) _value).serialize(generator, mapper);
-    }{{#nonShapeVariants}}{{#-first}} else {
-    switch (_kind) {
-    {{/-first}}
-    case {{#pascalCase}}{{name}}{{/pascalCase}}:
-    {{#type.serializer}}(({{type}}) this._value){{/type.serializer}}
-    break;
-    {{#-last}}
-        }
-        }
-    {{/-last}}
-    {{/nonShapeVariants}}
-    {{#singleKeyMap}}
-        generator.writeEnd();
-    {{/singleKeyMap}}
-    {{#isOptionalExternallyDiscriminated}}
-        }
-    {{/isOptionalExternallyDiscriminated}}
-    {{#externallyDiscriminated}}
-        generator.writeEnd();
-    {{/externallyDiscriminated}}
+    {{#usesTypedKeys}}
+        mapper.serialize(_value, generator);
+    {{/usesTypedKeys}}
+    {{^usesTypedKeys}}
+        {{#externallyDiscriminated}}
+            generator.writeStartObject();
+        {{/externallyDiscriminated}}
+        {{#singleKeyMap}}
+            generator.writeStartObject(this.{{name}});
+        {{/singleKeyMap}}
+        {{#extendsOtherShape}}
+            super.serializeInternal(generator, mapper);
+        {{/extendsOtherShape}}
+        {{>ObjectShape/Serialize/Fields}}
+        {{#isOptionalExternallyDiscriminated}}
+            if (_kind != null) {
+        {{/isOptionalExternallyDiscriminated}}
+        {{#externallyDiscriminated}}
+            generator.writeKey(_kind.jsonValue());
+        {{/externallyDiscriminated}}
+        if (_value instanceof {{TYPES.Client.Json.JsonpSerializable}}) {
+        (({{TYPES.Client.Json.JsonpSerializable}}) _value).serialize(generator, mapper);
+        }{{#nonShapeVariants}}{{#-first}} else {
+        switch (_kind) {
+        {{/-first}}
+        case {{#pascalCase}}{{name}}{{/pascalCase}}:
+        {{#type.serializer}}(({{type}}) this._value){{/type.serializer}}
+        break;
+        {{#-last}}
+            }
+            }
+        {{/-last}}
+        {{/nonShapeVariants}}
+        {{#singleKeyMap}}
+            generator.writeEnd();
+        {{/singleKeyMap}}
+        {{#isOptionalExternallyDiscriminated}}
+            }
+        {{/isOptionalExternallyDiscriminated}}
+        {{#externallyDiscriminated}}
+            generator.writeEnd();
+        {{/externallyDiscriminated}}
+    {{/usesTypedKeys}}
 {{/internallyDiscriminated}}
 }

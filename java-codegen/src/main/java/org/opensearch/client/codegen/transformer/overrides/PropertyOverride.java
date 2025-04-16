@@ -6,7 +6,7 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.codegen.model.overrides;
+package org.opensearch.client.codegen.transformer.overrides;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -15,7 +15,8 @@ import java.util.Set;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.codegen.model.Type;
+import org.opensearch.client.codegen.model.types.Type;
+import org.opensearch.client.codegen.model.types.TypeRef;
 import org.opensearch.client.codegen.utils.builder.ObjectBuilder;
 import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.builder.ObjectMapBuilderBase;
@@ -46,7 +47,7 @@ public final class PropertyOverride {
     }
 
     @Nonnull
-    public Optional<Type> getMappedType() {
+    public Optional<TypeRef> getMappedType() {
         return Optional.ofNullable(mappedType);
     }
 

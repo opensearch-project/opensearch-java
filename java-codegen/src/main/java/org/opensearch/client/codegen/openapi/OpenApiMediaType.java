@@ -8,24 +8,76 @@
 
 package org.opensearch.client.codegen.openapi;
 
+import static org.opensearch.client.codegen.utils.Functional.ifNonnull;
+
 import io.swagger.v3.oas.models.media.MediaType;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.codegen.utils.Clone;
+import org.opensearch.client.codegen.utils.builder.ToBuilder;
 
-public class OpenApiMediaType extends OpenApiElement<OpenApiMediaType> {
+public final class OpenApiMediaType extends OpenApiElement<OpenApiMediaType> implements ToBuilder<OpenApiMediaType.Builder> {
     @Nullable
-    private final OpenApiSchema schema;
+    private OpenApiSchema schema;
 
-    protected OpenApiMediaType(@Nonnull OpenApiContent parent, @Nonnull JsonPointer pointer, @Nonnull MediaType mediaType) {
-        super(parent, pointer);
+    private OpenApiMediaType(@Nonnull Builder builder) {
+        super(builder);
+        setSchema(builder.schema);
+    }
+
+    OpenApiMediaType(@Nonnull MediaType mediaType) {
         Objects.requireNonNull(mediaType, "mediaType must not be null");
-        this.schema = child("schema", mediaType.getSchema(), OpenApiSchema::new);
+        setSchema(ifNonnull(mediaType.getSchema(), OpenApiSchema::new));
+    }
+
+    @Override
+    void initialize(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer) {
+        super.initialize(parent, pointer);
+        initializeChild("schema", schema);
     }
 
     @Nonnull
     public Optional<OpenApiSchema> getSchema() {
         return Optional.ofNullable(schema);
+    }
+
+    public void setSchema(@Nullable OpenApiSchema schema) {
+        this.schema = schema;
+        initializeChild("schema", schema);
+    }
+
+    @Override
+    public @Nonnull OpenApiMediaType clone() {
+        return toBuilder().build();
+    }
+
+    @Override
+    public @Nonnull Builder toBuilder() {
+        return super.toBuilder(builder()).withSchema(ifNonnull(schema, Clone::clone));
+    }
+
+    public static @Nonnull Builder builder() {
+        return new Builder();
+    }
+
+    public static final class Builder extends OpenApiElement.AbstractBuilder<OpenApiMediaType, Builder> {
+        @Nullable
+        private OpenApiSchema schema;
+
+        private Builder() {}
+
+        @Nonnull
+        @Override
+        public OpenApiMediaType construct() {
+            return new OpenApiMediaType(this);
+        }
+
+        @Nonnull
+        public Builder withSchema(@Nullable OpenApiSchema schema) {
+            this.schema = schema;
+            return this;
+        }
     }
 }

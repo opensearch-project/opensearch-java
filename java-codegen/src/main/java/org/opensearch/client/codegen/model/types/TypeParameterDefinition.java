@@ -6,7 +6,7 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.codegen.model;
+package org.opensearch.client.codegen.model.types;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -32,6 +32,11 @@ public final class TypeParameterDefinition {
     @Nullable
     public Type getExtends() {
         return extendsType;
+    }
+
+    @Nonnull
+    public TypeParameterRef toRef() {
+        return new TypeParameterRef(name);
     }
 
     @Override

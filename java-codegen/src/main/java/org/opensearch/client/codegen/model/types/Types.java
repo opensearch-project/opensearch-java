@@ -6,7 +6,7 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.codegen.model;
+package org.opensearch.client.codegen.model.types;
 
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
@@ -60,6 +60,7 @@ public final class Types {
         public static final Type Long = type("long");
         public static final Type Float = type("float");
         public static final Type Double = type("double");
+        public static final Type Void = type("void");
     }
 
     public static final class Java {
@@ -83,6 +84,7 @@ public final class Types {
             public static final Type Double = type(PACKAGE, "Double");
             public static final Type Object = type(PACKAGE, "Object");
             public static final Type Number = type(PACKAGE, "Number");
+            public static final Type Void = type(PACKAGE, "Void");
         }
 
         public static final class Util {
@@ -90,19 +92,19 @@ public final class Types {
             public static final Type Objects = type(PACKAGE, "Objects");
             public static final Type HashMap = type(PACKAGE, "HashMap");
 
-            public static Type Map(Type keyType, Type valueType) {
+            public static Type Map(TypeRef keyType, TypeRef valueType) {
                 return Map.withTypeParameters(keyType, valueType);
             }
 
             public static final Type Map = type(PACKAGE, "Map");
 
-            public static Type MapEntry(Type keyType, Type valueType) {
+            public static Type MapEntry(TypeRef keyType, TypeRef valueType) {
                 return MapEntry.withTypeParameters(keyType, valueType);
             }
 
             public static final Type MapEntry = type(PACKAGE, "Map.Entry");
 
-            public static Type List(Type valueType) {
+            public static Type List(TypeRef valueType) {
                 return List.withTypeParameters(valueType);
             }
 
@@ -152,12 +154,21 @@ public final class Types {
 
         public static final class Json {
             public static final String PACKAGE = Client.PACKAGE + ".json";
+            public static final Type ExternallyTaggedUnion = type(PACKAGE, "ExternallyTaggedUnion");
             public static final Type JsonData = type(PACKAGE, "JsonData");
             public static final Type JsonpDeserializable = type(PACKAGE, "JsonpDeserializable");
             public static final Type JsonpDeserializer = type(PACKAGE, "JsonpDeserializer");
             public static final Type JsonEnum = type(PACKAGE, "JsonEnum");
             public static final Type JsonpMapper = type(PACKAGE, "JsonpMapper");
             public static final Type JsonpSerializable = type(PACKAGE, "JsonpSerializable");
+
+            public static final Type JsonpSerializer = type(PACKAGE, "JsonpSerializer");
+
+            public static Type JsonpSerializer(TypeRef type) {
+                return JsonpSerializer.withTypeParameters(type);
+            }
+
+            public static final Type JsonpUtils = type(PACKAGE, "JsonpUtils");
             public static final Type ObjectBuilderDeserializer = type(PACKAGE, "ObjectBuilderDeserializer");
             public static final Type ObjectDeserializer = type(PACKAGE, "ObjectDeserializer");
             public static final Type PlainDeserializable = type(PACKAGE, "PlainDeserializable");
@@ -180,6 +191,8 @@ public final class Types {
                 public static final class Aggregations {
                     public static final String PACKAGE = _Types.PACKAGE + ".aggregations";
 
+                    public static final Type AdjacencyMatrixBucket = type(PACKAGE, "AdjacencyMatrixBucket");
+
                     public static final Type Buckets = type(PACKAGE, "Buckets");
 
                     public static Type Buckets(Type bucketType) {
@@ -193,6 +206,14 @@ public final class Types {
                     }
 
                     public static final Type FieldDateMath = type(PACKAGE, "FieldDateMath");
+
+                    public static final Type MultiBucketAggregateBase = type(PACKAGE, "MultiBucketAggregateBase");
+
+                    public static Type MultiBucketAggregateBase(Type bucketType) {
+                        return MultiBucketAggregateBase.withTypeParameters(bucketType);
+                    }
+
+                    public static final Type VariableWidthHistogramBucket = type(PACKAGE, "VariableWidthHistogramBucket");
                 }
 
                 public static final class QueryDsl {
@@ -226,7 +247,7 @@ public final class Types {
                 public static final Type BooleanEndpoint = type(PACKAGE, "BooleanEndpoint");
                 public static final Type BooleanResponse = type(PACKAGE, "BooleanResponse");
 
-                public static Type DictionaryResponse(Type keyType, Type valueType) {
+                public static Type DictionaryResponse(TypeRef keyType, TypeRef valueType) {
                     return DictionaryResponse.withTypeParameters(keyType, valueType);
                 }
 
@@ -240,7 +261,7 @@ public final class Types {
             public static final Type ApiTypeHelper = type(PACKAGE, "ApiTypeHelper");
             public static final Type CopyableBuilder = type(PACKAGE, "CopyableBuilder");
 
-            public static Type ObjectBuilder(Type type) {
+            public static Type ObjectBuilder(TypeRef type) {
                 return ObjectBuilder.withTypeParameters(type);
             }
 

@@ -6,26 +6,24 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.codegen.model;
+package org.opensearch.client.codegen.model.types;
 
-import static org.opensearch.client.codegen.model.Types.Client;
-import static org.opensearch.client.codegen.model.Types.Java;
+import static org.opensearch.client.codegen.model.types.Types.Client;
+import static org.opensearch.client.codegen.model.types.Types.Java;
 
-import com.samskivert.mustache.Mustache;
 import java.util.Optional;
 import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.opensearch.client.codegen.renderer.lambdas.TypeIsDefinedLambda;
-import org.opensearch.client.codegen.renderer.lambdas.TypeQueryParamifyLambda;
-import org.opensearch.client.codegen.renderer.lambdas.TypeSerializerLambda;
+import org.opensearch.client.codegen.model.EnumShape;
+import org.opensearch.client.codegen.model.Shape;
 import org.opensearch.client.codegen.utils.Strings;
 import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 
-public class Type {
-    private static final Set<String> PRIMITIVES = Set.of("boolean", "char", "byte", "short", "int", "long", "float", "double");
+public class Type extends TypeRef {
+    private static final Set<String> PRIMITIVES = Set.of("boolean", "char", "byte", "short", "int", "long", "float", "double", "void");
     private static final Set<String> BOXED_PRIMITIVES = Set.of(
         "Boolean",
         "Character",
@@ -34,7 +32,8 @@ public class Type {
         "Integer",
         "Long",
         "Float",
-        "Double"
+        "Double",
+        "Void"
     );
 
     @Nonnull
@@ -47,7 +46,7 @@ public class Type {
     @Nonnull
     private final String name;
     @Nullable
-    private final Type[] typeParams;
+    private final TypeRef[] typeParams;
     private final Shape targetShape;
 
     private Type(Builder builder) {
@@ -70,6 +69,14 @@ public class Type {
             TypeParameterDiamond.builder().withParams(typeParams).build().toString(out);
         }
         return out.toString();
+    }
+
+    @Override
+    protected void collectTypeParameterRefs(Set<TypeParameterRef> refs) {
+        if (typeParams == null) return;
+        for (var typeParam : typeParams) {
+            typeParam.collectTypeParameterRefs(refs);
+        }
     }
 
     @Override
@@ -97,8 +104,9 @@ public class Type {
         return name;
     }
 
+    @Override
     @Nullable
-    public Type[] getTypeParams() {
+    public TypeRef[] getTypeParams() {
         return typeParams;
     }
 
@@ -110,8 +118,9 @@ public class Type {
         return packageName != null && packageName.startsWith(pkg);
     }
 
+    @Override
     @Nonnull
-    public Type getBoxed() {
+    public TypeRef getBoxed() {
         switch (name) {
             case "char":
                 return Java.Lang.Character;
@@ -129,6 +138,8 @@ public class Type {
                 return Java.Lang.Float;
             case "double":
                 return Java.Lang.Double;
+            case "void":
+                return Java.Lang.Void;
             default:
                 return this;
         }
@@ -149,13 +160,13 @@ public class Type {
         return Java.Util.MapEntry(this.typeParams[0], this.typeParams[1]);
     }
 
-    public Type getMapKeyType() {
+    public TypeRef getMapKeyType() {
         if (!isMap()) return null;
 
         return this.typeParams[0];
     }
 
-    public Type getMapValueType() {
+    public TypeRef getMapValueType() {
         if (!isMap()) return null;
 
         return this.typeParams[1];
@@ -165,14 +176,10 @@ public class Type {
         return "List".equals(name);
     }
 
-    public Type getListValueType() {
+    public TypeRef getListValueType() {
         if (!isList()) return null;
 
         return this.typeParams[0];
-    }
-
-    public boolean isListOrMap() {
-        return isList() || isMap();
     }
 
     public boolean isString() {
@@ -204,7 +211,10 @@ public class Type {
     }
 
     public boolean isBuiltIn() {
-        return isPrimitive() || (packageName != null && packageName.startsWith("java.")) || "JsonData".equals(name);
+        return isPrimitive()
+            || (packageName != null && packageName.startsWith("java."))
+            || "JsonData".equals(name)
+            || "JsonpSerializer".equals(name);
     }
 
     public boolean hasBuilder() {
@@ -214,7 +224,7 @@ public class Type {
     public Type getBuilderType() {
         if (!hasBuilder()) return null;
 
-        return getNestedType("Builder");
+        return getNestedType("Builder").withTypeParameters(typeParams);
     }
 
     public Type getBuilderFnType() {
@@ -227,28 +237,25 @@ public class Type {
         return builder().withPackage(packageName).withName(this.name + "." + name).build();
     }
 
-    public Mustache.Lambda serializer() {
-        return new TypeSerializerLambda(this, false);
-    }
-
-    public Mustache.Lambda directSerializer() {
-        return new TypeSerializerLambda(this, true);
-    }
-
     public void getRequiredImports(Set<String> imports, String currentPkg) {
         if (packageName != null && !packageName.equals(Java.Lang.PACKAGE) && !packageName.equals(currentPkg)) {
             var dotIdx = name.indexOf('.');
             imports.add(packageName + '.' + (dotIdx > 0 ? name.substring(0, dotIdx) : name));
         }
         if (typeParams != null) {
-            for (Type arg : typeParams) {
+            for (TypeRef arg : typeParams) {
                 arg.getRequiredImports(imports, currentPkg);
             }
         }
     }
 
-    public Type withTypeParameters(Type... typeParams) {
+    public Type withTypeParameters(TypeRef... typeParams) {
         return toBuilder().withTypeParameters(typeParams).build();
+    }
+
+    @Override
+    public boolean isTypeParameterRef() {
+        return false;
     }
 
     public boolean canQueryParamify() {
@@ -256,23 +263,16 @@ public class Type {
             return true;
         }
         if (isList()) {
-            return getListValueType().canQueryParamify();
+            var listValueType = getListValueType();
+            return listValueType instanceof Type && ((Type) listValueType).canQueryParamify();
         }
         return false;
-    }
-
-    public Mustache.Lambda queryParamify() {
-        return new TypeQueryParamifyLambda(this);
-    }
-
-    public Mustache.Lambda isDefined() {
-        return new TypeIsDefinedLambda(this);
     }
 
     public static final class Builder extends ObjectBuilderBase<Type, Builder> {
         private String packageName;
         private String name;
-        private Type[] typeParams;
+        private TypeRef[] typeParams;
         private Shape targetShape;
 
         private Builder() {}
@@ -296,7 +296,7 @@ public class Type {
         }
 
         @Nonnull
-        public Builder withTypeParameters(@Nullable Type... typeParams) {
+        public Builder withTypeParameters(@Nullable TypeRef... typeParams) {
             this.typeParams = typeParams;
             return this;
         }

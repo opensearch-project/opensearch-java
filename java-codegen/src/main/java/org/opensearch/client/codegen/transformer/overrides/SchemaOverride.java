@@ -6,7 +6,7 @@
  * compatible open source license.
  */
 
-package org.opensearch.client.codegen.model.overrides;
+package org.opensearch.client.codegen.transformer.overrides;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.opensearch.client.codegen.model.Type;
+import org.opensearch.client.codegen.model.types.Type;
 import org.opensearch.client.codegen.openapi.JsonPointer;
 import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.builder.ObjectBuilder;

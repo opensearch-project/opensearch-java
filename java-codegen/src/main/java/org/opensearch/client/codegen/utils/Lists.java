@@ -35,6 +35,12 @@ public final class Lists {
         return list.stream().filter(predicate).collect(Collectors.toList());
     }
 
+    public static <T> void forEach(@Nonnull List<T> list, @Nonnull ItemConsumer<T> consumer) {
+        Objects.requireNonNull(list, "list must not be null");
+        Objects.requireNonNull(consumer, "consumer must not be null");
+        IntStream.range(0, list.size()).forEach(i -> consumer.accept(i, list.get(i)));
+    }
+
     @Nonnull
     public static <TIn, TOut> List<TOut> map(@Nonnull Collection<TIn> list, @Nonnull Function<TIn, TOut> mapper) {
         Objects.requireNonNull(list, "list must not be null");
@@ -47,6 +53,11 @@ public final class Lists {
         Objects.requireNonNull(list, "list must not be null");
         Objects.requireNonNull(mapper, "mapper must not be null");
         return IntStream.range(0, list.size()).mapToObj(i -> mapper.map(i, list.get(i))).collect(Collectors.toList());
+    }
+
+    @FunctionalInterface
+    public interface ItemConsumer<T> {
+        void accept(int index, @Nonnull T item);
     }
 
     @FunctionalInterface

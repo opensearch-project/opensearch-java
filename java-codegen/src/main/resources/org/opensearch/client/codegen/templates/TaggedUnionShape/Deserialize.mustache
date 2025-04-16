@@ -1,28 +1,50 @@
-{{#discriminated}}
-    protected static void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<Builder> op) {
-    {{#extendsOtherShape}}
-        setup{{extendsType.name}}Deserializer(op{{#extendsType.typeParams}}, {{>Type/deserializer}}{{/extendsType.typeParams}});
-    {{/extendsOtherShape}}
-    {{>ObjectShape/Deserialize/Fields}}
-    {{#variants}}
-        op.add(Builder::{{#asFieldName}}{{name}}{{/asFieldName}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{name}}{{/quoted}});
-    {{/variants}}
-    {{#internallyDiscriminated}}
-        op.setTypeProperty({{#quoted}}{{discriminatingField}}{{/quoted}}, {{#defaultVariant}}Kind.{{#pascalCase}}{{name}}{{/pascalCase}}.jsonValue(){{/defaultVariant}}{{^defaultVariant}}null{{/defaultVariant}});
-    {{/internallyDiscriminated}}
-    {{#singleKeyMap}}
-        op.setKey(Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}});
-    {{/singleKeyMap}}
-    }
+{{^usesTypedKeys}}
+    {{#discriminated}}
+        protected static void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<Builder> op) {
+        {{#extendsOtherShape}}
+            setup{{extendsType.name}}Deserializer(op{{#extendsType.typeParams}}, {{>Type/deserializer}}{{/extendsType.typeParams}});
+        {{/extendsOtherShape}}
+        {{>ObjectShape/Deserialize/Fields}}
+        {{#variants}}
+            op.add(Builder::{{#asFieldName}}{{name}}{{/asFieldName}}, {{#type}}{{>Type/deserializer}}{{/type}}, {{#quoted}}{{name}}{{/quoted}});
+        {{/variants}}
+        {{#internallyDiscriminated}}
+            op.setTypeProperty({{#quoted}}{{discriminatingField}}{{/quoted}}, {{#defaultVariant}}Kind.{{#pascalCase}}{{name}}{{/pascalCase}}.jsonValue(){{/defaultVariant}}{{^defaultVariant}}null{{/defaultVariant}});
+        {{/internallyDiscriminated}}
+        {{#singleKeyMap}}
+            op.setKey(Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}});
+        {{/singleKeyMap}}
+        }
 
-    public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.ObjectBuilderDeserializer}}.lazy(Builder::new, {{className}}::setup{{className}}Deserializer, Builder::build);
-{{/discriminated}}
-{{^discriminated}}
-    private static {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> build{{className}}Deserializer() {
-        return new {{TYPES.Client.Json.UnionDeserializer.builderType}}<{{className}}, Kind, Object>({{className}}::new, {{hasAmbiguities}})
-    {{#variants}}.addMember(Kind.{{#pascalCase}}{{name}}{{/pascalCase}}, {{#type}}{{>Type/deserializer}}{{/type}}){{/variants}}
-        .build();
-    }
+        public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.ObjectBuilderDeserializer}}.lazy(Builder::new, {{className}}::setup{{className}}Deserializer, Builder::build);
+    {{/discriminated}}
+    {{^discriminated}}
+        {{^typeParameters}}
+            private static {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> build{{className}}Deserializer() {
+        {{/typeParameters}}
+        {{#typeParameters}}
+                public static {{.}} {{TYPES.Client.Json.JsonpDeserializer}}<{{selfType}}> create{{className}}Deserializer({{#typeParameterDefinitions}}{{TYPES.Client.Json.JsonpDeserializer}}<{{name}}> {{#camelCase}}{{name}}{{/camelCase}}Deserializer{{^-last}}, {{/-last}}{{/typeParameterDefinitions}}) {
+        {{/typeParameters}}
+                return new {{TYPES.Client.Json.UnionDeserializer.builderType}}<{{selfType}}, Kind, Object>({{selfType}}::new, {{hasAmbiguities}})
+            {{#variants}}.addMember(Kind.{{#pascalCase}}{{name}}{{/pascalCase}}, {{#type}}{{>Type/deserializer}}{{/type}}){{/variants}}
+                .build();
+            }
 
-    public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.JsonpDeserializer}}.lazy({{className}}::build{{className}}Deserializer);
-{{/discriminated}}
+        {{^typeParameters}}
+            public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.JsonpDeserializer}}.lazy({{className}}::build{{className}}Deserializer);
+
+        {{/typeParameters}}
+    {{/discriminated}}
+{{/usesTypedKeys}}
+{{#usesTypedKeys}}
+    public static final {{TYPES.Client.Json.ExternallyTaggedUnion}}.TypedKeysDeserializer<{{className}}> _TYPED_KEYS_DESERIALIZER;
+
+    static {
+        {{TYPES.Java.Util.Map}}<String, {{TYPES.Client.Json.JsonpDeserializer}}<? extends {{variantBaseType}}>> deserializers = new {{TYPES.Java.Util.HashMap}}<>();
+        {{#variants}}
+            deserializers.put({{#quoted}}{{name}}{{/quoted}}, {{#type}}{{>Type/deserializer}}{{/type}});
+        {{/variants}}
+
+        _TYPED_KEYS_DESERIALIZER = new {{TYPES.Client.Json.ExternallyTaggedUnion}}.Deserializer<>(deserializers, {{className}}::new).typedKeys();
+    }
+{{/usesTypedKeys}}
