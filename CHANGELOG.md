@@ -13,7 +13,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
-- [BUG] Unable to deserialize AliasDefinition ([#1537](https://github.com/opensearch-project/opensearch-java/pull/1537))
+- Fixed deserializing `wrapper` queries ([#1537](https://github.com/opensearch-project/opensearch-java/pull/1537))
+- Add `is_hidden` to `AliasDefinition` ([#1537](https://github.com/opensearch-project/opensearch-java/pull/1537))
 
 ### Security
 
