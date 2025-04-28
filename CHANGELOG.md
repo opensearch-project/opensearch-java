@@ -61,6 +61,7 @@ This section is for maintaining a changelog for all breaking changes for the cli
 
 ### Fixed
 - Fixed ClassCastException in extractAndWrapCause when handling ExecutionException ([#1483](https://github.com/opensearch-project/opensearch-java/pull/1483))
+- Fixed direct serialization of primitive types in `DEFAULT_JSONP_MAPPER` as used by `toJsonString()` ([#1524](https://github.com/opensearch-project/opensearch-java/pull/1524))
 
 ### Security
 
