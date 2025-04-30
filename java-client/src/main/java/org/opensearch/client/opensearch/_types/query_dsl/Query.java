@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -41,6 +48,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
 import org.opensearch.client.opensearch._types.aggregations.AggregationVariant;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -52,131 +60,69 @@ import org.opensearch.client.util.TaggedUnionUtils;
 // typedef: _types.query_dsl.QueryContainer
 
 @JsonpDeserializable
-public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVariant, JsonpSerializable {
-
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class Query implements TaggedUnion<Query.Kind, QueryVariant>, AggregationVariant, PlainJsonSerializable {
     /**
      * {@link Query} variant kinds.
      */
-    /**
-     * {@link Query} variant kinds.
-     */
-
     public enum Kind implements JsonEnum {
         Bool("bool"),
-
         Boosting("boosting"),
-
-        Common("common"),
-
         CombinedFields("combined_fields"),
-
+        Common("common"),
         ConstantScore("constant_score"),
-
         DisMax("dis_max"),
-
         DistanceFeature("distance_feature"),
-
         Exists("exists"),
-
-        FunctionScore("function_score"),
-
-        Fuzzy("fuzzy"),
-
-        GeoBoundingBox("geo_bounding_box"),
-
-        GeoDistance("geo_distance"),
-
-        GeoPolygon("geo_polygon"),
-
-        GeoShape("geo_shape"),
-
-        HasChild("has_child"),
-
-        HasParent("has_parent"),
-
-        Ids("ids"),
-
-        Intervals("intervals"),
-
-        Knn("knn"),
-
-        Match("match"),
-
-        MatchAll("match_all"),
-
-        MatchBoolPrefix("match_bool_prefix"),
-
-        MatchNone("match_none"),
-
-        MatchPhrase("match_phrase"),
-
-        MatchPhrasePrefix("match_phrase_prefix"),
-
-        MoreLikeThis("more_like_this"),
-
-        MultiMatch("multi_match"),
-
-        Nested("nested"),
-
-        Neural("neural"),
-
-        Hybrid("hybrid"),
-
-        ParentId("parent_id"),
-
-        Percolate("percolate"),
-
-        Pinned("pinned"),
-
-        Prefix("prefix"),
-
-        QueryString("query_string"),
-
-        Range("range"),
-
-        RankFeature("rank_feature"),
-
-        Regexp("regexp"),
-
-        Script("script"),
-
-        ScriptScore("script_score"),
-
-        XyShape("xy_shape"),
-
-        SimpleQueryString("simple_query_string"),
-
-        SpanContaining("span_containing"),
-
         FieldMaskingSpan("field_masking_span"),
-
+        FunctionScore("function_score"),
+        Fuzzy("fuzzy"),
+        GeoBoundingBox("geo_bounding_box"),
+        GeoDistance("geo_distance"),
+        GeoPolygon("geo_polygon"),
+        GeoShape("geo_shape"),
+        HasChild("has_child"),
+        HasParent("has_parent"),
+        Hybrid("hybrid"),
+        Ids("ids"),
+        Intervals("intervals"),
+        Knn("knn"),
+        Match("match"),
+        MatchAll("match_all"),
+        MatchBoolPrefix("match_bool_prefix"),
+        MatchNone("match_none"),
+        MatchPhrase("match_phrase"),
+        MatchPhrasePrefix("match_phrase_prefix"),
+        MoreLikeThis("more_like_this"),
+        MultiMatch("multi_match"),
+        Nested("nested"),
+        Neural("neural"),
+        ParentId("parent_id"),
+        Percolate("percolate"),
+        Pinned("pinned"),
+        Prefix("prefix"),
+        QueryString("query_string"),
+        Range("range"),
+        RankFeature("rank_feature"),
+        Regexp("regexp"),
+        Script("script"),
+        ScriptScore("script_score"),
+        SimpleQueryString("simple_query_string"),
+        SpanContaining("span_containing"),
         SpanFirst("span_first"),
-
         SpanMulti("span_multi"),
-
         SpanNear("span_near"),
-
         SpanNot("span_not"),
-
         SpanOr("span_or"),
-
         SpanTerm("span_term"),
-
         SpanWithin("span_within"),
-
         Term("term"),
-
         Terms("terms"),
-
         TermsSet("terms_set"),
-
-        Wildcard("wildcard"),
-
-        Wrapper("wrapper"),
-
         Type("type"),
-
-        ;
+        Wildcard("wildcard"),
+        Wrapper("wrapper"),
+        XyShape("xy_shape");
 
         private final String jsonValue;
 
@@ -184,14 +130,14 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
             this.jsonValue = jsonValue;
         }
 
+        @Override
         public String jsonValue() {
-            return this.jsonValue;
+            return jsonValue;
         }
-
     }
 
     /**
-     * Aggregation variant kind.
+     * {@link Aggregation} variant kind.
      */
     @Override
     public Aggregation.Kind _aggregationKind() {
@@ -199,7 +145,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     }
 
     private final Kind _kind;
-    private final Object _value;
+    private final QueryVariant _value;
 
     @Override
     public final Kind _kind() {
@@ -207,25 +153,21 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     }
 
     @Override
-    public final Object _get() {
+    public final QueryVariant _get() {
         return _value;
     }
 
     public Query(QueryVariant value) {
-
         this._kind = ApiTypeHelper.requireNonNull(value._queryKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
-
     }
 
     private Query(Builder builder) {
-
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
     }
 
-    public static Query of(Function<Builder, ObjectBuilder<Query>> fn) {
+    public static Query of(Function<Query.Builder, ObjectBuilder<Query>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -239,8 +181,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code bool} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code bool} kind.
+     * @throws IllegalStateException if the current variant is not the {@code bool} kind.
      */
     public BoolQuery bool() {
         return TaggedUnionUtils.get(this, Kind.Bool);
@@ -256,28 +197,10 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code boosting} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code boosting} kind.
+     * @throws IllegalStateException if the current variant is not the {@code boosting} kind.
      */
     public BoostingQuery boosting() {
         return TaggedUnionUtils.get(this, Kind.Boosting);
-    }
-
-    /**
-     * Is this variant instance of kind {@code common}?
-     */
-    public boolean isCommon() {
-        return _kind == Kind.Common;
-    }
-
-    /**
-     * Get the {@code common} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code common} kind.
-     */
-    public CommonTermsQuery common() {
-        return TaggedUnionUtils.get(this, Kind.Common);
     }
 
     /**
@@ -290,12 +213,26 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code combined_fields} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code combined_fields}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code combined_fields} kind.
      */
     public CombinedFieldsQuery combinedFields() {
         return TaggedUnionUtils.get(this, Kind.CombinedFields);
+    }
+
+    /**
+     * Is this variant instance of kind {@code common}?
+     */
+    public boolean isCommon() {
+        return _kind == Kind.Common;
+    }
+
+    /**
+     * Get the {@code common} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code common} kind.
+     */
+    public CommonTermsQuery common() {
+        return TaggedUnionUtils.get(this, Kind.Common);
     }
 
     /**
@@ -308,8 +245,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code constant_score} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code constant_score} kind.
+     * @throws IllegalStateException if the current variant is not the {@code constant_score} kind.
      */
     public ConstantScoreQuery constantScore() {
         return TaggedUnionUtils.get(this, Kind.ConstantScore);
@@ -325,8 +261,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code dis_max} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code dis_max} kind.
+     * @throws IllegalStateException if the current variant is not the {@code dis_max} kind.
      */
     public DisMaxQuery disMax() {
         return TaggedUnionUtils.get(this, Kind.DisMax);
@@ -342,9 +277,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code distance_feature} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code distance_feature}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code distance_feature} kind.
      */
     public DistanceFeatureQuery distanceFeature() {
         return TaggedUnionUtils.get(this, Kind.DistanceFeature);
@@ -360,11 +293,26 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code exists} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code exists} kind.
+     * @throws IllegalStateException if the current variant is not the {@code exists} kind.
      */
     public ExistsQuery exists() {
         return TaggedUnionUtils.get(this, Kind.Exists);
+    }
+
+    /**
+     * Is this variant instance of kind {@code field_masking_span}?
+     */
+    public boolean isFieldMaskingSpan() {
+        return _kind == Kind.FieldMaskingSpan;
+    }
+
+    /**
+     * Get the {@code field_masking_span} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code field_masking_span} kind.
+     */
+    public SpanFieldMaskingQuery fieldMaskingSpan() {
+        return TaggedUnionUtils.get(this, Kind.FieldMaskingSpan);
     }
 
     /**
@@ -377,8 +325,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code function_score} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code function_score} kind.
+     * @throws IllegalStateException if the current variant is not the {@code function_score} kind.
      */
     public FunctionScoreQuery functionScore() {
         return TaggedUnionUtils.get(this, Kind.FunctionScore);
@@ -394,8 +341,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code fuzzy} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code fuzzy} kind.
+     * @throws IllegalStateException if the current variant is not the {@code fuzzy} kind.
      */
     public FuzzyQuery fuzzy() {
         return TaggedUnionUtils.get(this, Kind.Fuzzy);
@@ -411,9 +357,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code geo_bounding_box} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code geo_bounding_box}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code geo_bounding_box} kind.
      */
     public GeoBoundingBoxQuery geoBoundingBox() {
         return TaggedUnionUtils.get(this, Kind.GeoBoundingBox);
@@ -429,8 +373,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code geo_distance} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code geo_distance} kind.
+     * @throws IllegalStateException if the current variant is not the {@code geo_distance} kind.
      */
     public GeoDistanceQuery geoDistance() {
         return TaggedUnionUtils.get(this, Kind.GeoDistance);
@@ -446,8 +389,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code geo_polygon} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code geo_polygon} kind.
+     * @throws IllegalStateException if the current variant is not the {@code geo_polygon} kind.
      */
     public GeoPolygonQuery geoPolygon() {
         return TaggedUnionUtils.get(this, Kind.GeoPolygon);
@@ -463,8 +405,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code geo_shape} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code geo_shape} kind.
+     * @throws IllegalStateException if the current variant is not the {@code geo_shape} kind.
      */
     public GeoShapeQuery geoShape() {
         return TaggedUnionUtils.get(this, Kind.GeoShape);
@@ -480,8 +421,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code has_child} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code has_child} kind.
+     * @throws IllegalStateException if the current variant is not the {@code has_child} kind.
      */
     public HasChildQuery hasChild() {
         return TaggedUnionUtils.get(this, Kind.HasChild);
@@ -497,11 +437,26 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code has_parent} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code has_parent} kind.
+     * @throws IllegalStateException if the current variant is not the {@code has_parent} kind.
      */
     public HasParentQuery hasParent() {
         return TaggedUnionUtils.get(this, Kind.HasParent);
+    }
+
+    /**
+     * Is this variant instance of kind {@code hybrid}?
+     */
+    public boolean isHybrid() {
+        return _kind == Kind.Hybrid;
+    }
+
+    /**
+     * Get the {@code hybrid} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code hybrid} kind.
+     */
+    public HybridQuery hybrid() {
+        return TaggedUnionUtils.get(this, Kind.Hybrid);
     }
 
     /**
@@ -514,8 +469,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code ids} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code ids} kind.
+     * @throws IllegalStateException if the current variant is not the {@code ids} kind.
      */
     public IdsQuery ids() {
         return TaggedUnionUtils.get(this, Kind.Ids);
@@ -531,8 +485,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code intervals} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code intervals} kind.
+     * @throws IllegalStateException if the current variant is not the {@code intervals} kind.
      */
     public IntervalsQuery intervals() {
         return TaggedUnionUtils.get(this, Kind.Intervals);
@@ -548,8 +501,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code knn} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code knn} kind.
+     * @throws IllegalStateException if the current variant is not the {@code knn} kind.
      */
     public KnnQuery knn() {
         return TaggedUnionUtils.get(this, Kind.Knn);
@@ -565,8 +517,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code match} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code match} kind.
+     * @throws IllegalStateException if the current variant is not the {@code match} kind.
      */
     public MatchQuery match() {
         return TaggedUnionUtils.get(this, Kind.Match);
@@ -582,8 +533,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code match_all} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code match_all} kind.
+     * @throws IllegalStateException if the current variant is not the {@code match_all} kind.
      */
     public MatchAllQuery matchAll() {
         return TaggedUnionUtils.get(this, Kind.MatchAll);
@@ -599,9 +549,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code match_bool_prefix} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code match_bool_prefix}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code match_bool_prefix} kind.
      */
     public MatchBoolPrefixQuery matchBoolPrefix() {
         return TaggedUnionUtils.get(this, Kind.MatchBoolPrefix);
@@ -617,8 +565,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code match_none} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code match_none} kind.
+     * @throws IllegalStateException if the current variant is not the {@code match_none} kind.
      */
     public MatchNoneQuery matchNone() {
         return TaggedUnionUtils.get(this, Kind.MatchNone);
@@ -634,8 +581,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code match_phrase} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code match_phrase} kind.
+     * @throws IllegalStateException if the current variant is not the {@code match_phrase} kind.
      */
     public MatchPhraseQuery matchPhrase() {
         return TaggedUnionUtils.get(this, Kind.MatchPhrase);
@@ -651,9 +597,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code match_phrase_prefix} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code match_phrase_prefix}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code match_phrase_prefix} kind.
      */
     public MatchPhrasePrefixQuery matchPhrasePrefix() {
         return TaggedUnionUtils.get(this, Kind.MatchPhrasePrefix);
@@ -669,8 +613,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code more_like_this} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code more_like_this} kind.
+     * @throws IllegalStateException if the current variant is not the {@code more_like_this} kind.
      */
     public MoreLikeThisQuery moreLikeThis() {
         return TaggedUnionUtils.get(this, Kind.MoreLikeThis);
@@ -686,8 +629,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code multi_match} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code multi_match} kind.
+     * @throws IllegalStateException if the current variant is not the {@code multi_match} kind.
      */
     public MultiMatchQuery multiMatch() {
         return TaggedUnionUtils.get(this, Kind.MultiMatch);
@@ -703,8 +645,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code nested} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code nested} kind.
+     * @throws IllegalStateException if the current variant is not the {@code nested} kind.
      */
     public NestedQuery nested() {
         return TaggedUnionUtils.get(this, Kind.Nested);
@@ -720,28 +661,10 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code neural} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code neural} kind.
+     * @throws IllegalStateException if the current variant is not the {@code neural} kind.
      */
     public NeuralQuery neural() {
         return TaggedUnionUtils.get(this, Kind.Neural);
-    }
-
-    /**
-     * Is this variant instance of kind {@code hybrid}?
-     */
-    public boolean isHybrid() {
-        return _kind == Kind.Hybrid;
-    }
-
-    /**
-     * Get the {@code hybrid} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code hybrid} kind.
-     */
-    public HybridQuery hybrid() {
-        return TaggedUnionUtils.get(this, Kind.Hybrid);
     }
 
     /**
@@ -754,8 +677,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code parent_id} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code parent_id} kind.
+     * @throws IllegalStateException if the current variant is not the {@code parent_id} kind.
      */
     public ParentIdQuery parentId() {
         return TaggedUnionUtils.get(this, Kind.ParentId);
@@ -771,8 +693,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code percolate} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code percolate} kind.
+     * @throws IllegalStateException if the current variant is not the {@code percolate} kind.
      */
     public PercolateQuery percolate() {
         return TaggedUnionUtils.get(this, Kind.Percolate);
@@ -788,8 +709,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code pinned} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code pinned} kind.
+     * @throws IllegalStateException if the current variant is not the {@code pinned} kind.
      */
     public PinnedQuery pinned() {
         return TaggedUnionUtils.get(this, Kind.Pinned);
@@ -805,8 +725,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code prefix} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code prefix} kind.
+     * @throws IllegalStateException if the current variant is not the {@code prefix} kind.
      */
     public PrefixQuery prefix() {
         return TaggedUnionUtils.get(this, Kind.Prefix);
@@ -822,8 +741,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code query_string} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code query_string} kind.
+     * @throws IllegalStateException if the current variant is not the {@code query_string} kind.
      */
     public QueryStringQuery queryString() {
         return TaggedUnionUtils.get(this, Kind.QueryString);
@@ -839,8 +757,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code range} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code range} kind.
+     * @throws IllegalStateException if the current variant is not the {@code range} kind.
      */
     public RangeQuery range() {
         return TaggedUnionUtils.get(this, Kind.Range);
@@ -856,8 +773,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code rank_feature} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code rank_feature} kind.
+     * @throws IllegalStateException if the current variant is not the {@code rank_feature} kind.
      */
     public RankFeatureQuery rankFeature() {
         return TaggedUnionUtils.get(this, Kind.RankFeature);
@@ -873,8 +789,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code regexp} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code regexp} kind.
+     * @throws IllegalStateException if the current variant is not the {@code regexp} kind.
      */
     public RegexpQuery regexp() {
         return TaggedUnionUtils.get(this, Kind.Regexp);
@@ -890,8 +805,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code script} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code script} kind.
+     * @throws IllegalStateException if the current variant is not the {@code script} kind.
      */
     public ScriptQuery script() {
         return TaggedUnionUtils.get(this, Kind.Script);
@@ -907,28 +821,10 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code script_score} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code script_score} kind.
+     * @throws IllegalStateException if the current variant is not the {@code script_score} kind.
      */
     public ScriptScoreQuery scriptScore() {
         return TaggedUnionUtils.get(this, Kind.ScriptScore);
-    }
-
-    /**
-     * Is this variant instance of kind {@code xy_shape}?
-     */
-    public boolean isXyShape() {
-        return _kind == Kind.XyShape;
-    }
-
-    /**
-     * Get the {@code xy_shape} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code xy_shape} kind.
-     */
-    public XyShapeQuery xyShape() {
-        return TaggedUnionUtils.get(this, Kind.XyShape);
     }
 
     /**
@@ -941,9 +837,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code simple_query_string} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code simple_query_string}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code simple_query_string} kind.
      */
     public SimpleQueryStringQuery simpleQueryString() {
         return TaggedUnionUtils.get(this, Kind.SimpleQueryString);
@@ -959,30 +853,10 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code span_containing} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code span_containing}
-     *             kind.
+     * @throws IllegalStateException if the current variant is not the {@code span_containing} kind.
      */
     public SpanContainingQuery spanContaining() {
         return TaggedUnionUtils.get(this, Kind.SpanContaining);
-    }
-
-    /**
-     * Is this variant instance of kind {@code field_masking_span}?
-     */
-    public boolean isFieldMaskingSpan() {
-        return _kind == Kind.FieldMaskingSpan;
-    }
-
-    /**
-     * Get the {@code field_masking_span} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code field_masking_span}
-     *             kind.
-     */
-    public SpanFieldMaskingQuery fieldMaskingSpan() {
-        return TaggedUnionUtils.get(this, Kind.FieldMaskingSpan);
     }
 
     /**
@@ -995,8 +869,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code span_first} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code span_first} kind.
+     * @throws IllegalStateException if the current variant is not the {@code span_first} kind.
      */
     public SpanFirstQuery spanFirst() {
         return TaggedUnionUtils.get(this, Kind.SpanFirst);
@@ -1012,8 +885,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code span_multi} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code span_multi} kind.
+     * @throws IllegalStateException if the current variant is not the {@code span_multi} kind.
      */
     public SpanMultiTermQuery spanMulti() {
         return TaggedUnionUtils.get(this, Kind.SpanMulti);
@@ -1029,8 +901,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code span_near} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code span_near} kind.
+     * @throws IllegalStateException if the current variant is not the {@code span_near} kind.
      */
     public SpanNearQuery spanNear() {
         return TaggedUnionUtils.get(this, Kind.SpanNear);
@@ -1046,8 +917,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code span_not} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code span_not} kind.
+     * @throws IllegalStateException if the current variant is not the {@code span_not} kind.
      */
     public SpanNotQuery spanNot() {
         return TaggedUnionUtils.get(this, Kind.SpanNot);
@@ -1063,8 +933,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code span_or} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code span_or} kind.
+     * @throws IllegalStateException if the current variant is not the {@code span_or} kind.
      */
     public SpanOrQuery spanOr() {
         return TaggedUnionUtils.get(this, Kind.SpanOr);
@@ -1080,8 +949,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code span_term} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code span_term} kind.
+     * @throws IllegalStateException if the current variant is not the {@code span_term} kind.
      */
     public SpanTermQuery spanTerm() {
         return TaggedUnionUtils.get(this, Kind.SpanTerm);
@@ -1097,8 +965,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code span_within} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code span_within} kind.
+     * @throws IllegalStateException if the current variant is not the {@code span_within} kind.
      */
     public SpanWithinQuery spanWithin() {
         return TaggedUnionUtils.get(this, Kind.SpanWithin);
@@ -1114,8 +981,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code term} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code term} kind.
+     * @throws IllegalStateException if the current variant is not the {@code term} kind.
      */
     public TermQuery term() {
         return TaggedUnionUtils.get(this, Kind.Term);
@@ -1131,8 +997,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code terms} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code terms} kind.
+     * @throws IllegalStateException if the current variant is not the {@code terms} kind.
      */
     public TermsQuery terms() {
         return TaggedUnionUtils.get(this, Kind.Terms);
@@ -1148,45 +1013,10 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code terms_set} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code terms_set} kind.
+     * @throws IllegalStateException if the current variant is not the {@code terms_set} kind.
      */
     public TermsSetQuery termsSet() {
         return TaggedUnionUtils.get(this, Kind.TermsSet);
-    }
-
-    /**
-     * Is this variant instance of kind {@code wildcard}?
-     */
-    public boolean isWildcard() {
-        return _kind == Kind.Wildcard;
-    }
-
-    /**
-     * Get the {@code wildcard} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code wildcard} kind.
-     */
-    public WildcardQuery wildcard() {
-        return TaggedUnionUtils.get(this, Kind.Wildcard);
-    }
-
-    /**
-     * Is this variant instance of kind {@code wrapper}?
-     */
-    public boolean isWrapper() {
-        return this._kind == Query.Kind.Wrapper;
-    }
-
-    /**
-     * Get the {@code wrapper} variant value.
-     *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code wrapper} kind.
-     */
-    public WrapperQuery wrapper() {
-        return (WrapperQuery) TaggedUnionUtils.get(this, Query.Kind.Wrapper);
     }
 
     /**
@@ -1199,44 +1029,89 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
     /**
      * Get the {@code type} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code type} kind.
+     * @throws IllegalStateException if the current variant is not the {@code type} kind.
      */
     public TypeQuery type() {
         return TaggedUnionUtils.get(this, Kind.Type);
     }
 
+    /**
+     * Is this variant instance of kind {@code wildcard}?
+     */
+    public boolean isWildcard() {
+        return _kind == Kind.Wildcard;
+    }
+
+    /**
+     * Get the {@code wildcard} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code wildcard} kind.
+     */
+    public WildcardQuery wildcard() {
+        return TaggedUnionUtils.get(this, Kind.Wildcard);
+    }
+
+    /**
+     * Is this variant instance of kind {@code wrapper}?
+     */
+    public boolean isWrapper() {
+        return _kind == Kind.Wrapper;
+    }
+
+    /**
+     * Get the {@code wrapper} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code wrapper} kind.
+     */
+    public WrapperQuery wrapper() {
+        return TaggedUnionUtils.get(this, Kind.Wrapper);
+    }
+
+    /**
+     * Is this variant instance of kind {@code xy_shape}?
+     */
+    public boolean isXyShape() {
+        return _kind == Kind.XyShape;
+    }
+
+    /**
+     * Get the {@code xy_shape} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code xy_shape} kind.
+     */
+    public XyShapeQuery xyShape() {
+        return TaggedUnionUtils.get(this, Kind.XyShape);
+    }
+
     @Override
-    @SuppressWarnings("unchecked")
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeStartObject();
-
         generator.writeKey(_kind.jsonValue());
         if (_value instanceof JsonpSerializable) {
             ((JsonpSerializable) _value).serialize(generator, mapper);
         }
-
         generator.writeEnd();
-
     }
 
+    @Nonnull
     public Builder toBuilder() {
-        return new Builder()._kind(_kind)._value(_value);
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Query> {
         private Kind _kind;
-        private Object _value;
+        private QueryVariant _value;
 
-        protected final Builder _kind(Kind v) {
-            this._kind = v;
-            return this;
-        }
+        public Builder() {}
 
-        protected final Builder _value(Object v) {
-            this._value = v;
-            return this;
+        private Builder(Query o) {
+            this._kind = o._kind;
+            this._value = o._value;
         }
 
         public ObjectBuilder<Query> bool(BoolQuery v) {
@@ -1259,16 +1134,6 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
             return this.boosting(fn.apply(new BoostingQuery.Builder()).build());
         }
 
-        public ObjectBuilder<Query> common(CommonTermsQuery v) {
-            this._kind = Kind.Common;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<Query> common(Function<CommonTermsQuery.Builder, ObjectBuilder<CommonTermsQuery>> fn) {
-            return this.common(fn.apply(new CommonTermsQuery.Builder()).build());
-        }
-
         public ObjectBuilder<Query> combinedFields(CombinedFieldsQuery v) {
             this._kind = Kind.CombinedFields;
             this._value = v;
@@ -1277,6 +1142,16 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 
         public ObjectBuilder<Query> combinedFields(Function<CombinedFieldsQuery.Builder, ObjectBuilder<CombinedFieldsQuery>> fn) {
             return this.combinedFields(fn.apply(new CombinedFieldsQuery.Builder()).build());
+        }
+
+        public ObjectBuilder<Query> common(CommonTermsQuery v) {
+            this._kind = Kind.Common;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Query> common(Function<CommonTermsQuery.Builder, ObjectBuilder<CommonTermsQuery>> fn) {
+            return this.common(fn.apply(new CommonTermsQuery.Builder()).build());
         }
 
         public ObjectBuilder<Query> constantScore(ConstantScoreQuery v) {
@@ -1317,6 +1192,16 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 
         public ObjectBuilder<Query> exists(Function<ExistsQuery.Builder, ObjectBuilder<ExistsQuery>> fn) {
             return this.exists(fn.apply(new ExistsQuery.Builder()).build());
+        }
+
+        public ObjectBuilder<Query> fieldMaskingSpan(SpanFieldMaskingQuery v) {
+            this._kind = Kind.FieldMaskingSpan;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Query> fieldMaskingSpan(Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
+            return this.fieldMaskingSpan(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
         }
 
         public ObjectBuilder<Query> functionScore(FunctionScoreQuery v) {
@@ -1397,6 +1282,16 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 
         public ObjectBuilder<Query> hasParent(Function<HasParentQuery.Builder, ObjectBuilder<HasParentQuery>> fn) {
             return this.hasParent(fn.apply(new HasParentQuery.Builder()).build());
+        }
+
+        public ObjectBuilder<Query> hybrid(HybridQuery v) {
+            this._kind = Kind.Hybrid;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Query> hybrid(Function<HybridQuery.Builder, ObjectBuilder<HybridQuery>> fn) {
+            return this.hybrid(fn.apply(new HybridQuery.Builder()).build());
         }
 
         public ObjectBuilder<Query> ids(IdsQuery v) {
@@ -1529,16 +1424,6 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
             return this.neural(fn.apply(new NeuralQuery.Builder()).build());
         }
 
-        public ObjectBuilder<Query> hybrid(HybridQuery v) {
-            this._kind = Kind.Hybrid;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<Query> hybrid(Function<HybridQuery.Builder, ObjectBuilder<HybridQuery>> fn) {
-            return this.hybrid(fn.apply(new HybridQuery.Builder()).build());
-        }
-
         public ObjectBuilder<Query> parentId(ParentIdQuery v) {
             this._kind = Kind.ParentId;
             this._value = v;
@@ -1659,16 +1544,6 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
             return this.spanContaining(fn.apply(new SpanContainingQuery.Builder()).build());
         }
 
-        public ObjectBuilder<Query> fieldMaskingSpan(SpanFieldMaskingQuery v) {
-            this._kind = Kind.FieldMaskingSpan;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<Query> fieldMaskingSpan(Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
-            return this.fieldMaskingSpan(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
-        }
-
         public ObjectBuilder<Query> spanFirst(SpanFirstQuery v) {
             this._kind = Kind.SpanFirst;
             this._value = v;
@@ -1769,6 +1644,16 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
             return this.termsSet(fn.apply(new TermsSetQuery.Builder()).build());
         }
 
+        public ObjectBuilder<Query> type(TypeQuery v) {
+            this._kind = Kind.Type;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Query> type(Function<TypeQuery.Builder, ObjectBuilder<TypeQuery>> fn) {
+            return this.type(fn.apply(new TypeQuery.Builder()).build());
+        }
+
         public ObjectBuilder<Query> wildcard(WildcardQuery v) {
             this._kind = Kind.Wildcard;
             this._value = v;
@@ -1780,7 +1665,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
         }
 
         public ObjectBuilder<Query> wrapper(WrapperQuery v) {
-            this._kind = Query.Kind.Wrapper;
+            this._kind = Kind.Wrapper;
             this._value = v;
             return this;
         }
@@ -1789,33 +1674,33 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
             return this.wrapper(fn.apply(new WrapperQuery.Builder()).build());
         }
 
-        public ObjectBuilder<Query> type(TypeQuery v) {
-            this._kind = Kind.Type;
+        public ObjectBuilder<Query> xyShape(XyShapeQuery v) {
+            this._kind = Kind.XyShape;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<Query> type(Function<TypeQuery.Builder, ObjectBuilder<TypeQuery>> fn) {
-            return this.type(fn.apply(new TypeQuery.Builder()).build());
+        public ObjectBuilder<Query> xyShape(Function<XyShapeQuery.Builder, ObjectBuilder<XyShapeQuery>> fn) {
+            return this.xyShape(fn.apply(new XyShapeQuery.Builder()).build());
         }
 
+        @Override
         public Query build() {
             _checkSingleUse();
             return new Query(this);
         }
-
     }
 
     protected static void setupQueryDeserializer(ObjectDeserializer<Builder> op) {
-
         op.add(Builder::bool, BoolQuery._DESERIALIZER, "bool");
         op.add(Builder::boosting, BoostingQuery._DESERIALIZER, "boosting");
-        op.add(Builder::common, CommonTermsQuery._DESERIALIZER, "common");
         op.add(Builder::combinedFields, CombinedFieldsQuery._DESERIALIZER, "combined_fields");
+        op.add(Builder::common, CommonTermsQuery._DESERIALIZER, "common");
         op.add(Builder::constantScore, ConstantScoreQuery._DESERIALIZER, "constant_score");
         op.add(Builder::disMax, DisMaxQuery._DESERIALIZER, "dis_max");
         op.add(Builder::distanceFeature, DistanceFeatureQuery._DESERIALIZER, "distance_feature");
         op.add(Builder::exists, ExistsQuery._DESERIALIZER, "exists");
+        op.add(Builder::fieldMaskingSpan, SpanFieldMaskingQuery._DESERIALIZER, "field_masking_span");
         op.add(Builder::functionScore, FunctionScoreQuery._DESERIALIZER, "function_score");
         op.add(Builder::fuzzy, FuzzyQuery._DESERIALIZER, "fuzzy");
         op.add(Builder::geoBoundingBox, GeoBoundingBoxQuery._DESERIALIZER, "geo_bounding_box");
@@ -1824,6 +1709,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
         op.add(Builder::geoShape, GeoShapeQuery._DESERIALIZER, "geo_shape");
         op.add(Builder::hasChild, HasChildQuery._DESERIALIZER, "has_child");
         op.add(Builder::hasParent, HasParentQuery._DESERIALIZER, "has_parent");
+        op.add(Builder::hybrid, HybridQuery._DESERIALIZER, "hybrid");
         op.add(Builder::ids, IdsQuery._DESERIALIZER, "ids");
         op.add(Builder::intervals, IntervalsQuery._DESERIALIZER, "intervals");
         op.add(Builder::knn, KnnQuery._DESERIALIZER, "knn");
@@ -1837,7 +1723,6 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
         op.add(Builder::multiMatch, MultiMatchQuery._DESERIALIZER, "multi_match");
         op.add(Builder::nested, NestedQuery._DESERIALIZER, "nested");
         op.add(Builder::neural, NeuralQuery._DESERIALIZER, "neural");
-        op.add(Builder::hybrid, HybridQuery._DESERIALIZER, "hybrid");
         op.add(Builder::parentId, ParentIdQuery._DESERIALIZER, "parent_id");
         op.add(Builder::percolate, PercolateQuery._DESERIALIZER, "percolate");
         op.add(Builder::pinned, PinnedQuery._DESERIALIZER, "pinned");
@@ -1850,7 +1735,6 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
         op.add(Builder::scriptScore, ScriptScoreQuery._DESERIALIZER, "script_score");
         op.add(Builder::simpleQueryString, SimpleQueryStringQuery._DESERIALIZER, "simple_query_string");
         op.add(Builder::spanContaining, SpanContainingQuery._DESERIALIZER, "span_containing");
-        op.add(Builder::fieldMaskingSpan, SpanFieldMaskingQuery._DESERIALIZER, "field_masking_span");
         op.add(Builder::spanFirst, SpanFirstQuery._DESERIALIZER, "span_first");
         op.add(Builder::spanMulti, SpanMultiTermQuery._DESERIALIZER, "span_multi");
         op.add(Builder::spanNear, SpanNearQuery._DESERIALIZER, "span_near");
@@ -1861,9 +1745,10 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
         op.add(Builder::term, TermQuery._DESERIALIZER, "term");
         op.add(Builder::terms, TermsQuery._DESERIALIZER, "terms");
         op.add(Builder::termsSet, TermsSetQuery._DESERIALIZER, "terms_set");
-        op.add(Builder::wildcard, WildcardQuery._DESERIALIZER, "wildcard");
         op.add(Builder::type, TypeQuery._DESERIALIZER, "type");
-
+        op.add(Builder::wildcard, WildcardQuery._DESERIALIZER, "wildcard");
+        op.add(Builder::wrapper, WrapperQuery._DESERIALIZER, "wrapper");
+        op.add(Builder::xyShape, XyShapeQuery._DESERIALIZER, "xy_shape");
     }
 
     public static final JsonpDeserializer<Query> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
@@ -1871,4 +1756,20 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
         Query::setupQueryDeserializer,
         Builder::build
     );
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Query other = (Query) o;
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
 }

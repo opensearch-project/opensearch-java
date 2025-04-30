@@ -181,7 +181,9 @@ dependencies {
 
     // Apache 2.0
     api("commons-logging:commons-logging:1.3.5")
-    implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
+    implementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion) {
+        exclude(group = "com.google.protobuf", module = "protobuf-java")
+    }
     testImplementation("org.hamcrest:hamcrest:2.2")
     testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.8.2") {
         exclude(group = "junit")
@@ -373,6 +375,7 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_11) {
   dependencies {
     testImplementation("org.opensearch.test", "framework", opensearchVersion) {
       exclude(group = "org.hamcrest")
+      exclude(group = "com.google.protobuf", module = "protobuf-java")
     }
   }
 
