@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsLifecycle
 
+/**
+ * The index lifecycle management configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsLifecycle
@@ -113,9 +116,8 @@ public class IndexSettingsLifecycle
     }
 
     /**
-     * If specified, this is the timestamp used to calculate the index age for its phase transitions. Use this setting if you create a new
-     * index that contains old data and want to use the original creation date to calculate the index age. Specified as a Unix epoch value
-     * in milliseconds.
+     * The timestamp used to calculate the index age for its phase transitions. Use this setting if you create a new index that contains old
+     * data and want to use the original creation date to calculate the index age. Specified as a Unix epoch value in milliseconds.
      * <p>
      * API name: {@code origination_date}
      * </p>
@@ -126,11 +128,10 @@ public class IndexSettingsLifecycle
     }
 
     /**
-     * Set to <code>true</code> to parse the origination date from the index name. This origination date is used to calculate the index age
-     * for its phase transitions. The index name must match the pattern <code>^.*-{date_format}-\\d+</code>, where the
-     * <code>date_format</code> is <code>yyyy.MM.dd</code> and the trailing digits are optional. An index that was rolled over would
-     * normally match the full format, for example <code>logs-2016.10.31-000002</code>). If the index name doesn't match the pattern, index
-     * creation fails.
+     * When <code>true</code>, parses the origination date from the index name. This origination date is used to calculate the index age for
+     * its phase transitions. The index name must match the pattern <code>^.*-{date_format}-\\d+</code>, where the <code>date_format</code>
+     * is <code>yyyy.MM.dd</code> and the trailing digits are optional. An index that was rolled over would normally match the full format,
+     * for example <code>logs-2016.10.31-000002</code>). If the index name doesn't match the pattern, index creation fails.
      * <p>
      * API name: {@code parse_origination_date}
      * </p>
@@ -275,9 +276,8 @@ public class IndexSettingsLifecycle
         }
 
         /**
-         * If specified, this is the timestamp used to calculate the index age for its phase transitions. Use this setting if you create a
-         * new index that contains old data and want to use the original creation date to calculate the index age. Specified as a Unix epoch
-         * value in milliseconds.
+         * The timestamp used to calculate the index age for its phase transitions. Use this setting if you create a new index that contains
+         * old data and want to use the original creation date to calculate the index age. Specified as a Unix epoch value in milliseconds.
          * <p>
          * API name: {@code origination_date}
          * </p>
@@ -289,8 +289,8 @@ public class IndexSettingsLifecycle
         }
 
         /**
-         * Set to <code>true</code> to parse the origination date from the index name. This origination date is used to calculate the index
-         * age for its phase transitions. The index name must match the pattern <code>^.*-{date_format}-\\d+</code>, where the
+         * When <code>true</code>, parses the origination date from the index name. This origination date is used to calculate the index age
+         * for its phase transitions. The index name must match the pattern <code>^.*-{date_format}-\\d+</code>, where the
          * <code>date_format</code> is <code>yyyy.MM.dd</code> and the trailing digits are optional. An index that was rolled over would
          * normally match the full format, for example <code>logs-2016.10.31-000002</code>). If the index name doesn't match the pattern,
          * index creation fails.

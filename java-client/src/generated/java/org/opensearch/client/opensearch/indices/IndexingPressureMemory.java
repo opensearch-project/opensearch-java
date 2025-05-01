@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexingPressureMemory
 
+/**
+ * The memory-related settings for indexing backpressure.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexingPressureMemory
@@ -77,8 +80,8 @@ public class IndexingPressureMemory
     }
 
     /**
-     * Number of outstanding bytes that may be consumed by indexing requests. When this limit is reached or exceeded, the node will reject
-     * new coordinating and primary operations. When replica operations consume 1.5x this limit, the node will reject new replica
+     * The number of outstanding bytes that may be consumed by indexing requests. When this limit is reached or exceeded, the node will
+     * reject new coordinating and primary operations. When replica operations consume 1.5x this limit, the node will reject new replica
      * operations. Defaults to 10% of the heap.
      * <p>
      * API name: {@code limit}
@@ -143,7 +146,7 @@ public class IndexingPressureMemory
         }
 
         /**
-         * Number of outstanding bytes that may be consumed by indexing requests. When this limit is reached or exceeded, the node will
+         * The number of outstanding bytes that may be consumed by indexing requests. When this limit is reached or exceeded, the node will
          * reject new coordinating and primary operations. When replica operations consume 1.5x this limit, the node will reject new replica
          * operations. Defaults to 10% of the heap.
          * <p>

@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoOSCPU
 
+/**
+ * Provides CPU information for the node.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoOSCPU implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoOSCPU.Builder, NodeInfoOSCPU> {
@@ -110,21 +113,30 @@ public class NodeInfoOSCPU implements PlainJsonSerializable, ToCopyableBuilder<N
     }
 
     /**
-     * Required - API name: {@code cores_per_socket}
+     * Required - The number of cores per CPU socket.
+     * <p>
+     * API name: {@code cores_per_socket}
+     * </p>
      */
     public final int coresPerSocket() {
         return this.coresPerSocket;
     }
 
     /**
-     * Required - API name: {@code mhz}
+     * Required - The CPU clock speed in MHz.
+     * <p>
+     * API name: {@code mhz}
+     * </p>
      */
     public final int mhz() {
         return this.mhz;
     }
 
     /**
-     * Required - API name: {@code model}
+     * Required - The CPU model name.
+     * <p>
+     * API name: {@code model}
+     * </p>
      */
     @Nonnull
     public final String model() {
@@ -132,21 +144,30 @@ public class NodeInfoOSCPU implements PlainJsonSerializable, ToCopyableBuilder<N
     }
 
     /**
-     * Required - API name: {@code total_cores}
+     * Required - The total number of CPU cores.
+     * <p>
+     * API name: {@code total_cores}
+     * </p>
      */
     public final int totalCores() {
         return this.totalCores;
     }
 
     /**
-     * Required - API name: {@code total_sockets}
+     * Required - The total number of CPU sockets.
+     * <p>
+     * API name: {@code total_sockets}
+     * </p>
      */
     public final int totalSockets() {
         return this.totalSockets;
     }
 
     /**
-     * Required - API name: {@code vendor}
+     * Required - The CPU vendor name.
+     * <p>
+     * API name: {@code vendor}
+     * </p>
      */
     @Nonnull
     public final String vendor() {
@@ -264,7 +285,10 @@ public class NodeInfoOSCPU implements PlainJsonSerializable, ToCopyableBuilder<N
         }
 
         /**
-         * Required - API name: {@code cores_per_socket}
+         * Required - The number of cores per CPU socket.
+         * <p>
+         * API name: {@code cores_per_socket}
+         * </p>
          */
         @Nonnull
         public final Builder coresPerSocket(int value) {
@@ -273,7 +297,10 @@ public class NodeInfoOSCPU implements PlainJsonSerializable, ToCopyableBuilder<N
         }
 
         /**
-         * Required - API name: {@code mhz}
+         * Required - The CPU clock speed in MHz.
+         * <p>
+         * API name: {@code mhz}
+         * </p>
          */
         @Nonnull
         public final Builder mhz(int value) {
@@ -282,7 +309,10 @@ public class NodeInfoOSCPU implements PlainJsonSerializable, ToCopyableBuilder<N
         }
 
         /**
-         * Required - API name: {@code model}
+         * Required - The CPU model name.
+         * <p>
+         * API name: {@code model}
+         * </p>
          */
         @Nonnull
         public final Builder model(String value) {
@@ -291,7 +321,10 @@ public class NodeInfoOSCPU implements PlainJsonSerializable, ToCopyableBuilder<N
         }
 
         /**
-         * Required - API name: {@code total_cores}
+         * Required - The total number of CPU cores.
+         * <p>
+         * API name: {@code total_cores}
+         * </p>
          */
         @Nonnull
         public final Builder totalCores(int value) {
@@ -300,7 +333,10 @@ public class NodeInfoOSCPU implements PlainJsonSerializable, ToCopyableBuilder<N
         }
 
         /**
-         * Required - API name: {@code total_sockets}
+         * Required - The total number of CPU sockets.
+         * <p>
+         * API name: {@code total_sockets}
+         * </p>
          */
         @Nonnull
         public final Builder totalSockets(int value) {
@@ -309,7 +345,10 @@ public class NodeInfoOSCPU implements PlainJsonSerializable, ToCopyableBuilder<N
         }
 
         /**
-         * Required - API name: {@code vendor}
+         * Required - The CPU vendor name.
+         * <p>
+         * API name: {@code vendor}
+         * </p>
          */
         @Nonnull
         public final Builder vendor(String value) {

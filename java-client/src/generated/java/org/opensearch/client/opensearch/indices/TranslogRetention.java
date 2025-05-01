@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.TranslogRetention
 
+/**
+ * The retention configuration for the translog.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class TranslogRetention implements PlainJsonSerializable, ToCopyableBuilder<TranslogRetention.Builder, TranslogRetention> {

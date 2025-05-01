@@ -117,7 +117,8 @@ public final class ReloadSecureSettingsRequest extends RequestBase
     }
 
     /**
-     * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+     * The amount of time to wait for a response. If no response is received before the timeout expires, the request fails and returns an
+     * error.
      * <p>
      * API name: {@code timeout}
      * </p>
@@ -240,7 +241,8 @@ public final class ReloadSecureSettingsRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * The amount of time to wait for a response. If no response is received before the timeout expires, the request fails and returns
+         * an error.
          * <p>
          * API name: {@code timeout}
          * </p>
@@ -252,7 +254,8 @@ public final class ReloadSecureSettingsRequest extends RequestBase
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * The amount of time to wait for a response. If no response is received before the timeout expires, the request fails and returns
+         * an error.
          * <p>
          * API name: {@code timeout}
          * </p>

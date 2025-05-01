@@ -24464,49 +24464,46 @@ components:
     nodes.hot_threads___path.node_id:
       name: node_id
       in: path
-      description: Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
+      description: A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
       schema:
         type: array
-        description: Comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
+        description: A comma-separated list of node IDs or names to limit the returned information; use `_local` to return information from the node you're connecting to, leave empty to get information from all nodes.
         items:
           type: string
       required: true
     nodes.hot_threads___query.ignore_idle_threads:
       name: ignore_idle_threads
       in: query
-      description: Don't show threads that are in known-idle places, such as waiting on a socket select or pulling from an empty task queue.
+      description: Whether to show threads that are in known-idle places, such as waiting on a socket select or pulling from an empty task queue.
       schema:
         type: boolean
         default: true
-        description: Don't show threads that are in known-idle places, such as waiting on a socket select or pulling from an empty task queue.
     nodes.hot_threads___query.interval:
       name: interval
       in: query
-      description: The interval for the second sampling of threads.
+      description: The time interval between thread stack trace samples.
       schema:
         $ref: '#/components/schemas/_common___Duration'
     nodes.hot_threads___query.snapshots:
       name: snapshots
       in: query
-      description: Number of samples of thread stack trace.
+      description: The number of thread stack trace samples to collect.
       schema:
         type: integer
         default: 10
-        description: Number of samples of thread stack trace.
         format: int32
     nodes.hot_threads___query.threads:
       name: threads
       in: query
-      description: Specify the number of threads to provide information for.
+      description: The number of threads to provide information for.
       schema:
         type: integer
         default: 3
-        description: Specify the number of threads to provide information for.
         format: int32
     nodes.hot_threads___query.timeout:
       name: timeout
       in: query
-      description: Operation timeout.
+      description: The amount of time to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
       schema:
         $ref: '#/components/schemas/_common___Duration'
     nodes.hot_threads___query.type:
@@ -24528,7 +24525,7 @@ components:
     nodes.info___path.node_id:
       in: path
       name: node_id
-      description: Comma-separated list of node IDs or names used to limit returned information.
+      description: A comma-separated list of node IDs or names used to limit returned information.
       required: true
       schema:
         $ref: '#/components/schemas/_common___NodeIds'
@@ -24552,7 +24549,7 @@ components:
     nodes.info___query.flat_settings:
       in: query
       name: flat_settings
-      description: If `true`, returns settings in flat format.
+      description: When `true`, returns settings in flat format.
       schema:
         type: boolean
         default: false
@@ -24560,7 +24557,7 @@ components:
     nodes.info___query.timeout:
       in: query
       name: timeout
-      description: Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+      description: The amount of time to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
@@ -24575,16 +24572,14 @@ components:
     nodes.reload_secure_settings___query.timeout:
       in: query
       name: timeout
-      description: |-
-        Period to wait for a response.
-        If no response is received before the timeout expires, the request fails and returns an error.
+      description: The amount of time to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
     nodes.stats___path.index_metric:
       in: path
       name: index_metric
-      description: Limit the information returned for indexes metric to the specific index metrics. It can be used only if indexes (or all) metric is specified.
+      description: Limit the information returned for indexes metric to the specified index metrics. It can be used only if indexes (or all) metric is specified.
       required: true
       schema:
         type: array
@@ -24594,7 +24589,7 @@ components:
     nodes.stats___path.metric:
       in: path
       name: metric
-      description: Limit the information returned to the specified metrics
+      description: Limit the information returned to the specified metrics.
       required: true
       schema:
         type: array
@@ -24604,7 +24599,7 @@ components:
     nodes.stats___path.node_id:
       in: path
       name: node_id
-      description: Comma-separated list of node IDs or names used to limit returned information.
+      description: A comma-separated list of node IDs or names used to limit returned information.
       required: true
       schema:
         $ref: '#/components/schemas/_common___NodeIds'
@@ -24612,28 +24607,28 @@ components:
     nodes.stats___query.completion_fields:
       in: query
       name: completion_fields
-      description: Comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
+      description: A comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
       schema:
         $ref: '#/components/schemas/_common___Fields'
       style: form
     nodes.stats___query.fielddata_fields:
       in: query
       name: fielddata_fields
-      description: Comma-separated list or wildcard expressions of fields to include in field data statistics.
+      description: A comma-separated list or wildcard expressions of fields to include in field data statistics.
       schema:
         $ref: '#/components/schemas/_common___Fields'
       style: form
     nodes.stats___query.fields:
       in: query
       name: fields
-      description: Comma-separated list or wildcard expressions of fields to include in the statistics.
+      description: A comma-separated list or wildcard expressions of fields to include in the statistics.
       schema:
         $ref: '#/components/schemas/_common___Fields'
       style: form
     nodes.stats___query.groups:
       in: query
       name: groups
-      description: Comma-separated list of search groups to include in the search statistics.
+      description: A comma-separated list of search groups to include in the search statistics.
       schema:
         type: array
         items:
@@ -24642,7 +24637,7 @@ components:
     nodes.stats___query.include_segment_file_sizes:
       in: query
       name: include_segment_file_sizes
-      description: If `true`, the call reports the aggregated disk usage of each one of the Lucene index files (only applies if segment stats are requested).
+      description: When `true`,  reports the aggregated disk usage of each one of the Lucene index files (only applies if segment stats are requested).
       schema:
         type: boolean
         default: false
@@ -24657,7 +24652,7 @@ components:
     nodes.stats___query.timeout:
       in: query
       name: timeout
-      description: Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+      description: The amount of time to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
       schema:
         $ref: '#/components/schemas/_common___Duration'
       style: form
@@ -32676,6 +32671,7 @@ components:
       content:
         application/json:
           schema:
+            description: The response containing node information.
             allOf:
               - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
               - type: object
@@ -32694,6 +32690,7 @@ components:
       content:
         application/json:
           schema:
+            description: The response containing secure settings reload results.
             allOf:
               - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
               - type: object
@@ -32712,6 +32709,7 @@ components:
       content:
         application/json:
           schema:
+            description: The response containing node statistics.
             allOf:
               - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
               - type: object
@@ -32729,6 +32727,7 @@ components:
       content:
         application/json:
           schema:
+            description: The response containing node usage information.
             allOf:
               - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
               - type: object
@@ -38232,13 +38231,11 @@ components:
         - title: keyed
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/_common.aggregations___Buckets.TBucket'
+            $ref: '#/components/schemas/_common.aggregations___TBucket'
         - title: array
           type: array
           items:
-            $ref: '#/components/schemas/_common.aggregations___Buckets.TBucket'
-    _common.aggregations___Buckets.TBucket:
-      x-is-generic-type-parameter: true
+            $ref: '#/components/schemas/_common.aggregations___TBucket'
     _common.aggregations___BucketScriptAggregation:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___PipelineAggregationBase'
@@ -38692,14 +38689,12 @@ components:
       type: object
       properties:
         max:
-          $ref: '#/components/schemas/_common.aggregations___ExtendedBounds.T'
+          $ref: '#/components/schemas/_common.aggregations___T'
         min:
-          $ref: '#/components/schemas/_common.aggregations___ExtendedBounds.T'
+          $ref: '#/components/schemas/_common.aggregations___T'
       required:
         - max
         - min
-    _common.aggregations___ExtendedBounds.T:
-      x-is-generic-type-parameter: true
     _common.aggregations___ExtendedBoundsDouble:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___ExtendedBounds'
@@ -39479,14 +39474,12 @@ components:
                 - oneOf:
                     - type: object
                       additionalProperties:
-                        $ref: '#/components/schemas/_common.aggregations___MultiBucketAggregateBase.TBucket'
+                        $ref: '#/components/schemas/_common.aggregations___TBucket'
                     - type: array
                       items:
-                        $ref: '#/components/schemas/_common.aggregations___MultiBucketAggregateBase.TBucket'
+                        $ref: '#/components/schemas/_common.aggregations___TBucket'
           required:
             - buckets
-    _common.aggregations___MultiBucketAggregateBase.TBucket:
-      x-is-generic-type-parameter: true
     _common.aggregations___MultiBucketAggregateBaseAdjacencyMatrixBucket:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___MultiBucketAggregateBase'
@@ -39712,10 +39705,6 @@ components:
           format: int64
       required:
         - doc_count
-      additionalProperties:
-        description: Nested aggregations.
-        title: aggregations
-        $ref: '#/components/schemas/_common.aggregations___Aggregate'
     _common.aggregations___MultiTermLookup:
       type: object
       properties:
@@ -40498,6 +40487,10 @@ components:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___PipelineAggregationBase'
         - type: object
+    _common.aggregations___T:
+      x-is-generic-type-parameter: true
+    _common.aggregations___TBucket:
+      x-is-generic-type-parameter: true
     _common.aggregations___TDigest:
       type: object
       properties:
@@ -47803,7 +47796,7 @@ components:
         _routing:
           type: string
         _source:
-          $ref: '#/components/schemas/_core.search___Hit.TDocument'
+          $ref: '#/components/schemas/_core.search___TDocument'
         _seq_no:
           $ref: '#/components/schemas/_common___SequenceNumber'
         _primary_term:
@@ -47813,8 +47806,6 @@ components:
           $ref: '#/components/schemas/_common___VersionNumber'
         sort:
           $ref: '#/components/schemas/_common___SortResults'
-    _core.search___Hit.TDocument:
-      x-is-generic-type-parameter: true
     _core.search___HitsMetadata:
       type: object
       properties:
@@ -47832,7 +47823,7 @@ components:
               - type: object
                 properties:
                   _source:
-                    $ref: '#/components/schemas/_core.search___HitsMetadata.T'
+                    $ref: '#/components/schemas/_core.search___T'
         max_score:
           oneOf:
             - type: 'null'
@@ -47840,8 +47831,6 @@ components:
               format: float
       required:
         - hits
-    _core.search___HitsMetadata.T:
-      x-is-generic-type-parameter: true
     _core.search___InnerHits:
       type: object
       properties:
@@ -48385,6 +48374,10 @@ components:
       enum:
         - frequency
         - score
+    _core.search___T:
+      x-is-generic-type-parameter: true
+    _core.search___TDocument:
+      x-is-generic-type-parameter: true
     _core.search___TermSuggest:
       allOf:
         - $ref: '#/components/schemas/_core.search___SuggestBase'
@@ -52934,6 +52927,7 @@ components:
           type: integer
     indices._common___Alias:
       type: object
+      description: The index alias configuration.
       properties:
         filter:
           $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
@@ -52941,11 +52935,11 @@ components:
           $ref: '#/components/schemas/_common___Routing'
         is_hidden:
           description: |-
-            If `true`, the alias is hidden.
+            When `true`, the alias is hidden.
             All indexes for the alias must have the same `is_hidden` value.
           type: boolean
         is_write_index:
-          description: If `true`, the index is the write index for the alias.
+          description: When `true`, the index is the write index for the alias.
           type: boolean
         routing:
           $ref: '#/components/schemas/_common___Routing'
@@ -52953,44 +52947,60 @@ components:
           $ref: '#/components/schemas/_common___Routing'
     indices._common___AliasDefinition:
       type: object
+      description: The configuration for an index alias.
       properties:
         filter:
           $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
         index_routing:
           description: |-
-            Value used to route indexing operations to a specific shard.
-            If specified, this overwrites the `routing` value for indexing operations.
+            The value used to route indexing operations to a specific shard.
+            When specified, this overwrites the `routing` value for indexing operations.
           type: string
         is_write_index:
-          description: If `true`, the index is the write index for the alias.
+          description: When `true`, the index is the write index for the alias.
           type: boolean
         routing:
-          description: Value used to route indexing and search operations to a specific shard.
+          description: The value used to route indexing and search operations to a specific shard.
           type: string
         search_routing:
           description: |-
-            Value used to route search operations to a specific shard.
-            If specified, this overwrites the `routing` value for search operations.
+            The value used to route search operations to a specific shard.
+            When specified, this overwrites the `routing` value for search operations.
           type: string
         is_hidden:
           description: |-
-            If `true`, the alias is hidden.
+            When `true`, the alias is hidden.
             All indexes for the alias must have the same `is_hidden` value.
           type: boolean
+    indices._common___BuiltinStorageType:
+      description: The type of storage implementation.
+      oneOf:
+        - description: Uses the default file system implementation.
+          const: fs
+          type: string
+        - description: Uses a hybrid of memory-mapped and regular file system implementation.
+          const: hybridfs
+          type: string
+        - description: Uses memory-mapped file system implementation.
+          const: mmapfs
+          type: string
+        - description: Uses NIO file system implementation.
+          const: niofs
+          type: string
     indices._common___DataStream:
       type: object
       properties:
         _meta:
           $ref: '#/components/schemas/_common___Metadata'
         allow_custom_routing:
-          description: If `true`, the data stream allows custom routing on write request.
+          description: When `true`, the data stream allows custom routing on write request.
           type: boolean
         generation:
-          description: Current generation for the data stream. This number acts as a cumulative count of the stream's rollovers, starting at 1.
+          description: The current generation number for the data stream. This number acts as a cumulative count of the stream's rollovers, starting at 1.
           type: integer
           format: int64
         hidden:
-          description: If `true`, the data stream is hidden.
+          description: When `true`, the data stream is hidden.
           type: boolean
         ilm_policy:
           $ref: '#/components/schemas/_common___Name'
@@ -53001,7 +53011,7 @@ components:
           type: boolean
         indices:
           description: |-
-            Array of objects containing information about the data stream's backing indexes.
+            An array of objects containing information about the data stream's backing indexes.
             The last item in this array contains information about the stream's current write index.
           type: array
           items:
@@ -53009,12 +53019,12 @@ components:
         name:
           $ref: '#/components/schemas/_common___DataStreamName'
         replicated:
-          description: If `true`, the data stream is created and managed by cross-cluster replication and the local cluster can not write into this data stream or change its mappings.
+          description: When `true`, the data stream is created and managed by cross-cluster replication and the local cluster can not write into this data stream or change its mappings.
           type: boolean
         status:
           $ref: '#/components/schemas/_common___HealthStatus'
         system:
-          description: If `true`, the data stream is created and managed by an OpenSearch stack component and cannot be modified through normal user interaction.
+          description: When `true`, the data stream is created and managed by an OpenSearch stack component and cannot be modified through normal user interaction.
           type: boolean
         template:
           $ref: '#/components/schemas/_common___Name'
@@ -53029,6 +53039,7 @@ components:
         - timestamp_field
     indices._common___DataStreamIndex:
       type: object
+      description: The configuration for a data stream's backing index.
       properties:
         index_name:
           $ref: '#/components/schemas/_common___IndexName'
@@ -53045,6 +53056,7 @@ components:
         - index_name
         - index_uuid
     indices._common___DataStreamStats:
+      description: The statistics for a data stream.
       type: object
       properties:
         backing_indices:
@@ -53058,7 +53070,7 @@ components:
         store_size:
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
         store_size_bytes:
-          description: Total size, in bytes, of all shards for the data stream's backing indexes.
+          description: The total size, in bytes, of all shards for the data stream's backing indexes.
           $ref: '#/components/schemas/_common___ByteCount'
       required:
         - backing_indices
@@ -53066,6 +53078,7 @@ components:
         - maximum_timestamp
         - store_size_bytes
     indices._common___DataStreamTimestampField:
+      description: The timestamp field configuration for a data stream.
       type: object
       properties:
         name:
@@ -53074,43 +53087,52 @@ components:
         - name
     indices._common___FielddataFrequencyFilter:
       type: object
+      description: The frequency filter configuration for field data.
       properties:
         max:
           type: number
           format: double
+          description: The maximum frequency threshold.
         min:
           type: number
           format: double
+          description: The minimum frequency threshold.
         min_segment_size:
           type: integer
+          description: The minimum segment size to apply the filter.
       required:
         - max
         - min
         - min_segment_size
     indices._common___IndexCheckOnStartup:
       type: string
+      description: The type of check to perform when starting an index.
       enum:
         - checksum
         - 'false'
         - 'true'
     indices._common___IndexError:
       type: object
+      description: The error information for an index operation.
       properties:
         error:
           $ref: '#/components/schemas/indices._common___IndexErrorCause'
         status:
           type: number
+          description: The HTTP status code for the error.
     indices._common___IndexErrorCause:
       type: object
+      description: The detailed cause of an index error.
       properties:
         type:
-          description: The type of error
+          description: The type of error.
           type: string
         reason:
-          description: A human-readable explanation of the error, in english
+          description: A human-readable explanation of the error.
           type: string
         root_cause:
           type: array
+          description: The underlying causes of the error.
           items:
             $ref: '#/components/schemas/indices._common___IndexErrorCause'
         index:
@@ -53128,6 +53150,7 @@ components:
         description: Additional details about the error.
     indices._common___IndexGetUpgradeStatus:
       type: object
+      description: The upgrade status information for indexes.
       properties:
         size_in_bytes:
           $ref: '#/components/schemas/_common___ByteCount'
@@ -53137,10 +53160,12 @@ components:
           $ref: '#/components/schemas/_common___ByteCount'
         indices:
           type: object
+          description: The upgrade status for individual indexes.
           additionalProperties:
             $ref: '#/components/schemas/indices._common___UpgradeStatus'
     indices._common___IndexingPressure:
       type: object
+      description: The configuration for indexing backpressure.
       properties:
         memory:
           $ref: '#/components/schemas/indices._common___IndexingPressureMemory'
@@ -53148,10 +53173,11 @@ components:
         - memory
     indices._common___IndexingPressureMemory:
       type: object
+      description: The memory-related settings for indexing backpressure.
       properties:
         limit:
           description: |-
-            Number of outstanding bytes that may be consumed by indexing requests. When this limit is reached or exceeded,
+            The number of outstanding bytes that may be consumed by indexing requests. When this limit is reached or exceeded,
             the node will reject new coordinating and primary operations. When replica operations consume 1.5x this limit,
             the node will reject new replica operations. Defaults to 10% of the heap.
           oneOf:
@@ -53160,9 +53186,11 @@ components:
               format: int64
     indices._common___IndexingSlowlog:
       type: object
+      description: The configuration for indexing slow log.
       properties:
         level:
           type: string
+          description: The log level for slow indexing operations.
         source:
           $ref: '#/components/schemas/_common___StringifiedInteger'
         reformat:
@@ -53171,10 +53199,12 @@ components:
           $ref: '#/components/schemas/indices._common___IndexingSlowlogThresholds'
     indices._common___IndexingSlowlogThresholds:
       type: object
+      description: The threshold configuration for indexing slow log.
       properties:
         index:
           $ref: '#/components/schemas/indices._common___SlowlogThresholdLevels'
     indices._common___IndexRouting:
+      description: The routing configuration for index operations.
       type: object
       properties:
         allocation:
@@ -53182,6 +53212,7 @@ components:
         rebalance:
           $ref: '#/components/schemas/indices._common___IndexRoutingRebalance'
     indices._common___IndexRoutingAllocation:
+      description: The configuration for shard allocation.
       type: object
       properties:
         enable:
@@ -53199,44 +53230,66 @@ components:
           x-version-added: '3.0'
     indices._common___IndexRoutingAllocationDisk:
       type: object
+      description: The disk-based allocation settings.
       properties:
         threshold_enabled:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
     indices._common___IndexRoutingAllocationInclude:
       type: object
+      description: The inclusion rules for shard allocation.
       properties:
         _tier_preference:
           type: string
+          description: The data tier preference for the index.
         _id:
           $ref: '#/components/schemas/_common___Id'
     indices._common___IndexRoutingAllocationInitialRecovery:
       type: object
+      description: The configuration for initial shard recovery.
       properties:
         _id:
           $ref: '#/components/schemas/_common___Id'
     indices._common___IndexRoutingAllocationOptions:
-      type: string
-      enum:
-        - all
-        - new_primaries
-        - none
-        - primaries
+      description: The options for shard allocation control.
+      oneOf:
+        - description: Allows shard allocation for all shards.
+          const: all
+          type: string
+        - description: Allows shard allocation only for new primary shards.
+          const: new_primaries
+          type: string
+        - description: Prevents shard allocation.
+          const: none
+          type: string
+        - description: Allows shard allocation only for primary shards.
+          const: primaries
+          type: string
     indices._common___IndexRoutingRebalance:
       type: object
+      description: The configuration for shard rebalancing.
       properties:
         enable:
           $ref: '#/components/schemas/indices._common___IndexRoutingRebalanceOptions'
       required:
         - enable
     indices._common___IndexRoutingRebalanceOptions:
-      type: string
-      enum:
-        - all
-        - none
-        - primaries
-        - replicas
+      description: The options for shard rebalancing control.
+      oneOf:
+        - description: Allows rebalancing of all shards.
+          const: all
+          type: string
+        - description: Prevents shard rebalancing.
+          const: none
+          type: string
+        - description: Allows rebalancing of primary shards only.
+          const: primaries
+          type: string
+        - description: Allows rebalancing of replica shards only.
+          const: replicas
+          type: string
     indices._common___IndexSegmentSort:
       type: object
+      description: The configuration for segment sorting.
       properties:
         field:
           $ref: '#/components/schemas/_common___Fields'
@@ -53259,6 +53312,7 @@ components:
               items:
                 $ref: '#/components/schemas/indices._common___SegmentSortMissing'
     indices._common___IndexSettingBlocks:
+      description: The block settings that control index operations.
       type: object
       properties:
         read_only:
@@ -53273,7 +53327,7 @@ components:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
     indices._common___IndexSettings:
       type: object
-      description: The index settings to be updated.
+      description: The configuration settings for an index.
       properties:
         index:
           $ref: '#/components/schemas/indices._common___IndexSettings'
@@ -53297,6 +53351,7 @@ components:
           $ref: '#/components/schemas/indices._common___IndexCheckOnStartup'
         codec:
           type: string
+          description: The compression type for stored data.
         routing_partition_size:
           $ref: '#/components/schemas/_common___StringifiedInteger'
         load_fixed_bitset_filters_eagerly:
@@ -53305,6 +53360,7 @@ components:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
         auto_expand_replicas:
           type: string
+          description: The range of replicas to maintain.
         merge:
           $ref: '#/components/schemas/indices._common___IndexSettingsMerge'
         merge.scheduler.max_thread_count:
@@ -53423,44 +53479,54 @@ components:
         title: custom_settings
     indices._common___IndexSettingsAnalysis:
       type: object
+      description: The text analysis configuration.
       properties:
         analyzer:
           type: object
+          description: The custom analyzer configurations.
           additionalProperties:
             $ref: '#/components/schemas/_common.analysis___Analyzer'
         char_filter:
           type: object
+          description: The custom character filter configurations.
           additionalProperties:
             $ref: '#/components/schemas/_common.analysis___CharFilter'
         filter:
           type: object
+          description: The custom token filter configurations.
           additionalProperties:
             $ref: '#/components/schemas/_common.analysis___TokenFilter'
         normalizer:
           type: object
+          description: The custom normalizer configurations.
           additionalProperties:
             $ref: '#/components/schemas/_common.analysis___Normalizer'
         tokenizer:
           type: object
+          description: The custom tokenizer configurations.
           additionalProperties:
             $ref: '#/components/schemas/_common.analysis___Tokenizer'
     indices._common___IndexSettingsAnalyze:
+      description: The configuration for text analysis.
       type: object
       properties:
         max_token_count:
           $ref: '#/components/schemas/_common___StringifiedInteger'
     indices._common___IndexSettingsHighlight:
+      description: The configuration for highlighting.
       type: object
       properties:
         max_analyzed_offset:
           $ref: '#/components/schemas/_common___StringifiedInteger'
     indices._common___IndexSettingsIndexing:
       type: object
+      description: The indexing-related settings for an index.
       properties:
         slowlog:
           $ref: '#/components/schemas/indices._common___IndexingSlowlog'
     indices._common___IndexSettingsLifecycle:
       type: object
+      description: The index lifecycle management configuration.
       properties:
         name:
           $ref: '#/components/schemas/_common___Name'
@@ -53468,13 +53534,13 @@ components:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
         origination_date:
           description: |-
-            If specified, this is the timestamp used to calculate the index age for its phase transitions. Use this setting
+            The timestamp used to calculate the index age for its phase transitions. Use this setting
             if you create a new index that contains old data and want to use the original creation date to calculate the index
             age. Specified as a Unix epoch value in milliseconds.
           $ref: '#/components/schemas/_common___StringifiedEpochTimeUnitMillis'
         parse_origination_date:
           description: |-
-            Set to `true` to parse the origination date from the index name. This origination date is used to calculate the index age
+            When `true`, parses the origination date from the index name. This origination date is used to calculate the index age
             for its phase transitions. The index name must match the pattern `^.*-{date_format}-\\d+`, where the `date_format` is
             `yyyy.MM.dd` and the trailing digits are optional. An index that was rolled over would normally match the full format,
             for example `logs-2016.10.31-000002`). If the index name doesn't match the pattern, index creation fails.
@@ -53490,12 +53556,14 @@ components:
       required:
         - name
     indices._common___IndexSettingsLifecycleStep:
+      description: The configuration for the lifecycle step execution.
       type: object
       properties:
         wait_time_threshold:
           $ref: '#/components/schemas/_common___Duration'
     indices._common___IndexSettingsMapping:
       type: object
+      description: The mapping configuration for the index.
       properties:
         coerce:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
@@ -53566,6 +53634,7 @@ components:
           $ref: '#/components/schemas/_common___StringifiedLong'
     indices._common___IndexSettingsMerge:
       type: object
+      description: The configuration for segment merging.
       properties:
         log_byte_size_policy:
           $ref: '#/components/schemas/indices._common___IndexSettingsMergeLogByteSizePolicy'
@@ -53589,6 +53658,7 @@ components:
           $ref: '#/components/schemas/indices._common___IndexSettingsMergeScheduler'
     indices._common___IndexSettingsMergeLogByteSizePolicy:
       type: object
+      description: The configuration for log byte size merge policy.
       properties:
         max_merge_segment:
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
@@ -53603,6 +53673,7 @@ components:
         no_cfs_ratio:
           $ref: '#/components/schemas/_common___StringifiedDouble'
     indices._common___IndexSettingsMergePolicy:
+      description: The policy configuration for segment merging.
       oneOf:
         - title: name
           $ref: '#/components/schemas/indices._common___IndexSettingsMergePolicyName'
@@ -53610,12 +53681,14 @@ components:
           $ref: '#/components/schemas/indices._common___IndexSettingsMergeTieredPolicy'
     indices._common___IndexSettingsMergePolicyName:
       type: string
+      description: The type of merge policy.
       enum:
         - default
         - log_byte_size
         - tiered
     indices._common___IndexSettingsMergeScheduler:
       type: object
+      description: The configuration for merge scheduling.
       properties:
         auto_throttle:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
@@ -53625,6 +53698,7 @@ components:
           $ref: '#/components/schemas/_common___StringifiedInteger'
     indices._common___IndexSettingsMergeTieredPolicy:
       type: object
+      description: The configuration for tiered merge policy.
       properties:
         deletes_pct_allowed:
           $ref: '#/components/schemas/_common___StringifiedDouble'
@@ -53645,11 +53719,13 @@ components:
           $ref: '#/components/schemas/_common___StringifiedDouble'
     indices._common___IndexSettingsQueries:
       type: object
+      description: The configuration for query caching.
       properties:
         cache:
           $ref: '#/components/schemas/indices._common___IndexSettingsQueriesCache'
     indices._common___IndexSettingsQueriesCache:
       type: object
+      description: The query cache settings.
       properties:
         enabled:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
@@ -53657,11 +53733,13 @@ components:
         - enabled
     indices._common___IndexSettingsQueryString:
       type: object
+      description: The configuration for query string parsing.
       properties:
         lenient:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
     indices._common___IndexSettingsSearch:
       type: object
+      description: The configuration for search operations.
       properties:
         concurrent:
           $ref: '#/components/schemas/indices._common___IndexSettingsSearchConcurrent'
@@ -53669,6 +53747,7 @@ components:
           $ref: '#/components/schemas/indices._common___IndexSettingsSearchConcurrentSegmentSearch'
         default_pipeline:
           type: string
+          description: The default search pipeline to use.
         idle:
           $ref: '#/components/schemas/indices._common___SearchIdle'
         slowlog:
@@ -53677,18 +53756,22 @@ components:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
     indices._common___IndexSettingsSearchConcurrent:
       type: object
+      description: The configuration for concurrent search operations.
       properties:
         max_slice_count:
           $ref: '#/components/schemas/_common___StringifiedInteger'
     indices._common___IndexSettingsSearchConcurrentSegmentSearch:
+      description: The configuration for concurrent segment search.
       type: object
       properties:
         mode:
           type: string
+          description: The mode of concurrent segment search.
         enabled:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
     indices._common___IndexSettingsSimilarity:
       type: object
+      description: The configuration for similarity algorithms.
       properties:
         bm25:
           $ref: '#/components/schemas/indices._common___IndexSettingsSimilarityBm25'
@@ -53706,19 +53789,24 @@ components:
           $ref: '#/components/schemas/indices._common___IndexSettingsSimilarityScriptedTfidf'
     indices._common___IndexSettingsSimilarityBm25:
       type: object
+      description: The BM25 similarity algorithm configuration.
       properties:
         b:
           type: number
           format: float
+          description: The length normalization parameter.
         discount_overlaps:
           type: boolean
+          description: Whether to discount overlapping tokens.
         k1:
           type: number
           format: float
+          description: The term frequency normalization parameter.
         type:
-          type: string
-          enum:
-            - BM25
+          oneOf:
+            - description: The BM25 similarity algorithm.
+              const: BM25
+              type: string
       required:
         - b
         - discount_overlaps
@@ -53726,6 +53814,7 @@ components:
         - type
     indices._common___IndexSettingsSimilarityDfi:
       type: object
+      description: The divergence from independence (DFI) similarity algorithm configuration.
       properties:
         independence_measure:
           $ref: '#/components/schemas/_common___DFIIndependenceMeasure'
@@ -53737,6 +53826,7 @@ components:
         - independence_measure
         - type
     indices._common___IndexSettingsSimilarityDfr:
+      description: The divergence from randomness (DFR) similarity algorithm configuration.
       type: object
       properties:
         after_effect:
@@ -53756,6 +53846,7 @@ components:
         - type
     indices._common___IndexSettingsSimilarityIb:
       type: object
+      description: The information-based similarity algorithm configuration.
       properties:
         distribution:
           $ref: '#/components/schemas/_common___IBDistribution'
@@ -53773,11 +53864,13 @@ components:
         - normalization
         - type
     indices._common___IndexSettingsSimilarityLmd:
+      description: The LM Dirichlet similarity algorithm configuration.
       type: object
       properties:
         mu:
           type: number
           format: float
+          description: The smoothing parameter.
         type:
           type: string
           enum:
@@ -53787,10 +53880,12 @@ components:
         - type
     indices._common___IndexSettingsSimilarityLmj:
       type: object
+      description: The LM Jelinek-Mercer similarity algorithm configuration.
       properties:
         lambda:
           type: number
           format: float
+          description: The optimal mixture parameter.
         type:
           type: string
           enum:
@@ -53800,6 +53895,7 @@ components:
         - type
     indices._common___IndexSettingsSimilarityScriptedTfidf:
       type: object
+      description: The scripted TF/IDF similarity algorithm configuration.
       properties:
         script:
           $ref: '#/components/schemas/_common___Script'
@@ -53812,6 +53908,7 @@ components:
         - type
     indices._common___IndexSettingsStarTree:
       type: object
+      description: The star tree indexing configuration.
       properties:
         default:
           $ref: '#/components/schemas/indices._common___IndexSettingsStarTreeDefault'
@@ -53820,11 +53917,13 @@ components:
         max_fields:
           $ref: '#/components/schemas/_common___StringifiedInteger'
     indices._common___IndexSettingsStarTreeDefault:
+      description: The default settings for star tree indexing.
       type: object
       properties:
         max_leaf_docs:
           $ref: '#/components/schemas/_common___StringifiedInteger'
     indices._common___IndexSettingsStarTreeField:
+      description: The field-specific settings for star tree indexing.
       type: object
       properties:
         default:
@@ -53837,13 +53936,16 @@ components:
           $ref: '#/components/schemas/_common___StringifiedInteger'
     indices._common___IndexSettingsStarTreeFieldDefault:
       type: object
+      description: The field-specific settings for star tree indexing.
       properties:
         date_intervals:
           type: array
+          description: The list of date intervals to use.
           items:
             type: string
         metrics:
           type: array
+          description: The list of metrics to calculate.
           items:
             type: string
     indices._common___IndexSettingsStore:
@@ -53853,9 +53955,8 @@ components:
           $ref: '#/components/schemas/indices._common___StorageType'
         allow_mmap:
           description: |-
-            You can restrict the use of the `mmapfs` and the related `hybridfs` store types with the setting `node.store.allow_mmap`.
-            This is a Boolean setting indicating whether or not memory-mapping is allowed. The default is to allow it. This
-            setting is useful, for example, if you are in an environment where you can not control the ability to create a lot
+            Whether memory-mapping is allowed. You can restrict the use of the `mmapfs` and the related `hybridfs` store types with the setting `node.store.allow_mmap`.
+            This setting is useful, for example, if you are in an environment where you can not control the ability to create a lot
             of memory maps so you need disable the ability to use memory-mapping.
           $ref: '#/components/schemas/_common___StringifiedBoolean'
         fs:
@@ -53864,6 +53965,7 @@ components:
           $ref: '#/components/schemas/indices._common___IndexSettingsStoreHybrid'
         preload:
           type: array
+          description: The list of files to preload into memory.
           items:
             type: string
         stats_refresh_interval:
@@ -53872,16 +53974,22 @@ components:
         - type
     indices._common___IndexSettingsStoreFs:
       type: object
+      description: The filesystem storage configuration.
       properties:
         fs_lock:
           $ref: '#/components/schemas/indices._common___IndexSettingsStoreFsLock'
     indices._common___IndexSettingsStoreFsLock:
-      type: string
-      enum:
-        - native
-        - simple
+      description: The type of file system lock.
+      oneOf:
+        - description: Uses native file system locks.
+          const: native
+          type: string
+        - description: Uses simple file system locks.
+          const: simple
+          type: string
     indices._common___IndexSettingsStoreHybrid:
       type: object
+      description: The hybrid storage type configuration.
       properties:
         mmap:
           $ref: '#/components/schemas/indices._common___IndexSettingsStoreHybridMmap'
@@ -53889,23 +53997,29 @@ components:
           $ref: '#/components/schemas/indices._common___IndexSettingsStoreHybridNio'
     indices._common___IndexSettingsStoreHybridMmap:
       type: object
+      description: The memory-mapped storage configuration.
       properties:
         extensions:
           type: array
+          description: The file extensions to use memory-mapping for.
           items:
             type: string
     indices._common___IndexSettingsStoreHybridNio:
       type: object
+      description: The NIO storage configuration.
       properties:
         extensions:
           type: array
+          description: The file extensions to use NIO for.
           items:
             type: string
     indices._common___IndexState:
       type: object
+      description: The state configuration of an index.
       properties:
         aliases:
           type: object
+          description: The aliases associated with the index.
           additionalProperties:
             $ref: '#/components/schemas/indices._common___Alias'
         mappings:
@@ -53917,6 +54031,7 @@ components:
         data_stream:
           $ref: '#/components/schemas/_common___DataStreamName'
     indices._common___IndexTemplate:
+      description: The configuration for an index template.
       type: object
       properties:
         index_patterns:
@@ -53934,7 +54049,7 @@ components:
           $ref: '#/components/schemas/_common___VersionNumber'
         priority:
           description: |-
-            Priority to determine index template precedence when a new data stream or index is created.
+            The priority to determine index template precedence when a new data stream or index is created.
             The index template with the highest priority is chosen.
             If no priority is specified the template is treated as though it is of priority 0 (lowest priority).
             This number is not automatically generated by OpenSearch.
@@ -53944,28 +54059,30 @@ components:
           $ref: '#/components/schemas/_common___Metadata'
         allow_auto_create:
           type: boolean
+          description: Whether the template allows automatic index creation.
         data_stream:
           $ref: '#/components/schemas/indices._common___IndexTemplateDataStreamConfiguration'
       required:
         - index_patterns
-      description: New index template definition to be simulated, if no index template name is specified.
     indices._common___IndexTemplateDataStreamConfiguration:
       type: object
+      description: The data stream configuration for an index template.
       properties:
         hidden:
-          description: If `true`, the data stream is hidden.
+          description: When `true`, the data stream is hidden.
           type: boolean
         allow_custom_routing:
-          description: If `true`, the data stream supports custom routing.
+          description: When `true`, the data stream supports custom routing.
           type: boolean
         timestamp_field:
           $ref: '#/components/schemas/indices._common___DataStreamTimestampField'
     indices._common___IndexTemplateSummary:
       type: object
+      description: The summary configuration for an index template.
       properties:
         aliases:
           description: |-
-            Aliases to add.
+            The aliases to add.
             If the index template includes a `data_stream` object, these are data stream aliases.
             Otherwise, these are index aliases.
             Data stream aliases ignore the `index_routing`, `routing`, and `search_routing` options.
@@ -53977,52 +54094,66 @@ components:
         settings:
           $ref: '#/components/schemas/indices._common___IndexSettings'
     indices._common___IndexVersioning:
+      description: The versioning information for the index.
       type: object
       properties:
         created:
           $ref: '#/components/schemas/_common___VersionString'
         created_string:
           type: string
+          description: The string representation of the version when the index was created.
     indices._common___ManagedBy:
       type: string
+      description: The component managing the data stream or index.
       enum:
         - Data stream lifecycle
         - Index Lifecycle Management
         - Unmanaged
     indices._common___NumericFielddata:
       type: object
+      description: The configuration for numeric field data.
       properties:
         format:
           $ref: '#/components/schemas/indices._common___NumericFielddataFormat'
       required:
         - format
     indices._common___NumericFielddataFormat:
-      type: string
-      enum:
-        - array
-        - disabled
+      description: The format for numeric field data.
+      oneOf:
+        - description: Uses array format for field data.
+          const: array
+          type: string
+        - description: Disables field data.
+          const: disabled
+          type: string
     indices._common___RetentionLease:
       type: object
+      description: The retention lease configuration.
       properties:
         period:
           $ref: '#/components/schemas/_common___Duration'
       required:
         - period
     indices._common___SearchIdle:
+      description: The configuration for search idle behavior.
       type: object
       properties:
         after:
           $ref: '#/components/schemas/_common___Duration'
     indices._common___SearchSlowlog:
+      description: The configuration for search slow log.
       type: object
       properties:
         level:
           type: string
+          description: The log level for slow searches.
         reformat:
           type: boolean
+          description: Whether to reformat the logged search source.
         threshold:
           $ref: '#/components/schemas/indices._common___SearchSlowlogThresholds'
     indices._common___SearchSlowlogThresholds:
+      description: The threshold configuration for search slow log.
       type: object
       properties:
         query:
@@ -54031,20 +54162,24 @@ components:
           $ref: '#/components/schemas/indices._common___SlowlogThresholdLevels'
     indices._common___SegmentSortMissing:
       type: string
+      description: The handling of missing values in segment sorting.
       enum:
         - _first
         - _last
     indices._common___SegmentSortMode:
       type: string
+      description: The sort mode for segments.
       enum:
         - max
         - min
     indices._common___SegmentSortOrder:
       type: string
+      description: The sort order for segments.
       enum:
         - asc
         - desc
     indices._common___SlowlogThresholdLevels:
+      description: The threshold levels for slow log.
       type: object
       properties:
         warn:
@@ -54057,9 +54192,10 @@ components:
           $ref: '#/components/schemas/_common___Duration'
     indices._common___SoftDeletes:
       type: object
+      description: The configuration for soft deletes.
       properties:
         enabled:
-          description: Indicates whether soft deletes are enabled on the index.
+          description: Whether soft deletes are enabled on the index.
           $ref: '#/components/schemas/_common___StringifiedBoolean'
         retention:
           $ref: '#/components/schemas/indices._common___SoftDeletesRetention'
@@ -54067,20 +54203,19 @@ components:
           $ref: '#/components/schemas/indices._common___RetentionLease'
     indices._common___SoftDeletesRetention:
       type: object
+      description: The retention configuration for soft deletes.
       properties:
         operations:
           $ref: '#/components/schemas/_common___StringifiedLong'
     indices._common___StorageType:
       anyOf:
-        - type: string
-          enum:
-            - fs
-            - hybridfs
-            - mmapfs
-            - niofs
-        - type: string
+        - title: builtin
+          $ref: '#/components/schemas/indices._common___BuiltinStorageType'
+        - title: custom
+          type: string
     indices._common___TemplateMapping:
       type: object
+      description: The mapping configuration for a template.
       properties:
         aliases:
           type: object
@@ -54095,8 +54230,10 @@ components:
         order:
           type: integer
           format: int32
+          description: The order in which the template should be applied.
         settings:
           type: object
+          description: The index settings to apply.
           additionalProperties: true
         version:
           $ref: '#/components/schemas/_common___VersionNumber'
@@ -54108,6 +54245,7 @@ components:
         - settings
     indices._common___Translog:
       type: object
+      description: The translog configuration.
       properties:
         sync_interval:
           $ref: '#/components/schemas/_common___Duration'
@@ -54120,14 +54258,23 @@ components:
         retention:
           $ref: '#/components/schemas/indices._common___TranslogRetention'
     indices._common___TranslogDurability:
-      type: string
-      enum:
-        - ASYNC
-        - REQUEST
-        - async
-        - request
+      description: The durability settings for the translog.
+      oneOf:
+        - description: Asynchronous durability - acknowledges write operations after they are written to memory.
+          const: ASYNC
+          type: string
+        - description: Request durability - acknowledges write operations after they are written to disk.
+          const: REQUEST
+          type: string
+        - description: Asynchronous durability (lowercase variant).
+          const: async
+          type: string
+        - description: Request durability (lowercase variant).
+          const: request
+          type: string
     indices._common___TranslogRetention:
       type: object
+      description: The retention configuration for the translog.
       properties:
         size:
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
@@ -54135,6 +54282,7 @@ components:
           $ref: '#/components/schemas/_common___Duration'
     indices._common___UpgradeStatus:
       type: object
+      description: The upgrade status details for an index.
       properties:
         size_in_bytes:
           $ref: '#/components/schemas/_common___ByteCount'
@@ -54144,41 +54292,56 @@ components:
           $ref: '#/components/schemas/_common___ByteCount'
     indices._common___UpgradeVersionStatus:
       type: object
+      description: The version status for an upgrade operation.
       properties:
         upgrade_version:
           $ref: '#/components/schemas/_common___VersionString'
         oldest_lucene_segment_version:
           $ref: '#/components/schemas/_common___VersionString'
     indices.add_block___IndicesBlockOptions:
-      type: string
-      enum:
-        - metadata
-        - read
-        - read_only
-        - write
+      description: The type of block to add to an index.
+      oneOf:
+        - description: Blocks metadata changes to the index.
+          const: metadata
+          type: string
+        - description: Blocks read operations on the index.
+          const: read
+          type: string
+        - description: Makes the index read-only.
+          const: read_only
+          type: string
+        - description: Blocks write operations on the index.
+          const: write
+          type: string
     indices.add_block___IndicesBlockStatus:
+      description: The status of a block operation on an index.
       type: object
       properties:
         name:
           $ref: '#/components/schemas/_common___IndexName'
         blocked:
           type: boolean
+          description: Whether the block operation was successful.
       required:
         - blocked
         - name
     indices.analyze___AnalyzeDetail:
       type: object
+      description: The detailed analysis results.
       properties:
         analyzer:
           $ref: '#/components/schemas/indices.analyze___AnalyzerDetail'
         charfilters:
           type: array
+          description: The list of character filter results.
           items:
             $ref: '#/components/schemas/indices.analyze___CharFilterDetail'
         custom_analyzer:
           type: boolean
+          description: Whether a custom analyzer was used.
         tokenfilters:
           type: array
+          description: The list of token filter results.
           items:
             $ref: '#/components/schemas/indices.analyze___TokenDetail'
         tokenizer:
@@ -54187,35 +54350,45 @@ components:
         - custom_analyzer
     indices.analyze___AnalyzerDetail:
       type: object
+      description: The analyzer results.
       properties:
         name:
           type: string
+          description: The name of the analyzer.
         tokens:
           type: array
+          description: The list of tokens produced by the analyzer.
           items:
             $ref: '#/components/schemas/indices.analyze___ExplainAnalyzeToken'
       required:
         - name
         - tokens
     indices.analyze___AnalyzeToken:
+      description: The basic token information.
       type: object
       properties:
         end_offset:
           type: integer
           format: int32
+          description: The ending character offset of the token.
         position:
           type: integer
           format: int32
+          description: The position of the token.
         positionLength:
           type: integer
           format: int32
+          description: The length of the token position.
         start_offset:
           type: integer
           format: int32
+          description: The starting character offset of the token.
         token:
           type: string
+          description: The token string.
         type:
           type: string
+          description: The type of the token.
       required:
         - end_offset
         - position
@@ -54224,42 +54397,55 @@ components:
         - type
     indices.analyze___CharFilterDetail:
       type: object
+      description: The character filter results.
       properties:
         filtered_text:
           type: array
+          description: The text after character filtering.
           items:
             type: string
         name:
           type: string
+          description: The name of the character filter.
       required:
         - filtered_text
         - name
     indices.analyze___ExplainAnalyzeToken:
       type: object
+      description: The detailed token information.
       properties:
         bytes:
           type: string
+          description: The bytes representation of the token.
         end_offset:
           type: integer
           format: int32
+          description: The ending character offset of the token.
         keyword:
           type: boolean
+          description: Whether the token is a keyword.
         position:
           type: integer
           format: int32
+          description: The position of the token.
         positionLength:
           type: integer
           format: int32
+          description: The length of the token position.
         start_offset:
           type: integer
           format: int32
+          description: The starting character offset of the token.
         termFrequency:
           type: integer
           format: int32
+          description: The frequency of the term.
         token:
           type: string
+          description: The token string.
         type:
           type: string
+          description: The type of the token.
       required:
         - bytes
         - end_offset
@@ -54270,58 +54456,72 @@ components:
         - token
         - type
     indices.analyze___TextToAnalyze:
+      description: The text or array of text to analyze.
       $ref: '#/components/schemas/_common___StringOrStringArray'
     indices.analyze___TokenDetail:
       type: object
+      description: The token filter or tokenizer results.
       properties:
         name:
           type: string
+          description: The name of the token filter or tokenizer.
         tokens:
           type: array
+          description: The list of tokens produced.
           items:
             $ref: '#/components/schemas/indices.analyze___ExplainAnalyzeToken'
       required:
         - name
         - tokens
     indices.close___CloseIndexResult:
+      description: The result of a close index operation.
       type: object
       properties:
         closed:
           type: boolean
+          description: Whether the index was successfully closed.
         shards:
           type: object
+          description: The status of individual shards during the close operation.
           additionalProperties:
             $ref: '#/components/schemas/indices.close___CloseShardResult'
       required:
         - closed
     indices.close___CloseShardResult:
+      description: The result of closing shards in an index.
       type: object
       properties:
         failures:
           type: array
+          description: The list of failures that occurred while closing shards.
           items:
             $ref: '#/components/schemas/_common___ShardFailure'
       required:
         - failures
     indices.get_alias___IndexAliases:
+      description: The alias configuration for an index.
       type: object
       properties:
         aliases:
           type: object
+          description: The map of alias names to their definitions.
           additionalProperties:
             $ref: '#/components/schemas/indices._common___AliasDefinition'
       required:
         - aliases
     indices.get_field_mapping___TypeFieldMappings:
+      description: The field mapping configuration for a type.
       type: object
       properties:
         mappings:
           type: object
+          description: The map of field names to their mapping definitions.
           additionalProperties:
             $ref: '#/components/schemas/_common.mapping___FieldMapping'
       required:
         - mappings
     indices.get_index_template___IndexTemplateItem:
+      description: The configuration for an index template item.
       type: object
       properties:
         name:
@@ -54332,6 +54532,7 @@ components:
         - index_template
         - name
     indices.get_mapping___IndexMappingRecord:
+      description: The mapping configuration for an index.
       type: object
       properties:
         item:
@@ -54345,7 +54546,7 @@ components:
       properties:
         aliases:
           description: |-
-            Aliases to add.
+            The aliases to add.
             If the index template includes a `data_stream` object, these are data stream aliases.
             Otherwise, these are index aliases.
             Data stream aliases ignore the `index_routing`, `routing`, and `search_routing` options.
@@ -54358,21 +54559,26 @@ components:
           $ref: '#/components/schemas/indices._common___IndexSettings'
     indices.recovery___FileDetails:
       type: object
+      description: The details of a recovered file.
       properties:
         length:
           type: integer
           format: int64
+          description: The length of the file in bytes.
         name:
           type: string
+          description: The name of the file.
         recovered:
           type: integer
           format: int64
+          description: The number of bytes recovered.
       required:
         - length
         - name
         - recovered
     indices.recovery___RecoveryBytes:
       type: object
+      description: The byte-level recovery statistics.
       properties:
         percent:
           $ref: '#/components/schemas/_common___PercentageString'
@@ -54399,9 +54605,11 @@ components:
         - total_in_bytes
     indices.recovery___RecoveryFiles:
       type: object
+      description: The file-level recovery statistics.
       properties:
         details:
           type: array
+          description: The detailed information about recovered files.
           items:
             $ref: '#/components/schemas/indices.recovery___FileDetails'
         percent:
@@ -54409,12 +54617,15 @@ components:
         recovered:
           type: integer
           format: int64
+          description: The number of recovered files.
         reused:
           type: integer
           format: int64
+          description: The number of reused files.
         total:
           type: integer
           format: int64
+          description: The total number of files.
       required:
         - percent
         - recovered
@@ -54422,6 +54633,7 @@ components:
         - total
     indices.recovery___RecoveryIndexStatus:
       type: object
+      description: The index recovery status.
       properties:
         bytes:
           $ref: '#/components/schemas/indices.recovery___RecoveryBytes'
@@ -54449,9 +54661,11 @@ components:
         - total_time_in_millis
     indices.recovery___RecoveryOrigin:
       type: object
+      description: The source or target of a recovery operation.
       properties:
         hostname:
           type: string
+          description: The hostname of the node.
         host:
           $ref: '#/components/schemas/_common___Host'
         transport_address:
@@ -54464,6 +54678,7 @@ components:
           $ref: '#/components/schemas/_common___Name'
         bootstrap_new_history_uuid:
           type: boolean
+          description: Whether a new history UUID was bootstrapped.
         repository:
           $ref: '#/components/schemas/_common___Name'
         snapshot:
@@ -54476,18 +54691,23 @@ components:
           $ref: '#/components/schemas/_common___IndexName'
         isSearchableSnapshot:
           type: boolean
+          description: Whether this is a searchable snapshot.
         remoteStoreIndexShallowCopy:
           type: boolean
+          description: Whether this is a shallow copy from a remote store.
         sourceRemoteStoreRepository:
           type:
             - 'null'
             - string
+          description: The source remote store repository.
         sourceRemoteTranslogRepository:
           type:
             - 'null'
             - string
+          description: The source remote translog repository.
     indices.recovery___RecoveryStartStatus:
       type: object
+      description: The status at the start of recovery.
       properties:
         check_index_time:
           $ref: '#/components/schemas/_common___Duration'
@@ -54502,27 +54722,33 @@ components:
         - total_time_in_millis
     indices.recovery___RecoveryStatus:
       type: object
+      description: The status of recovery operations.
       properties:
         shards:
           type: array
+          description: The list of shard recovery statuses.
           items:
             $ref: '#/components/schemas/indices.recovery___ShardRecovery'
       required:
         - shards
     indices.recovery___ShardRecovery:
       type: object
+      description: The recovery status of a shard.
       properties:
         id:
           type: integer
           format: int32
+          description: The shard ID.
         index:
           $ref: '#/components/schemas/indices.recovery___RecoveryIndexStatus'
         primary:
           type: boolean
+          description: Whether this is a primary shard.
         source:
           $ref: '#/components/schemas/indices.recovery___RecoveryOrigin'
         stage:
           type: string
+          description: The current recovery stage.
         start:
           $ref: '#/components/schemas/indices.recovery___RecoveryStartStatus'
         start_time:
@@ -54543,6 +54769,7 @@ components:
           $ref: '#/components/schemas/indices.recovery___TranslogStatus'
         type:
           type: string
+          description: The type of recovery operation.
         verify_index:
           $ref: '#/components/schemas/indices.recovery___VerifyIndex'
       required:
@@ -54559,18 +54786,22 @@ components:
         - verify_index
     indices.recovery___TranslogStatus:
       type: object
+      description: The transaction log recovery status.
       properties:
         percent:
           $ref: '#/components/schemas/_common___PercentageString'
         recovered:
           type: integer
           format: int32
+          description: The number of recovered transaction log operations.
         total:
           type: integer
           format: int32
+          description: The total number of transaction log operations.
         total_on_start:
           type: integer
           format: int32
+          description: The number of transaction log operations at start.
         total_time:
           $ref: '#/components/schemas/_common___Duration'
         total_time_in_millis:
@@ -54583,6 +54814,7 @@ components:
         - total_time_in_millis
     indices.recovery___VerifyIndex:
       type: object
+      description: The index verification status.
       properties:
         check_index_time:
           $ref: '#/components/schemas/_common___Duration'
@@ -54596,6 +54828,7 @@ components:
         - check_index_time_in_millis
         - total_time_in_millis
     indices.resolve_index___ResolveIndexAliasItem:
+      description: The resolved information for an index alias.
       type: object
       properties:
         name:
@@ -54606,6 +54839,7 @@ components:
         - indices
         - name
     indices.resolve_index___ResolveIndexDataStreamsItem:
+      description: The resolved information for a data stream.
       type: object
       properties:
         name:
@@ -54619,16 +54853,19 @@ components:
         - name
         - timestamp_field
     indices.resolve_index___ResolveIndexItem:
+      description: The resolved information for an index.
       type: object
       properties:
         name:
           $ref: '#/components/schemas/_common___Name'
         aliases:
           type: array
+          description: The list of aliases associated with the index.
           items:
             type: string
         attributes:
           type: array
+          description: The list of index attributes.
           items:
             type: string
         data_stream:
@@ -54637,47 +54874,65 @@ components:
         - attributes
         - name
     indices.rollover___RolloverConditions:
+      description: The conditions that trigger an index rollover.
       type: object
       properties:
         min_age:
+          description: The minimum age of the index before rollover.
           $ref: '#/components/schemas/_common___Duration'
         max_age:
+          description: The maximum age of the index before rollover.
           $ref: '#/components/schemas/_common___Duration'
         max_age_millis:
+          description: The maximum age in milliseconds of the index before rollover.
           $ref: '#/components/schemas/_common___DurationValueUnitMillis'
         min_docs:
+          description: The minimum number of documents in the index before rollover.
           type: integer
           format: int64
         max_docs:
+          description: The maximum number of documents in the index before rollover.
           type: integer
           format: int64
         max_size:
+          description: The maximum size of the index before rollover.
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
         max_size_bytes:
+          description: The maximum size in bytes of the index before rollover.
           $ref: '#/components/schemas/_common___ByteCount'
         min_size:
+          description: The minimum size of the index before rollover.
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
         min_size_bytes:
+          description: The minimum size in bytes of the index before rollover.
           $ref: '#/components/schemas/_common___ByteCount'
         max_primary_shard_size:
+          description: The maximum size of any primary shard in the index before rollover.
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
         max_primary_shard_size_bytes:
+          description: The maximum size in bytes of any primary shard in the index before rollover.
           $ref: '#/components/schemas/_common___ByteCount'
         min_primary_shard_size:
+          description: The minimum size of any primary shard in the index before rollover.
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
         min_primary_shard_size_bytes:
+          description: The minimum size in bytes of any primary shard in the index before rollover.
           $ref: '#/components/schemas/_common___ByteCount'
         max_primary_shard_docs:
+          description: The maximum number of documents in any primary shard before rollover.
           type: integer
           format: int64
         min_primary_shard_docs:
+          description: The minimum number of documents in any primary shard before rollover.
           type: integer
           format: int64
     indices.segments___IndexSegment:
+      description: The segment information for an index.
       type: object
       properties:
         shards:
           type: object
+          description: The segment information for each shard.
           additionalProperties:
             oneOf:
               - type: array
@@ -54687,14 +54942,18 @@ components:
       required:
         - shards
     indices.segments___Segment:
+      description: The detailed information about a segment.
       type: object
       properties:
         generation:
           type: integer
+          description: The generation number of the segment.
         num_docs:
           type: integer
+          description: The number of documents in the segment.
         deleted_docs:
           type: integer
+          description: The number of deleted documents in the segment.
         size:
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
         size_in_bytes:
@@ -54705,14 +54964,18 @@ components:
           $ref: '#/components/schemas/_common___ByteCount'
         committed:
           type: boolean
+          description: Whether the segment is committed.
         search:
           type: boolean
+          description: Whether the segment is searchable.
         version:
           $ref: '#/components/schemas/_common___VersionString'
         compound:
           type: boolean
+          description: Whether the segment is compound.
         attributes:
           type: object
+          description: The attributes of the segment.
           additionalProperties:
             type: string
       required:
@@ -54726,31 +54989,39 @@ components:
         - size_in_bytes
         - version
     indices.segments___ShardSegmentRouting:
+      description: The routing information for a shard segment.
       type: object
       properties:
         node:
           type: string
+          description: The node containing the segment.
         primary:
           type: boolean
+          description: Whether this is a primary shard.
         state:
           type: string
+          description: The current state of the shard.
       required:
         - node
         - primary
         - state
     indices.segments___ShardsSegment:
+      description: The segment information for a shard.
       type: object
       properties:
         num_committed_segments:
           type: integer
           format: int32
+          description: The number of committed segments.
         routing:
           $ref: '#/components/schemas/indices.segments___ShardSegmentRouting'
         num_search_segments:
           type: integer
           format: int32
+          description: The number of segments available for search.
         segments:
           type: object
+          description: The detailed information for each segment.
           additionalProperties:
             $ref: '#/components/schemas/indices.segments___Segment'
       required:
@@ -54759,15 +55030,18 @@ components:
         - routing
         - segments
     indices.shard_stores___IndicesShardStores:
+      description: The shard store information for indices.
       type: object
       properties:
         shards:
           type: object
+          description: The store information for each shard.
           additionalProperties:
             $ref: '#/components/schemas/indices.shard_stores___ShardStoreWrapper'
       required:
         - shards
     indices.shard_stores___ShardStore:
+      description: The store information for a shard.
       type: object
       properties:
         allocation:
@@ -54782,22 +55056,32 @@ components:
       required:
         - allocation
     indices.shard_stores___ShardStoreAllocation:
-      type: string
-      enum:
-        - primary
-        - replica
-        - unused
+      description: The allocation type of the shard store.
+      oneOf:
+        - description: The store is for a primary shard.
+          const: primary
+          type: string
+        - description: The store is for a replica shard.
+          const: replica
+          type: string
+        - description: The store is not currently in use.
+          const: unused
+          type: string
     indices.shard_stores___ShardStoreException:
+      description: The exception information for a shard store.
       type: object
       properties:
         reason:
           type: string
+          description: The reason for the store exception.
         type:
           type: string
+          description: The type of store exception.
       required:
         - reason
         - type
     indices.shard_stores___ShardStoreStatus:
+      description: The status of shard stores.
       oneOf:
         - type: string
           const: all
@@ -54812,31 +55096,37 @@ components:
           const: yellow
           description: One or more replica shards are unassigned.
     indices.shard_stores___ShardStoreWrapper:
+      description: The wrapper containing store information for a shard.
       type: object
       properties:
         stores:
           type: array
+          description: The list of stores for the shard.
           items:
             $ref: '#/components/schemas/indices.shard_stores___ShardStore'
       required:
         - stores
     indices.simulate_template___Overlapping:
+      description: The configuration for overlapping index templates.
       type: object
       properties:
         name:
           $ref: '#/components/schemas/_common___Name'
         index_patterns:
           type: array
+          description: The list of index patterns that may overlap with other templates.
           items:
             type: string
       required:
         - index_patterns
         - name
     indices.simulate_template___Template:
+      description: The configuration for an index template simulation.
       type: object
       properties:
         aliases:
           type: object
+          description: The map of alias names to their configurations.
           additionalProperties:
             $ref: '#/components/schemas/indices._common___Alias'
         mappings:
@@ -54848,6 +55138,7 @@ components:
         - settings
     indices.stats___AllIndicesStats:
       type: object
+      description: The statistics for all indexes.
       properties:
         primaries:
           $ref: '#/components/schemas/indices.stats___IndexStats'
@@ -54882,6 +55173,7 @@ components:
         - type: object
     indices.stats___IndexStatsBase:
       type: object
+      description: The base statistics for an index.
       properties:
         docs:
           $ref: '#/components/schemas/_common___DocStats'
@@ -54917,6 +55209,7 @@ components:
           $ref: '#/components/schemas/_common___RecoveryStats'
     indices.stats___IndicesStats:
       type: object
+      description: The statistics for specific indexes.
       properties:
         uuid:
           $ref: '#/components/schemas/_common___Uuid'
@@ -54926,6 +55219,7 @@ components:
           $ref: '#/components/schemas/indices.stats___IndexStats'
         shards:
           type: object
+          description: The statistics for individual shards.
           additionalProperties:
             type: array
             items:
@@ -54936,6 +55230,7 @@ components:
         - uuid
     indices.stats___Metric:
       type: string
+      description: The type of statistics to retrieve.
       enum:
         - _all
         - completion
@@ -54957,17 +55252,21 @@ components:
         - warmer
     indices.stats___ShardCommit:
       type: object
+      description: The commit information for a shard.
       properties:
         generation:
           type: integer
           format: int32
+          description: The generation number of the commit.
         id:
           $ref: '#/components/schemas/_common___Id'
         num_docs:
           type: integer
           format: int64
+          description: The number of documents in the commit.
         user_data:
           type: object
+          description: The user-defined data associated with the commit.
           additionalProperties:
             type: string
       required:
@@ -54977,9 +55276,11 @@ components:
         - user_data
     indices.stats___ShardFileSizeInfo:
       type: object
+      description: The size information for shard files.
       properties:
         description:
           type: string
+          description: The description of the file type.
         size:
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
         size_in_bytes:
@@ -54993,11 +55294,13 @@ components:
         count:
           type: integer
           format: int64
+          description: The number of files.
       required:
         - description
         - size_in_bytes
     indices.stats___ShardLease:
       type: object
+      description: The retention lease details.
       properties:
         id:
           $ref: '#/components/schemas/_common___Id'
@@ -55015,27 +55318,34 @@ components:
         - timestamp
     indices.stats___ShardPath:
       type: object
+      description: The path information for a shard.
       properties:
         data_path:
           type: string
+          description: The path to the shard's data.
         is_custom_data_path:
           type: boolean
+          description: Whether the shard uses a custom data path.
         state_path:
           type: string
+          description: The path to the shard's state.
       required:
         - data_path
         - is_custom_data_path
         - state_path
     indices.stats___ShardRetentionLeases:
       type: object
+      description: The retention lease information for a shard.
       properties:
         primary_term:
           type: integer
           format: int64
+          description: The primary term of the retention leases.
         version:
           $ref: '#/components/schemas/_common___VersionNumber'
         leases:
           type: array
+          description: The list of retention leases.
           items:
             $ref: '#/components/schemas/indices.stats___ShardLease'
       required:
@@ -55044,15 +55354,19 @@ components:
         - version
     indices.stats___ShardRouting:
       type: object
+      description: The routing information for a shard.
       properties:
         node:
           type: string
+          description: The node containing the shard.
         primary:
           type: boolean
+          description: Whether this is a primary shard.
         relocating_node:
           type:
             - 'null'
             - string
+          description: The node where the shard is relocating to.
         state:
           $ref: '#/components/schemas/indices.stats___ShardRoutingState'
       required:
@@ -55061,6 +55375,7 @@ components:
         - state
     indices.stats___ShardRoutingState:
       type: string
+      description: The state of shard routing.
       enum:
         - INITIALIZING
         - RELOCATING
@@ -55068,13 +55383,16 @@ components:
         - UNASSIGNED
     indices.stats___ShardSequenceNumber:
       type: object
+      description: The sequence number information for a shard.
       properties:
         global_checkpoint:
           type: integer
           format: int64
+          description: The global checkpoint for the shard.
         local_checkpoint:
           type: integer
           format: int64
+          description: The local checkpoint for the shard.
         max_seq_no:
           $ref: '#/components/schemas/_common___SequenceNumber'
       required:
@@ -55082,6 +55400,7 @@ components:
         - local_checkpoint
         - max_seq_no
     indices.update_aliases___Action:
+      description: The action to perform on aliases.
       type: object
       properties:
         add:
@@ -55093,14 +55412,13 @@ components:
       minProperties: 1
       maxProperties: 1
     indices.update_aliases___AddAction:
+      description: The configuration for adding an alias.
       type: object
       properties:
         alias:
           $ref: '#/components/schemas/_common___IndexAlias'
         aliases:
-          description: |-
-            Aliases for the action.
-            Index alias names support date math.
+          description: The list of aliases to add. Index alias names support date math.
           oneOf:
             - $ref: '#/components/schemas/_common___IndexAlias'
             - type: array
@@ -55115,27 +55433,26 @@ components:
         index_routing:
           $ref: '#/components/schemas/_common___Routing'
         is_hidden:
-          description: If `true`, the alias is hidden.
+          description: Whether the alias is hidden.
           type: boolean
         is_write_index:
-          description: If `true`, sets the write index or data stream for the alias.
+          description: Whether this is the write index or data stream for the alias.
           type: boolean
         routing:
           $ref: '#/components/schemas/_common___Routing'
         search_routing:
           $ref: '#/components/schemas/_common___Routing'
         must_exist:
-          description: If `true`, the alias must exist to perform the action.
+          description: Whether the alias must exist to perform the action.
           type: boolean
     indices.update_aliases___RemoveAction:
+      description: The configuration for removing an alias.
       type: object
       properties:
         alias:
           $ref: '#/components/schemas/_common___IndexAlias'
         aliases:
-          description: |-
-            Aliases for the action.
-            Index alias names support date math.
+          description: The list of aliases to remove. Index alias names support date math.
           oneOf:
             - $ref: '#/components/schemas/_common___IndexAlias'
             - type: array
@@ -55146,9 +55463,10 @@ components:
         indices:
           $ref: '#/components/schemas/_common___Indices'
         must_exist:
-          description: If `true`, the alias must exist to perform the action.
+          description: Whether the alias must exist to perform the action.
           type: boolean
     indices.update_aliases___RemoveIndexAction:
+      description: The configuration for removing an index.
       type: object
       properties:
         index:
@@ -55156,19 +55474,23 @@ components:
         indices:
           $ref: '#/components/schemas/_common___Indices'
         must_exist:
-          description: If `true`, the alias must exist to perform the action.
+          description: Whether the alias must exist to perform the action.
           type: boolean
     indices.validate_query___IndicesValidationExplanation:
+      description: The validation results for an index query.
       type: object
       properties:
         error:
           type: string
+          description: The error message if validation failed.
         explanation:
           type: string
+          description: The explanation of why the query is valid or invalid.
         index:
           $ref: '#/components/schemas/_common___IndexName'
         valid:
           type: boolean
+          description: Whether the query is valid for the index.
       required:
         - index
         - valid
@@ -58690,6 +59012,7 @@ components:
           type: number
           description: The value.
     nodes._common___NodesResponseBase:
+      description: Provides base response structure for node-related operations.
       type: object
       properties:
         _nodes:
@@ -58697,32 +59020,65 @@ components:
           $ref: '#/components/schemas/_common___NodeStatistics'
     nodes._common___SampleType:
       type: string
-      description: The type to sample.
-      enum:
-        - block
-        - cpu
-        - wait
+      description: The type of resource to sample.
+      oneOf:
+        - description: Samples block I/O operations.
+          const: block
+          type: string
+        - description: Samples CPU utilization.
+          const: cpu
+          type: string
+        - description: Samples process wait times.
+          const: wait
+          type: string
     nodes.info___Metric:
-      type: string
-      enum:
-        - _all
-        - aggregations
-        - http
-        - indices
-        - ingest
-        - jvm
-        - os
-        - plugins
-        - process
-        - search_pipelines
-        - settings
-        - thread_pool
-        - transport
+      description: The nodes metrics to retrieve.
+      oneOf:
+        - description: Returns all metrics.
+          const: _all
+          type: string
+        - description: Returns aggregation information.
+          const: aggregations
+          type: string
+        - description: Returns HTTP connection information.
+          const: http
+          type: string
+        - description: Returns indices stats and settings.
+          const: indices
+          type: string
+        - description: Returns ingest pipeline information.
+          const: ingest
+          type: string
+        - description: Returns JVM stats, process information, and memory usage.
+          const: jvm
+          type: string
+        - description: Returns operating system information and stats.
+          const: os
+          type: string
+        - description: Returns installed plugins information.
+          const: plugins
+          type: string
+        - description: Returns process statistics.
+          const: process
+          type: string
+        - description: Returns search pipeline configurations.
+          const: search_pipelines
+          type: string
+        - description: Returns node settings information.
+          const: settings
+          type: string
+        - description: Returns thread pool information.
+          const: thread_pool
+          type: string
+        - description: Returns transport layer information.
+          const: transport
+          type: string
     nodes.info___NodeInfo:
       type: object
       properties:
         attributes:
           type: object
+          description: The custom attributes of the node.
           additionalProperties:
             type: string
         build_flavor:
@@ -58732,6 +59088,7 @@ components:
           type: string
         build_type:
           type: string
+          description: The type of build, such as `tar`, `docker`, `rpm`.
         host:
           $ref: '#/components/schemas/_common___Host'
         http:
@@ -58748,6 +59105,7 @@ components:
           $ref: '#/components/schemas/nodes.info___NodeOperatingSystemInfo'
         plugins:
           type: array
+          description: The list of plugins installed on the node.
           items:
             $ref: '#/components/schemas/_common___PluginStats'
         process:
@@ -58758,6 +59116,7 @@ components:
           $ref: '#/components/schemas/nodes.info___NodeInfoSettings'
         thread_pool:
           type: object
+          description: Information about thread pool configurations.
           additionalProperties:
             $ref: '#/components/schemas/nodes.info___NodeThreadPoolInfo'
         total_indexing_buffer:
@@ -58781,12 +59140,14 @@ components:
           $ref: '#/components/schemas/_common___VersionString'
         modules:
           type: array
+          description: The list of modules installed on the node.
           items:
             $ref: '#/components/schemas/_common___PluginStats'
         ingest:
           $ref: '#/components/schemas/nodes.info___NodeInfoIngest'
         aggregations:
           type: object
+          description: Information about available aggregation types.
           additionalProperties:
             $ref: '#/components/schemas/nodes.info___NodeInfoAggregation'
         search_pipelines:
@@ -58799,46 +59160,59 @@ components:
         - version
     nodes.info___NodeInfoAction:
       type: object
+      description: The action-related configuration settings.
       properties:
         destructive_requires_name:
           type: string
+          description: Whether destructive actions require explicit names.
       required:
         - destructive_requires_name
     nodes.info___NodeInfoAggregation:
+      description: The aggregation configuration.
       type: object
       properties:
         types:
           type: array
+          description: The list of supported aggregation types.
           items:
             type: string
       required:
         - types
     nodes.info___NodeInfoBootstrap:
       type: object
+      description: The bootstrap configuration settings for the node.
       properties:
         memory_lock:
           type: string
+          description: The memory lock setting for the bootstrap process.
       required:
         - memory_lock
     nodes.info___NodeInfoClient:
       type: object
+      description: The client node configuration.
       properties:
         type:
           type: string
+          description: The type of client node configuration.
       required:
         - type
     nodes.info___NodeInfoDiscovery:
+      description: The node discovery configuration.
       type: object
       properties:
         type:
           type: string
+          description: The discovery mechanism type.
         seed_hosts:
           type: string
+          description: The configured seed hosts for node discovery.
     nodes.info___NodeInfoHttp:
       type: object
+      description: Provides HTTP connection information for the node.
       properties:
         bound_address:
           type: array
+          description: The addresses the node is bound to for HTTP traffic.
           items:
             type: string
         max_content_length:
@@ -58847,27 +59221,33 @@ components:
           $ref: '#/components/schemas/_common___ByteCount'
         publish_address:
           type: string
+          description: The HTTP address published to other nodes.
       required:
         - bound_address
         - max_content_length_in_bytes
         - publish_address
     nodes.info___NodeInfoIngest:
       type: object
+      description: The ingest pipeline configuration.
       properties:
         processors:
           type: array
+          description: The list of configured ingest processors.
           items:
             $ref: '#/components/schemas/nodes.info___NodeInfoIngestProcessor'
       required:
         - processors
     nodes.info___NodeInfoIngestDownloader:
+      description: The ingest processor download configuration.
       type: object
       properties:
         enabled:
           type: string
+          description: Whether the downloader is enabled.
       required:
         - enabled
     nodes.info___NodeInfoIngestInfo:
+      description: The ingest processor configuration details.
       type: object
       properties:
         downloader:
@@ -58876,13 +59256,16 @@ components:
         - downloader
     nodes.info___NodeInfoIngestProcessor:
       type: object
+      description: The ingest processor configuration.
       properties:
         type:
           type: string
+          description: The type of ingest processor.
       required:
         - type
     nodes.info___NodeInfoJvmMemory:
       type: object
+      description: Provides JVM memory settings and statistics.
       properties:
         direct_max:
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
@@ -58912,6 +59295,7 @@ components:
         - non_heap_max_in_bytes
     nodes.info___NodeInfoMemory:
       type: object
+      description: Provides memory information for the node.
       properties:
         total:
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
@@ -58922,22 +59306,27 @@ components:
         - total_in_bytes
     nodes.info___NodeInfoNetwork:
       type: object
+      description: Provides network-related information for the node.
       properties:
         primary_interface:
           $ref: '#/components/schemas/nodes.info___NodeInfoNetworkInterface'
         refresh_interval:
           type: integer
           format: int32
+          description: The interval for refreshing network information.
       required:
         - primary_interface
         - refresh_interval
     nodes.info___NodeInfoNetworkInterface:
       type: object
+      description: Describes a network interface on the node.
       properties:
         address:
           type: string
+          description: The IP address of the interface.
         mac_address:
           type: string
+          description: The MAC address of the interface.
         name:
           $ref: '#/components/schemas/_common___Name'
       required:
@@ -58946,6 +59335,7 @@ components:
         - name
     nodes.info___NodeInfoOSCPU:
       type: object
+      description: Provides CPU information for the node.
       properties:
         cache_size:
           $ref: '#/components/schemas/_common___HumanReadableByteCount'
@@ -58954,19 +59344,25 @@ components:
         cores_per_socket:
           type: integer
           format: int32
+          description: The number of cores per CPU socket.
         mhz:
           type: integer
           format: int32
+          description: The CPU clock speed in MHz.
         model:
           type: string
+          description: The CPU model name.
         total_cores:
           type: integer
           format: int32
+          description: The total number of CPU cores.
         total_sockets:
           type: integer
           format: int32
+          description: The total number of CPU sockets.
         vendor:
           type: string
+          description: The CPU vendor name.
       required:
         - cache_size
         - cache_size_in_bytes
@@ -58978,23 +59374,29 @@ components:
         - vendor
     nodes.info___NodeInfoPath:
       type: object
+      description: The `filesystem` path configurations for the node.
       properties:
         logs:
           type: string
+          description: The path to node log files.
         home:
           type: string
+          description: The OpenSearch home directory path.
         repo:
           type: array
+          description: The paths configured for snapshot repositories.
           items:
             type: string
         data:
           type: array
+          description: The paths configured for data storage.
           items:
             type: string
       required:
         - home
         - logs
     nodes.info___NodeInfoRepositories:
+      description: The repository configuration information.
       type: object
       properties:
         url:
@@ -59002,24 +59404,30 @@ components:
       required:
         - url
     nodes.info___NodeInfoRepositoriesUrl:
+      description: Specifies allowed repository URLs.
       type: object
       properties:
         allowed_urls:
           type: string
+          description: The pattern for allowed repository URLs.
       required:
         - allowed_urls
     nodes.info___NodeInfoScript:
       type: object
+      description: The script execution configuration.
       properties:
         allowed_types:
           type: string
+          description: The types of scripts allowed.
         disable_max_compilations_rate:
           type: string
+          description: The setting to disable maximum script compilation rate.
       required:
         - allowed_types
         - disable_max_compilations_rate
     nodes.info___NodeInfoSearch:
       type: object
+      description: The search operation configuration.
       properties:
         remote:
           $ref: '#/components/schemas/nodes.info___NodeInfoSearchRemote'
@@ -59027,24 +59435,30 @@ components:
         - remote
     nodes.info___NodeInfoSearchPipelines:
       type: object
+      description: The search pipeline configuration.
       properties:
         response_processors:
           type: array
+          description: The list of response processors in the pipeline.
           items:
             $ref: '#/components/schemas/nodes.info___NodeInfoIngestProcessor'
         request_processors:
           type: array
+          description: The list of request processors in the pipeline.
           items:
             $ref: '#/components/schemas/nodes.info___NodeInfoIngestProcessor'
     nodes.info___NodeInfoSearchRemote:
+      description: The remote search connection configuration.
       type: object
       properties:
         connect:
           type: string
+          description: The remote connection settings.
       required:
         - connect
     nodes.info___NodeInfoSettings:
       type: object
+      description: The configuration settings for the node.
       properties:
         cluster:
           $ref: '#/components/schemas/nodes.info___NodeInfoSettingsCluster'
@@ -59086,6 +59500,7 @@ components:
         - path
         - transport
     nodes.info___NodeInfoSettingsCluster:
+      description: Provides cluster-level settings information.
       type: object
       properties:
         name:
@@ -59104,6 +59519,7 @@ components:
         - name
     nodes.info___NodeInfoSettingsClusterElection:
       type: object
+      description: The cluster election strategy configuration.
       properties:
         strategy:
           $ref: '#/components/schemas/_common___Name'
@@ -59111,6 +59527,7 @@ components:
         - strategy
     nodes.info___NodeInfoSettingsDeprecationIndexing:
       type: object
+      description: Controls deprecation notice indexing behavior.
       properties:
         enabled:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
@@ -59118,11 +59535,13 @@ components:
         - enabled
     nodes.info___NodeInfoSettingsHttp:
       type: object
+      description: The HTTP server configuration.
       properties:
         type:
           $ref: '#/components/schemas/nodes.info___NodeInfoSettingsHttpType'
         type.default:
           type: string
+          description: The default HTTP server type.
         compression:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
         port:
@@ -59130,6 +59549,7 @@ components:
       required:
         - type
     nodes.info___NodeInfoSettingsHttpType:
+      description: The HTTP server type configuration.
       oneOf:
         - title: type
           type: string
@@ -59137,33 +59557,41 @@ components:
           $ref: '#/components/schemas/nodes.info___NodeInfoSettingsHttpTypeConfig'
     nodes.info___NodeInfoSettingsHttpTypeConfig:
       type: object
+      description: The HTTP server type configuration details.
       properties:
         default:
           type: string
+          description: The default HTTP server implementation.
     nodes.info___NodeInfoSettingsIndex:
+      description: The index-level settings configuration.
       type: object
       properties:
         store:
           $ref: '#/components/schemas/nodes.info___NodeInfoSettingsIndexStore'
     nodes.info___NodeInfoSettingsIndexHybrid:
+      description: The hybrid store configuration.
       type: object
       properties:
         mmap:
           $ref: '#/components/schemas/nodes.info___NodeInfoSettingsIndexStoreMmap'
     nodes.info___NodeInfoSettingsIndexStore:
+      description: The index store configuration.
       type: object
       properties:
         hybrid:
           $ref: '#/components/schemas/nodes.info___NodeInfoSettingsIndexHybrid'
     nodes.info___NodeInfoSettingsIndexStoreMmap:
+      description: The memory-mapped store configuration.
       type: object
       properties:
         extensions:
           type: array
+          description: The file extensions configured for memory mapping.
           items:
             type: string
     nodes.info___NodeInfoSettingsIngest:
       type: object
+      description: The ingest processor configurations.
       properties:
         attachment:
           $ref: '#/components/schemas/nodes.info___NodeInfoIngestInfo'
@@ -59235,6 +59663,7 @@ components:
           $ref: '#/components/schemas/nodes.info___NodeInfoIngestInfo'
     nodes.info___NodeInfoSettingsNetwork:
       type: object
+      description: The network configuration settings.
       properties:
         host:
           $ref: '#/components/schemas/_common___Host'
@@ -59242,50 +59671,63 @@ components:
         - host
     nodes.info___NodeInfoSettingsNode:
       type: object
+      description: The node-specific configuration settings.
       properties:
         name:
           $ref: '#/components/schemas/_common___Name'
         attr:
           type: object
+          description: The custom attributes assigned to the node.
           additionalProperties: true
         max_local_storage_nodes:
           type: string
+          description: The maximum number of nodes allowed to store data locally
       required:
         - name
     nodes.info___NodeInfoSettingsPlugins:
+      description: The plugin-specific settings.
       type: object
       additionalProperties: true
     nodes.info___NodeInfoSettingsTransport:
       type: object
+      description: The transport layer configuration settings.
       properties:
         type:
           $ref: '#/components/schemas/nodes.info___NodeInfoSettingsTransportType'
         type.default:
           type: string
+          description: The default transport type.
       required:
         - type
     nodes.info___NodeInfoSettingsTransportType:
+      description: The transport layer type configuration.
       oneOf:
         - title: type
           type: string
         - title: config
           $ref: '#/components/schemas/nodes.info___NodeInfoSettingsTransportTypeConfig'
     nodes.info___NodeInfoSettingsTransportTypeConfig:
+      description: The detailed transport type configuration.
       type: object
       properties:
         default:
           type: string
+          description: The default transport implementation.
     nodes.info___NodeInfoTransport:
+      description: The transport layer information.
       type: object
       properties:
         bound_address:
           type: array
+          description: The addresses the node is bound to for transport traffic.
           items:
             type: string
         publish_address:
           type: string
+          description: The published transport address.
         profiles:
           type: object
+          description: The configured transport profiles.
           additionalProperties:
             type: string
       required:
@@ -59294,19 +59736,23 @@ components:
         - publish_address
     nodes.info___NodeJvmInfo:
       type: object
+      description: Provides JVM-specific information for the node.
       properties:
         gc_collectors:
           type: array
+          description: The garbage collectors enabled in the JVM.
           items:
             type: string
         mem:
           $ref: '#/components/schemas/nodes.info___NodeInfoJvmMemory'
         memory_pools:
           type: array
+          description: The memory pools available to the JVM.
           items:
             type: string
         pid:
           type: integer
+          description: The process identifier of the JVM.
           format: int32
         start_time:
           $ref: '#/components/schemas/_common___DateTime'
@@ -59318,18 +59764,22 @@ components:
           $ref: '#/components/schemas/_common___Name'
         vm_vendor:
           type: string
+          description: The vendor of the JVM.
         vm_version:
           $ref: '#/components/schemas/_common___VersionString'
         bundled_jdk:
           type: boolean
+          description: Whether the JDK is bundled with OpenSearch.
         using_bundled_jdk:
           type:
             - boolean
             - 'null'
+          description: Whether the node is using the bundled JDK.
         using_compressed_ordinary_object_pointers:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
         input_arguments:
           type: array
+          description: The command line arguments passed to the JVM.
           items:
             type: string
       required:
@@ -59339,12 +59789,13 @@ components:
         - start_time_in_millis
     nodes.info___NodeOperatingSystemInfo:
       type: object
+      description: Provides operating system information for the node.
       properties:
         arch:
-          description: 'Name of the JVM architecture (ex: amd64, x86)'
+          description: Name of the JVM architecture, for example `amd64` or `x86`.
           type: string
         available_processors:
-          description: Number of processors available to the Java virtual machine
+          description: The number of processors available to the Java virtual machine.
           type: integer
           format: int32
         allocated_processors:
@@ -59372,13 +59823,14 @@ components:
         - refresh_interval_in_millis
     nodes.info___NodeProcessInfo:
       type: object
+      description: Provides process-related information for the node.
       properties:
         id:
-          description: Process identifier (PID)
+          description: The process identifier (PID)
           type: integer
           format: int64
         mlockall:
-          description: Indicates if the process address space has been successfully locked in memory
+          description: Indicates if the process address space has been successfully locked in memory.
           type: boolean
         refresh_interval:
           $ref: '#/components/schemas/_common___Duration'
@@ -59389,24 +59841,30 @@ components:
         - mlockall
         - refresh_interval_in_millis
     nodes.info___NodeThreadPoolInfo:
+      description: The thread pool configuration details.
       type: object
       properties:
         core:
           type: integer
           format: int32
+          description: The core number of threads.
         keep_alive:
           $ref: '#/components/schemas/_common___Duration'
         max:
           type: integer
           format: int32
+          description: The maximum number of threads.
         queue_size:
           type: integer
           format: int32
+          description: The size of the task queue.
         size:
           type: integer
           format: int32
+          description: The current size of the thread pool.
         type:
           type: string
+          description: The type of thread pool executor.
       required:
         - queue_size
         - type

@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsStoreHybridNio
 
+/**
+ * The NIO storage configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsStoreHybridNio
@@ -80,7 +83,10 @@ public class IndexSettingsStoreHybridNio
     }
 
     /**
+     * The file extensions to use NIO for.
+     * <p>
      * API name: {@code extensions}
+     * </p>
      */
     @Nonnull
     public final List<String> extensions() {
@@ -145,7 +151,10 @@ public class IndexSettingsStoreHybridNio
         }
 
         /**
+         * The file extensions to use NIO for.
+         * <p>
          * API name: {@code extensions}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>extensions</code>.
@@ -158,7 +167,10 @@ public class IndexSettingsStoreHybridNio
         }
 
         /**
+         * The file extensions to use NIO for.
+         * <p>
          * API name: {@code extensions}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>extensions</code>.

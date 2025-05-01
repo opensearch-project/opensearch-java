@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.stats.ShardSequenceNumber
 
+/**
+ * The sequence number information for a shard.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardSequenceNumber implements PlainJsonSerializable, ToCopyableBuilder<ShardSequenceNumber.Builder, ShardSequenceNumber> {
@@ -77,14 +80,20 @@ public class ShardSequenceNumber implements PlainJsonSerializable, ToCopyableBui
     }
 
     /**
-     * Required - API name: {@code global_checkpoint}
+     * Required - The global checkpoint for the shard.
+     * <p>
+     * API name: {@code global_checkpoint}
+     * </p>
      */
     public final long globalCheckpoint() {
         return this.globalCheckpoint;
     }
 
     /**
-     * Required - API name: {@code local_checkpoint}
+     * Required - The local checkpoint for the shard.
+     * <p>
+     * API name: {@code local_checkpoint}
+     * </p>
      */
     public final long localCheckpoint() {
         return this.localCheckpoint;
@@ -160,7 +169,10 @@ public class ShardSequenceNumber implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code global_checkpoint}
+         * Required - The global checkpoint for the shard.
+         * <p>
+         * API name: {@code global_checkpoint}
+         * </p>
          */
         @Nonnull
         public final Builder globalCheckpoint(long value) {
@@ -169,7 +181,10 @@ public class ShardSequenceNumber implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code local_checkpoint}
+         * Required - The local checkpoint for the shard.
+         * <p>
+         * API name: {@code local_checkpoint}
+         * </p>
          */
         @Nonnull
         public final Builder localCheckpoint(long value) {

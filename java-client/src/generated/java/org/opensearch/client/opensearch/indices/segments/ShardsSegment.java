@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.segments.ShardsSegment
 
+/**
+ * The segment information for a shard.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardsSegment implements PlainJsonSerializable, ToCopyableBuilder<ShardsSegment.Builder, ShardsSegment> {
@@ -83,14 +86,20 @@ public class ShardsSegment implements PlainJsonSerializable, ToCopyableBuilder<S
     }
 
     /**
-     * Required - API name: {@code num_committed_segments}
+     * Required - The number of committed segments.
+     * <p>
+     * API name: {@code num_committed_segments}
+     * </p>
      */
     public final int numCommittedSegments() {
         return this.numCommittedSegments;
     }
 
     /**
-     * Required - API name: {@code num_search_segments}
+     * Required - The number of segments available for search.
+     * <p>
+     * API name: {@code num_search_segments}
+     * </p>
      */
     public final int numSearchSegments() {
         return this.numSearchSegments;
@@ -105,7 +114,10 @@ public class ShardsSegment implements PlainJsonSerializable, ToCopyableBuilder<S
     }
 
     /**
-     * Required - API name: {@code segments}
+     * Required - The detailed information for each segment.
+     * <p>
+     * API name: {@code segments}
+     * </p>
      */
     @Nonnull
     public final Map<String, Segment> segments() {
@@ -186,7 +198,10 @@ public class ShardsSegment implements PlainJsonSerializable, ToCopyableBuilder<S
         }
 
         /**
-         * Required - API name: {@code num_committed_segments}
+         * Required - The number of committed segments.
+         * <p>
+         * API name: {@code num_committed_segments}
+         * </p>
          */
         @Nonnull
         public final Builder numCommittedSegments(int value) {
@@ -195,7 +210,10 @@ public class ShardsSegment implements PlainJsonSerializable, ToCopyableBuilder<S
         }
 
         /**
-         * Required - API name: {@code num_search_segments}
+         * Required - The number of segments available for search.
+         * <p>
+         * API name: {@code num_search_segments}
+         * </p>
          */
         @Nonnull
         public final Builder numSearchSegments(int value) {
@@ -221,7 +239,10 @@ public class ShardsSegment implements PlainJsonSerializable, ToCopyableBuilder<S
         }
 
         /**
-         * Required - API name: {@code segments}
+         * Required - The detailed information for each segment.
+         * <p>
+         * API name: {@code segments}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>segments</code>.
@@ -234,7 +255,10 @@ public class ShardsSegment implements PlainJsonSerializable, ToCopyableBuilder<S
         }
 
         /**
-         * Required - API name: {@code segments}
+         * Required - The detailed information for each segment.
+         * <p>
+         * API name: {@code segments}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>segments</code>.
@@ -247,7 +271,10 @@ public class ShardsSegment implements PlainJsonSerializable, ToCopyableBuilder<S
         }
 
         /**
-         * Required - API name: {@code segments}
+         * Required - The detailed information for each segment.
+         * <p>
+         * API name: {@code segments}
+         * </p>
          *
          * <p>
          * Adds a value to <code>segments</code> using a builder lambda.

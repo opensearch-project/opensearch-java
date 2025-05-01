@@ -60,6 +60,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.simulate_template.Template
 
+/**
+ * The configuration for an index template simulation.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class Template implements PlainJsonSerializable, ToCopyableBuilder<Template.Builder, Template> {
@@ -86,7 +89,10 @@ public class Template implements PlainJsonSerializable, ToCopyableBuilder<Templa
     }
 
     /**
-     * Required - API name: {@code aliases}
+     * Required - The map of alias names to their configurations.
+     * <p>
+     * API name: {@code aliases}
+     * </p>
      */
     @Nonnull
     public final Map<String, Alias> aliases() {
@@ -180,7 +186,10 @@ public class Template implements PlainJsonSerializable, ToCopyableBuilder<Templa
         }
 
         /**
-         * Required - API name: {@code aliases}
+         * Required - The map of alias names to their configurations.
+         * <p>
+         * API name: {@code aliases}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>aliases</code>.
@@ -193,7 +202,10 @@ public class Template implements PlainJsonSerializable, ToCopyableBuilder<Templa
         }
 
         /**
-         * Required - API name: {@code aliases}
+         * Required - The map of alias names to their configurations.
+         * <p>
+         * API name: {@code aliases}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>aliases</code>.
@@ -206,7 +218,10 @@ public class Template implements PlainJsonSerializable, ToCopyableBuilder<Templa
         }
 
         /**
-         * Required - API name: {@code aliases}
+         * Required - The map of alias names to their configurations.
+         * <p>
+         * API name: {@code aliases}
+         * </p>
          *
          * <p>
          * Adds a value to <code>aliases</code> using a builder lambda.

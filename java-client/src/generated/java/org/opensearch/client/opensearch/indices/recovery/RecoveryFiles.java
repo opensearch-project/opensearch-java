@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.recovery.RecoveryFiles
 
+/**
+ * The file-level recovery statistics.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RecoveryFiles implements PlainJsonSerializable, ToCopyableBuilder<RecoveryFiles.Builder, RecoveryFiles> {
@@ -88,7 +91,10 @@ public class RecoveryFiles implements PlainJsonSerializable, ToCopyableBuilder<R
     }
 
     /**
+     * The detailed information about recovered files.
+     * <p>
      * API name: {@code details}
+     * </p>
      */
     @Nonnull
     public final List<FileDetails> details() {
@@ -104,21 +110,30 @@ public class RecoveryFiles implements PlainJsonSerializable, ToCopyableBuilder<R
     }
 
     /**
-     * Required - API name: {@code recovered}
+     * Required - The number of recovered files.
+     * <p>
+     * API name: {@code recovered}
+     * </p>
      */
     public final long recovered() {
         return this.recovered;
     }
 
     /**
-     * Required - API name: {@code reused}
+     * Required - The number of reused files.
+     * <p>
+     * API name: {@code reused}
+     * </p>
      */
     public final long reused() {
         return this.reused;
     }
 
     /**
-     * Required - API name: {@code total}
+     * Required - The total number of files.
+     * <p>
+     * API name: {@code total}
+     * </p>
      */
     public final long total() {
         return this.total;
@@ -206,7 +221,10 @@ public class RecoveryFiles implements PlainJsonSerializable, ToCopyableBuilder<R
         }
 
         /**
+         * The detailed information about recovered files.
+         * <p>
          * API name: {@code details}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>details</code>.
@@ -219,7 +237,10 @@ public class RecoveryFiles implements PlainJsonSerializable, ToCopyableBuilder<R
         }
 
         /**
+         * The detailed information about recovered files.
+         * <p>
          * API name: {@code details}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>details</code>.
@@ -232,7 +253,10 @@ public class RecoveryFiles implements PlainJsonSerializable, ToCopyableBuilder<R
         }
 
         /**
+         * The detailed information about recovered files.
+         * <p>
          * API name: {@code details}
+         * </p>
          *
          * <p>
          * Adds a value to <code>details</code> using a builder lambda.
@@ -253,7 +277,10 @@ public class RecoveryFiles implements PlainJsonSerializable, ToCopyableBuilder<R
         }
 
         /**
-         * Required - API name: {@code recovered}
+         * Required - The number of recovered files.
+         * <p>
+         * API name: {@code recovered}
+         * </p>
          */
         @Nonnull
         public final Builder recovered(long value) {
@@ -262,7 +289,10 @@ public class RecoveryFiles implements PlainJsonSerializable, ToCopyableBuilder<R
         }
 
         /**
-         * Required - API name: {@code reused}
+         * Required - The number of reused files.
+         * <p>
+         * API name: {@code reused}
+         * </p>
          */
         @Nonnull
         public final Builder reused(long value) {
@@ -271,7 +301,10 @@ public class RecoveryFiles implements PlainJsonSerializable, ToCopyableBuilder<R
         }
 
         /**
-         * Required - API name: {@code total}
+         * Required - The total number of files.
+         * <p>
+         * API name: {@code total}
+         * </p>
          */
         @Nonnull
         public final Builder total(long value) {

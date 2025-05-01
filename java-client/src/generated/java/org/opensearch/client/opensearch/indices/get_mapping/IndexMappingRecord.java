@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.get_mapping.IndexMappingRecord
 
+/**
+ * The mapping configuration for an index.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexMappingRecord implements PlainJsonSerializable, ToCopyableBuilder<IndexMappingRecord.Builder, IndexMappingRecord> {

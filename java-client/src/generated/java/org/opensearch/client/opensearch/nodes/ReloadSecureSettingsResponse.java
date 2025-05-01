@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.reload_secure_settings.Response
 
+/**
+ * The response containing secure settings reload results.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ReloadSecureSettingsResponse extends NodesResponseBase

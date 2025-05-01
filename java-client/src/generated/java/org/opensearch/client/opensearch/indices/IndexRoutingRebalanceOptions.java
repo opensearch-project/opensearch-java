@@ -42,15 +42,30 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: indices.IndexRoutingRebalanceOptions
 
+/**
+ * The options for shard rebalancing control.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum IndexRoutingRebalanceOptions implements JsonEnum {
+    /**
+     * Allows rebalancing of all shards.
+     */
     All("all"),
 
+    /**
+     * Prevents shard rebalancing.
+     */
     None("none"),
 
+    /**
+     * Allows rebalancing of primary shards only.
+     */
     Primaries("primaries"),
 
+    /**
+     * Allows rebalancing of replica shards only.
+     */
     Replicas("replicas");
 
     private final String jsonValue;

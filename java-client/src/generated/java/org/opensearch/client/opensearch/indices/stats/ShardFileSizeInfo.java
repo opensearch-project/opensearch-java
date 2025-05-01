@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.stats.ShardFileSizeInfo
 
+/**
+ * The size information for shard files.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardFileSizeInfo implements PlainJsonSerializable, ToCopyableBuilder<ShardFileSizeInfo.Builder, ShardFileSizeInfo> {
@@ -105,7 +108,10 @@ public class ShardFileSizeInfo implements PlainJsonSerializable, ToCopyableBuild
     }
 
     /**
+     * The number of files.
+     * <p>
      * API name: {@code count}
+     * </p>
      */
     @Nullable
     public final Long count() {
@@ -113,7 +119,10 @@ public class ShardFileSizeInfo implements PlainJsonSerializable, ToCopyableBuild
     }
 
     /**
-     * Required - API name: {@code description}
+     * Required - The description of the file type.
+     * <p>
+     * API name: {@code description}
+     * </p>
      */
     @Nonnull
     public final String description() {
@@ -262,7 +271,10 @@ public class ShardFileSizeInfo implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
+         * The number of files.
+         * <p>
          * API name: {@code count}
+         * </p>
          */
         @Nonnull
         public final Builder count(@Nullable Long value) {
@@ -271,7 +283,10 @@ public class ShardFileSizeInfo implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * Required - API name: {@code description}
+         * Required - The description of the file type.
+         * <p>
+         * API name: {@code description}
+         * </p>
          */
         @Nonnull
         public final Builder description(String value) {

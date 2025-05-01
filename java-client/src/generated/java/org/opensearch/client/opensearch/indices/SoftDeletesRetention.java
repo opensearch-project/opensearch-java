@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.SoftDeletesRetention
 
+/**
+ * The retention configuration for soft deletes.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class SoftDeletesRetention implements PlainJsonSerializable, ToCopyableBuilder<SoftDeletesRetention.Builder, SoftDeletesRetention> {

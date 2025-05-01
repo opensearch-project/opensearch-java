@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.analyze.AnalyzeToken
 
+/**
+ * The basic token information.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class AnalyzeToken implements PlainJsonSerializable, ToCopyableBuilder<AnalyzeToken.Builder, AnalyzeToken> {
@@ -91,21 +94,30 @@ public class AnalyzeToken implements PlainJsonSerializable, ToCopyableBuilder<An
     }
 
     /**
-     * Required - API name: {@code end_offset}
+     * Required - The ending character offset of the token.
+     * <p>
+     * API name: {@code end_offset}
+     * </p>
      */
     public final int endOffset() {
         return this.endOffset;
     }
 
     /**
-     * Required - API name: {@code position}
+     * Required - The position of the token.
+     * <p>
+     * API name: {@code position}
+     * </p>
      */
     public final int position() {
         return this.position;
     }
 
     /**
+     * The length of the token position.
+     * <p>
      * API name: {@code positionLength}
+     * </p>
      */
     @Nullable
     public final Integer positionLength() {
@@ -113,14 +125,20 @@ public class AnalyzeToken implements PlainJsonSerializable, ToCopyableBuilder<An
     }
 
     /**
-     * Required - API name: {@code start_offset}
+     * Required - The starting character offset of the token.
+     * <p>
+     * API name: {@code start_offset}
+     * </p>
      */
     public final int startOffset() {
         return this.startOffset;
     }
 
     /**
-     * Required - API name: {@code token}
+     * Required - The token string.
+     * <p>
+     * API name: {@code token}
+     * </p>
      */
     @Nonnull
     public final String token() {
@@ -128,7 +146,10 @@ public class AnalyzeToken implements PlainJsonSerializable, ToCopyableBuilder<An
     }
 
     /**
-     * Required - API name: {@code type}
+     * Required - The type of the token.
+     * <p>
+     * API name: {@code type}
+     * </p>
      */
     @Nonnull
     public final String type() {
@@ -219,7 +240,10 @@ public class AnalyzeToken implements PlainJsonSerializable, ToCopyableBuilder<An
         }
 
         /**
-         * Required - API name: {@code end_offset}
+         * Required - The ending character offset of the token.
+         * <p>
+         * API name: {@code end_offset}
+         * </p>
          */
         @Nonnull
         public final Builder endOffset(int value) {
@@ -228,7 +252,10 @@ public class AnalyzeToken implements PlainJsonSerializable, ToCopyableBuilder<An
         }
 
         /**
-         * Required - API name: {@code position}
+         * Required - The position of the token.
+         * <p>
+         * API name: {@code position}
+         * </p>
          */
         @Nonnull
         public final Builder position(int value) {
@@ -237,7 +264,10 @@ public class AnalyzeToken implements PlainJsonSerializable, ToCopyableBuilder<An
         }
 
         /**
+         * The length of the token position.
+         * <p>
          * API name: {@code positionLength}
+         * </p>
          */
         @Nonnull
         public final Builder positionLength(@Nullable Integer value) {
@@ -246,7 +276,10 @@ public class AnalyzeToken implements PlainJsonSerializable, ToCopyableBuilder<An
         }
 
         /**
-         * Required - API name: {@code start_offset}
+         * Required - The starting character offset of the token.
+         * <p>
+         * API name: {@code start_offset}
+         * </p>
          */
         @Nonnull
         public final Builder startOffset(int value) {
@@ -255,7 +288,10 @@ public class AnalyzeToken implements PlainJsonSerializable, ToCopyableBuilder<An
         }
 
         /**
-         * Required - API name: {@code token}
+         * Required - The token string.
+         * <p>
+         * API name: {@code token}
+         * </p>
          */
         @Nonnull
         public final Builder token(String value) {
@@ -264,7 +300,10 @@ public class AnalyzeToken implements PlainJsonSerializable, ToCopyableBuilder<An
         }
 
         /**
-         * Required - API name: {@code type}
+         * Required - The type of the token.
+         * <p>
+         * API name: {@code type}
+         * </p>
          */
         @Nonnull
         public final Builder type(String value) {

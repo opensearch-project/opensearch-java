@@ -66,6 +66,9 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: indices.stats.IndexStatsBase
 
+/**
+ * The base statistics for an index.
+ */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class IndexStatsBase implements PlainJsonSerializable {
 

@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.AliasDefinition
 
+/**
+ * The configuration for an index alias.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class AliasDefinition implements PlainJsonSerializable, ToCopyableBuilder<AliasDefinition.Builder, AliasDefinition> {
@@ -102,7 +105,7 @@ public class AliasDefinition implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Value used to route indexing operations to a specific shard. If specified, this overwrites the <code>routing</code> value for
+     * The value used to route indexing operations to a specific shard. When specified, this overwrites the <code>routing</code> value for
      * indexing operations.
      * <p>
      * API name: {@code index_routing}
@@ -114,7 +117,7 @@ public class AliasDefinition implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * If <code>true</code>, the alias is hidden. All indexes for the alias must have the same <code>is_hidden</code> value.
+     * When <code>true</code>, the alias is hidden. All indexes for the alias must have the same <code>is_hidden</code> value.
      * <p>
      * API name: {@code is_hidden}
      * </p>
@@ -125,7 +128,7 @@ public class AliasDefinition implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * If <code>true</code>, the index is the write index for the alias.
+     * When <code>true</code>, the index is the write index for the alias.
      * <p>
      * API name: {@code is_write_index}
      * </p>
@@ -136,7 +139,7 @@ public class AliasDefinition implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Value used to route indexing and search operations to a specific shard.
+     * The value used to route indexing and search operations to a specific shard.
      * <p>
      * API name: {@code routing}
      * </p>
@@ -147,8 +150,8 @@ public class AliasDefinition implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Value used to route search operations to a specific shard. If specified, this overwrites the <code>routing</code> value for search
-     * operations.
+     * The value used to route search operations to a specific shard. When specified, this overwrites the <code>routing</code> value for
+     * search operations.
      * <p>
      * API name: {@code search_routing}
      * </p>
@@ -274,8 +277,8 @@ public class AliasDefinition implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Value used to route indexing operations to a specific shard. If specified, this overwrites the <code>routing</code> value for
-         * indexing operations.
+         * The value used to route indexing operations to a specific shard. When specified, this overwrites the <code>routing</code> value
+         * for indexing operations.
          * <p>
          * API name: {@code index_routing}
          * </p>
@@ -287,7 +290,7 @@ public class AliasDefinition implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * If <code>true</code>, the alias is hidden. All indexes for the alias must have the same <code>is_hidden</code> value.
+         * When <code>true</code>, the alias is hidden. All indexes for the alias must have the same <code>is_hidden</code> value.
          * <p>
          * API name: {@code is_hidden}
          * </p>
@@ -299,7 +302,7 @@ public class AliasDefinition implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * If <code>true</code>, the index is the write index for the alias.
+         * When <code>true</code>, the index is the write index for the alias.
          * <p>
          * API name: {@code is_write_index}
          * </p>
@@ -311,7 +314,7 @@ public class AliasDefinition implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Value used to route indexing and search operations to a specific shard.
+         * The value used to route indexing and search operations to a specific shard.
          * <p>
          * API name: {@code routing}
          * </p>
@@ -323,7 +326,7 @@ public class AliasDefinition implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Value used to route search operations to a specific shard. If specified, this overwrites the <code>routing</code> value for
+         * The value used to route search operations to a specific shard. When specified, this overwrites the <code>routing</code> value for
          * search operations.
          * <p>
          * API name: {@code search_routing}

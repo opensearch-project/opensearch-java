@@ -42,15 +42,30 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: indices.IndexRoutingAllocationOptions
 
+/**
+ * The options for shard allocation control.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum IndexRoutingAllocationOptions implements JsonEnum {
+    /**
+     * Allows shard allocation for all shards.
+     */
     All("all"),
 
+    /**
+     * Allows shard allocation only for new primary shards.
+     */
     NewPrimaries("new_primaries"),
 
+    /**
+     * Prevents shard allocation.
+     */
     None("none"),
 
+    /**
+     * Allows shard allocation only for primary shards.
+     */
     Primaries("primaries");
 
     private final String jsonValue;

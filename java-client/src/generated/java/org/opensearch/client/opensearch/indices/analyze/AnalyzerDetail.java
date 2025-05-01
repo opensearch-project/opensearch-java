@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.analyze.AnalyzerDetail
 
+/**
+ * The analyzer results.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class AnalyzerDetail implements PlainJsonSerializable, ToCopyableBuilder<AnalyzerDetail.Builder, AnalyzerDetail> {
@@ -77,7 +80,10 @@ public class AnalyzerDetail implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
-     * Required - API name: {@code name}
+     * Required - The name of the analyzer.
+     * <p>
+     * API name: {@code name}
+     * </p>
      */
     @Nonnull
     public final String name() {
@@ -85,7 +91,10 @@ public class AnalyzerDetail implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
-     * Required - API name: {@code tokens}
+     * Required - The list of tokens produced by the analyzer.
+     * <p>
+     * API name: {@code tokens}
+     * </p>
      */
     @Nonnull
     public final List<ExplainAnalyzeToken> tokens() {
@@ -153,7 +162,10 @@ public class AnalyzerDetail implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code name}
+         * Required - The name of the analyzer.
+         * <p>
+         * API name: {@code name}
+         * </p>
          */
         @Nonnull
         public final Builder name(String value) {
@@ -162,7 +174,10 @@ public class AnalyzerDetail implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code tokens}
+         * Required - The list of tokens produced by the analyzer.
+         * <p>
+         * API name: {@code tokens}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>tokens</code>.
@@ -175,7 +190,10 @@ public class AnalyzerDetail implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code tokens}
+         * Required - The list of tokens produced by the analyzer.
+         * <p>
+         * API name: {@code tokens}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>tokens</code>.
@@ -188,7 +206,10 @@ public class AnalyzerDetail implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code tokens}
+         * Required - The list of tokens produced by the analyzer.
+         * <p>
+         * API name: {@code tokens}
+         * </p>
          *
          * <p>
          * Adds a value to <code>tokens</code> using a builder lambda.

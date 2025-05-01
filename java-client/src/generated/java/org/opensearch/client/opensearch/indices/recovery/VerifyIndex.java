@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.recovery.VerifyIndex
 
+/**
+ * The index verification status.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class VerifyIndex implements PlainJsonSerializable, ToCopyableBuilder<VerifyIndex.Builder, VerifyIndex> {

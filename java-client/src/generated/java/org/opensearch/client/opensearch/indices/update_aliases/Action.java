@@ -57,6 +57,9 @@ import org.opensearch.client.util.TaggedUnionUtils;
 
 // typedef: indices.update_aliases.Action
 
+/**
+ * The action to perform on aliases.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class Action implements TaggedUnion<Action.Kind, ActionVariant>, PlainJsonSerializable {

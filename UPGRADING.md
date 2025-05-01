@@ -122,6 +122,9 @@ After:
 - The `format` property is now of type `Integer` instead of `String`.
 - The `priority` property is now of type `Integer` instead of `String`.
 
+### IndexSettingsStore
+- The `type` property now accepts a `StorageType` union of a `BuiltinStorageType` enum or a `String` instead of a `String`.
+
 ### BoostingQuery
 - The `negativeBoost` property has been corrected to be of type `float` instead of `double`.
 

@@ -62,6 +62,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsAnalysis
 
+/**
+ * The text analysis configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsAnalysis
@@ -99,7 +102,10 @@ public class IndexSettingsAnalysis
     }
 
     /**
+     * The custom analyzer configurations.
+     * <p>
      * API name: {@code analyzer}
+     * </p>
      */
     @Nonnull
     public final Map<String, Analyzer> analyzer() {
@@ -107,7 +113,10 @@ public class IndexSettingsAnalysis
     }
 
     /**
+     * The custom character filter configurations.
+     * <p>
      * API name: {@code char_filter}
+     * </p>
      */
     @Nonnull
     public final Map<String, CharFilter> charFilter() {
@@ -115,7 +124,10 @@ public class IndexSettingsAnalysis
     }
 
     /**
+     * The custom token filter configurations.
+     * <p>
      * API name: {@code filter}
+     * </p>
      */
     @Nonnull
     public final Map<String, TokenFilter> filter() {
@@ -123,7 +135,10 @@ public class IndexSettingsAnalysis
     }
 
     /**
+     * The custom normalizer configurations.
+     * <p>
      * API name: {@code normalizer}
+     * </p>
      */
     @Nonnull
     public final Map<String, Normalizer> normalizer() {
@@ -131,7 +146,10 @@ public class IndexSettingsAnalysis
     }
 
     /**
+     * The custom tokenizer configurations.
+     * <p>
      * API name: {@code tokenizer}
+     * </p>
      */
     @Nonnull
     public final Map<String, Tokenizer> tokenizer() {
@@ -253,7 +271,10 @@ public class IndexSettingsAnalysis
         }
 
         /**
+         * The custom analyzer configurations.
+         * <p>
          * API name: {@code analyzer}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>analyzer</code>.
@@ -266,7 +287,10 @@ public class IndexSettingsAnalysis
         }
 
         /**
+         * The custom analyzer configurations.
+         * <p>
          * API name: {@code analyzer}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>analyzer</code>.
@@ -279,7 +303,10 @@ public class IndexSettingsAnalysis
         }
 
         /**
+         * The custom analyzer configurations.
+         * <p>
          * API name: {@code analyzer}
+         * </p>
          *
          * <p>
          * Adds a value to <code>analyzer</code> using a builder lambda.
@@ -291,7 +318,10 @@ public class IndexSettingsAnalysis
         }
 
         /**
+         * The custom character filter configurations.
+         * <p>
          * API name: {@code char_filter}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>charFilter</code>.
@@ -304,7 +334,10 @@ public class IndexSettingsAnalysis
         }
 
         /**
+         * The custom character filter configurations.
+         * <p>
          * API name: {@code char_filter}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>charFilter</code>.
@@ -317,7 +350,10 @@ public class IndexSettingsAnalysis
         }
 
         /**
+         * The custom character filter configurations.
+         * <p>
          * API name: {@code char_filter}
+         * </p>
          *
          * <p>
          * Adds a value to <code>charFilter</code> using a builder lambda.
@@ -329,7 +365,10 @@ public class IndexSettingsAnalysis
         }
 
         /**
+         * The custom token filter configurations.
+         * <p>
          * API name: {@code filter}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>filter</code>.
@@ -342,7 +381,10 @@ public class IndexSettingsAnalysis
         }
 
         /**
+         * The custom token filter configurations.
+         * <p>
          * API name: {@code filter}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>filter</code>.
@@ -355,7 +397,10 @@ public class IndexSettingsAnalysis
         }
 
         /**
+         * The custom token filter configurations.
+         * <p>
          * API name: {@code filter}
+         * </p>
          *
          * <p>
          * Adds a value to <code>filter</code> using a builder lambda.
@@ -367,7 +412,10 @@ public class IndexSettingsAnalysis
         }
 
         /**
+         * The custom normalizer configurations.
+         * <p>
          * API name: {@code normalizer}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>normalizer</code>.
@@ -380,7 +428,10 @@ public class IndexSettingsAnalysis
         }
 
         /**
+         * The custom normalizer configurations.
+         * <p>
          * API name: {@code normalizer}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>normalizer</code>.
@@ -393,7 +444,10 @@ public class IndexSettingsAnalysis
         }
 
         /**
+         * The custom normalizer configurations.
+         * <p>
          * API name: {@code normalizer}
+         * </p>
          *
          * <p>
          * Adds a value to <code>normalizer</code> using a builder lambda.
@@ -405,7 +459,10 @@ public class IndexSettingsAnalysis
         }
 
         /**
+         * The custom tokenizer configurations.
+         * <p>
          * API name: {@code tokenizer}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>tokenizer</code>.
@@ -418,7 +475,10 @@ public class IndexSettingsAnalysis
         }
 
         /**
+         * The custom tokenizer configurations.
+         * <p>
          * API name: {@code tokenizer}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>tokenizer</code>.
@@ -431,7 +491,10 @@ public class IndexSettingsAnalysis
         }
 
         /**
+         * The custom tokenizer configurations.
+         * <p>
          * API name: {@code tokenizer}
+         * </p>
          *
          * <p>
          * Adds a value to <code>tokenizer</code> using a builder lambda.

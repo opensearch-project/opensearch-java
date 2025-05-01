@@ -59,6 +59,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.shard_stores.ShardStore
 
+/**
+ * The store information for a shard.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardStore implements PlainJsonSerializable, ToCopyableBuilder<ShardStore.Builder, ShardStore> {

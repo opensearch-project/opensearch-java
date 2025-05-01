@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.simulate_template.Overlapping
 
+/**
+ * The configuration for overlapping index templates.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class Overlapping implements PlainJsonSerializable, ToCopyableBuilder<Overlapping.Builder, Overlapping> {
@@ -77,7 +80,10 @@ public class Overlapping implements PlainJsonSerializable, ToCopyableBuilder<Ove
     }
 
     /**
-     * Required - API name: {@code index_patterns}
+     * Required - The list of index patterns that may overlap with other templates.
+     * <p>
+     * API name: {@code index_patterns}
+     * </p>
      */
     @Nonnull
     public final List<String> indexPatterns() {
@@ -153,7 +159,10 @@ public class Overlapping implements PlainJsonSerializable, ToCopyableBuilder<Ove
         }
 
         /**
-         * Required - API name: {@code index_patterns}
+         * Required - The list of index patterns that may overlap with other templates.
+         * <p>
+         * API name: {@code index_patterns}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
@@ -166,7 +175,10 @@ public class Overlapping implements PlainJsonSerializable, ToCopyableBuilder<Ove
         }
 
         /**
-         * Required - API name: {@code index_patterns}
+         * Required - The list of index patterns that may overlap with other templates.
+         * <p>
+         * API name: {@code index_patterns}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>indexPatterns</code>.

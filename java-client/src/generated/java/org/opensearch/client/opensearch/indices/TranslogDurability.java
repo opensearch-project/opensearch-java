@@ -42,11 +42,20 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: indices.TranslogDurability
 
+/**
+ * The durability settings for the translog.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum TranslogDurability implements JsonEnum {
+    /**
+     * Asynchronous durability (lowercase variant).
+     */
     Async("ASYNC", "async"),
 
+    /**
+     * Request durability (lowercase variant).
+     */
     Request("REQUEST", "request");
 
     private final String jsonValue;

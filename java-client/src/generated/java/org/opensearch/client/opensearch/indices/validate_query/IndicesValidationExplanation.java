@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.validate_query.IndicesValidationExplanation
 
+/**
+ * The validation results for an index query.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndicesValidationExplanation
@@ -90,7 +93,10 @@ public class IndicesValidationExplanation
     }
 
     /**
+     * The error message if validation failed.
+     * <p>
      * API name: {@code error}
+     * </p>
      */
     @Nullable
     public final String error() {
@@ -98,7 +104,10 @@ public class IndicesValidationExplanation
     }
 
     /**
+     * The explanation of why the query is valid or invalid.
+     * <p>
      * API name: {@code explanation}
+     * </p>
      */
     @Nullable
     public final String explanation() {
@@ -114,7 +123,10 @@ public class IndicesValidationExplanation
     }
 
     /**
-     * Required - API name: {@code valid}
+     * Required - Whether the query is valid for the index.
+     * <p>
+     * API name: {@code valid}
+     * </p>
      */
     public final boolean valid() {
         return this.valid;
@@ -195,7 +207,10 @@ public class IndicesValidationExplanation
         }
 
         /**
+         * The error message if validation failed.
+         * <p>
          * API name: {@code error}
+         * </p>
          */
         @Nonnull
         public final Builder error(@Nullable String value) {
@@ -204,7 +219,10 @@ public class IndicesValidationExplanation
         }
 
         /**
+         * The explanation of why the query is valid or invalid.
+         * <p>
          * API name: {@code explanation}
+         * </p>
          */
         @Nonnull
         public final Builder explanation(@Nullable String value) {
@@ -222,7 +240,10 @@ public class IndicesValidationExplanation
         }
 
         /**
-         * Required - API name: {@code valid}
+         * Required - Whether the query is valid for the index.
+         * <p>
+         * API name: {@code valid}
+         * </p>
          */
         @Nonnull
         public final Builder valid(boolean value) {

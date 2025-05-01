@@ -55,6 +55,9 @@ import org.opensearch.client.util.TaggedUnionUtils;
 
 // typedef: indices.IndexSettingsMergePolicy
 
+/**
+ * The policy configuration for segment merging.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsMergePolicy implements TaggedUnion<IndexSettingsMergePolicy.Kind, Object>, PlainJsonSerializable {

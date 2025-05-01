@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.recovery.RecoveryIndexStatus
 
+/**
+ * The index recovery status.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RecoveryIndexStatus implements PlainJsonSerializable, ToCopyableBuilder<RecoveryIndexStatus.Builder, RecoveryIndexStatus> {

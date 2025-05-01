@@ -42,6 +42,9 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: indices.shard_stores.ShardStoreStatus
 
+/**
+ * The status of shard stores.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum ShardStoreStatus implements JsonEnum {

@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.stats.ShardPath
 
+/**
+ * The path information for a shard.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardPath implements PlainJsonSerializable, ToCopyableBuilder<ShardPath.Builder, ShardPath> {
@@ -79,7 +82,10 @@ public class ShardPath implements PlainJsonSerializable, ToCopyableBuilder<Shard
     }
 
     /**
-     * Required - API name: {@code data_path}
+     * Required - The path to the shard's data.
+     * <p>
+     * API name: {@code data_path}
+     * </p>
      */
     @Nonnull
     public final String dataPath() {
@@ -87,14 +93,20 @@ public class ShardPath implements PlainJsonSerializable, ToCopyableBuilder<Shard
     }
 
     /**
-     * Required - API name: {@code is_custom_data_path}
+     * Required - Whether the shard uses a custom data path.
+     * <p>
+     * API name: {@code is_custom_data_path}
+     * </p>
      */
     public final boolean isCustomDataPath() {
         return this.isCustomDataPath;
     }
 
     /**
-     * Required - API name: {@code state_path}
+     * Required - The path to the shard's state.
+     * <p>
+     * API name: {@code state_path}
+     * </p>
      */
     @Nonnull
     public final String statePath() {
@@ -164,7 +176,10 @@ public class ShardPath implements PlainJsonSerializable, ToCopyableBuilder<Shard
         }
 
         /**
-         * Required - API name: {@code data_path}
+         * Required - The path to the shard's data.
+         * <p>
+         * API name: {@code data_path}
+         * </p>
          */
         @Nonnull
         public final Builder dataPath(String value) {
@@ -173,7 +188,10 @@ public class ShardPath implements PlainJsonSerializable, ToCopyableBuilder<Shard
         }
 
         /**
-         * Required - API name: {@code is_custom_data_path}
+         * Required - Whether the shard uses a custom data path.
+         * <p>
+         * API name: {@code is_custom_data_path}
+         * </p>
          */
         @Nonnull
         public final Builder isCustomDataPath(boolean value) {
@@ -182,7 +200,10 @@ public class ShardPath implements PlainJsonSerializable, ToCopyableBuilder<Shard
         }
 
         /**
-         * Required - API name: {@code state_path}
+         * Required - The path to the shard's state.
+         * <p>
+         * API name: {@code state_path}
+         * </p>
          */
         @Nonnull
         public final Builder statePath(String value) {

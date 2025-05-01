@@ -42,6 +42,9 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: indices.IndexSettingsMergePolicyName
 
+/**
+ * The type of merge policy.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum IndexSettingsMergePolicyName implements JsonEnum {

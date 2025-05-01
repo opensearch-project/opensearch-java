@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexVersioning
 
+/**
+ * The versioning information for the index.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexVersioning implements PlainJsonSerializable, ToCopyableBuilder<IndexVersioning.Builder, IndexVersioning> {
@@ -85,7 +88,10 @@ public class IndexVersioning implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
+     * The string representation of the version when the index was created.
+     * <p>
      * API name: {@code created_string}
+     * </p>
      */
     @Nullable
     public final String createdString() {
@@ -164,7 +170,10 @@ public class IndexVersioning implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
+         * The string representation of the version when the index was created.
+         * <p>
          * API name: {@code created_string}
+         * </p>
          */
         @Nonnull
         public final Builder createdString(@Nullable String value) {

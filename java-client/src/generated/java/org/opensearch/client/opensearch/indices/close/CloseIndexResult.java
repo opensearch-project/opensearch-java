@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.close.CloseIndexResult
 
+/**
+ * The result of a close index operation.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CloseIndexResult implements PlainJsonSerializable, ToCopyableBuilder<CloseIndexResult.Builder, CloseIndexResult> {
@@ -78,14 +81,20 @@ public class CloseIndexResult implements PlainJsonSerializable, ToCopyableBuilde
     }
 
     /**
-     * Required - API name: {@code closed}
+     * Required - Whether the index was successfully closed.
+     * <p>
+     * API name: {@code closed}
+     * </p>
      */
     public final boolean closed() {
         return this.closed;
     }
 
     /**
+     * The status of individual shards during the close operation.
+     * <p>
      * API name: {@code shards}
+     * </p>
      */
     @Nonnull
     public final Map<String, CloseShardResult> shards() {
@@ -157,7 +166,10 @@ public class CloseIndexResult implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
-         * Required - API name: {@code closed}
+         * Required - Whether the index was successfully closed.
+         * <p>
+         * API name: {@code closed}
+         * </p>
          */
         @Nonnull
         public final Builder closed(boolean value) {
@@ -166,7 +178,10 @@ public class CloseIndexResult implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
+         * The status of individual shards during the close operation.
+         * <p>
          * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>shards</code>.
@@ -179,7 +194,10 @@ public class CloseIndexResult implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
+         * The status of individual shards during the close operation.
+         * <p>
          * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>shards</code>.
@@ -192,7 +210,10 @@ public class CloseIndexResult implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
+         * The status of individual shards during the close operation.
+         * <p>
          * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds a value to <code>shards</code> using a builder lambda.

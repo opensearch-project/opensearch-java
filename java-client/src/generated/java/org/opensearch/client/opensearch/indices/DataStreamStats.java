@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.DataStreamStats
 
+/**
+ * The statistics for a data stream.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DataStreamStats implements PlainJsonSerializable, ToCopyableBuilder<DataStreamStats.Builder, DataStreamStats> {
@@ -120,7 +123,7 @@ public class DataStreamStats implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Required - Total size, in bytes, of all shards for the data stream's backing indexes.
+     * Required - The total size, in bytes, of all shards for the data stream's backing indexes.
      * <p>
      * API name: {@code store_size_bytes}
      * </p>
@@ -246,7 +249,7 @@ public class DataStreamStats implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - Total size, in bytes, of all shards for the data stream's backing indexes.
+         * Required - The total size, in bytes, of all shards for the data stream's backing indexes.
          * <p>
          * API name: {@code store_size_bytes}
          * </p>

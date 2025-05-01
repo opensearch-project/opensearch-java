@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsStoreFs
 
+/**
+ * The filesystem storage configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsStoreFs implements PlainJsonSerializable, ToCopyableBuilder<IndexSettingsStoreFs.Builder, IndexSettingsStoreFs> {

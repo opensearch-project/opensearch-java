@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeOperatingSystemInfo
 
+/**
+ * Provides operating system information for the node.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeOperatingSystemInfo
@@ -128,7 +131,7 @@ public class NodeOperatingSystemInfo
     }
 
     /**
-     * Name of the JVM architecture (ex: amd64, x86)
+     * Name of the JVM architecture, for example <code>amd64</code> or <code>x86</code>.
      * <p>
      * API name: {@code arch}
      * </p>
@@ -139,7 +142,7 @@ public class NodeOperatingSystemInfo
     }
 
     /**
-     * Required - Number of processors available to the Java virtual machine
+     * Required - The number of processors available to the Java virtual machine.
      * <p>
      * API name: {@code available_processors}
      * </p>
@@ -362,7 +365,7 @@ public class NodeOperatingSystemInfo
         }
 
         /**
-         * Name of the JVM architecture (ex: amd64, x86)
+         * Name of the JVM architecture, for example <code>amd64</code> or <code>x86</code>.
          * <p>
          * API name: {@code arch}
          * </p>
@@ -374,7 +377,7 @@ public class NodeOperatingSystemInfo
         }
 
         /**
-         * Required - Number of processors available to the Java virtual machine
+         * Required - The number of processors available to the Java virtual machine.
          * <p>
          * API name: {@code available_processors}
          * </p>

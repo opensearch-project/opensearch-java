@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsSimilarityBm25
 
+/**
+ * The BM25 similarity algorithm configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsSimilarityBm25
@@ -86,21 +89,30 @@ public class IndexSettingsSimilarityBm25
     }
 
     /**
-     * Required - API name: {@code b}
+     * Required - The length normalization parameter.
+     * <p>
+     * API name: {@code b}
+     * </p>
      */
     public final float b() {
         return this.b;
     }
 
     /**
-     * Required - API name: {@code discount_overlaps}
+     * Required - Whether to discount overlapping tokens.
+     * <p>
+     * API name: {@code discount_overlaps}
+     * </p>
      */
     public final boolean discountOverlaps() {
         return this.discountOverlaps;
     }
 
     /**
-     * Required - API name: {@code k1}
+     * Required - The term frequency normalization parameter.
+     * <p>
+     * API name: {@code k1}
+     * </p>
      */
     public final float k1() {
         return this.k1;
@@ -183,7 +195,10 @@ public class IndexSettingsSimilarityBm25
         }
 
         /**
-         * Required - API name: {@code b}
+         * Required - The length normalization parameter.
+         * <p>
+         * API name: {@code b}
+         * </p>
          */
         @Nonnull
         public final Builder b(float value) {
@@ -192,7 +207,10 @@ public class IndexSettingsSimilarityBm25
         }
 
         /**
-         * Required - API name: {@code discount_overlaps}
+         * Required - Whether to discount overlapping tokens.
+         * <p>
+         * API name: {@code discount_overlaps}
+         * </p>
          */
         @Nonnull
         public final Builder discountOverlaps(boolean value) {
@@ -201,7 +219,10 @@ public class IndexSettingsSimilarityBm25
         }
 
         /**
-         * Required - API name: {@code k1}
+         * Required - The term frequency normalization parameter.
+         * <p>
+         * API name: {@code k1}
+         * </p>
          */
         @Nonnull
         public final Builder k1(float value) {

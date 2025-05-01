@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.segments.Segment
 
+/**
+ * The detailed information about a segment.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class Segment implements PlainJsonSerializable, ToCopyableBuilder<Segment.Builder, Segment> {
@@ -112,7 +115,10 @@ public class Segment implements PlainJsonSerializable, ToCopyableBuilder<Segment
     }
 
     /**
-     * Required - API name: {@code attributes}
+     * Required - The attributes of the segment.
+     * <p>
+     * API name: {@code attributes}
+     * </p>
      */
     @Nonnull
     public final Map<String, String> attributes() {
@@ -120,28 +126,40 @@ public class Segment implements PlainJsonSerializable, ToCopyableBuilder<Segment
     }
 
     /**
-     * Required - API name: {@code committed}
+     * Required - Whether the segment is committed.
+     * <p>
+     * API name: {@code committed}
+     * </p>
      */
     public final boolean committed() {
         return this.committed;
     }
 
     /**
-     * Required - API name: {@code compound}
+     * Required - Whether the segment is compound.
+     * <p>
+     * API name: {@code compound}
+     * </p>
      */
     public final boolean compound() {
         return this.compound;
     }
 
     /**
-     * Required - API name: {@code deleted_docs}
+     * Required - The number of deleted documents in the segment.
+     * <p>
+     * API name: {@code deleted_docs}
+     * </p>
      */
     public final int deletedDocs() {
         return this.deletedDocs;
     }
 
     /**
-     * Required - API name: {@code generation}
+     * Required - The generation number of the segment.
+     * <p>
+     * API name: {@code generation}
+     * </p>
      */
     public final int generation() {
         return this.generation;
@@ -164,14 +182,20 @@ public class Segment implements PlainJsonSerializable, ToCopyableBuilder<Segment
     }
 
     /**
-     * Required - API name: {@code num_docs}
+     * Required - The number of documents in the segment.
+     * <p>
+     * API name: {@code num_docs}
+     * </p>
      */
     public final int numDocs() {
         return this.numDocs;
     }
 
     /**
-     * Required - API name: {@code search}
+     * Required - Whether the segment is searchable.
+     * <p>
+     * API name: {@code search}
+     * </p>
      */
     public final boolean search() {
         return this.search;
@@ -331,7 +355,10 @@ public class Segment implements PlainJsonSerializable, ToCopyableBuilder<Segment
         }
 
         /**
-         * Required - API name: {@code attributes}
+         * Required - The attributes of the segment.
+         * <p>
+         * API name: {@code attributes}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>attributes</code>.
@@ -344,7 +371,10 @@ public class Segment implements PlainJsonSerializable, ToCopyableBuilder<Segment
         }
 
         /**
-         * Required - API name: {@code attributes}
+         * Required - The attributes of the segment.
+         * <p>
+         * API name: {@code attributes}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>attributes</code>.
@@ -357,7 +387,10 @@ public class Segment implements PlainJsonSerializable, ToCopyableBuilder<Segment
         }
 
         /**
-         * Required - API name: {@code committed}
+         * Required - Whether the segment is committed.
+         * <p>
+         * API name: {@code committed}
+         * </p>
          */
         @Nonnull
         public final Builder committed(boolean value) {
@@ -366,7 +399,10 @@ public class Segment implements PlainJsonSerializable, ToCopyableBuilder<Segment
         }
 
         /**
-         * Required - API name: {@code compound}
+         * Required - Whether the segment is compound.
+         * <p>
+         * API name: {@code compound}
+         * </p>
          */
         @Nonnull
         public final Builder compound(boolean value) {
@@ -375,7 +411,10 @@ public class Segment implements PlainJsonSerializable, ToCopyableBuilder<Segment
         }
 
         /**
-         * Required - API name: {@code deleted_docs}
+         * Required - The number of deleted documents in the segment.
+         * <p>
+         * API name: {@code deleted_docs}
+         * </p>
          */
         @Nonnull
         public final Builder deletedDocs(int value) {
@@ -384,7 +423,10 @@ public class Segment implements PlainJsonSerializable, ToCopyableBuilder<Segment
         }
 
         /**
-         * Required - API name: {@code generation}
+         * Required - The generation number of the segment.
+         * <p>
+         * API name: {@code generation}
+         * </p>
          */
         @Nonnull
         public final Builder generation(int value) {
@@ -411,7 +453,10 @@ public class Segment implements PlainJsonSerializable, ToCopyableBuilder<Segment
         }
 
         /**
-         * Required - API name: {@code num_docs}
+         * Required - The number of documents in the segment.
+         * <p>
+         * API name: {@code num_docs}
+         * </p>
          */
         @Nonnull
         public final Builder numDocs(int value) {
@@ -420,7 +465,10 @@ public class Segment implements PlainJsonSerializable, ToCopyableBuilder<Segment
         }
 
         /**
-         * Required - API name: {@code search}
+         * Required - Whether the segment is searchable.
+         * <p>
+         * API name: {@code search}
+         * </p>
          */
         @Nonnull
         public final Builder search(boolean value) {

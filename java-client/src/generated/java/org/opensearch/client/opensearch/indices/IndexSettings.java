@@ -62,7 +62,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: indices.IndexSettings
 
 /**
- * The index settings to be updated.
+ * The configuration settings for an index.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
@@ -394,7 +394,10 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
+     * The range of replicas to maintain.
+     * <p>
      * API name: {@code auto_expand_replicas}
+     * </p>
      */
     @Nullable
     public final String autoExpandReplicas() {
@@ -458,7 +461,10 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
+     * The compression type for stored data.
+     * <p>
      * API name: {@code codec}
+     * </p>
      */
     @Nullable
     public final String codec() {
@@ -1698,7 +1704,10 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
+         * The range of replicas to maintain.
+         * <p>
          * API name: {@code auto_expand_replicas}
+         * </p>
          */
         @Nonnull
         public final Builder autoExpandReplicas(@Nullable String value) {
@@ -1778,7 +1787,10 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
+         * The compression type for stored data.
+         * <p>
          * API name: {@code codec}
+         * </p>
          */
         @Nonnull
         public final Builder codec(@Nullable String value) {

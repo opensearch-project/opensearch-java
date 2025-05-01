@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsMergeLogByteSizePolicy
 
+/**
+ * The configuration for log byte size merge policy.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsMergeLogByteSizePolicy

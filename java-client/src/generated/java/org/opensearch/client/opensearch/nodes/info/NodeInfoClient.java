@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoClient
 
+/**
+ * The client node configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoClient implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoClient.Builder, NodeInfoClient> {
@@ -72,7 +75,10 @@ public class NodeInfoClient implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
-     * Required - API name: {@code type}
+     * Required - The type of client node configuration.
+     * <p>
+     * API name: {@code type}
+     * </p>
      */
     @Nonnull
     public final String type() {
@@ -130,7 +136,10 @@ public class NodeInfoClient implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code type}
+         * Required - The type of client node configuration.
+         * <p>
+         * API name: {@code type}
+         * </p>
          */
         @Nonnull
         public final Builder type(String value) {

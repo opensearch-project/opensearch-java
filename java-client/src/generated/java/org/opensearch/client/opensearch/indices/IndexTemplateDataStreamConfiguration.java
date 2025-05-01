@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexTemplateDataStreamConfiguration
 
+/**
+ * The data stream configuration for an index template.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexTemplateDataStreamConfiguration
@@ -86,7 +89,7 @@ public class IndexTemplateDataStreamConfiguration
     }
 
     /**
-     * If <code>true</code>, the data stream supports custom routing.
+     * When <code>true</code>, the data stream supports custom routing.
      * <p>
      * API name: {@code allow_custom_routing}
      * </p>
@@ -97,7 +100,7 @@ public class IndexTemplateDataStreamConfiguration
     }
 
     /**
-     * If <code>true</code>, the data stream is hidden.
+     * When <code>true</code>, the data stream is hidden.
      * <p>
      * API name: {@code hidden}
      * </p>
@@ -187,7 +190,7 @@ public class IndexTemplateDataStreamConfiguration
         }
 
         /**
-         * If <code>true</code>, the data stream supports custom routing.
+         * When <code>true</code>, the data stream supports custom routing.
          * <p>
          * API name: {@code allow_custom_routing}
          * </p>
@@ -199,7 +202,7 @@ public class IndexTemplateDataStreamConfiguration
         }
 
         /**
-         * If <code>true</code>, the data stream is hidden.
+         * When <code>true</code>, the data stream is hidden.
          * <p>
          * API name: {@code hidden}
          * </p>

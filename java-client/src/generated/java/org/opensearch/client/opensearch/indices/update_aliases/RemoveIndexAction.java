@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.update_aliases.RemoveIndexAction
 
+/**
+ * The configuration for removing an index.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RemoveIndexAction
@@ -111,7 +114,7 @@ public class RemoveIndexAction
     }
 
     /**
-     * If <code>true</code>, the alias must exist to perform the action.
+     * Whether the alias must exist to perform the action.
      * <p>
      * API name: {@code must_exist}
      * </p>
@@ -232,7 +235,7 @@ public class RemoveIndexAction
         }
 
         /**
-         * If <code>true</code>, the alias must exist to perform the action.
+         * Whether the alias must exist to perform the action.
          * <p>
          * API name: {@code must_exist}
          * </p>

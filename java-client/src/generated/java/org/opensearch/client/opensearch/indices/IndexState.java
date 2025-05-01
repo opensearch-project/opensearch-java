@@ -58,6 +58,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexState
 
+/**
+ * The state configuration of an index.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexState implements PlainJsonSerializable, ToCopyableBuilder<IndexState.Builder, IndexState> {
@@ -92,7 +95,10 @@ public class IndexState implements PlainJsonSerializable, ToCopyableBuilder<Inde
     }
 
     /**
+     * The aliases associated with the index.
+     * <p>
      * API name: {@code aliases}
+     * </p>
      */
     @Nonnull
     public final Map<String, Alias> aliases() {
@@ -226,7 +232,10 @@ public class IndexState implements PlainJsonSerializable, ToCopyableBuilder<Inde
         }
 
         /**
+         * The aliases associated with the index.
+         * <p>
          * API name: {@code aliases}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>aliases</code>.
@@ -239,7 +248,10 @@ public class IndexState implements PlainJsonSerializable, ToCopyableBuilder<Inde
         }
 
         /**
+         * The aliases associated with the index.
+         * <p>
          * API name: {@code aliases}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>aliases</code>.
@@ -252,7 +264,10 @@ public class IndexState implements PlainJsonSerializable, ToCopyableBuilder<Inde
         }
 
         /**
+         * The aliases associated with the index.
+         * <p>
          * API name: {@code aliases}
+         * </p>
          *
          * <p>
          * Adds a value to <code>aliases</code> using a builder lambda.

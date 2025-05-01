@@ -42,15 +42,30 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: indices.add_block.IndicesBlockOptions
 
+/**
+ * The type of block to add to an index.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum IndicesBlockOptions implements JsonEnum {
+    /**
+     * Blocks metadata changes to the index.
+     */
     Metadata("metadata"),
 
+    /**
+     * Blocks read operations on the index.
+     */
     Read("read"),
 
+    /**
+     * Makes the index read-only.
+     */
     ReadOnly("read_only"),
 
+    /**
+     * Blocks write operations on the index.
+     */
     Write("write");
 
     private final String jsonValue;

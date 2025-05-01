@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.stats.ShardCommit
 
+/**
+ * The commit information for a shard.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardCommit implements PlainJsonSerializable, ToCopyableBuilder<ShardCommit.Builder, ShardCommit> {
@@ -83,7 +86,10 @@ public class ShardCommit implements PlainJsonSerializable, ToCopyableBuilder<Sha
     }
 
     /**
-     * Required - API name: {@code generation}
+     * Required - The generation number of the commit.
+     * <p>
+     * API name: {@code generation}
+     * </p>
      */
     public final int generation() {
         return this.generation;
@@ -98,14 +104,20 @@ public class ShardCommit implements PlainJsonSerializable, ToCopyableBuilder<Sha
     }
 
     /**
-     * Required - API name: {@code num_docs}
+     * Required - The number of documents in the commit.
+     * <p>
+     * API name: {@code num_docs}
+     * </p>
      */
     public final long numDocs() {
         return this.numDocs;
     }
 
     /**
-     * Required - API name: {@code user_data}
+     * Required - The user-defined data associated with the commit.
+     * <p>
+     * API name: {@code user_data}
+     * </p>
      */
     @Nonnull
     public final Map<String, String> userData() {
@@ -186,7 +198,10 @@ public class ShardCommit implements PlainJsonSerializable, ToCopyableBuilder<Sha
         }
 
         /**
-         * Required - API name: {@code generation}
+         * Required - The generation number of the commit.
+         * <p>
+         * API name: {@code generation}
+         * </p>
          */
         @Nonnull
         public final Builder generation(int value) {
@@ -204,7 +219,10 @@ public class ShardCommit implements PlainJsonSerializable, ToCopyableBuilder<Sha
         }
 
         /**
-         * Required - API name: {@code num_docs}
+         * Required - The number of documents in the commit.
+         * <p>
+         * API name: {@code num_docs}
+         * </p>
          */
         @Nonnull
         public final Builder numDocs(long value) {
@@ -213,7 +231,10 @@ public class ShardCommit implements PlainJsonSerializable, ToCopyableBuilder<Sha
         }
 
         /**
-         * Required - API name: {@code user_data}
+         * Required - The user-defined data associated with the commit.
+         * <p>
+         * API name: {@code user_data}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>userData</code>.
@@ -226,7 +247,10 @@ public class ShardCommit implements PlainJsonSerializable, ToCopyableBuilder<Sha
         }
 
         /**
-         * Required - API name: {@code user_data}
+         * Required - The user-defined data associated with the commit.
+         * <p>
+         * API name: {@code user_data}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>userData</code>.

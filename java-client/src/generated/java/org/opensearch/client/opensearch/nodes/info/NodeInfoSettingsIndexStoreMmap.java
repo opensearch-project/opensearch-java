@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoSettingsIndexStoreMmap
 
+/**
+ * The memory-mapped store configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoSettingsIndexStoreMmap
@@ -80,7 +83,10 @@ public class NodeInfoSettingsIndexStoreMmap
     }
 
     /**
+     * The file extensions configured for memory mapping.
+     * <p>
      * API name: {@code extensions}
+     * </p>
      */
     @Nonnull
     public final List<String> extensions() {
@@ -145,7 +151,10 @@ public class NodeInfoSettingsIndexStoreMmap
         }
 
         /**
+         * The file extensions configured for memory mapping.
+         * <p>
          * API name: {@code extensions}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>extensions</code>.
@@ -158,7 +167,10 @@ public class NodeInfoSettingsIndexStoreMmap
         }
 
         /**
+         * The file extensions configured for memory mapping.
+         * <p>
          * API name: {@code extensions}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>extensions</code>.

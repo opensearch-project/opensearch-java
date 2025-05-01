@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoNetwork
 
+/**
+ * Provides network-related information for the node.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoNetwork implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoNetwork.Builder, NodeInfoNetwork> {
@@ -83,7 +86,10 @@ public class NodeInfoNetwork implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Required - API name: {@code refresh_interval}
+     * Required - The interval for refreshing network information.
+     * <p>
+     * API name: {@code refresh_interval}
+     * </p>
      */
     public final int refreshInterval() {
         return this.refreshInterval;
@@ -163,7 +169,10 @@ public class NodeInfoNetwork implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - API name: {@code refresh_interval}
+         * Required - The interval for refreshing network information.
+         * <p>
+         * API name: {@code refresh_interval}
+         * </p>
          */
         @Nonnull
         public final Builder refreshInterval(int value) {

@@ -34,7 +34,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.nodes.info;
+package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -53,20 +53,17 @@ import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
 
-// typedef: nodes.info.NodeInfoSettingsHttpType
+// typedef: indices.StorageType
 
-/**
- * The HTTP server type configuration.
- */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class NodeInfoSettingsHttpType implements TaggedUnion<NodeInfoSettingsHttpType.Kind, Object>, PlainJsonSerializable {
+public class StorageType implements TaggedUnion<StorageType.Kind, Object>, PlainJsonSerializable {
     /**
-     * {@link NodeInfoSettingsHttpType} variant kinds.
+     * {@link StorageType} variant kinds.
      */
     public enum Kind {
-        Config,
-        Type
+        Builtin,
+        Custom
     }
 
     private final Kind _kind;
@@ -82,50 +79,61 @@ public class NodeInfoSettingsHttpType implements TaggedUnion<NodeInfoSettingsHtt
         return _value;
     }
 
-    private NodeInfoSettingsHttpType(Kind kind, Object value) {
+    private StorageType(Kind kind, Object value) {
         this._kind = kind;
         this._value = value;
     }
 
-    private NodeInfoSettingsHttpType(Builder builder) {
+    private StorageType(Builder builder) {
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
     }
 
-    public static NodeInfoSettingsHttpType of(Function<NodeInfoSettingsHttpType.Builder, ObjectBuilder<NodeInfoSettingsHttpType>> fn) {
+    public static StorageType of(Function<StorageType.Builder, ObjectBuilder<StorageType>> fn) {
         return fn.apply(new Builder()).build();
     }
 
-    /**
-     * Is this variant instance of kind {@code config}?
-     */
-    public boolean isConfig() {
-        return _kind == Kind.Config;
+    public String _toJsonString() {
+        switch (_kind) {
+            case Builtin:
+                return this.builtin().jsonValue();
+            case Custom:
+                return this.custom();
+            default:
+                throw new IllegalStateException("Unknown kind " + _kind);
+        }
     }
 
     /**
-     * Get the {@code config} variant value.
+     * Is this variant instance of kind {@code builtin}?
+     */
+    public boolean isBuiltin() {
+        return _kind == Kind.Builtin;
+    }
+
+    /**
+     * Get the {@code builtin} variant value.
      *
-     * @throws IllegalStateException if the current variant is not the {@code config} kind.
+     * @throws IllegalStateException if the current variant is not the {@code builtin} kind.
      */
-    public NodeInfoSettingsHttpTypeConfig config() {
-        return TaggedUnionUtils.get(this, Kind.Config);
+    public BuiltinStorageType builtin() {
+        return TaggedUnionUtils.get(this, Kind.Builtin);
     }
 
     /**
-     * Is this variant instance of kind {@code type}?
+     * Is this variant instance of kind {@code custom}?
      */
-    public boolean isType() {
-        return _kind == Kind.Type;
+    public boolean isCustom() {
+        return _kind == Kind.Custom;
     }
 
     /**
-     * Get the {@code type} variant value.
+     * Get the {@code custom} variant value.
      *
-     * @throws IllegalStateException if the current variant is not the {@code type} kind.
+     * @throws IllegalStateException if the current variant is not the {@code custom} kind.
      */
-    public String type() {
-        return TaggedUnionUtils.get(this, Kind.Type);
+    public String custom() {
+        return TaggedUnionUtils.get(this, Kind.Custom);
     }
 
     @Override
@@ -134,7 +142,7 @@ public class NodeInfoSettingsHttpType implements TaggedUnion<NodeInfoSettingsHtt
             ((JsonpSerializable) _value).serialize(generator, mapper);
         } else {
             switch (_kind) {
-                case Type:
+                case Custom:
                     generator.write(((String) this._value));
                     break;
             }
@@ -151,52 +159,44 @@ public class NodeInfoSettingsHttpType implements TaggedUnion<NodeInfoSettingsHtt
         return new Builder();
     }
 
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsHttpType> {
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StorageType> {
         private Kind _kind;
         private Object _value;
 
         public Builder() {}
 
-        private Builder(NodeInfoSettingsHttpType o) {
+        private Builder(StorageType o) {
             this._kind = o._kind;
             this._value = o._value;
         }
 
-        public ObjectBuilder<NodeInfoSettingsHttpType> config(NodeInfoSettingsHttpTypeConfig v) {
-            this._kind = Kind.Config;
+        public ObjectBuilder<StorageType> builtin(BuiltinStorageType v) {
+            this._kind = Kind.Builtin;
             this._value = v;
             return this;
         }
 
-        public ObjectBuilder<NodeInfoSettingsHttpType> config(
-            Function<NodeInfoSettingsHttpTypeConfig.Builder, ObjectBuilder<NodeInfoSettingsHttpTypeConfig>> fn
-        ) {
-            return this.config(fn.apply(new NodeInfoSettingsHttpTypeConfig.Builder()).build());
-        }
-
-        public ObjectBuilder<NodeInfoSettingsHttpType> type(String v) {
-            this._kind = Kind.Type;
+        public ObjectBuilder<StorageType> custom(String v) {
+            this._kind = Kind.Custom;
             this._value = v;
             return this;
         }
 
         @Override
-        public NodeInfoSettingsHttpType build() {
+        public StorageType build() {
             _checkSingleUse();
-            return new NodeInfoSettingsHttpType(this);
+            return new StorageType(this);
         }
     }
 
-    private static JsonpDeserializer<NodeInfoSettingsHttpType> buildNodeInfoSettingsHttpTypeDeserializer() {
-        return new UnionDeserializer.Builder<NodeInfoSettingsHttpType, Kind, Object>(NodeInfoSettingsHttpType::new, false).addMember(
-            Kind.Config,
-            NodeInfoSettingsHttpTypeConfig._DESERIALIZER
-        ).addMember(Kind.Type, JsonpDeserializer.stringDeserializer()).build();
+    private static JsonpDeserializer<StorageType> buildStorageTypeDeserializer() {
+        return new UnionDeserializer.Builder<StorageType, Kind, Object>(StorageType::new, true).addMember(
+            Kind.Builtin,
+            BuiltinStorageType._DESERIALIZER
+        ).addMember(Kind.Custom, JsonpDeserializer.stringDeserializer()).build();
     }
 
-    public static final JsonpDeserializer<NodeInfoSettingsHttpType> _DESERIALIZER = JsonpDeserializer.lazy(
-        NodeInfoSettingsHttpType::buildNodeInfoSettingsHttpTypeDeserializer
-    );
+    public static final JsonpDeserializer<StorageType> _DESERIALIZER = JsonpDeserializer.lazy(StorageType::buildStorageTypeDeserializer);
 
     @Override
     public int hashCode() {
@@ -210,7 +210,7 @@ public class NodeInfoSettingsHttpType implements TaggedUnion<NodeInfoSettingsHtt
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        NodeInfoSettingsHttpType other = (NodeInfoSettingsHttpType) o;
+        StorageType other = (StorageType) o;
         return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
     }
 }

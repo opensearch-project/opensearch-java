@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.Alias
 
+/**
+ * The index alias configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class Alias implements PlainJsonSerializable, ToCopyableBuilder<Alias.Builder, Alias> {
@@ -110,7 +113,7 @@ public class Alias implements PlainJsonSerializable, ToCopyableBuilder<Alias.Bui
     }
 
     /**
-     * If <code>true</code>, the alias is hidden. All indexes for the alias must have the same <code>is_hidden</code> value.
+     * When <code>true</code>, the alias is hidden. All indexes for the alias must have the same <code>is_hidden</code> value.
      * <p>
      * API name: {@code is_hidden}
      * </p>
@@ -121,7 +124,7 @@ public class Alias implements PlainJsonSerializable, ToCopyableBuilder<Alias.Bui
     }
 
     /**
-     * If <code>true</code>, the index is the write index for the alias.
+     * When <code>true</code>, the index is the write index for the alias.
      * <p>
      * API name: {@code is_write_index}
      * </p>
@@ -272,7 +275,7 @@ public class Alias implements PlainJsonSerializable, ToCopyableBuilder<Alias.Bui
         }
 
         /**
-         * If <code>true</code>, the alias is hidden. All indexes for the alias must have the same <code>is_hidden</code> value.
+         * When <code>true</code>, the alias is hidden. All indexes for the alias must have the same <code>is_hidden</code> value.
          * <p>
          * API name: {@code is_hidden}
          * </p>
@@ -284,7 +287,7 @@ public class Alias implements PlainJsonSerializable, ToCopyableBuilder<Alias.Bui
         }
 
         /**
-         * If <code>true</code>, the index is the write index for the alias.
+         * When <code>true</code>, the index is the write index for the alias.
          * <p>
          * API name: {@code is_write_index}
          * </p>

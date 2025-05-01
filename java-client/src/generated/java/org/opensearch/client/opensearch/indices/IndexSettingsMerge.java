@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsMerge
 
+/**
+ * The configuration for segment merging.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsMerge implements PlainJsonSerializable, ToCopyableBuilder<IndexSettingsMerge.Builder, IndexSettingsMerge> {

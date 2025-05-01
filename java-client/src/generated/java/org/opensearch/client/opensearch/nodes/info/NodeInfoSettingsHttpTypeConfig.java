@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoSettingsHttpTypeConfig
 
+/**
+ * The HTTP server type configuration details.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoSettingsHttpTypeConfig
@@ -78,7 +81,10 @@ public class NodeInfoSettingsHttpTypeConfig
     }
 
     /**
+     * The default HTTP server implementation.
+     * <p>
      * API name: {@code default}
+     * </p>
      */
     @Nullable
     public final String default_() {
@@ -139,7 +145,10 @@ public class NodeInfoSettingsHttpTypeConfig
         }
 
         /**
+         * The default HTTP server implementation.
+         * <p>
          * API name: {@code default}
+         * </p>
          */
         @Nonnull
         public final Builder default_(@Nullable String value) {

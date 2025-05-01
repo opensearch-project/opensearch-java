@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoIngestProcessor
 
+/**
+ * The ingest processor configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoIngestProcessor
@@ -75,7 +78,10 @@ public class NodeInfoIngestProcessor
     }
 
     /**
-     * Required - API name: {@code type}
+     * Required - The type of ingest processor.
+     * <p>
+     * API name: {@code type}
+     * </p>
      */
     @Nonnull
     public final String type() {
@@ -133,7 +139,10 @@ public class NodeInfoIngestProcessor
         }
 
         /**
-         * Required - API name: {@code type}
+         * Required - The type of ingest processor.
+         * <p>
+         * API name: {@code type}
+         * </p>
          */
         @Nonnull
         public final Builder type(String value) {

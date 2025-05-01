@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.DataStreamTimestampField
 
+/**
+ * The timestamp field configuration for a data stream.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DataStreamTimestampField

@@ -34,38 +34,43 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.indices.shard_stores;
+package org.opensearch.client.opensearch.indices;
 
 import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-// typedef: indices.shard_stores.ShardStoreAllocation
+// typedef: indices.BuiltinStorageType
 
 /**
- * The allocation type of the shard store.
+ * The type of storage implementation.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public enum ShardStoreAllocation implements JsonEnum {
+public enum BuiltinStorageType implements JsonEnum {
     /**
-     * The store is for a primary shard.
+     * Uses the default file system implementation.
      */
-    Primary("primary"),
+    Fs("fs"),
 
     /**
-     * The store is for a replica shard.
+     * Uses a hybrid of memory-mapped and regular file system implementation.
      */
-    Replica("replica"),
+    Hybridfs("hybridfs"),
 
     /**
-     * The store is not currently in use.
+     * Uses memory-mapped file system implementation.
      */
-    Unused("unused");
+    Mmapfs("mmapfs"),
+
+    /**
+     * Uses NIO file system implementation.
+     */
+    Niofs("niofs");
 
     private final String jsonValue;
 
-    ShardStoreAllocation(String jsonValue) {
+    BuiltinStorageType(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -73,7 +78,5 @@ public enum ShardStoreAllocation implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<ShardStoreAllocation> _DESERIALIZER = new JsonEnum.Deserializer<>(
-        ShardStoreAllocation.values()
-    );
+    public static final JsonEnum.Deserializer<BuiltinStorageType> _DESERIALIZER = new JsonEnum.Deserializer<>(BuiltinStorageType.values());
 }
