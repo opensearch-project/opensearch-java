@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoNetworkInterface
 
+/**
+ * Describes a network interface on the node.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoNetworkInterface
@@ -83,7 +86,10 @@ public class NodeInfoNetworkInterface
     }
 
     /**
-     * Required - API name: {@code address}
+     * Required - The IP address of the interface.
+     * <p>
+     * API name: {@code address}
+     * </p>
      */
     @Nonnull
     public final String address() {
@@ -91,7 +97,10 @@ public class NodeInfoNetworkInterface
     }
 
     /**
-     * Required - API name: {@code mac_address}
+     * Required - The MAC address of the interface.
+     * <p>
+     * API name: {@code mac_address}
+     * </p>
      */
     @Nonnull
     public final String macAddress() {
@@ -169,7 +178,10 @@ public class NodeInfoNetworkInterface
         }
 
         /**
-         * Required - API name: {@code address}
+         * Required - The IP address of the interface.
+         * <p>
+         * API name: {@code address}
+         * </p>
          */
         @Nonnull
         public final Builder address(String value) {
@@ -178,7 +190,10 @@ public class NodeInfoNetworkInterface
         }
 
         /**
-         * Required - API name: {@code mac_address}
+         * Required - The MAC address of the interface.
+         * <p>
+         * API name: {@code mac_address}
+         * </p>
          */
         @Nonnull
         public final Builder macAddress(String value) {

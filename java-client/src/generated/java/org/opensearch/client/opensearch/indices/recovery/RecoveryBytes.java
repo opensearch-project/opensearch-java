@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.recovery.RecoveryBytes
 
+/**
+ * The byte-level recovery statistics.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RecoveryBytes implements PlainJsonSerializable, ToCopyableBuilder<RecoveryBytes.Builder, RecoveryBytes> {

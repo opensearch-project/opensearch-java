@@ -42,33 +42,75 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: nodes.info.Metric
 
+/**
+ * The nodes metrics to retrieve.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum NodesInfoMetric implements JsonEnum {
+    /**
+     * Returns all metrics.
+     */
     All("_all"),
 
+    /**
+     * Returns aggregation information.
+     */
     Aggregations("aggregations"),
 
+    /**
+     * Returns HTTP connection information.
+     */
     Http("http"),
 
+    /**
+     * Returns indices stats and settings.
+     */
     Indices("indices"),
 
+    /**
+     * Returns ingest pipeline information.
+     */
     Ingest("ingest"),
 
+    /**
+     * Returns JVM stats, process information, and memory usage.
+     */
     Jvm("jvm"),
 
+    /**
+     * Returns operating system information and stats.
+     */
     Os("os"),
 
+    /**
+     * Returns installed plugins information.
+     */
     Plugins("plugins"),
 
+    /**
+     * Returns process statistics.
+     */
     Process("process"),
 
+    /**
+     * Returns search pipeline configurations.
+     */
     SearchPipelines("search_pipelines"),
 
+    /**
+     * Returns node settings information.
+     */
     Settings("settings"),
 
+    /**
+     * Returns thread pool information.
+     */
     ThreadPool("thread_pool"),
 
+    /**
+     * Returns transport layer information.
+     */
     Transport("transport");
 
     private final String jsonValue;

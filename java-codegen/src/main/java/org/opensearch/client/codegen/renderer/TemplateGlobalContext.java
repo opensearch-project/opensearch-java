@@ -15,7 +15,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.text.StringEscapeUtils;
-import org.opensearch.client.codegen.model.Types;
+import org.opensearch.client.codegen.model.types.Types;
 import org.opensearch.client.codegen.renderer.lambdas.TemplateStringLambda;
 import org.opensearch.client.codegen.utils.NameSanitizer;
 import org.opensearch.client.codegen.utils.Strings;

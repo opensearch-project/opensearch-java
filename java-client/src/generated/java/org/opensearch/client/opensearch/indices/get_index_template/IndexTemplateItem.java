@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.get_index_template.IndexTemplateItem
 
+/**
+ * The configuration for an index template item.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexTemplateItem implements PlainJsonSerializable, ToCopyableBuilder<IndexTemplateItem.Builder, IndexTemplateItem> {

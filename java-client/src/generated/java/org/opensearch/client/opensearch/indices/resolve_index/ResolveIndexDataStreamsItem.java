@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.resolve_index.ResolveIndexDataStreamsItem
 
+/**
+ * The resolved information for a data stream.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ResolveIndexDataStreamsItem

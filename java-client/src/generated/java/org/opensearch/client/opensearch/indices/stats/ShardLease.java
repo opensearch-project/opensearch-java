@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.stats.ShardLease
 
+/**
+ * The retention lease details.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardLease implements PlainJsonSerializable, ToCopyableBuilder<ShardLease.Builder, ShardLease> {

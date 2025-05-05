@@ -75,6 +75,9 @@ After:
   - `hiraganaquaternarymode` -> `hiraganaQuaternaryMode`
   - `variabletop` -> `variableTop`
 
+### ShingleTokenFilter
+- The `maxShingleSize` and `minShingleSize` properties have been corrected to be of type `Integer` instead of `String`.
+
 ### TokenFilterDefinition
 - The `smartcn_stop` Builder method has been renamed to `smartcnStop`.
 
@@ -116,12 +119,20 @@ After:
 - The `translogDurability` property now accepts a `TranslogDurability` enum instead of a `String`.
 - The `numberOfReplicas` property is now of type `Integer` instead of `String`.
 - The `numberOfShards` property is now of type `Integer` instead of `String`.
+- The `format` property is now of type `Integer` instead of `String`.
+- The `priority` property is now of type `Integer` instead of `String`.
+
+### IndexSettingsStore
+- The `type` property now accepts a `StorageType` union of a `BuiltinStorageType` enum or a `String` instead of a `String`.
 
 ### BoostingQuery
 - The `negativeBoost` property has been corrected to be of type `float` instead of `double`.
 
 ### DisMaxQuery
 - The `tieBreaker` property has been corrected to be of type `Float` instead of `Double`.
+
+### DistanceFeatureQuery
+- The `pivot` property has been corrected to be of type `String` instead of `JsonData`.
 
 ### FunctionScoreQuery
 - The `maxBoost` property has been corrected to be of type `Float` instead of `Double`.
@@ -291,6 +302,7 @@ After:
 
 ### HealthRequest
 - The `level` property is now of type `ClusterHealthLevel` instead of `Level`.
+- The `waitForNodes` property is now of type `WaitForNodes` instead of `String`.
 
 ### HealthResponse
 - The `activeShardsPercentAsNumber` property has been corrected to be of type `double` instead of `String`.
@@ -442,6 +454,7 @@ After:
 
 ### DocumentSimulation
 - The `type` property has been removed as it is no longer supported by OpenSearch.
+- The `_version` property has been corrected to be of type `Long` instead of `String`.
 
 ### CountRequest
 - The `minScore` property has been corrected to be of type `Float` instead of `Double`.
@@ -574,9 +587,6 @@ After:
 ### CompositeValuesSource
 - The `format` property has been removed as it only applies to certain subclasses.
 
-### InferenceConfig
-- The `InferenceConfig` class has been changed to a tagged union.
-
 ### SignificantTermsAggregation
 - The `include` property is now of type `TermsInclude` instead of `List<String>`.
 
@@ -600,3 +610,87 @@ After:
 ### ShardCacheStats renamed to CacheStats
 - The `ShardCacheStats` class has been renamed to `CacheStats`, this affects:
   - `nodes.stats.Stats`'s `caches` field.
+
+### Explanation
+- The `value` property has been corrected to be of type `Number` instead of `float`.
+
+### ExplanationDetail
+- The `value` property has been corrected to be of type `Number` instead of `float`.
+
+### Aggregate
+- The `GeoLine` aggregation has been removed as it is not supported by OpenSearch.
+- The `Inference` aggregation has been removed as it is not supported by OpenSearch.
+- The `StringStats` aggregation has been removed as it is not supported by OpenSearch.
+- The `TopMetrics` aggregation has been removed as it is not supported by OpenSearch.
+
+### Aggregation
+- The `GeoLine` aggregation has been removed as it is not supported by OpenSearch.
+- The `Inference` aggregation has been removed as it is not supported by OpenSearch.
+- The `StringStats` aggregation has been removed as it is not supported by OpenSearch.
+- The `TopMetrics` aggregation has been removed as it is not supported by OpenSearch.
+
+### SuggestContext
+- The `precision` property has been corrected to be of type `JsonData` instead of `String`.
+
+### RandomScoreFunction
+- The `seed` property has been corrected to be of type `JsonData` instead of `String`.
+
+### CountRecord
+- The `epoch` property has been corrected to be of type `Long` instead of `String`.
+
+### HealthRecord
+- The `epoch` property has been corrected to be of type `Long` instead of `String`.
+
+### SnapshotsRecord
+- The `endEpoch` and `startEpoch` properties have been corrected to be of type `Long` instead of `String`.
+
+### ClusterInfo
+- The `shardSizes` property has been corrected to be of type `Map<String, JsonData>` instead of `Map<String, String>`.
+
+### IndexingPressureMemory
+- The `limit` property has been corrected to be of type `JsonData` instead of `String`.
+
+### HitsMetadata
+- The `maxScore` property has been corrected to be of type `Float` instead of `Double`.
+
+### AggregationRange
+- The `from` and `to` properties have been corrected to be of type `JsonData` instead of `String`.
+
+### ArrayPercentilesItem
+- The `value` property no longer defaults `0` when null, instead it is now an optional field.
+
+### AutoDateHistogramAggregate
+- The `interval` property has been corrected to be of type `Time` instead of `String`.
+
+### CompositeAggregate
+- The `afterKey` property is now of type `Map<String, FieldValue>` instead of `Map<String, JsonData>`.
+
+### CompositeBucket
+- The `key` property is now of type `Map<String, FieldValue>` instead of `Map<String, JsonData>`.
+
+### DateHistogramBucket
+- The `key` property is now of type `long` instead of `String`.
+
+### ExtendedStatsAggregate
+- The `stdDeviation`, `sumOfSquares`, `variance`, `variancePopulation` and `varianceSampling` properties no longer default `0` when null, instead they are now optional fields.
+
+### LongTermsBucket
+- The `key` property is now a union to handle `long` and `String` instead of just `String`.
+
+### MultiTermsBucket
+- The `key` property is now of type `List<FieldValue>` instead of `List<String>`.
+
+### Percentiles
+- The `keyed` variant has been corrected to be of type `Map<String, JsonData>` instead of `Map<String, String>`.
+
+### SingleMetricAggregateBase
+- The `value` property no longer defaults `0` when null, instead it is now an optional field.
+
+### StandardDeviationBounds
+- All properties no longer default `0` when null, instead they are now optional fields.
+
+### StatsAggregate
+- The `avg`, `max` and `min` properties no longer default `0`/`Double.NEGATIVE_INFINITY`/`Double.POSITIVE_INFINITY` when null, instead they are now optional fields.
+
+### TTestAggregate
+- The `value` property no longer defaults `0` when null, instead it is now an optional field.

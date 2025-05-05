@@ -8,8 +8,6 @@
 
 package org.opensearch.client.codegen.openapi;
 
-import static org.opensearch.client.codegen.utils.Functional.ifNonnull;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -17,36 +15,75 @@ import java.util.Optional;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.opensearch.client.codegen.utils.Clone;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Maps;
-import org.opensearch.client.codegen.utils.Strings;
+import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 
-public abstract class OpenApiElement<TSelf extends OpenApiElement<TSelf>> {
+public abstract class OpenApiElement<Self extends OpenApiElement<Self>> implements Clone<Self> {
     @Nullable
-    private final OpenApiSpecification specification;
+    private OpenApiSpecification specification;
     @Nonnull
-    private final JsonPointer pointer;
+    private JsonPointer pointer = JsonPointer.ROOT;
 
-    OpenApiElement(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer) {
-        this.specification = ifNonnull(parent, p -> p.getSpecification().orElse(null));
-        this.pointer = Objects.requireNonNull(pointer, "pointer must not be null");
-        if (this.specification != null) {
-            this.specification.addElement(this.pointer, self());
-        }
-    }
+    OpenApiElement(@Nonnull AbstractBuilder<Self, ?> builder) {}
+
+    OpenApiElement() {}
 
     @Nonnull
     @SuppressWarnings("unchecked")
-    protected TSelf self() {
-        return (TSelf) this;
+    Self self() {
+        return (Self) this;
     }
 
-    @Nonnull
-    protected Optional<OpenApiSpecification> getSpecification() {
+    @Override
+    public abstract Self clone();
+
+    Optional<OpenApiSpecification> getSpecification() {
         return Optional.ofNullable(specification);
+    }
+
+    void initialize(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer) {
+        this.pointer = Objects.requireNonNull(pointer, "pointer must not be null");
+
+        OpenApiSpecification newSpec = null;
+        if (parent != null) {
+            newSpec = parent.getSpecification().orElse(null);
+        }
+        if (newSpec != specification && specification != null) {
+            specification.removeElement(this);
+        }
+        specification = newSpec;
+        if (specification != null) {
+            specification.registerElement(this);
+        }
+    }
+
+    final void initializeChild(@Nonnull String subKey, @Nullable OpenApiElement<?> child) {
+        if (child == null) {
+            return;
+        }
+        Objects.requireNonNull(subKey, "subKey must not be null");
+        child.initialize(this, getPointer().append(subKey));
+    }
+
+    final void initializeChildren(@Nonnull String subKey, @Nullable List<? extends OpenApiElement<?>> children) {
+        if (children == null) {
+            return;
+        }
+        Objects.requireNonNull(subKey, "subKey must not be null");
+        var ptr = getPointer().append(subKey);
+        Lists.forEach(children, (i, v) -> v.initialize(this, ptr.append(String.valueOf(i))));
+    }
+
+    final void initializeChildren(@Nonnull String subKey, @Nullable Map<?, ? extends OpenApiElement<?>> children) {
+        if (children == null) {
+            return;
+        }
+        Objects.requireNonNull(subKey, "subKey must not be null");
+        var ptr = getPointer().append(subKey);
+        children.forEach((k, v) -> v.initialize(this, ptr.append(k.toString())));
     }
 
     @Nonnull
@@ -54,72 +91,40 @@ public abstract class OpenApiElement<TSelf extends OpenApiElement<TSelf>> {
         return pointer;
     }
 
-    @Nonnull
-    private JsonPointer childPtr(@Nonnull String key) {
-        return pointer.append(Strings.requireNonBlank(key, "key must not be blank"));
-    }
-
     @Nullable
-    <TIn, TOut> TOut child(@Nonnull String key, @Nullable TIn child, @Nonnull Factory<TSelf, TIn, TOut> factory) {
-        if (child == null) {
-            return null;
-        }
-        return Objects.requireNonNull(factory, "factory must not be null").create(self(), childPtr(key), child);
-    }
-
-    @Nullable
-    <TIn, TOut> List<TOut> children(@Nonnull String key, @Nullable List<TIn> children, @Nonnull Factory<TSelf, TIn, TOut> factory) {
+    <TIn, TOut> List<TOut> children(@Nullable List<TIn> children, @Nonnull Factory<TIn, TOut> factory) {
         if (children == null) {
             return null;
         }
         Objects.requireNonNull(factory, "factory must not be null");
-        var basePtr = childPtr(key);
-        var self = self();
-        return Lists.map(children, (i, v) -> factory.create(self, basePtr.append(String.valueOf(i)), v));
-    }
-
-    @Nullable
-    <TInKey, TOutKey, TInValue, TOutValue> Map<TOutKey, TOutValue> children(
-        @Nullable Map<TInKey, TInValue> children,
-        @Nonnull Function<TInKey, TOutKey> keyMapper,
-        @Nonnull Factory<TSelf, TInValue, TOutValue> valueFactory
-    ) {
-        return children(pointer, children, keyMapper, valueFactory);
+        return Lists.map(children, (i, v) -> factory.create(v));
     }
 
     @Nullable
     <TKey, TInValue, TOutValue> Map<TKey, TOutValue> children(
-        @Nonnull String key,
         @Nullable Map<TKey, TInValue> children,
-        @Nonnull Factory<TSelf, TInValue, TOutValue> valueFactory
+        @Nonnull Factory<TInValue, TOutValue> valueFactory
     ) {
-        return children(childPtr(key), children, Function.identity(), valueFactory);
+        return children(children, Function.identity(), valueFactory);
     }
 
     @Nullable
     <TInKey, TOutKey, TInValue, TOutValue> Map<TOutKey, TOutValue> children(
-        @Nonnull JsonPointer basePtr,
         @Nullable Map<TInKey, TInValue> children,
         @Nonnull Function<TInKey, TOutKey> keyMapper,
-        @Nonnull Factory<TSelf, TInValue, TOutValue> valueFactory
+        @Nonnull Factory<TInValue, TOutValue> valueFactory
     ) {
         if (children == null) {
             return null;
         }
-        Objects.requireNonNull(basePtr, "basePtr must not be null");
         Objects.requireNonNull(keyMapper, "keyMapper must not be null");
         Objects.requireNonNull(valueFactory, "valueFactory must not be null");
-        var self = self();
-        return Maps.transform(
-            children,
-            (k, v) -> keyMapper.apply(k),
-            (k, v) -> valueFactory.create(self, basePtr.append(keyMapper.apply(k).toString()), v)
-        );
+        return Maps.transform(children, (k, v) -> keyMapper.apply(k), (k, v) -> valueFactory.create(v));
     }
 
-    interface Factory<TParent extends OpenApiElement<TParent>, TIn, TOut> {
+    interface Factory<TIn, TOut> {
         @Nonnull
-        TOut create(@Nonnull TParent parent, @Nonnull JsonPointer pointer, @Nonnull TIn value);
+        TOut create(@Nonnull TIn value);
     }
 
     @Override
@@ -127,23 +132,14 @@ public abstract class OpenApiElement<TSelf extends OpenApiElement<TSelf>> {
         return new ToStringBuilder(this).append("pointer", pointer).toString();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        OpenApiElement<?> that = (OpenApiElement<?>) o;
-
-        return new EqualsBuilder().append(specification, that.specification).append(pointer, that.pointer).isEquals();
+    @Nonnull
+    <Builder extends AbstractBuilder<Self, Builder>> Builder toBuilder(@Nonnull Builder builder) {
+        return Objects.requireNonNull(builder, "builder must not be null");
     }
 
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(specification).append(pointer).toHashCode();
+    public static abstract class AbstractBuilder<Element extends OpenApiElement<Element>, Builder extends AbstractBuilder<Element, Builder>>
+        extends ObjectBuilderBase<Element, Builder> {
+
+        AbstractBuilder() {}
     }
 }

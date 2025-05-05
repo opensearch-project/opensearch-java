@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.recovery.TranslogStatus
 
+/**
+ * The transaction log recovery status.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class TranslogStatus implements PlainJsonSerializable, ToCopyableBuilder<TranslogStatus.Builder, TranslogStatus> {
@@ -99,21 +102,30 @@ public class TranslogStatus implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
-     * Required - API name: {@code recovered}
+     * Required - The number of recovered transaction log operations.
+     * <p>
+     * API name: {@code recovered}
+     * </p>
      */
     public final int recovered() {
         return this.recovered;
     }
 
     /**
-     * Required - API name: {@code total}
+     * Required - The total number of transaction log operations.
+     * <p>
+     * API name: {@code total}
+     * </p>
      */
     public final int total() {
         return this.total;
     }
 
     /**
-     * Required - API name: {@code total_on_start}
+     * Required - The number of transaction log operations at start.
+     * <p>
+     * API name: {@code total_on_start}
+     * </p>
      */
     public final int totalOnStart() {
         return this.totalOnStart;
@@ -227,7 +239,10 @@ public class TranslogStatus implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code recovered}
+         * Required - The number of recovered transaction log operations.
+         * <p>
+         * API name: {@code recovered}
+         * </p>
          */
         @Nonnull
         public final Builder recovered(int value) {
@@ -236,7 +251,10 @@ public class TranslogStatus implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code total}
+         * Required - The total number of transaction log operations.
+         * <p>
+         * API name: {@code total}
+         * </p>
          */
         @Nonnull
         public final Builder total(int value) {
@@ -245,7 +263,10 @@ public class TranslogStatus implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code total_on_start}
+         * Required - The number of transaction log operations at start.
+         * <p>
+         * API name: {@code total_on_start}
+         * </p>
          */
         @Nonnull
         public final Builder totalOnStart(int value) {

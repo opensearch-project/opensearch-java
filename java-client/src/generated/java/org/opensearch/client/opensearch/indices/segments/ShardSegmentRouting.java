@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.segments.ShardSegmentRouting
 
+/**
+ * The routing information for a shard segment.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardSegmentRouting implements PlainJsonSerializable, ToCopyableBuilder<ShardSegmentRouting.Builder, ShardSegmentRouting> {
@@ -79,7 +82,10 @@ public class ShardSegmentRouting implements PlainJsonSerializable, ToCopyableBui
     }
 
     /**
-     * Required - API name: {@code node}
+     * Required - The node containing the segment.
+     * <p>
+     * API name: {@code node}
+     * </p>
      */
     @Nonnull
     public final String node() {
@@ -87,14 +93,20 @@ public class ShardSegmentRouting implements PlainJsonSerializable, ToCopyableBui
     }
 
     /**
-     * Required - API name: {@code primary}
+     * Required - Whether this is a primary shard.
+     * <p>
+     * API name: {@code primary}
+     * </p>
      */
     public final boolean primary() {
         return this.primary;
     }
 
     /**
-     * Required - API name: {@code state}
+     * Required - The current state of the shard.
+     * <p>
+     * API name: {@code state}
+     * </p>
      */
     @Nonnull
     public final String state() {
@@ -164,7 +176,10 @@ public class ShardSegmentRouting implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code node}
+         * Required - The node containing the segment.
+         * <p>
+         * API name: {@code node}
+         * </p>
          */
         @Nonnull
         public final Builder node(String value) {
@@ -173,7 +188,10 @@ public class ShardSegmentRouting implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code primary}
+         * Required - Whether this is a primary shard.
+         * <p>
+         * API name: {@code primary}
+         * </p>
          */
         @Nonnull
         public final Builder primary(boolean value) {
@@ -182,7 +200,10 @@ public class ShardSegmentRouting implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code state}
+         * Required - The current state of the shard.
+         * <p>
+         * API name: {@code state}
+         * </p>
          */
         @Nonnull
         public final Builder state(String value) {

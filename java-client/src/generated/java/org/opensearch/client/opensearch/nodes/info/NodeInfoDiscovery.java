@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoDiscovery
 
+/**
+ * The node discovery configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoDiscovery implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoDiscovery.Builder, NodeInfoDiscovery> {
@@ -77,7 +80,10 @@ public class NodeInfoDiscovery implements PlainJsonSerializable, ToCopyableBuild
     }
 
     /**
+     * The configured seed hosts for node discovery.
+     * <p>
      * API name: {@code seed_hosts}
+     * </p>
      */
     @Nullable
     public final String seedHosts() {
@@ -85,7 +91,10 @@ public class NodeInfoDiscovery implements PlainJsonSerializable, ToCopyableBuild
     }
 
     /**
+     * The discovery mechanism type.
+     * <p>
      * API name: {@code type}
+     * </p>
      */
     @Nullable
     public final String type() {
@@ -155,7 +164,10 @@ public class NodeInfoDiscovery implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
+         * The configured seed hosts for node discovery.
+         * <p>
          * API name: {@code seed_hosts}
+         * </p>
          */
         @Nonnull
         public final Builder seedHosts(@Nullable String value) {
@@ -164,7 +176,10 @@ public class NodeInfoDiscovery implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
+         * The discovery mechanism type.
+         * <p>
          * API name: {@code type}
+         * </p>
          */
         @Nonnull
         public final Builder type(@Nullable String value) {

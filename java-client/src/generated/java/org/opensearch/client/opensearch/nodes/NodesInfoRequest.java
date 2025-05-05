@@ -91,7 +91,7 @@ public final class NodesInfoRequest extends RequestBase implements ToCopyableBui
     }
 
     /**
-     * If <code>true</code>, returns settings in flat format.
+     * When <code>true</code>, returns settings in flat format.
      * <p>
      * API name: {@code flat_settings}
      * </p>
@@ -113,7 +113,7 @@ public final class NodesInfoRequest extends RequestBase implements ToCopyableBui
     }
 
     /**
-     * Comma-separated list of node IDs or names used to limit returned information.
+     * A comma-separated list of node IDs or names used to limit returned information.
      * <p>
      * API name: {@code node_id}
      * </p>
@@ -124,7 +124,8 @@ public final class NodesInfoRequest extends RequestBase implements ToCopyableBui
     }
 
     /**
-     * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+     * The amount of time to wait for a response. If no response is received before the timeout expires, the request fails and returns an
+     * error.
      * <p>
      * API name: {@code timeout}
      * </p>
@@ -191,7 +192,7 @@ public final class NodesInfoRequest extends RequestBase implements ToCopyableBui
         }
 
         /**
-         * If <code>true</code>, returns settings in flat format.
+         * When <code>true</code>, returns settings in flat format.
          * <p>
          * API name: {@code flat_settings}
          * </p>
@@ -235,7 +236,7 @@ public final class NodesInfoRequest extends RequestBase implements ToCopyableBui
         }
 
         /**
-         * Comma-separated list of node IDs or names used to limit returned information.
+         * A comma-separated list of node IDs or names used to limit returned information.
          * <p>
          * API name: {@code node_id}
          * </p>
@@ -251,7 +252,7 @@ public final class NodesInfoRequest extends RequestBase implements ToCopyableBui
         }
 
         /**
-         * Comma-separated list of node IDs or names used to limit returned information.
+         * A comma-separated list of node IDs or names used to limit returned information.
          * <p>
          * API name: {@code node_id}
          * </p>
@@ -267,7 +268,8 @@ public final class NodesInfoRequest extends RequestBase implements ToCopyableBui
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * The amount of time to wait for a response. If no response is received before the timeout expires, the request fails and returns
+         * an error.
          * <p>
          * API name: {@code timeout}
          * </p>
@@ -279,7 +281,8 @@ public final class NodesInfoRequest extends RequestBase implements ToCopyableBui
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * The amount of time to wait for a response. If no response is received before the timeout expires, the request fails and returns
+         * an error.
          * <p>
          * API name: {@code timeout}
          * </p>

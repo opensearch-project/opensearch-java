@@ -55,6 +55,9 @@ import org.opensearch.client.util.TaggedUnionUtils;
 
 // typedef: nodes.info.NodeInfoSettingsHttpType
 
+/**
+ * The HTTP server type configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoSettingsHttpType implements TaggedUnion<NodeInfoSettingsHttpType.Kind, Object>, PlainJsonSerializable {

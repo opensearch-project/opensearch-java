@@ -1,4 +1,4 @@
 @{{TYPES.Javax.Annotation.Nonnull}}
-public static Builder {{#extendedByOtherShape}}{{#camelCase}}{{className}}{{/camelCase}}B{{/extendedByOtherShape}}{{^extendedByOtherShape}}b{{/extendedByOtherShape}}uilder() {
-    return new Builder();
+public static{{#typeParameters}} {{.}}{{/typeParameters}} Builder {{#extendedByOtherShape}}{{#camelCase}}{{className}}{{/camelCase}}B{{/extendedByOtherShape}}{{^extendedByOtherShape}}b{{/extendedByOtherShape}}uilder() {
+    return new Builder{{#typeParameters}}<>{{/typeParameters}}();
 }

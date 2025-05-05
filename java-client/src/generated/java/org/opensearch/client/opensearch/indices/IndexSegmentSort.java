@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSegmentSort
 
+/**
+ * The configuration for segment sorting.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSegmentSort implements PlainJsonSerializable, ToCopyableBuilder<IndexSegmentSort.Builder, IndexSegmentSort> {

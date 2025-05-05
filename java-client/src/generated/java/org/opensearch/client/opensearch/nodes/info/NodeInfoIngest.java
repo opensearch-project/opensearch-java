@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoIngest
 
+/**
+ * The ingest pipeline configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoIngest implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoIngest.Builder, NodeInfoIngest> {
@@ -73,7 +76,10 @@ public class NodeInfoIngest implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
-     * Required - API name: {@code processors}
+     * Required - The list of configured ingest processors.
+     * <p>
+     * API name: {@code processors}
+     * </p>
      */
     @Nonnull
     public final List<NodeInfoIngestProcessor> processors() {
@@ -135,7 +141,10 @@ public class NodeInfoIngest implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code processors}
+         * Required - The list of configured ingest processors.
+         * <p>
+         * API name: {@code processors}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>processors</code>.
@@ -148,7 +157,10 @@ public class NodeInfoIngest implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code processors}
+         * Required - The list of configured ingest processors.
+         * <p>
+         * API name: {@code processors}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>processors</code>.
@@ -161,7 +173,10 @@ public class NodeInfoIngest implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code processors}
+         * Required - The list of configured ingest processors.
+         * <p>
+         * API name: {@code processors}
+         * </p>
          *
          * <p>
          * Adds a value to <code>processors</code> using a builder lambda.

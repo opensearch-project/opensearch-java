@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsAnalyze
 
+/**
+ * The configuration for text analysis.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsAnalyze implements PlainJsonSerializable, ToCopyableBuilder<IndexSettingsAnalyze.Builder, IndexSettingsAnalyze> {

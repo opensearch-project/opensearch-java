@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.shard_stores.ShardStoreException
 
+/**
+ * The exception information for a shard store.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardStoreException implements PlainJsonSerializable, ToCopyableBuilder<ShardStoreException.Builder, ShardStoreException> {
@@ -76,7 +79,10 @@ public class ShardStoreException implements PlainJsonSerializable, ToCopyableBui
     }
 
     /**
-     * Required - API name: {@code reason}
+     * Required - The reason for the store exception.
+     * <p>
+     * API name: {@code reason}
+     * </p>
      */
     @Nonnull
     public final String reason() {
@@ -84,7 +90,10 @@ public class ShardStoreException implements PlainJsonSerializable, ToCopyableBui
     }
 
     /**
-     * Required - API name: {@code type}
+     * Required - The type of store exception.
+     * <p>
+     * API name: {@code type}
+     * </p>
      */
     @Nonnull
     public final String type() {
@@ -148,7 +157,10 @@ public class ShardStoreException implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code reason}
+         * Required - The reason for the store exception.
+         * <p>
+         * API name: {@code reason}
+         * </p>
          */
         @Nonnull
         public final Builder reason(String value) {
@@ -157,7 +169,10 @@ public class ShardStoreException implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code type}
+         * Required - The type of store exception.
+         * <p>
+         * API name: {@code type}
+         * </p>
          */
         @Nonnull
         public final Builder type(String value) {

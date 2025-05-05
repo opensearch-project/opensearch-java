@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsStarTreeFieldDefault
 
+/**
+ * The field-specific settings for star tree indexing.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsStarTreeFieldDefault
@@ -84,7 +87,10 @@ public class IndexSettingsStarTreeFieldDefault
     }
 
     /**
+     * The list of date intervals to use.
+     * <p>
      * API name: {@code date_intervals}
+     * </p>
      */
     @Nonnull
     public final List<String> dateIntervals() {
@@ -92,7 +98,10 @@ public class IndexSettingsStarTreeFieldDefault
     }
 
     /**
+     * The list of metrics to calculate.
+     * <p>
      * API name: {@code metrics}
+     * </p>
      */
     @Nonnull
     public final List<String> metrics() {
@@ -170,7 +179,10 @@ public class IndexSettingsStarTreeFieldDefault
         }
 
         /**
+         * The list of date intervals to use.
+         * <p>
          * API name: {@code date_intervals}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>dateIntervals</code>.
@@ -183,7 +195,10 @@ public class IndexSettingsStarTreeFieldDefault
         }
 
         /**
+         * The list of date intervals to use.
+         * <p>
          * API name: {@code date_intervals}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>dateIntervals</code>.
@@ -196,7 +211,10 @@ public class IndexSettingsStarTreeFieldDefault
         }
 
         /**
+         * The list of metrics to calculate.
+         * <p>
          * API name: {@code metrics}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>metrics</code>.
@@ -209,7 +227,10 @@ public class IndexSettingsStarTreeFieldDefault
         }
 
         /**
+         * The list of metrics to calculate.
+         * <p>
          * API name: {@code metrics}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>metrics</code>.

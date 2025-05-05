@@ -36,9 +36,19 @@ public final class TemplateValueFormatter implements Mustache.Formatter {
     private <T> CharSequence format(@Nonnull Object value, @Nonnull Class<T> clazz) {
         Objects.requireNonNull(value, "value must not be null");
         Objects.requireNonNull(clazz, "clazz must not be null");
-        var formatter = (Formatter<T>) formatters.get(clazz);
+        var formatter = getFormatter(clazz);
         if (formatter != null) return formatter.format((T) value);
         return String.valueOf(value);
+    }
+
+    @SuppressWarnings("unchecked")
+    private <T> Formatter<? super T> getFormatter(@Nonnull Class<? super T> clazz) {
+        while (clazz != null) {
+            var formatter = (Formatter<? super T>) formatters.get(clazz);
+            if (formatter != null) return formatter;
+            clazz = clazz.getSuperclass();
+        }
+        return null;
     }
 
     @FunctionalInterface

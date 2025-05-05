@@ -61,7 +61,7 @@ public class TypedKeysTest extends ModelTestCase {
             .build();
 
         String json = "{\"took\":1,\"timed_out\":false,\"_shards\":{\"failed\":0,\"successful\":1,\"total\":1},"
-            + "\"hits\":{\"total\":{\"relation\":\"eq\",\"value\":0},\"hits\":[]},\"aggregations\":{\"avg#foo\":{\"value\":3.14}}}";
+            + "\"hits\":{\"hits\":[],\"total\":{\"relation\":\"eq\",\"value\":0}},\"aggregations\":{\"avg#foo\":{\"value\":3.14}}}";
 
         assertEquals(json, toJson(resp));
 
@@ -75,11 +75,11 @@ public class TypedKeysTest extends ModelTestCase {
     @Test
     public void testAdditionalProperties() {
 
-        Aggregate avg1 = AvgAggregate.of(_1 -> _1.value(1.0))._toAggregate();
-        Aggregate avg2 = AvgAggregate.of(_1 -> _1.value(2.0))._toAggregate();
+        Aggregate avg1 = AvgAggregate.of(_1 -> _1.value(1.0)).toAggregate();
+        Aggregate avg2 = AvgAggregate.of(_1 -> _1.value(2.0)).toAggregate();
 
         Aggregate aggregate = StringTermsAggregate.of(
-            _0 -> _0.sumOtherDocCount(1)
+            _0 -> _0.sumOtherDocCount(1L)
                 .buckets(
                     b -> b.array(
                         ListBuilder.of(StringTermsBucket.Builder::new)
@@ -88,7 +88,7 @@ public class TypedKeysTest extends ModelTestCase {
                             .build()
                     )
                 )
-        )._toAggregate();
+        ).toAggregate();
 
         SearchResponse<Void> resp = new SearchResponse.Builder<Void>().aggregations("foo", aggregate)
             // Required properties on a SearchResponse
@@ -99,7 +99,7 @@ public class TypedKeysTest extends ModelTestCase {
             .build();
 
         String json = "{\"took\":1,\"timed_out\":false,\"_shards\":{\"failed\":0,\"successful\":1,\"total\":1},"
-            + "\"hits\":{\"total\":{\"relation\":\"eq\",\"value\":0},\"hits\":[]},"
+            + "\"hits\":{\"hits\":[],\"total\":{\"relation\":\"eq\",\"value\":0}},"
             + "\"aggregations\":{\"sterms#foo\":{\"buckets\":["
             + "{\"avg#bar\":{\"value\":1.0},\"doc_count\":1,\"key\":\"key_1\"},"
             + "{\"avg#bar\":{\"value\":2.0},\"doc_count\":2,\"key\":\"key_2\"}"
@@ -109,7 +109,7 @@ public class TypedKeysTest extends ModelTestCase {
         resp = fromJson(json, SearchResponse.createSearchResponseDeserializer(JsonpDeserializer.voidDeserializer()));
 
         StringTermsAggregate foo = resp.aggregations().get("foo").sterms();
-        assertEquals(1, foo.sumOtherDocCount());
+        assertEquals((Long) 1L, foo.sumOtherDocCount());
         assertEquals(1, foo.buckets().array().get(0).docCount());
         assertEquals("key_1", foo.buckets().array().get(0).key());
         assertEquals(1.0, foo.buckets().array().get(0).aggregations().get("bar").avg().value(), 0.01);
@@ -121,7 +121,7 @@ public class TypedKeysTest extends ModelTestCase {
     public void testDisablingSerializeTypedKeys() {
         SearchResponse<ObjectNode> resp = new SearchResponse.Builder<ObjectNode>().aggregations(
             "aggKey",
-            v -> v.lterms(lv -> lv.buckets(b -> b.array(new ArrayList<>())).sumOtherDocCount(0))
+            v -> v.lterms(lv -> lv.buckets(b -> b.array(new ArrayList<>())).sumOtherDocCount(0L))
         ).took(0).timedOut(false).shards(s -> s.failed(0).successful(1).total(1)).hits(h -> h.hits(new ArrayList<>())).build();
 
         String json =

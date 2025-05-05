@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexRoutingAllocationInclude
 
+/**
+ * The inclusion rules for shard allocation.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexRoutingAllocationInclude
@@ -90,7 +93,10 @@ public class IndexRoutingAllocationInclude
     }
 
     /**
+     * The data tier preference for the index.
+     * <p>
      * API name: {@code _tier_preference}
+     * </p>
      */
     @Nullable
     public final String tierPreference() {
@@ -169,7 +175,10 @@ public class IndexRoutingAllocationInclude
         }
 
         /**
+         * The data tier preference for the index.
+         * <p>
          * API name: {@code _tier_preference}
+         * </p>
          */
         @Nonnull
         public final Builder tierPreference(@Nullable String value) {

@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.SearchIdle
 
+/**
+ * The configuration for search idle behavior.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class SearchIdle implements PlainJsonSerializable, ToCopyableBuilder<SearchIdle.Builder, SearchIdle> {

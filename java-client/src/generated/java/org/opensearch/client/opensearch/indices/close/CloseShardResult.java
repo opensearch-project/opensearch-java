@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.close.CloseShardResult
 
+/**
+ * The result of closing shards in an index.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CloseShardResult implements PlainJsonSerializable, ToCopyableBuilder<CloseShardResult.Builder, CloseShardResult> {
@@ -74,7 +77,10 @@ public class CloseShardResult implements PlainJsonSerializable, ToCopyableBuilde
     }
 
     /**
-     * Required - API name: {@code failures}
+     * Required - The list of failures that occurred while closing shards.
+     * <p>
+     * API name: {@code failures}
+     * </p>
      */
     @Nonnull
     public final List<ShardFailure> failures() {
@@ -136,7 +142,10 @@ public class CloseShardResult implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
-         * Required - API name: {@code failures}
+         * Required - The list of failures that occurred while closing shards.
+         * <p>
+         * API name: {@code failures}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>failures</code>.
@@ -149,7 +158,10 @@ public class CloseShardResult implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
-         * Required - API name: {@code failures}
+         * Required - The list of failures that occurred while closing shards.
+         * <p>
+         * API name: {@code failures}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>failures</code>.
@@ -162,7 +174,10 @@ public class CloseShardResult implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
-         * Required - API name: {@code failures}
+         * Required - The list of failures that occurred while closing shards.
+         * <p>
+         * API name: {@code failures}
+         * </p>
          *
          * <p>
          * Adds a value to <code>failures</code> using a builder lambda.

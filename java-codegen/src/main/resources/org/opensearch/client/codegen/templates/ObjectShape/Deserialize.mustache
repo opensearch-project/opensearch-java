@@ -1,16 +1,29 @@
 {{^canBeSingleton}}
 {{^abstract}}
-    /**
-     * Json deserializer for {@link {{className}}}
-     */
-    public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.ObjectBuilderDeserializer}}.lazy(Builder::new, {{className}}::setup{{className}}Deserializer);
+    {{^typeParameters}}
+        /**
+         * Json deserializer for {@link {{className}}}
+         */
+        public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.ObjectBuilderDeserializer}}.lazy(Builder::new, {{className}}::setup{{className}}Deserializer);
+    {{/typeParameters}}
+    {{#typeParameters}}
+        /**
+         * Create a JSON deserializer for {{className}}.
+         */
+        public static {{.}} {{TYPES.Client.Json.JsonpDeserializer}}<{{selfType}}> create{{className}}Deserializer({{#typeParameterDefinitions}}{{TYPES.Client.Json.JsonpDeserializer}}<{{name}}> {{#camelCase}}{{name}}{{/camelCase}}Deserializer{{^-last}}, {{/-last}}{{/typeParameterDefinitions}}) {
+            return {{TYPES.Client.Json.ObjectBuilderDeserializer}}.createForObject(
+                Builder{{.}}::new,
+                op -> {{className}}.setup{{className}}Deserializer(op, {{#typeParameterDefinitions}}{{#camelCase}}{{name}}{{/camelCase}}Deserializer{{^-last}}, {{/-last}}{{/typeParameterDefinitions}})
+            );
+        }
+    {{/typeParameters}}
 
 {{/abstract}}
 {{^extendedByOtherShape}}
-    protected static void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<{{type.builderType}}> op) {
+    protected static{{#typeParameters}} {{.}}{{/typeParameters}} void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<{{selfType.builderType}}> op{{#typeParameters}}{{#typeParameterDefinitions}}, {{TYPES.Client.Json.JsonpDeserializer}}<{{name}}> {{#camelCase}}{{name}}{{/camelCase}}Deserializer{{/typeParameterDefinitions}}{{/typeParameters}}) {
 {{/extendedByOtherShape}}
 {{#extendedByOtherShape}}
-    protected static <BuilderT extends AbstractBuilder<BuilderT>> void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<BuilderT> op) {
+    protected static <{{#typeParameters}}{{#typeParameterDefinitions}}{{.}}, {{/typeParameterDefinitions}}{{/typeParameters}}BuilderT extends AbstractBuilder<{{#typeParameters}}{{#typeParameterDefinitions}}{{.}}, {{/typeParameterDefinitions}}{{/typeParameters}}BuilderT>> void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<BuilderT> op{{#typeParameters}}{{#typeParameterDefinitions}}, {{TYPES.Client.Json.JsonpDeserializer}}<{{name}}> {{#camelCase}}{{name}}{{/camelCase}}Deserializer{{/typeParameterDefinitions}}{{/typeParameters}}) {
 {{/extendedByOtherShape}}
     {{#superImplementsJsonSerializable}}
         setup{{extendsType.name}}Deserializer(op{{#extendsType.typeParams}}, {{>Type/deserializer}}{{/extendsType.typeParams}});
@@ -26,7 +39,12 @@
             if (builder.{{valueName}} == null) {
                 builder.{{valueName}} = new {{TYPES.Java.Util.HashMap}}<>();
             }
-            builder.{{valueName}}.put(name, {{#valueType}}{{>Type/deserializer}}{{/valueType}}.deserialize(parser, mapper));
+            {{#usesTypedKeys}}
+                {{valueType}}._TYPED_KEYS_DESERIALIZER.deserializeEntry(name, parser, mapper, builder.{{valueName}});
+            {{/usesTypedKeys}}
+            {{^usesTypedKeys}}
+                builder.{{valueName}}.put(name, {{#valueType}}{{>Type/deserializer}}{{/valueType}}.deserialize(parser, mapper));
+            {{/usesTypedKeys}}
         {{/singleton}}
         });
     {{/additionalProperties}}

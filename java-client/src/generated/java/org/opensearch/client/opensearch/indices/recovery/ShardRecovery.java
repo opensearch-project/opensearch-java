@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.recovery.ShardRecovery
 
+/**
+ * The recovery status of a shard.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardRecovery implements PlainJsonSerializable, ToCopyableBuilder<ShardRecovery.Builder, ShardRecovery> {
@@ -131,7 +134,10 @@ public class ShardRecovery implements PlainJsonSerializable, ToCopyableBuilder<S
     }
 
     /**
-     * Required - API name: {@code id}
+     * Required - The shard ID.
+     * <p>
+     * API name: {@code id}
+     * </p>
      */
     public final int id() {
         return this.id;
@@ -146,7 +152,10 @@ public class ShardRecovery implements PlainJsonSerializable, ToCopyableBuilder<S
     }
 
     /**
-     * Required - API name: {@code primary}
+     * Required - Whether this is a primary shard.
+     * <p>
+     * API name: {@code primary}
+     * </p>
      */
     public final boolean primary() {
         return this.primary;
@@ -161,7 +170,10 @@ public class ShardRecovery implements PlainJsonSerializable, ToCopyableBuilder<S
     }
 
     /**
-     * Required - API name: {@code stage}
+     * Required - The current recovery stage.
+     * <p>
+     * API name: {@code stage}
+     * </p>
      */
     @Nonnull
     public final String stage() {
@@ -239,7 +251,10 @@ public class ShardRecovery implements PlainJsonSerializable, ToCopyableBuilder<S
     }
 
     /**
-     * Required - API name: {@code type}
+     * Required - The type of recovery operation.
+     * <p>
+     * API name: {@code type}
+     * </p>
      */
     @Nonnull
     public final String type() {
@@ -410,7 +425,10 @@ public class ShardRecovery implements PlainJsonSerializable, ToCopyableBuilder<S
         }
 
         /**
-         * Required - API name: {@code id}
+         * Required - The shard ID.
+         * <p>
+         * API name: {@code id}
+         * </p>
          */
         @Nonnull
         public final Builder id(int value) {
@@ -436,7 +454,10 @@ public class ShardRecovery implements PlainJsonSerializable, ToCopyableBuilder<S
         }
 
         /**
-         * Required - API name: {@code primary}
+         * Required - Whether this is a primary shard.
+         * <p>
+         * API name: {@code primary}
+         * </p>
          */
         @Nonnull
         public final Builder primary(boolean value) {
@@ -462,7 +483,10 @@ public class ShardRecovery implements PlainJsonSerializable, ToCopyableBuilder<S
         }
 
         /**
-         * Required - API name: {@code stage}
+         * Required - The current recovery stage.
+         * <p>
+         * API name: {@code stage}
+         * </p>
          */
         @Nonnull
         public final Builder stage(String value) {
@@ -584,7 +608,10 @@ public class ShardRecovery implements PlainJsonSerializable, ToCopyableBuilder<S
         }
 
         /**
-         * Required - API name: {@code type}
+         * Required - The type of recovery operation.
+         * <p>
+         * API name: {@code type}
+         * </p>
          */
         @Nonnull
         public final Builder type(String value) {

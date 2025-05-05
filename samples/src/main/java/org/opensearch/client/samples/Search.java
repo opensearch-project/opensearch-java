@@ -230,7 +230,7 @@ public class Search {
         try {
             String index = "test-phrase-suggester";
 
-            ShingleTokenFilter shingleTokenFilter = new ShingleTokenFilter.Builder().minShingleSize("2").maxShingleSize("3").build();
+            ShingleTokenFilter shingleTokenFilter = new ShingleTokenFilter.Builder().minShingleSize(2).maxShingleSize(3).build();
 
             Analyzer analyzer = new Analyzer.Builder().custom(
                 new CustomAnalyzer.Builder().tokenizer("standard").filter(Arrays.asList("lowercase", "shingle")).build()

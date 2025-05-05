@@ -121,7 +121,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
     }
 
     /**
-     * Comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
+     * A comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
      * <p>
      * API name: {@code completion_fields}
      * </p>
@@ -132,7 +132,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
     }
 
     /**
-     * Comma-separated list or wildcard expressions of fields to include in field data statistics.
+     * A comma-separated list or wildcard expressions of fields to include in field data statistics.
      * <p>
      * API name: {@code fielddata_fields}
      * </p>
@@ -143,7 +143,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
     }
 
     /**
-     * Comma-separated list or wildcard expressions of fields to include in the statistics.
+     * A comma-separated list or wildcard expressions of fields to include in the statistics.
      * <p>
      * API name: {@code fields}
      * </p>
@@ -154,7 +154,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
     }
 
     /**
-     * Comma-separated list of search groups to include in the search statistics.
+     * A comma-separated list of search groups to include in the search statistics.
      * <p>
      * API name: {@code groups}
      * </p>
@@ -165,8 +165,8 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
     }
 
     /**
-     * If <code>true</code>, the call reports the aggregated disk usage of each one of the Lucene index files (only applies if segment stats
-     * are requested).
+     * When <code>true</code>, reports the aggregated disk usage of each one of the Lucene index files (only applies if segment stats are
+     * requested).
      * <p>
      * API name: {@code include_segment_file_sizes}
      * </p>
@@ -177,7 +177,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
     }
 
     /**
-     * Limit the information returned for indexes metric to the specific index metrics. It can be used only if indexes (or all) metric is
+     * Limit the information returned for indexes metric to the specified index metrics. It can be used only if indexes (or all) metric is
      * specified.
      * <p>
      * API name: {@code index_metric}
@@ -200,7 +200,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
     }
 
     /**
-     * Limit the information returned to the specified metrics
+     * Limit the information returned to the specified metrics.
      * <p>
      * API name: {@code metric}
      * </p>
@@ -211,7 +211,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
     }
 
     /**
-     * Comma-separated list of node IDs or names used to limit returned information.
+     * A comma-separated list of node IDs or names used to limit returned information.
      * <p>
      * API name: {@code node_id}
      * </p>
@@ -222,7 +222,8 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
     }
 
     /**
-     * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+     * The amount of time to wait for a response. If no response is received before the timeout expires, the request fails and returns an
+     * error.
      * <p>
      * API name: {@code timeout}
      * </p>
@@ -328,7 +329,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
+         * A comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
          * <p>
          * API name: {@code completion_fields}
          * </p>
@@ -344,7 +345,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
+         * A comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
          * <p>
          * API name: {@code completion_fields}
          * </p>
@@ -360,7 +361,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Comma-separated list or wildcard expressions of fields to include in field data statistics.
+         * A comma-separated list or wildcard expressions of fields to include in field data statistics.
          * <p>
          * API name: {@code fielddata_fields}
          * </p>
@@ -376,7 +377,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Comma-separated list or wildcard expressions of fields to include in field data statistics.
+         * A comma-separated list or wildcard expressions of fields to include in field data statistics.
          * <p>
          * API name: {@code fielddata_fields}
          * </p>
@@ -392,7 +393,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Comma-separated list or wildcard expressions of fields to include in the statistics.
+         * A comma-separated list or wildcard expressions of fields to include in the statistics.
          * <p>
          * API name: {@code fields}
          * </p>
@@ -408,7 +409,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Comma-separated list or wildcard expressions of fields to include in the statistics.
+         * A comma-separated list or wildcard expressions of fields to include in the statistics.
          * <p>
          * API name: {@code fields}
          * </p>
@@ -424,7 +425,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Comma-separated list of search groups to include in the search statistics.
+         * A comma-separated list of search groups to include in the search statistics.
          * <p>
          * API name: {@code groups}
          * </p>
@@ -440,7 +441,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Comma-separated list of search groups to include in the search statistics.
+         * A comma-separated list of search groups to include in the search statistics.
          * <p>
          * API name: {@code groups}
          * </p>
@@ -456,8 +457,8 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * If <code>true</code>, the call reports the aggregated disk usage of each one of the Lucene index files (only applies if segment
-         * stats are requested).
+         * When <code>true</code>, reports the aggregated disk usage of each one of the Lucene index files (only applies if segment stats
+         * are requested).
          * <p>
          * API name: {@code include_segment_file_sizes}
          * </p>
@@ -469,7 +470,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Limit the information returned for indexes metric to the specific index metrics. It can be used only if indexes (or all) metric
+         * Limit the information returned for indexes metric to the specified index metrics. It can be used only if indexes (or all) metric
          * is specified.
          * <p>
          * API name: {@code index_metric}
@@ -486,7 +487,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Limit the information returned for indexes metric to the specific index metrics. It can be used only if indexes (or all) metric
+         * Limit the information returned for indexes metric to the specified index metrics. It can be used only if indexes (or all) metric
          * is specified.
          * <p>
          * API name: {@code index_metric}
@@ -515,7 +516,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Limit the information returned to the specified metrics
+         * Limit the information returned to the specified metrics.
          * <p>
          * API name: {@code metric}
          * </p>
@@ -531,7 +532,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Limit the information returned to the specified metrics
+         * Limit the information returned to the specified metrics.
          * <p>
          * API name: {@code metric}
          * </p>
@@ -547,7 +548,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Comma-separated list of node IDs or names used to limit returned information.
+         * A comma-separated list of node IDs or names used to limit returned information.
          * <p>
          * API name: {@code node_id}
          * </p>
@@ -563,7 +564,7 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Comma-separated list of node IDs or names used to limit returned information.
+         * A comma-separated list of node IDs or names used to limit returned information.
          * <p>
          * API name: {@code node_id}
          * </p>
@@ -579,7 +580,8 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * The amount of time to wait for a response. If no response is received before the timeout expires, the request fails and returns
+         * an error.
          * <p>
          * API name: {@code timeout}
          * </p>
@@ -591,7 +593,8 @@ public final class NodesStatsRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error.
+         * The amount of time to wait for a response. If no response is received before the timeout expires, the request fails and returns
+         * an error.
          * <p>
          * API name: {@code timeout}
          * </p>

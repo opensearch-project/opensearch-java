@@ -44,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -75,7 +76,7 @@ public class ClusterInfo implements PlainJsonSerializable, ToCopyableBuilder<Clu
     private final Map<String, String> shardPaths;
 
     @Nonnull
-    private final Map<String, String> shardSizes;
+    private final Map<String, JsonData> shardSizes;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -127,7 +128,7 @@ public class ClusterInfo implements PlainJsonSerializable, ToCopyableBuilder<Clu
      * Required - API name: {@code shard_sizes}
      */
     @Nonnull
-    public final Map<String, String> shardSizes() {
+    public final Map<String, JsonData> shardSizes() {
         return this.shardSizes;
     }
 
@@ -177,9 +178,9 @@ public class ClusterInfo implements PlainJsonSerializable, ToCopyableBuilder<Clu
 
         generator.writeKey("shard_sizes");
         generator.writeStartObject();
-        for (Map.Entry<String, String> item0 : this.shardSizes.entrySet()) {
+        for (Map.Entry<String, JsonData> item0 : this.shardSizes.entrySet()) {
             generator.writeKey(item0.getKey());
-            generator.write(item0.getValue());
+            item0.getValue().serialize(generator, mapper);
         }
         generator.writeEnd();
     }
@@ -206,7 +207,7 @@ public class ClusterInfo implements PlainJsonSerializable, ToCopyableBuilder<Clu
         @Nullable
         private Map<String, String> shardDataSetSizes;
         private Map<String, String> shardPaths;
-        private Map<String, String> shardSizes;
+        private Map<String, JsonData> shardSizes;
 
         public Builder() {}
 
@@ -368,7 +369,7 @@ public class ClusterInfo implements PlainJsonSerializable, ToCopyableBuilder<Clu
          * </p>
          */
         @Nonnull
-        public final Builder shardSizes(Map<String, String> map) {
+        public final Builder shardSizes(Map<String, JsonData> map) {
             this.shardSizes = _mapPutAll(this.shardSizes, map);
             return this;
         }
@@ -381,7 +382,7 @@ public class ClusterInfo implements PlainJsonSerializable, ToCopyableBuilder<Clu
          * </p>
          */
         @Nonnull
-        public final Builder shardSizes(String key, String value) {
+        public final Builder shardSizes(String key, JsonData value) {
             this.shardSizes = _mapPut(this.shardSizes, key, value);
             return this;
         }
@@ -419,7 +420,7 @@ public class ClusterInfo implements PlainJsonSerializable, ToCopyableBuilder<Clu
             "shard_data_set_sizes"
         );
         op.add(Builder::shardPaths, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "shard_paths");
-        op.add(Builder::shardSizes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "shard_sizes");
+        op.add(Builder::shardSizes, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "shard_sizes");
     }
 
     @Override

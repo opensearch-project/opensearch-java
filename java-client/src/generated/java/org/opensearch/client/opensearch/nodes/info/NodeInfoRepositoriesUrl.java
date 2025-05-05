@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoRepositoriesUrl
 
+/**
+ * Specifies allowed repository URLs.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoRepositoriesUrl
@@ -75,7 +78,10 @@ public class NodeInfoRepositoriesUrl
     }
 
     /**
-     * Required - API name: {@code allowed_urls}
+     * Required - The pattern for allowed repository URLs.
+     * <p>
+     * API name: {@code allowed_urls}
+     * </p>
      */
     @Nonnull
     public final String allowedUrls() {
@@ -133,7 +139,10 @@ public class NodeInfoRepositoriesUrl
         }
 
         /**
-         * Required - API name: {@code allowed_urls}
+         * Required - The pattern for allowed repository URLs.
+         * <p>
+         * API name: {@code allowed_urls}
+         * </p>
          */
         @Nonnull
         public final Builder allowedUrls(String value) {

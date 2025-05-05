@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsSimilarityLmj
 
+/**
+ * The LM Jelinek-Mercer similarity algorithm configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsSimilarityLmj
@@ -80,7 +83,10 @@ public class IndexSettingsSimilarityLmj
     }
 
     /**
-     * Required - API name: {@code lambda}
+     * Required - The optimal mixture parameter.
+     * <p>
+     * API name: {@code lambda}
+     * </p>
      */
     public final float lambda() {
         return this.lambda;
@@ -151,7 +157,10 @@ public class IndexSettingsSimilarityLmj
         }
 
         /**
-         * Required - API name: {@code lambda}
+         * Required - The optimal mixture parameter.
+         * <p>
+         * API name: {@code lambda}
+         * </p>
          */
         @Nonnull
         public final Builder lambda(float value) {

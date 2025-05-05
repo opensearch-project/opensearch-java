@@ -42,11 +42,20 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: indices.NumericFielddataFormat
 
+/**
+ * The format for numeric field data.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum NumericFielddataFormat implements JsonEnum {
+    /**
+     * Uses array format for field data.
+     */
     Array("array"),
 
+    /**
+     * Disables field data.
+     */
     Disabled("disabled");
 
     private final String jsonValue;

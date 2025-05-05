@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.SearchSlowlogThresholds
 
+/**
+ * The threshold configuration for search slow log.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class SearchSlowlogThresholds

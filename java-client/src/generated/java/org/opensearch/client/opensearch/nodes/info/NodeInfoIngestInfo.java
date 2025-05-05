@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoIngestInfo
 
+/**
+ * The ingest processor configuration details.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoIngestInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoIngestInfo.Builder, NodeInfoIngestInfo> {

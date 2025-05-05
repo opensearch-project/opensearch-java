@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoBootstrap
 
+/**
+ * The bootstrap configuration settings for the node.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoBootstrap implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoBootstrap.Builder, NodeInfoBootstrap> {
@@ -72,7 +75,10 @@ public class NodeInfoBootstrap implements PlainJsonSerializable, ToCopyableBuild
     }
 
     /**
-     * Required - API name: {@code memory_lock}
+     * Required - The memory lock setting for the bootstrap process.
+     * <p>
+     * API name: {@code memory_lock}
+     * </p>
      */
     @Nonnull
     public final String memoryLock() {
@@ -130,7 +136,10 @@ public class NodeInfoBootstrap implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * Required - API name: {@code memory_lock}
+         * Required - The memory lock setting for the bootstrap process.
+         * <p>
+         * API name: {@code memory_lock}
+         * </p>
          */
         @Nonnull
         public final Builder memoryLock(String value) {

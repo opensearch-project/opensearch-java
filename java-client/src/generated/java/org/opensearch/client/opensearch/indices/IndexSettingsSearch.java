@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsSearch
 
+/**
+ * The configuration for search operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsSearch implements PlainJsonSerializable, ToCopyableBuilder<IndexSettingsSearch.Builder, IndexSettingsSearch> {
@@ -109,7 +112,10 @@ public class IndexSettingsSearch implements PlainJsonSerializable, ToCopyableBui
     }
 
     /**
+     * The default search pipeline to use.
+     * <p>
      * API name: {@code default_pipeline}
+     * </p>
      */
     @Nullable
     public final String defaultPipeline() {
@@ -275,7 +281,10 @@ public class IndexSettingsSearch implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
+         * The default search pipeline to use.
+         * <p>
          * API name: {@code default_pipeline}
+         * </p>
          */
         @Nonnull
         public final Builder defaultPipeline(@Nullable String value) {

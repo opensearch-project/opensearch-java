@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.SoftDeletes
 
+/**
+ * The configuration for soft deletes.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class SoftDeletes implements PlainJsonSerializable, ToCopyableBuilder<SoftDeletes.Builder, SoftDeletes> {
@@ -81,7 +84,7 @@ public class SoftDeletes implements PlainJsonSerializable, ToCopyableBuilder<Sof
     }
 
     /**
-     * Indicates whether soft deletes are enabled on the index.
+     * Whether soft deletes are enabled on the index.
      * <p>
      * API name: {@code enabled}
      * </p>
@@ -179,7 +182,7 @@ public class SoftDeletes implements PlainJsonSerializable, ToCopyableBuilder<Sof
         }
 
         /**
-         * Indicates whether soft deletes are enabled on the index.
+         * Whether soft deletes are enabled on the index.
          * <p>
          * API name: {@code enabled}
          * </p>

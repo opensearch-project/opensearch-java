@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexRouting
 
+/**
+ * The routing configuration for index operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexRouting implements PlainJsonSerializable, ToCopyableBuilder<IndexRouting.Builder, IndexRouting> {

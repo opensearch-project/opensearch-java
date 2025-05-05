@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.SearchSlowlog
 
+/**
+ * The configuration for search slow log.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class SearchSlowlog implements PlainJsonSerializable, ToCopyableBuilder<SearchSlowlog.Builder, SearchSlowlog> {
@@ -81,7 +84,10 @@ public class SearchSlowlog implements PlainJsonSerializable, ToCopyableBuilder<S
     }
 
     /**
+     * The log level for slow searches.
+     * <p>
      * API name: {@code level}
+     * </p>
      */
     @Nullable
     public final String level() {
@@ -89,7 +95,10 @@ public class SearchSlowlog implements PlainJsonSerializable, ToCopyableBuilder<S
     }
 
     /**
+     * Whether to reformat the logged search source.
+     * <p>
      * API name: {@code reformat}
+     * </p>
      */
     @Nullable
     public final Boolean reformat() {
@@ -176,7 +185,10 @@ public class SearchSlowlog implements PlainJsonSerializable, ToCopyableBuilder<S
         }
 
         /**
+         * The log level for slow searches.
+         * <p>
          * API name: {@code level}
+         * </p>
          */
         @Nonnull
         public final Builder level(@Nullable String value) {
@@ -185,7 +197,10 @@ public class SearchSlowlog implements PlainJsonSerializable, ToCopyableBuilder<S
         }
 
         /**
+         * Whether to reformat the logged search source.
+         * <p>
          * API name: {@code reformat}
+         * </p>
          */
         @Nonnull
         public final Builder reformat(@Nullable Boolean value) {

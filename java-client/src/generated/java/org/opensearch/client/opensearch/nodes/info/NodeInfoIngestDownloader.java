@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoIngestDownloader
 
+/**
+ * The ingest processor download configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoIngestDownloader
@@ -75,7 +78,10 @@ public class NodeInfoIngestDownloader
     }
 
     /**
-     * Required - API name: {@code enabled}
+     * Required - Whether the downloader is enabled.
+     * <p>
+     * API name: {@code enabled}
+     * </p>
      */
     @Nonnull
     public final String enabled() {
@@ -133,7 +139,10 @@ public class NodeInfoIngestDownloader
         }
 
         /**
-         * Required - API name: {@code enabled}
+         * Required - Whether the downloader is enabled.
+         * <p>
+         * API name: {@code enabled}
+         * </p>
          */
         @Nonnull
         public final Builder enabled(String value) {

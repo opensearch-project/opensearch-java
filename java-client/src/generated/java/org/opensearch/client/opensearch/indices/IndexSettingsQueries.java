@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsQueries
 
+/**
+ * The configuration for query caching.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsQueries implements PlainJsonSerializable, ToCopyableBuilder<IndexSettingsQueries.Builder, IndexSettingsQueries> {

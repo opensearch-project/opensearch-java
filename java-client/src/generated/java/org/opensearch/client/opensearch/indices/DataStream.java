@@ -129,7 +129,7 @@ public class DataStream implements PlainJsonSerializable, ToCopyableBuilder<Data
     }
 
     /**
-     * If <code>true</code>, the data stream allows custom routing on write request.
+     * When <code>true</code>, the data stream allows custom routing on write request.
      * <p>
      * API name: {@code allow_custom_routing}
      * </p>
@@ -140,7 +140,8 @@ public class DataStream implements PlainJsonSerializable, ToCopyableBuilder<Data
     }
 
     /**
-     * Required - Current generation for the data stream. This number acts as a cumulative count of the stream's rollovers, starting at 1.
+     * Required - The current generation number for the data stream. This number acts as a cumulative count of the stream's rollovers,
+     * starting at 1.
      * <p>
      * API name: {@code generation}
      * </p>
@@ -150,7 +151,7 @@ public class DataStream implements PlainJsonSerializable, ToCopyableBuilder<Data
     }
 
     /**
-     * If <code>true</code>, the data stream is hidden.
+     * When <code>true</code>, the data stream is hidden.
      * <p>
      * API name: {@code hidden}
      * </p>
@@ -169,7 +170,7 @@ public class DataStream implements PlainJsonSerializable, ToCopyableBuilder<Data
     }
 
     /**
-     * Required - Array of objects containing information about the data stream's backing indexes. The last item in this array contains
+     * Required - An array of objects containing information about the data stream's backing indexes. The last item in this array contains
      * information about the stream's current write index.
      * <p>
      * API name: {@code indices}
@@ -216,7 +217,7 @@ public class DataStream implements PlainJsonSerializable, ToCopyableBuilder<Data
     }
 
     /**
-     * If <code>true</code>, the data stream is created and managed by cross-cluster replication and the local cluster can not write into
+     * When <code>true</code>, the data stream is created and managed by cross-cluster replication and the local cluster can not write into
      * this data stream or change its mappings.
      * <p>
      * API name: {@code replicated}
@@ -236,7 +237,7 @@ public class DataStream implements PlainJsonSerializable, ToCopyableBuilder<Data
     }
 
     /**
-     * If <code>true</code>, the data stream is created and managed by an OpenSearch stack component and cannot be modified through normal
+     * When <code>true</code>, the data stream is created and managed by an OpenSearch stack component and cannot be modified through normal
      * user interaction.
      * <p>
      * API name: {@code system}
@@ -425,7 +426,7 @@ public class DataStream implements PlainJsonSerializable, ToCopyableBuilder<Data
         }
 
         /**
-         * If <code>true</code>, the data stream allows custom routing on write request.
+         * When <code>true</code>, the data stream allows custom routing on write request.
          * <p>
          * API name: {@code allow_custom_routing}
          * </p>
@@ -437,8 +438,8 @@ public class DataStream implements PlainJsonSerializable, ToCopyableBuilder<Data
         }
 
         /**
-         * Required - Current generation for the data stream. This number acts as a cumulative count of the stream's rollovers, starting at
-         * 1.
+         * Required - The current generation number for the data stream. This number acts as a cumulative count of the stream's rollovers,
+         * starting at 1.
          * <p>
          * API name: {@code generation}
          * </p>
@@ -450,7 +451,7 @@ public class DataStream implements PlainJsonSerializable, ToCopyableBuilder<Data
         }
 
         /**
-         * If <code>true</code>, the data stream is hidden.
+         * When <code>true</code>, the data stream is hidden.
          * <p>
          * API name: {@code hidden}
          * </p>
@@ -471,8 +472,8 @@ public class DataStream implements PlainJsonSerializable, ToCopyableBuilder<Data
         }
 
         /**
-         * Required - Array of objects containing information about the data stream's backing indexes. The last item in this array contains
-         * information about the stream's current write index.
+         * Required - An array of objects containing information about the data stream's backing indexes. The last item in this array
+         * contains information about the stream's current write index.
          * <p>
          * API name: {@code indices}
          * </p>
@@ -488,8 +489,8 @@ public class DataStream implements PlainJsonSerializable, ToCopyableBuilder<Data
         }
 
         /**
-         * Required - Array of objects containing information about the data stream's backing indexes. The last item in this array contains
-         * information about the stream's current write index.
+         * Required - An array of objects containing information about the data stream's backing indexes. The last item in this array
+         * contains information about the stream's current write index.
          * <p>
          * API name: {@code indices}
          * </p>
@@ -505,8 +506,8 @@ public class DataStream implements PlainJsonSerializable, ToCopyableBuilder<Data
         }
 
         /**
-         * Required - Array of objects containing information about the data stream's backing indexes. The last item in this array contains
-         * information about the stream's current write index.
+         * Required - An array of objects containing information about the data stream's backing indexes. The last item in this array
+         * contains information about the stream's current write index.
          * <p>
          * API name: {@code indices}
          * </p>
@@ -577,7 +578,7 @@ public class DataStream implements PlainJsonSerializable, ToCopyableBuilder<Data
         }
 
         /**
-         * If <code>true</code>, the data stream is created and managed by cross-cluster replication and the local cluster can not write
+         * When <code>true</code>, the data stream is created and managed by cross-cluster replication and the local cluster can not write
          * into this data stream or change its mappings.
          * <p>
          * API name: {@code replicated}
@@ -599,7 +600,7 @@ public class DataStream implements PlainJsonSerializable, ToCopyableBuilder<Data
         }
 
         /**
-         * If <code>true</code>, the data stream is created and managed by an OpenSearch stack component and cannot be modified through
+         * When <code>true</code>, the data stream is created and managed by an OpenSearch stack component and cannot be modified through
          * normal user interaction.
          * <p>
          * API name: {@code system}

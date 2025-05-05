@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoSearchPipelines
 
+/**
+ * The search pipeline configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoSearchPipelines
@@ -82,7 +85,10 @@ public class NodeInfoSearchPipelines
     }
 
     /**
+     * The list of request processors in the pipeline.
+     * <p>
      * API name: {@code request_processors}
+     * </p>
      */
     @Nonnull
     public final List<NodeInfoIngestProcessor> requestProcessors() {
@@ -90,7 +96,10 @@ public class NodeInfoSearchPipelines
     }
 
     /**
+     * The list of response processors in the pipeline.
+     * <p>
      * API name: {@code response_processors}
+     * </p>
      */
     @Nonnull
     public final List<NodeInfoIngestProcessor> responseProcessors() {
@@ -168,7 +177,10 @@ public class NodeInfoSearchPipelines
         }
 
         /**
+         * The list of request processors in the pipeline.
+         * <p>
          * API name: {@code request_processors}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>requestProcessors</code>.
@@ -181,7 +193,10 @@ public class NodeInfoSearchPipelines
         }
 
         /**
+         * The list of request processors in the pipeline.
+         * <p>
          * API name: {@code request_processors}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>requestProcessors</code>.
@@ -194,7 +209,10 @@ public class NodeInfoSearchPipelines
         }
 
         /**
+         * The list of request processors in the pipeline.
+         * <p>
          * API name: {@code request_processors}
+         * </p>
          *
          * <p>
          * Adds a value to <code>requestProcessors</code> using a builder lambda.
@@ -206,7 +224,10 @@ public class NodeInfoSearchPipelines
         }
 
         /**
+         * The list of response processors in the pipeline.
+         * <p>
          * API name: {@code response_processors}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>responseProcessors</code>.
@@ -219,7 +240,10 @@ public class NodeInfoSearchPipelines
         }
 
         /**
+         * The list of response processors in the pipeline.
+         * <p>
          * API name: {@code response_processors}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>responseProcessors</code>.
@@ -232,7 +256,10 @@ public class NodeInfoSearchPipelines
         }
 
         /**
+         * The list of response processors in the pipeline.
+         * <p>
          * API name: {@code response_processors}
+         * </p>
          *
          * <p>
          * Adds a value to <code>responseProcessors</code> using a builder lambda.

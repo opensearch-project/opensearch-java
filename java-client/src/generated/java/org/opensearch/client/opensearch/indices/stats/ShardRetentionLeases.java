@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.stats.ShardRetentionLeases
 
+/**
+ * The retention lease information for a shard.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardRetentionLeases implements PlainJsonSerializable, ToCopyableBuilder<ShardRetentionLeases.Builder, ShardRetentionLeases> {
@@ -79,7 +82,10 @@ public class ShardRetentionLeases implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
-     * Required - API name: {@code leases}
+     * Required - The list of retention leases.
+     * <p>
+     * API name: {@code leases}
+     * </p>
      */
     @Nonnull
     public final List<ShardLease> leases() {
@@ -87,7 +93,10 @@ public class ShardRetentionLeases implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
-     * Required - API name: {@code primary_term}
+     * Required - The primary term of the retention leases.
+     * <p>
+     * API name: {@code primary_term}
+     * </p>
      */
     public final long primaryTerm() {
         return this.primaryTerm;
@@ -167,7 +176,10 @@ public class ShardRetentionLeases implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Required - API name: {@code leases}
+         * Required - The list of retention leases.
+         * <p>
+         * API name: {@code leases}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>leases</code>.
@@ -180,7 +192,10 @@ public class ShardRetentionLeases implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Required - API name: {@code leases}
+         * Required - The list of retention leases.
+         * <p>
+         * API name: {@code leases}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>leases</code>.
@@ -193,7 +208,10 @@ public class ShardRetentionLeases implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Required - API name: {@code leases}
+         * Required - The list of retention leases.
+         * <p>
+         * API name: {@code leases}
+         * </p>
          *
          * <p>
          * Adds a value to <code>leases</code> using a builder lambda.
@@ -205,7 +223,10 @@ public class ShardRetentionLeases implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Required - API name: {@code primary_term}
+         * Required - The primary term of the retention leases.
+         * <p>
+         * API name: {@code primary_term}
+         * </p>
          */
         @Nonnull
         public final Builder primaryTerm(long value) {

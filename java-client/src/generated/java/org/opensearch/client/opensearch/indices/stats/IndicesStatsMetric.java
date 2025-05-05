@@ -42,6 +42,9 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: indices.stats.Metric
 
+/**
+ * The type of statistics to retrieve.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum IndicesStatsMetric implements JsonEnum {

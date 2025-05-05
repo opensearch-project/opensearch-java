@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.analyze.AnalyzeDetail
 
+/**
+ * The detailed analysis results.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class AnalyzeDetail implements PlainJsonSerializable, ToCopyableBuilder<AnalyzeDetail.Builder, AnalyzeDetail> {
@@ -98,7 +101,10 @@ public class AnalyzeDetail implements PlainJsonSerializable, ToCopyableBuilder<A
     }
 
     /**
+     * The list of character filter results.
+     * <p>
      * API name: {@code charfilters}
+     * </p>
      */
     @Nonnull
     public final List<CharFilterDetail> charfilters() {
@@ -106,14 +112,20 @@ public class AnalyzeDetail implements PlainJsonSerializable, ToCopyableBuilder<A
     }
 
     /**
-     * Required - API name: {@code custom_analyzer}
+     * Required - Whether a custom analyzer was used.
+     * <p>
+     * API name: {@code custom_analyzer}
+     * </p>
      */
     public final boolean customAnalyzer() {
         return this.customAnalyzer;
     }
 
     /**
+     * The list of token filter results.
+     * <p>
      * API name: {@code tokenfilters}
+     * </p>
      */
     @Nonnull
     public final List<TokenDetail> tokenfilters() {
@@ -240,7 +252,10 @@ public class AnalyzeDetail implements PlainJsonSerializable, ToCopyableBuilder<A
         }
 
         /**
+         * The list of character filter results.
+         * <p>
          * API name: {@code charfilters}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>charfilters</code>.
@@ -253,7 +268,10 @@ public class AnalyzeDetail implements PlainJsonSerializable, ToCopyableBuilder<A
         }
 
         /**
+         * The list of character filter results.
+         * <p>
          * API name: {@code charfilters}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>charfilters</code>.
@@ -266,7 +284,10 @@ public class AnalyzeDetail implements PlainJsonSerializable, ToCopyableBuilder<A
         }
 
         /**
+         * The list of character filter results.
+         * <p>
          * API name: {@code charfilters}
+         * </p>
          *
          * <p>
          * Adds a value to <code>charfilters</code> using a builder lambda.
@@ -278,7 +299,10 @@ public class AnalyzeDetail implements PlainJsonSerializable, ToCopyableBuilder<A
         }
 
         /**
-         * Required - API name: {@code custom_analyzer}
+         * Required - Whether a custom analyzer was used.
+         * <p>
+         * API name: {@code custom_analyzer}
+         * </p>
          */
         @Nonnull
         public final Builder customAnalyzer(boolean value) {
@@ -287,7 +311,10 @@ public class AnalyzeDetail implements PlainJsonSerializable, ToCopyableBuilder<A
         }
 
         /**
+         * The list of token filter results.
+         * <p>
          * API name: {@code tokenfilters}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>tokenfilters</code>.
@@ -300,7 +327,10 @@ public class AnalyzeDetail implements PlainJsonSerializable, ToCopyableBuilder<A
         }
 
         /**
+         * The list of token filter results.
+         * <p>
          * API name: {@code tokenfilters}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>tokenfilters</code>.
@@ -313,7 +343,10 @@ public class AnalyzeDetail implements PlainJsonSerializable, ToCopyableBuilder<A
         }
 
         /**
+         * The list of token filter results.
+         * <p>
          * API name: {@code tokenfilters}
+         * </p>
          *
          * <p>
          * Adds a value to <code>tokenfilters</code> using a builder lambda.

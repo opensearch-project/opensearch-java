@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoAction
 
+/**
+ * The action-related configuration settings.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoAction implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoAction.Builder, NodeInfoAction> {
@@ -72,7 +75,10 @@ public class NodeInfoAction implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
-     * Required - API name: {@code destructive_requires_name}
+     * Required - Whether destructive actions require explicit names.
+     * <p>
+     * API name: {@code destructive_requires_name}
+     * </p>
      */
     @Nonnull
     public final String destructiveRequiresName() {
@@ -130,7 +136,10 @@ public class NodeInfoAction implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code destructive_requires_name}
+         * Required - Whether destructive actions require explicit names.
+         * <p>
+         * API name: {@code destructive_requires_name}
+         * </p>
          */
         @Nonnull
         public final Builder destructiveRequiresName(String value) {

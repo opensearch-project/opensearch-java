@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.update_aliases.RemoveAction
 
+/**
+ * The configuration for removing an alias.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RemoveAction implements ActionVariant, PlainJsonSerializable, ToCopyableBuilder<RemoveAction.Builder, RemoveAction> {
@@ -107,7 +110,7 @@ public class RemoveAction implements ActionVariant, PlainJsonSerializable, ToCop
     }
 
     /**
-     * Aliases for the action. Index alias names support date math.
+     * The list of aliases to remove. Index alias names support date math.
      * <p>
      * API name: {@code aliases}
      * </p>
@@ -134,7 +137,7 @@ public class RemoveAction implements ActionVariant, PlainJsonSerializable, ToCop
     }
 
     /**
-     * If <code>true</code>, the alias must exist to perform the action.
+     * Whether the alias must exist to perform the action.
      * <p>
      * API name: {@code must_exist}
      * </p>
@@ -251,7 +254,7 @@ public class RemoveAction implements ActionVariant, PlainJsonSerializable, ToCop
         }
 
         /**
-         * Aliases for the action. Index alias names support date math.
+         * The list of aliases to remove. Index alias names support date math.
          * <p>
          * API name: {@code aliases}
          * </p>
@@ -267,7 +270,7 @@ public class RemoveAction implements ActionVariant, PlainJsonSerializable, ToCop
         }
 
         /**
-         * Aliases for the action. Index alias names support date math.
+         * The list of aliases to remove. Index alias names support date math.
          * <p>
          * API name: {@code aliases}
          * </p>
@@ -318,7 +321,7 @@ public class RemoveAction implements ActionVariant, PlainJsonSerializable, ToCop
         }
 
         /**
-         * If <code>true</code>, the alias must exist to perform the action.
+         * Whether the alias must exist to perform the action.
          * <p>
          * API name: {@code must_exist}
          * </p>

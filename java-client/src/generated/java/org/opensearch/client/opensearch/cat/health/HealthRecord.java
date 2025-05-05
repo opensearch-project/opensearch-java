@@ -69,7 +69,7 @@ public class HealthRecord implements PlainJsonSerializable, ToCopyableBuilder<He
     private final String discoveredClusterManager;
 
     @Nullable
-    private final String epoch;
+    private final Long epoch;
 
     @Nullable
     private final String init;
@@ -165,7 +165,7 @@ public class HealthRecord implements PlainJsonSerializable, ToCopyableBuilder<He
      * API name: {@code epoch}
      */
     @Nullable
-    public final String epoch() {
+    public final Long epoch() {
         return this.epoch;
     }
 
@@ -398,7 +398,7 @@ public class HealthRecord implements PlainJsonSerializable, ToCopyableBuilder<He
         @Nullable
         private String discoveredClusterManager;
         @Nullable
-        private String epoch;
+        private Long epoch;
         @Nullable
         private String init;
         @Nullable
@@ -506,7 +506,7 @@ public class HealthRecord implements PlainJsonSerializable, ToCopyableBuilder<He
          * API name: {@code epoch}
          */
         @Nonnull
-        public final Builder epoch(@Nullable String value) {
+        public final Builder epoch(@Nullable Long value) {
             this.epoch = value;
             return this;
         }
@@ -668,7 +668,7 @@ public class HealthRecord implements PlainJsonSerializable, ToCopyableBuilder<He
         op.add(Builder::activeShardsPercent, JsonpDeserializer.stringDeserializer(), "active_shards_percent");
         op.add(Builder::cluster, JsonpDeserializer.stringDeserializer(), "cluster");
         op.add(Builder::discoveredClusterManager, JsonpDeserializer.stringDeserializer(), "discovered_cluster_manager");
-        op.add(Builder::epoch, JsonpDeserializer.stringDeserializer(), "epoch");
+        op.add(Builder::epoch, JsonpDeserializer.longDeserializer(), "epoch");
         op.add(Builder::init, JsonpDeserializer.stringDeserializer(), "init");
         op.add(Builder::maxTaskWaitTime, JsonpDeserializer.stringDeserializer(), "max_task_wait_time");
         op.add(Builder::nodeData, JsonpDeserializer.stringDeserializer(), "node.data");

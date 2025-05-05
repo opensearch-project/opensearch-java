@@ -58,6 +58,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoSettingsNode
 
+/**
+ * The node-specific configuration settings.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoSettingsNode.Builder, NodeInfoSettingsNode> {
@@ -84,7 +87,10 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
+     * The custom attributes assigned to the node.
+     * <p>
      * API name: {@code attr}
+     * </p>
      */
     @Nonnull
     public final Map<String, JsonData> attr() {
@@ -92,7 +98,10 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
+     * The maximum number of nodes allowed to store data locally
+     * <p>
      * API name: {@code max_local_storage_nodes}
+     * </p>
      */
     @Nullable
     public final String maxLocalStorageNodes() {
@@ -181,7 +190,10 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
+         * The custom attributes assigned to the node.
+         * <p>
          * API name: {@code attr}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>attr</code>.
@@ -194,7 +206,10 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
+         * The custom attributes assigned to the node.
+         * <p>
          * API name: {@code attr}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>attr</code>.
@@ -207,7 +222,10 @@ public class NodeInfoSettingsNode implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
+         * The maximum number of nodes allowed to store data locally
+         * <p>
          * API name: {@code max_local_storage_nodes}
+         * </p>
          */
         @Nonnull
         public final Builder maxLocalStorageNodes(@Nullable String value) {

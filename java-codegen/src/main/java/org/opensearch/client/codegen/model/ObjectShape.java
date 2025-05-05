@@ -14,7 +14,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.tuple.Pair;
-import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
+import org.opensearch.client.codegen.model.types.TypeRef;
+import org.opensearch.client.codegen.model.types.Types;
+import org.opensearch.client.codegen.transformer.overrides.ShouldGenerate;
 
 public class ObjectShape extends ObjectShapeBase {
     public ObjectShape(Namespace parent, String className, String typedefName, String description, ShouldGenerate shouldGenerate) {
@@ -45,7 +47,7 @@ public class ObjectShape extends ObjectShapeBase {
             && getExtendsType().getTargetShape().map(s -> ((ObjectShape) s).implementsJsonSerializable()).orElse(false);
     }
 
-    public Collection<Type> getImplementsTypes() {
+    public Collection<TypeRef> getImplementsTypes() {
         var types = new ArrayList<>(super.getImplementsTypes());
 
         if (shouldImplementJsonSerializable()) {
@@ -53,14 +55,16 @@ public class ObjectShape extends ObjectShapeBase {
         }
 
         if (!isAbstract()) {
-            types.add(Types.Client.Util.ToCopyableBuilder(getType().getBuilderType(), getType()));
+            types.add(Types.Client.Util.ToCopyableBuilder(getSelfType().getBuilderType(), getSelfType()));
         }
 
         return types;
     }
 
-    public Collection<Type> getAnnotations() {
-        return (hasFieldsToSerialize() || extendsOtherShape()) && !isAbstract() ? List.of(Types.Client.Json.JsonpDeserializable) : null;
+    public Collection<TypeRef> getAnnotations() {
+        return (hasFieldsToSerialize() || extendsOtherShape()) && !isAbstract() && !hasTypeParameters()
+            ? List.of(Types.Client.Json.JsonpDeserializable)
+            : null;
     }
 
     public boolean canBeSingleton() {

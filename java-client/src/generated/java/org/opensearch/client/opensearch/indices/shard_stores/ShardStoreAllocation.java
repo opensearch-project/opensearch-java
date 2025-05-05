@@ -42,13 +42,25 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: indices.shard_stores.ShardStoreAllocation
 
+/**
+ * The allocation type of the shard store.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum ShardStoreAllocation implements JsonEnum {
+    /**
+     * The store is for a primary shard.
+     */
     Primary("primary"),
 
+    /**
+     * The store is for a replica shard.
+     */
     Replica("replica"),
 
+    /**
+     * The store is not currently in use.
+     */
     Unused("unused");
 
     private final String jsonValue;

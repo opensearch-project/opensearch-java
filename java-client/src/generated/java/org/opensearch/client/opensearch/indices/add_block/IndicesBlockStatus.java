@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.add_block.IndicesBlockStatus
 
+/**
+ * The status of a block operation on an index.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndicesBlockStatus implements PlainJsonSerializable, ToCopyableBuilder<IndicesBlockStatus.Builder, IndicesBlockStatus> {
@@ -75,7 +78,10 @@ public class IndicesBlockStatus implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
-     * Required - API name: {@code blocked}
+     * Required - Whether the block operation was successful.
+     * <p>
+     * API name: {@code blocked}
+     * </p>
      */
     public final boolean blocked() {
         return this.blocked;
@@ -146,7 +152,10 @@ public class IndicesBlockStatus implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * Required - API name: {@code blocked}
+         * Required - Whether the block operation was successful.
+         * <p>
+         * API name: {@code blocked}
+         * </p>
          */
         @Nonnull
         public final Builder blocked(boolean value) {

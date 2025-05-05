@@ -87,8 +87,8 @@ public class IndexTemplateMapping implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
-     * Aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise, these are
-     * index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and <code>search_routing</code>
+     * The aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise, these
+     * are index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and <code>search_routing</code>
      * options.
      * <p>
      * API name: {@code aliases}
@@ -201,8 +201,8 @@ public class IndexTemplateMapping implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise, these
-         * are index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and
+         * The aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise,
+         * these are index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and
          * <code>search_routing</code> options.
          * <p>
          * API name: {@code aliases}
@@ -219,8 +219,8 @@ public class IndexTemplateMapping implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise, these
-         * are index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and
+         * The aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise,
+         * these are index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and
          * <code>search_routing</code> options.
          * <p>
          * API name: {@code aliases}
@@ -237,8 +237,8 @@ public class IndexTemplateMapping implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise, these
-         * are index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and
+         * The aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise,
+         * these are index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and
          * <code>search_routing</code> options.
          * <p>
          * API name: {@code aliases}

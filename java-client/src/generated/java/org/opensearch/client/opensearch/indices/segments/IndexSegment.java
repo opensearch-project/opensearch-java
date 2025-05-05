@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.segments.IndexSegment
 
+/**
+ * The segment information for an index.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSegment implements PlainJsonSerializable, ToCopyableBuilder<IndexSegment.Builder, IndexSegment> {
@@ -74,7 +77,10 @@ public class IndexSegment implements PlainJsonSerializable, ToCopyableBuilder<In
     }
 
     /**
-     * Required - API name: {@code shards}
+     * Required - The segment information for each shard.
+     * <p>
+     * API name: {@code shards}
+     * </p>
      */
     @Nonnull
     public final Map<String, List<ShardsSegment>> shards() {
@@ -143,7 +149,10 @@ public class IndexSegment implements PlainJsonSerializable, ToCopyableBuilder<In
         }
 
         /**
-         * Required - API name: {@code shards}
+         * Required - The segment information for each shard.
+         * <p>
+         * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>shards</code>.
@@ -156,7 +165,10 @@ public class IndexSegment implements PlainJsonSerializable, ToCopyableBuilder<In
         }
 
         /**
-         * Required - API name: {@code shards}
+         * Required - The segment information for each shard.
+         * <p>
+         * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>shards</code>.

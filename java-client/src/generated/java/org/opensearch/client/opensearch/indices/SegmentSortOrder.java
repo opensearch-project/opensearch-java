@@ -42,6 +42,9 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: indices.SegmentSortOrder
 
+/**
+ * The sort order for segments.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum SegmentSortOrder implements JsonEnum {
