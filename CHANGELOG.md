@@ -9,7 +9,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.owasp.dependencycheck` from 12.0.2 to 12.1.1 ([#1440](https://github.com/opensearch-project/opensearch-java/pull/1440), [#1514](https://github.com/opensearch-project/opensearch-java/pull/1514))
 - Bump `org.junit:junit-bom` from 5.12.0 to 5.12.2 ([#1486](https://github.com/opensearch-project/opensearch-java/pull/1486), [#1525](https://github.com/opensearch-project/opensearch-java/pull/1525))
 - Bump `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.8.2 to 2.8.3 ([#1487](https://github.com/opensearch-project/opensearch-java/pull/1487))
-- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.2 to 5.4.3 ([#1506](https://github.com/opensearch-project/opensearch-java/pull/1506))
+- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.2 to 5.4.4 ([#1506](https://github.com/opensearch-project/opensearch-java/pull/1506), [#1542](https://github.com/opensearch-project/opensearch-java/pull/1542))
 - Bump `org.apache.httpcomponents.core5:httpcore5-h2` from 5.3.3 to 5.3.4 ([#1498](https://github.com/opensearch-project/opensearch-java/pull/1498))
 - Bump `org.apache.httpcomponents.core5:httpcore5` from 5.3.3 to 5.3.4 ([#1497](https://github.com/opensearch-project/opensearch-java/pull/1497))
 
