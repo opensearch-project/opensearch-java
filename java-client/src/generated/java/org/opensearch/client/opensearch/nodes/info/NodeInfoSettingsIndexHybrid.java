@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoSettingsIndexHybrid
 
+/**
+ * The hybrid store configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoSettingsIndexHybrid

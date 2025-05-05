@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeProcessInfo
 
+/**
+ * Provides process-related information for the node.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeProcessInfo.Builder, NodeProcessInfo> {
@@ -84,7 +87,7 @@ public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Required - Process identifier (PID)
+     * Required - The process identifier (PID)
      * <p>
      * API name: {@code id}
      * </p>
@@ -94,7 +97,7 @@ public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Required - Indicates if the process address space has been successfully locked in memory
+     * Required - Indicates if the process address space has been successfully locked in memory.
      * <p>
      * API name: {@code mlockall}
      * </p>
@@ -190,7 +193,7 @@ public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - Process identifier (PID)
+         * Required - The process identifier (PID)
          * <p>
          * API name: {@code id}
          * </p>
@@ -202,7 +205,7 @@ public class NodeProcessInfo implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - Indicates if the process address space has been successfully locked in memory
+         * Required - Indicates if the process address space has been successfully locked in memory.
          * <p>
          * API name: {@code mlockall}
          * </p>

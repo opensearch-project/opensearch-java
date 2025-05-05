@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.DataStreamIndex
 
+/**
+ * The configuration for a data stream's backing index.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class DataStreamIndex implements PlainJsonSerializable, ToCopyableBuilder<DataStreamIndex.Builder, DataStreamIndex> {

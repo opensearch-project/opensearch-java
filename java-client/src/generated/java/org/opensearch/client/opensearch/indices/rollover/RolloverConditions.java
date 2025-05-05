@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.rollover.RolloverConditions
 
+/**
+ * The conditions that trigger an index rollover.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuilder<RolloverConditions.Builder, RolloverConditions> {
@@ -130,7 +133,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The maximum age of the index before rollover.
+     * <p>
      * API name: {@code max_age}
+     * </p>
      */
     @Nullable
     public final Time maxAge() {
@@ -138,7 +144,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The maximum age in milliseconds of the index before rollover.
+     * <p>
      * API name: {@code max_age_millis}
+     * </p>
      */
     @Nullable
     public final Long maxAgeMillis() {
@@ -146,7 +155,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The maximum number of documents in the index before rollover.
+     * <p>
      * API name: {@code max_docs}
+     * </p>
      */
     @Nullable
     public final Long maxDocs() {
@@ -154,7 +166,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The maximum number of documents in any primary shard before rollover.
+     * <p>
      * API name: {@code max_primary_shard_docs}
+     * </p>
      */
     @Nullable
     public final Long maxPrimaryShardDocs() {
@@ -162,7 +177,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The maximum size of any primary shard in the index before rollover.
+     * <p>
      * API name: {@code max_primary_shard_size}
+     * </p>
      */
     @Nullable
     public final String maxPrimaryShardSize() {
@@ -170,7 +188,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The maximum size in bytes of any primary shard in the index before rollover.
+     * <p>
      * API name: {@code max_primary_shard_size_bytes}
+     * </p>
      */
     @Nullable
     public final Long maxPrimaryShardSizeBytes() {
@@ -178,7 +199,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The maximum size of the index before rollover.
+     * <p>
      * API name: {@code max_size}
+     * </p>
      */
     @Nullable
     public final String maxSize() {
@@ -186,7 +210,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The maximum size in bytes of the index before rollover.
+     * <p>
      * API name: {@code max_size_bytes}
+     * </p>
      */
     @Nullable
     public final Long maxSizeBytes() {
@@ -194,7 +221,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The minimum age of the index before rollover.
+     * <p>
      * API name: {@code min_age}
+     * </p>
      */
     @Nullable
     public final Time minAge() {
@@ -202,7 +232,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The minimum number of documents in the index before rollover.
+     * <p>
      * API name: {@code min_docs}
+     * </p>
      */
     @Nullable
     public final Long minDocs() {
@@ -210,7 +243,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The minimum number of documents in any primary shard before rollover.
+     * <p>
      * API name: {@code min_primary_shard_docs}
+     * </p>
      */
     @Nullable
     public final Long minPrimaryShardDocs() {
@@ -218,7 +254,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The minimum size of any primary shard in the index before rollover.
+     * <p>
      * API name: {@code min_primary_shard_size}
+     * </p>
      */
     @Nullable
     public final String minPrimaryShardSize() {
@@ -226,7 +265,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The minimum size in bytes of any primary shard in the index before rollover.
+     * <p>
      * API name: {@code min_primary_shard_size_bytes}
+     * </p>
      */
     @Nullable
     public final Long minPrimaryShardSizeBytes() {
@@ -234,7 +276,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The minimum size of the index before rollover.
+     * <p>
      * API name: {@code min_size}
+     * </p>
      */
     @Nullable
     public final String minSize() {
@@ -242,7 +287,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The minimum size in bytes of the index before rollover.
+     * <p>
      * API name: {@code min_size_bytes}
+     * </p>
      */
     @Nullable
     public final Long minSizeBytes() {
@@ -429,7 +477,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The maximum age of the index before rollover.
+         * <p>
          * API name: {@code max_age}
+         * </p>
          */
         @Nonnull
         public final Builder maxAge(@Nullable Time value) {
@@ -438,7 +489,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The maximum age of the index before rollover.
+         * <p>
          * API name: {@code max_age}
+         * </p>
          */
         @Nonnull
         public final Builder maxAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -446,7 +500,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The maximum age in milliseconds of the index before rollover.
+         * <p>
          * API name: {@code max_age_millis}
+         * </p>
          */
         @Nonnull
         public final Builder maxAgeMillis(@Nullable Long value) {
@@ -455,7 +512,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The maximum number of documents in the index before rollover.
+         * <p>
          * API name: {@code max_docs}
+         * </p>
          */
         @Nonnull
         public final Builder maxDocs(@Nullable Long value) {
@@ -464,7 +524,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The maximum number of documents in any primary shard before rollover.
+         * <p>
          * API name: {@code max_primary_shard_docs}
+         * </p>
          */
         @Nonnull
         public final Builder maxPrimaryShardDocs(@Nullable Long value) {
@@ -473,7 +536,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The maximum size of any primary shard in the index before rollover.
+         * <p>
          * API name: {@code max_primary_shard_size}
+         * </p>
          */
         @Nonnull
         public final Builder maxPrimaryShardSize(@Nullable String value) {
@@ -482,7 +548,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The maximum size in bytes of any primary shard in the index before rollover.
+         * <p>
          * API name: {@code max_primary_shard_size_bytes}
+         * </p>
          */
         @Nonnull
         public final Builder maxPrimaryShardSizeBytes(@Nullable Long value) {
@@ -491,7 +560,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The maximum size of the index before rollover.
+         * <p>
          * API name: {@code max_size}
+         * </p>
          */
         @Nonnull
         public final Builder maxSize(@Nullable String value) {
@@ -500,7 +572,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The maximum size in bytes of the index before rollover.
+         * <p>
          * API name: {@code max_size_bytes}
+         * </p>
          */
         @Nonnull
         public final Builder maxSizeBytes(@Nullable Long value) {
@@ -509,7 +584,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The minimum age of the index before rollover.
+         * <p>
          * API name: {@code min_age}
+         * </p>
          */
         @Nonnull
         public final Builder minAge(@Nullable Time value) {
@@ -518,7 +596,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The minimum age of the index before rollover.
+         * <p>
          * API name: {@code min_age}
+         * </p>
          */
         @Nonnull
         public final Builder minAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -526,7 +607,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The minimum number of documents in the index before rollover.
+         * <p>
          * API name: {@code min_docs}
+         * </p>
          */
         @Nonnull
         public final Builder minDocs(@Nullable Long value) {
@@ -535,7 +619,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The minimum number of documents in any primary shard before rollover.
+         * <p>
          * API name: {@code min_primary_shard_docs}
+         * </p>
          */
         @Nonnull
         public final Builder minPrimaryShardDocs(@Nullable Long value) {
@@ -544,7 +631,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The minimum size of any primary shard in the index before rollover.
+         * <p>
          * API name: {@code min_primary_shard_size}
+         * </p>
          */
         @Nonnull
         public final Builder minPrimaryShardSize(@Nullable String value) {
@@ -553,7 +643,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The minimum size in bytes of any primary shard in the index before rollover.
+         * <p>
          * API name: {@code min_primary_shard_size_bytes}
+         * </p>
          */
         @Nonnull
         public final Builder minPrimaryShardSizeBytes(@Nullable Long value) {
@@ -562,7 +655,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The minimum size of the index before rollover.
+         * <p>
          * API name: {@code min_size}
+         * </p>
          */
         @Nonnull
         public final Builder minSize(@Nullable String value) {
@@ -571,7 +667,10 @@ public class RolloverConditions implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The minimum size in bytes of the index before rollover.
+         * <p>
          * API name: {@code min_size_bytes}
+         * </p>
          */
         @Nonnull
         public final Builder minSizeBytes(@Nullable Long value) {

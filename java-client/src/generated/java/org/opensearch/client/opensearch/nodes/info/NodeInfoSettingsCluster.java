@@ -58,6 +58,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoSettingsCluster
 
+/**
+ * Provides cluster-level settings information.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoSettingsCluster

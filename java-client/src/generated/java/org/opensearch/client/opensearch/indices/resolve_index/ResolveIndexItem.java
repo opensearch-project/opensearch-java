@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.resolve_index.ResolveIndexItem
 
+/**
+ * The resolved information for an index.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ResolveIndexItem implements PlainJsonSerializable, ToCopyableBuilder<ResolveIndexItem.Builder, ResolveIndexItem> {
@@ -87,7 +90,10 @@ public class ResolveIndexItem implements PlainJsonSerializable, ToCopyableBuilde
     }
 
     /**
+     * The list of aliases associated with the index.
+     * <p>
      * API name: {@code aliases}
+     * </p>
      */
     @Nonnull
     public final List<String> aliases() {
@@ -95,7 +101,10 @@ public class ResolveIndexItem implements PlainJsonSerializable, ToCopyableBuilde
     }
 
     /**
-     * Required - API name: {@code attributes}
+     * Required - The list of index attributes.
+     * <p>
+     * API name: {@code attributes}
+     * </p>
      */
     @Nonnull
     public final List<String> attributes() {
@@ -201,7 +210,10 @@ public class ResolveIndexItem implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
+         * The list of aliases associated with the index.
+         * <p>
          * API name: {@code aliases}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>aliases</code>.
@@ -214,7 +226,10 @@ public class ResolveIndexItem implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
+         * The list of aliases associated with the index.
+         * <p>
          * API name: {@code aliases}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>aliases</code>.
@@ -227,7 +242,10 @@ public class ResolveIndexItem implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
-         * Required - API name: {@code attributes}
+         * Required - The list of index attributes.
+         * <p>
+         * API name: {@code attributes}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>attributes</code>.
@@ -240,7 +258,10 @@ public class ResolveIndexItem implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
-         * Required - API name: {@code attributes}
+         * Required - The list of index attributes.
+         * <p>
+         * API name: {@code attributes}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>attributes</code>.

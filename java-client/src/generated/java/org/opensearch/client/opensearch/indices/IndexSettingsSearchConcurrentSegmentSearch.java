@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsSearchConcurrentSegmentSearch
 
+/**
+ * The configuration for concurrent segment search.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsSearchConcurrentSegmentSearch
@@ -90,7 +93,10 @@ public class IndexSettingsSearchConcurrentSegmentSearch
     }
 
     /**
+     * The mode of concurrent segment search.
+     * <p>
      * API name: {@code mode}
+     * </p>
      */
     @Nullable
     public final String mode() {
@@ -169,7 +175,10 @@ public class IndexSettingsSearchConcurrentSegmentSearch
         }
 
         /**
+         * The mode of concurrent segment search.
+         * <p>
          * API name: {@code mode}
+         * </p>
          */
         @Nonnull
         public final Builder mode(@Nullable String value) {

@@ -51,6 +51,9 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: nodes.NodesResponseBase
 
+/**
+ * Provides base response structure for node-related operations.
+ */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class NodesResponseBase implements PlainJsonSerializable {
 

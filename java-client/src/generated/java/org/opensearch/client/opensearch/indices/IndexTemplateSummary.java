@@ -58,6 +58,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexTemplateSummary
 
+/**
+ * The summary configuration for an index template.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexTemplateSummary implements PlainJsonSerializable, ToCopyableBuilder<IndexTemplateSummary.Builder, IndexTemplateSummary> {
@@ -84,8 +87,8 @@ public class IndexTemplateSummary implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
-     * Aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise, these are
-     * index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and <code>search_routing</code>
+     * The aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise, these
+     * are index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and <code>search_routing</code>
      * options.
      * <p>
      * API name: {@code aliases}
@@ -189,8 +192,8 @@ public class IndexTemplateSummary implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise, these
-         * are index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and
+         * The aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise,
+         * these are index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and
          * <code>search_routing</code> options.
          * <p>
          * API name: {@code aliases}
@@ -207,8 +210,8 @@ public class IndexTemplateSummary implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise, these
-         * are index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and
+         * The aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise,
+         * these are index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and
          * <code>search_routing</code> options.
          * <p>
          * API name: {@code aliases}
@@ -225,8 +228,8 @@ public class IndexTemplateSummary implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise, these
-         * are index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and
+         * The aliases to add. If the index template includes a <code>data_stream</code> object, these are data stream aliases. Otherwise,
+         * these are index aliases. Data stream aliases ignore the <code>index_routing</code>, <code>routing</code>, and
          * <code>search_routing</code> options.
          * <p>
          * API name: {@code aliases}

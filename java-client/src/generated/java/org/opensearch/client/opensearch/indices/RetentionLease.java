@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.RetentionLease
 
+/**
+ * The retention lease configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RetentionLease implements PlainJsonSerializable, ToCopyableBuilder<RetentionLease.Builder, RetentionLease> {

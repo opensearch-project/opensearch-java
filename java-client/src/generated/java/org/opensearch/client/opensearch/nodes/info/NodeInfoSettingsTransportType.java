@@ -55,6 +55,9 @@ import org.opensearch.client.util.TaggedUnionUtils;
 
 // typedef: nodes.info.NodeInfoSettingsTransportType
 
+/**
+ * The transport layer type configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoSettingsTransportType implements TaggedUnion<NodeInfoSettingsTransportType.Kind, Object>, PlainJsonSerializable {

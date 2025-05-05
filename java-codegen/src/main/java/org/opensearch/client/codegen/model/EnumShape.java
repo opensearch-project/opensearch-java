@@ -14,7 +14,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
 import javax.annotation.Nullable;
-import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
+import org.opensearch.client.codegen.model.types.TypeRef;
+import org.opensearch.client.codegen.model.types.Types;
+import org.opensearch.client.codegen.transformer.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.JavaClassKind;
 import org.opensearch.client.codegen.utils.Markdown;
 import org.opensearch.client.codegen.utils.Strings;
@@ -32,12 +34,12 @@ public class EnumShape extends Shape {
     }
 
     @Override
-    public Collection<Type> getAnnotations() {
+    public Collection<TypeRef> getAnnotations() {
         return List.of(Types.Client.Json.JsonpDeserializable);
     }
 
     @Override
-    public Collection<Type> getImplementsTypes() {
+    public Collection<TypeRef> getImplementsTypes() {
         return List.of(Types.Client.Json.JsonEnum);
     }
 

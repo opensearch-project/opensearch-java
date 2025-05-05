@@ -10,19 +10,21 @@ package org.opensearch.client.codegen.model;
 
 import java.util.Collection;
 import java.util.List;
-import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
+import org.opensearch.client.codegen.model.types.TypeRef;
+import org.opensearch.client.codegen.model.types.Types;
+import org.opensearch.client.codegen.transformer.overrides.ShouldGenerate;
 
 public class DictionaryResponseShape extends Shape {
-    private final Type keyType;
-    private final Type valueType;
+    private final TypeRef keyType;
+    private final TypeRef valueType;
 
     public DictionaryResponseShape(
         Namespace parent,
         String className,
         String typedefName,
         String description,
-        Type keyType,
-        Type valueType,
+        TypeRef keyType,
+        TypeRef valueType,
         ShouldGenerate shouldGenerate
     ) {
         super(parent, className, typedefName, description, shouldGenerate);
@@ -32,7 +34,7 @@ public class DictionaryResponseShape extends Shape {
     }
 
     @Override
-    public Collection<Type> getAnnotations() {
+    public Collection<TypeRef> getAnnotations() {
         return List.of(Types.Client.Json.JsonpDeserializable);
     }
 

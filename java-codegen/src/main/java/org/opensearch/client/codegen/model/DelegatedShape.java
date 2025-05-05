@@ -14,11 +14,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
-import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
+import org.opensearch.client.codegen.model.types.Type;
+import org.opensearch.client.codegen.model.types.TypeRef;
+import org.opensearch.client.codegen.model.types.Types;
+import org.opensearch.client.codegen.transformer.overrides.ShouldGenerate;
 
 public class DelegatedShape extends Shape {
     @Nonnull
-    private final Type delegatedType;
+    private final TypeRef delegatedType;
 
     public DelegatedShape(
         Namespace parent,
@@ -26,14 +29,14 @@ public class DelegatedShape extends Shape {
         String typedefName,
         String description,
         ShouldGenerate shouldGenerate,
-        Type delegatedType
+        TypeRef delegatedType
     ) {
         super(parent, className, typedefName, description, shouldGenerate);
         this.delegatedType = Objects.requireNonNull(delegatedType, "delegatedType cannot be null");
     }
 
     @Nonnull
-    public Type getDelegatedType() {
+    public TypeRef getDelegatedType() {
         return delegatedType;
     }
 
@@ -43,16 +46,20 @@ public class DelegatedShape extends Shape {
         );
     }
 
+    public Collection<Field> getHashableFields() {
+        return getFields();
+    }
+
     @Override
-    public Collection<Type> getImplementsTypes() {
+    public Collection<TypeRef> getImplementsTypes() {
         var types = new ArrayList<>(super.getImplementsTypes());
         types.add(Types.Client.Json.PlainJsonSerializable);
-        types.add(Types.Client.Util.ToCopyableBuilder(getType().getBuilderType(), getType()));
+        types.add(Types.Client.Util.ToCopyableBuilder(getSelfType().getBuilderType(), getSelfType()));
         return types;
     }
 
     public Collection<ObjectShapeBase.BuilderSetter> getConcreteBuilderSetters() {
-        var builderT = Type.builder().withName("Builder").build();
+        var builderT = Type.builder().withName("Builder").withTypeParameters(getSelfType().getTypeParams()).build();
         return getFields().stream().map(f -> new ObjectShapeBase.BuilderSetter(builderT, f)).collect(Collectors.toList());
     }
 }

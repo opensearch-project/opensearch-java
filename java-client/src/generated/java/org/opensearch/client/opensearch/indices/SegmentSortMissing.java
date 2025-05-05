@@ -42,6 +42,9 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: indices.SegmentSortMissing
 
+/**
+ * The handling of missing values in segment sorting.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum SegmentSortMissing implements JsonEnum {

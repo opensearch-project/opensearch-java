@@ -385,8 +385,8 @@ public class HistogramAggregation extends BucketAggregationBase
          * API name: {@code extended_bounds}
          */
         @Nonnull
-        public final Builder extendedBounds(Function<ExtendedBounds.Builder, ObjectBuilder<ExtendedBounds<Double>>> fn) {
-            return extendedBounds(fn.apply(new ExtendedBounds.Builder()).build());
+        public final Builder extendedBounds(Function<ExtendedBounds.Builder<Double>, ObjectBuilder<ExtendedBounds<Double>>> fn) {
+            return extendedBounds(fn.apply(new ExtendedBounds.Builder<Double>()).build());
         }
 
         /**
@@ -420,8 +420,8 @@ public class HistogramAggregation extends BucketAggregationBase
          * API name: {@code hard_bounds}
          */
         @Nonnull
-        public final Builder hardBounds(Function<ExtendedBounds.Builder, ObjectBuilder<ExtendedBounds<Double>>> fn) {
-            return hardBounds(fn.apply(new ExtendedBounds.Builder()).build());
+        public final Builder hardBounds(Function<ExtendedBounds.Builder<Double>, ObjectBuilder<ExtendedBounds<Double>>> fn) {
+            return hardBounds(fn.apply(new ExtendedBounds.Builder<Double>()).build());
         }
 
         /**

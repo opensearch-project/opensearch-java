@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoSettingsHttp
 
+/**
+ * The HTTP server configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoSettingsHttp implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoSettingsHttp.Builder, NodeInfoSettingsHttp> {
@@ -110,7 +113,10 @@ public class NodeInfoSettingsHttp implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
+     * The default HTTP server type.
+     * <p>
      * API name: {@code type.default}
+     * </p>
      */
     @Nullable
     public final String typeDefault() {
@@ -230,7 +236,10 @@ public class NodeInfoSettingsHttp implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
+         * The default HTTP server type.
+         * <p>
          * API name: {@code type.default}
+         * </p>
          */
         @Nonnull
         public final Builder typeDefault(@Nullable String value) {

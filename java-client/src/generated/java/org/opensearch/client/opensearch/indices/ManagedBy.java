@@ -42,6 +42,9 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: indices.ManagedBy
 
+/**
+ * The component managing the data stream or index.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum ManagedBy implements JsonEnum {

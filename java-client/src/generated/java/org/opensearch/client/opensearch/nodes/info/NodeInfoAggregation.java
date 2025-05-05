@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoAggregation
 
+/**
+ * The aggregation configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoAggregation implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoAggregation.Builder, NodeInfoAggregation> {
@@ -73,7 +76,10 @@ public class NodeInfoAggregation implements PlainJsonSerializable, ToCopyableBui
     }
 
     /**
-     * Required - API name: {@code types}
+     * Required - The list of supported aggregation types.
+     * <p>
+     * API name: {@code types}
+     * </p>
      */
     @Nonnull
     public final List<String> types() {
@@ -135,7 +141,10 @@ public class NodeInfoAggregation implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code types}
+         * Required - The list of supported aggregation types.
+         * <p>
+         * API name: {@code types}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>types</code>.
@@ -148,7 +157,10 @@ public class NodeInfoAggregation implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code types}
+         * Required - The list of supported aggregation types.
+         * <p>
+         * API name: {@code types}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>types</code>.

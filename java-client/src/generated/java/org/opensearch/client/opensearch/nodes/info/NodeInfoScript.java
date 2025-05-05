@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoScript
 
+/**
+ * The script execution configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoScript implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoScript.Builder, NodeInfoScript> {
@@ -80,7 +83,10 @@ public class NodeInfoScript implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
-     * Required - API name: {@code allowed_types}
+     * Required - The types of scripts allowed.
+     * <p>
+     * API name: {@code allowed_types}
+     * </p>
      */
     @Nonnull
     public final String allowedTypes() {
@@ -88,7 +94,10 @@ public class NodeInfoScript implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
-     * Required - API name: {@code disable_max_compilations_rate}
+     * Required - The setting to disable maximum script compilation rate.
+     * <p>
+     * API name: {@code disable_max_compilations_rate}
+     * </p>
      */
     @Nonnull
     public final String disableMaxCompilationsRate() {
@@ -152,7 +161,10 @@ public class NodeInfoScript implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code allowed_types}
+         * Required - The types of scripts allowed.
+         * <p>
+         * API name: {@code allowed_types}
+         * </p>
          */
         @Nonnull
         public final Builder allowedTypes(String value) {
@@ -161,7 +173,10 @@ public class NodeInfoScript implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code disable_max_compilations_rate}
+         * Required - The setting to disable maximum script compilation rate.
+         * <p>
+         * API name: {@code disable_max_compilations_rate}
+         * </p>
          */
         @Nonnull
         public final Builder disableMaxCompilationsRate(String value) {

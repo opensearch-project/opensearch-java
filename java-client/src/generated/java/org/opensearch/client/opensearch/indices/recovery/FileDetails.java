@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.recovery.FileDetails
 
+/**
+ * The details of a recovered file.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class FileDetails implements PlainJsonSerializable, ToCopyableBuilder<FileDetails.Builder, FileDetails> {
@@ -78,14 +81,20 @@ public class FileDetails implements PlainJsonSerializable, ToCopyableBuilder<Fil
     }
 
     /**
-     * Required - API name: {@code length}
+     * Required - The length of the file in bytes.
+     * <p>
+     * API name: {@code length}
+     * </p>
      */
     public final long length() {
         return this.length;
     }
 
     /**
-     * Required - API name: {@code name}
+     * Required - The name of the file.
+     * <p>
+     * API name: {@code name}
+     * </p>
      */
     @Nonnull
     public final String name() {
@@ -93,7 +102,10 @@ public class FileDetails implements PlainJsonSerializable, ToCopyableBuilder<Fil
     }
 
     /**
-     * Required - API name: {@code recovered}
+     * Required - The number of bytes recovered.
+     * <p>
+     * API name: {@code recovered}
+     * </p>
      */
     public final long recovered() {
         return this.recovered;
@@ -162,7 +174,10 @@ public class FileDetails implements PlainJsonSerializable, ToCopyableBuilder<Fil
         }
 
         /**
-         * Required - API name: {@code length}
+         * Required - The length of the file in bytes.
+         * <p>
+         * API name: {@code length}
+         * </p>
          */
         @Nonnull
         public final Builder length(long value) {
@@ -171,7 +186,10 @@ public class FileDetails implements PlainJsonSerializable, ToCopyableBuilder<Fil
         }
 
         /**
-         * Required - API name: {@code name}
+         * Required - The name of the file.
+         * <p>
+         * API name: {@code name}
+         * </p>
          */
         @Nonnull
         public final Builder name(String value) {
@@ -180,7 +198,10 @@ public class FileDetails implements PlainJsonSerializable, ToCopyableBuilder<Fil
         }
 
         /**
-         * Required - API name: {@code recovered}
+         * Required - The number of bytes recovered.
+         * <p>
+         * API name: {@code recovered}
+         * </p>
          */
         @Nonnull
         public final Builder recovered(long value) {

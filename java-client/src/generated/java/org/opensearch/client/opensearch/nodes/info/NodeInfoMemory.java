@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoMemory
 
+/**
+ * Provides memory information for the node.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoMemory implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoMemory.Builder, NodeInfoMemory> {

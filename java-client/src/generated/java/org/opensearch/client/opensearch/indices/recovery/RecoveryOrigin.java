@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.recovery.RecoveryOrigin
 
+/**
+ * The source or target of a recovery operation.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RecoveryOrigin implements PlainJsonSerializable, ToCopyableBuilder<RecoveryOrigin.Builder, RecoveryOrigin> {
@@ -133,7 +136,10 @@ public class RecoveryOrigin implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
+     * Whether a new history UUID was bootstrapped.
+     * <p>
      * API name: {@code bootstrap_new_history_uuid}
+     * </p>
      */
     @Nullable
     public final Boolean bootstrapNewHistoryUuid() {
@@ -149,7 +155,10 @@ public class RecoveryOrigin implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
+     * The hostname of the node.
+     * <p>
      * API name: {@code hostname}
+     * </p>
      */
     @Nullable
     public final String hostname() {
@@ -181,7 +190,10 @@ public class RecoveryOrigin implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
+     * Whether this is a searchable snapshot.
+     * <p>
      * API name: {@code isSearchableSnapshot}
+     * </p>
      */
     @Nullable
     public final Boolean isSearchableSnapshot() {
@@ -197,7 +209,10 @@ public class RecoveryOrigin implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
+     * Whether this is a shallow copy from a remote store.
+     * <p>
      * API name: {@code remoteStoreIndexShallowCopy}
+     * </p>
      */
     @Nullable
     public final Boolean remoteStoreIndexShallowCopy() {
@@ -229,7 +244,10 @@ public class RecoveryOrigin implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
+     * The source remote store repository.
+     * <p>
      * API name: {@code sourceRemoteStoreRepository}
+     * </p>
      */
     @Nullable
     public final String sourceRemoteStoreRepository() {
@@ -237,7 +255,10 @@ public class RecoveryOrigin implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
+     * The source remote translog repository.
+     * <p>
      * API name: {@code sourceRemoteTranslogRepository}
+     * </p>
      */
     @Nullable
     public final String sourceRemoteTranslogRepository() {
@@ -449,7 +470,10 @@ public class RecoveryOrigin implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
+         * Whether a new history UUID was bootstrapped.
+         * <p>
          * API name: {@code bootstrap_new_history_uuid}
+         * </p>
          */
         @Nonnull
         public final Builder bootstrapNewHistoryUuid(@Nullable Boolean value) {
@@ -467,7 +491,10 @@ public class RecoveryOrigin implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
+         * The hostname of the node.
+         * <p>
          * API name: {@code hostname}
+         * </p>
          */
         @Nonnull
         public final Builder hostname(@Nullable String value) {
@@ -503,7 +530,10 @@ public class RecoveryOrigin implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
+         * Whether this is a searchable snapshot.
+         * <p>
          * API name: {@code isSearchableSnapshot}
+         * </p>
          */
         @Nonnull
         public final Builder isSearchableSnapshot(@Nullable Boolean value) {
@@ -521,7 +551,10 @@ public class RecoveryOrigin implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
+         * Whether this is a shallow copy from a remote store.
+         * <p>
          * API name: {@code remoteStoreIndexShallowCopy}
+         * </p>
          */
         @Nonnull
         public final Builder remoteStoreIndexShallowCopy(@Nullable Boolean value) {
@@ -557,7 +590,10 @@ public class RecoveryOrigin implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
+         * The source remote store repository.
+         * <p>
          * API name: {@code sourceRemoteStoreRepository}
+         * </p>
          */
         @Nonnull
         public final Builder sourceRemoteStoreRepository(@Nullable String value) {
@@ -566,7 +602,10 @@ public class RecoveryOrigin implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
+         * The source remote translog repository.
+         * <p>
          * API name: {@code sourceRemoteTranslogRepository}
+         * </p>
          */
         @Nonnull
         public final Builder sourceRemoteTranslogRepository(@Nullable String value) {

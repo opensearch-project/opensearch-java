@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsSimilarityDfr
 
+/**
+ * The divergence from randomness (DFR) similarity algorithm configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsSimilarityDfr

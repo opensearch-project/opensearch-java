@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.NumericFielddata
 
+/**
+ * The configuration for numeric field data.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NumericFielddata implements PlainJsonSerializable, ToCopyableBuilder<NumericFielddata.Builder, NumericFielddata> {

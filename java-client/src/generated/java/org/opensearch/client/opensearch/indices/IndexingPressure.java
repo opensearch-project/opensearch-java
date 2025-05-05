@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexingPressure
 
+/**
+ * The configuration for indexing backpressure.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexingPressure implements PlainJsonSerializable, ToCopyableBuilder<IndexingPressure.Builder, IndexingPressure> {

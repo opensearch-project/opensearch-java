@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsSimilarityLmd
 
+/**
+ * The LM Dirichlet similarity algorithm configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsSimilarityLmd
@@ -80,7 +83,10 @@ public class IndexSettingsSimilarityLmd
     }
 
     /**
-     * Required - API name: {@code mu}
+     * Required - The smoothing parameter.
+     * <p>
+     * API name: {@code mu}
+     * </p>
      */
     public final float mu() {
         return this.mu;
@@ -151,7 +157,10 @@ public class IndexSettingsSimilarityLmd
         }
 
         /**
-         * Required - API name: {@code mu}
+         * Required - The smoothing parameter.
+         * <p>
+         * API name: {@code mu}
+         * </p>
          */
         @Nonnull
         public final Builder mu(float value) {

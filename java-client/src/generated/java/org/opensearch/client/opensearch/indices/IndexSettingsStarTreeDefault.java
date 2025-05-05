@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsStarTreeDefault
 
+/**
+ * The default settings for star tree indexing.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsStarTreeDefault

@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.analyze.CharFilterDetail
 
+/**
+ * The character filter results.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class CharFilterDetail implements PlainJsonSerializable, ToCopyableBuilder<CharFilterDetail.Builder, CharFilterDetail> {
@@ -77,7 +80,10 @@ public class CharFilterDetail implements PlainJsonSerializable, ToCopyableBuilde
     }
 
     /**
-     * Required - API name: {@code filtered_text}
+     * Required - The text after character filtering.
+     * <p>
+     * API name: {@code filtered_text}
+     * </p>
      */
     @Nonnull
     public final List<String> filteredText() {
@@ -85,7 +91,10 @@ public class CharFilterDetail implements PlainJsonSerializable, ToCopyableBuilde
     }
 
     /**
-     * Required - API name: {@code name}
+     * Required - The name of the character filter.
+     * <p>
+     * API name: {@code name}
+     * </p>
      */
     @Nonnull
     public final String name() {
@@ -153,7 +162,10 @@ public class CharFilterDetail implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
-         * Required - API name: {@code filtered_text}
+         * Required - The text after character filtering.
+         * <p>
+         * API name: {@code filtered_text}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>filteredText</code>.
@@ -166,7 +178,10 @@ public class CharFilterDetail implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
-         * Required - API name: {@code filtered_text}
+         * Required - The text after character filtering.
+         * <p>
+         * API name: {@code filtered_text}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>filteredText</code>.
@@ -179,7 +194,10 @@ public class CharFilterDetail implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
-         * Required - API name: {@code name}
+         * Required - The name of the character filter.
+         * <p>
+         * API name: {@code name}
+         * </p>
          */
         @Nonnull
         public final Builder name(String value) {

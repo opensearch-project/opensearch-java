@@ -62,7 +62,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 // typedef: indices.IndexSettings
 
 /**
- * The index settings to be updated.
+ * The configuration settings for an index.
  */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
@@ -123,7 +123,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
     private final String finalPipeline;
 
     @Nullable
-    private final String format;
+    private final Integer format;
 
     @Nullable
     private final Time gcDeletes;
@@ -216,7 +216,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
     private final Integer numberOfShards;
 
     @Nullable
-    private final String priority;
+    private final Integer priority;
 
     @Nullable
     private final String providedName;
@@ -394,7 +394,10 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
+     * The range of replicas to maintain.
+     * <p>
      * API name: {@code auto_expand_replicas}
+     * </p>
      */
     @Nullable
     public final String autoExpandReplicas() {
@@ -458,7 +461,10 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
+     * The compression type for stored data.
+     * <p>
      * API name: {@code codec}
+     * </p>
      */
     @Nullable
     public final String codec() {
@@ -514,7 +520,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
      * API name: {@code format}
      */
     @Nullable
-    public final String format() {
+    public final Integer format() {
         return this.format;
     }
 
@@ -762,7 +768,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
      * API name: {@code priority}
      */
     @Nullable
-    public final String priority() {
+    public final Integer priority() {
         return this.priority;
     }
 
@@ -1384,7 +1390,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         @Nullable
         private String finalPipeline;
         @Nullable
-        private String format;
+        private Integer format;
         @Nullable
         private Time gcDeletes;
         @Nullable
@@ -1446,7 +1452,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         @Nullable
         private Integer numberOfShards;
         @Nullable
-        private String priority;
+        private Integer priority;
         @Nullable
         private String providedName;
         @Nullable
@@ -1698,7 +1704,10 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
+         * The range of replicas to maintain.
+         * <p>
          * API name: {@code auto_expand_replicas}
+         * </p>
          */
         @Nonnull
         public final Builder autoExpandReplicas(@Nullable String value) {
@@ -1778,7 +1787,10 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
+         * The compression type for stored data.
+         * <p>
          * API name: {@code codec}
+         * </p>
          */
         @Nonnull
         public final Builder codec(@Nullable String value) {
@@ -1867,7 +1879,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
          * API name: {@code format}
          */
         @Nonnull
-        public final Builder format(@Nullable String value) {
+        public final Builder format(@Nullable Integer value) {
             this.format = value;
             return this;
         }
@@ -2210,7 +2222,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
          * API name: {@code priority}
          */
         @Nonnull
-        public final Builder priority(@Nullable String value) {
+        public final Builder priority(@Nullable Integer value) {
             this.priority = value;
             return this;
         }
@@ -2608,7 +2620,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         op.add(Builder::creationDateString, JsonpDeserializer.stringDeserializer(), "creation_date_string", "index.creation_date_string");
         op.add(Builder::defaultPipeline, JsonpDeserializer.stringDeserializer(), "default_pipeline", "index.default_pipeline");
         op.add(Builder::finalPipeline, JsonpDeserializer.stringDeserializer(), "final_pipeline", "index.final_pipeline");
-        op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format", "index.format");
+        op.add(Builder::format, JsonpDeserializer.integerDeserializer(), "format", "index.format");
         op.add(Builder::gcDeletes, Time._DESERIALIZER, "gc_deletes", "index.gc_deletes");
         op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden", "index.hidden");
         op.add(Builder::highlight, IndexSettingsHighlight._DESERIALIZER, "highlight", "index.highlight");
@@ -2684,7 +2696,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
             "index.number_of_routing_shards"
         );
         op.add(Builder::numberOfShards, JsonpDeserializer.integerDeserializer(), "number_of_shards", "index.number_of_shards");
-        op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority", "index.priority");
+        op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority", "index.priority");
         op.add(Builder::providedName, JsonpDeserializer.stringDeserializer(), "provided_name", "index.provided_name");
         op.add(Builder::queries, IndexSettingsQueries._DESERIALIZER, "queries", "index.queries");
         op.add(Builder::queryString, IndexSettingsQueryString._DESERIALIZER, "query_string", "index.query_string");

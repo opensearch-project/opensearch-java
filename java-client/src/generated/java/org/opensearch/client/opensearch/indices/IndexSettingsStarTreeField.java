@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingsStarTreeField
 
+/**
+ * The field-specific settings for star tree indexing.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingsStarTreeField

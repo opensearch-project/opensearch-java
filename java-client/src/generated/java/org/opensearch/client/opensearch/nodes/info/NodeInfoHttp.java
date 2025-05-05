@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoHttp
 
+/**
+ * Provides HTTP connection information for the node.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoHttp implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoHttp.Builder, NodeInfoHttp> {
@@ -86,7 +89,10 @@ public class NodeInfoHttp implements PlainJsonSerializable, ToCopyableBuilder<No
     }
 
     /**
-     * Required - API name: {@code bound_address}
+     * Required - The addresses the node is bound to for HTTP traffic.
+     * <p>
+     * API name: {@code bound_address}
+     * </p>
      */
     @Nonnull
     public final List<String> boundAddress() {
@@ -109,7 +115,10 @@ public class NodeInfoHttp implements PlainJsonSerializable, ToCopyableBuilder<No
     }
 
     /**
-     * Required - API name: {@code publish_address}
+     * Required - The HTTP address published to other nodes.
+     * <p>
+     * API name: {@code publish_address}
+     * </p>
      */
     @Nonnull
     public final String publishAddress() {
@@ -192,7 +201,10 @@ public class NodeInfoHttp implements PlainJsonSerializable, ToCopyableBuilder<No
         }
 
         /**
-         * Required - API name: {@code bound_address}
+         * Required - The addresses the node is bound to for HTTP traffic.
+         * <p>
+         * API name: {@code bound_address}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>boundAddress</code>.
@@ -205,7 +217,10 @@ public class NodeInfoHttp implements PlainJsonSerializable, ToCopyableBuilder<No
         }
 
         /**
-         * Required - API name: {@code bound_address}
+         * Required - The addresses the node is bound to for HTTP traffic.
+         * <p>
+         * API name: {@code bound_address}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>boundAddress</code>.
@@ -236,7 +251,10 @@ public class NodeInfoHttp implements PlainJsonSerializable, ToCopyableBuilder<No
         }
 
         /**
-         * Required - API name: {@code publish_address}
+         * Required - The HTTP address published to other nodes.
+         * <p>
+         * API name: {@code publish_address}
+         * </p>
          */
         @Nonnull
         public final Builder publishAddress(String value) {

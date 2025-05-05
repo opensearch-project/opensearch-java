@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.analyze.ExplainAnalyzeToken
 
+/**
+ * The detailed token information.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ExplainAnalyzeToken implements PlainJsonSerializable, ToCopyableBuilder<ExplainAnalyzeToken.Builder, ExplainAnalyzeToken> {
@@ -101,7 +104,10 @@ public class ExplainAnalyzeToken implements PlainJsonSerializable, ToCopyableBui
     }
 
     /**
-     * Required - API name: {@code bytes}
+     * Required - The bytes representation of the token.
+     * <p>
+     * API name: {@code bytes}
+     * </p>
      */
     @Nonnull
     public final String bytes() {
@@ -109,14 +115,20 @@ public class ExplainAnalyzeToken implements PlainJsonSerializable, ToCopyableBui
     }
 
     /**
-     * Required - API name: {@code end_offset}
+     * Required - The ending character offset of the token.
+     * <p>
+     * API name: {@code end_offset}
+     * </p>
      */
     public final int endOffset() {
         return this.endOffset;
     }
 
     /**
+     * Whether the token is a keyword.
+     * <p>
      * API name: {@code keyword}
+     * </p>
      */
     @Nullable
     public final Boolean keyword() {
@@ -124,35 +136,50 @@ public class ExplainAnalyzeToken implements PlainJsonSerializable, ToCopyableBui
     }
 
     /**
-     * Required - API name: {@code position}
+     * Required - The position of the token.
+     * <p>
+     * API name: {@code position}
+     * </p>
      */
     public final int position() {
         return this.position;
     }
 
     /**
-     * Required - API name: {@code positionLength}
+     * Required - The length of the token position.
+     * <p>
+     * API name: {@code positionLength}
+     * </p>
      */
     public final int positionLength() {
         return this.positionLength;
     }
 
     /**
-     * Required - API name: {@code start_offset}
+     * Required - The starting character offset of the token.
+     * <p>
+     * API name: {@code start_offset}
+     * </p>
      */
     public final int startOffset() {
         return this.startOffset;
     }
 
     /**
-     * Required - API name: {@code termFrequency}
+     * Required - The frequency of the term.
+     * <p>
+     * API name: {@code termFrequency}
+     * </p>
      */
     public final int termFrequency() {
         return this.termFrequency;
     }
 
     /**
-     * Required - API name: {@code token}
+     * Required - The token string.
+     * <p>
+     * API name: {@code token}
+     * </p>
      */
     @Nonnull
     public final String token() {
@@ -160,7 +187,10 @@ public class ExplainAnalyzeToken implements PlainJsonSerializable, ToCopyableBui
     }
 
     /**
-     * Required - API name: {@code type}
+     * Required - The type of the token.
+     * <p>
+     * API name: {@code type}
+     * </p>
      */
     @Nonnull
     public final String type() {
@@ -269,7 +299,10 @@ public class ExplainAnalyzeToken implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code bytes}
+         * Required - The bytes representation of the token.
+         * <p>
+         * API name: {@code bytes}
+         * </p>
          */
         @Nonnull
         public final Builder bytes(String value) {
@@ -278,7 +311,10 @@ public class ExplainAnalyzeToken implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code end_offset}
+         * Required - The ending character offset of the token.
+         * <p>
+         * API name: {@code end_offset}
+         * </p>
          */
         @Nonnull
         public final Builder endOffset(int value) {
@@ -287,7 +323,10 @@ public class ExplainAnalyzeToken implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
+         * Whether the token is a keyword.
+         * <p>
          * API name: {@code keyword}
+         * </p>
          */
         @Nonnull
         public final Builder keyword(@Nullable Boolean value) {
@@ -296,7 +335,10 @@ public class ExplainAnalyzeToken implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code position}
+         * Required - The position of the token.
+         * <p>
+         * API name: {@code position}
+         * </p>
          */
         @Nonnull
         public final Builder position(int value) {
@@ -305,7 +347,10 @@ public class ExplainAnalyzeToken implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code positionLength}
+         * Required - The length of the token position.
+         * <p>
+         * API name: {@code positionLength}
+         * </p>
          */
         @Nonnull
         public final Builder positionLength(int value) {
@@ -314,7 +359,10 @@ public class ExplainAnalyzeToken implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code start_offset}
+         * Required - The starting character offset of the token.
+         * <p>
+         * API name: {@code start_offset}
+         * </p>
          */
         @Nonnull
         public final Builder startOffset(int value) {
@@ -323,7 +371,10 @@ public class ExplainAnalyzeToken implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code termFrequency}
+         * Required - The frequency of the term.
+         * <p>
+         * API name: {@code termFrequency}
+         * </p>
          */
         @Nonnull
         public final Builder termFrequency(int value) {
@@ -332,7 +383,10 @@ public class ExplainAnalyzeToken implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code token}
+         * Required - The token string.
+         * <p>
+         * API name: {@code token}
+         * </p>
          */
         @Nonnull
         public final Builder token(String value) {
@@ -341,7 +395,10 @@ public class ExplainAnalyzeToken implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
-         * Required - API name: {@code type}
+         * Required - The type of the token.
+         * <p>
+         * API name: {@code type}
+         * </p>
          */
         @Nonnull
         public final Builder type(String value) {

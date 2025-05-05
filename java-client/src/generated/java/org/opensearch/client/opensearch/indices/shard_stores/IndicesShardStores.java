@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.shard_stores.IndicesShardStores
 
+/**
+ * The shard store information for indices.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndicesShardStores implements PlainJsonSerializable, ToCopyableBuilder<IndicesShardStores.Builder, IndicesShardStores> {
@@ -73,7 +76,10 @@ public class IndicesShardStores implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
-     * Required - API name: {@code shards}
+     * Required - The store information for each shard.
+     * <p>
+     * API name: {@code shards}
+     * </p>
      */
     @Nonnull
     public final Map<String, ShardStoreWrapper> shards() {
@@ -136,7 +142,10 @@ public class IndicesShardStores implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * Required - API name: {@code shards}
+         * Required - The store information for each shard.
+         * <p>
+         * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>shards</code>.
@@ -149,7 +158,10 @@ public class IndicesShardStores implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * Required - API name: {@code shards}
+         * Required - The store information for each shard.
+         * <p>
+         * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>shards</code>.
@@ -162,7 +174,10 @@ public class IndicesShardStores implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * Required - API name: {@code shards}
+         * Required - The store information for each shard.
+         * <p>
+         * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds a value to <code>shards</code> using a builder lambda.

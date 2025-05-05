@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.stats.ShardRouting
 
+/**
+ * The routing information for a shard.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ShardRouting implements PlainJsonSerializable, ToCopyableBuilder<ShardRouting.Builder, ShardRouting> {
@@ -85,7 +88,10 @@ public class ShardRouting implements PlainJsonSerializable, ToCopyableBuilder<Sh
     }
 
     /**
-     * Required - API name: {@code node}
+     * Required - The node containing the shard.
+     * <p>
+     * API name: {@code node}
+     * </p>
      */
     @Nonnull
     public final String node() {
@@ -93,14 +99,20 @@ public class ShardRouting implements PlainJsonSerializable, ToCopyableBuilder<Sh
     }
 
     /**
-     * Required - API name: {@code primary}
+     * Required - Whether this is a primary shard.
+     * <p>
+     * API name: {@code primary}
+     * </p>
      */
     public final boolean primary() {
         return this.primary;
     }
 
     /**
+     * The node where the shard is relocating to.
+     * <p>
      * API name: {@code relocating_node}
+     * </p>
      */
     @Nullable
     public final String relocatingNode() {
@@ -187,7 +199,10 @@ public class ShardRouting implements PlainJsonSerializable, ToCopyableBuilder<Sh
         }
 
         /**
-         * Required - API name: {@code node}
+         * Required - The node containing the shard.
+         * <p>
+         * API name: {@code node}
+         * </p>
          */
         @Nonnull
         public final Builder node(String value) {
@@ -196,7 +211,10 @@ public class ShardRouting implements PlainJsonSerializable, ToCopyableBuilder<Sh
         }
 
         /**
-         * Required - API name: {@code primary}
+         * Required - Whether this is a primary shard.
+         * <p>
+         * API name: {@code primary}
+         * </p>
          */
         @Nonnull
         public final Builder primary(boolean value) {
@@ -205,7 +223,10 @@ public class ShardRouting implements PlainJsonSerializable, ToCopyableBuilder<Sh
         }
 
         /**
+         * The node where the shard is relocating to.
+         * <p>
          * API name: {@code relocating_node}
+         * </p>
          */
         @Nonnull
         public final Builder relocatingNode(@Nullable String value) {

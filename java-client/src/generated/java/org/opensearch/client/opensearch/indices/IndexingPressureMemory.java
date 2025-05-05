@@ -42,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -55,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexingPressureMemory
 
+/**
+ * The memory-related settings for indexing backpressure.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexingPressureMemory
@@ -63,7 +67,7 @@ public class IndexingPressureMemory
         ToCopyableBuilder<IndexingPressureMemory.Builder, IndexingPressureMemory> {
 
     @Nullable
-    private final String limit;
+    private final JsonData limit;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -76,15 +80,15 @@ public class IndexingPressureMemory
     }
 
     /**
-     * Number of outstanding bytes that may be consumed by indexing requests. When this limit is reached or exceeded, the node will reject
-     * new coordinating and primary operations. When replica operations consume 1.5x this limit, the node will reject new replica
+     * The number of outstanding bytes that may be consumed by indexing requests. When this limit is reached or exceeded, the node will
+     * reject new coordinating and primary operations. When replica operations consume 1.5x this limit, the node will reject new replica
      * operations. Defaults to 10% of the heap.
      * <p>
      * API name: {@code limit}
      * </p>
      */
     @Nullable
-    public final String limit() {
+    public final JsonData limit() {
         return this.limit;
     }
 
@@ -101,7 +105,7 @@ public class IndexingPressureMemory
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.limit != null) {
             generator.writeKey("limit");
-            generator.write(this.limit);
+            this.limit.serialize(generator, mapper);
         }
     }
 
@@ -123,7 +127,7 @@ public class IndexingPressureMemory
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IndexingPressureMemory> {
         @Nullable
-        private String limit;
+        private JsonData limit;
 
         public Builder() {}
 
@@ -142,7 +146,7 @@ public class IndexingPressureMemory
         }
 
         /**
-         * Number of outstanding bytes that may be consumed by indexing requests. When this limit is reached or exceeded, the node will
+         * The number of outstanding bytes that may be consumed by indexing requests. When this limit is reached or exceeded, the node will
          * reject new coordinating and primary operations. When replica operations consume 1.5x this limit, the node will reject new replica
          * operations. Defaults to 10% of the heap.
          * <p>
@@ -150,7 +154,7 @@ public class IndexingPressureMemory
          * </p>
          */
         @Nonnull
-        public final Builder limit(@Nullable String value) {
+        public final Builder limit(@Nullable JsonData value) {
             this.limit = value;
             return this;
         }
@@ -180,7 +184,7 @@ public class IndexingPressureMemory
     );
 
     protected static void setupIndexingPressureMemoryDeserializer(ObjectDeserializer<IndexingPressureMemory.Builder> op) {
-        op.add(Builder::limit, JsonpDeserializer.stringDeserializer(), "limit");
+        op.add(Builder::limit, JsonData._DESERIALIZER, "limit");
     }
 
     @Override

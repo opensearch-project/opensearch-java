@@ -19,7 +19,12 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.opensearch.client.codegen.exceptions.RenderException;
-import org.opensearch.client.codegen.model.overrides.ShouldGenerate;
+import org.opensearch.client.codegen.model.types.Type;
+import org.opensearch.client.codegen.model.types.TypeParameterDefinition;
+import org.opensearch.client.codegen.model.types.TypeParameterDiamond;
+import org.opensearch.client.codegen.model.types.Types;
+import org.opensearch.client.codegen.renderer.ShapeRenderingContext;
+import org.opensearch.client.codegen.transformer.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.JavaAbstractionLevel;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Strings;
@@ -132,7 +137,7 @@ public class Namespace {
         @Override
         public TypeParameterDiamond getTypeParameters() {
             if (!base) return null;
-            var thisType = getType().withTypeParameters(Type.builder().withName("Self").build());
+            var thisType = getMaterializedType().withTypeParameters(Type.builder().withName("Self").build());
             return TypeParameterDiamond.builder()
                 .withParams(TypeParameterDefinition.builder().withName("Self").withExtends(thisType).build())
                 .build();
@@ -147,7 +152,7 @@ public class Namespace {
         public Type getExtendsType() {
             return Types.Client.ApiClient(
                 Types.Client.Transport.OpenSearchTransport,
-                !base ? getType() : Type.builder().withName("Self").build()
+                !base ? getMaterializedType() : Type.builder().withName("Self").build()
             );
         }
 

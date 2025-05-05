@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoSearchRemote
 
+/**
+ * The remote search connection configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoSearchRemote implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoSearchRemote.Builder, NodeInfoSearchRemote> {
@@ -72,7 +75,10 @@ public class NodeInfoSearchRemote implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
-     * Required - API name: {@code connect}
+     * Required - The remote connection settings.
+     * <p>
+     * API name: {@code connect}
+     * </p>
      */
     @Nonnull
     public final String connect() {
@@ -130,7 +136,10 @@ public class NodeInfoSearchRemote implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * Required - API name: {@code connect}
+         * Required - The remote connection settings.
+         * <p>
+         * API name: {@code connect}
+         * </p>
          */
         @Nonnull
         public final Builder connect(String value) {

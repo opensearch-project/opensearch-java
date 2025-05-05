@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoPath
 
+/**
+ * The <code>filesystem</code> path configurations for the node.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoPath implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoPath.Builder, NodeInfoPath> {
@@ -87,7 +90,10 @@ public class NodeInfoPath implements PlainJsonSerializable, ToCopyableBuilder<No
     }
 
     /**
+     * The paths configured for data storage.
+     * <p>
      * API name: {@code data}
+     * </p>
      */
     @Nonnull
     public final List<String> data() {
@@ -95,7 +101,10 @@ public class NodeInfoPath implements PlainJsonSerializable, ToCopyableBuilder<No
     }
 
     /**
-     * Required - API name: {@code home}
+     * Required - The OpenSearch home directory path.
+     * <p>
+     * API name: {@code home}
+     * </p>
      */
     @Nonnull
     public final String home() {
@@ -103,7 +112,10 @@ public class NodeInfoPath implements PlainJsonSerializable, ToCopyableBuilder<No
     }
 
     /**
-     * Required - API name: {@code logs}
+     * Required - The path to node log files.
+     * <p>
+     * API name: {@code logs}
+     * </p>
      */
     @Nonnull
     public final String logs() {
@@ -111,7 +123,10 @@ public class NodeInfoPath implements PlainJsonSerializable, ToCopyableBuilder<No
     }
 
     /**
+     * The paths configured for snapshot repositories.
+     * <p>
      * API name: {@code repo}
+     * </p>
      */
     @Nonnull
     public final List<String> repo() {
@@ -201,7 +216,10 @@ public class NodeInfoPath implements PlainJsonSerializable, ToCopyableBuilder<No
         }
 
         /**
+         * The paths configured for data storage.
+         * <p>
          * API name: {@code data}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>data</code>.
@@ -214,7 +232,10 @@ public class NodeInfoPath implements PlainJsonSerializable, ToCopyableBuilder<No
         }
 
         /**
+         * The paths configured for data storage.
+         * <p>
          * API name: {@code data}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>data</code>.
@@ -227,7 +248,10 @@ public class NodeInfoPath implements PlainJsonSerializable, ToCopyableBuilder<No
         }
 
         /**
-         * Required - API name: {@code home}
+         * Required - The OpenSearch home directory path.
+         * <p>
+         * API name: {@code home}
+         * </p>
          */
         @Nonnull
         public final Builder home(String value) {
@@ -236,7 +260,10 @@ public class NodeInfoPath implements PlainJsonSerializable, ToCopyableBuilder<No
         }
 
         /**
-         * Required - API name: {@code logs}
+         * Required - The path to node log files.
+         * <p>
+         * API name: {@code logs}
+         * </p>
          */
         @Nonnull
         public final Builder logs(String value) {
@@ -245,7 +272,10 @@ public class NodeInfoPath implements PlainJsonSerializable, ToCopyableBuilder<No
         }
 
         /**
+         * The paths configured for snapshot repositories.
+         * <p>
          * API name: {@code repo}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>repo</code>.
@@ -258,7 +288,10 @@ public class NodeInfoPath implements PlainJsonSerializable, ToCopyableBuilder<No
         }
 
         /**
+         * The paths configured for snapshot repositories.
+         * <p>
          * API name: {@code repo}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>repo</code>.

@@ -42,6 +42,9 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: indices.IndexCheckOnStartup
 
+/**
+ * The type of check to perform when starting an index.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum IndexCheckOnStartup implements JsonEnum {

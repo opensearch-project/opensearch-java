@@ -42,11 +42,20 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: indices.IndexSettingsStoreFsLock
 
+/**
+ * The type of file system lock.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum IndexSettingsStoreFsLock implements JsonEnum {
+    /**
+     * Uses native file system locks.
+     */
     Native("native"),
 
+    /**
+     * Uses simple file system locks.
+     */
     Simple("simple");
 
     private final String jsonValue;

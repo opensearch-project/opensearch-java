@@ -1,47 +1,52 @@
-{{#type.isMap}}
-    for ({{type.mapEntryType}} item{{depth}} : {{value}}.entrySet()) {
-        generator.writeKey(item{{depth}}.getKey());
-        {{#type.mapValueType.isList}}
-            generator.writeStartArray();
-            if (item{{depth}}.getValue() != null) {
-                {{#type.mapValueType.directSerializer}}item{{depth}}.getValue(){{/type.mapValueType.directSerializer}}
-            }
-            generator.writeEnd();
-        {{/type.mapValueType.isList}}
-        {{^type.mapValueType.isList}}
-            {{#type.mapValueType.serializer}}item{{depth}}.getValue(){{/type.mapValueType.serializer}}
-        {{/type.mapValueType.isList}}
-    }
-{{/type.isMap}}
-{{#type.isList}}
-    for ({{type.listValueType}} item{{depth}} : {{value}}) {
-        {{#type.listValueType.isMap}}
-            generator.writeStartObject();
-            if (item{{depth}} != null) {
-                {{#type.listValueType.directSerializer}}item{{depth}}{{/type.listValueType.directSerializer}}
-            }
-            generator.writeEnd();
-        {{/type.listValueType.isMap}}
-        {{^type.listValueType.isMap}}
-            {{#type.listValueType.serializer}}item{{depth}}{{/type.listValueType.serializer}}
-        {{/type.listValueType.isMap}}
-    }
-{{/type.isList}}
-{{^type.isListOrMap}}
-    {{#type.isPotentiallyBoxedPrimitive}}
-        generator.write({{value}});
-    {{/type.isPotentiallyBoxedPrimitive}}
-    {{^type.isPotentiallyBoxedPrimitive}}
-        {{#type.isNumber}}
-            generator.write({{value}}.doubleValue());
-        {{/type.isNumber}}
-        {{^type.isNumber}}
-            {{#type.isString}}
-                generator.write({{value}});
-            {{/type.isString}}
-            {{^type.isString}}
-                {{value}}.serialize(generator, mapper);
-            {{/type.isString}}
-        {{/type.isNumber}}
-    {{/type.isPotentiallyBoxedPrimitive}}
-{{/type.isListOrMap}}
+{{^type.isTypeParameterRef}}
+    {{#type.isMap}}
+        for ({{type.mapEntryType}} item{{depth}} : {{value}}.entrySet()) {
+            generator.writeKey(item{{depth}}.getKey());
+            {{#type.mapValueType.isList}}
+                generator.writeStartArray();
+                if (item{{depth}}.getValue() != null) {
+                    {{#type.mapValueType.directSerializer}}item{{depth}}.getValue(){{/type.mapValueType.directSerializer}}
+                }
+                generator.writeEnd();
+            {{/type.mapValueType.isList}}
+            {{^type.mapValueType.isList}}
+                {{#type.mapValueType.serializer}}item{{depth}}.getValue(){{/type.mapValueType.serializer}}
+            {{/type.mapValueType.isList}}
+        }
+    {{/type.isMap}}
+    {{#type.isList}}
+        for ({{type.listValueType}} item{{depth}} : {{value}}) {
+            {{#type.listValueType.isMap}}
+                generator.writeStartObject();
+                if (item{{depth}} != null) {
+                    {{#type.listValueType.directSerializer}}item{{depth}}{{/type.listValueType.directSerializer}}
+                }
+                generator.writeEnd();
+            {{/type.listValueType.isMap}}
+            {{^type.listValueType.isMap}}
+                {{#type.listValueType.serializer}}item{{depth}}{{/type.listValueType.serializer}}
+            {{/type.listValueType.isMap}}
+        }
+    {{/type.isList}}
+    {{^type.isListOrMap}}
+        {{#type.isPotentiallyBoxedPrimitive}}
+            generator.write({{value}});
+        {{/type.isPotentiallyBoxedPrimitive}}
+        {{^type.isPotentiallyBoxedPrimitive}}
+            {{#type.isNumber}}
+                generator.write({{value}}.doubleValue());
+            {{/type.isNumber}}
+            {{^type.isNumber}}
+                {{#type.isString}}
+                    generator.write({{value}});
+                {{/type.isString}}
+                {{^type.isString}}
+                    {{value}}.serialize(generator, mapper);
+                {{/type.isString}}
+            {{/type.isNumber}}
+        {{/type.isPotentiallyBoxedPrimitive}}
+    {{/type.isListOrMap}}
+{{/type.isTypeParameterRef}}
+{{#type.isTypeParameterRef}}
+    {{TYPES.Client.Json.JsonpUtils}}.serialize({{value}}, generator, {{#camelCase}}{{type.name}}{{/camelCase}}Serializer, mapper);
+{{/type.isTypeParameterRef}}

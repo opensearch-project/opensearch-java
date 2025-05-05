@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeJvmInfo
 
+/**
+ * Provides JVM-specific information for the node.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeJvmInfo.Builder, NodeJvmInfo> {
@@ -124,14 +127,20 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
     }
 
     /**
-     * Required - API name: {@code bundled_jdk}
+     * Required - Whether the JDK is bundled with OpenSearch.
+     * <p>
+     * API name: {@code bundled_jdk}
+     * </p>
      */
     public final boolean bundledJdk() {
         return this.bundledJdk;
     }
 
     /**
+     * The garbage collectors enabled in the JVM.
+     * <p>
      * API name: {@code gc_collectors}
+     * </p>
      */
     @Nonnull
     public final List<String> gcCollectors() {
@@ -139,7 +148,10 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
     }
 
     /**
+     * The command line arguments passed to the JVM.
+     * <p>
      * API name: {@code input_arguments}
+     * </p>
      */
     @Nonnull
     public final List<String> inputArguments() {
@@ -155,7 +167,10 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
     }
 
     /**
+     * The memory pools available to the JVM.
+     * <p>
      * API name: {@code memory_pools}
+     * </p>
      */
     @Nonnull
     public final List<String> memoryPools() {
@@ -163,7 +178,10 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
     }
 
     /**
-     * Required - API name: {@code pid}
+     * Required - The process identifier of the JVM.
+     * <p>
+     * API name: {@code pid}
+     * </p>
      */
     public final int pid() {
         return this.pid;
@@ -185,7 +203,10 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
     }
 
     /**
+     * Whether the node is using the bundled JDK.
+     * <p>
      * API name: {@code using_bundled_jdk}
+     * </p>
      */
     @Nullable
     public final Boolean usingBundledJdk() {
@@ -217,7 +238,10 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
     }
 
     /**
+     * The vendor of the JVM.
+     * <p>
      * API name: {@code vm_vendor}
+     * </p>
      */
     @Nullable
     public final String vmVendor() {
@@ -403,7 +427,10 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         }
 
         /**
-         * Required - API name: {@code bundled_jdk}
+         * Required - Whether the JDK is bundled with OpenSearch.
+         * <p>
+         * API name: {@code bundled_jdk}
+         * </p>
          */
         @Nonnull
         public final Builder bundledJdk(boolean value) {
@@ -412,7 +439,10 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         }
 
         /**
+         * The garbage collectors enabled in the JVM.
+         * <p>
          * API name: {@code gc_collectors}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>gcCollectors</code>.
@@ -425,7 +455,10 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         }
 
         /**
+         * The garbage collectors enabled in the JVM.
+         * <p>
          * API name: {@code gc_collectors}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>gcCollectors</code>.
@@ -438,7 +471,10 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         }
 
         /**
+         * The command line arguments passed to the JVM.
+         * <p>
          * API name: {@code input_arguments}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>inputArguments</code>.
@@ -451,7 +487,10 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         }
 
         /**
+         * The command line arguments passed to the JVM.
+         * <p>
          * API name: {@code input_arguments}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>inputArguments</code>.
@@ -481,7 +520,10 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         }
 
         /**
+         * The memory pools available to the JVM.
+         * <p>
          * API name: {@code memory_pools}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>memoryPools</code>.
@@ -494,7 +536,10 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         }
 
         /**
+         * The memory pools available to the JVM.
+         * <p>
          * API name: {@code memory_pools}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>memoryPools</code>.
@@ -507,7 +552,10 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         }
 
         /**
-         * Required - API name: {@code pid}
+         * Required - The process identifier of the JVM.
+         * <p>
+         * API name: {@code pid}
+         * </p>
          */
         @Nonnull
         public final Builder pid(int value) {
@@ -534,7 +582,10 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         }
 
         /**
+         * Whether the node is using the bundled JDK.
+         * <p>
          * API name: {@code using_bundled_jdk}
+         * </p>
          */
         @Nonnull
         public final Builder usingBundledJdk(@Nullable Boolean value) {
@@ -570,7 +621,10 @@ public class NodeJvmInfo implements PlainJsonSerializable, ToCopyableBuilder<Nod
         }
 
         /**
+         * The vendor of the JVM.
+         * <p>
          * API name: {@code vm_vendor}
+         * </p>
          */
         @Nonnull
         public final Builder vmVendor(@Nullable String value) {

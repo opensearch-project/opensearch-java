@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.stats.Response
 
+/**
+ * The response containing node statistics.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodesStatsResponse extends NodesResponseBase implements ToCopyableBuilder<NodesStatsResponse.Builder, NodesStatsResponse> {

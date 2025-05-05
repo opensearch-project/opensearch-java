@@ -60,6 +60,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.TemplateMapping
 
+/**
+ * The mapping configuration for a template.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class TemplateMapping implements PlainJsonSerializable, ToCopyableBuilder<TemplateMapping.Builder, TemplateMapping> {
@@ -121,14 +124,20 @@ public class TemplateMapping implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Required - API name: {@code order}
+     * Required - The order in which the template should be applied.
+     * <p>
+     * API name: {@code order}
+     * </p>
      */
     public final int order() {
         return this.order;
     }
 
     /**
-     * Required - API name: {@code settings}
+     * Required - The index settings to apply.
+     * <p>
+     * API name: {@code settings}
+     * </p>
      */
     @Nonnull
     public final Map<String, JsonData> settings() {
@@ -322,7 +331,10 @@ public class TemplateMapping implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - API name: {@code order}
+         * Required - The order in which the template should be applied.
+         * <p>
+         * API name: {@code order}
+         * </p>
          */
         @Nonnull
         public final Builder order(int value) {
@@ -331,7 +343,10 @@ public class TemplateMapping implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - API name: {@code settings}
+         * Required - The index settings to apply.
+         * <p>
+         * API name: {@code settings}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>settings</code>.
@@ -344,7 +359,10 @@ public class TemplateMapping implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Required - API name: {@code settings}
+         * Required - The index settings to apply.
+         * <p>
+         * API name: {@code settings}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>settings</code>.

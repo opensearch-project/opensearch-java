@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoTransport
 
+/**
+ * The transport layer information.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoTransport implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoTransport.Builder, NodeInfoTransport> {
@@ -82,7 +85,10 @@ public class NodeInfoTransport implements PlainJsonSerializable, ToCopyableBuild
     }
 
     /**
-     * Required - API name: {@code bound_address}
+     * Required - The addresses the node is bound to for transport traffic.
+     * <p>
+     * API name: {@code bound_address}
+     * </p>
      */
     @Nonnull
     public final List<String> boundAddress() {
@@ -90,7 +96,10 @@ public class NodeInfoTransport implements PlainJsonSerializable, ToCopyableBuild
     }
 
     /**
-     * Required - API name: {@code profiles}
+     * Required - The configured transport profiles.
+     * <p>
+     * API name: {@code profiles}
+     * </p>
      */
     @Nonnull
     public final Map<String, String> profiles() {
@@ -98,7 +107,10 @@ public class NodeInfoTransport implements PlainJsonSerializable, ToCopyableBuild
     }
 
     /**
-     * Required - API name: {@code publish_address}
+     * Required - The published transport address.
+     * <p>
+     * API name: {@code publish_address}
+     * </p>
      */
     @Nonnull
     public final String publishAddress() {
@@ -177,7 +189,10 @@ public class NodeInfoTransport implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * Required - API name: {@code bound_address}
+         * Required - The addresses the node is bound to for transport traffic.
+         * <p>
+         * API name: {@code bound_address}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>boundAddress</code>.
@@ -190,7 +205,10 @@ public class NodeInfoTransport implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * Required - API name: {@code bound_address}
+         * Required - The addresses the node is bound to for transport traffic.
+         * <p>
+         * API name: {@code bound_address}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>boundAddress</code>.
@@ -203,7 +221,10 @@ public class NodeInfoTransport implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * Required - API name: {@code profiles}
+         * Required - The configured transport profiles.
+         * <p>
+         * API name: {@code profiles}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>profiles</code>.
@@ -216,7 +237,10 @@ public class NodeInfoTransport implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * Required - API name: {@code profiles}
+         * Required - The configured transport profiles.
+         * <p>
+         * API name: {@code profiles}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>profiles</code>.
@@ -229,7 +253,10 @@ public class NodeInfoTransport implements PlainJsonSerializable, ToCopyableBuild
         }
 
         /**
-         * Required - API name: {@code publish_address}
+         * Required - The published transport address.
+         * <p>
+         * API name: {@code publish_address}
+         * </p>
          */
         @Nonnull
         public final Builder publishAddress(String value) {

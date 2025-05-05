@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.stats.AllIndicesStats
 
+/**
+ * The statistics for all indexes.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class AllIndicesStats implements PlainJsonSerializable, ToCopyableBuilder<AllIndicesStats.Builder, AllIndicesStats> {

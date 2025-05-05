@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoSearch
 
+/**
+ * The search operation configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoSearch implements PlainJsonSerializable, ToCopyableBuilder<NodeInfoSearch.Builder, NodeInfoSearch> {

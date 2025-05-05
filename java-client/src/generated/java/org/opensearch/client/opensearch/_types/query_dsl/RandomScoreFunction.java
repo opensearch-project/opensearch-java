@@ -42,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -67,7 +68,7 @@ public class RandomScoreFunction
     private final String field;
 
     @Nullable
-    private final String seed;
+    private final JsonData seed;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -100,7 +101,7 @@ public class RandomScoreFunction
      * API name: {@code seed}
      */
     @Nullable
-    public final String seed() {
+    public final JsonData seed() {
         return this.seed;
     }
 
@@ -122,7 +123,7 @@ public class RandomScoreFunction
 
         if (this.seed != null) {
             generator.writeKey("seed");
-            generator.write(this.seed);
+            this.seed.serialize(generator, mapper);
         }
     }
 
@@ -146,7 +147,7 @@ public class RandomScoreFunction
         @Nullable
         private String field;
         @Nullable
-        private String seed;
+        private JsonData seed;
 
         public Builder() {}
 
@@ -179,7 +180,7 @@ public class RandomScoreFunction
          * API name: {@code seed}
          */
         @Nonnull
-        public final Builder seed(@Nullable String value) {
+        public final Builder seed(@Nullable JsonData value) {
             this.seed = value;
             return this;
         }
@@ -210,7 +211,7 @@ public class RandomScoreFunction
 
     protected static void setupRandomScoreFunctionDeserializer(ObjectDeserializer<RandomScoreFunction.Builder> op) {
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-        op.add(Builder::seed, JsonpDeserializer.stringDeserializer(), "seed");
+        op.add(Builder::seed, JsonData._DESERIALIZER, "seed");
     }
 
     @Override

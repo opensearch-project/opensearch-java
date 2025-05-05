@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.resolve_index.ResolveIndexAliasItem
 
+/**
+ * The resolved information for an index alias.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class ResolveIndexAliasItem

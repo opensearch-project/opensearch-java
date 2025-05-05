@@ -175,7 +175,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
     }
 
     /**
+     * Information about available aggregation types.
+     * <p>
      * API name: {@code aggregations}
+     * </p>
      */
     @Nonnull
     public final Map<String, NodeInfoAggregation> aggregations() {
@@ -183,7 +186,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
     }
 
     /**
+     * The custom attributes of the node.
+     * <p>
      * API name: {@code attributes}
+     * </p>
      */
     @Nonnull
     public final Map<String, String> attributes() {
@@ -210,7 +216,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
     }
 
     /**
-     * Required - API name: {@code build_type}
+     * Required - The type of build, such as <code>tar</code>, <code>docker</code>, <code>rpm</code>.
+     * <p>
+     * API name: {@code build_type}
+     * </p>
      */
     @Nonnull
     public final String buildType() {
@@ -258,7 +267,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
     }
 
     /**
+     * The list of modules installed on the node.
+     * <p>
      * API name: {@code modules}
+     * </p>
      */
     @Nonnull
     public final List<PluginStats> modules() {
@@ -290,7 +302,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
     }
 
     /**
+     * The list of plugins installed on the node.
+     * <p>
      * API name: {@code plugins}
+     * </p>
      */
     @Nonnull
     public final List<PluginStats> plugins() {
@@ -330,7 +345,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
     }
 
     /**
+     * Information about thread pool configurations.
+     * <p>
      * API name: {@code thread_pool}
+     * </p>
      */
     @Nonnull
     public final Map<String, NodeThreadPoolInfo> threadPool() {
@@ -663,7 +681,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         }
 
         /**
+         * Information about available aggregation types.
+         * <p>
          * API name: {@code aggregations}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>aggregations</code>.
@@ -676,7 +697,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         }
 
         /**
+         * Information about available aggregation types.
+         * <p>
          * API name: {@code aggregations}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>aggregations</code>.
@@ -689,7 +713,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         }
 
         /**
+         * Information about available aggregation types.
+         * <p>
          * API name: {@code aggregations}
+         * </p>
          *
          * <p>
          * Adds a value to <code>aggregations</code> using a builder lambda.
@@ -701,7 +728,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         }
 
         /**
+         * The custom attributes of the node.
+         * <p>
          * API name: {@code attributes}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>attributes</code>.
@@ -714,7 +744,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         }
 
         /**
+         * The custom attributes of the node.
+         * <p>
          * API name: {@code attributes}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>attributes</code>.
@@ -748,7 +781,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         }
 
         /**
-         * Required - API name: {@code build_type}
+         * Required - The type of build, such as <code>tar</code>, <code>docker</code>, <code>rpm</code>.
+         * <p>
+         * API name: {@code build_type}
+         * </p>
          */
         @Nonnull
         public final Builder buildType(String value) {
@@ -826,7 +862,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         }
 
         /**
+         * The list of modules installed on the node.
+         * <p>
          * API name: {@code modules}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>modules</code>.
@@ -839,7 +878,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         }
 
         /**
+         * The list of modules installed on the node.
+         * <p>
          * API name: {@code modules}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>modules</code>.
@@ -852,7 +894,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         }
 
         /**
+         * The list of modules installed on the node.
+         * <p>
          * API name: {@code modules}
+         * </p>
          *
          * <p>
          * Adds a value to <code>modules</code> using a builder lambda.
@@ -907,7 +952,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         }
 
         /**
+         * The list of plugins installed on the node.
+         * <p>
          * API name: {@code plugins}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>plugins</code>.
@@ -920,7 +968,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         }
 
         /**
+         * The list of plugins installed on the node.
+         * <p>
          * API name: {@code plugins}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>plugins</code>.
@@ -933,7 +984,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         }
 
         /**
+         * The list of plugins installed on the node.
+         * <p>
          * API name: {@code plugins}
+         * </p>
          *
          * <p>
          * Adds a value to <code>plugins</code> using a builder lambda.
@@ -1022,7 +1076,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         }
 
         /**
+         * Information about thread pool configurations.
+         * <p>
          * API name: {@code thread_pool}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>threadPool</code>.
@@ -1035,7 +1092,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         }
 
         /**
+         * Information about thread pool configurations.
+         * <p>
          * API name: {@code thread_pool}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>threadPool</code>.
@@ -1048,7 +1108,10 @@ public class NodeInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeIn
         }
 
         /**
+         * Information about thread pool configurations.
+         * <p>
          * API name: {@code thread_pool}
+         * </p>
          *
          * <p>
          * Adds a value to <code>threadPool</code> using a builder lambda.

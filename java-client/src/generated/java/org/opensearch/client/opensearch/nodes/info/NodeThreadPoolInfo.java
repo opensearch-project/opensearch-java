@@ -57,6 +57,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeThreadPoolInfo
 
+/**
+ * The thread pool configuration details.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeThreadPoolInfo implements PlainJsonSerializable, ToCopyableBuilder<NodeThreadPoolInfo.Builder, NodeThreadPoolInfo> {
@@ -94,7 +97,10 @@ public class NodeThreadPoolInfo implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The core number of threads.
+     * <p>
      * API name: {@code core}
+     * </p>
      */
     @Nullable
     public final Integer core() {
@@ -110,7 +116,10 @@ public class NodeThreadPoolInfo implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The maximum number of threads.
+     * <p>
      * API name: {@code max}
+     * </p>
      */
     @Nullable
     public final Integer max() {
@@ -118,14 +127,20 @@ public class NodeThreadPoolInfo implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
-     * Required - API name: {@code queue_size}
+     * Required - The size of the task queue.
+     * <p>
+     * API name: {@code queue_size}
+     * </p>
      */
     public final int queueSize() {
         return this.queueSize;
     }
 
     /**
+     * The current size of the thread pool.
+     * <p>
      * API name: {@code size}
+     * </p>
      */
     @Nullable
     public final Integer size() {
@@ -133,7 +148,10 @@ public class NodeThreadPoolInfo implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
-     * Required - API name: {@code type}
+     * Required - The type of thread pool executor.
+     * <p>
+     * API name: {@code type}
+     * </p>
      */
     @Nonnull
     public final String type() {
@@ -233,7 +251,10 @@ public class NodeThreadPoolInfo implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The core number of threads.
+         * <p>
          * API name: {@code core}
+         * </p>
          */
         @Nonnull
         public final Builder core(@Nullable Integer value) {
@@ -259,7 +280,10 @@ public class NodeThreadPoolInfo implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The maximum number of threads.
+         * <p>
          * API name: {@code max}
+         * </p>
          */
         @Nonnull
         public final Builder max(@Nullable Integer value) {
@@ -268,7 +292,10 @@ public class NodeThreadPoolInfo implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * Required - API name: {@code queue_size}
+         * Required - The size of the task queue.
+         * <p>
+         * API name: {@code queue_size}
+         * </p>
          */
         @Nonnull
         public final Builder queueSize(int value) {
@@ -277,7 +304,10 @@ public class NodeThreadPoolInfo implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The current size of the thread pool.
+         * <p>
          * API name: {@code size}
+         * </p>
          */
         @Nonnull
         public final Builder size(@Nullable Integer value) {
@@ -286,7 +316,10 @@ public class NodeThreadPoolInfo implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * Required - API name: {@code type}
+         * Required - The type of thread pool executor.
+         * <p>
+         * API name: {@code type}
+         * </p>
          */
         @Nonnull
         public final Builder type(String value) {

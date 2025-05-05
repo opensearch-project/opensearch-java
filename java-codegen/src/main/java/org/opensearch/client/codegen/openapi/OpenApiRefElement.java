@@ -14,24 +14,21 @@ import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.opensearch.client.codegen.utils.Strings;
+import org.opensearch.client.codegen.openapi.reference.RelativeRef;
 
-public abstract class OpenApiRefElement<TSelf extends OpenApiRefElement<TSelf>> extends OpenApiElement<TSelf> {
+public abstract class OpenApiRefElement<Self extends OpenApiRefElement<Self>> extends OpenApiElement<Self> {
     @Nullable
-    private final RelativeRef $ref;
+    private RelativeRef $ref;
     @Nonnull
-    private final Class<TSelf> clazz;
+    private final Class<Self> clazz;
 
-    OpenApiRefElement(
-        @Nullable OpenApiElement<?> parent,
-        @Nonnull JsonPointer pointer,
-        @Nullable String $ref,
-        @Nonnull Class<TSelf> clazz
-    ) {
-        super(parent, pointer);
+    OpenApiRefElement(@Nonnull AbstractBuilder<Self, ?> builder, @Nonnull Class<Self> clazz) {
+        super(builder);
+        this.$ref = builder.$ref;
+        this.clazz = Objects.requireNonNull(clazz, "clazz must not be null");
+    }
+
+    OpenApiRefElement(@Nullable String $ref, @Nonnull Class<Self> clazz) {
         this.$ref = ifNonnull($ref, RelativeRef::parse);
         this.clazz = Objects.requireNonNull(clazz, "clazz must not be null");
     }
@@ -45,75 +42,48 @@ public abstract class OpenApiRefElement<TSelf extends OpenApiRefElement<TSelf>> 
         return Optional.ofNullable($ref);
     }
 
+    public void set$ref(@Nullable RelativeRef $ref) {
+        this.$ref = $ref;
+    }
+
     @Nonnull
-    public TSelf resolve() {
+    public Self resolve() {
         if ($ref == null) {
             return self();
         }
-        return getSpecification().map(s -> $ref.resolveIn(s, clazz))
-            .orElseThrow(() -> new UnsupportedOperationException("Cannot resolve $ref in anonymous component"));
+        return resolve(getSpecification().orElseThrow(() -> new IllegalStateException("Cannot resolve $ref without a specification")));
     }
 
-    public static class RelativeRef {
-        @Nonnull
-        public static RelativeRef parse(@Nonnull String $ref) {
-            Objects.requireNonNull($ref, "$ref must not be null");
-            var fragmentIdx = $ref.indexOf('#');
-            if (fragmentIdx < 0) throw new IllegalArgumentException("$ref must be a valid relative reference");
-
-            var relativeLocation = $ref.substring(0, fragmentIdx);
-            var pointer = JsonPointer.parse($ref.substring(fragmentIdx + 1));
-            return new RelativeRef(relativeLocation, pointer);
+    @Nonnull
+    public Self resolve(@Nonnull OpenApiSpecification specification) {
+        if ($ref == null) {
+            return self();
         }
+        Objects.requireNonNull(specification, "specification must not be null");
+        var resolved = $ref.resolveIn(specification).orElseThrow(() -> new IllegalStateException("Failed to resolve $ref: " + $ref));
+        if (!clazz.isInstance(resolved)) {
+            throw new IllegalStateException("Resolved $ref is not an instance of " + clazz.getSimpleName());
+        }
+        return clazz.cast(resolved);
+    }
 
+    @Nonnull
+    <Builder extends AbstractBuilder<Self, Builder>> Builder toBuilder(@Nonnull Builder builder) {
+        return super.toBuilder(builder).with$ref($ref);
+    }
+
+    public static abstract class AbstractBuilder<
+        Element extends OpenApiRefElement<Element>,
+        Builder extends AbstractBuilder<Element, Builder>> extends OpenApiElement.AbstractBuilder<Element, Builder> {
         @Nullable
-        private final String relativeLocation;
-        @Nonnull
-        private final JsonPointer pointer;
+        private RelativeRef $ref;
 
-        private RelativeRef(@Nullable String relativeLocation, @Nonnull JsonPointer pointer) {
-            this.relativeLocation = relativeLocation;
-            this.pointer = Objects.requireNonNull(pointer, "pointer must not be null");
-        }
-
-        public <TElement extends OpenApiElement<TElement>> TElement resolveIn(OpenApiSpecification specification, Class<TElement> clazz) {
-            Objects.requireNonNull(specification, "specification must not be null");
-
-            if (!Strings.isNullOrEmpty(relativeLocation)) {
-                specification = OpenApiSpecification.retrieve(specification.getLocation().resolve(relativeLocation));
-            }
-
-            return specification.getElement(pointer, clazz);
-        }
+        AbstractBuilder() {}
 
         @Nonnull
-        public JsonPointer getPointer() {
-            return pointer;
-        }
-
-        @Override
-        public String toString() {
-            return new ToStringBuilder(this).append("pointer", pointer).append("relativeLocation", relativeLocation).toString();
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-
-            if (o == null || getClass() != o.getClass()) {
-                return false;
-            }
-
-            RelativeRef that = (RelativeRef) o;
-
-            return new EqualsBuilder().append(relativeLocation, that.relativeLocation).append(pointer, that.pointer).isEquals();
-        }
-
-        @Override
-        public int hashCode() {
-            return new HashCodeBuilder(17, 37).append(relativeLocation).append(pointer).toHashCode();
+        public Builder with$ref(@Nullable RelativeRef $ref) {
+            this.$ref = $ref;
+            return self();
         }
     }
 }

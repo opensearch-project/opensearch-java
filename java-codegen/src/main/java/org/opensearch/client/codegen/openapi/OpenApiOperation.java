@@ -14,24 +14,22 @@ import io.swagger.v3.oas.models.Operation;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.model.Deprecation;
 import org.opensearch.client.codegen.model.OperationGroup;
+import org.opensearch.client.codegen.utils.Clone;
+import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Versions;
+import org.opensearch.client.codegen.utils.builder.ToBuilder;
 import org.semver4j.Semver;
 
-public class OpenApiOperation extends OpenApiElement<OpenApiOperation> {
-    @Nonnull
-    private final OpenApiPath parentPath;
-    @Nonnull
-    private final HttpMethod httpMethod;
+public final class OpenApiOperation extends OpenApiElement<OpenApiOperation> implements ToBuilder<OpenApiOperation.Builder> {
+    private HttpMethod httpMethod;
     @Nonnull
     private final String id;
     @Nullable
-    private final List<OpenApiParameter> parameters;
+    private List<OpenApiParameter> parameters;
     @Nonnull
     private final OperationGroup operationGroup;
     @Nullable
@@ -39,9 +37,9 @@ public class OpenApiOperation extends OpenApiElement<OpenApiOperation> {
     @Nullable
     private final String description;
     @Nullable
-    private final OpenApiRequestBody requestBody;
+    private OpenApiRequestBody requestBody;
     @Nullable
-    private final OpenApiResponses responses;
+    private OpenApiResponses responses;
     @Nullable
     private final String versionAdded;
     @Nullable
@@ -49,27 +47,42 @@ public class OpenApiOperation extends OpenApiElement<OpenApiOperation> {
     @Nullable
     private final String deprecationMessage;
 
-    protected OpenApiOperation(@Nonnull OpenApiPath parent, @Nonnull JsonPointer pointer, @Nonnull Operation operation) {
-        super(parent, pointer);
-        this.parentPath = Objects.requireNonNull(parent, "parent must not be null");
-        this.httpMethod = HttpMethod.from(pointer.getLastKey().orElseThrow());
+    OpenApiOperation(@Nonnull Builder builder) {
+        super(builder);
+        this.id = Objects.requireNonNull(builder.id, "id must not be null");
+        setParameters(builder.parameters);
+        this.operationGroup = Objects.requireNonNull(builder.operationGroup, "operationGroup must not be null");
+        this.isDeprecated = builder.isDeprecated;
+        this.description = builder.description;
+        setRequestBody(builder.requestBody);
+        setResponses(builder.responses);
+        this.versionAdded = builder.versionAdded;
+        this.versionDeprecated = builder.versionDeprecated;
+        this.deprecationMessage = builder.deprecationMessage;
+    }
+
+    OpenApiOperation(@Nonnull Operation operation) {
         Objects.requireNonNull(operation, "operation must not be null");
         this.id = Objects.requireNonNull(operation.getOperationId());
-        this.parameters = children("parameters", operation.getParameters(), OpenApiParameter::new);
+        setParameters(children(operation.getParameters(), OpenApiParameter::new));
         var extensions = Objects.requireNonNull(operation.getExtensions(), "operation must have extensions defined");
         this.operationGroup = OperationGroup.from((String) extensions.get("x-operation-group"));
         this.isDeprecated = operation.getDeprecated();
         this.description = operation.getDescription();
-        this.requestBody = child("requestBody", operation.getRequestBody(), OpenApiRequestBody::new);
-        this.responses = child("responses", operation.getResponses(), OpenApiResponses::new);
+        setRequestBody(ifNonnull(operation.getRequestBody(), OpenApiRequestBody::new));
+        setResponses(ifNonnull(operation.getResponses(), OpenApiResponses::new));
         this.versionAdded = ifNonnull(extensions.get("x-version-added"), String::valueOf);
         this.versionDeprecated = ifNonnull(extensions.get("x-version-deprecated"), v -> Versions.coerce((String) v));
         this.deprecationMessage = ifNonnull(extensions.get("x-deprecation-message"), String::valueOf);
     }
 
-    @Nonnull
-    public String getHttpPath() {
-        return parentPath.getHttpPath();
+    @Override
+    void initialize(@Nullable OpenApiElement<?> parent, @Nonnull JsonPointer pointer) {
+        super.initialize(parent, pointer);
+        this.httpMethod = HttpMethod.from(pointer.getLastKey().orElseThrow());
+        initializeChildren("parameters", parameters);
+        initializeChild("requestBody", requestBody);
+        initializeChild("responses", responses);
     }
 
     @Nonnull
@@ -88,8 +101,23 @@ public class OpenApiOperation extends OpenApiElement<OpenApiOperation> {
     }
 
     @Nonnull
+    public Optional<List<OpenApiParameter>> getParameters() {
+        return Lists.unmodifiableOpt(parameters);
+    }
+
+    public void setParameters(@Nullable List<OpenApiParameter> parameters) {
+        this.parameters = parameters;
+        initializeChildren("parameters", parameters);
+    }
+
+    @Nonnull
     public Optional<OpenApiRequestBody> getRequestBody() {
         return Optional.ofNullable(requestBody);
+    }
+
+    public void setRequestBody(@Nullable OpenApiRequestBody requestBody) {
+        this.requestBody = requestBody;
+        initializeChild("requestBody", requestBody);
     }
 
     @Nonnull
@@ -97,15 +125,9 @@ public class OpenApiOperation extends OpenApiElement<OpenApiOperation> {
         return Optional.ofNullable(responses);
     }
 
-    @Nonnull
-    public List<OpenApiParameter> getAllRelevantParameters(@Nonnull In in) {
-        Objects.requireNonNull(in, "in must not be null");
-        return Stream.of(parentPath.getParameters(), Optional.ofNullable(parameters))
-            .flatMap(Optional::stream)
-            .flatMap(List::stream)
-            .map(OpenApiRefElement::resolve)
-            .filter(p -> p.getIn().equals(Optional.of(in)))
-            .collect(Collectors.toList());
+    public void setResponses(@Nullable OpenApiResponses responses) {
+        this.responses = responses;
+        initializeChild("responses", responses);
     }
 
     @Nonnull
@@ -117,5 +139,99 @@ public class OpenApiOperation extends OpenApiElement<OpenApiOperation> {
     public Optional<Deprecation> getDeprecation() {
         if (versionDeprecated == null) return Optional.empty();
         return Optional.of(new Deprecation(deprecationMessage, versionDeprecated));
+    }
+
+    @Override
+    public @Nonnull OpenApiOperation clone() {
+        return toBuilder().build();
+    }
+
+    @Override
+    public @Nonnull Builder toBuilder() {
+        return super.toBuilder(builder()).withId(id)
+            .withParameters(ifNonnull(parameters, Clone::clone))
+            .withOperationGroup(operationGroup)
+            .withIsDeprecated(isDeprecated)
+            .withDescription(description)
+            .withRequestBody(ifNonnull(requestBody, Clone::clone))
+            .withResponses(ifNonnull(responses, Clone::clone))
+            .withVersionAdded(versionAdded)
+            .withVersionDeprecated(versionDeprecated)
+            .withDeprecationMessage(deprecationMessage);
+    }
+
+    public static @Nonnull Builder builder() {
+        return new Builder();
+    }
+
+    public static final class Builder extends OpenApiElement.AbstractBuilder<OpenApiOperation, Builder> {
+        private String id;
+        private List<OpenApiParameter> parameters;
+        private OperationGroup operationGroup;
+        private Boolean isDeprecated;
+        private String description;
+        private OpenApiRequestBody requestBody;
+        private OpenApiResponses responses;
+        private String versionAdded;
+        private Semver versionDeprecated;
+        private String deprecationMessage;
+
+        private Builder() {}
+
+        @Nonnull
+        @Override
+        protected OpenApiOperation construct() {
+            return new OpenApiOperation(this);
+        }
+
+        public @Nonnull Builder withId(@Nonnull String id) {
+            this.id = Objects.requireNonNull(id, "id must not be null");
+            return this;
+        }
+
+        public @Nonnull Builder withParameters(@Nullable List<OpenApiParameter> parameters) {
+            this.parameters = parameters;
+            return this;
+        }
+
+        public @Nonnull Builder withOperationGroup(@Nonnull OperationGroup operationGroup) {
+            this.operationGroup = Objects.requireNonNull(operationGroup, "operationGroup must not be null");
+            return this;
+        }
+
+        public @Nonnull Builder withIsDeprecated(@Nullable Boolean isDeprecated) {
+            this.isDeprecated = isDeprecated;
+            return this;
+        }
+
+        public @Nonnull Builder withDescription(@Nullable String description) {
+            this.description = description;
+            return this;
+        }
+
+        public @Nonnull Builder withRequestBody(@Nullable OpenApiRequestBody requestBody) {
+            this.requestBody = requestBody;
+            return this;
+        }
+
+        public @Nonnull Builder withResponses(@Nullable OpenApiResponses responses) {
+            this.responses = responses;
+            return this;
+        }
+
+        public @Nonnull Builder withVersionAdded(@Nullable String versionAdded) {
+            this.versionAdded = versionAdded;
+            return this;
+        }
+
+        public @Nonnull Builder withVersionDeprecated(@Nullable Semver versionDeprecated) {
+            this.versionDeprecated = versionDeprecated;
+            return this;
+        }
+
+        public @Nonnull Builder withDeprecationMessage(@Nullable String deprecationMessage) {
+            this.deprecationMessage = deprecationMessage;
+            return this;
+        }
     }
 }

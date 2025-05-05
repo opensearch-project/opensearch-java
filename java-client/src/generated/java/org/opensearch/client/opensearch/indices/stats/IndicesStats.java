@@ -58,6 +58,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.stats.IndicesStats
 
+/**
+ * The statistics for specific indexes.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndicesStats implements PlainJsonSerializable, ToCopyableBuilder<IndicesStats.Builder, IndicesStats> {
@@ -96,7 +99,10 @@ public class IndicesStats implements PlainJsonSerializable, ToCopyableBuilder<In
     }
 
     /**
+     * The statistics for individual shards.
+     * <p>
      * API name: {@code shards}
+     * </p>
      */
     @Nonnull
     public final Map<String, List<IndexShardStats>> shards() {
@@ -219,7 +225,10 @@ public class IndicesStats implements PlainJsonSerializable, ToCopyableBuilder<In
         }
 
         /**
+         * The statistics for individual shards.
+         * <p>
          * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>shards</code>.
@@ -232,7 +241,10 @@ public class IndicesStats implements PlainJsonSerializable, ToCopyableBuilder<In
         }
 
         /**
+         * The statistics for individual shards.
+         * <p>
          * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>shards</code>.

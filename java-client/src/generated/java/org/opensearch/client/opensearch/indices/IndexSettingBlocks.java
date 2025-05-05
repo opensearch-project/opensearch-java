@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.IndexSettingBlocks
 
+/**
+ * The block settings that control index operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class IndexSettingBlocks implements PlainJsonSerializable, ToCopyableBuilder<IndexSettingBlocks.Builder, IndexSettingBlocks> {

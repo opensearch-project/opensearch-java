@@ -55,6 +55,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.recovery.RecoveryStatus
 
+/**
+ * The status of recovery operations.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class RecoveryStatus implements PlainJsonSerializable, ToCopyableBuilder<RecoveryStatus.Builder, RecoveryStatus> {
@@ -73,7 +76,10 @@ public class RecoveryStatus implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
-     * Required - API name: {@code shards}
+     * Required - The list of shard recovery statuses.
+     * <p>
+     * API name: {@code shards}
+     * </p>
      */
     @Nonnull
     public final List<ShardRecovery> shards() {
@@ -135,7 +141,10 @@ public class RecoveryStatus implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code shards}
+         * Required - The list of shard recovery statuses.
+         * <p>
+         * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>shards</code>.
@@ -148,7 +157,10 @@ public class RecoveryStatus implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code shards}
+         * Required - The list of shard recovery statuses.
+         * <p>
+         * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>shards</code>.
@@ -161,7 +173,10 @@ public class RecoveryStatus implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * Required - API name: {@code shards}
+         * Required - The list of shard recovery statuses.
+         * <p>
+         * API name: {@code shards}
+         * </p>
          *
          * <p>
          * Adds a value to <code>shards</code> using a builder lambda.

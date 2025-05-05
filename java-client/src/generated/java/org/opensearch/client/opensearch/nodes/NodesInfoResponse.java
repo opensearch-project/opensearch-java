@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.Response
 
+/**
+ * The response containing node information.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodesInfoResponse extends NodesResponseBase implements ToCopyableBuilder<NodesInfoResponse.Builder, NodesInfoResponse> {

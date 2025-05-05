@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: indices.FielddataFrequencyFilter
 
+/**
+ * The frequency filter configuration for field data.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class FielddataFrequencyFilter
@@ -80,21 +83,30 @@ public class FielddataFrequencyFilter
     }
 
     /**
-     * Required - API name: {@code max}
+     * Required - The maximum frequency threshold.
+     * <p>
+     * API name: {@code max}
+     * </p>
      */
     public final double max() {
         return this.max;
     }
 
     /**
-     * Required - API name: {@code min}
+     * Required - The minimum frequency threshold.
+     * <p>
+     * API name: {@code min}
+     * </p>
      */
     public final double min() {
         return this.min;
     }
 
     /**
-     * Required - API name: {@code min_segment_size}
+     * Required - The minimum segment size to apply the filter.
+     * <p>
+     * API name: {@code min_segment_size}
+     * </p>
      */
     public final int minSegmentSize() {
         return this.minSegmentSize;
@@ -163,7 +175,10 @@ public class FielddataFrequencyFilter
         }
 
         /**
-         * Required - API name: {@code max}
+         * Required - The maximum frequency threshold.
+         * <p>
+         * API name: {@code max}
+         * </p>
          */
         @Nonnull
         public final Builder max(double value) {
@@ -172,7 +187,10 @@ public class FielddataFrequencyFilter
         }
 
         /**
-         * Required - API name: {@code min}
+         * Required - The minimum frequency threshold.
+         * <p>
+         * API name: {@code min}
+         * </p>
          */
         @Nonnull
         public final Builder min(double value) {
@@ -181,7 +199,10 @@ public class FielddataFrequencyFilter
         }
 
         /**
-         * Required - API name: {@code min_segment_size}
+         * Required - The minimum segment size to apply the filter.
+         * <p>
+         * API name: {@code min_segment_size}
+         * </p>
          */
         @Nonnull
         public final Builder minSegmentSize(int value) {

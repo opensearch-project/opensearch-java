@@ -56,6 +56,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: nodes.info.NodeInfoSettingsTransport
 
+/**
+ * The transport layer configuration settings.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeInfoSettingsTransport
@@ -89,7 +92,10 @@ public class NodeInfoSettingsTransport
     }
 
     /**
+     * The default transport type.
+     * <p>
      * API name: {@code type.default}
+     * </p>
      */
     @Nullable
     public final String typeDefault() {
@@ -173,7 +179,10 @@ public class NodeInfoSettingsTransport
         }
 
         /**
+         * The default transport type.
+         * <p>
          * API name: {@code type.default}
+         * </p>
          */
         @Nonnull
         public final Builder typeDefault(@Nullable String value) {

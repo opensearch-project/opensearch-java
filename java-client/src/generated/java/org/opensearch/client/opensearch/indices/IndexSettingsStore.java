@@ -78,7 +78,7 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
     private final Time statsRefreshInterval;
 
     @Nonnull
-    private final String type;
+    private final StorageType type;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -96,10 +96,9 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
-     * You can restrict the use of the <code>mmapfs</code> and the related <code>hybridfs</code> store types with the setting
-     * <code>node.store.allow_mmap</code>. This is a Boolean setting indicating whether or not memory-mapping is allowed. The default is to
-     * allow it. This setting is useful, for example, if you are in an environment where you can not control the ability to create a lot of
-     * memory maps so you need disable the ability to use memory-mapping.
+     * Whether memory-mapping is allowed. You can restrict the use of the <code>mmapfs</code> and the related <code>hybridfs</code> store
+     * types with the setting <code>node.store.allow_mmap</code>. This setting is useful, for example, if you are in an environment where
+     * you can not control the ability to create a lot of memory maps so you need disable the ability to use memory-mapping.
      * <p>
      * API name: {@code allow_mmap}
      * </p>
@@ -126,7 +125,10 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
+     * The list of files to preload into memory.
+     * <p>
      * API name: {@code preload}
+     * </p>
      */
     @Nonnull
     public final List<String> preload() {
@@ -145,7 +147,7 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
      * Required - API name: {@code type}
      */
     @Nonnull
-    public final String type() {
+    public final StorageType type() {
         return this.type;
     }
 
@@ -190,7 +192,7 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
         }
 
         generator.writeKey("type");
-        generator.write(this.type);
+        this.type.serialize(generator, mapper);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -220,7 +222,7 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
         private List<String> preload;
         @Nullable
         private Time statsRefreshInterval;
-        private String type;
+        private StorageType type;
 
         public Builder() {}
 
@@ -249,10 +251,10 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * You can restrict the use of the <code>mmapfs</code> and the related <code>hybridfs</code> store types with the setting
-         * <code>node.store.allow_mmap</code>. This is a Boolean setting indicating whether or not memory-mapping is allowed. The default is
-         * to allow it. This setting is useful, for example, if you are in an environment where you can not control the ability to create a
-         * lot of memory maps so you need disable the ability to use memory-mapping.
+         * Whether memory-mapping is allowed. You can restrict the use of the <code>mmapfs</code> and the related <code>hybridfs</code>
+         * store types with the setting <code>node.store.allow_mmap</code>. This setting is useful, for example, if you are in an
+         * environment where you can not control the ability to create a lot of memory maps so you need disable the ability to use
+         * memory-mapping.
          * <p>
          * API name: {@code allow_mmap}
          * </p>
@@ -298,7 +300,10 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The list of files to preload into memory.
+         * <p>
          * API name: {@code preload}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>preload</code>.
@@ -311,7 +316,10 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * The list of files to preload into memory.
+         * <p>
          * API name: {@code preload}
+         * </p>
          *
          * <p>
          * Adds one or more values to <code>preload</code>.
@@ -344,9 +352,17 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
          * Required - API name: {@code type}
          */
         @Nonnull
-        public final Builder type(String value) {
+        public final Builder type(StorageType value) {
             this.type = value;
             return this;
+        }
+
+        /**
+         * Required - API name: {@code type}
+         */
+        @Nonnull
+        public final Builder type(Function<StorageType.Builder, ObjectBuilder<StorageType>> fn) {
+            return type(fn.apply(new StorageType.Builder()).build());
         }
 
         /**
@@ -379,7 +395,7 @@ public class IndexSettingsStore implements PlainJsonSerializable, ToCopyableBuil
         op.add(Builder::hybrid, IndexSettingsStoreHybrid._DESERIALIZER, "hybrid");
         op.add(Builder::preload, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "preload");
         op.add(Builder::statsRefreshInterval, Time._DESERIALIZER, "stats_refresh_interval");
-        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+        op.add(Builder::type, StorageType._DESERIALIZER, "type");
     }
 
     @Override
