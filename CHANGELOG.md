@@ -6,12 +6,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bumps `org.eclipse.parsson:parsson` from 1.1.6 to 1.1.7
 - Bumps `org.hamcrest:hamcrest` from 2.2 to 3.0
 - Bumps `com.github.jk1.dependency-license-report` from 2.8 to 2.9
-- Bump `org.owasp.dependencycheck` from 12.0.2 to 12.1.1 ([#1440](https://github.com/opensearch-project/opensearch-java/pull/1440), [#1514](https://github.com/opensearch-project/opensearch-java/pull/1514))
-- Bump `org.junit:junit-bom` from 5.12.0 to 5.12.2 ([#1486](https://github.com/opensearch-project/opensearch-java/pull/1486), [#1525](https://github.com/opensearch-project/opensearch-java/pull/1525))
 - Bump `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.8.2 to 2.8.3 ([#1487](https://github.com/opensearch-project/opensearch-java/pull/1487))
-- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.2 to 5.4.3 ([#1506](https://github.com/opensearch-project/opensearch-java/pull/1506))
-- Bump `org.apache.httpcomponents.core5:httpcore5-h2` from 5.3.3 to 5.3.4 ([#1498](https://github.com/opensearch-project/opensearch-java/pull/1498))
-- Bump `org.apache.httpcomponents.core5:httpcore5` from 5.3.3 to 5.3.4 ([#1497](https://github.com/opensearch-project/opensearch-java/pull/1497))
+- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.3 to 5.4.4 ([#1544](https://github.com/opensearch-project/opensearch-java/pull/1544))
 - Bump `org.opensearch.gradle:build-tools` from 3.0.0-alpha1-SNAPSHOT to 3.1.0-SNAPSHOT ([#1543](https://github.com/opensearch-project/opensearch-java/pull/1543))
 
 This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
@@ -43,14 +39,11 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Fixed
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
 - Fixed deserializing `tasks.ListResponse` when using `GroupBy.None` ([#1187](https://github.com/opensearch-project/opensearch-java/pull/1187))
-- Fixed getting cluster stats against AOS due to missing properties ([#1520](https://github.com/opensearch-project/opensearch-java/pull/1520))
 
 ### Security
 
 ## [Unreleased 2.x]
 ### Added
-- Added `normalizer` to wildcard field ([#1489](https://github.com/opensearch-project/opensearch-java/pull/1489))
-- Added `paginationDepth` to `HybridQuery` ([#1490](https://github.com/opensearch-project/opensearch-java/pull/1490))
 
 ### Dependencies
 
@@ -61,9 +54,24 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Removed
 
 ### Fixed
-- Fixed ClassCastException in extractAndWrapCause when handling ExecutionException ([#1483](https://github.com/opensearch-project/opensearch-java/pull/1483))
 
 ### Security
+
+## [2.23.0] - 04/17/2025
+### Added
+- Added `normalizer` to wildcard field ([#1489](https://github.com/opensearch-project/opensearch-java/pull/1489))
+- Added `paginationDepth` to `HybridQuery` ([#1490](https://github.com/opensearch-project/opensearch-java/pull/1490))
+
+### Dependencies
+- Bump `org.owasp.dependencycheck` from 12.0.2 to 12.1.1 ([#1440](https://github.com/opensearch-project/opensearch-java/pull/1440), [#1514](https://github.com/opensearch-project/opensearch-java/pull/1514))
+- Bump `org.junit:junit-bom` from 5.12.0 to 5.12.2 ([#1486](https://github.com/opensearch-project/opensearch-java/pull/1486), [#1525](https://github.com/opensearch-project/opensearch-java/pull/1525))
+- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.2 to 5.4.3 ([#1506](https://github.com/opensearch-project/opensearch-java/pull/1506))
+- Bump `org.apache.httpcomponents.core5:httpcore5-h2` from 5.3.3 to 5.3.4 ([#1498](https://github.com/opensearch-project/opensearch-java/pull/1498))
+- Bump `org.apache.httpcomponents.core5:httpcore5` from 5.3.3 to 5.3.4 ([#1497](https://github.com/opensearch-project/opensearch-java/pull/1497))
+
+### Fixed
+- Fixed ClassCastException in extractAndWrapCause when handling ExecutionException ([#1483](https://github.com/opensearch-project/opensearch-java/pull/1483))
+- Fixed getting cluster & node stats and node info against AOS due to missing properties ([#1520](https://github.com/opensearch-project/opensearch-java/pull/1520), [#1521](https://github.com/opensearch-project/opensearch-java/pull/1521))
 
 ## [2.22.0] - 03/05/2025
 ### Added
@@ -646,7 +654,8 @@ This section is for maintaining a changelog for all breaking changes for the cli
 ### Security
 
 [Unreleased 3.0]: https://github.com/opensearch-project/opensearch-java/compare/2.x...HEAD
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.22.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.23.0...2.x
+[2.23.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.22.0...v2.23.0
 [2.22.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.21.0...v2.22.0
 [2.21.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.20.0...v2.21.0
 [2.20.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.19.0...v2.20.0
