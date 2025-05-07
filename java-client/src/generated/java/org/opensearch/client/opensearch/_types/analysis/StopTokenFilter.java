@@ -239,7 +239,9 @@ public class StopTokenFilter extends TokenFilterBase
          */
         @Nonnull
         public final Builder stopwords(List<String> list) {
-            this.stopwords = _listAddAll(this.stopwords, list);
+            if (Objects.nonNull(list)) {
+                this.stopwords = _listAddAll(this.stopwords, list);
+            }
             return this;
         }
 
