@@ -8,6 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.3 to 5.4.4 ([#1544](https://github.com/opensearch-project/opensearch-java/pull/1544))
 
 ### Changed
+- Changed `StopTokenFilter`'s `stopwords` field to no longer be required ([#1551](https://github.com/opensearch-project/opensearch-java/pull/1551))
 
 ### Deprecated
 
