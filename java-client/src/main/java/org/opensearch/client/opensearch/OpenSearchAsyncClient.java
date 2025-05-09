@@ -50,8 +50,6 @@ import org.opensearch.client.opensearch.core.MsearchRequest;
 import org.opensearch.client.opensearch.core.MsearchResponse;
 import org.opensearch.client.opensearch.core.MsearchTemplateRequest;
 import org.opensearch.client.opensearch.core.MsearchTemplateResponse;
-import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteRequest;
-import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteResponse;
 import org.opensearch.client.opensearch.core.ScrollRequest;
 import org.opensearch.client.opensearch.core.ScrollResponse;
 import org.opensearch.client.opensearch.core.SearchRequest;
@@ -322,48 +320,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
         Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
         return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), tDocumentClass);
-    }
-
-    // ----- Endpoint: scripts_painless_execute
-
-    /**
-     * Allows an arbitrary script to be executed and a result to be returned
-     *
-     *
-     */
-
-    public <TResult> CompletableFuture<ScriptsPainlessExecuteResponse<TResult>> scriptsPainlessExecute(
-        ScriptsPainlessExecuteRequest request,
-        Class<TResult> tResultClass
-    ) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> endpoint = (JsonEndpoint<
-            ScriptsPainlessExecuteRequest,
-            ScriptsPainlessExecuteResponse<TResult>,
-            ErrorResponse>) ScriptsPainlessExecuteRequest._ENDPOINT;
-        endpoint = new EndpointWithResponseMapperAttr<>(
-            endpoint,
-            "org.opensearch.client:Deserializer:_global.scripts_painless_execute.TResult",
-            getDeserializer(tResultClass)
-        );
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Allows an arbitrary script to be executed and a result to be returned
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ScriptsPainlessExecuteRequest}
-     *
-     */
-
-    public final <TResult> CompletableFuture<ScriptsPainlessExecuteResponse<TResult>> scriptsPainlessExecute(
-        Function<ScriptsPainlessExecuteRequest.Builder, ObjectBuilder<ScriptsPainlessExecuteRequest>> fn,
-        Class<TResult> tResultClass
-    ) throws IOException, OpenSearchException {
-        return scriptsPainlessExecute(fn.apply(new ScriptsPainlessExecuteRequest.Builder()).build(), tResultClass);
     }
 
     // ----- Endpoint: scroll

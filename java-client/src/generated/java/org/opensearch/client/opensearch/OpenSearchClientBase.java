@@ -96,6 +96,8 @@ import org.opensearch.client.opensearch.core.ReindexRethrottleRequest;
 import org.opensearch.client.opensearch.core.ReindexRethrottleResponse;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateRequest;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateResponse;
+import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteRequest;
+import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteResponse;
 import org.opensearch.client.opensearch.core.SearchShardsRequest;
 import org.opensearch.client.opensearch.core.SearchShardsResponse;
 import org.opensearch.client.opensearch.core.UpdateByQueryRequest;
@@ -815,6 +817,41 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
      */
     public final RenderSearchTemplateResponse renderSearchTemplate() throws IOException, OpenSearchException {
         return renderSearchTemplate(new RenderSearchTemplateRequest.Builder().build());
+    }
+
+    // ----- Endpoint: scripts_painless_execute
+
+    /**
+     * Allows an arbitrary script to be executed and a result to be returned.
+     */
+    public <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
+        ScriptsPainlessExecuteRequest request,
+        Class<TResult> tResultClass
+    ) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> endpoint = (JsonEndpoint<
+            ScriptsPainlessExecuteRequest,
+            ScriptsPainlessExecuteResponse<TResult>,
+            ErrorResponse>) ScriptsPainlessExecuteRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:_global.scripts_painless_execute.TResult",
+            getDeserializer(tResultClass)
+        );
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Allows an arbitrary script to be executed and a result to be returned.
+     *
+     * @param fn a function that initializes a builder to create the {@link ScriptsPainlessExecuteRequest}
+     */
+    public final <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
+        Function<ScriptsPainlessExecuteRequest.Builder, ObjectBuilder<ScriptsPainlessExecuteRequest>> fn,
+        Class<TResult> tResultClass
+    ) throws IOException, OpenSearchException {
+        return scriptsPainlessExecute(fn.apply(new ScriptsPainlessExecuteRequest.Builder()).build(), tResultClass);
     }
 
     // ----- Endpoint: search_shards

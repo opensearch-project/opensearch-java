@@ -30,10 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.scripts_painless_execute;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -43,36 +51,45 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.scripts_painless_execute.PainlessContextSetup
+// typedef: core.scripts_painless_execute.PainlessContextSetup
 
 @JsonpDeserializable
-public class PainlessContextSetup implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class PainlessContextSetup implements PlainJsonSerializable, ToCopyableBuilder<PainlessContextSetup.Builder, PainlessContextSetup> {
+
+    @Nonnull
     private final JsonData document;
 
+    @Nonnull
     private final String index;
 
+    @Nullable
     private final Query query;
 
     // ---------------------------------------------------------------------------------------------
 
     private PainlessContextSetup(Builder builder) {
-
         this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
         this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-        this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
-
+        this.query = builder.query;
     }
 
-    public static PainlessContextSetup of(Function<Builder, ObjectBuilder<PainlessContextSetup>> fn) {
+    public static PainlessContextSetup of(Function<PainlessContextSetup.Builder, ObjectBuilder<PainlessContextSetup>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Required - API name: {@code document}
+     * Required - A document temporarily indexed in-memory and accessible from the Painless script.
+     * <p>
+     * API name: {@code document}
+     * </p>
      */
+    @Nonnull
     public final JsonData document() {
         return this.document;
     }
@@ -80,13 +97,15 @@ public class PainlessContextSetup implements PlainJsonSerializable {
     /**
      * Required - API name: {@code index}
      */
+    @Nonnull
     public final String index() {
         return this.index;
     }
 
     /**
-     * Required - API name: {@code query}
+     * API name: {@code query}
      */
+    @Nullable
     public final Query query() {
         return this.query;
     }
@@ -94,6 +113,7 @@ public class PainlessContextSetup implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -101,34 +121,67 @@ public class PainlessContextSetup implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         generator.writeKey("document");
         this.document.serialize(generator, mapper);
 
         generator.writeKey("index");
         generator.write(this.index);
 
-        generator.writeKey("query");
-        this.query.serialize(generator, mapper);
-
+        if (this.query != null) {
+            generator.writeKey("query");
+            this.query.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link PainlessContextSetup}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PainlessContextSetup> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PainlessContextSetup> {
         private JsonData document;
-
         private String index;
-
+        @Nullable
         private Query query;
 
+        public Builder() {}
+
+        private Builder(PainlessContextSetup o) {
+            this.document = o.document;
+            this.index = o.index;
+            this.query = o.query;
+        }
+
+        private Builder(Builder o) {
+            this.document = o.document;
+            this.index = o.index;
+            this.query = o.query;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
-         * Required - API name: {@code document}
+         * Required - A document temporarily indexed in-memory and accessible from the Painless script.
+         * <p>
+         * API name: {@code document}
+         * </p>
          */
+        @Nonnull
         public final Builder document(JsonData value) {
             this.document = value;
             return this;
@@ -137,32 +190,36 @@ public class PainlessContextSetup implements PlainJsonSerializable {
         /**
          * Required - API name: {@code index}
          */
+        @Nonnull
         public final Builder index(String value) {
             this.index = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code query}
+         * API name: {@code query}
          */
-        public final Builder query(Query value) {
+        @Nonnull
+        public final Builder query(@Nullable Query value) {
             this.query = value;
             return this;
         }
 
         /**
-         * Required - API name: {@code query}
+         * API name: {@code query}
          */
+        @Nonnull
         public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-            return this.query(fn.apply(new Query.Builder()).build());
+            return query(fn.apply(new Query.Builder()).build());
         }
 
         /**
          * Builds a {@link PainlessContextSetup}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public PainlessContextSetup build() {
             _checkSingleUse();
 
@@ -181,11 +238,25 @@ public class PainlessContextSetup implements PlainJsonSerializable {
     );
 
     protected static void setupPainlessContextSetupDeserializer(ObjectDeserializer<PainlessContextSetup.Builder> op) {
-
         op.add(Builder::document, JsonData._DESERIALIZER, "document");
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
         op.add(Builder::query, Query._DESERIALIZER, "query");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + this.document.hashCode();
+        result = 31 * result + this.index.hashCode();
+        result = 31 * result + Objects.hashCode(this.query);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        PainlessContextSetup other = (PainlessContextSetup) o;
+        return this.document.equals(other.document) && this.index.equals(other.index) && Objects.equals(this.query, other.query);
+    }
 }
