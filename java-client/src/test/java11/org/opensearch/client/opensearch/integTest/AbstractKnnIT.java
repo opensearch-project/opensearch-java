@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import org.junit.Test;
+import org.opensearch.Version;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch.core.bulk.BulkOperation;
@@ -23,6 +24,13 @@ public abstract class AbstractKnnIT extends OpenSearchJavaClientTestCase {
         assumeKnnInstalled();
 
         final String indexName = "knn-index-and-search";
+
+        final String engine;
+        if (getServerVersion().onOrAfter(Version.fromString("1.2.0"))) {
+            engine = "faiss";
+        } else {
+            engine = "nmslib";
+        }
 
         var createIndexResponse = javaClient().indices()
             .create(
@@ -36,7 +44,7 @@ public abstract class AbstractKnnIT extends OpenSearchJavaClientTestCase {
                                     .method(
                                         km -> km.name("hnsw")
                                             .spaceType("l2")
-                                            .engine("nmslib")
+                                            .engine(engine)
                                             .parameters("ef_construction", JsonData.of(256))
                                             .parameters("m", JsonData.of(16))
                                     )
@@ -51,7 +59,7 @@ public abstract class AbstractKnnIT extends OpenSearchJavaClientTestCase {
             new Doc(new float[] { 1.5f, 5.5f, 4.5f, 6.4f }, 10.3f),
             new Doc(new float[] { 2.5f, 3.5f, 5.6f, 6.7f }, 5.5f),
             new Doc(new float[] { 4.5f, 5.5f, 6.7f, 3.7f }, 4.4f),
-            new Doc(new float[] { 1.5f, 5.5f, 4.5f, 6.4f }, 8.9f) };
+            new Doc(new float[] { 3.7f, 4.3f, 2.8f, 1.6f }, 8.9f) };
         var bulkOps = Arrays.stream(docs).map(d -> BulkOperation.of(o -> o.index(i -> i.document(d)))).collect(Collectors.toList());
 
         var bulkResponse = javaClient().bulk(b -> b.index(indexName).refresh(Refresh.WaitFor).operations(bulkOps));
