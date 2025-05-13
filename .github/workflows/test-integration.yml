@@ -23,7 +23,8 @@ jobs:
           - { opensearch_version: 2.14.0, java: 11 }
           - { opensearch_version: 2.16.0, java: 11 }
           - { opensearch_version: 2.18.0, java: 11 }
-          - { opensearch_version: 2.19.0, java: 11 }
+          - { opensearch_version: 2.19.2, java: 11 }
+          - { opensearch_version: 3.0.0, java: 11 }
     steps:
       - name: Checkout Java Client
         uses: actions/checkout@v4
@@ -44,9 +45,14 @@ jobs:
 
       - name: Sets password (new versions)
         run: |
-          if [[ ${{ matrix.entry.opensearch_version }} =~ ^2.1[2-9]+.[0-9]+$ ]]; then
+          VERSION_COMPONENTS=(${OPENSEARCH_VERSION//./ })
+          MAJOR_VERSION=${VERSION_COMPONENTS[0]}
+          MINOR_VERSION=${VERSION_COMPONENTS[1]}
+          if (( $MAJOR_VERSION > 2 || ( $MAJOR_VERSION == 2 && $MINOR_VERSION >= 12 ) )); then
               echo "PASSWORD=0_aD^min_0" >> $GITHUB_ENV
           fi
+        env:
+          OPENSEARCH_VERSION: ${{ matrix.entry.opensearch_version }}
 
       - name: Run Integration Test
         run: ./gradlew clean integrationTest -Dpassword=${{ env.PASSWORD }}
