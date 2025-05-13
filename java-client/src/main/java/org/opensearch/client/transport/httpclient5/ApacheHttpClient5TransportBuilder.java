@@ -39,6 +39,7 @@ import org.opensearch.client.RestClientBuilder;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.transport.client_metrics.MetricOptions;
 import org.opensearch.client.transport.httpclient5.internal.Node;
 import org.opensearch.client.transport.httpclient5.internal.NodeSelector;
 
@@ -77,6 +78,7 @@ public class ApacheHttpClient5TransportBuilder {
     private Optional<Boolean> chunkedEnabled;
     private JsonpMapper mapper;
     private TransportOptions options;
+    private MetricOptions metricOptions;
 
     /**
      * Creates a new builder instance and sets the hosts that the client will send requests to.
@@ -261,6 +263,11 @@ public class ApacheHttpClient5TransportBuilder {
         return this;
     }
 
+    public ApacheHttpClient5TransportBuilder setMetricOptions(MetricOptions metricOptions) {
+        this.metricOptions = metricOptions;
+        return this;
+    }
+
     /**
      * Creates a new {@link RestClient} based on the provided configuration.
      */
@@ -287,7 +294,8 @@ public class ApacheHttpClient5TransportBuilder {
             nodeSelector,
             strictDeprecationMode,
             compressionEnabled,
-            chunkedEnabled.orElse(false)
+            chunkedEnabled.orElse(false),
+            metricOptions
         );
 
         httpClient.start();
