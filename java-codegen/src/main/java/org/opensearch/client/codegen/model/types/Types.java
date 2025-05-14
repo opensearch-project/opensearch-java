@@ -33,7 +33,9 @@ public final class Types {
         }
 
         for (var field : clazz.getDeclaredFields()) {
-            if ((field.getModifiers() & Modifier.STATIC) == 0 || !Type.class.isAssignableFrom(field.getType())) {
+            var fieldType = field.getType();
+            if ((field.getModifiers() & Modifier.STATIC) == 0
+                || !(String.class.isAssignableFrom(fieldType) || Type.class.isAssignableFrom(fieldType))) {
                 continue;
             }
             try {
@@ -169,6 +171,7 @@ public final class Types {
             }
 
             public static final Type JsonpUtils = type(PACKAGE, "JsonpUtils");
+            public static final Type NamedDeserializer = type(PACKAGE, "NamedDeserializer");
             public static final Type ObjectBuilderDeserializer = type(PACKAGE, "ObjectBuilderDeserializer");
             public static final Type ObjectDeserializer = type(PACKAGE, "ObjectDeserializer");
             public static final Type PlainDeserializable = type(PACKAGE, "PlainDeserializable");
@@ -233,7 +236,7 @@ public final class Types {
             public static final String PACKAGE = Client.PACKAGE + ".transport";
             public static final Type Endpoint = type(PACKAGE, "Endpoint");
 
-            public static Type JsonEndpoint(Type requestType, Type responseType, Type errorType) {
+            public static Type JsonEndpoint(TypeRef requestType, TypeRef responseType, TypeRef errorType) {
                 return JsonEndpoint.withTypeParameters(requestType, responseType, errorType);
             }
 
@@ -252,6 +255,7 @@ public final class Types {
                 }
 
                 public static final Type DictionaryResponse = type(PACKAGE, "DictionaryResponse");
+                public static final Type EndpointWithResponseMapperAttr = type(PACKAGE, "EndpointWithResponseMapperAttr");
                 public static final Type SimpleEndpoint = type(PACKAGE, "SimpleEndpoint");
             }
         }
@@ -275,7 +279,7 @@ public final class Types {
             public static final Type TaggedUnion = type(PACKAGE, "TaggedUnion");
             public static final Type TaggedUnionUtils = type(PACKAGE, "TaggedUnionUtils");
 
-            public static Type ToCopyableBuilder(Type builder, Type type) {
+            public static Type ToCopyableBuilder(TypeRef builder, TypeRef type) {
                 return ToCopyableBuilder.withTypeParameters(builder, type);
             }
 

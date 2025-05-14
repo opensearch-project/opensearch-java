@@ -45,7 +45,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
     }
 
     public static OpenApiSchema emptyObject() {
-        return builder().withTypes(t -> t.with(OpenApiSchemaType.Object)).build();
+        return builder().withTypes(t -> t.with(OpenApiSchemaType.Object)).withProperties(Map.of()).withRequired(Set.of()).build();
     }
 
     public static OpenApiSchema string() {
@@ -85,7 +85,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
     @Nullable
     private Set<String> required;
     @Nullable
-    private final String title;
+    private String title;
     @Nullable
     private final String pattern;
     @Nullable
@@ -444,6 +444,10 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
     @Nonnull
     public Optional<String> getTitle() {
         return Optional.ofNullable(title);
+    }
+
+    public void setTitle(@Nullable String title) {
+        this.title = title;
     }
 
     @Nonnull

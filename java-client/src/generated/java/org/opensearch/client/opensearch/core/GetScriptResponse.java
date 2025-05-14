@@ -55,7 +55,7 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: get_script.Response
+// typedef: _global.get_script.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")

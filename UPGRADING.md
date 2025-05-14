@@ -653,6 +653,7 @@ After:
 
 ### HitsMetadata
 - The `maxScore` property has been corrected to be of type `Float` instead of `Double`.
+- The `tSerializer` property has been removed as it is unused.
 
 ### AggregationRange
 - The `from` and `to` properties have been corrected to be of type `JsonData` instead of `String`.
@@ -698,3 +699,6 @@ After:
 
 ### ScoreCombination
 - The `parameters` property has been corrected to be of type `ScoreCombinationParameters` instead of `List<Float>`.
+
+### MultiBucketAggregateBase
+- The `tBucketSerializer` property has been removed as it is unused.

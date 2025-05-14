@@ -72,14 +72,6 @@ public class Type extends TypeRef {
     }
 
     @Override
-    protected void collectTypeParameterRefs(Set<TypeParameterRef> refs) {
-        if (typeParams == null) return;
-        for (var typeParam : typeParams) {
-            typeParam.collectTypeParameterRefs(refs);
-        }
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
 

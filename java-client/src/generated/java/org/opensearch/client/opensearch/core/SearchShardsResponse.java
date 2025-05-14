@@ -57,7 +57,7 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: search_shards.Response
+// typedef: _global.search_shards.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")

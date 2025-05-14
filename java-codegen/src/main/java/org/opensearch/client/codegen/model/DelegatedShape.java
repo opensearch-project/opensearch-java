@@ -10,6 +10,7 @@ package org.opensearch.client.codegen.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -22,6 +23,8 @@ import org.opensearch.client.codegen.transformer.overrides.ShouldGenerate;
 public class DelegatedShape extends Shape {
     @Nonnull
     private final TypeRef delegatedType;
+    @Nonnull
+    private final Field valueBodyField;
 
     public DelegatedShape(
         Namespace parent,
@@ -33,6 +36,13 @@ public class DelegatedShape extends Shape {
     ) {
         super(parent, className, typedefName, description, shouldGenerate);
         this.delegatedType = Objects.requireNonNull(delegatedType, "delegatedType cannot be null");
+        tryAddReference(ReferenceKind.Field, delegatedType);
+        this.valueBodyField = Field.builder()
+            .withName("valueBody")
+            .withType(delegatedType)
+            .withDescription("Response value.")
+            .withRequired(true)
+            .build();
     }
 
     @Nonnull
@@ -41,13 +51,26 @@ public class DelegatedShape extends Shape {
     }
 
     public Collection<Field> getFields() {
-        return List.of(
-            Field.builder().withName("valueBody").withType(delegatedType).withDescription("Response value.").withRequired(true).build()
-        );
+        var fields = new ArrayList<Field>();
+        fields.add(valueBodyField);
+        fields.addAll(getTypeParameterSerializerFields());
+        fields.sort(Comparator.comparing(Field::getName));
+        return fields;
+    }
+
+    public boolean hasFields() {
+        return true;
     }
 
     public Collection<Field> getHashableFields() {
-        return getFields();
+        return List.of(valueBodyField);
+    }
+
+    @Override
+    public Collection<TypeRef> getAnnotations() {
+        var annotations = new ArrayList<>(super.getAnnotations());
+        annotations.add(Types.Client.Json.JsonpDeserializable);
+        return annotations;
     }
 
     @Override

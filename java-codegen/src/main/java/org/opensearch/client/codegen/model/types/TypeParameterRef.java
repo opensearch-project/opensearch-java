@@ -128,11 +128,6 @@ public class TypeParameterRef extends TypeRef {
     }
 
     @Override
-    protected void collectTypeParameterRefs(Set<TypeParameterRef> refs) {
-        refs.add(this);
-    }
-
-    @Override
     public void getRequiredImports(Set<String> imports, String currentPkg) {
 
     }

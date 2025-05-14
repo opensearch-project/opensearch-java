@@ -25,15 +25,23 @@ import org.opensearch.client.codegen.utils.builder.ObjectBuilder;
 import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 
 public class Overrides {
+    private static JsonPointer requestBodySchema(String operation) {
+        return JsonPointer.of("components", "requestBodies", operation, "content", "application/json", "schema");
+    }
+
     private static JsonPointer schema(String namespace, String name) {
         return OpenApiSchema.COMPONENTS_SCHEMAS.append(namespace + OpenApiSchema.NAMESPACE_NAME_SEPARATOR + name);
     }
 
     public static final Overrides OVERRIDES = builder().withOperations(
         o -> o.with(
-            OperationGroup.from("snapshot.create_repository"),
-            oo -> oo.withPathParameters(pp -> pp.with("repository", po -> po.withName("name")))
+            OperationGroup.from("scroll"),
+            oo -> oo.withQueryParameters(qp -> qp.with("rest_total_hits_as_int", po -> po.withIgnore(true)))
         )
+            .with(
+                OperationGroup.from("snapshot.create_repository"),
+                oo -> oo.withPathParameters(pp -> pp.with("repository", po -> po.withName("name")))
+            )
             .with(
                 OperationGroup.from("snapshot.delete_repository"),
                 oo -> oo.withPathParameters(pp -> pp.with("repository", po -> po.withName("name")))
@@ -165,6 +173,8 @@ public class Overrides {
                 .with(schema("nodes.stats", "IndexMetric"), so -> so.withClassName("NodesStatsIndexMetric"))
                 .with(schema("nodes.stats", "Metric"), so -> so.withClassName("NodesStatsMetric"))
                 .with(schema("nodes.usage", "Metric"), so -> so.withClassName("NodesUsageMetric"))
+
+                .with(requestBodySchema("scroll"), so -> so.withProperties(p -> p.with("scroll_id", po -> po.withRequired(true))))
         )
         .build();
 
