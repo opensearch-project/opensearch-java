@@ -3,9 +3,9 @@
 
 {{#variants}}
     /**
-     * Creates a builder for the {@link {{type.name}} {{name}}} {@code {{unionClassName}}} variant.
+     * Creates a builder for the {@link {{type.name}} {{name}}} {@code {{union.className}}} variant.
      */
-    public static {{type.builderType}} {{#asFieldName}}{{name}}{{/asFieldName}}() {
+    public static {{#union.typeParameters}}{{.}}{{/union.typeParameters}} {{type.builderType}} {{#asFieldName}}{{name}}{{/asFieldName}}() {
         return new {{type.builderType}}();
     }
 {{/variants}}

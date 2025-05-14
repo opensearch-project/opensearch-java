@@ -98,6 +98,8 @@ import org.opensearch.client.opensearch.core.RenderSearchTemplateRequest;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateResponse;
 import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteRequest;
 import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteResponse;
+import org.opensearch.client.opensearch.core.ScrollRequest;
+import org.opensearch.client.opensearch.core.ScrollResponse;
 import org.opensearch.client.opensearch.core.SearchShardsRequest;
 import org.opensearch.client.opensearch.core.SearchShardsResponse;
 import org.opensearch.client.opensearch.core.UpdateByQueryRequest;
@@ -852,6 +854,39 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
         Class<TResult> tResultClass
     ) throws IOException, OpenSearchException {
         return scriptsPainlessExecute(fn.apply(new ScriptsPainlessExecuteRequest.Builder()).build(), tResultClass);
+    }
+
+    // ----- Endpoint: scroll
+
+    /**
+     * Allows to retrieve a large numbers of results from a single search request.
+     */
+    public <TDocument> ScrollResponse<TDocument> scroll(ScrollRequest request, Class<TDocument> tDocumentClass) throws IOException,
+        OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            ScrollRequest,
+            ScrollResponse<TDocument>,
+            ErrorResponse>) ScrollRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:_global.scroll.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Allows to retrieve a large numbers of results from a single search request.
+     *
+     * @param fn a function that initializes a builder to create the {@link ScrollRequest}
+     */
+    public final <TDocument> ScrollResponse<TDocument> scroll(
+        Function<ScrollRequest.Builder, ObjectBuilder<ScrollRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return scroll(fn.apply(new ScrollRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: search_shards

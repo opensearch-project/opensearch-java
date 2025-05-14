@@ -51,10 +51,10 @@
             {{/variants}}
 
     {{#typeParameters}}
-            return new {{TYPES.Client.Json.ExternallyTaggedUnion}}.Deserializer<>(deserializers, {{className}}::new).typedKeys();
+            return new {{TYPES.Client.Json.ExternallyTaggedUnion}}.Deserializer<>(deserializers, {{selfType}}::new).typedKeys();
     {{/typeParameters}}
     {{^typeParameters}}
-            _TYPED_KEYS_DESERIALIZER = new {{TYPES.Client.Json.ExternallyTaggedUnion}}.Deserializer<>(deserializers, {{className}}::new).typedKeys();
+            _TYPED_KEYS_DESERIALIZER = new {{TYPES.Client.Json.ExternallyTaggedUnion}}.Deserializer<>(deserializers, {{selfType}}::new).typedKeys();
     {{/typeParameters}}
         }
 {{/usesTypedKeys}}
