@@ -621,11 +621,14 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
             var booleanCount = 0;
             var totalCount = 0;
             for (var s : oneOf) {
+                if (s.isNull()) continue;
+
                 if (s.isBoolean()) {
                     booleanCount++;
                 } else if (s.isEnum()) {
                     enumCount++;
                 }
+
                 totalCount++;
             }
             return enumCount == totalCount || (booleanCount == 1 && enumCount == totalCount - 1);
