@@ -201,4 +201,44 @@ public class ExternallyTaggedUnion {
             }
         }
     }
+
+    public static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeysArray(
+            Map<String, List<T>> map,
+            JsonGenerator generator,
+            JsonpMapper mapper
+    ) {
+        generator.writeStartObject();
+        serializeTypedKeysArrayInner(map, generator, mapper);
+        generator.writeEnd();
+    }
+
+    public static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeysArrayInner(
+            Map<String, List<T>> map,
+            JsonGenerator generator,
+            JsonpMapper mapper
+    ) {
+        if (mapper.attribute(JsonpMapperAttributes.SERIALIZE_TYPED_KEYS, true)) {
+            for (Map.Entry<String, List<T>> entry : map.entrySet()) {
+                List<T> list = entry.getValue();
+                if (list.isEmpty()) {
+                    continue;
+                }
+                generator.writeKey(list.get(0)._kind().jsonValue() + "#" + entry.getKey());
+                generator.writeStartArray();
+                for (T value : list) {
+                    value.serialize(generator, mapper);
+                }
+                generator.writeEnd();
+            }
+        } else {
+            for (Map.Entry<String, List<T>> entry : map.entrySet()) {
+                generator.writeKey(entry.getKey());
+                generator.writeStartArray();
+                for (T value : entry.getValue()) {
+                    value.serialize(generator, mapper);
+                }
+                generator.writeEnd();
+            }
+        }
+    }
 }

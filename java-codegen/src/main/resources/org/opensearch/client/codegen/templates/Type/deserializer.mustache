@@ -7,7 +7,22 @@
             {{TYPES.Client.Json.JsonpDeserializer}}.arrayDeserializer({{#listValueType}}{{>Type/deserializer}}{{/listValueType}})
         {{/isList}}
         {{#isMap}}
-            {{TYPES.Client.Json.JsonpDeserializer}}.stringMapDeserializer({{#mapValueType}}{{>Type/deserializer}}{{/mapValueType}})
+            {{#mapValueType.targetShape.usesTypedKeys}}
+                {{mapValueType}}._TYPED_KEYS_DESERIALIZER
+            {{/mapValueType.targetShape.usesTypedKeys}}
+            {{^mapValueType.targetShape.usesTypedKeys}}
+                {{#mapValueType.isList}}
+                    {{#mapValueType.listValueType.targetShape.usesTypedKeys}}
+                        {{TYPES.Client.Json.ExternallyTaggedUnion}}.arrayDeserializer({{#mapValueType.listValueType}}{{>Type/deserializer}}{{/mapValueType.listValueType}})
+                    {{/mapValueType.listValueType.targetShape.usesTypedKeys}}
+                    {{^mapValueType.listValueType.targetShape.usesTypedKeys}}
+                        {{TYPES.Client.Json.JsonpDeserializer}}.stringMapDeserializer({{#mapValueType}}{{>Type/deserializer}}{{/mapValueType}})
+                    {{/mapValueType.listValueType.targetShape.usesTypedKeys}}
+                {{/mapValueType.isList}}
+                {{^mapValueType.isList}}
+                    {{TYPES.Client.Json.JsonpDeserializer}}.stringMapDeserializer({{#mapValueType}}{{>Type/deserializer}}{{/mapValueType}})
+                {{/mapValueType.isList}}
+            {{/mapValueType.targetShape.usesTypedKeys}}
         {{/isMap}}
         {{^isListOrMap}}
             {{#isNumber}}

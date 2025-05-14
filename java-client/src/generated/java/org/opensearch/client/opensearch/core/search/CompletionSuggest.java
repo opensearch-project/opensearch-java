@@ -30,137 +30,216 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.function.Function;
-import java.util.function.Supplier;
-import javax.annotation.Nullable;
-import org.opensearch.client.json.JsonpDeserializable;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializer;
-import org.opensearch.client.json.NamedDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch.core.search.Suggest.Kind;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-@JsonpDeserializable
-public class CompletionSuggest<TDocument> extends SuggestBase implements SuggestVariant {
+// typedef: core.search.CompletionSuggest
+
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class CompletionSuggest<TDocument> extends SuggestBase
+    implements
+        SuggestVariant,
+        ToCopyableBuilder<CompletionSuggest.Builder<TDocument>, CompletionSuggest<TDocument>> {
+
+    @Nonnull
     private final List<CompletionSuggestOption<TDocument>> options;
 
-    @Nullable
-    private final JsonpSerializer<TDocument> tDocumentSerializer;
+    // ---------------------------------------------------------------------------------------------
 
     private CompletionSuggest(Builder<TDocument> builder) {
         super(builder);
-
         this.options = ApiTypeHelper.unmodifiableRequired(builder.options, this, "options");
-        this.tDocumentSerializer = builder.tDocumentSerializer;
-
     }
 
     public static <TDocument> CompletionSuggest<TDocument> of(
-        Function<Builder<TDocument>, ObjectBuilder<CompletionSuggest<TDocument>>> fn
+        Function<CompletionSuggest.Builder<TDocument>, ObjectBuilder<CompletionSuggest<TDocument>>> fn
     ) {
         return fn.apply(new Builder<>()).build();
     }
 
+    /**
+     * {@link Suggest} variant kind.
+     */
+    @Override
+    public Suggest.Kind _suggestKind() {
+        return Suggest.Kind.Completion;
+    }
+
+    /**
+     * Required - API name: {@code options}
+     */
+    @Nonnull
     public final List<CompletionSuggestOption<TDocument>> options() {
         return this.options;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         super.serializeInternal(generator, mapper);
-        if (ApiTypeHelper.isDefined(this.options)) {
-            generator.writeKey("options");
-            generator.writeStartArray();
-            for (CompletionSuggestOption<TDocument> item0 : this.options) {
-                item0.serialize(generator, mapper);
-
-            }
-            generator.writeEnd();
-
+        generator.writeKey("options");
+        generator.writeStartArray();
+        for (CompletionSuggestOption<TDocument> item0 : this.options) {
+            item0.serialize(generator, mapper);
         }
-
+        generator.writeEnd();
     }
 
+    // ---------------------------------------------------------------------------------------------
+
+    @Override
+    @Nonnull
+    public Builder<TDocument> toBuilder() {
+        return new Builder<>(this);
+    }
+
+    @Nonnull
+    public static <TDocument> Builder builder() {
+        return new Builder<>();
+    }
+
+    /**
+     * Builder for {@link CompletionSuggest}.
+     */
     public static class Builder<TDocument> extends SuggestBase.AbstractBuilder<Builder<TDocument>>
         implements
-            ObjectBuilder<CompletionSuggest<TDocument>> {
+            CopyableBuilder<Builder<TDocument>, CompletionSuggest<TDocument>> {
         private List<CompletionSuggestOption<TDocument>> options;
 
-        @Nullable
-        private JsonpSerializer<TDocument> tDocumentSerializer;
+        public Builder() {}
 
+        private Builder(CompletionSuggest<TDocument> o) {
+            super(o);
+            this.options = _listCopy(o.options);
+        }
+
+        private Builder(Builder<TDocument> o) {
+            super(o);
+            this.options = _listCopy(o.options);
+        }
+
+        @Override
+        @Nonnull
+        public Builder<TDocument> copy() {
+            return new Builder<>(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder<TDocument> self() {
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code options}
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>options</code>.
+         * </p>
+         */
+        @Nonnull
         public final Builder<TDocument> options(List<CompletionSuggestOption<TDocument>> list) {
             this.options = _listAddAll(this.options, list);
             return this;
         }
 
+        /**
+         * Required - API name: {@code options}
+         *
+         * <p>
+         * Adds one or more values to <code>options</code>.
+         * </p>
+         */
+        @Nonnull
         public final Builder<TDocument> options(CompletionSuggestOption<TDocument> value, CompletionSuggestOption<TDocument>... values) {
             this.options = _listAdd(this.options, value, values);
             return this;
         }
 
+        /**
+         * Required - API name: {@code options}
+         *
+         * <p>
+         * Adds a value to <code>options</code> using a builder lambda.
+         * </p>
+         */
+        @Nonnull
         public final Builder<TDocument> options(
             Function<CompletionSuggestOption.Builder<TDocument>, ObjectBuilder<CompletionSuggestOption<TDocument>>> fn
         ) {
             return options(fn.apply(new CompletionSuggestOption.Builder<TDocument>()).build());
         }
 
-        public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
-            this.tDocumentSerializer = value;
-            return this;
-        }
-
+        /**
+         * Builds a {@link CompletionSuggest}.
+         *
+         * @throws NullPointerException if some of the required fields are null.
+         */
         @Override
-        protected Builder<TDocument> self() {
-            return this;
-        }
-
+        @Nonnull
         public CompletionSuggest<TDocument> build() {
             _checkSingleUse();
 
-            return new CompletionSuggest<TDocument>(this);
+            return new CompletionSuggest<>(this);
         }
     }
 
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Create a JSON deserializer for CompletionSuggest.
+     */
     public static <TDocument> JsonpDeserializer<CompletionSuggest<TDocument>> createCompletionSuggestDeserializer(
         JsonpDeserializer<TDocument> tDocumentDeserializer
     ) {
         return ObjectBuilderDeserializer.createForObject(
-            (Supplier<Builder<TDocument>>) Builder::new,
+            Builder<TDocument>::new,
             op -> CompletionSuggest.setupCompletionSuggestDeserializer(op, tDocumentDeserializer)
         );
-    };
-
-    public static final JsonpDeserializer<CompletionSuggest<Object>> _DESERIALIZER = JsonpDeserializer.lazy(
-        () -> createCompletionSuggestDeserializer(
-            new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.search._types.TDocument")
-        )
-    );
+    }
 
     protected static <TDocument> void setupCompletionSuggestDeserializer(
         ObjectDeserializer<CompletionSuggest.Builder<TDocument>> op,
         JsonpDeserializer<TDocument> tDocumentDeserializer
     ) {
-        SuggestBase.setupSuggestBaseDeserializer(op);
+        setupSuggestBaseDeserializer(op);
         op.add(
             Builder::options,
             JsonpDeserializer.arrayDeserializer(CompletionSuggestOption.createCompletionSuggestOptionDeserializer(tDocumentDeserializer)),
             "options"
         );
-
     }
 
     @Override
-    public Kind _suggestionKind() {
-        return Suggest.Kind.Completion;
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + this.options.hashCode();
+        return result;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        CompletionSuggest<?> other = (CompletionSuggest<?>) o;
+        return this.options.equals(other.options);
+    }
 }

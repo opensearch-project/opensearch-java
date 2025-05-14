@@ -30,14 +30,39 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
-public interface SuggestVariant {
+import javax.annotation.Generated;
 
-    Suggest.Kind _suggestionKind();
+/**
+ * Builders for {@link Suggest} variants.
+ */
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SuggestBuilders {
+    private SuggestBuilders() {}
 
-    default Suggest _toSuggestion() {
-        return new Suggest(this);
+    /**
+     * Creates a builder for the {@link CompletionSuggest completion} {@code Suggest} variant.
+     */
+    public static <TDocument> CompletionSuggest.Builder<TDocument> completion() {
+        return new CompletionSuggest.Builder<TDocument>();
     }
 
+    /**
+     * Creates a builder for the {@link PhraseSuggest phrase} {@code Suggest} variant.
+     */
+    public static <TDocument> PhraseSuggest.Builder phrase() {
+        return new PhraseSuggest.Builder();
+    }
+
+    /**
+     * Creates a builder for the {@link TermSuggest term} {@code Suggest} variant.
+     */
+    public static <TDocument> TermSuggest.Builder term() {
+        return new TermSuggest.Builder();
+    }
 }

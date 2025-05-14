@@ -30,31 +30,52 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.ExternallyTaggedUnion;
+import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.TaggedUnion;
 import org.opensearch.client.util.TaggedUnionUtils;
 
-// typedef: _global.search._types.SuggestOption
+// typedef: core.search.Suggest
 
-public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVariant>, JsonpSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVariant>, PlainJsonSerializable {
+    /**
+     * {@link Suggest} variant kinds.
+     */
+    public enum Kind implements JsonEnum {
+        Completion("completion"),
+        Phrase("phrase"),
+        Term("term");
 
-    public enum Kind {
-        Completion,
-        Phrase,
-        Term
+        private final String jsonValue;
 
+        Kind(String jsonValue) {
+            this.jsonValue = jsonValue;
+        }
+
+        @Override
+        public String jsonValue() {
+            return jsonValue;
+        }
     }
 
     private final Kind _kind;
@@ -71,18 +92,16 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
     }
 
     public Suggest(SuggestVariant value) {
-        this._kind = ApiTypeHelper.requireNonNull(value._suggestionKind(), this, "<variant kind>");
+        this._kind = ApiTypeHelper.requireNonNull(value._suggestKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
     }
 
     private Suggest(Builder<TDocument> builder) {
-
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
-
     }
 
-    public static <TDocument> Suggest<TDocument> of(Function<Builder<TDocument>, ObjectBuilder<Suggest<TDocument>>> fn) {
+    public static <TDocument> Suggest<TDocument> of(Function<Suggest.Builder<TDocument>, ObjectBuilder<Suggest<TDocument>>> fn) {
         return fn.apply(new Builder<>()).build();
     }
 
@@ -96,8 +115,7 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
     /**
      * Get the {@code completion} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code completion} kind.
+     * @throws IllegalStateException if the current variant is not the {@code completion} kind.
      */
     public CompletionSuggest<TDocument> completion() {
         return TaggedUnionUtils.get(this, Kind.Completion);
@@ -113,8 +131,7 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
     /**
      * Get the {@code phrase} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code phrase} kind.
+     * @throws IllegalStateException if the current variant is not the {@code phrase} kind.
      */
     public PhraseSuggest phrase() {
         return TaggedUnionUtils.get(this, Kind.Phrase);
@@ -130,8 +147,7 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
     /**
      * Get the {@code term} variant value.
      *
-     * @throws IllegalStateException
-     *             if the current variant is not of the {@code term} kind.
+     * @throws IllegalStateException if the current variant is not the {@code term} kind.
      */
     public TermSuggest term() {
         return TaggedUnionUtils.get(this, Kind.Term);
@@ -139,15 +155,29 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
 
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        if (_value instanceof JsonpSerializable) {
-            ((JsonpSerializable) _value).serialize(generator, mapper);
-        }
+        mapper.serialize(_value, generator);
+    }
 
+    @Nonnull
+    public Builder<TDocument> toBuilder() {
+        return new Builder<>(this);
+    }
+
+    @Nonnull
+    public static <TDocument> Builder builder() {
+        return new Builder<>();
     }
 
     public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<Suggest<TDocument>> {
         private Kind _kind;
         private SuggestVariant _value;
+
+        public Builder() {}
+
+        private Builder(Suggest<TDocument> o) {
+            this._kind = o._kind;
+            this._value = o._value;
+        }
 
         public ObjectBuilder<Suggest<TDocument>> completion(CompletionSuggest<TDocument> v) {
             this._kind = Kind.Completion;
@@ -181,11 +211,11 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
             return this.term(fn.apply(new TermSuggest.Builder()).build());
         }
 
+        @Override
         public Suggest<TDocument> build() {
             _checkSingleUse();
             return new Suggest<>(this);
         }
-
     }
 
     public static <TDocument> ExternallyTaggedUnion.TypedKeysDeserializer<Suggest<TDocument>> createSuggestDeserializer(
@@ -196,7 +226,22 @@ public class Suggest<TDocument> implements TaggedUnion<Suggest.Kind, SuggestVari
         deserializers.put("phrase", PhraseSuggest._DESERIALIZER);
         deserializers.put("term", TermSuggest._DESERIALIZER);
 
-        return new ExternallyTaggedUnion.Deserializer<Suggest<TDocument>, SuggestVariant>(deserializers, Suggest::new).typedKeys();
+        return new ExternallyTaggedUnion.Deserializer<>(deserializers, Suggest<TDocument>::new).typedKeys();
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this._kind);
+        result = 31 * result + Objects.hashCode(this._value);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Suggest<?> other = (Suggest<?>) o;
+        return Objects.equals(this._kind, other._kind) && Objects.equals(this._value, other._value);
+    }
 }

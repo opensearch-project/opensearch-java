@@ -30,11 +30,19 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -48,38 +56,41 @@ import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _global.scroll.Request
 
 /**
  * Allows to retrieve a large numbers of results from a single search request.
- *
  */
 @JsonpDeserializable
-public class ScrollRequest extends RequestBase implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public final class ScrollRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<ScrollRequest.Builder, ScrollRequest> {
+
     @Nullable
     private final Time scroll;
 
+    @Nonnull
     private final String scrollId;
 
     // ---------------------------------------------------------------------------------------------
 
     private ScrollRequest(Builder builder) {
-
+        super(builder);
         this.scroll = builder.scroll;
         this.scrollId = ApiTypeHelper.requireNonNull(builder.scrollId, this, "scrollId");
-
     }
 
-    public static ScrollRequest of(Function<Builder, ObjectBuilder<ScrollRequest>> fn) {
+    public static ScrollRequest of(Function<ScrollRequest.Builder, ObjectBuilder<ScrollRequest>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * Period to retain the search context for scrolling.
-     * <p>
      * API name: {@code scroll}
      */
     @Nullable
@@ -88,10 +99,9 @@ public class ScrollRequest extends RequestBase implements PlainJsonSerializable 
     }
 
     /**
-     * Required - Scroll ID of the search.
-     * <p>
-     * API name: {@code scroll_id}
+     * Required - API name: {@code scroll_id}
      */
+    @Nonnull
     public final String scrollId() {
         return this.scrollId;
     }
@@ -99,6 +109,7 @@ public class ScrollRequest extends RequestBase implements PlainJsonSerializable 
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -106,57 +117,83 @@ public class ScrollRequest extends RequestBase implements PlainJsonSerializable 
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (this.scroll != null) {
             generator.writeKey("scroll");
             this.scroll.serialize(generator, mapper);
-
         }
+
         generator.writeKey("scroll_id");
         generator.write(this.scrollId);
-
-    }
-
-    public Builder toBuilder() {
-        return new Builder().scroll(scroll).scrollId(scrollId);
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ScrollRequest}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScrollRequest> {
+    public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, ScrollRequest> {
         @Nullable
         private Time scroll;
-
         private String scrollId;
 
+        public Builder() {}
+
+        private Builder(ScrollRequest o) {
+            super(o);
+            this.scroll = o.scroll;
+            this.scrollId = o.scrollId;
+        }
+
+        private Builder(Builder o) {
+            super(o);
+            this.scroll = o.scroll;
+            this.scrollId = o.scrollId;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
+        }
+
         /**
-         * Period to retain the search context for scrolling.
-         * <p>
          * API name: {@code scroll}
          */
+        @Nonnull
         public final Builder scroll(@Nullable Time value) {
             this.scroll = value;
             return this;
         }
 
         /**
-         * Period to retain the search context for scrolling.
-         * <p>
          * API name: {@code scroll}
          */
+        @Nonnull
         public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-            return this.scroll(fn.apply(new Time.Builder()).build());
+            return scroll(fn.apply(new Time.Builder()).build());
         }
 
         /**
-         * Required - Scroll ID of the search.
-         * <p>
-         * API name: {@code scroll_id}
+         * Required - API name: {@code scroll_id}
          */
+        @Nonnull
         public final Builder scrollId(String value) {
             this.scrollId = value;
             return this;
@@ -165,9 +202,10 @@ public class ScrollRequest extends RequestBase implements PlainJsonSerializable 
         /**
          * Builds a {@link ScrollRequest}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ScrollRequest build() {
             _checkSingleUse();
 
@@ -186,10 +224,8 @@ public class ScrollRequest extends RequestBase implements PlainJsonSerializable 
     );
 
     protected static void setupScrollRequestDeserializer(ObjectDeserializer<ScrollRequest.Builder> op) {
-
         op.add(Builder::scroll, Time._DESERIALIZER, "scroll");
         op.add(Builder::scrollId, JsonpDeserializer.stringDeserializer(), "scroll_id");
-
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -198,23 +234,15 @@ public class ScrollRequest extends RequestBase implements PlainJsonSerializable 
      * Endpoint "{@code scroll}".
      */
     public static final SimpleEndpoint<ScrollRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
-
         // Request method
-        request -> {
-            return "POST";
-
-        },
-
+        request -> "POST",
         // Request path
-        request -> {
-            return "/_search/scroll";
-
-        },
-
+        request -> "/_search/scroll",
         // Request parameters
         request -> {
-            return Collections.emptyMap();
-
+            Map<String, String> params = new HashMap<>();
+            request.applyQueryParameters(params);
+            return params;
         },
         SimpleEndpoint.emptyMap(),
         true,
@@ -228,5 +256,21 @@ public class ScrollRequest extends RequestBase implements PlainJsonSerializable 
         JsonpDeserializer<TDocument> tDocumentDeserializer
     ) {
         return _ENDPOINT.withResponseDeserializer(ScrollResponse.createScrollResponseDeserializer(tDocumentDeserializer));
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.scroll);
+        result = 31 * result + this.scrollId.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ScrollRequest other = (ScrollRequest) o;
+        return Objects.equals(this.scroll, other.scroll) && this.scrollId.equals(other.scrollId);
     }
 }

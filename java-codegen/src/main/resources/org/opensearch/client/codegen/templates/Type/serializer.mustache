@@ -1,13 +1,26 @@
 {{#type.isMap}}
-    generator.writeStartObject();
+    {{#type.mapValueType.targetShape.usesTypedKeys}}
+        {{TYPES.Client.Json.ExternallyTaggedUnion}}.serializeTypedKeys({{value}}, generator, mapper);
+    {{/type.mapValueType.targetShape.usesTypedKeys}}
+    {{^type.mapValueType.targetShape.usesTypedKeys}}
+        {{#type.mapValueType.isList}}
+            {{#type.mapValueType.listValueType.targetShape.usesTypedKeys}}
+                {{TYPES.Client.Json.ExternallyTaggedUnion}}.serializeTypedKeysArray({{value}}, generator, mapper);
+            {{/type.mapValueType.listValueType.targetShape.usesTypedKeys}}
+            {{^type.mapValueType.listValueType.targetShape.usesTypedKeys}}
+                {{>Type/Serializer/Map}}
+            {{/type.mapValueType.listValueType.targetShape.usesTypedKeys}}
+        {{/type.mapValueType.isList}}
+        {{^type.mapValueType.isList}}
+            {{>Type/Serializer/Map}}
+        {{/type.mapValueType.isList}}
+    {{/type.mapValueType.targetShape.usesTypedKeys}}
 {{/type.isMap}}
 {{#type.isList}}
     generator.writeStartArray();
-{{/type.isList}}
-{{>Type/directSerializer}}
-{{#type.isMap}}
-    generator.writeEnd();
-{{/type.isMap}}
-{{#type.isList}}
+    {{>Type/directSerializer}}
     generator.writeEnd();
 {{/type.isList}}
+{{^type.isListOrMap}}
+    {{>Type/directSerializer}}
+{{/type.isListOrMap}}
