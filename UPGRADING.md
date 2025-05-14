@@ -702,3 +702,6 @@ After:
 
 ### MultiBucketAggregateBase
 - The `tBucketSerializer` property has been removed as it is unused.
+
+### ExplainResponse
+- The `explanation` property is now of type `Explanation` instead of `ExplanationDetail`.
