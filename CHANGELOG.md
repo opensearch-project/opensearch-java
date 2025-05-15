@@ -5,20 +5,27 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
-- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.3 to 5.4.4 ([#1544](https://github.com/opensearch-project/opensearch-java/pull/1544))
 
 ### Changed
-- Changed `StopTokenFilter`'s `stopwords` field to no longer be required ([#1551](https://github.com/opensearch-project/opensearch-java/pull/1551))
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
-- Fixed deserializing `wrapper` queries ([#1537](https://github.com/opensearch-project/opensearch-java/pull/1537))
-- Add `is_hidden` to `AliasDefinition` ([#1537](https://github.com/opensearch-project/opensearch-java/pull/1537))
 
 ### Security
+
+## [2.24.0] - 05/16/2025
+### Dependencies
+- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.3 to 5.4.4 ([#1544](https://github.com/opensearch-project/opensearch-java/pull/1544))
+
+### Changed
+- Changed `StopTokenFilter`'s `stopwords` field to no longer be required ([#1551](https://github.com/opensearch-project/opensearch-java/pull/1551))
+
+### Fixed
+- Fixed deserializing `wrapper` queries ([#1537](https://github.com/opensearch-project/opensearch-java/pull/1537))
+- Add `is_hidden` to `AliasDefinition` ([#1537](https://github.com/opensearch-project/opensearch-java/pull/1537))
 
 ## [2.23.0] - 04/17/2025
 ### Added
