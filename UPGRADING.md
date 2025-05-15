@@ -716,3 +716,8 @@ After:
 
 ### GetResponse
 - The `GetResponse` class now extends a `GetResultBase` class instead of `GetResult`.
+
+### GetSourceRequest
+- The `refresh` property has been corrected to be of type `Refresh` instead of `Boolean`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+- The `storedFields` property has been removed as it is not supported by OpenSearch.
