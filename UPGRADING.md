@@ -703,5 +703,9 @@ After:
 ### MultiBucketAggregateBase
 - The `tBucketSerializer` property has been removed as it is unused.
 
+### ExplainRequest
+- The `routing` property is now of type `List<String>` instead of `String`.
+
 ### ExplainResponse
 - The `explanation` property is now of type `Explanation` instead of `ExplanationDetail`.
+- The `tDocumentSerializer` property has been removed as it is unused.

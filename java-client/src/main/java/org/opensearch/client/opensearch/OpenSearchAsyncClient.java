@@ -175,46 +175,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
         return create(fn.apply(new CreateRequest.Builder<TDocument>()).build());
     }
 
-    // ----- Endpoint: explain
-
-    /**
-     * Returns information about why a specific matches (or doesn't match) a query.
-     *
-     *
-     */
-
-    public <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(ExplainRequest request, Class<TDocument> tDocumentClass)
-        throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
-            ExplainRequest,
-            ExplainResponse<TDocument>,
-            ErrorResponse>) ExplainRequest._ENDPOINT;
-        endpoint = new EndpointWithResponseMapperAttr<>(
-            endpoint,
-            "org.opensearch.client:Deserializer:_global.explain.TDocument",
-            getDeserializer(tDocumentClass)
-        );
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about why a specific matches (or doesn't match) a query.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link ExplainRequest}
-     *
-     */
-
-    public final <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(
-        Function<ExplainRequest.Builder, ObjectBuilder<ExplainRequest>> fn,
-        Class<TDocument> tDocumentClass
-    ) throws IOException, OpenSearchException {
-        return explain(fn.apply(new ExplainRequest.Builder()).build(), tDocumentClass);
-    }
-
     // ----- Endpoint: get
 
     /**
