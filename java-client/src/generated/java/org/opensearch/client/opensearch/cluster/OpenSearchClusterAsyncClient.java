@@ -118,6 +118,35 @@ public class OpenSearchClusterAsyncClient extends ApiClient<OpenSearchTransport,
         return deleteComponentTemplate(fn.apply(new DeleteComponentTemplateRequest.Builder()).build());
     }
 
+    // ----- Endpoint: cluster.delete_decommission_awareness
+
+    /**
+     * Recommissions a decommissioned zone.
+     */
+    public CompletableFuture<DeleteDecommissionAwarenessResponse> deleteDecommissionAwareness(DeleteDecommissionAwarenessRequest request)
+        throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteDecommissionAwarenessRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Recommissions a decommissioned zone.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteDecommissionAwarenessRequest}
+     */
+    public final CompletableFuture<DeleteDecommissionAwarenessResponse> deleteDecommissionAwareness(
+        Function<DeleteDecommissionAwarenessRequest.Builder, ObjectBuilder<DeleteDecommissionAwarenessRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteDecommissionAwareness(fn.apply(new DeleteDecommissionAwarenessRequest.Builder()).build());
+    }
+
+    /**
+     * Recommissions a decommissioned zone.
+     */
+    public final CompletableFuture<DeleteDecommissionAwarenessResponse> deleteDecommissionAwareness() throws IOException,
+        OpenSearchException {
+        return deleteDecommissionAwareness(new DeleteDecommissionAwarenessRequest.Builder().build());
+    }
+
     // ----- Endpoint: cluster.delete_voting_config_exclusions
 
     /**
@@ -144,6 +173,34 @@ public class OpenSearchClusterAsyncClient extends ApiClient<OpenSearchTransport,
      */
     public final CompletableFuture<BooleanResponse> deleteVotingConfigExclusions() throws IOException, OpenSearchException {
         return deleteVotingConfigExclusions(new DeleteVotingConfigExclusionsRequest.Builder().build());
+    }
+
+    // ----- Endpoint: cluster.delete_weighted_routing
+
+    /**
+     * Delete weighted shard routing weights.
+     */
+    public CompletableFuture<DeleteWeightedRoutingResponse> deleteWeightedRouting(DeleteWeightedRoutingRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, DeleteWeightedRoutingRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Delete weighted shard routing weights.
+     *
+     * @param fn a function that initializes a builder to create the {@link DeleteWeightedRoutingRequest}
+     */
+    public final CompletableFuture<DeleteWeightedRoutingResponse> deleteWeightedRouting(
+        Function<DeleteWeightedRoutingRequest.Builder, ObjectBuilder<DeleteWeightedRoutingRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return deleteWeightedRouting(fn.apply(new DeleteWeightedRoutingRequest.Builder()).build());
+    }
+
+    /**
+     * Delete weighted shard routing weights.
+     */
+    public final CompletableFuture<DeleteWeightedRoutingResponse> deleteWeightedRouting() throws IOException, OpenSearchException {
+        return deleteWeightedRouting(new DeleteWeightedRoutingRequest.Builder().build());
     }
 
     // ----- Endpoint: cluster.exists_component_template
@@ -195,6 +252,27 @@ public class OpenSearchClusterAsyncClient extends ApiClient<OpenSearchTransport,
         return getComponentTemplate(new GetComponentTemplateRequest.Builder().build());
     }
 
+    // ----- Endpoint: cluster.get_decommission_awareness
+
+    /**
+     * Retrieves the decommission status for all zones.
+     */
+    public CompletableFuture<GetDecommissionAwarenessResponse> getDecommissionAwareness(GetDecommissionAwarenessRequest request)
+        throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, GetDecommissionAwarenessRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Retrieves the decommission status for all zones.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetDecommissionAwarenessRequest}
+     */
+    public final CompletableFuture<GetDecommissionAwarenessResponse> getDecommissionAwareness(
+        Function<GetDecommissionAwarenessRequest.Builder, ObjectBuilder<GetDecommissionAwarenessRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return getDecommissionAwareness(fn.apply(new GetDecommissionAwarenessRequest.Builder()).build());
+    }
+
     // ----- Endpoint: cluster.get_settings
 
     /**
@@ -221,6 +299,27 @@ public class OpenSearchClusterAsyncClient extends ApiClient<OpenSearchTransport,
      */
     public final CompletableFuture<GetClusterSettingsResponse> getSettings() throws IOException, OpenSearchException {
         return getSettings(new GetClusterSettingsRequest.Builder().build());
+    }
+
+    // ----- Endpoint: cluster.get_weighted_routing
+
+    /**
+     * Fetches weighted shard routing weights.
+     */
+    public CompletableFuture<GetWeightedRoutingResponse> getWeightedRouting(GetWeightedRoutingRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, GetWeightedRoutingRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Fetches weighted shard routing weights.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetWeightedRoutingRequest}
+     */
+    public final CompletableFuture<GetWeightedRoutingResponse> getWeightedRouting(
+        Function<GetWeightedRoutingRequest.Builder, ObjectBuilder<GetWeightedRoutingRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return getWeightedRouting(fn.apply(new GetWeightedRoutingRequest.Builder()).build());
     }
 
     // ----- Endpoint: cluster.health
@@ -325,6 +424,29 @@ public class OpenSearchClusterAsyncClient extends ApiClient<OpenSearchTransport,
         return putComponentTemplate(fn.apply(new PutComponentTemplateRequest.Builder()).build());
     }
 
+    // ----- Endpoint: cluster.put_decommission_awareness
+
+    /**
+     * Decommissions a cluster zone based on awareness. This can greatly benefit multi-zone deployments, where awareness attributes can aid
+     * in applying new upgrades to a cluster in a controlled fashion.
+     */
+    public CompletableFuture<PutDecommissionAwarenessResponse> putDecommissionAwareness(PutDecommissionAwarenessRequest request)
+        throws IOException, OpenSearchException {
+        return this.transport.performRequestAsync(request, PutDecommissionAwarenessRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Decommissions a cluster zone based on awareness. This can greatly benefit multi-zone deployments, where awareness attributes can aid
+     * in applying new upgrades to a cluster in a controlled fashion.
+     *
+     * @param fn a function that initializes a builder to create the {@link PutDecommissionAwarenessRequest}
+     */
+    public final CompletableFuture<PutDecommissionAwarenessResponse> putDecommissionAwareness(
+        Function<PutDecommissionAwarenessRequest.Builder, ObjectBuilder<PutDecommissionAwarenessRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return putDecommissionAwareness(fn.apply(new PutDecommissionAwarenessRequest.Builder()).build());
+    }
+
     // ----- Endpoint: cluster.put_settings
 
     /**
@@ -351,6 +473,27 @@ public class OpenSearchClusterAsyncClient extends ApiClient<OpenSearchTransport,
      */
     public final CompletableFuture<PutClusterSettingsResponse> putSettings() throws IOException, OpenSearchException {
         return putSettings(new PutClusterSettingsRequest.Builder().build());
+    }
+
+    // ----- Endpoint: cluster.put_weighted_routing
+
+    /**
+     * Updates weighted shard routing weights.
+     */
+    public CompletableFuture<PutWeightedRoutingResponse> putWeightedRouting(PutWeightedRoutingRequest request) throws IOException,
+        OpenSearchException {
+        return this.transport.performRequestAsync(request, PutWeightedRoutingRequest._ENDPOINT, this.transportOptions);
+    }
+
+    /**
+     * Updates weighted shard routing weights.
+     *
+     * @param fn a function that initializes a builder to create the {@link PutWeightedRoutingRequest}
+     */
+    public final CompletableFuture<PutWeightedRoutingResponse> putWeightedRouting(
+        Function<PutWeightedRoutingRequest.Builder, ObjectBuilder<PutWeightedRoutingRequest>> fn
+    ) throws IOException, OpenSearchException {
+        return putWeightedRouting(fn.apply(new PutWeightedRoutingRequest.Builder()).build());
     }
 
     // ----- Endpoint: cluster.remote_info

@@ -74,19 +74,6 @@ public class CodeGenerator {
             ),
             namespace(is("asynchronous_search")),
             and(namespace(is("cat")), name(is("help"))),
-            and(
-                namespace(is("cluster")),
-                name(
-                    isOneOf(
-                        "delete_decommission_awareness",
-                        "delete_weighted_routing",
-                        "get_decommission_awareness",
-                        "get_weighted_routing",
-                        "put_decommission_awareness",
-                        "put_weighted_routing"
-                    )
-                )
-            ),
             namespace(is("flow_framework")),
             namespace(is("geospatial")),
             and(namespace(is("indices")), name(is("get_field_mapping"))),
