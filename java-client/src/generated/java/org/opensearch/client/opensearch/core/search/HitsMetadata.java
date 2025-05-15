@@ -45,7 +45,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
@@ -67,9 +66,6 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
     private final Float maxScore;
 
     @Nullable
-    private final JsonpSerializer<T> tSerializer;
-
-    @Nullable
     private final TotalHits total;
 
     // ---------------------------------------------------------------------------------------------
@@ -77,7 +73,6 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
     private HitsMetadata(Builder<T> builder) {
         this.hits = ApiTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
         this.maxScore = builder.maxScore;
-        this.tSerializer = builder.tSerializer;
         this.total = builder.total;
     }
 
@@ -99,14 +94,6 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
     @Nullable
     public final Float maxScore() {
         return this.maxScore;
-    }
-
-    /**
-     * Serializer for {@code T}. If not set, an attempt will be made to find a serializer from the JSON context.
-     */
-    @Nullable
-    public final JsonpSerializer<T> tSerializer() {
-        return this.tSerializer;
     }
 
     /**
@@ -170,8 +157,6 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
         @Nullable
         private Float maxScore;
         @Nullable
-        private JsonpSerializer<T> tSerializer;
-        @Nullable
         private TotalHits total;
 
         public Builder() {}
@@ -179,14 +164,12 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
         private Builder(HitsMetadata<T> o) {
             this.hits = _listCopy(o.hits);
             this.maxScore = o.maxScore;
-            this.tSerializer = o.tSerializer;
             this.total = o.total;
         }
 
         private Builder(Builder<T> o) {
             this.hits = _listCopy(o.hits);
             this.maxScore = o.maxScore;
-            this.tSerializer = o.tSerializer;
             this.total = o.total;
         }
 
@@ -240,15 +223,6 @@ public class HitsMetadata<T> implements PlainJsonSerializable, ToCopyableBuilder
         @Nonnull
         public final Builder<T> maxScore(@Nullable Float value) {
             this.maxScore = value;
-            return this;
-        }
-
-        /**
-         * Serializer for {@code T}. If not set, an attempt will be made to find a serializer from the JSON context.
-         */
-        @Nonnull
-        public final Builder<T> tSerializer(@Nullable JsonpSerializer<T> value) {
-            this.tSerializer = value;
             return this;
         }
 

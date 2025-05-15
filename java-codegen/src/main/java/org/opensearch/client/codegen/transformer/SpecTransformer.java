@@ -43,6 +43,7 @@ import org.opensearch.client.codegen.model.OperationGroup;
 import org.opensearch.client.codegen.model.RequestShape;
 import org.opensearch.client.codegen.model.Shape;
 import org.opensearch.client.codegen.model.TaggedUnionShape;
+import org.opensearch.client.codegen.model.types.TypeRef;
 import org.opensearch.client.codegen.model.types.Types;
 import org.opensearch.client.codegen.openapi.In;
 import org.opensearch.client.codegen.openapi.MimeType;
@@ -59,6 +60,7 @@ import org.opensearch.client.codegen.openapi.OpenApiSpecification;
 import org.opensearch.client.codegen.transformer.overrides.Overrides;
 import org.opensearch.client.codegen.transformer.overrides.PathParameterOverride;
 import org.opensearch.client.codegen.transformer.overrides.PropertyOverride;
+import org.opensearch.client.codegen.transformer.overrides.QueryParameterOverride;
 import org.opensearch.client.codegen.transformer.overrides.SchemaOverride;
 import org.opensearch.client.codegen.transformer.overrides.ShouldGenerate;
 import org.opensearch.client.codegen.utils.Maps;
@@ -147,19 +149,22 @@ public class SpecTransformer {
             .flatMap(OpenApiMediaType::getSchema)
             .map(OpenApiRefElement::resolve);
 
+        TypeRef responseType;
+
         if (responseSchema.isEmpty() && !requestShape.hasRequestBody()) {
-            requestShape.setIsBooleanRequest();
-            return;
+            responseType = Types.Client.Transport.Endpoints.BooleanResponse;
+        } else {
+            responseType = visit(
+                parent,
+                RequestShape.responseClassName(group),
+                group.asTypedefPrefix() + ".Response",
+                responseSchema.orElse(OpenApiSchema.emptyObject()),
+                ShouldGenerate.Always,
+                true
+            ).getType();
         }
 
-        visit(
-            parent,
-            requestShape.getResponseType().getName(),
-            group + ".Response",
-            responseSchema.orElse(OpenApiSchema.emptyObject()),
-            ShouldGenerate.Always,
-            true
-        );
+        requestShape.setResponseType(responseType);
     }
 
     private static Stream<OpenApiParameter> getAllRelevantParameters(OpenApiPath path, OpenApiOperation operation, In in) {
@@ -273,8 +278,8 @@ public class SpecTransformer {
             .flatMap(c -> c.get(MimeType.Json))
             .flatMap(OpenApiMediaType::getSchema)
             .ifPresent(s -> {
-                if (s.has$ref() && s.hasTitle()) {
-                    var name = s.getTitle().orElseThrow();
+                if ((s.has$ref() && s.hasTitle()) || !s.getSingleType().map(OpenApiSchemaType.Object::equals).orElse(false)) {
+                    var name = s.getTitle().orElse("body");
                     shape.setDelegatedBodyField(name, typeMapper.mapType(s));
                 } else {
                     visitInto(s.resolve(), shape);
@@ -285,11 +290,20 @@ public class SpecTransformer {
 
         var isCatNs = group.getNamespace().orElse("").equals("cat");
 
-        variants.stream()
-            .flatMap(v -> getAllRelevantParameters(v.getLeft(), v.getRight(), In.Query))
-            .filter(p -> seenQueryParams.add(p.getName().orElseThrow()) && !p.isGlobal() && (!isCatNs || !p.isGlobalCatParameter()))
-            .map(this::visit)
-            .forEachOrdered(shape::addQueryParam);
+        variants.stream().flatMap(v -> getAllRelevantParameters(v.getLeft(), v.getRight(), In.Query)).filter(p -> {
+            var name = p.getName().orElseThrow();
+            if (!seenQueryParams.add(name)) {
+                return false;
+            }
+            if (p.isGlobal()) {
+                return false;
+            }
+            if (isCatNs && p.isGlobalCatParameter()) {
+                return false;
+            }
+            var shouldIgnore = overrides.flatMap(oo -> oo.getQueryParameter(name)).map(QueryParameterOverride::shouldIgnore).orElse(false);
+            return !shouldIgnore;
+        }).map(this::visit).forEachOrdered(shape::addQueryParam);
 
         if (shape.getExtendsType() == null) {
             shape.setExtendsType(isCatNs ? Types.Client.OpenSearch.Cat.CatRequestBase : Types.Client.OpenSearch._Types.RequestBase);
@@ -561,6 +575,10 @@ public class SpecTransformer {
     }
 
     private void visitInto(OpenApiSchema schema, ObjectShapeBase shape) {
+        while (schema.has$ref()) {
+            schema = schema.resolve();
+        }
+
         if (schema.has$extends()) {
             shape.setExtendsType(typeMapper.mapType(schema.get$extends().orElseThrow()));
         }
@@ -581,7 +599,9 @@ public class SpecTransformer {
 
             var type = propOverrides.flatMap(PropertyOverride::getMappedType).orElseGet(() -> typeMapper.mapType(v));
 
-            var canBeNull = !required.contains(k)
+            var isRequired = propOverrides.flatMap(PropertyOverride::getRequired).orElseGet(() -> required.contains(k));
+
+            var canBeNull = !isRequired
                 || (!type.getName().equals("FieldValue")
                     && v.getTypes()
                         .filter(t -> !t.equals(OpenApiSchemaType.ALL_TYPES))

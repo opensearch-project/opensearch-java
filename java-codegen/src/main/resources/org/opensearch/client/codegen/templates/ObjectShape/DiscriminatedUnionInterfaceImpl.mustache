@@ -2,6 +2,6 @@
  * {@link {{union.className}}} variant kind.
  */
 @Override
-public {{union.type}}.Kind _{{#camelCase}}{{union.className}}{{/camelCase}}Kind() {
-    return {{union.type}}.Kind.{{#pascalCase}}{{discriminatorValue}}{{/pascalCase}};
+public {{unionKindType}} _{{#camelCase}}{{union.className}}{{/camelCase}}Kind() {
+    return {{unionKindType}}.{{#pascalCase}}{{discriminatorValue}}{{/pascalCase}};
 }

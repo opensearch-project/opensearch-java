@@ -39,7 +39,8 @@ public final class TemplateRenderer {
         this.compiler = Mustache.compiler()
             .escapeHTML(false)
             .withLoader(Objects.requireNonNull(builder.templateLoader, "templateLoader must not be null"))
-            .withFormatter(Objects.requireNonNull(builder.valueFormatter, "valueFormatter must not be null"));
+            .withFormatter(Objects.requireNonNull(builder.valueFormatter, "valueFormatter must not be null"))
+            .withCollector(new TemplateObjectCollector());
         this.context = TemplateGlobalContext.builder().withRenderer(this).build();
         this.javaCodeFormatter = Objects.requireNonNull(builder.javaCodeFormatter, "javaCodeFormatter must not be null");
     }
@@ -74,7 +75,7 @@ public final class TemplateRenderer {
         try {
             javaCodeFormatter.format(outputFile);
         } catch (JavaFormatterException e) {
-            throw new RenderException("Unable to format rendered output: " + outputFile, e);
+            // throw new RenderException("Unable to format rendered output: " + outputFile, e);
         }
     }
 

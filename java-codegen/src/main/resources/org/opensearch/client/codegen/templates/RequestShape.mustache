@@ -45,7 +45,13 @@
     /**
      * Endpoint "{@code {{operationGroup}}}".
      */
-    public static final {{TYPES.Client.Transport.Endpoint}}<{{className}}, {{responseType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}> _ENDPOINT = new {{#isBooleanRequest}}{{TYPES.Client.Transport.Endpoints.BooleanEndpoint}}{{/isBooleanRequest}}{{^isBooleanRequest}}{{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}{{/isBooleanRequest}}<>(
+{{#responseType.targetShape.hasTypeParameters}}
+    public static final {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}<{{className}}, ?> _ENDPOINT
+{{/responseType.targetShape.hasTypeParameters}}
+{{^responseType.targetShape.hasTypeParameters}}
+    public static final {{TYPES.Client.Transport.Endpoint}}<{{className}}, {{responseType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}> _ENDPOINT
+{{/responseType.targetShape.hasTypeParameters}}
+        = new {{#isBooleanRequest}}{{TYPES.Client.Transport.Endpoints.BooleanEndpoint}}{{/isBooleanRequest}}{{^isBooleanRequest}}{{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}{{/isBooleanRequest}}<>(
             // Request method
             request -> {{#quoted}}{{httpMethod}}{{/quoted}},
             // Request path
@@ -93,9 +99,20 @@
         {{^isBooleanRequest}}
             ,
             {{hasRequestBody}},
-            {{responseType}}._DESERIALIZER
+            {{responseType.name}}._DESERIALIZER
         {{/isBooleanRequest}}
     );
+{{#responseType.targetShape.hasTypeParameters}}
+
+    /**
+     * Create an "{@code {{operationGroup}}}" endpoint.
+     */
+    public static {{responseType.targetShape.typeParameters}} {{TYPES.Client.Transport.Endpoint}}<{{className}}, {{responseType.selfType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}> create{{#pascalCase}}{{operationGroup}}{{/pascalCase}}Endpoint(
+        {{#responseType.targetShape.typeParameters}}{{#typeParameterDefinitions}}{{TYPES.Client.Json.JsonpDeserializer}}<{{name}}> {{#camelCase}}{{name}}{{/camelCase}}Deserializer{{^-last}},{{/-last}}{{/typeParameterDefinitions}}{{/responseType.targetShape.typeParameters}}
+    ) {
+        return _ENDPOINT.withResponseDeserializer({{responseType.name}}.create{{responseType.name}}Deserializer({{#responseType.targetShape.typeParameters}}{{#typeParameterDefinitions}}{{#camelCase}}{{name}}{{/camelCase}}Deserializer{{^-last}},{{/-last}}{{/typeParameterDefinitions}}{{/responseType.targetShape.typeParameters}}));
+    }
+{{/responseType.targetShape.hasTypeParameters}}
 
     {{>ObjectShape/HashCode}}
 

@@ -612,10 +612,11 @@ After:
   - `nodes.stats.Stats`'s `caches` field.
 
 ### Explanation
+- The `details` property has been changed to be of type `List<Explanation>` instead of `List<ExplanationDetail>`.
 - The `value` property has been corrected to be of type `Number` instead of `float`.
 
 ### ExplanationDetail
-- The `value` property has been corrected to be of type `Number` instead of `float`.
+- The `ExplanationDetail` class has been removed as it has been replaced by the `Explanation` class.
 
 ### Aggregate
 - The `GeoLine` aggregation has been removed as it is not supported by OpenSearch.
@@ -652,6 +653,7 @@ After:
 
 ### HitsMetadata
 - The `maxScore` property has been corrected to be of type `Float` instead of `Double`.
+- The `tSerializer` property has been removed as it is unused.
 
 ### AggregationRange
 - The `from` and `to` properties have been corrected to be of type `JsonData` instead of `String`.
@@ -694,3 +696,12 @@ After:
 
 ### TTestAggregate
 - The `value` property no longer defaults `0` when null, instead it is now an optional field.
+
+### ScoreCombination
+- The `parameters` property has been corrected to be of type `ScoreCombinationParameters` instead of `List<Float>`.
+
+### MultiBucketAggregateBase
+- The `tBucketSerializer` property has been removed as it is unused.
+
+### ExplainResponse
+- The `explanation` property is now of type `Explanation` instead of `ExplanationDetail`.

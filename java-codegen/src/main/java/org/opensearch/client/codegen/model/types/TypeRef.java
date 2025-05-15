@@ -9,7 +9,6 @@
 package org.opensearch.client.codegen.model.types;
 
 import com.samskivert.mustache.Mustache;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import javax.annotation.Nullable;
@@ -70,13 +69,9 @@ public abstract class TypeRef {
 
     public abstract Type getNestedType(String name);
 
-    public final Set<TypeParameterRef> collectTypeParameterRefs() {
-        var refs = new HashSet<TypeParameterRef>();
-        collectTypeParameterRefs(refs);
-        return refs;
+    public TypeRef getSelfType() {
+        return this;
     }
-
-    protected abstract void collectTypeParameterRefs(Set<TypeParameterRef> refs);
 
     public final Mustache.Lambda serializer() {
         return new TypeSerializerLambda(this, false);

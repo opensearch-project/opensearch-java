@@ -5935,6 +5935,78 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ml.get_tool___200'
+  /_plugins/_neural/{node_id}/stats:
+    get:
+      operationId: neural.stats.2
+      x-operation-group: neural.stats
+      x-version-added: '3.0'
+      description: Provides information about the current status of the neural-search plugin.
+      parameters:
+        - $ref: '#/components/parameters/neural.stats___path.node_id'
+        - $ref: '#/components/parameters/neural.stats___query.flat_stat_paths'
+        - $ref: '#/components/parameters/neural.stats___query.include_metadata'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/neural.stats___200'
+  /_plugins/_neural/{node_id}/stats/{stat}:
+    get:
+      operationId: neural.stats.3
+      x-operation-group: neural.stats
+      x-version-added: '3.0'
+      description: Provides information about the current status of the neural-search plugin.
+      parameters:
+        - $ref: '#/components/parameters/neural.stats___path.node_id'
+        - $ref: '#/components/parameters/neural.stats___path.stat'
+        - $ref: '#/components/parameters/neural.stats___query.flat_stat_paths'
+        - $ref: '#/components/parameters/neural.stats___query.include_metadata'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/neural.stats___200'
+  /_plugins/_neural/stats:
+    get:
+      operationId: neural.stats.0
+      x-operation-group: neural.stats
+      x-version-added: '3.0'
+      description: Provides information about the current status of the neural-search plugin.
+      parameters:
+        - $ref: '#/components/parameters/neural.stats___query.flat_stat_paths'
+        - $ref: '#/components/parameters/neural.stats___query.include_metadata'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/neural.stats___200'
+  /_plugins/_neural/stats/{stat}:
+    get:
+      operationId: neural.stats.1
+      x-operation-group: neural.stats
+      x-version-added: '3.0'
+      description: Provides information about the current status of the neural-search plugin.
+      parameters:
+        - $ref: '#/components/parameters/neural.stats___path.stat'
+        - $ref: '#/components/parameters/neural.stats___query.flat_stat_paths'
+        - $ref: '#/components/parameters/neural.stats___query.include_metadata'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/neural.stats___200'
   /_plugins/_notifications/channels:
     get:
       operationId: notifications.list_channels.0
@@ -6358,7 +6430,7 @@ paths:
       operationId: query.datasources_list.0
       x-operation-group: query.datasources_list
       x-version-added: '2.7'
-      description: Retrieves a list of all available datasources.
+      description: Retrieves a list of all available data sources.
       responses:
         '200':
           $ref: '#/components/responses/query.datasources_list___200'
@@ -8724,7 +8796,7 @@ paths:
       operationId: sql.query.0
       x-operation-group: sql.query
       x-version-added: '1.0'
-      description: Executes SQL or PPL queries against OpenSearch indices.
+      description: Executes SQL or PPL queries against OpenSearch indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
       parameters:
@@ -9520,6 +9592,7 @@ paths:
         - $ref: '#/components/parameters/search___query.track_scores'
         - $ref: '#/components/parameters/search___query.track_total_hits'
         - $ref: '#/components/parameters/search___query.typed_keys'
+        - $ref: '#/components/parameters/search___query.verbose_pipeline'
         - $ref: '#/components/parameters/search___query.version'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
@@ -9588,6 +9661,7 @@ paths:
         - $ref: '#/components/parameters/search___query.track_scores'
         - $ref: '#/components/parameters/search___query.track_total_hits'
         - $ref: '#/components/parameters/search___query.typed_keys'
+        - $ref: '#/components/parameters/search___query.verbose_pipeline'
         - $ref: '#/components/parameters/search___query.version'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
@@ -12684,6 +12758,7 @@ paths:
         - $ref: '#/components/parameters/search___query.track_scores'
         - $ref: '#/components/parameters/search___query.track_total_hits'
         - $ref: '#/components/parameters/search___query.typed_keys'
+        - $ref: '#/components/parameters/search___query.verbose_pipeline'
         - $ref: '#/components/parameters/search___query.version'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
@@ -12753,6 +12828,7 @@ paths:
         - $ref: '#/components/parameters/search___query.track_scores'
         - $ref: '#/components/parameters/search___query.track_total_hits'
         - $ref: '#/components/parameters/search___query.typed_keys'
+        - $ref: '#/components/parameters/search___query.verbose_pipeline'
         - $ref: '#/components/parameters/search___query.version'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
@@ -15797,7 +15873,7 @@ paths:
       operationId: sql.query.0_superseded
       x-operation-group: sql.query
       x-version-added: '1.0'
-      description: Executes SQL or PPL queries against OpenSearch indices.
+      description: Executes SQL or PPL queries against OpenSearch indexes.
       externalDocs:
         url: https://opensearch.org/docs/latest/search-plugins/sql/sql-ppl-api/
       parameters:
@@ -16274,7 +16350,7 @@ components:
       name: routing
       description: Custom value used to route operations to a specific shard.
       schema:
-        $ref: '#/components/schemas/_common___RoutingInQueryString'
+        $ref: '#/components/schemas/_common___Routing'
       style: form
     bulk___query.timeout:
       in: query
@@ -24125,6 +24201,7 @@ components:
           - ConnectorTool
           - CreateAnomalyDetectorTool
           - IndexMappingTool
+          - ListIndexTool
           - LogPatternTool
           - MLModelTool
           - NeuralSparseSearchTool
@@ -24460,6 +24537,45 @@ components:
       description: Specific version type.
       schema:
         $ref: '#/components/schemas/_common___VersionType'
+      style: form
+    neural.stats___path.node_id:
+      name: node_id
+      in: path
+      description: Comma-separated list of node IDs or names to limit the returned information; leave empty to get information from all nodes.
+      schema:
+        type: string
+      required: true
+    neural.stats___path.stat:
+      name: stat
+      in: path
+      description: Comma-separated list of stats to retrieve; use empty string to retrieve all stats.
+      schema:
+        type: string
+        enum:
+          - cluster_version
+          - text_embedding_executions
+          - text_embedding_processors_in_pipelines
+      required: true
+    neural.stats___query.flat_stat_paths:
+      in: query
+      name: flat_stat_paths
+      description: |-
+        Whether to return stats in the flat form, which can improve readability, especially for heavily nested stats.
+        For example, the flat form of `"processors": { "ingest": { "text_embedding_executions": 20181212 } }` is 
+        `"processors.ingest.text_embedding_executions": "20181212"`.
+      schema:
+        type: boolean
+        default: false
+      style: form
+    neural.stats___query.include_metadata:
+      in: query
+      name: include_metadata
+      description: |-
+        Whether to return stat metadata instead of the raw stat value, includes additional information about the stat.
+        These can include things like type hints, time since last stats being recorded, or recent rolling interval values
+      schema:
+        type: boolean
+        default: false
       style: form
     nodes.hot_threads___path.node_id:
       name: node_id
@@ -26055,6 +26171,20 @@ components:
       in: query
       name: typed_keys
       description: If `true`, aggregation and suggester names are be prefixed by their respective types in the response.
+      schema:
+        type: boolean
+      style: form
+    search___query.verbose_pipeline:
+      x-version-added: '3.0'
+      in: query
+      name: verbose_pipeline
+      description: |-
+        Enables or disables verbose mode for the search pipeline.
+        When verbose mode is enabled, detailed information about each processor
+        in the search pipeline is included in the search response. This includes
+        the processor name, execution status, input, output, and time taken for processing.
+        This parameter is primarily intended for debugging purposes, allowing users
+        to track how data flows and transforms through the search pipeline.
       schema:
         type: boolean
       style: form
@@ -30883,7 +31013,7 @@ components:
               matched:
                 type: boolean
               explanation:
-                $ref: '#/components/schemas/_core.explain___ExplanationDetail'
+                $ref: '#/components/schemas/_core.explain___Explanation'
               get:
                 $ref: '#/components/schemas/_common___InlineGet'
             required:
@@ -32663,6 +32793,12 @@ components:
             required:
               - docs
       description: ''
+    neural.stats___200:
+      description: Successful response containing neural stats
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/neural._common___NeuralStats'
     nodes.hot_threads___200:
       content:
         text/plain: {}
@@ -35601,6 +35737,9 @@ components:
           type: object
           description: The source of the document.
           additionalProperties: true
+      additionalProperties:
+        type: object
+        title: metadata_fields
       required:
         - found
     _common___InlineScript:
@@ -35879,6 +36018,9 @@ components:
           format: int32
         index:
           $ref: '#/components/schemas/_common___IndexName'
+        searchOnly:
+          type: boolean
+          description: Indicates if this shard is configured for search operations only
         allocation_id:
           type: object
           additionalProperties:
@@ -36521,11 +36663,13 @@ components:
       required:
         - script
     _common___ScriptLanguage:
-      anyOf:
+      oneOf:
         - title: builtin
           $ref: '#/components/schemas/_common___BuiltinScriptLanguage'
         - title: custom
           type: string
+          not:
+            $ref: '#/components/schemas/_common___BuiltinScriptLanguage'
     _common___ScriptSort:
       type: object
       properties:
@@ -36871,6 +37015,23 @@ components:
       required:
         - reason
         - shard
+    _common___ShardInfo:
+      type: object
+      properties:
+        failed:
+          $ref: '#/components/schemas/_common___uint'
+        successful:
+          $ref: '#/components/schemas/_common___uint'
+        total:
+          $ref: '#/components/schemas/_common___uint'
+        failures:
+          type: array
+          items:
+            $ref: '#/components/schemas/_common___ShardFailure'
+      required:
+        - failed
+        - successful
+        - total
     _common___ShardsOperationResponseBase:
       description: The base response for operations involving shards.
       type: object
@@ -37338,15 +37499,15 @@ components:
         - type: string
           const: all
           description: Wait for all shards to be active.
-        - type: string
-          const: index-setting
-          description: Wait for the number of shards specified in the index settings.
+        - type: 'null'
+          description: null represents the default value (which defaults to one shard copy).
     _common___WaitForActiveShards:
       description: Waits until the specified number of shards is active before returning a response. Use `all` for all shards.
       oneOf:
         - title: count
           type: integer
           description: The number of active shards to wait for.
+          $ref: '#/components/schemas/_common___StringifiedInteger'
         - title: option
           $ref: '#/components/schemas/_common___WaitForActiveShardOptions'
           description: Determines how many shards to wait for.
@@ -40049,7 +40210,7 @@ components:
         - $ref: '#/components/schemas/_common.aggregations___AggregateBase'
         - type: object
           properties:
-            value: true
+            value: {}
           required:
             - value
     _common.aggregations___ScriptedMetricAggregation:
@@ -43005,12 +43166,14 @@ components:
           required:
             - type
     _common.mapping___DynamicMapping:
-      type: string
-      enum:
-        - 'false'
-        - strict
-        - strict_allow_templates
-        - 'true'
+      oneOf:
+        - type: string
+          enum:
+            - 'false'
+            - strict
+            - strict_allow_templates
+            - 'true'
+        - type: boolean
     _common.mapping___DynamicTemplate:
       type: object
       properties:
@@ -46075,6 +46238,12 @@ components:
           $ref: '#/components/schemas/_common___Field'
         routing:
           $ref: '#/components/schemas/_common___Routing'
+        store:
+          type: boolean
+      required:
+        - id
+        - index
+        - path
     _common.query_dsl___TermsQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
@@ -46082,6 +46251,9 @@ components:
           properties:
             _name: {}
             boost: {}
+            value_type:
+              description: Specifies the types of values used for filtering. Valid values are `default` and `bitmap`. Default is `default`.
+              $ref: '#/components/schemas/_common.query_dsl___TermsQueryValueType'
           propertyNames:
             title: field
             type: string
@@ -46097,6 +46269,11 @@ components:
             $ref: '#/components/schemas/_common___FieldValue'
         - title: lookup
           $ref: '#/components/schemas/_common.query_dsl___TermsLookup'
+    _common.query_dsl___TermsQueryValueType:
+      type: string
+      enum:
+        - bitmap
+        - default
     _common.query_dsl___TermsSetQuery:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
@@ -46204,9 +46381,35 @@ components:
     _core.bulk___CreateOperation:
       $ref: '#/components/schemas/_core.bulk___WriteOperation'
     _core.bulk___DeleteOperation:
-      $ref: '#/components/schemas/_core.bulk___OperationBase'
+      allOf:
+        - $ref: '#/components/schemas/_core.bulk___OperationBase'
+        - type: object
+          properties:
+            if_primary_term:
+              type: integer
+              format: int64
+            if_seq_no:
+              $ref: '#/components/schemas/_common___SequenceNumber'
+            version:
+              $ref: '#/components/schemas/_common___VersionNumber'
+            version_type:
+              $ref: '#/components/schemas/_common___VersionType'
     _core.bulk___IndexOperation:
-      $ref: '#/components/schemas/_core.bulk___WriteOperation'
+      allOf:
+        - $ref: '#/components/schemas/_core.bulk___WriteOperation'
+        - type: object
+          properties:
+            if_primary_term:
+              type: integer
+              format: int64
+            if_seq_no:
+              $ref: '#/components/schemas/_common___SequenceNumber'
+            op_type:
+              $ref: '#/components/schemas/_common___OpType'
+            version:
+              $ref: '#/components/schemas/_common___VersionNumber'
+            version_type:
+              $ref: '#/components/schemas/_common___VersionType'
     _core.bulk___OperationBase:
       type: object
       properties:
@@ -46216,15 +46419,6 @@ components:
           $ref: '#/components/schemas/_common___IndexName'
         routing:
           $ref: '#/components/schemas/_common___Routing'
-        if_primary_term:
-          type: integer
-          format: int64
-        if_seq_no:
-          $ref: '#/components/schemas/_common___SequenceNumber'
-        version:
-          $ref: '#/components/schemas/_common___VersionNumber'
-        version_type:
-          $ref: '#/components/schemas/_common___VersionType'
     _core.bulk___OperationContainer:
       type: object
       properties:
@@ -46273,7 +46467,7 @@ components:
         _seq_no:
           $ref: '#/components/schemas/_common___SequenceNumber'
         _shards:
-          $ref: '#/components/schemas/_common___ShardStatistics'
+          $ref: '#/components/schemas/_common___ShardInfo'
         _version:
           $ref: '#/components/schemas/_common___VersionNumber'
         forced_refresh:
@@ -46314,6 +46508,11 @@ components:
         - $ref: '#/components/schemas/_core.bulk___OperationBase'
         - type: object
           properties:
+            if_primary_term:
+              type: integer
+              format: int64
+            if_seq_no:
+              $ref: '#/components/schemas/_common___SequenceNumber'
             require_alias:
               description: When `true`, the request's actions must target an index alias.
               type: boolean
@@ -46325,14 +46524,6 @@ components:
         - $ref: '#/components/schemas/_core.bulk___OperationBase'
         - type: object
           properties:
-            dynamic_templates:
-              description: |-
-                A map from the full name of fields to the name of dynamic templates.
-                If a name matches a dynamic template, then that template will be applied regardless of other match predicates defined in the template.
-                If a field is already defined in the mapping, then this parameter won't be used.
-              type: object
-              additionalProperties:
-                type: string
             pipeline:
               description: |-
                 The pipeline ID for preprocessing documents.
@@ -46350,30 +46541,7 @@ components:
         details:
           type: array
           items:
-            $ref: '#/components/schemas/_core.explain___ExplanationDetail'
-        value:
-          oneOf:
-            - type: integer
-              format: int32
-            - type: integer
-              format: int64
-            - type: number
-              format: float
-            - type: number
-              format: double
-      required:
-        - description
-        - details
-        - value
-    _core.explain___ExplanationDetail:
-      type: object
-      properties:
-        description:
-          type: string
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/_core.explain___ExplanationDetail'
+            $ref: '#/components/schemas/_core.explain___Explanation'
         value:
           anyOf:
             - type: integer
@@ -46386,6 +46554,7 @@ components:
               format: double
       required:
         - description
+        - details
         - value
     _core.field_caps___FieldCapability:
       type: object
@@ -48023,6 +48192,32 @@ components:
           $ref: '#/components/schemas/_common___Duration'
       required:
         - id
+    _core.search___ProcessorExecutionDetail:
+      type: object
+      properties:
+        processor_name:
+          type: string
+        duration_millis:
+          type: integer
+          format: int64
+        input_data:
+          oneOf:
+            - type: object
+            - type: array
+              items:
+                type: object
+        output_data:
+          oneOf:
+            - type: object
+            - type: array
+              items:
+                type: object
+        status:
+          type: string
+        tag:
+          type: string
+        error:
+          type: string
     _core.search___Profile:
       type: object
       properties:
@@ -48170,6 +48365,11 @@ components:
           $ref: '#/components/schemas/_common___PhaseTook'
         hits:
           $ref: '#/components/schemas/_core.search___HitsMetadata'
+        processor_results:
+          x-version-added: '3.0'
+          type: array
+          items:
+            $ref: '#/components/schemas/_core.search___ProcessorExecutionDetail'
         aggregations:
           type: object
           additionalProperties:
@@ -48180,9 +48380,6 @@ components:
           type: object
           additionalProperties:
             type: object
-        max_score:
-          type: number
-          format: float
         num_reduce_phases:
           type: integer
           format: int32
@@ -53325,6 +53522,9 @@ components:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
         metadata:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
+        search_only:
+          $ref: '#/components/schemas/_common___StringifiedBoolean'
+          description: When true, the index is in search-only mode, allowing only read operations
     indices._common___IndexSettings:
       type: object
       description: The configuration settings for an index.
@@ -58906,6 +59106,18 @@ components:
           description: The tool type.
         version:
           $ref: '#/components/schemas/_common___VersionString'
+        attributes:
+          x-version-added: '3.0'
+          $ref: '#/components/schemas/ml._common___ToolAttributes'
+    ml._common___ToolAttributes:
+      type: object
+      properties:
+        input_schema:
+          type: string
+        strict:
+          type: boolean
+      additionalProperties:
+        title: attributes
     ml._common___ToolItems:
       type: object
       properties:
@@ -58913,10 +59125,15 @@ components:
           type: string
         type:
           type: string
+        description:
+          type: string
         parameters:
           $ref: '#/components/schemas/ml._common___Parameters'
         include_output_in_agent_response:
           type: boolean
+        attributes:
+          x-version-added: '3.0'
+          $ref: '#/components/schemas/ml._common___ToolAttributes'
       additionalProperties: true
     ml._common___TrainParameters:
       type: object
@@ -59011,6 +59228,149 @@ components:
         value:
           type: number
           description: The value.
+    neural._common___FlatNeuralInfoStats:
+      type: object
+      properties:
+        cluster_version:
+          $ref: '#/components/schemas/neural._common___InfoStringStat'
+          x-version-added: '3.0'
+        processors.ingest.text_embedding_processors_in_pipelines:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.0'
+    neural._common___FlatNeuralNodeStats:
+      type: object
+      properties:
+        processors.ingest.text_embedding_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.0'
+    neural._common___FlatNeuralStats:
+      type: object
+      properties:
+        _nodes:
+          $ref: '#/components/schemas/neural._common___NodesInfo'
+        cluster_name:
+          type: string
+        info:
+          $ref: '#/components/schemas/neural._common___FlatNeuralInfoStats'
+        all_nodes:
+          $ref: '#/components/schemas/neural._common___FlatNeuralNodeStats'
+        nodes:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/neural._common___FlatNeuralNodeStats'
+    neural._common___InfoCounterStat:
+      oneOf:
+        - type: integer
+        - allOf:
+            - $ref: '#/components/schemas/neural._common___StatMetadata'
+            - type: object
+              properties:
+                stat_type:
+                  type: string
+                  const: info_counter
+    neural._common___InfoStringStat:
+      oneOf:
+        - type: string
+        - allOf:
+            - $ref: '#/components/schemas/neural._common___StatMetadata'
+            - type: object
+              properties:
+                stat_type:
+                  type: string
+                  const: info_string
+    neural._common___NestedNeuralInfoStats:
+      type: object
+      properties:
+        cluster_version:
+          $ref: '#/components/schemas/neural._common___InfoStringStat'
+          x-version-added: '3.0'
+        processors:
+          $ref: '#/components/schemas/neural._common___NestedNeuralInfoStatsProcessors'
+    neural._common___NestedNeuralInfoStatsProcessors:
+      type: object
+      properties:
+        ingest:
+          $ref: '#/components/schemas/neural._common___NestedNeuralInfoStatsProcessorsIngest'
+    neural._common___NestedNeuralInfoStatsProcessorsIngest:
+      type: object
+      properties:
+        text_embedding_processors_in_pipelines:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.0'
+    neural._common___NestedNeuralNodeStats:
+      type: object
+      properties:
+        processors:
+          $ref: '#/components/schemas/neural._common___NestedNeuralNodeStatsProcessors'
+    neural._common___NestedNeuralNodeStatsProcessors:
+      type: object
+      properties:
+        ingest:
+          $ref: '#/components/schemas/neural._common___NestedNeuralNodeStatsProcessorsIngest'
+    neural._common___NestedNeuralNodeStatsProcessorsIngest:
+      type: object
+      properties:
+        text_embedding_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.0'
+    neural._common___NestedNeuralStats:
+      type: object
+      properties:
+        _nodes:
+          $ref: '#/components/schemas/neural._common___NodesInfo'
+        cluster_name:
+          type: string
+        info:
+          $ref: '#/components/schemas/neural._common___NestedNeuralInfoStats'
+        all_nodes:
+          $ref: '#/components/schemas/neural._common___NestedNeuralNodeStats'
+        nodes:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/neural._common___NestedNeuralNodeStats'
+    neural._common___NeuralStats:
+      oneOf:
+        - $ref: '#/components/schemas/neural._common___NestedNeuralStats'
+        - $ref: '#/components/schemas/neural._common___FlatNeuralStats'
+    neural._common___NodesInfo:
+      type: object
+      properties:
+        total:
+          type: integer
+        successful:
+          type: integer
+        failed:
+          type: integer
+    neural._common___StatMetadata:
+      type: object
+      required:
+        - stat_type
+        - value
+      properties:
+        value:
+          oneOf:
+            - type: integer
+            - type: string
+        stat_type:
+          type: string
+          enum:
+            - info_counter
+            - info_string
+            - timestamped_event_counter
+    neural._common___TimestampedEventCounterStat:
+      oneOf:
+        - type: integer
+        - allOf:
+            - $ref: '#/components/schemas/neural._common___StatMetadata'
+            - type: object
+              properties:
+                stat_type:
+                  type: string
+                  const: timestamped_event_counter
+                trailing_interval_value:
+                  type: integer
+                minutes_since_last_event:
+                  type: integer
     nodes._common___NodesResponseBase:
       description: Provides base response structure for node-related operations.
       type: object
@@ -61177,6 +61537,8 @@ components:
       properties:
         search_shard_task:
           $ref: '#/components/schemas/nodes.stats___ShardTaskCancellationStatsDetail'
+        search_task:
+          $ref: '#/components/schemas/nodes.stats___ShardTaskCancellationStatsDetail'
     nodes.stats___ShardTaskCancellationStatsDetail:
       type: object
       properties:
@@ -62897,6 +63259,11 @@ components:
         technique:
           $ref: '#/components/schemas/search_pipeline._common___ScoreCombinationTechnique'
         parameters:
+          $ref: '#/components/schemas/search_pipeline._common___ScoreCombinationParameters'
+    search_pipeline._common___ScoreCombinationParameters:
+      type: object
+      properties:
+        weights:
           type: array
           items:
             type: number
@@ -62924,6 +63291,8 @@ components:
     search_pipeline._common___SearchPipelineStructure:
       type: object
       properties:
+        description:
+          type: string
         version:
           type: integer
           format: int32
@@ -63645,27 +64014,33 @@ components:
         ssl_openssl_available:
           type: boolean
           description: Whether OpenSSL is available.
+          x-version-removed: '3.0'
         ssl_openssl_version:
           type:
             - number
             - string
           description: Version of OpenSSL.
+          x-version-removed: '3.0'
         ssl_openssl_version_string:
           type:
             - 'null'
             - string
           description: The full version string for the OpenSSL version.
+          x-version-removed: '3.0'
         ssl_openssl_non_available_cause:
           type:
             - 'null'
             - string
           description: The reason OpenSSL is unavailable.
+          x-version-removed: '3.0'
         ssl_openssl_supports_key_manager_factory:
           type: boolean
           description: Whether `KMF` is supported.
+          x-version-removed: '3.0'
         ssl_openssl_supports_hostname_validation:
           type: boolean
           description: Whether the hostname validation is supported.
+          x-version-removed: '3.0'
         ssl_provider_http:
           type:
             - 'null'
@@ -63681,12 +64056,6 @@ components:
         - peer_certificates
         - principal
         - ssl_cipher
-        - ssl_openssl_available
-        - ssl_openssl_non_available_cause
-        - ssl_openssl_supports_hostname_validation
-        - ssl_openssl_supports_key_manager_factory
-        - ssl_openssl_version
-        - ssl_openssl_version_string
         - ssl_protocol
         - ssl_provider_http
         - ssl_provider_transport_client

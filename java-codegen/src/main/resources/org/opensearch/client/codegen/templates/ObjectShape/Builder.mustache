@@ -17,11 +17,7 @@
                 super(o);
             }
 
-            @Override
-            @{{TYPES.Javax.Annotation.Nonnull}}
-            public Builder copy() {
-                return new Builder(this);
-            }
+            {{>ObjectShape/Builder/CopyFnImpl}}
 
             {{>ObjectShape/Builder/SelfImpl}}
 
@@ -44,11 +40,7 @@
                     {{>ObjectShape/Builder/CopyCtorImpl}}
                 }
 
-                @Override
-                @{{TYPES.Javax.Annotation.Nonnull}}
-                public Builder copy() {
-                    return new Builder(this);
-                }
+                {{>ObjectShape/Builder/CopyFnImpl}}
 
                 {{>ObjectShape/Builder/SelfImpl}}
 
@@ -74,11 +66,7 @@
                     {{>ObjectShape/Builder/CopyCtorImpl}}
                 }
 
-                @Override
-                @{{TYPES.Javax.Annotation.Nonnull}}
-                public Builder{{#typeParameters}}{{.}}{{/typeParameters}} copy() {
-                    return new Builder{{#typeParameters}}<>{{/typeParameters}}(this);
-                }
+                {{>ObjectShape/Builder/CopyFnImpl}}
 
             {{#shouldImplementPlainDeserializable}}
                 {{>ObjectShape/Builder/SelfImpl}}

@@ -37,9 +37,11 @@
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -62,12 +64,16 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
     @Nonnull
     private final TermsQueryField terms;
 
+    @Nullable
+    private final TermsQueryValueType valueType;
+
     // ---------------------------------------------------------------------------------------------
 
     private TermsQuery(Builder builder) {
         super(builder);
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
         this.terms = ApiTypeHelper.requireNonNull(builder.terms, this, "terms");
+        this.valueType = builder.valueType;
     }
 
     public static TermsQuery of(Function<TermsQuery.Builder, ObjectBuilder<TermsQuery>> fn) {
@@ -98,10 +104,26 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
         return this.terms;
     }
 
+    /**
+     * Specifies the types of values used for filtering. Valid values are <code>default</code> and <code>bitmap</code>. Default is
+     * <code>default</code>.
+     * <p>
+     * API name: {@code value_type}
+     * </p>
+     */
+    @Nullable
+    public final TermsQueryValueType valueType() {
+        return this.valueType;
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         super.serializeInternal(generator, mapper);
         generator.writeKey(this.field);
         this.terms.serialize(generator, mapper);
+        if (this.valueType != null) {
+            generator.writeKey("value_type");
+            this.valueType.serialize(generator, mapper);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -123,6 +145,8 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
     public static class Builder extends QueryBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, TermsQuery> {
         private String field;
         private TermsQueryField terms;
+        @Nullable
+        private TermsQueryValueType valueType;
 
         public Builder() {}
 
@@ -130,12 +154,14 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
             super(o);
             this.field = o.field;
             this.terms = o.terms;
+            this.valueType = o.valueType;
         }
 
         private Builder(Builder o) {
             super(o);
             this.field = o.field;
             this.terms = o.terms;
+            this.valueType = o.valueType;
         }
 
         @Override
@@ -177,6 +203,19 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
         }
 
         /**
+         * Specifies the types of values used for filtering. Valid values are <code>default</code> and <code>bitmap</code>. Default is
+         * <code>default</code>.
+         * <p>
+         * API name: {@code value_type}
+         * </p>
+         */
+        @Nonnull
+        public final Builder valueType(@Nullable TermsQueryValueType value) {
+            this.valueType = value;
+            return this;
+        }
+
+        /**
          * Builds a {@link TermsQuery}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -202,6 +241,7 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
 
     protected static void setupTermsQueryDeserializer(ObjectDeserializer<TermsQuery.Builder> op) {
         setupQueryBaseDeserializer(op);
+        op.add(Builder::valueType, TermsQueryValueType._DESERIALIZER, "value_type");
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
             builder.field(name);
             builder.terms(TermsQueryField._DESERIALIZER.deserialize(parser, mapper));
@@ -213,6 +253,7 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
         int result = super.hashCode();
         result = 31 * result + this.field.hashCode();
         result = 31 * result + this.terms.hashCode();
+        result = 31 * result + Objects.hashCode(this.valueType);
         return result;
     }
 
@@ -224,6 +265,6 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         TermsQuery other = (TermsQuery) o;
-        return this.field.equals(other.field) && this.terms.equals(other.terms);
+        return this.field.equals(other.field) && this.terms.equals(other.terms) && Objects.equals(this.valueType, other.valueType);
     }
 }

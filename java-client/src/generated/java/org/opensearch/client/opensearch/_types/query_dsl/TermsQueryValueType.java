@@ -34,25 +34,24 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch._types;
+package org.opensearch.client.opensearch._types.query_dsl;
 
 import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-// typedef: _types.WaitForActiveShardOptions
+// typedef: _types.query_dsl.TermsQueryValueType
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public enum WaitForActiveShardOptions implements JsonEnum {
-    /**
-     * Wait for all shards to be active.
-     */
-    All("all");
+public enum TermsQueryValueType implements JsonEnum {
+    Bitmap("bitmap"),
+
+    Default("default");
 
     private final String jsonValue;
 
-    WaitForActiveShardOptions(String jsonValue) {
+    TermsQueryValueType(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -60,7 +59,7 @@ public enum WaitForActiveShardOptions implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<WaitForActiveShardOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
-        WaitForActiveShardOptions.values()
+    public static final JsonEnum.Deserializer<TermsQueryValueType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        TermsQueryValueType.values()
     );
 }

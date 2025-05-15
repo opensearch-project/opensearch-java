@@ -25,6 +25,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.opensearch.client.codegen.openapi.MimeType;
+import org.opensearch.client.codegen.openapi.OpenApiMediaType;
+import org.opensearch.client.codegen.openapi.OpenApiRequestBody;
 import org.opensearch.client.codegen.openapi.OpenApiSchema;
 import org.opensearch.client.codegen.openapi.walker.OpenApiVisitorBase;
 import org.opensearch.client.codegen.openapi.walker.OpenApiWalker;
@@ -45,12 +48,27 @@ public final class ObjectFlatteningVisitor extends OpenApiVisitorBase {
 
     @Nullable
     @Override
+    public OpenApiRequestBody visitRequestBodyEnd(@Nonnull OpenApiRequestBody requestBody) {
+        requestBody.getContent()
+            .flatMap(content -> content.get(MimeType.Json))
+            .flatMap(OpenApiMediaType::getSchema)
+            .ifPresent(schema -> processSchema(schema, true));
+        return null;
+    }
+
+    @Nonnull
+    @Override
     public OpenApiSchema visitSchemaEnd(@Nonnull OpenApiSchema schema) {
+        processSchema(schema, false);
+        return schema;
+    }
+
+    private void processSchema(OpenApiSchema schema, boolean flatten$extends) {
         if (schema.has$ref() || !schema.isObject() || schema.isTaggedUnion()) {
-            return null;
+            return;
         }
 
-        Properties properties = calculate(schema, false);
+        Properties properties = calculate(schema, flatten$extends);
 
         schema.setProperties(properties.getProperties());
         schema.setPropertyNames(properties.getPropertyNames().orElse(null));
@@ -61,11 +79,13 @@ public final class ObjectFlatteningVisitor extends OpenApiVisitorBase {
             schema.setMinProperties(properties.getRequired().size() + 1);
         }
 
+        if (flatten$extends) {
+            schema.set$extends(null);
+        }
+
         schema.setAllOf(null);
         schema.setAnyOf(null);
         schema.setOneOf(null);
-
-        return schema;
     }
 
     private Properties calculate(OpenApiSchema schema, boolean flatten$extends) {

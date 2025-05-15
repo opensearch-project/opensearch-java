@@ -63,7 +63,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
     private final String description;
 
     @Nonnull
-    private final List<ExplanationDetail> details;
+    private final List<Explanation> details;
 
     @Nonnull
     private final Number value;
@@ -92,7 +92,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
      * Required - API name: {@code details}
      */
     @Nonnull
-    public final List<ExplanationDetail> details() {
+    public final List<Explanation> details() {
         return this.details;
     }
 
@@ -120,7 +120,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
 
         generator.writeKey("details");
         generator.writeStartArray();
-        for (ExplanationDetail item0 : this.details) {
+        for (Explanation item0 : this.details) {
             item0.serialize(generator, mapper);
         }
         generator.writeEnd();
@@ -147,7 +147,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Explanation> {
         private String description;
-        private List<ExplanationDetail> details;
+        private List<Explanation> details;
         private Number value;
 
         public Builder() {}
@@ -187,7 +187,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
          * </p>
          */
         @Nonnull
-        public final Builder details(List<ExplanationDetail> list) {
+        public final Builder details(List<Explanation> list) {
             this.details = _listAddAll(this.details, list);
             return this;
         }
@@ -200,7 +200,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
          * </p>
          */
         @Nonnull
-        public final Builder details(ExplanationDetail value, ExplanationDetail... values) {
+        public final Builder details(Explanation value, Explanation... values) {
             this.details = _listAdd(this.details, value, values);
             return this;
         }
@@ -213,8 +213,8 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
          * </p>
          */
         @Nonnull
-        public final Builder details(Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn) {
-            return details(fn.apply(new ExplanationDetail.Builder()).build());
+        public final Builder details(Function<Explanation.Builder, ObjectBuilder<Explanation>> fn) {
+            return details(fn.apply(new Explanation.Builder()).build());
         }
 
         /**
@@ -252,7 +252,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
 
     protected static void setupExplanationDeserializer(ObjectDeserializer<Explanation.Builder> op) {
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-        op.add(Builder::details, JsonpDeserializer.arrayDeserializer(ExplanationDetail._DESERIALIZER), "details");
+        op.add(Builder::details, JsonpDeserializer.arrayDeserializer(Explanation._DESERIALIZER), "details");
         op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
     }
 
