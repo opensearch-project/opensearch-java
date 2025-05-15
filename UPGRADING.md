@@ -709,3 +709,10 @@ After:
 ### ExplainResponse
 - The `explanation` property is now of type `Explanation` instead of `ExplanationDetail`.
 - The `tDocumentSerializer` property has been removed as it is unused.
+
+### GetRequest
+- The `refresh` property has been corrected to be of type `Refresh` instead of `Boolean`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+
+### GetResponse
+- The `GetResponse` class now extends a `GetResultBase` class instead of `GetResult`.
