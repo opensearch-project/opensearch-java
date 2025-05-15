@@ -40,10 +40,8 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -56,15 +54,11 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
     @Nonnull
     private final Buckets<TBucket> buckets;
 
-    @Nullable
-    private final JsonpSerializer<TBucket> tBucketSerializer;
-
     // ---------------------------------------------------------------------------------------------
 
     protected MultiBucketAggregateBase(AbstractBuilder<TBucket, ?> builder) {
         super(builder);
         this.buckets = ApiTypeHelper.requireNonNull(builder.buckets, this, "buckets");
-        this.tBucketSerializer = builder.tBucketSerializer;
     }
 
     /**
@@ -73,14 +67,6 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
     @Nonnull
     public final Buckets<TBucket> buckets() {
         return this.buckets;
-    }
-
-    /**
-     * Serializer for {@code TBucket}. If not set, an attempt will be made to find a serializer from the JSON context.
-     */
-    @Nullable
-    public final JsonpSerializer<TBucket> tBucketSerializer() {
-        return this.tBucketSerializer;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -94,21 +80,17 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
     public abstract static class AbstractBuilder<TBucket, BuilderT extends AbstractBuilder<TBucket, BuilderT>> extends
         AggregateBase.AbstractBuilder<BuilderT> {
         private Buckets<TBucket> buckets;
-        @Nullable
-        private JsonpSerializer<TBucket> tBucketSerializer;
 
         protected AbstractBuilder() {}
 
         protected AbstractBuilder(MultiBucketAggregateBase<TBucket> o) {
             super(o);
             this.buckets = o.buckets;
-            this.tBucketSerializer = o.tBucketSerializer;
         }
 
         protected AbstractBuilder(AbstractBuilder<TBucket, BuilderT> o) {
             super(o);
             this.buckets = o.buckets;
-            this.tBucketSerializer = o.tBucketSerializer;
         }
 
         /**
@@ -126,15 +108,6 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
         @Nonnull
         public final BuilderT buckets(Function<Buckets.Builder<TBucket>, ObjectBuilder<Buckets<TBucket>>> fn) {
             return buckets(fn.apply(new Buckets.Builder<TBucket>()).build());
-        }
-
-        /**
-         * Serializer for {@code TBucket}. If not set, an attempt will be made to find a serializer from the JSON context.
-         */
-        @Nonnull
-        public final BuilderT tBucketSerializer(@Nullable JsonpSerializer<TBucket> value) {
-            this.tBucketSerializer = value;
-            return self();
         }
     }
 

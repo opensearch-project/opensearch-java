@@ -45,7 +45,7 @@ public class RequestShape extends ObjectShape {
     private final Map<String, Field> pathParams = new TreeMap<>();
     @Nonnull
     private final Map<String, Field> fields = new TreeMap<>();
-    private boolean isBooleanRequest;
+    private TypeRef responseType;
     @Nullable
     private Field delegatedBodyField;
 
@@ -90,18 +90,16 @@ public class RequestShape extends ObjectShape {
         httpMethods.add(method);
     }
 
-    public void setIsBooleanRequest() {
-        isBooleanRequest = true;
-    }
-
     public boolean isBooleanRequest() {
-        return isBooleanRequest;
+        return responseType == Types.Client.Transport.Endpoints.BooleanResponse;
     }
 
-    public Type getResponseType() {
-        return !isBooleanRequest
-            ? Type.builder().withPackage(getPackageName()).withName(responseClassName(operationGroup)).build()
-            : Types.Client.Transport.Endpoints.BooleanResponse;
+    public void setResponseType(@Nonnull TypeRef responseType) {
+        this.responseType = Objects.requireNonNull(responseType, "responseType must not be null");
+    }
+
+    public TypeRef getResponseType() {
+        return Objects.requireNonNull(responseType, "responseType must be initialized");
     }
 
     @Override
@@ -219,7 +217,9 @@ public class RequestShape extends ObjectShape {
 
     @Override
     public boolean hasAnyRequiredFields() {
-        return fields.values().stream().anyMatch(Field::isRequired);
+        return fields.values().stream().anyMatch(Field::isRequired)
+            || hasTypeParameters()
+            || responseType.getTargetShape().map(Shape::hasTypeParameters).orElse(false);
     }
 
     public Type getJsonEndpointType() {
@@ -250,7 +250,7 @@ public class RequestShape extends ObjectShape {
     }
 
     @Nonnull
-    private static String responseClassName(@Nonnull OperationGroup operationGroup) {
+    public static String responseClassName(@Nonnull OperationGroup operationGroup) {
         return classBaseName(operationGroup) + "Response";
     }
 

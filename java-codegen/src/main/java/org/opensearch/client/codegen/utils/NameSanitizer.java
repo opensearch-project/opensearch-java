@@ -25,7 +25,8 @@ public class NameSanitizer {
         "int",
         "long",
         "float",
-        "double"
+        "double",
+        "static"
     );
 
     @Nonnull

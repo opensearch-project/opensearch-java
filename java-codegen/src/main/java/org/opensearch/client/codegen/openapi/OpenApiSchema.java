@@ -45,7 +45,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
     }
 
     public static OpenApiSchema emptyObject() {
-        return builder().withTypes(t -> t.with(OpenApiSchemaType.Object)).build();
+        return builder().withTypes(t -> t.with(OpenApiSchemaType.Object)).withProperties(Map.of()).withRequired(Set.of()).build();
     }
 
     public static OpenApiSchema string() {
@@ -85,7 +85,7 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
     @Nullable
     private Set<String> required;
     @Nullable
-    private final String title;
+    private String title;
     @Nullable
     private final String pattern;
     @Nullable
@@ -446,6 +446,10 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
         return Optional.ofNullable(title);
     }
 
+    public void setTitle(@Nullable String title) {
+        this.title = title;
+    }
+
     @Nonnull
     public Optional<String> getPattern() {
         return Optional.ofNullable(pattern);
@@ -621,11 +625,14 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
             var booleanCount = 0;
             var totalCount = 0;
             for (var s : oneOf) {
+                if (s.isNull()) continue;
+
                 if (s.isBoolean()) {
                     booleanCount++;
                 } else if (s.isEnum()) {
                     enumCount++;
                 }
+
                 totalCount++;
             }
             return enumCount == totalCount || (booleanCount == 1 && enumCount == totalCount - 1);

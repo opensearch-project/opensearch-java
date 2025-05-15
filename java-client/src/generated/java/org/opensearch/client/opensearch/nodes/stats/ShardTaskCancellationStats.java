@@ -65,10 +65,14 @@ public class ShardTaskCancellationStats
     @Nullable
     private final ShardTaskCancellationStatsDetail searchShardTask;
 
+    @Nullable
+    private final ShardTaskCancellationStatsDetail searchTask;
+
     // ---------------------------------------------------------------------------------------------
 
     private ShardTaskCancellationStats(Builder builder) {
         this.searchShardTask = builder.searchShardTask;
+        this.searchTask = builder.searchTask;
     }
 
     public static ShardTaskCancellationStats of(
@@ -86,6 +90,14 @@ public class ShardTaskCancellationStats
     }
 
     /**
+     * API name: {@code search_task}
+     */
+    @Nullable
+    public final ShardTaskCancellationStatsDetail searchTask() {
+        return this.searchTask;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     @Override
@@ -99,6 +111,11 @@ public class ShardTaskCancellationStats
         if (this.searchShardTask != null) {
             generator.writeKey("search_shard_task");
             this.searchShardTask.serialize(generator, mapper);
+        }
+
+        if (this.searchTask != null) {
+            generator.writeKey("search_task");
+            this.searchTask.serialize(generator, mapper);
         }
     }
 
@@ -121,15 +138,19 @@ public class ShardTaskCancellationStats
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardTaskCancellationStats> {
         @Nullable
         private ShardTaskCancellationStatsDetail searchShardTask;
+        @Nullable
+        private ShardTaskCancellationStatsDetail searchTask;
 
         public Builder() {}
 
         private Builder(ShardTaskCancellationStats o) {
             this.searchShardTask = o.searchShardTask;
+            this.searchTask = o.searchTask;
         }
 
         private Builder(Builder o) {
             this.searchShardTask = o.searchShardTask;
+            this.searchTask = o.searchTask;
         }
 
         @Override
@@ -158,6 +179,25 @@ public class ShardTaskCancellationStats
         }
 
         /**
+         * API name: {@code search_task}
+         */
+        @Nonnull
+        public final Builder searchTask(@Nullable ShardTaskCancellationStatsDetail value) {
+            this.searchTask = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code search_task}
+         */
+        @Nonnull
+        public final Builder searchTask(
+            Function<ShardTaskCancellationStatsDetail.Builder, ObjectBuilder<ShardTaskCancellationStatsDetail>> fn
+        ) {
+            return searchTask(fn.apply(new ShardTaskCancellationStatsDetail.Builder()).build());
+        }
+
+        /**
          * Builds a {@link ShardTaskCancellationStats}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -183,12 +223,14 @@ public class ShardTaskCancellationStats
 
     protected static void setupShardTaskCancellationStatsDeserializer(ObjectDeserializer<ShardTaskCancellationStats.Builder> op) {
         op.add(Builder::searchShardTask, ShardTaskCancellationStatsDetail._DESERIALIZER, "search_shard_task");
+        op.add(Builder::searchTask, ShardTaskCancellationStatsDetail._DESERIALIZER, "search_task");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.searchShardTask);
+        result = 31 * result + Objects.hashCode(this.searchTask);
         return result;
     }
 
@@ -197,6 +239,6 @@ public class ShardTaskCancellationStats
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         ShardTaskCancellationStats other = (ShardTaskCancellationStats) o;
-        return Objects.equals(this.searchShardTask, other.searchShardTask);
+        return Objects.equals(this.searchShardTask, other.searchShardTask) && Objects.equals(this.searchTask, other.searchTask);
     }
 }

@@ -35,8 +35,23 @@
     {{#deprecation}}
     @Deprecated
     {{/deprecation}}
-    public {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{type}} request) throws {{TYPES.Java.Io.IOException}}, {{TYPES.Client.OpenSearch._Types.OpenSearchException}} {
+    public{{#responseType.targetShape.typeParameters}} {{.}}{{/responseType.targetShape.typeParameters}} {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType.selfType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{type}} request{{#responseType.targetShape.typeParameters}}{{#typeParameterDefinitions}}, Class<{{name}}> {{#camelCase}}{{name}}{{/camelCase}}Class{{/typeParameterDefinitions}}{{/responseType.targetShape.typeParameters}}) throws {{TYPES.Java.Io.IOException}}, {{TYPES.Client.OpenSearch._Types.OpenSearchException}} {
+    {{#responseType.targetShape.typeParameters}}
+        @SuppressWarnings("unchecked")
+        {{TYPES.Client.Transport.JsonEndpoint}}<{{type}}, {{responseType.selfType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}> endpoint = ({{TYPES.Client.Transport.JsonEndpoint}}<{{type}}, {{responseType.selfType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}>) {{type}}._ENDPOINT;
+        {{#typeParameterDefinitions}}
+            endpoint = new {{TYPES.Client.Transport.Endpoints.EndpointWithResponseMapperAttr}}<>(
+                endpoint,
+                "{{TYPES.Client.PACKAGE}}:Deserializer:{{responseType.targetShape.typedefPrefix}}.{{name}}",
+                getDeserializer({{#camelCase}}{{name}}{{/camelCase}}Class)
+            );
+        {{/typeParameterDefinitions}}
+
+        return this.transport.performRequest{{#async}}Async{{/async}}(request, endpoint, this.transportOptions);
+    {{/responseType.targetShape.typeParameters}}
+    {{^responseType.targetShape.typeParameters}}
         return this.transport.performRequest{{#async}}Async{{/async}}(request, {{type.name}}._ENDPOINT, this.transportOptions);
+    {{/responseType.targetShape.typeParameters}}
     }
 
     /**
@@ -47,9 +62,9 @@
     {{#deprecation}}
     @Deprecated
     {{/deprecation}}
-    public final {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{type.builderFnType}} fn)
+    public final{{#responseType.targetShape.typeParameters}} {{.}}{{/responseType.targetShape.typeParameters}} {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType.selfType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{type.builderFnType}} fn{{#responseType.targetShape.typeParameters}}{{#typeParameterDefinitions}}, Class<{{name}}> {{#camelCase}}{{name}}{{/camelCase}}Class{{/typeParameterDefinitions}}{{/responseType.targetShape.typeParameters}})
             throws IOException, OpenSearchException {
-        return {{#camelCase}}{{id}}{{/camelCase}}(fn.apply(new {{type.builderType}}()).build());
+        return {{#camelCase}}{{id}}{{/camelCase}}(fn.apply(new {{type.builderType}}()).build(){{#responseType.targetShape.typeParameters}}{{#typeParameterDefinitions}}, {{#camelCase}}{{name}}{{/camelCase}}Class{{/typeParameterDefinitions}}{{/responseType.targetShape.typeParameters}});
     }
     {{^hasAnyRequiredFields}}
 

@@ -1,5 +1,5 @@
 @Override
 @{{TYPES.Javax.Annotation.Nonnull}}
-{{#shouldImplementPlainDeserializable}}public{{/shouldImplementPlainDeserializable}}{{^shouldImplementPlainDeserializable}}protected{{/shouldImplementPlainDeserializable}} Builder self() {
+{{#shouldImplementPlainDeserializable}}public{{/shouldImplementPlainDeserializable}}{{^shouldImplementPlainDeserializable}}protected{{/shouldImplementPlainDeserializable}} Builder{{#typeParameters}}{{.}}{{/typeParameters}} self() {
     return this;
 }

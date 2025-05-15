@@ -33,12 +33,15 @@ public final class PropertyOverride {
     private final Set<String> aliases;
     @Nullable
     private final Boolean ignore;
+    @Nullable
+    private final Boolean required;
 
     private PropertyOverride(Builder builder) {
         this.name = builder.name;
         this.mappedType = builder.mappedType;
         this.aliases = builder.aliases;
         this.ignore = builder.ignore;
+        this.required = builder.required;
     }
 
     @Nonnull
@@ -58,6 +61,10 @@ public final class PropertyOverride {
 
     public boolean shouldIgnore() {
         return ignore != null && ignore;
+    }
+
+    public Optional<Boolean> getRequired() {
+        return Optional.ofNullable(required);
     }
 
     @Nonnull
@@ -84,6 +91,8 @@ public final class PropertyOverride {
         private Set<String> aliases;
         @Nullable
         private Boolean ignore;
+        @Nullable
+        private Boolean required;
 
         private Builder() {}
 
@@ -120,6 +129,12 @@ public final class PropertyOverride {
         @Nonnull
         public Builder withIgnore(@Nullable Boolean ignore) {
             this.ignore = ignore;
+            return this;
+        }
+
+        @Nonnull
+        public Builder withRequired(@Nullable Boolean required) {
+            this.required = required;
             return this;
         }
     }

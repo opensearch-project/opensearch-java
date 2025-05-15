@@ -75,6 +75,9 @@ public class IndexSettingBlocks implements PlainJsonSerializable, ToCopyableBuil
     private final Boolean readOnlyAllowDelete;
 
     @Nullable
+    private final Boolean searchOnly;
+
+    @Nullable
     private final Boolean write;
 
     // ---------------------------------------------------------------------------------------------
@@ -84,6 +87,7 @@ public class IndexSettingBlocks implements PlainJsonSerializable, ToCopyableBuil
         this.read = builder.read;
         this.readOnly = builder.readOnly;
         this.readOnlyAllowDelete = builder.readOnlyAllowDelete;
+        this.searchOnly = builder.searchOnly;
         this.write = builder.write;
     }
 
@@ -121,6 +125,17 @@ public class IndexSettingBlocks implements PlainJsonSerializable, ToCopyableBuil
     @Nullable
     public final Boolean readOnlyAllowDelete() {
         return this.readOnlyAllowDelete;
+    }
+
+    /**
+     * When true, the index is in search-only mode, allowing only read operations
+     * <p>
+     * API name: {@code search_only}
+     * </p>
+     */
+    @Nullable
+    public final Boolean searchOnly() {
+        return this.searchOnly;
     }
 
     /**
@@ -162,6 +177,11 @@ public class IndexSettingBlocks implements PlainJsonSerializable, ToCopyableBuil
             generator.write(this.readOnlyAllowDelete);
         }
 
+        if (this.searchOnly != null) {
+            generator.writeKey("search_only");
+            generator.write(this.searchOnly);
+        }
+
         if (this.write != null) {
             generator.writeKey("write");
             generator.write(this.write);
@@ -194,6 +214,8 @@ public class IndexSettingBlocks implements PlainJsonSerializable, ToCopyableBuil
         @Nullable
         private Boolean readOnlyAllowDelete;
         @Nullable
+        private Boolean searchOnly;
+        @Nullable
         private Boolean write;
 
         public Builder() {}
@@ -203,6 +225,7 @@ public class IndexSettingBlocks implements PlainJsonSerializable, ToCopyableBuil
             this.read = o.read;
             this.readOnly = o.readOnly;
             this.readOnlyAllowDelete = o.readOnlyAllowDelete;
+            this.searchOnly = o.searchOnly;
             this.write = o.write;
         }
 
@@ -211,6 +234,7 @@ public class IndexSettingBlocks implements PlainJsonSerializable, ToCopyableBuil
             this.read = o.read;
             this.readOnly = o.readOnly;
             this.readOnlyAllowDelete = o.readOnlyAllowDelete;
+            this.searchOnly = o.searchOnly;
             this.write = o.write;
         }
 
@@ -257,6 +281,18 @@ public class IndexSettingBlocks implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
+         * When true, the index is in search-only mode, allowing only read operations
+         * <p>
+         * API name: {@code search_only}
+         * </p>
+         */
+        @Nonnull
+        public final Builder searchOnly(@Nullable Boolean value) {
+            this.searchOnly = value;
+            return this;
+        }
+
+        /**
          * API name: {@code write}
          */
         @Nonnull
@@ -294,6 +330,7 @@ public class IndexSettingBlocks implements PlainJsonSerializable, ToCopyableBuil
         op.add(Builder::read, JsonpDeserializer.booleanDeserializer(), "read");
         op.add(Builder::readOnly, JsonpDeserializer.booleanDeserializer(), "read_only");
         op.add(Builder::readOnlyAllowDelete, JsonpDeserializer.booleanDeserializer(), "read_only_allow_delete");
+        op.add(Builder::searchOnly, JsonpDeserializer.booleanDeserializer(), "search_only");
         op.add(Builder::write, JsonpDeserializer.booleanDeserializer(), "write");
     }
 
@@ -304,6 +341,7 @@ public class IndexSettingBlocks implements PlainJsonSerializable, ToCopyableBuil
         result = 31 * result + Objects.hashCode(this.read);
         result = 31 * result + Objects.hashCode(this.readOnly);
         result = 31 * result + Objects.hashCode(this.readOnlyAllowDelete);
+        result = 31 * result + Objects.hashCode(this.searchOnly);
         result = 31 * result + Objects.hashCode(this.write);
         return result;
     }
@@ -317,6 +355,7 @@ public class IndexSettingBlocks implements PlainJsonSerializable, ToCopyableBuil
             && Objects.equals(this.read, other.read)
             && Objects.equals(this.readOnly, other.readOnly)
             && Objects.equals(this.readOnlyAllowDelete, other.readOnlyAllowDelete)
+            && Objects.equals(this.searchOnly, other.searchOnly)
             && Objects.equals(this.write, other.write);
     }
 }

@@ -107,7 +107,7 @@ public class ObjectShapeBase extends Shape {
     }
 
     public boolean hasFields() {
-        return hasFields(true, true, true);
+        return hasFields(true, true, false);
     }
 
     public boolean hasFields(
@@ -119,7 +119,7 @@ public class ObjectShapeBase extends Shape {
         return bodyFields.size() > discriminatingFields.size()
             || (includeAdditionalProperties && additionalProperties != null)
             || (includeSingleKeyMap && singleyKeyMapField != null)
-            || (includeTypeParameterSerializerFields && hasTypeParameters());
+            || (includeTypeParameterSerializerFields && hasTypeParametersNeedingSerializer());
     }
 
     public boolean hasAnyRequiredFields() {

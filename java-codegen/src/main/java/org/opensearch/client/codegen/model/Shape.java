@@ -17,7 +17,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -53,6 +52,7 @@ public abstract class Shape {
     private final ShouldGenerate shouldGenerate;
     private TypeRef extendsType;
     private final List<TypeParameterDefinition> typeParameters = new ArrayList<>();
+    private final Set<String> typeParametersNeedingSerializer = new HashSet<>();
 
     public Shape(Namespace parent, String className, String typedefName, String description, ShouldGenerate shouldGenerate) {
         this.parent = parent;
@@ -93,6 +93,18 @@ public abstract class Shape {
         return this.typedefName;
     }
 
+    public String getTypedefPrefix() {
+        var index = typedefName.lastIndexOf('.');
+        if (index == -1) {
+            return "";
+        }
+        return typedefName.substring(0, index);
+    }
+
+    public boolean isResponseShape() {
+        return this.typedefName.endsWith(".Response");
+    }
+
     public String getDescription() {
         return this.description;
     }
@@ -110,16 +122,13 @@ public abstract class Shape {
         return !typeParameters.isEmpty();
     }
 
+    public boolean hasTypeParametersNeedingSerializer() {
+        return !typeParametersNeedingSerializer.isEmpty();
+    }
+
     public Collection<Field> getTypeParameterSerializerFields() {
-        var superTypeParams = Optional.ofNullable(extendsType)
-            .flatMap(TypeRef::getTargetShape)
-            .map(s -> s.typeParameters)
-            .stream()
-            .flatMap(List::stream)
-            .map(TypeParameterDefinition::getName)
-            .collect(Collectors.toSet());
         return typeParameters.stream()
-            .filter(t -> !superTypeParams.contains(t.getName()))
+            .filter(t -> typeParametersNeedingSerializer.contains(t.getName()))
             .map(
                 t -> Field.builder()
                     .withName(Strings.toCamelCase(t.getName()) + "Serializer")
@@ -139,19 +148,29 @@ public abstract class Shape {
     }
 
     public void setExtendsType(TypeRef extendsType) {
-        if (extendsType instanceof ShapeTypeRef) {
-            extendsType = ((ShapeTypeRef) extendsType).getSelfType();
-        }
-
-        this.extendsType = extendsType;
-        tryAddReference(ReferenceKind.Extends, extendsType);
+        this.extendsType = extendsType.getSelfType();
+        tryAddReference(ReferenceKind.Extends, this.extendsType);
     }
 
     public TypeRef getExtendsTypeAbstractBuilder() {
         var typeParams = extendsType.getTypeParams();
         if (typeParams == null) typeParams = new TypeRef[0];
         typeParams = Arrays.copyOf(typeParams, typeParams.length + 1);
-        typeParams[typeParams.length - 1] = Type.builder().withName(extendedByOtherShape() ? "BuilderT" : "Builder").build();
+
+        TypeRef thisBuilderType;
+        if (extendedByOtherShape()) {
+            thisBuilderType = Type.builder().withName("BuilderT").build();
+        } else {
+            thisBuilderType = Type.builder()
+                .withName("Builder")
+                .when(
+                    !this.typeParameters.isEmpty(),
+                    b -> b.withTypeParameters(this.typeParameters.stream().map(TypeParameterDefinition::toRef).toArray(TypeRef[]::new))
+                )
+                .build();
+        }
+
+        typeParams[typeParams.length - 1] = thisBuilderType;
         return extendsType.getNestedType("AbstractBuilder").withTypeParameters(typeParams);
     }
 
@@ -176,12 +195,11 @@ public abstract class Shape {
             .map(u -> {
                 var discriminatorValue = u.getVariants()
                     .stream()
-                    .filter(v -> v.getType().equals(getType()))
+                    .filter(v -> v.getType().getTargetShape().map(this::equals).orElse(false))
                     .map(TaggedUnionShape.Variant::getName)
-                    .max(Comparator.naturalOrder())
-                    .orElseThrow();
+                    .max(Comparator.naturalOrder());
 
-                return new ReferencingDiscriminatedUnion(u, discriminatorValue);
+                return new ReferencingDiscriminatedUnion(u, discriminatorValue.orElseThrow());
             })
             .collect(Collectors.toList());
 
@@ -206,10 +224,8 @@ public abstract class Shape {
     }
 
     protected void tryAddReference(ReferenceKind kind, TypeRef to) {
-        for (var typeParamRef : to.collectTypeParameterRefs()) {
-            if (typeParameters.stream().noneMatch(t -> t.getName().equals(typeParamRef.getName()))) {
-                typeParameters.add(TypeParameterDefinition.builder().withName(typeParamRef.getName()).build());
-            }
+        if (kind != ReferenceKind.TypeParameter) {
+            addTypeParameters(to, kind == ReferenceKind.Field || kind == ReferenceKind.UnionVariant);
         }
 
         to.getTargetShape().ifPresent(s -> addReference(kind, s));
@@ -220,6 +236,27 @@ public abstract class Shape {
             if (typeParams != null) {
                 for (var typeParam : typeParams) {
                     tryAddReference(ReferenceKind.TypeParameter, typeParam);
+                }
+            }
+        }
+    }
+
+    private void addTypeParameters(TypeRef typeRef, boolean needsSerializer) {
+        if (typeRef instanceof TypeParameterRef) {
+            var typeParamRef = (TypeParameterRef) typeRef;
+            if (typeParameters.stream().noneMatch(t -> t.getName().equals(typeParamRef.getName()))) {
+                typeParameters.add(TypeParameterDefinition.builder().withName(typeParamRef.getName()).build());
+            }
+            if (needsSerializer) {
+                typeParametersNeedingSerializer.add(typeParamRef.getName());
+            }
+        } else if (typeRef instanceof Type) {
+            var type = (Type) typeRef;
+            needsSerializer &= type.isListOrMap();
+            var typeParams = type.getTypeParams();
+            if (typeParams != null) {
+                for (var typeParam : typeParams) {
+                    addTypeParameters(typeParam, needsSerializer);
                 }
             }
         }
@@ -334,6 +371,10 @@ public abstract class Shape {
 
         public TaggedUnionShape getUnion() {
             return union;
+        }
+
+        public TypeRef getUnionKindType() {
+            return union.getType().getNestedType("Kind");
         }
 
         @Nullable

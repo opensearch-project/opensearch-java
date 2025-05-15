@@ -8,7 +8,6 @@
 
 package org.opensearch.client.codegen.transformer.overrides;
 
-import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,21 +15,30 @@ import java.util.function.Function;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.model.OperationGroup;
+import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.builder.ObjectBuilder;
 import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.builder.ObjectMapBuilderBase;
 
 public final class OperationOverride {
-    @Nonnull
+    @Nullable
     private final Map<String, PathParameterOverride> pathParameters;
+    @Nullable
+    private final Map<String, QueryParameterOverride> queryParameters;
 
     private OperationOverride(Builder builder) {
-        this.pathParameters = builder.pathParameters != null ? builder.pathParameters : Collections.emptyMap();
+        this.pathParameters = builder.pathParameters;
+        this.queryParameters = builder.queryParameters;
     }
 
     @Nonnull
     public Optional<PathParameterOverride> getPathParameter(@Nonnull String key) {
-        return Optional.ofNullable(pathParameters.get(key));
+        return Maps.tryGet(pathParameters, key);
+    }
+
+    @Nonnull
+    public Optional<QueryParameterOverride> getQueryParameter(@Nonnull String key) {
+        return Maps.tryGet(queryParameters, key);
     }
 
     @Nonnull
@@ -46,6 +54,8 @@ public final class OperationOverride {
     public static final class Builder extends ObjectBuilderBase<OperationOverride, Builder> {
         @Nullable
         private Map<String, PathParameterOverride> pathParameters;
+        @Nullable
+        private Map<String, QueryParameterOverride> queryParameters;
 
         private Builder() {}
 
@@ -60,6 +70,14 @@ public final class OperationOverride {
             @Nonnull Function<PathParameterOverride.MapBuilder, ObjectBuilder<Map<String, PathParameterOverride>>> fn
         ) {
             this.pathParameters = Objects.requireNonNull(fn, "fn must not be null").apply(PathParameterOverride.mapBuilder()).build();
+            return this;
+        }
+
+        @Nonnull
+        public Builder withQueryParameters(
+            @Nonnull Function<QueryParameterOverride.MapBuilder, ObjectBuilder<Map<String, QueryParameterOverride>>> fn
+        ) {
+            this.queryParameters = Objects.requireNonNull(fn, "fn must not be null").apply(QueryParameterOverride.mapBuilder()).build();
             return this;
         }
     }

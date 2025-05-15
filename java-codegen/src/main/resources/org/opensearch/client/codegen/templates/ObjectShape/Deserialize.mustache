@@ -7,15 +7,16 @@
         public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.ObjectBuilderDeserializer}}.lazy(Builder::new, {{className}}::setup{{className}}Deserializer);
     {{/typeParameters}}
     {{#typeParameters}}
-        /**
-         * Create a JSON deserializer for {{className}}.
-         */
-        public static {{.}} {{TYPES.Client.Json.JsonpDeserializer}}<{{selfType}}> create{{className}}Deserializer({{#typeParameterDefinitions}}{{TYPES.Client.Json.JsonpDeserializer}}<{{name}}> {{#camelCase}}{{name}}{{/camelCase}}Deserializer{{^-last}}, {{/-last}}{{/typeParameterDefinitions}}) {
+        {{>Partials/Deserialize/CreateClassDeserializerFnSignature}} {
             return {{TYPES.Client.Json.ObjectBuilderDeserializer}}.createForObject(
                 Builder{{.}}::new,
                 op -> {{className}}.setup{{className}}Deserializer(op, {{#typeParameterDefinitions}}{{#camelCase}}{{name}}{{/camelCase}}Deserializer{{^-last}}, {{/-last}}{{/typeParameterDefinitions}})
             );
         }
+        {{#isResponseShape}}
+
+            {{>Partials/Deserialize/TypeParametersNamedDeserializer}}
+        {{/isResponseShape}}
     {{/typeParameters}}
 
 {{/abstract}}
