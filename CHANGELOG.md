@@ -1,21 +1,49 @@
 # CHANGELOG
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
-## [Unreleased 3.0]
-### Dependencies
-- Bumps `org.eclipse.parsson:parsson` from 1.1.6 to 1.1.7
-- Bumps `org.hamcrest:hamcrest` from 2.2 to 3.0
-- Bumps `com.github.jk1.dependency-license-report` from 2.8 to 2.9
-- Bump `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.8.2 to 2.8.3 ([#1487](https://github.com/opensearch-project/opensearch-java/pull/1487))
-- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.3 to 5.4.4 ([#1544](https://github.com/opensearch-project/opensearch-java/pull/1544))
-- Bump `org.opensearch.gradle:build-tools` from 3.0.0-alpha1-SNAPSHOT to 3.1.0-SNAPSHOT ([#1543](https://github.com/opensearch-project/opensearch-java/pull/1543))
+## [Unreleased 3.x]
+### Added
 
-This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [Unreleased 2.x]
+### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.0.0] - 05/16/2025
+### ⚠️ Breaking Changes ⚠️
+- As part of efforts to re-generate the client from our [OpenAPI specification](https://github.com/opensearch-project/opensearch-api-specification) there have been numerous corrections and changes that resulted in breaking changes. Please refer to [UPGRADING.md](UPGRADING.md) for a complete list of these breakages and any relevant guidance for upgrading to this version of the client.
 
 ### Added
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
 
 ### Dependencies
+- Bumps `org.eclipse.parsson:parsson` from 1.1.6 to 1.1.7
+- Bumps `org.hamcrest:hamcrest` from 2.2 to 3.0
+- Bumps `com.github.jk1.dependency-license-report` from 2.8 to 2.9
+- Bump `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.8.2 to 2.8.3 ([#1487](https://github.com/opensearch-project/opensearch-java/pull/1487))
+- Bump `org.opensearch.gradle:build-tools` from 3.0.0-alpha1-SNAPSHOT to 3.1.0-SNAPSHOT ([#1543](https://github.com/opensearch-project/opensearch-java/pull/1543))
 
 ### Changed
 - Migrate client transports to Apache HttpClient / Core 5.x ([#246](https://github.com/opensearch-project/opensearch-java/pull/246))
@@ -40,22 +68,16 @@ This section is for maintaining a changelog for all breaking changes for the cli
 - Fix version and build ([#254](https://github.com/opensearch-project/opensearch-java/pull/254))
 - Fixed deserializing `tasks.ListResponse` when using `GroupBy.None` ([#1187](https://github.com/opensearch-project/opensearch-java/pull/1187))
 
-### Security
-
-## [Unreleased 2.x]
-### Added
-
+## [2.24.0] - 05/16/2025
 ### Dependencies
+- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.3 to 5.4.4 ([#1544](https://github.com/opensearch-project/opensearch-java/pull/1544))
 
 ### Changed
-
-### Deprecated
-
-### Removed
+- Changed `StopTokenFilter`'s `stopwords` field to no longer be required ([#1551](https://github.com/opensearch-project/opensearch-java/pull/1551))
 
 ### Fixed
-
-### Security
+- Fixed deserializing `wrapper` queries ([#1537](https://github.com/opensearch-project/opensearch-java/pull/1537))
+- Add `is_hidden` to `AliasDefinition` ([#1537](https://github.com/opensearch-project/opensearch-java/pull/1537))
 
 ## [2.23.0] - 04/17/2025
 ### Added
