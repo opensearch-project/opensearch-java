@@ -80,6 +80,8 @@ import org.opensearch.client.opensearch.core.GetScriptLanguagesRequest;
 import org.opensearch.client.opensearch.core.GetScriptLanguagesResponse;
 import org.opensearch.client.opensearch.core.GetScriptRequest;
 import org.opensearch.client.opensearch.core.GetScriptResponse;
+import org.opensearch.client.opensearch.core.GetSourceRequest;
+import org.opensearch.client.opensearch.core.GetSourceResponse;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.core.MtermvectorsRequest;
@@ -605,6 +607,39 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
      */
     public final CompletableFuture<GetScriptLanguagesResponse> getScriptLanguages() throws IOException, OpenSearchException {
         return getScriptLanguages(new GetScriptLanguagesRequest.Builder().build());
+    }
+
+    // ----- Endpoint: get_source
+
+    /**
+     * Returns the source of a document.
+     */
+    public <TDocument> CompletableFuture<GetSourceResponse<TDocument>> getSource(GetSourceRequest request, Class<TDocument> tDocumentClass)
+        throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            GetSourceRequest,
+            GetSourceResponse<TDocument>,
+            ErrorResponse>) GetSourceRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:_global.get_source.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Returns the source of a document.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetSourceRequest}
+     */
+    public final <TDocument> CompletableFuture<GetSourceResponse<TDocument>> getSource(
+        Function<GetSourceRequest.Builder, ObjectBuilder<GetSourceRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return getSource(fn.apply(new GetSourceRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: info
