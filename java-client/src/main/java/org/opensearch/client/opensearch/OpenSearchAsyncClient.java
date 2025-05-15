@@ -42,10 +42,6 @@ import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.CreateRequest;
 import org.opensearch.client.opensearch.core.CreateResponse;
-import org.opensearch.client.opensearch.core.ExplainRequest;
-import org.opensearch.client.opensearch.core.ExplainResponse;
-import org.opensearch.client.opensearch.core.GetRequest;
-import org.opensearch.client.opensearch.core.GetResponse;
 import org.opensearch.client.opensearch.core.GetSourceRequest;
 import org.opensearch.client.opensearch.core.GetSourceResponse;
 import org.opensearch.client.opensearch.core.IndexRequest;
@@ -173,46 +169,6 @@ public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchA
         Function<CreateRequest.Builder<TDocument>, ObjectBuilder<CreateRequest<TDocument>>> fn
     ) throws IOException, OpenSearchException {
         return create(fn.apply(new CreateRequest.Builder<TDocument>()).build());
-    }
-
-    // ----- Endpoint: get
-
-    /**
-     * Returns a document.
-     *
-     *
-     */
-
-    public <TDocument> CompletableFuture<GetResponse<TDocument>> get(GetRequest request, Class<TDocument> tDocumentClass)
-        throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
-            GetRequest,
-            GetResponse<TDocument>,
-            ErrorResponse>) GetRequest._ENDPOINT;
-        endpoint = new EndpointWithResponseMapperAttr<>(
-            endpoint,
-            "org.opensearch.client:Deserializer:_global.get.TDocument",
-            getDeserializer(tDocumentClass)
-        );
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns a document.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link GetRequest}
-     *
-     */
-
-    public final <TDocument> CompletableFuture<GetResponse<TDocument>> get(
-        Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn,
-        Class<TDocument> tDocumentClass
-    ) throws IOException, OpenSearchException {
-        return get(fn.apply(new GetRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: get_source

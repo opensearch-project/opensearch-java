@@ -30,43 +30,83 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core;
 
 import java.util.function.Function;
-import java.util.function.Supplier;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.NamedDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch.core.get.GetResult;
+import org.opensearch.client.opensearch.core.get.GetResultBase;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _global.get.Response
 
 @JsonpDeserializable
-public class GetResponse<TDocument> extends GetResult<TDocument> {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class GetResponse<TDocument> extends GetResultBase<TDocument>
+    implements
+        ToCopyableBuilder<GetResponse.Builder<TDocument>, GetResponse<TDocument>> {
+
     // ---------------------------------------------------------------------------------------------
 
     private GetResponse(Builder<TDocument> builder) {
         super(builder);
-
     }
 
-    public static <TDocument> GetResponse<TDocument> of(Function<Builder<TDocument>, ObjectBuilder<GetResponse<TDocument>>> fn) {
+    public static <TDocument> GetResponse<TDocument> of(
+        Function<GetResponse.Builder<TDocument>, ObjectBuilder<GetResponse<TDocument>>> fn
+    ) {
         return fn.apply(new Builder<>()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder<TDocument> toBuilder() {
+        return new Builder<>(this);
+    }
+
+    @Nonnull
+    public static <TDocument> Builder builder() {
+        return new Builder<>();
+    }
+
     /**
      * Builder for {@link GetResponse}.
      */
-
-    public static class Builder<TDocument> extends GetResult.AbstractBuilder<TDocument, Builder<TDocument>>
+    public static class Builder<TDocument> extends GetResultBase.AbstractBuilder<TDocument, Builder<TDocument>>
         implements
-            ObjectBuilder<GetResponse<TDocument>> {
+            CopyableBuilder<Builder<TDocument>, GetResponse<TDocument>> {
+
+        public Builder() {}
+
+        private Builder(GetResponse<TDocument> o) {
+            super(o);
+        }
+
+        private Builder(Builder<TDocument> o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder<TDocument> copy() {
+            return new Builder<>(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder<TDocument> self() {
             return this;
         }
@@ -74,33 +114,33 @@ public class GetResponse<TDocument> extends GetResult<TDocument> {
         /**
          * Builds a {@link GetResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public GetResponse<TDocument> build() {
             _checkSingleUse();
 
-            return new GetResponse<TDocument>(this);
+            return new GetResponse<>(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Create a JSON deserializer for GetResponse
+     * Create a JSON deserializer for GetResponse.
      */
     public static <TDocument> JsonpDeserializer<GetResponse<TDocument>> createGetResponseDeserializer(
         JsonpDeserializer<TDocument> tDocumentDeserializer
     ) {
         return ObjectBuilderDeserializer.createForObject(
-            (Supplier<Builder<TDocument>>) Builder::new,
+            Builder<TDocument>::new,
             op -> GetResponse.setupGetResponseDeserializer(op, tDocumentDeserializer)
         );
-    };
+    }
 
     /**
-     * Json deserializer for {@link GetResponse} based on named deserializers
-     * provided by the calling {@code JsonMapper}.
+     * Json deserializer for {@link GetResponse} based on named deserializers provided by the calling {@code JsonMapper}.
      */
     public static final JsonpDeserializer<GetResponse<Object>> _DESERIALIZER = createGetResponseDeserializer(
         new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.get.TDocument")
@@ -110,8 +150,22 @@ public class GetResponse<TDocument> extends GetResult<TDocument> {
         ObjectDeserializer<GetResponse.Builder<TDocument>> op,
         JsonpDeserializer<TDocument> tDocumentDeserializer
     ) {
-        GetResult.setupGetResultDeserializer(op, tDocumentDeserializer);
-
+        setupGetResultBaseDeserializer(op, tDocumentDeserializer);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

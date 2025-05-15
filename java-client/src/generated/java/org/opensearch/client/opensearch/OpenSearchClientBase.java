@@ -71,6 +71,8 @@ import org.opensearch.client.opensearch.core.FieldCapsRequest;
 import org.opensearch.client.opensearch.core.FieldCapsResponse;
 import org.opensearch.client.opensearch.core.GetAllPitsRequest;
 import org.opensearch.client.opensearch.core.GetAllPitsResponse;
+import org.opensearch.client.opensearch.core.GetRequest;
+import org.opensearch.client.opensearch.core.GetResponse;
 import org.opensearch.client.opensearch.core.GetScriptContextRequest;
 import org.opensearch.client.opensearch.core.GetScriptContextResponse;
 import org.opensearch.client.opensearch.core.GetScriptLanguagesRequest;
@@ -463,6 +465,39 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
      */
     public final FieldCapsResponse fieldCaps() throws IOException, OpenSearchException {
         return fieldCaps(new FieldCapsRequest.Builder().build());
+    }
+
+    // ----- Endpoint: get
+
+    /**
+     * Returns a document.
+     */
+    public <TDocument> GetResponse<TDocument> get(GetRequest request, Class<TDocument> tDocumentClass) throws IOException,
+        OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            GetRequest,
+            GetResponse<TDocument>,
+            ErrorResponse>) GetRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:_global.get.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Returns a document.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetRequest}
+     */
+    public final <TDocument> GetResponse<TDocument> get(
+        Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return get(fn.apply(new GetRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: get_all_pits
