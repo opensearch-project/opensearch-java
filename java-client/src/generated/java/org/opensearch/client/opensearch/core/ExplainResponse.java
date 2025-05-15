@@ -30,16 +30,21 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
-import java.util.function.Supplier;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.NamedDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
@@ -47,18 +52,19 @@ import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.InlineGet;
 import org.opensearch.client.opensearch.core.explain.Explanation;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _global.explain.Response
 
 @JsonpDeserializable
-public class ExplainResponse<TDocument> implements PlainJsonSerializable {
-    private final String index;
-
-    private final String id;
-
-    private final boolean matched;
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ExplainResponse<TDocument>
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<ExplainResponse.Builder<TDocument>, ExplainResponse<TDocument>> {
 
     @Nullable
     private final Explanation explanation;
@@ -66,45 +72,28 @@ public class ExplainResponse<TDocument> implements PlainJsonSerializable {
     @Nullable
     private final InlineGet<TDocument> get;
 
-    @Nullable
-    private final JsonpSerializer<TDocument> tDocumentSerializer;
+    @Nonnull
+    private final String id;
+
+    @Nonnull
+    private final String index;
+
+    private final boolean matched;
 
     // ---------------------------------------------------------------------------------------------
 
     private ExplainResponse(Builder<TDocument> builder) {
-
-        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-        this.matched = ApiTypeHelper.requireNonNull(builder.matched, this, "matched");
         this.explanation = builder.explanation;
         this.get = builder.get;
-        this.tDocumentSerializer = builder.tDocumentSerializer;
-
+        this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+        this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+        this.matched = ApiTypeHelper.requireNonNull(builder.matched, this, "matched");
     }
 
-    public static <TDocument> ExplainResponse<TDocument> of(Function<Builder<TDocument>, ObjectBuilder<ExplainResponse<TDocument>>> fn) {
+    public static <TDocument> ExplainResponse<TDocument> of(
+        Function<ExplainResponse.Builder<TDocument>, ObjectBuilder<ExplainResponse<TDocument>>> fn
+    ) {
         return fn.apply(new Builder<>()).build();
-    }
-
-    /**
-     * Required - API name: {@code _index}
-     */
-    public final String index() {
-        return this.index;
-    }
-
-    /**
-     * Required - API name: {@code _id}
-     */
-    public final String id() {
-        return this.id;
-    }
-
-    /**
-     * Required - API name: {@code matched}
-     */
-    public final boolean matched() {
-        return this.matched;
     }
 
     /**
@@ -124,8 +113,32 @@ public class ExplainResponse<TDocument> implements PlainJsonSerializable {
     }
 
     /**
+     * Required - API name: {@code _id}
+     */
+    @Nonnull
+    public final String id() {
+        return this.id;
+    }
+
+    /**
+     * Required - API name: {@code _index}
+     */
+    @Nonnull
+    public final String index() {
+        return this.index;
+    }
+
+    /**
+     * Required - API name: {@code matched}
+     */
+    public final boolean matched() {
+        return this.matched;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -133,81 +146,81 @@ public class ExplainResponse<TDocument> implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.explanation != null) {
+            generator.writeKey("explanation");
+            this.explanation.serialize(generator, mapper);
+        }
 
-        generator.writeKey("_index");
-        generator.write(this.index);
+        if (this.get != null) {
+            generator.writeKey("get");
+            this.get.serialize(generator, mapper);
+        }
 
         generator.writeKey("_id");
         generator.write(this.id);
 
+        generator.writeKey("_index");
+        generator.write(this.index);
+
         generator.writeKey("matched");
         generator.write(this.matched);
-
-        if (this.explanation != null) {
-            generator.writeKey("explanation");
-            this.explanation.serialize(generator, mapper);
-
-        }
-        if (this.get != null) {
-            generator.writeKey("get");
-            this.get.serialize(generator, mapper);
-
-        }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder<TDocument> toBuilder() {
+        return new Builder<>(this);
+    }
+
+    @Nonnull
+    public static <TDocument> Builder builder() {
+        return new Builder<>();
+    }
+
     /**
      * Builder for {@link ExplainResponse}.
      */
-
-    public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<ExplainResponse<TDocument>> {
-        private String index;
-
-        @Nullable
-        private String type;
-
-        private String id;
-
-        private Boolean matched;
-
+    public static class Builder<TDocument> extends ObjectBuilderBase
+        implements
+            CopyableBuilder<Builder<TDocument>, ExplainResponse<TDocument>> {
         @Nullable
         private Explanation explanation;
-
         @Nullable
         private InlineGet<TDocument> get;
+        private String id;
+        private String index;
+        private Boolean matched;
 
-        @Nullable
-        private JsonpSerializer<TDocument> tDocumentSerializer;
+        public Builder() {}
 
-        /**
-         * Required - API name: {@code _index}
-         */
-        public final Builder<TDocument> index(String value) {
-            this.index = value;
-            return this;
+        private Builder(ExplainResponse<TDocument> o) {
+            this.explanation = o.explanation;
+            this.get = o.get;
+            this.id = o.id;
+            this.index = o.index;
+            this.matched = o.matched;
         }
 
-        /**
-         * Required - API name: {@code _id}
-         */
-        public final Builder<TDocument> id(String value) {
-            this.id = value;
-            return this;
+        private Builder(Builder<TDocument> o) {
+            this.explanation = o.explanation;
+            this.get = o.get;
+            this.id = o.id;
+            this.index = o.index;
+            this.matched = o.matched;
         }
 
-        /**
-         * Required - API name: {@code matched}
-         */
-        public final Builder<TDocument> matched(boolean value) {
-            this.matched = value;
-            return this;
+        @Override
+        @Nonnull
+        public Builder<TDocument> copy() {
+            return new Builder<>(this);
         }
 
         /**
          * API name: {@code explanation}
          */
+        @Nonnull
         public final Builder<TDocument> explanation(@Nullable Explanation value) {
             this.explanation = value;
             return this;
@@ -216,13 +229,15 @@ public class ExplainResponse<TDocument> implements PlainJsonSerializable {
         /**
          * API name: {@code explanation}
          */
+        @Nonnull
         public final Builder<TDocument> explanation(Function<Explanation.Builder, ObjectBuilder<Explanation>> fn) {
-            return this.explanation(fn.apply(new Explanation.Builder()).build());
+            return explanation(fn.apply(new Explanation.Builder()).build());
         }
 
         /**
          * API name: {@code get}
          */
+        @Nonnull
         public final Builder<TDocument> get(@Nullable InlineGet<TDocument> value) {
             this.get = value;
             return this;
@@ -231,49 +246,68 @@ public class ExplainResponse<TDocument> implements PlainJsonSerializable {
         /**
          * API name: {@code get}
          */
+        @Nonnull
         public final Builder<TDocument> get(Function<InlineGet.Builder<TDocument>, ObjectBuilder<InlineGet<TDocument>>> fn) {
-            return this.get(fn.apply(new InlineGet.Builder<TDocument>()).build());
+            return get(fn.apply(new InlineGet.Builder<TDocument>()).build());
         }
 
         /**
-         * Serializer for TDocument. If not set, an attempt will be made to find a
-         * serializer from the JSON context.
+         * Required - API name: {@code _id}
          */
-        public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
-            this.tDocumentSerializer = value;
+        @Nonnull
+        public final Builder<TDocument> id(String value) {
+            this.id = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code _index}
+         */
+        @Nonnull
+        public final Builder<TDocument> index(String value) {
+            this.index = value;
+            return this;
+        }
+
+        /**
+         * Required - API name: {@code matched}
+         */
+        @Nonnull
+        public final Builder<TDocument> matched(boolean value) {
+            this.matched = value;
             return this;
         }
 
         /**
          * Builds a {@link ExplainResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ExplainResponse<TDocument> build() {
             _checkSingleUse();
 
-            return new ExplainResponse<TDocument>(this);
+            return new ExplainResponse<>(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Create a JSON deserializer for ExplainResponse
+     * Create a JSON deserializer for ExplainResponse.
      */
     public static <TDocument> JsonpDeserializer<ExplainResponse<TDocument>> createExplainResponseDeserializer(
         JsonpDeserializer<TDocument> tDocumentDeserializer
     ) {
         return ObjectBuilderDeserializer.createForObject(
-            (Supplier<Builder<TDocument>>) Builder::new,
+            Builder<TDocument>::new,
             op -> ExplainResponse.setupExplainResponseDeserializer(op, tDocumentDeserializer)
         );
-    };
+    }
 
     /**
-     * Json deserializer for {@link ExplainResponse} based on named deserializers
-     * provided by the calling {@code JsonMapper}.
+     * Json deserializer for {@link ExplainResponse} based on named deserializers provided by the calling {@code JsonMapper}.
      */
     public static final JsonpDeserializer<ExplainResponse<Object>> _DESERIALIZER = createExplainResponseDeserializer(
         new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.explain.TDocument")
@@ -283,13 +317,33 @@ public class ExplainResponse<TDocument> implements PlainJsonSerializable {
         ObjectDeserializer<ExplainResponse.Builder<TDocument>> op,
         JsonpDeserializer<TDocument> tDocumentDeserializer
     ) {
-
-        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-        op.add(Builder::matched, JsonpDeserializer.booleanDeserializer(), "matched");
         op.add(Builder::explanation, Explanation._DESERIALIZER, "explanation");
         op.add(Builder::get, InlineGet.createInlineGetDeserializer(tDocumentDeserializer), "get");
-
+        op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+        op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
+        op.add(Builder::matched, JsonpDeserializer.booleanDeserializer(), "matched");
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.explanation);
+        result = 31 * result + Objects.hashCode(this.get);
+        result = 31 * result + this.id.hashCode();
+        result = 31 * result + this.index.hashCode();
+        result = 31 * result + Boolean.hashCode(this.matched);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ExplainResponse<?> other = (ExplainResponse<?>) o;
+        return Objects.equals(this.explanation, other.explanation)
+            && Objects.equals(this.get, other.get)
+            && this.id.equals(other.id)
+            && this.index.equals(other.index)
+            && this.matched == other.matched;
+    }
 }

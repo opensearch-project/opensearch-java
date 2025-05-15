@@ -41,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
+import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.cat.OpenSearchCatClient;
 import org.opensearch.client.opensearch.cluster.OpenSearchClusterClient;
@@ -64,6 +65,8 @@ import org.opensearch.client.opensearch.core.DeleteScriptRequest;
 import org.opensearch.client.opensearch.core.DeleteScriptResponse;
 import org.opensearch.client.opensearch.core.ExistsRequest;
 import org.opensearch.client.opensearch.core.ExistsSourceRequest;
+import org.opensearch.client.opensearch.core.ExplainRequest;
+import org.opensearch.client.opensearch.core.ExplainResponse;
 import org.opensearch.client.opensearch.core.FieldCapsRequest;
 import org.opensearch.client.opensearch.core.FieldCapsResponse;
 import org.opensearch.client.opensearch.core.GetAllPitsRequest;
@@ -105,9 +108,11 @@ import org.opensearch.client.opensearch.search_pipeline.OpenSearchSearchPipeline
 import org.opensearch.client.opensearch.security.OpenSearchSecurityClient;
 import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotClient;
 import org.opensearch.client.opensearch.tasks.OpenSearchTasksClient;
+import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
+import org.opensearch.client.transport.endpoints.EndpointWithResponseMapperAttr;
 import org.opensearch.client.util.ObjectBuilder;
 
 /**
@@ -399,6 +404,39 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
     public final BooleanResponse existsSource(Function<ExistsSourceRequest.Builder, ObjectBuilder<ExistsSourceRequest>> fn)
         throws IOException, OpenSearchException {
         return existsSource(fn.apply(new ExistsSourceRequest.Builder()).build());
+    }
+
+    // ----- Endpoint: explain
+
+    /**
+     * Returns information about why a specific document matches (or doesn't match) a query.
+     */
+    public <TDocument> ExplainResponse<TDocument> explain(ExplainRequest request, Class<TDocument> tDocumentClass) throws IOException,
+        OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            ExplainRequest,
+            ExplainResponse<TDocument>,
+            ErrorResponse>) ExplainRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:_global.explain.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Returns information about why a specific document matches (or doesn't match) a query.
+     *
+     * @param fn a function that initializes a builder to create the {@link ExplainRequest}
+     */
+    public final <TDocument> ExplainResponse<TDocument> explain(
+        Function<ExplainRequest.Builder, ObjectBuilder<ExplainRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return explain(fn.apply(new ExplainRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: field_caps

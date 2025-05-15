@@ -56,7 +56,6 @@ public class CodeGenerator {
                         "bulk",
                         "bulk_stream",
                         "create",
-                        "explain",
                         "get",
                         "get_source",
                         "index",
