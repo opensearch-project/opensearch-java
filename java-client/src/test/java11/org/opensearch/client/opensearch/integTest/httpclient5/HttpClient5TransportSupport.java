@@ -8,6 +8,10 @@
 
 package org.opensearch.client.opensearch.integTest.httpclient5;
 
+import static org.opensearch.client.opensearch.integTest.OpenSearchJavaClientTestCase.COMPRESSION_ENABLED;
+import static org.opensearch.client.opensearch.integTest.OpenSearchJavaClientTestCase.CUSTOM_CLIENT_ID;
+import static org.opensearch.client.opensearch.integTest.OpenSearchJavaClientTestCase.METRICS_ENABLED;
+import static org.opensearch.client.opensearch.integTest.OpenSearchJavaClientTestCase.METRICS_GROUPS;
 import static org.opensearch.test.rest.OpenSearchRestTestCase.CLIENT_PATH_PREFIX;
 import static org.opensearch.test.rest.OpenSearchRestTestCase.CLIENT_SOCKET_TIMEOUT;
 
@@ -15,6 +19,7 @@ import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.net.ssl.SSLContext;
@@ -36,6 +41,8 @@ import org.apache.hc.core5.ssl.SSLContextBuilder;
 import org.apache.hc.core5.util.Timeout;
 import org.opensearch.client.opensearch.integTest.OpenSearchTransportSupport;
 import org.opensearch.client.transport.OpenSearchTransport;
+import org.opensearch.client.transport.client_metrics.MetricGroup;
+import org.opensearch.client.transport.client_metrics.MetricOptions;
 import org.opensearch.client.transport.httpclient5.ApacheHttpClient5TransportBuilder;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.common.unit.TimeValue;
@@ -107,6 +114,27 @@ interface HttpClient5TransportSupport extends OpenSearchTransportSupport {
         );
         if (settings.hasValue(CLIENT_PATH_PREFIX)) {
             builder.setPathPrefix(settings.get(CLIENT_PATH_PREFIX));
+        }
+        if (settings.hasValue(METRICS_ENABLED) && settings.getAsBoolean(METRICS_ENABLED, false)) {
+            MetricOptions.MetricOptionsBuilder metricOptionsBuilder = MetricOptions.builder()
+                    .setMeterRegistry(new SimpleMeterRegistry())
+                    .setPercentiles(0.95)
+                    .setMetricsEnabled(true);
+            if (settings.hasValue(CUSTOM_CLIENT_ID)) {
+                metricOptionsBuilder.setClientId(settings.get(CUSTOM_CLIENT_ID));
+            }
+            if (settings.hasValue(METRICS_GROUPS)) {
+                List<String> metricGroupStrList = settings.getAsList(METRICS_GROUPS);
+                MetricGroup[] metricGroups = new MetricGroup[metricGroupStrList.size()];
+                for (int j = 0; j < metricGroupStrList.size(); j++) {
+                    metricGroups[j] = MetricGroup.valueOf(metricGroupStrList.get(j));
+                }
+                metricOptionsBuilder.setAdditionalMetricGroups(metricGroups);
+            }
+            builder.setMetricOptions(metricOptionsBuilder.build());
+        }
+        if (settings.hasValue(COMPRESSION_ENABLED)) {
+            builder.setCompressionEnabled(settings.getAsBoolean(COMPRESSION_ENABLED, false));
         }
     }
 }

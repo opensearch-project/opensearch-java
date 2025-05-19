@@ -11,6 +11,7 @@ package org.opensearch.client.opensearch.integTest;
 import java.io.IOException;
 import java.util.Optional;
 import org.apache.hc.core5.http.HttpHost;
+import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.common.settings.Settings;
@@ -24,5 +25,8 @@ public interface OpenSearchTransportSupport {
         return new OpenSearchClient(buildTransport(settings, hosts));
     }
 
+    default OpenSearchAsyncClient buildAsyncJavaClient(Settings settings, HttpHost[] hosts) throws IOException {
+        return new OpenSearchAsyncClient(buildTransport(settings, hosts));
+    }
     OpenSearchTransport buildTransport(Settings settings, HttpHost[] hosts) throws IOException;
 }
