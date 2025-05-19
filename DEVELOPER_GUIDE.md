@@ -55,8 +55,8 @@ To run unit tests for the java-client:
 To run integration tests for the java-client, start an OpenSearch cluster using docker and pass the OpenSearch version:
 
 ```
-docker-compose --project-directory .ci/opensearch build --build-arg OPENSEARCH_VERSION=1.3.0
-docker-compose --project-directory .ci/opensearch up -d
+docker compose --project-directory .ci/opensearch build --build-arg OPENSEARCH_VERSION=1.3.0
+docker compose --project-directory .ci/opensearch up -d
 ```
 
 Run integration tests after starting OpenSearch cluster:

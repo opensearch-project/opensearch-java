@@ -41,8 +41,8 @@ jobs:
       - name: Run Docker
         run: |
           echo "PASSWORD=admin" >> $GITHUB_ENV
-          docker-compose --project-directory .ci/opensearch build --build-arg OPENSEARCH_VERSION=${{ matrix.entry.opensearch_version }}
-          docker-compose --project-directory .ci/opensearch up -d
+          docker compose --project-directory .ci/opensearch build --build-arg OPENSEARCH_VERSION=${{ matrix.entry.opensearch_version }}
+          docker compose --project-directory .ci/opensearch up -d
           sleep 60
 
       - name: Sets password (new versions)
@@ -64,4 +64,4 @@ jobs:
 
       - name: Stop Docker
         run: |
-          docker-compose --project-directory .ci/opensearch down
+          docker compose --project-directory .ci/opensearch down
