@@ -16,6 +16,23 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Security
 
+## [2.11.2] - 11/05/2025
+### Added
+- Metrics support includes micrometer integration and Prometheus support with a custom client-side metrics.
+
+### Dependencies
+- Added micrometer dependency `io.micrometer:micrometer-core` version 1.12.3 
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [2.11.1] - 06/27/2024
 ### Added
 
