@@ -40,18 +40,18 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _global.get.GetResult
 
-public class GetResult<TDocument> implements JsonpSerializable {
+public class GetResult<TDocument> implements PlainJsonSerializable {
     private final String index;
 
     private final Map<String, JsonData> fields;
@@ -253,7 +253,7 @@ public class GetResult<TDocument> implements JsonpSerializable {
         }
     }
 
-    protected abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> extends
+    public abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> extends
         ObjectBuilderBase {
         private String index;
 

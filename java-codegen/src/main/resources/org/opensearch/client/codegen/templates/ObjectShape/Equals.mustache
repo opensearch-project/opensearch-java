@@ -1,0 +1,17 @@
+    @Override
+    public boolean equals(Object o) {
+    {{#extendsOtherShape}}
+        if(!super.equals(o)) {
+            return false;
+        }
+    {{/extendsOtherShape}}
+        if(this == o) return true;
+        if(o == null || this.getClass() != o.getClass()) return false;
+        {{#hasFields}}
+            {{className}}{{#typeParameters}}<?>{{/typeParameters}} other = ({{className}}{{#typeParameters}}<?>{{/typeParameters}})o;
+            return {{>ObjectShape/Equals/Fields}};
+        {{/hasFields}}
+        {{^hasFields}}
+            return true;
+        {{/hasFields}}
+    }

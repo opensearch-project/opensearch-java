@@ -40,10 +40,10 @@ buildscript {
         mavenLocal()
         maven(url = "https://aws.oss.sonatype.org/content/repositories/snapshots")
         mavenCentral()
-        maven(url = "https://plugins.gradle.org/m2/")
+        gradlePluginPortal()
     }
     dependencies {
-        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.0.0-SNAPSHOT")
+        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.1.0-SNAPSHOT")
     }
 }
 
@@ -51,9 +51,10 @@ plugins {
     java
     `java-library`
     `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "2.5"
-    id("org.owasp.dependencycheck") version "9.0.9"
-    id("com.diffplug.spotless") version "6.25.0"
+    id("com.github.jk1.dependency-license-report") version "2.9"
+    id("org.owasp.dependencycheck") version "12.1.1"
+
+    id("opensearch-java.spotless-conventions")
 }
 apply(plugin = "opensearch.repositories")
 apply(plugin = "org.owasp.dependencycheck")
@@ -87,6 +88,14 @@ java {
     }
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir("src/generated/java")
+        }
+    }
+}
+
 tasks.withType<ProcessResources> {
     expand(
         "version" to version,
@@ -96,7 +105,13 @@ tasks.withType<ProcessResources> {
 
 tasks.withType<Javadoc>().configureEach{
     options {
+        this as StandardJavadocDocletOptions
         encoding = "UTF-8"
+        addMultilineStringsOption("tag").setValue(listOf(
+            "apiNote:a:API Note:",
+            "implSpec:a:Implementation Requirements:",
+            "implNote:a:Implementation Note:",
+        ))
     }
 }
 
@@ -161,26 +176,26 @@ val integrationTest = task<Test>("integrationTest") {
             System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
 }
 
-val opensearchVersion = "3.0.0-SNAPSHOT"
+val opensearchVersion = "3.0.0-beta1-SNAPSHOT"
 
 dependencies {
-
-    val jacksonVersion = "2.15.2"
-    val jacksonDatabindVersion = "2.15.2"
+    val jacksonVersion = "2.18.3"
+    val jacksonDatabindVersion = "2.18.3"
 
     // Apache 2.0
+    api("commons-logging:commons-logging:1.3.5")
     compileOnly("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
-    testImplementation("org.hamcrest:hamcrest:2.2")
-    testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.8.1") {
+    testImplementation("org.hamcrest:hamcrest:3.0")
+    testImplementation("com.carrotsearch.randomizedtesting:randomizedtesting-runner:2.8.3") {
         exclude(group = "junit")
     }
     testImplementation("org.opensearch.client", "opensearch-rest-client", opensearchVersion)
 
-    api("org.apache.httpcomponents.client5:httpclient5:5.3.1") {
+    api("org.apache.httpcomponents.client5:httpclient5:5.4.4") {
       exclude(group = "org.apache.httpcomponents.core5")
     }
-    api("org.apache.httpcomponents.core5:httpcore5:5.2.4")
-    api("org.apache.httpcomponents.core5:httpcore5-h2:5.2.4")
+    api("org.apache.httpcomponents.core5:httpcore5:5.3.4")
+    api("org.apache.httpcomponents.core5:httpcore5-h2:5.3.4")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
@@ -189,34 +204,43 @@ dependencies {
     // Needed even if using Jackson to have an implementation of the Jsonp object model
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/parsson
-    api("org.eclipse.parsson:parsson:1.1.5")
+    api("org.eclipse.parsson:parsson:1.1.7")
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // http://json-b.net/
     implementation("jakarta.json.bind", "jakarta.json.bind-api", "2.0.0")
 
-    // Apache 2.0
+    // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+    // https://projects.eclipse.org/projects/ee4j.ca
+    implementation("jakarta.annotation", "jakarta.annotation-api", "1.3.5")
 
+    // Apache 2.0
     implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
     implementation("com.fasterxml.jackson.core", "jackson-databind", jacksonDatabindVersion)
     testImplementation("com.fasterxml.jackson.datatype", "jackson-datatype-jakarta-jsonp", jacksonVersion)
 
     // For AwsSdk2Transport
-    "awsSdk2SupportCompileOnly"("software.amazon.awssdk","sdk-core","[2.15,3.0)")
-    "awsSdk2SupportCompileOnly"("software.amazon.awssdk","auth","[2.15,3.0)")
-    testImplementation("software.amazon.awssdk","sdk-core","[2.15,3.0)")
-    testImplementation("software.amazon.awssdk","auth","[2.15,3.0)")
-    testImplementation("software.amazon.awssdk","aws-crt-client","[2.15,3.0)")
-    testImplementation("software.amazon.awssdk","apache-client","[2.15,3.0)")
-    testImplementation("software.amazon.awssdk","sts","[2.15,3.0)")
+    "awsSdk2SupportCompileOnly"("software.amazon.awssdk", "sdk-core", "[2.21,3.0)")
+    "awsSdk2SupportCompileOnly"("software.amazon.awssdk", "auth", "[2.21,3.0)")
+    "awsSdk2SupportCompileOnly"("software.amazon.awssdk", "http-auth-aws", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "sdk-core", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "auth", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "http-auth-aws", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "aws-crt-client", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "apache-client", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "netty-nio-client", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "url-connection-client", "[2.21,3.0)")
+    testImplementation("software.amazon.awssdk", "sts", "[2.21,3.0)")
+
     testImplementation("org.apache.logging.log4j", "log4j-api","[2.17.1,3.0)")
     testImplementation("org.apache.logging.log4j", "log4j-core","[2.17.1,3.0)")
+
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/
     implementation("org.eclipse", "yasson", "2.0.2")
 
     // https://github.com/classgraph/classgraph
-    testImplementation("io.github.classgraph:classgraph:4.8.165")
+    testImplementation("io.github.classgraph:classgraph:4.8.179")
 
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.13.2") {
@@ -286,22 +310,6 @@ tasks.withType<Jar> {
     }
 }
 
-spotless {
-  java {
-
-    target("**/*.java")
-
-    // Use the default importOrder configuration
-    importOrder()
-    removeUnusedImports()
-
-    eclipse().configFile("../buildSrc/formatterConfig.xml")
-
-    trimTrailingWhitespace()
-    endWithNewline()
-  }
-}
-
 publishing {
     repositories{
         if (version.toString().endsWith("SNAPSHOT")) {
@@ -349,8 +357,8 @@ publishing {
     }
 }
 
-if (runtimeJavaVersion >= JavaVersion.VERSION_11) {
-  val java11: SourceSet = sourceSets.create("java11") {
+if (runtimeJavaVersion >= JavaVersion.VERSION_21) {
+  val java21: SourceSet = sourceSets.create("java21") {
     java {
       compileClasspath += sourceSets.main.get().output + sourceSets.test.get().output
       runtimeClasspath += sourceSets.main.get().output + sourceSets.test.get().output
@@ -358,8 +366,8 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_11) {
     }
   }
 
-  configurations[java11.implementationConfigurationName].extendsFrom(configurations.testImplementation.get())
-  configurations[java11.runtimeOnlyConfigurationName].extendsFrom(configurations.testRuntimeOnly.get())
+  configurations[java21.implementationConfigurationName].extendsFrom(configurations.testImplementation.get())
+  configurations[java21.runtimeOnlyConfigurationName].extendsFrom(configurations.testRuntimeOnly.get())
 
   dependencies {
     testImplementation("org.opensearch.test", "framework", opensearchVersion) {
@@ -367,18 +375,29 @@ if (runtimeJavaVersion >= JavaVersion.VERSION_11) {
     }
   }
 
-  tasks.named<JavaCompile>("compileJava11Java") {
-    targetCompatibility = JavaVersion.VERSION_11.toString()
-    sourceCompatibility = JavaVersion.VERSION_11.toString()
+  tasks.named<JavaCompile>("compileJava21Java") {
+    targetCompatibility = JavaVersion.VERSION_21.toString()
+    sourceCompatibility = JavaVersion.VERSION_21.toString()
   }
   
   tasks.named<JavaCompile>("compileTestJava") {
-    targetCompatibility = JavaVersion.VERSION_11.toString()
-    sourceCompatibility = JavaVersion.VERSION_11.toString()
-  }
+    targetCompatibility = JavaVersion.VERSION_21.toString()
+    sourceCompatibility = JavaVersion.VERSION_21.toString()
+ }
   
-  tasks.test {
-    testClassesDirs += java11.output.classesDirs
-    classpath = sourceSets["java11"].runtimeClasspath
+  tasks.named<Test>("integrationTest") {
+    testClassesDirs += java21.output.classesDirs
+    classpath = sourceSets["java21"].runtimeClasspath
+ }
+  
+  tasks.named<Test>("unitTest") {
+    testClassesDirs += java21.output.classesDirs
+    classpath = sourceSets["java21"].runtimeClasspath
+ }
+} else {
+  dependencies {
+    // The Bouncy Castle License (MIT): https://www.bouncycastle.org/licence.html
+    testImplementation("org.bouncycastle", "bcprov-lts8on", "2.73.6")
+    testImplementation("org.bouncycastle", "bcpkix-lts8on", "2.73.6")
   }
 }

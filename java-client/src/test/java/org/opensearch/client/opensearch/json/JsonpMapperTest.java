@@ -51,11 +51,13 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.Assert;
 import org.junit.Test;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.json.jsonb.JsonbJsonpMapper;
 import org.opensearch.client.opensearch.IOUtils;
+import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.model.ModelTestCase;
 
 public class JsonpMapperTest extends Assert {
@@ -240,4 +242,29 @@ public class JsonpMapperTest extends Assert {
             this.children = children;
         }
     }
+
+    @Test
+    public void testRangeQuery() {
+
+        String expectedStringValue =
+            "{\"aggregations\":{},\"query\":{\"range\":{\"rangeField\":{\"format\":\"strict_date_optional_time\",\"from\":\"2024-01-01T00:00:00Z\",\"gte\":10.5,\"lte\":30}}},\"terminate_after\":5}";
+
+        SearchRequest searchRequest = SearchRequest.of(
+            request -> request.index("index1", "index2")
+                .aggregations(Collections.emptyMap())
+                .terminateAfter(5L)
+                .query(
+                    q -> q.range(
+                        r -> r.field("rangeField")
+                            .gte(JsonData.of(10.5))
+                            .lte(JsonData.of(30))
+                            .from(JsonData.of("2024-01-01T00:00:00Z"))
+                            .format("strict_date_optional_time")
+                    )
+                )
+        );
+        String searchRequestString = searchRequest.toJsonString();
+        assertEquals(expectedStringValue, searchRequestString);
+    }
+
 }

@@ -36,14 +36,14 @@ import jakarta.json.stream.JsonGenerator;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.VersionType;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _global.bulk.OperationBase
 
-public abstract class BulkOperationBase implements JsonpSerializable {
+public abstract class BulkOperationBase implements PlainJsonSerializable {
     @Nullable
     private final String id;
 
@@ -183,7 +183,7 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 
     }
 
-    protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
         @Nullable
         private String id;
 

@@ -39,6 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 public class ObjectBuilderBase {
     private boolean _used = false;
@@ -63,7 +64,7 @@ public class ObjectBuilderBase {
 
     /** Get a mutable list from the current list value of an object builder property */
     private static <T> List<T> _mutableList(List<T> list) {
-        if (list == null) {
+        if (!ApiTypeHelper.isDefined(list)) {
             return new InternalList<>();
         } else if (list instanceof InternalList) {
             return list;
@@ -71,6 +72,14 @@ public class ObjectBuilderBase {
             // Adding to a list we don't own: make a defensive copy, also ensuring it is mutable.
             return new InternalList<>(list);
         }
+    }
+
+    /**
+     * Make a mutable copy of a list if it is not {@code null}.
+     */
+    @Nullable
+    protected static <T> List<T> _listCopy(@Nullable List<T> list) {
+        return ApiTypeHelper.isDefined(list) ? new InternalList<>(list) : null;
     }
 
     /** Add a value to a (possibly {@code null}) list */
@@ -110,7 +119,7 @@ public class ObjectBuilderBase {
 
     /** Get a mutable map from the current map value of an object builder property */
     private static <K, V> Map<K, V> _mutableMap(Map<K, V> map) {
-        if (map == null) {
+        if (!ApiTypeHelper.isDefined(map)) {
             return new InternalMap<>();
         } else if (map instanceof InternalMap) {
             return map;
@@ -118,6 +127,14 @@ public class ObjectBuilderBase {
             // Adding to a map we don't own: make a defensive copy, also ensuring it is mutable.
             return new InternalMap<>(map);
         }
+    }
+
+    /**
+     * Make a mutable copy of a map if it is not {@code null}.
+     */
+    @Nullable
+    protected static <K, V> Map<K, V> _mapCopy(@Nullable Map<K, V> map) {
+        return ApiTypeHelper.isDefined(map) ? new InternalMap<>(map) : null;
     }
 
     /** Add a value to a (possibly {@code null}) map */

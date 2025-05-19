@@ -4,11 +4,13 @@
     - [Basic Search](#basic-search)
       - [Get raw JSON results](#get-raw-json-results)
     - [Search documents using a match query](#search-documents-using-a-match-query)
+    - [Search documents using a hybrid query](#search-documents-using-a-hybrid-query)
     - [Search documents using suggesters](#search-documents-using-suggesters)
       - [Using completion suggester](#using-completion-suggester)
       - [Using term suggester](#using-term-suggester)
       - [Using phrase suggester](#using-phrase-suggester)
     - [Aggregations](#aggregations)
+      - [Composite Aggregations](#composite-aggregations)
 
 # Search
 
@@ -296,6 +298,26 @@ SearchResponse<IndexData> searchResponse = client.search(searchRequest, IndexDat
 for (Map.Entry<String, Aggregate> entry : searchResponse.aggregations().entrySet()) {
   System.out.println("Agg - " + entry.getKey());
   entry.getValue().sterms().buckets().array().forEach(b -> System.out.printf("%s : %d%n", b.key(), b.docCount()));
+}
+```
+
+#### Composite Aggregations
+
+```java
+final Map<String, CompositeAggregationSource> comAggrSrcMap = new HashMap<>();
+CompositeAggregationSource compositeAggregationSource1 = new CompositeAggregationSource.Builder().terms(
+    termsAggrBuilder -> termsAggrBuilder.field("title.keyword").missingBucket(false).order(SortOrder.Asc)
+).build();
+comAggrSrcMap.put("titles", compositeAggregationSource1);
+
+CompositeAggregation compAgg = new CompositeAggregation.Builder().sources(comAggrSrcMap).build();
+Aggregation aggregation = new Aggregation.Builder().composite(compAgg).build();
+
+SearchRequest request = SearchRequest.of(r -> r.index(indexName).query(q -> q.match(m -> m.field("title").query(FieldValue.of("Document 1")))).aggregations("my_buckets", aggregation));
+SearchResponse<IndexData> response = client.search(request, IndexData.class);
+for (Map.Entry<String, Aggregate> entry : response.aggregations().entrySet()) {
+  LOGGER.info("Agg - {}", entry.getKey());
+  entry.getValue().composite().buckets().array().forEach(b -> LOGGER.info("{} : {}", b.key(), b.docCount()));
 }
 ```
 

@@ -20,7 +20,6 @@ import org.opensearch.client.ResponseException;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.HealthStatus;
-import org.opensearch.client.opensearch._types.Level;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.cluster.ClusterStatsRequest;
 import org.opensearch.client.opensearch.cluster.ClusterStatsResponse;
@@ -30,6 +29,7 @@ import org.opensearch.client.opensearch.cluster.HealthRequest;
 import org.opensearch.client.opensearch.cluster.HealthResponse;
 import org.opensearch.client.opensearch.cluster.PutClusterSettingsRequest;
 import org.opensearch.client.opensearch.cluster.PutClusterSettingsResponse;
+import org.opensearch.client.opensearch.cluster.health.ClusterHealthLevel;
 import org.opensearch.client.opensearch.cluster.health.IndexHealthStats;
 import org.opensearch.client.opensearch.cluster.health.ShardHealthStats;
 import org.opensearch.cluster.routing.allocation.decider.EnableAllocationDecider;
@@ -201,7 +201,7 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         }
         HealthRequest request = new HealthRequest.Builder().index(firstIndex, secondIndex)
             .timeout(t -> t.time("5s"))
-            .level(Level.Indices)
+            .level(ClusterHealthLevel.Indices)
             .build();
         HealthResponse response = openSearchClient.cluster().health(request);
         assertYellowShards(response);
@@ -228,7 +228,10 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         OpenSearchClient openSearchClient = javaClient();
         createIndex("index", Settings.EMPTY);
         createIndex("index2", Settings.EMPTY);
-        HealthRequest request = new HealthRequest.Builder().index("index").timeout(t -> t.time("5s")).level(Level.Shards).build();
+        HealthRequest request = new HealthRequest.Builder().index("index")
+            .timeout(t -> t.time("5s"))
+            .level(ClusterHealthLevel.Shards)
+            .build();
         HealthResponse response = openSearchClient.cluster().health(request);
 
         assertNotNull(response);
@@ -290,7 +293,7 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         createIndex("index", Settings.EMPTY);
         HealthRequest request = new HealthRequest.Builder().index("notexisted-index")
             .timeout(t -> t.time("5s"))
-            .level(Level.Indices)
+            .level(ClusterHealthLevel.Indices)
             .build();
         try {
             HealthResponse response = openSearchClient.cluster().health(request);
@@ -310,7 +313,9 @@ public abstract class AbstractClusterClientIT extends OpenSearchJavaClientTestCa
         ClusterStatsResponse response = openSearchClient.cluster().stats(request);
         assertNotNull(response);
         assertNotNull(response.clusterName());
-        assertNotEquals(response.nodes().count().total(), 0);
-        assertNotEquals(response.indices().count(), 0);
+        assertNotEquals(0, response.nodes().count().total());
+        Long indexCount = response.indices().count();
+        assertNotNull(indexCount);
+        assertNotEquals(0, (long) indexCount);
     }
 }

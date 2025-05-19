@@ -1,0 +1,114 @@
+{{^abstract}}
+    {{>ObjectShape/Builder/HelperCtor}}
+
+    /**
+    * Builder for {@link {{className}}}.
+    */
+    {{#extendedByOtherShape}}
+        public static class Builder{{#typeParameters}}{{.}}{{/typeParameters}} extends {{type}}.AbstractBuilder<Builder>
+                                    implements {{TYPES.Client.Util.CopyableBuilder}}<Builder{{#typeParameters}}{{.}}{{/typeParameters}}, {{selfType}}>{{#shouldImplementPlainDeserializable}}, {{TYPES.Client.Json.PlainDeserializable}}<Builder>{{/shouldImplementPlainDeserializable}}{
+            public Builder() {}
+
+            private Builder({{className}} o) {
+                super(o);
+            }
+
+            private Builder(Builder o) {
+                super(o);
+            }
+
+            {{>ObjectShape/Builder/CopyFnImpl}}
+
+            {{>ObjectShape/Builder/SelfImpl}}
+
+            {{>ObjectShape/Builder/BuildImpl}}
+        }
+    {{/extendedByOtherShape}}
+    {{^extendedByOtherShape}}
+        {{#doesExtendType}}
+            public static class Builder{{#typeParameters}}{{.}}{{/typeParameters}} extends {{extendsTypeAbstractBuilder}}
+                                        implements {{TYPES.Client.Util.CopyableBuilder}}<Builder{{#typeParameters}}{{.}}{{/typeParameters}}, {{selfType}}> {{#shouldImplementPlainDeserializable}}, {{TYPES.Client.Json.PlainDeserializable}}<Builder>{{/shouldImplementPlainDeserializable}} {
+                {{>ObjectShape/Builder/Fields}}
+
+                public Builder() {}
+
+                private Builder({{selfType}} o) {
+                    {{>ObjectShape/Builder/CopyCtorImpl}}
+                }
+
+                private Builder(Builder{{#typeParameters}}{{.}}{{/typeParameters}} o) {
+                    {{>ObjectShape/Builder/CopyCtorImpl}}
+                }
+
+                {{>ObjectShape/Builder/CopyFnImpl}}
+
+                {{>ObjectShape/Builder/SelfImpl}}
+
+            {{#concreteBuilderSetters}}
+                {{>ObjectShape/Builder/Setter}}
+            {{/concreteBuilderSetters}}
+
+                {{>ObjectShape/Builder/BuildImpl}}
+            }
+        {{/doesExtendType}}
+        {{^doesExtendType}}
+            public static class Builder{{#typeParameters}}{{.}}{{/typeParameters}} extends {{TYPES.Client.Util.ObjectBuilderBase}}
+                                        implements {{TYPES.Client.Util.CopyableBuilder}}<Builder{{#typeParameters}}{{.}}{{/typeParameters}}, {{selfType}}>{{#shouldImplementPlainDeserializable}}, {{TYPES.Client.Json.PlainDeserializable}}<Builder>{{/shouldImplementPlainDeserializable}} {
+                {{>ObjectShape/Builder/Fields}}
+
+                public Builder() {}
+
+                private Builder({{selfType}} o) {
+                    {{>ObjectShape/Builder/CopyCtorImpl}}
+                }
+
+                private Builder(Builder{{#typeParameters}}{{.}}{{/typeParameters}} o) {
+                    {{>ObjectShape/Builder/CopyCtorImpl}}
+                }
+
+                {{>ObjectShape/Builder/CopyFnImpl}}
+
+            {{#shouldImplementPlainDeserializable}}
+                {{>ObjectShape/Builder/SelfImpl}}
+
+            {{/shouldImplementPlainDeserializable}}
+
+            {{#concreteBuilderSetters}}
+                {{>ObjectShape/Builder/Setter}}
+            {{/concreteBuilderSetters}}
+
+                {{>ObjectShape/Builder/BuildImpl}}
+            }
+        {{/doesExtendType}}
+    {{/extendedByOtherShape}}
+{{/abstract}}
+{{#extendedByOtherShape}}
+    public abstract static class AbstractBuilder<{{#typeParameters}}{{#typeParameterDefinitions}}{{.}}, {{/typeParameterDefinitions}}{{/typeParameters}}BuilderT extends AbstractBuilder<{{#typeParameters}}{{#typeParameterDefinitions}}{{.}}, {{/typeParameterDefinitions}}{{/typeParameters}}BuilderT>>
+        extends {{#doesExtendType}}{{extendsTypeAbstractBuilder}}{{/doesExtendType}}{{^doesExtendType}}{{TYPES.Client.Util.ObjectBuilderBase}}{{/doesExtendType}} {
+        {{#fieldsExcludingAdditionalProperties}}
+            {{>ObjectShape/Builder/Field}}
+        {{/fieldsExcludingAdditionalProperties}}
+        {{#additionalProperties.fields}}
+            {{^required}}@{{TYPES.Javax.Annotation.Nullable}} {{/required}}{{#abstract}}protected{{/abstract}}{{^abstract}}private{{/abstract}} {{type.boxed}} {{name}};
+        {{/additionalProperties.fields}}
+
+        protected AbstractBuilder() {}
+
+        protected AbstractBuilder({{selfType}} o) {
+            {{>ObjectShape/Builder/CopyCtorImpl}}
+        }
+
+        protected AbstractBuilder(AbstractBuilder<{{#typeParameters}}{{#typeParameterDefinitions}}{{.}}, {{/typeParameterDefinitions}}{{/typeParameters}}BuilderT> o) {
+            {{>ObjectShape/Builder/CopyCtorImpl}}
+        }
+    {{^doesExtendType}}
+
+        @{{TYPES.Javax.Annotation.Nonnull}}
+        protected abstract BuilderT self();
+    {{/doesExtendType}}
+
+    {{#abstractBuilderSetters}}
+        {{>ObjectShape/Builder/Setter}}
+    {{/abstractBuilderSetters}}
+    }
+{{/extendedByOtherShape}}

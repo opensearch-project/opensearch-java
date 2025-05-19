@@ -42,9 +42,9 @@ import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.SortOptionsBuilders;
 import org.opensearch.client.opensearch._types.SortOrder;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
-import org.opensearch.client.opensearch._types.query_dsl.ShapeQuery;
 import org.opensearch.client.opensearch._types.query_dsl.TermQuery;
 import org.opensearch.client.opensearch._types.query_dsl.WrapperQuery;
+import org.opensearch.client.opensearch._types.query_dsl.XyShapeQuery;
 import org.opensearch.client.util.MapBuilder;
 
 public class BehaviorsTest extends ModelTestCase {
@@ -62,17 +62,20 @@ public class BehaviorsTest extends ModelTestCase {
 
     @Test
     public void testAdditionalPropertyOnClass() {
-        ShapeQuery q = new ShapeQuery.Builder().queryName("query-name")
+        XyShapeQuery q = new XyShapeQuery.Builder().queryName("query-name")
             .field("field-name")
-            .shape(_0 -> _0.relation(GeoShapeRelation.Disjoint))
+            .xyShape(_0 -> _0.relation(GeoShapeRelation.Disjoint).shape(s -> s))
             .ignoreUnmapped(true)
             .build();
 
-        q = checkJsonRoundtrip(q, "{\"field-name\":{\"relation\":\"disjoint\"},\"_name\":\"query-name\",\"ignore_unmapped\":true}");
+        q = checkJsonRoundtrip(
+            q,
+            "{\"_name\":\"query-name\",\"field-name\":{\"relation\":\"disjoint\",\"shape\":{}},\"ignore_unmapped\":true}"
+        );
 
         assertEquals("query-name", q.queryName());
         assertTrue(q.ignoreUnmapped());
-        assertEquals(GeoShapeRelation.Disjoint, q.shape().relation());
+        assertEquals(GeoShapeRelation.Disjoint, q.xyShape().relation());
         System.out.println(toJson(q));
     }
 
@@ -147,7 +150,7 @@ public class BehaviorsTest extends ModelTestCase {
             .metadata(MapBuilder.of("index", JsonData.of("test"), "retries", JsonData.of(1)))
             .build();
 
-        err = checkJsonRoundtrip(err, "{\"index\":\"test\",\"retries\":1,\"type\":\"Some type\",\"reason\":\"Some failure\"}");
+        err = checkJsonRoundtrip(err, "{\"index\":\"test\",\"retries\":1,\"reason\":\"Some failure\",\"type\":\"Some type\"}");
 
         assertEquals("Some failure", err.reason());
         assertEquals(1, err.metadata().get("retries").to(int.class).intValue());

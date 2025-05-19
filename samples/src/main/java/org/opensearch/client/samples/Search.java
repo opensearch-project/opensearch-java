@@ -10,14 +10,18 @@ package org.opensearch.client.samples;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.Refresh;
+import org.opensearch.client.opensearch._types.SortOrder;
 import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
+import org.opensearch.client.opensearch._types.aggregations.CompositeAggregation;
+import org.opensearch.client.opensearch._types.aggregations.CompositeAggregationSource;
 import org.opensearch.client.opensearch._types.analysis.Analyzer;
 import org.opensearch.client.opensearch._types.analysis.CustomAnalyzer;
 import org.opensearch.client.opensearch._types.analysis.ShingleTokenFilter;
@@ -104,6 +108,27 @@ public class Search {
             for (Map.Entry<String, Aggregate> entry : searchResponse.aggregations().entrySet()) {
                 LOGGER.info("Agg - {}", entry.getKey());
                 entry.getValue().sterms().buckets().array().forEach(b -> LOGGER.info("{} : {}", b.key(), b.docCount()));
+            }
+
+            // Custom Aggregations
+            final Map<String, CompositeAggregationSource> comAggrSrcMap = new HashMap<>();
+            CompositeAggregationSource compositeAggregationSource1 = new CompositeAggregationSource.Builder().terms(
+                termsAggrBuilder -> termsAggrBuilder.field("title.keyword").missingBucket(false).order(SortOrder.Asc)
+            ).build();
+            comAggrSrcMap.put("titles", compositeAggregationSource1);
+
+            CompositeAggregation compAgg = new CompositeAggregation.Builder().sources(comAggrSrcMap).build();
+            Aggregation aggregation = new Aggregation.Builder().composite(compAgg).build();
+
+            SearchRequest request = SearchRequest.of(
+                r -> r.index(indexName)
+                    .query(q -> q.match(m -> m.field("title").query(FieldValue.of("Document 1"))))
+                    .aggregations("my_buckets", aggregation)
+            );
+            SearchResponse<IndexData> response = client.search(request, IndexData.class);
+            for (Map.Entry<String, Aggregate> entry : response.aggregations().entrySet()) {
+                LOGGER.info("Agg - {}", entry.getKey());
+                entry.getValue().composite().buckets().array().forEach(b -> LOGGER.info("{} : {}", b.key(), b.docCount()));
             }
 
             // HybridSearch
@@ -205,7 +230,7 @@ public class Search {
         try {
             String index = "test-phrase-suggester";
 
-            ShingleTokenFilter shingleTokenFilter = new ShingleTokenFilter.Builder().minShingleSize("2").maxShingleSize("3").build();
+            ShingleTokenFilter shingleTokenFilter = new ShingleTokenFilter.Builder().minShingleSize(2).maxShingleSize(3).build();
 
             Analyzer analyzer = new Analyzer.Builder().custom(
                 new CustomAnalyzer.Builder().tokenizer("standard").filter(Arrays.asList("lowercase", "shingle")).build()

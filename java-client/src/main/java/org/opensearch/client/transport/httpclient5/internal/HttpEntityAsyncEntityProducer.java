@@ -9,6 +9,7 @@
 package org.opensearch.client.transport.httpclient5.internal;
 
 import java.io.IOException;
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
@@ -140,7 +141,7 @@ public class HttpEntityAsyncEntityProducer implements AsyncEntityProducer {
             }
         }
         if (byteBuffer.position() > 0) {
-            byteBuffer.flip();
+            ((Buffer) byteBuffer).flip();
             channel.write(byteBuffer);
             byteBuffer.compact();
         }

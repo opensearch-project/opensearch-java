@@ -1,0 +1,7 @@
+{{^abstract}}
+    @Override
+    @{{TYPES.Javax.Annotation.Nonnull}}
+    public Builder{{#typeParameters}}{{.}}{{/typeParameters}} toBuilder() {
+        return new Builder{{#typeParameters}}<>{{/typeParameters}}(this);
+    }
+{{/abstract}}

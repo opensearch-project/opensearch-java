@@ -29,18 +29,18 @@ public class KnnVectorMethodTest {
     public void testCreateKnnVectorMethodWithAll() {
         KnnVectorMethod knnVectorMethod = new KnnVectorMethod.Builder().name("hnsw")
             .spaceType("l2")
-            .engine("nmslib")
+            .engine("faiss")
             .parameters(Collections.singletonMap("ef_construction", JsonData.of(128)))
             .build();
         assertEquals("hnsw", knnVectorMethod.name());
         assertEquals("l2", knnVectorMethod.spaceType());
-        assertEquals("nmslib", knnVectorMethod.engine());
+        assertEquals("faiss", knnVectorMethod.engine());
         assertEquals("128", knnVectorMethod.parameters().get("ef_construction").toString());
     }
 
     @Test
     public void testDeserializeKnnVectorMethod() {
-        String jsonString = "{\"name\": \"hnsw\", \"space_type\": \"l2\", \"engine\": \"nmslib\","
+        String jsonString = "{\"name\": \"hnsw\", \"space_type\": \"l2\", \"engine\": \"faiss\","
             + " \"parameters\": {\"ef_construction\": 128, \"m\": 24}}";
         StringReader reader = new StringReader(jsonString);
         JacksonJsonpMapper mapper = new JacksonJsonpMapper();
@@ -50,7 +50,7 @@ public class KnnVectorMethodTest {
 
         TestCase.assertEquals("hnsw", knnVectorMethod.name());
         TestCase.assertEquals("l2", knnVectorMethod.spaceType());
-        TestCase.assertEquals("nmslib", knnVectorMethod.engine());
+        TestCase.assertEquals("faiss", knnVectorMethod.engine());
         TestCase.assertEquals("128", knnVectorMethod.parameters().get("ef_construction").toString());
         TestCase.assertEquals("24", knnVectorMethod.parameters().get("m").toString());
     }

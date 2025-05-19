@@ -1,0 +1,83 @@
+{{>Partials/ClassDeclaration}} {
+{{^base}}
+    public {{className}}({{TYPES.Client.Transport.OpenSearchTransport}} transport) {
+        super(transport, null);
+    }
+
+{{/base}}
+    public {{className}}({{TYPES.Client.Transport.OpenSearchTransport}} transport, @{{TYPES.Javax.Annotation.Nullable}} {{TYPES.Client.Transport.TransportOptions}} transportOptions) {
+        super(transport, transportOptions);
+    }
+{{^base}}
+
+    @Override
+    public {{className}} withTransportOptions(@{{TYPES.Javax.Annotation.Nullable}} {{TYPES.Client.Transport.TransportOptions}} transportOptions) {
+        return new {{className}}(this.transport, transportOptions);
+    }
+{{/base}}
+{{#children}}
+    {{#-first}}
+
+    // ----- Child clients
+    {{/-first}}
+
+    public {{type}} {{#camelCase}}{{name}}{{/camelCase}}() {
+        return new {{type}}(this.transport, this.transportOptions);
+    }
+{{/children}}
+{{#operations}}
+
+    // ----- Endpoint: {{operationGroup}}
+
+    /**
+     * {{description}}
+     */
+    {{#deprecation}}
+    @Deprecated
+    {{/deprecation}}
+    public{{#responseType.targetShape.typeParameters}} {{.}}{{/responseType.targetShape.typeParameters}} {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType.selfType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{type}} request{{#responseType.targetShape.typeParameters}}{{#typeParameterDefinitions}}, Class<{{name}}> {{#camelCase}}{{name}}{{/camelCase}}Class{{/typeParameterDefinitions}}{{/responseType.targetShape.typeParameters}}) throws {{TYPES.Java.Io.IOException}}, {{TYPES.Client.OpenSearch._Types.OpenSearchException}} {
+    {{#responseType.targetShape.typeParameters}}
+        @SuppressWarnings("unchecked")
+        {{TYPES.Client.Transport.JsonEndpoint}}<{{type}}, {{responseType.selfType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}> endpoint = ({{TYPES.Client.Transport.JsonEndpoint}}<{{type}}, {{responseType.selfType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}>) {{type}}._ENDPOINT;
+        {{#typeParameterDefinitions}}
+            endpoint = new {{TYPES.Client.Transport.Endpoints.EndpointWithResponseMapperAttr}}<>(
+                endpoint,
+                "{{TYPES.Client.PACKAGE}}:Deserializer:{{responseType.targetShape.typedefPrefix}}.{{name}}",
+                getDeserializer({{#camelCase}}{{name}}{{/camelCase}}Class)
+            );
+        {{/typeParameterDefinitions}}
+
+        return this.transport.performRequest{{#async}}Async{{/async}}(request, endpoint, this.transportOptions);
+    {{/responseType.targetShape.typeParameters}}
+    {{^responseType.targetShape.typeParameters}}
+        return this.transport.performRequest{{#async}}Async{{/async}}(request, {{type.name}}._ENDPOINT, this.transportOptions);
+    {{/responseType.targetShape.typeParameters}}
+    }
+
+    /**
+     * {{description}}
+     *
+     * @param fn a function that initializes a builder to create the {@link {{type}}}
+     */
+    {{#deprecation}}
+    @Deprecated
+    {{/deprecation}}
+    public final{{#responseType.targetShape.typeParameters}} {{.}}{{/responseType.targetShape.typeParameters}} {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType.selfType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}({{type.builderFnType}} fn{{#responseType.targetShape.typeParameters}}{{#typeParameterDefinitions}}, Class<{{name}}> {{#camelCase}}{{name}}{{/camelCase}}Class{{/typeParameterDefinitions}}{{/responseType.targetShape.typeParameters}})
+            throws IOException, OpenSearchException {
+        return {{#camelCase}}{{id}}{{/camelCase}}(fn.apply(new {{type.builderType}}()).build(){{#responseType.targetShape.typeParameters}}{{#typeParameterDefinitions}}, {{#camelCase}}{{name}}{{/camelCase}}Class{{/typeParameterDefinitions}}{{/responseType.targetShape.typeParameters}});
+    }
+    {{^hasAnyRequiredFields}}
+
+    /**
+     * {{description}}
+     */
+    {{#deprecation}}
+    @Deprecated
+    {{/deprecation}}
+    public final {{#async}}{{TYPES.Java.Util.Concurrent.CompletableFuture}}<{{/async}}{{responseType}}{{#async}}>{{/async}} {{#camelCase}}{{id}}{{/camelCase}}()
+            throws IOException, OpenSearchException {
+        return {{#camelCase}}{{id}}{{/camelCase}}(new {{type.builderType}}().build());
+    }
+    {{/hasAnyRequiredFields}}
+{{/operations}}
+}

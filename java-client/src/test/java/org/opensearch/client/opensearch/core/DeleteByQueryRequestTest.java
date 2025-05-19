@@ -12,13 +12,16 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 import org.opensearch.client.opensearch._types.FieldValue;
+import org.opensearch.client.opensearch._types.SlicesCalculation;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch._types.query_dsl.TermQuery;
 
 public class DeleteByQueryRequestTest extends Assert {
     @Test
     public void testEndpointSlicesAuto() {
-        DeleteByQueryRequest deleteByQueryRequest = DeleteByQueryRequest.of(b -> b.index("test-index").slices(0L));
+        DeleteByQueryRequest deleteByQueryRequest = DeleteByQueryRequest.of(
+            b -> b.index("test-index").slices(s -> s.calculation(SlicesCalculation.Auto))
+        );
         Map<String, String> queryParameters = DeleteByQueryRequest._ENDPOINT.queryParameters(deleteByQueryRequest);
         assertTrue("Must have a slices query parameter", queryParameters.containsKey("slices"));
         assertEquals("auto", queryParameters.get("slices"));
@@ -26,7 +29,7 @@ public class DeleteByQueryRequestTest extends Assert {
 
     @Test
     public void DeleteByQueryRequest() {
-        DeleteByQueryRequest deleteByQueryRequest = DeleteByQueryRequest.of(b -> b.index("test-index").slices(6L));
+        DeleteByQueryRequest deleteByQueryRequest = DeleteByQueryRequest.of(b -> b.index("test-index").slices(s -> s.count(6)));
         Map<String, String> queryParameters = DeleteByQueryRequest._ENDPOINT.queryParameters(deleteByQueryRequest);
         assertTrue("Must have a slices query parameter", queryParameters.containsKey("slices"));
         assertEquals("6", queryParameters.get("slices"));

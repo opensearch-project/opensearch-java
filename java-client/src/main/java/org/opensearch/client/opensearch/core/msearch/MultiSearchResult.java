@@ -38,16 +38,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _global.msearch.MultiSearchResult
 
-public abstract class MultiSearchResult<TDocument> implements JsonpSerializable {
+public abstract class MultiSearchResult<TDocument> implements PlainJsonSerializable {
     private final long took;
 
     private final List<MultiSearchResponseItem<TDocument>> responses;
@@ -106,7 +106,7 @@ public abstract class MultiSearchResult<TDocument> implements JsonpSerializable 
 
     }
 
-    protected abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> extends
+    public abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> extends
         ObjectBuilderBase {
         private Long took;
 

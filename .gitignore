@@ -23,3 +23,7 @@ gradle-app.setting
 .ci/output
 java-client/bin
 samples/bin
+
+.DS_Store
+
+.kotlin/

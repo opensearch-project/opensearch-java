@@ -32,9 +32,11 @@
 
 package org.opensearch.client.json;
 
+import jakarta.json.JsonException;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
+import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonLocation;
 import jakarta.json.stream.JsonParser;
@@ -59,6 +61,38 @@ public class JsonpUtils {
      *         JSON when advancing to next state.
      * @throws java.util.NoSuchElementException if there are no more parsing states.
      */
+
+    static final JsonProvider DEFAULT_PROVIDER = provider();
+
+    static JsonProvider provider() {
+        return JsonProvider.provider();
+    }
+
+    static final JsonpMapper DEFAULT_JSONP_MAPPER = new JsonpMapperBase() {
+        @Override
+        public JsonProvider jsonProvider() {
+            return DEFAULT_PROVIDER;
+        }
+
+        @Override
+        public <T> void serialize(T value, JsonGenerator generator) {
+            if (value instanceof JsonpSerializable) {
+                ((JsonpSerializable) value).serialize(generator, this);
+                return;
+            }
+            throw new JsonException(
+                "Cannot find a serializer for type " + value.getClass().getName() + ". Consider using a full-featured JsonpMapper."
+            );
+        }
+
+        @Override
+        protected <T> JsonpDeserializer<T> getDefaultDeserializer(Class<T> clazz) {
+            throw new JsonException(
+                "Cannot find a default deserializer for type " + clazz.getName() + ". Consider using a full-featured JsonpMapper."
+            );
+        }
+    };
+
     public static JsonParser.Event expectNextEvent(JsonParser parser, JsonParser.Event expected) {
         JsonParser.Event event = parser.next();
         expectEvent(parser, expected, event);

@@ -1,0 +1,31 @@
+{{>Partials/ClassDeclaration}} {
+    {{>ObjectShape/Fields}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/Constructor}}
+
+    {{>ObjectShape/Getters}}
+
+    /**
+     * Serialize this value to JSON.
+     */
+    @Override
+    public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
+        {{#delegatedType.directSerializer}}this.valueBody{{/delegatedType.directSerializer}}
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/ToBuilder}}
+
+    {{>ObjectShape/Builder}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>DelegatedShape/Deserialize}}
+
+    {{>ObjectShape/HashCode}}
+
+    {{>ObjectShape/Equals}}
+}

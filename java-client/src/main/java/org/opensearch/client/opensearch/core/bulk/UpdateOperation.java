@@ -15,7 +15,7 @@
  * not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *	 http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -41,6 +41,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.NdJsonpSerializable;
 import org.opensearch.client.opensearch._types.Script;
+import org.opensearch.client.opensearch.core.search.SourceConfig;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 
@@ -156,6 +157,9 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
         @Nullable
         private Script script;
 
+        @Nullable
+        private SourceConfig source;
+
         /**
          * API name: {@code document}
          */
@@ -221,6 +225,21 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
         }
 
         /**
+         * API name: {@code _source}
+         */
+        public final Builder<TDocument> source(@Nullable SourceConfig value) {
+            this.source = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code _source}
+         */
+        public final Builder<TDocument> source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+            return this.source(fn.apply(new SourceConfig.Builder()).build());
+        }
+
+        /**
          * Serializer for TDocument. If not set, an attempt will be made to find a
          * serializer from the JSON context.
          */
@@ -249,6 +268,7 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
                 .detectNoop(detectNoop)
                 .script(script)
                 .upsert(upsert)
+                .source(source)
                 .tDocumentSerializer(tDocumentSerializer)
                 .build();
 

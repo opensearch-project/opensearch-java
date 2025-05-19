@@ -1,0 +1,201 @@
+{{>Partials/ClassDeclaration}} {
+    /**
+     * {@link {{className}}} variant kinds.
+     */
+    public enum Kind{{#discriminated}} implements {{TYPES.Client.Json.JsonEnum}}{{/discriminated}} {
+        {{#variants}}{{#pascalCase}}{{name}}{{/pascalCase}}{{#discriminated}}({{#quoted}}{{name}}{{/quoted}}){{/discriminated}}{{^-last}},{{/-last}}{{/variants}}
+        {{#discriminated}};
+
+        private final String jsonValue;
+
+        Kind(String jsonValue) {
+            this.jsonValue = jsonValue;
+        }
+
+        @Override
+        public String jsonValue() {
+            return jsonValue;
+        }
+        {{/discriminated}}
+    }
+{{#referencingDiscriminatedUnions}}
+
+    {{>ObjectShape/DiscriminatedUnionInterfaceImpl}}
+{{/referencingDiscriminatedUnions}}
+
+    private final Kind _kind;
+    private final {{variantBaseType}} _value;
+
+    @Override
+    public final Kind _kind() {
+        return _kind;
+    }
+
+    @Override
+    public final {{variantBaseType}} _get() {
+        return _value;
+    }
+{{#hasFields}}
+    {{>ObjectShape/Fields}}
+
+{{/hasFields}}
+{{^hasAnyRequiredFields}}
+{{^extendsOtherShape}}
+{{#discriminated}}
+    public {{className}}({{variantInterfaceType}} value) {
+    {{#isOptionalExternallyDiscriminated}}
+        if (value != null) {
+    {{/isOptionalExternallyDiscriminated}}
+        this._kind = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(value._{{#camelCase}}{{className}}{{/camelCase}}Kind(), this, "<variant kind>");
+        this._value = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(value, this, "<variant value>");
+    {{#isOptionalExternallyDiscriminated}}
+        } else {
+            this._kind = null;
+            this._value = null;
+        }
+    {{/isOptionalExternallyDiscriminated}}
+    {{#fields}}
+        this.{{name}} = null;
+    {{/fields}}
+    }
+{{/discriminated}}
+{{^discriminated}}
+    private {{className}}(Kind kind, Object value) {
+        this._kind = kind;
+        this._value = value;
+    {{#fields}}
+        this.{{name}} = null;
+    {{/fields}}
+    }
+{{/discriminated}}
+
+{{/extendsOtherShape}}
+{{/hasAnyRequiredFields}}
+    private {{className}}(Builder{{#typeParameters}}{{.}}{{/typeParameters}} builder) {
+        {{>ObjectShape/ConstructorImpl}}
+    {{#isOptionalExternallyDiscriminated}}
+        if (builder._kind != null) {
+    {{/isOptionalExternallyDiscriminated}}
+        this._kind = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = {{TYPES.Client.Util.ApiTypeHelper}}.requireNonNull(builder._value, builder, "<variant value>");
+    {{#isOptionalExternallyDiscriminated}}
+        } else {
+            this._kind = null;
+            this._value = null;
+        }
+    {{/isOptionalExternallyDiscriminated}}
+    }
+
+    public static{{#typeParameters}} {{.}}{{/typeParameters}} {{selfType}} of({{selfType.builderFnType}} fn) {
+        return fn.apply(new Builder{{#typeParameters}}<>{{/typeParameters}}()).build();
+    }
+
+{{#canStringify}}
+    public String _toJsonString() {
+        switch (_kind) {
+        {{#variants}}
+            case {{#pascalCase}}{{name}}{{/pascalCase}}:
+                return {{#type.queryParamify}}this.{{#camelCase}}{{name}}{{/camelCase}}(){{/type.queryParamify}};
+        {{/variants}}
+            default:
+                throw new IllegalStateException("Unknown kind " + _kind);
+        }
+    }
+
+{{/canStringify}}
+{{#hasFields}}
+    {{>ObjectShape/Getters}}
+
+{{/hasFields}}
+{{#variants}}
+    /**
+     * Is this variant instance of kind {@code {{name}}}?
+     */
+    public boolean is{{#pascalCase}}{{name}}{{/pascalCase}}() {
+        return _kind == Kind.{{#pascalCase}}{{name}}{{/pascalCase}};
+    }
+
+    /**
+     * Get the {@code {{name}}} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code {{name}}} kind.
+     */
+    public {{type}} {{#asFieldName}}{{name}}{{/asFieldName}}() {
+        return {{TYPES.Client.Util.TaggedUnionUtils}}.get(this, Kind.{{#pascalCase}}{{name}}{{/pascalCase}});
+    }
+
+{{/variants}}
+
+    {{>TaggedUnionShape/Serialize}}
+
+    @{{TYPES.Javax.Annotation.Nonnull}}
+    public Builder{{#typeParameters}}{{.}}{{/typeParameters}} toBuilder() {
+        return new Builder{{#typeParameters}}<>{{/typeParameters}}(this);
+    }
+
+    {{>ObjectShape/Builder/HelperCtor}}
+
+    public static class Builder{{#typeParameters}}{{.}}{{/typeParameters}} extends {{#extendsOtherShape}}{{extendsType}}.AbstractBuilder<Builder>{{/extendsOtherShape}}{{^extendsOtherShape}}{{TYPES.Client.Util.ObjectBuilderBase}}{{/extendsOtherShape}}{{#needsContainerBuilder}}{{#isOptionalExternallyDiscriminated}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{selfType}}>{{/isOptionalExternallyDiscriminated}}{{/needsContainerBuilder}}{{^needsContainerBuilder}} implements {{TYPES.Client.Util.ObjectBuilder}}<{{selfType}}>{{/needsContainerBuilder}} {
+        private Kind _kind;
+        private {{variantBaseType}} _value;
+        {{>ObjectShape/Builder/Fields}}
+
+        public Builder() {}
+
+        private Builder({{selfType}} o) {
+            {{>ObjectShape/Builder/CopyCtorImpl}}
+            this._kind = o._kind;
+            this._value = o._value;
+        }
+
+    {{#extendsOtherShape}}
+        {{>ObjectShape/Builder/SelfImpl}}
+
+    {{/extendsOtherShape}}
+
+    {{#concreteBuilderSetters}}
+        {{>ObjectShape/Builder/Setter}}
+    {{/concreteBuilderSetters}}
+
+    {{#variants}}
+        public {{^needsContainerBuilder}}{{TYPES.Client.Util.ObjectBuilder}}<{{selfType}}>{{/needsContainerBuilder}}{{#needsContainerBuilder}}ContainerBuilder{{/needsContainerBuilder}} {{#asFieldName}}{{name}}{{/asFieldName}}({{type}} v) {
+            this._kind = Kind.{{#pascalCase}}{{name}}{{/pascalCase}};
+            this._value = v;
+            return {{^needsContainerBuilder}}this{{/needsContainerBuilder}}{{#needsContainerBuilder}}new ContainerBuilder(){{/needsContainerBuilder}};
+        }
+        {{#type.hasBuilder}}
+
+        public {{^needsContainerBuilder}}{{TYPES.Client.Util.ObjectBuilder}}<{{selfType}}>{{/needsContainerBuilder}}{{#needsContainerBuilder}}ContainerBuilder{{/needsContainerBuilder}} {{#asFieldName}}{{name}}{{/asFieldName}}({{type.builderFnType}} fn) {
+            return this.{{#asFieldName}}{{name}}{{/asFieldName}}(fn.apply(new {{type.builderType}}()).build());
+        }
+        {{/type.hasBuilder}}
+
+    {{/variants}}
+        {{^needsContainerBuilder}}@Override
+        public{{/needsContainerBuilder}}{{#needsContainerBuilder}}{{#isOptionalExternallyDiscriminated}}public{{/isOptionalExternallyDiscriminated}}{{^isOptionalExternallyDiscriminated}}protected{{/isOptionalExternallyDiscriminated}}{{/needsContainerBuilder}} {{selfType}} build() {
+            _checkSingleUse();
+            return new {{className}}{{#typeParameters}}<>{{/typeParameters}}(this);
+        }
+    {{#needsContainerBuilder}}
+
+        public class ContainerBuilder implements {{TYPES.Client.Util.ObjectBuilder}}<{{selfType}}> {
+            private ContainerBuilder() {}
+
+        {{#containerBuilderSetters}}
+            {{>ObjectShape/Builder/Setter}}
+        {{/containerBuilderSetters}}
+
+            @Override
+            public {{selfType}} build() {
+                return Builder.this.build();
+            }
+        }
+    {{/needsContainerBuilder}}
+    }
+
+    {{>TaggedUnionShape/Deserialize}}
+
+    {{>ObjectShape/HashCode}}
+
+    {{>ObjectShape/Equals}}
+}

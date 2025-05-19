@@ -42,11 +42,11 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.VersionType;
@@ -65,7 +65,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  *
  */
 
-public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpSerializable {
+public class TermvectorsRequest<TDocument> extends RequestBase implements PlainJsonSerializable {
     @Nullable
     private final TDocument doc;
 

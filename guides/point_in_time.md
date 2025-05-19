@@ -31,12 +31,12 @@ CreatePitRequest createPitRequest = new CreatePitRequest.Builder()
 CreatePitResponse createPitResponse = client.createPit(createPitRequest);                
 ```
 
-### List all point in time
+### Get all point in time
 
 Returns all PITs in the OpenSearch cluster.
 
 ```java
-ListAllPitResponse listAllPitResponse = client.listAllPit();
+GetAllPitsResponse getAllPitsResponse = client.getAllPits();
 ```
 
 ### Delete point in time

@@ -39,13 +39,13 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.NamedDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.InlineGet;
-import org.opensearch.client.opensearch.core.explain.ExplanationDetail;
+import org.opensearch.client.opensearch.core.explain.Explanation;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -53,7 +53,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _global.explain.Response
 
 @JsonpDeserializable
-public class ExplainResponse<TDocument> implements JsonpSerializable {
+public class ExplainResponse<TDocument> implements PlainJsonSerializable {
     private final String index;
 
     private final String id;
@@ -61,7 +61,7 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
     private final boolean matched;
 
     @Nullable
-    private final ExplanationDetail explanation;
+    private final Explanation explanation;
 
     @Nullable
     private final InlineGet<TDocument> get;
@@ -111,7 +111,7 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
      * API name: {@code explanation}
      */
     @Nullable
-    public final ExplanationDetail explanation() {
+    public final Explanation explanation() {
         return this.explanation;
     }
 
@@ -173,7 +173,7 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
         private Boolean matched;
 
         @Nullable
-        private ExplanationDetail explanation;
+        private Explanation explanation;
 
         @Nullable
         private InlineGet<TDocument> get;
@@ -208,7 +208,7 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
         /**
          * API name: {@code explanation}
          */
-        public final Builder<TDocument> explanation(@Nullable ExplanationDetail value) {
+        public final Builder<TDocument> explanation(@Nullable Explanation value) {
             this.explanation = value;
             return this;
         }
@@ -216,8 +216,8 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
         /**
          * API name: {@code explanation}
          */
-        public final Builder<TDocument> explanation(Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn) {
-            return this.explanation(fn.apply(new ExplanationDetail.Builder()).build());
+        public final Builder<TDocument> explanation(Function<Explanation.Builder, ObjectBuilder<Explanation>> fn) {
+            return this.explanation(fn.apply(new Explanation.Builder()).build());
         }
 
         /**
@@ -287,7 +287,7 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
         op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
         op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
         op.add(Builder::matched, JsonpDeserializer.booleanDeserializer(), "matched");
-        op.add(Builder::explanation, ExplanationDetail._DESERIALIZER, "explanation");
+        op.add(Builder::explanation, Explanation._DESERIALIZER, "explanation");
         op.add(Builder::get, InlineGet.createInlineGetDeserializer(tDocumentDeserializer), "get");
 
     }

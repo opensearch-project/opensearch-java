@@ -1,0 +1,7 @@
+/**
+ * {@link {{union.className}}} variant kind.
+ */
+@Override
+public {{unionKindType}} _{{#camelCase}}{{union.className}}{{/camelCase}}Kind() {
+    return {{unionKindType}}.{{#pascalCase}}{{discriminatorValue}}{{/pascalCase}};
+}

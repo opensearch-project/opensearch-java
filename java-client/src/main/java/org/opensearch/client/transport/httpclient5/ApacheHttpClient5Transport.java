@@ -15,8 +15,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.UndeclaredThrowableException;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -35,12 +39,16 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 import javax.annotation.Nullable;
+import javax.net.ssl.SSLHandshakeException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.hc.client5.http.ConnectTimeoutException;
 import org.apache.hc.client5.http.auth.AuthCache;
 import org.apache.hc.client5.http.auth.AuthScheme;
 import org.apache.hc.client5.http.auth.AuthScope;
@@ -55,17 +63,20 @@ import org.apache.hc.client5.http.impl.auth.BasicScheme;
 import org.apache.hc.client5.http.protocol.HttpClientContext;
 import org.apache.hc.core5.concurrent.FutureCallback;
 import org.apache.hc.core5.http.ClassicHttpResponse;
+import org.apache.hc.core5.http.ConnectionClosedException;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.HttpRequest;
+import org.apache.hc.core5.http.HttpStatus;
 import org.apache.hc.core5.http.io.entity.BufferedHttpEntity;
 import org.apache.hc.core5.http.io.entity.ByteArrayEntity;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.HttpEntityWrapper;
 import org.apache.hc.core5.http.message.BasicHeader;
 import org.apache.hc.core5.http.message.RequestLine;
+import org.apache.hc.core5.http.message.StatusLine;
 import org.apache.hc.core5.http.nio.AsyncRequestProducer;
 import org.apache.hc.core5.http.nio.AsyncResponseConsumer;
 import org.apache.hc.core5.net.URIBuilder;
@@ -73,9 +84,11 @@ import org.apache.hc.core5.util.Args;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.NdJsonpSerializable;
-import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.opensearch.generic.OpenSearchClientException;
 import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.transport.GenericEndpoint;
+import org.opensearch.client.transport.GenericSerializable;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportException;
@@ -141,15 +154,16 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         TransportOptions options
     ) throws IOException {
         try {
-            return performRequestAsync(request, endpoint, options).join();
-        } catch (final CompletionException ex) {
-            if (ex.getCause() instanceof RuntimeException) {
-                throw (RuntimeException) ex.getCause();
-            } else if (ex.getCause() instanceof IOException) {
-                throw (IOException) ex.getCause();
-            } else {
-                throw new IOException(ex.getCause());
+            return performRequestAsync(request, endpoint, options).get();
+        } catch (final Exception ex) {
+            Exception cause = extractAndWrapCause(ex);
+            if (cause instanceof IOException) {
+                throw (IOException) cause;
             }
+            if (cause instanceof RuntimeException) {
+                throw (RuntimeException) cause;
+            }
+            throw new IllegalStateException("unexpected exception type: must be either RuntimeException or IOException", cause);
         }
     }
 
@@ -480,36 +494,68 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
 
         try {
             int statusCode = clientResp.getStatusLine().getStatusCode();
-
-            if (endpoint.isError(statusCode)) {
-                JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
-                if (errorDeserializer == null) {
-                    throw new TransportException("Request failed with status code '" + statusCode + "'", new ResponseException(clientResp));
-                }
-
+            if (statusCode == HttpStatus.SC_FORBIDDEN) {
+                throw new TransportException("Forbidden access", new ResponseException(clientResp));
+            } else if (statusCode == HttpStatus.SC_UNAUTHORIZED) {
+                throw new TransportException("Unauthorized access", new ResponseException(clientResp));
+            } else if (endpoint.isError(statusCode)) {
                 HttpEntity entity = clientResp.getEntity();
                 if (entity == null) {
                     throw new TransportException("Expecting a response body, but none was sent", new ResponseException(clientResp));
                 }
 
-                // We may have to replay it.
-                entity = new BufferedHttpEntity(entity);
+                if (endpoint instanceof GenericEndpoint) {
+                    @SuppressWarnings("unchecked")
+                    final GenericEndpoint<?, ResponseT> rawEndpoint = (GenericEndpoint<?, ResponseT>) endpoint;
 
-                try {
-                    InputStream content = entity.getContent();
-                    try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
-                        ErrorT error = errorDeserializer.deserialize(parser, mapper);
-                        // TODO: have the endpoint provide the exception constructor
-                        throw new OpenSearchException((ErrorResponse) error);
+                    final RequestLine requestLine = clientResp.getRequestLine();
+                    final StatusLine statusLine = clientResp.getStatusLine();
+
+                    // We may have to replay it.
+                    entity = new BufferedHttpEntity(entity);
+
+                    try (InputStream content = entity.getContent()) {
+                        final ResponseT error = rawEndpoint.responseDeserializer(
+                            requestLine.getUri(),
+                            requestLine.getMethod(),
+                            requestLine.getProtocolVersion().format(),
+                            statusLine.getStatusCode(),
+                            statusLine.getReasonPhrase(),
+                            Arrays.stream(clientResp.getHeaders())
+                                .map(h -> new AbstractMap.SimpleEntry<String, String>(h.getName(), h.getValue()))
+                                .collect(Collectors.toList()),
+                            entity.getContentType(),
+                            content
+                        );
+                        throw rawEndpoint.exceptionConverter(statusCode, error);
                     }
-                } catch (MissingRequiredPropertyException errorEx) {
-                    // Could not decode exception, try the response type
+                } else {
+                    JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
+                    if (errorDeserializer == null) {
+                        throw new TransportException(
+                            "Request failed with status code '" + statusCode + "'",
+                            new ResponseException(clientResp)
+                        );
+                    }
+
+                    // We may have to replay it.
+                    entity = new BufferedHttpEntity(entity);
+
                     try {
-                        ResponseT response = decodeResponse(statusCode, entity, clientResp, endpoint);
-                        return response;
-                    } catch (Exception respEx) {
-                        // No better luck: throw the original error decoding exception
-                        throw new TransportException("Failed to decode error response", new ResponseException(clientResp));
+                        InputStream content = entity.getContent();
+                        try (JsonParser parser = mapper.jsonProvider().createParser(content)) {
+                            ErrorT error = errorDeserializer.deserialize(parser, mapper);
+                            throw endpoint.exceptionConverter(statusCode, error);
+                        }
+                    } catch (MissingRequiredPropertyException errorEx) {
+                        // Could not decode exception, try the response type
+                        try {
+                            ResponseT response = decodeResponse(statusCode, entity, clientResp, endpoint);
+                            return response;
+                        } catch (Exception respEx) {
+                            // No better luck: throw the original error decoding exception
+                            throw new TransportException("Failed to decode error response", new ResponseException(clientResp));
+                        }
                     }
                 }
             } else {
@@ -535,15 +581,18 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             // Request has a body and must implement JsonpSerializable or NdJsonpSerializable
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
+            ContentType contentType = JsonContentType;
             if (request instanceof NdJsonpSerializable) {
                 writeNdJson((NdJsonpSerializable) request, baos);
+            } else if (request instanceof GenericSerializable) {
+                contentType = ContentType.parse(((GenericSerializable) request).serialize(baos));
             } else {
                 JsonGenerator generator = mapper.jsonProvider().createGenerator(baos);
                 mapper.serialize(request, generator);
                 generator.close();
             }
 
-            addRequestBody(clientReq, new ByteArrayEntity(baos.toByteArray(), JsonContentType));
+            addRequestBody(clientReq, new ByteArrayEntity(baos.toByteArray(), contentType));
         }
 
         setHeaders(clientReq, options.headers());
@@ -630,6 +679,31 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
                 ;
             }
             return response;
+        } else if (endpoint instanceof GenericEndpoint) {
+            @SuppressWarnings("unchecked")
+            final GenericEndpoint<?, ResponseT> rawEndpoint = (GenericEndpoint<?, ResponseT>) endpoint;
+
+            String contentType = null;
+            InputStream content = null;
+            if (entity != null) {
+                contentType = entity.getContentType();
+                content = entity.getContent();
+            }
+
+            final RequestLine requestLine = clientResp.getRequestLine();
+            final StatusLine statusLine = clientResp.getStatusLine();
+            return rawEndpoint.responseDeserializer(
+                requestLine.getUri(),
+                requestLine.getMethod(),
+                requestLine.getProtocolVersion().format(),
+                statusLine.getStatusCode(),
+                statusLine.getReasonPhrase(),
+                Arrays.stream(clientResp.getHeaders())
+                    .map(h -> new AbstractMap.SimpleEntry<String, String>(h.getName(), h.getValue()))
+                    .collect(Collectors.toList()),
+                contentType,
+                content
+            );
         } else {
             throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'");
         }
@@ -1019,4 +1093,81 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             return new ByteArrayInputStream(this.buf, 0, this.count);
         }
     }
+
+    /**
+     * Wrap the exception so the caller's signature shows up in the stack trace, taking care to copy the original type and message
+     * where possible so async and sync code don't have to check different exceptions.
+     */
+    private static Exception extractAndWrapCause(Exception exception) {
+        if (exception instanceof InterruptedException) {
+            throw new RuntimeException("thread waiting for the response was interrupted", exception);
+        }
+        if (exception instanceof ExecutionException) {
+            ExecutionException executionException = (ExecutionException) exception;
+            Throwable t = executionException.getCause() == null ? executionException : executionException.getCause();
+            if (t instanceof Error) {
+                throw (Error) t;
+            }
+            if (t instanceof Exception) {
+                exception = (Exception) t;
+            } else {
+                exception = new UndeclaredThrowableException(t);
+            }
+        }
+        if (exception instanceof ConnectTimeoutException) {
+            ConnectTimeoutException e = new ConnectTimeoutException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof SocketTimeoutException) {
+            SocketTimeoutException e = new SocketTimeoutException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof ConnectionClosedException) {
+            ConnectionClosedException e = new ConnectionClosedException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof SSLHandshakeException) {
+            SSLHandshakeException e = new SSLHandshakeException(
+                exception.getMessage() + "\nSee https://opensearch.org/docs/latest/clients/java/ for troubleshooting."
+            );
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof ConnectException) {
+            ConnectException e = new ConnectException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof ResponseException) {
+            try {
+                ResponseException e = new ResponseException(((ResponseException) exception).getResponse());
+                e.initCause(exception);
+                return e;
+            } catch (final IOException ex) {
+                // We are not able to reconstruct the response, throw IOException instead
+                return new IOException(exception.getMessage(), exception);
+            }
+        }
+        if (exception instanceof IOException) {
+            return new IOException(exception.getMessage(), exception);
+        }
+        if (exception instanceof OpenSearchException) {
+            final OpenSearchException e = new OpenSearchException(((OpenSearchException) exception).response());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof OpenSearchClientException) {
+            final OpenSearchClientException e = new OpenSearchClientException(((OpenSearchClientException) exception).response());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof RuntimeException) {
+            return new RuntimeException(exception.getMessage(), exception);
+        }
+        return new RuntimeException("error while performing request", exception);
+    }
+
 }

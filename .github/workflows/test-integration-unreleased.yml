@@ -15,22 +15,18 @@ jobs:
       fail-fast: false
       matrix:
         entry:
-          - { opensearch_ref: '1.x', java: 11 }
-          - { opensearch_ref: '2.x', java: 11 }
-          - { opensearch_ref: '2.x', java: 17 }
-          - { opensearch_ref: '2.x', java: 21 }
-          - { opensearch_ref: 'main', java: 11 }
-          - { opensearch_ref: 'main', java: 17 }
-          - { opensearch_ref: 'main', java: 21 }
+          - { opensearch_ref: '1.x', opensearch_jdk: 11, client_jdk: 21 }
+          - { opensearch_ref: '2.x', opensearch_jdk: 21, client_jdk: 21 }
+          - { opensearch_ref: 'main', opensearch_jdk: 21, client_jdk: 21 }
     steps:
-      - name: Set up JDK ${{ matrix.entry.java }}
-        uses: actions/setup-java@v3
+      - name: Set up JDK ${{ matrix.entry.opensearch_jdk }}
+        uses: actions/setup-java@v4
         with:
-          java-version: ${{ matrix.entry.java }}
+          java-version: ${{ matrix.entry.opensearch_jdk }}
           distribution: 'temurin'
 
       - name: Checkout OpenSearch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: opensearch-project/OpenSearch
           ref: ${{ matrix.entry.opensearch_ref }}
@@ -43,19 +39,31 @@ jobs:
 
       - name: Restore cached build
         id: cache-restore
-        uses: actions/cache/restore@v3
+        uses: actions/cache/restore@v4
         with:
           path: opensearch/distribution/archives/linux-tar/build/distributions
           key: ${{ steps.get-key.outputs.key }}
 
+      - name: Set up Gradle JDK runtime
+        if: matrix.entry.gradle-runtime
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.entry.gradle-runtime }}
+          distribution: temurin
+
+      - name: Set JAVA${{ matrix.entry.opensearch_jdk }}_HOME
+        shell: bash
+        run: |
+          echo "JAVA${{ matrix.entry.opensearch_jdk }}_HOME=$JAVA_HOME_${{ matrix.entry.opensearch_jdk }}_${{ runner.arch }}" >> $GITHUB_ENV
+
       - name: Assemble OpenSearch
         if: steps.cache-restore.outputs.cache-hit != 'true'
         working-directory: opensearch
-        run: ./gradlew :distribution:archives:linux-tar:assemble
+        run: ./gradlew :distribution:archives:linux-tar:assemble -Druntime.java=${{ matrix.opensearch_jdk }}
 
       - name: Save cached build
         if: steps.cache-restore.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v3
+        uses: actions/cache/save@v4
         with:
           path: opensearch/distribution/archives/linux-tar/build/distributions
           key: ${{ steps.get-key.outputs.key }}
@@ -68,9 +76,15 @@ jobs:
           for attempt in {1..20}; do sleep 5; if curl -s localhost:9200; then echo '=====> ready'; break; fi; echo '=====> waiting...'; done
 
       - name: Checkout Java Client
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: opensearch-java
+
+      - name: Set up JDK ${{ matrix.entry.client_jdk }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.entry.client_jdk }}
+          distribution: 'temurin'
 
       - name: Run Integration Test
         run: |
@@ -79,8 +93,8 @@ jobs:
 
       - name: Upload Reports
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: test-reports
+          name: test-reports-os${{ matrix.entry.opensearch_ref }}-java${{ matrix.entry.java }}
           path: opensearch-java/java-client/build/reports/
           retention-days: 7

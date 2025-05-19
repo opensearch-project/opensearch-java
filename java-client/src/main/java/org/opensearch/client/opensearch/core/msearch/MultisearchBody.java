@@ -37,17 +37,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.ScriptField;
 import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
+import org.opensearch.client.opensearch._types.query_dsl.FieldAndFormat;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
+import org.opensearch.client.opensearch.core.search.FieldCollapse;
 import org.opensearch.client.opensearch.core.search.Highlight;
+import org.opensearch.client.opensearch.core.search.Rescore;
 import org.opensearch.client.opensearch.core.search.SourceConfig;
 import org.opensearch.client.opensearch.core.search.Suggester;
 import org.opensearch.client.opensearch.core.search.TrackHits;
@@ -58,7 +63,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _global.msearch.MultisearchBody
 
 @JsonpDeserializable
-public class MultisearchBody implements JsonpSerializable {
+public class MultisearchBody implements PlainJsonSerializable {
     private final Map<String, Aggregation> aggregations;
 
     @Nullable
@@ -73,7 +78,7 @@ public class MultisearchBody implements JsonpSerializable {
     @Nullable
     private final Query postFilter;
 
-    private final List<String> searchAfter;
+    private final List<FieldValue> searchAfter;
 
     @Nullable
     private final Integer size;
@@ -97,6 +102,33 @@ public class MultisearchBody implements JsonpSerializable {
 
     private final Map<String, ScriptField> scriptFields;
 
+    @Nullable
+    private final Boolean seqNoPrimaryTerm;
+
+    private final List<String> storedFields;
+
+    @Nullable
+    private final Boolean explain;
+
+    private final List<FieldAndFormat> fields;
+
+    private final List<FieldAndFormat> docvalueFields;
+
+    private final List<Map<String, Double>> indicesBoost;
+
+    @Nullable
+    private final FieldCollapse collapse;
+
+    @Nullable
+    private final Boolean version;
+
+    @Nullable
+    private final String timeout;
+
+    private final List<Rescore> rescore;
+
+    private final Map<String, JsonData> ext;
+
     // ---------------------------------------------------------------------------------------------
 
     private MultisearchBody(Builder builder) {
@@ -115,6 +147,17 @@ public class MultisearchBody implements JsonpSerializable {
         this.highlight = builder.highlight;
         this.source = builder.source;
         this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
+        this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
+        this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
+        this.explain = builder.explain;
+        this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+        this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
+        this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
+        this.collapse = builder.collapse;
+        this.version = builder.version;
+        this.timeout = builder.timeout;
+        this.rescore = ApiTypeHelper.unmodifiable(builder.rescore);
+        this.ext = ApiTypeHelper.unmodifiable(builder.ext);
     }
 
     public static MultisearchBody of(Function<Builder, ObjectBuilder<MultisearchBody>> fn) {
@@ -163,7 +206,7 @@ public class MultisearchBody implements JsonpSerializable {
     /**
      * API name: {@code search_after}
      */
-    public final List<String> searchAfter() {
+    public final List<FieldValue> searchAfter() {
         return this.searchAfter;
     }
 
@@ -227,6 +270,113 @@ public class MultisearchBody implements JsonpSerializable {
     }
 
     /**
+     * If true, returns sequence number and primary term of the last modification of
+     * each hit. See Optimistic concurrency control.
+     * <p>
+     * API name: {@code seq_no_primary_term}
+     */
+    @Nullable
+    public final Boolean seqNoPrimaryTerm() {
+        return this.seqNoPrimaryTerm;
+    }
+
+    /**
+     * List of stored fields to return as part of a hit. If no fields are specified,
+     * no stored fields are included in the response. If this field is specified,
+     * the _source parameter defaults to false. You can pass _source: true to return
+     * both source fields and stored fields in the search response.
+     * <p>
+     * API name: {@code stored_fields}
+     */
+    public final List<String> storedFields() {
+        return this.storedFields;
+    }
+
+    /**
+     * If true, returns detailed information about score computation as part of a
+     * hit.
+     * <p>
+     * API name: {@code explain}
+     */
+    @Nullable
+    public final Boolean explain() {
+        return this.explain;
+    }
+
+    /**
+     * Array of wildcard (*) patterns. The request returns values for field names
+     * matching these patterns in the hits.fields property of the response.
+     * <p>
+     * API name: {@code fields}
+     */
+    public final List<FieldAndFormat> fields() {
+        return this.fields;
+    }
+
+    /**
+     * Array of wildcard (*) patterns. The request returns doc values for field
+     * names matching these patterns in the hits.fields property of the response.
+     * <p>
+     * API name: {@code docvalue_fields}
+     */
+    public final List<FieldAndFormat> docvalueFields() {
+        return this.docvalueFields;
+    }
+
+    /**
+     * Boosts the _score of documents from specified indices.
+     * <p>
+     * API name: {@code indices_boost}
+     */
+    public final List<Map<String, Double>> indicesBoost() {
+        return this.indicesBoost;
+    }
+
+    /**
+     * API name: {@code collapse}
+     */
+    @Nullable
+    public final FieldCollapse collapse() {
+        return this.collapse;
+    }
+
+    /**
+     * If true, returns document version as part of a hit.
+     * <p>
+     * API name: {@code version}
+     */
+    @Nullable
+    public final Boolean version() {
+        return this.version;
+    }
+
+    /**
+     * Specifies the period of time to wait for a response from each shard. If no
+     * response is received before the timeout expires, the request fails and
+     * returns an error. Defaults to no timeout.
+     * <p>
+     * API name: {@code timeout}
+     */
+    @Nullable
+    public final String timeout() {
+        return this.timeout;
+    }
+
+    /**
+     * API name: {@code rescore}
+     */
+    public final List<Rescore> rescore() {
+        return this.rescore;
+    }
+
+    /**
+     * API name: {@code ext}
+     */
+    public final Map<String, JsonData> ext() {
+        return this.ext;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -271,8 +421,8 @@ public class MultisearchBody implements JsonpSerializable {
         if (ApiTypeHelper.isDefined(this.searchAfter)) {
             generator.writeKey("search_after");
             generator.writeStartArray();
-            for (String item0 : this.searchAfter) {
-                generator.write(item0);
+            for (FieldValue item0 : this.searchAfter) {
+                item0.serialize(generator, mapper);
 
             }
             generator.writeEnd();
@@ -333,6 +483,101 @@ public class MultisearchBody implements JsonpSerializable {
 
         }
 
+        if (this.seqNoPrimaryTerm != null) {
+            generator.writeKey("seq_no_primary_term");
+            generator.write(this.seqNoPrimaryTerm);
+        }
+
+        if (ApiTypeHelper.isDefined(this.storedFields)) {
+            generator.writeKey("stored_fields");
+            generator.writeStartArray();
+            for (String item0 : this.storedFields) {
+                generator.write(item0);
+
+            }
+            generator.writeEnd();
+        }
+
+        if (this.explain != null) {
+            generator.writeKey("explain");
+            generator.write(this.explain);
+
+        }
+
+        if (ApiTypeHelper.isDefined(this.fields)) {
+            generator.writeKey("fields");
+            generator.writeStartArray();
+            for (FieldAndFormat item0 : this.fields) {
+                item0.serialize(generator, mapper);
+
+            }
+            generator.writeEnd();
+        }
+
+        if (ApiTypeHelper.isDefined(this.docvalueFields)) {
+            generator.writeKey("docvalue_fields");
+            generator.writeStartArray();
+            for (FieldAndFormat item0 : this.docvalueFields) {
+                item0.serialize(generator, mapper);
+
+            }
+            generator.writeEnd();
+
+        }
+
+        if (ApiTypeHelper.isDefined(this.indicesBoost)) {
+            generator.writeKey("indices_boost");
+            generator.writeStartArray();
+            for (Map<String, Double> item0 : this.indicesBoost) {
+                generator.writeStartObject();
+                if (item0 != null) {
+                    for (Map.Entry<String, Double> item1 : item0.entrySet()) {
+                        generator.writeKey(item1.getKey());
+                        generator.write(item1.getValue());
+
+                    }
+                }
+                generator.writeEnd();
+
+            }
+            generator.writeEnd();
+        }
+
+        if (this.collapse != null) {
+            generator.writeKey("collapse");
+            this.collapse.serialize(generator, mapper);
+        }
+
+        if (this.version != null) {
+            generator.writeKey("version");
+            generator.write(this.version);
+        }
+
+        if (this.timeout != null) {
+            generator.writeKey("timeout");
+            generator.write(this.timeout);
+        }
+
+        if (ApiTypeHelper.isDefined(this.rescore)) {
+            generator.writeKey("rescore");
+            generator.writeStartArray();
+            for (Rescore item0 : this.rescore) {
+                item0.serialize(generator, mapper);
+
+            }
+            generator.writeEnd();
+        }
+
+        if (ApiTypeHelper.isDefined(this.ext)) {
+            generator.writeKey("ext");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.ext.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+
+            }
+            generator.writeEnd();
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -358,7 +603,7 @@ public class MultisearchBody implements JsonpSerializable {
         private Query postFilter;
 
         @Nullable
-        private List<String> searchAfter;
+        private List<FieldValue> searchAfter;
 
         @Nullable
         private Integer size;
@@ -382,6 +627,39 @@ public class MultisearchBody implements JsonpSerializable {
         private SourceConfig source;
 
         private Map<String, ScriptField> scriptFields;
+
+        @Nullable
+        private Boolean seqNoPrimaryTerm;
+
+        @Nullable
+        private List<String> storedFields;
+
+        @Nullable
+        private Boolean explain;
+
+        @Nullable
+        private List<FieldAndFormat> fields;
+
+        @Nullable
+        private List<FieldAndFormat> docvalueFields;
+
+        @Nullable
+        private List<Map<String, Double>> indicesBoost;
+
+        @Nullable
+        private FieldCollapse collapse;
+
+        @Nullable
+        private Boolean version;
+
+        @Nullable
+        private String timeout;
+
+        @Nullable
+        private List<Rescore> rescore;
+
+        @Nullable
+        private Map<String, JsonData> ext;
 
         /**
          * API name: {@code aggregations}
@@ -466,7 +744,7 @@ public class MultisearchBody implements JsonpSerializable {
          * <p>
          * Adds all elements of <code>list</code> to <code>searchAfter</code>.
          */
-        public final Builder searchAfter(List<String> list) {
+        public final Builder searchAfter(List<FieldValue> list) {
             this.searchAfter = _listAddAll(this.searchAfter, list);
             return this;
         }
@@ -476,7 +754,7 @@ public class MultisearchBody implements JsonpSerializable {
          * <p>
          * Adds one or more values to <code>searchAfter</code>.
          */
-        public final Builder searchAfter(String value, String... values) {
+        public final Builder searchAfter(FieldValue value, FieldValue... values) {
             this.searchAfter = _listAdd(this.searchAfter, value, values);
             return this;
         }
@@ -613,6 +891,244 @@ public class MultisearchBody implements JsonpSerializable {
         }
 
         /**
+         * If true, returns sequence number and primary term of the last modification of
+         * each hit. See Optimistic concurrency control.
+         * <p>
+         * API name: {@code seq_no_primary_term}
+         */
+        public final Builder seqNoPrimaryTerm(@Nullable Boolean value) {
+            this.seqNoPrimaryTerm = value;
+            return this;
+        }
+
+        /**
+         * List of stored fields to return as part of a hit. If no fields are specified,
+         * no stored fields are included in the response. If this field is specified,
+         * the _source parameter defaults to false. You can pass _source: true to return
+         * both source fields and stored fields in the search response.
+         * <p>
+         * API name: {@code stored_fields}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>storedFields</code>.
+         */
+        public final Builder storedFields(List<String> list) {
+            this.storedFields = _listAddAll(this.storedFields, list);
+            return this;
+        }
+
+        /**
+         * List of stored fields to return as part of a hit. If no fields are specified,
+         * no stored fields are included in the response. If this field is specified,
+         * the _source parameter defaults to false. You can pass _source: true to return
+         * both source fields and stored fields in the search response.
+         * <p>
+         * API name: {@code stored_fields}
+         * <p>
+         * Adds one or more values to <code>storedFields</code>.
+         */
+        public final Builder storedFields(String value, String... values) {
+            this.storedFields = _listAdd(this.storedFields, value, values);
+            return this;
+        }
+
+        /**
+         * If true, returns detailed information about score computation as part of a
+         * hit.
+         * <p>
+         * API name: {@code explain}
+         */
+        public final Builder explain(@Nullable Boolean value) {
+            this.explain = value;
+            return this;
+        }
+
+        /**
+         * Array of wildcard (*) patterns. The request returns values for field names
+         * matching these patterns in the hits.fields property of the response.
+         * <p>
+         * API name: {@code fields}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>fields</code>.
+         */
+        public final Builder fields(List<FieldAndFormat> list) {
+            this.fields = _listAddAll(this.fields, list);
+            return this;
+        }
+
+        /**
+         * Array of wildcard (*) patterns. The request returns values for field names
+         * matching these patterns in the hits.fields property of the response.
+         * <p>
+         * API name: {@code fields}
+         * <p>
+         * Adds one or more values to <code>fields</code>.
+         */
+        public final Builder fields(FieldAndFormat value, FieldAndFormat... values) {
+            this.fields = _listAdd(this.fields, value, values);
+            return this;
+        }
+
+        /**
+         * Array of wildcard (*) patterns. The request returns values for field names
+         * matching these patterns in the hits.fields property of the response.
+         * <p>
+         * API name: {@code fields}
+         * <p>
+         * Adds a value to <code>fields</code> using a builder lambda.
+         */
+        public final Builder fields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+            return fields(fn.apply(new FieldAndFormat.Builder()).build());
+        }
+
+        /**
+         * Array of wildcard (*) patterns. The request returns doc values for field
+         * names matching these patterns in the hits.fields property of the response.
+         * <p>
+         * API name: {@code docvalue_fields}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>docvalueFields</code>.
+         */
+        public final Builder docvalueFields(List<FieldAndFormat> list) {
+            this.docvalueFields = _listAddAll(this.docvalueFields, list);
+            return this;
+        }
+
+        /**
+         * Array of wildcard (*) patterns. The request returns doc values for field
+         * names matching these patterns in the hits.fields property of the response.
+         * <p>
+         * API name: {@code docvalue_fields}
+         * <p>
+         * Adds one or more values to <code>docvalueFields</code>.
+         */
+        public final Builder docvalueFields(FieldAndFormat value, FieldAndFormat... values) {
+            this.docvalueFields = _listAdd(this.docvalueFields, value, values);
+            return this;
+        }
+
+        /**
+         * Array of wildcard (*) patterns. The request returns doc values for field
+         * names matching these patterns in the hits.fields property of the response.
+         * <p>
+         * API name: {@code docvalue_fields}
+         * <p>
+         * Adds a value to <code>docvalueFields</code> using a builder lambda.
+         */
+        public final Builder docvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+            return docvalueFields(fn.apply(new FieldAndFormat.Builder()).build());
+        }
+
+        /**
+         * Boosts the _score of documents from specified indices.
+         * <p>
+         * API name: {@code indices_boost}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>indicesBoost</code>.
+         */
+        public final Builder indicesBoost(List<Map<String, Double>> list) {
+            this.indicesBoost = _listAddAll(this.indicesBoost, list);
+            return this;
+        }
+
+        /**
+         * Boosts the _score of documents from specified indices.
+         * <p>
+         * API name: {@code indices_boost}
+         * <p>
+         * Adds one or more values to <code>indicesBoost</code>.
+         */
+        public final Builder indicesBoost(Map<String, Double> value, Map<String, Double>... values) {
+            this.indicesBoost = _listAdd(this.indicesBoost, value, values);
+            return this;
+        }
+
+        /**
+         * API name: {@code collapse}
+         */
+        public final Builder collapse(@Nullable FieldCollapse value) {
+            this.collapse = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code collapse}
+         */
+        public final Builder collapse(Function<FieldCollapse.Builder, ObjectBuilder<FieldCollapse>> fn) {
+            return this.collapse(fn.apply(new FieldCollapse.Builder()).build());
+        }
+
+        /**
+         * If true, returns document version as part of a hit.
+         * <p>
+         * API name: {@code version}
+         */
+        public final Builder version(@Nullable Boolean value) {
+            this.version = value;
+            return this;
+        }
+
+        /**
+         * Specifies the period of time to wait for a response from each shard. If no
+         * response is received before the timeout expires, the request fails and
+         * returns an error. Defaults to no timeout.
+         * <p>
+         * API name: {@code timeout}
+         */
+        public final Builder timeout(@Nullable String value) {
+            this.timeout = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code rescore}
+         * <p>
+         * Adds all elements of <code>list</code> to <code>rescore</code>.
+         */
+        public final Builder rescore(List<Rescore> list) {
+            this.rescore = _listAddAll(this.rescore, list);
+            return this;
+        }
+
+        /**
+         * API name: {@code rescore}
+         * <p>
+         * Adds one or more values to <code>rescore</code>.
+         */
+        public final Builder rescore(Rescore value, Rescore... values) {
+            this.rescore = _listAdd(this.rescore, value, values);
+            return this;
+        }
+
+        /**
+         * API name: {@code rescore}
+         * <p>
+         * Adds a value to <code>rescore</code> using a builder lambda.
+         */
+        public final Builder rescore(Function<Rescore.Builder, ObjectBuilder<Rescore>> fn) {
+            return rescore(fn.apply(new Rescore.Builder()).build());
+        }
+
+        /**
+         * API name: {@code ext}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>ext</code>.
+         */
+        public final Builder ext(Map<String, JsonData> map) {
+            this.ext = _mapPutAll(this.ext, map);
+            return this;
+        }
+
+        /**
+         * API name: {@code ext}
+         * <p>
+         * Adds an entry to <code>ext</code>.
+         */
+        public final Builder ext(String key, JsonData value) {
+            this.ext = _mapPut(this.ext, key, value);
+            return this;
+        }
+
+        /**
          * Builds a {@link MultisearchBody}.
          *
          * @throws NullPointerException
@@ -642,7 +1158,7 @@ public class MultisearchBody implements JsonpSerializable {
         op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
         op.add(Builder::minScore, JsonpDeserializer.doubleDeserializer(), "min_score");
         op.add(Builder::postFilter, Query._DESERIALIZER, "post_filter");
-        op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "search_after");
+        op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "search_after");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
         op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
         op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");
@@ -651,7 +1167,21 @@ public class MultisearchBody implements JsonpSerializable {
         op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
         op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
         op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER), "script_fields");
-
+        op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
+        op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stored_fields");
+        op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
+        op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
+        op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "docvalue_fields");
+        op.add(
+            Builder::indicesBoost,
+            JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer())),
+            "indices_boost"
+        );
+        op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
+        op.add(Builder::version, JsonpDeserializer.booleanDeserializer(), "version");
+        op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
+        op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore._DESERIALIZER), "rescore");
+        op.add(Builder::ext, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "ext");
     }
 
 }

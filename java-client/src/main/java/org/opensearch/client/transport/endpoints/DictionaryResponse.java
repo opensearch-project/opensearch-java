@@ -36,19 +36,20 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.JsonpSerializer;
 import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ObjectBuilderBase;
 
 /**
  * Base class for dictionary responses, i.e. a series of key/value pairs.
  */
-public abstract class DictionaryResponse<TKey, TValue> implements JsonpSerializable {
+public abstract class DictionaryResponse<TKey, TValue> implements PlainJsonSerializable {
     private final Map<String, TValue> result;
 
     @Nullable
@@ -161,5 +162,20 @@ public abstract class DictionaryResponse<TKey, TValue> implements JsonpSerializa
         op.setUnknownFieldHandler(
             (builder, name, parser, params) -> { builder.putResult(name, tValueParser.deserialize(parser, params)); }
         );
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(result);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DictionaryResponse<?, ?> other = (DictionaryResponse<?, ?>) o;
+        return Objects.equals(this.result, other.result);
     }
 }

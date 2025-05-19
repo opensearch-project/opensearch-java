@@ -37,7 +37,7 @@ public class KnnEfficientFilter {
                 client.indices()
                     .create(
                         r -> r.index(indexName)
-                            .settings(s -> s.knn(true).knnAlgoParamEfSearch(100).numberOfShards("1").numberOfReplicas("0"))
+                            .settings(s -> s.knn(true).knnAlgoParamEfSearch(100).numberOfShards(1).numberOfReplicas(0))
                             .mappings(
                                 m -> m.properties(
                                     "location",
@@ -83,13 +83,15 @@ public class KnnEfficientFilter {
             LOGGER.info("Waiting for indexing to finish");
             client.indices().refresh(i -> i.index(indexName));
 
-            final var searchLocation = new float[] { 5.0f, 4.0f };
+            final var searchLocationX = 5.0f;
+            final var searchLocationY = 4.0f;
             final var searchRatingMin = 8;
             final var searchRatingMax = 10;
             final var searchParking = true;
             LOGGER.info(
-                "Searching for hotel near {} with rating >={},<={} and parking={}",
-                searchLocation,
+                "Searching for hotel near [{}, {}] with rating >={},<={} and parking={}",
+                searchLocationX,
+                searchLocationY,
                 searchRatingMin,
                 searchRatingMax,
                 searchParking
@@ -101,7 +103,7 @@ public class KnnEfficientFilter {
                     .query(
                         q -> q.knn(
                             k -> k.field("location")
-                                .vector(searchLocation)
+                                .vector(searchLocationX, searchLocationY)
                                 .k(3)
                                 .filter(
                                     Query.of(

@@ -8,15 +8,19 @@
 
 package org.opensearch.client.opensearch.integTest;
 
+import static org.hamcrest.Matchers.hasKey;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import org.junit.Test;
 import org.opensearch.client.json.JsonData;
+import org.opensearch.client.opensearch._types.BuiltinScriptLanguage;
 import org.opensearch.client.opensearch._types.FieldSort;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.InlineScript;
@@ -25,6 +29,7 @@ import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.opensearch._types.ScriptField;
 import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.SortOrder;
+import org.opensearch.client.opensearch._types.query_dsl.FieldAndFormat;
 import org.opensearch.client.opensearch._types.query_dsl.FuzzyQuery;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.opensearch._types.query_dsl.TermQuery;
@@ -32,6 +37,7 @@ import org.opensearch.client.opensearch.core.MsearchResponse;
 import org.opensearch.client.opensearch.core.msearch.MultiSearchResponseItem;
 import org.opensearch.client.opensearch.core.msearch.MultisearchBody;
 import org.opensearch.client.opensearch.core.msearch.RequestItem;
+import org.opensearch.client.opensearch.core.search.FieldCollapse;
 import org.opensearch.client.opensearch.core.search.Highlight;
 import org.opensearch.client.opensearch.core.search.HighlightField;
 import org.opensearch.client.opensearch.core.search.Hit;
@@ -174,7 +180,7 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
         assertEquals(1, response.responses().size());
         assertEquals(3, response.responses().get(0).result().hits().hits().size());
 
-        List<String> sorts = response.responses().get(0).result().hits().hits().get(1).sort();
+        List<FieldValue> sorts = response.responses().get(0).result().hits().hits().get(1).sort();
         RequestItem sortedAfterItemsQuery = createMSearchSortedFuzzyRequest(b -> b.searchAfter(sorts));
 
         MsearchResponse<ShopItem> response2 = sendMSearchRequest(index, List.of(sortedAfterItemsQuery));
@@ -203,7 +209,7 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
             new ScriptField.Builder().script(
                 Script.of(
                     s -> s.inline(
-                        new InlineScript.Builder().lang("painless")
+                        new InlineScript.Builder().lang(l -> l.builtin(BuiltinScriptLanguage.Painless))
                             .source("doc['quantity'].value + params.inc")
                             .params("inc", JsonData.of(1))
                             .build()
@@ -224,6 +230,73 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
 
         node = mapper.readTree(hitsWithScriptFields.get(1).fields().get("quantity").toString());
         assertEquals(3, (int) mapper.treeToValue(node.get(0), int.class));
+    }
+
+    @Test
+    public void shouldReturnMultiSearchesFields() throws Exception {
+        String index = "multiple_searches_request_fields";
+        createTestDocuments(index);
+
+        RequestItem sortedItemsQuery = createMSearchFuzzyRequest(b -> b.fields(FieldAndFormat.of(f -> f.field("name"))));
+
+        MsearchResponse<ShopItem> response = sendMSearchRequest(index, List.of(sortedItemsQuery));
+        assertEquals(1, response.responses().size());
+        assertEquals(3, response.responses().get(0).result().hits().hits().size());
+        assertThat(response.responses().get(0).result().hits().hits().get(0).fields(), hasKey("name"));
+        assertThat(response.responses().get(0).result().hits().hits().get(1).fields(), hasKey("name"));
+        assertThat(response.responses().get(0).result().hits().hits().get(2).fields(), hasKey("name"));
+    }
+
+    @Test
+    public void shouldReturnMultiSearchesDocvalueFields() throws Exception {
+        String index = "multiple_searches_request_docvalue_fields";
+        createTestDocuments(index);
+
+        RequestItem sortedItemsQuery = createMSearchFuzzyRequest(b -> b.docvalueFields(FieldAndFormat.of(f -> f.field("quantity"))));
+
+        MsearchResponse<ShopItem> response = sendMSearchRequest(index, List.of(sortedItemsQuery));
+        assertEquals(1, response.responses().size());
+        assertEquals(3, response.responses().get(0).result().hits().hits().size());
+        assertThat(response.responses().get(0).result().hits().hits().get(0).fields(), hasKey("quantity"));
+        assertThat(response.responses().get(0).result().hits().hits().get(1).fields(), hasKey("quantity"));
+        assertThat(response.responses().get(0).result().hits().hits().get(2).fields(), hasKey("quantity"));
+    }
+
+    @Test
+    public void shouldReturnMultiSearchesStoredFields() throws Exception {
+        String index = "multiple_searches_request_stored_fields";
+        createTestDocuments(index);
+
+        RequestItem sortedItemsQuery = createMSearchFuzzyRequest(b -> b.storedFields("name"));
+
+        MsearchResponse<ShopItem> response = sendMSearchRequest(index, List.of(sortedItemsQuery));
+        assertEquals(1, response.responses().size());
+        assertEquals(3, response.responses().get(0).result().hits().hits().size());
+    }
+
+    @Test
+    public void shouldReturnMultiSearchesIndicesBoost() throws Exception {
+        String index = "multiple_searches_request_indices_boost";
+        createTestDocuments(index);
+
+        RequestItem sortedItemsQuery = createMSearchFuzzyRequest(b -> b.indicesBoost(Collections.singletonMap(index, 2d)));
+
+        MsearchResponse<ShopItem> response = sendMSearchRequest(index, List.of(sortedItemsQuery));
+        assertEquals(1, response.responses().size());
+        assertEquals(3, response.responses().get(0).result().hits().hits().size());
+    }
+
+    public void shouldReturnMultiSearchesCollapse() throws Exception {
+        String index = "multiple_searches_request_indices_boost";
+        createTestDocuments(index);
+
+        RequestItem sortedItemsQuery = createMSearchFuzzyRequest(
+            b -> b.collapse(FieldCollapse.of(f -> f.field("name"))).version(true).timeout("5s")
+        );
+
+        MsearchResponse<ShopItem> response = sendMSearchRequest(index, List.of(sortedItemsQuery));
+        assertEquals(1, response.responses().size());
+        assertEquals(3, response.responses().get(0).result().hits().hits().size());
     }
 
     private void assertResponseSources(MultiSearchResponseItem<ShopItem> response) {

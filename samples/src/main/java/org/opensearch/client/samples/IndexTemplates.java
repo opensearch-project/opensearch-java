@@ -11,9 +11,15 @@ package org.opensearch.client.samples;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch.cluster.PutComponentTemplateRequest;
-import org.opensearch.client.opensearch.indices.*;
+import org.opensearch.client.opensearch.indices.CreateIndexRequest;
+import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
+import org.opensearch.client.opensearch.indices.DeleteIndexTemplateRequest;
+import org.opensearch.client.opensearch.indices.GetIndicesSettingsRequest;
+import org.opensearch.client.opensearch.indices.GetIndicesSettingsResponse;
+import org.opensearch.client.opensearch.indices.GetMappingRequest;
+import org.opensearch.client.opensearch.indices.GetMappingResponse;
+import org.opensearch.client.opensearch.indices.PutIndexTemplateRequest;
 
 /**
  * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=IndexTemplates</c>
@@ -39,19 +45,21 @@ public class IndexTemplates {
             final var indexSettingsComponentTemplate = "index-settings";
             PutComponentTemplateRequest putComponentTemplateRequest = PutComponentTemplateRequest.of(
                 c -> c.name(indexSettingsComponentTemplate)
-                    .settings(
-                        s -> s.numberOfShards("2")
-                            .numberOfReplicas("1")
-                            .indexing(
-                                i -> i.slowlog(
-                                    sl -> sl.level("info")
-                                        .reformat(true)
-                                        .threshold(th -> th.index(ith -> ith.warn(Time.of(t -> t.time("2s")))))
+                    .template(
+                        t -> t.settings(
+                            s -> s.numberOfShards(2)
+                                .numberOfReplicas(1)
+                                .indexing(
+                                    i -> i.slowlog(
+                                        sl -> sl.level("info")
+                                            .reformat(true)
+                                            .threshold(th -> th.index(ith -> ith.warn(tt -> tt.time("2s"))))
+                                    )
                                 )
-                            )
-                            .search(
-                                se -> se.slowlog(sl -> sl.level("info").threshold(th -> th.query(q -> q.warn(Time.of(t -> t.time("2s"))))))
-                            )
+                                .search(
+                                    se -> se.slowlog(sl -> sl.level("info").threshold(th -> th.query(q -> q.warn(tt -> tt.time("2s")))))
+                                )
+                        )
                     )
             );
             LOGGER.info("Creating component template {}", indexSettingsComponentTemplate);
@@ -59,7 +67,7 @@ public class IndexTemplates {
 
             final var indexMappingsComponentTemplate = "index-mappings";
             putComponentTemplateRequest = PutComponentTemplateRequest.of(
-                c -> c.name(indexMappingsComponentTemplate).mappings(m -> m.properties("age", p -> p.integer(i -> i)))
+                c -> c.name(indexMappingsComponentTemplate).template(t -> t.mappings(m -> m.properties("age", p -> p.integer(i -> i))))
             );
             LOGGER.info("Creating component template {}", indexMappingsComponentTemplate);
             client.cluster().putComponentTemplate(putComponentTemplateRequest);

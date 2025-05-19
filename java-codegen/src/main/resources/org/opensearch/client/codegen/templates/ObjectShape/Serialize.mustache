@@ -1,0 +1,45 @@
+{{#shouldImplementJsonSerializable}}
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
+        generator.writeStartObject();
+    {{^isEmptyObject}}
+        serializeInternal(generator, mapper);
+    {{/isEmptyObject}}
+        generator.writeEnd();
+    }
+
+{{/shouldImplementJsonSerializable}}
+{{#hasFieldsToSerialize}}
+    protected void serializeInternal({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
+{{#singleKeyMap}}
+    generator.writeStartObject(this.{{name}});
+{{/singleKeyMap}}
+{{#distinctDiscriminatorFieldValues}}
+    generator.write({{#quoted}}{{key}}{{/quoted}}, {{#quoted}}{{value}}{{/quoted}});
+{{/distinctDiscriminatorFieldValues}}
+{{#superImplementsJsonSerializable}}
+    super.serializeInternal(generator, mapper);
+{{/superImplementsJsonSerializable}}
+{{#additionalProperties}}
+    {{#singleton}}
+        generator.writeKey(this.{{keyName}});
+        {{#valueType.directSerializer}}this.{{valueName}}{{/valueType.directSerializer}}
+    {{/singleton}}
+    {{^singleton}}
+        {{#usesTypedKeys}}
+            {{TYPES.Client.Json.ExternallyTaggedUnion}}.serializeTypedKeysInner(this.{{valueName}}, generator, mapper);
+        {{/usesTypedKeys}}
+        {{^usesTypedKeys}}
+            {{#mapType.directSerializer}}this.{{valueName}}{{/mapType.directSerializer}}
+        {{/usesTypedKeys}}
+    {{/singleton}}
+{{/additionalProperties}}
+{{>ObjectShape/Serialize/Fields}}
+{{#singleKeyMap}}
+    generator.writeEnd();
+{{/singleKeyMap}}
+    }
+{{/hasFieldsToSerialize}}

@@ -1,0 +1,8 @@
+{{#fields}}
+{{^-first}}
+
+{{/-first}}
+    {{#deprecation}}@Deprecated{{/deprecation}}
+    {{>ObjectShape/FieldNullability}}
+    private final {{type}} {{name}};
+{{/fields}}

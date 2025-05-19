@@ -65,6 +65,17 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
         this(JsonProvider.provider(), JsonbProvider.provider());
     }
 
+    private JsonbJsonpMapper(JsonbJsonpMapper o) {
+        super(o);
+        this.jsonProvider = o.jsonProvider;
+        this.jsonb = o.jsonb;
+    }
+
+    @Override
+    public <T> JsonpMapper withAttribute(String name, T value) {
+        return new JsonbJsonpMapper(this).addAttribute(name, value);
+    }
+
     @Override
     protected <T> JsonpDeserializer<T> getDefaultDeserializer(Class<T> clazz) {
         return new Deserializer<>(clazz);

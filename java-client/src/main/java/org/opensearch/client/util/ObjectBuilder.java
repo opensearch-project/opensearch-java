@@ -32,11 +32,14 @@
 
 package org.opensearch.client.util;
 
+import javax.annotation.Nonnull;
+
 /**
  * Base interface for all object builders.
  *
  * @param <T> the type that will be built.
  */
 public interface ObjectBuilder<T> {
+    @Nonnull
     T build();
 }

@@ -38,9 +38,9 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.mapping.FieldType;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
@@ -49,7 +49,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
 // typedef: _types.FieldSort
 
 @JsonpDeserializable
-public class FieldSort implements JsonpSerializable {
+public class FieldSort implements SortOptionsVariant, PlainJsonSerializable {
     // Single key dictionary
     private final String field;
 
@@ -92,6 +92,14 @@ public class FieldSort implements JsonpSerializable {
 
     public static FieldSort of(Function<Builder, ObjectBuilder<FieldSort>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * SortOptions variant kind.
+     */
+    @Override
+    public SortOptions.Kind _sortOptionsKind() {
+        return SortOptions.Kind.Field;
     }
 
     /**

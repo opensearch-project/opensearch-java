@@ -1,0 +1,14 @@
+{{#hashableFields}}
+    result = 31 * result +
+    {{#required}}
+        {{#type.isPrimitive}}
+            {{type.boxed}}.hashCode(this.{{name}});
+        {{/type.isPrimitive}}
+        {{^type.isPrimitive}}
+            this.{{name}}.hashCode();
+        {{/type.isPrimitive}}
+    {{/required}}
+    {{^required}}
+        {{TYPES.Java.Util.Objects}}.hashCode(this.{{name}});
+    {{/required}}
+{{/hashableFields}}

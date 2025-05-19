@@ -1,0 +1,72 @@
+{{^canBeSingleton}}
+{{^abstract}}
+    {{^typeParameters}}
+        /**
+         * Json deserializer for {@link {{className}}}
+         */
+        public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.ObjectBuilderDeserializer}}.lazy(Builder::new, {{className}}::setup{{className}}Deserializer);
+    {{/typeParameters}}
+    {{#typeParameters}}
+        {{>Partials/Deserialize/CreateClassDeserializerFnSignature}} {
+            return {{TYPES.Client.Json.ObjectBuilderDeserializer}}.createForObject(
+                Builder{{.}}::new,
+                op -> {{className}}.setup{{className}}Deserializer(op, {{#typeParameterDefinitions}}{{#camelCase}}{{name}}{{/camelCase}}Deserializer{{^-last}}, {{/-last}}{{/typeParameterDefinitions}})
+            );
+        }
+        {{#isResponseShape}}
+
+            {{>Partials/Deserialize/TypeParametersNamedDeserializer}}
+        {{/isResponseShape}}
+    {{/typeParameters}}
+
+{{/abstract}}
+{{^extendedByOtherShape}}
+    protected static{{#typeParameters}} {{.}}{{/typeParameters}} void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<{{selfType.builderType}}> op{{#typeParameters}}{{#typeParameterDefinitions}}, {{TYPES.Client.Json.JsonpDeserializer}}<{{name}}> {{#camelCase}}{{name}}{{/camelCase}}Deserializer{{/typeParameterDefinitions}}{{/typeParameters}}) {
+{{/extendedByOtherShape}}
+{{#extendedByOtherShape}}
+    protected static <{{#typeParameters}}{{#typeParameterDefinitions}}{{.}}, {{/typeParameterDefinitions}}{{/typeParameters}}BuilderT extends AbstractBuilder<{{#typeParameters}}{{#typeParameterDefinitions}}{{.}}, {{/typeParameterDefinitions}}{{/typeParameters}}BuilderT>> void setup{{className}}Deserializer({{TYPES.Client.Json.ObjectDeserializer}}<BuilderT> op{{#typeParameters}}{{#typeParameterDefinitions}}, {{TYPES.Client.Json.JsonpDeserializer}}<{{name}}> {{#camelCase}}{{name}}{{/camelCase}}Deserializer{{/typeParameterDefinitions}}{{/typeParameters}}) {
+{{/extendedByOtherShape}}
+    {{#superImplementsJsonSerializable}}
+        setup{{extendsType.name}}Deserializer(op{{#extendsType.typeParams}}, {{>Type/deserializer}}{{/extendsType.typeParams}});
+    {{/superImplementsJsonSerializable}}
+    {{>ObjectShape/Deserialize/Fields}}
+    {{#additionalProperties}}
+        op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+        {{#singleton}}
+            builder.{{keyName}}(name);
+            builder.{{valueName}}({{#valueType}}{{>Type/deserializer}}{{/valueType}}.deserialize(parser, mapper));
+        {{/singleton}}
+        {{^singleton}}
+            if (builder.{{valueName}} == null) {
+                builder.{{valueName}} = new {{TYPES.Java.Util.HashMap}}<>();
+            }
+            {{#usesTypedKeys}}
+                {{valueType}}._TYPED_KEYS_DESERIALIZER.deserializeEntry(name, parser, mapper, builder.{{valueName}});
+            {{/usesTypedKeys}}
+            {{^usesTypedKeys}}
+                builder.{{valueName}}.put(name, {{#valueType}}{{>Type/deserializer}}{{/valueType}}.deserialize(parser, mapper));
+            {{/usesTypedKeys}}
+        {{/singleton}}
+        });
+    {{/additionalProperties}}
+    {{#distinctDiscriminatorFieldValues}}
+
+        op.ignore({{#quoted}}{{key}}{{/quoted}});
+    {{/distinctDiscriminatorFieldValues}}
+    {{#singleKeyMap}}
+        op.setKey(Builder::{{name}}, {{#type}}{{>Type/deserializer}}{{/type}});
+    {{/singleKeyMap}}
+    {{#shortcutProperty}}
+
+        op.shortcutProperty({{#quoted}}{{.}}{{/quoted}});
+    {{/shortcutProperty}}
+    }
+{{/canBeSingleton}}
+{{#isEmptyObject}}
+    /**
+    * Singleton instance for {@link {{className}}}.
+    */
+    public static final {{className}} _INSTANCE = builder().build();
+
+    public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}> _DESERIALIZER = {{TYPES.Client.Json.JsonpDeserializer}}.emptyObject({{className}}._INSTANCE);
+{{/isEmptyObject}}

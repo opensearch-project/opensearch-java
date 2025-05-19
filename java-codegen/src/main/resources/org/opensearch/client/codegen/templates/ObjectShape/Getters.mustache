@@ -1,0 +1,9 @@
+{{#fields}}
+
+    {{>ObjectShape/FieldDoc/Basic}}
+    {{#deprecation}}@Deprecated{{/deprecation}}
+    {{>ObjectShape/FieldNullability}}
+    public final {{type}} {{name}}() {
+        return this.{{name}};
+    }
+{{/fields}}

@@ -43,9 +43,9 @@ import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch._types.RequestBase;
@@ -64,12 +64,18 @@ import org.opensearch.client.util.ObjectBuilderBase;
  *
  */
 @JsonpDeserializable
-public class SearchTemplateRequest extends RequestBase implements JsonpSerializable {
+public class SearchTemplateRequest extends RequestBase implements PlainJsonSerializable {
     @Nullable
     private final Boolean allowNoIndices;
 
     @Nullable
     private final Boolean ccsMinimizeRoundtrips;
+
+    @Nullable
+    private final Boolean phaseTook;
+
+    @Nullable
+    private final String pipeline;
 
     private final List<ExpandWildcard> expandWildcards;
 
@@ -113,6 +119,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 
         this.allowNoIndices = builder.allowNoIndices;
         this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
+        this.phaseTook = builder.phaseTook;
+        this.pipeline = builder.pipeline;
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
         this.explain = builder.explain;
         this.id = builder.id;
@@ -154,6 +162,27 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
     @Nullable
     public final Boolean ccsMinimizeRoundtrips() {
         return this.ccsMinimizeRoundtrips;
+    }
+
+    /**
+     * Indicates whether search phase took times should be returned
+     * in SearchResponse
+     * <p>
+     * API name: {@code phase_took}
+     */
+    @Nullable
+    public final Boolean phaseTook() {
+        return this.phaseTook;
+    }
+
+    /**
+     * Specifies search pipeline name
+     * <p>
+     * API name: {@code pipeline}
+     */
+    @Nullable
+    public final String pipeline() {
+        return this.pipeline;
     }
 
     /**
@@ -334,6 +363,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
     public Builder toBuilder() {
         return new Builder().allowNoIndices(allowNoIndices)
             .ccsMinimizeRoundtrips(ccsMinimizeRoundtrips)
+            .phaseTook(phaseTook)
+            .pipeline(pipeline)
             .expandWildcards(expandWildcards)
             .explain(explain)
             .id(id)
@@ -361,6 +392,12 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 
         @Nullable
         private Boolean ccsMinimizeRoundtrips;
+
+        @Nullable
+        private Boolean phaseTook;
+
+        @Nullable
+        private String pipeline;
 
         @Nullable
         private List<ExpandWildcard> expandWildcards;
@@ -421,6 +458,27 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
          */
         public final Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
             this.ccsMinimizeRoundtrips = value;
+            return this;
+        }
+
+        /**
+         * Indicates whether search phase took times should be returned
+         * in SearchResponse
+         * <p>
+         * API name: {@code phase_took}
+         */
+        public final Builder phaseTook(@Nullable Boolean value) {
+            this.phaseTook = value;
+            return this;
+        }
+
+        /**
+         * Specifies search pipeline name
+         * <p>
+         * API name: {@code pipeline}
+         */
+        public final Builder pipeline(@Nullable String value) {
+            this.pipeline = value;
             return this;
         }
 
@@ -699,6 +757,12 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
             }
             if (request.ccsMinimizeRoundtrips != null) {
                 params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
+            }
+            if (request.phaseTook != null) {
+                params.put("phase_took", String.valueOf(request.phaseTook));
+            }
+            if (request.pipeline != null) {
+                params.put("search_pipeline", request.pipeline);
             }
             if (request.routing != null) {
                 params.put("routing", request.routing);

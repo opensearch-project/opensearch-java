@@ -42,6 +42,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 import org.opensearch.Version;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.OpenSearchException;
@@ -63,6 +64,11 @@ import org.opensearch.client.opensearch._types.query_dsl.TermsQuery;
 import org.opensearch.client.opensearch.cat.NodesResponse;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.ClearScrollResponse;
+import org.opensearch.client.opensearch.core.CreatePitRequest;
+import org.opensearch.client.opensearch.core.CreatePitResponse;
+import org.opensearch.client.opensearch.core.DeletePitRequest;
+import org.opensearch.client.opensearch.core.DeletePitResponse;
+import org.opensearch.client.opensearch.core.GetAllPitsResponse;
 import org.opensearch.client.opensearch.core.GetResponse;
 import org.opensearch.client.opensearch.core.IndexResponse;
 import org.opensearch.client.opensearch.core.InfoResponse;
@@ -71,11 +77,6 @@ import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.bulk.OperationType;
 import org.opensearch.client.opensearch.core.msearch.RequestItem;
-import org.opensearch.client.opensearch.core.pit.CreatePitRequest;
-import org.opensearch.client.opensearch.core.pit.CreatePitResponse;
-import org.opensearch.client.opensearch.core.pit.DeletePitRequest;
-import org.opensearch.client.opensearch.core.pit.DeletePitResponse;
-import org.opensearch.client.opensearch.core.pit.ListAllPitResponse;
 import org.opensearch.client.opensearch.core.search.CompletionSuggester;
 import org.opensearch.client.opensearch.core.search.FieldSuggester;
 import org.opensearch.client.opensearch.core.search.FieldSuggesterBuilders;
@@ -90,8 +91,6 @@ import org.opensearch.client.opensearch.indices.GetMappingResponse;
 import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.opensearch.indices.IndexSettingsAnalysis;
 import org.opensearch.client.opensearch.indices.IndexState;
-import org.opensearch.client.opensearch.indices.Translog;
-import org.opensearch.client.opensearch.model.ModelTestCase;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 
 public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
@@ -131,7 +130,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
             .create(
                 r -> r.index("test-settings")
                     .settings(
-                        s -> s.translog(Translog.of(tl -> tl.syncInterval(Time.of(t -> t.time("10s")))))
+                        s -> s.translog(tl -> tl.syncInterval(t -> t.time("10s")))
                             .mapping(
                                 m -> m.fieldNameLength(f -> f.limit(300L))
                                     .totalFields(f -> f.limit(30L))
@@ -146,10 +145,10 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
                                         .reformat(false)
                                         .threshold(
                                             th -> th.index(
-                                                in -> in.trace(Time.of(t -> t.time("5s")))
-                                                    .debug(Time.of(t -> t.time("10s")))
-                                                    .info(Time.of(t -> t.time("20s")))
-                                                    .warn(Time.of(t -> t.time("30s")))
+                                                in -> in.trace(t -> t.time("5s"))
+                                                    .debug(t -> t.time("10s"))
+                                                    .info(t -> t.time("20s"))
+                                                    .warn(t -> t.time("30s"))
                                             )
                                         )
                                 )
@@ -159,16 +158,16 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
                                     sl -> sl.level("info")
                                         .threshold(
                                             th -> th.query(
-                                                in -> in.trace(Time.of(t -> t.time("5s")))
-                                                    .debug(Time.of(t -> t.time("10s")))
-                                                    .info(Time.of(t -> t.time("20s")))
-                                                    .warn(Time.of(t -> t.time("30s")))
+                                                in -> in.trace(t -> t.time("5s"))
+                                                    .debug(t -> t.time("10s"))
+                                                    .info(t -> t.time("20s"))
+                                                    .warn(t -> t.time("30s"))
                                             )
                                                 .fetch(
-                                                    in -> in.trace(Time.of(t -> t.time("5s")))
-                                                        .debug(Time.of(t -> t.time("10s")))
-                                                        .info(Time.of(t -> t.time("20s")))
-                                                        .warn(Time.of(t -> t.time("30s")))
+                                                    in -> in.trace(t -> t.time("5s"))
+                                                        .debug(t -> t.time("10s"))
+                                                        .info(t -> t.time("20s"))
+                                                        .warn(t -> t.time("30s"))
                                                 )
                                         )
                                 ).idle(id -> id.after(a -> a.time("120s")))
@@ -233,7 +232,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
             .putSettings(
                 r -> r.index("test-settings")
                     .settings(
-                        s -> s.translog(Translog.of(tl -> tl.syncInterval(Time.of(t -> t.time("5s")))))
+                        s -> s.translog(tl -> tl.syncInterval(Time.of(t -> t.time("5s"))))
                             .mapping(
                                 m -> m.fieldNameLength(f -> f.limit(400L))
                                     .totalFields(f -> f.limit(130L))
@@ -342,7 +341,6 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
     public void testCatRequest() throws IOException {
         // Cat requests should have the "format=json" added by the transport
         NodesResponse nodes = javaClient().cat().nodes(_0 -> _0);
-        System.out.println(ModelTestCase.toJson(nodes, javaClient()._transport().jsonpMapper()));
 
         InfoResponse info = javaClient().info();
         String version = info.version().number();
@@ -491,7 +489,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
                 .size(0)
                 .aggregations(
                     "price",
-                    _3 -> _3.aggregations(Map.of("price", TermsAggregation.of(_4 -> _4.field("price"))._toAggregation()))
+                    _3 -> _3.aggregations(Map.of("price", TermsAggregation.of(_4 -> _4.field("price")).toAggregation()))
                         .filter(
                             BoolQuery.of(
                                 _5 -> _5.filter(
@@ -503,7 +501,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         );
         SearchResponse<Product> searchResponse = javaClient().search(searchRequest, Product.class);
 
-        Aggregate prices = searchResponse.aggregations().get("price")._get()._toAggregate();
+        Aggregate prices = searchResponse.aggregations().get("price")._get().toAggregate();
         assertEquals(2, searchResponse.aggregations().get("price").filter().docCount());
         assertEquals(1, prices.filter().aggregations().get("price").dterms().buckets().array().get(0).docCount());
         assertEquals(1, prices.filter().aggregations().get("price").dterms().buckets().array().get(1).docCount());
@@ -628,7 +626,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         appData.setMsg("foo");
 
         javaClient().index(b -> b.index(index).id("1").document(appData).refresh(Refresh.True));
-        CreatePitRequest createPitRequest = new CreatePitRequest.Builder().targetIndexes(Collections.singletonList(index))
+        CreatePitRequest createPitRequest = new CreatePitRequest.Builder().index(Collections.singletonList(index))
             .keepAlive(new Time.Builder().time("100m").build())
             .build();
 
@@ -638,7 +636,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         assertNotNull(createPitResponse.pitId());
         assertEquals(createPitResponse.shards().total(), createPitResponse.shards().successful());
 
-        ListAllPitResponse listAllPitResponse = javaClient().listAllPit();
+        GetAllPitsResponse listAllPitResponse = javaClient().getAllPits();
 
         assertNotNull(listAllPitResponse);
         assertNotNull(listAllPitResponse.pits());
@@ -733,7 +731,7 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 
         String index = "test-phrase-suggester";
 
-        ShingleTokenFilter shingleTokenFilter = new ShingleTokenFilter.Builder().minShingleSize("2").maxShingleSize("3").build();
+        ShingleTokenFilter shingleTokenFilter = new ShingleTokenFilter.Builder().minShingleSize(2).maxShingleSize(3).build();
 
         Analyzer analyzer = new Analyzer.Builder().custom(
             new CustomAnalyzer.Builder().tokenizer("standard").filter(Arrays.asList("lowercase", "shingle")).build()
@@ -774,7 +772,14 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
 
         String suggesterName = "msgSuggester";
 
-        PhraseSuggester phraseSuggester = FieldSuggesterBuilders.phrase().field("msg.trigram").build();
+        PhraseSuggester phraseSuggester = FieldSuggesterBuilders.phrase()
+            .field("msg.trigram")
+            .collate(
+                c -> c.query(q -> q.source("{\"match\": {\"{{field_name}}\" : \"{{suggestion}}\"}}"))
+                    .prune(true)
+                    .params(Map.of("field_name", JsonData.of("msg")))
+            )
+            .build();
         FieldSuggester fieldSuggester = new FieldSuggester.Builder().text("design paterns").phrase(phraseSuggester).build();
         Suggester suggester = new Suggester.Builder().suggesters(Collections.singletonMap(suggesterName, fieldSuggester)).build();
         SearchRequest searchRequest = new SearchRequest.Builder().index(index).suggest(suggester).build();
@@ -787,18 +792,8 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         assertTrue(response.suggest().get(suggesterName).get(0).isPhrase());
         assertNotNull(response.suggest().get(suggesterName).get(0).phrase().options());
         assertEquals(response.suggest().get(suggesterName).get(0).phrase().options().get(0).text(), "design patterns");
+        assertEquals(response.suggest().get(suggesterName).get(0).phrase().options().get(0).collateMatch(), true);
     }
-
-    // @Test
-    // public void testValueBodyResponse() throws Exception {
-    // DiskUsageResponse resp = highLevelClient().indices().diskUsage(b -> b
-    // .index("*")
-    // .allowNoIndices(true)
-    // .runExpensiveTasks(true)
-    // );
-    //
-    // assertNotNull(resp.valueBody().toJson().asJsonObject().get("_shards"));
-    // }
 
     public static class AppData {
 

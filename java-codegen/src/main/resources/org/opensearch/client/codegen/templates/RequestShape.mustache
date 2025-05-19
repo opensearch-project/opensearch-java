@@ -1,0 +1,120 @@
+{{>Partials/ClassDeclaration}} {
+    {{>ObjectShape/Fields}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/Constructor}}
+
+    {{>ObjectShape/Getters}}
+
+{{#hasRequestBody}}
+    {{>RequestShape/Serialize}}
+{{/hasRequestBody}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>ObjectShape/ToBuilder}}
+
+    {{>ObjectShape/Builder}}
+{{#hasRequestBody}}
+
+    // ---------------------------------------------------------------------------------------------
+
+    {{>RequestShape/Deserialize}}
+
+{{/hasRequestBody}}
+
+    // ---------------------------------------------------------------------------------------------
+
+{{#hasQueryParams}}
+    @Override
+    protected void applyQueryParameters(@{{TYPES.Javax.Annotation.Nonnull}} {{TYPES.Java.Util.Map}}<String, String> params) {
+        super.applyQueryParameters(params);
+{{#queryParams}}
+    {{^required}}
+        if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) {
+    {{/required}}
+        params.put({{#quoted}}{{wireName}}{{/quoted}}, {{#type.queryParamify}}this.{{name}}{{/type.queryParamify}});
+    {{^required}}
+        }
+    {{/required}}
+{{/queryParams}}
+    }
+{{/hasQueryParams}}
+
+    /**
+     * Endpoint "{@code {{operationGroup}}}".
+     */
+{{#responseType.targetShape.hasTypeParameters}}
+    public static final {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}<{{className}}, ?> _ENDPOINT
+{{/responseType.targetShape.hasTypeParameters}}
+{{^responseType.targetShape.hasTypeParameters}}
+    public static final {{TYPES.Client.Transport.Endpoint}}<{{className}}, {{responseType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}> _ENDPOINT
+{{/responseType.targetShape.hasTypeParameters}}
+        = new {{#isBooleanRequest}}{{TYPES.Client.Transport.Endpoints.BooleanEndpoint}}{{/isBooleanRequest}}{{^isBooleanRequest}}{{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}{{/isBooleanRequest}}<>(
+            // Request method
+            request -> {{#quoted}}{{httpMethod}}{{/quoted}},
+            // Request path
+            request ->
+                {{#hasSinglePath}}
+                {{#firstPath}}
+                {{#hasParams}}
+                {
+                    {{>RequestShape/HttpPathBuilder}}
+                }
+                {{/hasParams}}
+                {{^hasParams}}
+                    {{#quoted}}{{this}}{{/quoted}}
+                {{/hasParams}}
+                {{/firstPath}}
+                {{/hasSinglePath}}
+                {{^hasSinglePath}}
+                {
+                    {{#indexedPathParams}}
+                    final int _{{left}} = 1 << {{right}};
+                    {{/indexedPathParams}}
+
+                    int propsSet = 0;
+
+                    {{#pathParams}}
+                    {{^required}}if ({{#type.isDefined}}request.{{name}}(){{/type.isDefined}}) {{/required}}propsSet |= _{{name}};
+                    {{/pathParams}}
+
+                    {{#httpPaths}}
+                    if (propsSet == {{#hasParams}}({{#params}}{{^-first}} | {{/-first}}_{{name}}{{/params}}){{/hasParams}}{{^hasParams}}0{{/hasParams}}) {
+                        {{>RequestShape/HttpPathBuilder}}
+                    }
+                    {{/httpPaths}}
+
+                    throw {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}.noPathTemplateFound("path");
+                }
+                {{/hasSinglePath}},
+            // Request parameters
+            request -> {
+                {{TYPES.Java.Util.Map}}<String, String> params = new {{TYPES.Java.Util.HashMap}}<>();
+                request.applyQueryParameters(params);
+                return params;
+            },
+            {{TYPES.Client.Transport.Endpoints.SimpleEndpoint}}.emptyMap()
+        {{^isBooleanRequest}}
+            ,
+            {{hasRequestBody}},
+            {{responseType.name}}._DESERIALIZER
+        {{/isBooleanRequest}}
+    );
+{{#responseType.targetShape.hasTypeParameters}}
+
+    /**
+     * Create an "{@code {{operationGroup}}}" endpoint.
+     */
+    public static {{responseType.targetShape.typeParameters}} {{TYPES.Client.Transport.Endpoint}}<{{className}}, {{responseType.selfType}}, {{TYPES.Client.OpenSearch._Types.ErrorResponse}}> create{{#pascalCase}}{{operationGroup}}{{/pascalCase}}Endpoint(
+        {{#responseType.targetShape.typeParameters}}{{#typeParameterDefinitions}}{{TYPES.Client.Json.JsonpDeserializer}}<{{name}}> {{#camelCase}}{{name}}{{/camelCase}}Deserializer{{^-last}},{{/-last}}{{/typeParameterDefinitions}}{{/responseType.targetShape.typeParameters}}
+    ) {
+        return _ENDPOINT.withResponseDeserializer({{responseType.name}}.create{{responseType.name}}Deserializer({{#responseType.targetShape.typeParameters}}{{#typeParameterDefinitions}}{{#camelCase}}{{name}}{{/camelCase}}Deserializer{{^-last}},{{/-last}}{{/typeParameterDefinitions}}{{/responseType.targetShape.typeParameters}}));
+    }
+{{/responseType.targetShape.hasTypeParameters}}
+
+    {{>ObjectShape/HashCode}}
+
+    {{>ObjectShape/Equals}}
+}

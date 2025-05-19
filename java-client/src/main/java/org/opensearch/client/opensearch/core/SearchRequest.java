@@ -39,12 +39,13 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpSerializable;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch._types.FieldValue;
@@ -79,7 +80,7 @@ import org.opensearch.client.util.ObjectBuilderBase;
  *
  */
 @JsonpDeserializable
-public class SearchRequest extends RequestBase implements JsonpSerializable {
+public class SearchRequest extends RequestBase implements PlainJsonSerializable {
     @Nullable
     private final SourceConfig source;
 
@@ -102,6 +103,15 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
     @Nullable
     private final Boolean ccsMinimizeRoundtrips;
+
+    @Nullable
+    private final Boolean phaseTook;
+
+    @Nullable
+    private final String pipeline;
+
+    @Nullable
+    private final Time cancelAfterTimeInterval;
 
     @Nullable
     private final FieldCollapse collapse;
@@ -223,6 +233,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
     @Nullable
     private final Boolean version;
 
+    private final Map<String, JsonData> ext;
+
     // ---------------------------------------------------------------------------------------------
 
     private SearchRequest(Builder builder) {
@@ -235,6 +247,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
         this.analyzer = builder.analyzer;
         this.batchedReduceSize = builder.batchedReduceSize;
         this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
+        this.phaseTook = builder.phaseTook;
+        this.pipeline = builder.pipeline;
+        this.cancelAfterTimeInterval = builder.cancelAfterTimeInterval;
         this.collapse = builder.collapse;
         this.defaultOperator = builder.defaultOperator;
         this.df = builder.df;
@@ -279,6 +294,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
         this.trackScores = builder.trackScores;
         this.trackTotalHits = builder.trackTotalHits;
         this.version = builder.version;
+        this.ext = ApiTypeHelper.unmodifiable(builder.ext);
 
     }
 
@@ -370,6 +386,38 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
     @Nullable
     public final Boolean ccsMinimizeRoundtrips() {
         return this.ccsMinimizeRoundtrips;
+    }
+
+    /**
+     * Indicates whether search phase took times should be returned
+     * in SearchResponse
+     * <p>
+     * API name: {@code phase_took}
+     */
+    @Nullable
+    public final Boolean phaseTook() {
+        return this.phaseTook;
+    }
+
+    /**
+     * Specifies search pipeline name
+     * <p>
+     * API name: {@code pipeline}
+     */
+    @Nullable
+    public final String pipeline() {
+        return this.pipeline;
+    }
+
+    /**
+     * The time after which the search request will be canceled.
+     * Request-level parameter takes precedence over cancel_after_time_interval cluster setting.
+     * <p>
+     * API name: {@code cancel_after_time_interval}
+     */
+    @Nullable
+    public final Time cancelAfterTimeInterval() {
+        return this.cancelAfterTimeInterval;
     }
 
     /**
@@ -822,6 +870,13 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
     }
 
     /**
+     * API name: {@code ext}
+     */
+    public final Map<String, JsonData> ext() {
+        return this.ext;
+    }
+
+    /**
      * Serialize this object to JSON.
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -1050,6 +1105,17 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
         }
 
+        if (ApiTypeHelper.isDefined(this.ext)) {
+            generator.writeKey("ext");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.ext.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+
+            }
+            generator.writeEnd();
+        }
+
     }
 
     public Builder toBuilder() {
@@ -1061,6 +1127,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
             .analyzer(analyzer)
             .batchedReduceSize(batchedReduceSize)
             .ccsMinimizeRoundtrips(ccsMinimizeRoundtrips)
+            .phaseTook(phaseTook)
+            .pipeline(pipeline)
+            .cancelAfterTimeInterval(cancelAfterTimeInterval)
             .collapse(collapse)
             .defaultOperator(defaultOperator)
             .df(df)
@@ -1104,7 +1173,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
             .timeout(timeout)
             .trackScores(trackScores)
             .trackTotalHits(trackTotalHits)
-            .version(version);
+            .version(version)
+            .ext(ext);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -1137,6 +1207,15 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
         @Nullable
         private Boolean ccsMinimizeRoundtrips;
+
+        @Nullable
+        private Boolean phaseTook;
+
+        @Nullable
+        private String pipeline;
+
+        @Nullable
+        private Time cancelAfterTimeInterval;
 
         @Nullable
         private FieldCollapse collapse;
@@ -1270,6 +1349,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
         @Nullable
         private Boolean version;
 
+        @Nullable
+        private Map<String, JsonData> ext;
+
         /**
          * Indicates which source fields are returned for matching documents. These
          * fields are returned in the hits._source property of the search response.
@@ -1386,6 +1468,48 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
         public final Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
             this.ccsMinimizeRoundtrips = value;
             return this;
+        }
+
+        /**
+         * Indicates whether search phase took times should be returned
+         * in SearchResponse
+         * <p>
+         * API name: {@code phase_took}
+         */
+        public final Builder phaseTook(@Nullable Boolean value) {
+            this.phaseTook = value;
+            return this;
+        }
+
+        /**
+         * Specifies search pipeline name
+         * <p>
+         * API name: {@code pipeline}
+         */
+        public final Builder pipeline(@Nullable String value) {
+            this.pipeline = value;
+            return this;
+        }
+
+        /**
+         * The time after which the search request will be canceled.
+         * Request-level parameter takes precedence over cancel_after_time_interval cluster setting.
+         * <p>
+         * API name: {@code cancel_after_time_interval}
+         */
+        public final Builder cancelAfterTimeInterval(@Nullable Time value) {
+            this.cancelAfterTimeInterval = value;
+            return this;
+        }
+
+        /**
+         * The time after which the search request will be canceled.
+         * Request-level parameter takes precedence over cancel_after_time_interval cluster setting.
+         * <p>
+         * API name: {@code cancel_after_time_interval}
+         */
+        public final Builder cancelAfterTimeInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return this.cancelAfterTimeInterval(fn.apply(new Time.Builder()).build());
         }
 
         /**
@@ -2153,6 +2277,26 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
         }
 
         /**
+         * API name: {@code ext}
+         * <p>
+         * Adds all entries of <code>map</code> to <code>ext</code>.
+         */
+        public final Builder ext(Map<String, JsonData> map) {
+            this.ext = _mapPutAll(this.ext, map);
+            return this;
+        }
+
+        /**
+         * API name: {@code ext}
+         * <p>
+         * Adds an entry to <code>ext</code>.
+         */
+        public final Builder ext(String key, JsonData value) {
+            this.ext = _mapPut(this.ext, key, value);
+            return this;
+        }
+
+        /**
          * Builds a {@link SearchRequest}.
          *
          * @throws NullPointerException
@@ -2211,6 +2355,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
         op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");
         op.add(Builder::trackTotalHits, TrackHits._DESERIALIZER, "track_total_hits");
         op.add(Builder::version, JsonpDeserializer.booleanDeserializer(), "version");
+        op.add(Builder::ext, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "ext");
 
     }
 
@@ -2300,11 +2445,20 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
             if (request.scroll != null) {
                 params.put("scroll", request.scroll._toJsonString());
             }
+            if (request.cancelAfterTimeInterval != null) {
+                params.put("cancel_after_time_interval", request.cancelAfterTimeInterval._toJsonString());
+            }
             if (request.searchType != null) {
                 params.put("search_type", request.searchType.jsonValue());
             }
             if (request.ccsMinimizeRoundtrips != null) {
                 params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
+            }
+            if (request.phaseTook != null) {
+                params.put("phase_took", String.valueOf(request.phaseTook));
+            }
+            if (request.pipeline != null) {
+                params.put("search_pipeline", request.pipeline);
             }
             if (request.q != null) {
                 params.put("q", request.q);

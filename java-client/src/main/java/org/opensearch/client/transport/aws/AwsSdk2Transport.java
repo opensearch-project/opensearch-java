@@ -14,48 +14,63 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.UndeclaredThrowableException;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
+import java.time.Clock;
+import java.util.AbstractMap;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.function.Supplier;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.net.ssl.SSLHandshakeException;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
+import org.opensearch.client.opensearch.OpenSearchClient;
 import org.opensearch.client.opensearch._types.ErrorCause;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
+import org.opensearch.client.opensearch.generic.OpenSearchClientException;
 import org.opensearch.client.transport.Endpoint;
+import org.opensearch.client.transport.GenericEndpoint;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.transport.endpoints.BooleanEndpoint;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
+import org.opensearch.client.util.MissingRequiredPropertyException;
 import org.opensearch.client.util.OpenSearchRequestBodyBuffer;
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
-import software.amazon.awssdk.auth.signer.Aws4Signer;
-import software.amazon.awssdk.auth.signer.params.Aws4SignerParams;
 import software.amazon.awssdk.http.AbortableInputStream;
+import software.amazon.awssdk.http.ContentStreamProvider;
+import software.amazon.awssdk.http.Header;
 import software.amazon.awssdk.http.HttpExecuteRequest;
 import software.amazon.awssdk.http.HttpExecuteResponse;
 import software.amazon.awssdk.http.SdkHttpClient;
 import software.amazon.awssdk.http.SdkHttpFullRequest;
 import software.amazon.awssdk.http.SdkHttpMethod;
+import software.amazon.awssdk.http.SdkHttpRequest;
 import software.amazon.awssdk.http.SdkHttpResponse;
 import software.amazon.awssdk.http.async.AsyncExecuteRequest;
 import software.amazon.awssdk.http.async.SdkAsyncHttpClient;
+import software.amazon.awssdk.http.auth.aws.signer.AwsV4HttpSigner;
+import software.amazon.awssdk.http.auth.spi.signer.SignedRequest;
 import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.utils.IoUtils;
 import software.amazon.awssdk.utils.SdkAutoCloseable;
 
 /**
@@ -71,6 +86,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
     private static final byte[] NO_BYTES = new byte[0];
     private final SdkAutoCloseable httpClient;
+    private final boolean isApacheHttpClient;
     private final String host;
     private final String signingServiceName;
     private final Region signingRegion;
@@ -108,6 +124,10 @@ public class AwsSdk2Transport implements OpenSearchTransport {
      * @param options Options that apply to all requests. Can be null. Create with
      *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
      *                compression options, etc.
+     *
+     * @implNote Using {@code software.amazon.awssdk.http.apache.ApacheHttpClient} is discouraged as it does not support request bodies on GET or DELETE requests.
+     *           This leads to incorrect handling of requests such as {@link OpenSearchClient#clearScroll(org.opensearch.client.opensearch.core.ClearScrollRequest)} and {@link OpenSearchClient#deletePit(org.opensearch.client.opensearch.core.pit.DeletePitRequest)}.
+     *           As such {@link #performRequest(Object, Endpoint, TransportOptions)} &amp; {@link #performRequestAsync(Object, Endpoint, TransportOptions)} will throw a {@link TransportException} if an unsupported request is encountered while using {@code ApacheHttpClient}.
      */
     public AwsSdk2Transport(
         @CheckForNull SdkHttpClient syncHttpClient,
@@ -152,6 +172,10 @@ public class AwsSdk2Transport implements OpenSearchTransport {
      * @param options Options that apply to all requests. Can be null. Create with
      *                {@link AwsSdk2TransportOptions#builder()} and use these to specify non-default credentials,
      *                compression options, etc.
+     *
+     * @implNote Using {@code software.amazon.awssdk.http.apache.ApacheHttpClient} is discouraged as it does not support request bodies on GET or DELETE requests.
+     *           This leads to incorrect handling of requests such as {@link OpenSearchClient#clearScroll(org.opensearch.client.opensearch.core.ClearScrollRequest)} and {@link OpenSearchClient#deletePit(org.opensearch.client.opensearch.core.pit.DeletePitRequest)}.
+     *           As such {@link #performRequest(Object, Endpoint, TransportOptions)} &amp; {@link #performRequestAsync(Object, Endpoint, TransportOptions)} will throw a {@link TransportException} if an unsupported request is encountered while using {@code ApacheHttpClient}.
      */
     public AwsSdk2Transport(
         @CheckForNull SdkHttpClient syncHttpClient,
@@ -172,6 +196,8 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     ) {
         Objects.requireNonNull(host, "Target OpenSearch service host must not be null");
         this.httpClient = httpClient;
+        this.isApacheHttpClient = httpClient instanceof SdkHttpClient
+            && httpClient.getClass().getName().equals("software.amazon.awssdk.http.apache.ApacheHttpClient");
         this.host = host;
         this.signingServiceName = signingServiceName;
         this.signingRegion = signingRegion;
@@ -185,9 +211,8 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         Endpoint<RequestT, ResponseT, ErrorT> endpoint,
         @Nullable TransportOptions options
     ) throws IOException {
-
         OpenSearchRequestBodyBuffer requestBody = prepareRequestBody(request, endpoint, options);
-        SdkHttpFullRequest clientReq = prepareRequest(request, endpoint, options, requestBody);
+        SignedRequest clientReq = prepareRequest(request, endpoint, options, requestBody);
 
         if (httpClient instanceof SdkHttpClient) {
             return executeSync((SdkHttpClient) httpClient, clientReq, endpoint, options);
@@ -195,17 +220,14 @@ public class AwsSdk2Transport implements OpenSearchTransport {
             try {
                 return executeAsync((SdkAsyncHttpClient) httpClient, clientReq, requestBody, endpoint, options).get();
             } catch (ExecutionException e) {
-                Throwable cause = e.getCause();
-                if (cause != null) {
-                    if (cause instanceof IOException) {
-                        throw (IOException) cause;
-                    }
-                    if (cause instanceof RuntimeException) {
-                        throw (RuntimeException) cause;
-                    }
-                    throw new RuntimeException(cause);
+                Exception cause = extractAndWrapCause(e);
+                if (cause instanceof IOException) {
+                    throw (IOException) cause;
                 }
-                throw new RuntimeException(e);
+                if (cause instanceof RuntimeException) {
+                    throw (RuntimeException) cause;
+                }
+                throw new IllegalStateException("unexpected exception type: must be either RuntimeException or IOException", cause);
             } catch (InterruptedException e) {
                 throw new IOException("HttpRequest was interrupted", e);
             }
@@ -222,7 +244,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     ) {
         try {
             OpenSearchRequestBodyBuffer requestBody = prepareRequestBody(request, endpoint, options);
-            SdkHttpFullRequest clientReq = prepareRequest(request, endpoint, options, requestBody);
+            SignedRequest clientReq = prepareRequest(request, endpoint, options, requestBody);
             if (httpClient instanceof SdkAsyncHttpClient) {
                 return executeAsync((SdkAsyncHttpClient) httpClient, clientReq, requestBody, endpoint, options);
             } else if (httpClient instanceof SdkHttpClient) {
@@ -258,16 +280,12 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         TransportOptions options
     ) throws IOException {
         if (endpoint.hasRequestBody()) {
-            final JsonpMapper mapper = Optional.ofNullable(options)
-                .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-                .map(AwsSdk2TransportOptions::mapper)
-                .orElse(defaultMapper);
-            final int maxUncompressedSize = or(
-                Optional.ofNullable(options)
-                    .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-                    .map(AwsSdk2TransportOptions::requestCompressionSize),
-                () -> Optional.ofNullable(transportOptions.requestCompressionSize())
-            ).orElse(DEFAULT_REQUEST_COMPRESSION_SIZE);
+            final JsonpMapper mapper = Optional.ofNullable(
+                options instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) options) : null
+            ).map(AwsSdk2TransportOptions::mapper).orElse(defaultMapper);
+            final int maxUncompressedSize = getOption(options, AwsSdk2TransportOptions::requestCompressionSize).orElse(
+                DEFAULT_REQUEST_COMPRESSION_SIZE
+            );
 
             OpenSearchRequestBodyBuffer buffer = new OpenSearchRequestBodyBuffer(mapper, maxUncompressedSize);
             buffer.addContent(request);
@@ -277,13 +295,31 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         return null;
     }
 
-    private <RequestT> SdkHttpFullRequest prepareRequest(
+    private <RequestT> SignedRequest prepareRequest(
         RequestT request,
         Endpoint<RequestT, ?, ?> endpoint,
         @CheckForNull TransportOptions options,
         @CheckForNull OpenSearchRequestBodyBuffer body
-    ) throws UnsupportedEncodingException {
-        SdkHttpFullRequest.Builder req = SdkHttpFullRequest.builder().method(SdkHttpMethod.fromValue(endpoint.method(request)));
+    ) throws UnsupportedEncodingException, TransportException {
+        SdkHttpMethod method = SdkHttpMethod.fromValue(endpoint.method(request));
+
+        // AWS Apache Http Client only supports request bodies on PATCH, POST & PUT requests.
+        // See:
+        // https://github.com/aws/aws-sdk-java-v2/blob/master/http-clients/apache-client/src/main/java/software/amazon/awssdk/http/apache/internal/impl/ApacheHttpRequestFactory.java#L118-L137
+        if (isApacheHttpClient
+            && method != SdkHttpMethod.PATCH
+            && method != SdkHttpMethod.POST
+            && method != SdkHttpMethod.PUT
+            && body != null
+            && body.getContentLength() > 0) {
+            throw new TransportException(
+                "AWS SDK's ApacheHttpClient does not support request bodies for HTTP method `"
+                    + method
+                    + "`. Please use a different SdkHttpClient implementation."
+            );
+        }
+
+        SdkHttpFullRequest.Builder req = SdkHttpFullRequest.builder().method(method);
 
         StringBuilder url = new StringBuilder();
         url.append("https://").append(host);
@@ -308,46 +344,57 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         } catch (URISyntaxException e) {
             throw new IllegalArgumentException("Invalid request URI: " + url.toString());
         }
+
+        ContentStreamProvider bodyProvider = body != null ? ContentStreamProvider.fromByteArrayUnsafe(body.getByteArray()) : null;
+
+        applyHeadersPreSigning(req, options, body);
+
+        final AwsCredentialsProvider credentials = getOption(options, AwsSdk2TransportOptions::credentials).orElseGet(
+            DefaultCredentialsProvider::create
+        );
+
+        final Clock signingClock = getOption(options, AwsSdk2TransportOptions::signingClock).orElse(null);
+
+        SignedRequest signedReq = AwsV4HttpSigner.create()
+            .sign(
+                b -> b.identity(credentials.resolveCredentials())
+                    .request(req.build())
+                    .payload(bodyProvider)
+                    .putProperty(AwsV4HttpSigner.SERVICE_SIGNING_NAME, this.signingServiceName)
+                    .putProperty(AwsV4HttpSigner.REGION_NAME, this.signingRegion.id())
+                    .putProperty(AwsV4HttpSigner.SIGNING_CLOCK, signingClock)
+            );
+
+        SdkHttpRequest.Builder httpRequest = signedReq.request().toBuilder();
+
+        applyHeadersPostSigning(httpRequest, body);
+
+        return signedReq.toBuilder().request(httpRequest.build()).build();
+    }
+
+    private void applyHeadersPreSigning(SdkHttpRequest.Builder req, TransportOptions options, OpenSearchRequestBodyBuffer body) {
         applyOptionsHeaders(req, transportOptions);
         applyOptionsHeaders(req, options);
-        if (endpoint.hasRequestBody() && body != null) {
+
+        if (body != null) {
             req.putHeader("Content-Type", body.getContentType());
             String encoding = body.getContentEncoding();
             if (encoding != null) {
                 req.putHeader("Content-Encoding", encoding);
             }
-            req.putHeader("Content-Length", String.valueOf(body.getContentLength()));
-            req.contentStreamProvider(body::getInputStream);
-            // To add the "X-Amz-Content-Sha256" header, it needs to set as required.
-            // It is a required header for Amazon OpenSearch Serverless.
-            req.putHeader("x-amz-content-sha256", "required");
         }
 
-        boolean responseCompression = or(
-            Optional.ofNullable(options)
-                .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-                .map(AwsSdk2TransportOptions::responseCompression),
-            () -> Optional.ofNullable(transportOptions.responseCompression())
-        ).orElse(Boolean.TRUE);
-        if (responseCompression) {
+        if (getOption(options, AwsSdk2TransportOptions::responseCompression).orElse(Boolean.TRUE)) {
             req.putHeader("Accept-Encoding", "gzip");
         } else {
             req.removeHeader("Accept-Encoding");
         }
+    }
 
-        final AwsCredentialsProvider credentials = or(
-            Optional.ofNullable(options)
-                .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-                .map(AwsSdk2TransportOptions::credentials),
-            () -> Optional.ofNullable(transportOptions.credentials())
-        ).orElse(DefaultCredentialsProvider.create());
-
-        Aws4SignerParams signerParams = Aws4SignerParams.builder()
-            .awsCredentials(credentials.resolveCredentials())
-            .signingName(this.signingServiceName)
-            .signingRegion(signingRegion)
-            .build();
-        return Aws4Signer.create().sign(req.build(), signerParams);
+    private void applyHeadersPostSigning(SdkHttpRequest.Builder req, OpenSearchRequestBodyBuffer body) {
+        if (body != null) {
+            req.putHeader("Content-Length", String.valueOf(body.getContentLength()));
+        }
     }
 
     private void applyOptionsParams(StringBuilder url, TransportOptions options) throws UnsupportedEncodingException {
@@ -365,7 +412,7 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         }
     }
 
-    private void applyOptionsHeaders(SdkHttpFullRequest.Builder builder, TransportOptions options) {
+    private void applyOptionsHeaders(SdkHttpRequest.Builder builder, TransportOptions options) {
         if (options == null) {
             return;
         }
@@ -379,21 +426,27 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
     private <ResponseT> ResponseT executeSync(
         SdkHttpClient syncHttpClient,
-        SdkHttpFullRequest httpRequest,
+        SignedRequest signedRequest,
         Endpoint<?, ResponseT, ?> endpoint,
         TransportOptions options
     ) throws IOException {
-
+        SdkHttpRequest httpRequest = signedRequest.request();
         HttpExecuteRequest.Builder executeRequest = HttpExecuteRequest.builder().request(httpRequest);
-        if (httpRequest.contentStreamProvider().isPresent()) {
-            executeRequest.contentStreamProvider(httpRequest.contentStreamProvider().get());
-        }
+        signedRequest.payload().ifPresent(executeRequest::contentStreamProvider);
         HttpExecuteResponse executeResponse = syncHttpClient.prepareRequest(executeRequest.build()).call();
         AbortableInputStream bodyStream = null;
         try {
             bodyStream = executeResponse.responseBody().orElse(null);
             SdkHttpResponse httpResponse = executeResponse.httpResponse();
-            return parseResponse(httpResponse, bodyStream, endpoint, options);
+            return parseResponse(
+                httpRequest.getUri(),
+                httpRequest.method(),
+                httpRequest.protocol(),
+                httpResponse,
+                bodyStream,
+                endpoint,
+                options
+            );
         } finally {
             if (bodyStream != null) {
                 bodyStream.close();
@@ -403,13 +456,13 @@ public class AwsSdk2Transport implements OpenSearchTransport {
 
     private <ResponseT> CompletableFuture<ResponseT> executeAsync(
         SdkAsyncHttpClient asyncHttpClient,
-        SdkHttpFullRequest httpRequest,
+        SignedRequest signedRequest,
         @CheckForNull OpenSearchRequestBodyBuffer requestBody,
         Endpoint<?, ResponseT, ?> endpoint,
         TransportOptions options
     ) {
+        SdkHttpRequest httpRequest = signedRequest.request();
         byte[] requestBodyArray = requestBody == null ? NO_BYTES : requestBody.getByteArray();
-
         final AsyncCapturingResponseHandler responseHandler = new AsyncCapturingResponseHandler();
         AsyncExecuteRequest.Builder executeRequest = AsyncExecuteRequest.builder()
             .request(httpRequest)
@@ -421,7 +474,17 @@ public class AwsSdk2Transport implements OpenSearchTransport {
                 CompletableFuture<ResponseT> ret = new CompletableFuture<>();
                 try {
                     InputStream bodyStream = new ByteArrayInputStream(responseBody);
-                    ret.complete(parseResponse(response, bodyStream, endpoint, options));
+                    ret.complete(
+                        parseResponse(
+                            httpRequest.getUri(),
+                            httpRequest.method(),
+                            httpRequest.protocol(),
+                            response,
+                            bodyStream,
+                            endpoint,
+                            options
+                        )
+                    );
                 } catch (Throwable e) {
                     ret.completeExceptionally(e);
                 }
@@ -430,15 +493,17 @@ public class AwsSdk2Transport implements OpenSearchTransport {
     }
 
     private <ResponseT, ErrorT> ResponseT parseResponse(
+        URI uri,
+        @Nonnull SdkHttpMethod method,
+        String protocol,
         @Nonnull SdkHttpResponse httpResponse,
         @CheckForNull InputStream bodyStream,
         @Nonnull Endpoint<?, ResponseT, ErrorT> endpoint,
         @CheckForNull TransportOptions options
     ) throws IOException {
-        final JsonpMapper mapper = Optional.ofNullable(options)
-            .map(o -> o instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) o) : null)
-            .map(AwsSdk2TransportOptions::mapper)
-            .orElse(defaultMapper);
+        final JsonpMapper mapper = Optional.ofNullable(
+            options instanceof AwsSdk2TransportOptions ? ((AwsSdk2TransportOptions) options) : null
+        ).map(AwsSdk2TransportOptions::mapper).orElse(defaultMapper);
 
         int statusCode = httpResponse.statusCode();
         boolean isZipped = httpResponse.firstMatchingHeader("Content-Encoding").map(enc -> enc.contains("gzip")).orElse(Boolean.FALSE);
@@ -478,66 +543,197 @@ public class AwsSdk2Transport implements OpenSearchTransport {
         }
 
         if (endpoint.isError(statusCode)) {
-            JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
-            if (errorDeserializer == null || bodyStream == null) {
-                throw new TransportException("Request failed with status code '" + statusCode + "'");
-            }
-            try {
-                try (JsonParser parser = mapper.jsonProvider().createParser(bodyStream)) {
-                    ErrorT error = errorDeserializer.deserialize(parser, mapper);
-                    throw new OpenSearchException((ErrorResponse) error);
+            if (endpoint instanceof GenericEndpoint) {
+                @SuppressWarnings("unchecked")
+                final GenericEndpoint<?, ResponseT> rawEndpoint = (GenericEndpoint<?, ResponseT>) endpoint;
+
+                String contentType = null;
+                if (bodyStream != null) {
+                    contentType = httpResponse.firstMatchingHeader(Header.CONTENT_TYPE).orElse(null);
                 }
-            } catch (OpenSearchException e) {
-                throw e;
-            } catch (Exception e) {
-                // can't parse the error - use a general exception
-                ErrorCause.Builder cause = new ErrorCause.Builder();
-                cause.type("http_exception");
-                cause.reason("server returned " + statusCode);
-                ErrorResponse error = ErrorResponse.of(err -> err.status(statusCode).error(cause.build()));
-                throw new OpenSearchException(error);
+
+                final ResponseT error = rawEndpoint.responseDeserializer(
+                    uri.toString(),
+                    method.name(),
+                    protocol,
+                    httpResponse.statusCode(),
+                    httpResponse.statusText().orElse(null),
+                    httpResponse.headers()
+                        .entrySet()
+                        .stream()
+                        .map(h -> new AbstractMap.SimpleEntry<String, String>(h.getKey(), Objects.toString(h.getValue())))
+                        .collect(Collectors.toList()),
+                    contentType,
+                    bodyStream
+                );
+
+                throw rawEndpoint.exceptionConverter(statusCode, error);
+            } else {
+                JsonpDeserializer<ErrorT> errorDeserializer = endpoint.errorDeserializer(statusCode);
+                if (errorDeserializer == null || bodyStream == null) {
+                    throw new TransportException("Request failed with status code '" + statusCode + "'");
+                }
+
+                // We may have to reset if there is a parse deserialization exception
+                bodyStream = toByteArrayInputStream(bodyStream);
+
+                try {
+                    try (JsonParser parser = mapper.jsonProvider().createParser(bodyStream)) {
+                        ErrorT error = errorDeserializer.deserialize(parser, mapper);
+                        throw new OpenSearchException((ErrorResponse) error);
+                    } catch (MissingRequiredPropertyException errorEx) {
+                        bodyStream.reset();
+                        return decodeResponse(uri, method, protocol, httpResponse, bodyStream, endpoint, mapper);
+                    }
+                } catch (OpenSearchException e) {
+                    throw e;
+                } catch (Exception e) {
+                    // can't parse the error - use a general exception
+                    ErrorCause.Builder cause = new ErrorCause.Builder();
+                    cause.type("http_exception");
+                    cause.reason("server returned " + statusCode);
+                    ErrorResponse error = ErrorResponse.of(err -> err.status(statusCode).error(cause.build()));
+                    throw new OpenSearchException(error);
+                }
             }
         } else {
-            if (endpoint instanceof BooleanEndpoint) {
-                BooleanEndpoint<?> bep = (BooleanEndpoint<?>) endpoint;
-                @SuppressWarnings("unchecked")
-                ResponseT response = (ResponseT) new BooleanResponse(bep.getResult(statusCode));
-                return response;
-            } else if (endpoint instanceof JsonEndpoint) {
-                JsonEndpoint<?, ResponseT, ?> jsonEndpoint = (JsonEndpoint<?, ResponseT, ?>) endpoint;
-                // Successful response
-                ResponseT response = null;
-                JsonpDeserializer<ResponseT> responseParser = jsonEndpoint.responseDeserializer();
-                if (responseParser != null) {
-                    // Expecting a body
-                    if (bodyStream == null) {
-                        throw new TransportException("Expecting a response body, but none was sent");
-                    }
-                    try (JsonParser parser = mapper.jsonProvider().createParser(bodyStream)) {
-                        try {
-                            response = responseParser.deserialize(parser, mapper);
-                        } catch (NullPointerException e) {
-                            response = responseParser.deserialize(parser, mapper);
-                        }
-                    }
-                    ;
-                }
-                return response;
-            } else {
-                throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'");
-            }
+            return decodeResponse(uri, method, protocol, httpResponse, bodyStream, endpoint, mapper);
         }
     }
 
-    private static <T> Optional<T> or(Optional<T> opt, Supplier<? extends Optional<? extends T>> supplier) {
-        Objects.requireNonNull(opt);
-        Objects.requireNonNull(supplier);
-        if (opt.isPresent()) {
-            return opt;
-        } else {
+    private <ResponseT, ErrorT> ResponseT decodeResponse(
+        URI uri,
+        @Nonnull SdkHttpMethod method,
+        String protocol,
+        @Nonnull SdkHttpResponse httpResponse,
+        @CheckForNull InputStream bodyStream,
+        @Nonnull Endpoint<?, ResponseT, ErrorT> endpoint,
+        JsonpMapper mapper
+    ) throws IOException {
+        if (endpoint instanceof BooleanEndpoint) {
+            BooleanEndpoint<?> bep = (BooleanEndpoint<?>) endpoint;
             @SuppressWarnings("unchecked")
-            Optional<T> r = (Optional<T>) supplier.get();
-            return Objects.requireNonNull(r);
+            ResponseT response = (ResponseT) new BooleanResponse(bep.getResult(httpResponse.statusCode()));
+            return response;
+        } else if (endpoint instanceof JsonEndpoint) {
+            JsonEndpoint<?, ResponseT, ?> jsonEndpoint = (JsonEndpoint<?, ResponseT, ?>) endpoint;
+            // Successful response
+            ResponseT response = null;
+            JsonpDeserializer<ResponseT> responseParser = jsonEndpoint.responseDeserializer();
+            if (responseParser != null) {
+                // Expecting a body
+                if (bodyStream == null) {
+                    throw new TransportException("Expecting a response body, but none was sent");
+                }
+                try (JsonParser parser = mapper.jsonProvider().createParser(bodyStream)) {
+                    try {
+                        response = responseParser.deserialize(parser, mapper);
+                    } catch (NullPointerException e) {
+                        response = responseParser.deserialize(parser, mapper);
+                    }
+                }
+            }
+            return response;
+        } else if (endpoint instanceof GenericEndpoint) {
+            @SuppressWarnings("unchecked")
+            final GenericEndpoint<?, ResponseT> rawEndpoint = (GenericEndpoint<?, ResponseT>) endpoint;
+
+            String contentType = null;
+            if (bodyStream != null) {
+                contentType = httpResponse.firstMatchingHeader(Header.CONTENT_TYPE).orElse(null);
+            }
+
+            return rawEndpoint.responseDeserializer(
+                uri.toString(),
+                method.name(),
+                protocol,
+                httpResponse.statusCode(),
+                httpResponse.statusText().orElse(null),
+                httpResponse.headers()
+                    .entrySet()
+                    .stream()
+                    .map(h -> new AbstractMap.SimpleEntry<String, String>(h.getKey(), Objects.toString(h.getValue())))
+                    .collect(Collectors.toList()),
+                contentType,
+                bodyStream
+            );
+        } else {
+            throw new TransportException("Unhandled endpoint type: '" + endpoint.getClass().getName() + "'");
         }
+    }
+
+    private <T> Optional<T> getOption(@Nullable TransportOptions options, @Nonnull Function<AwsSdk2TransportOptions, T> getter) {
+        Objects.requireNonNull(getter, "getter must not be null");
+
+        Function<AwsSdk2TransportOptions, Optional<T>> optGetter = o -> Optional.ofNullable(getter.apply(o));
+
+        Optional<T> opt = Optional.ofNullable(options instanceof AwsSdk2TransportOptions ? (AwsSdk2TransportOptions) options : null)
+            .flatMap(optGetter);
+
+        return opt.isPresent() ? opt : optGetter.apply(transportOptions);
+    }
+
+    private static ByteArrayInputStream toByteArrayInputStream(InputStream is) throws IOException {
+        // Optimization to avoid copying when applicable. `executeAsync` will produce `ByteArrayInputStream`.
+        if (is instanceof ByteArrayInputStream) {
+            return (ByteArrayInputStream) is;
+        }
+        return new ByteArrayInputStream(IoUtils.toByteArray(is));
+    }
+
+    /**
+     * Wrap the exception so the caller's signature shows up in the stack trace, taking care to copy the original type and message
+     * where possible so async and sync code don't have to check different exceptions.
+     */
+    private static Exception extractAndWrapCause(Exception exception) {
+        if (exception instanceof InterruptedException) {
+            throw new RuntimeException("thread waiting for the response was interrupted", exception);
+        }
+        if (exception instanceof ExecutionException) {
+            ExecutionException executionException = (ExecutionException) exception;
+            Throwable t = executionException.getCause() == null ? executionException : executionException.getCause();
+            if (t instanceof Error) {
+                throw (Error) t;
+            }
+            if (t instanceof Exception) {
+                exception = (Exception) t;
+            } else {
+                exception = new UndeclaredThrowableException(t);
+            }
+        }
+        if (exception instanceof SocketTimeoutException) {
+            SocketTimeoutException e = new SocketTimeoutException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof SSLHandshakeException) {
+            SSLHandshakeException e = new SSLHandshakeException(
+                exception.getMessage() + "\nSee https://opensearch.org/docs/latest/clients/java/ for troubleshooting."
+            );
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof ConnectException) {
+            ConnectException e = new ConnectException(exception.getMessage());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof IOException) {
+            return new IOException(exception.getMessage(), exception);
+        }
+        if (exception instanceof OpenSearchException) {
+            final OpenSearchException e = new OpenSearchException(((OpenSearchException) exception).response());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof OpenSearchClientException) {
+            final OpenSearchClientException e = new OpenSearchClientException(((OpenSearchClientException) exception).response());
+            e.initCause(exception);
+            return e;
+        }
+        if (exception instanceof RuntimeException) {
+            return new RuntimeException(exception.getMessage(), exception);
+        }
+        return new RuntimeException("error while performing request", exception);
     }
 }

@@ -239,7 +239,12 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
             throw new NoSuchElementException("No deserializer was setup for '" + name + "'");
         }
 
-        acceptedEvents = EventSetObjectAndString;
+        this.acceptedEvents = EventSetObjectAndString.clone();
+
+        if (this.shortcutProperty instanceof FieldObjectDeserializer) {
+            JsonpDeserializer<?> shortcutDeserializer = ((FieldObjectDeserializer<?, ?>) this.shortcutProperty).deserializer;
+            this.acceptedEvents.addAll(shortcutDeserializer.nativeEvents());
+        }
     }
 
     // ----- Object types

@@ -1,3 +1,11 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import org.junit.Test;
@@ -14,7 +22,7 @@ public class FunctionScoreQueryTest extends ModelTestCase {
 
     @Test
     public void canSupportWeightFunction() {
-        Query functionScoreQuery = FunctionScoreQuery.of(fs -> fs.functions(f -> f.weight(5d)))._toQuery();
+        Query functionScoreQuery = FunctionScoreQuery.of(fs -> fs.functions(f -> f.weight(5f))).toQuery();
 
         String json = "{\"function_score\":{\"functions\":[{\"weight\":5.0}]}}";
 
@@ -29,8 +37,8 @@ public class FunctionScoreQueryTest extends ModelTestCase {
     @Test
     public void canSupportFunctionVariant() {
         Query functionScoreQuery = FunctionScoreQuery.of(
-            fs -> fs.functions(f -> f.weight(3d).linear(l -> l.field("field").placement(p -> p.decay(8.0))))
-        )._toQuery();
+            fs -> fs.functions(f -> f.weight(3f).linear(l -> l.field("field").placement(p -> p.decay(8.0))))
+        ).toQuery();
 
         String json = "{\"function_score\":{\"functions\":[{\"weight\":3.0,\"linear\":{\"field\":{\"decay\":8.0}}}]}}";
 

@@ -1,0 +1,9 @@
+{{^typeParameters}}
+protected static {{TYPES.Client.Json.JsonpDeserializer}}<{{selfType}}> create{{className}}Deserializer()
+{{/typeParameters}}
+{{#typeParameters}}
+/**
+ * Create a JSON deserializer for {{className}}.
+ */
+public static {{.}} {{TYPES.Client.Json.JsonpDeserializer}}<{{selfType}}> create{{className}}Deserializer({{#typeParameterDefinitions}}{{TYPES.Client.Json.JsonpDeserializer}}<{{name}}> {{#camelCase}}{{name}}{{/camelCase}}Deserializer{{^-last}}, {{/-last}}{{/typeParameterDefinitions}})
+{{/typeParameters}}
