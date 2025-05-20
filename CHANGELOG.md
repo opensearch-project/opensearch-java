@@ -9,11 +9,12 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `com.carrotsearch.randomizedtesting:randomizedtesting-runner` from 2.8.2 to 2.8.3 ([#1487](https://github.com/opensearch-project/opensearch-java/pull/1487))
 - Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.3 to 5.4.4 ([#1544](https://github.com/opensearch-project/opensearch-java/pull/1544))
 - Bump `org.opensearch.gradle:build-tools` from 3.0.0-alpha1-SNAPSHOT to 3.1.0-SNAPSHOT ([#1543](https://github.com/opensearch-project/opensearch-java/pull/1543))
-
-This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
+- Added micrometer dependency `io.micrometer:micrometer-core` version 1.12.3
+  This section is for maintaining a changelog for all breaking changes for the client that cannot be released in the 2.x line. All other non-breaking changes should be added to [Unreleased 2.x] section.
 
 ### Added
 - Document HTTP/2 support ([#330](https://github.com/opensearch-project/opensearch-java/pull/330))
+- Metrics support includes micrometer integration and Prometheus support with a custom client-side metrics.
 
 ### Dependencies
 
