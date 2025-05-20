@@ -8,6 +8,8 @@
 
 package org.opensearch.client.transport.httpclient5;
 
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Tags;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import java.io.ByteArrayInputStream;
@@ -20,11 +22,13 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.Duration;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -42,6 +46,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 import javax.annotation.Nullable;
@@ -93,12 +98,22 @@ import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportException;
 import org.opensearch.client.transport.TransportOptions;
+import org.opensearch.client.transport.client_metrics.MeterOptions;
+import org.opensearch.client.transport.client_metrics.MetricGroup;
+import org.opensearch.client.transport.client_metrics.MetricOptions;
+import org.opensearch.client.transport.client_metrics.NetworkRequestMetricContext;
+import org.opensearch.client.transport.client_metrics.RequestMetricContext;
+import org.opensearch.client.transport.client_metrics.TelemetryMetricsManager;
 import org.opensearch.client.transport.endpoints.BooleanEndpoint;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.transport.httpclient5.internal.HttpUriRequestProducer;
 import org.opensearch.client.transport.httpclient5.internal.Node;
 import org.opensearch.client.transport.httpclient5.internal.NodeSelector;
 import org.opensearch.client.util.MissingRequiredPropertyException;
+
+import static org.opensearch.client.transport.client_metrics.ExecutionMetricContext.DEFAULT_EMPTY_STATUS_CODE;
+import static org.opensearch.client.transport.client_metrics.MetricConstants.DEFAULT_REGISTRY;
+import static org.opensearch.client.transport.client_metrics.MetricTag.CLIENT_ID;
 
 /**
  * Apache HttpClient 5 based client transport.
@@ -121,6 +136,12 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
     private final String pathPrefix;
     private final List<Header> defaultHeaders;
 
+    private final boolean isMetricsEnabled;
+    private MeterOptions meterOptions;
+    private MeterRegistry meterRegistry;
+    private Set<MetricGroup> metricGroups = EnumSet.copyOf(MetricGroup.REQUIRED_GROUPS);
+    private String clientID = "NONE";
+
     public ApacheHttpClient5Transport(
         final CloseableHttpAsyncClient client,
         final Header[] defaultHeaders,
@@ -132,7 +153,8 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         final NodeSelector nodeSelector,
         final boolean strictDeprecationMode,
         final boolean compressionEnabled,
-        final boolean chunkedEnabled
+        final boolean chunkedEnabled,
+        final MetricOptions metricOptions
     ) {
         this.mapper = mapper;
         this.client = client;
@@ -145,6 +167,22 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         this.chunkedEnabled = chunkedEnabled;
         this.compressionEnabled = compressionEnabled;
         setNodes(nodes);
+
+        if (metricOptions != null && metricOptions.isMetricsEnabled()) {
+            if (metricOptions.getClientId() != null && !metricOptions.getClientId().isEmpty()) {
+                this.clientID = metricOptions.getClientId();
+            }
+            if (metricOptions.getMetricGroups() != null) {
+                this.metricGroups.addAll(metricOptions.getMetricGroups());
+            }
+            this.isMetricsEnabled = metricOptions.isMetricsEnabled();
+            this.meterRegistry = metricOptions.getMeterRegistry() == null ? DEFAULT_REGISTRY : metricOptions.getMeterRegistry();
+            this.meterOptions = new MeterOptions(metricOptions.getPercentiles(), getCommonTags(), metricOptions.getExcludedTags());
+            TelemetryMetricsManager.addRegistry(this.meterRegistry);
+            TelemetryMetricsManager.initializeNodeGauges(this.meterOptions, getActiveNodeGaugeUpdater(), getInactiveNodeGaugeUpdater());
+        } else {
+            this.isMetricsEnabled = false;
+        }
     }
 
     @Override
@@ -175,11 +213,13 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
     ) {
 
         final ApacheHttpClient5Options requestOptions = (options == null) ? transportOptions : ApacheHttpClient5Options.of(options);
-        final CompletableFuture<Response> future = new CompletableFuture<>();
+        final CompletableFuture<Response> future = new OpenSearchRequestFuture<>();
         final HttpUriRequestBase clientReq = prepareLowLevelRequest(request, endpoint, requestOptions);
         final WarningsHandler warningsHandler = (requestOptions.getWarningsHandler() == null)
             ? this.warningsHandler
             : requestOptions.getWarningsHandler();
+
+        final long executionStartTime = System.currentTimeMillis();
 
         try {
             performRequestAsync(nextNodes(), requestOptions, clientReq, warningsHandler, future);
@@ -192,6 +232,15 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
                 return (ResponseT) prepareResponse(r, endpoint);
             } catch (final IOException ex) {
                 throw new CompletionException(ex);
+            }
+        }).whenComplete((responseT, throwable) -> {
+            RequestMetricContext context = ((OpenSearchRequestFuture<Response>) future).getContext();
+            if (throwable != null) {
+                context.setThrowable(throwable);
+            }
+            context.setRequestExecutionTime(Duration.ofMillis(System.currentTimeMillis() - executionStartTime));
+            if (isMetricsEnabled) {
+                TelemetryMetricsManager.recordRequestMetrics(request.getClass().getSimpleName(), meterOptions, context, metricGroups);
             }
         });
     }
@@ -206,9 +255,24 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         return transportOptions;
     }
 
+    public boolean isMetricsEnabled() {
+        return isMetricsEnabled;
+    }
+
+    public String getClientID() {
+        return clientID;
+    }
+
+    protected MeterOptions getMeterOptions() {
+        return meterOptions;
+    }
+
     @Override
     public void close() throws IOException {
         client.close();
+        if (meterRegistry != null) {
+            TelemetryMetricsManager.removeRegistry(meterRegistry);
+        }
     }
 
     private void performRequestAsync(
@@ -219,6 +283,8 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         final CompletableFuture<Response> listener
     ) {
         final RequestContext context = createContextForNextAttempt(options, request, nodeTuple.nodes.next(), nodeTuple.authCache);
+        final String hostName = context.node.getHost().getHostName() + ":" + context.node.getHost().getPort();
+        final long startTime = System.currentTimeMillis();
         Future<ClassicHttpResponse> future = client.execute(
             context.requestProducer,
             context.asyncResponseConsumer,
@@ -226,7 +292,15 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             new FutureCallback<ClassicHttpResponse>() {
                 @Override
                 public void completed(ClassicHttpResponse httpResponse) {
+                    long endTime = System.currentTimeMillis();
                     try {
+                        prepareRequestMetricContext(
+                                ((OpenSearchRequestFuture<Response>) listener).getContext(),
+                                request,
+                                httpResponse,
+                                hostName,
+                                endTime - startTime
+                        );
                         ResponseOrResponseException responseOrResponseException = convertResponse(
                             request,
                             context.node,
@@ -249,7 +323,17 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
 
                 @Override
                 public void failed(Exception failure) {
+                    long endTime = System.currentTimeMillis();
                     try {
+                        ((OpenSearchRequestFuture<Response>) listener).getContext()
+                                .addNetworkRequestContext(
+                                        new NetworkRequestMetricContext(
+                                                hostName,
+                                                failure,
+                                                DEFAULT_EMPTY_STATUS_CODE,
+                                                Duration.ofMillis(endTime - startTime)
+                                        )
+                                );
                         onFailure(context.node);
                         if (nodeTuple.nodes.hasNext()) {
                             performRequestAsync(nodeTuple, options, request, warningsHandler, listener);
@@ -263,7 +347,17 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
 
                 @Override
                 public void cancelled() {
-                    listener.completeExceptionally(new CancellationException("request was cancelled"));
+                    CancellationException cancellationException = new CancellationException("request was cancelled");
+                    ((OpenSearchRequestFuture<Response>) listener).getContext()
+                            .addNetworkRequestContext(
+                                    new NetworkRequestMetricContext(
+                                            hostName,
+                                            cancellationException,
+                                            DEFAULT_EMPTY_STATUS_CODE,
+                                            Duration.ofMillis(System.currentTimeMillis() - startTime)
+                                    )
+                            );
+                    listener.completeExceptionally(cancellationException);
                 }
             }
         );
@@ -271,6 +365,30 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         if (future instanceof org.apache.hc.core5.concurrent.Cancellable) {
             request.setDependency((org.apache.hc.core5.concurrent.Cancellable) future);
         }
+    }
+
+    private void prepareRequestMetricContext(
+            RequestMetricContext requestMetricContext,
+            HttpUriRequestBase request,
+            ClassicHttpResponse httpResponse,
+            String hostName,
+            long executionTimeMS
+    ) {
+        NetworkRequestMetricContext networkRequestMetricContext = new NetworkRequestMetricContext(
+                hostName,
+                null,
+                httpResponse.getCode(),
+                Duration.ofMillis(executionTimeMS)
+        );
+        // Because we compress data as it is being streamed, we can't obtain compressed size efficiently
+        if (request.getEntity() != null && !compressionEnabled) {
+            networkRequestMetricContext.setRequestPayloadSize(request.getEntity().getContentLength());
+        }
+        if (httpResponse.getEntity() != null) {
+            networkRequestMetricContext.setResponsePayloadSize(httpResponse.getEntity().getContentLength());
+        }
+        requestMetricContext.setStatusCode(httpResponse.getCode());
+        requestMetricContext.addNetworkRequestContext(networkRequestMetricContext);
     }
 
     /**
@@ -824,6 +942,33 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         }
     }
 
+    private Tags getCommonTags() {
+        return Tags.of(CLIENT_ID.toString(), getClientID());
+    }
+
+    private Supplier<Number> getActiveNodeGaugeUpdater() {
+        return () -> {
+            int numActive = 0;
+            for (Node node : this.nodeTuple.nodes) {
+                if (!denylist.containsKey(node.getHost())) {
+                    numActive += 1;
+                }
+            }
+            return numActive;
+        };
+    }
+
+    private Supplier<Number> getInactiveNodeGaugeUpdater() {
+        return () -> {
+            int numInactive = 0;
+            for (Node node : this.nodeTuple.nodes) {
+                if (denylist.containsKey(node.getHost())) {
+                    numInactive += 1;
+                }
+            }
+            return numInactive;
+        };
+    }
     private static class RequestContext {
         private final Node node;
         private final AsyncRequestProducer requestProducer;

@@ -247,7 +247,6 @@ dependencies {
         exclude(group = "org.hamcrest")
     }
 
-
     // Micrometer
     implementation("io.micrometer:micrometer-core:1.12.3")
 
