@@ -263,7 +263,7 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         return clientID;
     }
 
-    protected MeterOptions getMeterOptions() {
+    public MeterOptions getMeterOptions() {
         return meterOptions;
     }
 
