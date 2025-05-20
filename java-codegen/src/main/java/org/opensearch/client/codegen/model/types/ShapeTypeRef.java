@@ -134,11 +134,6 @@ public class ShapeTypeRef extends TypeRef {
     }
 
     @Override
-    protected void collectTypeParameterRefs(Set<TypeParameterRef> refs) {
-
-    }
-
-    @Override
     public void getRequiredImports(Set<String> imports, String currentPkg) {
         shape.getMaterializedType().getRequiredImports(imports, currentPkg);
     }
@@ -148,7 +143,8 @@ public class ShapeTypeRef extends TypeRef {
         return shape.getMaterializedType().getNestedType(name);
     }
 
-    public Type getSelfType() {
+    @Override
+    public TypeRef getSelfType() {
         return shape.getSelfType();
     }
 

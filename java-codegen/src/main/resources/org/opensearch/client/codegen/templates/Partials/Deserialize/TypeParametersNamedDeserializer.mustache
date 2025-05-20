@@ -1,0 +1,8 @@
+/**
+* Json deserializer for {@link {{className}}} based on named deserializers provided by the calling {@code JsonMapper}.
+*/
+public static final {{TYPES.Client.Json.JsonpDeserializer}}<{{className}}<{{#typeParameterDefinitions}}Object{{^-last}}, {{/-last}}{{/typeParameterDefinitions}}>> _DESERIALIZER = create{{className}}Deserializer(
+{{#typeParameterDefinitions}}
+    new {{TYPES.Client.Json.NamedDeserializer}}<>("{{TYPES.Client.PACKAGE}}:Deserializer:{{typedefPrefix}}.{{name}}"){{^-last}},{{/-last}}
+{{/typeParameterDefinitions}}
+);

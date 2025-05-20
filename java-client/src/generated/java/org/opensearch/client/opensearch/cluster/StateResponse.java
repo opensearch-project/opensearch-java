@@ -41,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonData;
+import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.PlainJsonSerializable;
@@ -52,6 +53,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: cluster.state.Response
 
+@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class StateResponse implements PlainJsonSerializable, ToCopyableBuilder<StateResponse.Builder, StateResponse> {
 
@@ -144,6 +146,9 @@ public class StateResponse implements PlainJsonSerializable, ToCopyableBuilder<S
 
     // ---------------------------------------------------------------------------------------------
 
+    /**
+     * Json deserializer for {@link StateResponse}
+     */
     public static final JsonpDeserializer<StateResponse> _DESERIALIZER = createStateResponseDeserializer();
 
     protected static JsonpDeserializer<StateResponse> createStateResponseDeserializer() {
@@ -165,6 +170,7 @@ public class StateResponse implements PlainJsonSerializable, ToCopyableBuilder<S
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        return true;
+        StateResponse other = (StateResponse) o;
+        return this.valueBody.equals(other.valueBody);
     }
 }

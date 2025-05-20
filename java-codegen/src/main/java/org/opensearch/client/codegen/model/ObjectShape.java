@@ -62,7 +62,7 @@ public class ObjectShape extends ObjectShapeBase {
     }
 
     public Collection<TypeRef> getAnnotations() {
-        return (hasFieldsToSerialize() || extendsOtherShape()) && !isAbstract() && !hasTypeParameters()
+        return (hasFieldsToSerialize() || extendsOtherShape()) && !isAbstract() && (!hasTypeParameters() || isResponseShape())
             ? List.of(Types.Client.Json.JsonpDeserializable)
             : null;
     }

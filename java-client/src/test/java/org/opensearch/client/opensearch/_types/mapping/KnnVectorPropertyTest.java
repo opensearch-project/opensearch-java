@@ -42,7 +42,7 @@ public class KnnVectorPropertyTest {
     public void testDeserializeKnnVectorProperty() {
         String jsonString = "{\"type\": \"knn_vector\", \"dimension\": 4, \"model_id\":"
             + " \"testModelId\", \"method\": {\"name\": \"hnsw\", \"space_type\": \"l2\","
-            + " \"engine\": \"nmslib\", \"parameters\": {\"ef_construction\": 128, \"m\": 24}}}";
+            + " \"engine\": \"faiss\", \"parameters\": {\"ef_construction\": 128, \"m\": 24}}}";
         StringReader reader = new StringReader(jsonString);
         JacksonJsonpMapper mapper = new JacksonJsonpMapper();
         JsonParser parser = mapper.jsonProvider().createParser(reader);
@@ -53,7 +53,7 @@ public class KnnVectorPropertyTest {
         assertEquals("testModelId", knnVectorProperty.modelId());
         assertEquals("hnsw", knnVectorProperty.method().name());
         assertEquals("l2", knnVectorProperty.method().spaceType());
-        assertEquals("nmslib", knnVectorProperty.method().engine());
+        assertEquals("faiss", knnVectorProperty.method().engine());
         assertEquals("128", knnVectorProperty.method().parameters().get("ef_construction").toString());
         assertEquals("24", knnVectorProperty.method().parameters().get("m").toString());
     }
