@@ -32,21 +32,21 @@ public class ApacheHttpClient5TransportTest {
         String clientID = "testClient";
         HttpHost host = new HttpHost("localhost", 9200);
         MetricOptions metricOptions = MetricOptions.builder()
-                .setMetricsEnabled(true)
-                .setMeterRegistry(meterRegistry)
-                .setClientId(clientID)
-                .setPercentiles(0.90, 0.8, 0.5)
-                .build();
+            .setMetricsEnabled(true)
+            .setMeterRegistry(meterRegistry)
+            .setClientId(clientID)
+            .setPercentiles(0.90, 0.8, 0.5)
+            .build();
         ApacheHttpClient5TransportBuilder builder = ApacheHttpClient5TransportBuilder.builder(host);
         builder.setMetricOptions(metricOptions);
         try (ApacheHttpClient5Transport transport = builder.build()) {
             assertTrue(transport.isMetricsEnabled());
             assertArrayEquals(new double[] { 0.90, 0.8, 0.5 }, transport.getMeterOptions().getPercentiles(), 0);
             Optional<Tag> clientIDTag = transport.getMeterOptions()
-                    .getCommonTags()
-                    .stream()
-                    .filter(tag -> tag.getKey().equals(MetricTag.CLIENT_ID.toString()))
-                    .findFirst();
+                .getCommonTags()
+                .stream()
+                .filter(tag -> tag.getKey().equals(MetricTag.CLIENT_ID.toString()))
+                .findFirst();
             assertFalse(clientIDTag.isEmpty());
             assertEquals(clientID, clientIDTag.get().getValue());
             assertEquals(clientID, transport.getClientID());

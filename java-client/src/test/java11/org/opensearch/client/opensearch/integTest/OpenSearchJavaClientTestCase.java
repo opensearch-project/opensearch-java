@@ -179,6 +179,7 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
         customAsyncClients.add(customAsyncClient);
         return customAsyncClient;
     }
+
     protected String getTestRestCluster() {
         String cluster = System.getProperty("tests.rest.cluster");
         if (cluster == null) {
@@ -190,6 +191,7 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
     public MeterRegistry getStubRegistry() {
         return stubRegistry;
     }
+
     @After
     protected void wipeAllOSIndices() throws IOException {
         // wipe all data streams first, otherwise deleting backing indices will encounter exception
@@ -241,6 +243,7 @@ public abstract class OpenSearchJavaClientTestCase extends OpenSearchRestTestCas
             customAsyncClients.clear();
         }
     }
+
     protected Version getServerVersion() throws IOException {
         final InfoResponse info = javaClient().info();
 

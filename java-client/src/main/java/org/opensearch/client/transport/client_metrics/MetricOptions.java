@@ -1,3 +1,11 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
 package org.opensearch.client.transport.client_metrics;
 
 import static org.opensearch.client.transport.client_metrics.MetricConstants.DEFAULT_ADDITIONAL_METRIC_GROUPS;
@@ -24,8 +32,8 @@ public class MetricOptions {
     public MetricOptions(MetricOptionsBuilder builder) {
         meterRegistry = builder.meterRegistry == null ? DEFAULT_REGISTRY : builder.meterRegistry;
         clientId = builder.clientId == null || builder.clientId.isEmpty()
-                ? String.valueOf(TelemetryMetricsManager.generateClientID())
-                : builder.clientId;
+            ? String.valueOf(TelemetryMetricsManager.generateClientID())
+            : builder.clientId;
         percentiles = builder.percentiles == null ? DEFAULT_PERCENTILES : builder.percentiles;
         isEnabled = builder.isEnabled;
         excludedTags = builder.excludedTags == null ? DEFAULT_EXCLUDED_TAGS : builder.excludedTags;

@@ -1,3 +1,11 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * The OpenSearch Contributors require contributions made to
+ * this file be licensed under the Apache-2.0 license or a
+ * compatible open source license.
+ */
+
 package org.opensearch.client.transport.client_metrics;
 
 import static org.opensearch.client.transport.client_metrics.ExecutionMetricContext.DEFAULT_EMPTY_STATUS_CODE;
@@ -25,12 +33,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.opensearch.client.transport.client_metrics.ExecutionMetricContext;
-import org.opensearch.client.transport.client_metrics.MeterOptions;
-import org.opensearch.client.transport.client_metrics.MetricGroup;
-import org.opensearch.client.transport.client_metrics.MetricTag;
-import org.opensearch.client.transport.client_metrics.NetworkRequestMetricContext;
-import org.opensearch.client.transport.client_metrics.RequestMetricContext;
 
 public class TelemetryMetricsManager {
     private static final Log logger = LogFactory.getLog(TelemetryMetricsManager.class);
@@ -81,10 +83,10 @@ public class TelemetryMetricsManager {
      * @param metricGroups {@link MetricGroup} groups to record
      */
     public static void recordRequestMetrics(
-            String requestName,
-            MeterOptions meterOptions,
-            RequestMetricContext context,
-            Set<MetricGroup> metricGroups
+        String requestName,
+        MeterOptions meterOptions,
+        RequestMetricContext context,
+        Set<MetricGroup> metricGroups
     ) {
         if (requestName == null) {
             throw new IllegalArgumentException("Request name cannot be null");
@@ -105,10 +107,10 @@ public class TelemetryMetricsManager {
             Tags payloadSizeTags = Tags.of(MetricTag.REQUEST.toString(), requestName).and(meterOptions.getCommonTags());
             for (NetworkRequestMetricContext networkRequestMetricContext : context.getNetworkRequestContexts()) {
                 recordNetworkRequestMetric(
-                        meterOptions,
-                        networkRequestMetricContext,
-                        getRequestTags(requestName, networkRequestMetricContext),
-                        excludedTags
+                    meterOptions,
+                    networkRequestMetricContext,
+                    getRequestTags(requestName, networkRequestMetricContext),
+                    excludedTags
                 );
                 recordPayloadSizes(networkRequestMetricContext, payloadSizeTags);
             }
@@ -116,9 +118,9 @@ public class TelemetryMetricsManager {
     }
 
     public static void initializeNodeGauges(
-            MeterOptions meterOptions,
-            Supplier<Number> activeNodeUpdater,
-            Supplier<Number> inactiveNodeUpdater
+        MeterOptions meterOptions,
+        Supplier<Number> activeNodeUpdater,
+        Supplier<Number> inactiveNodeUpdater
     ) {
         if (meterOptions == null) {
             throw new IllegalArgumentException("Meter options cannot be null");
@@ -131,15 +133,15 @@ public class TelemetryMetricsManager {
         }
         Tags tags = Tags.empty().and(meterOptions.getCommonTags());
         Gauge.builder(ACTIVE_NODES.toString(), activeNodeUpdater)
-                .description("Number of active nodes to serve traffic")
-                .tags(tags)
-                .baseUnit("nodes")
-                .register(mainRegistry);
+            .description("Number of active nodes to serve traffic")
+            .tags(tags)
+            .baseUnit("nodes")
+            .register(mainRegistry);
         Gauge.builder(INACTIVE_NODES.toString(), inactiveNodeUpdater)
-                .description("Number of inactive nodes that cannot serve traffic")
-                .tags(tags)
-                .baseUnit("nodes")
-                .register(mainRegistry);
+            .description("Number of inactive nodes that cannot serve traffic")
+            .tags(tags)
+            .baseUnit("nodes")
+            .register(mainRegistry);
     }
 
     protected static void recordPayloadSizes(NetworkRequestMetricContext context, Tags tags) {
@@ -154,61 +156,61 @@ public class TelemetryMetricsManager {
         long responsePayloadSize = context.getResponsePayloadSize();
         if (requestPayloadSize > -1) {
             DistributionSummary.builder(REQUEST_PAYLOAD_SIZE.toString())
-                    .tags(tags)
-                    .description("Request payload size")
-                    .baseUnit("bytes")
-                    .register(mainRegistry)
-                    .record(requestPayloadSize);
+                .tags(tags)
+                .description("Request payload size")
+                .baseUnit("bytes")
+                .register(mainRegistry)
+                .record(requestPayloadSize);
         }
         if (responsePayloadSize > -1) {
             DistributionSummary.builder(RESPONSE_PAYLOAD_SIZE.toString())
-                    .tags(tags)
-                    .description("Response payload size")
-                    .baseUnit("bytes")
-                    .register(mainRegistry)
-                    .record(responsePayloadSize);
+                .tags(tags)
+                .description("Response payload size")
+                .baseUnit("bytes")
+                .register(mainRegistry)
+                .record(responsePayloadSize);
         }
     }
 
     private static void recordNetworkRequestMetric(
-            MeterOptions meterOptions,
-            NetworkRequestMetricContext context,
-            Tags requestTags,
-            Set<MetricTag> excludedTags
+        MeterOptions meterOptions,
+        NetworkRequestMetricContext context,
+        Tags requestTags,
+        Set<MetricTag> excludedTags
     ) {
         if (context.getRequestExecutionTime() != null) {
             Tags networkRequestTags = excludedTags.contains(MetricTag.HOST)
-                    ? requestTags
-                    : requestTags.and(Tag.of(MetricTag.HOST.toString(), context.getHostName()));
+                ? requestTags
+                : requestTags.and(Tag.of(MetricTag.HOST.toString(), context.getHostName()));
             Timer.builder(NETWORK_REQUEST.toString())
-                    .description("Apache HttpClient request latency")
-                    .publishPercentiles(meterOptions.getPercentiles())
-                    .tags(networkRequestTags.and(meterOptions.getCommonTags()))
-                    .maximumExpectedValue(Duration.ofSeconds(30))
-                    .register(mainRegistry)
-                    .record(context.getRequestExecutionTime());
+                .description("Apache HttpClient request latency")
+                .publishPercentiles(meterOptions.getPercentiles())
+                .tags(networkRequestTags.and(meterOptions.getCommonTags()))
+                .maximumExpectedValue(Duration.ofSeconds(30))
+                .register(mainRegistry)
+                .record(context.getRequestExecutionTime());
         } else if (logger.isDebugEnabled()) {
             logger.debug("Missing execution duration. Skipping " + NETWORK_REQUEST);
         }
     }
 
     private static void recordOverallRequestMetric(
-            MeterOptions meterOptions,
-            RequestMetricContext context,
-            Tags requiredRequestTags,
-            Set<MetricTag> excludedTags
+        MeterOptions meterOptions,
+        RequestMetricContext context,
+        Tags requiredRequestTags,
+        Set<MetricTag> excludedTags
     ) {
         if (context.getRequestExecutionTime() != null) {
             Tags requestMeterTags = excludedTags.contains(MetricTag.HOST_CONTACTED)
-                    ? requiredRequestTags
-                    : requiredRequestTags.and(Tag.of(MetricTag.HOST_CONTACTED.toString(), context.getContactedHosts()));
+                ? requiredRequestTags
+                : requiredRequestTags.and(Tag.of(MetricTag.HOST_CONTACTED.toString(), context.getContactedHosts()));
             Timer.builder(REQUEST.toString())
-                    .description("End-to-end request execution latency")
-                    .publishPercentiles(meterOptions.getPercentiles())
-                    .tags(requestMeterTags.and(meterOptions.getCommonTags()))
-                    .maximumExpectedValue(Duration.ofSeconds(30))
-                    .register(mainRegistry)
-                    .record(context.getRequestExecutionTime());
+                .description("End-to-end request execution latency")
+                .publishPercentiles(meterOptions.getPercentiles())
+                .tags(requestMeterTags.and(meterOptions.getCommonTags()))
+                .maximumExpectedValue(Duration.ofSeconds(30))
+                .register(mainRegistry)
+                .record(context.getRequestExecutionTime());
         } else if (logger.isDebugEnabled()) {
             logger.debug("Missing execution duration. Skipping " + REQUEST);
         }

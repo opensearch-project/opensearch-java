@@ -57,16 +57,16 @@ public abstract class AbstractClientMetricsIT extends OpenSearchJavaClientTestCa
     public void testDefaultMetricGroup() throws IOException {
         TelemetryMetricsManager.addRegistry(getStubRegistry());
         Future<HealthResponse> clusterHealthFuture = getCustomAsyncClient(getDefaultHosts(), restClientSettingsWithMetrics(Settings.EMPTY))
-                .cluster()
-                .health();
+            .cluster()
+            .health();
         await().atMost(2, TimeUnit.SECONDS).until(clusterHealthFuture::isDone);
         assertEquals(
-                1,
-                findMeter(
-                        getStubRegistry(),
-                        MetricName.REQUEST.toString(),
-                        Tags.of(MetricTag.REQUEST.toString(), HealthRequest.class.getSimpleName())
-                ).size()
+            1,
+            findMeter(
+                getStubRegistry(),
+                MetricName.REQUEST.toString(),
+                Tags.of(MetricTag.REQUEST.toString(), HealthRequest.class.getSimpleName())
+            ).size()
         );
         assertEquals(1, findMeter(getStubRegistry(), MetricName.ACTIVE_NODES.toString(), Tags.empty()).size());
         assertEquals(1, findMeter(getStubRegistry(), MetricName.INACTIVE_NODES.toString(), Tags.empty()).size());
@@ -79,64 +79,64 @@ public abstract class AbstractClientMetricsIT extends OpenSearchJavaClientTestCa
         AppData appData = new AppData();
         appData.setMsg("testMetrics");
         Future<IndexResponse> indexFuture = getCustomAsyncClient(getDefaultHosts(), restClientSettingsWithMetrics(ALL_METRIC_GROUP_SETTING))
-                .index(b -> b.index(index).id(id).document(appData).refresh(Refresh.True));
+            .index(b -> b.index(index).id(id).document(appData).refresh(Refresh.True));
         await().atMost(2, TimeUnit.SECONDS).until(indexFuture::isDone);
 
         assertEquals(
-                1,
-                findMeter(
-                        getStubRegistry(),
-                        MetricName.REQUEST.toString(),
-                        Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
-                ).size()
+            1,
+            findMeter(
+                getStubRegistry(),
+                MetricName.REQUEST.toString(),
+                Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
+            ).size()
         );
         assertEquals(1, findMeter(getStubRegistry(), MetricName.ACTIVE_NODES.toString(), Tags.empty()).size());
         assertEquals(1, findMeter(getStubRegistry(), MetricName.INACTIVE_NODES.toString(), Tags.empty()).size());
         assertEquals(
-                1,
-                findMeter(
-                        getStubRegistry(),
-                        MetricName.NETWORK_REQUEST.toString(),
-                        Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
-                ).size()
+            1,
+            findMeter(
+                getStubRegistry(),
+                MetricName.NETWORK_REQUEST.toString(),
+                Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
+            ).size()
         );
         assertEquals(
-                1,
-                findMeter(
-                        getStubRegistry(),
-                        MetricName.RESPONSE_PAYLOAD_SIZE.toString(),
-                        Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
-                ).size()
+            1,
+            findMeter(
+                getStubRegistry(),
+                MetricName.RESPONSE_PAYLOAD_SIZE.toString(),
+                Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
+            ).size()
         );
         assertEquals(
-                1,
-                findMeter(
-                        getStubRegistry(),
-                        MetricName.REQUEST_PAYLOAD_SIZE.toString(),
-                        Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
-                ).size()
+            1,
+            findMeter(
+                getStubRegistry(),
+                MetricName.REQUEST_PAYLOAD_SIZE.toString(),
+                Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
+            ).size()
         );
     }
 
     public void testRequestMetricResponse() throws IOException {
         TelemetryMetricsManager.addRegistry(getStubRegistry());
         Future<HealthResponse> clusterHealthFuture = getCustomAsyncClient(
-                getDefaultHosts(),
-                restClientSettingsWithMetrics(ALL_METRIC_GROUP_SETTING)
+            getDefaultHosts(),
+            restClientSettingsWithMetrics(ALL_METRIC_GROUP_SETTING)
         ).cluster().health();
         await().atMost(2, TimeUnit.SECONDS).until(clusterHealthFuture::isDone);
         List<Meter> meter = findMeter(
-                getStubRegistry(),
-                MetricName.REQUEST.toString(),
-                Tags.of(MetricTag.REQUEST.toString(), HealthRequest.class.getSimpleName())
+            getStubRegistry(),
+            MetricName.REQUEST.toString(),
+            Tags.of(MetricTag.REQUEST.toString(), HealthRequest.class.getSimpleName())
         );
         assertEquals(1, meter.size());
         Meter clusterHealthMeter = meter.get(0);
 
         meter = findMeter(
-                getStubRegistry(),
-                MetricName.NETWORK_REQUEST.toString(),
-                Tags.of(MetricTag.REQUEST.toString(), HealthRequest.class.getSimpleName())
+            getStubRegistry(),
+            MetricName.NETWORK_REQUEST.toString(),
+            Tags.of(MetricTag.REQUEST.toString(), HealthRequest.class.getSimpleName())
         );
         assertEquals(1, meter.size());
         Meter clusterHealthNetworkMeter = meter.get(0);
@@ -164,9 +164,9 @@ public abstract class AbstractClientMetricsIT extends OpenSearchJavaClientTestCa
         client.index(b -> b.index(index).id(id).document(appData).refresh(Refresh.True)).get();
         try {
             CreateRequest<AppData> duplicateCreateRequest = new CreateRequest.Builder<AppData>().index(index)
-                    .id(id)
-                    .document(appData)
-                    .build();
+                .id(id)
+                .document(appData)
+                .build();
             client.create(duplicateCreateRequest).get();
             fail("Should have failed due to version conflict");
         } catch (ExecutionException e) {
@@ -178,17 +178,17 @@ public abstract class AbstractClientMetricsIT extends OpenSearchJavaClientTestCa
         }
         // Check metrics
         List<Meter> meter = findMeter(
-                getStubRegistry(),
-                MetricName.REQUEST.toString(),
-                Tags.of(MetricTag.REQUEST.toString(), CreateRequest.class.getSimpleName())
+            getStubRegistry(),
+            MetricName.REQUEST.toString(),
+            Tags.of(MetricTag.REQUEST.toString(), CreateRequest.class.getSimpleName())
         );
         assertEquals(1, meter.size());
         Timer createMeter = (Timer) meter.get(0);
 
         meter = findMeter(
-                getStubRegistry(),
-                MetricName.NETWORK_REQUEST.toString(),
-                Tags.of(MetricTag.REQUEST.toString(), CreateRequest.class.getSimpleName())
+            getStubRegistry(),
+            MetricName.NETWORK_REQUEST.toString(),
+            Tags.of(MetricTag.REQUEST.toString(), CreateRequest.class.getSimpleName())
         );
         assertEquals(1, meter.size());
         Timer createNetworkMeter = (Timer) meter.get(0);
@@ -215,7 +215,7 @@ public abstract class AbstractClientMetricsIT extends OpenSearchJavaClientTestCa
         appData.setMsg("testRequestMetricResponseExceptionHandled");
         try {
             getCustomAsyncClient(getDefaultHosts(), restClientSettingsWithMetrics(ALL_METRIC_GROUP_SETTING)).index(
-                    b -> b.index(malformedIndexName).id(id).document(appData).refresh(Refresh.True)
+                b -> b.index(malformedIndexName).id(id).document(appData).refresh(Refresh.True)
             ).get();
             fail("Should have failed due to invalid index name");
         } catch (ExecutionException e) {
@@ -227,17 +227,17 @@ public abstract class AbstractClientMetricsIT extends OpenSearchJavaClientTestCa
         }
         // Check metrics
         List<Meter> meter = findMeter(
-                getStubRegistry(),
-                MetricName.REQUEST.toString(),
-                Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
+            getStubRegistry(),
+            MetricName.REQUEST.toString(),
+            Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
         );
         assertEquals(1, meter.size());
         Timer indexMeter = (Timer) meter.get(0);
 
         meter = findMeter(
-                getStubRegistry(),
-                MetricName.NETWORK_REQUEST.toString(),
-                Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
+            getStubRegistry(),
+            MetricName.NETWORK_REQUEST.toString(),
+            Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
         );
         assertEquals(1, meter.size());
         Timer indexNetworkMeter = (Timer) meter.get(0);
@@ -265,7 +265,7 @@ public abstract class AbstractClientMetricsIT extends OpenSearchJavaClientTestCa
 
         try {
             getCustomAsyncClient(BAD_HOSTS, restClientSettingsWithMetrics(ALL_METRIC_GROUP_SETTING)).index(
-                    b -> b.index(indexName).id(id).document(appData).refresh(Refresh.True)
+                b -> b.index(indexName).id(id).document(appData).refresh(Refresh.True)
             ).get();
             fail("Should have failed due to bad host");
         } catch (ExecutionException e) {
@@ -276,17 +276,17 @@ public abstract class AbstractClientMetricsIT extends OpenSearchJavaClientTestCa
         }
         // Check metric
         List<Meter> meter = findMeter(
-                getStubRegistry(),
-                MetricName.REQUEST.toString(),
-                Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
+            getStubRegistry(),
+            MetricName.REQUEST.toString(),
+            Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
         );
         assertEquals(1, meter.size());
         Timer indexMeter = (Timer) meter.get(0);
 
         meter = findMeter(
-                getStubRegistry(),
-                MetricName.NETWORK_REQUEST.toString(),
-                Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
+            getStubRegistry(),
+            MetricName.NETWORK_REQUEST.toString(),
+            Tags.of(MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
         );
         assertEquals(2, meter.size());
 
@@ -310,22 +310,22 @@ public abstract class AbstractClientMetricsIT extends OpenSearchJavaClientTestCa
         TelemetryMetricsManager.addRegistry(getStubRegistry());
         String clientID = "badHostClient";
         OpenSearchAsyncClient client = getCustomAsyncClient(
-                BAD_HOSTS,
-                restClientSettingsWithMetrics(Settings.builder().put(CUSTOM_CLIENT_ID, clientID).put(ALL_METRIC_GROUP_SETTING).build())
+            BAD_HOSTS,
+            restClientSettingsWithMetrics(Settings.builder().put(CUSTOM_CLIENT_ID, clientID).put(ALL_METRIC_GROUP_SETTING).build())
         );
         // Verify active nodes
         List<Meter> activeNodeMeter = findMeter(
-                getStubRegistry(),
-                MetricName.ACTIVE_NODES.toString(),
-                Tags.of(MetricTag.CLIENT_ID.toString(), clientID)
+            getStubRegistry(),
+            MetricName.ACTIVE_NODES.toString(),
+            Tags.of(MetricTag.CLIENT_ID.toString(), clientID)
         );
         assertEquals(1, activeNodeMeter.size());
         assertEquals(2, ((Gauge) activeNodeMeter.get(0)).value(), 0);
         // Verify inactive nodes
         List<Meter> inactiveNodeMeter = findMeter(
-                getStubRegistry(),
-                MetricName.INACTIVE_NODES.toString(),
-                Tags.of(MetricTag.CLIENT_ID.toString(), clientID)
+            getStubRegistry(),
+            MetricName.INACTIVE_NODES.toString(),
+            Tags.of(MetricTag.CLIENT_ID.toString(), clientID)
         );
         assertEquals(1, inactiveNodeMeter.size());
         assertEquals(0, ((Gauge) inactiveNodeMeter.get(0)).value(), 0);
@@ -347,17 +347,17 @@ public abstract class AbstractClientMetricsIT extends OpenSearchJavaClientTestCa
 
         // Verify active nodes
         activeNodeMeter = findMeter(
-                getStubRegistry(),
-                MetricName.ACTIVE_NODES.toString(),
-                Tags.of(MetricTag.CLIENT_ID.toString(), clientID)
+            getStubRegistry(),
+            MetricName.ACTIVE_NODES.toString(),
+            Tags.of(MetricTag.CLIENT_ID.toString(), clientID)
         );
         assertEquals(1, activeNodeMeter.size());
         assertEquals(0, ((Gauge) activeNodeMeter.get(0)).value(), 0);
         // Verify inactive nodes
         inactiveNodeMeter = findMeter(
-                getStubRegistry(),
-                MetricName.INACTIVE_NODES.toString(),
-                Tags.of(MetricTag.CLIENT_ID.toString(), clientID)
+            getStubRegistry(),
+            MetricName.INACTIVE_NODES.toString(),
+            Tags.of(MetricTag.CLIENT_ID.toString(), clientID)
         );
         assertEquals(1, inactiveNodeMeter.size());
         assertEquals(2, ((Gauge) inactiveNodeMeter.get(0)).value(), 0);
@@ -367,8 +367,8 @@ public abstract class AbstractClientMetricsIT extends OpenSearchJavaClientTestCa
         TelemetryMetricsManager.addRegistry(getStubRegistry());
         String clientID = "compressingClient";
         OpenSearchAsyncClient client = getCustomAsyncClient(
-                Stream.concat(Arrays.stream(BAD_HOSTS), Arrays.stream(getDefaultHosts())).toArray(HttpHost[]::new),
-                restClientSettingsWithMetrics(Settings.builder().put(CUSTOM_CLIENT_ID, clientID).put(ALL_METRIC_GROUP_SETTING).build())
+            Stream.concat(Arrays.stream(BAD_HOSTS), Arrays.stream(getDefaultHosts())).toArray(HttpHost[]::new),
+            restClientSettingsWithMetrics(Settings.builder().put(CUSTOM_CLIENT_ID, clientID).put(ALL_METRIC_GROUP_SETTING).build())
         );
         String index = "index_metrics";
         String id = UUID.randomUUID().toString();
@@ -379,16 +379,16 @@ public abstract class AbstractClientMetricsIT extends OpenSearchJavaClientTestCa
         Future<IndexResponse> indexFuture = client.index(b -> b.index(index).id(id).document(appData).refresh(Refresh.True));
         await().atMost(Duration.ofSeconds(2)).until(indexFuture::isDone);
         DistributionSummary indexRequestPayload = (DistributionSummary) findMeter(
-                getStubRegistry(),
-                MetricName.REQUEST_PAYLOAD_SIZE.toString(),
-                Tags.of(MetricTag.CLIENT_ID.toString(), clientID, MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
+            getStubRegistry(),
+            MetricName.REQUEST_PAYLOAD_SIZE.toString(),
+            Tags.of(MetricTag.CLIENT_ID.toString(), clientID, MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
         ).get(0);
         assertTrue(500 <= indexRequestPayload.max() && indexRequestPayload.max() <= 600);
         assertEquals(1, indexRequestPayload.count());
         DistributionSummary indexResponsePayload = (DistributionSummary) findMeter(
-                getStubRegistry(),
-                MetricName.RESPONSE_PAYLOAD_SIZE.toString(),
-                Tags.of(MetricTag.CLIENT_ID.toString(), clientID, MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
+            getStubRegistry(),
+            MetricName.RESPONSE_PAYLOAD_SIZE.toString(),
+            Tags.of(MetricTag.CLIENT_ID.toString(), clientID, MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
         ).get(0);
         assertEquals(1, indexResponsePayload.count());
 
@@ -397,16 +397,16 @@ public abstract class AbstractClientMetricsIT extends OpenSearchJavaClientTestCa
         CompletableFuture<UpdateResponse<AppData>> updateFuture = client.update(b -> b.doc(appData).index(index).id(id), AppData.class);
         await().atMost(Duration.ofSeconds(2)).until(updateFuture::isDone);
         DistributionSummary updateRequestPayload = (DistributionSummary) findMeter(
-                getStubRegistry(),
-                MetricName.REQUEST_PAYLOAD_SIZE.toString(),
-                Tags.of(MetricTag.CLIENT_ID.toString(), clientID, MetricTag.REQUEST.toString(), UpdateRequest.class.getSimpleName())
+            getStubRegistry(),
+            MetricName.REQUEST_PAYLOAD_SIZE.toString(),
+            Tags.of(MetricTag.CLIENT_ID.toString(), clientID, MetricTag.REQUEST.toString(), UpdateRequest.class.getSimpleName())
         ).get(0);
         assertTrue(5 * 1024 <= updateRequestPayload.max() && updateRequestPayload.max() <= (5 * 1024 + 100));
         assertEquals(1, updateRequestPayload.count());
         DistributionSummary updateResponsePayload = (DistributionSummary) findMeter(
-                getStubRegistry(),
-                MetricName.RESPONSE_PAYLOAD_SIZE.toString(),
-                Tags.of(MetricTag.CLIENT_ID.toString(), clientID, MetricTag.REQUEST.toString(), UpdateRequest.class.getSimpleName())
+            getStubRegistry(),
+            MetricName.RESPONSE_PAYLOAD_SIZE.toString(),
+            Tags.of(MetricTag.CLIENT_ID.toString(), clientID, MetricTag.REQUEST.toString(), UpdateRequest.class.getSimpleName())
         ).get(0);
         assertTrue(updateResponsePayload.max() > 0);
         assertEquals(1, updateResponsePayload.count());
@@ -416,10 +416,10 @@ public abstract class AbstractClientMetricsIT extends OpenSearchJavaClientTestCa
         TelemetryMetricsManager.addRegistry(getStubRegistry());
         String clientID = "compressingClient";
         OpenSearchAsyncClient client = getCustomAsyncClient(
-                getDefaultHosts(),
-                restClientSettingsWithMetrics(
-                        Settings.builder().put(CUSTOM_CLIENT_ID, clientID).put(ALL_METRIC_GROUP_SETTING).put(COMPRESSION_ENABLED, true).build()
-                )
+            getDefaultHosts(),
+            restClientSettingsWithMetrics(
+                Settings.builder().put(CUSTOM_CLIENT_ID, clientID).put(ALL_METRIC_GROUP_SETTING).put(COMPRESSION_ENABLED, true).build()
+            )
         );
         String index = "index_metrics";
         String id = UUID.randomUUID().toString();
@@ -428,11 +428,11 @@ public abstract class AbstractClientMetricsIT extends OpenSearchJavaClientTestCa
         Future<IndexResponse> indexFuture = client.index(b -> b.index(index).id(id).document(appData).refresh(Refresh.True));
         await().atMost(Duration.ofSeconds(2)).until(indexFuture::isDone);
         assertTrue(
-                findMeter(
-                        getStubRegistry(),
-                        MetricName.REQUEST_PAYLOAD_SIZE.toString(),
-                        Tags.of(MetricTag.CLIENT_ID.toString(), clientID, MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
-                ).isEmpty()
+            findMeter(
+                getStubRegistry(),
+                MetricName.REQUEST_PAYLOAD_SIZE.toString(),
+                Tags.of(MetricTag.CLIENT_ID.toString(), clientID, MetricTag.REQUEST.toString(), IndexRequest.class.getSimpleName())
+            ).isEmpty()
         );
     }
 

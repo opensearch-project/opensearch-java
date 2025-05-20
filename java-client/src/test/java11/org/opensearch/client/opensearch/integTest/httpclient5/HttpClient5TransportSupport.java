@@ -118,9 +118,9 @@ interface HttpClient5TransportSupport extends OpenSearchTransportSupport {
         }
         if (settings.hasValue(METRICS_ENABLED) && settings.getAsBoolean(METRICS_ENABLED, false)) {
             MetricOptions.MetricOptionsBuilder metricOptionsBuilder = MetricOptions.builder()
-                    .setMeterRegistry(new SimpleMeterRegistry())
-                    .setPercentiles(0.95)
-                    .setMetricsEnabled(true);
+                .setMeterRegistry(new SimpleMeterRegistry())
+                .setPercentiles(0.95)
+                .setMetricsEnabled(true);
             if (settings.hasValue(CUSTOM_CLIENT_ID)) {
                 metricOptionsBuilder.setClientId(settings.get(CUSTOM_CLIENT_ID));
             }

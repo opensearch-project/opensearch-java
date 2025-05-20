@@ -1,4 +1,3 @@
-
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -30,13 +29,13 @@ public class MetricOptionsTest {
         MeterRegistry meterRegistry = new SimpleMeterRegistry();
         String clientID = "testClient";
         MetricOptions metricOptions = MetricOptions.builder()
-                .setMetricsEnabled(true)
-                .setMeterRegistry(meterRegistry)
-                .setClientId(clientID)
-                .setPercentiles(0.90, 0.8, 0.5)
-                .setExcludedTags(MetricTag.HOST_CONTACTED, MetricTag.STATUS_CODE_OR_EXCEPTION)
-                .setAdditionalMetricGroups(MetricGroup.NETWORK_DETAILS)
-                .build();
+            .setMetricsEnabled(true)
+            .setMeterRegistry(meterRegistry)
+            .setClientId(clientID)
+            .setPercentiles(0.90, 0.8, 0.5)
+            .setExcludedTags(MetricTag.HOST_CONTACTED, MetricTag.STATUS_CODE_OR_EXCEPTION)
+            .setAdditionalMetricGroups(MetricGroup.NETWORK_DETAILS)
+            .build();
         assertTrue(metricOptions.isMetricsEnabled());
         assertEquals(meterRegistry, metricOptions.getMeterRegistry());
         assertEquals(clientID, metricOptions.getClientId());

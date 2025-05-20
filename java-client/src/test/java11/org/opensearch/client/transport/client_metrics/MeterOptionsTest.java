@@ -19,9 +19,9 @@ public class MeterOptionsTest {
     @Test
     public void testMeterOptions() {
         MeterOptions meterOptions = new MeterOptions(
-                new double[] { 0.80, 0.85 },
-                Tags.of("test1", "test2"),
-                EnumSet.of(MetricTag.CLIENT_ID)
+            new double[] { 0.80, 0.85 },
+            Tags.of("test1", "test2"),
+            EnumSet.of(MetricTag.CLIENT_ID)
         );
         assertArrayEquals(new double[] { 0.80, 0.85 }, meterOptions.getPercentiles(), 0);
         assertEquals(Tags.of("test1", "test2"), meterOptions.getCommonTags());
