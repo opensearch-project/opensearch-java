@@ -248,7 +248,7 @@ dependencies {
     }
 
     // Micrometer
-    implementation("io.micrometer:micrometer-core:1.12.3")
+    implementation("io.micrometer:micrometer-core:1.13.13")
 
     // Awaitility
     testImplementation("org.awaitility:awaitility:4.2.0")
