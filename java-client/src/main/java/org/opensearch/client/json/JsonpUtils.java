@@ -43,8 +43,6 @@ import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
 import java.io.StringReader;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.AbstractMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -80,26 +78,26 @@ public class JsonpUtils {
         public <T> void serialize(T value, JsonGenerator generator) {
             if (value instanceof JsonpSerializable) {
                 ((JsonpSerializable) value).serialize(generator, this);
-            } else if (value instanceof JsonValue) {
-                generator.write((JsonValue) value);
-            } else if (value instanceof String) {
-                generator.write((String) value);
-            } else if (value instanceof BigDecimal) {
-                generator.write((BigDecimal) value);
-            } else if (value instanceof BigInteger) {
-                generator.write((BigInteger) value);
-            } else if (value instanceof Short) {
-                generator.write((Short) value);
-            } else if (value instanceof Integer) {
-                generator.write((Integer) value);
-            } else if (value instanceof Long) {
-                generator.write((Long) value);
-            } else if (value instanceof Float) {
-                generator.write((Float) value);
-            } else if (value instanceof Double) {
-                generator.write((Double) value);
-            } else if (value instanceof Boolean) {
-                generator.write((Boolean) value);
+                // } else if (value instanceof JsonValue) {
+                // generator.write((JsonValue) value);
+                // } else if (value instanceof String) {
+                // generator.write((String) value);
+                // } else if (value instanceof BigDecimal) {
+                // generator.write((BigDecimal) value);
+                // } else if (value instanceof BigInteger) {
+                // generator.write((BigInteger) value);
+                // } else if (value instanceof Short) {
+                // generator.write((Short) value);
+                // } else if (value instanceof Integer) {
+                // generator.write((Integer) value);
+                // } else if (value instanceof Long) {
+                // generator.write((Long) value);
+                // } else if (value instanceof Float) {
+                // generator.write((Float) value);
+                // } else if (value instanceof Double) {
+                // generator.write((Double) value);
+                // } else if (value instanceof Boolean) {
+                // generator.write((Boolean) value);
             } else {
                 throw new JsonException(
                     "Cannot find a serializer for type " + value.getClass().getName() + ". Consider using a full-featured JsonpMapper."

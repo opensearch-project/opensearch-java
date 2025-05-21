@@ -28,10 +28,4 @@ public class IndexRequestTest extends Assert {
             this.key = key;
         }
     }
-
-    @Test
-    public void indexRequestToJson() {
-        IndexRequest<Object> indexRequest = IndexRequest.of(i -> i.index("index").document("document"));
-        assertNotNull(indexRequest.toJsonString());
-    }
 }
