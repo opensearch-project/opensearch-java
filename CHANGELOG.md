@@ -13,6 +13,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fixed direct serialization of primitive types in `DEFAULT_JSONP_MAPPER` as used by `toJsonString()` ([#1524](https://github.com/opensearch-project/opensearch-java/pull/1524))
 
 ### Security
 
