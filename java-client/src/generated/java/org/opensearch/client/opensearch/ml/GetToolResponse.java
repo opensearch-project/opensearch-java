@@ -36,6 +36,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class GetToolResponse implements PlainJsonSerializable, ToCopyableBuilder<GetToolResponse.Builder, GetToolResponse> {
 
     @Nullable
+    private final ToolAttributes attributes;
+
+    @Nullable
     private final String description;
 
     @Nullable
@@ -50,6 +53,7 @@ public class GetToolResponse implements PlainJsonSerializable, ToCopyableBuilder
     // ---------------------------------------------------------------------------------------------
 
     private GetToolResponse(Builder builder) {
+        this.attributes = builder.attributes;
         this.description = builder.description;
         this.name = builder.name;
         this.type = builder.type;
@@ -58,6 +62,14 @@ public class GetToolResponse implements PlainJsonSerializable, ToCopyableBuilder
 
     public static GetToolResponse of(Function<GetToolResponse.Builder, ObjectBuilder<GetToolResponse>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * API name: {@code attributes}
+     */
+    @Nullable
+    public final ToolAttributes attributes() {
+        return this.attributes;
     }
 
     /**
@@ -109,6 +121,11 @@ public class GetToolResponse implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.attributes != null) {
+            generator.writeKey("attributes");
+            this.attributes.serialize(generator, mapper);
+        }
+
         if (this.description != null) {
             generator.writeKey("description");
             generator.write(this.description);
@@ -148,6 +165,8 @@ public class GetToolResponse implements PlainJsonSerializable, ToCopyableBuilder
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetToolResponse> {
         @Nullable
+        private ToolAttributes attributes;
+        @Nullable
         private String description;
         @Nullable
         private String name;
@@ -159,6 +178,7 @@ public class GetToolResponse implements PlainJsonSerializable, ToCopyableBuilder
         public Builder() {}
 
         private Builder(GetToolResponse o) {
+            this.attributes = o.attributes;
             this.description = o.description;
             this.name = o.name;
             this.type = o.type;
@@ -166,6 +186,7 @@ public class GetToolResponse implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         private Builder(Builder o) {
+            this.attributes = o.attributes;
             this.description = o.description;
             this.name = o.name;
             this.type = o.type;
@@ -176,6 +197,23 @@ public class GetToolResponse implements PlainJsonSerializable, ToCopyableBuilder
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        /**
+         * API name: {@code attributes}
+         */
+        @Nonnull
+        public final Builder attributes(@Nullable ToolAttributes value) {
+            this.attributes = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code attributes}
+         */
+        @Nonnull
+        public final Builder attributes(Function<ToolAttributes.Builder, ObjectBuilder<ToolAttributes>> fn) {
+            return attributes(fn.apply(new ToolAttributes.Builder()).build());
         }
 
         /**
@@ -245,6 +283,7 @@ public class GetToolResponse implements PlainJsonSerializable, ToCopyableBuilder
     );
 
     protected static void setupGetToolResponseDeserializer(ObjectDeserializer<GetToolResponse.Builder> op) {
+        op.add(Builder::attributes, ToolAttributes._DESERIALIZER, "attributes");
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
@@ -254,6 +293,7 @@ public class GetToolResponse implements PlainJsonSerializable, ToCopyableBuilder
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.attributes);
         result = 31 * result + Objects.hashCode(this.description);
         result = 31 * result + Objects.hashCode(this.name);
         result = 31 * result + Objects.hashCode(this.type);
@@ -266,7 +306,8 @@ public class GetToolResponse implements PlainJsonSerializable, ToCopyableBuilder
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         GetToolResponse other = (GetToolResponse) o;
-        return Objects.equals(this.description, other.description)
+        return Objects.equals(this.attributes, other.attributes)
+            && Objects.equals(this.description, other.description)
             && Objects.equals(this.name, other.name)
             && Objects.equals(this.type, other.type)
             && Objects.equals(this.version, other.version);

@@ -40,6 +40,12 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolItems.Builder, ToolItems> {
 
     @Nullable
+    private final ToolAttributes attributes;
+
+    @Nullable
+    private final String description;
+
+    @Nullable
     private final Boolean includeOutputInAgentResponse;
 
     @Nonnull
@@ -57,6 +63,8 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
     // ---------------------------------------------------------------------------------------------
 
     private ToolItems(Builder builder) {
+        this.attributes = builder.attributes;
+        this.description = builder.description;
         this.includeOutputInAgentResponse = builder.includeOutputInAgentResponse;
         this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
         this.name = builder.name;
@@ -66,6 +74,22 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
 
     public static ToolItems of(Function<ToolItems.Builder, ObjectBuilder<ToolItems>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * API name: {@code attributes}
+     */
+    @Nullable
+    public final ToolAttributes attributes() {
+        return this.attributes;
+    }
+
+    /**
+     * API name: {@code description}
+     */
+    @Nullable
+    public final String description() {
+        return this.description;
     }
 
     /**
@@ -120,6 +144,16 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
             generator.writeKey(item0.getKey());
             item0.getValue().serialize(generator, mapper);
         }
+        if (this.attributes != null) {
+            generator.writeKey("attributes");
+            this.attributes.serialize(generator, mapper);
+        }
+
+        if (this.description != null) {
+            generator.writeKey("description");
+            generator.write(this.description);
+        }
+
         if (this.includeOutputInAgentResponse != null) {
             generator.writeKey("include_output_in_agent_response");
             generator.write(this.includeOutputInAgentResponse);
@@ -164,6 +198,10 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ToolItems> {
         @Nullable
+        private ToolAttributes attributes;
+        @Nullable
+        private String description;
+        @Nullable
         private Boolean includeOutputInAgentResponse;
         @Nullable
         private Map<String, JsonData> metadata;
@@ -177,6 +215,8 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
         public Builder() {}
 
         private Builder(ToolItems o) {
+            this.attributes = o.attributes;
+            this.description = o.description;
             this.includeOutputInAgentResponse = o.includeOutputInAgentResponse;
             this.metadata = _mapCopy(o.metadata);
             this.name = o.name;
@@ -185,6 +225,8 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
         }
 
         private Builder(Builder o) {
+            this.attributes = o.attributes;
+            this.description = o.description;
             this.includeOutputInAgentResponse = o.includeOutputInAgentResponse;
             this.metadata = _mapCopy(o.metadata);
             this.name = o.name;
@@ -196,6 +238,32 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        /**
+         * API name: {@code attributes}
+         */
+        @Nonnull
+        public final Builder attributes(@Nullable ToolAttributes value) {
+            this.attributes = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code attributes}
+         */
+        @Nonnull
+        public final Builder attributes(Function<ToolAttributes.Builder, ObjectBuilder<ToolAttributes>> fn) {
+            return attributes(fn.apply(new ToolAttributes.Builder()).build());
+        }
+
+        /**
+         * API name: {@code description}
+         */
+        @Nonnull
+        public final Builder description(@Nullable String value) {
+            this.description = value;
+            return this;
         }
 
         /**
@@ -300,6 +368,8 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
     );
 
     protected static void setupToolItemsDeserializer(ObjectDeserializer<ToolItems.Builder> op) {
+        op.add(Builder::attributes, ToolAttributes._DESERIALIZER, "attributes");
+        op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::includeOutputInAgentResponse, JsonpDeserializer.booleanDeserializer(), "include_output_in_agent_response");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "parameters");
@@ -315,6 +385,8 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.attributes);
+        result = 31 * result + Objects.hashCode(this.description);
         result = 31 * result + Objects.hashCode(this.includeOutputInAgentResponse);
         result = 31 * result + Objects.hashCode(this.metadata);
         result = 31 * result + Objects.hashCode(this.name);
@@ -328,7 +400,9 @@ public class ToolItems implements PlainJsonSerializable, ToCopyableBuilder<ToolI
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         ToolItems other = (ToolItems) o;
-        return Objects.equals(this.includeOutputInAgentResponse, other.includeOutputInAgentResponse)
+        return Objects.equals(this.attributes, other.attributes)
+            && Objects.equals(this.description, other.description)
+            && Objects.equals(this.includeOutputInAgentResponse, other.includeOutputInAgentResponse)
             && Objects.equals(this.metadata, other.metadata)
             && Objects.equals(this.name, other.name)
             && Objects.equals(this.parameters, other.parameters)

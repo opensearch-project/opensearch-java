@@ -48,47 +48,51 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: search_pipeline.ScoreCombination
+// typedef: search_pipeline.ScoreRankerCombination
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ScoreCombination implements PlainJsonSerializable, ToCopyableBuilder<ScoreCombination.Builder, ScoreCombination> {
+public class ScoreRankerCombination
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<ScoreRankerCombination.Builder, ScoreRankerCombination> {
 
     @Nullable
-    private final ScoreCombinationParameters parameters;
+    private final Integer rankConstant;
 
-    @Nullable
-    private final ScoreCombinationTechnique technique;
+    @Nonnull
+    private final ScoreRankerCombinationTechnique technique;
 
     // ---------------------------------------------------------------------------------------------
 
-    private ScoreCombination(Builder builder) {
-        this.parameters = builder.parameters;
-        this.technique = builder.technique;
+    private ScoreRankerCombination(Builder builder) {
+        this.rankConstant = builder.rankConstant;
+        this.technique = ApiTypeHelper.requireNonNull(builder.technique, this, "technique");
     }
 
-    public static ScoreCombination of(Function<ScoreCombination.Builder, ObjectBuilder<ScoreCombination>> fn) {
+    public static ScoreRankerCombination of(Function<ScoreRankerCombination.Builder, ObjectBuilder<ScoreRankerCombination>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * API name: {@code parameters}
+     * API name: {@code rank_constant}
      */
     @Nullable
-    public final ScoreCombinationParameters parameters() {
-        return this.parameters;
+    public final Integer rankConstant() {
+        return this.rankConstant;
     }
 
     /**
-     * API name: {@code technique}
+     * Required - API name: {@code technique}
      */
-    @Nullable
-    public final ScoreCombinationTechnique technique() {
+    @Nonnull
+    public final ScoreRankerCombinationTechnique technique() {
         return this.technique;
     }
 
@@ -103,15 +107,13 @@ public class ScoreCombination implements PlainJsonSerializable, ToCopyableBuilde
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.parameters != null) {
-            generator.writeKey("parameters");
-            this.parameters.serialize(generator, mapper);
+        if (this.rankConstant != null) {
+            generator.writeKey("rank_constant");
+            generator.write(this.rankConstant);
         }
 
-        if (this.technique != null) {
-            generator.writeKey("technique");
-            this.technique.serialize(generator, mapper);
-        }
+        generator.writeKey("technique");
+        this.technique.serialize(generator, mapper);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -128,23 +130,22 @@ public class ScoreCombination implements PlainJsonSerializable, ToCopyableBuilde
     }
 
     /**
-     * Builder for {@link ScoreCombination}.
+     * Builder for {@link ScoreRankerCombination}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ScoreCombination> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ScoreRankerCombination> {
         @Nullable
-        private ScoreCombinationParameters parameters;
-        @Nullable
-        private ScoreCombinationTechnique technique;
+        private Integer rankConstant;
+        private ScoreRankerCombinationTechnique technique;
 
         public Builder() {}
 
-        private Builder(ScoreCombination o) {
-            this.parameters = o.parameters;
+        private Builder(ScoreRankerCombination o) {
+            this.rankConstant = o.rankConstant;
             this.technique = o.technique;
         }
 
         private Builder(Builder o) {
-            this.parameters = o.parameters;
+            this.rankConstant = o.rankConstant;
             this.technique = o.technique;
         }
 
@@ -155,65 +156,57 @@ public class ScoreCombination implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
-         * API name: {@code parameters}
+         * API name: {@code rank_constant}
          */
         @Nonnull
-        public final Builder parameters(@Nullable ScoreCombinationParameters value) {
-            this.parameters = value;
+        public final Builder rankConstant(@Nullable Integer value) {
+            this.rankConstant = value;
             return this;
         }
 
         /**
-         * API name: {@code parameters}
+         * Required - API name: {@code technique}
          */
         @Nonnull
-        public final Builder parameters(Function<ScoreCombinationParameters.Builder, ObjectBuilder<ScoreCombinationParameters>> fn) {
-            return parameters(fn.apply(new ScoreCombinationParameters.Builder()).build());
-        }
-
-        /**
-         * API name: {@code technique}
-         */
-        @Nonnull
-        public final Builder technique(@Nullable ScoreCombinationTechnique value) {
+        public final Builder technique(ScoreRankerCombinationTechnique value) {
             this.technique = value;
             return this;
         }
 
         /**
-         * Builds a {@link ScoreCombination}.
+         * Builds a {@link ScoreRankerCombination}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public ScoreCombination build() {
+        public ScoreRankerCombination build() {
             _checkSingleUse();
 
-            return new ScoreCombination(this);
+            return new ScoreRankerCombination(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link ScoreCombination}
+     * Json deserializer for {@link ScoreRankerCombination}
      */
-    public static final JsonpDeserializer<ScoreCombination> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<ScoreRankerCombination> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        ScoreCombination::setupScoreCombinationDeserializer
+        ScoreRankerCombination::setupScoreRankerCombinationDeserializer
     );
 
-    protected static void setupScoreCombinationDeserializer(ObjectDeserializer<ScoreCombination.Builder> op) {
-        op.add(Builder::parameters, ScoreCombinationParameters._DESERIALIZER, "parameters");
-        op.add(Builder::technique, ScoreCombinationTechnique._DESERIALIZER, "technique");
+    protected static void setupScoreRankerCombinationDeserializer(ObjectDeserializer<ScoreRankerCombination.Builder> op) {
+        op.add(Builder::rankConstant, JsonpDeserializer.integerDeserializer(), "rank_constant");
+        op.add(Builder::technique, ScoreRankerCombinationTechnique._DESERIALIZER, "technique");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.parameters);
-        result = 31 * result + Objects.hashCode(this.technique);
+        result = 31 * result + Objects.hashCode(this.rankConstant);
+        result = 31 * result + this.technique.hashCode();
         return result;
     }
 
@@ -221,7 +214,7 @@ public class ScoreCombination implements PlainJsonSerializable, ToCopyableBuilde
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        ScoreCombination other = (ScoreCombination) o;
-        return Objects.equals(this.parameters, other.parameters) && Objects.equals(this.technique, other.technique);
+        ScoreRankerCombination other = (ScoreRankerCombination) o;
+        return Objects.equals(this.rankConstant, other.rankConstant) && this.technique.equals(other.technique);
     }
 }

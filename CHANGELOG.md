@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 - Added support for the `template` query type ([#1586](https://github.com/opensearch-project/opensearch-java/pull/1586))
 - Added support for Search Shards request `slice` property ([#1586](https://github.com/opensearch-project/opensearch-java/pull/1586))
+- Added support for ML tool attributes ([#1594](https://github.com/opensearch-project/opensearch-java/pull/1594))
 
 ### Dependencies
 - Bump `org.junit:junit-bom` from 5.12.2 to 5.13.0 ([#1587](https://github.com/opensearch-project/opensearch-java/pull/1587))
@@ -16,6 +17,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fixed ScoreCombination's `parameters` structure ([#1594](https://github.com/opensearch-project/opensearch-java/pull/1594))
 
 ### Security
 

@@ -52,6 +52,9 @@ import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.WriteResponseBase
 
+/**
+ * The base response for write operations.
+ */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public abstract class WriteResponseBase implements PlainJsonSerializable {
 
@@ -114,7 +117,10 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
     }
 
     /**
-     * Required - API name: {@code _primary_term}
+     * Required - The primary term of the document.
+     * <p>
+     * API name: {@code _primary_term}
+     * </p>
      */
     public final long primaryTerm() {
         return this.primaryTerm;
@@ -256,7 +262,10 @@ public abstract class WriteResponseBase implements PlainJsonSerializable {
         }
 
         /**
-         * Required - API name: {@code _primary_term}
+         * Required - The primary term of the document.
+         * <p>
+         * API name: {@code _primary_term}
+         * </p>
          */
         @Nonnull
         public final BuilderT primaryTerm(long value) {

@@ -20,6 +20,7 @@ public enum HttpStatusCode {
     BadRequest("400"),
     Forbidden("403"),
     NotFound("404"),
+    MethodNotAllowed("405"),
     RequestTimeout("408"),
     InternalServerError("500"),
     NotImplemented("501");
