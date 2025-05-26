@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: OpenSearch API Specification
-  version: 0.2.0
+  version: 0.3.0
   x-api-version: 2.16.0
 paths:
   /:
@@ -2981,6 +2981,143 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/list.shards___200'
+  /_ltr:
+    delete:
+      operationId: ltr.delete_default_store.0
+      x-operation-group: ltr.delete_default_store
+      x-version-added: 2.17.1
+      description: Deletes the default feature store.
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.delete_default_store___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+    get:
+      operationId: ltr.list_stores.0
+      x-operation-group: ltr.list_stores
+      x-version-added: 2.17.1
+      description: Lists all available feature stores.
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.list_stores___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+    put:
+      operationId: ltr.create_default_store.0
+      x-operation-group: ltr.create_default_store
+      x-version-added: 2.17.1
+      description: Creates the default feature store.
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.create_default_store___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+  /_ltr/_cachestats:
+    get:
+      operationId: ltr.cache_stats.0
+      x-operation-group: ltr.cache_stats
+      x-version-added: '2.19'
+      description: Retrieves cache statistics for all feature stores.
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.cache_stats___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+  /_ltr/_clearcache:
+    post:
+      operationId: ltr.clear_cache.0
+      x-operation-group: ltr.clear_cache
+      x-version-added: '2.19'
+      description: Clears the store caches.
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.clear_cache___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+  /_ltr/{store}:
+    delete:
+      operationId: ltr.delete_store.0
+      x-operation-group: ltr.delete_store
+      x-version-added: 2.17.1
+      description: Deletes a feature store with the specified name.
+      parameters:
+        - $ref: '#/components/parameters/ltr.delete_store___path.store'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.delete_store___200'
+    get:
+      operationId: ltr.get_store.0
+      x-operation-group: ltr.get_store
+      x-version-added: 2.17.1
+      description: Checks if a store exists.
+      parameters:
+        - $ref: '#/components/parameters/ltr.get_store___path.store'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.get_store___200'
+        '404':
+          $ref: '#/components/responses/ltr.get_store___404'
+    put:
+      operationId: ltr.create_store.0
+      x-operation-group: ltr.create_store
+      x-version-added: 2.17.1
+      description: Creates a new feature store with the specified name.
+      parameters:
+        - $ref: '#/components/parameters/ltr.create_store___path.store'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.create_store___200'
+  /_ltr/{store}/_clearcache:
+    post:
+      operationId: ltr.clear_cache.1
+      x-operation-group: ltr.clear_cache
+      x-version-added: '2.19'
+      description: Clears the store caches.
+      parameters:
+        - $ref: '#/components/parameters/ltr.clear_cache___path.store'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.clear_cache___200'
   /_mapping:
     get:
       operationId: indices.get_mapping.0
@@ -4643,7 +4780,7 @@ paths:
     get:
       operationId: ltr.stats.2
       x-operation-group: ltr.stats
-      x-version-added: '1.0'
+      x-version-added: '2.19'
       description: Provides information about the current status of the LTR plugin.
       parameters:
         - $ref: '#/components/parameters/ltr.stats___path.node_id'
@@ -4660,7 +4797,7 @@ paths:
     get:
       operationId: ltr.stats.3
       x-operation-group: ltr.stats
-      x-version-added: '1.0'
+      x-version-added: '2.19'
       description: Provides information about the current status of the LTR plugin.
       parameters:
         - $ref: '#/components/parameters/ltr.stats___path.node_id'
@@ -4678,7 +4815,7 @@ paths:
     get:
       operationId: ltr.stats.0
       x-operation-group: ltr.stats
-      x-version-added: '1.0'
+      x-version-added: '2.19'
       description: Provides information about the current status of the LTR plugin.
       parameters:
         - $ref: '#/components/parameters/ltr.stats___query.timeout'
@@ -4694,7 +4831,7 @@ paths:
     get:
       operationId: ltr.stats.1
       x-operation-group: ltr.stats
-      x-version-added: '1.0'
+      x-version-added: '2.19'
       description: Provides information about the current status of the LTR plugin.
       parameters:
         - $ref: '#/components/parameters/ltr.stats___path.stat'
@@ -9046,6 +9183,163 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/transforms.stop___200'
+  /_plugins/geospatial/_upload/stats:
+    get:
+      operationId: geospatial.get_upload_stats.0
+      x-operation-group: geospatial.get_upload_stats
+      x-version-added: '2.11'
+      description: Retrieves statistics for all geospatial uploads.
+      responses:
+        '200':
+          $ref: '#/components/responses/geospatial.get_upload_stats___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+  /_plugins/geospatial/geojson/_upload:
+    post:
+      operationId: geospatial.geojson_upload_post.0
+      x-operation-group: geospatial.geojson_upload_post
+      x-version-added: '2.11'
+      description: |-
+        Use an OpenSearch query to upload `GeoJSON`, operation will fail if index exists.
+        - When type is `geo_point`, only Point geometry is allowed
+        - When type is `geo_shape`, all geometry types are allowed (Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon, GeometryCollection, Envelope).
+      requestBody:
+        $ref: '#/components/requestBodies/geospatial.geojson_upload_post'
+      responses:
+        '200':
+          $ref: '#/components/responses/geospatial.geojson_upload_post___200'
+        '400':
+          $ref: '#/components/responses/geospatial.geojson_upload_post___400'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+    put:
+      operationId: geospatial.geojson_upload_put.0
+      x-operation-group: geospatial.geojson_upload_put
+      x-version-added: '2.11'
+      description: |-
+        Use an OpenSearch query to upload `GeoJSON` regardless if index exists.
+        - When type is `geo_point`, only Point geometry is allowed
+        - When type is `geo_shape`, all geometry types are allowed (Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon, GeometryCollection, Envelope).
+      requestBody:
+        $ref: '#/components/requestBodies/geospatial.geojson_upload_put'
+      responses:
+        '200':
+          $ref: '#/components/responses/geospatial.geojson_upload_put___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+  /_plugins/geospatial/ip2geo/datasource:
+    get:
+      operationId: geospatial.get_ip2geo_datasource.0
+      x-operation-group: geospatial.get_ip2geo_datasource
+      x-version-added: '2.11'
+      description: Get one or more IP2Geo data sources, defaulting to returning all if no names specified.
+      externalDocs:
+        url: https://docs.opensearch.org/docs/latest/ingest-pipelines/processors/ip2geo/#sending-a-get-request
+      responses:
+        '200':
+          $ref: '#/components/responses/geospatial.get_ip2geo_datasource___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+  /_plugins/geospatial/ip2geo/datasource/{name}:
+    delete:
+      operationId: geospatial.delete_ip2geo_datasource.0
+      x-operation-group: geospatial.delete_ip2geo_datasource
+      x-version-added: '2.11'
+      description: Delete a specific IP2Geo data source.
+      externalDocs:
+        url: https://docs.opensearch.org/docs/latest/ingest-pipelines/processors/ip2geo/#deleting-the-ip2geo-data-source
+      parameters:
+        - $ref: '#/components/parameters/geospatial.delete_ip2geo_datasource___path.name'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/geospatial.delete_ip2geo_datasource___200'
+        '404':
+          $ref: '#/components/responses/geospatial.delete_ip2geo_datasource___404'
+    get:
+      operationId: geospatial.get_ip2geo_datasource.1
+      x-operation-group: geospatial.get_ip2geo_datasource
+      x-version-added: '2.11'
+      description: Get one or more IP2Geo data sources, defaulting to returning all if no names specified.
+      externalDocs:
+        url: https://docs.opensearch.org/docs/latest/ingest-pipelines/processors/ip2geo/#sending-a-get-request
+      parameters:
+        - $ref: '#/components/parameters/geospatial.get_ip2geo_datasource___path.name'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/geospatial.get_ip2geo_datasource___200'
+    put:
+      operationId: geospatial.put_ip2geo_datasource.0
+      x-operation-group: geospatial.put_ip2geo_datasource
+      x-version-added: '2.11'
+      description: |-
+        Create a specific IP2Geo data source.
+        Default values:
+          - `endpoint`: `"https://geoip.maps.opensearch.org/v1/geolite2-city/manifest.json"`
+          - `update_interval_in_days`: 3.
+      externalDocs:
+        url: https://docs.opensearch.org/docs/latest/ingest-pipelines/processors/ip2geo/#data-source-options
+      parameters:
+        - $ref: '#/components/parameters/geospatial.put_ip2geo_datasource___path.name'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/geospatial.put_ip2geo_datasource'
+      responses:
+        '200':
+          $ref: '#/components/responses/geospatial.put_ip2geo_datasource___200'
+        '400':
+          $ref: '#/components/responses/geospatial.put_ip2geo_datasource___400'
+  /_plugins/geospatial/ip2geo/datasource/{name}/_settings:
+    put:
+      operationId: geospatial.put_ip2geo_datasource_settings.0
+      x-operation-group: geospatial.put_ip2geo_datasource_settings
+      x-version-added: '2.11'
+      description: Update a specific IP2Geo data source.
+      externalDocs:
+        url: https://docs.opensearch.org/docs/latest/ingest-pipelines/processors/ip2geo/#updating-an-ip2geo-data-source
+      parameters:
+        - $ref: '#/components/parameters/geospatial.put_ip2geo_datasource_settings___path.name'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/geospatial.put_ip2geo_datasource_settings'
+      responses:
+        '200':
+          $ref: '#/components/responses/geospatial.put_ip2geo_datasource_settings___200'
+        '404':
+          $ref: '#/components/responses/geospatial.put_ip2geo_datasource_settings___404'
   /_rank_eval:
     get:
       operationId: rank_eval.0
@@ -20082,6 +20376,30 @@ components:
       name: validation
       schema:
         $ref: '#/components/schemas/flow_framework.common___Validation'
+    geospatial.delete_ip2geo_datasource___path.name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    geospatial.get_ip2geo_datasource___path.name:
+      name: name
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/_common___StringOrStringArray'
+    geospatial.put_ip2geo_datasource_settings___path.name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    geospatial.put_ip2geo_datasource___path.name:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
     get_script___path.id:
       in: path
       name: id
@@ -23865,6 +24183,34 @@ components:
         type: boolean
         default: false
         description: Verbose mode. Display column headers.
+    ltr.clear_cache___path.store:
+      name: store
+      in: path
+      description: The name of the feature store for which to clear the cache.
+      schema:
+        type: string
+      required: true
+    ltr.create_store___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.delete_store___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.get_store___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
     ltr.stats___path.node_id:
       name: node_id
       in: path
@@ -28071,6 +28417,30 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/flow_framework.common___FlowFrameworkUpdate'
+    geospatial.geojson_upload_post:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/geospatial._common___GeoJSONRequest'
+    geospatial.geojson_upload_put:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/geospatial._common___GeoJSONRequest'
+    geospatial.put_ip2geo_datasource:
+      required: false
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/geospatial._common___PutIP2GeoDataSourceRequest'
+    geospatial.put_ip2geo_datasource_settings:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/geospatial._common___PutIP2GeoDataSourceRequest'
     index:
       content:
         application/json:
@@ -31291,6 +31661,72 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/flow_framework.errors___TemplateNotFoundError'
+    geospatial.delete_ip2geo_datasource___200:
+      description: Provides information for deleting IP2Geo data source.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
+    geospatial.delete_ip2geo_datasource___404:
+      description: Invalid request for deleting a data source.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
+    geospatial.geojson_upload_post___200:
+      description: Provides information for uploading `GeoJSON` result.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/geospatial._common___GeoSpatialGeojsonUploadResponse'
+    geospatial.geojson_upload_post___400:
+      description: Invalid request for uploading `GeoJSON` result.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
+    geospatial.geojson_upload_put___200:
+      description: Provides information for uploading `GeoJSON` result.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/geospatial._common___GeoSpatialGeojsonUploadResponse'
+    geospatial.get_ip2geo_datasource___200:
+      description: Provides information for getting IP2Geo data source.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/geospatial._common___GetDataSourceResponse'
+    geospatial.get_upload_stats___200:
+      description: Provides information for getting all stats for upload.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/geospatial._common___GeoSpatialUploadStats'
+    geospatial.put_ip2geo_datasource_settings___200:
+      description: Acknowledged response when create, delete or update a data source.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
+    geospatial.put_ip2geo_datasource_settings___404:
+      description: Invalid request for updating a data source setting.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
+    geospatial.put_ip2geo_datasource___200:
+      description: Provides information for deleting IP2Geo data source.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___AcknowledgedResponseBase'
+    geospatial.put_ip2geo_datasource___400:
+      description: Invalid request for creating a data source.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     get_all_pits___200:
       content:
         application/json:
@@ -32251,12 +32687,66 @@ components:
                 items:
                   $ref: '#/components/schemas/cat.shards___ShardsRecord'
       description: ''
+    ltr.cache_stats___200:
+      description: Returns cache statistics for all feature stores.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___CacheStatsResponse'
+    ltr.clear_cache___200:
+      description: Successfully cleared the feature store cache.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___AcknowledgedResponse'
+    ltr.create_default_store___200:
+      description: Successfully created the default feature store.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___AcknowledgedResponse'
+    ltr.create_store___200:
+      description: Successfully created the feature store.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___AcknowledgedResponse'
+    ltr.delete_default_store___200:
+      description: Successfully deleted the default feature store.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___AcknowledgedResponse'
+    ltr.delete_store___200:
+      description: Successfully deleted the feature store.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___AcknowledgedResponse'
+    ltr.get_store___200:
+      description: Returns information about the store existence.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___StoreExistsResponse'
+    ltr.get_store___404:
+      description: The store does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___StoreExistsResponse'
+    ltr.list_stores___200:
+      description: Returns a list of available feature stores.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___ListStoresResponse'
     ltr.stats___200:
+      description: Provides information about the current status of the LTR plugin.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ltr._common___Stats'
-      description: ''
     mget___200:
       content:
         application/json:
@@ -37261,6 +37751,7 @@ components:
       oneOf:
         - type: integer
         - type: string
+          pattern: ^[+-]?\d+$
     _common___StringifiedLong:
       oneOf:
         - type: integer
@@ -37505,9 +37996,8 @@ components:
       description: Waits until the specified number of shards is active before returning a response. Use `all` for all shards.
       oneOf:
         - title: count
-          type: integer
-          description: The number of active shards to wait for.
           $ref: '#/components/schemas/_common___StringifiedInteger'
+          description: The number of active shards to wait for.
         - title: option
           $ref: '#/components/schemas/_common___WaitForActiveShardOptions'
           description: Determines how many shards to wait for.
@@ -53122,6 +53612,367 @@ components:
           type: string
         code:
           type: integer
+    geospatial._common___Database:
+      type: object
+      properties:
+        provider:
+          type: string
+        sha256_hash:
+          type: string
+        updated_at_in_epoch_millis:
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+        valid_for_in_days:
+          type: integer
+        fields:
+          type: array
+          items:
+            type: string
+    geospatial._common___DataSource:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/_common___Name'
+        state:
+          type: string
+          enum:
+            - AVAILABLE
+            - CREATE_FAILED
+            - CREATING
+            - DELETING
+          description: State of the data source.
+        endpoint:
+          type: string
+          description: URL endpoint for the data source.
+        update_interval_in_days:
+          type: integer
+          description: Update interval.
+        next_update_at_in_epoch_millis:
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+        database:
+          type: object
+          $ref: '#/components/schemas/geospatial._common___Database'
+        update_stats:
+          type: object
+          $ref: '#/components/schemas/geospatial._common___UpdateStats'
+      required:
+        - database
+        - endpoint
+        - name
+        - next_update_at_in_epoch_millis
+        - state
+        - update_interval_in_days
+        - update_stats
+    geospatial._common___Envelope:
+      type: array
+      minItems: 2
+      maxItems: 2
+      items:
+        $ref: '#/components/schemas/geospatial._common___PointCoordinates'
+      description: |-
+        An envelope specified by upper-left and lower-right points
+        [[`minLon`, `maxLat`], [`maxLon`, `minLat`]].
+    geospatial._common___GeoJSONData:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - Feature
+            - FeatureCollection
+        geometry:
+          $ref: '#/components/schemas/geospatial._common___Geometry'
+        properties:
+          type: object
+      required:
+        - geometry
+        - type
+    geospatial._common___GeoJSONRequest:
+      type: object
+      properties:
+        index:
+          $ref: '#/components/schemas/_common___IndexName'
+        field:
+          type: string
+          default: location
+          description: Field name for the geospatial data.
+        type:
+          type: string
+          description: Field type for the geospatial data.
+          enum:
+            - geo_point
+            - geo_shape
+        data:
+          type: array
+          maxItems: 10000
+          description: Array of GeoJSON features.
+          items:
+            $ref: '#/components/schemas/geospatial._common___GeoJSONData'
+      required:
+        - data
+        - index
+        - type
+    geospatial._common___Geometry:
+      oneOf:
+        - $ref: '#/components/schemas/geospatial._common___GeoShapes'
+        - $ref: '#/components/schemas/geospatial._common___GeometryCollection'
+    geospatial._common___GeometryCollection:
+      type: object
+      required:
+        - geometries
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - GeometryCollection
+        geometries:
+          type: array
+          maxItems: 100
+          description: Array of geometry objects.
+          items:
+            $ref: '#/components/schemas/geospatial._common___Geometry'
+    geospatial._common___GeoShapes:
+      oneOf:
+        - $ref: '#/components/schemas/geospatial._common___Point'
+        - $ref: '#/components/schemas/geospatial._common___MultiPoint'
+        - $ref: '#/components/schemas/geospatial._common___LineString'
+        - $ref: '#/components/schemas/geospatial._common___MultiLineString'
+        - $ref: '#/components/schemas/geospatial._common___Polygon'
+        - $ref: '#/components/schemas/geospatial._common___MultiPolygon'
+        - $ref: '#/components/schemas/geospatial._common___Envelope'
+      description: |-
+        GeoJSON `geoshape` types supported by OpenSearch.
+        For more details, see: https://docs.opensearch.org/docs/latest/field-types/supported-field-types/geo-shape.
+    geospatial._common___GeoSpatialGeojsonUploadResponse:
+      type: object
+      properties:
+        took:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+        errors:
+          type: boolean
+          description: Whether there were any errors.
+        total:
+          type: integer
+          description: Total number of features processed.
+        success:
+          type: integer
+          description: Number of features successfully uploaded.
+        failure:
+          type: integer
+          description: Number of features that failed to upload.
+      required:
+        - errors
+        - failure
+        - success
+        - took
+        - total
+    geospatial._common___GeoSpatialUploadStats:
+      type: object
+      properties:
+        total:
+          $ref: '#/components/schemas/geospatial._common___UploadStatsTotal'
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/geospatial._common___UploadStatsMetric'
+      required:
+        - metrics
+        - total
+    geospatial._common___GetDataSourceResponse:
+      type: object
+      properties:
+        datasources:
+          type: array
+          items:
+            $ref: '#/components/schemas/geospatial._common___DataSource'
+      required:
+        - datasources
+    geospatial._common___LineString:
+      type: object
+      required:
+        - coordinates
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - LineString
+        coordinates:
+          $ref: '#/components/schemas/geospatial._common___LineStringCoordinates'
+    geospatial._common___LineStringCoordinates:
+      type: array
+      minItems: 2
+      items:
+        $ref: '#/components/schemas/geospatial._common___PointCoordinates'
+      description: An array of Point coordinates forming a line.
+    geospatial._common___MultiLineString:
+      type: object
+      required:
+        - coordinates
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - MultiLineString
+        coordinates:
+          $ref: '#/components/schemas/geospatial._common___MultiLineStringCoordinates'
+    geospatial._common___MultiLineStringCoordinates:
+      type: array
+      items:
+        $ref: '#/components/schemas/geospatial._common___LineStringCoordinates'
+      description: An array of LineString coordinates.
+    geospatial._common___MultiPoint:
+      type: object
+      required:
+        - coordinates
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - MultiPoint
+        coordinates:
+          $ref: '#/components/schemas/geospatial._common___MultiPointCoordinates'
+    geospatial._common___MultiPointCoordinates:
+      type: array
+      items:
+        $ref: '#/components/schemas/geospatial._common___PointCoordinates'
+      description: An array of Point coordinates.
+    geospatial._common___MultiPolygon:
+      type: object
+      required:
+        - coordinates
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - MultiPolygon
+        coordinates:
+          $ref: '#/components/schemas/geospatial._common___MultiPolygonCoordinates'
+    geospatial._common___MultiPolygonCoordinates:
+      type: array
+      items:
+        $ref: '#/components/schemas/geospatial._common___PolygonCoordinates'
+      description: An array of Polygon coordinates.
+    geospatial._common___Point:
+      type: object
+      required:
+        - coordinates
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - Point
+        coordinates:
+          $ref: '#/components/schemas/geospatial._common___PointCoordinates'
+    geospatial._common___PointCoordinates:
+      type: array
+      minItems: 2
+      maxItems: 2
+      items:
+        type: number
+        minimum: -180
+        maximum: 180
+      description: |-
+        A Point coordinates array [longitude, latitude].
+        - longitude must be between -180 and 180
+        - latitude must be between -90 and 90.
+    geospatial._common___Polygon:
+      type: object
+      required:
+        - coordinates
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - Polygon
+        coordinates:
+          $ref: '#/components/schemas/geospatial._common___PolygonCoordinates'
+    geospatial._common___PolygonCoordinates:
+      type: array
+      items:
+        type: array
+        items:
+          $ref: '#/components/schemas/geospatial._common___PointCoordinates'
+        minItems: 4
+      description: |-
+        An array of linear ring coordinate arrays.
+        - First and last points must be the same to close the polygon
+        - Minimum 4 points required (first and last being the same).
+    geospatial._common___PutIP2GeoDataSourceRequest:
+      type: object
+      properties:
+        endpoint:
+          type: string
+          description: URL endpoint for the data source.
+          default: https://geoip.maps.opensearch.org/v1/geolite2-city/manifest.json
+        update_interval_in_days:
+          type: integer
+          description: Update interval in days.
+          default: 3
+    geospatial._common___UpdateStats:
+      type: object
+      properties:
+        last_succeeded_at_in_epoch_millis:
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+        last_processing_time_in_millis:
+          $ref: '#/components/schemas/_common___EpochTimeUnitMillis'
+    geospatial._common___UploadStatsMetric:
+      type: object
+      properties:
+        node_id:
+          $ref: '#/components/schemas/_common___NodeId'
+        id:
+          $ref: '#/components/schemas/_common___Id'
+        type:
+          type: string
+          description: Type of upload (such as "GeoJSON").
+        upload:
+          type: integer
+          description: Number of features in this upload.
+        success:
+          type: integer
+          description: Number of successful features in this upload.
+        failed:
+          type: integer
+          description: Number of failed features in this upload.
+        duration:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+      required:
+        - duration
+        - failed
+        - id
+        - node_id
+        - success
+        - type
+        - upload
+    geospatial._common___UploadStatsTotal:
+      type: object
+      properties:
+        request_count:
+          type: integer
+          description: Total number of upload requests.
+        upload:
+          type: integer
+          description: Total number of uploads.
+        success:
+          type: integer
+          description: Total successful uploads.
+        failed:
+          type: integer
+          description: Total failed uploads.
+        duration:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+      required:
+        - duration
+        - failed
+        - request_count
+        - success
+        - upload
     indices._common___Alias:
       type: object
       description: The index alias configuration.
@@ -57456,6 +58307,39 @@ components:
         - dimension
         - training_field
         - training_index
+    ltr._common___AcknowledgedResponse:
+      type: object
+      properties:
+        acknowledged:
+          type: boolean
+          description: Indicates whether the request was acknowledged.
+        shards_acknowledged:
+          type: boolean
+          description: Indicates whether the required active shards were acknowledged.
+        index:
+          type: string
+          description: The name of the index.
+    ltr._common___CacheAllStats:
+      type: object
+      description: Aggregate cache statistics across all nodes.
+      properties:
+        total:
+          $ref: '#/components/schemas/ltr._common___CacheItemStats'
+        features:
+          $ref: '#/components/schemas/ltr._common___CacheItemStats'
+        featuresets:
+          $ref: '#/components/schemas/ltr._common___CacheItemStats'
+        models:
+          $ref: '#/components/schemas/ltr._common___CacheItemStats'
+    ltr._common___CacheItemStats:
+      type: object
+      properties:
+        ram:
+          type: integer
+          description: Memory usage in bytes.
+        count:
+          type: integer
+          description: Count of cached items.
     ltr._common___CacheStat:
       type: object
       properties:
@@ -57478,6 +58362,44 @@ components:
           $ref: '#/components/schemas/ltr._common___CacheStat'
         model:
           $ref: '#/components/schemas/ltr._common___CacheStat'
+    ltr._common___CacheStatsResponse:
+      type: object
+      properties:
+        _nodes:
+          $ref: '#/components/schemas/_common___NodeStatistics'
+        cluster_name:
+          $ref: '#/components/schemas/_common___Name'
+        all:
+          $ref: '#/components/schemas/ltr._common___CacheAllStats'
+        stores:
+          type: object
+          description: Cache statistics by store.
+        nodes:
+          type: object
+          description: Cache statistics per node.
+          additionalProperties:
+            $ref: '#/components/schemas/ltr._common___NodeDetails'
+    ltr._common___ListStoresResponse:
+      type: object
+      properties:
+        stores:
+          type: object
+          description: Map of available feature stores.
+          additionalProperties:
+            $ref: '#/components/schemas/ltr._common___StoreDetails'
+      required:
+        - stores
+    ltr._common___NodeDetails:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Node name.
+        hostname:
+          type: string
+          description: Node hostname.
+        stats:
+          $ref: '#/components/schemas/ltr._common___NodeStatsDetails'
     ltr._common___NodeStats:
       type: object
       properties:
@@ -57487,6 +58409,18 @@ components:
           type: integer
         request_error_count:
           type: integer
+    ltr._common___NodeStatsDetails:
+      type: object
+      description: Cache statistics for a node.
+      properties:
+        total:
+          $ref: '#/components/schemas/ltr._common___CacheItemStats'
+        features:
+          $ref: '#/components/schemas/ltr._common___CacheItemStats'
+        featuresets:
+          $ref: '#/components/schemas/ltr._common___CacheItemStats'
+        models:
+          $ref: '#/components/schemas/ltr._common___CacheItemStats'
     ltr._common___Stats:
       type: object
       properties:
@@ -57502,6 +58436,27 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/ltr._common___NodeStats'
+    ltr._common___StoreDetails:
+      type: object
+      properties:
+        store:
+          type: string
+          description: The name of the store.
+        index:
+          type: string
+          description: The index name for this store.
+        version:
+          type: integer
+          description: Store version.
+        counts:
+          type: object
+          description: Count statistics for this store.
+    ltr._common___StoreExistsResponse:
+      type: object
+      properties:
+        exists:
+          type: boolean
+          description: Indicates whether the store exists.
     ltr._common___StoreStat:
       type: object
       properties:
@@ -59329,7 +60284,7 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/neural._common___NestedNeuralNodeStats'
     neural._common___NeuralStats:
-      oneOf:
+      anyOf:
         - $ref: '#/components/schemas/neural._common___NestedNeuralStats'
         - $ref: '#/components/schemas/neural._common___FlatNeuralStats'
     neural._common___NodesInfo:
@@ -63107,6 +64062,13 @@ components:
               $ref: '#/components/schemas/search_pipeline._common___NormalizationPhaseResultsProcessor'
           required:
             - normalization-processor
+        - type: object
+          title: score-ranker-processor
+          properties:
+            score-ranker-processor:
+              $ref: '#/components/schemas/search_pipeline._common___ScoreRankerPhaseResultsProcessor'
+          required:
+            - score-ranker-processor
     search_pipeline._common___RenameFieldResponseProcessor:
       type: object
       properties:
@@ -63284,6 +64246,28 @@ components:
       enum:
         - l2
         - min_max
+    search_pipeline._common___ScoreRankerCombination:
+      type: object
+      properties:
+        technique:
+          $ref: '#/components/schemas/search_pipeline._common___ScoreRankerCombinationTechnique'
+        rank_constant:
+          type: integer
+          format: int32
+          minimum: 1
+      required:
+        - technique
+    search_pipeline._common___ScoreRankerCombinationTechnique:
+      type: string
+      enum:
+        - rrf
+    search_pipeline._common___ScoreRankerPhaseResultsProcessor:
+      type: object
+      properties:
+        combination:
+          $ref: '#/components/schemas/search_pipeline._common___ScoreRankerCombination'
+      required:
+        - combination
     search_pipeline._common___SearchPipelineMap:
       type: object
       additionalProperties:
