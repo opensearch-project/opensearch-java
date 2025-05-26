@@ -31,7 +31,7 @@ jobs:
 
       - id: version
         run: |
-          echo "::set-output name=version::$(cat gradle.properties | grep systemProp.version | cut -d' ' -f3 | cut -d\. -f1,2)"
+          echo "::set-output name=version::$(cat gradle.properties | grep systemProp.version | cut -d' ' -f3 | cut -d\. -f1).x"
 
       - name: Update the changelog
         uses: dangoslen/dependabot-changelog-helper@v4
