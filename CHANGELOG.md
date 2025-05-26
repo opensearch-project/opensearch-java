@@ -1,4 +1,10 @@
 # CHANGELOG
+
+## [Unreleased 3.0]
+
+### Dependencies
+
+- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.4 to 5.5 ([#1577](https://github.com/opensearch-project/opensearch-java/pull/1577))
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.x]
