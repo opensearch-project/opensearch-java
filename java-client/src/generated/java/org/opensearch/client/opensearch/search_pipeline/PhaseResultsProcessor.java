@@ -64,7 +64,8 @@ public class PhaseResultsProcessor implements TaggedUnion<PhaseResultsProcessor.
      * {@link PhaseResultsProcessor} variant kinds.
      */
     public enum Kind implements JsonEnum {
-        NormalizationProcessor("normalization-processor");
+        NormalizationProcessor("normalization-processor"),
+        ScoreRankerProcessor("score-ranker-processor");
 
         private final String jsonValue;
 
@@ -121,6 +122,22 @@ public class PhaseResultsProcessor implements TaggedUnion<PhaseResultsProcessor.
         return TaggedUnionUtils.get(this, Kind.NormalizationProcessor);
     }
 
+    /**
+     * Is this variant instance of kind {@code score-ranker-processor}?
+     */
+    public boolean isScoreRankerProcessor() {
+        return _kind == Kind.ScoreRankerProcessor;
+    }
+
+    /**
+     * Get the {@code score-ranker-processor} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code score-ranker-processor} kind.
+     */
+    public ScoreRankerPhaseResultsProcessor scoreRankerProcessor() {
+        return TaggedUnionUtils.get(this, Kind.ScoreRankerProcessor);
+    }
+
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
@@ -164,6 +181,18 @@ public class PhaseResultsProcessor implements TaggedUnion<PhaseResultsProcessor.
             return this.normalizationProcessor(fn.apply(new NormalizationPhaseResultsProcessor.Builder()).build());
         }
 
+        public ObjectBuilder<PhaseResultsProcessor> scoreRankerProcessor(ScoreRankerPhaseResultsProcessor v) {
+            this._kind = Kind.ScoreRankerProcessor;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<PhaseResultsProcessor> scoreRankerProcessor(
+            Function<ScoreRankerPhaseResultsProcessor.Builder, ObjectBuilder<ScoreRankerPhaseResultsProcessor>> fn
+        ) {
+            return this.scoreRankerProcessor(fn.apply(new ScoreRankerPhaseResultsProcessor.Builder()).build());
+        }
+
         @Override
         public PhaseResultsProcessor build() {
             _checkSingleUse();
@@ -173,6 +202,7 @@ public class PhaseResultsProcessor implements TaggedUnion<PhaseResultsProcessor.
 
     protected static void setupPhaseResultsProcessorDeserializer(ObjectDeserializer<Builder> op) {
         op.add(Builder::normalizationProcessor, NormalizationPhaseResultsProcessor._DESERIALIZER, "normalization-processor");
+        op.add(Builder::scoreRankerProcessor, ScoreRankerPhaseResultsProcessor._DESERIALIZER, "score-ranker-processor");
     }
 
     public static final JsonpDeserializer<PhaseResultsProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
