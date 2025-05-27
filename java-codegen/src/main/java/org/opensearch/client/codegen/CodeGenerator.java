@@ -60,7 +60,6 @@ public class CodeGenerator {
                         "mget",
                         "msearch",
                         "msearch_template",
-                        "search",
                         "search_template",
                         "termvectors",
                         "update"

@@ -203,9 +203,9 @@ public class ExternallyTaggedUnion {
     }
 
     public static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeysArray(
-            Map<String, List<T>> map,
-            JsonGenerator generator,
-            JsonpMapper mapper
+        Map<String, List<T>> map,
+        JsonGenerator generator,
+        JsonpMapper mapper
     ) {
         generator.writeStartObject();
         serializeTypedKeysArrayInner(map, generator, mapper);
@@ -213,9 +213,9 @@ public class ExternallyTaggedUnion {
     }
 
     public static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeysArrayInner(
-            Map<String, List<T>> map,
-            JsonGenerator generator,
-            JsonpMapper mapper
+        Map<String, List<T>> map,
+        JsonGenerator generator,
+        JsonpMapper mapper
     ) {
         if (mapper.attribute(JsonpMapperAttributes.SERIALIZE_TYPED_KEYS, true)) {
             for (Map.Entry<String, List<T>> entry : map.entrySet()) {

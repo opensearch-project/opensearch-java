@@ -101,6 +101,8 @@ import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteRequest;
 import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteResponse;
 import org.opensearch.client.opensearch.core.ScrollRequest;
 import org.opensearch.client.opensearch.core.ScrollResponse;
+import org.opensearch.client.opensearch.core.SearchRequest;
+import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.SearchShardsRequest;
 import org.opensearch.client.opensearch.core.SearchShardsResponse;
 import org.opensearch.client.opensearch.core.UpdateByQueryRequest;
@@ -899,6 +901,39 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
         Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
         return scroll(fn.apply(new ScrollRequest.Builder()).build(), tDocumentClass);
+    }
+
+    // ----- Endpoint: search
+
+    /**
+     * Returns results matching a query.
+     */
+    public <TDocument> CompletableFuture<SearchResponse<TDocument>> search(SearchRequest request, Class<TDocument> tDocumentClass)
+        throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            SearchRequest,
+            SearchResponse<TDocument>,
+            ErrorResponse>) SearchRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:_global.search.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Returns results matching a query.
+     *
+     * @param fn a function that initializes a builder to create the {@link SearchRequest}
+     */
+    public final <TDocument> CompletableFuture<SearchResponse<TDocument>> search(
+        Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: search_shards
