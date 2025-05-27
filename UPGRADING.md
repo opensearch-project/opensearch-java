@@ -747,3 +747,19 @@ After:
 
 ### SuggestOptionBuilders
 - The `SuggestOptionBuilders` class has been removed.
+
+### SearchRequest
+- The `batchedReduceSize` property has been corrected to be of type `Integer` instead of `Long`.
+- The `indicesBoost` property is now of type `List<Map<String, Float>>` instead of `List<Map<String, Double>>`.
+- The `maxConcurrentShardRequests` property has been corrected to be of type `Integer` instead of `Long`.
+- The `minCompatibleShardNode` property has been removed as it is not supported by OpenSearch.
+- The `minScore` property has been corrected to be of type `Float` instead of `Double`.
+- The `preFilterShardSize` property has been corrected to be of type `Integer` instead of `Long`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+- The `runtimeMappings` property has been removed as it is not supported by OpenSearch.
+- The `terminateAfter` property has been corrected to be of type `Integer` instead of `Long`.
+
+### core.search.Pit renamed to PointInTimeReference
+- The `Pit` class has been renamed to `PointInTimeReference`, this affects:
+  - `SearchRequest`'s `pit` field.
+- The `keepAlive` property has been corrected to be of type `Time` instead of `String`.

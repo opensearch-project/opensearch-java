@@ -229,7 +229,12 @@ public class SpecTransformer {
             pathParams.forEach(parameter -> {
                 if (!allPathParams.containsKey(parameter.name)) {
                     var paramOverrides = overrides.flatMap(o -> o.getPathParameter(parameter.name));
-                    var paramBuilder = visit(parameter).toBuilder();
+                    LOGGER.info("Visiting Parameter: {}", parameter);
+                    var paramBuilder = Field.builder()
+                        .withWireName(parameter.name)
+                        .withType(typeMapper.mapType(parameter.schema))
+                        .withDescription(parameter.description)
+                        .withDeprecation(parameter.deprecation);
                     paramOverrides.flatMap(PathParameterOverride::getName).ifPresent(paramBuilder::withName);
                     allPathParams.put(parameter.name, paramBuilder.build());
                 }
@@ -311,7 +316,19 @@ public class SpecTransformer {
             }
             var shouldIgnore = overrides.flatMap(oo -> oo.getQueryParameter(name)).map(QueryParameterOverride::shouldIgnore).orElse(false);
             return !shouldIgnore;
-        }).map(this::visit).forEachOrdered(shape::addQueryParam);
+        }).map(parameter -> {
+            LOGGER.info("Visiting Parameter: {}", parameter);
+            var builder = Field.builder()
+                .withWireName(parameter.getName().orElseThrow())
+                .withType(typeMapper.mapType(parameter.getSchema().orElseThrow()))
+                .withRequired(parameter.getRequired())
+                .withDescription(parameter.getResolvedDescription().orElse(null))
+                .withDeprecation(parameter.getDeprecation().orElse(null));
+            overrides.flatMap(oo -> oo.getQueryParameter(parameter.getName().orElseThrow()))
+                .flatMap(QueryParameterOverride::getName)
+                .ifPresent(n -> builder.withName(n, true));
+            return builder.build();
+        }).forEachOrdered(shape::addQueryParam);
 
         if (shape.getExtendsType() == null) {
             shape.setExtendsType(isCatNs ? Types.Client.OpenSearch.Cat.CatRequestBase : Types.Client.OpenSearch._Types.RequestBase);
@@ -390,27 +407,6 @@ public class SpecTransformer {
         public String toString() {
             return new ToStringBuilder(this).append("name", name).append("schema", schema).append("description", description).toString();
         }
-    }
-
-    private Field visit(PathParam parameter) {
-        LOGGER.info("Visiting Parameter: {}", parameter);
-        return Field.builder()
-            .withWireName(parameter.name)
-            .withType(typeMapper.mapType(parameter.schema))
-            .withDescription(parameter.description)
-            .withDeprecation(parameter.deprecation)
-            .build();
-    }
-
-    private Field visit(OpenApiParameter parameter) {
-        LOGGER.info("Visiting Parameter: {}", parameter);
-        return Field.builder()
-            .withWireName(parameter.getName().orElseThrow())
-            .withType(typeMapper.mapType(parameter.getSchema().orElseThrow()))
-            .withRequired(parameter.getRequired())
-            .withDescription(parameter.getResolvedDescription().orElse(null))
-            .withDeprecation(parameter.getDeprecation().orElse(null))
-            .build();
     }
 
     public Shape visit(OpenApiSchema schema) {

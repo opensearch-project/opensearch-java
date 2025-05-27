@@ -48,6 +48,7 @@ public class RequestShape extends ObjectShape {
     private TypeRef responseType;
     @Nullable
     private Field delegatedBodyField;
+    private boolean supportsTypedKeys = false;
 
     public RequestShape(
         @Nonnull Namespace parent,
@@ -122,6 +123,10 @@ public class RequestShape extends ObjectShape {
     }
 
     public void addQueryParam(Field field) {
+        if ("typed_keys".equals(field.getWireName())) {
+            supportsTypedKeys = true;
+            return;
+        }
         if (addField(field)) {
             queryParams.put(field.getName(), field);
         }
@@ -132,7 +137,11 @@ public class RequestShape extends ObjectShape {
     }
 
     public boolean hasQueryParams() {
-        return !queryParams.isEmpty();
+        return supportsTypedKeys || !queryParams.isEmpty();
+    }
+
+    public boolean supportsTypedKeys() {
+        return supportsTypedKeys;
     }
 
     public void addHttpPath(HttpPath httpPath) {
