@@ -246,6 +246,12 @@ dependencies {
     testImplementation("junit", "junit" , "4.13.2") {
         exclude(group = "org.hamcrest")
     }
+
+    // Micrometer
+    implementation("io.micrometer:micrometer-core:1.13.13")
+
+    // Awaitility
+    testImplementation("org.awaitility:awaitility:4.2.0")
 }
 
 licenseReport {
