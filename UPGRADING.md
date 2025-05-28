@@ -766,3 +766,12 @@ After:
 
 ### SearchTemplateRequest
 - The `routing` property is now of type `List<String>` instead of `String`.
+
+### LifecycleOperationMode
+- The `LifecycleOperationMode` enum has been removed as it is no longer used.
+
+### RuntimeField
+- The `RuntimeField` class has been removed as it is not supported by OpenSearch.
+
+### RuntimeFieldType
+- The `RuntimeFieldType` class has been removed as it is not supported by OpenSearch.
