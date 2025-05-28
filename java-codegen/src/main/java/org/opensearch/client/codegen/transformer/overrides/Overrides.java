@@ -52,6 +52,13 @@ public class Overrides {
                 )
             )
             .with(
+                OperationGroup.from("search_template"),
+                oo -> oo.withQueryParameters(
+                    qp -> qp.with("rest_total_hits_as_int", po -> po.withIgnore(true))
+                        .with("search_pipeline", po -> po.withName("pipeline"))
+                )
+            )
+            .with(
                 OperationGroup.from("snapshot.create_repository"),
                 oo -> oo.withPathParameters(pp -> pp.with("repository", po -> po.withName("name")))
             )

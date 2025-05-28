@@ -104,6 +104,8 @@ import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.SearchShardsRequest;
 import org.opensearch.client.opensearch.core.SearchShardsResponse;
+import org.opensearch.client.opensearch.core.SearchTemplateRequest;
+import org.opensearch.client.opensearch.core.SearchTemplateResponse;
 import org.opensearch.client.opensearch.core.UpdateByQueryRequest;
 import org.opensearch.client.opensearch.core.UpdateByQueryResponse;
 import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleRequest;
@@ -948,6 +950,39 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
      */
     public final SearchShardsResponse searchShards() throws IOException, OpenSearchException {
         return searchShards(new SearchShardsRequest.Builder().build());
+    }
+
+    // ----- Endpoint: search_template
+
+    /**
+     * Allows to use the Mustache language to pre-render a search definition.
+     */
+    public <TDocument> SearchTemplateResponse<TDocument> searchTemplate(SearchTemplateRequest request, Class<TDocument> tDocumentClass)
+        throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            SearchTemplateRequest,
+            SearchTemplateResponse<TDocument>,
+            ErrorResponse>) SearchTemplateRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:_global.search_template.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Allows to use the Mustache language to pre-render a search definition.
+     *
+     * @param fn a function that initializes a builder to create the {@link SearchTemplateRequest}
+     */
+    public final <TDocument> SearchTemplateResponse<TDocument> searchTemplate(
+        Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: update_by_query
