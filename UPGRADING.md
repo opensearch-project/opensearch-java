@@ -763,3 +763,6 @@ After:
 - The `Pit` class has been renamed to `PointInTimeReference`, this affects:
   - `SearchRequest`'s `pit` field.
 - The `keepAlive` property has been corrected to be of type `Time` instead of `String`.
+
+### SearchTemplateRequest
+- The `routing` property is now of type `List<String>` instead of `String`.

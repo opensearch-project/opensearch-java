@@ -51,20 +51,7 @@ public class CodeGenerator {
         or(
             and(
                 namespace(isNull()),
-                name(
-                    isOneOf(
-                        "bulk",
-                        "bulk_stream",
-                        "create",
-                        "index",
-                        "mget",
-                        "msearch",
-                        "msearch_template",
-                        "search_template",
-                        "termvectors",
-                        "update"
-                    )
-                )
+                name(isOneOf("bulk", "bulk_stream", "create", "index", "mget", "msearch", "msearch_template", "termvectors", "update"))
             ),
             namespace(is("asynchronous_search")),
             and(namespace(is("cat")), name(is("help"))),

@@ -30,44 +30,83 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core;
 
 import java.util.function.Function;
-import java.util.function.Supplier;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.NamedDeserializer;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.opensearch.core.search.SearchResult;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _global.search_template.Response
 
 @JsonpDeserializable
-public class SearchTemplateResponse<TDocument> extends SearchResult<TDocument> {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SearchTemplateResponse<TDocument> extends SearchResult<TDocument>
+    implements
+        ToCopyableBuilder<SearchTemplateResponse.Builder<TDocument>, SearchTemplateResponse<TDocument>> {
+
     // ---------------------------------------------------------------------------------------------
 
     private SearchTemplateResponse(Builder<TDocument> builder) {
         super(builder);
-
     }
 
     public static <TDocument> SearchTemplateResponse<TDocument> of(
-        Function<Builder<TDocument>, ObjectBuilder<SearchTemplateResponse<TDocument>>> fn
+        Function<SearchTemplateResponse.Builder<TDocument>, ObjectBuilder<SearchTemplateResponse<TDocument>>> fn
     ) {
         return fn.apply(new Builder<>()).build();
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder<TDocument> toBuilder() {
+        return new Builder<>(this);
+    }
+
+    @Nonnull
+    public static <TDocument> Builder builder() {
+        return new Builder<>();
+    }
+
     /**
      * Builder for {@link SearchTemplateResponse}.
      */
     public static class Builder<TDocument> extends SearchResult.AbstractBuilder<TDocument, Builder<TDocument>>
         implements
-            ObjectBuilder<SearchTemplateResponse<TDocument>> {
+            CopyableBuilder<Builder<TDocument>, SearchTemplateResponse<TDocument>> {
+
+        public Builder() {}
+
+        private Builder(SearchTemplateResponse<TDocument> o) {
+            super(o);
+        }
+
+        private Builder(Builder<TDocument> o) {
+            super(o);
+        }
+
         @Override
+        @Nonnull
+        public Builder<TDocument> copy() {
+            return new Builder<>(this);
+        }
+
+        @Override
+        @Nonnull
         protected Builder<TDocument> self() {
             return this;
         }
@@ -75,33 +114,33 @@ public class SearchTemplateResponse<TDocument> extends SearchResult<TDocument> {
         /**
          * Builds a {@link SearchTemplateResponse}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SearchTemplateResponse<TDocument> build() {
             _checkSingleUse();
 
-            return new SearchTemplateResponse<TDocument>(this);
+            return new SearchTemplateResponse<>(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Create a JSON deserializer for SearchTemplateResponse
+     * Create a JSON deserializer for SearchTemplateResponse.
      */
     public static <TDocument> JsonpDeserializer<SearchTemplateResponse<TDocument>> createSearchTemplateResponseDeserializer(
         JsonpDeserializer<TDocument> tDocumentDeserializer
     ) {
         return ObjectBuilderDeserializer.createForObject(
-            (Supplier<Builder<TDocument>>) Builder::new,
+            Builder<TDocument>::new,
             op -> SearchTemplateResponse.setupSearchTemplateResponseDeserializer(op, tDocumentDeserializer)
         );
-    };
+    }
 
     /**
-     * Json deserializer for {@link SearchTemplateResponse} based on named
-     * deserializers provided by the calling {@code JsonMapper}.
+     * Json deserializer for {@link SearchTemplateResponse} based on named deserializers provided by the calling {@code JsonMapper}.
      */
     public static final JsonpDeserializer<SearchTemplateResponse<Object>> _DESERIALIZER = createSearchTemplateResponseDeserializer(
         new NamedDeserializer<>("org.opensearch.client:Deserializer:_global.search_template.TDocument")
@@ -111,8 +150,22 @@ public class SearchTemplateResponse<TDocument> extends SearchResult<TDocument> {
         ObjectDeserializer<SearchTemplateResponse.Builder<TDocument>> op,
         JsonpDeserializer<TDocument> tDocumentDeserializer
     ) {
-        SearchResult.setupSearchResultDeserializer(op, tDocumentDeserializer);
-
+        setupSearchResultDeserializer(op, tDocumentDeserializer);
     }
 
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        return true;
+    }
 }

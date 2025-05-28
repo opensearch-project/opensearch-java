@@ -49,8 +49,6 @@ import org.opensearch.client.opensearch.core.MsearchRequest;
 import org.opensearch.client.opensearch.core.MsearchResponse;
 import org.opensearch.client.opensearch.core.MsearchTemplateRequest;
 import org.opensearch.client.opensearch.core.MsearchTemplateResponse;
-import org.opensearch.client.opensearch.core.SearchTemplateRequest;
-import org.opensearch.client.opensearch.core.SearchTemplateResponse;
 import org.opensearch.client.opensearch.core.TermvectorsRequest;
 import org.opensearch.client.opensearch.core.TermvectorsResponse;
 import org.opensearch.client.opensearch.core.UpdateRequest;
@@ -316,45 +314,6 @@ public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
         Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
         return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), tDocumentClass);
-    }
-
-    // ----- Endpoint: search_template
-
-    /**
-     * Allows to use the Mustache language to pre-render a search definition.
-     *
-     *
-     */
-
-    public <TDocument> SearchTemplateResponse<TDocument> searchTemplate(SearchTemplateRequest request, Class<TDocument> tDocumentClass)
-        throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
-            SearchTemplateRequest,
-            SearchTemplateResponse<TDocument>,
-            ErrorResponse>) SearchTemplateRequest._ENDPOINT;
-        endpoint = new EndpointWithResponseMapperAttr<>(
-            endpoint,
-            "org.opensearch.client:Deserializer:_global.search_template.TDocument",
-            getDeserializer(tDocumentClass)
-        );
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Allows to use the Mustache language to pre-render a search definition.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link SearchTemplateRequest}
-     *
-     */
-
-    public final <TDocument> SearchTemplateResponse<TDocument> searchTemplate(
-        Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn,
-        Class<TDocument> tDocumentClass
-    ) throws IOException, OpenSearchException {
-        return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: termvectors
