@@ -30,17 +30,26 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.NodeRole
+
 @JsonpDeserializable
+@Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum NodeRole implements JsonEnum {
-    @Deprecated
-    Master("master"),
+    Client("client"),
 
     ClusterManager("cluster_manager"),
+
+    CoordinatingOnly("coordinating_only"),
 
     Data("data"),
 
@@ -54,21 +63,18 @@ public enum NodeRole implements JsonEnum {
 
     DataWarm("data_warm"),
 
-    Client("client"),
-
     Ingest("ingest"),
+
+    @Deprecated
+    Master("master"),
 
     Ml("ml"),
 
-    VotingOnly("voting_only"),
+    RemoteClusterClient("remote_cluster_client"),
 
     Transform("transform"),
 
-    RemoteClusterClient("remote_cluster_client"),
-
-    CoordinatingOnly("coordinating_only"),
-
-    ;
+    VotingOnly("voting_only");
 
     private final String jsonValue;
 

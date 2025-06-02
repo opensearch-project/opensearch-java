@@ -9545,6 +9545,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -9567,6 +9569,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -12711,6 +12715,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -12734,6 +12740,8 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/search_shards'
       responses:
         '200':
           $ref: '#/components/responses/search_shards___200'
@@ -18153,7 +18161,7 @@ components:
       name: local
       description: |-
         When `true`, the request retrieves information from the local node only.
-        When `false, information is retrieved from the cluster manager node.
+        When `false`, information is retrieved from the cluster manager node.
       schema:
         type: boolean
         default: false
@@ -29451,6 +29459,15 @@ components:
           schema:
             $ref: '#/components/schemas/search_pipeline._common___SearchPipelineStructure'
       required: true
+    search_shards:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              slice:
+                $ref: '#/components/schemas/_common___SlicedScroll'
+            x-version-added: '2.19'
     search_template:
       content:
         application/json:
@@ -44837,6 +44854,10 @@ components:
           maxProperties: 1
         span_within:
           $ref: '#/components/schemas/_common.query_dsl___SpanWithinQuery'
+        template:
+          description: Return documents using a template query contains placeholders that are resolved by search request processors during query execution.
+          type: object
+          additionalProperties: true
         term:
           description: |-
             Returns documents that contain an exact term in a provided field.

@@ -30,26 +30,54 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch.indices.stats;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
+package org.opensearch.client.opensearch.cluster.allocation_explain;
+
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: cluster.allocation_explain.UnassignedInformationReason
+
 @JsonpDeserializable
-public enum ShardRoutingState implements JsonEnum {
-    Unassigned("UNASSIGNED"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum UnassignedInformationReason implements JsonEnum {
+    AllocationFailed("ALLOCATION_FAILED"),
 
-    Initializing("INITIALIZING"),
+    ClusterRecovered("CLUSTER_RECOVERED"),
 
-    Started("STARTED"),
+    DanglingIndexImported("DANGLING_INDEX_IMPORTED"),
 
-    Relocating("RELOCATING"),
+    ExistingIndexRestored("EXISTING_INDEX_RESTORED"),
 
-    ;
+    ForcedEmptyPrimary("FORCED_EMPTY_PRIMARY"),
+
+    IndexCreated("INDEX_CREATED"),
+
+    IndexReopened("INDEX_REOPENED"),
+
+    ManualAllocation("MANUAL_ALLOCATION"),
+
+    NewIndexRestored("NEW_INDEX_RESTORED"),
+
+    NodeLeft("NODE_LEFT"),
+
+    PrimaryFailed("PRIMARY_FAILED"),
+
+    ReallocatedReplica("REALLOCATED_REPLICA"),
+
+    Reinitialized("REINITIALIZED"),
+
+    ReplicaAdded("REPLICA_ADDED"),
+
+    RerouteCancelled("REROUTE_CANCELLED");
 
     private final String jsonValue;
 
-    ShardRoutingState(String jsonValue) {
+    UnassignedInformationReason(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -57,5 +85,7 @@ public enum ShardRoutingState implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<ShardRoutingState> _DESERIALIZER = new JsonEnum.Deserializer<>(ShardRoutingState.values());
+    public static final JsonEnum.Deserializer<UnassignedInformationReason> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        UnassignedInformationReason.values()
+    );
 }

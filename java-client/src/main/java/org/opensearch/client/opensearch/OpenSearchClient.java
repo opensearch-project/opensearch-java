@@ -35,7 +35,6 @@ package org.opensearch.client.opensearch;
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.cat.OpenSearchCatClient;
@@ -101,8 +100,6 @@ import org.opensearch.client.opensearch.core.ScrollRequest;
 import org.opensearch.client.opensearch.core.ScrollResponse;
 import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
-import org.opensearch.client.opensearch.core.SearchShardsRequest;
-import org.opensearch.client.opensearch.core.SearchShardsResponse;
 import org.opensearch.client.opensearch.core.SearchTemplateRequest;
 import org.opensearch.client.opensearch.core.SearchTemplateResponse;
 import org.opensearch.client.opensearch.core.TermsEnumRequest;
@@ -126,7 +123,6 @@ import org.opensearch.client.opensearch.features.OpenSearchFeaturesClient;
 import org.opensearch.client.opensearch.generic.OpenSearchGenericClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestClient;
-import org.opensearch.client.opensearch.ml.OpenSearchMlClient;
 import org.opensearch.client.opensearch.nodes.OpenSearchNodesClient;
 import org.opensearch.client.opensearch.shutdown.OpenSearchShutdownClient;
 import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotClient;
@@ -141,7 +137,7 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the namespace.
  */
-public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchClient> {
+public class OpenSearchClient extends OpenSearchClientBase<OpenSearchClient> {
 
     public OpenSearchClient(OpenSearchTransport transport) {
         super(transport, null);
@@ -183,10 +179,6 @@ public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchC
 
     public OpenSearchIngestClient ingest() {
         return new OpenSearchIngestClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchMlClient ml() {
-        return new OpenSearchMlClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchNodesClient nodes() {
@@ -1400,55 +1392,6 @@ public class OpenSearchClient extends ApiClient<OpenSearchTransport, OpenSearchC
         Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
         return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentClass);
-    }
-
-    // ----- Endpoint: search_shards
-
-    /**
-     * Returns information about the indices and shards that a search request would
-     * be executed against.
-     *
-     *
-     */
-
-    public SearchShardsResponse searchShards(SearchShardsRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<SearchShardsRequest, SearchShardsResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            SearchShardsRequest,
-            SearchShardsResponse,
-            ErrorResponse>) SearchShardsRequest._ENDPOINT;
-
-        return this.transport.performRequest(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about the indices and shards that a search request would
-     * be executed against.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link SearchShardsRequest}
-     *
-     */
-
-    public final SearchShardsResponse searchShards(Function<SearchShardsRequest.Builder, ObjectBuilder<SearchShardsRequest>> fn)
-        throws IOException, OpenSearchException {
-        return searchShards(fn.apply(new SearchShardsRequest.Builder()).build());
-    }
-
-    /**
-     * Returns information about the indices and shards that a search request would
-     * be executed against.
-     *
-     *
-     */
-
-    public SearchShardsResponse searchShards() throws IOException, OpenSearchException {
-        return this.transport.performRequest(
-            new SearchShardsRequest.Builder().build(),
-            SearchShardsRequest._ENDPOINT,
-            this.transportOptions
-        );
     }
 
     // ----- Endpoint: search_template

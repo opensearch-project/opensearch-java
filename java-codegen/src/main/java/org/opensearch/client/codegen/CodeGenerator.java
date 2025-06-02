@@ -12,6 +12,7 @@ import static org.opensearch.client.codegen.model.OperationGroupMatcher.name;
 import static org.opensearch.client.codegen.model.OperationGroupMatcher.namespace;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.and;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.is;
+import static org.opensearch.client.codegen.utils.matcher.Matcher.isNull;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.isOneOf;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.not;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.or;
@@ -45,6 +46,7 @@ import org.opensearch.client.codegen.utils.matcher.Matcher;
 public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Matcher<OperationGroup> OPERATION_MATCHER = or(
+        and(namespace(isNull()), name(is("search_shards"))),
         and(
             namespace(is("ml")),
             name(

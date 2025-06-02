@@ -33,7 +33,12 @@
 package org.opensearch.client.opensearch._types.query_dsl;
 
 /**
+ * <p>
  * Builders for {@link Query} variants.
+ * </p>
+ * <p>
+ * Variants <code>template</code> are not available here as they don't have a dedicated class. Use {@link Query}'s builder for these.
+ * </p>
  */
 public class QueryBuilders {
     private QueryBuilders() {}

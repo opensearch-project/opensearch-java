@@ -30,48 +30,49 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch.cluster.allocation_explain;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
+package org.opensearch.client.opensearch._types;
+
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: _types.ExpandWildcard
+
 @JsonpDeserializable
-public enum UnassignedInformationReason implements JsonEnum {
-    IndexCreated("INDEX_CREATED"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum ExpandWildcard implements JsonEnum {
+    /**
+     * Match any index, including hidden ones.
+     */
+    All("all"),
 
-    ClusterRecovered("CLUSTER_RECOVERED"),
+    /**
+     * Match closed, non-hidden indexes.
+     */
+    Closed("closed"),
 
-    IndexReopened("INDEX_REOPENED"),
+    /**
+     * Match hidden indexes. Must be combined with open, closed, or both.
+     */
+    Hidden("hidden"),
 
-    DanglingIndexImported("DANGLING_INDEX_IMPORTED"),
+    /**
+     * Wildcard expressions are not accepted.
+     */
+    None("none"),
 
-    NewIndexRestored("NEW_INDEX_RESTORED"),
-
-    ExistingIndexRestored("EXISTING_INDEX_RESTORED"),
-
-    ReplicaAdded("REPLICA_ADDED"),
-
-    AllocationFailed("ALLOCATION_FAILED"),
-
-    NodeLeft("NODE_LEFT"),
-
-    RerouteCancelled("REROUTE_CANCELLED"),
-
-    Reinitialized("REINITIALIZED"),
-
-    ReallocatedReplica("REALLOCATED_REPLICA"),
-
-    PrimaryFailed("PRIMARY_FAILED"),
-
-    ForcedEmptyPrimary("FORCED_EMPTY_PRIMARY"),
-
-    ManualAllocation("MANUAL_ALLOCATION"),
-
-    ;
+    /**
+     * Match open, non-hidden indexes.
+     */
+    Open("open");
 
     private final String jsonValue;
 
-    UnassignedInformationReason(String jsonValue) {
+    ExpandWildcard(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -79,7 +80,5 @@ public enum UnassignedInformationReason implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<UnassignedInformationReason> _DESERIALIZER = new JsonEnum.Deserializer<>(
-        UnassignedInformationReason.values()
-    );
+    public static final JsonEnum.Deserializer<ExpandWildcard> _DESERIALIZER = new JsonEnum.Deserializer<>(ExpandWildcard.values());
 }
