@@ -9,8 +9,8 @@ The below matrix shows the compatibility of the [`opensearch-java-client`](https
 | Client Version | OpenSearch Version |
 |----------------|--------------------|
 | 1.0.0          | 1.x                |
-| 2.x.0          | 1.3.13-2.x.x       |
-
+| 2.x.0          | 1.x-2.x            |
+| 3.x.0          | 1.x-3.x            |
 
 ## Compatibility with JDK
 
@@ -20,6 +20,7 @@ The below matrix shows the compatibility of the [`opensearch-java-client`](https
 |----------------|--------------------|
 | 1.0.0          | 8                  |
 | 2.x.0          | 8 / 11 / 17 / 21   |
+| 3.x.0          | 8 / 11 / 17 / 21   |
 
 ## Upgrading
 
