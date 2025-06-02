@@ -19,6 +19,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
+- Added support for the `template` query type ([#1586](https://github.com/opensearch-project/opensearch-java/pull/1586))
+- Added support for Search Shards request `slice` property ([#1586](https://github.com/opensearch-project/opensearch-java/pull/1586))
 
 ### Dependencies
 
