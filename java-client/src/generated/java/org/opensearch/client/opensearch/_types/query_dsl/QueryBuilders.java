@@ -39,7 +39,12 @@ package org.opensearch.client.opensearch._types.query_dsl;
 import javax.annotation.Generated;
 
 /**
+ * <p>
  * Builders for {@link Query} variants.
+ * </p>
+ * <p>
+ * Variants <code>template</code> are not available here as they don't have a dedicated class. Use {@link Query}'s builder for these.
+ * </p>
  */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class QueryBuilders {

@@ -36,6 +36,7 @@
 
 package org.opensearch.client.opensearch.core;
 
+import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,9 +46,16 @@ import java.util.stream.Collectors;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonpDeserializable;
+import org.opensearch.client.json.JsonpDeserializer;
+import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.ObjectBuilderDeserializer;
+import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch._types.RequestBase;
+import org.opensearch.client.opensearch._types.SlicedScroll;
 import org.opensearch.client.transport.Endpoint;
 import org.opensearch.client.transport.endpoints.SimpleEndpoint;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -60,8 +68,12 @@ import org.opensearch.client.util.ToCopyableBuilder;
 /**
  * Returns information about the indexes and shards that a search request would be executed against.
  */
+@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public final class SearchShardsRequest extends RequestBase implements ToCopyableBuilder<SearchShardsRequest.Builder, SearchShardsRequest> {
+public final class SearchShardsRequest extends RequestBase
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<SearchShardsRequest.Builder, SearchShardsRequest> {
 
     @Nullable
     private final Boolean allowNoIndices;
@@ -84,6 +96,9 @@ public final class SearchShardsRequest extends RequestBase implements ToCopyable
     @Nonnull
     private final List<String> routing;
 
+    @Nullable
+    private final SlicedScroll slice;
+
     // ---------------------------------------------------------------------------------------------
 
     private SearchShardsRequest(Builder builder) {
@@ -95,6 +110,7 @@ public final class SearchShardsRequest extends RequestBase implements ToCopyable
         this.local = builder.local;
         this.preference = builder.preference;
         this.routing = ApiTypeHelper.unmodifiable(builder.routing);
+        this.slice = builder.slice;
     }
 
     public static SearchShardsRequest of(Function<SearchShardsRequest.Builder, ObjectBuilder<SearchShardsRequest>> fn) {
@@ -182,6 +198,31 @@ public final class SearchShardsRequest extends RequestBase implements ToCopyable
         return this.routing;
     }
 
+    /**
+     * API name: {@code slice}
+     */
+    @Nullable
+    public final SlicedScroll slice() {
+        return this.slice;
+    }
+
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.slice != null) {
+            generator.writeKey("slice");
+            this.slice.serialize(generator, mapper);
+        }
+    }
+
     // ---------------------------------------------------------------------------------------------
 
     @Override
@@ -213,6 +254,8 @@ public final class SearchShardsRequest extends RequestBase implements ToCopyable
         private String preference;
         @Nullable
         private List<String> routing;
+        @Nullable
+        private SlicedScroll slice;
 
         public Builder() {}
 
@@ -225,6 +268,7 @@ public final class SearchShardsRequest extends RequestBase implements ToCopyable
             this.local = o.local;
             this.preference = o.preference;
             this.routing = _listCopy(o.routing);
+            this.slice = o.slice;
         }
 
         private Builder(Builder o) {
@@ -236,6 +280,7 @@ public final class SearchShardsRequest extends RequestBase implements ToCopyable
             this.local = o.local;
             this.preference = o.preference;
             this.routing = _listCopy(o.routing);
+            this.slice = o.slice;
         }
 
         @Override
@@ -402,6 +447,23 @@ public final class SearchShardsRequest extends RequestBase implements ToCopyable
         }
 
         /**
+         * API name: {@code slice}
+         */
+        @Nonnull
+        public final Builder slice(@Nullable SlicedScroll value) {
+            this.slice = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code slice}
+         */
+        @Nonnull
+        public final Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
+            return slice(fn.apply(new SlicedScroll.Builder()).build());
+        }
+
+        /**
          * Builds a {@link SearchShardsRequest}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -413,6 +475,20 @@ public final class SearchShardsRequest extends RequestBase implements ToCopyable
 
             return new SearchShardsRequest(this);
         }
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * Json deserializer for {@link SearchShardsRequest}
+     */
+    public static final JsonpDeserializer<SearchShardsRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+        Builder::new,
+        SearchShardsRequest::setupSearchShardsRequestDeserializer
+    );
+
+    protected static void setupSearchShardsRequestDeserializer(ObjectDeserializer<SearchShardsRequest.Builder> op) {
+        op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -474,7 +550,7 @@ public final class SearchShardsRequest extends RequestBase implements ToCopyable
             return params;
         },
         SimpleEndpoint.emptyMap(),
-        false,
+        true,
         SearchShardsResponse._DESERIALIZER
     );
 
@@ -488,6 +564,7 @@ public final class SearchShardsRequest extends RequestBase implements ToCopyable
         result = 31 * result + Objects.hashCode(this.local);
         result = 31 * result + Objects.hashCode(this.preference);
         result = 31 * result + Objects.hashCode(this.routing);
+        result = 31 * result + Objects.hashCode(this.slice);
         return result;
     }
 
@@ -502,6 +579,7 @@ public final class SearchShardsRequest extends RequestBase implements ToCopyable
             && Objects.equals(this.index, other.index)
             && Objects.equals(this.local, other.local)
             && Objects.equals(this.preference, other.preference)
-            && Objects.equals(this.routing, other.routing);
+            && Objects.equals(this.routing, other.routing)
+            && Objects.equals(this.slice, other.slice);
     }
 }
