@@ -53,6 +53,8 @@ public class Overrides {
                 .with(schema("_common", "StringifiedLong"), so -> so.withMappedType(Types.Primitive.Long))
                 .with(schema("_common", "StringifiedEpochTimeUnitMillis"), so -> so.withMappedType(Types.Primitive.Long))
 
+                .with(schema("_common", "RoutingInQueryString"), so -> so.withMappedType(Types.Java.Lang.String))
+
                 // TODO: Remove this to generate property mapping types
                 .with(schema("_common.mapping", "Property"), so -> so.withShouldGenerate(ShouldGenerate.Never))
                 .with(schema("_common.mapping", "PropertyBase"), so -> so.withShouldGenerate(ShouldGenerate.Never))

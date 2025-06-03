@@ -36,7 +36,6 @@ import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.opensearch.client.ApiClient;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.cat.OpenSearchCatAsyncClient;
@@ -102,8 +101,6 @@ import org.opensearch.client.opensearch.core.ScrollRequest;
 import org.opensearch.client.opensearch.core.ScrollResponse;
 import org.opensearch.client.opensearch.core.SearchRequest;
 import org.opensearch.client.opensearch.core.SearchResponse;
-import org.opensearch.client.opensearch.core.SearchShardsRequest;
-import org.opensearch.client.opensearch.core.SearchShardsResponse;
 import org.opensearch.client.opensearch.core.SearchTemplateRequest;
 import org.opensearch.client.opensearch.core.SearchTemplateResponse;
 import org.opensearch.client.opensearch.core.TermsEnumRequest;
@@ -126,7 +123,6 @@ import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndic
 import org.opensearch.client.opensearch.features.OpenSearchFeaturesAsyncClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesAsyncClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestAsyncClient;
-import org.opensearch.client.opensearch.ml.OpenSearchMlAsyncClient;
 import org.opensearch.client.opensearch.nodes.OpenSearchNodesAsyncClient;
 import org.opensearch.client.opensearch.shutdown.OpenSearchShutdownAsyncClient;
 import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotAsyncClient;
@@ -141,7 +137,7 @@ import org.opensearch.client.util.ObjectBuilder;
 /**
  * Client for the namespace.
  */
-public class OpenSearchAsyncClient extends ApiClient<OpenSearchTransport, OpenSearchAsyncClient> {
+public class OpenSearchAsyncClient extends OpenSearchAsyncClientBase<OpenSearchAsyncClient> {
 
     public OpenSearchAsyncClient(OpenSearchTransport transport) {
         super(transport, null);
@@ -180,10 +176,6 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchTransport, OpenSe
 
     public OpenSearchIngestAsyncClient ingest() {
         return new OpenSearchIngestAsyncClient(this.transport, this.transportOptions);
-    }
-
-    public OpenSearchMlAsyncClient ml() {
-        return new OpenSearchMlAsyncClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchNodesAsyncClient nodes() {
@@ -1419,56 +1411,6 @@ public class OpenSearchAsyncClient extends ApiClient<OpenSearchTransport, OpenSe
         Class<TDocument> tDocumentClass
     ) throws IOException, OpenSearchException {
         return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentClass);
-    }
-
-    // ----- Endpoint: search_shards
-
-    /**
-     * Returns information about the indices and shards that a search request would
-     * be executed against.
-     *
-     *
-     */
-
-    public CompletableFuture<SearchShardsResponse> searchShards(SearchShardsRequest request) throws IOException, OpenSearchException {
-        @SuppressWarnings("unchecked")
-        JsonEndpoint<SearchShardsRequest, SearchShardsResponse, ErrorResponse> endpoint = (JsonEndpoint<
-            SearchShardsRequest,
-            SearchShardsResponse,
-            ErrorResponse>) SearchShardsRequest._ENDPOINT;
-
-        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-    }
-
-    /**
-     * Returns information about the indices and shards that a search request would
-     * be executed against.
-     *
-     * @param fn
-     *            a function that initializes a builder to create the
-     *            {@link SearchShardsRequest}
-     *
-     */
-
-    public final CompletableFuture<SearchShardsResponse> searchShards(
-        Function<SearchShardsRequest.Builder, ObjectBuilder<SearchShardsRequest>> fn
-    ) throws IOException, OpenSearchException {
-        return searchShards(fn.apply(new SearchShardsRequest.Builder()).build());
-    }
-
-    /**
-     * Returns information about the indices and shards that a search request would
-     * be executed against.
-     *
-     *
-     */
-
-    public CompletableFuture<SearchShardsResponse> searchShards() throws IOException, OpenSearchException {
-        return this.transport.performRequestAsync(
-            new SearchShardsRequest.Builder().build(),
-            SearchShardsRequest._ENDPOINT,
-            this.transportOptions
-        );
     }
 
     // ----- Endpoint: search_template

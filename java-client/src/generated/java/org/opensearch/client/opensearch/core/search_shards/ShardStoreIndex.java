@@ -30,11 +30,18 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch.core.search_shards;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -44,13 +51,18 @@ import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _global.search_shards.ShardStoreIndex
+// typedef: core.search_shards.ShardStoreIndex
 
 @JsonpDeserializable
-public class ShardStoreIndex implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class ShardStoreIndex implements PlainJsonSerializable, ToCopyableBuilder<ShardStoreIndex.Builder, ShardStoreIndex> {
+
+    @Nonnull
     private final List<String> aliases;
 
     @Nullable
@@ -59,19 +71,18 @@ public class ShardStoreIndex implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private ShardStoreIndex(Builder builder) {
-
         this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
         this.filter = builder.filter;
-
     }
 
-    public static ShardStoreIndex of(Function<Builder, ObjectBuilder<ShardStoreIndex>> fn) {
+    public static ShardStoreIndex of(Function<ShardStoreIndex.Builder, ObjectBuilder<ShardStoreIndex>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
      * API name: {@code aliases}
      */
+    @Nonnull
     public final List<String> aliases() {
         return this.aliases;
     }
@@ -87,6 +98,7 @@ public class ShardStoreIndex implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -94,43 +106,69 @@ public class ShardStoreIndex implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (ApiTypeHelper.isDefined(this.aliases)) {
             generator.writeKey("aliases");
             generator.writeStartArray();
             for (String item0 : this.aliases) {
                 generator.write(item0);
-
             }
             generator.writeEnd();
-
         }
+
         if (this.filter != null) {
             generator.writeKey("filter");
             this.filter.serialize(generator, mapper);
-
         }
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link ShardStoreIndex}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoreIndex> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ShardStoreIndex> {
         @Nullable
         private List<String> aliases;
-
         @Nullable
         private Query filter;
 
+        public Builder() {}
+
+        private Builder(ShardStoreIndex o) {
+            this.aliases = _listCopy(o.aliases);
+            this.filter = o.filter;
+        }
+
+        private Builder(Builder o) {
+            this.aliases = _listCopy(o.aliases);
+            this.filter = o.filter;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
+
         /**
          * API name: {@code aliases}
+         *
          * <p>
          * Adds all elements of <code>list</code> to <code>aliases</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder aliases(List<String> list) {
             this.aliases = _listAddAll(this.aliases, list);
             return this;
@@ -138,9 +176,12 @@ public class ShardStoreIndex implements PlainJsonSerializable {
 
         /**
          * API name: {@code aliases}
+         *
          * <p>
          * Adds one or more values to <code>aliases</code>.
+         * </p>
          */
+        @Nonnull
         public final Builder aliases(String value, String... values) {
             this.aliases = _listAdd(this.aliases, value, values);
             return this;
@@ -149,6 +190,7 @@ public class ShardStoreIndex implements PlainJsonSerializable {
         /**
          * API name: {@code filter}
          */
+        @Nonnull
         public final Builder filter(@Nullable Query value) {
             this.filter = value;
             return this;
@@ -157,16 +199,18 @@ public class ShardStoreIndex implements PlainJsonSerializable {
         /**
          * API name: {@code filter}
          */
+        @Nonnull
         public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-            return this.filter(fn.apply(new Query.Builder()).build());
+            return filter(fn.apply(new Query.Builder()).build());
         }
 
         /**
          * Builds a {@link ShardStoreIndex}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public ShardStoreIndex build() {
             _checkSingleUse();
 
@@ -185,10 +229,23 @@ public class ShardStoreIndex implements PlainJsonSerializable {
     );
 
     protected static void setupShardStoreIndexDeserializer(ObjectDeserializer<ShardStoreIndex.Builder> op) {
-
         op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "aliases");
         op.add(Builder::filter, Query._DESERIALIZER, "filter");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.aliases);
+        result = 31 * result + Objects.hashCode(this.filter);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        ShardStoreIndex other = (ShardStoreIndex) o;
+        return Objects.equals(this.aliases, other.aliases) && Objects.equals(this.filter, other.filter);
+    }
 }

@@ -30,10 +30,17 @@
  * GitHub history for details.
  */
 
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
+
 package org.opensearch.client.opensearch._types;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Generated;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -42,13 +49,17 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
+import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
+import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.SlicedScroll
 
 @JsonpDeserializable
-public class SlicedScroll implements PlainJsonSerializable {
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public class SlicedScroll implements PlainJsonSerializable, ToCopyableBuilder<SlicedScroll.Builder, SlicedScroll> {
+
     @Nullable
     private final String field;
 
@@ -59,14 +70,12 @@ public class SlicedScroll implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     private SlicedScroll(Builder builder) {
-
         this.field = builder.field;
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
-
     }
 
-    public static SlicedScroll of(Function<Builder, ObjectBuilder<SlicedScroll>> fn) {
+    public static SlicedScroll of(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -95,6 +104,7 @@ public class SlicedScroll implements PlainJsonSerializable {
     /**
      * Serialize this object to JSON.
      */
+    @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         serializeInternal(generator, mapper);
@@ -102,37 +112,64 @@ public class SlicedScroll implements PlainJsonSerializable {
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
         if (this.field != null) {
             generator.writeKey("field");
             generator.write(this.field);
-
         }
+
         generator.writeKey("id");
         generator.write(this.id);
 
         generator.writeKey("max");
         generator.write(this.max);
-
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    @Override
+    @Nonnull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @Nonnull
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Builder for {@link SlicedScroll}.
      */
-
-    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlicedScroll> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SlicedScroll> {
         @Nullable
         private String field;
-
         private Integer id;
-
         private Integer max;
+
+        public Builder() {}
+
+        private Builder(SlicedScroll o) {
+            this.field = o.field;
+            this.id = o.id;
+            this.max = o.max;
+        }
+
+        private Builder(Builder o) {
+            this.field = o.field;
+            this.id = o.id;
+            this.max = o.max;
+        }
+
+        @Override
+        @Nonnull
+        public Builder copy() {
+            return new Builder(this);
+        }
 
         /**
          * API name: {@code field}
          */
+        @Nonnull
         public final Builder field(@Nullable String value) {
             this.field = value;
             return this;
@@ -141,6 +178,7 @@ public class SlicedScroll implements PlainJsonSerializable {
         /**
          * Required - API name: {@code id}
          */
+        @Nonnull
         public final Builder id(int value) {
             this.id = value;
             return this;
@@ -149,6 +187,7 @@ public class SlicedScroll implements PlainJsonSerializable {
         /**
          * Required - API name: {@code max}
          */
+        @Nonnull
         public final Builder max(int value) {
             this.max = value;
             return this;
@@ -157,9 +196,10 @@ public class SlicedScroll implements PlainJsonSerializable {
         /**
          * Builds a {@link SlicedScroll}.
          *
-         * @throws NullPointerException
-         *             if some of the required fields are null.
+         * @throws NullPointerException if some of the required fields are null.
          */
+        @Override
+        @Nonnull
         public SlicedScroll build() {
             _checkSingleUse();
 
@@ -178,11 +218,25 @@ public class SlicedScroll implements PlainJsonSerializable {
     );
 
     protected static void setupSlicedScrollDeserializer(ObjectDeserializer<SlicedScroll.Builder> op) {
-
         op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(Builder::id, JsonpDeserializer.integerDeserializer(), "id");
         op.add(Builder::max, JsonpDeserializer.integerDeserializer(), "max");
-
     }
 
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.field);
+        result = 31 * result + Integer.hashCode(this.id);
+        result = 31 * result + Integer.hashCode(this.max);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        SlicedScroll other = (SlicedScroll) o;
+        return Objects.equals(this.field, other.field) && this.id == other.id && this.max == other.max;
+    }
 }

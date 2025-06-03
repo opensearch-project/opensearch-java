@@ -30,45 +30,32 @@
  * GitHub history for details.
  */
 
-package org.opensearch.client.opensearch._types;
+//----------------------------------------------------
+// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------
 
+package org.opensearch.client.opensearch.indices.stats;
+
+import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
+// typedef: indices.stats.ShardRoutingState
+
 @JsonpDeserializable
-public enum ExpandWildcard implements JsonEnum {
-    /**
-     * Match any data stream or index, including hidden ones.
-     */
-    All("all"),
+@Generated("org.opensearch.client.codegen.CodeGenerator")
+public enum ShardRoutingState implements JsonEnum {
+    Initializing("INITIALIZING"),
 
-    /**
-     * Match open, non-hidden indices. Also matches any non-hidden data stream.
-     */
-    Open("open"),
+    Relocating("RELOCATING"),
 
-    /**
-     * Match closed, non-hidden indices. Also matches any non-hidden data stream.
-     * Data streams cannot be closed.
-     */
-    Closed("closed"),
+    Started("STARTED"),
 
-    /**
-     * Match hidden data streams and hidden indices. Must be combined with open,
-     * closed, or both.
-     */
-    Hidden("hidden"),
-
-    /**
-     * Wildcard expressions are not accepted.
-     */
-    None("none"),
-
-    ;
+    Unassigned("UNASSIGNED");
 
     private final String jsonValue;
 
-    ExpandWildcard(String jsonValue) {
+    ShardRoutingState(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -76,5 +63,5 @@ public enum ExpandWildcard implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<ExpandWildcard> _DESERIALIZER = new JsonEnum.Deserializer<>(ExpandWildcard.values());
+    public static final JsonEnum.Deserializer<ShardRoutingState> _DESERIALIZER = new JsonEnum.Deserializer<>(ShardRoutingState.values());
 }
