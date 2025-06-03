@@ -64,6 +64,9 @@ public class SearchPipelineStructure
         PlainJsonSerializable,
         ToCopyableBuilder<SearchPipelineStructure.Builder, SearchPipelineStructure> {
 
+    @Nullable
+    private final String description;
+
     @Nonnull
     private final List<PhaseResultsProcessor> phaseResultsProcessors;
 
@@ -79,6 +82,7 @@ public class SearchPipelineStructure
     // ---------------------------------------------------------------------------------------------
 
     private SearchPipelineStructure(Builder builder) {
+        this.description = builder.description;
         this.phaseResultsProcessors = ApiTypeHelper.unmodifiable(builder.phaseResultsProcessors);
         this.requestProcessors = ApiTypeHelper.unmodifiable(builder.requestProcessors);
         this.responseProcessors = ApiTypeHelper.unmodifiable(builder.responseProcessors);
@@ -87,6 +91,14 @@ public class SearchPipelineStructure
 
     public static SearchPipelineStructure of(Function<SearchPipelineStructure.Builder, ObjectBuilder<SearchPipelineStructure>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * API name: {@code description}
+     */
+    @Nullable
+    public final String description() {
+        return this.description;
     }
 
     /**
@@ -132,6 +144,11 @@ public class SearchPipelineStructure
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.description != null) {
+            generator.writeKey("description");
+            generator.write(this.description);
+        }
+
         if (ApiTypeHelper.isDefined(this.phaseResultsProcessors)) {
             generator.writeKey("phase_results_processors");
             generator.writeStartArray();
@@ -183,6 +200,8 @@ public class SearchPipelineStructure
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SearchPipelineStructure> {
         @Nullable
+        private String description;
+        @Nullable
         private List<PhaseResultsProcessor> phaseResultsProcessors;
         @Nullable
         private List<RequestProcessor> requestProcessors;
@@ -194,6 +213,7 @@ public class SearchPipelineStructure
         public Builder() {}
 
         private Builder(SearchPipelineStructure o) {
+            this.description = o.description;
             this.phaseResultsProcessors = _listCopy(o.phaseResultsProcessors);
             this.requestProcessors = _listCopy(o.requestProcessors);
             this.responseProcessors = _listCopy(o.responseProcessors);
@@ -201,6 +221,7 @@ public class SearchPipelineStructure
         }
 
         private Builder(Builder o) {
+            this.description = o.description;
             this.phaseResultsProcessors = _listCopy(o.phaseResultsProcessors);
             this.requestProcessors = _listCopy(o.requestProcessors);
             this.responseProcessors = _listCopy(o.responseProcessors);
@@ -211,6 +232,15 @@ public class SearchPipelineStructure
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        /**
+         * API name: {@code description}
+         */
+        @Nonnull
+        public final Builder description(@Nullable String value) {
+            this.description = value;
+            return this;
         }
 
         /**
@@ -361,6 +391,7 @@ public class SearchPipelineStructure
     );
 
     protected static void setupSearchPipelineStructureDeserializer(ObjectDeserializer<SearchPipelineStructure.Builder> op) {
+        op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(
             Builder::phaseResultsProcessors,
             JsonpDeserializer.arrayDeserializer(PhaseResultsProcessor._DESERIALIZER),
@@ -374,6 +405,7 @@ public class SearchPipelineStructure
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.description);
         result = 31 * result + Objects.hashCode(this.phaseResultsProcessors);
         result = 31 * result + Objects.hashCode(this.requestProcessors);
         result = 31 * result + Objects.hashCode(this.responseProcessors);
@@ -386,7 +418,8 @@ public class SearchPipelineStructure
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         SearchPipelineStructure other = (SearchPipelineStructure) o;
-        return Objects.equals(this.phaseResultsProcessors, other.phaseResultsProcessors)
+        return Objects.equals(this.description, other.description)
+            && Objects.equals(this.phaseResultsProcessors, other.phaseResultsProcessors)
             && Objects.equals(this.requestProcessors, other.requestProcessors)
             && Objects.equals(this.responseProcessors, other.responseProcessors)
             && Objects.equals(this.version, other.version);

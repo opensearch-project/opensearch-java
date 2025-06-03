@@ -37,6 +37,7 @@
 package org.opensearch.client.opensearch.search_pipeline;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -48,48 +49,42 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: search_pipeline.ScoreCombination
+// typedef: search_pipeline.ScoreCombinationParameters
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ScoreCombination implements PlainJsonSerializable, ToCopyableBuilder<ScoreCombination.Builder, ScoreCombination> {
+public class ScoreCombinationParameters
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<ScoreCombinationParameters.Builder, ScoreCombinationParameters> {
 
-    @Nullable
-    private final ScoreCombinationParameters parameters;
-
-    @Nullable
-    private final ScoreCombinationTechnique technique;
+    @Nonnull
+    private final List<Float> weights;
 
     // ---------------------------------------------------------------------------------------------
 
-    private ScoreCombination(Builder builder) {
-        this.parameters = builder.parameters;
-        this.technique = builder.technique;
+    private ScoreCombinationParameters(Builder builder) {
+        this.weights = ApiTypeHelper.unmodifiable(builder.weights);
     }
 
-    public static ScoreCombination of(Function<ScoreCombination.Builder, ObjectBuilder<ScoreCombination>> fn) {
+    public static ScoreCombinationParameters of(
+        Function<ScoreCombinationParameters.Builder, ObjectBuilder<ScoreCombinationParameters>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * API name: {@code parameters}
+     * API name: {@code weights}
      */
-    @Nullable
-    public final ScoreCombinationParameters parameters() {
-        return this.parameters;
-    }
-
-    /**
-     * API name: {@code technique}
-     */
-    @Nullable
-    public final ScoreCombinationTechnique technique() {
-        return this.technique;
+    @Nonnull
+    public final List<Float> weights() {
+        return this.weights;
     }
 
     /**
@@ -103,14 +98,13 @@ public class ScoreCombination implements PlainJsonSerializable, ToCopyableBuilde
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.parameters != null) {
-            generator.writeKey("parameters");
-            this.parameters.serialize(generator, mapper);
-        }
-
-        if (this.technique != null) {
-            generator.writeKey("technique");
-            this.technique.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.weights)) {
+            generator.writeKey("weights");
+            generator.writeStartArray();
+            for (Float item0 : this.weights) {
+                generator.write(item0);
+            }
+            generator.writeEnd();
         }
     }
 
@@ -128,24 +122,20 @@ public class ScoreCombination implements PlainJsonSerializable, ToCopyableBuilde
     }
 
     /**
-     * Builder for {@link ScoreCombination}.
+     * Builder for {@link ScoreCombinationParameters}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ScoreCombination> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ScoreCombinationParameters> {
         @Nullable
-        private ScoreCombinationParameters parameters;
-        @Nullable
-        private ScoreCombinationTechnique technique;
+        private List<Float> weights;
 
         public Builder() {}
 
-        private Builder(ScoreCombination o) {
-            this.parameters = o.parameters;
-            this.technique = o.technique;
+        private Builder(ScoreCombinationParameters o) {
+            this.weights = _listCopy(o.weights);
         }
 
         private Builder(Builder o) {
-            this.parameters = o.parameters;
-            this.technique = o.technique;
+            this.weights = _listCopy(o.weights);
         }
 
         @Override
@@ -155,65 +145,63 @@ public class ScoreCombination implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
-         * API name: {@code parameters}
+         * API name: {@code weights}
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>weights</code>.
+         * </p>
          */
         @Nonnull
-        public final Builder parameters(@Nullable ScoreCombinationParameters value) {
-            this.parameters = value;
+        public final Builder weights(List<Float> list) {
+            this.weights = _listAddAll(this.weights, list);
             return this;
         }
 
         /**
-         * API name: {@code parameters}
+         * API name: {@code weights}
+         *
+         * <p>
+         * Adds one or more values to <code>weights</code>.
+         * </p>
          */
         @Nonnull
-        public final Builder parameters(Function<ScoreCombinationParameters.Builder, ObjectBuilder<ScoreCombinationParameters>> fn) {
-            return parameters(fn.apply(new ScoreCombinationParameters.Builder()).build());
-        }
-
-        /**
-         * API name: {@code technique}
-         */
-        @Nonnull
-        public final Builder technique(@Nullable ScoreCombinationTechnique value) {
-            this.technique = value;
+        public final Builder weights(Float value, Float... values) {
+            this.weights = _listAdd(this.weights, value, values);
             return this;
         }
 
         /**
-         * Builds a {@link ScoreCombination}.
+         * Builds a {@link ScoreCombinationParameters}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public ScoreCombination build() {
+        public ScoreCombinationParameters build() {
             _checkSingleUse();
 
-            return new ScoreCombination(this);
+            return new ScoreCombinationParameters(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link ScoreCombination}
+     * Json deserializer for {@link ScoreCombinationParameters}
      */
-    public static final JsonpDeserializer<ScoreCombination> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<ScoreCombinationParameters> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        ScoreCombination::setupScoreCombinationDeserializer
+        ScoreCombinationParameters::setupScoreCombinationParametersDeserializer
     );
 
-    protected static void setupScoreCombinationDeserializer(ObjectDeserializer<ScoreCombination.Builder> op) {
-        op.add(Builder::parameters, ScoreCombinationParameters._DESERIALIZER, "parameters");
-        op.add(Builder::technique, ScoreCombinationTechnique._DESERIALIZER, "technique");
+    protected static void setupScoreCombinationParametersDeserializer(ObjectDeserializer<ScoreCombinationParameters.Builder> op) {
+        op.add(Builder::weights, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.floatDeserializer()), "weights");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.parameters);
-        result = 31 * result + Objects.hashCode(this.technique);
+        result = 31 * result + Objects.hashCode(this.weights);
         return result;
     }
 
@@ -221,7 +209,7 @@ public class ScoreCombination implements PlainJsonSerializable, ToCopyableBuilde
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        ScoreCombination other = (ScoreCombination) o;
-        return Objects.equals(this.parameters, other.parameters) && Objects.equals(this.technique, other.technique);
+        ScoreCombinationParameters other = (ScoreCombinationParameters) o;
+        return Objects.equals(this.weights, other.weights);
     }
 }

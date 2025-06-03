@@ -54,6 +54,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.PhaseTook
 
+/**
+ * The time taken by different phases of the search.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<PhaseTook.Builder, PhaseTook> {
@@ -86,42 +89,60 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
     }
 
     /**
-     * Required - API name: {@code can_match}
+     * Required - The time taken for the <code>can_match</code> phase.
+     * <p>
+     * API name: {@code can_match}
+     * </p>
      */
     public final int canMatch() {
         return this.canMatch;
     }
 
     /**
-     * Required - API name: {@code dfs_pre_query}
+     * Required - The time taken for the distributed frequency search <code>pre-query</code> phase.
+     * <p>
+     * API name: {@code dfs_pre_query}
+     * </p>
      */
     public final int dfsPreQuery() {
         return this.dfsPreQuery;
     }
 
     /**
-     * Required - API name: {@code dfs_query}
+     * Required - The time taken for the distributed frequency search query phase.
+     * <p>
+     * API name: {@code dfs_query}
+     * </p>
      */
     public final int dfsQuery() {
         return this.dfsQuery;
     }
 
     /**
-     * Required - API name: {@code expand}
+     * Required - The time taken for the <code>expand</code> phase.
+     * <p>
+     * API name: {@code expand}
+     * </p>
      */
     public final int expand() {
         return this.expand;
     }
 
     /**
-     * Required - API name: {@code fetch}
+     * Required - The time taken for the <code>fetch</code> phase.
+     * <p>
+     * API name: {@code fetch}
+     * </p>
      */
     public final int fetch() {
         return this.fetch;
     }
 
     /**
-     * Required - API name: {@code query}
+     * Required - The time taken for the <code>query</code> phase.
+     * <p>
+     * API name: {@code query}
+     * </p>
      */
     public final int query() {
         return this.query;
@@ -208,7 +229,10 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
         }
 
         /**
-         * Required - API name: {@code can_match}
+         * Required - The time taken for the <code>can_match</code> phase.
+         * <p>
+         * API name: {@code can_match}
+         * </p>
          */
         @Nonnull
         public final Builder canMatch(int value) {
@@ -217,7 +241,10 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
         }
 
         /**
-         * Required - API name: {@code dfs_pre_query}
+         * Required - The time taken for the distributed frequency search <code>pre-query</code> phase.
+         * <p>
+         * API name: {@code dfs_pre_query}
+         * </p>
          */
         @Nonnull
         public final Builder dfsPreQuery(int value) {
@@ -226,7 +253,10 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
         }
 
         /**
-         * Required - API name: {@code dfs_query}
+         * Required - The time taken for the distributed frequency search query phase.
+         * <p>
+         * API name: {@code dfs_query}
+         * </p>
          */
         @Nonnull
         public final Builder dfsQuery(int value) {
@@ -235,7 +265,10 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
         }
 
         /**
-         * Required - API name: {@code expand}
+         * Required - The time taken for the <code>expand</code> phase.
+         * <p>
+         * API name: {@code expand}
+         * </p>
          */
         @Nonnull
         public final Builder expand(int value) {
@@ -244,7 +277,10 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
         }
 
         /**
-         * Required - API name: {@code fetch}
+         * Required - The time taken for the <code>fetch</code> phase.
+         * <p>
+         * API name: {@code fetch}
+         * </p>
          */
         @Nonnull
         public final Builder fetch(int value) {
@@ -253,7 +289,10 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
         }
 
         /**
-         * Required - API name: {@code query}
+         * Required - The time taken for the <code>query</code> phase.
+         * <p>
+         * API name: {@code query}
+         * </p>
          */
         @Nonnull
         public final Builder query(int value) {

@@ -42,6 +42,9 @@ import org.opensearch.client.json.JsonpDeserializable;
 
 // typedef: indices.stats.ShardRoutingState
 
+/**
+ * The state of shard routing.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum ShardRoutingState implements JsonEnum {

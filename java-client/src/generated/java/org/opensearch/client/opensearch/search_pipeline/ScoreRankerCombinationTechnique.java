@@ -37,25 +37,27 @@
 package org.opensearch.client.opensearch.search_pipeline;
 
 import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- * Builders for {@link PhaseResultsProcessor} variants.
- */
+// typedef: search_pipeline.ScoreRankerCombinationTechnique
+
+@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PhaseResultsProcessorBuilders {
-    private PhaseResultsProcessorBuilders() {}
+public enum ScoreRankerCombinationTechnique implements JsonEnum {
+    Rrf("rrf");
 
-    /**
-     * Creates a builder for the {@link NormalizationPhaseResultsProcessor normalization-processor} {@code PhaseResultsProcessor} variant.
-     */
-    public static NormalizationPhaseResultsProcessor.Builder normalizationProcessor() {
-        return new NormalizationPhaseResultsProcessor.Builder();
+    private final String jsonValue;
+
+    ScoreRankerCombinationTechnique(String jsonValue) {
+        this.jsonValue = jsonValue;
     }
 
-    /**
-     * Creates a builder for the {@link ScoreRankerPhaseResultsProcessor score-ranker-processor} {@code PhaseResultsProcessor} variant.
-     */
-    public static ScoreRankerPhaseResultsProcessor.Builder scoreRankerProcessor() {
-        return new ScoreRankerPhaseResultsProcessor.Builder();
+    public String jsonValue() {
+        return this.jsonValue;
     }
+
+    public static final JsonEnum.Deserializer<ScoreRankerCombinationTechnique> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        ScoreRankerCombinationTechnique.values()
+    );
 }

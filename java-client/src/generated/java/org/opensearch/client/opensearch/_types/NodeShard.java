@@ -59,6 +59,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.NodeShard
 
+/**
+ * The information about a shard on a node.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeShard.Builder, NodeShard> {
@@ -80,6 +83,9 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
     @Nullable
     private final String relocatingNode;
 
+    @Nullable
+    private final Boolean searchOnly;
+
     private final int shard;
 
     @Nonnull
@@ -97,6 +103,7 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
         this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
         this.recoverySource = ApiTypeHelper.unmodifiable(builder.recoverySource);
         this.relocatingNode = builder.relocatingNode;
+        this.searchOnly = builder.searchOnly;
         this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
         this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
         this.unassignedInfo = builder.unassignedInfo;
@@ -138,7 +145,10 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
     }
 
     /**
+     * The recovery source information for this shard.
+     * <p>
      * API name: {@code recovery_source}
+     * </p>
      */
     @Nonnull
     public final Map<String, String> recoverySource() {
@@ -151,6 +161,17 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
     @Nullable
     public final String relocatingNode() {
         return this.relocatingNode;
+    }
+
+    /**
+     * Indicates if this shard is configured for search operations only
+     * <p>
+     * API name: {@code searchOnly}
+     * </p>
+     */
+    @Nullable
+    public final Boolean searchOnly() {
+        return this.searchOnly;
     }
 
     /**
@@ -223,6 +244,11 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
             generator.write(this.relocatingNode);
         }
 
+        if (this.searchOnly != null) {
+            generator.writeKey("searchOnly");
+            generator.write(this.searchOnly);
+        }
+
         generator.writeKey("shard");
         generator.write(this.shard);
 
@@ -262,6 +288,8 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
         private Map<String, String> recoverySource;
         @Nullable
         private String relocatingNode;
+        @Nullable
+        private Boolean searchOnly;
         private Integer shard;
         private ShardRoutingState state;
         @Nullable
@@ -276,6 +304,7 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
             this.primary = o.primary;
             this.recoverySource = _mapCopy(o.recoverySource);
             this.relocatingNode = o.relocatingNode;
+            this.searchOnly = o.searchOnly;
             this.shard = o.shard;
             this.state = o.state;
             this.unassignedInfo = o.unassignedInfo;
@@ -288,6 +317,7 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
             this.primary = o.primary;
             this.recoverySource = _mapCopy(o.recoverySource);
             this.relocatingNode = o.relocatingNode;
+            this.searchOnly = o.searchOnly;
             this.shard = o.shard;
             this.state = o.state;
             this.unassignedInfo = o.unassignedInfo;
@@ -353,7 +383,10 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
         }
 
         /**
+         * The recovery source information for this shard.
+         * <p>
          * API name: {@code recovery_source}
+         * </p>
          *
          * <p>
          * Adds all elements of <code>map</code> to <code>recoverySource</code>.
@@ -366,7 +399,10 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
         }
 
         /**
+         * The recovery source information for this shard.
+         * <p>
          * API name: {@code recovery_source}
+         * </p>
          *
          * <p>
          * Adds an entry to <code>recoverySource</code>.
@@ -384,6 +420,18 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
         @Nonnull
         public final Builder relocatingNode(@Nullable String value) {
             this.relocatingNode = value;
+            return this;
+        }
+
+        /**
+         * Indicates if this shard is configured for search operations only
+         * <p>
+         * API name: {@code searchOnly}
+         * </p>
+         */
+        @Nonnull
+        public final Builder searchOnly(@Nullable Boolean value) {
+            this.searchOnly = value;
             return this;
         }
 
@@ -453,6 +501,7 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
         op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
         op.add(Builder::recoverySource, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "recovery_source");
         op.add(Builder::relocatingNode, JsonpDeserializer.stringDeserializer(), "relocating_node");
+        op.add(Builder::searchOnly, JsonpDeserializer.booleanDeserializer(), "searchOnly");
         op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
         op.add(Builder::state, ShardRoutingState._DESERIALIZER, "state");
         op.add(Builder::unassignedInfo, UnassignedInformation._DESERIALIZER, "unassigned_info");
@@ -467,6 +516,7 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
         result = 31 * result + Boolean.hashCode(this.primary);
         result = 31 * result + Objects.hashCode(this.recoverySource);
         result = 31 * result + Objects.hashCode(this.relocatingNode);
+        result = 31 * result + Objects.hashCode(this.searchOnly);
         result = 31 * result + Integer.hashCode(this.shard);
         result = 31 * result + this.state.hashCode();
         result = 31 * result + Objects.hashCode(this.unassignedInfo);
@@ -484,6 +534,7 @@ public class NodeShard implements PlainJsonSerializable, ToCopyableBuilder<NodeS
             && this.primary == other.primary
             && Objects.equals(this.recoverySource, other.recoverySource)
             && Objects.equals(this.relocatingNode, other.relocatingNode)
+            && Objects.equals(this.searchOnly, other.searchOnly)
             && this.shard == other.shard
             && this.state.equals(other.state)
             && Objects.equals(this.unassignedInfo, other.unassignedInfo);

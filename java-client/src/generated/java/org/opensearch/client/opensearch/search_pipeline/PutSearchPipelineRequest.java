@@ -76,6 +76,9 @@ public final class PutSearchPipelineRequest extends RequestBase
     @Nullable
     private final Time clusterManagerTimeout;
 
+    @Nullable
+    private final String description;
+
     @Nonnull
     private final String id;
 
@@ -99,6 +102,7 @@ public final class PutSearchPipelineRequest extends RequestBase
     private PutSearchPipelineRequest(Builder builder) {
         super(builder);
         this.clusterManagerTimeout = builder.clusterManagerTimeout;
+        this.description = builder.description;
         this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
         this.phaseResultsProcessors = ApiTypeHelper.unmodifiable(builder.phaseResultsProcessors);
         this.requestProcessors = ApiTypeHelper.unmodifiable(builder.requestProcessors);
@@ -120,6 +124,14 @@ public final class PutSearchPipelineRequest extends RequestBase
     @Nullable
     public final Time clusterManagerTimeout() {
         return this.clusterManagerTimeout;
+    }
+
+    /**
+     * API name: {@code description}
+     */
+    @Nullable
+    public final String description() {
+        return this.description;
     }
 
     /**
@@ -187,6 +199,11 @@ public final class PutSearchPipelineRequest extends RequestBase
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.description != null) {
+            generator.writeKey("description");
+            generator.write(this.description);
+        }
+
         if (ApiTypeHelper.isDefined(this.phaseResultsProcessors)) {
             generator.writeKey("phase_results_processors");
             generator.writeStartArray();
@@ -239,6 +256,8 @@ public final class PutSearchPipelineRequest extends RequestBase
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PutSearchPipelineRequest> {
         @Nullable
         private Time clusterManagerTimeout;
+        @Nullable
+        private String description;
         private String id;
         @Nullable
         private List<PhaseResultsProcessor> phaseResultsProcessors;
@@ -256,6 +275,7 @@ public final class PutSearchPipelineRequest extends RequestBase
         private Builder(PutSearchPipelineRequest o) {
             super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.description = o.description;
             this.id = o.id;
             this.phaseResultsProcessors = _listCopy(o.phaseResultsProcessors);
             this.requestProcessors = _listCopy(o.requestProcessors);
@@ -267,6 +287,7 @@ public final class PutSearchPipelineRequest extends RequestBase
         private Builder(Builder o) {
             super(o);
             this.clusterManagerTimeout = o.clusterManagerTimeout;
+            this.description = o.description;
             this.id = o.id;
             this.phaseResultsProcessors = _listCopy(o.phaseResultsProcessors);
             this.requestProcessors = _listCopy(o.requestProcessors);
@@ -308,6 +329,15 @@ public final class PutSearchPipelineRequest extends RequestBase
         @Nonnull
         public final Builder clusterManagerTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return clusterManagerTimeout(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * API name: {@code description}
+         */
+        @Nonnull
+        public final Builder description(@Nullable String value) {
+            this.description = value;
+            return this;
         }
 
         /**
@@ -493,6 +523,7 @@ public final class PutSearchPipelineRequest extends RequestBase
     );
 
     protected static void setupPutSearchPipelineRequestDeserializer(ObjectDeserializer<PutSearchPipelineRequest.Builder> op) {
+        op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(
             Builder::phaseResultsProcessors,
             JsonpDeserializer.arrayDeserializer(PhaseResultsProcessor._DESERIALIZER),
@@ -544,6 +575,7 @@ public final class PutSearchPipelineRequest extends RequestBase
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.clusterManagerTimeout);
+        result = 31 * result + Objects.hashCode(this.description);
         result = 31 * result + this.id.hashCode();
         result = 31 * result + Objects.hashCode(this.phaseResultsProcessors);
         result = 31 * result + Objects.hashCode(this.requestProcessors);
@@ -559,6 +591,7 @@ public final class PutSearchPipelineRequest extends RequestBase
         if (o == null || this.getClass() != o.getClass()) return false;
         PutSearchPipelineRequest other = (PutSearchPipelineRequest) o;
         return Objects.equals(this.clusterManagerTimeout, other.clusterManagerTimeout)
+            && Objects.equals(this.description, other.description)
             && this.id.equals(other.id)
             && Objects.equals(this.phaseResultsProcessors, other.phaseResultsProcessors)
             && Objects.equals(this.requestProcessors, other.requestProcessors)
