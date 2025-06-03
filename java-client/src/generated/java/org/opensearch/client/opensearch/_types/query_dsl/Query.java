@@ -37,10 +37,12 @@
 package org.opensearch.client.opensearch._types.query_dsl;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
@@ -61,7 +63,7 @@ import org.opensearch.client.util.TaggedUnionUtils;
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class Query implements TaggedUnion<Query.Kind, QueryVariant>, AggregationVariant, PlainJsonSerializable {
+public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVariant, PlainJsonSerializable {
     /**
      * {@link Query} variant kinds.
      */
@@ -116,6 +118,7 @@ public class Query implements TaggedUnion<Query.Kind, QueryVariant>, Aggregation
         SpanOr("span_or"),
         SpanTerm("span_term"),
         SpanWithin("span_within"),
+        Template("template"),
         Term("term"),
         Terms("terms"),
         TermsSet("terms_set"),
@@ -145,7 +148,7 @@ public class Query implements TaggedUnion<Query.Kind, QueryVariant>, Aggregation
     }
 
     private final Kind _kind;
-    private final QueryVariant _value;
+    private final Object _value;
 
     @Override
     public final Kind _kind() {
@@ -153,7 +156,7 @@ public class Query implements TaggedUnion<Query.Kind, QueryVariant>, Aggregation
     }
 
     @Override
-    public final QueryVariant _get() {
+    public final Object _get() {
         return _value;
     }
 
@@ -972,6 +975,22 @@ public class Query implements TaggedUnion<Query.Kind, QueryVariant>, Aggregation
     }
 
     /**
+     * Is this variant instance of kind {@code template}?
+     */
+    public boolean isTemplate() {
+        return _kind == Kind.Template;
+    }
+
+    /**
+     * Get the {@code template} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code template} kind.
+     */
+    public Map<String, JsonData> template() {
+        return TaggedUnionUtils.get(this, Kind.Template);
+    }
+
+    /**
      * Is this variant instance of kind {@code term}?
      */
     public boolean isTerm() {
@@ -1089,6 +1108,17 @@ public class Query implements TaggedUnion<Query.Kind, QueryVariant>, Aggregation
         generator.writeKey(_kind.jsonValue());
         if (_value instanceof JsonpSerializable) {
             ((JsonpSerializable) _value).serialize(generator, mapper);
+        } else {
+            switch (_kind) {
+                case Template:
+                    generator.writeStartObject();
+                    for (Map.Entry<String, JsonData> item0 : ((Map<String, JsonData>) this._value).entrySet()) {
+                        generator.writeKey(item0.getKey());
+                        item0.getValue().serialize(generator, mapper);
+                    }
+                    generator.writeEnd();
+                    break;
+            }
         }
         generator.writeEnd();
     }
@@ -1105,7 +1135,7 @@ public class Query implements TaggedUnion<Query.Kind, QueryVariant>, Aggregation
 
     public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Query> {
         private Kind _kind;
-        private QueryVariant _value;
+        private Object _value;
 
         public Builder() {}
 
@@ -1614,6 +1644,12 @@ public class Query implements TaggedUnion<Query.Kind, QueryVariant>, Aggregation
             return this.spanWithin(fn.apply(new SpanWithinQuery.Builder()).build());
         }
 
+        public ObjectBuilder<Query> template(Map<String, JsonData> v) {
+            this._kind = Kind.Template;
+            this._value = v;
+            return this;
+        }
+
         public ObjectBuilder<Query> term(TermQuery v) {
             this._kind = Kind.Term;
             this._value = v;
@@ -1742,6 +1778,7 @@ public class Query implements TaggedUnion<Query.Kind, QueryVariant>, Aggregation
         op.add(Builder::spanOr, SpanOrQuery._DESERIALIZER, "span_or");
         op.add(Builder::spanTerm, SpanTermQuery._DESERIALIZER, "span_term");
         op.add(Builder::spanWithin, SpanWithinQuery._DESERIALIZER, "span_within");
+        op.add(Builder::template, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "template");
         op.add(Builder::term, TermQuery._DESERIALIZER, "term");
         op.add(Builder::terms, TermsQuery._DESERIALIZER, "terms");
         op.add(Builder::termsSet, TermsSetQuery._DESERIALIZER, "terms_set");

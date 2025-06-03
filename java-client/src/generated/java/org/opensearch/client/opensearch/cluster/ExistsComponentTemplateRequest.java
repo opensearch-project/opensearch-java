@@ -107,8 +107,8 @@ public final class ExistsComponentTemplateRequest extends RequestBase
     }
 
     /**
-     * When <code>true</code>, the request retrieves information from the local node only. When `false, information is retrieved from the
-     * cluster manager node.
+     * When <code>true</code>, the request retrieves information from the local node only. When <code>false</code>, information is retrieved
+     * from the cluster manager node.
      * <p>
      * API name: {@code local}
      * </p>
@@ -226,8 +226,8 @@ public final class ExistsComponentTemplateRequest extends RequestBase
         }
 
         /**
-         * When <code>true</code>, the request retrieves information from the local node only. When `false, information is retrieved from
-         * the cluster manager node.
+         * When <code>true</code>, the request retrieves information from the local node only. When <code>false</code>, information is
+         * retrieved from the cluster manager node.
          * <p>
          * API name: {@code local}
          * </p>
