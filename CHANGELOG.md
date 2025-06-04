@@ -3,7 +3,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.x]
 ### Added
-- Metrics support includes micrometer integration and Prometheus support with a custom client-side metrics. [Metrics](./guides/metrics.md)
+- Metrics support includes Micrometer integration for custom client-side metrics. [Metrics](./guides/metrics.md)
 ### Dependencies
 - Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.4 to 5.5 ([#1578](https://github.com/opensearch-project/opensearch-java/pull/1578))
 - Bump `org.junit:junit-bom` from 5.12.2 to 5.13.0 ([#1587](https://github.com/opensearch-project/opensearch-java/pull/1587))
