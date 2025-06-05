@@ -200,6 +200,7 @@ You can find a working sample of the above code in [IndexingBasics.java](./sampl
 - [Search](./guides/search.md)
 - [Generic Client](./guides/generic.md)
 - [Json](./guides/json.md)
+- [Metrics](./guides/metrics.md)
 
 ## Plugins
 
