@@ -5,8 +5,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Dependencies
-- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.4 to 5.5 ([#1578](https://github.com/opensearch-project/opensearch-java/pull/1578))
-- Bump `org.junit:junit-bom` from 5.12.2 to 5.13.0 ([#1587](https://github.com/opensearch-project/opensearch-java/pull/1587))
 
 ### Changed
 
@@ -17,6 +15,44 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Fixed
 
 ### Security
+
+## [Unreleased 2.x]
+### Added
+
+### Dependencies
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.1.0] - 06/04/2025
+### Added
+- Added support for the `template` query type ([#1586](https://github.com/opensearch-project/opensearch-java/pull/1586))
+- Added support for Search Shards request `slice` property ([#1586](https://github.com/opensearch-project/opensearch-java/pull/1586))
+- Added support for the `score-ranker-processor` phase results processor ([#1594](https://github.com/opensearch-project/opensearch-java/pull/1594))
+
+### Dependencies
+- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.4.4 to 5.5 ([#1578](https://github.com/opensearch-project/opensearch-java/pull/1578))
+- Bump `org.junit:junit-bom` from 5.12.2 to 5.13.0 ([#1587](https://github.com/opensearch-project/opensearch-java/pull/1587))
+
+## [2.25.0] - 06/03/2025
+### Added
+- Added support for the `template` query type ([#1586](https://github.com/opensearch-project/opensearch-java/pull/1586))
+- Added support for Search Shards request `slice` property ([#1586](https://github.com/opensearch-project/opensearch-java/pull/1586))
+- Added support for ML tool attributes ([#1594](https://github.com/opensearch-project/opensearch-java/pull/1594))
+- Added support for the `score-ranker-processor` phase results processor ([#1594](https://github.com/opensearch-project/opensearch-java/pull/1594))
+
+### Dependencies
+- Bump `org.junit:junit-bom` from 5.12.2 to 5.13.0 ([#1587](https://github.com/opensearch-project/opensearch-java/pull/1587))
+
+### Fixed
+- Fixed ScoreCombination's `parameters` structure ([#1594](https://github.com/opensearch-project/opensearch-java/pull/1594))
 
 ## [3.0.0] - 05/16/2025
 ### ⚠️ Breaking Changes ⚠️
@@ -498,9 +534,11 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix catching JsonParsingException ([#494](https://github.com/opensearch-project/opensearch-java/issues/494))
 - Fix StoryStats numeric value out of range of int ([#489](https://github.com/opensearch-project/opensearch-java/pull/489))
 
-[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.0.0...3.x
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.24.0...2.x
+[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.1.0...3.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.25.0...2.x
+[3.1.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.24.0...v3.0.0
+[2.25.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.24.0...v2.25.0
 [2.24.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.23.0...v2.24.0
 [2.23.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.22.0...v2.23.0
 [2.22.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.21.0...v2.22.0
