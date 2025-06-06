@@ -46,6 +46,8 @@ public final class OpenApiOperation extends OpenApiElement<OpenApiOperation> imp
     private final Semver versionDeprecated;
     @Nullable
     private final String deprecationMessage;
+    @Nullable
+    private final Boolean ignorable;
 
     OpenApiOperation(@Nonnull Builder builder) {
         super(builder);
@@ -59,6 +61,7 @@ public final class OpenApiOperation extends OpenApiElement<OpenApiOperation> imp
         this.versionAdded = builder.versionAdded;
         this.versionDeprecated = builder.versionDeprecated;
         this.deprecationMessage = builder.deprecationMessage;
+        this.ignorable = builder.ignorable;
     }
 
     OpenApiOperation(@Nonnull Operation operation) {
@@ -74,6 +77,7 @@ public final class OpenApiOperation extends OpenApiElement<OpenApiOperation> imp
         this.versionAdded = ifNonnull(extensions.get("x-version-added"), String::valueOf);
         this.versionDeprecated = ifNonnull(extensions.get("x-version-deprecated"), v -> Versions.coerce((String) v));
         this.deprecationMessage = ifNonnull(extensions.get("x-deprecation-message"), String::valueOf);
+        this.ignorable = ifNonnull(extensions.get("x-ignorable"), Boolean.class::cast);
     }
 
     @Override
@@ -141,6 +145,10 @@ public final class OpenApiOperation extends OpenApiElement<OpenApiOperation> imp
         return Optional.of(new Deprecation(deprecationMessage, versionDeprecated));
     }
 
+    public boolean isIgnorable() {
+        return ignorable != null && ignorable;
+    }
+
     @Override
     public @Nonnull OpenApiOperation clone() {
         return toBuilder().build();
@@ -157,7 +165,8 @@ public final class OpenApiOperation extends OpenApiElement<OpenApiOperation> imp
             .withResponses(ifNonnull(responses, Clone::clone))
             .withVersionAdded(versionAdded)
             .withVersionDeprecated(versionDeprecated)
-            .withDeprecationMessage(deprecationMessage);
+            .withDeprecationMessage(deprecationMessage)
+            .withIgnorable(ignorable);
     }
 
     public static @Nonnull Builder builder() {
@@ -175,6 +184,7 @@ public final class OpenApiOperation extends OpenApiElement<OpenApiOperation> imp
         private String versionAdded;
         private Semver versionDeprecated;
         private String deprecationMessage;
+        private Boolean ignorable;
 
         private Builder() {}
 
@@ -231,6 +241,11 @@ public final class OpenApiOperation extends OpenApiElement<OpenApiOperation> imp
 
         public @Nonnull Builder withDeprecationMessage(@Nullable String deprecationMessage) {
             this.deprecationMessage = deprecationMessage;
+            return this;
+        }
+
+        public @Nonnull Builder withIgnorable(@Nullable Boolean ignorable) {
+            this.ignorable = ignorable;
             return this;
         }
     }

@@ -103,6 +103,7 @@ public class CodeGenerator {
             )
         ),
         namespace(is("search_pipeline")),
+        namespace(is("security")),
         namespace(is("snapshot")),
         namespace(is("tasks"))
     );

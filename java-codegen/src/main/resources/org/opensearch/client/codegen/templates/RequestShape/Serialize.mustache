@@ -4,7 +4,7 @@
     */
     @Override
     public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
-        {{#delegatedBodyField.type.directSerializer}}this.{{delegatedBodyField.name}}{{/delegatedBodyField.type.directSerializer}}
+        {{#delegatedBodyField.type.serializer}}this.{{delegatedBodyField.name}}{{/delegatedBodyField.type.serializer}}
     }
 {{/hasDelegatedBodyField}}
 {{^hasDelegatedBodyField}}

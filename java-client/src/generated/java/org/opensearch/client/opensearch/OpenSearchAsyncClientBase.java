@@ -103,6 +103,7 @@ import org.opensearch.client.opensearch.ism.OpenSearchIsmAsyncClient;
 import org.opensearch.client.opensearch.ml.OpenSearchMlAsyncClient;
 import org.opensearch.client.opensearch.nodes.OpenSearchNodesAsyncClient;
 import org.opensearch.client.opensearch.search_pipeline.OpenSearchSearchPipelineAsyncClient;
+import org.opensearch.client.opensearch.security.OpenSearchSecurityAsyncClient;
 import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotAsyncClient;
 import org.opensearch.client.opensearch.tasks.OpenSearchTasksAsyncClient;
 import org.opensearch.client.transport.OpenSearchTransport;
@@ -155,6 +156,10 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
 
     public OpenSearchSearchPipelineAsyncClient searchPipeline() {
         return new OpenSearchSearchPipelineAsyncClient(this.transport, this.transportOptions);
+    }
+
+    public OpenSearchSecurityAsyncClient security() {
+        return new OpenSearchSecurityAsyncClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchSnapshotAsyncClient snapshot() {
