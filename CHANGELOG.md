@@ -6,6 +6,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added Jackson `ObjectMapper` module auto-detection ([#1643](https://github.com/opensearch-project/opensearch-java/pull/1643))
 
 ### Dependencies
+- Bump `org.owasp.dependencycheck` from 12.1.1 to 12.1.2 ([#1608](https://github.com/opensearch-project/opensearch-java/pull/1608))
 
 ### Changed
 
