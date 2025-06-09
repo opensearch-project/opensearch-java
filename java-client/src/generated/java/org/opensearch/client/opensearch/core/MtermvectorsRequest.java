@@ -231,7 +231,7 @@ public final class MtermvectorsRequest extends RequestBase
 
     /**
      * Specifies the node or shard on which the operation should be performed. See
-     * <a href="{{site.url}}{{site.baseurl}}/api-reference/search-apis/search/#the-preference-query-parameter">preference query
+     * <a href="https://opensearch.org/docs/latest/api-reference/search-apis/search/#the-preference-query-parameter">preference query
      * parameter</a> for a list of available options. By default the requests are routed randomly to available shard copies (primary or
      * replica), with no guarantee of consistency across repeated queries.
      * <p>
@@ -599,7 +599,7 @@ public final class MtermvectorsRequest extends RequestBase
 
         /**
          * Specifies the node or shard on which the operation should be performed. See
-         * <a href="{{site.url}}{{site.baseurl}}/api-reference/search-apis/search/#the-preference-query-parameter">preference query
+         * <a href="https://opensearch.org/docs/latest/api-reference/search-apis/search/#the-preference-query-parameter">preference query
          * parameter</a> for a list of available options. By default the requests are routed randomly to available shard copies (primary or
          * replica), with no guarantee of consistency across repeated queries.
          * <p>
