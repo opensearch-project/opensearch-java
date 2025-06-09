@@ -46,12 +46,12 @@ import org.opensearch.client.json.JsonpDeserializable;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum VersionType implements JsonEnum {
     /**
-     * The version number must be higher than the current version.
+     * The version number must be greater than the current version.
      */
     External("external"),
 
     /**
-     * The version number must be higher than or equal to the current version.
+     * The version number must be greater than or equal to the current version.
      */
     ExternalGte("external_gte"),
 
