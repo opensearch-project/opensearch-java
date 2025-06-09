@@ -163,8 +163,8 @@ public final class MtermvectorsRequest extends RequestBase
     }
 
     /**
-     * Comma-separated list or wildcard expressions of fields to include in the statistics. Used as the default list unless a specific field
-     * list is provided in the <code>completion_fields</code> or <code>fielddata_fields</code> parameters.
+     * A comma-separated list or a wildcard expression specifying the fields to include in the statistics. Used as the default list unless a
+     * specific field list is provided in the <code>completion_fields</code> or <code>fielddata_fields</code> parameters.
      * <p>
      * API name: {@code fields}
      * </p>
@@ -186,7 +186,7 @@ public final class MtermvectorsRequest extends RequestBase
     }
 
     /**
-     * Name of the index that contains the documents.
+     * The name of the index that contains the document.
      * <p>
      * API name: {@code index}
      * </p>
@@ -230,7 +230,10 @@ public final class MtermvectorsRequest extends RequestBase
     }
 
     /**
-     * Specifies the node or shard the operation should be performed on. Random by default.
+     * Specifies the node or shard on which the operation should be performed. See
+     * <a href="{{site.url}}{{site.baseurl}}/api-reference/search-apis/search/#the-preference-query-parameter">preference query
+     * parameter</a> for a list of available options. By default the requests are routed randomly to available shard copies (primary or
+     * replica), with no guarantee of consistency across repeated queries.
      * <p>
      * API name: {@code preference}
      * </p>
@@ -252,7 +255,7 @@ public final class MtermvectorsRequest extends RequestBase
     }
 
     /**
-     * Custom value used to route operations to a specific shard.
+     * A custom value used to route operations to a specific shard.
      * <p>
      * API name: {@code routing}
      * </p>
@@ -285,7 +288,7 @@ public final class MtermvectorsRequest extends RequestBase
     }
 
     /**
-     * Specific version type.
+     * The specific version type.
      * <p>
      * API name: {@code version_type}
      * </p>
@@ -481,8 +484,8 @@ public final class MtermvectorsRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list or wildcard expressions of fields to include in the statistics. Used as the default list unless a specific
-         * field list is provided in the <code>completion_fields</code> or <code>fielddata_fields</code> parameters.
+         * A comma-separated list or a wildcard expression specifying the fields to include in the statistics. Used as the default list
+         * unless a specific field list is provided in the <code>completion_fields</code> or <code>fielddata_fields</code> parameters.
          * <p>
          * API name: {@code fields}
          * </p>
@@ -498,8 +501,8 @@ public final class MtermvectorsRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list or wildcard expressions of fields to include in the statistics. Used as the default list unless a specific
-         * field list is provided in the <code>completion_fields</code> or <code>fielddata_fields</code> parameters.
+         * A comma-separated list or a wildcard expression specifying the fields to include in the statistics. Used as the default list
+         * unless a specific field list is provided in the <code>completion_fields</code> or <code>fielddata_fields</code> parameters.
          * <p>
          * API name: {@code fields}
          * </p>
@@ -547,7 +550,7 @@ public final class MtermvectorsRequest extends RequestBase
         }
 
         /**
-         * Name of the index that contains the documents.
+         * The name of the index that contains the document.
          * <p>
          * API name: {@code index}
          * </p>
@@ -595,7 +598,10 @@ public final class MtermvectorsRequest extends RequestBase
         }
 
         /**
-         * Specifies the node or shard the operation should be performed on. Random by default.
+         * Specifies the node or shard on which the operation should be performed. See
+         * <a href="{{site.url}}{{site.baseurl}}/api-reference/search-apis/search/#the-preference-query-parameter">preference query
+         * parameter</a> for a list of available options. By default the requests are routed randomly to available shard copies (primary or
+         * replica), with no guarantee of consistency across repeated queries.
          * <p>
          * API name: {@code preference}
          * </p>
@@ -619,7 +625,7 @@ public final class MtermvectorsRequest extends RequestBase
         }
 
         /**
-         * Custom value used to route operations to a specific shard.
+         * A custom value used to route operations to a specific shard.
          * <p>
          * API name: {@code routing}
          * </p>
@@ -635,7 +641,7 @@ public final class MtermvectorsRequest extends RequestBase
         }
 
         /**
-         * Custom value used to route operations to a specific shard.
+         * A custom value used to route operations to a specific shard.
          * <p>
          * API name: {@code routing}
          * </p>
@@ -675,7 +681,7 @@ public final class MtermvectorsRequest extends RequestBase
         }
 
         /**
-         * Specific version type.
+         * The specific version type.
          * <p>
          * API name: {@code version_type}
          * </p>
