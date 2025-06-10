@@ -164,7 +164,7 @@ public final class RefreshSearchAnalyzersRequest extends RequestBase
             // Request path
             request -> {
                 StringBuilder buf = new StringBuilder();
-                buf.append("/_opendistro/_refresh_search_analyzers/");
+                buf.append("/_plugins/_refresh_search_analyzers/");
                 SimpleEndpoint.pathEncode(request.index, buf);
                 return buf.toString();
             },

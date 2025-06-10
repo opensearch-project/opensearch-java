@@ -236,7 +236,7 @@ public final class RetryIndexRequest extends RequestBase
             if (request.index() != null) propsSet |= _index;
 
             if (propsSet == 0) {
-                return "/_opendistro/_ism/retry";
+                return "/_plugins/_ism/retry";
             }
             if (propsSet == (_index)) {
                 StringBuilder buf = new StringBuilder();
