@@ -99,7 +99,7 @@ OpenSearchTransport transport = new RestClientTransport(restClient, new JacksonJ
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
 
-The `JacksonJsonpMapper` class (2.x versions) only supports Java 7 objects by default. [Java 8 modules](https://github.com/FasterXML/jackson-modules-java8) to support JDK8 classes such as the Date and Time API (JSR-310), `Optional`, and more can be used by including [the additional datatype dependency](https://github.com/FasterXML/jackson-modules-java8#usage) and adding the module. Auto-detection for these modules is enabled, adding them to the classpath is enough.
+Auto-detection for `JsonMapper` modules is enabled, adding them to the classpath is enough. JSR310 & JDK8 support are enabled by default.
 
 Upcoming OpenSearch `3.0.0` release brings HTTP/2 support and as such, the `RestClientTransport` would switch to HTTP/2 if available (for both HTTPS and/or HTTP protocols). The desired protocol could be forced using `RestClientBuilder.HttpClientConfigCallback`.
 
