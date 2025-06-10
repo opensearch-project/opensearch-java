@@ -220,11 +220,11 @@ public final class ExplainPolicyRequest extends RequestBase
             if (request.index() != null) propsSet |= _index;
 
             if (propsSet == 0) {
-                return "/_opendistro/_ism/explain";
+                return "/_plugins/_ism/explain";
             }
             if (propsSet == (_index)) {
                 StringBuilder buf = new StringBuilder();
-                buf.append("/_opendistro/_ism/explain/");
+                buf.append("/_plugins/_ism/explain/");
                 SimpleEndpoint.pathEncode(request.index, buf);
                 return buf.toString();
             }

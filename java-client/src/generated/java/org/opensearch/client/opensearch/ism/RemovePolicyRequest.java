@@ -169,7 +169,7 @@ public final class RemovePolicyRequest extends RequestBase implements ToCopyable
             }
             if (propsSet == (_index)) {
                 StringBuilder buf = new StringBuilder();
-                buf.append("/_opendistro/_ism/remove/");
+                buf.append("/_plugins/_ism/remove/");
                 SimpleEndpoint.pathEncode(request.index, buf);
                 return buf.toString();
             }
