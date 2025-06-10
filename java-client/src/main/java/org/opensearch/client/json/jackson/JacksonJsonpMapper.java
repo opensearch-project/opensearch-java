@@ -63,7 +63,9 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
 
     public JacksonJsonpMapper() {
         this(
-            new ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, false).setSerializationInclusion(JsonInclude.Include.NON_NULL)
+            new ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, false)
+                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+                .findAndRegisterModules()
         );
     }
 
