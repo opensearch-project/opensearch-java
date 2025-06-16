@@ -188,7 +188,7 @@ public final class SearchShardsRequest extends RequestBase
     }
 
     /**
-     * Custom value used to route operations to a specific shard.
+     * A custom value used to route operations to a specific shard.
      * <p>
      * API name: {@code routing}
      * </p>
@@ -415,7 +415,7 @@ public final class SearchShardsRequest extends RequestBase
         }
 
         /**
-         * Custom value used to route operations to a specific shard.
+         * A custom value used to route operations to a specific shard.
          * <p>
          * API name: {@code routing}
          * </p>
@@ -431,7 +431,7 @@ public final class SearchShardsRequest extends RequestBase
         }
 
         /**
-         * Custom value used to route operations to a specific shard.
+         * A custom value used to route operations to a specific shard.
          * <p>
          * API name: {@code routing}
          * </p>
