@@ -80,7 +80,7 @@ public class CreateUserLegacyResponse
     }
 
     /**
-     * The message returned as part of a <code>CREATED</code> response.
+     * The message returned as part of an <code>OK</code> response.
      * <p>
      * API name: {@code message}
      * </p>
@@ -161,7 +161,7 @@ public class CreateUserLegacyResponse
         }
 
         /**
-         * The message returned as part of a <code>CREATED</code> response.
+         * The message returned as part of an <code>OK</code> response.
          * <p>
          * API name: {@code message}
          * </p>
