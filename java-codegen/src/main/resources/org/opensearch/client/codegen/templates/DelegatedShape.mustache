@@ -12,7 +12,7 @@
      */
     @Override
     public void serialize({{TYPES.Jakarta.Json.Stream.JsonGenerator}} generator, {{TYPES.Client.Json.JsonpMapper}} mapper) {
-        {{#delegatedType.directSerializer}}this.valueBody{{/delegatedType.directSerializer}}
+        {{#delegatedType.serializer}}this.valueBody{{/delegatedType.serializer}}
     }
 
     // ---------------------------------------------------------------------------------------------

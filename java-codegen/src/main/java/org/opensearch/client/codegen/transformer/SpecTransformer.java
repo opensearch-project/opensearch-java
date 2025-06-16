@@ -106,7 +106,9 @@ public class SpecTransformer {
                 p -> p.getOperations()
                     .stream()
                     .flatMap(m -> m.values().stream())
-                    .filter(o -> o.getDeprecation().map(d -> d.getVersion().isGreaterThan(Versions.V1_0_0)).orElse(true))
+                    .filter(
+                        o -> !o.isIgnorable() && o.getDeprecation().map(d -> d.getVersion().isGreaterThan(Versions.V1_0_0)).orElse(true)
+                    )
                     .map(o -> Pair.of(p, o))
             )
             .forEach(pair -> {
