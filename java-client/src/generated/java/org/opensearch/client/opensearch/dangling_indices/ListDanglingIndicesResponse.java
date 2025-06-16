@@ -48,22 +48,19 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.json.PlainJsonSerializable;
-import org.opensearch.client.opensearch._types.NodeStatistics;
 import org.opensearch.client.opensearch.dangling_indices.list_dangling_indices.DanglingIndex;
+import org.opensearch.client.opensearch.nodes.NodesResponseBase;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: dangling_indices.list_dangling_indices.Response
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ListDanglingIndicesResponse
+public class ListDanglingIndicesResponse extends NodesResponseBase
     implements
-        PlainJsonSerializable,
         ToCopyableBuilder<ListDanglingIndicesResponse.Builder, ListDanglingIndicesResponse> {
 
     @Nullable
@@ -72,15 +69,12 @@ public class ListDanglingIndicesResponse
     @Nonnull
     private final List<DanglingIndex> danglingIndices;
 
-    @Nullable
-    private final NodeStatistics nodes;
-
     // ---------------------------------------------------------------------------------------------
 
     private ListDanglingIndicesResponse(Builder builder) {
+        super(builder);
         this.clusterName = builder.clusterName;
         this.danglingIndices = ApiTypeHelper.unmodifiableRequired(builder.danglingIndices, this, "danglingIndices");
-        this.nodes = builder.nodes;
     }
 
     public static ListDanglingIndicesResponse of(
@@ -105,25 +99,8 @@ public class ListDanglingIndicesResponse
         return this.danglingIndices;
     }
 
-    /**
-     * API name: {@code _nodes}
-     */
-    @Nullable
-    public final NodeStatistics nodes() {
-        return this.nodes;
-    }
-
-    /**
-     * Serialize this object to JSON.
-     */
-    @Override
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        serializeInternal(generator, mapper);
-        generator.writeEnd();
-    }
-
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        super.serializeInternal(generator, mapper);
         if (this.clusterName != null) {
             generator.writeKey("cluster_name");
             generator.write(this.clusterName);
@@ -135,11 +112,6 @@ public class ListDanglingIndicesResponse
             item0.serialize(generator, mapper);
         }
         generator.writeEnd();
-
-        if (this.nodes != null) {
-            generator.writeKey("_nodes");
-            this.nodes.serialize(generator, mapper);
-        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -158,31 +130,37 @@ public class ListDanglingIndicesResponse
     /**
      * Builder for {@link ListDanglingIndicesResponse}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ListDanglingIndicesResponse> {
+    public static class Builder extends NodesResponseBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, ListDanglingIndicesResponse> {
         @Nullable
         private String clusterName;
         private List<DanglingIndex> danglingIndices;
-        @Nullable
-        private NodeStatistics nodes;
 
         public Builder() {}
 
         private Builder(ListDanglingIndicesResponse o) {
+            super(o);
             this.clusterName = o.clusterName;
             this.danglingIndices = _listCopy(o.danglingIndices);
-            this.nodes = o.nodes;
         }
 
         private Builder(Builder o) {
+            super(o);
             this.clusterName = o.clusterName;
             this.danglingIndices = _listCopy(o.danglingIndices);
-            this.nodes = o.nodes;
         }
 
         @Override
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        @Override
+        @Nonnull
+        protected Builder self() {
+            return this;
         }
 
         /**
@@ -233,23 +211,6 @@ public class ListDanglingIndicesResponse
         }
 
         /**
-         * API name: {@code _nodes}
-         */
-        @Nonnull
-        public final Builder nodes(@Nullable NodeStatistics value) {
-            this.nodes = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code _nodes}
-         */
-        @Nonnull
-        public final Builder nodes(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
-            return nodes(fn.apply(new NodeStatistics.Builder()).build());
-        }
-
-        /**
          * Builds a {@link ListDanglingIndicesResponse}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -274,27 +235,27 @@ public class ListDanglingIndicesResponse
     );
 
     protected static void setupListDanglingIndicesResponseDeserializer(ObjectDeserializer<ListDanglingIndicesResponse.Builder> op) {
+        setupNodesResponseBaseDeserializer(op);
         op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
         op.add(Builder::danglingIndices, JsonpDeserializer.arrayDeserializer(DanglingIndex._DESERIALIZER), "dangling_indices");
-        op.add(Builder::nodes, NodeStatistics._DESERIALIZER, "_nodes");
     }
 
     @Override
     public int hashCode() {
-        int result = 17;
+        int result = super.hashCode();
         result = 31 * result + Objects.hashCode(this.clusterName);
         result = 31 * result + this.danglingIndices.hashCode();
-        result = 31 * result + Objects.hashCode(this.nodes);
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         ListDanglingIndicesResponse other = (ListDanglingIndicesResponse) o;
-        return Objects.equals(this.clusterName, other.clusterName)
-            && this.danglingIndices.equals(other.danglingIndices)
-            && Objects.equals(this.nodes, other.nodes);
+        return Objects.equals(this.clusterName, other.clusterName) && this.danglingIndices.equals(other.danglingIndices);
     }
 }
