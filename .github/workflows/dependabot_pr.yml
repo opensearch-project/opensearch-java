@@ -39,7 +39,7 @@ jobs:
           version: "Unreleased ${{ steps.version.outputs.version }}"
 
       - name: Commit the changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "Update changelog"
           branch: ${{ github.head_ref }}
