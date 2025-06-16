@@ -307,7 +307,7 @@ public final class PutPolicyRequest extends RequestBase
         // Request path
         request -> {
             StringBuilder buf = new StringBuilder();
-            buf.append("/_opendistro/_ism/policies/");
+            buf.append("/_plugins/_ism/policies/");
             SimpleEndpoint.pathEncode(request.policyId, buf);
             return buf.toString();
         },

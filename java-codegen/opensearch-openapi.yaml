@@ -6999,355 +6999,6 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/rollups.stop___200'
-  /_plugins/_search_relevance/{node_id}/stats:
-    get:
-      operationId: search_relevance.get_node_stats.0
-      x-operation-group: search_relevance.get_node_stats
-      x-version-added: '3.1'
-      description: Gets stats by node.
-      parameters:
-        - $ref: '#/components/parameters/search_relevance.get_node_stats___path.node_id'
-        - $ref: '#/components/parameters/search_relevance.get_node_stats___query.flat_stat_paths'
-        - $ref: '#/components/parameters/search_relevance.get_node_stats___query.include_all_nodes'
-        - $ref: '#/components/parameters/search_relevance.get_node_stats___query.include_individual_nodes'
-        - $ref: '#/components/parameters/search_relevance.get_node_stats___query.include_info'
-        - $ref: '#/components/parameters/search_relevance.get_node_stats___query.include_metadata'
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.get_node_stats___200'
-  /_plugins/_search_relevance/{node_id}/stats/{stat}:
-    get:
-      operationId: search_relevance.get_node_stats.1
-      x-operation-group: search_relevance.get_node_stats
-      x-version-added: '3.1'
-      description: Gets stats by node.
-      parameters:
-        - $ref: '#/components/parameters/search_relevance.get_node_stats___path.node_id'
-        - $ref: '#/components/parameters/search_relevance.get_node_stats___path.stat'
-        - $ref: '#/components/parameters/search_relevance.get_node_stats___query.flat_stat_paths'
-        - $ref: '#/components/parameters/search_relevance.get_node_stats___query.include_all_nodes'
-        - $ref: '#/components/parameters/search_relevance.get_node_stats___query.include_individual_nodes'
-        - $ref: '#/components/parameters/search_relevance.get_node_stats___query.include_info'
-        - $ref: '#/components/parameters/search_relevance.get_node_stats___query.include_metadata'
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.get_node_stats___200'
-  /_plugins/_search_relevance/experiments:
-    get:
-      operationId: search_relevance.get_experiments.0
-      x-operation-group: search_relevance.get_experiments
-      x-version-added: '3.1'
-      description: Gets experiments.
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.get_experiments___200'
-      parameters:
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-    put:
-      operationId: search_relevance.put_experiments.0
-      x-operation-group: search_relevance.put_experiments
-      x-version-added: '3.1'
-      description: Creates an experiment.
-      requestBody:
-        $ref: '#/components/requestBodies/search_relevance.put_experiments'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.put_experiments___200'
-      parameters:
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-  /_plugins/_search_relevance/experiments/{experiment_id}:
-    delete:
-      operationId: search_relevance.delete_experiments.0
-      x-operation-group: search_relevance.delete_experiments
-      x-version-added: '3.1'
-      description: Deletes a specified experiment.
-      parameters:
-        - $ref: '#/components/parameters/search_relevance.delete_experiments___path.experiment_id'
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.delete_experiments___200'
-    get:
-      operationId: search_relevance.get_experiments.1
-      x-operation-group: search_relevance.get_experiments
-      x-version-added: '3.1'
-      description: Gets experiments.
-      parameters:
-        - $ref: '#/components/parameters/search_relevance.get_experiments___path.experiment_id'
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.get_experiments___200'
-  /_plugins/_search_relevance/judgments:
-    get:
-      operationId: search_relevance.get_judgments.0
-      x-operation-group: search_relevance.get_judgments
-      x-version-added: '3.1'
-      description: Gets judgments.
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.get_judgments___200'
-      parameters:
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-    put:
-      operationId: search_relevance.put_judgments.0
-      x-operation-group: search_relevance.put_judgments
-      x-version-added: '3.1'
-      description: Creates a judgment.
-      requestBody:
-        description: The request body of the judgment to be created.
-        $ref: '#/components/requestBodies/search_relevance.put_judgments'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.put_judgments___200'
-      parameters:
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-  /_plugins/_search_relevance/judgments/{judgment_id}:
-    delete:
-      operationId: search_relevance.delete_judgments.0
-      x-operation-group: search_relevance.delete_judgments
-      x-version-added: '3.1'
-      description: Deletes a specified judgment.
-      parameters:
-        - $ref: '#/components/parameters/search_relevance.delete_judgments___path.judgment_id'
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.delete_judgments___200'
-    get:
-      operationId: search_relevance.get_judgments.1
-      x-operation-group: search_relevance.get_judgments
-      x-version-added: '3.1'
-      description: Gets judgments.
-      parameters:
-        - $ref: '#/components/parameters/search_relevance.get_judgments___path.judgment_id'
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.get_judgments___200'
-  /_plugins/_search_relevance/query_sets:
-    get:
-      operationId: search_relevance.get_query_sets.0
-      x-operation-group: search_relevance.get_query_sets
-      x-version-added: '3.1'
-      description: Lists the current query sets available.
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.get_query_sets___200'
-      parameters:
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-    post:
-      operationId: search_relevance.post_query_sets.0
-      x-operation-group: search_relevance.post_query_sets
-      x-version-added: '3.1'
-      description: Creates a new query set by sampling queries from the user behavior data.
-      requestBody:
-        $ref: '#/components/requestBodies/search_relevance.post_query_sets'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.post_query_sets___200'
-      parameters:
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-    put:
-      operationId: search_relevance.put_query_sets.0
-      x-operation-group: search_relevance.put_query_sets
-      x-version-added: '3.1'
-      description: Creates a new query set by uploading manually.
-      requestBody:
-        $ref: '#/components/requestBodies/search_relevance.put_query_sets'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.put_query_sets___200'
-      parameters:
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-  /_plugins/_search_relevance/query_sets/{query_set_id}:
-    delete:
-      operationId: search_relevance.delete_query_sets.0
-      x-operation-group: search_relevance.delete_query_sets
-      x-version-added: '3.1'
-      description: Deletes a query set.
-      parameters:
-        - $ref: '#/components/parameters/search_relevance.delete_query_sets___path.query_set_id'
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.delete_query_sets___200'
-    get:
-      operationId: search_relevance.get_query_sets.1
-      x-operation-group: search_relevance.get_query_sets
-      x-version-added: '3.1'
-      description: Lists the current query sets available.
-      parameters:
-        - $ref: '#/components/parameters/search_relevance.get_query_sets___path.query_set_id'
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.get_query_sets___200'
-  /_plugins/_search_relevance/search_configurations:
-    get:
-      operationId: search_relevance.get_search_configurations.0
-      x-operation-group: search_relevance.get_search_configurations
-      x-version-added: '3.1'
-      description: Gets the search configurations.
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.get_search_configurations___200'
-      parameters:
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-    put:
-      operationId: search_relevance.put_search_configurations.0
-      x-operation-group: search_relevance.put_search_configurations
-      x-version-added: '3.1'
-      description: Creates a search configuration.
-      requestBody:
-        $ref: '#/components/requestBodies/search_relevance.put_search_configurations'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.put_search_configurations___200'
-      parameters:
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-  /_plugins/_search_relevance/search_configurations/{search_configuration_id}:
-    delete:
-      operationId: search_relevance.delete_search_configurations.0
-      x-operation-group: search_relevance.delete_search_configurations
-      x-version-added: '3.1'
-      description: Deletes a specified search configuration.
-      parameters:
-        - $ref: '#/components/parameters/search_relevance.delete_search_configurations___path.search_configuration_id'
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.delete_search_configurations___200'
-    get:
-      operationId: search_relevance.get_search_configurations.1
-      x-operation-group: search_relevance.get_search_configurations
-      x-version-added: '3.1'
-      description: Gets the search configurations.
-      parameters:
-        - $ref: '#/components/parameters/search_relevance.get_search_configurations___path.search_configuration_id'
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.get_search_configurations___200'
-  /_plugins/_search_relevance/stats:
-    get:
-      operationId: search_relevance.get_stats.0
-      x-operation-group: search_relevance.get_stats
-      x-version-added: '3.1'
-      description: Gets stats.
-      parameters:
-        - $ref: '#/components/parameters/search_relevance.get_stats___query.flat_stat_paths'
-        - $ref: '#/components/parameters/search_relevance.get_stats___query.include_all_nodes'
-        - $ref: '#/components/parameters/search_relevance.get_stats___query.include_individual_nodes'
-        - $ref: '#/components/parameters/search_relevance.get_stats___query.include_info'
-        - $ref: '#/components/parameters/search_relevance.get_stats___query.include_metadata'
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.get_stats___200'
-  /_plugins/_search_relevance/stats/{stat}:
-    get:
-      operationId: search_relevance.get_stats.1
-      x-operation-group: search_relevance.get_stats
-      x-version-added: '3.1'
-      description: Gets stats.
-      parameters:
-        - $ref: '#/components/parameters/search_relevance.get_stats___path.stat'
-        - $ref: '#/components/parameters/search_relevance.get_stats___query.flat_stat_paths'
-        - $ref: '#/components/parameters/search_relevance.get_stats___query.include_all_nodes'
-        - $ref: '#/components/parameters/search_relevance.get_stats___query.include_individual_nodes'
-        - $ref: '#/components/parameters/search_relevance.get_stats___query.include_info'
-        - $ref: '#/components/parameters/search_relevance.get_stats___query.include_metadata'
-        - $ref: '#/components/parameters/_global___query.pretty'
-        - $ref: '#/components/parameters/_global___query.human'
-        - $ref: '#/components/parameters/_global___query.error_trace'
-        - $ref: '#/components/parameters/_global___query.source'
-        - $ref: '#/components/parameters/_global___query.filter_path'
-      responses:
-        '200':
-          $ref: '#/components/responses/search_relevance.get_stats___200'
   /_plugins/_security/api/_upgrade_check:
     get:
       operationId: security.config_upgrade_check.0
@@ -9689,6 +9340,271 @@ paths:
           $ref: '#/components/responses/geospatial.put_ip2geo_datasource_settings___200'
         '404':
           $ref: '#/components/responses/geospatial.put_ip2geo_datasource_settings___404'
+  /_plugins/search_relevance/experiments:
+    get:
+      operationId: search_relevance.get_experiments.0
+      x-operation-group: search_relevance.get_experiments
+      x-version-added: '3.1'
+      description: Gets experiments.
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.get_experiments___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+    put:
+      operationId: search_relevance.put_experiments.0
+      x-operation-group: search_relevance.put_experiments
+      x-version-added: '3.1'
+      description: Creates an experiment.
+      requestBody:
+        $ref: '#/components/requestBodies/search_relevance.put_experiments'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.put_experiments___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+  /_plugins/search_relevance/experiments/{experiment_id}:
+    delete:
+      operationId: search_relevance.delete_experiments.0
+      x-operation-group: search_relevance.delete_experiments
+      x-version-added: '3.1'
+      description: Deletes a specified experiment.
+      parameters:
+        - $ref: '#/components/parameters/search_relevance.delete_experiments___path.experiment_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.delete_experiments___200'
+    get:
+      operationId: search_relevance.get_experiments.1
+      x-operation-group: search_relevance.get_experiments
+      x-version-added: '3.1'
+      description: Gets experiments.
+      parameters:
+        - $ref: '#/components/parameters/search_relevance.get_experiments___path.experiment_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.get_experiments___200'
+  /_plugins/search_relevance/judgments:
+    get:
+      operationId: search_relevance.get_judgments.0
+      x-operation-group: search_relevance.get_judgments
+      x-version-added: '3.1'
+      description: Gets judgments.
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.get_judgments___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+    put:
+      operationId: search_relevance.put_judgments.0
+      x-operation-group: search_relevance.put_judgments
+      x-version-added: '3.1'
+      description: Creates a judgment.
+      requestBody:
+        description: The request body of the judgment to be created.
+        $ref: '#/components/requestBodies/search_relevance.put_judgments'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.put_judgments___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+  /_plugins/search_relevance/judgments/{judgment_id}:
+    delete:
+      operationId: search_relevance.delete_judgments.0
+      x-operation-group: search_relevance.delete_judgments
+      x-version-added: '3.1'
+      description: Deletes a specified judgment.
+      parameters:
+        - $ref: '#/components/parameters/search_relevance.delete_judgments___path.judgment_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.delete_judgments___200'
+    get:
+      operationId: search_relevance.get_judgments.1
+      x-operation-group: search_relevance.get_judgments
+      x-version-added: '3.1'
+      description: Gets judgments.
+      parameters:
+        - $ref: '#/components/parameters/search_relevance.get_judgments___path.judgment_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.get_judgments___200'
+  /_plugins/search_relevance/query_sets:
+    get:
+      operationId: search_relevance.get_query_sets.0
+      x-operation-group: search_relevance.get_query_sets
+      x-version-added: '3.1'
+      description: Lists the current query sets available.
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.get_query_sets___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+    post:
+      operationId: search_relevance.post_query_sets.0
+      x-operation-group: search_relevance.post_query_sets
+      x-version-added: '3.1'
+      description: Creates a new query set by sampling queries from the user behavior data.
+      requestBody:
+        $ref: '#/components/requestBodies/search_relevance.post_query_sets'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.post_query_sets___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+    put:
+      operationId: search_relevance.put_query_sets.0
+      x-operation-group: search_relevance.put_query_sets
+      x-version-added: '3.1'
+      description: Creates a new query set by uploading manually.
+      requestBody:
+        $ref: '#/components/requestBodies/search_relevance.put_query_sets'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.put_query_sets___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+  /_plugins/search_relevance/query_sets/{query_set_id}:
+    delete:
+      operationId: search_relevance.delete_query_sets.0
+      x-operation-group: search_relevance.delete_query_sets
+      x-version-added: '3.1'
+      description: Deletes a query set.
+      parameters:
+        - $ref: '#/components/parameters/search_relevance.delete_query_sets___path.query_set_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.delete_query_sets___200'
+    get:
+      operationId: search_relevance.get_query_sets.1
+      x-operation-group: search_relevance.get_query_sets
+      x-version-added: '3.1'
+      description: Lists the current query sets available.
+      parameters:
+        - $ref: '#/components/parameters/search_relevance.get_query_sets___path.query_set_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.get_query_sets___200'
+  /_plugins/search_relevance/search_configurations:
+    get:
+      operationId: search_relevance.get_search_configurations.0
+      x-operation-group: search_relevance.get_search_configurations
+      x-version-added: '3.1'
+      description: Gets the search configurations.
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.get_search_configurations___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+    put:
+      operationId: search_relevance.put_search_configurations.0
+      x-operation-group: search_relevance.put_search_configurations
+      x-version-added: '3.1'
+      description: Creates a search configuration.
+      requestBody:
+        $ref: '#/components/requestBodies/search_relevance.put_search_configurations'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.put_search_configurations___200'
+      parameters:
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+  /_plugins/search_relevance/search_configurations/{search_configuration_id}:
+    delete:
+      operationId: search_relevance.delete_search_configurations.0
+      x-operation-group: search_relevance.delete_search_configurations
+      x-version-added: '3.1'
+      description: Deletes a specified search configuration.
+      parameters:
+        - $ref: '#/components/parameters/search_relevance.delete_search_configurations___path.search_configuration_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.delete_search_configurations___200'
+    get:
+      operationId: search_relevance.get_search_configurations.1
+      x-operation-group: search_relevance.get_search_configurations
+      x-version-added: '3.1'
+      description: Gets the search configurations.
+      parameters:
+        - $ref: '#/components/parameters/search_relevance.get_search_configurations___path.search_configuration_id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/search_relevance.get_search_configurations___200'
   /_rank_eval:
     get:
       operationId: rank_eval.0
@@ -26308,55 +26224,6 @@ components:
       description: The judgment id
       schema:
         type: string
-    search_relevance.get_node_stats___path.node_id:
-      name: node_id
-      in: path
-      required: true
-      description: The node id
-      schema:
-        type: string
-    search_relevance.get_node_stats___path.stat:
-      name: stat
-      in: path
-      required: true
-      description: The statistic to return
-      schema:
-        type: string
-    search_relevance.get_node_stats___query.flat_stat_paths:
-      name: flat_stat_paths
-      in: query
-      required: false
-      description: Requests flattened stat paths as keys
-      schema:
-        type: string
-    search_relevance.get_node_stats___query.include_all_nodes:
-      name: include_all_nodes
-      in: query
-      required: false
-      description: Whether to include all nodes
-      schema:
-        type: string
-    search_relevance.get_node_stats___query.include_individual_nodes:
-      name: include_individual_nodes
-      in: query
-      required: false
-      description: Whether to include individual nodes
-      schema:
-        type: string
-    search_relevance.get_node_stats___query.include_info:
-      name: include_info
-      in: query
-      required: false
-      description: Whether to include info
-      schema:
-        type: string
-    search_relevance.get_node_stats___query.include_metadata:
-      name: include_metadata
-      in: query
-      required: false
-      description: Whether to include metadata
-      schema:
-        type: string
     search_relevance.get_query_sets___path.query_set_id:
       name: query_set_id
       in: path
@@ -26369,48 +26236,6 @@ components:
       in: path
       required: true
       description: The search configuration id
-      schema:
-        type: string
-    search_relevance.get_stats___path.stat:
-      name: stat
-      in: path
-      required: true
-      description: The statistic to return
-      schema:
-        type: string
-    search_relevance.get_stats___query.flat_stat_paths:
-      name: flat_stat_paths
-      in: query
-      required: false
-      description: Requests flattened stat paths as keys
-      schema:
-        type: string
-    search_relevance.get_stats___query.include_all_nodes:
-      name: include_all_nodes
-      in: query
-      required: false
-      description: Whether to include all nodes
-      schema:
-        type: string
-    search_relevance.get_stats___query.include_individual_nodes:
-      name: include_individual_nodes
-      in: query
-      required: false
-      description: Whether to include individual nodes
-      schema:
-        type: string
-    search_relevance.get_stats___query.include_info:
-      name: include_info
-      in: query
-      required: false
-      description: Whether to include info
-      schema:
-        type: string
-    search_relevance.get_stats___query.include_metadata:
-      name: include_metadata
-      in: query
-      required: false
-      description: Whether to include metadata
       schema:
         type: string
     search_shards___path.index:
@@ -30573,67 +30398,23 @@ components:
       content:
         application/json:
           schema:
-            anyOf:
-              - type: object
-                description: The schema for a pointwise and hybrid optimizer experiment
-                properties:
-                  querySetId:
-                    type: string
-                  searchConfigurationList:
-                    type: array
-                    items:
-                      type: string
-                  judgmentList:
-                    type: array
-                    items:
-                      type: string
-                  size:
-                    type: integer
-                  type:
-                    type: string
-              - type: object
-                description: The schema for a pairwise experiment
-                properties:
-                  querySetId:
-                    type: string
-                  searchConfigurationList:
-                    type: array
-                    items:
-                      type: string
-                  size:
-                    type: integer
-                  type:
-                    type: string
+            type: object
+            properties:
+              querySetId:
+                type: string
+              searchConfigurationList:
+                type: array
+                items:
+                  type: string
+              size:
+                type: integer
+              type:
+                type: string
     search_relevance.put_judgments:
       content:
         application/json:
           schema:
             oneOf:
-              - type: object
-                description: The schema for a LLM judgment
-                properties:
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  type:
-                    type: string
-                  modelId:
-                    type: string
-                  querySetId:
-                    type: string
-                  searchConfigurationList:
-                    type: array
-                    items:
-                      type: string
-                  size:
-                    type: integer
-                  ignoreFailure:
-                    type: boolean
-                  contextFields:
-                    type: array
-                    items:
-                      type: string
               - type: object
                 description: The schema for a UBI judgment
                 properties:
@@ -30643,12 +30424,14 @@ components:
                     type: string
                   type:
                     type: string
+                  querySetId:
+                    type: string
                   clickModel:
                     type: string
                   maxRank:
                     type: integer
               - type: object
-                description: The schema for an import judgment
+                description: The schema for a UBI judgment
                 properties:
                   name:
                     type: string
@@ -30656,10 +30439,16 @@ components:
                     type: string
                   type:
                     type: string
-                  judgmentRatings:
+                  querySetId:
+                    type: string
+                  modelId:
+                    type: string
+                  size:
+                    type: integer
+                  searchConfigurationList:
                     type: array
                     items:
-                      type: object
+                      type: string
     search_relevance.put_query_sets:
       content:
         application/json:
@@ -30684,11 +30473,9 @@ components:
             properties:
               name:
                 type: string
-              index:
-                type: string
               query:
                 type: string
-              searchPipeline:
+              index:
                 type: string
     search_shards:
       content:
@@ -34547,12 +34334,6 @@ components:
               - $ref: '#/components/schemas/search_relevance._common___Judgment'
               - $ref: '#/components/schemas/search_relevance._common___GenericObject'
       description: ''
-    search_relevance.get_node_stats___200:
-      content:
-        application/json:
-          schema:
-            type: object
-      description: ''
     search_relevance.get_query_sets___200:
       content:
         application/json:
@@ -34568,12 +34349,6 @@ components:
             oneOf:
               - $ref: '#/components/schemas/search_relevance._common___SearchConfiguration'
               - $ref: '#/components/schemas/search_relevance._common___GenericObject'
-      description: ''
-    search_relevance.get_stats___200:
-      content:
-        application/json:
-          schema:
-            type: object
       description: ''
     search_relevance.post_query_sets___200:
       content:
