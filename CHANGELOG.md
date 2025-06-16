@@ -17,6 +17,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fixed building instances of `Explanation` by making `details` optional ([#]())
 
 ### Security
 

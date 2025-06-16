@@ -37,17 +37,20 @@
 package org.opensearch.client.opensearch.security;
 
 import jakarta.json.stream.JsonGenerator;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -65,6 +68,9 @@ public class HealthResponse implements PlainJsonSerializable, ToCopyableBuilder<
     @Nullable
     private final String mode;
 
+    @Nonnull
+    private final Map<String, JsonData> settings;
+
     @Nullable
     private final String status;
 
@@ -73,6 +79,7 @@ public class HealthResponse implements PlainJsonSerializable, ToCopyableBuilder<
     private HealthResponse(Builder builder) {
         this.message = builder.message;
         this.mode = builder.mode;
+        this.settings = ApiTypeHelper.unmodifiable(builder.settings);
         this.status = builder.status;
     }
 
@@ -94,6 +101,14 @@ public class HealthResponse implements PlainJsonSerializable, ToCopyableBuilder<
     @Nullable
     public final String mode() {
         return this.mode;
+    }
+
+    /**
+     * API name: {@code settings}
+     */
+    @Nonnull
+    public final Map<String, JsonData> settings() {
+        return this.settings;
     }
 
     /**
@@ -125,6 +140,16 @@ public class HealthResponse implements PlainJsonSerializable, ToCopyableBuilder<
             generator.write(this.mode);
         }
 
+        if (ApiTypeHelper.isDefined(this.settings)) {
+            generator.writeKey("settings");
+            generator.writeStartObject();
+            for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
+
         if (this.status != null) {
             generator.writeKey("status");
             generator.write(this.status);
@@ -153,6 +178,8 @@ public class HealthResponse implements PlainJsonSerializable, ToCopyableBuilder<
         @Nullable
         private String mode;
         @Nullable
+        private Map<String, JsonData> settings;
+        @Nullable
         private String status;
 
         public Builder() {}
@@ -160,12 +187,14 @@ public class HealthResponse implements PlainJsonSerializable, ToCopyableBuilder<
         private Builder(HealthResponse o) {
             this.message = o.message;
             this.mode = o.mode;
+            this.settings = _mapCopy(o.settings);
             this.status = o.status;
         }
 
         private Builder(Builder o) {
             this.message = o.message;
             this.mode = o.mode;
+            this.settings = _mapCopy(o.settings);
             this.status = o.status;
         }
 
@@ -190,6 +219,32 @@ public class HealthResponse implements PlainJsonSerializable, ToCopyableBuilder<
         @Nonnull
         public final Builder mode(@Nullable String value) {
             this.mode = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code settings}
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>settings</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder settings(Map<String, JsonData> map) {
+            this.settings = _mapPutAll(this.settings, map);
+            return this;
+        }
+
+        /**
+         * API name: {@code settings}
+         *
+         * <p>
+         * Adds an entry to <code>settings</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder settings(String key, JsonData value) {
+            this.settings = _mapPut(this.settings, key, value);
             return this;
         }
 
@@ -229,6 +284,7 @@ public class HealthResponse implements PlainJsonSerializable, ToCopyableBuilder<
     protected static void setupHealthResponseDeserializer(ObjectDeserializer<HealthResponse.Builder> op) {
         op.add(Builder::message, JsonpDeserializer.stringDeserializer(), "message");
         op.add(Builder::mode, JsonpDeserializer.stringDeserializer(), "mode");
+        op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
     }
 
@@ -237,6 +293,7 @@ public class HealthResponse implements PlainJsonSerializable, ToCopyableBuilder<
         int result = 17;
         result = 31 * result + Objects.hashCode(this.message);
         result = 31 * result + Objects.hashCode(this.mode);
+        result = 31 * result + Objects.hashCode(this.settings);
         result = 31 * result + Objects.hashCode(this.status);
         return result;
     }
@@ -248,6 +305,7 @@ public class HealthResponse implements PlainJsonSerializable, ToCopyableBuilder<
         HealthResponse other = (HealthResponse) o;
         return Objects.equals(this.message, other.message)
             && Objects.equals(this.mode, other.mode)
+            && Objects.equals(this.settings, other.settings)
             && Objects.equals(this.status, other.status);
     }
 }

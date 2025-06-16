@@ -34,65 +34,60 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.security;
+package org.opensearch.client.opensearch.nodes.info;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: security.create_role.Response
+// typedef: nodes.info.NodeInfoSearchPipelineProcessor
 
+/**
+ * The search pipeline processor configuration.
+ */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CreateRoleResponse implements PlainJsonSerializable, ToCopyableBuilder<CreateRoleResponse.Builder, CreateRoleResponse> {
+public class NodeInfoSearchPipelineProcessor
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<NodeInfoSearchPipelineProcessor.Builder, NodeInfoSearchPipelineProcessor> {
 
-    @Nullable
-    private final String message;
-
-    @Nullable
-    private final String status;
+    @Nonnull
+    private final String type;
 
     // ---------------------------------------------------------------------------------------------
 
-    private CreateRoleResponse(Builder builder) {
-        this.message = builder.message;
-        this.status = builder.status;
+    private NodeInfoSearchPipelineProcessor(Builder builder) {
+        this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
     }
 
-    public static CreateRoleResponse of(Function<CreateRoleResponse.Builder, ObjectBuilder<CreateRoleResponse>> fn) {
+    public static NodeInfoSearchPipelineProcessor of(
+        Function<NodeInfoSearchPipelineProcessor.Builder, ObjectBuilder<NodeInfoSearchPipelineProcessor>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * The message returned as part of a <code>CREATED</code> response.
+     * Required - The type of search pipeline processor.
      * <p>
-     * API name: {@code message}
+     * API name: {@code type}
      * </p>
      */
-    @Nullable
-    public final String message() {
-        return this.message;
-    }
-
-    /**
-     * API name: {@code status}
-     */
-    @Nullable
-    public final String status() {
-        return this.status;
+    @Nonnull
+    public final String type() {
+        return this.type;
     }
 
     /**
@@ -106,15 +101,8 @@ public class CreateRoleResponse implements PlainJsonSerializable, ToCopyableBuil
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.message != null) {
-            generator.writeKey("message");
-            generator.write(this.message);
-        }
-
-        if (this.status != null) {
-            generator.writeKey("status");
-            generator.write(this.status);
-        }
+        generator.writeKey("type");
+        generator.write(this.type);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -131,24 +119,19 @@ public class CreateRoleResponse implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
-     * Builder for {@link CreateRoleResponse}.
+     * Builder for {@link NodeInfoSearchPipelineProcessor}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CreateRoleResponse> {
-        @Nullable
-        private String message;
-        @Nullable
-        private String status;
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NodeInfoSearchPipelineProcessor> {
+        private String type;
 
         public Builder() {}
 
-        private Builder(CreateRoleResponse o) {
-            this.message = o.message;
-            this.status = o.status;
+        private Builder(NodeInfoSearchPipelineProcessor o) {
+            this.type = o.type;
         }
 
         private Builder(Builder o) {
-            this.message = o.message;
-            this.status = o.status;
+            this.type = o.type;
         }
 
         @Override
@@ -158,60 +141,49 @@ public class CreateRoleResponse implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * The message returned as part of a <code>CREATED</code> response.
+         * Required - The type of search pipeline processor.
          * <p>
-         * API name: {@code message}
+         * API name: {@code type}
          * </p>
          */
         @Nonnull
-        public final Builder message(@Nullable String value) {
-            this.message = value;
+        public final Builder type(String value) {
+            this.type = value;
             return this;
         }
 
         /**
-         * API name: {@code status}
-         */
-        @Nonnull
-        public final Builder status(@Nullable String value) {
-            this.status = value;
-            return this;
-        }
-
-        /**
-         * Builds a {@link CreateRoleResponse}.
+         * Builds a {@link NodeInfoSearchPipelineProcessor}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public CreateRoleResponse build() {
+        public NodeInfoSearchPipelineProcessor build() {
             _checkSingleUse();
 
-            return new CreateRoleResponse(this);
+            return new NodeInfoSearchPipelineProcessor(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link CreateRoleResponse}
+     * Json deserializer for {@link NodeInfoSearchPipelineProcessor}
      */
-    public static final JsonpDeserializer<CreateRoleResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<NodeInfoSearchPipelineProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        CreateRoleResponse::setupCreateRoleResponseDeserializer
+        NodeInfoSearchPipelineProcessor::setupNodeInfoSearchPipelineProcessorDeserializer
     );
 
-    protected static void setupCreateRoleResponseDeserializer(ObjectDeserializer<CreateRoleResponse.Builder> op) {
-        op.add(Builder::message, JsonpDeserializer.stringDeserializer(), "message");
-        op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
+    protected static void setupNodeInfoSearchPipelineProcessorDeserializer(ObjectDeserializer<NodeInfoSearchPipelineProcessor.Builder> op) {
+        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.message);
-        result = 31 * result + Objects.hashCode(this.status);
+        result = 31 * result + this.type.hashCode();
         return result;
     }
 
@@ -219,7 +191,7 @@ public class CreateRoleResponse implements PlainJsonSerializable, ToCopyableBuil
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        CreateRoleResponse other = (CreateRoleResponse) o;
-        return Objects.equals(this.message, other.message) && Objects.equals(this.status, other.status);
+        NodeInfoSearchPipelineProcessor other = (NodeInfoSearchPipelineProcessor) o;
+        return this.type.equals(other.type);
     }
 }

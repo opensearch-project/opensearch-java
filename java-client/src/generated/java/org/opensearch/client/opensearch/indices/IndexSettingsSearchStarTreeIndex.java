@@ -34,7 +34,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.security;
+package org.opensearch.client.opensearch.indices;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -53,46 +53,36 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: security.create_role.Response
+// typedef: indices.IndexSettingsSearchStarTreeIndex
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class CreateRoleResponse implements PlainJsonSerializable, ToCopyableBuilder<CreateRoleResponse.Builder, CreateRoleResponse> {
+public class IndexSettingsSearchStarTreeIndex
+    implements
+        PlainJsonSerializable,
+        ToCopyableBuilder<IndexSettingsSearchStarTreeIndex.Builder, IndexSettingsSearchStarTreeIndex> {
 
     @Nullable
-    private final String message;
-
-    @Nullable
-    private final String status;
+    private final Boolean enabled;
 
     // ---------------------------------------------------------------------------------------------
 
-    private CreateRoleResponse(Builder builder) {
-        this.message = builder.message;
-        this.status = builder.status;
+    private IndexSettingsSearchStarTreeIndex(Builder builder) {
+        this.enabled = builder.enabled;
     }
 
-    public static CreateRoleResponse of(Function<CreateRoleResponse.Builder, ObjectBuilder<CreateRoleResponse>> fn) {
+    public static IndexSettingsSearchStarTreeIndex of(
+        Function<IndexSettingsSearchStarTreeIndex.Builder, ObjectBuilder<IndexSettingsSearchStarTreeIndex>> fn
+    ) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * The message returned as part of a <code>CREATED</code> response.
-     * <p>
-     * API name: {@code message}
-     * </p>
+     * API name: {@code enabled}
      */
     @Nullable
-    public final String message() {
-        return this.message;
-    }
-
-    /**
-     * API name: {@code status}
-     */
-    @Nullable
-    public final String status() {
-        return this.status;
+    public final Boolean enabled() {
+        return this.enabled;
     }
 
     /**
@@ -106,14 +96,9 @@ public class CreateRoleResponse implements PlainJsonSerializable, ToCopyableBuil
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.message != null) {
-            generator.writeKey("message");
-            generator.write(this.message);
-        }
-
-        if (this.status != null) {
-            generator.writeKey("status");
-            generator.write(this.status);
+        if (this.enabled != null) {
+            generator.writeKey("enabled");
+            generator.write(this.enabled);
         }
     }
 
@@ -131,24 +116,20 @@ public class CreateRoleResponse implements PlainJsonSerializable, ToCopyableBuil
     }
 
     /**
-     * Builder for {@link CreateRoleResponse}.
+     * Builder for {@link IndexSettingsSearchStarTreeIndex}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, CreateRoleResponse> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IndexSettingsSearchStarTreeIndex> {
         @Nullable
-        private String message;
-        @Nullable
-        private String status;
+        private Boolean enabled;
 
         public Builder() {}
 
-        private Builder(CreateRoleResponse o) {
-            this.message = o.message;
-            this.status = o.status;
+        private Builder(IndexSettingsSearchStarTreeIndex o) {
+            this.enabled = o.enabled;
         }
 
         private Builder(Builder o) {
-            this.message = o.message;
-            this.status = o.status;
+            this.enabled = o.enabled;
         }
 
         @Override
@@ -158,60 +139,48 @@ public class CreateRoleResponse implements PlainJsonSerializable, ToCopyableBuil
         }
 
         /**
-         * The message returned as part of a <code>CREATED</code> response.
-         * <p>
-         * API name: {@code message}
-         * </p>
+         * API name: {@code enabled}
          */
         @Nonnull
-        public final Builder message(@Nullable String value) {
-            this.message = value;
+        public final Builder enabled(@Nullable Boolean value) {
+            this.enabled = value;
             return this;
         }
 
         /**
-         * API name: {@code status}
-         */
-        @Nonnull
-        public final Builder status(@Nullable String value) {
-            this.status = value;
-            return this;
-        }
-
-        /**
-         * Builds a {@link CreateRoleResponse}.
+         * Builds a {@link IndexSettingsSearchStarTreeIndex}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public CreateRoleResponse build() {
+        public IndexSettingsSearchStarTreeIndex build() {
             _checkSingleUse();
 
-            return new CreateRoleResponse(this);
+            return new IndexSettingsSearchStarTreeIndex(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link CreateRoleResponse}
+     * Json deserializer for {@link IndexSettingsSearchStarTreeIndex}
      */
-    public static final JsonpDeserializer<CreateRoleResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<IndexSettingsSearchStarTreeIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        CreateRoleResponse::setupCreateRoleResponseDeserializer
+        IndexSettingsSearchStarTreeIndex::setupIndexSettingsSearchStarTreeIndexDeserializer
     );
 
-    protected static void setupCreateRoleResponseDeserializer(ObjectDeserializer<CreateRoleResponse.Builder> op) {
-        op.add(Builder::message, JsonpDeserializer.stringDeserializer(), "message");
-        op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
+    protected static void setupIndexSettingsSearchStarTreeIndexDeserializer(
+        ObjectDeserializer<IndexSettingsSearchStarTreeIndex.Builder> op
+    ) {
+        op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.message);
-        result = 31 * result + Objects.hashCode(this.status);
+        result = 31 * result + Objects.hashCode(this.enabled);
         return result;
     }
 
@@ -219,7 +188,7 @@ public class CreateRoleResponse implements PlainJsonSerializable, ToCopyableBuil
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        CreateRoleResponse other = (CreateRoleResponse) o;
-        return Objects.equals(this.message, other.message) && Objects.equals(this.status, other.status);
+        IndexSettingsSearchStarTreeIndex other = (IndexSettingsSearchStarTreeIndex) o;
+        return Objects.equals(this.enabled, other.enabled);
     }
 }
