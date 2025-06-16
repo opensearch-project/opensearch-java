@@ -78,6 +78,9 @@ public class IndexSettingsSearch implements PlainJsonSerializable, ToCopyableBui
     private final SearchSlowlog slowlog;
 
     @Nullable
+    private final IndexSettingsSearchStarTreeIndex starTreeIndex;
+
+    @Nullable
     private final Boolean throttled;
 
     // ---------------------------------------------------------------------------------------------
@@ -88,6 +91,7 @@ public class IndexSettingsSearch implements PlainJsonSerializable, ToCopyableBui
         this.defaultPipeline = builder.defaultPipeline;
         this.idle = builder.idle;
         this.slowlog = builder.slowlog;
+        this.starTreeIndex = builder.starTreeIndex;
         this.throttled = builder.throttled;
     }
 
@@ -139,6 +143,14 @@ public class IndexSettingsSearch implements PlainJsonSerializable, ToCopyableBui
     }
 
     /**
+     * API name: {@code star_tree_index}
+     */
+    @Nullable
+    public final IndexSettingsSearchStarTreeIndex starTreeIndex() {
+        return this.starTreeIndex;
+    }
+
+    /**
      * API name: {@code throttled}
      */
     @Nullable
@@ -182,6 +194,11 @@ public class IndexSettingsSearch implements PlainJsonSerializable, ToCopyableBui
             this.slowlog.serialize(generator, mapper);
         }
 
+        if (this.starTreeIndex != null) {
+            generator.writeKey("star_tree_index");
+            this.starTreeIndex.serialize(generator, mapper);
+        }
+
         if (this.throttled != null) {
             generator.writeKey("throttled");
             generator.write(this.throttled);
@@ -216,6 +233,8 @@ public class IndexSettingsSearch implements PlainJsonSerializable, ToCopyableBui
         @Nullable
         private SearchSlowlog slowlog;
         @Nullable
+        private IndexSettingsSearchStarTreeIndex starTreeIndex;
+        @Nullable
         private Boolean throttled;
 
         public Builder() {}
@@ -226,6 +245,7 @@ public class IndexSettingsSearch implements PlainJsonSerializable, ToCopyableBui
             this.defaultPipeline = o.defaultPipeline;
             this.idle = o.idle;
             this.slowlog = o.slowlog;
+            this.starTreeIndex = o.starTreeIndex;
             this.throttled = o.throttled;
         }
 
@@ -235,6 +255,7 @@ public class IndexSettingsSearch implements PlainJsonSerializable, ToCopyableBui
             this.defaultPipeline = o.defaultPipeline;
             this.idle = o.idle;
             this.slowlog = o.slowlog;
+            this.starTreeIndex = o.starTreeIndex;
             this.throttled = o.throttled;
         }
 
@@ -327,6 +348,25 @@ public class IndexSettingsSearch implements PlainJsonSerializable, ToCopyableBui
         }
 
         /**
+         * API name: {@code star_tree_index}
+         */
+        @Nonnull
+        public final Builder starTreeIndex(@Nullable IndexSettingsSearchStarTreeIndex value) {
+            this.starTreeIndex = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code star_tree_index}
+         */
+        @Nonnull
+        public final Builder starTreeIndex(
+            Function<IndexSettingsSearchStarTreeIndex.Builder, ObjectBuilder<IndexSettingsSearchStarTreeIndex>> fn
+        ) {
+            return starTreeIndex(fn.apply(new IndexSettingsSearchStarTreeIndex.Builder()).build());
+        }
+
+        /**
          * API name: {@code throttled}
          */
         @Nonnull
@@ -365,6 +405,7 @@ public class IndexSettingsSearch implements PlainJsonSerializable, ToCopyableBui
         op.add(Builder::defaultPipeline, JsonpDeserializer.stringDeserializer(), "default_pipeline");
         op.add(Builder::idle, SearchIdle._DESERIALIZER, "idle");
         op.add(Builder::slowlog, SearchSlowlog._DESERIALIZER, "slowlog");
+        op.add(Builder::starTreeIndex, IndexSettingsSearchStarTreeIndex._DESERIALIZER, "star_tree_index");
         op.add(Builder::throttled, JsonpDeserializer.booleanDeserializer(), "throttled");
     }
 
@@ -376,6 +417,7 @@ public class IndexSettingsSearch implements PlainJsonSerializable, ToCopyableBui
         result = 31 * result + Objects.hashCode(this.defaultPipeline);
         result = 31 * result + Objects.hashCode(this.idle);
         result = 31 * result + Objects.hashCode(this.slowlog);
+        result = 31 * result + Objects.hashCode(this.starTreeIndex);
         result = 31 * result + Objects.hashCode(this.throttled);
         return result;
     }
@@ -390,6 +432,7 @@ public class IndexSettingsSearch implements PlainJsonSerializable, ToCopyableBui
             && Objects.equals(this.defaultPipeline, other.defaultPipeline)
             && Objects.equals(this.idle, other.idle)
             && Objects.equals(this.slowlog, other.slowlog)
+            && Objects.equals(this.starTreeIndex, other.starTreeIndex)
             && Objects.equals(this.throttled, other.throttled);
     }
 }
