@@ -68,14 +68,18 @@ public class NodeInfoSearchPipelines
         ToCopyableBuilder<NodeInfoSearchPipelines.Builder, NodeInfoSearchPipelines> {
 
     @Nonnull
-    private final List<NodeInfoIngestProcessor> requestProcessors;
+    private final List<NodeInfoSearchPipelineProcessor> phaseResultsProcessors;
 
     @Nonnull
-    private final List<NodeInfoIngestProcessor> responseProcessors;
+    private final List<NodeInfoSearchPipelineProcessor> requestProcessors;
+
+    @Nonnull
+    private final List<NodeInfoSearchPipelineProcessor> responseProcessors;
 
     // ---------------------------------------------------------------------------------------------
 
     private NodeInfoSearchPipelines(Builder builder) {
+        this.phaseResultsProcessors = ApiTypeHelper.unmodifiable(builder.phaseResultsProcessors);
         this.requestProcessors = ApiTypeHelper.unmodifiable(builder.requestProcessors);
         this.responseProcessors = ApiTypeHelper.unmodifiable(builder.responseProcessors);
     }
@@ -85,13 +89,24 @@ public class NodeInfoSearchPipelines
     }
 
     /**
+     * The list of phase results processors in the pipeline.
+     * <p>
+     * API name: {@code phase_results_processors}
+     * </p>
+     */
+    @Nonnull
+    public final List<NodeInfoSearchPipelineProcessor> phaseResultsProcessors() {
+        return this.phaseResultsProcessors;
+    }
+
+    /**
      * The list of request processors in the pipeline.
      * <p>
      * API name: {@code request_processors}
      * </p>
      */
     @Nonnull
-    public final List<NodeInfoIngestProcessor> requestProcessors() {
+    public final List<NodeInfoSearchPipelineProcessor> requestProcessors() {
         return this.requestProcessors;
     }
 
@@ -102,7 +117,7 @@ public class NodeInfoSearchPipelines
      * </p>
      */
     @Nonnull
-    public final List<NodeInfoIngestProcessor> responseProcessors() {
+    public final List<NodeInfoSearchPipelineProcessor> responseProcessors() {
         return this.responseProcessors;
     }
 
@@ -117,10 +132,19 @@ public class NodeInfoSearchPipelines
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (ApiTypeHelper.isDefined(this.phaseResultsProcessors)) {
+            generator.writeKey("phase_results_processors");
+            generator.writeStartArray();
+            for (NodeInfoSearchPipelineProcessor item0 : this.phaseResultsProcessors) {
+                item0.serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
+
         if (ApiTypeHelper.isDefined(this.requestProcessors)) {
             generator.writeKey("request_processors");
             generator.writeStartArray();
-            for (NodeInfoIngestProcessor item0 : this.requestProcessors) {
+            for (NodeInfoSearchPipelineProcessor item0 : this.requestProcessors) {
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
@@ -129,7 +153,7 @@ public class NodeInfoSearchPipelines
         if (ApiTypeHelper.isDefined(this.responseProcessors)) {
             generator.writeKey("response_processors");
             generator.writeStartArray();
-            for (NodeInfoIngestProcessor item0 : this.responseProcessors) {
+            for (NodeInfoSearchPipelineProcessor item0 : this.responseProcessors) {
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
@@ -154,18 +178,22 @@ public class NodeInfoSearchPipelines
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, NodeInfoSearchPipelines> {
         @Nullable
-        private List<NodeInfoIngestProcessor> requestProcessors;
+        private List<NodeInfoSearchPipelineProcessor> phaseResultsProcessors;
         @Nullable
-        private List<NodeInfoIngestProcessor> responseProcessors;
+        private List<NodeInfoSearchPipelineProcessor> requestProcessors;
+        @Nullable
+        private List<NodeInfoSearchPipelineProcessor> responseProcessors;
 
         public Builder() {}
 
         private Builder(NodeInfoSearchPipelines o) {
+            this.phaseResultsProcessors = _listCopy(o.phaseResultsProcessors);
             this.requestProcessors = _listCopy(o.requestProcessors);
             this.responseProcessors = _listCopy(o.responseProcessors);
         }
 
         private Builder(Builder o) {
+            this.phaseResultsProcessors = _listCopy(o.phaseResultsProcessors);
             this.requestProcessors = _listCopy(o.requestProcessors);
             this.responseProcessors = _listCopy(o.responseProcessors);
         }
@@ -174,6 +202,55 @@ public class NodeInfoSearchPipelines
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        /**
+         * The list of phase results processors in the pipeline.
+         * <p>
+         * API name: {@code phase_results_processors}
+         * </p>
+         *
+         * <p>
+         * Adds all elements of <code>list</code> to <code>phaseResultsProcessors</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder phaseResultsProcessors(List<NodeInfoSearchPipelineProcessor> list) {
+            this.phaseResultsProcessors = _listAddAll(this.phaseResultsProcessors, list);
+            return this;
+        }
+
+        /**
+         * The list of phase results processors in the pipeline.
+         * <p>
+         * API name: {@code phase_results_processors}
+         * </p>
+         *
+         * <p>
+         * Adds one or more values to <code>phaseResultsProcessors</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder phaseResultsProcessors(NodeInfoSearchPipelineProcessor value, NodeInfoSearchPipelineProcessor... values) {
+            this.phaseResultsProcessors = _listAdd(this.phaseResultsProcessors, value, values);
+            return this;
+        }
+
+        /**
+         * The list of phase results processors in the pipeline.
+         * <p>
+         * API name: {@code phase_results_processors}
+         * </p>
+         *
+         * <p>
+         * Adds a value to <code>phaseResultsProcessors</code> using a builder lambda.
+         * </p>
+         */
+        @Nonnull
+        public final Builder phaseResultsProcessors(
+            Function<NodeInfoSearchPipelineProcessor.Builder, ObjectBuilder<NodeInfoSearchPipelineProcessor>> fn
+        ) {
+            return phaseResultsProcessors(fn.apply(new NodeInfoSearchPipelineProcessor.Builder()).build());
         }
 
         /**
@@ -187,7 +264,7 @@ public class NodeInfoSearchPipelines
          * </p>
          */
         @Nonnull
-        public final Builder requestProcessors(List<NodeInfoIngestProcessor> list) {
+        public final Builder requestProcessors(List<NodeInfoSearchPipelineProcessor> list) {
             this.requestProcessors = _listAddAll(this.requestProcessors, list);
             return this;
         }
@@ -203,7 +280,7 @@ public class NodeInfoSearchPipelines
          * </p>
          */
         @Nonnull
-        public final Builder requestProcessors(NodeInfoIngestProcessor value, NodeInfoIngestProcessor... values) {
+        public final Builder requestProcessors(NodeInfoSearchPipelineProcessor value, NodeInfoSearchPipelineProcessor... values) {
             this.requestProcessors = _listAdd(this.requestProcessors, value, values);
             return this;
         }
@@ -219,8 +296,10 @@ public class NodeInfoSearchPipelines
          * </p>
          */
         @Nonnull
-        public final Builder requestProcessors(Function<NodeInfoIngestProcessor.Builder, ObjectBuilder<NodeInfoIngestProcessor>> fn) {
-            return requestProcessors(fn.apply(new NodeInfoIngestProcessor.Builder()).build());
+        public final Builder requestProcessors(
+            Function<NodeInfoSearchPipelineProcessor.Builder, ObjectBuilder<NodeInfoSearchPipelineProcessor>> fn
+        ) {
+            return requestProcessors(fn.apply(new NodeInfoSearchPipelineProcessor.Builder()).build());
         }
 
         /**
@@ -234,7 +313,7 @@ public class NodeInfoSearchPipelines
          * </p>
          */
         @Nonnull
-        public final Builder responseProcessors(List<NodeInfoIngestProcessor> list) {
+        public final Builder responseProcessors(List<NodeInfoSearchPipelineProcessor> list) {
             this.responseProcessors = _listAddAll(this.responseProcessors, list);
             return this;
         }
@@ -250,7 +329,7 @@ public class NodeInfoSearchPipelines
          * </p>
          */
         @Nonnull
-        public final Builder responseProcessors(NodeInfoIngestProcessor value, NodeInfoIngestProcessor... values) {
+        public final Builder responseProcessors(NodeInfoSearchPipelineProcessor value, NodeInfoSearchPipelineProcessor... values) {
             this.responseProcessors = _listAdd(this.responseProcessors, value, values);
             return this;
         }
@@ -266,8 +345,10 @@ public class NodeInfoSearchPipelines
          * </p>
          */
         @Nonnull
-        public final Builder responseProcessors(Function<NodeInfoIngestProcessor.Builder, ObjectBuilder<NodeInfoIngestProcessor>> fn) {
-            return responseProcessors(fn.apply(new NodeInfoIngestProcessor.Builder()).build());
+        public final Builder responseProcessors(
+            Function<NodeInfoSearchPipelineProcessor.Builder, ObjectBuilder<NodeInfoSearchPipelineProcessor>> fn
+        ) {
+            return responseProcessors(fn.apply(new NodeInfoSearchPipelineProcessor.Builder()).build());
         }
 
         /**
@@ -296,13 +377,18 @@ public class NodeInfoSearchPipelines
 
     protected static void setupNodeInfoSearchPipelinesDeserializer(ObjectDeserializer<NodeInfoSearchPipelines.Builder> op) {
         op.add(
+            Builder::phaseResultsProcessors,
+            JsonpDeserializer.arrayDeserializer(NodeInfoSearchPipelineProcessor._DESERIALIZER),
+            "phase_results_processors"
+        );
+        op.add(
             Builder::requestProcessors,
-            JsonpDeserializer.arrayDeserializer(NodeInfoIngestProcessor._DESERIALIZER),
+            JsonpDeserializer.arrayDeserializer(NodeInfoSearchPipelineProcessor._DESERIALIZER),
             "request_processors"
         );
         op.add(
             Builder::responseProcessors,
-            JsonpDeserializer.arrayDeserializer(NodeInfoIngestProcessor._DESERIALIZER),
+            JsonpDeserializer.arrayDeserializer(NodeInfoSearchPipelineProcessor._DESERIALIZER),
             "response_processors"
         );
     }
@@ -310,6 +396,7 @@ public class NodeInfoSearchPipelines
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.phaseResultsProcessors);
         result = 31 * result + Objects.hashCode(this.requestProcessors);
         result = 31 * result + Objects.hashCode(this.responseProcessors);
         return result;
@@ -320,7 +407,8 @@ public class NodeInfoSearchPipelines
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         NodeInfoSearchPipelines other = (NodeInfoSearchPipelines) o;
-        return Objects.equals(this.requestProcessors, other.requestProcessors)
+        return Objects.equals(this.phaseResultsProcessors, other.phaseResultsProcessors)
+            && Objects.equals(this.requestProcessors, other.requestProcessors)
             && Objects.equals(this.responseProcessors, other.responseProcessors);
     }
 }

@@ -72,6 +72,12 @@ public class PendingTask implements PlainJsonSerializable, ToCopyableBuilder<Pen
     private final String source;
 
     @Nullable
+    private final Time timeInExecution;
+
+    @Nullable
+    private final Long timeInExecutionMillis;
+
+    @Nullable
     private final Time timeInQueue;
 
     private final long timeInQueueMillis;
@@ -83,6 +89,8 @@ public class PendingTask implements PlainJsonSerializable, ToCopyableBuilder<Pen
         this.insertOrder = ApiTypeHelper.requireNonNull(builder.insertOrder, this, "insertOrder");
         this.priority = ApiTypeHelper.requireNonNull(builder.priority, this, "priority");
         this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+        this.timeInExecution = builder.timeInExecution;
+        this.timeInExecutionMillis = builder.timeInExecutionMillis;
         this.timeInQueue = builder.timeInQueue;
         this.timeInQueueMillis = ApiTypeHelper.requireNonNull(builder.timeInQueueMillis, this, "timeInQueueMillis");
     }
@@ -135,6 +143,22 @@ public class PendingTask implements PlainJsonSerializable, ToCopyableBuilder<Pen
     }
 
     /**
+     * API name: {@code time_in_execution}
+     */
+    @Nullable
+    public final Time timeInExecution() {
+        return this.timeInExecution;
+    }
+
+    /**
+     * API name: {@code time_in_execution_millis}
+     */
+    @Nullable
+    public final Long timeInExecutionMillis() {
+        return this.timeInExecutionMillis;
+    }
+
+    /**
      * API name: {@code time_in_queue}
      */
     @Nullable
@@ -172,6 +196,16 @@ public class PendingTask implements PlainJsonSerializable, ToCopyableBuilder<Pen
         generator.writeKey("source");
         generator.write(this.source);
 
+        if (this.timeInExecution != null) {
+            generator.writeKey("time_in_execution");
+            this.timeInExecution.serialize(generator, mapper);
+        }
+
+        if (this.timeInExecutionMillis != null) {
+            generator.writeKey("time_in_execution_millis");
+            generator.write(this.timeInExecutionMillis);
+        }
+
         if (this.timeInQueue != null) {
             generator.writeKey("time_in_queue");
             this.timeInQueue.serialize(generator, mapper);
@@ -203,6 +237,10 @@ public class PendingTask implements PlainJsonSerializable, ToCopyableBuilder<Pen
         private String priority;
         private String source;
         @Nullable
+        private Time timeInExecution;
+        @Nullable
+        private Long timeInExecutionMillis;
+        @Nullable
         private Time timeInQueue;
         private Long timeInQueueMillis;
 
@@ -213,6 +251,8 @@ public class PendingTask implements PlainJsonSerializable, ToCopyableBuilder<Pen
             this.insertOrder = o.insertOrder;
             this.priority = o.priority;
             this.source = o.source;
+            this.timeInExecution = o.timeInExecution;
+            this.timeInExecutionMillis = o.timeInExecutionMillis;
             this.timeInQueue = o.timeInQueue;
             this.timeInQueueMillis = o.timeInQueueMillis;
         }
@@ -222,6 +262,8 @@ public class PendingTask implements PlainJsonSerializable, ToCopyableBuilder<Pen
             this.insertOrder = o.insertOrder;
             this.priority = o.priority;
             this.source = o.source;
+            this.timeInExecution = o.timeInExecution;
+            this.timeInExecutionMillis = o.timeInExecutionMillis;
             this.timeInQueue = o.timeInQueue;
             this.timeInQueueMillis = o.timeInQueueMillis;
         }
@@ -282,6 +324,32 @@ public class PendingTask implements PlainJsonSerializable, ToCopyableBuilder<Pen
         }
 
         /**
+         * API name: {@code time_in_execution}
+         */
+        @Nonnull
+        public final Builder timeInExecution(@Nullable Time value) {
+            this.timeInExecution = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code time_in_execution}
+         */
+        @Nonnull
+        public final Builder timeInExecution(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+            return timeInExecution(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * API name: {@code time_in_execution_millis}
+         */
+        @Nonnull
+        public final Builder timeInExecutionMillis(@Nullable Long value) {
+            this.timeInExecutionMillis = value;
+            return this;
+        }
+
+        /**
          * API name: {@code time_in_queue}
          */
         @Nonnull
@@ -336,6 +404,8 @@ public class PendingTask implements PlainJsonSerializable, ToCopyableBuilder<Pen
         op.add(Builder::insertOrder, JsonpDeserializer.integerDeserializer(), "insert_order");
         op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority");
         op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+        op.add(Builder::timeInExecution, Time._DESERIALIZER, "time_in_execution");
+        op.add(Builder::timeInExecutionMillis, JsonpDeserializer.longDeserializer(), "time_in_execution_millis");
         op.add(Builder::timeInQueue, Time._DESERIALIZER, "time_in_queue");
         op.add(Builder::timeInQueueMillis, JsonpDeserializer.longDeserializer(), "time_in_queue_millis");
     }
@@ -347,6 +417,8 @@ public class PendingTask implements PlainJsonSerializable, ToCopyableBuilder<Pen
         result = 31 * result + Integer.hashCode(this.insertOrder);
         result = 31 * result + this.priority.hashCode();
         result = 31 * result + this.source.hashCode();
+        result = 31 * result + Objects.hashCode(this.timeInExecution);
+        result = 31 * result + Objects.hashCode(this.timeInExecutionMillis);
         result = 31 * result + Objects.hashCode(this.timeInQueue);
         result = 31 * result + Long.hashCode(this.timeInQueueMillis);
         return result;
@@ -361,6 +433,8 @@ public class PendingTask implements PlainJsonSerializable, ToCopyableBuilder<Pen
             && this.insertOrder == other.insertOrder
             && this.priority.equals(other.priority)
             && this.source.equals(other.source)
+            && Objects.equals(this.timeInExecution, other.timeInExecution)
+            && Objects.equals(this.timeInExecutionMillis, other.timeInExecutionMillis)
             && Objects.equals(this.timeInQueue, other.timeInQueue)
             && this.timeInQueueMillis == other.timeInQueueMillis;
     }
