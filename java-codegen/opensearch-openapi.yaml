@@ -6081,6 +6081,9 @@ paths:
       parameters:
         - $ref: '#/components/parameters/neural.stats___path.node_id'
         - $ref: '#/components/parameters/neural.stats___query.flat_stat_paths'
+        - $ref: '#/components/parameters/neural.stats___query.include_all_nodes'
+        - $ref: '#/components/parameters/neural.stats___query.include_individual_nodes'
+        - $ref: '#/components/parameters/neural.stats___query.include_info'
         - $ref: '#/components/parameters/neural.stats___query.include_metadata'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
@@ -6100,6 +6103,9 @@ paths:
         - $ref: '#/components/parameters/neural.stats___path.node_id'
         - $ref: '#/components/parameters/neural.stats___path.stat'
         - $ref: '#/components/parameters/neural.stats___query.flat_stat_paths'
+        - $ref: '#/components/parameters/neural.stats___query.include_all_nodes'
+        - $ref: '#/components/parameters/neural.stats___query.include_individual_nodes'
+        - $ref: '#/components/parameters/neural.stats___query.include_info'
         - $ref: '#/components/parameters/neural.stats___query.include_metadata'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
@@ -6117,6 +6123,9 @@ paths:
       description: Provides information about the current status of the neural-search plugin.
       parameters:
         - $ref: '#/components/parameters/neural.stats___query.flat_stat_paths'
+        - $ref: '#/components/parameters/neural.stats___query.include_all_nodes'
+        - $ref: '#/components/parameters/neural.stats___query.include_individual_nodes'
+        - $ref: '#/components/parameters/neural.stats___query.include_info'
         - $ref: '#/components/parameters/neural.stats___query.include_metadata'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
@@ -6135,6 +6144,9 @@ paths:
       parameters:
         - $ref: '#/components/parameters/neural.stats___path.stat'
         - $ref: '#/components/parameters/neural.stats___query.flat_stat_paths'
+        - $ref: '#/components/parameters/neural.stats___query.include_all_nodes'
+        - $ref: '#/components/parameters/neural.stats___query.include_individual_nodes'
+        - $ref: '#/components/parameters/neural.stats___query.include_info'
         - $ref: '#/components/parameters/neural.stats___query.include_metadata'
         - $ref: '#/components/parameters/_global___query.pretty'
         - $ref: '#/components/parameters/_global___query.human'
@@ -25169,8 +25181,60 @@ components:
         type: string
         enum:
           - cluster_version
+          - comb_arithmetic_executions
+          - comb_arithmetic_processors
+          - comb_geometric_executions
+          - comb_geometric_processors
+          - comb_harmonic_executions
+          - comb_harmonic_processors
+          - comb_rrf_executions
+          - comb_rrf_processors
+          - hybrid_query_requests
+          - hybrid_query_with_filter_requests
+          - hybrid_query_with_inner_hits_requests
+          - hybrid_query_with_pagination_requests
+          - neural_query_against_knn_requests
+          - neural_query_against_semantic_dense_requests
+          - neural_query_against_semantic_sparse_requests
+          - neural_query_enricher_executions
+          - neural_query_enricher_processors
+          - neural_query_requests
+          - neural_sparse_query_requests
+          - neural_sparse_two_phase_executions
+          - neural_sparse_two_phase_processors
+          - norm_l2_executions
+          - norm_l2_processors
+          - norm_minmax_executions
+          - norm_minmax_processors
+          - norm_zscore_executions
+          - norm_zscore_processors
+          - normalization_processor_executions
+          - normalization_processors
+          - rank_based_normalization_processor_executions
+          - rank_based_normalization_processors
+          - rerank_by_field_executions
+          - rerank_by_field_processors
+          - rerank_ml_executions
+          - rerank_ml_processors
+          - semantic_field_chunking_executions
+          - semantic_field_executions
+          - semantic_highlighting_request_count
+          - skip_existing_executions
+          - skip_existing_processors
+          - sparse_encoding_executions
+          - sparse_encoding_processors
+          - text_chunking_delimiter_executions
+          - text_chunking_delimiter_processors
+          - text_chunking_executions
+          - text_chunking_fixed_char_length_executions
+          - text_chunking_fixed_char_length_processors
+          - text_chunking_fixed_token_length_executions
+          - text_chunking_fixed_token_length_processors
+          - text_chunking_processors
           - text_embedding_executions
           - text_embedding_processors_in_pipelines
+          - text_image_embedding_executions
+          - text_image_embedding_processors
       required: true
     neural.stats___query.flat_stat_paths:
       in: query
@@ -25183,6 +25247,39 @@ components:
         type: boolean
         default: false
       style: form
+    neural.stats___query.include_all_nodes:
+      in: query
+      name: include_all_nodes
+      description: |-
+        When `true` includes aggregated statistics across all nodes in the `all_nodes` category.
+        When `false`, excludes the `all_nodes` category from the response.
+      schema:
+        type: boolean
+        default: true
+      style: form
+      x-version-added: '3.1'
+    neural.stats___query.include_individual_nodes:
+      in: query
+      name: include_individual_nodes
+      description: |-
+        When `true` includes statistics for individual nodes in the `nodes` category.
+        When `false`, excludes the `nodes` category from the response.
+      schema:
+        type: boolean
+        default: true
+      style: form
+      x-version-added: '3.1'
+    neural.stats___query.include_info:
+      in: query
+      name: include_info
+      description: |-
+        When `true` includes cluster-wide information in the `info` category.
+        When `false`, excludes the `info` category from the response.
+      schema:
+        type: boolean
+        default: true
+      style: form
+      x-version-added: '3.1'
     neural.stats___query.include_metadata:
       in: query
       name: include_metadata
@@ -47599,7 +47696,6 @@ components:
               format: double
       required:
         - description
-        - details
         - value
     _core.field_caps___FieldCapability:
       type: object
@@ -52586,6 +52682,12 @@ components:
           $ref: '#/components/schemas/_common___Duration'
         time_in_queue_millis:
           $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+        time_in_execution:
+          $ref: '#/components/schemas/_common___Duration'
+          x-version-added: '3.1'
+        time_in_execution_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+          x-version-added: '3.1'
       required:
         - executing
         - insert_order
@@ -55360,6 +55462,8 @@ components:
           $ref: '#/components/schemas/indices._common___SearchSlowlog'
         throttled:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
+        star_tree_index:
+          $ref: '#/components/schemas/indices._common___IndexSettingsSearchStarTreeIndex'
     indices._common___IndexSettingsSearchConcurrent:
       type: object
       description: The configuration for concurrent search operations.
@@ -55373,6 +55477,11 @@ components:
         mode:
           type: string
           description: The mode of concurrent segment search.
+        enabled:
+          $ref: '#/components/schemas/_common___StringifiedBoolean'
+    indices._common___IndexSettingsSearchStarTreeIndex:
+      type: object
+      properties:
         enabled:
           $ref: '#/components/schemas/_common___StringifiedBoolean'
     indices._common___IndexSettingsSimilarity:
@@ -60747,12 +60856,168 @@ components:
         processors.ingest.text_embedding_processors_in_pipelines:
           $ref: '#/components/schemas/neural._common___InfoCounterStat'
           x-version-added: '3.0'
+        processors.ingest.text_chunking_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.ingest.text_chunking_delimiter_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.ingest.text_chunking_fixed_token_length_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.ingest.text_chunking_fixed_char_length_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.ingest.sparse_encoding_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.ingest.text_image_embedding_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.ingest.skip_existing_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.normalization_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.norm_l2_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.norm_minmax_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.norm_zscore_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.rank_based_normalization_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.comb_geometric_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.comb_rrf_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.comb_harmonic_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.comb_arithmetic_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.search.rerank_ml_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.search.rerank_by_field_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.search.neural_sparse_two_phase_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        processors.search.neural_query_enricher_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
     neural._common___FlatNeuralNodeStats:
       type: object
       properties:
         processors.ingest.text_embedding_executions:
           $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
           x-version-added: '3.0'
+        processors.ingest.text_chunking_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.ingest.text_chunking_delimiter_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.ingest.text_chunking_fixed_token_length_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.ingest.text_chunking_fixed_char_length_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.ingest.semantic_field_chunking_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.ingest.sparse_encoding_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.ingest.text_image_embedding_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.ingest.skip_existing_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.ingest.semantic_field_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.normalization_processor_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.norm_l2_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.norm_minmax_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.norm_zscore_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.rank_based_normalization_processor_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.comb_geometric_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.comb_rrf_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.comb_harmonic_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.search.hybrid.comb_arithmetic_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.search.rerank_ml_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.search.rerank_by_field_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.search.neural_sparse_two_phase_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        processors.search.neural_query_enricher_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        query.hybrid.hybrid_query_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        query.hybrid.hybrid_query_with_pagination_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        query.hybrid.hybrid_query_with_filter_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        query.hybrid.hybrid_query_with_inner_hits_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        query.neural.neural_query_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        query.neural.neural_query_against_semantic_sparse_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        query.neural.neural_query_against_semantic_dense_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        query.neural.neural_query_against_knn_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        query.neural_sparse.neural_sparse_query_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        semantic_highlighting.semantic_highlighting_request_count:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
     neural._common___FlatNeuralStats:
       allOf:
         - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
@@ -60801,15 +61066,89 @@ components:
       properties:
         ingest:
           $ref: '#/components/schemas/neural._common___NestedNeuralInfoStatsProcessorsIngest'
+        search:
+          $ref: '#/components/schemas/neural._common___NestedNeuralInfoStatsProcessorsSearch'
     neural._common___NestedNeuralInfoStatsProcessorsIngest:
       type: object
       properties:
         text_embedding_processors_in_pipelines:
           $ref: '#/components/schemas/neural._common___InfoCounterStat'
           x-version-added: '3.0'
+        text_chunking_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        text_chunking_delimiter_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        text_chunking_fixed_token_length_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        text_chunking_fixed_char_length_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        sparse_encoding_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        text_image_embedding_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        skip_existing_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+    neural._common___NestedNeuralInfoStatsProcessorsSearch:
+      type: object
+      properties:
+        hybrid:
+          $ref: '#/components/schemas/neural._common___NestedNeuralInfoStatsProcessorsSearchHybrid'
+        rerank_ml_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        rerank_by_field_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        neural_sparse_two_phase_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        neural_query_enricher_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+    neural._common___NestedNeuralInfoStatsProcessorsSearchHybrid:
+      type: object
+      properties:
+        normalization_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        norm_l2_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        norm_minmax_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        norm_zscore_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        rank_based_normalization_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        comb_geometric_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        comb_rrf_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        comb_harmonic_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
+        comb_arithmetic_processors:
+          $ref: '#/components/schemas/neural._common___InfoCounterStat'
+          x-version-added: '3.1'
     neural._common___NestedNeuralNodeStats:
       type: object
       properties:
+        query:
+          $ref: '#/components/schemas/neural._common___NestedNeuralNodeStatsQuery'
+        semantic_highlighting:
+          $ref: '#/components/schemas/neural._common___NestedNeuralNodeStatsSemanticHighlighting'
         processors:
           $ref: '#/components/schemas/neural._common___NestedNeuralNodeStatsProcessors'
     neural._common___NestedNeuralNodeStatsProcessors:
@@ -60817,12 +61156,139 @@ components:
       properties:
         ingest:
           $ref: '#/components/schemas/neural._common___NestedNeuralNodeStatsProcessorsIngest'
+        search:
+          $ref: '#/components/schemas/neural._common___NestedNeuralNodeStatsProcessorsSearch'
     neural._common___NestedNeuralNodeStatsProcessorsIngest:
       type: object
       properties:
         text_embedding_executions:
           $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
           x-version-added: '3.0'
+        text_chunking_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        text_chunking_delimiter_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        text_chunking_fixed_token_length_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        text_chunking_fixed_char_length_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        semantic_field_chunking_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        sparse_encoding_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        text_image_embedding_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        skip_existing_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        semantic_field_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+    neural._common___NestedNeuralNodeStatsProcessorsSearch:
+      type: object
+      properties:
+        hybrid:
+          $ref: '#/components/schemas/neural._common___NestedNeuralNodeStatsProcessorsSearchHybrid'
+        neural_sparse_two_phase_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        neural_query_enricher_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        rerank_by_field_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        rerank_ml_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+    neural._common___NestedNeuralNodeStatsProcessorsSearchHybrid:
+      type: object
+      properties:
+        normalization_processor_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        norm_l2_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        norm_minmax_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        norm_zscore_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        rank_based_normalization_processor_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        comb_geometric_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        comb_rrf_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        comb_harmonic_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        comb_arithmetic_executions:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+    neural._common___NestedNeuralNodeStatsQuery:
+      type: object
+      properties:
+        hybrid:
+          $ref: '#/components/schemas/neural._common___NestedNeuralNodeStatsQueryHybrid'
+        neural:
+          $ref: '#/components/schemas/neural._common___NestedNeuralNodeStatsQueryNeural'
+        neural_sparse:
+          $ref: '#/components/schemas/neural._common___NestedNeuralNodeStatsQueryNeuralSparse'
+    neural._common___NestedNeuralNodeStatsQueryHybrid:
+      type: object
+      properties:
+        hybrid_query_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        hybrid_query_with_pagination_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        hybrid_query_with_filter_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        hybrid_query_with_inner_hits_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+    neural._common___NestedNeuralNodeStatsQueryNeural:
+      type: object
+      properties:
+        neural_query_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        neural_query_against_semantic_sparse_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        neural_query_against_semantic_dense_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+        neural_query_against_knn_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+    neural._common___NestedNeuralNodeStatsQueryNeuralSparse:
+      type: object
+      properties:
+        neural_sparse_query_requests:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
+    neural._common___NestedNeuralNodeStatsSemanticHighlighting:
+      type: object
+      properties:
+        semantic_highlighting_request_count:
+          $ref: '#/components/schemas/neural._common___TimestampedEventCounterStat'
+          x-version-added: '3.1'
     neural._common___NestedNeuralStats:
       allOf:
         - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
@@ -61294,6 +61760,15 @@ components:
           $ref: '#/components/schemas/nodes.info___NodeInfoSearchRemote'
       required:
         - remote
+    nodes.info___NodeInfoSearchPipelineProcessor:
+      type: object
+      description: The search pipeline processor configuration.
+      properties:
+        type:
+          type: string
+          description: The type of search pipeline processor.
+      required:
+        - type
     nodes.info___NodeInfoSearchPipelines:
       type: object
       description: The search pipeline configuration.
@@ -61302,12 +61777,18 @@ components:
           type: array
           description: The list of response processors in the pipeline.
           items:
-            $ref: '#/components/schemas/nodes.info___NodeInfoIngestProcessor'
+            $ref: '#/components/schemas/nodes.info___NodeInfoSearchPipelineProcessor'
         request_processors:
           type: array
           description: The list of request processors in the pipeline.
           items:
-            $ref: '#/components/schemas/nodes.info___NodeInfoIngestProcessor'
+            $ref: '#/components/schemas/nodes.info___NodeInfoSearchPipelineProcessor'
+        phase_results_processors:
+          type: array
+          description: The list of phase results processors in the pipeline.
+          items:
+            $ref: '#/components/schemas/nodes.info___NodeInfoSearchPipelineProcessor'
+          x-version-added: '3.1'
     nodes.info___NodeInfoSearchRemote:
       description: The remote search connection configuration.
       type: object
@@ -65426,6 +65907,10 @@ components:
           type: string
         status:
           type: string
+        settings:
+          type: object
+          additionalProperties: true
+          x-version-added: '3.1'
     security._common___IndexPermission:
       type: object
       properties:
