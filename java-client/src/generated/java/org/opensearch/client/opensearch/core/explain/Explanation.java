@@ -38,9 +38,11 @@ package org.opensearch.client.opensearch.core.explain;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -72,7 +74,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
 
     private Explanation(Builder builder) {
         this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
-        this.details = ApiTypeHelper.unmodifiableRequired(builder.details, this, "details");
+        this.details = ApiTypeHelper.unmodifiable(builder.details);
         this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
     }
 
@@ -89,7 +91,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
     }
 
     /**
-     * Required - API name: {@code details}
+     * API name: {@code details}
      */
     @Nonnull
     public final List<Explanation> details() {
@@ -118,12 +120,14 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
         generator.writeKey("description");
         generator.write(this.description);
 
-        generator.writeKey("details");
-        generator.writeStartArray();
-        for (Explanation item0 : this.details) {
-            item0.serialize(generator, mapper);
+        if (ApiTypeHelper.isDefined(this.details)) {
+            generator.writeKey("details");
+            generator.writeStartArray();
+            for (Explanation item0 : this.details) {
+                item0.serialize(generator, mapper);
+            }
+            generator.writeEnd();
         }
-        generator.writeEnd();
 
         generator.writeKey("value");
         generator.write(this.value.doubleValue());
@@ -147,6 +151,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Explanation> {
         private String description;
+        @Nullable
         private List<Explanation> details;
         private Number value;
 
@@ -180,7 +185,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
         }
 
         /**
-         * Required - API name: {@code details}
+         * API name: {@code details}
          *
          * <p>
          * Adds all elements of <code>list</code> to <code>details</code>.
@@ -193,7 +198,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
         }
 
         /**
-         * Required - API name: {@code details}
+         * API name: {@code details}
          *
          * <p>
          * Adds one or more values to <code>details</code>.
@@ -206,7 +211,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
         }
 
         /**
-         * Required - API name: {@code details}
+         * API name: {@code details}
          *
          * <p>
          * Adds a value to <code>details</code> using a builder lambda.
@@ -260,7 +265,7 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
     public int hashCode() {
         int result = 17;
         result = 31 * result + this.description.hashCode();
-        result = 31 * result + this.details.hashCode();
+        result = 31 * result + Objects.hashCode(this.details);
         result = 31 * result + this.value.hashCode();
         return result;
     }
@@ -270,6 +275,6 @@ public class Explanation implements PlainJsonSerializable, ToCopyableBuilder<Exp
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         Explanation other = (Explanation) o;
-        return this.description.equals(other.description) && this.details.equals(other.details) && this.value.equals(other.value);
+        return this.description.equals(other.description) && Objects.equals(this.details, other.details) && this.value.equals(other.value);
     }
 }
