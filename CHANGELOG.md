@@ -17,7 +17,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
-- Fixed building instances of `Explanation` by making `details` optional ([#]())
+- Fixed building instances of `Explanation` by making `details` optional ([#1620](https://github.com/opensearch-project/opensearch-java/pull/1620))
 
 ### Security
 
