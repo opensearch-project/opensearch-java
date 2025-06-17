@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - '2.x'
+      - '[0-9]+.x'
 
 jobs:
   build-and-publish-snapshots:
