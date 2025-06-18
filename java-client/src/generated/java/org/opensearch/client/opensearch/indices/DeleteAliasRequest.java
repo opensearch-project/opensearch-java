@@ -105,7 +105,7 @@ public final class DeleteAliasRequest extends RequestBase implements ToCopyableB
     }
 
     /**
-     * Required - Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>).
+     * Required - A comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>).
      * <p>
      * API name: {@code index}
      * </p>
@@ -129,8 +129,8 @@ public final class DeleteAliasRequest extends RequestBase implements ToCopyableB
     }
 
     /**
-     * Required - Comma-separated list of aliases to remove. Supports wildcards (<code>*</code>). To remove all aliases, use <code>*</code>
-     * or <code>_all</code>.
+     * Required - A comma-separated list of aliases to remove. Supports wildcards (<code>*</code>). To remove all aliases, use
+     * <code>*</code> or <code>_all</code>.
      * <p>
      * API name: {@code name}
      * </p>
@@ -233,7 +233,7 @@ public final class DeleteAliasRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * Required - Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>).
+         * Required - A comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>).
          * <p>
          * API name: {@code index}
          * </p>
@@ -249,7 +249,7 @@ public final class DeleteAliasRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * Required - Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>).
+         * Required - A comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>).
          * <p>
          * API name: {@code index}
          * </p>
@@ -292,7 +292,7 @@ public final class DeleteAliasRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * Required - Comma-separated list of aliases to remove. Supports wildcards (<code>*</code>). To remove all aliases, use
+         * Required - A comma-separated list of aliases to remove. Supports wildcards (<code>*</code>). To remove all aliases, use
          * <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code name}
@@ -309,7 +309,7 @@ public final class DeleteAliasRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * Required - Comma-separated list of aliases to remove. Supports wildcards (<code>*</code>). To remove all aliases, use
+         * Required - A comma-separated list of aliases to remove. Supports wildcards (<code>*</code>). To remove all aliases, use
          * <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code name}

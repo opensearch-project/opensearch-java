@@ -120,7 +120,7 @@ public final class IndicesStatsRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * Comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
+     * A comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
      * <p>
      * API name: {@code completion_fields}
      * </p>
@@ -143,7 +143,7 @@ public final class IndicesStatsRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * Comma-separated list or wildcard expressions of fields to include in field data statistics.
+     * A comma-separated list or wildcard expressions of fields to include in field data statistics.
      * <p>
      * API name: {@code fielddata_fields}
      * </p>
@@ -154,7 +154,7 @@ public final class IndicesStatsRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * Comma-separated list or wildcard expressions of fields to include in the statistics.
+     * A comma-separated list or wildcard expressions of fields to include in the statistics.
      * <p>
      * API name: {@code fields}
      * </p>
@@ -176,7 +176,7 @@ public final class IndicesStatsRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * Comma-separated list of search groups to include in the search statistics.
+     * A comma-separated list of search groups to include in the search statistics.
      * <p>
      * API name: {@code groups}
      * </p>
@@ -327,7 +327,7 @@ public final class IndicesStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
+         * A comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
          * <p>
          * API name: {@code completion_fields}
          * </p>
@@ -343,7 +343,7 @@ public final class IndicesStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
+         * A comma-separated list or wildcard expressions of fields to include in field data and suggest statistics.
          * <p>
          * API name: {@code completion_fields}
          * </p>
@@ -393,7 +393,7 @@ public final class IndicesStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Comma-separated list or wildcard expressions of fields to include in field data statistics.
+         * A comma-separated list or wildcard expressions of fields to include in field data statistics.
          * <p>
          * API name: {@code fielddata_fields}
          * </p>
@@ -409,7 +409,7 @@ public final class IndicesStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Comma-separated list or wildcard expressions of fields to include in field data statistics.
+         * A comma-separated list or wildcard expressions of fields to include in field data statistics.
          * <p>
          * API name: {@code fielddata_fields}
          * </p>
@@ -425,7 +425,7 @@ public final class IndicesStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Comma-separated list or wildcard expressions of fields to include in the statistics.
+         * A comma-separated list or wildcard expressions of fields to include in the statistics.
          * <p>
          * API name: {@code fields}
          * </p>
@@ -441,7 +441,7 @@ public final class IndicesStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Comma-separated list or wildcard expressions of fields to include in the statistics.
+         * A comma-separated list or wildcard expressions of fields to include in the statistics.
          * <p>
          * API name: {@code fields}
          * </p>
@@ -469,7 +469,7 @@ public final class IndicesStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Comma-separated list of search groups to include in the search statistics.
+         * A comma-separated list of search groups to include in the search statistics.
          * <p>
          * API name: {@code groups}
          * </p>
@@ -485,7 +485,7 @@ public final class IndicesStatsRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * Comma-separated list of search groups to include in the search statistics.
+         * A comma-separated list of search groups to include in the search statistics.
          * <p>
          * API name: {@code groups}
          * </p>

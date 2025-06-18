@@ -78,7 +78,7 @@ public final class DataStreamsStatsRequest extends RequestBase
     }
 
     /**
-     * Comma-separated list of data streams used to limit the request. Wildcard expressions (<code>*</code>) are supported. To target all
+     * A comma-separated list of data streams used to limit the request. Wildcard expressions (<code>*</code>) are supported. To target all
      * data streams in a cluster, omit this parameter or use <code>*</code>.
      * <p>
      * API name: {@code name}
@@ -134,7 +134,7 @@ public final class DataStreamsStatsRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list of data streams used to limit the request. Wildcard expressions (<code>*</code>) are supported. To target
+         * A comma-separated list of data streams used to limit the request. Wildcard expressions (<code>*</code>) are supported. To target
          * all data streams in a cluster, omit this parameter or use <code>*</code>.
          * <p>
          * API name: {@code name}
@@ -151,7 +151,7 @@ public final class DataStreamsStatsRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list of data streams used to limit the request. Wildcard expressions (<code>*</code>) are supported. To target
+         * A comma-separated list of data streams used to limit the request. Wildcard expressions (<code>*</code>) are supported. To target
          * all data streams in a cluster, omit this parameter or use <code>*</code>.
          * <p>
          * API name: {@code name}

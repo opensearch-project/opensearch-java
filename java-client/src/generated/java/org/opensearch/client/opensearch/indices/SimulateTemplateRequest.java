@@ -154,8 +154,8 @@ public final class SimulateTemplateRequest extends RequestBase
     }
 
     /**
-     * Name of the index template to simulate. To test a template configuration before you add it to the cluster, omit this parameter and
-     * specify the template configuration in the request body.
+     * The name of the index template to simulate. To test a template configuration before you add it to the cluster, omit this parameter
+     * and specify the template configuration in the request body.
      * <p>
      * API name: {@code name}
      * </p>
@@ -321,8 +321,8 @@ public final class SimulateTemplateRequest extends RequestBase
         }
 
         /**
-         * Name of the index template to simulate. To test a template configuration before you add it to the cluster, omit this parameter
-         * and specify the template configuration in the request body.
+         * The name of the index template to simulate. To test a template configuration before you add it to the cluster, omit this
+         * parameter and specify the template configuration in the request body.
          * <p>
          * API name: {@code name}
          * </p>

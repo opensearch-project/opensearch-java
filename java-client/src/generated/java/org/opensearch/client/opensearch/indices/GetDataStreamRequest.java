@@ -78,8 +78,8 @@ public final class GetDataStreamRequest extends RequestBase
     }
 
     /**
-     * Comma-separated list of data stream names used to limit the request. Wildcard (<code>*</code>) expressions are supported. If omitted,
-     * all data streams are returned.
+     * A comma-separated list of data stream names used to limit the request. Wildcard (<code>*</code>) expressions are supported. If
+     * omitted, all data streams are returned.
      * <p>
      * API name: {@code name}
      * </p>
@@ -134,7 +134,7 @@ public final class GetDataStreamRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list of data stream names used to limit the request. Wildcard (<code>*</code>) expressions are supported. If
+         * A comma-separated list of data stream names used to limit the request. Wildcard (<code>*</code>) expressions are supported. If
          * omitted, all data streams are returned.
          * <p>
          * API name: {@code name}
@@ -151,7 +151,7 @@ public final class GetDataStreamRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list of data stream names used to limit the request. Wildcard (<code>*</code>) expressions are supported. If
+         * A comma-separated list of data stream names used to limit the request. Wildcard (<code>*</code>) expressions are supported. If
          * omitted, all data streams are returned.
          * <p>
          * API name: {@code name}

@@ -164,10 +164,10 @@ public final class OpenRequest extends RequestBase implements ToCopyableBuilder<
     }
 
     /**
-     * Required - Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>).
-     * By default, you must explicitly name the indexes you using to limit the request. To limit a request using <code>_all</code>,
-     * <code>*</code>, or other wildcard expressions, change the <code>action.destructive_requires_name</code> setting to false. You can
-     * update this setting in the <code>opensearch.yml</code> file or using the cluster update settings API.
+     * Required - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards
+     * (<code>*</code>). By default, you must explicitly name the indexes you using to limit the request. To limit a request using
+     * <code>_all</code>, <code>*</code>, or other wildcard expressions, change the <code>action.destructive_requires_name</code> setting to
+     * false. You can update this setting in the <code>opensearch.yml</code> file or using the cluster update settings API.
      * <p>
      * API name: {@code index}
      * </p>
@@ -399,7 +399,7 @@ public final class OpenRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         /**
-         * Required - Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards
+         * Required - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards
          * (<code>*</code>). By default, you must explicitly name the indexes you using to limit the request. To limit a request using
          * <code>_all</code>, <code>*</code>, or other wildcard expressions, change the <code>action.destructive_requires_name</code>
          * setting to false. You can update this setting in the <code>opensearch.yml</code> file or using the cluster update settings API.
@@ -418,7 +418,7 @@ public final class OpenRequest extends RequestBase implements ToCopyableBuilder<
         }
 
         /**
-         * Required - Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards
+         * Required - A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards
          * (<code>*</code>). By default, you must explicitly name the indexes you using to limit the request. To limit a request using
          * <code>_all</code>, <code>*</code>, or other wildcard expressions, change the <code>action.destructive_requires_name</code>
          * setting to false. You can update this setting in the <code>opensearch.yml</code> file or using the cluster update settings API.

@@ -145,7 +145,7 @@ public final class FlushRequest extends RequestBase implements ToCopyableBuilder
     }
 
     /**
-     * Comma-separated list of data streams, indexes, and aliases to flush. Supports wildcards (<code>*</code>). To flush all data streams
+     * A comma-separated list of data streams, indexes, and aliases to flush. Supports wildcards (<code>*</code>). To flush all data streams
      * and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
      * <p>
      * API name: {@code index}
@@ -306,7 +306,7 @@ public final class FlushRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Comma-separated list of data streams, indexes, and aliases to flush. Supports wildcards (<code>*</code>). To flush all data
+         * A comma-separated list of data streams, indexes, and aliases to flush. Supports wildcards (<code>*</code>). To flush all data
          * streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
@@ -323,7 +323,7 @@ public final class FlushRequest extends RequestBase implements ToCopyableBuilder
         }
 
         /**
-         * Comma-separated list of data streams, indexes, and aliases to flush. Supports wildcards (<code>*</code>). To flush all data
+         * A comma-separated list of data streams, indexes, and aliases to flush. Supports wildcards (<code>*</code>). To flush all data
          * streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}

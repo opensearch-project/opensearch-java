@@ -156,7 +156,7 @@ public final class CloseIndexRequest extends RequestBase implements ToCopyableBu
     }
 
     /**
-     * Required - Comma-separated list or wildcard expression of index names used to limit the request.
+     * Required - A comma-separated list or wildcard expression of index names used to limit the request.
      * <p>
      * API name: {@code index}
      * </p>
@@ -358,7 +358,7 @@ public final class CloseIndexRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Required - Comma-separated list or wildcard expression of index names used to limit the request.
+         * Required - A comma-separated list or wildcard expression of index names used to limit the request.
          * <p>
          * API name: {@code index}
          * </p>
@@ -374,7 +374,7 @@ public final class CloseIndexRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Required - Comma-separated list or wildcard expression of index names used to limit the request.
+         * Required - A comma-separated list or wildcard expression of index names used to limit the request.
          * <p>
          * API name: {@code index}
          * </p>

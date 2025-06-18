@@ -161,7 +161,7 @@ public final class PutAliasRequest extends RequestBase
     }
 
     /**
-     * Comma-separated list of data streams or indexes to add. Supports wildcards (<code>*</code>). Wildcard patterns that match both data
+     * A comma-separated list of data streams or indexes to add. Supports wildcards (<code>*</code>). Wildcard patterns that match both data
      * streams and indexes return an error.
      * <p>
      * API name: {@code index}
@@ -441,7 +441,7 @@ public final class PutAliasRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list of data streams or indexes to add. Supports wildcards (<code>*</code>). Wildcard patterns that match both
+         * A comma-separated list of data streams or indexes to add. Supports wildcards (<code>*</code>). Wildcard patterns that match both
          * data streams and indexes return an error.
          * <p>
          * API name: {@code index}
@@ -458,7 +458,7 @@ public final class PutAliasRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list of data streams or indexes to add. Supports wildcards (<code>*</code>). Wildcard patterns that match both
+         * A comma-separated list of data streams or indexes to add. Supports wildcards (<code>*</code>). Wildcard patterns that match both
          * data streams and indexes return an error.
          * <p>
          * API name: {@code index}
