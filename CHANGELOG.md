@@ -59,6 +59,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Fixed ScoreCombination's `parameters` structure ([#1594](https://github.com/opensearch-project/opensearch-java/pull/1594))
+- Fixed default connectTimeout of transportBuilder ([#1633](https://github.com/opensearch-project/opensearch-java/pull/1633))
 
 ## [3.0.0] - 05/16/2025
 ### ⚠️ Breaking Changes ⚠️
