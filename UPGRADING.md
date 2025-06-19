@@ -1,6 +1,10 @@
+* [UPGRADING](#upgrading)
+  * [Upgrading from 2.x to 3.0](#upgrading-from-2x-to-30)
+  * [Upgrading from 3.x to UNRELEASED](#upgrading-from-3x-to-unreleased)
+
 # UPGRADING
 
-## Upgrading 2.x to 3.0
+## Upgrading from 2.x to 3.0
 ### URL Path Encoding
 - The default URL path encoding has been changed to be more conservative. Previously the `!`, `$`, `&`, `'`, `(`, `)`, `*`, `+`, `,`, `;`, `=`, `@` and `:` characters were left un-encoded, they will now be percent-encoded. If you require the previous behavior you can specify the `org.opensearch.path.encoding=HTTP_CLIENT_V4_EQUIV` system property.
 
@@ -705,3 +709,72 @@ After:
 
 ### ExplainResponse
 - The `explanation` property is now of type `Explanation` instead of `ExplanationDetail`.
+
+## Upgrading from 3.x to UNRELEASED
+### ExplainRequest
+- The `routing` property is now of type `List<String>` instead of `String`.
+
+### ExplainResponse
+- The `tDocumentSerializer` property has been removed as it is unused.
+
+### GetRequest
+- The `refresh` property has been corrected to be of type `Refresh` instead of `Boolean`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+
+### GetResponse
+- The `GetResponse` class now extends a `GetResultBase` class instead of `GetResult`.
+
+### GetSourceRequest
+- The `refresh` property has been corrected to be of type `Refresh` instead of `Boolean`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+- The `storedFields` property has been removed as it is not supported by OpenSearch.
+
+### ScrollResponse
+- The `ScrollResponse` class now extends `SearchResult` directly instead of via `SearchResponse`.
+
+### SearchResult
+- The `documents` property has been removed as it is not supported by OpenSearch.
+- The `maxScore` property has been removed as it is not supported by OpenSearch.
+- The `numReducePhases` property has been corrected to be of type `Integer` instead of `Long`.
+- The `tDocumentSerializer` property has been removed as it is unused.
+
+### CompletionSuggestOption
+- The `score` property has been corrected to be of type `Float` instead of `Double`.
+
+### SuggestVariant
+- The `_suggestionKind` method's naming has been corrected to `_suggestKind`.
+- The `_toSuggestion` method's naming has been corrected to `toSuggest`.
+
+### SuggestOptionBuilders
+- The `SuggestOptionBuilders` class has been removed.
+
+### SearchRequest
+- The `batchedReduceSize` property has been corrected to be of type `Integer` instead of `Long`.
+- The `indicesBoost` property is now of type `List<Map<String, Float>>` instead of `List<Map<String, Double>>`.
+- The `maxConcurrentShardRequests` property has been corrected to be of type `Integer` instead of `Long`.
+- The `minCompatibleShardNode` property has been removed as it is not supported by OpenSearch.
+- The `minScore` property has been corrected to be of type `Float` instead of `Double`.
+- The `preFilterShardSize` property has been corrected to be of type `Integer` instead of `Long`.
+- The `routing` property is now of type `List<String>` instead of `String`.
+- The `runtimeMappings` property has been removed as it is not supported by OpenSearch.
+- The `terminateAfter` property has been corrected to be of type `Integer` instead of `Long`.
+
+### core.search.Pit renamed to PointInTimeReference
+- The `Pit` class has been renamed to `PointInTimeReference`, this affects:
+  - `SearchRequest`'s `pit` field.
+- The `keepAlive` property has been corrected to be of type `Time` instead of `String`.
+
+### SearchTemplateRequest
+- The `routing` property is now of type `List<String>` instead of `String`.
+
+### LifecycleOperationMode
+- The `LifecycleOperationMode` enum has been removed as it is no longer used.
+
+### RuntimeField
+- The `RuntimeField` class has been removed as it is not supported by OpenSearch.
+
+### RuntimeFieldType
+- The `RuntimeFieldType` class has been removed as it is not supported by OpenSearch.
+
+### MultiSearchItem
+- The `MultiSearchItem` class now extends `SearchResult` directly instead of via `SearchResponse`.

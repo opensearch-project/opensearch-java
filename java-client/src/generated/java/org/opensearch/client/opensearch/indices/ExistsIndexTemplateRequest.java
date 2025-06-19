@@ -145,7 +145,7 @@ public final class ExistsIndexTemplateRequest extends RequestBase
     }
 
     /**
-     * Required - Name of the index template to check existence of. Wildcard (*) expressions are supported.
+     * Required - The name of the index template to check existence of. Wildcard (*) expressions are supported.
      * <p>
      * API name: {@code name}
      * </p>
@@ -291,7 +291,7 @@ public final class ExistsIndexTemplateRequest extends RequestBase
         }
 
         /**
-         * Required - Name of the index template to check existence of. Wildcard (*) expressions are supported.
+         * Required - The name of the index template to check existence of. Wildcard (*) expressions are supported.
          * <p>
          * API name: {@code name}
          * </p>

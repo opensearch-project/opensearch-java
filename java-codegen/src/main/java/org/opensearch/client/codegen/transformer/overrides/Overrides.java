@@ -39,6 +39,26 @@ public class Overrides {
             oo -> oo.withQueryParameters(qp -> qp.with("rest_total_hits_as_int", po -> po.withIgnore(true)))
         )
             .with(
+                OperationGroup.from("search"),
+                oo -> oo.withQueryParameters(
+                    qp -> qp.with("rest_total_hits_as_int", po -> po.withIgnore(true))
+                        .with("_source_excludes", po -> po.withIgnore(true))
+                        .with("_source_includes", po -> po.withIgnore(true))
+                        .with("suggest_field", po -> po.withIgnore(true))
+                        .with("suggest_mode", po -> po.withIgnore(true))
+                        .with("suggest_size", po -> po.withIgnore(true))
+                        .with("suggest_text", po -> po.withIgnore(true))
+                        .with("search_pipeline", po -> po.withName("pipeline"))
+                )
+            )
+            .with(
+                OperationGroup.from("search_template"),
+                oo -> oo.withQueryParameters(
+                    qp -> qp.with("rest_total_hits_as_int", po -> po.withIgnore(true))
+                        .with("search_pipeline", po -> po.withName("pipeline"))
+                )
+            )
+            .with(
                 OperationGroup.from("snapshot.create_repository"),
                 oo -> oo.withPathParameters(pp -> pp.with("repository", po -> po.withName("name")))
             )
@@ -175,6 +195,12 @@ public class Overrides {
                 .with(schema("nodes.usage", "Metric"), so -> so.withClassName("NodesUsageMetric"))
 
                 .with(requestBodySchema("scroll"), so -> so.withProperties(p -> p.with("scroll_id", po -> po.withRequired(true))))
+                .with(
+                    requestBodySchema("search"),
+                    so -> so.withProperties(
+                        p -> p.with("aggregations", po -> po.withAliases(Set.of("aggs"))).with("aggs", po -> po.withIgnore(true))
+                    )
+                )
         )
         .build();
 

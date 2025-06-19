@@ -178,7 +178,7 @@ public final class ExistsRequest extends RequestBase implements ToCopyableBuilde
     }
 
     /**
-     * Required - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (<code>*</code>).
+     * Required - A comma-separated list of data streams, indexes, and aliases. Supports wildcards (<code>*</code>).
      * <p>
      * API name: {@code index}
      * </p>
@@ -379,7 +379,7 @@ public final class ExistsRequest extends RequestBase implements ToCopyableBuilde
         }
 
         /**
-         * Required - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (<code>*</code>).
+         * Required - A comma-separated list of data streams, indexes, and aliases. Supports wildcards (<code>*</code>).
          * <p>
          * API name: {@code index}
          * </p>
@@ -395,7 +395,7 @@ public final class ExistsRequest extends RequestBase implements ToCopyableBuilde
         }
 
         /**
-         * Required - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (<code>*</code>).
+         * Required - A comma-separated list of data streams, indexes, and aliases. Supports wildcards (<code>*</code>).
          * <p>
          * API name: {@code index}
          * </p>

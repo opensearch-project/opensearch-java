@@ -140,7 +140,7 @@ public final class CreateIndexRequest extends RequestBase
     }
 
     /**
-     * Required - Name of the index you wish to create.
+     * Required - The name of the index you wish to create.
      * <p>
      * API name: {@code index}
      * </p>
@@ -376,7 +376,7 @@ public final class CreateIndexRequest extends RequestBase
         }
 
         /**
-         * Required - Name of the index you wish to create.
+         * Required - The name of the index you wish to create.
          * <p>
          * API name: {@code index}
          * </p>

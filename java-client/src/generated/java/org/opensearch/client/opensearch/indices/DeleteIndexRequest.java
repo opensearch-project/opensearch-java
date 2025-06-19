@@ -151,7 +151,7 @@ public final class DeleteIndexRequest extends RequestBase implements ToCopyableB
     }
 
     /**
-     * Required - Comma-separated list of indexes to delete. You cannot specify index aliases. By default, this parameter does not support
+     * Required - A comma-separated list of indexes to delete. You cannot specify index aliases. By default, this parameter does not support
      * wildcards (<code>*</code>) or <code>_all</code>. To use wildcards or <code>_all</code>, set the
      * <code>action.destructive_requires_name</code> cluster setting to <code>false</code>.
      * <p>
@@ -339,7 +339,7 @@ public final class DeleteIndexRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * Required - Comma-separated list of indexes to delete. You cannot specify index aliases. By default, this parameter does not
+         * Required - A comma-separated list of indexes to delete. You cannot specify index aliases. By default, this parameter does not
          * support wildcards (<code>*</code>) or <code>_all</code>. To use wildcards or <code>_all</code>, set the
          * <code>action.destructive_requires_name</code> cluster setting to <code>false</code>.
          * <p>
@@ -357,7 +357,7 @@ public final class DeleteIndexRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * Required - Comma-separated list of indexes to delete. You cannot specify index aliases. By default, this parameter does not
+         * Required - A comma-separated list of indexes to delete. You cannot specify index aliases. By default, this parameter does not
          * support wildcards (<code>*</code>) or <code>_all</code>. To use wildcards or <code>_all</code>, set the
          * <code>action.destructive_requires_name</code> cluster setting to <code>false</code>.
          * <p>
