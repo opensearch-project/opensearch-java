@@ -53,15 +53,8 @@ public class CodeGenerator {
                 namespace(isNull()),
                 name(isOneOf("bulk", "bulk_stream", "create", "index", "mget", "msearch", "msearch_template", "termvectors", "update"))
             ),
-            namespace(is("asynchronous_search")),
             and(namespace(is("cat")), name(is("help"))),
-            namespace(is("flow_framework")),
-            namespace(is("geospatial")),
             and(namespace(is("indices")), name(is("get_field_mapping"))),
-            namespace(is("insights")),
-            namespace(is("knn")),
-            namespace(is("list")),
-            namespace(is("ltr")),
             and(
                 namespace(is("ml")),
                 name(
@@ -82,22 +75,34 @@ public class CodeGenerator {
                     )
                 )
             ),
-            namespace(is("neural")),
             // TODO: nodes.hot_threads is a plain text response and should be handled differently
             and(namespace(is("nodes")), name(is("hot_threads"))),
-            namespace(is("notifications")),
-            namespace(is("observability")),
-            namespace(is("ppl")),
-            namespace(is("query")),
-            namespace(is("remote_store")),
-            namespace(is("replication")),
-            namespace(is("rollups")),
-            namespace(is("search_relevance")),
-            namespace(is("security_analytics")),
-            namespace(is("sm")),
-            namespace(is("sql")),
-            namespace(is("transforms")),
-            namespace(is("wlm"))
+
+            namespace(
+                isOneOf(
+                    "asynchronous_search",
+                    "flow_framework",
+                    "geospatial",
+                    "insights",
+                    "knn",
+                    "list",
+                    "ltr",
+                    "neural",
+                    "notifications",
+                    "observability",
+                    "ppl",
+                    "query",
+                    "remote_store",
+                    "replication",
+                    "rollups",
+                    "search_relevance",
+                    "security_analytics",
+                    "sm",
+                    "sql",
+                    "transforms",
+                    "wlm"
+                )
+            )
         )
     );
 
