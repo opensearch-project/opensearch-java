@@ -76,8 +76,8 @@ public class InnerHitsTest {
 
     private final String innerHitsJson = String.format("{\"_source\":false,\"stored_fields\":[\"%s\",\"%s\"]}", storedJobId, storedSalary);
     private final String searchRequestJson = String.format(
-        "{\"_source\":false,\"query\":{\"bool\":{\"must\":[{\"match_all\":{}},{\"nested\":{\"inner_hits\":%s,\"path\":\"details\","
-            + "\"query\":{\"match_all\":{}}}}]}},\"stored_fields\":[\"title\",\"companyName\"]}",
+        "{\"query\":{\"bool\":{\"must\":[{\"match_all\":{}},{\"nested\":{\"inner_hits\":%s,\"path\":\"details\","
+            + "\"query\":{\"match_all\":{}}}}]}},\"_source\":false,\"stored_fields\":[\"title\",\"companyName\"]}",
         innerHitsJson
     );
 }

@@ -775,3 +775,6 @@ After:
 
 ### RuntimeFieldType
 - The `RuntimeFieldType` class has been removed as it is not supported by OpenSearch.
+
+### MultiSearchItem
+- The `MultiSearchItem` class now extends `SearchResult` directly instead of via `SearchResponse`.
