@@ -232,8 +232,12 @@ dependencies {
     testImplementation("software.amazon.awssdk", "url-connection-client", "[2.21,3.0)")
     testImplementation("software.amazon.awssdk", "sts", "[2.21,3.0)")
 
-    testImplementation("org.apache.logging.log4j", "log4j-api","[2.17.1,3.0)")
-    testImplementation("org.apache.logging.log4j", "log4j-core","[2.17.1,3.0)")
+    testImplementation("org.apache.logging.log4j", "log4j-api","[2.17.1,3.0)") {
+        exclude(group = "com.github.spotbugs", module = "spotbugs-annotations")
+    }
+    testImplementation("org.apache.logging.log4j", "log4j-core","[2.17.1,3.0)") {
+        exclude(group = "com.github.spotbugs", module = "spotbugs-annotations")
+    }
 
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/
