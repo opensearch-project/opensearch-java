@@ -116,7 +116,7 @@ public final class DeleteRequest extends RequestBase implements ToCopyableBuilde
     }
 
     /**
-     * Required - Unique identifier for the document.
+     * Required - The unique identifier for the document.
      * <p>
      * API name: {@code id}
      * </p>
@@ -207,7 +207,7 @@ public final class DeleteRequest extends RequestBase implements ToCopyableBuilde
     }
 
     /**
-     * Specific version type: <code>external</code>, <code>external_gte</code>.
+     * The specific version type: <code>external</code>, <code>external_gte</code>.
      * <p>
      * API name: {@code version_type}
      * </p>
@@ -308,7 +308,7 @@ public final class DeleteRequest extends RequestBase implements ToCopyableBuilde
         }
 
         /**
-         * Required - Unique identifier for the document.
+         * Required - The unique identifier for the document.
          * <p>
          * API name: {@code id}
          * </p>
@@ -438,7 +438,7 @@ public final class DeleteRequest extends RequestBase implements ToCopyableBuilde
         }
 
         /**
-         * Specific version type: <code>external</code>, <code>external_gte</code>.
+         * The specific version type: <code>external</code>, <code>external_gte</code>.
          * <p>
          * API name: {@code version_type}
          * </p>

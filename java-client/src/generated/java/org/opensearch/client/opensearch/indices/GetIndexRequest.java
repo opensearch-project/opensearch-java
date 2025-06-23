@@ -181,7 +181,7 @@ public final class GetIndexRequest extends RequestBase implements ToCopyableBuil
     }
 
     /**
-     * Required - Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*) are
+     * Required - A comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*) are
      * supported.
      * <p>
      * API name: {@code index}
@@ -400,7 +400,7 @@ public final class GetIndexRequest extends RequestBase implements ToCopyableBuil
         }
 
         /**
-         * Required - Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*)
+         * Required - A comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*)
          * are supported.
          * <p>
          * API name: {@code index}
@@ -417,7 +417,7 @@ public final class GetIndexRequest extends RequestBase implements ToCopyableBuil
         }
 
         /**
-         * Required - Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*)
+         * Required - A comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard expressions (*)
          * are supported.
          * <p>
          * API name: {@code index}

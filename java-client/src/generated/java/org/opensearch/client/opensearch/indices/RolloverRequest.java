@@ -205,7 +205,7 @@ public final class RolloverRequest extends RequestBase
     }
 
     /**
-     * Name of the index to create. Supports date math. Data streams do not support this parameter.
+     * The name of the index to create. Supports date math. Data streams do not support this parameter.
      * <p>
      * API name: {@code new_index}
      * </p>
@@ -530,7 +530,7 @@ public final class RolloverRequest extends RequestBase
         }
 
         /**
-         * Name of the index to create. Supports date math. Data streams do not support this parameter.
+         * The name of the index to create. Supports date math. Data streams do not support this parameter.
          * <p>
          * API name: {@code new_index}
          * </p>

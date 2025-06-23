@@ -140,7 +140,7 @@ public final class GetTemplateRequest extends RequestBase implements ToCopyableB
     }
 
     /**
-     * Comma-separated list of index template names used to limit the request. Wildcard (<code>*</code>) expressions are supported. To
+     * A comma-separated list of index template names used to limit the request. Wildcard (<code>*</code>) expressions are supported. To
      * return all index templates, omit this parameter or use a value of <code>_all</code> or <code>*</code>.
      * <p>
      * API name: {@code name}
@@ -286,7 +286,7 @@ public final class GetTemplateRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * Comma-separated list of index template names used to limit the request. Wildcard (<code>*</code>) expressions are supported. To
+         * A comma-separated list of index template names used to limit the request. Wildcard (<code>*</code>) expressions are supported. To
          * return all index templates, omit this parameter or use a value of <code>_all</code> or <code>*</code>.
          * <p>
          * API name: {@code name}
@@ -303,7 +303,7 @@ public final class GetTemplateRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * Comma-separated list of index template names used to limit the request. Wildcard (<code>*</code>) expressions are supported. To
+         * A comma-separated list of index template names used to limit the request. Wildcard (<code>*</code>) expressions are supported. To
          * return all index templates, omit this parameter or use a value of <code>_all</code> or <code>*</code>.
          * <p>
          * API name: {@code name}

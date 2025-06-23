@@ -246,8 +246,8 @@ public final class ValidateQueryRequest extends RequestBase
     }
 
     /**
-     * Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (<code>*</code>). To search all data streams
-     * or indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+     * A comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (<code>*</code>). To search all data
+     * streams or indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
      * <p>
      * API name: {@code index}
      * </p>
@@ -547,7 +547,7 @@ public final class ValidateQueryRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (<code>*</code>). To search all data
+         * A comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (<code>*</code>). To search all data
          * streams or indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
@@ -564,7 +564,7 @@ public final class ValidateQueryRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (<code>*</code>). To search all data
+         * A comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (<code>*</code>). To search all data
          * streams or indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
