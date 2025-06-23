@@ -151,8 +151,8 @@ public final class GetMappingRequest extends RequestBase implements ToCopyableBu
     }
 
     /**
-     * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To target
-     * all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
+     * A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+     * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
      * <p>
      * API name: {@code index}
      * </p>
@@ -339,7 +339,7 @@ public final class GetMappingRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
          * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
@@ -356,7 +356,7 @@ public final class GetMappingRequest extends RequestBase implements ToCopyableBu
         }
 
         /**
-         * Comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
+         * A comma-separated list of data streams, indexes, and aliases used to limit the request. Supports wildcards (<code>*</code>). To
          * target all data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
