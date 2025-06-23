@@ -134,7 +134,7 @@ public final class GetAliasRequest extends RequestBase implements ToCopyableBuil
     }
 
     /**
-     * Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>). To target all data
+     * A comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>). To target all data
      * streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
      * <p>
      * API name: {@code index}
@@ -157,8 +157,8 @@ public final class GetAliasRequest extends RequestBase implements ToCopyableBuil
     }
 
     /**
-     * Comma-separated list of aliases to retrieve. Supports wildcards (<code>*</code>). To retrieve all aliases, omit this parameter or use
-     * <code>*</code> or <code>_all</code>.
+     * A comma-separated list of aliases to retrieve. Supports wildcards (<code>*</code>). To retrieve all aliases, omit this parameter or
+     * use <code>*</code> or <code>_all</code>.
      * <p>
      * API name: {@code name}
      * </p>
@@ -294,7 +294,7 @@ public final class GetAliasRequest extends RequestBase implements ToCopyableBuil
         }
 
         /**
-         * Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>). To target all
+         * A comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>). To target all
          * data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
@@ -311,7 +311,7 @@ public final class GetAliasRequest extends RequestBase implements ToCopyableBuil
         }
 
         /**
-         * Comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>). To target all
+         * A comma-separated list of data streams or indexes used to limit the request. Supports wildcards (<code>*</code>). To target all
          * data streams and indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
@@ -340,8 +340,8 @@ public final class GetAliasRequest extends RequestBase implements ToCopyableBuil
         }
 
         /**
-         * Comma-separated list of aliases to retrieve. Supports wildcards (<code>*</code>). To retrieve all aliases, omit this parameter or
-         * use <code>*</code> or <code>_all</code>.
+         * A comma-separated list of aliases to retrieve. Supports wildcards (<code>*</code>). To retrieve all aliases, omit this parameter
+         * or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code name}
          * </p>
@@ -357,8 +357,8 @@ public final class GetAliasRequest extends RequestBase implements ToCopyableBuil
         }
 
         /**
-         * Comma-separated list of aliases to retrieve. Supports wildcards (<code>*</code>). To retrieve all aliases, omit this parameter or
-         * use <code>*</code> or <code>_all</code>.
+         * A comma-separated list of aliases to retrieve. Supports wildcards (<code>*</code>). To retrieve all aliases, omit this parameter
+         * or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code name}
          * </p>
