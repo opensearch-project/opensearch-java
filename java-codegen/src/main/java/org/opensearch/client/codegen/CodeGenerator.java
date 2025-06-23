@@ -12,12 +12,10 @@ import static org.opensearch.client.codegen.model.OperationGroupMatcher.name;
 import static org.opensearch.client.codegen.model.OperationGroupMatcher.namespace;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.and;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.is;
-import static org.opensearch.client.codegen.utils.matcher.Matcher.isNot;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.isNull;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.isOneOf;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.not;
 import static org.opensearch.client.codegen.utils.matcher.Matcher.or;
-import static org.opensearch.client.codegen.utils.matcher.StringMatcher.contains;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,66 +45,83 @@ import org.opensearch.client.codegen.utils.matcher.Matcher;
 
 public class CodeGenerator {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final Matcher<OperationGroup> OPERATION_MATCHER = or(
-        and(
-            namespace(isNull()),
-            name(
-                or(
+    private static final Matcher<OperationGroup> OPERATION_MATCHER = not(
+        // NB: This is wrapped in a `not`, so this acts as an exclusion list. This is due to some operations not being supported in codegen
+        // yet (e.g. uses NDJSON) or new APIs needing review.
+        or(
+            and(
+                namespace(isNull()),
+                name(
                     isOneOf(
-                        "clear_scroll",
-                        "count",
-                        "delete",
-                        "field_caps",
-                        "info",
-                        "mtermvectors",
-                        "ping",
-                        "rank_eval",
-                        "render_search_template",
-                        "search_shards"
-                    ),
-                    contains("_by_query"),
-                    contains("exists"),
-                    contains("_pit"),
-                    contains("reindex"),
-                    and(contains("script"), isNot("scripts_painless_execute"))
+                        "bulk",
+                        "bulk_stream",
+                        "create",
+                        "explain",
+                        "get",
+                        "get_source",
+                        "index",
+                        "mget",
+                        "msearch",
+                        "msearch_template",
+                        "scroll",
+                        "search",
+                        "search_template",
+                        "termvectors",
+                        "update"
+                    )
+                )
+            ),
+            and(namespace(is("cat")), name(is("help"))),
+            and(namespace(is("indices")), name(is("get_field_mapping"))),
+            and(
+                namespace(is("ml")),
+                name(
+                    isOneOf(
+                        "chunk_model",
+                        "execute_algorithm",
+                        "predict",
+                        "predict_model",
+                        "search_agents",
+                        "search_connectors",
+                        "search_memory",
+                        "search_message",
+                        "search_model_group",
+                        "search_models",
+                        "search_tasks",
+                        "train",
+                        "train_predict"
+                    )
+                )
+            ),
+            // TODO: nodes.hot_threads is a plain text response and should be handled differently
+            and(namespace(is("nodes")), name(is("hot_threads"))),
+
+            namespace(
+                isOneOf(
+                    "asynchronous_search",
+                    "flow_framework",
+                    "geospatial",
+                    "insights",
+                    "knn",
+                    "list",
+                    "ltr",
+                    "neural",
+                    "notifications",
+                    "observability",
+                    "ppl",
+                    "query",
+                    "remote_store",
+                    "replication",
+                    "rollups",
+                    "search_relevance",
+                    "security_analytics",
+                    "sm",
+                    "sql",
+                    "transforms",
+                    "wlm"
                 )
             )
-        ),
-        and(namespace(is("cat")), name(isNot("help"))),
-        and(
-            namespace(is("cluster")),
-            name(
-                or(
-                    isOneOf("allocation_explain", "health", "pending_tasks", "remote_info", "reroute", "state", "stats"),
-                    contains("component_template"),
-                    contains("settings"),
-                    contains("voting_config_exclusions")
-                )
-            )
-        ),
-        namespace(is("dangling_indices")),
-        and(namespace(is("indices")), name(isNot("get_field_mapping"))),
-        and(namespace(is("ingest"))),
-        and(namespace(is("ingestion"))),
-        and(namespace(is("ism"))),
-        and(
-            namespace(is("ml")),
-            name(
-                // TODO: search_models is complex and ideally should re-use the search structures
-                not(or(contains("predict"), contains("search"), contains("train"), isOneOf("chunk_model", "execute_algorithm")))
-            )
-        ),
-        and(
-            namespace(is("nodes")),
-            name(
-                // TODO: hot_threads is a plain text response and should be handled differently
-                isNot("hot_threads")
-            )
-        ),
-        namespace(is("search_pipeline")),
-        namespace(is("security")),
-        namespace(is("snapshot")),
-        namespace(is("tasks"))
+        )
     );
 
     public static void main(String[] args) {

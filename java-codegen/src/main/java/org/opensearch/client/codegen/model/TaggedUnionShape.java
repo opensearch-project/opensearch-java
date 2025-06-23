@@ -214,17 +214,17 @@ public class TaggedUnionShape extends ObjectShapeBase {
             return desc;
         }
 
-        private final String unionClassName;
+        private final TaggedUnionShape union;
         private final Collection<Variant> variants;
 
         private Builders(TaggedUnionShape union, Collection<Variant> variants, ShouldGenerate shouldGenerate) {
             super(union.getParent(), union.getClassName() + "Builders", null, buildDescription(union), shouldGenerate);
+            this.union = union;
             this.variants = variants;
-            unionClassName = union.getClassName();
         }
 
-        public String getUnionClassName() {
-            return unionClassName;
+        public TaggedUnionShape getUnion() {
+            return union;
         }
 
         public Collection<Variant> getVariants() {
@@ -238,7 +238,7 @@ public class TaggedUnionShape extends ObjectShapeBase {
 
         @Override
         public String toString() {
-            return new ToStringBuilder(this).append("unionClassName", unionClassName).append("variants", variants).toString();
+            return new ToStringBuilder(this).append("union", union).append("variants", variants).toString();
         }
     }
 
