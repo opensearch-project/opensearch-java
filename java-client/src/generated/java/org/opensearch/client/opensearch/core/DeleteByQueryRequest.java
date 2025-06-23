@@ -342,7 +342,7 @@ public final class DeleteByQueryRequest extends RequestBase
     }
 
     /**
-     * Required - Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (<code>*</code>). To search all
+     * Required - A comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (<code>*</code>). To search all
      * data streams or indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
      * <p>
      * API name: {@code index}
@@ -983,7 +983,7 @@ public final class DeleteByQueryRequest extends RequestBase
         }
 
         /**
-         * Required - Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (<code>*</code>). To search
+         * Required - A comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (<code>*</code>). To search
          * all data streams or indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
@@ -1000,7 +1000,7 @@ public final class DeleteByQueryRequest extends RequestBase
         }
 
         /**
-         * Required - Comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (<code>*</code>). To search
+         * Required - A comma-separated list of data streams, indexes, and aliases to search. Supports wildcards (<code>*</code>). To search
          * all data streams or indexes, omit this parameter or use <code>*</code> or <code>_all</code>.
          * <p>
          * API name: {@code index}
