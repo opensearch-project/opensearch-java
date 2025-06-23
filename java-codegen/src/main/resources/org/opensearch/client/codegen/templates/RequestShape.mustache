@@ -30,6 +30,9 @@
     @Override
     protected void applyQueryParameters(@{{TYPES.Javax.Annotation.Nonnull}} {{TYPES.Java.Util.Map}}<String, String> params) {
         super.applyQueryParameters(params);
+{{#supportsTypedKeys}}
+        params.put("typed_keys", "true");
+{{/supportsTypedKeys}}
 {{#queryParams}}
     {{^required}}
         if ({{#type.isDefined}}this.{{name}}{{/type.isDefined}}) {

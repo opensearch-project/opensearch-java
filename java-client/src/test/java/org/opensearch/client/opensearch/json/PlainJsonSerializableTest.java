@@ -59,7 +59,7 @@ public class PlainJsonSerializableTest extends Assert {
         SearchRequest searchRequest = SearchRequest.of(
             request -> request.index("index1", "index2")
                 .aggregations(Collections.emptyMap())
-                .terminateAfter(5L)
+                .terminateAfter(5)
                 .query(q -> q.match(t -> t.field("name").query(FieldValue.of("OpenSearch"))))
         );
         String searchRequestString = searchRequest.toJsonString();

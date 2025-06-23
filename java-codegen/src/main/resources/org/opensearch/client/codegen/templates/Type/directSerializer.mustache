@@ -1,18 +1,21 @@
 {{^type.isTypeParameterRef}}
     {{#type.isMap}}
-        for ({{type.mapEntryType}} item{{depth}} : {{value}}.entrySet()) {
-            generator.writeKey(item{{depth}}.getKey());
+        {{#type.mapValueType.targetShape.usesTypedKeys}}
+            {{TYPES.Client.Json.ExternallyTaggedUnion}}.serializeTypedKeysInner({{value}}, generator, mapper);
+        {{/type.mapValueType.targetShape.usesTypedKeys}}
+        {{^type.mapValueType.targetShape.usesTypedKeys}}
             {{#type.mapValueType.isList}}
-                generator.writeStartArray();
-                if (item{{depth}}.getValue() != null) {
-                    {{#type.mapValueType.directSerializer}}item{{depth}}.getValue(){{/type.mapValueType.directSerializer}}
-                }
-                generator.writeEnd();
+                {{#type.mapValueType.listValueType.targetShape.usesTypedKeys}}
+                    {{TYPES.Client.Json.ExternallyTaggedUnion}}.serializeTypedKeysArrayInner({{value}}, generator, mapper);
+                {{/type.mapValueType.listValueType.targetShape.usesTypedKeys}}
+                {{^type.mapValueType.listValueType.targetShape.usesTypedKeys}}
+                    {{>Type/DirectSerializer/Map}}
+                {{/type.mapValueType.listValueType.targetShape.usesTypedKeys}}
             {{/type.mapValueType.isList}}
             {{^type.mapValueType.isList}}
-                {{#type.mapValueType.serializer}}item{{depth}}.getValue(){{/type.mapValueType.serializer}}
+                {{>Type/DirectSerializer/Map}}
             {{/type.mapValueType.isList}}
-        }
+        {{/type.mapValueType.targetShape.usesTypedKeys}}
     {{/type.isMap}}
     {{#type.isList}}
         for ({{type.listValueType}} item{{depth}} : {{value}}) {

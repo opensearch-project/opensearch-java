@@ -670,6 +670,21 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
         initializeChild("$extends", $extends);
     }
 
+    public boolean isEquivalentTo(@Nonnull OpenApiSchema other) {
+        Objects.requireNonNull(other, "other must not be null");
+        if (this == other || this.getPointer().equals(other.getPointer())) {
+            return true;
+        }
+        if (has$ref()) {
+            return resolve().isEquivalentTo(other);
+        }
+        if (other.has$ref()) {
+            return this.isEquivalentTo(other.resolve());
+        }
+        // TODO: Implement a more comprehensive equivalence check
+        return false;
+    }
+
     @Override
     public @Nonnull OpenApiSchema clone() {
         return toBuilder().build();

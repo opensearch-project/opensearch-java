@@ -40,12 +40,12 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch.core.SearchResponse;
+import org.opensearch.client.opensearch.core.search.SearchResult;
 import org.opensearch.client.util.ObjectBuilder;
 
 // typedef: _global.msearch.MultiSearchItem
 
-public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
+public class MultiSearchItem<TDocument> extends SearchResult<TDocument> {
     @Nullable
     private final Integer status;
 
@@ -87,7 +87,7 @@ public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
      * Builder for {@link MultiSearchItem}.
      */
 
-    public static class Builder<TDocument> extends SearchResponse.AbstractBuilder<TDocument, Builder<TDocument>>
+    public static class Builder<TDocument> extends SearchResult.AbstractBuilder<TDocument, Builder<TDocument>>
         implements
             ObjectBuilder<MultiSearchItem<TDocument>> {
         @Nullable
@@ -137,7 +137,7 @@ public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
         ObjectDeserializer<MultiSearchItem.Builder<TDocument>> op,
         JsonpDeserializer<TDocument> tDocumentDeserializer
     ) {
-        SearchResponse.setupSearchResponseDeserializer(op, tDocumentDeserializer);
+        SearchResult.setupSearchResultDeserializer(op, tDocumentDeserializer);
         op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
 
     }
