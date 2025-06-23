@@ -76,7 +76,7 @@ public final class DeleteDataStreamRequest extends RequestBase
     }
 
     /**
-     * Required - Comma-separated list of data streams to delete. Wildcard (<code>*</code>) expressions are supported.
+     * Required - A comma-separated list of data streams to delete. Wildcard (<code>*</code>) expressions are supported.
      * <p>
      * API name: {@code name}
      * </p>
@@ -130,7 +130,7 @@ public final class DeleteDataStreamRequest extends RequestBase
         }
 
         /**
-         * Required - Comma-separated list of data streams to delete. Wildcard (<code>*</code>) expressions are supported.
+         * Required - A comma-separated list of data streams to delete. Wildcard (<code>*</code>) expressions are supported.
          * <p>
          * API name: {@code name}
          * </p>
@@ -146,7 +146,7 @@ public final class DeleteDataStreamRequest extends RequestBase
         }
 
         /**
-         * Required - Comma-separated list of data streams to delete. Wildcard (<code>*</code>) expressions are supported.
+         * Required - A comma-separated list of data streams to delete. Wildcard (<code>*</code>) expressions are supported.
          * <p>
          * API name: {@code name}
          * </p>
