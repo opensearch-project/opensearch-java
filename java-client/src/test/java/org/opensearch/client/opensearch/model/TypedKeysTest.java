@@ -60,8 +60,8 @@ public class TypedKeysTest extends ModelTestCase {
             .timedOut(false)
             .build();
 
-        String json = "{\"took\":1,\"timed_out\":false,\"_shards\":{\"failed\":0,\"successful\":1,\"total\":1},"
-            + "\"hits\":{\"hits\":[],\"total\":{\"relation\":\"eq\",\"value\":0}},\"aggregations\":{\"avg#foo\":{\"value\":3.14}}}";
+        String json = "{\"aggregations\":{\"avg#foo\":{\"value\":3.14}},\"hits\":{\"hits\":[],\"total\":{\"relation\":\"eq\",\"value\":0}},"
+            + "\"_shards\":{\"failed\":0,\"successful\":1,\"total\":1},\"timed_out\":false,\"took\":1}";
 
         assertEquals(json, toJson(resp));
 
@@ -98,12 +98,14 @@ public class TypedKeysTest extends ModelTestCase {
             .timedOut(false)
             .build();
 
-        String json = "{\"took\":1,\"timed_out\":false,\"_shards\":{\"failed\":0,\"successful\":1,\"total\":1},"
-            + "\"hits\":{\"hits\":[],\"total\":{\"relation\":\"eq\",\"value\":0}},"
-            + "\"aggregations\":{\"sterms#foo\":{\"buckets\":["
+        String json = "{\"aggregations\":{\"sterms#foo\":{\"buckets\":["
             + "{\"avg#bar\":{\"value\":1.0},\"doc_count\":1,\"key\":\"key_1\"},"
             + "{\"avg#bar\":{\"value\":2.0},\"doc_count\":2,\"key\":\"key_2\"}"
-            + "],\"sum_other_doc_count\":1}}}";
+            + "],\"sum_other_doc_count\":1}},"
+            + "\"hits\":{\"hits\":[],\"total\":{\"relation\":\"eq\",\"value\":0}},"
+            + "\"_shards\":{\"failed\":0,\"successful\":1,\"total\":1},"
+            + "\"timed_out\":false,\"took\":1"
+            + "}";
 
         assertEquals(json, toJson(resp));
         resp = fromJson(json, SearchResponse.createSearchResponseDeserializer(JsonpDeserializer.voidDeserializer()));
@@ -125,7 +127,7 @@ public class TypedKeysTest extends ModelTestCase {
         ).took(0).timedOut(false).shards(s -> s.failed(0).successful(1).total(1)).hits(h -> h.hits(new ArrayList<>())).build();
 
         String json =
-            "{\"took\":0,\"timed_out\":false,\"_shards\":{\"failed\":0,\"successful\":1,\"total\":1},\"hits\":{\"hits\":[]},\"aggregations\":{\"aggKey\":{\"buckets\":[],\"sum_other_doc_count\":0}}}";
+            "{\"aggregations\":{\"aggKey\":{\"buckets\":[],\"sum_other_doc_count\":0}},\"hits\":{\"hits\":[]},\"_shards\":{\"failed\":0,\"successful\":1,\"total\":1},\"timed_out\":false,\"took\":0}";
 
         assertEquals(json, toJson(resp, mapper.withAttribute(JsonpMapperAttributes.SERIALIZE_TYPED_KEYS, false)));
     }
