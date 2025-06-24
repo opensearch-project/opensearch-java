@@ -9,9 +9,11 @@
 package org.opensearch.client.opensearch.integTest;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
@@ -604,9 +606,34 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
         }
     }
 
+    public void testJacksonJava8TypesSerDe() throws Exception {
+        final String id = "java8";
+        final AppData appData = new AppData();
+        // use a date where month & day could be swapped depending on the format to ensure that this can't happen.
+        // i.e. month != day and day <= 12.
+        final LocalDateTime testDate = LocalDateTime.of(2000, 12, 1, 0, 0);
+        appData.setDate(Optional.of(testDate));
+
+        {
+            final IndexResponse indexResponse = javaClient().index(b -> b.index("index").id(id).document(appData));
+            assertEquals("index", indexResponse.index());
+            assertEquals(id, indexResponse.id());
+        }
+        {
+            final GetResponse<AppData> getResponse = javaClient().get(b -> b.index("index").id(id), AppData.class);
+            assertTrue(getResponse.found());
+            assertEquals("index", getResponse.index());
+            assertEquals(id, getResponse.id());
+            assertNotNull(getResponse.source());
+            assertTrue(getResponse.source().getDate().isPresent());
+            assertEquals(testDate, getResponse.source().getDate().get());
+        }
+    }
+
     public static class AppData {
         private int intValue;
         private String msg;
+        private Optional<LocalDateTime> date = Optional.empty();
 
         public int getIntValue() {
             return intValue;
@@ -622,6 +649,14 @@ public abstract class AbstractCrudIT extends OpenSearchJavaClientTestCase {
 
         public void setMsg(String msg) {
             this.msg = msg;
+        }
+
+        public Optional<LocalDateTime> getDate() {
+            return date;
+        }
+
+        public void setDate(Optional<LocalDateTime> date) {
+            this.date = date;
         }
     }
 }

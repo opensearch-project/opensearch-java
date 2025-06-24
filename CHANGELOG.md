@@ -5,6 +5,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 - Added support for Index Management plugin APIs ([#1604](https://github.com/opensearch-project/opensearch-java/pull/1604))
 - Added support for the security plugin APIs ([#1601](https://github.com/opensearch-project/opensearch-java/pull/1601))
+- Jackson `ObjectMapper` modules are now being auto-detected ([#1614](https://github.com/opensearch-project/opensearch-java/pull/1614))
+- Jackson `ObjectMapper` JDK8 & JSR310 modules are now always present ([#1614](https://github.com/opensearch-project/opensearch-java/pull/1614))
 
 ### Dependencies
 - Bump `org.owasp.dependencycheck` from 12.1.1 to 12.1.3 ([#1608](https://github.com/opensearch-project/opensearch-java/pull/1608), [#1607](https://github.com/opensearch-project/opensearch-java/pull/1607), [#1623](https://github.com/opensearch-project/opensearch-java/pull/1623))

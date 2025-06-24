@@ -218,6 +218,8 @@ dependencies {
     // Apache 2.0
     implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
     implementation("com.fasterxml.jackson.core", "jackson-databind", jacksonDatabindVersion)
+    implementation("com.fasterxml.jackson.datatype", "jackson-datatype-jsr310", jacksonDatabindVersion)
+    implementation("com.fasterxml.jackson.datatype", "jackson-datatype-jdk8", jacksonDatabindVersion)
     testImplementation("com.fasterxml.jackson.datatype", "jackson-datatype-jakarta-jsonp", jacksonVersion)
 
     // For AwsSdk2Transport
