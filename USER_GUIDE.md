@@ -99,11 +99,12 @@ OpenSearchTransport transport = new RestClientTransport(restClient, new JacksonJ
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
 
-The `JacksonJsonpMapper` class (2.x versions) only supports Java 7 objects by default. [Java 8 modules](https://github.com/FasterXML/jackson-modules-java8) to support JDK8 classes such as the Date and Time API (JSR-310), `Optional`, and more can be used by including [the additional datatype dependency](https://github.com/FasterXML/jackson-modules-java8#usage) and adding the module.  For example, to include JSR-310 classes:
+The `JacksonJsonpMapper` class (2.x versions) only supports Java 7 objects by default. [Java 8 modules](https://github.com/FasterXML/jackson-modules-java8) to support JDK8 classes such as the Date and Time API (JSR-310), `Optional`, and more can be used by including [the additional datatype dependency](https://github.com/FasterXML/jackson-modules-java8#usage) and adding the module. Auto-detection for these modules is enabled, adding them to the classpath is enough.
+You can also provide your own `ObjectMapper` instance if you need to pre-configure it differently, for example:
 
 ```java
 OpenSearchTransport transport = new RestClientTransport(restClient,
-    new JacksonJsonpMapper(new ObjectMapper().registerModule(new JavaTimeModule()))); 
+    new JacksonJsonpMapper(new ObjectMapper().findAndRegisterModules().configure(SerializationFeature.INDENT_OUTPUT, true))); 
 OpenSearchClient client = new OpenSearchClient(transport);
 ```
 
