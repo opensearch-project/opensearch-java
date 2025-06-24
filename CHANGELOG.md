@@ -10,6 +10,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.owasp.dependencycheck` from 12.1.1 to 12.1.3 ([#1608](https://github.com/opensearch-project/opensearch-java/pull/1608), [#1607](https://github.com/opensearch-project/opensearch-java/pull/1607), [#1623](https://github.com/opensearch-project/opensearch-java/pull/1623))
 - Bump `org.junit:junit-bom` from 5.13.0 to 5.13.1 ([#1606](https://github.com/opensearch-project/opensearch-java/pull/1606))
 - Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.0 to 5.3.2 ([#1621](https://github.com/opensearch-project/opensearch-java/pull/1621))
+- Bump `org.opensearch.gradle:build-tools` from 3.1.0-SNAPSHOT to 3.2.0-SNAPSHOT ([#1642](https://github.com/opensearch-project/opensearch-java/pull/1642))
 
 ### Changed
 
