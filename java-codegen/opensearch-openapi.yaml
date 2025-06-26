@@ -20432,7 +20432,7 @@ components:
     exists_source___query.realtime:
       in: query
       name: realtime
-      description: If `true`, the request is real-time as opposed to near-real-time.
+      description: If `true`, the request is real time as opposed to near real time.
       schema:
         type: boolean
       style: form
@@ -20518,7 +20518,7 @@ components:
     exists___query.realtime:
       in: query
       name: realtime
-      description: If `true`, the request is real-time as opposed to near-real-time.
+      description: If `true`, the request is real time as opposed to near real time.
       schema:
         type: boolean
       style: form
@@ -20893,7 +20893,7 @@ components:
     get_source___path.index:
       in: path
       name: index
-      description: The name of the index that contains the document.
+      description: The name of the index containing the document.
       required: true
       schema:
         $ref: '#/components/schemas/_common___IndexName'
@@ -20930,7 +20930,7 @@ components:
     get_source___query.realtime:
       in: query
       name: realtime
-      description: Boolean) If `true`, the request is real-time as opposed to near-real-time.
+      description: Boolean) If `true`, the request is real time as opposed to near real time.
       schema:
         type: boolean
       style: form
@@ -20973,7 +20973,7 @@ components:
     get___path.index:
       in: path
       name: index
-      description: The name of the index that contains the document.
+      description: The name of the index containing the document.
       required: true
       schema:
         $ref: '#/components/schemas/_common___IndexName'
@@ -21010,7 +21010,7 @@ components:
     get___query.realtime:
       in: query
       name: realtime
-      description: If `true`, the request is real-time as opposed to near-real-time.
+      description: If `true`, the request is real time as opposed to near real time.
       schema:
         type: boolean
       style: form
@@ -24747,7 +24747,7 @@ components:
     mget___query.realtime:
       in: query
       name: realtime
-      description: If `true`, the request is real-time as opposed to near-real-time.
+      description: If `true`, the request is real time as opposed to near real time.
       schema:
         type: boolean
       style: form
@@ -25308,7 +25308,7 @@ components:
     mtermvectors___query.realtime:
       in: query
       name: realtime
-      description: If `true`, the request is real-time as opposed to near-real-time.
+      description: If `true`, the request is real time as opposed to near real time.
       schema:
         type: boolean
         default: true
@@ -28467,7 +28467,7 @@ components:
     termvectors___path.index:
       in: path
       name: index
-      description: The name of the index that contains the document.
+      description: The name of the index containing the document.
       required: true
       schema:
         $ref: '#/components/schemas/_common___IndexName'
@@ -28523,7 +28523,7 @@ components:
     termvectors___query.realtime:
       in: query
       name: realtime
-      description: If `true`, the request is real-time as opposed to near-real-time.
+      description: If `true`, the request is real time as opposed to near real time.
       schema:
         type: boolean
         default: true
@@ -36778,23 +36778,23 @@ components:
       properties:
         1xx:
           type: integer
-          format: int32
+          format: int64
           description: The number of informational responses.
         2xx:
           type: integer
-          format: int32
+          format: int64
           description: The number of successful responses.
         3xx:
           type: integer
-          format: int32
+          format: int64
           description: The number of redirection responses.
         4xx:
           type: integer
-          format: int32
+          format: int64
           description: The number of client error responses.
         5xx:
           type: integer
-          format: int32
+          format: int64
           description: The number of server error responses.
     _common___Duration:
       description: A duration. Units can be `nanos`, `micros`, `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours) and `d` (days). Also accepts `0` without a unit and `-1` to indicate an unspecified value.

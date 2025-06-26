@@ -12,6 +12,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.0 to 5.3.2 ([#1621](https://github.com/opensearch-project/opensearch-java/pull/1621))
 
 ### Changed
+- Changed the type of the properties in DocStatus from integer to Long to resolve the integer overflow issue ([#1644](https://github.com/opensearch-project/opensearch-java/pull/1644))
 
 ### Deprecated
 
