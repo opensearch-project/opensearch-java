@@ -131,7 +131,7 @@ public final class GetSourceRequest extends RequestBase implements ToCopyableBui
     }
 
     /**
-     * Required - The name of the index that contains the document.
+     * Required - The name of the index containing the document.
      * <p>
      * API name: {@code index}
      * </p>
@@ -153,7 +153,7 @@ public final class GetSourceRequest extends RequestBase implements ToCopyableBui
     }
 
     /**
-     * Boolean) If <code>true</code>, the request is real-time as opposed to near-real-time.
+     * Boolean) If <code>true</code>, the request is real time as opposed to near real time.
      * <p>
      * API name: {@code realtime}
      * </p>
@@ -337,7 +337,7 @@ public final class GetSourceRequest extends RequestBase implements ToCopyableBui
         }
 
         /**
-         * Required - The name of the index that contains the document.
+         * Required - The name of the index containing the document.
          * <p>
          * API name: {@code index}
          * </p>
@@ -361,7 +361,7 @@ public final class GetSourceRequest extends RequestBase implements ToCopyableBui
         }
 
         /**
-         * Boolean) If <code>true</code>, the request is real-time as opposed to near-real-time.
+         * Boolean) If <code>true</code>, the request is real time as opposed to near real time.
          * <p>
          * API name: {@code realtime}
          * </p>

@@ -154,7 +154,7 @@ public final class ExistsSourceRequest extends RequestBase implements ToCopyable
     }
 
     /**
-     * If <code>true</code>, the request is real-time as opposed to near-real-time.
+     * If <code>true</code>, the request is real time as opposed to near real time.
      * <p>
      * API name: {@code realtime}
      * </p>
@@ -361,7 +361,7 @@ public final class ExistsSourceRequest extends RequestBase implements ToCopyable
         }
 
         /**
-         * If <code>true</code>, the request is real-time as opposed to near-real-time.
+         * If <code>true</code>, the request is real time as opposed to near real time.
          * <p>
          * API name: {@code realtime}
          * </p>
