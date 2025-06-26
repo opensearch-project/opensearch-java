@@ -63,19 +63,19 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocStatus.Builder, DocStatus> {
 
     @Nullable
-    private final Integer _1xx;
+    private final Long _1xx;
 
     @Nullable
-    private final Integer _2xx;
+    private final Long _2xx;
 
     @Nullable
-    private final Integer _3xx;
+    private final Long _3xx;
 
     @Nullable
-    private final Integer _4xx;
+    private final Long _4xx;
 
     @Nullable
-    private final Integer _5xx;
+    private final Long _5xx;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -98,7 +98,7 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
      * </p>
      */
     @Nullable
-    public final Integer _1xx() {
+    public final Long _1xx() {
         return this._1xx;
     }
 
@@ -109,7 +109,7 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
      * </p>
      */
     @Nullable
-    public final Integer _2xx() {
+    public final Long _2xx() {
         return this._2xx;
     }
 
@@ -120,7 +120,7 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
      * </p>
      */
     @Nullable
-    public final Integer _3xx() {
+    public final Long _3xx() {
         return this._3xx;
     }
 
@@ -131,7 +131,7 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
      * </p>
      */
     @Nullable
-    public final Integer _4xx() {
+    public final Long _4xx() {
         return this._4xx;
     }
 
@@ -142,7 +142,7 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
      * </p>
      */
     @Nullable
-    public final Integer _5xx() {
+    public final Long _5xx() {
         return this._5xx;
     }
 
@@ -201,15 +201,15 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, DocStatus> {
         @Nullable
-        private Integer _1xx;
+        private Long _1xx;
         @Nullable
-        private Integer _2xx;
+        private Long _2xx;
         @Nullable
-        private Integer _3xx;
+        private Long _3xx;
         @Nullable
-        private Integer _4xx;
+        private Long _4xx;
         @Nullable
-        private Integer _5xx;
+        private Long _5xx;
 
         public Builder() {}
 
@@ -242,7 +242,7 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
          * </p>
          */
         @Nonnull
-        public final Builder _1xx(@Nullable Integer value) {
+        public final Builder _1xx(@Nullable Long value) {
             this._1xx = value;
             return this;
         }
@@ -254,7 +254,7 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
          * </p>
          */
         @Nonnull
-        public final Builder _2xx(@Nullable Integer value) {
+        public final Builder _2xx(@Nullable Long value) {
             this._2xx = value;
             return this;
         }
@@ -266,7 +266,7 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
          * </p>
          */
         @Nonnull
-        public final Builder _3xx(@Nullable Integer value) {
+        public final Builder _3xx(@Nullable Long value) {
             this._3xx = value;
             return this;
         }
@@ -278,7 +278,7 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
          * </p>
          */
         @Nonnull
-        public final Builder _4xx(@Nullable Integer value) {
+        public final Builder _4xx(@Nullable Long value) {
             this._4xx = value;
             return this;
         }
@@ -290,7 +290,7 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
          * </p>
          */
         @Nonnull
-        public final Builder _5xx(@Nullable Integer value) {
+        public final Builder _5xx(@Nullable Long value) {
             this._5xx = value;
             return this;
         }
@@ -320,11 +320,11 @@ public class DocStatus implements PlainJsonSerializable, ToCopyableBuilder<DocSt
     );
 
     protected static void setupDocStatusDeserializer(ObjectDeserializer<DocStatus.Builder> op) {
-        op.add(Builder::_1xx, JsonpDeserializer.integerDeserializer(), "1xx");
-        op.add(Builder::_2xx, JsonpDeserializer.integerDeserializer(), "2xx");
-        op.add(Builder::_3xx, JsonpDeserializer.integerDeserializer(), "3xx");
-        op.add(Builder::_4xx, JsonpDeserializer.integerDeserializer(), "4xx");
-        op.add(Builder::_5xx, JsonpDeserializer.integerDeserializer(), "5xx");
+        op.add(Builder::_1xx, JsonpDeserializer.longDeserializer(), "1xx");
+        op.add(Builder::_2xx, JsonpDeserializer.longDeserializer(), "2xx");
+        op.add(Builder::_3xx, JsonpDeserializer.longDeserializer(), "3xx");
+        op.add(Builder::_4xx, JsonpDeserializer.longDeserializer(), "4xx");
+        op.add(Builder::_5xx, JsonpDeserializer.longDeserializer(), "5xx");
     }
 
     @Override
