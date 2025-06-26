@@ -44,11 +44,6 @@ import org.opensearch.client.transport.httpclient5.internal.NodeSelector;
 
 public class ApacheHttpClient5TransportBuilder {
     /**
-     * The default connection timeout in milliseconds.
-     */
-    public static final int DEFAULT_CONNECT_TIMEOUT_MILLIS = 1000;
-
-    /**
      * The default response timeout in milliseconds.
      */
     public static final int DEFAULT_RESPONSE_TIMEOUT_MILLIS = 30000;
@@ -328,7 +323,6 @@ public class ApacheHttpClient5TransportBuilder {
     private CloseableHttpAsyncClient createHttpClient() {
         // default timeouts are all infinite
         RequestConfig.Builder requestConfigBuilder = RequestConfig.custom()
-            .setConnectTimeout(Timeout.ofMilliseconds(DEFAULT_CONNECT_TIMEOUT_MILLIS))
             .setResponseTimeout(Timeout.ofMilliseconds(DEFAULT_RESPONSE_TIMEOUT_MILLIS));
 
         if (requestConfigCallback != null) {
