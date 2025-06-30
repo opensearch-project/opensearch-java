@@ -45,16 +45,6 @@ import org.opensearch.client.transport.httpclient5.internal.NodeSelector;
 
 public class ApacheHttpClient5TransportBuilder {
     /**
-     * The default connection timeout in milliseconds.
-     */
-    public static final int DEFAULT_CONNECT_TIMEOUT_MILLIS = 1000;
-
-    /**
-     * The default response timeout in milliseconds.
-     */
-    public static final int DEFAULT_RESPONSE_TIMEOUT_MILLIS = 30000;
-
-    /**
      * The default maximum of connections per route.
      */
     public static final int DEFAULT_MAX_CONN_PER_ROUTE = 10;
