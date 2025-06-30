@@ -40,6 +40,12 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Security
 
+## [Unreleased 4.x]
+
+### Dependencies
+
+- Bump `org.junit:junit-bom` from 5.13.1 to 5.13.2 ([#1650](https://github.com/opensearch-project/opensearch-java/pull/1650))
+
 ## [3.1.0] - 06/04/2025
 ### Added
 - Added support for the `template` query type ([#1586](https://github.com/opensearch-project/opensearch-java/pull/1586))
