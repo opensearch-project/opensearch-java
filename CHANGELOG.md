@@ -1,6 +1,11 @@
 # CHANGELOG
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [Unreleased 4.x]
+
+### Dependencies
+- Bump `org.junit:junit-bom` from 5.13.1 to 5.13.2 ([#1650](https://github.com/opensearch-project/opensearch-java/pull/1650))
+
 ## [Unreleased 3.x]
 ### Added
 - Added support for Index Management plugin APIs ([#1604](https://github.com/opensearch-project/opensearch-java/pull/1604))
@@ -39,12 +44,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Fixed
 
 ### Security
-
-## [Unreleased 4.x]
-
-### Dependencies
-
-- Bump `org.junit:junit-bom` from 5.13.1 to 5.13.2 ([#1650](https://github.com/opensearch-project/opensearch-java/pull/1650))
 
 ## [3.1.0] - 06/04/2025
 ### Added
