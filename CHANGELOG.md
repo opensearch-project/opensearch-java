@@ -1,11 +1,6 @@
 # CHANGELOG
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
-## [Unreleased 4.x]
-
-### Dependencies
-- Bump `org.junit:junit-bom` from 5.13.1 to 5.13.2 ([#1650](https://github.com/opensearch-project/opensearch-java/pull/1650))
-
 ## [Unreleased 3.x]
 ### Added
 - Added support for Index Management plugin APIs ([#1604](https://github.com/opensearch-project/opensearch-java/pull/1604))
@@ -14,7 +9,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Dependencies
 - Bump `org.owasp.dependencycheck` from 12.1.1 to 12.1.3 ([#1608](https://github.com/opensearch-project/opensearch-java/pull/1608), [#1607](https://github.com/opensearch-project/opensearch-java/pull/1607), [#1623](https://github.com/opensearch-project/opensearch-java/pull/1623))
-- Bump `org.junit:junit-bom` from 5.13.0 to 5.13.1 ([#1606](https://github.com/opensearch-project/opensearch-java/pull/1606))
+- Bump `org.junit:junit-bom` from 5.13.0 to 5.13.2 ([#1606](https://github.com/opensearch-project/opensearch-java/pull/1606), [#1650](https://github.com/opensearch-project/opensearch-java/pull/1650))
 - Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.0 to 5.3.2 ([#1621](https://github.com/opensearch-project/opensearch-java/pull/1621))
 
 ### Changed
