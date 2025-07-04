@@ -19,12 +19,13 @@ import java.io.FileWriter
 buildscript {
     repositories {
         mavenLocal()
+        maven(url = "https://central.sonatype.com/repository/maven-snapshots/")
         maven(url = "https://aws.oss.sonatype.org/content/repositories/snapshots")
         mavenCentral()
         gradlePluginPortal()
     }
     dependencies {
-        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.1.0-SNAPSHOT")
+        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.2.0-SNAPSHOT")
     }
 }
 
@@ -175,7 +176,7 @@ dependencies {
     implementation("org.commonmark", "commonmark", "0.24.0")
 
     // EPL-2.0
-    testImplementation(platform("org.junit:junit-bom:5.13.1"))
+    testImplementation(platform("org.junit:junit-bom:5.13.2"))
     testImplementation("org.junit.jupiter", "junit-jupiter")
     testRuntimeOnly("org.junit.platform", "junit-platform-launcher")
 }

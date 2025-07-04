@@ -38,12 +38,13 @@ import java.io.FileWriter
 buildscript {
     repositories {
         mavenLocal()
+        maven(url = "https://central.sonatype.com/repository/maven-snapshots/")
         maven(url = "https://aws.oss.sonatype.org/content/repositories/snapshots")
         mavenCentral()
         gradlePluginPortal()
     }
     dependencies {
-        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.1.0-SNAPSHOT")
+        "classpath"(group = "org.opensearch.gradle", name = "build-tools", version = "3.2.0-SNAPSHOT")
     }
 }
 
@@ -244,7 +245,7 @@ dependencies {
     implementation("org.eclipse", "yasson", "2.0.2")
 
     // https://github.com/classgraph/classgraph
-    testImplementation("io.github.classgraph:classgraph:4.8.179")
+    testImplementation("io.github.classgraph:classgraph:4.8.180")
 
     // Eclipse 1.0
     testImplementation("junit", "junit" , "4.13.2") {
@@ -317,7 +318,7 @@ tasks.withType<Jar> {
 publishing {
     repositories{
         if (version.toString().endsWith("SNAPSHOT")) {
-            maven("https://aws.oss.sonatype.org/content/repositories/snapshots/") {
+            maven("https://central.sonatype.com/repository/maven-snapshots/") {
                 name = "Snapshots"
                 credentials {
                     username = System.getenv("SONATYPE_USERNAME")

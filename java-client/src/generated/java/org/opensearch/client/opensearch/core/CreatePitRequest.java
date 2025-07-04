@@ -121,7 +121,7 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
     }
 
     /**
-     * Required - Comma-separated list of indexes; use <code>_all</code> or empty string to perform the operation on all indexes.
+     * Required - A comma-separated list of indexes; use <code>_all</code> or empty string to perform the operation on all indexes.
      * <p>
      * API name: {@code index}
      * </p>
@@ -154,7 +154,7 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
     }
 
     /**
-     * Comma-separated list of specific routing values.
+     * A comma-separated list of specific routing values.
      * <p>
      * API name: {@code routing}
      * </p>
@@ -272,7 +272,7 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
         }
 
         /**
-         * Required - Comma-separated list of indexes; use <code>_all</code> or empty string to perform the operation on all indexes.
+         * Required - A comma-separated list of indexes; use <code>_all</code> or empty string to perform the operation on all indexes.
          * <p>
          * API name: {@code index}
          * </p>
@@ -288,7 +288,7 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
         }
 
         /**
-         * Required - Comma-separated list of indexes; use <code>_all</code> or empty string to perform the operation on all indexes.
+         * Required - A comma-separated list of indexes; use <code>_all</code> or empty string to perform the operation on all indexes.
          * <p>
          * API name: {@code index}
          * </p>
@@ -339,7 +339,7 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
         }
 
         /**
-         * Comma-separated list of specific routing values.
+         * A comma-separated list of specific routing values.
          * <p>
          * API name: {@code routing}
          * </p>
@@ -355,7 +355,7 @@ public final class CreatePitRequest extends RequestBase implements ToCopyableBui
         }
 
         /**
-         * Comma-separated list of specific routing values.
+         * A comma-separated list of specific routing values.
          * <p>
          * API name: {@code routing}
          * </p>

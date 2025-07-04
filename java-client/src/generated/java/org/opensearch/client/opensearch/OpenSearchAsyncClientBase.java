@@ -42,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
+import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.cat.OpenSearchCatAsyncClient;
 import org.opensearch.client.opensearch.cluster.OpenSearchClusterAsyncClient;
@@ -65,16 +66,22 @@ import org.opensearch.client.opensearch.core.DeleteScriptRequest;
 import org.opensearch.client.opensearch.core.DeleteScriptResponse;
 import org.opensearch.client.opensearch.core.ExistsRequest;
 import org.opensearch.client.opensearch.core.ExistsSourceRequest;
+import org.opensearch.client.opensearch.core.ExplainRequest;
+import org.opensearch.client.opensearch.core.ExplainResponse;
 import org.opensearch.client.opensearch.core.FieldCapsRequest;
 import org.opensearch.client.opensearch.core.FieldCapsResponse;
 import org.opensearch.client.opensearch.core.GetAllPitsRequest;
 import org.opensearch.client.opensearch.core.GetAllPitsResponse;
+import org.opensearch.client.opensearch.core.GetRequest;
+import org.opensearch.client.opensearch.core.GetResponse;
 import org.opensearch.client.opensearch.core.GetScriptContextRequest;
 import org.opensearch.client.opensearch.core.GetScriptContextResponse;
 import org.opensearch.client.opensearch.core.GetScriptLanguagesRequest;
 import org.opensearch.client.opensearch.core.GetScriptLanguagesResponse;
 import org.opensearch.client.opensearch.core.GetScriptRequest;
 import org.opensearch.client.opensearch.core.GetScriptResponse;
+import org.opensearch.client.opensearch.core.GetSourceRequest;
+import org.opensearch.client.opensearch.core.GetSourceResponse;
 import org.opensearch.client.opensearch.core.InfoRequest;
 import org.opensearch.client.opensearch.core.InfoResponse;
 import org.opensearch.client.opensearch.core.MtermvectorsRequest;
@@ -90,8 +97,16 @@ import org.opensearch.client.opensearch.core.ReindexRethrottleRequest;
 import org.opensearch.client.opensearch.core.ReindexRethrottleResponse;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateRequest;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateResponse;
+import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteRequest;
+import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteResponse;
+import org.opensearch.client.opensearch.core.ScrollRequest;
+import org.opensearch.client.opensearch.core.ScrollResponse;
+import org.opensearch.client.opensearch.core.SearchRequest;
+import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.SearchShardsRequest;
 import org.opensearch.client.opensearch.core.SearchShardsResponse;
+import org.opensearch.client.opensearch.core.SearchTemplateRequest;
+import org.opensearch.client.opensearch.core.SearchTemplateResponse;
 import org.opensearch.client.opensearch.core.UpdateByQueryRequest;
 import org.opensearch.client.opensearch.core.UpdateByQueryResponse;
 import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleRequest;
@@ -106,9 +121,11 @@ import org.opensearch.client.opensearch.search_pipeline.OpenSearchSearchPipeline
 import org.opensearch.client.opensearch.security.OpenSearchSecurityAsyncClient;
 import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotAsyncClient;
 import org.opensearch.client.opensearch.tasks.OpenSearchTasksAsyncClient;
+import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
+import org.opensearch.client.transport.endpoints.EndpointWithResponseMapperAttr;
 import org.opensearch.client.util.ObjectBuilder;
 
 /**
@@ -407,6 +424,39 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
         return existsSource(fn.apply(new ExistsSourceRequest.Builder()).build());
     }
 
+    // ----- Endpoint: explain
+
+    /**
+     * Returns information about why a specific document matches (or doesn't match) a query.
+     */
+    public <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(ExplainRequest request, Class<TDocument> tDocumentClass)
+        throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            ExplainRequest,
+            ExplainResponse<TDocument>,
+            ErrorResponse>) ExplainRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:_global.explain.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Returns information about why a specific document matches (or doesn't match) a query.
+     *
+     * @param fn a function that initializes a builder to create the {@link ExplainRequest}
+     */
+    public final <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(
+        Function<ExplainRequest.Builder, ObjectBuilder<ExplainRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return explain(fn.apply(new ExplainRequest.Builder()).build(), tDocumentClass);
+    }
+
     // ----- Endpoint: field_caps
 
     /**
@@ -431,6 +481,39 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
      */
     public final CompletableFuture<FieldCapsResponse> fieldCaps() throws IOException, OpenSearchException {
         return fieldCaps(new FieldCapsRequest.Builder().build());
+    }
+
+    // ----- Endpoint: get
+
+    /**
+     * Returns a document.
+     */
+    public <TDocument> CompletableFuture<GetResponse<TDocument>> get(GetRequest request, Class<TDocument> tDocumentClass)
+        throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            GetRequest,
+            GetResponse<TDocument>,
+            ErrorResponse>) GetRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:_global.get.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Returns a document.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetRequest}
+     */
+    public final <TDocument> CompletableFuture<GetResponse<TDocument>> get(
+        Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return get(fn.apply(new GetRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: get_all_pits
@@ -532,6 +615,39 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
      */
     public final CompletableFuture<GetScriptLanguagesResponse> getScriptLanguages() throws IOException, OpenSearchException {
         return getScriptLanguages(new GetScriptLanguagesRequest.Builder().build());
+    }
+
+    // ----- Endpoint: get_source
+
+    /**
+     * Returns the source of a document.
+     */
+    public <TDocument> CompletableFuture<GetSourceResponse<TDocument>> getSource(GetSourceRequest request, Class<TDocument> tDocumentClass)
+        throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            GetSourceRequest,
+            GetSourceResponse<TDocument>,
+            ErrorResponse>) GetSourceRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:_global.get_source.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Returns the source of a document.
+     *
+     * @param fn a function that initializes a builder to create the {@link GetSourceRequest}
+     */
+    public final <TDocument> CompletableFuture<GetSourceResponse<TDocument>> getSource(
+        Function<GetSourceRequest.Builder, ObjectBuilder<GetSourceRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return getSource(fn.apply(new GetSourceRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: info
@@ -721,6 +837,107 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
         return renderSearchTemplate(new RenderSearchTemplateRequest.Builder().build());
     }
 
+    // ----- Endpoint: scripts_painless_execute
+
+    /**
+     * Allows an arbitrary script to be executed and a result to be returned.
+     */
+    public <TResult> CompletableFuture<ScriptsPainlessExecuteResponse<TResult>> scriptsPainlessExecute(
+        ScriptsPainlessExecuteRequest request,
+        Class<TResult> tResultClass
+    ) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> endpoint = (JsonEndpoint<
+            ScriptsPainlessExecuteRequest,
+            ScriptsPainlessExecuteResponse<TResult>,
+            ErrorResponse>) ScriptsPainlessExecuteRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:_global.scripts_painless_execute.TResult",
+            getDeserializer(tResultClass)
+        );
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Allows an arbitrary script to be executed and a result to be returned.
+     *
+     * @param fn a function that initializes a builder to create the {@link ScriptsPainlessExecuteRequest}
+     */
+    public final <TResult> CompletableFuture<ScriptsPainlessExecuteResponse<TResult>> scriptsPainlessExecute(
+        Function<ScriptsPainlessExecuteRequest.Builder, ObjectBuilder<ScriptsPainlessExecuteRequest>> fn,
+        Class<TResult> tResultClass
+    ) throws IOException, OpenSearchException {
+        return scriptsPainlessExecute(fn.apply(new ScriptsPainlessExecuteRequest.Builder()).build(), tResultClass);
+    }
+
+    // ----- Endpoint: scroll
+
+    /**
+     * Allows to retrieve a large numbers of results from a single search request.
+     */
+    public <TDocument> CompletableFuture<ScrollResponse<TDocument>> scroll(ScrollRequest request, Class<TDocument> tDocumentClass)
+        throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            ScrollRequest,
+            ScrollResponse<TDocument>,
+            ErrorResponse>) ScrollRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:_global.scroll.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Allows to retrieve a large numbers of results from a single search request.
+     *
+     * @param fn a function that initializes a builder to create the {@link ScrollRequest}
+     */
+    public final <TDocument> CompletableFuture<ScrollResponse<TDocument>> scroll(
+        Function<ScrollRequest.Builder, ObjectBuilder<ScrollRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return scroll(fn.apply(new ScrollRequest.Builder()).build(), tDocumentClass);
+    }
+
+    // ----- Endpoint: search
+
+    /**
+     * Returns results matching a query.
+     */
+    public <TDocument> CompletableFuture<SearchResponse<TDocument>> search(SearchRequest request, Class<TDocument> tDocumentClass)
+        throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            SearchRequest,
+            SearchResponse<TDocument>,
+            ErrorResponse>) SearchRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:_global.search.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Returns results matching a query.
+     *
+     * @param fn a function that initializes a builder to create the {@link SearchRequest}
+     */
+    public final <TDocument> CompletableFuture<SearchResponse<TDocument>> search(
+        Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentClass);
+    }
+
     // ----- Endpoint: search_shards
 
     /**
@@ -746,6 +963,41 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
      */
     public final CompletableFuture<SearchShardsResponse> searchShards() throws IOException, OpenSearchException {
         return searchShards(new SearchShardsRequest.Builder().build());
+    }
+
+    // ----- Endpoint: search_template
+
+    /**
+     * Allows to use the Mustache language to pre-render a search definition.
+     */
+    public <TDocument> CompletableFuture<SearchTemplateResponse<TDocument>> searchTemplate(
+        SearchTemplateRequest request,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<
+            SearchTemplateRequest,
+            SearchTemplateResponse<TDocument>,
+            ErrorResponse>) SearchTemplateRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:_global.search_template.TDocument",
+            getDeserializer(tDocumentClass)
+        );
+
+        return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Allows to use the Mustache language to pre-render a search definition.
+     *
+     * @param fn a function that initializes a builder to create the {@link SearchTemplateRequest}
+     */
+    public final <TDocument> CompletableFuture<SearchTemplateResponse<TDocument>> searchTemplate(
+        Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn,
+        Class<TDocument> tDocumentClass
+    ) throws IOException, OpenSearchException {
+        return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), tDocumentClass);
     }
 
     // ----- Endpoint: update_by_query

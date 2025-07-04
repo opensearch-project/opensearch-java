@@ -1,17 +1,26 @@
 # CHANGELOG
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [Unreleased 4.x]
+
+### Dependencies
+- Bump `org.junit:junit-bom` from 5.13.1 to 5.13.2 ([#1650](https://github.com/opensearch-project/opensearch-java/pull/1650))
+- Bump `io.github.classgraph:classgraph` from 4.8.179 to 4.8.180 ([#1651](https://github.com/opensearch-project/opensearch-java/pull/1651))
+
 ## [Unreleased 3.x]
 ### Added
 - Added support for Index Management plugin APIs ([#1604](https://github.com/opensearch-project/opensearch-java/pull/1604))
 - Added support for the security plugin APIs ([#1601](https://github.com/opensearch-project/opensearch-java/pull/1601))
+- Jackson `ObjectMapper` modules are now being auto-detected ([#1643](https://github.com/opensearch-project/opensearch-java/pull/1643))
 
 ### Dependencies
 - Bump `org.owasp.dependencycheck` from 12.1.1 to 12.1.3 ([#1608](https://github.com/opensearch-project/opensearch-java/pull/1608), [#1607](https://github.com/opensearch-project/opensearch-java/pull/1607), [#1623](https://github.com/opensearch-project/opensearch-java/pull/1623))
 - Bump `org.junit:junit-bom` from 5.13.0 to 5.13.1 ([#1606](https://github.com/opensearch-project/opensearch-java/pull/1606))
 - Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.0 to 5.3.2 ([#1621](https://github.com/opensearch-project/opensearch-java/pull/1621))
+- Bump `org.opensearch.gradle:build-tools` from 3.1.0-SNAPSHOT to 3.2.0-SNAPSHOT ([#1642](https://github.com/opensearch-project/opensearch-java/pull/1642))
 
 ### Changed
+- Changed the type of the properties in DocStatus from integer to Long to resolve the integer overflow issue ([#1644](https://github.com/opensearch-project/opensearch-java/pull/1644))
 
 ### Deprecated
 

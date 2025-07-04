@@ -151,8 +151,8 @@ public final class RankEvalRequest extends RequestBase
     }
 
     /**
-     * Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard (<code>*</code>) expressions are
-     * supported. To target all data streams and indexes in a cluster, omit this parameter or use <code>_all</code> or <code>*</code>.
+     * A comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard (<code>*</code>) expressions
+     * are supported. To target all data streams and indexes in a cluster, omit this parameter or use <code>_all</code> or <code>*</code>.
      * <p>
      * API name: {@code index}
      * </p>
@@ -343,8 +343,8 @@ public final class RankEvalRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard (<code>*</code>) expressions
-         * are supported. To target all data streams and indexes in a cluster, omit this parameter or use <code>_all</code> or
+         * A comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard (<code>*</code>)
+         * expressions are supported. To target all data streams and indexes in a cluster, omit this parameter or use <code>_all</code> or
          * <code>*</code>.
          * <p>
          * API name: {@code index}
@@ -361,8 +361,8 @@ public final class RankEvalRequest extends RequestBase
         }
 
         /**
-         * Comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard (<code>*</code>) expressions
-         * are supported. To target all data streams and indexes in a cluster, omit this parameter or use <code>_all</code> or
+         * A comma-separated list of data streams, indexes, and index aliases used to limit the request. Wildcard (<code>*</code>)
+         * expressions are supported. To target all data streams and indexes in a cluster, omit this parameter or use <code>_all</code> or
          * <code>*</code>.
          * <p>
          * API name: {@code index}

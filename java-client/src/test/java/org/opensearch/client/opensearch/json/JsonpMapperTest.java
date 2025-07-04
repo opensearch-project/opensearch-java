@@ -252,7 +252,7 @@ public class JsonpMapperTest extends Assert {
         SearchRequest searchRequest = SearchRequest.of(
             request -> request.index("index1", "index2")
                 .aggregations(Collections.emptyMap())
-                .terminateAfter(5L)
+                .terminateAfter(5)
                 .query(
                     q -> q.range(
                         r -> r.field("rangeField")

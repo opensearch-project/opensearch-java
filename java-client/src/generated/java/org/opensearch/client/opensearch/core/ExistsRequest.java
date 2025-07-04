@@ -136,7 +136,7 @@ public final class ExistsRequest extends RequestBase implements ToCopyableBuilde
     }
 
     /**
-     * Required - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (<code>*</code>).
+     * Required - A comma-separated list of data streams, indexes, and aliases. Supports wildcards (<code>*</code>).
      * <p>
      * API name: {@code index}
      * </p>
@@ -158,7 +158,7 @@ public final class ExistsRequest extends RequestBase implements ToCopyableBuilde
     }
 
     /**
-     * If <code>true</code>, the request is real-time as opposed to near-real-time.
+     * If <code>true</code>, the request is real time as opposed to near real time.
      * <p>
      * API name: {@code realtime}
      * </p>
@@ -248,7 +248,7 @@ public final class ExistsRequest extends RequestBase implements ToCopyableBuilde
     }
 
     /**
-     * Specific version type: <code>external</code>, <code>external_gte</code>.
+     * The specific version type: <code>external</code>, <code>external_gte</code>.
      * <p>
      * API name: {@code version_type}
      * </p>
@@ -357,7 +357,7 @@ public final class ExistsRequest extends RequestBase implements ToCopyableBuilde
         }
 
         /**
-         * Required - Comma-separated list of data streams, indexes, and aliases. Supports wildcards (<code>*</code>).
+         * Required - A comma-separated list of data streams, indexes, and aliases. Supports wildcards (<code>*</code>).
          * <p>
          * API name: {@code index}
          * </p>
@@ -381,7 +381,7 @@ public final class ExistsRequest extends RequestBase implements ToCopyableBuilde
         }
 
         /**
-         * If <code>true</code>, the request is real-time as opposed to near-real-time.
+         * If <code>true</code>, the request is real time as opposed to near real time.
          * <p>
          * API name: {@code realtime}
          * </p>
@@ -571,7 +571,7 @@ public final class ExistsRequest extends RequestBase implements ToCopyableBuilde
         }
 
         /**
-         * Specific version type: <code>external</code>, <code>external_gte</code>.
+         * The specific version type: <code>external</code>, <code>external_gte</code>.
          * <p>
          * API name: {@code version_type}
          * </p>

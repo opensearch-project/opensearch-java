@@ -141,7 +141,7 @@ public final class GetIndexTemplateRequest extends RequestBase
     }
 
     /**
-     * Name of the index template to retrieve. Wildcard (*) expressions are supported.
+     * The name of the index template to retrieve. Wildcard (*) expressions are supported.
      * <p>
      * API name: {@code name}
      * </p>
@@ -287,7 +287,7 @@ public final class GetIndexTemplateRequest extends RequestBase
         }
 
         /**
-         * Name of the index template to retrieve. Wildcard (*) expressions are supported.
+         * The name of the index template to retrieve. Wildcard (*) expressions are supported.
          * <p>
          * API name: {@code name}
          * </p>
