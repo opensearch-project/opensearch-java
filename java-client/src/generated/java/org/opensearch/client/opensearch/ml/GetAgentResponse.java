@@ -56,7 +56,7 @@ public class GetAgentResponse implements PlainJsonSerializable, ToCopyableBuilde
     private final List<ToolItems> tools;
 
     @Nullable
-    private final String type;
+    private final AgentType type;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -135,13 +135,10 @@ public class GetAgentResponse implements PlainJsonSerializable, ToCopyableBuilde
     }
 
     /**
-     * The agent type.
-     * <p>
      * API name: {@code type}
-     * </p>
      */
     @Nullable
-    public final String type() {
+    public final AgentType type() {
         return this.type;
     }
 
@@ -192,7 +189,7 @@ public class GetAgentResponse implements PlainJsonSerializable, ToCopyableBuilde
 
         if (this.type != null) {
             generator.writeKey("type");
-            generator.write(this.type);
+            this.type.serialize(generator, mapper);
         }
     }
 
@@ -226,7 +223,7 @@ public class GetAgentResponse implements PlainJsonSerializable, ToCopyableBuilde
         @Nullable
         private List<ToolItems> tools;
         @Nullable
-        private String type;
+        private AgentType type;
 
         public Builder() {}
 
@@ -352,13 +349,10 @@ public class GetAgentResponse implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
-         * The agent type.
-         * <p>
          * API name: {@code type}
-         * </p>
          */
         @Nonnull
-        public final Builder type(@Nullable String value) {
+        public final Builder type(@Nullable AgentType value) {
             this.type = value;
             return this;
         }
@@ -394,7 +388,7 @@ public class GetAgentResponse implements PlainJsonSerializable, ToCopyableBuilde
         op.add(Builder::lastUpdatedTime, JsonpDeserializer.longDeserializer(), "last_updated_time");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::tools, JsonpDeserializer.arrayDeserializer(ToolItems._DESERIALIZER), "tools");
-        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+        op.add(Builder::type, AgentType._DESERIALIZER, "type");
     }
 
     @Override

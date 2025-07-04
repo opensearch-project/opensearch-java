@@ -147,6 +147,9 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
     private final IndexingPressure indexingPressure;
 
     @Nullable
+    private final IngestionSource ingestionSource;
+
+    @Nullable
     private final Boolean knn;
 
     @Nullable
@@ -234,6 +237,9 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
     private final Time refreshInterval;
 
     @Nullable
+    private final ReplicationType replicationType;
+
+    @Nullable
     private final IndexRouting routing;
 
     @Nullable
@@ -316,6 +322,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         this.index = builder.index;
         this.indexing = builder.indexing;
         this.indexingPressure = builder.indexingPressure;
+        this.ingestionSource = builder.ingestionSource;
         this.knn = builder.knn;
         this.knnAlgoParamEfSearch = builder.knnAlgoParamEfSearch;
         this.lifecycle = builder.lifecycle;
@@ -345,6 +352,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         this.queryString = builder.queryString;
         this.queryStringLenient = builder.queryStringLenient;
         this.refreshInterval = builder.refreshInterval;
+        this.replicationType = builder.replicationType;
         this.routing = builder.routing;
         this.routingPartitionSize = builder.routingPartitionSize;
         this.routingPath = ApiTypeHelper.unmodifiable(builder.routingPath);
@@ -581,6 +589,14 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
     }
 
     /**
+     * API name: {@code ingestion_source}
+     */
+    @Nullable
+    public final IngestionSource ingestionSource() {
+        return this.ingestionSource;
+    }
+
+    /**
      * API name: {@code knn}
      */
     @Nullable
@@ -810,6 +826,17 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
     @Nullable
     public final Time refreshInterval() {
         return this.refreshInterval;
+    }
+
+    /**
+     * Defines the replication type.
+     * <p>
+     * API name: {@code replication.type}
+     * </p>
+     */
+    @Nullable
+    public final ReplicationType replicationType() {
+        return this.replicationType;
     }
 
     /**
@@ -1096,6 +1123,11 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
             this.indexingPressure.serialize(generator, mapper);
         }
 
+        if (this.ingestionSource != null) {
+            generator.writeKey("ingestion_source");
+            this.ingestionSource.serialize(generator, mapper);
+        }
+
         if (this.knn != null) {
             generator.writeKey("knn");
             generator.write(this.knn);
@@ -1239,6 +1271,11 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         if (this.refreshInterval != null) {
             generator.writeKey("refresh_interval");
             this.refreshInterval.serialize(generator, mapper);
+        }
+
+        if (this.replicationType != null) {
+            generator.writeKey("replication.type");
+            this.replicationType.serialize(generator, mapper);
         }
 
         if (this.routing != null) {
@@ -1406,6 +1443,8 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         @Nullable
         private IndexingPressure indexingPressure;
         @Nullable
+        private IngestionSource ingestionSource;
+        @Nullable
         private Boolean knn;
         @Nullable
         private Integer knnAlgoParamEfSearch;
@@ -1463,6 +1502,8 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         private Boolean queryStringLenient;
         @Nullable
         private Time refreshInterval;
+        @Nullable
+        private ReplicationType replicationType;
         @Nullable
         private IndexRouting routing;
         @Nullable
@@ -1529,6 +1570,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
             this.index = o.index;
             this.indexing = o.indexing;
             this.indexingPressure = o.indexingPressure;
+            this.ingestionSource = o.ingestionSource;
             this.knn = o.knn;
             this.knnAlgoParamEfSearch = o.knnAlgoParamEfSearch;
             this.lifecycle = o.lifecycle;
@@ -1558,6 +1600,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
             this.queryString = o.queryString;
             this.queryStringLenient = o.queryStringLenient;
             this.refreshInterval = o.refreshInterval;
+            this.replicationType = o.replicationType;
             this.routing = o.routing;
             this.routingPartitionSize = o.routingPartitionSize;
             this.routingPath = _listCopy(o.routingPath);
@@ -1605,6 +1648,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
             this.index = o.index;
             this.indexing = o.indexing;
             this.indexingPressure = o.indexingPressure;
+            this.ingestionSource = o.ingestionSource;
             this.knn = o.knn;
             this.knnAlgoParamEfSearch = o.knnAlgoParamEfSearch;
             this.lifecycle = o.lifecycle;
@@ -1634,6 +1678,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
             this.queryString = o.queryString;
             this.queryStringLenient = o.queryStringLenient;
             this.refreshInterval = o.refreshInterval;
+            this.replicationType = o.replicationType;
             this.routing = o.routing;
             this.routingPartitionSize = o.routingPartitionSize;
             this.routingPath = _listCopy(o.routingPath);
@@ -1988,6 +2033,23 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         }
 
         /**
+         * API name: {@code ingestion_source}
+         */
+        @Nonnull
+        public final Builder ingestionSource(@Nullable IngestionSource value) {
+            this.ingestionSource = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code ingestion_source}
+         */
+        @Nonnull
+        public final Builder ingestionSource(Function<IngestionSource.Builder, ObjectBuilder<IngestionSource>> fn) {
+            return ingestionSource(fn.apply(new IngestionSource.Builder()).build());
+        }
+
+        /**
          * API name: {@code knn}
          */
         @Nonnull
@@ -2294,6 +2356,18 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         @Nonnull
         public final Builder refreshInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
             return refreshInterval(fn.apply(new Time.Builder()).build());
+        }
+
+        /**
+         * Defines the replication type.
+         * <p>
+         * API name: {@code replication.type}
+         * </p>
+         */
+        @Nonnull
+        public final Builder replicationType(@Nullable ReplicationType value) {
+            this.replicationType = value;
+            return this;
         }
 
         /**
@@ -2633,6 +2707,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         op.add(Builder::index, IndexSettings._DESERIALIZER, "index");
         op.add(Builder::indexing, IndexSettingsIndexing._DESERIALIZER, "indexing");
         op.add(Builder::indexingPressure, IndexingPressure._DESERIALIZER, "indexing_pressure", "index.indexing_pressure");
+        op.add(Builder::ingestionSource, IngestionSource._DESERIALIZER, "ingestion_source", "index.ingestion_source");
         op.add(Builder::knn, JsonpDeserializer.booleanDeserializer(), "knn", "index.knn");
         op.add(
             Builder::knnAlgoParamEfSearch,
@@ -2702,6 +2777,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         op.add(Builder::queryString, IndexSettingsQueryString._DESERIALIZER, "query_string", "index.query_string");
         op.add(Builder::queryStringLenient, JsonpDeserializer.booleanDeserializer(), "query_string.lenient", "index.query_string.lenient");
         op.add(Builder::refreshInterval, Time._DESERIALIZER, "refresh_interval", "index.refresh_interval");
+        op.add(Builder::replicationType, ReplicationType._DESERIALIZER, "replication.type", "index.replication.type");
         op.add(Builder::routing, IndexRouting._DESERIALIZER, "routing", "index.routing");
         op.add(
             Builder::routingPartitionSize,
@@ -2782,6 +2858,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         result = 31 * result + Objects.hashCode(this.index);
         result = 31 * result + Objects.hashCode(this.indexing);
         result = 31 * result + Objects.hashCode(this.indexingPressure);
+        result = 31 * result + Objects.hashCode(this.ingestionSource);
         result = 31 * result + Objects.hashCode(this.knn);
         result = 31 * result + Objects.hashCode(this.knnAlgoParamEfSearch);
         result = 31 * result + Objects.hashCode(this.lifecycle);
@@ -2811,6 +2888,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
         result = 31 * result + Objects.hashCode(this.queryString);
         result = 31 * result + Objects.hashCode(this.queryStringLenient);
         result = 31 * result + Objects.hashCode(this.refreshInterval);
+        result = 31 * result + Objects.hashCode(this.replicationType);
         result = 31 * result + Objects.hashCode(this.routing);
         result = 31 * result + Objects.hashCode(this.routingPartitionSize);
         result = 31 * result + Objects.hashCode(this.routingPath);
@@ -2863,6 +2941,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
             && Objects.equals(this.index, other.index)
             && Objects.equals(this.indexing, other.indexing)
             && Objects.equals(this.indexingPressure, other.indexingPressure)
+            && Objects.equals(this.ingestionSource, other.ingestionSource)
             && Objects.equals(this.knn, other.knn)
             && Objects.equals(this.knnAlgoParamEfSearch, other.knnAlgoParamEfSearch)
             && Objects.equals(this.lifecycle, other.lifecycle)
@@ -2892,6 +2971,7 @@ public class IndexSettings implements PlainJsonSerializable, ToCopyableBuilder<I
             && Objects.equals(this.queryString, other.queryString)
             && Objects.equals(this.queryStringLenient, other.queryStringLenient)
             && Objects.equals(this.refreshInterval, other.refreshInterval)
+            && Objects.equals(this.replicationType, other.replicationType)
             && Objects.equals(this.routing, other.routing)
             && Objects.equals(this.routingPartitionSize, other.routingPartitionSize)
             && Objects.equals(this.routingPath, other.routingPath)

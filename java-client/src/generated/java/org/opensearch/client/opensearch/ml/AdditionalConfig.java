@@ -29,49 +29,34 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: ml.ByteBuffer
+// typedef: ml.AdditionalConfig
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ByteBuffer implements PlainJsonSerializable, ToCopyableBuilder<ByteBuffer.Builder, ByteBuffer> {
+public class AdditionalConfig implements PlainJsonSerializable, ToCopyableBuilder<AdditionalConfig.Builder, AdditionalConfig> {
 
     @Nullable
-    private final String array;
-
-    @Nullable
-    private final ByteOrder order;
+    private final String spaceType;
 
     // ---------------------------------------------------------------------------------------------
 
-    private ByteBuffer(Builder builder) {
-        this.array = builder.array;
-        this.order = builder.order;
+    private AdditionalConfig(Builder builder) {
+        this.spaceType = builder.spaceType;
     }
 
-    public static ByteBuffer of(Function<ByteBuffer.Builder, ObjectBuilder<ByteBuffer>> fn) {
+    public static AdditionalConfig of(Function<AdditionalConfig.Builder, ObjectBuilder<AdditionalConfig>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * The byte buffer array.
+     * The distance metric for k-NN search.
      * <p>
-     * API name: {@code array}
+     * API name: {@code space_type}
      * </p>
      */
     @Nullable
-    public final String array() {
-        return this.array;
-    }
-
-    /**
-     * The byte buffer order.
-     * <p>
-     * API name: {@code order}
-     * </p>
-     */
-    @Nullable
-    public final ByteOrder order() {
-        return this.order;
+    public final String spaceType() {
+        return this.spaceType;
     }
 
     /**
@@ -85,14 +70,9 @@ public class ByteBuffer implements PlainJsonSerializable, ToCopyableBuilder<Byte
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.array != null) {
-            generator.writeKey("array");
-            generator.write(this.array);
-        }
-
-        if (this.order != null) {
-            generator.writeKey("order");
-            this.order.serialize(generator, mapper);
+        if (this.spaceType != null) {
+            generator.writeKey("space_type");
+            generator.write(this.spaceType);
         }
     }
 
@@ -110,24 +90,20 @@ public class ByteBuffer implements PlainJsonSerializable, ToCopyableBuilder<Byte
     }
 
     /**
-     * Builder for {@link ByteBuffer}.
+     * Builder for {@link AdditionalConfig}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ByteBuffer> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AdditionalConfig> {
         @Nullable
-        private String array;
-        @Nullable
-        private ByteOrder order;
+        private String spaceType;
 
         public Builder() {}
 
-        private Builder(ByteBuffer o) {
-            this.array = o.array;
-            this.order = o.order;
+        private Builder(AdditionalConfig o) {
+            this.spaceType = o.spaceType;
         }
 
         private Builder(Builder o) {
-            this.array = o.array;
-            this.order = o.order;
+            this.spaceType = o.spaceType;
         }
 
         @Override
@@ -137,63 +113,49 @@ public class ByteBuffer implements PlainJsonSerializable, ToCopyableBuilder<Byte
         }
 
         /**
-         * The byte buffer array.
+         * The distance metric for k-NN search.
          * <p>
-         * API name: {@code array}
+         * API name: {@code space_type}
          * </p>
          */
         @Nonnull
-        public final Builder array(@Nullable String value) {
-            this.array = value;
+        public final Builder spaceType(@Nullable String value) {
+            this.spaceType = value;
             return this;
         }
 
         /**
-         * The byte buffer order.
-         * <p>
-         * API name: {@code order}
-         * </p>
-         */
-        @Nonnull
-        public final Builder order(@Nullable ByteOrder value) {
-            this.order = value;
-            return this;
-        }
-
-        /**
-         * Builds a {@link ByteBuffer}.
+         * Builds a {@link AdditionalConfig}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public ByteBuffer build() {
+        public AdditionalConfig build() {
             _checkSingleUse();
 
-            return new ByteBuffer(this);
+            return new AdditionalConfig(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link ByteBuffer}
+     * Json deserializer for {@link AdditionalConfig}
      */
-    public static final JsonpDeserializer<ByteBuffer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<AdditionalConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        ByteBuffer::setupByteBufferDeserializer
+        AdditionalConfig::setupAdditionalConfigDeserializer
     );
 
-    protected static void setupByteBufferDeserializer(ObjectDeserializer<ByteBuffer.Builder> op) {
-        op.add(Builder::array, JsonpDeserializer.stringDeserializer(), "array");
-        op.add(Builder::order, ByteOrder._DESERIALIZER, "order");
+    protected static void setupAdditionalConfigDeserializer(ObjectDeserializer<AdditionalConfig.Builder> op) {
+        op.add(Builder::spaceType, JsonpDeserializer.stringDeserializer(), "space_type");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.array);
-        result = 31 * result + Objects.hashCode(this.order);
+        result = 31 * result + Objects.hashCode(this.spaceType);
         return result;
     }
 
@@ -201,7 +163,7 @@ public class ByteBuffer implements PlainJsonSerializable, ToCopyableBuilder<Byte
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        ByteBuffer other = (ByteBuffer) o;
-        return Objects.equals(this.array, other.array) && Objects.equals(this.order, other.order);
+        AdditionalConfig other = (AdditionalConfig) o;
+        return Objects.equals(this.spaceType, other.spaceType);
     }
 }

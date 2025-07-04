@@ -49,19 +49,22 @@ import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: _types.analysis.PhoneAnalyzer
+// typedef: _types.analysis.PhoneSearchAnalyzer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PhoneAnalyzer extends PhoneAnalyzerBase implements AnalyzerVariant, ToCopyableBuilder<PhoneAnalyzer.Builder, PhoneAnalyzer> {
+public class PhoneSearchAnalyzer extends PhoneAnalyzerBase
+    implements
+        AnalyzerVariant,
+        ToCopyableBuilder<PhoneSearchAnalyzer.Builder, PhoneSearchAnalyzer> {
 
     // ---------------------------------------------------------------------------------------------
 
-    private PhoneAnalyzer(Builder builder) {
+    private PhoneSearchAnalyzer(Builder builder) {
         super(builder);
     }
 
-    public static PhoneAnalyzer of(Function<PhoneAnalyzer.Builder, ObjectBuilder<PhoneAnalyzer>> fn) {
+    public static PhoneSearchAnalyzer of(Function<PhoneSearchAnalyzer.Builder, ObjectBuilder<PhoneSearchAnalyzer>> fn) {
         return fn.apply(new Builder()).build();
     }
 
@@ -70,11 +73,11 @@ public class PhoneAnalyzer extends PhoneAnalyzerBase implements AnalyzerVariant,
      */
     @Override
     public Analyzer.Kind _analyzerKind() {
-        return Analyzer.Kind.Phone;
+        return Analyzer.Kind.PhoneSearch;
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        generator.write("type", "phone");
+        generator.write("type", "phone-search");
         super.serializeInternal(generator, mapper);
     }
 
@@ -92,13 +95,15 @@ public class PhoneAnalyzer extends PhoneAnalyzerBase implements AnalyzerVariant,
     }
 
     /**
-     * Builder for {@link PhoneAnalyzer}.
+     * Builder for {@link PhoneSearchAnalyzer}.
      */
-    public static class Builder extends PhoneAnalyzerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PhoneAnalyzer> {
+    public static class Builder extends PhoneAnalyzerBase.AbstractBuilder<Builder>
+        implements
+            CopyableBuilder<Builder, PhoneSearchAnalyzer> {
 
         public Builder() {}
 
-        private Builder(PhoneAnalyzer o) {
+        private Builder(PhoneSearchAnalyzer o) {
             super(o);
         }
 
@@ -119,30 +124,30 @@ public class PhoneAnalyzer extends PhoneAnalyzerBase implements AnalyzerVariant,
         }
 
         /**
-         * Builds a {@link PhoneAnalyzer}.
+         * Builds a {@link PhoneSearchAnalyzer}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public PhoneAnalyzer build() {
+        public PhoneSearchAnalyzer build() {
             _checkSingleUse();
 
-            return new PhoneAnalyzer(this);
+            return new PhoneSearchAnalyzer(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link PhoneAnalyzer}
+     * Json deserializer for {@link PhoneSearchAnalyzer}
      */
-    public static final JsonpDeserializer<PhoneAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<PhoneSearchAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        PhoneAnalyzer::setupPhoneAnalyzerDeserializer
+        PhoneSearchAnalyzer::setupPhoneSearchAnalyzerDeserializer
     );
 
-    protected static void setupPhoneAnalyzerDeserializer(ObjectDeserializer<PhoneAnalyzer.Builder> op) {
+    protected static void setupPhoneSearchAnalyzerDeserializer(ObjectDeserializer<PhoneSearchAnalyzer.Builder> op) {
         setupPhoneAnalyzerBaseDeserializer(op);
 
         op.ignore("type");

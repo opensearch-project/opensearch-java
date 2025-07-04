@@ -36,7 +36,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class ColumnMeta implements PlainJsonSerializable, ToCopyableBuilder<ColumnMeta.Builder, ColumnMeta> {
 
     @Nullable
-    private final String columnType;
+    private final ColumnType columnType;
 
     @Nullable
     private final String name;
@@ -53,13 +53,10 @@ public class ColumnMeta implements PlainJsonSerializable, ToCopyableBuilder<Colu
     }
 
     /**
-     * The column type.
-     * <p>
      * API name: {@code column_type}
-     * </p>
      */
     @Nullable
-    public final String columnType() {
+    public final ColumnType columnType() {
         return this.columnType;
     }
 
@@ -84,7 +81,7 @@ public class ColumnMeta implements PlainJsonSerializable, ToCopyableBuilder<Colu
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.columnType != null) {
             generator.writeKey("column_type");
-            generator.write(this.columnType);
+            this.columnType.serialize(generator, mapper);
         }
 
         if (this.name != null) {
@@ -111,7 +108,7 @@ public class ColumnMeta implements PlainJsonSerializable, ToCopyableBuilder<Colu
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ColumnMeta> {
         @Nullable
-        private String columnType;
+        private ColumnType columnType;
         @Nullable
         private String name;
 
@@ -134,13 +131,10 @@ public class ColumnMeta implements PlainJsonSerializable, ToCopyableBuilder<Colu
         }
 
         /**
-         * The column type.
-         * <p>
          * API name: {@code column_type}
-         * </p>
          */
         @Nonnull
-        public final Builder columnType(@Nullable String value) {
+        public final Builder columnType(@Nullable ColumnType value) {
             this.columnType = value;
             return this;
         }
@@ -179,7 +173,7 @@ public class ColumnMeta implements PlainJsonSerializable, ToCopyableBuilder<Colu
     );
 
     protected static void setupColumnMetaDeserializer(ObjectDeserializer<ColumnMeta.Builder> op) {
-        op.add(Builder::columnType, JsonpDeserializer.stringDeserializer(), "column_type");
+        op.add(Builder::columnType, ColumnType._DESERIALIZER, "column_type");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
     }
 

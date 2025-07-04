@@ -778,3 +778,66 @@ After:
 
 ### MultiSearchItem
 - The `MultiSearchItem` class now extends `SearchResult` directly instead of via `SearchResponse`.
+
+### ml.ByteBuffer
+- The `order` property is now of type `ByteOrder` instead of `String`.
+
+### ml.ColumnMeta
+- The `columnType` property is now of type `ColumnType` instead of `String`.
+
+### ml.CreateConnectorRequest
+- The `protocol` property is now of type `ConnectorProtocol` instead of `String`.
+
+### ml.GetAgentResponse
+- The `type` property is now of type `AgentType` instead of `String`.
+
+### ml.GetConnectorResponse
+- The `protocol` property is now of type `ConnectorProtocol` instead of `String`.
+
+### ml.GetModelGroupResponse
+- The `access` property is now of type `ModelGroupAccessMode` instead of `String`.
+
+### ml.GetModelResponse
+- The `modelState` property is now of type `ModelState` instead of `String`.
+
+### ml.GetStatsRequest
+- The `stat` property is now of type `List<MlStatName>` instead of `String`.
+
+### ml.GetStatsResponse
+- The `mlConfigIndexStatus`, `mlConnectorIndexStatus`, `mlControllerIndexStatus`, `mlModelIndexStatus` & `mlTaskIndexStatus` properties are now of type `MlIndexStatus` instead of `String`.
+
+### ml.GetTaskResponse
+- The `state` property is now of type `TaskState` instead of `String`.
+- The `taskType` property is now of type `MlTaskType` instead of `String`.
+
+### ml.GetToolRequest
+- The `toolName` property is now of type `ToolName` instead of `String`.
+
+### ml.Guardrails
+- The `type` property is now of type `GuardrailsType` instead of `String`.
+
+### ml.LoadModelResponse
+- The `taskType` property is now of type `MlTaskType` instead of `String`.
+
+### ml.ModelProfile
+- The `modelState` property is now of type `ModelState` instead of `String`.
+
+### ml.Output
+- The `dataType` property is now of type `MlResultDataType` instead of `String`.
+
+### ml.RateLimiter
+- The `unit` property is now of type `RateLimiterUnit` instead of `String`.
+
+### ml.RegisterModelGroupRequest
+- The `accessMode` property is now of type `ModelGroupAccessMode` instead of `String`.
+
+### ml.Task
+- The `state` property is now of type `TaskState` instead of `String`.
+- The `taskType` property is now of type `MlTaskType` instead of `String`.
+
+### ml.UpdateConnectorRequest
+- The `accessMode` property is now of type `ModelGroupAccessMode` instead of `String`.
+- The `protocol` property is now of type `ConnectorProtocol` instead of `String`.
+
+### ml.Values
+- The `columnType` property is now of type `ColumnType` instead of `String`.

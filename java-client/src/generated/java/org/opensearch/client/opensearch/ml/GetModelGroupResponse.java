@@ -40,7 +40,7 @@ public class GetModelGroupResponse
         ToCopyableBuilder<GetModelGroupResponse.Builder, GetModelGroupResponse> {
 
     @Nonnull
-    private final String access;
+    private final ModelGroupAccessMode access;
 
     @Nullable
     private final Long createdTime;
@@ -76,13 +76,10 @@ public class GetModelGroupResponse
     }
 
     /**
-     * Required - The model group access.
-     * <p>
-     * API name: {@code access}
-     * </p>
+     * Required - API name: {@code access}
      */
     @Nonnull
-    public final String access() {
+    public final ModelGroupAccessMode access() {
         return this.access;
     }
 
@@ -154,7 +151,7 @@ public class GetModelGroupResponse
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeKey("access");
-        generator.write(this.access);
+        this.access.serialize(generator, mapper);
 
         if (this.createdTime != null) {
             generator.writeKey("created_time");
@@ -198,7 +195,7 @@ public class GetModelGroupResponse
      * Builder for {@link GetModelGroupResponse}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetModelGroupResponse> {
-        private String access;
+        private ModelGroupAccessMode access;
         @Nullable
         private Long createdTime;
         private String description;
@@ -238,13 +235,10 @@ public class GetModelGroupResponse
         }
 
         /**
-         * Required - The model group access.
-         * <p>
-         * API name: {@code access}
-         * </p>
+         * Required - API name: {@code access}
          */
         @Nonnull
-        public final Builder access(String value) {
+        public final Builder access(ModelGroupAccessMode value) {
             this.access = value;
             return this;
         }
@@ -345,7 +339,7 @@ public class GetModelGroupResponse
     );
 
     protected static void setupGetModelGroupResponseDeserializer(ObjectDeserializer<GetModelGroupResponse.Builder> op) {
-        op.add(Builder::access, JsonpDeserializer.stringDeserializer(), "access");
+        op.add(Builder::access, ModelGroupAccessMode._DESERIALIZER, "access");
         op.add(Builder::createdTime, JsonpDeserializer.longDeserializer(), "created_time");
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::lastUpdatedTime, JsonpDeserializer.longDeserializer(), "last_updated_time");

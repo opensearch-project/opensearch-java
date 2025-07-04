@@ -123,6 +123,13 @@ public class AnalyzerBuilders {
     }
 
     /**
+     * Creates a builder for the {@link PhoneSearchAnalyzer phone-search} {@code Analyzer} variant.
+     */
+    public static PhoneSearchAnalyzer.Builder phoneSearch() {
+        return new PhoneSearchAnalyzer.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link SimpleAnalyzer simple} {@code Analyzer} variant.
      */
     public static SimpleAnalyzer.Builder simple() {

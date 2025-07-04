@@ -67,7 +67,7 @@ public class Guardrails implements PlainJsonSerializable, ToCopyableBuilder<Guar
     private final List<String> stopWords;
 
     @Nullable
-    private final String type;
+    private final GuardrailsType type;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -173,13 +173,10 @@ public class Guardrails implements PlainJsonSerializable, ToCopyableBuilder<Guar
     }
 
     /**
-     * The guardrails type.
-     * <p>
      * API name: {@code type}
-     * </p>
      */
     @Nullable
-    public final String type() {
+    public final GuardrailsType type() {
         return this.type;
     }
 
@@ -254,7 +251,7 @@ public class Guardrails implements PlainJsonSerializable, ToCopyableBuilder<Guar
 
         if (this.type != null) {
             generator.writeKey("type");
-            generator.write(this.type);
+            this.type.serialize(generator, mapper);
         }
     }
 
@@ -294,7 +291,7 @@ public class Guardrails implements PlainJsonSerializable, ToCopyableBuilder<Guar
         @Nullable
         private List<String> stopWords;
         @Nullable
-        private String type;
+        private GuardrailsType type;
 
         public Builder() {}
 
@@ -494,13 +491,10 @@ public class Guardrails implements PlainJsonSerializable, ToCopyableBuilder<Guar
         }
 
         /**
-         * The guardrails type.
-         * <p>
          * API name: {@code type}
-         * </p>
          */
         @Nonnull
-        public final Builder type(@Nullable String value) {
+        public final Builder type(@Nullable GuardrailsType value) {
             this.type = value;
             return this;
         }
@@ -539,7 +533,7 @@ public class Guardrails implements PlainJsonSerializable, ToCopyableBuilder<Guar
         op.add(Builder::responseValidationRegex, JsonpDeserializer.stringDeserializer(), "response_validation_regex");
         op.add(Builder::sourceFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "source_fields");
         op.add(Builder::stopWords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stop_words");
-        op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+        op.add(Builder::type, GuardrailsType._DESERIALIZER, "type");
     }
 
     @Override

@@ -83,6 +83,7 @@ public class CodeGenerator {
                     "asynchronous_search",
                     "flow_framework",
                     "geospatial",
+                    "ingestion",
                     "insights",
                     "knn",
                     "list",

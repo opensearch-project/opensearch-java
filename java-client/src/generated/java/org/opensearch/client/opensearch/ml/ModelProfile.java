@@ -50,7 +50,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
     private final Long memorySizeEstimationGpu;
 
     @Nullable
-    private final String modelState;
+    private final ModelState modelState;
 
     @Nullable
     private final ModelStats predict;
@@ -141,13 +141,10 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
     }
 
     /**
-     * The model state.
-     * <p>
      * API name: {@code model_state}
-     * </p>
      */
     @Nullable
-    public final String modelState() {
+    public final ModelState modelState() {
         return this.modelState;
     }
 
@@ -259,7 +256,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
 
         if (this.modelState != null) {
             generator.writeKey("model_state");
-            generator.write(this.modelState);
+            this.modelState.serialize(generator, mapper);
         }
 
         if (this.predict != null) {
@@ -350,7 +347,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         @Nullable
         private Long memorySizeEstimationGpu;
         @Nullable
-        private String modelState;
+        private ModelState modelState;
         @Nullable
         private ModelStats predict;
         @Nullable
@@ -471,13 +468,10 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         }
 
         /**
-         * The model state.
-         * <p>
          * API name: {@code model_state}
-         * </p>
          */
         @Nonnull
-        public final Builder modelState(@Nullable String value) {
+        public final Builder modelState(@Nullable ModelState value) {
             this.modelState = value;
             return this;
         }
@@ -677,7 +671,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         op.add(Builder::execute, ModelStats._DESERIALIZER, "execute");
         op.add(Builder::memorySizeEstimationCpu, JsonpDeserializer.longDeserializer(), "memory_size_estimation_cpu");
         op.add(Builder::memorySizeEstimationGpu, JsonpDeserializer.longDeserializer(), "memory_size_estimation_gpu");
-        op.add(Builder::modelState, JsonpDeserializer.stringDeserializer(), "model_state");
+        op.add(Builder::modelState, ModelState._DESERIALIZER, "model_state");
         op.add(Builder::predict, ModelStats._DESERIALIZER, "predict");
         op.add(Builder::predictRequestStats, PredictRequestStats._DESERIALIZER, "predict_request_stats");
         op.add(Builder::predictor, JsonpDeserializer.stringDeserializer(), "predictor");

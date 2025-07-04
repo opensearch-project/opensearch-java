@@ -41,7 +41,7 @@ public class LoadModelResponse implements PlainJsonSerializable, ToCopyableBuild
     private final String taskId;
 
     @Nonnull
-    private final String taskType;
+    private final MlTaskType taskType;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -75,7 +75,7 @@ public class LoadModelResponse implements PlainJsonSerializable, ToCopyableBuild
      * Required - API name: {@code task_type}
      */
     @Nonnull
-    public final String taskType() {
+    public final MlTaskType taskType() {
         return this.taskType;
     }
 
@@ -97,7 +97,7 @@ public class LoadModelResponse implements PlainJsonSerializable, ToCopyableBuild
         generator.write(this.taskId);
 
         generator.writeKey("task_type");
-        generator.write(this.taskType);
+        this.taskType.serialize(generator, mapper);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -119,7 +119,7 @@ public class LoadModelResponse implements PlainJsonSerializable, ToCopyableBuild
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, LoadModelResponse> {
         private String status;
         private String taskId;
-        private String taskType;
+        private MlTaskType taskType;
 
         public Builder() {}
 
@@ -163,7 +163,7 @@ public class LoadModelResponse implements PlainJsonSerializable, ToCopyableBuild
          * Required - API name: {@code task_type}
          */
         @Nonnull
-        public final Builder taskType(String value) {
+        public final Builder taskType(MlTaskType value) {
             this.taskType = value;
             return this;
         }
@@ -195,7 +195,7 @@ public class LoadModelResponse implements PlainJsonSerializable, ToCopyableBuild
     protected static void setupLoadModelResponseDeserializer(ObjectDeserializer<LoadModelResponse.Builder> op) {
         op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
         op.add(Builder::taskId, JsonpDeserializer.stringDeserializer(), "task_id");
-        op.add(Builder::taskType, JsonpDeserializer.stringDeserializer(), "task_type");
+        op.add(Builder::taskType, MlTaskType._DESERIALIZER, "task_type");
     }
 
     @Override
