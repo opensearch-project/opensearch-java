@@ -8,6 +8,7 @@
 
 package org.opensearch.client.transport.httpclient5;
 
+import javax.net.ssl.SSLContext;
 import java.security.AccessController;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivilegedAction;
@@ -16,19 +17,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLEngine;
-import org.apache.hc.client5.http.auth.CredentialsProvider;
+import org.apache.hc.client5.http.config.ConnectionConfig;
 import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.client5.http.impl.DefaultAuthenticationStrategy;
 import org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClient;
 import org.apache.hc.client5.http.impl.async.HttpAsyncClientBuilder;
+import org.apache.hc.client5.http.impl.async.InternalHttpAsyncClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
 import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManager;
 import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManagerBuilder;
 import org.apache.hc.client5.http.ssl.ClientTlsStrategyBuilder;
-import org.apache.hc.core5.function.Factory;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.nio.ssl.TlsStrategy;
@@ -65,6 +64,7 @@ public class ApacheHttpClient5TransportBuilder {
     private ApacheHttpClient5Transport.FailureListener failureListener;
     private HttpClientConfigCallback httpClientConfigCallback;
     private RequestConfigCallback requestConfigCallback;
+    private ConnectionConfigCallback connectionConfigCallback;
     private String pathPrefix;
     private NodeSelector nodeSelector = NodeSelector.ANY;
     private boolean strictDeprecationMode = false;
@@ -141,6 +141,18 @@ public class ApacheHttpClient5TransportBuilder {
     public ApacheHttpClient5TransportBuilder setRequestConfigCallback(RequestConfigCallback requestConfigCallback) {
         Objects.requireNonNull(requestConfigCallback, "requestConfigCallback must not be null");
         this.requestConfigCallback = requestConfigCallback;
+        return this;
+    }
+
+    /**
+     * Sets the {@link ConnectionConfigCallback} to be used to customize http client configuration
+     *
+     * @param connectionConfigCallback the {@link ConnectionConfigCallback} to be used
+     * @throws NullPointerException if {@code connectionConfigCallback} is {@code null}.
+     */
+    public ApacheHttpClient5TransportBuilder setConnectionConfigCallback(ConnectionConfigCallback connectionConfigCallback) {
+        Objects.requireNonNull(connectionConfigCallback, "connectionConfigCallback must not be null");
+        this.connectionConfigCallback = connectionConfigCallback;
         return this;
     }
 
@@ -324,24 +336,25 @@ public class ApacheHttpClient5TransportBuilder {
         // default timeouts are all infinite
         RequestConfig.Builder requestConfigBuilder = RequestConfig.custom()
             .setResponseTimeout(Timeout.ofMilliseconds(DEFAULT_RESPONSE_TIMEOUT_MILLIS));
+        ConnectionConfig.Builder connectionConfigBuilder = ConnectionConfig.custom();
 
         if (requestConfigCallback != null) {
             requestConfigBuilder = requestConfigCallback.customizeRequestConfig(requestConfigBuilder);
+        }
+
+        if (connectionConfigCallback != null) {
+            connectionConfigBuilder = connectionConfigCallback.customizeConnectionConfig(connectionConfigBuilder);
         }
 
         try {
             final TlsStrategy tlsStrategy = ClientTlsStrategyBuilder.create()
                 .setSslContext(SSLContext.getDefault())
                 // See https://issues.apache.org/jira/browse/HTTPCLIENT-2219
-                .setTlsDetailsFactory(new Factory<SSLEngine, TlsDetails>() {
-                    @Override
-                    public TlsDetails create(final SSLEngine sslEngine) {
-                        return new TlsDetails(sslEngine.getSession(), sslEngine.getApplicationProtocol());
-                    }
-                })
+                .setTlsDetailsFactory(sslEngine -> new TlsDetails(sslEngine.getSession(), sslEngine.getApplicationProtocol()))
                 .build();
 
             final PoolingAsyncClientConnectionManager connectionManager = PoolingAsyncClientConnectionManagerBuilder.create()
+                .setDefaultConnectionConfig(connectionConfigBuilder.build())
                 .setMaxConnPerRoute(DEFAULT_MAX_CONN_PER_ROUTE)
                 .setMaxConnTotal(DEFAULT_MAX_CONN_TOTAL)
                 .setTlsStrategy(tlsStrategy)
@@ -379,16 +392,27 @@ public class ApacheHttpClient5TransportBuilder {
     }
 
     /**
-     * Callback used to customize the {@link CloseableHttpClient} instance used by a {@link RestClient} instance.
+     * Callback used to customize the default {@link ConnectionConfig} that will be set on the {@link CloseableHttpClient}.
+     * @see PoolingAsyncClientConnectionManagerBuilder#setDefaultConnectionConfig 
+     */
+    public interface ConnectionConfigCallback {
+        /**
+         * Allows to customize the {@link ConnectionConfig} used by the connection manager of the {@link InternalHttpAsyncClient}.
+         * Commonly used to adjust connection-related settings without losing other default values
+         *
+         * @param connectionConfigBuilder the {@link ConnectionConfig.Builder} for customizing the connection configuration.
+         */
+        ConnectionConfig.Builder customizeConnectionConfig(ConnectionConfig.Builder connectionConfigBuilder);
+    }
+
+    /**
+     * Callback used to customize the {@link CloseableHttpClient} instance used by a {@link InternalHttpAsyncClient} instance.
      * Allows to customize default {@link RequestConfig} being set to the client and any parameter that
      * can be set through {@link HttpClientBuilder}
      */
     public interface HttpClientConfigCallback {
         /**
-         * Allows to customize the {@link CloseableHttpAsyncClient} being created and used by the {@link RestClient}.
-         * Commonly used to customize the default {@link CredentialsProvider} for authentication for communication
-         * through TLS/SSL without losing any other useful default value that the {@link RestClientBuilder} internally
-         * sets, like connection pooling.
+         * Allows to customize the {@link CloseableHttpAsyncClient} being created and used by the {@link InternalHttpAsyncClient}.
          *
          * @param httpClientBuilder the {@link HttpClientBuilder} for customizing the client instance.
          */

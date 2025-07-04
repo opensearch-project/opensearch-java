@@ -2,9 +2,6 @@ package org.opensearch.client.transport.httpclient5;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.hc.client5.http.ConnectTimeoutException;
-import org.apache.hc.client5.http.config.ConnectionConfig;
-import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManager;
-import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManagerBuilder;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.util.Timeout;
 import org.junit.Test;
@@ -23,19 +20,9 @@ public class ApacheHttpClient5TransportBuilderTest {
         String expectMessage = expectTime + " MILLISECONDS";
 
         ApacheHttpClient5Transport apacheHttpClient5Transport = ApacheHttpClient5TransportBuilder.builder(new HttpHost("10.255.255.1", 9200))
-            .setHttpClientConfigCallback(httpClientBuilder -> {
-
-                ConnectionConfig connectionConfig = ConnectionConfig.custom()
-                    .setConnectTimeout(Timeout.ofMilliseconds(expectTime))
-                    .build();
-
-                PoolingAsyncClientConnectionManager connectionManager = PoolingAsyncClientConnectionManagerBuilder
-                    .create()
-                    .setDefaultConnectionConfig(connectionConfig)
-                    .build();
-
-                return httpClientBuilder.setConnectionManager(connectionManager);
-            }).build();
+            .setConnectionConfigCallback(connectionConfigBuilder -> connectionConfigBuilder
+                .setConnectTimeout(Timeout.ofMilliseconds(expectTime)))
+            .build();
 
         OpenSearchClient osClient = new OpenSearchClient(apacheHttpClient5Transport);
 
