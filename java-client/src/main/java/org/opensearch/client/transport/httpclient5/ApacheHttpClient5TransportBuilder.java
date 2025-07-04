@@ -348,9 +348,7 @@ public class ApacheHttpClient5TransportBuilder {
         }
 
         // default timeouts are all infinite
-        ConnectionConfig.Builder connectionConfigBuilder = ConnectionConfig.custom()
-                .setConnectTimeout(Timeout.ofMilliseconds(DEFAULT_CONNECT_TIMEOUT_MILLIS))
-                .setSocketTimeout(Timeout.ofMilliseconds(DEFAULT_RESPONSE_TIMEOUT_MILLIS));
+        ConnectionConfig.Builder connectionConfigBuilder = ConnectionConfig.custom();
 
         if (connectionConfigCallback != null) {
             connectionConfigBuilder = connectionConfigCallback.customizeConnectionConfig(connectionConfigBuilder);
