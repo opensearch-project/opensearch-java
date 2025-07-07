@@ -36,7 +36,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class Values implements PlainJsonSerializable, ToCopyableBuilder<Values.Builder, Values> {
 
     @Nullable
-    private final String columnType;
+    private final ColumnType columnType;
 
     @Nullable
     private final Number value;
@@ -53,13 +53,10 @@ public class Values implements PlainJsonSerializable, ToCopyableBuilder<Values.B
     }
 
     /**
-     * The column type.
-     * <p>
      * API name: {@code column_type}
-     * </p>
      */
     @Nullable
-    public final String columnType() {
+    public final ColumnType columnType() {
         return this.columnType;
     }
 
@@ -87,7 +84,7 @@ public class Values implements PlainJsonSerializable, ToCopyableBuilder<Values.B
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.columnType != null) {
             generator.writeKey("column_type");
-            generator.write(this.columnType);
+            this.columnType.serialize(generator, mapper);
         }
 
         if (this.value != null) {
@@ -114,7 +111,7 @@ public class Values implements PlainJsonSerializable, ToCopyableBuilder<Values.B
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, Values> {
         @Nullable
-        private String columnType;
+        private ColumnType columnType;
         @Nullable
         private Number value;
 
@@ -137,13 +134,10 @@ public class Values implements PlainJsonSerializable, ToCopyableBuilder<Values.B
         }
 
         /**
-         * The column type.
-         * <p>
          * API name: {@code column_type}
-         * </p>
          */
         @Nonnull
-        public final Builder columnType(@Nullable String value) {
+        public final Builder columnType(@Nullable ColumnType value) {
             this.columnType = value;
             return this;
         }
@@ -185,7 +179,7 @@ public class Values implements PlainJsonSerializable, ToCopyableBuilder<Values.B
     );
 
     protected static void setupValuesDeserializer(ObjectDeserializer<Values.Builder> op) {
-        op.add(Builder::columnType, JsonpDeserializer.stringDeserializer(), "column_type");
+        op.add(Builder::columnType, ColumnType._DESERIALIZER, "column_type");
         op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
     }
 

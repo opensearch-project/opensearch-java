@@ -119,7 +119,10 @@ public class IndexSettingsSimilarityBm25
     }
 
     /**
-     * Required - API name: {@code type}
+     * Required - The BM25 similarity algorithm.
+     * <p>
+     * API name: {@code type}
+     * </p>
      */
     @Nonnull
     public final String type() {
@@ -231,7 +234,10 @@ public class IndexSettingsSimilarityBm25
         }
 
         /**
-         * Required - API name: {@code type}
+         * Required - The BM25 similarity algorithm.
+         * <p>
+         * API name: {@code type}
+         * </p>
          */
         @Nonnull
         public final Builder type(String value) {

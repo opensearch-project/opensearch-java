@@ -1,11 +1,18 @@
 # CHANGELOG
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [Unreleased 4.x]
+
+### Dependencies
+- Bump `org.junit:junit-bom` from 5.13.1 to 5.13.2 ([#1650](https://github.com/opensearch-project/opensearch-java/pull/1650))
+- Bump `io.github.classgraph:classgraph` from 4.8.179 to 4.8.180 ([#1651](https://github.com/opensearch-project/opensearch-java/pull/1651))
+
 ## [Unreleased 3.x]
 ### Added
 - Added support for Index Management plugin APIs ([#1604](https://github.com/opensearch-project/opensearch-java/pull/1604))
 - Added support for the security plugin APIs ([#1601](https://github.com/opensearch-project/opensearch-java/pull/1601))
 - Jackson `ObjectMapper` modules are now being auto-detected ([#1643](https://github.com/opensearch-project/opensearch-java/pull/1643))
+- Added support for the `ingestion` namespace ([#1663](https://github.com/opensearch-project/opensearch-java/pull/1663))
 
 ### Dependencies
 - Bump `org.owasp.dependencycheck` from 12.1.1 to 12.1.3 ([#1608](https://github.com/opensearch-project/opensearch-java/pull/1608), [#1607](https://github.com/opensearch-project/opensearch-java/pull/1607), [#1623](https://github.com/opensearch-project/opensearch-java/pull/1623))

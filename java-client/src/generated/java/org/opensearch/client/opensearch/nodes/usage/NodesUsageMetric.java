@@ -45,9 +45,9 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum NodesUsageMetric implements JsonEnum {
-    All("_all"),
-
     Aggregations("aggregations"),
+
+    All("_all"),
 
     RestActions("rest_actions");
 

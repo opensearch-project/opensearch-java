@@ -68,7 +68,7 @@ public final class CreateConnectorRequest extends RequestBase
     private final Map<String, JsonData> parameters;
 
     @Nonnull
-    private final String protocol;
+    private final ConnectorProtocol protocol;
 
     private final int version;
 
@@ -142,7 +142,7 @@ public final class CreateConnectorRequest extends RequestBase
      * Required - API name: {@code protocol}
      */
     @Nonnull
-    public final String protocol() {
+    public final ConnectorProtocol protocol() {
         return this.protocol;
     }
 
@@ -194,7 +194,7 @@ public final class CreateConnectorRequest extends RequestBase
         generator.writeEnd();
 
         generator.writeKey("protocol");
-        generator.write(this.protocol);
+        this.protocol.serialize(generator, mapper);
 
         generator.writeKey("version");
         generator.write(this.version);
@@ -224,7 +224,7 @@ public final class CreateConnectorRequest extends RequestBase
         private String description;
         private String name;
         private Map<String, JsonData> parameters;
-        private String protocol;
+        private ConnectorProtocol protocol;
         private Integer version;
 
         public Builder() {}
@@ -385,7 +385,7 @@ public final class CreateConnectorRequest extends RequestBase
          * Required - API name: {@code protocol}
          */
         @Nonnull
-        public final Builder protocol(String value) {
+        public final Builder protocol(ConnectorProtocol value) {
             this.protocol = value;
             return this;
         }
@@ -430,7 +430,7 @@ public final class CreateConnectorRequest extends RequestBase
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "parameters");
-        op.add(Builder::protocol, JsonpDeserializer.stringDeserializer(), "protocol");
+        op.add(Builder::protocol, ConnectorProtocol._DESERIALIZER, "protocol");
         op.add(Builder::version, JsonpDeserializer.integerDeserializer(), "version");
     }
 

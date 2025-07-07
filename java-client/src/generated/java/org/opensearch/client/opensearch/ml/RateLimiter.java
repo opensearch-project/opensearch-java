@@ -37,7 +37,7 @@ public class RateLimiter implements PlainJsonSerializable, ToCopyableBuilder<Rat
     private final double limit;
 
     @Nonnull
-    private final String unit;
+    private final RateLimiterUnit unit;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ public class RateLimiter implements PlainJsonSerializable, ToCopyableBuilder<Rat
      * </p>
      */
     @Nonnull
-    public final String unit() {
+    public final RateLimiterUnit unit() {
         return this.unit;
     }
 
@@ -86,7 +86,7 @@ public class RateLimiter implements PlainJsonSerializable, ToCopyableBuilder<Rat
         generator.write(this.limit);
 
         generator.writeKey("unit");
-        generator.write(this.unit);
+        this.unit.serialize(generator, mapper);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -107,7 +107,7 @@ public class RateLimiter implements PlainJsonSerializable, ToCopyableBuilder<Rat
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RateLimiter> {
         private Double limit;
-        private String unit;
+        private RateLimiterUnit unit;
 
         public Builder() {}
 
@@ -146,7 +146,7 @@ public class RateLimiter implements PlainJsonSerializable, ToCopyableBuilder<Rat
          * </p>
          */
         @Nonnull
-        public final Builder unit(String value) {
+        public final Builder unit(RateLimiterUnit value) {
             this.unit = value;
             return this;
         }
@@ -177,7 +177,7 @@ public class RateLimiter implements PlainJsonSerializable, ToCopyableBuilder<Rat
 
     protected static void setupRateLimiterDeserializer(ObjectDeserializer<RateLimiter.Builder> op) {
         op.add(Builder::limit, JsonpDeserializer.doubleDeserializer(), "limit");
-        op.add(Builder::unit, JsonpDeserializer.stringDeserializer(), "unit");
+        op.add(Builder::unit, RateLimiterUnit._DESERIALIZER, "unit");
     }
 
     @Override

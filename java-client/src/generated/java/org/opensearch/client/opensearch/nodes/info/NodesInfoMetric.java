@@ -49,14 +49,14 @@ import org.opensearch.client.json.JsonpDeserializable;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum NodesInfoMetric implements JsonEnum {
     /**
-     * Returns all metrics.
-     */
-    All("_all"),
-
-    /**
      * Returns aggregation information.
      */
     Aggregations("aggregations"),
+
+    /**
+     * Returns all metrics.
+     */
+    All("_all"),
 
     /**
      * Returns HTTP connection information.

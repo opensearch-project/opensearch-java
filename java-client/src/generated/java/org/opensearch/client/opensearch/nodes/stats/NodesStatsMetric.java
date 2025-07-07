@@ -45,11 +45,11 @@ import org.opensearch.client.json.JsonpDeserializable;
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public enum NodesStatsMetric implements JsonEnum {
-    All("_all"),
-
     AdaptiveSelection("adaptive_selection"),
 
     AdmissionControl("admission_control"),
+
+    All("_all"),
 
     Breaker("breaker"),
 

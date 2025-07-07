@@ -36,6 +36,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class ModelConfig implements PlainJsonSerializable, ToCopyableBuilder<ModelConfig.Builder, ModelConfig> {
 
     @Nullable
+    private final AdditionalConfig additionalConfig;
+
+    @Nullable
     private final String allConfig;
 
     @Nullable
@@ -50,6 +53,7 @@ public class ModelConfig implements PlainJsonSerializable, ToCopyableBuilder<Mod
     // ---------------------------------------------------------------------------------------------
 
     private ModelConfig(Builder builder) {
+        this.additionalConfig = builder.additionalConfig;
         this.allConfig = builder.allConfig;
         this.embeddingDimension = builder.embeddingDimension;
         this.frameworkType = builder.frameworkType;
@@ -58,6 +62,14 @@ public class ModelConfig implements PlainJsonSerializable, ToCopyableBuilder<Mod
 
     public static ModelConfig of(Function<ModelConfig.Builder, ObjectBuilder<ModelConfig>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * API name: {@code additional_config}
+     */
+    @Nullable
+    public final AdditionalConfig additionalConfig() {
+        return this.additionalConfig;
     }
 
     /**
@@ -115,6 +127,11 @@ public class ModelConfig implements PlainJsonSerializable, ToCopyableBuilder<Mod
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.additionalConfig != null) {
+            generator.writeKey("additional_config");
+            this.additionalConfig.serialize(generator, mapper);
+        }
+
         if (this.allConfig != null) {
             generator.writeKey("all_config");
             generator.write(this.allConfig);
@@ -154,6 +171,8 @@ public class ModelConfig implements PlainJsonSerializable, ToCopyableBuilder<Mod
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ModelConfig> {
         @Nullable
+        private AdditionalConfig additionalConfig;
+        @Nullable
         private String allConfig;
         @Nullable
         private Long embeddingDimension;
@@ -165,6 +184,7 @@ public class ModelConfig implements PlainJsonSerializable, ToCopyableBuilder<Mod
         public Builder() {}
 
         private Builder(ModelConfig o) {
+            this.additionalConfig = o.additionalConfig;
             this.allConfig = o.allConfig;
             this.embeddingDimension = o.embeddingDimension;
             this.frameworkType = o.frameworkType;
@@ -172,6 +192,7 @@ public class ModelConfig implements PlainJsonSerializable, ToCopyableBuilder<Mod
         }
 
         private Builder(Builder o) {
+            this.additionalConfig = o.additionalConfig;
             this.allConfig = o.allConfig;
             this.embeddingDimension = o.embeddingDimension;
             this.frameworkType = o.frameworkType;
@@ -182,6 +203,23 @@ public class ModelConfig implements PlainJsonSerializable, ToCopyableBuilder<Mod
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        /**
+         * API name: {@code additional_config}
+         */
+        @Nonnull
+        public final Builder additionalConfig(@Nullable AdditionalConfig value) {
+            this.additionalConfig = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code additional_config}
+         */
+        @Nonnull
+        public final Builder additionalConfig(Function<AdditionalConfig.Builder, ObjectBuilder<AdditionalConfig>> fn) {
+            return additionalConfig(fn.apply(new AdditionalConfig.Builder()).build());
         }
 
         /**
@@ -257,6 +295,7 @@ public class ModelConfig implements PlainJsonSerializable, ToCopyableBuilder<Mod
     );
 
     protected static void setupModelConfigDeserializer(ObjectDeserializer<ModelConfig.Builder> op) {
+        op.add(Builder::additionalConfig, AdditionalConfig._DESERIALIZER, "additional_config");
         op.add(Builder::allConfig, JsonpDeserializer.stringDeserializer(), "all_config");
         op.add(Builder::embeddingDimension, JsonpDeserializer.longDeserializer(), "embedding_dimension");
         op.add(Builder::frameworkType, JsonpDeserializer.stringDeserializer(), "framework_type");
@@ -266,6 +305,7 @@ public class ModelConfig implements PlainJsonSerializable, ToCopyableBuilder<Mod
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.additionalConfig);
         result = 31 * result + Objects.hashCode(this.allConfig);
         result = 31 * result + Objects.hashCode(this.embeddingDimension);
         result = 31 * result + Objects.hashCode(this.frameworkType);
@@ -278,7 +318,8 @@ public class ModelConfig implements PlainJsonSerializable, ToCopyableBuilder<Mod
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         ModelConfig other = (ModelConfig) o;
-        return Objects.equals(this.allConfig, other.allConfig)
+        return Objects.equals(this.additionalConfig, other.additionalConfig)
+            && Objects.equals(this.allConfig, other.allConfig)
             && Objects.equals(this.embeddingDimension, other.embeddingDimension)
             && Objects.equals(this.frameworkType, other.frameworkType)
             && Objects.equals(this.modelType, other.modelType);
