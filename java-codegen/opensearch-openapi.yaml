@@ -3054,6 +3054,355 @@ paths:
         - $ref: '#/components/parameters/_global___query.error_trace'
         - $ref: '#/components/parameters/_global___query.source'
         - $ref: '#/components/parameters/_global___query.filter_path'
+  /_ltr/_feature:
+    get:
+      operationId: ltr.search_features.0
+      x-operation-group: ltr.search_features
+      x-version-added: '2.19'
+      description: Search for features in a feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.search_features___query.from'
+        - $ref: '#/components/parameters/ltr.search_features___query.prefix'
+        - $ref: '#/components/parameters/ltr.search_features___query.size'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.search_features___200'
+  /_ltr/_feature/{id}:
+    delete:
+      operationId: ltr.delete_feature.0
+      x-operation-group: ltr.delete_feature
+      x-version-added: '2.19'
+      description: Delete a feature from the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.delete_feature___path.id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.delete_feature___200'
+        '404':
+          $ref: '#/components/responses/ltr.delete_feature___404'
+    get:
+      operationId: ltr.get_feature.0
+      x-operation-group: ltr.get_feature
+      x-version-added: '2.19'
+      description: Get a feature from the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.get_feature___path.id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.get_feature___200'
+        '404':
+          $ref: '#/components/responses/ltr.get_feature___404'
+    post:
+      operationId: ltr.update_feature.0
+      x-operation-group: ltr.update_feature
+      x-version-added: '2.19'
+      description: Update a feature in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.update_feature___path.id'
+        - $ref: '#/components/parameters/ltr.update_feature___query.routing'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ltr.update_feature'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.update_feature___200'
+        '404':
+          $ref: '#/components/responses/ltr.update_feature___404'
+        '409':
+          $ref: '#/components/responses/ltr.update_feature___409'
+    put:
+      operationId: ltr.create_feature.0
+      x-operation-group: ltr.create_feature
+      x-version-added: '2.19'
+      description: Create or update a feature in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.create_feature___path.id'
+        - $ref: '#/components/parameters/ltr.create_feature___query.routing'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ltr.create_feature'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.create_feature___200'
+        '201':
+          $ref: '#/components/responses/ltr.create_feature___201'
+        '409':
+          $ref: '#/components/responses/ltr.create_feature___409'
+  /_ltr/_featureset:
+    get:
+      operationId: ltr.search_featuresets.0
+      x-operation-group: ltr.search_featuresets
+      x-version-added: '2.19'
+      description: Search for feature sets in a feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.search_featuresets___query.from'
+        - $ref: '#/components/parameters/ltr.search_featuresets___query.prefix'
+        - $ref: '#/components/parameters/ltr.search_featuresets___query.size'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.search_featuresets___200'
+  /_ltr/_featureset/{id}:
+    delete:
+      operationId: ltr.delete_featureset.0
+      x-operation-group: ltr.delete_featureset
+      x-version-added: '2.19'
+      description: Delete a feature set from the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.delete_featureset___path.id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.delete_featureset___200'
+        '404':
+          $ref: '#/components/responses/ltr.delete_featureset___404'
+    get:
+      operationId: ltr.get_featureset.0
+      x-operation-group: ltr.get_featureset
+      x-version-added: '2.19'
+      description: Get a feature set from the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.get_featureset___path.id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.get_featureset___200'
+        '404':
+          $ref: '#/components/responses/ltr.get_featureset___404'
+    post:
+      operationId: ltr.update_featureset.0
+      x-operation-group: ltr.update_featureset
+      x-version-added: '2.19'
+      description: Update a feature set in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.update_featureset___path.id'
+        - $ref: '#/components/parameters/ltr.update_featureset___query.routing'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ltr.update_featureset'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.update_featureset___200'
+        '404':
+          $ref: '#/components/responses/ltr.update_featureset___404'
+        '409':
+          $ref: '#/components/responses/ltr.update_featureset___409'
+    put:
+      operationId: ltr.create_featureset.0
+      x-operation-group: ltr.create_featureset
+      x-version-added: '2.19'
+      description: Create or update a feature set in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.create_featureset___path.id'
+        - $ref: '#/components/parameters/ltr.create_featureset___query.routing'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ltr.create_featureset'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.create_featureset___200'
+        '201':
+          $ref: '#/components/responses/ltr.create_featureset___201'
+        '409':
+          $ref: '#/components/responses/ltr.create_featureset___409'
+  /_ltr/_featureset/{name}/_addfeatures:
+    post:
+      operationId: ltr.add_features_to_set.0
+      x-operation-group: ltr.add_features_to_set
+      x-version-added: '2.19'
+      description: Add features to an existing feature set in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.add_features_to_set___path.name'
+        - $ref: '#/components/parameters/ltr.add_features_to_set___query.merge'
+        - $ref: '#/components/parameters/ltr.add_features_to_set___query.routing'
+        - $ref: '#/components/parameters/ltr.add_features_to_set___query.version'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ltr.add_features_to_set'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.add_features_to_set___200'
+        '201':
+          $ref: '#/components/responses/ltr.add_features_to_set___201'
+        '400':
+          $ref: '#/components/responses/ltr.add_features_to_set___400'
+        '404':
+          $ref: '#/components/responses/ltr.add_features_to_set___404'
+        '409':
+          $ref: '#/components/responses/ltr.add_features_to_set___409'
+  /_ltr/_featureset/{name}/_addfeatures/{query}:
+    post:
+      operationId: ltr.add_features_to_set_by_query.0
+      x-operation-group: ltr.add_features_to_set_by_query
+      x-version-added: '2.19'
+      description: Add features to an existing feature set in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.add_features_to_set_by_query___path.name'
+        - $ref: '#/components/parameters/ltr.add_features_to_set_by_query___path.query'
+        - $ref: '#/components/parameters/ltr.add_features_to_set_by_query___query.merge'
+        - $ref: '#/components/parameters/ltr.add_features_to_set_by_query___query.routing'
+        - $ref: '#/components/parameters/ltr.add_features_to_set_by_query___query.version'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.add_features_to_set_by_query___200'
+        '201':
+          $ref: '#/components/responses/ltr.add_features_to_set_by_query___201'
+        '400':
+          $ref: '#/components/responses/ltr.add_features_to_set_by_query___400'
+        '404':
+          $ref: '#/components/responses/ltr.add_features_to_set_by_query___404'
+        '409':
+          $ref: '#/components/responses/ltr.add_features_to_set_by_query___409'
+  /_ltr/_featureset/{name}/_createmodel:
+    post:
+      operationId: ltr.create_model_from_set.0
+      x-operation-group: ltr.create_model_from_set
+      x-version-added: '2.19'
+      description: Create a model from an existing feature set in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.create_model_from_set___path.name'
+        - $ref: '#/components/parameters/ltr.create_model_from_set___query.routing'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ltr.create_model_from_set'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.create_model_from_set___200'
+        '201':
+          $ref: '#/components/responses/ltr.create_model_from_set___201'
+        '405':
+          $ref: '#/components/responses/ltr.create_model_from_set___405'
+  /_ltr/_model:
+    get:
+      operationId: ltr.search_models.0
+      x-operation-group: ltr.search_models
+      x-version-added: '2.19'
+      description: Search for models in a feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.search_models___query.from'
+        - $ref: '#/components/parameters/ltr.search_models___query.prefix'
+        - $ref: '#/components/parameters/ltr.search_models___query.size'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.search_models___200'
+  /_ltr/_model/{id}:
+    delete:
+      operationId: ltr.delete_model.0
+      x-operation-group: ltr.delete_model
+      x-version-added: '2.19'
+      description: Delete a model from the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.delete_model___path.id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.delete_model___200'
+        '404':
+          $ref: '#/components/responses/ltr.delete_model___404'
+    get:
+      operationId: ltr.get_model.0
+      x-operation-group: ltr.get_model
+      x-version-added: '2.19'
+      description: Get a model from the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.get_model___path.id'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.get_model___200'
+        '404':
+          $ref: '#/components/responses/ltr.get_model___404'
+    put:
+      operationId: ltr.create_model.0
+      x-operation-group: ltr.create_model
+      x-version-added: '2.19'
+      description: Create or update a model in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.create_model___path.id'
+        - $ref: '#/components/parameters/ltr.create_model___query.routing'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ltr.create_model'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.create_model___200'
+        '201':
+          $ref: '#/components/responses/ltr.create_model___201'
+        '409':
+          $ref: '#/components/responses/ltr.create_model___409'
   /_ltr/{store}:
     delete:
       operationId: ltr.delete_store.0
@@ -3118,6 +3467,372 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ltr.clear_cache___200'
+  /_ltr/{store}/_feature:
+    get:
+      operationId: ltr.search_features.1
+      x-operation-group: ltr.search_features
+      x-version-added: '2.19'
+      description: Search for features in a feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.search_features___path.store'
+        - $ref: '#/components/parameters/ltr.search_features___query.from'
+        - $ref: '#/components/parameters/ltr.search_features___query.prefix'
+        - $ref: '#/components/parameters/ltr.search_features___query.size'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.search_features___200'
+  /_ltr/{store}/_feature/{id}:
+    delete:
+      operationId: ltr.delete_feature.1
+      x-operation-group: ltr.delete_feature
+      x-version-added: '2.19'
+      description: Delete a feature from the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.delete_feature___path.id'
+        - $ref: '#/components/parameters/ltr.delete_feature___path.store'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.delete_feature___200'
+        '404':
+          $ref: '#/components/responses/ltr.delete_feature___404'
+    get:
+      operationId: ltr.get_feature.1
+      x-operation-group: ltr.get_feature
+      x-version-added: '2.19'
+      description: Get a feature from the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.get_feature___path.id'
+        - $ref: '#/components/parameters/ltr.get_feature___path.store'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.get_feature___200'
+        '404':
+          $ref: '#/components/responses/ltr.get_feature___404'
+    post:
+      operationId: ltr.update_feature.1
+      x-operation-group: ltr.update_feature
+      x-version-added: '2.19'
+      description: Update a feature in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.update_feature___path.id'
+        - $ref: '#/components/parameters/ltr.update_feature___path.store'
+        - $ref: '#/components/parameters/ltr.update_feature___query.routing'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ltr.update_feature'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.update_feature___200'
+        '404':
+          $ref: '#/components/responses/ltr.update_feature___404'
+        '409':
+          $ref: '#/components/responses/ltr.update_feature___409'
+    put:
+      operationId: ltr.create_feature.1
+      x-operation-group: ltr.create_feature
+      x-version-added: '2.19'
+      description: Create or update a feature in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.create_feature___path.id'
+        - $ref: '#/components/parameters/ltr.create_feature___path.store'
+        - $ref: '#/components/parameters/ltr.create_feature___query.routing'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ltr.create_feature'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.create_feature___200'
+        '201':
+          $ref: '#/components/responses/ltr.create_feature___201'
+        '409':
+          $ref: '#/components/responses/ltr.create_feature___409'
+  /_ltr/{store}/_featureset:
+    get:
+      operationId: ltr.search_featuresets.1
+      x-operation-group: ltr.search_featuresets
+      x-version-added: '2.19'
+      description: Search for feature sets in a feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.search_featuresets___path.store'
+        - $ref: '#/components/parameters/ltr.search_featuresets___query.from'
+        - $ref: '#/components/parameters/ltr.search_featuresets___query.prefix'
+        - $ref: '#/components/parameters/ltr.search_featuresets___query.size'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.search_featuresets___200'
+  /_ltr/{store}/_featureset/{id}:
+    delete:
+      operationId: ltr.delete_featureset.1
+      x-operation-group: ltr.delete_featureset
+      x-version-added: '2.19'
+      description: Delete a feature set from the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.delete_featureset___path.id'
+        - $ref: '#/components/parameters/ltr.delete_featureset___path.store'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.delete_featureset___200'
+        '404':
+          $ref: '#/components/responses/ltr.delete_featureset___404'
+    get:
+      operationId: ltr.get_featureset.1
+      x-operation-group: ltr.get_featureset
+      x-version-added: '2.19'
+      description: Get a feature set from the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.get_featureset___path.id'
+        - $ref: '#/components/parameters/ltr.get_featureset___path.store'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.get_featureset___200'
+        '404':
+          $ref: '#/components/responses/ltr.get_featureset___404'
+    post:
+      operationId: ltr.update_featureset.1
+      x-operation-group: ltr.update_featureset
+      x-version-added: '2.19'
+      description: Update a feature set in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.update_featureset___path.id'
+        - $ref: '#/components/parameters/ltr.update_featureset___path.store'
+        - $ref: '#/components/parameters/ltr.update_featureset___query.routing'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ltr.update_featureset'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.update_featureset___200'
+        '404':
+          $ref: '#/components/responses/ltr.update_featureset___404'
+        '409':
+          $ref: '#/components/responses/ltr.update_featureset___409'
+    put:
+      operationId: ltr.create_featureset.1
+      x-operation-group: ltr.create_featureset
+      x-version-added: '2.19'
+      description: Create or update a feature set in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.create_featureset___path.id'
+        - $ref: '#/components/parameters/ltr.create_featureset___path.store'
+        - $ref: '#/components/parameters/ltr.create_featureset___query.routing'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ltr.create_featureset'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.create_featureset___200'
+        '201':
+          $ref: '#/components/responses/ltr.create_featureset___201'
+        '409':
+          $ref: '#/components/responses/ltr.create_featureset___409'
+  /_ltr/{store}/_featureset/{name}/_addfeatures:
+    post:
+      operationId: ltr.add_features_to_set.2
+      x-operation-group: ltr.add_features_to_set
+      x-version-added: '2.19'
+      description: Add features to an existing feature set in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.add_features_to_set___path.name'
+        - $ref: '#/components/parameters/ltr.add_features_to_set___path.store'
+        - $ref: '#/components/parameters/ltr.add_features_to_set___query.merge'
+        - $ref: '#/components/parameters/ltr.add_features_to_set___query.routing'
+        - $ref: '#/components/parameters/ltr.add_features_to_set___query.version'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ltr.add_features_to_set'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.add_features_to_set___200'
+        '201':
+          $ref: '#/components/responses/ltr.add_features_to_set___201'
+        '400':
+          $ref: '#/components/responses/ltr.add_features_to_set___400'
+        '404':
+          $ref: '#/components/responses/ltr.add_features_to_set___404'
+        '409':
+          $ref: '#/components/responses/ltr.add_features_to_set___409'
+  /_ltr/{store}/_featureset/{name}/_addfeatures/{query}:
+    post:
+      operationId: ltr.add_features_to_set_by_query.1
+      x-operation-group: ltr.add_features_to_set_by_query
+      x-version-added: '2.19'
+      description: Add features to an existing feature set in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.add_features_to_set_by_query___path.name'
+        - $ref: '#/components/parameters/ltr.add_features_to_set_by_query___path.query'
+        - $ref: '#/components/parameters/ltr.add_features_to_set_by_query___path.store'
+        - $ref: '#/components/parameters/ltr.add_features_to_set_by_query___query.merge'
+        - $ref: '#/components/parameters/ltr.add_features_to_set_by_query___query.routing'
+        - $ref: '#/components/parameters/ltr.add_features_to_set_by_query___query.version'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.add_features_to_set_by_query___200'
+        '201':
+          $ref: '#/components/responses/ltr.add_features_to_set_by_query___201'
+        '400':
+          $ref: '#/components/responses/ltr.add_features_to_set_by_query___400'
+        '404':
+          $ref: '#/components/responses/ltr.add_features_to_set_by_query___404'
+        '409':
+          $ref: '#/components/responses/ltr.add_features_to_set_by_query___409'
+  /_ltr/{store}/_featureset/{name}/_createmodel:
+    post:
+      operationId: ltr.create_model_from_set.1
+      x-operation-group: ltr.create_model_from_set
+      x-version-added: '2.19'
+      description: Create a model from an existing feature set in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.create_model_from_set___path.name'
+        - $ref: '#/components/parameters/ltr.create_model_from_set___path.store'
+        - $ref: '#/components/parameters/ltr.create_model_from_set___query.routing'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ltr.create_model_from_set'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.create_model_from_set___200'
+        '201':
+          $ref: '#/components/responses/ltr.create_model_from_set___201'
+        '405':
+          $ref: '#/components/responses/ltr.create_model_from_set___405'
+  /_ltr/{store}/_model:
+    get:
+      operationId: ltr.search_models.1
+      x-operation-group: ltr.search_models
+      x-version-added: '2.19'
+      description: Search for models in a feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.search_models___path.store'
+        - $ref: '#/components/parameters/ltr.search_models___query.from'
+        - $ref: '#/components/parameters/ltr.search_models___query.prefix'
+        - $ref: '#/components/parameters/ltr.search_models___query.size'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.search_models___200'
+  /_ltr/{store}/_model/{id}:
+    delete:
+      operationId: ltr.delete_model.1
+      x-operation-group: ltr.delete_model
+      x-version-added: '2.19'
+      description: Delete a model from the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.delete_model___path.id'
+        - $ref: '#/components/parameters/ltr.delete_model___path.store'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.delete_model___200'
+        '404':
+          $ref: '#/components/responses/ltr.delete_model___404'
+    get:
+      operationId: ltr.get_model.1
+      x-operation-group: ltr.get_model
+      x-version-added: '2.19'
+      description: Get a model from the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.get_model___path.id'
+        - $ref: '#/components/parameters/ltr.get_model___path.store'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.get_model___200'
+        '404':
+          $ref: '#/components/responses/ltr.get_model___404'
+    put:
+      operationId: ltr.create_model.1
+      x-operation-group: ltr.create_model
+      x-version-added: '2.19'
+      description: Create or update a model in the default feature store.
+      parameters:
+        - $ref: '#/components/parameters/ltr.create_model___path.id'
+        - $ref: '#/components/parameters/ltr.create_model___path.store'
+        - $ref: '#/components/parameters/ltr.create_model___query.routing'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ltr.create_model'
+      responses:
+        '200':
+          $ref: '#/components/responses/ltr.create_model___200'
+        '201':
+          $ref: '#/components/responses/ltr.create_model___201'
+        '409':
+          $ref: '#/components/responses/ltr.create_model___409'
   /_mapping:
     get:
       operationId: indices.get_mapping.0
@@ -14402,6 +15117,72 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/indices.validate_query___200'
+  /{index}/ingestion/_pause:
+    post:
+      summary: Pause streaming ingestion for the given index.
+      operationId: ingestion.pause.0
+      x-operation-group: ingestion.pause
+      x-version-added: '3.1'
+      description: Use this API to pause ingestion for a given index.
+      externalDocs:
+        url: https://docs.opensearch.org/docs/latest/api-reference/document-apis/pull-based-ingestion-management/
+      parameters:
+        - $ref: '#/components/parameters/ingestion.pause___path.index'
+        - $ref: '#/components/parameters/ingestion.pause___query.cluster_manager_timeout'
+        - $ref: '#/components/parameters/ingestion.pause___query.timeout'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ingestion.pause___200'
+  /{index}/ingestion/_resume:
+    post:
+      summary: Resume streaming ingestion for the given index.
+      operationId: ingestion.resume.0
+      x-operation-group: ingestion.resume
+      x-version-added: '3.1'
+      description: Use this API to resume ingestion for the given index.
+      externalDocs:
+        url: https://docs.opensearch.org/docs/latest/api-reference/document-apis/pull-based-ingestion-management/
+      parameters:
+        - $ref: '#/components/parameters/ingestion.resume___path.index'
+        - $ref: '#/components/parameters/ingestion.resume___query.cluster_manager_timeout'
+        - $ref: '#/components/parameters/ingestion.resume___query.timeout'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      requestBody:
+        $ref: '#/components/requestBodies/ingestion.resume'
+      responses:
+        '200':
+          $ref: '#/components/responses/ingestion.resume___200'
+  /{index}/ingestion/_state:
+    get:
+      summary: Get the current ingestion state for a given index.
+      operationId: ingestion.get_state.0
+      x-operation-group: ingestion.get_state
+      x-version-added: '3.1'
+      description: Use this API to retrieve the ingestion state for a given index.
+      externalDocs:
+        url: https://docs.opensearch.org/docs/latest/api-reference/document-apis/pull-based-ingestion-management/
+      parameters:
+        - $ref: '#/components/parameters/ingestion.get_state___path.index'
+        - $ref: '#/components/parameters/ingestion.get_state___query.next_token'
+        - $ref: '#/components/parameters/ingestion.get_state___query.size'
+        - $ref: '#/components/parameters/ingestion.get_state___query.timeout'
+        - $ref: '#/components/parameters/_global___query.pretty'
+        - $ref: '#/components/parameters/_global___query.human'
+        - $ref: '#/components/parameters/_global___query.error_trace'
+        - $ref: '#/components/parameters/_global___query.source'
+        - $ref: '#/components/parameters/_global___query.filter_path'
+      responses:
+        '200':
+          $ref: '#/components/responses/ingestion.get_state___200'
   /_opendistro/_asynchronous_search:
     post:
       operationId: asynchronous_search.search.0_superseded
@@ -23806,17 +24587,83 @@ components:
         type: boolean
         default: false
       style: form
+    ingestion.get_state___path.index:
+      name: index
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Index for which ingestion state should be retrieved.
+    ingestion.get_state___query.next_token:
+      name: next_token
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Token to retrieve the next page of results.
+    ingestion.get_state___query.size:
+      name: size
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Number of results to return per page.
+    ingestion.get_state___query.timeout:
+      name: timeout
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/_common___Duration'
+      description: Timeout for the request.
+    ingestion.pause___path.index:
+      name: index
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Index for which ingestion should be paused.
+    ingestion.pause___query.cluster_manager_timeout:
+      name: cluster_manager_timeout
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/_common___Duration'
+      description: Time to wait for cluster manager connection.
+    ingestion.pause___query.timeout:
+      name: timeout
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/_common___Duration'
+      description: Timeout for the request.
+    ingestion.resume___path.index:
+      name: index
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Index for which ingestion should be resumed.
+    ingestion.resume___query.cluster_manager_timeout:
+      name: cluster_manager_timeout
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/_common___Duration'
+      description: Time to wait for cluster manager connection.
+    ingestion.resume___query.timeout:
+      name: timeout
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/_common___Duration'
+      description: Timeout for the request.
     insights.top_queries___query.type:
       name: type
       in: query
       required: true
       description: Get top n queries by a specific metric.
       schema:
-        type: string
-        enum:
-          - cpu
-          - latency
-          - memory
+        $ref: '#/components/schemas/insights._common___MetricType'
     ism.add_policy___path.index:
       name: index
       in: path
@@ -24306,46 +25153,12 @@ components:
       in: path
       description: A comma-separated list of stats to retrieve; use `_all` or empty string to retrieve all stats.
       schema:
-        type: array
-        description: A comma-separated list of stats to retrieve; use `_all` or empty string to retrieve all stats.
-        items:
-          type: string
-          enum:
-            - cache_capacity_reached
-            - circuit_breaker_triggered
-            - eviction_count
-            - faiss_initialized
-            - graph_index_errors
-            - graph_index_requests
-            - graph_memory_usage
-            - graph_memory_usage_percentage
-            - graph_query_errors
-            - graph_query_requests
-            - graph_stats
-            - hit_count
-            - indexing_from_model_degraded
-            - indices_in_cache
-            - knn_query_requests
-            - knn_query_with_filter_requests
-            - load_exception_count
-            - load_success_count
-            - lucene_initialized
-            - max_distance_query_requests
-            - max_distance_query_with_filter_requests
-            - min_score_query_requests
-            - min_score_query_with_filter_requests
-            - miss_count
-            - model_index_status
-            - nmslib_initialized
-            - script_compilation_errors
-            - script_compilations
-            - script_query_errors
-            - script_query_requests
-            - total_load_time
-            - training_errors
-            - training_memory_usage
-            - training_memory_usage_percentage
-            - training_requests
+        oneOf:
+          - $ref: '#/components/schemas/knn._common___KnnStatName'
+          - type: array
+            description: A comma-separated list of stats to retrieve; use `_all` or empty string to retrieve all stats.
+            items:
+              $ref: '#/components/schemas/knn._common___KnnStatName'
       required: true
     knn.stats___query.timeout:
       name: timeout
@@ -24507,10 +25320,7 @@ components:
       in: query
       description: Defines order in which indexes will be displayed. Accepted values are `asc` and `desc`. If `desc`, most recently created indexes would be displayed first.
       schema:
-        type: string
-        enum:
-          - asc
-          - desc
+        $ref: '#/components/schemas/_common___SortOrder'
     list.indices___query.time:
       in: query
       name: time
@@ -24626,10 +25436,7 @@ components:
       in: query
       description: Defines order in which shards will be displayed. Accepted values are `asc` and `desc`. If `desc`, most recently created shards would be displayed first.
       schema:
-        type: string
-        enum:
-          - asc
-          - desc
+        $ref: '#/components/schemas/_common___SortOrder'
     list.shards___query.time:
       name: time
       in: query
@@ -24644,6 +25451,85 @@ components:
         type: boolean
         default: false
         description: Verbose mode. Display column headers.
+    ltr.add_features_to_set_by_query___path.name:
+      name: name
+      in: path
+      description: The name of the feature set to add features to.
+      schema:
+        type: string
+      required: true
+    ltr.add_features_to_set_by_query___path.query:
+      name: query
+      in: path
+      description: Query string to filter existing features from the store by name. When provided, only features matching this query will be added to the feature set, and no request body should be included.
+      schema:
+        type: string
+      required: true
+    ltr.add_features_to_set_by_query___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.add_features_to_set_by_query___query.merge:
+      name: merge
+      in: query
+      description: Whether to merge the feature list or append only.
+      schema:
+        type: boolean
+        default: false
+      required: false
+    ltr.add_features_to_set_by_query___query.routing:
+      name: routing
+      in: query
+      description: Specific routing value.
+      schema:
+        type: string
+      required: false
+    ltr.add_features_to_set_by_query___query.version:
+      name: version
+      in: query
+      description: Version check to ensure feature set is modified with expected version.
+      schema:
+        type: integer
+      required: false
+    ltr.add_features_to_set___path.name:
+      name: name
+      in: path
+      description: The name of the feature set to add features to.
+      schema:
+        type: string
+      required: true
+    ltr.add_features_to_set___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.add_features_to_set___query.merge:
+      name: merge
+      in: query
+      description: Whether to merge the feature list or append only.
+      schema:
+        type: boolean
+        default: false
+      required: false
+    ltr.add_features_to_set___query.routing:
+      name: routing
+      in: query
+      description: Specific routing value.
+      schema:
+        type: string
+      required: false
+    ltr.add_features_to_set___query.version:
+      name: version
+      in: query
+      description: Version check to ensure feature set is modified with expected version.
+      schema:
+        type: integer
+      required: false
     ltr.clear_cache___path.store:
       name: store
       in: path
@@ -24651,7 +25537,133 @@ components:
       schema:
         type: string
       required: true
+    ltr.create_feature___path.id:
+      name: id
+      in: path
+      description: The name of the feature.
+      schema:
+        type: string
+      required: true
+    ltr.create_feature___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.create_feature___query.routing:
+      name: routing
+      in: query
+      description: Specific routing value.
+      schema:
+        type: string
+      required: false
+    ltr.create_featureset___path.id:
+      name: id
+      in: path
+      description: The name of the feature set.
+      schema:
+        type: string
+      required: true
+    ltr.create_featureset___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.create_featureset___query.routing:
+      name: routing
+      in: query
+      description: Specific routing value.
+      schema:
+        type: string
+      required: false
+    ltr.create_model_from_set___path.name:
+      name: name
+      in: path
+      description: The name of the feature set to use for creating the model.
+      schema:
+        type: string
+      required: true
+    ltr.create_model_from_set___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.create_model_from_set___query.routing:
+      name: routing
+      in: query
+      description: Specific routing value.
+      schema:
+        type: string
+      required: false
+    ltr.create_model___path.id:
+      name: id
+      in: path
+      description: The name of the model.
+      schema:
+        type: string
+      required: true
+    ltr.create_model___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.create_model___query.routing:
+      name: routing
+      in: query
+      description: Specific routing value.
+      schema:
+        type: string
+      required: false
     ltr.create_store___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.delete_feature___path.id:
+      name: id
+      in: path
+      description: The name of the feature.
+      schema:
+        type: string
+      required: true
+    ltr.delete_feature___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.delete_featureset___path.id:
+      name: id
+      in: path
+      description: The name of the feature set.
+      schema:
+        type: string
+      required: true
+    ltr.delete_featureset___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.delete_model___path.id:
+      name: id
+      in: path
+      description: The name of the model.
+      schema:
+        type: string
+      required: true
+    ltr.delete_model___path.store:
       name: store
       in: path
       description: The name of the feature store.
@@ -24665,6 +25677,48 @@ components:
       schema:
         type: string
       required: true
+    ltr.get_feature___path.id:
+      name: id
+      in: path
+      description: The name of the feature.
+      schema:
+        type: string
+      required: true
+    ltr.get_feature___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.get_featureset___path.id:
+      name: id
+      in: path
+      description: The name of the feature set.
+      schema:
+        type: string
+      required: true
+    ltr.get_featureset___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.get_model___path.id:
+      name: id
+      in: path
+      description: The name of the model.
+      schema:
+        type: string
+      required: true
+    ltr.get_model___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
     ltr.get_store___path.store:
       name: store
       in: path
@@ -24672,6 +25726,96 @@ components:
       schema:
         type: string
       required: true
+    ltr.search_features___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.search_features___query.from:
+      name: from
+      in: query
+      description: The offset from the first result (for pagination).
+      schema:
+        type: integer
+        default: 0
+      required: false
+    ltr.search_features___query.prefix:
+      name: prefix
+      in: query
+      description: A name prefix to filter features by.
+      schema:
+        type: string
+      required: false
+    ltr.search_features___query.size:
+      name: size
+      in: query
+      description: The number of features to return.
+      schema:
+        type: integer
+        default: 20
+      required: false
+    ltr.search_featuresets___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.search_featuresets___query.from:
+      name: from
+      in: query
+      description: The offset from the first result (for pagination).
+      schema:
+        type: integer
+        default: 0
+      required: false
+    ltr.search_featuresets___query.prefix:
+      name: prefix
+      in: query
+      description: A name prefix to filter feature sets by.
+      schema:
+        type: string
+      required: false
+    ltr.search_featuresets___query.size:
+      name: size
+      in: query
+      description: The number of feature sets to return.
+      schema:
+        type: integer
+        default: 20
+      required: false
+    ltr.search_models___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.search_models___query.from:
+      name: from
+      in: query
+      description: The offset from the first result (for pagination).
+      schema:
+        type: integer
+        default: 0
+      required: false
+    ltr.search_models___query.prefix:
+      name: prefix
+      in: query
+      description: A name prefix to filter models by.
+      schema:
+        type: string
+      required: false
+    ltr.search_models___query.size:
+      name: size
+      in: query
+      description: The number of models to return.
+      schema:
+        type: integer
+        default: 20
+      required: false
     ltr.stats___path.node_id:
       name: node_id
       in: path
@@ -24687,14 +25831,12 @@ components:
       in: path
       description: A comma-separated list of stats to retrieve; use `_all` or empty string to retrieve all stats.
       schema:
-        type: array
-        description: A comma-separated list of stats to retrieve; use `_all` or empty string to retrieve all stats.
-        items:
-          type: string
-          enum:
-            - cache
-            - request_error_count
-            - request_total_count
+        oneOf:
+          - $ref: '#/components/schemas/ltr._common___LtrStatName'
+          - type: array
+            description: A comma-separated list of stats to retrieve; use `_all` or empty string to retrieve all stats.
+            items:
+              $ref: '#/components/schemas/ltr._common___LtrStatName'
       required: true
     ltr.stats___query.timeout:
       name: timeout
@@ -24702,6 +25844,48 @@ components:
       description: The time in milliseconds to wait for a response.
       schema:
         $ref: '#/components/schemas/_common___Duration'
+    ltr.update_feature___path.id:
+      name: id
+      in: path
+      description: The name of the feature.
+      schema:
+        type: string
+      required: true
+    ltr.update_feature___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.update_feature___query.routing:
+      name: routing
+      in: query
+      description: Specific routing value.
+      schema:
+        type: string
+      required: false
+    ltr.update_featureset___path.id:
+      name: id
+      in: path
+      description: The name of the feature set.
+      schema:
+        type: string
+      required: true
+    ltr.update_featureset___path.store:
+      name: store
+      in: path
+      description: The name of the feature store.
+      schema:
+        type: string
+      required: true
+    ltr.update_featureset___query.routing:
+      name: routing
+      in: query
+      description: Specific routing value.
+      schema:
+        type: string
+      required: false
     mget___path.index:
       in: path
       name: index
@@ -24856,10 +26040,7 @@ components:
       in: path
       required: true
       schema:
-        type: string
-        enum:
-          - anomaly_localization
-          - local_sample_calculator
+        $ref: '#/components/schemas/ml._common___FunctionName'
     ml.get_agent___path.agent_id:
       name: agent_id
       in: path
@@ -24981,15 +26162,11 @@ components:
       in: path
       required: true
       schema:
-        type: string
-        enum:
-          - ml_config_index_status
-          - ml_connector_count
-          - ml_connector_index_status
-          - ml_controller_index_status
-          - ml_model_count
-          - ml_model_index_status
-          - ml_task_index_status
+        oneOf:
+          - $ref: '#/components/schemas/ml._common___MlStatName'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ml._common___MlStatName'
     ml.get_task___path.task_id:
       name: task_id
       in: path
@@ -25001,26 +26178,7 @@ components:
       in: path
       required: true
       schema:
-        type: string
-        enum:
-          - AgentTool
-          - CatIndexTool
-          - ConnectorTool
-          - CreateAnomalyDetectorTool
-          - IndexMappingTool
-          - ListIndexTool
-          - LogPatternTool
-          - MLModelTool
-          - NeuralSparseSearchTool
-          - PPLTool
-          - RAGTool
-          - SearchAlertsTool
-          - SearchAnomalyDetectorsTool
-          - SearchAnomalyResultsTool
-          - SearchIndexTool
-          - SearchMonitorsTool
-          - VectorDBTool
-          - VisualizationTool
+        $ref: '#/components/schemas/ml._common___ToolName'
     ml.load_model___path.model_id:
       name: model_id
       in: path
@@ -25354,63 +26512,11 @@ components:
       in: path
       description: A comma-separated list of stats to retrieve; use empty string to retrieve all stats.
       schema:
-        type: string
-        enum:
-          - cluster_version
-          - comb_arithmetic_executions
-          - comb_arithmetic_processors
-          - comb_geometric_executions
-          - comb_geometric_processors
-          - comb_harmonic_executions
-          - comb_harmonic_processors
-          - comb_rrf_executions
-          - comb_rrf_processors
-          - hybrid_query_requests
-          - hybrid_query_with_filter_requests
-          - hybrid_query_with_inner_hits_requests
-          - hybrid_query_with_pagination_requests
-          - neural_query_against_knn_requests
-          - neural_query_against_semantic_dense_requests
-          - neural_query_against_semantic_sparse_requests
-          - neural_query_enricher_executions
-          - neural_query_enricher_processors
-          - neural_query_requests
-          - neural_sparse_query_requests
-          - neural_sparse_two_phase_executions
-          - neural_sparse_two_phase_processors
-          - norm_l2_executions
-          - norm_l2_processors
-          - norm_minmax_executions
-          - norm_minmax_processors
-          - norm_zscore_executions
-          - norm_zscore_processors
-          - normalization_processor_executions
-          - normalization_processors
-          - rank_based_normalization_processor_executions
-          - rank_based_normalization_processors
-          - rerank_by_field_executions
-          - rerank_by_field_processors
-          - rerank_ml_executions
-          - rerank_ml_processors
-          - semantic_field_chunking_executions
-          - semantic_field_executions
-          - semantic_highlighting_request_count
-          - skip_existing_executions
-          - skip_existing_processors
-          - sparse_encoding_executions
-          - sparse_encoding_processors
-          - text_chunking_delimiter_executions
-          - text_chunking_delimiter_processors
-          - text_chunking_executions
-          - text_chunking_fixed_char_length_executions
-          - text_chunking_fixed_char_length_processors
-          - text_chunking_fixed_token_length_executions
-          - text_chunking_fixed_token_length_processors
-          - text_chunking_processors
-          - text_embedding_executions
-          - text_embedding_processors_in_pipelines
-          - text_image_embedding_executions
-          - text_image_embedding_processors
+        oneOf:
+          - $ref: '#/components/schemas/neural._common___NeuralStatName'
+          - type: array
+            items:
+              $ref: '#/components/schemas/neural._common___NeuralStatName'
       required: true
     neural.stats___query.flat_stat_paths:
       in: query
@@ -27803,10 +28909,7 @@ components:
       in: query
       description: The order to sort the snapshot management policies.
       schema:
-        type: string
-        enum:
-          - asc
-          - desc
+        $ref: '#/components/schemas/_common___SortOrder'
         default: asc
     sm.get_policy___path.policy_name:
       name: policy_name
@@ -29773,6 +30876,12 @@ components:
                 $ref: '#/components/schemas/ingest._common___Pipeline'
             description: The simulate definition
       required: true
+    ingestion.resume:
+      required: false
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ingestion._common___ResumeIngestionRequest'
     ism.add_policy:
       content:
         application/json:
@@ -29812,6 +30921,62 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/knn._common___TrainedModel'
+    ltr.add_features_to_set:
+      description: The features to add to the feature set.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+      required: true
+    ltr.create_feature:
+      description: The feature definition.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+      required: true
+    ltr.create_featureset:
+      description: The feature set definition.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+      required: true
+    ltr.create_model:
+      description: The model definition.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+      required: true
+    ltr.create_model_from_set:
+      description: The model definition for creating from a feature set.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+      required: true
+    ltr.update_feature:
+      description: The updated feature definition.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+      required: true
+    ltr.update_featureset:
+      description: The updated feature set definition.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+      required: true
     mget:
       content:
         application/json:
@@ -29851,10 +31016,7 @@ components:
               version:
                 type: integer
               protocol:
-                type: string
-                enum:
-                  - aws_sigv4
-                  - http
+                $ref: '#/components/schemas/ml._common___ConnectorProtocol'
               credential:
                 $ref: '#/components/schemas/ml._common___Credential'
               parameters:
@@ -29922,6 +31084,8 @@ components:
                 description: The model name.
               version:
                 $ref: '#/components/schemas/_common___VersionString'
+              function_name:
+                $ref: '#/components/schemas/ml._common___FunctionName'
               model_format:
                 $ref: '#/components/schemas/ml._common___ModelFormat'
               model_group_id:
@@ -29968,12 +31132,8 @@ components:
             type: object
             properties:
               operation:
-                type: string
                 description: The calculator operation.
-                enum:
-                  - max
-                  - min
-                  - sum
+                $ref: '#/components/schemas/ml._common___LocalSampleCalculatorOperation'
               input_data:
                 type: array
                 items:
@@ -30119,6 +31279,14 @@ components:
                 description: The model description.
               model_group_id:
                 $ref: '#/components/schemas/_common___Id'
+              model_content_hash_value:
+                type: string
+                description: The model content hash value.
+              model_config:
+                $ref: '#/components/schemas/ml._common___ModelConfig'
+              url:
+                type: string
+                description: The model URL.
               function_name:
                 type: string
                 description: The function name.
@@ -30140,12 +31308,8 @@ components:
                 type: string
                 description: The model group description.
               access_mode:
-                type: string
                 description: The model group access mode.
-                enum:
-                  - private
-                  - public
-                  - restricted
+                $ref: '#/components/schemas/ml._common___ModelGroupAccessMode'
               backend_roles:
                 type: array
                 items:
@@ -30167,6 +31331,8 @@ components:
                 description: The model name.
               version:
                 $ref: '#/components/schemas/_common___VersionString'
+              function_name:
+                $ref: '#/components/schemas/ml._common___FunctionName'
               model_format:
                 $ref: '#/components/schemas/ml._common___ModelFormat'
               model_group_id:
@@ -30200,14 +31366,13 @@ components:
             type: object
             properties:
               query:
-                $ref: '#/components/schemas/ml._common___Query'
+                $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
               size:
                 type: integer
+                format: int64
                 description: The number of agents to return.
               sort:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ml._common___SortAgent'
+                $ref: '#/components/schemas/_common___Sort'
                 description: The sort order.
     ml.search_connectors:
       content:
@@ -30216,14 +31381,13 @@ components:
             type: object
             properties:
               query:
-                $ref: '#/components/schemas/ml._common___Query'
+                $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
               size:
                 type: integer
+                format: int64
                 description: The number of connectors to return.
               sort:
-                type: array
-                items:
-                  type: string
+                $ref: '#/components/schemas/_common___Sort'
                 description: The sort order.
     ml.search_memory:
       content:
@@ -30232,15 +31396,13 @@ components:
             type: object
             properties:
               query:
-                $ref: '#/components/schemas/ml._common___Query'
+                $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
               size:
                 type: integer
                 format: int64
                 description: The number of memories to return.
               sort:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ml._common___SortMemory'
+                $ref: '#/components/schemas/_common___Sort'
                 description: The sort order.
     ml.search_message:
       content:
@@ -30249,15 +31411,13 @@ components:
             type: object
             properties:
               query:
-                $ref: '#/components/schemas/ml._common___Query'
+                $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
               size:
                 type: integer
                 format: int64
                 description: The number of messages to return.
               sort:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ml._common___SortMessage'
+                $ref: '#/components/schemas/_common___Sort'
                 description: The sort order.
     ml.search_model_group:
       content:
@@ -30266,15 +31426,13 @@ components:
             type: object
             properties:
               query:
-                $ref: '#/components/schemas/ml._common___Query'
+                $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
               size:
                 type: integer
                 format: int64
                 description: The number of model groups to return.
               sort:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ml._common___Sort'
+                $ref: '#/components/schemas/_common___Sort'
                 description: The sort order.
     ml.search_models:
       content:
@@ -30283,16 +31441,13 @@ components:
             type: object
             properties:
               query:
-                type: object
-                $ref: '#/components/schemas/ml._common___Query'
+                $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
               size:
                 type: integer
                 format: int64
                 description: The number of models to return.
               sort:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ml._common___Sort'
+                $ref: '#/components/schemas/_common___Sort'
                 description: The sort order.
     ml.search_tasks:
       content:
@@ -30301,15 +31456,13 @@ components:
             type: object
             properties:
               query:
-                $ref: '#/components/schemas/ml._common___Query'
+                $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
               size:
                 type: integer
                 format: int64
                 description: The number of tasks to return.
               sort:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ml._common___Sort'
+                $ref: '#/components/schemas/_common___Sort'
                 description: The sort order.
     ml.train:
       content:
@@ -30385,11 +31538,7 @@ components:
               version:
                 $ref: '#/components/schemas/_common___VersionNumber'
               protocol:
-                type: string
-                description: The connector protocol.
-                enum:
-                  - aws_sigv4
-                  - http
+                $ref: '#/components/schemas/ml._common___ConnectorProtocol'
               parameters:
                 $ref: '#/components/schemas/ml._common___Parameters'
               credential:
@@ -30404,12 +31553,7 @@ components:
                   type: string
                 description: The backend roles.
               access_mode:
-                type: string
-                description: The model group access mode.
-                enum:
-                  - private
-                  - public
-                  - restricted
+                $ref: '#/components/schemas/ml._common___ModelGroupAccessMode'
               parameters.skip_validating_missing_parameters:
                 type: boolean
                 description: Whether to skip validating missing parameters.
@@ -31681,55 +32825,13 @@ components:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              errors:
-                type: boolean
-              items:
-                type: array
-                items:
-                  type: object
-                  additionalProperties:
-                    $ref: '#/components/schemas/_core.bulk___ResponseItem'
-                  minProperties: 1
-                  maxProperties: 1
-              took:
-                type: integer
-                format: int64
-              ingest_took:
-                type: integer
-                format: int64
-            required:
-              - errors
-              - items
-              - took
+            $ref: '#/components/schemas/_core.bulk___BulkResponseBase'
       description: ''
     bulk___200:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              errors:
-                type: boolean
-              items:
-                type: array
-                items:
-                  type: object
-                  additionalProperties:
-                    $ref: '#/components/schemas/_core.bulk___ResponseItem'
-                  minProperties: 1
-                  maxProperties: 1
-              took:
-                type: integer
-                format: int64
-              ingest_took:
-                type: integer
-                format: int64
-            required:
-              - errors
-              - items
-              - took
+            $ref: '#/components/schemas/_core.bulk___BulkResponseBase'
       description: ''
     cat.aliases___200:
       content:
@@ -32889,7 +33991,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/query._common___ErrorResponse'
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
       description: ''
     get___200:
       content:
@@ -33081,7 +34183,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/indices._common___IndexError'
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
       description: ''
     indices.exists_alias___200:
       content:
@@ -33543,6 +34645,24 @@ components:
             required:
               - docs
       description: ''
+    ingestion.get_state___200:
+      description: Ingestion state retrieved successfully.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ingestion._common___GetIngestionStateResponse'
+    ingestion.pause___200:
+      description: Ingestion pause request acknowledged.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ingestion._common___PauseIngestionResponse'
+    ingestion.resume___200:
+      description: Ingestion resume request acknowledged.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ingestion._common___ResumeIngestionResponse'
     insights.top_queries___200:
       content:
         application/json:
@@ -33786,6 +34906,66 @@ components:
                 items:
                   $ref: '#/components/schemas/cat.shards___ShardsRecord'
       description: ''
+    ltr.add_features_to_set_by_query___200:
+      description: Successfully updated the feature set with filtered features.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.add_features_to_set_by_query___201:
+      description: Successfully created the feature set with filtered features.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.add_features_to_set_by_query___400:
+      description: Bad request - invalid query parameters or feature filtering.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
+    ltr.add_features_to_set_by_query___404:
+      description: The feature set or filtered features do not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___NotFoundResponse'
+    ltr.add_features_to_set_by_query___409:
+      description: Feature set update failed due to version conflict.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
+    ltr.add_features_to_set___200:
+      description: Successfully updated the feature set with new features.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.add_features_to_set___201:
+      description: Successfully created the feature set with features.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.add_features_to_set___400:
+      description: Bad request - invalid feature data or parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
+    ltr.add_features_to_set___404:
+      description: The feature set does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___NotFoundResponse'
+    ltr.add_features_to_set___409:
+      description: Feature set update failed due to version conflict.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     ltr.cache_stats___200:
       description: Returns cache statistics for all feature stores.
       content:
@@ -33804,6 +34984,78 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ltr._common___AcknowledgedResponse'
+    ltr.create_feature___200:
+      description: Successfully updated the feature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.create_feature___201:
+      description: Successfully created the feature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.create_feature___409:
+      description: Feature update failed due to version conflict.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
+    ltr.create_featureset___200:
+      description: Successfully updated the feature set.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.create_featureset___201:
+      description: Successfully created the feature set.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.create_featureset___409:
+      description: Feature set update failed - feature sets cannot be updated.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
+    ltr.create_model_from_set___200:
+      description: Successfully updated the model.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.create_model_from_set___201:
+      description: Successfully created the model.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.create_model_from_set___405:
+      description: Model update failed - models cannot be updated.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
+    ltr.create_model___200:
+      description: Successfully updated the model.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.create_model___201:
+      description: Successfully created the model.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.create_model___409:
+      description: Model update failed - models cannot be updated.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     ltr.create_store___200:
       description: Successfully created the feature store.
       content:
@@ -33816,12 +35068,87 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ltr._common___AcknowledgedResponse'
+    ltr.delete_feature___200:
+      description: Successfully deleted the feature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.delete_feature___404:
+      description: The feature does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
+    ltr.delete_featureset___200:
+      description: Successfully deleted the feature set.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.delete_featureset___404:
+      description: The feature set does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___NotFoundResponse'
+    ltr.delete_model___200:
+      description: Successfully deleted the model.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.delete_model___404:
+      description: The model does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___NotFoundResponse'
     ltr.delete_store___200:
       description: Successfully deleted the feature store.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ltr._common___AcknowledgedResponse'
+    ltr.get_feature___200:
+      description: Successfully retrieved the feature.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+    ltr.get_feature___404:
+      description: The feature does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___NotFoundResponse'
+    ltr.get_featureset___200:
+      description: Successfully retrieved the feature set.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+    ltr.get_featureset___404:
+      description: The feature set does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___NotFoundResponse'
+    ltr.get_model___200:
+      description: Successfully retrieved the model.
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+    ltr.get_model___404:
+      description: The model does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___NotFoundResponse'
     ltr.get_store___200:
       description: Returns information about the store existence.
       content:
@@ -33840,12 +35167,75 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ltr._common___ListStoresResponse'
+    ltr.search_features___200:
+      description: Returns search results for features.
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/_core.search___SearchResult'
+              - type: object
+                properties: {}
+    ltr.search_featuresets___200:
+      description: Returns search results for feature sets.
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/_core.search___SearchResult'
+              - type: object
+                properties: {}
+    ltr.search_models___200:
+      description: Returns search results for models.
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/_core.search___SearchResult'
+              - type: object
+                properties: {}
     ltr.stats___200:
       description: Provides information about the current status of the LTR plugin.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ltr._common___Stats'
+    ltr.update_feature___200:
+      description: Successfully updated the feature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.update_feature___404:
+      description: The feature does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___NotFoundResponse'
+    ltr.update_feature___409:
+      description: Feature update failed due to version conflict.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
+    ltr.update_featureset___200:
+      description: Successfully updated the feature set.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___WriteResponseBase'
+    ltr.update_featureset___404:
+      description: The feature set does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ltr._common___NotFoundResponse'
+    ltr.update_featureset___409:
+      description: Feature set update failed due to version conflict.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     mget___200:
       content:
         application/json:
@@ -34157,16 +35547,7 @@ components:
               task_id:
                 type: string
               task_type:
-                type: string
-                enum:
-                  - BATCH_INGEST
-                  - BATCH_PREDICTION
-                  - DEPLOY_MODEL
-                  - EXECUTION
-                  - PREDICTION
-                  - REGISTER_MODEL
-                  - TRAINING
-                  - TRAINING_AND_PREDICTION
+                $ref: '#/components/schemas/ml._common___MlTaskType'
             required:
               - status
               - task_id
@@ -34580,7 +35961,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/observability._common___NotFoundResponse'
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     observability.delete_objects___200:
       description: The API successfully deleted the specified observability objects.
       content:
@@ -34598,7 +35979,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/observability._common___NotFoundResponse'
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     observability.get_localstats___200:
       description: The API successfully retrieved local statistics.
       content:
@@ -34616,7 +35997,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/observability._common___NotFoundResponse'
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     observability.list_objects___200:
       description: The API successfully retrieved all observability objects.
       content:
@@ -34638,7 +36019,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/observability._common___NotFoundResponse'
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     ping___200:
       content:
         application/json: {}
@@ -34685,7 +36066,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/query._common___DataSourceNotFound'
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     query.datasource_retrieve___200:
       description: Returns the requested data source.
       content:
@@ -34697,7 +36078,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/query._common___DataSourceNotFound'
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     query.datasources_create___201:
       description: Confirms successful data source creation.
       content:
@@ -34721,7 +36102,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/query._common___DataSourceNotFound'
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     rank_eval___200:
       content:
         application/json:
@@ -35110,13 +36491,13 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/query._common___ErrorResponse'
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
       description: ''
     search___404:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/query._common___ErrorResponse'
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
       description: ''
     security_analytics.get_alerts___200:
       content:
@@ -35991,19 +37372,19 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/sm._common___BadRequestResponse'
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     sm.delete_policy___200:
       description: The API successfully deleted the snapshot management policy.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/sm._common___DeletePolicyResponse'
+            $ref: '#/components/schemas/_common___WriteResponseBase'
     sm.delete_policy___404:
       description: The API could not find the snapshot management policy.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/sm._common___NotFoundResponse'
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     sm.explain_policy___200:
       description: The API successfully explained the state of the snapshot management policy.
       content:
@@ -36027,7 +37408,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/sm._common___NotFoundResponse'
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     sm.start_policy___200:
       description: The API successfully started the snapshot management policy.
       content:
@@ -36059,7 +37440,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/sm._common___NotFoundResponse'
+            $ref: '#/components/schemas/_common___ErrorResponseBase'
     snapshot.cleanup_repository___200:
       content:
         application/json:
@@ -36265,7 +37646,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/transforms._common___DeleteTransformsResponse'
+            $ref: '#/components/schemas/_core.bulk___BulkResponseBase'
       description: ''
     transforms.explain___200:
       content:
@@ -38203,11 +39584,6 @@ components:
         - min
         - thread_info
         - total
-    _common___ResourceType:
-      type: string
-      description: The type of resource.
-      enum:
-        - index_or_alias
     _common___Result:
       oneOf:
         - type: string
@@ -42697,6 +44073,7 @@ components:
         - $ref: '#/components/schemas/_common.analysis___SmartcnAnalyzer'
         - $ref: '#/components/schemas/_common.analysis___CjkAnalyzer'
         - $ref: '#/components/schemas/_common.analysis___PhoneAnalyzer'
+        - $ref: '#/components/schemas/_common.analysis___PhoneSearchAnalyzer'
     _common.analysis___AsciiFoldingTokenFilter:
       allOf:
         - $ref: '#/components/schemas/_common.analysis___TokenFilterBase'
@@ -43830,16 +45207,33 @@ components:
           required:
             - type
     _common.analysis___PhoneAnalyzer:
+      allOf:
+        - $ref: '#/components/schemas/_common.analysis___PhoneAnalyzerBase'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - phone
+          required:
+            - type
+    _common.analysis___PhoneAnalyzerBase:
       type: object
       properties:
-        type:
-          type: string
-          enum:
-            - phone
-            - phone-search
         phone-region:
           type: string
           description: Optional ISO 3166 country code, defaults to "ZZ" (unknown region).
+    _common.analysis___PhoneSearchAnalyzer:
+      allOf:
+        - $ref: '#/components/schemas/_common.analysis___PhoneAnalyzerBase'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - phone-search
+          required:
+            - type
     _common.analysis___PhoneticEncoder:
       type: string
       enum:
@@ -48001,6 +49395,29 @@ components:
         - ALL
         - none
         - NONE
+    _core.bulk___BulkResponseBase:
+      type: object
+      properties:
+        errors:
+          type: boolean
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              $ref: '#/components/schemas/_core.bulk___ResponseItem'
+            minProperties: 1
+            maxProperties: 1
+        took:
+          type: integer
+          format: int64
+        ingest_took:
+          type: integer
+          format: int64
+      required:
+        - errors
+        - items
+        - took
     _core.bulk___CreateOperation:
       $ref: '#/components/schemas/_core.bulk___WriteOperation'
     _core.bulk___DeleteOperation:
@@ -54554,6 +55971,13 @@ components:
           $ref: '#/components/schemas/flow_framework.common___shards'
         hits:
           $ref: '#/components/schemas/flow_framework.common___StateHits'
+    flow_framework.common___WorkFlowState:
+      type: string
+      enum:
+        - COMPLETED
+        - FAILED
+        - NOT_STARTED
+        - PROVISIONING
     flow_framework.common___WorkFlowStatusDefaultResponse:
       type: object
       properties:
@@ -54583,13 +56007,8 @@ components:
           description: The error message if the workflow failed.
           nullable: true
         state:
-          type: string
           description: The current state of the workflow.
-          enum:
-            - COMPLETED
-            - FAILED
-            - NOT_STARTED
-            - PROVISIONING
+          $ref: '#/components/schemas/flow_framework.common___WorkFlowState'
         resources_created:
           type: array
           items:
@@ -54832,12 +56251,7 @@ components:
         name:
           $ref: '#/components/schemas/_common___Name'
         state:
-          type: string
-          enum:
-            - AVAILABLE
-            - CREATE_FAILED
-            - CREATING
-            - DELETING
+          $ref: '#/components/schemas/geospatial._common___DataSourceState'
           description: State of the data source.
         endpoint:
           type: string
@@ -54861,6 +56275,13 @@ components:
         - state
         - update_interval_in_days
         - update_stats
+    geospatial._common___DataSourceState:
+      type: string
+      enum:
+        - AVAILABLE
+        - CREATE_FAILED
+        - CREATING
+        - DELETING
     geospatial._common___Envelope:
       type: array
       minItems: 2
@@ -54874,10 +56295,7 @@ components:
       type: object
       properties:
         type:
-          type: string
-          enum:
-            - Feature
-            - FeatureCollection
+          $ref: '#/components/schemas/geospatial._common___GeoJSONDataType'
         geometry:
           $ref: '#/components/schemas/geospatial._common___Geometry'
         properties:
@@ -54885,6 +56303,11 @@ components:
       required:
         - geometry
         - type
+    geospatial._common___GeoJSONDataType:
+      type: string
+      enum:
+        - Feature
+        - FeatureCollection
     geospatial._common___GeoJSONRequest:
       type: object
       properties:
@@ -54895,11 +56318,8 @@ components:
           default: location
           description: Field name for the geospatial data.
         type:
-          type: string
           description: Field type for the geospatial data.
-          enum:
-            - geo_point
-            - geo_shape
+          $ref: '#/components/schemas/geospatial._common___GeospatialFieldType'
         data:
           type: array
           maxItems: 10000
@@ -54942,6 +56362,11 @@ components:
       description: |-
         GeoJSON `geoshape` types supported by OpenSearch.
         For more details, see: https://docs.opensearch.org/docs/latest/field-types/supported-field-types/geo-shape.
+    geospatial._common___GeospatialFieldType:
+      type: string
+      enum:
+        - geo_point
+        - geo_shape
     geospatial._common___GeoSpatialGeojsonUploadResponse:
       type: object
       properties:
@@ -55358,43 +56783,6 @@ components:
         - checksum
         - 'false'
         - 'true'
-    indices._common___IndexError:
-      type: object
-      description: The error information for an index operation.
-      properties:
-        error:
-          $ref: '#/components/schemas/indices._common___IndexErrorCause'
-        status:
-          type: number
-          description: The HTTP status code for the error.
-    indices._common___IndexErrorCause:
-      type: object
-      description: The detailed cause of an index error.
-      properties:
-        type:
-          description: The type of error.
-          type: string
-        reason:
-          description: A human-readable explanation of the error.
-          type: string
-        root_cause:
-          type: array
-          description: The underlying causes of the error.
-          items:
-            $ref: '#/components/schemas/indices._common___IndexErrorCause'
-        index:
-          $ref: '#/components/schemas/_common___IndexName'
-        index_uuid:
-          $ref: '#/components/schemas/_common___Uuid'
-        resource.id:
-          $ref: '#/components/schemas/_common___IndexName'
-        resource.type:
-          $ref: '#/components/schemas/_common___ResourceType'
-      required:
-        - type
-      additionalProperties:
-        title: metadata
-        description: Additional details about the error.
     indices._common___IndexGetUpgradeStatus:
       type: object
       description: The upgrade status information for indexes.
@@ -55725,6 +57113,11 @@ components:
           $ref: '#/components/schemas/_common___StringifiedInteger'
         composite_index.star_tree:
           $ref: '#/components/schemas/indices._common___IndexSettingsStarTree'
+        ingestion_source:
+          $ref: '#/components/schemas/indices._common___IngestionSource'
+        replication.type:
+          description: Defines the replication type.
+          $ref: '#/components/schemas/indices._common___ReplicationType'
       additionalProperties:
         title: custom_settings
     indices._common___IndexSettingsAnalysis:
@@ -56060,10 +57453,9 @@ components:
           format: float
           description: The term frequency normalization parameter.
         type:
-          oneOf:
-            - description: The BM25 similarity algorithm.
-              const: BM25
-              type: string
+          description: The BM25 similarity algorithm.
+          const: BM25
+          type: string
       required:
         - b
         - discount_overlaps
@@ -56359,6 +57751,85 @@ components:
         created_string:
           type: string
           description: The string representation of the version when the index was created.
+    indices._common___IngestionSource:
+      type: object
+      description: The pull-based ingestion settings controlling how data is read from streaming sources.
+      properties:
+        type:
+          description: The streaming source type.
+          $ref: '#/components/schemas/indices._common___IngestionSourceType'
+        pointer:
+          $ref: '#/components/schemas/indices._common___IngestionSourcePointer'
+        pointer.init.reset:
+          $ref: '#/components/schemas/indices._common___IngestionSourcePointerInitReset'
+        pointer.init.reset.value:
+          type: string
+          description: Specifies the offset value or timestamp in milliseconds.
+        error_strategy:
+          description: Defines the policy for error handling.
+          $ref: '#/components/schemas/ingestion._common___ErrorPolicy'
+        poll:
+          $ref: '#/components/schemas/indices._common___IngestionSourcePoll'
+        poll.max_batch_size:
+          $ref: '#/components/schemas/_common___StringifiedLong'
+          description: The maximum number of records to retrieve in each poll operation.
+        poll.timeout:
+          $ref: '#/components/schemas/_common___StringifiedInteger'
+          description: Determines the Poll timeout value.
+        num_processor_threads:
+          $ref: '#/components/schemas/_common___StringifiedInteger'
+          description: Defines the number of processor or writer threads.
+        internal_queue_size:
+          $ref: '#/components/schemas/_common___StringifiedInteger'
+          description: Defines the size of the internal blocking queue in pull-based ingestion.
+        param:
+          type: object
+          additionalProperties:
+            type: string
+          description: Custom parameters for the ingestion source.
+    indices._common___IngestionSourcePointer:
+      type: object
+      properties:
+        init:
+          $ref: '#/components/schemas/indices._common___IngestionSourcePointerInit'
+    indices._common___IngestionSourcePointerInit:
+      type: object
+      properties:
+        reset:
+          $ref: '#/components/schemas/indices._common___IngestionSourcePointerInitReset'
+        reset.value:
+          type: string
+          description: Specifies the offset value or timestamp in milliseconds.
+    indices._common___IngestionSourcePointerInitReset:
+      type: string
+      description: Determines where to start reading from the stream.
+      enum:
+        - EARLIEST
+        - LATEST
+        - NONE
+        - RESET_BY_OFFSET
+        - RESET_BY_TIMESTAMP
+        - earliest
+        - latest
+        - none
+        - reset_by_offset
+        - reset_by_timestamp
+    indices._common___IngestionSourcePoll:
+      type: object
+      properties:
+        max_batch_size:
+          $ref: '#/components/schemas/_common___StringifiedLong'
+          description: The maximum number of records to retrieve in each poll operation.
+        timeout:
+          $ref: '#/components/schemas/_common___StringifiedInteger'
+          description: Determines the Poll timeout value.
+    indices._common___IngestionSourceType:
+      type: string
+      enum:
+        - file
+        - kafka
+        - kinesis
+        - none
     indices._common___ManagedBy:
       type: string
       description: The component managing the data stream or index.
@@ -56383,6 +57854,11 @@ components:
         - description: Disables field data.
           const: disabled
           type: string
+    indices._common___ReplicationType:
+      type: string
+      enum:
+        - DOCUMENT
+        - SEGMENT
     indices._common___RetentionLease:
       type: object
       description: The retention lease configuration.
@@ -58601,6 +60077,132 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/_common___ActionStatusOptions'
+    ingestion._common___ErrorPolicy:
+      type: string
+      enum:
+        - BLOCK
+        - DROP
+    ingestion._common___GetIngestionStateResponse:
+      type: object
+      properties:
+        ingestion_state:
+          type: object
+          description: Ingestion state for a given index and its shards.
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/ingestion._common___ShardIngestionState'
+        next_page_token:
+          type: string
+          description: Specifies the next page token. Pass this token in the request to retrieve contents of the next page.
+        _shards:
+          $ref: '#/components/schemas/_common___ShardStatistics'
+    ingestion._common___IngestionStateShardFailure:
+      type: object
+      properties:
+        shard:
+          type: integer
+          description: The shard number.
+        error:
+          type: string
+          description: Indicates the shard level error message.
+      required:
+        - error
+        - shard
+    ingestion._common___PauseIngestionResponse:
+      type: object
+      properties:
+        acknowledged:
+          type: boolean
+          description: Indicates if the pause request has been acknowledged.
+        shards_acknowledged:
+          type: boolean
+          description: Indicates if the pause request has been acknowledged by individual shards.
+        failures:
+          type: array
+          items:
+            $ref: '#/components/schemas/ingestion._common___IngestionStateShardFailure'
+        error:
+          type: string
+      required:
+        - acknowledged
+        - shards_acknowledged
+    ingestion._common___PollerState:
+      type: string
+      enum:
+        - CLOSED
+        - NONE
+        - PAUSED
+        - POLLING
+        - PROCESSING
+    ingestion._common___ResetMode:
+      type: string
+      enum:
+        - OFFSET
+        - TIMESTAMP
+    ingestion._common___ResetSettings:
+      type: object
+      properties:
+        shard:
+          type: integer
+          description: The shard ID to reset.
+        mode:
+          $ref: '#/components/schemas/ingestion._common___ResetMode'
+          description: Reset mode to be used.
+        value:
+          type: string
+          description: The offset or timestamp value to be used to reset the consumer.
+      required:
+        - mode
+        - shard
+        - value
+    ingestion._common___ResumeIngestionRequest:
+      type: object
+      properties:
+        reset_settings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ingestion._common___ResetSettings'
+          description: Reset settings to be applied before resuming ingestion on a shard. This is optional.
+    ingestion._common___ResumeIngestionResponse:
+      type: object
+      properties:
+        acknowledged:
+          type: boolean
+          description: Indicates if the resume request has been acknowledged.
+        shards_acknowledged:
+          type: boolean
+          description: Indicates if the resume request has been acknowledged by individual shards.
+        failures:
+          type: array
+          items:
+            $ref: '#/components/schemas/ingestion._common___IngestionStateShardFailure'
+        error:
+          type: string
+      required:
+        - acknowledged
+        - shards_acknowledged
+    ingestion._common___ShardIngestionState:
+      type: object
+      properties:
+        shard:
+          type: integer
+          description: The shard number.
+        poller_state:
+          $ref: '#/components/schemas/ingestion._common___PollerState'
+          description: Indicates the current state of the poller.
+        error_policy:
+          $ref: '#/components/schemas/ingestion._common___ErrorPolicy'
+          description: Indicates the policy used to handle failed messages.
+        poller_paused:
+          type: boolean
+          description: Indicates if the poller has been paused.
+        write_block_enabled:
+          type: boolean
+          description: Indicates if a write block has been created.
+        batch_start_pointer:
+          type: string
+          description: Indicates the shard pointer from where the poller will resume during shard recovery.
     insights._common___GroupingType:
       type: string
       enum:
@@ -58629,6 +60231,12 @@ components:
         memory:
           type: object
           $ref: '#/components/schemas/insights._common___Measurement'
+    insights._common___MetricType:
+      type: string
+      enum:
+        - cpu
+        - latency
+        - memory
     insights._common___Source:
       type: object
       properties:
@@ -59344,13 +60952,15 @@ components:
         model_id:
           type: string
         result:
-          type: string
-          enum:
-            - deleted
-            - error
+          $ref: '#/components/schemas/knn._common___DeletionResult'
       required:
         - model_id
         - result
+    knn._common___DeletionResult:
+      type: string
+      enum:
+        - deleted
+        - error
     knn._common___GraphMergeStats:
       type: object
       properties:
@@ -59396,6 +61006,44 @@ components:
           additionalProperties: true
       required:
         - name
+    knn._common___KnnStatName:
+      type: string
+      enum:
+        - cache_capacity_reached
+        - circuit_breaker_triggered
+        - eviction_count
+        - faiss_initialized
+        - graph_index_errors
+        - graph_index_requests
+        - graph_memory_usage
+        - graph_memory_usage_percentage
+        - graph_query_errors
+        - graph_query_requests
+        - graph_stats
+        - hit_count
+        - indexing_from_model_degraded
+        - indices_in_cache
+        - knn_query_requests
+        - knn_query_with_filter_requests
+        - load_exception_count
+        - load_success_count
+        - lucene_initialized
+        - max_distance_query_requests
+        - max_distance_query_with_filter_requests
+        - min_score_query_requests
+        - min_score_query_with_filter_requests
+        - miss_count
+        - model_index_status
+        - nmslib_initialized
+        - script_compilation_errors
+        - script_compilations
+        - script_query_errors
+        - script_query_requests
+        - total_load_time
+        - training_errors
+        - training_memory_usage
+        - training_memory_usage_percentage
+        - training_requests
     knn._common___NodeStats:
       type: object
       properties:
@@ -59466,6 +61114,76 @@ components:
           type: number
         script_compilation_errors:
           type: number
+        remote_vector_index_build_stats:
+          $ref: '#/components/schemas/knn._common___RemoteVectorIndexBuildStats'
+    knn._common___RemoteVectorIndexBuildStats:
+      type: object
+      properties:
+        repository_stats:
+          $ref: '#/components/schemas/knn._common___RemoteVectorIndexRepositoryStats'
+        client_stats:
+          $ref: '#/components/schemas/knn._common___RemoteVectorIndexClientStats'
+        build_stats:
+          $ref: '#/components/schemas/knn._common___RemoteVectorIndexBuildStatsDetails'
+    knn._common___RemoteVectorIndexBuildStatsDetails:
+      type: object
+      properties:
+        remote_index_build_current_flush_operations:
+          type: integer
+          format: int64
+        remote_index_build_current_flush_size:
+          $ref: '#/components/schemas/_common___ByteCount'
+        remote_index_build_current_merge_operations:
+          type: integer
+          format: int64
+        remote_index_build_current_merge_size:
+          $ref: '#/components/schemas/_common___ByteCount'
+        remote_index_build_flush_time_in_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+        remote_index_build_merge_time_in_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+    knn._common___RemoteVectorIndexClientStats:
+      type: object
+      properties:
+        build_request_failure_count:
+          type: integer
+          format: int64
+        build_request_success_count:
+          type: integer
+          format: int64
+        index_build_failure_count:
+          type: integer
+          format: int64
+        index_build_success_count:
+          type: integer
+          format: int64
+        status_request_failure_count:
+          type: integer
+          format: int64
+        status_request_success_count:
+          type: integer
+          format: int64
+        waiting_time_in_ms:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+    knn._common___RemoteVectorIndexRepositoryStats:
+      type: object
+      properties:
+        read_success_count:
+          type: integer
+          format: int64
+        read_failure_count:
+          type: integer
+          format: int64
+        successful_read_time_in_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+        successful_write_time_in_millis:
+          $ref: '#/components/schemas/_common___DurationValueUnitMillis'
+        write_success_count:
+          type: integer
+          format: int64
+        write_failure_count:
+          type: integer
+          format: int64
     knn._common___Stats:
       allOf:
         - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
@@ -59595,6 +61313,14 @@ components:
             $ref: '#/components/schemas/ltr._common___StoreDetails'
       required:
         - stores
+    ltr._common___LtrStatName:
+      type: string
+      enum:
+        - cache
+        - request_error_count
+        - request_total_count
+        - status
+        - stores
     ltr._common___NodeDetails:
       type: object
       properties:
@@ -59627,6 +61353,20 @@ components:
           $ref: '#/components/schemas/ltr._common___CacheItemStats'
         models:
           $ref: '#/components/schemas/ltr._common___CacheItemStats'
+    ltr._common___NotFoundResponse:
+      type: object
+      description: Standard OpenSearch not found response.
+      properties:
+        _index:
+          type: string
+          description: Index name.
+        _id:
+          type: string
+          description: Document ID.
+        found:
+          type: boolean
+          description: Whether the document was found.
+          default: false
     ltr._common___Stats:
       allOf:
         - $ref: '#/components/schemas/nodes._common___NodesResponseBase'
@@ -59695,11 +61435,24 @@ components:
           type: string
         post_process_function:
           type: string
+    ml._common___AdditionalConfig:
+      type: object
+      properties:
+        space_type:
+          type: string
+          description: The distance metric for k-NN search.
     ml._common___AdditionalInfo:
       type: object
       description: Additional information query.
       properties: {}
       additionalProperties: true
+    ml._common___AgentType:
+      type: string
+      description: The agent type.
+      enum:
+        - conversational
+        - conversational_flow
+        - flow
     ml._common___Aggregation:
       type: object
       properties:
@@ -59711,12 +61464,6 @@ components:
           type: string
           description: The field name.
       additionalProperties: true
-    ml._common___Algorithm:
-      type: object
-      description: The algorithm.
-      properties:
-        value:
-          $ref: '#/components/schemas/ml._common___FunctionName'
     ml._common___AlgorithmOperations:
       type: object
       properties:
@@ -59738,28 +61485,6 @@ components:
       type: object
       additionalProperties:
         $ref: '#/components/schemas/ml._common___AlgorithmOperations'
-    ml._common___BoolQuery:
-      type: object
-      description: The Boolean query.
-      properties:
-        filter:
-          type: array
-          description: Filter query that appears in matching documents.
-          items:
-            $ref: '#/components/schemas/ml._common___Filter'
-        must:
-          type: array
-          description: Query that must appears in matching documents
-          items:
-            $ref: '#/components/schemas/ml._common___Filter'
-        must_not:
-          description: Query that must not appears in matching documents.
-          $ref: '#/components/schemas/ml._common___Filter'
-        should:
-          type: array
-          description: Query that should appear in matching documents.
-          items:
-            $ref: '#/components/schemas/ml._common___Filter'
     ml._common___Buckets:
       type: object
       properties:
@@ -59786,11 +61511,13 @@ components:
           type: string
           description: The byte buffer array.
         order:
-          type: string
+          $ref: '#/components/schemas/ml._common___ByteOrder'
           description: The byte buffer order.
-          enum:
-            - BIG_ENDIAN
-            - LITTLE_ENDIAN
+    ml._common___ByteOrder:
+      type: string
+      enum:
+        - BIG_ENDIAN
+        - LITTLE_ENDIAN
     ml._common___ClientConfig:
       type: object
       properties:
@@ -59814,13 +61541,21 @@ components:
         name:
           $ref: '#/components/schemas/_common___Name'
         column_type:
-          type: string
-          description: The column type.
-          enum:
-            - BOOLEAN
-            - DOUBLE
-            - INTEGER
-            - STRING
+          $ref: '#/components/schemas/ml._common___ColumnType'
+    ml._common___ColumnType:
+      type: string
+      description: The column type.
+      enum:
+        - BOOLEAN
+        - DOUBLE
+        - INTEGER
+        - STRING
+    ml._common___ConnectorProtocol:
+      type: string
+      description: The connector protocol.
+      enum:
+        - aws_sigv4
+        - http
     ml._common___Credential:
       type: object
       properties:
@@ -59872,63 +61607,55 @@ components:
         result:
           type: number
           description: The result.
-    ml._common___Exists:
-      type: object
-      description: The exists filter.
-      properties:
-        field:
-          $ref: '#/components/schemas/_common___Field'
-    ml._common___Filter:
-      type: object
-      description: The filter element.
-      properties:
-        range:
-          $ref: '#/components/schemas/ml._common___Range'
-        nested:
-          $ref: '#/components/schemas/ml._common___Nested'
-        exists:
-          $ref: '#/components/schemas/ml._common___Exists'
-        term:
-          $ref: '#/components/schemas/ml._common___Term'
-        terms:
-          $ref: '#/components/schemas/ml._common___Term'
-        match:
-          $ref: '#/components/schemas/ml._common___Match'
     ml._common___FunctionName:
       type: string
       description: The function name.
       enum:
         - AD_LIBSVM
+        - ad_libsvm
         - AGENT
+        - agent
         - ANOMALY_LOCALIZATION
+        - anomaly_localization
         - BATCH_RCF
+        - batch_rcf
         - CONNECTOR
+        - connector
         - FIT_RCF
+        - fit_rcf
         - KMEANS
+        - kmeans
         - LINEAR_REGRESSION
+        - linear_regression
         - LOCAL_SAMPLE_CALCULATOR
+        - local_sample_calculator
         - LOGISTIC_REGRESSION
+        - logistic_regression
         - METRICS_CORRELATION
+        - metrics_correlation
         - QUESTION_ANSWERING
+        - question_answering
         - RCF_SUMMARIZE
+        - rcf_summarize
         - REMOTE
+        - remote
         - SAMPLE_ALGO
+        - sample_algo
         - SPARSE_ENCODING
+        - sparse_encoding
         - SPARSE_TOKENIZE
+        - sparse_tokenize
         - TEXT_EMBEDDING
+        - text_embedding
         - TEXT_SIMILARITY
+        - text_similarity
     ml._common___GetAgentResponse:
       type: object
       properties:
         name:
           $ref: '#/components/schemas/_common___Name'
         type:
-          type: string
-          description: The agent type.
-          enum:
-            - conversational
-            - conversational_flow
-            - flow
+          $ref: '#/components/schemas/ml._common___AgentType'
         description:
           type: string
           description: The agent description.
@@ -59958,11 +61685,7 @@ components:
           type: string
           description: The connector description.
         protocol:
-          type: string
-          description: The connector protocol.
-          enum:
-            - aws_sigv4
-            - http
+          $ref: '#/components/schemas/ml._common___ConnectorProtocol'
         parameters:
           $ref: '#/components/schemas/ml._common___Parameters'
         actions:
@@ -59992,27 +61715,15 @@ components:
         ml_connector_index_status:
           type: string
           description: The connector index status.
-          enum:
-            - green
-            - non-existent
-            - red
-            - yellow
+          $ref: '#/components/schemas/ml._common___MlIndexStatus'
         ml_config_index_status:
           type: string
           description: The config index status.
-          enum:
-            - green
-            - non-existent
-            - red
-            - yellow
+          $ref: '#/components/schemas/ml._common___MlIndexStatus'
         ml_task_index_status:
           type: string
           description: The task index status.
-          enum:
-            - green
-            - non-existent
-            - red
-            - yellow
+          $ref: '#/components/schemas/ml._common___MlIndexStatus'
         ml_connector_count:
           type: integer
           format: int64
@@ -60020,30 +61731,18 @@ components:
         ml_model_index_status:
           type: string
           description: The model index status.
-          enum:
-            - green
-            - non-existent
-            - red
-            - yellow
+          $ref: '#/components/schemas/ml._common___MlIndexStatus'
         ml_controller_index_status:
           type: string
           description: The controller index status.
-          enum:
-            - green
-            - non-existent
-            - red
-            - yellow
+          $ref: '#/components/schemas/ml._common___MlIndexStatus'
         nodes:
           $ref: '#/components/schemas/ml._common___NodeStats'
     ml._common___Guardrails:
       type: object
       properties:
         type:
-          type: string
-          description: The guardrails type.
-          enum:
-            - local_regex
-            - model
+          $ref: '#/components/schemas/ml._common___GuardrailsType'
         input_guardrail:
           $ref: '#/components/schemas/ml._common___GuardrailsInputOutput'
         output_guardrail:
@@ -60075,6 +61774,12 @@ components:
         response_validation_regex:
           type: string
           description: The response validation regex.
+    ml._common___GuardrailsType:
+      type: string
+      description: The guardrails type.
+      enum:
+        - local_regex
+        - model
     ml._common___Headers:
       type: object
       properties:
@@ -60114,23 +61819,13 @@ components:
           format: int64
           description: The size of the query.
         query:
-          $ref: '#/components/schemas/ml._common___Query'
-    ml._common___Key:
-      type: object
-      description: The key.
-      properties:
-        gte:
-          type: number
-          description: Greater than or equal to.
-        lte:
-          type: number
-          description: Less than or equal to.
-        gt:
-          type: number
-          description: Greater than.
-        lt:
-          type: number
-          description: Less than.
+          $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
+    ml._common___KMeansDistanceType:
+      type: string
+      enum:
+        - COSINE
+        - EUCLIDEAN
+        - L1
     ml._common___LLM:
       type: object
       properties:
@@ -60138,18 +61833,12 @@ components:
           type: string
         parameters:
           $ref: '#/components/schemas/ml._common___Parameters'
-    ml._common___Match:
-      type: object
-      description: Match query.
-      properties:
-        description:
-          type: string
-          description: The description.
-      additionalProperties: true
-    ml._common___MatchAllQuery:
-      type: object
-      description: The match all query.
-      properties: {}
+    ml._common___LocalSampleCalculatorOperation:
+      type: string
+      enum:
+        - max
+        - min
+        - sum
     ml._common___Memory:
       type: object
       properties:
@@ -60214,6 +61903,59 @@ components:
           type: integer
           format: int64
           description: The trace number.
+    ml._common___MlIndexStatus:
+      type: string
+      enum:
+        - green
+        - non-existent
+        - red
+        - yellow
+    ml._common___MlInputDataType:
+      type: string
+      description: The input type.
+      enum:
+        - DATA_FRAME
+        - QUESTION_ANSWERING
+        - REMOTE
+        - SEARCH_QUERY
+        - TEXT_DOCS
+        - TEXT_SIMILARITY
+    ml._common___MlResultDataType:
+      type: string
+      description: The result data type.
+      enum:
+        - BOOLEAN
+        - FLOAT16
+        - FLOAT32
+        - FLOAT64
+        - INT32
+        - INT64
+        - INT8
+        - STRING
+        - UINT8
+        - UNKNOWN
+    ml._common___MlStatName:
+      type: string
+      enum:
+        - ml_config_index_status
+        - ml_connector_count
+        - ml_connector_index_status
+        - ml_controller_index_status
+        - ml_model_count
+        - ml_model_index_status
+        - ml_task_index_status
+    ml._common___MlTaskType:
+      type: string
+      description: Task type.
+      enum:
+        - BATCH_INGEST
+        - BATCH_PREDICTION
+        - DEPLOY_MODEL
+        - EXECUTION
+        - PREDICTION
+        - REGISTER_MODEL
+        - TRAINING
+        - TRAINING_AND_PREDICTION
     ml._common___Model:
       type: object
       properties:
@@ -60232,16 +61974,7 @@ components:
         model_format:
           $ref: '#/components/schemas/ml._common___ModelFormat'
         model_state:
-          type: string
-          description: The model state.
-          enum:
-            - DEPLOYED
-            - DEPLOYING
-            - DEPLOY_FAILED
-            - PARTIALLY_DEPLOYED
-            - REGISTERED
-            - REGISTERING
-            - UNDEPLOYED
+          $ref: '#/components/schemas/ml._common___ModelState'
         model_content_size_in_bytes:
           type: integer
           format: int64
@@ -60275,6 +62008,8 @@ components:
     ml._common___ModelConfig:
       type: object
       properties:
+        additional_config:
+          $ref: '#/components/schemas/ml._common___AdditionalConfig'
         all_config:
           type: string
           description: The all config.
@@ -60308,12 +62043,7 @@ components:
         owner:
           $ref: '#/components/schemas/ml._common___Owner'
         access:
-          type: string
-          description: The model group access.
-          enum:
-            - private
-            - public
-            - restricted
+          $ref: '#/components/schemas/ml._common___ModelGroupAccessMode'
         created_time:
           type: integer
           format: int64
@@ -60325,6 +62055,13 @@ components:
         - description
         - latest_version
         - name
+    ml._common___ModelGroupAccessMode:
+      type: string
+      description: The model group access mode.
+      enum:
+        - private
+        - public
+        - restricted
     ml._common___ModelGroupRegistration:
       type: object
       properties:
@@ -60341,16 +62078,7 @@ components:
       type: object
       properties:
         model_state:
-          type: string
-          description: The model state.
-          enum:
-            - DEPLOYED
-            - DEPLOYING
-            - DEPLOY_FAILED
-            - PARTIALLY_DEPLOYED
-            - REGISTERED
-            - REGISTERING
-            - UNDEPLOYED
+          $ref: '#/components/schemas/ml._common___ModelState'
         predictor:
           type: string
           description: The predictor.
@@ -60390,6 +62118,17 @@ components:
       type: object
       additionalProperties:
         $ref: '#/components/schemas/ml._common___ModelProfile'
+    ml._common___ModelState:
+      type: string
+      description: The model state.
+      enum:
+        - DEPLOYED
+        - DEPLOYING
+        - DEPLOY_FAILED
+        - PARTIALLY_DEPLOYED
+        - REGISTERED
+        - REGISTERING
+        - UNDEPLOYED
     ml._common___ModelStats:
       type: object
       properties:
@@ -60405,29 +62144,6 @@ components:
           type: integer
           format: int64
           description: The executing task count.
-    ml._common___Nested:
-      type: object
-      description: The nested filter.
-      properties:
-        query:
-          $ref: '#/components/schemas/ml._common___Query'
-        path:
-          $ref: '#/components/schemas/_common___Field'
-        ignore_unmapped:
-          type: boolean
-          description: Whether to ignore unmapped fields.
-        score_mode:
-          type: string
-          description: The score mode.
-          enum:
-            - avg
-            - max
-            - min
-            - none
-            - sum
-        boost:
-          type: number
-          description: Adjust the relevance score of a match.
     ml._common___Node:
       type: object
       properties:
@@ -60481,19 +62197,7 @@ components:
           type: string
           description: The output name.
         data_type:
-          type: string
-          description: The output data type.
-          enum:
-            - BOOLEAN
-            - FLOAT16
-            - FLOAT32
-            - FLOAT64
-            - INT32
-            - INT64
-            - INT8
-            - STRING
-            - UINT8
-            - UNKNOWN
+          $ref: '#/components/schemas/ml._common___MlResultDataType'
         shape:
           type: array
           items:
@@ -60540,15 +62244,6 @@ components:
           description: The user requested tenant.
       required:
         - name
-    ml._common___OwnerNameKeyword:
-      type: object
-      description: The owner name keyword.
-      properties:
-        value:
-          $ref: '#/components/schemas/_common___FieldValue'
-        boost:
-          type: number
-          description: Adjust the relevance score of a match.
     ml._common___Parameters:
       type: object
       additionalProperties: true
@@ -60570,19 +62265,7 @@ components:
           type: string
           description: The output name.
         data_type:
-          type: string
-          description: The output data type.
-          enum:
-            - BOOLEAN
-            - FLOAT16
-            - FLOAT32
-            - FLOAT64
-            - INT32
-            - INT64
-            - INT8
-            - STRING
-            - UINT8
-            - UNKNOWN
+          $ref: '#/components/schemas/ml._common___MlResultDataType'
         shape:
           type: array
           items:
@@ -60676,29 +62359,6 @@ components:
         return_all_models:
           type: boolean
           description: Whether to return all models.
-    ml._common___Query:
-      type: object
-      description: The query.
-      properties:
-        bool:
-          $ref: '#/components/schemas/ml._common___BoolQuery'
-        match:
-          $ref: '#/components/schemas/ml._common___Match'
-        match_all:
-          $ref: '#/components/schemas/ml._common___MatchAllQuery'
-        term:
-          $ref: '#/components/schemas/ml._common___Term'
-      additionalProperties: true
-    ml._common___Range:
-      type: object
-      description: The filter range.
-      properties:
-        k1:
-          $ref: '#/components/schemas/ml._common___Key'
-        k2:
-          $ref: '#/components/schemas/ml._common___Key'
-        k3:
-          $ref: '#/components/schemas/ml._common___Key'
     ml._common___RateLimiter:
       type: object
       properties:
@@ -60706,19 +62366,21 @@ components:
           description: The maximum limit.
           $ref: '#/components/schemas/_common___StringifiedDouble'
         unit:
-          type: string
           description: The unit of time.
-          enum:
-            - DAYS
-            - HOURS
-            - MICROSECONDS
-            - MILLISECONDS
-            - MINUTES
-            - NANOSECONDS
-            - SECONDS
+          $ref: '#/components/schemas/ml._common___RateLimiterUnit'
       required:
         - limit
         - unit
+    ml._common___RateLimiterUnit:
+      type: string
+      enum:
+        - DAYS
+        - HOURS
+        - MICROSECONDS
+        - MILLISECONDS
+        - MINUTES
+        - NANOSECONDS
+        - SECONDS
     ml._common___Result:
       type: object
       properties:
@@ -60810,134 +62472,6 @@ components:
         - hits
     ml._common___SearchTasksResponse:
       $ref: '#/components/schemas/ml._common___SearchResponse'
-    ml._common___Sort:
-      type: object
-      description: Sort query.
-      properties:
-        algorithm:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        auto_redeploy_retry_times:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        chunk_number:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        created_time:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        current_worker_node_count:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        deploy_to_all_nodes:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        is_hidden:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        last_registered_time:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        last_updated_time:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        model_content_hash_value:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        model_content_size_in_bytes:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        model_format:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        model_group_id:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        model_state:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        model_version:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        planning_worker_nodes:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        planning_worker_node_count:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        total_chunks:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _index:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _id:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _seq_no:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _score:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-    ml._common___SortAgent:
-      type: object
-      description: The sort agent query.
-      properties:
-        created_time:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        is_hidden:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        last_updated_time:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        parameters:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        tools:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        type:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _id:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _index:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _score:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _seq_no:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-    ml._common___SortMemory:
-      type: object
-      description: The sort memory query.
-      properties:
-        additional_info:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        application_time:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        create_time:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        updated_time:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        user:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _id:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _index:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _score:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _seq_no:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-    ml._common___SortMessage:
-      type: object
-      description: The sort message query.
-      properties:
-        additional_info:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        create_time:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        memory_id:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        origin:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        parent_message_id:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        trace_number:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _id:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _index:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _score:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-        _seq_no:
-          $ref: '#/components/schemas/ml._common___SortOrder'
-    ml._common___SortOrder:
-      type: object
-      description: The order of the sort.
-      properties:
-        order:
-          type: string
-          description: The order.
-          enum:
-            - asc
-            - desc
     ml._common___Source:
       type: object
       properties:
@@ -60970,16 +62504,7 @@ components:
           type: string
           description: The model description.
         model_state:
-          type: string
-          description: The model state.
-          enum:
-            - DEPLOYED
-            - DEPLOYING
-            - DEPLOY_FAILED
-            - PARTIALLY_DEPLOYED
-            - REGISTERED
-            - REGISTERING
-            - UNDEPLOYED
+          $ref: '#/components/schemas/ml._common___ModelState'
         model_content_size_in_bytes:
           type: integer
           format: int64
@@ -61046,21 +62571,12 @@ components:
         owner:
           $ref: '#/components/schemas/ml._common___Owner'
         access:
-          type: string
-          description: The model group access.
-          enum:
-            - private
-            - public
-            - restricted
+          $ref: '#/components/schemas/ml._common___ModelGroupAccessMode'
         latest_version:
           type: integer
           description: The latest version.
         protocol:
-          type: string
-          description: The connector protocol.
-          enum:
-            - aws_sigv4
-            - http
+          $ref: '#/components/schemas/ml._common___ConnectorProtocol'
         parameters:
           $ref: '#/components/schemas/ml._common___Parameters'
         actions:
@@ -61121,12 +62637,7 @@ components:
             - string
           description: The prompt template.
         type:
-          type: string
-          description: The agent type
-          enum:
-            - conversational
-            - conversational_flow
-            - flow
+          $ref: '#/components/schemas/ml._common___AgentType'
         tools:
           type: array
           items:
@@ -61142,31 +62653,13 @@ components:
         function_name:
           $ref: '#/components/schemas/ml._common___FunctionName'
         input_type:
-          type: string
-          description: The input type.
-          enum:
-            - DATA_FRAME
-            - QUESTION_ANSWERING
-            - REMOTE
-            - SEARCH_QUERY
-            - TEXT_DOCS
-            - TEXT_SIMILARITY
+          $ref: '#/components/schemas/ml._common___MlInputDataType'
         worker_node:
           type: array
           items:
             $ref: '#/components/schemas/_common___NodeIds'
         task_type:
-          type: string
-          description: Task type.
-          enum:
-            - BATCH_INGEST
-            - BATCH_PREDICTION
-            - DEPLOY_MODEL
-            - EXECUTION
-            - PREDICTION
-            - REGISTER_MODEL
-            - TRAINING
-            - TRAINING_AND_PREDICTION
+          $ref: '#/components/schemas/ml._common___MlTaskType'
         state:
           $ref: '#/components/schemas/ml._common___Status'
         error:
@@ -61190,28 +62683,9 @@ components:
         task_id:
           type: string
         state:
-          type: string
-          enum:
-            - CANCELLED
-            - CANCELLING
-            - COMPLETED
-            - COMPLETED_WITH_ERROR
-            - CREATED
-            - EXPIRED
-            - FAILED
-            - RUNNING
+          $ref: '#/components/schemas/ml._common___TaskState'
         task_type:
-          type: string
-          description: Task type.
-          enum:
-            - BATCH_INGEST
-            - BATCH_PREDICTION
-            - DEPLOY_MODEL
-            - EXECUTION
-            - PREDICTION
-            - REGISTER_MODEL
-            - TRAINING
-            - TRAINING_AND_PREDICTION
+          $ref: '#/components/schemas/ml._common___MlTaskType'
         function_name:
           $ref: '#/components/schemas/ml._common___FunctionName'
         worker_node:
@@ -61234,26 +62708,17 @@ components:
       type: object
       additionalProperties:
         $ref: '#/components/schemas/ml._common___Task'
-    ml._common___Term:
-      type: object
-      description: Term to match the query.
-      properties:
-        algorithm:
-          $ref: '#/components/schemas/ml._common___Algorithm'
-        _id:
-          type: array
-          items:
-            $ref: '#/components/schemas/_common___Id'
-        function_name:
-          $ref: '#/components/schemas/ml._common___FunctionName'
-        model_id:
-          $ref: '#/components/schemas/_common___Name'
-        name:
-          $ref: '#/components/schemas/ml._common___OwnerNameKeyword'
-        owner.name.keyword:
-          $ref: '#/components/schemas/ml._common___OwnerNameKeyword'
-        type:
-          $ref: '#/components/schemas/ml._common___Type'
+    ml._common___TaskState:
+      type: string
+      enum:
+        - CANCELLED
+        - CANCELLING
+        - COMPLETED
+        - COMPLETED_WITH_ERROR
+        - CREATED
+        - EXPIRED
+        - FAILED
+        - RUNNING
     ml._common___Tool:
       type: object
       properties:
@@ -61296,6 +62761,27 @@ components:
           x-version-added: '3.0'
           $ref: '#/components/schemas/ml._common___ToolAttributes'
       additionalProperties: true
+    ml._common___ToolName:
+      type: string
+      enum:
+        - AgentTool
+        - CatIndexTool
+        - ConnectorTool
+        - CreateAnomalyDetectorTool
+        - IndexMappingTool
+        - ListIndexTool
+        - LogPatternTool
+        - MLModelTool
+        - NeuralSparseSearchTool
+        - PPLTool
+        - RAGTool
+        - SearchAlertsTool
+        - SearchAnomalyDetectorsTool
+        - SearchAnomalyResultsTool
+        - SearchIndexTool
+        - SearchMonitorsTool
+        - VectorDBTool
+        - VisualizationTool
     ml._common___TrainParameters:
       type: object
       properties:
@@ -61308,12 +62794,8 @@ components:
           format: int64
           description: The iterations.
         distance_type:
-          type: string
           description: The distance type.
-          enum:
-            - COSINE
-            - EUCLIDEAN
-            - L1
+          $ref: '#/components/schemas/ml._common___KMeansDistanceType'
     ml._common___TrainPredictResponse:
       type: object
       properties:
@@ -61332,17 +62814,6 @@ components:
           $ref: '#/components/schemas/ml._common___Status'
       required:
         - status
-    ml._common___Type:
-      type: object
-      description: The type.
-      properties:
-        value:
-          type: string
-          description: The agent type.
-          enum:
-            - conversational
-            - conversational_flow
-            - flow
     ml._common___UndeployModelNode:
       type: object
       properties:
@@ -61379,13 +62850,7 @@ components:
       type: object
       properties:
         column_type:
-          type: string
-          description: The column type.
-          enum:
-            - BOOLEAN
-            - DOUBLE
-            - INTEGER
-            - STRING
+          $ref: '#/components/schemas/ml._common___ColumnType'
         value:
           type: number
           description: The value.
@@ -61846,6 +63311,64 @@ components:
               type: object
               additionalProperties:
                 $ref: '#/components/schemas/neural._common___NestedNeuralNodeStats'
+    neural._common___NeuralStatName:
+      type: string
+      enum:
+        - cluster_version
+        - comb_arithmetic_executions
+        - comb_arithmetic_processors
+        - comb_geometric_executions
+        - comb_geometric_processors
+        - comb_harmonic_executions
+        - comb_harmonic_processors
+        - comb_rrf_executions
+        - comb_rrf_processors
+        - hybrid_query_requests
+        - hybrid_query_with_filter_requests
+        - hybrid_query_with_inner_hits_requests
+        - hybrid_query_with_pagination_requests
+        - neural_query_against_knn_requests
+        - neural_query_against_semantic_dense_requests
+        - neural_query_against_semantic_sparse_requests
+        - neural_query_enricher_executions
+        - neural_query_enricher_processors
+        - neural_query_requests
+        - neural_sparse_query_requests
+        - neural_sparse_two_phase_executions
+        - neural_sparse_two_phase_processors
+        - norm_l2_executions
+        - norm_l2_processors
+        - norm_minmax_executions
+        - norm_minmax_processors
+        - norm_zscore_executions
+        - norm_zscore_processors
+        - normalization_processor_executions
+        - normalization_processors
+        - rank_based_normalization_processor_executions
+        - rank_based_normalization_processors
+        - rerank_by_field_executions
+        - rerank_by_field_processors
+        - rerank_ml_executions
+        - rerank_ml_processors
+        - semantic_field_chunking_executions
+        - semantic_field_executions
+        - semantic_highlighting_request_count
+        - skip_existing_executions
+        - skip_existing_processors
+        - sparse_encoding_executions
+        - sparse_encoding_processors
+        - text_chunking_delimiter_executions
+        - text_chunking_delimiter_processors
+        - text_chunking_executions
+        - text_chunking_fixed_char_length_executions
+        - text_chunking_fixed_char_length_processors
+        - text_chunking_fixed_token_length_executions
+        - text_chunking_fixed_token_length_processors
+        - text_chunking_processors
+        - text_embedding_executions
+        - text_embedding_processors_in_pipelines
+        - text_image_embedding_executions
+        - text_image_embedding_processors
     neural._common___NeuralStats:
       anyOf:
         - $ref: '#/components/schemas/neural._common___NestedNeuralStats'
@@ -61862,10 +63385,6 @@ components:
             - type: string
         stat_type:
           type: string
-          enum:
-            - info_counter
-            - info_string
-            - timestamped_event_counter
     neural._common___TimestampedEventCounterStat:
       oneOf:
         - type: integer
@@ -64568,36 +66087,6 @@ components:
           $ref: '#/components/schemas/notifications._common___HeaderParamsMap'
       required:
         - url
-    observability._common___ErrorResponse:
-      type: object
-      description: The detailed error response.
-      properties:
-        root_cause:
-          type: array
-          description: The list of root causes for the error.
-          items:
-            $ref: '#/components/schemas/observability._common___RootCause'
-        type:
-          type: string
-          description: The type of error.
-        reason:
-          type: string
-          description: The reason for the error.
-      required:
-        - reason
-        - root_cause
-        - type
-    observability._common___NotFoundResponse:
-      type: object
-      description: The error response when a resource is not found.
-      properties:
-        error:
-          $ref: '#/components/schemas/observability._common___ErrorResponse'
-        status:
-          type: integer
-      required:
-        - error
-        - status
     observability._common___ObservabilityObject:
       type: object
       description: The core observability object containing visualization and query data.
@@ -64683,18 +66172,6 @@ components:
       required:
         - language
         - query
-    observability._common___RootCause:
-      type: object
-      properties:
-        type:
-          type: string
-          description: The type of the root cause.
-        reason:
-          type: string
-          description: The reason for the root cause.
-      required:
-        - reason
-        - type
     observability._common___SavedQuery:
       type: object
       description: The configuration for a saved query.
@@ -64913,14 +66390,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/query._common___DataSource'
-    query._common___DataSourceNotFound:
-      type: object
-      description: Indicates that the requested data source could not be found.
-      properties:
-        error:
-          $ref: '#/components/schemas/query._common___ErrorResponse'
-      required:
-        - error
     query._common___DataSourceRetrieve:
       type: object
       description: Represents the fundamental reason for an error.
@@ -64957,46 +66426,6 @@ components:
         - properties
         - resultIndex
         - status
-    query._common___Error:
-      type: object
-      description: Contains detailed information about an error.
-      properties:
-        root_cause:
-          type: array
-          items:
-            $ref: '#/components/schemas/query._common___RootCause'
-            description: The underlying causes of the error.
-        type:
-          type: string
-          description: The error type classification.
-        reason:
-          type: string
-          description: The human-readable error message.
-      required:
-        - reason
-        - root_cause
-        - type
-    query._common___ErrorResponse:
-      type: object
-      description: Provides details about an API error.
-      properties:
-        error:
-          $ref: '#/components/schemas/query._common___Error'
-        status:
-          type: number
-          description: The HTTP status code for the error.
-    query._common___RootCause:
-      type: object
-      properties:
-        type:
-          type: string
-          description: The error type classification.
-        reason:
-          type: string
-          description: The human-readable error message.
-      required:
-        - reason
-        - type
     remote_store._common___RemoteStoreRestoreInfo:
       type: object
       properties:
@@ -65233,6 +66662,14 @@ components:
           $ref: '#/components/schemas/_common___IndexName'
         use_roles:
           $ref: '#/components/schemas/replication._common___UseRoles'
+    replication._common___ReplicationStatus:
+      type: string
+      enum:
+        - BOOTSTRAPPING
+        - PAUSED
+        - REPLICATION NOT IN PROGRESS
+        - RUNNING
+        - SYNCING
     replication._common___SettingsBody:
       type: object
       properties:
@@ -65242,13 +66679,7 @@ components:
       type: object
       properties:
         status:
-          type: string
-          enum:
-            - BOOTSTRAPPING
-            - PAUSED
-            - REPLICATION NOT IN PROGRESS
-            - RUNNING
-            - SYNCING
+          $ref: '#/components/schemas/replication._common___ReplicationStatus'
           description: The current status of the replication process.
         reason:
           type: string
@@ -66603,17 +68034,19 @@ components:
       type: object
       properties:
         status:
-          type: string
-          enum:
-            - BAD_REQUEST
-            - CONFLICT
-            - FORBIDDEN
-            - INTERNAL_SERVER_ERROR
-            - NOT_FOUND
-            - NOT_IMPLEMENTED
-            - UNAUTHORIZED
+          $ref: '#/components/schemas/security._common___ErrorStatus'
         message:
           type: string
+    security._common___ErrorStatus:
+      type: string
+      enum:
+        - BAD_REQUEST
+        - CONFLICT
+        - FORBIDDEN
+        - INTERNAL_SERVER_ERROR
+        - NOT_FOUND
+        - NOT_IMPLEMENTED
+        - UNAUTHORIZED
     security._common___GenerateOBOToken:
       type: object
       properties:
@@ -67015,15 +68448,6 @@ components:
           type: boolean
         is_node_certificate_request:
           type: boolean
-    sm._common___BadRequestResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: An error message that describes the bad request.
-        status:
-          type: integer
-          description: The HTTP status code.
     sm._common___CreateUpdatePolicyRequest:
       type: object
       properties:
@@ -67076,42 +68500,6 @@ components:
       properties:
         cron:
           $ref: '#/components/schemas/sm._common___CronExpression'
-    sm._common___DeletePolicyResponse:
-      type: object
-      properties:
-        _index:
-          type: string
-          description: The index name where the policy was stored.
-        _id:
-          type: string
-          description: The ID of the deleted policy.
-        _version:
-          type: integer
-          description: The version number of the operation.
-        result:
-          type: string
-          description: The result of the delete operation.
-        forced_refresh:
-          type: boolean
-          description: Whether a refresh was forced after the operation.
-        _shards:
-          $ref: '#/components/schemas/sm._common___ShardsInfo'
-          description: Information about shard operations.
-        _seq_no:
-          type: integer
-          description: The sequence number for optimistic concurrency control.
-        _primary_term:
-          type: integer
-          description: The primary term for optimistic concurrency control.
-      required:
-        - _id
-        - _index
-        - _primary_term
-        - _seq_no
-        - _shards
-        - _version
-        - forced_refresh
-        - result
     sm._common___DeletionCondition:
       type: object
       properties:
@@ -67184,12 +68572,8 @@ components:
           type: integer
           description: The number of time units between executions.
         unit:
-          type: string
+          $ref: '#/components/schemas/sm._common___IntervalUnit'
           description: The time unit for the interval period (Days, Hours, or Minutes).
-          enum:
-            - Days
-            - Hours
-            - Minutes
       required:
         - period
         - start_time
@@ -67199,6 +68583,12 @@ components:
       properties:
         interval:
           $ref: '#/components/schemas/sm._common___IntervalConfig'
+    sm._common___IntervalUnit:
+      type: string
+      enum:
+        - Days
+        - Hours
+        - Minutes
     sm._common___ListedPolicy:
       type: object
       properties:
@@ -67217,35 +68607,6 @@ components:
       required:
         - _id
         - sm_policy
-    sm._common___NotFoundError:
-      type: object
-      properties:
-        root_cause:
-          type: array
-          description: An array of root causes for the error.
-          items:
-            $ref: '#/components/schemas/sm._common___RootCause'
-        type:
-          type: string
-          description: The error type.
-        reason:
-          type: string
-          description: The detailed reason for the error.
-      required:
-        - reason
-        - type
-    sm._common___NotFoundResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/sm._common___NotFoundError'
-          description: The detailed error information.
-        status:
-          type: integer
-          description: The HTTP status code.
-      required:
-        - error
-        - status
     sm._common___NotificationChannel:
       type: object
       properties:
@@ -67316,27 +68677,6 @@ components:
         count:
           type: integer
           description: The number of retry attempts made.
-    sm._common___RootCause:
-      type: object
-      properties:
-        type:
-          type: string
-          description: The type of the root cause error.
-        reason:
-          type: string
-          description: Detailed explanation of the root cause.
-    sm._common___ShardsInfo:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: The total number of shards.
-        successful:
-          type: integer
-          description: The number of shards that completed successfully.
-        failed:
-          type: integer
-          description: The number of shards that failed.
     sm._common___SMPolicy:
       type: object
       properties:
@@ -68103,57 +69443,6 @@ components:
           type: string
         target_field:
           type: string
-    transforms._common___DeletedTransformResponse:
-      type: object
-      properties:
-        _type:
-          $ref: '#/components/schemas/_common___Type'
-        _index:
-          type: string
-        _id:
-          $ref: '#/components/schemas/_common___Id'
-        _version:
-          $ref: '#/components/schemas/_common___VersionNumber'
-        result:
-          type: string
-        forced_refresh:
-          type: boolean
-        _shards:
-          $ref: '#/components/schemas/_common___ShardStatistics'
-        _primary_term:
-          type: integer
-          format: int64
-        _seq_no:
-          $ref: '#/components/schemas/_common___SequenceNumber'
-        status:
-          type: number
-      required:
-        - _id
-        - _index
-        - _primary_term
-        - _seq_no
-        - _shards
-        - _version
-        - forced_refresh
-        - result
-        - status
-    transforms._common___DeleteTransformResponseItem:
-      type: object
-      properties:
-        delete:
-          $ref: '#/components/schemas/transforms._common___DeletedTransformResponse'
-    transforms._common___DeleteTransformsResponse:
-      type: object
-      properties:
-        took:
-          type: integer
-          format: int64
-        errors:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/transforms._common___DeleteTransformResponseItem'
     transforms._common___Explain:
       type: object
       properties:
@@ -68328,11 +69617,7 @@ components:
         name:
           type: string
         resiliency_mode:
-          type: string
-          enum:
-            - enforced
-            - monitor
-            - soft
+          $ref: '#/components/schemas/wlm._common___ResiliencyMode'
         resource_limits:
           anyOf:
             - type: object
@@ -68370,11 +69655,7 @@ components:
           type: string
         resiliency_mode:
           description: The resiliency mode of the query group.
-          type: string
-          enum:
-            - enforced
-            - monitor
-            - soft
+          $ref: '#/components/schemas/wlm._common___ResiliencyMode'
         updated_at:
           description: The time at which the query group was last updated.
           type: integer
@@ -68412,13 +69693,15 @@ components:
       type: object
       properties:
         resiliency_mode:
-          type: string
-          enum:
-            - enforced
-            - monitor
-            - soft
+          $ref: '#/components/schemas/wlm._common___ResiliencyMode'
         resource_limits:
           $ref: '#/components/schemas/wlm._common___ResourceLimitsSchema'
+    wlm._common___ResiliencyMode:
+      type: string
+      enum:
+        - enforced
+        - monitor
+        - soft
     wlm._common___ResourceLimitsSchema:
       type: object
       properties:

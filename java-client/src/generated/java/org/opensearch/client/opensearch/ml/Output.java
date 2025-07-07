@@ -44,7 +44,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
     private final List<Double> data;
 
     @Nullable
-    private final String dataType;
+    private final MlResultDataType dataType;
 
     @Nullable
     private final String name;
@@ -87,13 +87,10 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
     }
 
     /**
-     * The output data type.
-     * <p>
      * API name: {@code data_type}
-     * </p>
      */
     @Nullable
-    public final String dataType() {
+    public final MlResultDataType dataType() {
         return this.dataType;
     }
 
@@ -152,7 +149,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
 
         if (this.dataType != null) {
             generator.writeKey("data_type");
-            generator.write(this.dataType);
+            this.dataType.serialize(generator, mapper);
         }
 
         if (this.name != null) {
@@ -196,7 +193,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
         private ByteBuffer byteBuffer;
         private List<Double> data;
         @Nullable
-        private String dataType;
+        private MlResultDataType dataType;
         @Nullable
         private String name;
         @Nullable
@@ -274,13 +271,10 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
         }
 
         /**
-         * The output data type.
-         * <p>
          * API name: {@code data_type}
-         * </p>
          */
         @Nonnull
-        public final Builder dataType(@Nullable String value) {
+        public final Builder dataType(@Nullable MlResultDataType value) {
             this.dataType = value;
             return this;
         }
@@ -362,7 +356,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
     protected static void setupOutputDeserializer(ObjectDeserializer<Output.Builder> op) {
         op.add(Builder::byteBuffer, ByteBuffer._DESERIALIZER, "byte_buffer");
         op.add(Builder::data, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()), "data");
-        op.add(Builder::dataType, JsonpDeserializer.stringDeserializer(), "data_type");
+        op.add(Builder::dataType, MlResultDataType._DESERIALIZER, "data_type");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::result, JsonpDeserializer.stringDeserializer(), "result");
         op.add(Builder::shape, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.longDeserializer()), "shape");

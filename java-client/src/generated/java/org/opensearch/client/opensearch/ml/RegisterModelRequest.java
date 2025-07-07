@@ -57,6 +57,12 @@ public final class RegisterModelRequest extends RequestBase
     private final String functionName;
 
     @Nullable
+    private final ModelConfig modelConfig;
+
+    @Nullable
+    private final String modelContentHashValue;
+
+    @Nullable
     private final ModelFormat modelFormat;
 
     @Nullable
@@ -64,6 +70,9 @@ public final class RegisterModelRequest extends RequestBase
 
     @Nonnull
     private final String name;
+
+    @Nullable
+    private final String url;
 
     @Nullable
     private final String version;
@@ -75,9 +84,12 @@ public final class RegisterModelRequest extends RequestBase
         this.connectorId = builder.connectorId;
         this.description = builder.description;
         this.functionName = builder.functionName;
+        this.modelConfig = builder.modelConfig;
+        this.modelContentHashValue = builder.modelContentHashValue;
         this.modelFormat = builder.modelFormat;
         this.modelGroupId = builder.modelGroupId;
         this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+        this.url = builder.url;
         this.version = builder.version;
     }
 
@@ -119,6 +131,25 @@ public final class RegisterModelRequest extends RequestBase
     }
 
     /**
+     * API name: {@code model_config}
+     */
+    @Nullable
+    public final ModelConfig modelConfig() {
+        return this.modelConfig;
+    }
+
+    /**
+     * The model content hash value.
+     * <p>
+     * API name: {@code model_content_hash_value}
+     * </p>
+     */
+    @Nullable
+    public final String modelContentHashValue() {
+        return this.modelContentHashValue;
+    }
+
+    /**
      * API name: {@code model_format}
      */
     @Nullable
@@ -143,6 +174,17 @@ public final class RegisterModelRequest extends RequestBase
     @Nonnull
     public final String name() {
         return this.name;
+    }
+
+    /**
+     * The model URL.
+     * <p>
+     * API name: {@code url}
+     * </p>
+     */
+    @Nullable
+    public final String url() {
+        return this.url;
     }
 
     /**
@@ -179,6 +221,16 @@ public final class RegisterModelRequest extends RequestBase
             generator.write(this.functionName);
         }
 
+        if (this.modelConfig != null) {
+            generator.writeKey("model_config");
+            this.modelConfig.serialize(generator, mapper);
+        }
+
+        if (this.modelContentHashValue != null) {
+            generator.writeKey("model_content_hash_value");
+            generator.write(this.modelContentHashValue);
+        }
+
         if (this.modelFormat != null) {
             generator.writeKey("model_format");
             this.modelFormat.serialize(generator, mapper);
@@ -191,6 +243,11 @@ public final class RegisterModelRequest extends RequestBase
 
         generator.writeKey("name");
         generator.write(this.name);
+
+        if (this.url != null) {
+            generator.writeKey("url");
+            generator.write(this.url);
+        }
 
         if (this.version != null) {
             generator.writeKey("version");
@@ -222,10 +279,16 @@ public final class RegisterModelRequest extends RequestBase
         @Nullable
         private String functionName;
         @Nullable
+        private ModelConfig modelConfig;
+        @Nullable
+        private String modelContentHashValue;
+        @Nullable
         private ModelFormat modelFormat;
         @Nullable
         private String modelGroupId;
         private String name;
+        @Nullable
+        private String url;
         @Nullable
         private String version;
 
@@ -236,9 +299,12 @@ public final class RegisterModelRequest extends RequestBase
             this.connectorId = o.connectorId;
             this.description = o.description;
             this.functionName = o.functionName;
+            this.modelConfig = o.modelConfig;
+            this.modelContentHashValue = o.modelContentHashValue;
             this.modelFormat = o.modelFormat;
             this.modelGroupId = o.modelGroupId;
             this.name = o.name;
+            this.url = o.url;
             this.version = o.version;
         }
 
@@ -247,9 +313,12 @@ public final class RegisterModelRequest extends RequestBase
             this.connectorId = o.connectorId;
             this.description = o.description;
             this.functionName = o.functionName;
+            this.modelConfig = o.modelConfig;
+            this.modelContentHashValue = o.modelContentHashValue;
             this.modelFormat = o.modelFormat;
             this.modelGroupId = o.modelGroupId;
             this.name = o.name;
+            this.url = o.url;
             this.version = o.version;
         }
 
@@ -302,6 +371,35 @@ public final class RegisterModelRequest extends RequestBase
         }
 
         /**
+         * API name: {@code model_config}
+         */
+        @Nonnull
+        public final Builder modelConfig(@Nullable ModelConfig value) {
+            this.modelConfig = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code model_config}
+         */
+        @Nonnull
+        public final Builder modelConfig(Function<ModelConfig.Builder, ObjectBuilder<ModelConfig>> fn) {
+            return modelConfig(fn.apply(new ModelConfig.Builder()).build());
+        }
+
+        /**
+         * The model content hash value.
+         * <p>
+         * API name: {@code model_content_hash_value}
+         * </p>
+         */
+        @Nonnull
+        public final Builder modelContentHashValue(@Nullable String value) {
+            this.modelContentHashValue = value;
+            return this;
+        }
+
+        /**
          * API name: {@code model_format}
          */
         @Nonnull
@@ -328,6 +426,18 @@ public final class RegisterModelRequest extends RequestBase
         @Nonnull
         public final Builder name(String value) {
             this.name = value;
+            return this;
+        }
+
+        /**
+         * The model URL.
+         * <p>
+         * API name: {@code url}
+         * </p>
+         */
+        @Nonnull
+        public final Builder url(@Nullable String value) {
+            this.url = value;
             return this;
         }
 
@@ -368,9 +478,12 @@ public final class RegisterModelRequest extends RequestBase
         op.add(Builder::connectorId, JsonpDeserializer.stringDeserializer(), "connector_id");
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::functionName, JsonpDeserializer.stringDeserializer(), "function_name");
+        op.add(Builder::modelConfig, ModelConfig._DESERIALIZER, "model_config");
+        op.add(Builder::modelContentHashValue, JsonpDeserializer.stringDeserializer(), "model_content_hash_value");
         op.add(Builder::modelFormat, ModelFormat._DESERIALIZER, "model_format");
         op.add(Builder::modelGroupId, JsonpDeserializer.stringDeserializer(), "model_group_id");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+        op.add(Builder::url, JsonpDeserializer.stringDeserializer(), "url");
         op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
     }
 
@@ -401,9 +514,12 @@ public final class RegisterModelRequest extends RequestBase
         result = 31 * result + Objects.hashCode(this.connectorId);
         result = 31 * result + Objects.hashCode(this.description);
         result = 31 * result + Objects.hashCode(this.functionName);
+        result = 31 * result + Objects.hashCode(this.modelConfig);
+        result = 31 * result + Objects.hashCode(this.modelContentHashValue);
         result = 31 * result + Objects.hashCode(this.modelFormat);
         result = 31 * result + Objects.hashCode(this.modelGroupId);
         result = 31 * result + this.name.hashCode();
+        result = 31 * result + Objects.hashCode(this.url);
         result = 31 * result + Objects.hashCode(this.version);
         return result;
     }
@@ -416,9 +532,12 @@ public final class RegisterModelRequest extends RequestBase
         return Objects.equals(this.connectorId, other.connectorId)
             && Objects.equals(this.description, other.description)
             && Objects.equals(this.functionName, other.functionName)
+            && Objects.equals(this.modelConfig, other.modelConfig)
+            && Objects.equals(this.modelContentHashValue, other.modelContentHashValue)
             && Objects.equals(this.modelFormat, other.modelFormat)
             && Objects.equals(this.modelGroupId, other.modelGroupId)
             && this.name.equals(other.name)
+            && Objects.equals(this.url, other.url)
             && Objects.equals(this.version, other.version);
     }
 }
