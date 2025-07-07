@@ -34,88 +34,28 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch.nodes.info;
+package org.opensearch.client.opensearch.indices;
 
 import javax.annotation.Generated;
 import org.opensearch.client.json.JsonEnum;
 import org.opensearch.client.json.JsonpDeserializable;
 
-// typedef: nodes.info.Metric
+// typedef: indices.IngestionSourceType
 
-/**
- * The nodes metrics to retrieve.
- */
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public enum NodesInfoMetric implements JsonEnum {
-    /**
-     * Returns aggregation information.
-     */
-    Aggregations("aggregations"),
+public enum IngestionSourceType implements JsonEnum {
+    File("file"),
 
-    /**
-     * Returns all metrics.
-     */
-    All("_all"),
+    Kafka("kafka"),
 
-    /**
-     * Returns HTTP connection information.
-     */
-    Http("http"),
+    Kinesis("kinesis"),
 
-    /**
-     * Returns indices stats and settings.
-     */
-    Indices("indices"),
-
-    /**
-     * Returns ingest pipeline information.
-     */
-    Ingest("ingest"),
-
-    /**
-     * Returns JVM stats, process information, and memory usage.
-     */
-    Jvm("jvm"),
-
-    /**
-     * Returns operating system information and stats.
-     */
-    Os("os"),
-
-    /**
-     * Returns installed plugins information.
-     */
-    Plugins("plugins"),
-
-    /**
-     * Returns process statistics.
-     */
-    Process("process"),
-
-    /**
-     * Returns search pipeline configurations.
-     */
-    SearchPipelines("search_pipelines"),
-
-    /**
-     * Returns node settings information.
-     */
-    Settings("settings"),
-
-    /**
-     * Returns thread pool information.
-     */
-    ThreadPool("thread_pool"),
-
-    /**
-     * Returns transport layer information.
-     */
-    Transport("transport");
+    None("none");
 
     private final String jsonValue;
 
-    NodesInfoMetric(String jsonValue) {
+    IngestionSourceType(String jsonValue) {
         this.jsonValue = jsonValue;
     }
 
@@ -123,5 +63,7 @@ public enum NodesInfoMetric implements JsonEnum {
         return this.jsonValue;
     }
 
-    public static final JsonEnum.Deserializer<NodesInfoMetric> _DESERIALIZER = new JsonEnum.Deserializer<>(NodesInfoMetric.values());
+    public static final JsonEnum.Deserializer<IngestionSourceType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        IngestionSourceType.values()
+    );
 }

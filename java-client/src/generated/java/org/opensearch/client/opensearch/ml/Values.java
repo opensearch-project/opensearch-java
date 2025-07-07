@@ -53,10 +53,7 @@ public class Values implements PlainJsonSerializable, ToCopyableBuilder<Values.B
     }
 
     /**
-     * The column type.
-     * <p>
      * API name: {@code column_type}
-     * </p>
      */
     @Nullable
     public final String columnType() {
@@ -137,10 +134,7 @@ public class Values implements PlainJsonSerializable, ToCopyableBuilder<Values.B
         }
 
         /**
-         * The column type.
-         * <p>
          * API name: {@code column_type}
-         * </p>
          */
         @Nonnull
         public final Builder columnType(@Nullable String value) {

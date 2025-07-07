@@ -135,10 +135,7 @@ public class GetAgentResponse implements PlainJsonSerializable, ToCopyableBuilde
     }
 
     /**
-     * The agent type.
-     * <p>
      * API name: {@code type}
-     * </p>
      */
     @Nullable
     public final String type() {
@@ -352,10 +349,7 @@ public class GetAgentResponse implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
-         * The agent type.
-         * <p>
          * API name: {@code type}
-         * </p>
          */
         @Nonnull
         public final Builder type(@Nullable String value) {

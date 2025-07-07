@@ -44,7 +44,7 @@ public class EnumShape extends Shape {
     }
 
     public void addVariant(String name, String value, String description, boolean deprecated) {
-        name = name.toLowerCase();
+        name = toEnumConstant(name);
         var variant = variants.get(name);
         if (variant == null) {
             variant = new Variant(name, value, description, deprecated);
@@ -55,6 +55,17 @@ public class EnumShape extends Shape {
             if (description != null) {
                 variant.setDescription(description);
             }
+        }
+    }
+
+    private static String toEnumConstant(String name) {
+        switch (name) {
+            case "rescale_0_1":
+                return "Rescale_0_1";
+            case "rescale_0_100":
+                return "Rescale_0_100";
+            default:
+                return Strings.toPascalCase(Strings.toSnakeCase(name));
         }
     }
 
@@ -104,7 +115,7 @@ public class EnumShape extends Shape {
         }
 
         public String getName() {
-            return toEnumConstant(name);
+            return name;
         }
 
         public boolean isDeprecated() {
@@ -113,17 +124,6 @@ public class EnumShape extends Shape {
 
         public void setDeprecated(boolean deprecated) {
             this.deprecated = deprecated;
-        }
-
-        private static String toEnumConstant(String name) {
-            switch (name) {
-                case "rescale_0_1":
-                    return "Rescale_0_1";
-                case "rescale_0_100":
-                    return "Rescale_0_100";
-                default:
-                    return Strings.toPascalCase(name);
-            }
         }
     }
 }

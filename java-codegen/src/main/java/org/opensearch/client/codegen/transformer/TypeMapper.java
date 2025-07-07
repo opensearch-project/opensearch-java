@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -55,10 +56,16 @@ public class TypeMapper {
     private final Memoizer<OpenApiSchema, TypeRef> mapTypeBoxedMemo = new Memoizer<>(s -> mapTypeMemo.get(s).getBoxed());
 
     private TypeRef mapTypeInner(OpenApiSchema schema) {
+        var overriddenMappedType = getOverriddenMappedType(schema);
+
+        if (overriddenMappedType.isPresent()) {
+            return overriddenMappedType.get();
+        }
+
         if (schema.has$ref()) {
             schema = schema.resolve();
 
-            var overriddenMappedType = overrides.getSchema(schema.getPointer()).flatMap(SchemaOverride::getMappedType);
+            overriddenMappedType = getOverriddenMappedType(schema);
 
             if (overriddenMappedType.isPresent()) {
                 return overriddenMappedType.get();
@@ -143,6 +150,10 @@ public class TypeMapper {
         }
 
         throw new UnsupportedOperationException("Can not get type name for: " + types);
+    }
+
+    private Optional<TypeRef> getOverriddenMappedType(OpenApiSchema schema) {
+        return overrides.getSchema(schema.getPointer()).flatMap(SchemaOverride::getMappedType);
     }
 
     private TypeRef mapOneOf(List<OpenApiSchema> oneOf) {

@@ -151,10 +151,7 @@ public class GetTaskResponse implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     /**
-     * Task type.
-     * <p>
      * API name: {@code task_type}
-     * </p>
      */
     @Nullable
     public final String taskType() {
@@ -381,10 +378,7 @@ public class GetTaskResponse implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         /**
-         * Task type.
-         * <p>
          * API name: {@code task_type}
-         * </p>
          */
         @Nonnull
         public final Builder taskType(@Nullable String value) {

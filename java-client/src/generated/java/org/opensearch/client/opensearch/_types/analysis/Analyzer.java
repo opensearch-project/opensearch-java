@@ -74,6 +74,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Pl
         Nori("nori"),
         Pattern("pattern"),
         Phone("phone"),
+        PhoneSearch("phone-search"),
         Simple("simple"),
         Smartcn("smartcn"),
         Snowball("snowball"),
@@ -294,6 +295,22 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Pl
      */
     public PhoneAnalyzer phone() {
         return TaggedUnionUtils.get(this, Kind.Phone);
+    }
+
+    /**
+     * Is this variant instance of kind {@code phone-search}?
+     */
+    public boolean isPhoneSearch() {
+        return _kind == Kind.PhoneSearch;
+    }
+
+    /**
+     * Get the {@code phone-search} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code phone-search} kind.
+     */
+    public PhoneSearchAnalyzer phoneSearch() {
+        return TaggedUnionUtils.get(this, Kind.PhoneSearch);
     }
 
     /**
@@ -528,6 +545,16 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Pl
             return this.phone(fn.apply(new PhoneAnalyzer.Builder()).build());
         }
 
+        public ObjectBuilder<Analyzer> phoneSearch(PhoneSearchAnalyzer v) {
+            this._kind = Kind.PhoneSearch;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Analyzer> phoneSearch(Function<PhoneSearchAnalyzer.Builder, ObjectBuilder<PhoneSearchAnalyzer>> fn) {
+            return this.phoneSearch(fn.apply(new PhoneSearchAnalyzer.Builder()).build());
+        }
+
         public ObjectBuilder<Analyzer> simple(SimpleAnalyzer v) {
             this._kind = Kind.Simple;
             this._value = v;
@@ -607,6 +634,7 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Pl
         op.add(Builder::nori, NoriAnalyzer._DESERIALIZER, "nori");
         op.add(Builder::pattern, PatternAnalyzer._DESERIALIZER, "pattern");
         op.add(Builder::phone, PhoneAnalyzer._DESERIALIZER, "phone");
+        op.add(Builder::phoneSearch, PhoneSearchAnalyzer._DESERIALIZER, "phone-search");
         op.add(Builder::simple, SimpleAnalyzer._DESERIALIZER, "simple");
         op.add(Builder::smartcn, SmartcnAnalyzer._DESERIALIZER, "smartcn");
         op.add(Builder::snowball, SnowballAnalyzer._DESERIALIZER, "snowball");

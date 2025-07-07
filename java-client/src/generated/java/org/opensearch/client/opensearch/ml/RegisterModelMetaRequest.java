@@ -50,6 +50,9 @@ public final class RegisterModelMetaRequest extends RequestBase
     @Nullable
     private final String description;
 
+    @Nullable
+    private final FunctionName functionName;
+
     @Nonnull
     private final ModelConfig modelConfig;
 
@@ -78,6 +81,7 @@ public final class RegisterModelMetaRequest extends RequestBase
     private RegisterModelMetaRequest(Builder builder) {
         super(builder);
         this.description = builder.description;
+        this.functionName = builder.functionName;
         this.modelConfig = ApiTypeHelper.requireNonNull(builder.modelConfig, this, "modelConfig");
         this.modelContentHashValue = ApiTypeHelper.requireNonNull(builder.modelContentHashValue, this, "modelContentHashValue");
         this.modelFormat = ApiTypeHelper.requireNonNull(builder.modelFormat, this, "modelFormat");
@@ -101,6 +105,14 @@ public final class RegisterModelMetaRequest extends RequestBase
     @Nullable
     public final String description() {
         return this.description;
+    }
+
+    /**
+     * API name: {@code function_name}
+     */
+    @Nullable
+    public final FunctionName functionName() {
+        return this.functionName;
     }
 
     /**
@@ -194,6 +206,11 @@ public final class RegisterModelMetaRequest extends RequestBase
             generator.write(this.description);
         }
 
+        if (this.functionName != null) {
+            generator.writeKey("function_name");
+            this.functionName.serialize(generator, mapper);
+        }
+
         generator.writeKey("model_config");
         this.modelConfig.serialize(generator, mapper);
 
@@ -242,6 +259,8 @@ public final class RegisterModelMetaRequest extends RequestBase
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RegisterModelMetaRequest> {
         @Nullable
         private String description;
+        @Nullable
+        private FunctionName functionName;
         private ModelConfig modelConfig;
         private String modelContentHashValue;
         private ModelFormat modelFormat;
@@ -258,6 +277,7 @@ public final class RegisterModelMetaRequest extends RequestBase
         private Builder(RegisterModelMetaRequest o) {
             super(o);
             this.description = o.description;
+            this.functionName = o.functionName;
             this.modelConfig = o.modelConfig;
             this.modelContentHashValue = o.modelContentHashValue;
             this.modelFormat = o.modelFormat;
@@ -271,6 +291,7 @@ public final class RegisterModelMetaRequest extends RequestBase
         private Builder(Builder o) {
             super(o);
             this.description = o.description;
+            this.functionName = o.functionName;
             this.modelConfig = o.modelConfig;
             this.modelContentHashValue = o.modelContentHashValue;
             this.modelFormat = o.modelFormat;
@@ -302,6 +323,15 @@ public final class RegisterModelMetaRequest extends RequestBase
         @Nonnull
         public final Builder description(@Nullable String value) {
             this.description = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code function_name}
+         */
+        @Nonnull
+        public final Builder functionName(@Nullable FunctionName value) {
+            this.functionName = value;
             return this;
         }
 
@@ -423,6 +453,7 @@ public final class RegisterModelMetaRequest extends RequestBase
 
     protected static void setupRegisterModelMetaRequestDeserializer(ObjectDeserializer<RegisterModelMetaRequest.Builder> op) {
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+        op.add(Builder::functionName, FunctionName._DESERIALIZER, "function_name");
         op.add(Builder::modelConfig, ModelConfig._DESERIALIZER, "model_config");
         op.add(Builder::modelContentHashValue, JsonpDeserializer.stringDeserializer(), "model_content_hash_value");
         op.add(Builder::modelFormat, ModelFormat._DESERIALIZER, "model_format");
@@ -458,6 +489,7 @@ public final class RegisterModelMetaRequest extends RequestBase
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.description);
+        result = 31 * result + Objects.hashCode(this.functionName);
         result = 31 * result + this.modelConfig.hashCode();
         result = 31 * result + this.modelContentHashValue.hashCode();
         result = 31 * result + this.modelFormat.hashCode();
@@ -475,6 +507,7 @@ public final class RegisterModelMetaRequest extends RequestBase
         if (o == null || this.getClass() != o.getClass()) return false;
         RegisterModelMetaRequest other = (RegisterModelMetaRequest) o;
         return Objects.equals(this.description, other.description)
+            && Objects.equals(this.functionName, other.functionName)
             && this.modelConfig.equals(other.modelConfig)
             && this.modelContentHashValue.equals(other.modelContentHashValue)
             && this.modelFormat.equals(other.modelFormat)
