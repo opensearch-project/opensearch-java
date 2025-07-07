@@ -4,7 +4,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased 4.x]
 
 ### Dependencies
-- Bump `org.junit:junit-bom` from 5.13.1 to 5.13.2 ([#1650](https://github.com/opensearch-project/opensearch-java/pull/1650))
+- Bump `org.junit:junit-bom` from 5.13.1 to 5.13.3 ([#1650](https://github.com/opensearch-project/opensearch-java/pull/1650), [#1665](https://github.com/opensearch-project/opensearch-java/pull/1665))
 - Bump `io.github.classgraph:classgraph` from 4.8.179 to 4.8.180 ([#1651](https://github.com/opensearch-project/opensearch-java/pull/1651))
 
 ## [Unreleased 3.x]
