@@ -34,6 +34,7 @@ import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.nio.ssl.TlsStrategy;
 import org.apache.hc.core5.reactor.ssl.TlsDetails;
+import org.apache.hc.core5.util.Timeout;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.RestClientBuilder;
 import org.opensearch.client.json.JsonpMapper;
@@ -347,7 +348,9 @@ public class ApacheHttpClient5TransportBuilder {
         }
 
         // default timeouts are all infinite
-        ConnectionConfig.Builder connectionConfigBuilder = ConnectionConfig.custom();
+        ConnectionConfig.Builder connectionConfigBuilder = ConnectionConfig.custom()
+                .setConnectTimeout(Timeout.ofMilliseconds(DEFAULT_CONNECT_TIMEOUT_MILLIS))
+                .setSocketTimeout(Timeout.ofMilliseconds(DEFAULT_RESPONSE_TIMEOUT_MILLIS));
 
         if (connectionConfigCallback != null) {
             connectionConfigBuilder = connectionConfigCallback.customizeConnectionConfig(connectionConfigBuilder);
@@ -404,7 +407,8 @@ public class ApacheHttpClient5TransportBuilder {
     }
 
     /**
-     * Callback used the default {@link ConnectionConfig} being set to the {@link CloseableHttpClient}
+     * Callback used the default {@link ConnectionConfig} being set to the {@link CloseableHttpClient}.
+     * The connectTimeout setting has been moved from {@link RequestConfig} to {@link ConnectionConfig}.
      * @see HttpClientBuilder#setDefaultRequestConfig
      */
     public interface ConnectionConfigCallback {
