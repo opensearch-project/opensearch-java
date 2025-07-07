@@ -31,7 +31,12 @@ public class Overrides {
     }
 
     private static JsonPointer parameterSchema(OperationGroup operation, In in, String name) {
-        return JsonPointer.of("components", "parameters", operation.toString() + OpenApiSchema.NAMESPACE_NAME_SEPARATOR + in.toString() + "." + name, "schema");
+        return JsonPointer.of(
+            "components",
+            "parameters",
+            operation.toString() + OpenApiSchema.NAMESPACE_NAME_SEPARATOR + in.toString() + "." + name,
+            "schema"
+        );
     }
 
     private static JsonPointer schema(String namespace, String name) {
@@ -181,7 +186,6 @@ public class Overrides {
 
                 .with(requestBodySchema("scroll"), so -> so.withProperties(p -> p.with("scroll_id", po -> po.withRequired(true))))
 
-
                 // For backwards compatibility in ML namespace, keep these as plain strings instead of enums
                 .with(schema("ml._common", "AgentType"), so -> so.withMappedType(Types.Java.Lang.String))
                 .with(schema("ml._common", "ByteOrder"), so -> so.withMappedType(Types.Java.Lang.String))
@@ -197,7 +201,10 @@ public class Overrides {
                 .with(schema("ml._common", "RateLimiterUnit"), so -> so.withMappedType(Types.Java.Lang.String))
                 .with(schema("ml._common", "TaskState"), so -> so.withMappedType(Types.Java.Lang.String))
                 .with(schema("ml._common", "ToolName"), so -> so.withMappedType(Types.Java.Lang.String))
-                .with(parameterSchema(OperationGroup.from("ml.get_stats"), In.Path, "stat"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(
+                    parameterSchema(OperationGroup.from("ml.get_stats"), In.Path, "stat"),
+                    so -> so.withMappedType(Types.Java.Lang.String)
+                )
         )
         .build();
 
