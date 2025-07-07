@@ -37,35 +37,28 @@
 package org.opensearch.client.opensearch._types.analysis;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.analysis.PhoneAnalyzer
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class PhoneAnalyzer implements AnalyzerVariant, PlainJsonSerializable, ToCopyableBuilder<PhoneAnalyzer.Builder, PhoneAnalyzer> {
-
-    @Nullable
-    private final String phoneRegion;
+public class PhoneAnalyzer extends PhoneAnalyzerBase implements AnalyzerVariant, ToCopyableBuilder<PhoneAnalyzer.Builder, PhoneAnalyzer> {
 
     // ---------------------------------------------------------------------------------------------
 
     private PhoneAnalyzer(Builder builder) {
-        this.phoneRegion = builder.phoneRegion;
+        super(builder);
     }
 
     public static PhoneAnalyzer of(Function<PhoneAnalyzer.Builder, ObjectBuilder<PhoneAnalyzer>> fn) {
@@ -80,33 +73,9 @@ public class PhoneAnalyzer implements AnalyzerVariant, PlainJsonSerializable, To
         return Analyzer.Kind.Phone;
     }
 
-    /**
-     * Optional ISO 3166 country code, defaults to &quot;ZZ&quot; (unknown region).
-     * <p>
-     * API name: {@code phone-region}
-     * </p>
-     */
-    @Nullable
-    public final String phoneRegion() {
-        return this.phoneRegion;
-    }
-
-    /**
-     * Serialize this object to JSON.
-     */
-    @Override
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        serializeInternal(generator, mapper);
-        generator.writeEnd();
-    }
-
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.write("type", "phone");
-        if (this.phoneRegion != null) {
-            generator.writeKey("phone-region");
-            generator.write(this.phoneRegion);
-        }
+        super.serializeInternal(generator, mapper);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -125,18 +94,16 @@ public class PhoneAnalyzer implements AnalyzerVariant, PlainJsonSerializable, To
     /**
      * Builder for {@link PhoneAnalyzer}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PhoneAnalyzer> {
-        @Nullable
-        private String phoneRegion;
+    public static class Builder extends PhoneAnalyzerBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, PhoneAnalyzer> {
 
         public Builder() {}
 
         private Builder(PhoneAnalyzer o) {
-            this.phoneRegion = o.phoneRegion;
+            super(o);
         }
 
         private Builder(Builder o) {
-            this.phoneRegion = o.phoneRegion;
+            super(o);
         }
 
         @Override
@@ -145,15 +112,9 @@ public class PhoneAnalyzer implements AnalyzerVariant, PlainJsonSerializable, To
             return new Builder(this);
         }
 
-        /**
-         * Optional ISO 3166 country code, defaults to &quot;ZZ&quot; (unknown region).
-         * <p>
-         * API name: {@code phone-region}
-         * </p>
-         */
+        @Override
         @Nonnull
-        public final Builder phoneRegion(@Nullable String value) {
-            this.phoneRegion = value;
+        protected Builder self() {
             return this;
         }
 
@@ -182,23 +143,24 @@ public class PhoneAnalyzer implements AnalyzerVariant, PlainJsonSerializable, To
     );
 
     protected static void setupPhoneAnalyzerDeserializer(ObjectDeserializer<PhoneAnalyzer.Builder> op) {
-        op.add(Builder::phoneRegion, JsonpDeserializer.stringDeserializer(), "phone-region");
+        setupPhoneAnalyzerBaseDeserializer(op);
 
         op.ignore("type");
     }
 
     @Override
     public int hashCode() {
-        int result = 17;
-        result = 31 * result + Objects.hashCode(this.phoneRegion);
+        int result = super.hashCode();
         return result;
     }
 
     @Override
     public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        PhoneAnalyzer other = (PhoneAnalyzer) o;
-        return Objects.equals(this.phoneRegion, other.phoneRegion);
+        return true;
     }
 }

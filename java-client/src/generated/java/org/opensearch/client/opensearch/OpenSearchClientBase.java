@@ -113,6 +113,7 @@ import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestClient;
+import org.opensearch.client.opensearch.ingestion.OpenSearchIngestionClient;
 import org.opensearch.client.opensearch.ism.OpenSearchIsmClient;
 import org.opensearch.client.opensearch.ml.OpenSearchMlClient;
 import org.opensearch.client.opensearch.nodes.OpenSearchNodesClient;
@@ -156,6 +157,10 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
 
     public OpenSearchIngestClient ingest() {
         return new OpenSearchIngestClient(this.transport, this.transportOptions);
+    }
+
+    public OpenSearchIngestionClient ingestion() {
+        return new OpenSearchIngestionClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchIsmClient ism() {

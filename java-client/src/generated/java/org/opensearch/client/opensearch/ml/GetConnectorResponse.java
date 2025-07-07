@@ -58,7 +58,7 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
     private final Map<String, JsonData> parameters;
 
     @Nullable
-    private final String protocol;
+    private final ConnectorProtocol protocol;
 
     @Nullable
     private final String version;
@@ -138,13 +138,10 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
-     * The connector protocol.
-     * <p>
      * API name: {@code protocol}
-     * </p>
      */
     @Nullable
-    public final String protocol() {
+    public final ConnectorProtocol protocol() {
         return this.protocol;
     }
 
@@ -208,7 +205,7 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
 
         if (this.protocol != null) {
             generator.writeKey("protocol");
-            generator.write(this.protocol);
+            this.protocol.serialize(generator, mapper);
         }
 
         if (this.version != null) {
@@ -247,7 +244,7 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
         @Nullable
         private Map<String, JsonData> parameters;
         @Nullable
-        private String protocol;
+        private ConnectorProtocol protocol;
         @Nullable
         private String version;
 
@@ -391,13 +388,10 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * The connector protocol.
-         * <p>
          * API name: {@code protocol}
-         * </p>
          */
         @Nonnull
-        public final Builder protocol(@Nullable String value) {
+        public final Builder protocol(@Nullable ConnectorProtocol value) {
             this.protocol = value;
             return this;
         }
@@ -442,7 +436,7 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
         op.add(Builder::lastUpdatedTime, JsonpDeserializer.longDeserializer(), "last_updated_time");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "parameters");
-        op.add(Builder::protocol, JsonpDeserializer.stringDeserializer(), "protocol");
+        op.add(Builder::protocol, ConnectorProtocol._DESERIALIZER, "protocol");
         op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
     }
 

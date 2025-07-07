@@ -49,7 +49,7 @@ public final class RegisterModelGroupRequest extends RequestBase
         ToCopyableBuilder<RegisterModelGroupRequest.Builder, RegisterModelGroupRequest> {
 
     @Nullable
-    private final String accessMode;
+    private final ModelGroupAccessMode accessMode;
 
     @Nullable
     private final Boolean addAllBackendRoles;
@@ -85,7 +85,7 @@ public final class RegisterModelGroupRequest extends RequestBase
      * </p>
      */
     @Nullable
-    public final String accessMode() {
+    public final ModelGroupAccessMode accessMode() {
         return this.accessMode;
     }
 
@@ -146,7 +146,7 @@ public final class RegisterModelGroupRequest extends RequestBase
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.accessMode != null) {
             generator.writeKey("access_mode");
-            generator.write(this.accessMode);
+            this.accessMode.serialize(generator, mapper);
         }
 
         if (this.addAllBackendRoles != null) {
@@ -192,7 +192,7 @@ public final class RegisterModelGroupRequest extends RequestBase
         implements
             CopyableBuilder<Builder, RegisterModelGroupRequest> {
         @Nullable
-        private String accessMode;
+        private ModelGroupAccessMode accessMode;
         @Nullable
         private Boolean addAllBackendRoles;
         @Nullable
@@ -240,7 +240,7 @@ public final class RegisterModelGroupRequest extends RequestBase
          * </p>
          */
         @Nonnull
-        public final Builder accessMode(@Nullable String value) {
+        public final Builder accessMode(@Nullable ModelGroupAccessMode value) {
             this.accessMode = value;
             return this;
         }
@@ -338,7 +338,7 @@ public final class RegisterModelGroupRequest extends RequestBase
     );
 
     protected static void setupRegisterModelGroupRequestDeserializer(ObjectDeserializer<RegisterModelGroupRequest.Builder> op) {
-        op.add(Builder::accessMode, JsonpDeserializer.stringDeserializer(), "access_mode");
+        op.add(Builder::accessMode, ModelGroupAccessMode._DESERIALIZER, "access_mode");
         op.add(Builder::addAllBackendRoles, JsonpDeserializer.booleanDeserializer(), "add_all_backend_roles");
         op.add(Builder::backendRoles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "backend_roles");
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");

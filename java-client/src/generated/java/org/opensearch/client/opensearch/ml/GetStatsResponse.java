@@ -38,25 +38,25 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilder<GetStatsResponse.Builder, GetStatsResponse> {
 
     @Nullable
-    private final String mlConfigIndexStatus;
+    private final MlIndexStatus mlConfigIndexStatus;
 
     @Nullable
     private final Long mlConnectorCount;
 
     @Nullable
-    private final String mlConnectorIndexStatus;
+    private final MlIndexStatus mlConnectorIndexStatus;
 
     @Nullable
-    private final String mlControllerIndexStatus;
+    private final MlIndexStatus mlControllerIndexStatus;
 
     @Nullable
     private final Long mlModelCount;
 
     @Nullable
-    private final String mlModelIndexStatus;
+    private final MlIndexStatus mlModelIndexStatus;
 
     @Nullable
-    private final String mlTaskIndexStatus;
+    private final MlIndexStatus mlTaskIndexStatus;
 
     @Nonnull
     private final Map<String, NodeStatsDetails> nodes;
@@ -85,7 +85,7 @@ public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilde
      * </p>
      */
     @Nullable
-    public final String mlConfigIndexStatus() {
+    public final MlIndexStatus mlConfigIndexStatus() {
         return this.mlConfigIndexStatus;
     }
 
@@ -107,7 +107,7 @@ public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilde
      * </p>
      */
     @Nullable
-    public final String mlConnectorIndexStatus() {
+    public final MlIndexStatus mlConnectorIndexStatus() {
         return this.mlConnectorIndexStatus;
     }
 
@@ -118,7 +118,7 @@ public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilde
      * </p>
      */
     @Nullable
-    public final String mlControllerIndexStatus() {
+    public final MlIndexStatus mlControllerIndexStatus() {
         return this.mlControllerIndexStatus;
     }
 
@@ -140,7 +140,7 @@ public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilde
      * </p>
      */
     @Nullable
-    public final String mlModelIndexStatus() {
+    public final MlIndexStatus mlModelIndexStatus() {
         return this.mlModelIndexStatus;
     }
 
@@ -151,7 +151,7 @@ public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilde
      * </p>
      */
     @Nullable
-    public final String mlTaskIndexStatus() {
+    public final MlIndexStatus mlTaskIndexStatus() {
         return this.mlTaskIndexStatus;
     }
 
@@ -176,7 +176,7 @@ public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilde
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.mlConfigIndexStatus != null) {
             generator.writeKey("ml_config_index_status");
-            generator.write(this.mlConfigIndexStatus);
+            this.mlConfigIndexStatus.serialize(generator, mapper);
         }
 
         if (this.mlConnectorCount != null) {
@@ -186,12 +186,12 @@ public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilde
 
         if (this.mlConnectorIndexStatus != null) {
             generator.writeKey("ml_connector_index_status");
-            generator.write(this.mlConnectorIndexStatus);
+            this.mlConnectorIndexStatus.serialize(generator, mapper);
         }
 
         if (this.mlControllerIndexStatus != null) {
             generator.writeKey("ml_controller_index_status");
-            generator.write(this.mlControllerIndexStatus);
+            this.mlControllerIndexStatus.serialize(generator, mapper);
         }
 
         if (this.mlModelCount != null) {
@@ -201,12 +201,12 @@ public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilde
 
         if (this.mlModelIndexStatus != null) {
             generator.writeKey("ml_model_index_status");
-            generator.write(this.mlModelIndexStatus);
+            this.mlModelIndexStatus.serialize(generator, mapper);
         }
 
         if (this.mlTaskIndexStatus != null) {
             generator.writeKey("ml_task_index_status");
-            generator.write(this.mlTaskIndexStatus);
+            this.mlTaskIndexStatus.serialize(generator, mapper);
         }
 
         if (ApiTypeHelper.isDefined(this.nodes)) {
@@ -238,19 +238,19 @@ public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilde
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, GetStatsResponse> {
         @Nullable
-        private String mlConfigIndexStatus;
+        private MlIndexStatus mlConfigIndexStatus;
         @Nullable
         private Long mlConnectorCount;
         @Nullable
-        private String mlConnectorIndexStatus;
+        private MlIndexStatus mlConnectorIndexStatus;
         @Nullable
-        private String mlControllerIndexStatus;
+        private MlIndexStatus mlControllerIndexStatus;
         @Nullable
         private Long mlModelCount;
         @Nullable
-        private String mlModelIndexStatus;
+        private MlIndexStatus mlModelIndexStatus;
         @Nullable
-        private String mlTaskIndexStatus;
+        private MlIndexStatus mlTaskIndexStatus;
         @Nullable
         private Map<String, NodeStatsDetails> nodes;
 
@@ -291,7 +291,7 @@ public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilde
          * </p>
          */
         @Nonnull
-        public final Builder mlConfigIndexStatus(@Nullable String value) {
+        public final Builder mlConfigIndexStatus(@Nullable MlIndexStatus value) {
             this.mlConfigIndexStatus = value;
             return this;
         }
@@ -315,7 +315,7 @@ public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilde
          * </p>
          */
         @Nonnull
-        public final Builder mlConnectorIndexStatus(@Nullable String value) {
+        public final Builder mlConnectorIndexStatus(@Nullable MlIndexStatus value) {
             this.mlConnectorIndexStatus = value;
             return this;
         }
@@ -327,7 +327,7 @@ public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilde
          * </p>
          */
         @Nonnull
-        public final Builder mlControllerIndexStatus(@Nullable String value) {
+        public final Builder mlControllerIndexStatus(@Nullable MlIndexStatus value) {
             this.mlControllerIndexStatus = value;
             return this;
         }
@@ -351,7 +351,7 @@ public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilde
          * </p>
          */
         @Nonnull
-        public final Builder mlModelIndexStatus(@Nullable String value) {
+        public final Builder mlModelIndexStatus(@Nullable MlIndexStatus value) {
             this.mlModelIndexStatus = value;
             return this;
         }
@@ -363,7 +363,7 @@ public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilde
          * </p>
          */
         @Nonnull
-        public final Builder mlTaskIndexStatus(@Nullable String value) {
+        public final Builder mlTaskIndexStatus(@Nullable MlIndexStatus value) {
             this.mlTaskIndexStatus = value;
             return this;
         }
@@ -431,13 +431,13 @@ public class GetStatsResponse implements PlainJsonSerializable, ToCopyableBuilde
     );
 
     protected static void setupGetStatsResponseDeserializer(ObjectDeserializer<GetStatsResponse.Builder> op) {
-        op.add(Builder::mlConfigIndexStatus, JsonpDeserializer.stringDeserializer(), "ml_config_index_status");
+        op.add(Builder::mlConfigIndexStatus, MlIndexStatus._DESERIALIZER, "ml_config_index_status");
         op.add(Builder::mlConnectorCount, JsonpDeserializer.longDeserializer(), "ml_connector_count");
-        op.add(Builder::mlConnectorIndexStatus, JsonpDeserializer.stringDeserializer(), "ml_connector_index_status");
-        op.add(Builder::mlControllerIndexStatus, JsonpDeserializer.stringDeserializer(), "ml_controller_index_status");
+        op.add(Builder::mlConnectorIndexStatus, MlIndexStatus._DESERIALIZER, "ml_connector_index_status");
+        op.add(Builder::mlControllerIndexStatus, MlIndexStatus._DESERIALIZER, "ml_controller_index_status");
         op.add(Builder::mlModelCount, JsonpDeserializer.longDeserializer(), "ml_model_count");
-        op.add(Builder::mlModelIndexStatus, JsonpDeserializer.stringDeserializer(), "ml_model_index_status");
-        op.add(Builder::mlTaskIndexStatus, JsonpDeserializer.stringDeserializer(), "ml_task_index_status");
+        op.add(Builder::mlModelIndexStatus, MlIndexStatus._DESERIALIZER, "ml_model_index_status");
+        op.add(Builder::mlTaskIndexStatus, MlIndexStatus._DESERIALIZER, "ml_task_index_status");
         op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeStatsDetails._DESERIALIZER), "nodes");
     }
 

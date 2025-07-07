@@ -56,13 +56,13 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
     private final String modelId;
 
     @Nonnull
-    private final String state;
+    private final TaskState state;
 
     @Nullable
     private final String taskId;
 
     @Nullable
-    private final String taskType;
+    private final MlTaskType taskType;
 
     @Nonnull
     private final List<List<String>> workerNode;
@@ -138,7 +138,7 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
      * Required - API name: {@code state}
      */
     @Nonnull
-    public final String state() {
+    public final TaskState state() {
         return this.state;
     }
 
@@ -151,13 +151,10 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
     }
 
     /**
-     * Task type.
-     * <p>
      * API name: {@code task_type}
-     * </p>
      */
     @Nullable
-    public final String taskType() {
+    public final MlTaskType taskType() {
         return this.taskType;
     }
 
@@ -211,7 +208,7 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
         }
 
         generator.writeKey("state");
-        generator.write(this.state);
+        this.state.serialize(generator, mapper);
 
         if (this.taskId != null) {
             generator.writeKey("task_id");
@@ -220,7 +217,7 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
 
         if (this.taskType != null) {
             generator.writeKey("task_type");
-            generator.write(this.taskType);
+            this.taskType.serialize(generator, mapper);
         }
 
         if (ApiTypeHelper.isDefined(this.workerNode)) {
@@ -266,11 +263,11 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
         private Long lastUpdateTime;
         @Nullable
         private String modelId;
-        private String state;
+        private TaskState state;
         @Nullable
         private String taskId;
         @Nullable
-        private String taskType;
+        private MlTaskType taskType;
         @Nullable
         private List<List<String>> workerNode;
 
@@ -366,7 +363,7 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
          * Required - API name: {@code state}
          */
         @Nonnull
-        public final Builder state(String value) {
+        public final Builder state(TaskState value) {
             this.state = value;
             return this;
         }
@@ -381,13 +378,10 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
         }
 
         /**
-         * Task type.
-         * <p>
          * API name: {@code task_type}
-         * </p>
          */
         @Nonnull
-        public final Builder taskType(@Nullable String value) {
+        public final Builder taskType(@Nullable MlTaskType value) {
             this.taskType = value;
             return this;
         }
@@ -446,9 +440,9 @@ public class Task implements PlainJsonSerializable, ToCopyableBuilder<Task.Build
         op.add(Builder::isAsync, JsonpDeserializer.booleanDeserializer(), "is_async");
         op.add(Builder::lastUpdateTime, JsonpDeserializer.longDeserializer(), "last_update_time");
         op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-        op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
+        op.add(Builder::state, TaskState._DESERIALIZER, "state");
         op.add(Builder::taskId, JsonpDeserializer.stringDeserializer(), "task_id");
-        op.add(Builder::taskType, JsonpDeserializer.stringDeserializer(), "task_type");
+        op.add(Builder::taskType, MlTaskType._DESERIALIZER, "task_type");
         op.add(
             Builder::workerNode,
             JsonpDeserializer.arrayDeserializer(JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())),

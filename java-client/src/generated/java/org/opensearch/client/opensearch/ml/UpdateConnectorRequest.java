@@ -50,7 +50,7 @@ public final class UpdateConnectorRequest extends RequestBase
         ToCopyableBuilder<UpdateConnectorRequest.Builder, UpdateConnectorRequest> {
 
     @Nullable
-    private final String accessMode;
+    private final ModelGroupAccessMode accessMode;
 
     @Nonnull
     private final List<Action> actions;
@@ -77,7 +77,7 @@ public final class UpdateConnectorRequest extends RequestBase
     private final Boolean parametersSkipValidatingMissingParameters;
 
     @Nullable
-    private final String protocol;
+    private final ConnectorProtocol protocol;
 
     @Nullable
     private final Long version;
@@ -104,13 +104,10 @@ public final class UpdateConnectorRequest extends RequestBase
     }
 
     /**
-     * The model group access mode.
-     * <p>
      * API name: {@code access_mode}
-     * </p>
      */
     @Nullable
-    public final String accessMode() {
+    public final ModelGroupAccessMode accessMode() {
         return this.accessMode;
     }
 
@@ -188,13 +185,10 @@ public final class UpdateConnectorRequest extends RequestBase
     }
 
     /**
-     * The connector protocol.
-     * <p>
      * API name: {@code protocol}
-     * </p>
      */
     @Nullable
-    public final String protocol() {
+    public final ConnectorProtocol protocol() {
         return this.protocol;
     }
 
@@ -219,7 +213,7 @@ public final class UpdateConnectorRequest extends RequestBase
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         if (this.accessMode != null) {
             generator.writeKey("access_mode");
-            generator.write(this.accessMode);
+            this.accessMode.serialize(generator, mapper);
         }
 
         if (ApiTypeHelper.isDefined(this.actions)) {
@@ -272,7 +266,7 @@ public final class UpdateConnectorRequest extends RequestBase
 
         if (this.protocol != null) {
             generator.writeKey("protocol");
-            generator.write(this.protocol);
+            this.protocol.serialize(generator, mapper);
         }
 
         if (this.version != null) {
@@ -299,7 +293,7 @@ public final class UpdateConnectorRequest extends RequestBase
      */
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, UpdateConnectorRequest> {
         @Nullable
-        private String accessMode;
+        private ModelGroupAccessMode accessMode;
         @Nullable
         private List<Action> actions;
         @Nullable
@@ -316,7 +310,7 @@ public final class UpdateConnectorRequest extends RequestBase
         @Nullable
         private Boolean parametersSkipValidatingMissingParameters;
         @Nullable
-        private String protocol;
+        private ConnectorProtocol protocol;
         @Nullable
         private Long version;
 
@@ -365,13 +359,10 @@ public final class UpdateConnectorRequest extends RequestBase
         }
 
         /**
-         * The model group access mode.
-         * <p>
          * API name: {@code access_mode}
-         * </p>
          */
         @Nonnull
-        public final Builder accessMode(@Nullable String value) {
+        public final Builder accessMode(@Nullable ModelGroupAccessMode value) {
             this.accessMode = value;
             return this;
         }
@@ -532,13 +523,10 @@ public final class UpdateConnectorRequest extends RequestBase
         }
 
         /**
-         * The connector protocol.
-         * <p>
          * API name: {@code protocol}
-         * </p>
          */
         @Nonnull
-        public final Builder protocol(@Nullable String value) {
+        public final Builder protocol(@Nullable ConnectorProtocol value) {
             this.protocol = value;
             return this;
         }
@@ -577,7 +565,7 @@ public final class UpdateConnectorRequest extends RequestBase
     );
 
     protected static void setupUpdateConnectorRequestDeserializer(ObjectDeserializer<UpdateConnectorRequest.Builder> op) {
-        op.add(Builder::accessMode, JsonpDeserializer.stringDeserializer(), "access_mode");
+        op.add(Builder::accessMode, ModelGroupAccessMode._DESERIALIZER, "access_mode");
         op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(Action._DESERIALIZER), "actions");
         op.add(Builder::backendRoles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "backend_roles");
         op.add(Builder::credential, Credential._DESERIALIZER, "credential");
@@ -589,7 +577,7 @@ public final class UpdateConnectorRequest extends RequestBase
             JsonpDeserializer.booleanDeserializer(),
             "parameters.skip_validating_missing_parameters"
         );
-        op.add(Builder::protocol, JsonpDeserializer.stringDeserializer(), "protocol");
+        op.add(Builder::protocol, ConnectorProtocol._DESERIALIZER, "protocol");
         op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
     }
 

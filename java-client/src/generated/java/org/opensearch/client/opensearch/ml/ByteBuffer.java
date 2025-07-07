@@ -39,7 +39,7 @@ public class ByteBuffer implements PlainJsonSerializable, ToCopyableBuilder<Byte
     private final String array;
 
     @Nullable
-    private final String order;
+    private final ByteOrder order;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -70,7 +70,7 @@ public class ByteBuffer implements PlainJsonSerializable, ToCopyableBuilder<Byte
      * </p>
      */
     @Nullable
-    public final String order() {
+    public final ByteOrder order() {
         return this.order;
     }
 
@@ -92,7 +92,7 @@ public class ByteBuffer implements PlainJsonSerializable, ToCopyableBuilder<Byte
 
         if (this.order != null) {
             generator.writeKey("order");
-            generator.write(this.order);
+            this.order.serialize(generator, mapper);
         }
     }
 
@@ -116,7 +116,7 @@ public class ByteBuffer implements PlainJsonSerializable, ToCopyableBuilder<Byte
         @Nullable
         private String array;
         @Nullable
-        private String order;
+        private ByteOrder order;
 
         public Builder() {}
 
@@ -155,7 +155,7 @@ public class ByteBuffer implements PlainJsonSerializable, ToCopyableBuilder<Byte
          * </p>
          */
         @Nonnull
-        public final Builder order(@Nullable String value) {
+        public final Builder order(@Nullable ByteOrder value) {
             this.order = value;
             return this;
         }
@@ -186,7 +186,7 @@ public class ByteBuffer implements PlainJsonSerializable, ToCopyableBuilder<Byte
 
     protected static void setupByteBufferDeserializer(ObjectDeserializer<ByteBuffer.Builder> op) {
         op.add(Builder::array, JsonpDeserializer.stringDeserializer(), "array");
-        op.add(Builder::order, JsonpDeserializer.stringDeserializer(), "order");
+        op.add(Builder::order, ByteOrder._DESERIALIZER, "order");
     }
 
     @Override

@@ -67,7 +67,7 @@ public class GetModelResponse implements PlainJsonSerializable, ToCopyableBuilde
     private final String modelGroupId;
 
     @Nonnull
-    private final String modelState;
+    private final ModelState modelState;
 
     @Nullable
     private final String modelVersion;
@@ -206,13 +206,10 @@ public class GetModelResponse implements PlainJsonSerializable, ToCopyableBuilde
     }
 
     /**
-     * Required - The model state.
-     * <p>
-     * API name: {@code model_state}
-     * </p>
+     * Required - API name: {@code model_state}
      */
     @Nonnull
-    public final String modelState() {
+    public final ModelState modelState() {
         return this.modelState;
     }
 
@@ -311,7 +308,7 @@ public class GetModelResponse implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         generator.writeKey("model_state");
-        generator.write(this.modelState);
+        this.modelState.serialize(generator, mapper);
 
         if (this.modelVersion != null) {
             generator.writeKey("model_version");
@@ -366,7 +363,7 @@ public class GetModelResponse implements PlainJsonSerializable, ToCopyableBuilde
         private ModelFormat modelFormat;
         @Nullable
         private String modelGroupId;
-        private String modelState;
+        private ModelState modelState;
         @Nullable
         private String modelVersion;
         @Nullable
@@ -539,13 +536,10 @@ public class GetModelResponse implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
-         * Required - The model state.
-         * <p>
-         * API name: {@code model_state}
-         * </p>
+         * Required - API name: {@code model_state}
          */
         @Nonnull
-        public final Builder modelState(String value) {
+        public final Builder modelState(ModelState value) {
             this.modelState = value;
             return this;
         }
@@ -621,7 +615,7 @@ public class GetModelResponse implements PlainJsonSerializable, ToCopyableBuilde
         op.add(Builder::modelContentSizeInBytes, JsonpDeserializer.longDeserializer(), "model_content_size_in_bytes");
         op.add(Builder::modelFormat, ModelFormat._DESERIALIZER, "model_format");
         op.add(Builder::modelGroupId, JsonpDeserializer.stringDeserializer(), "model_group_id");
-        op.add(Builder::modelState, JsonpDeserializer.stringDeserializer(), "model_state");
+        op.add(Builder::modelState, ModelState._DESERIALIZER, "model_state");
         op.add(Builder::modelVersion, JsonpDeserializer.stringDeserializer(), "model_version");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
         op.add(Builder::totalChunks, JsonpDeserializer.longDeserializer(), "total_chunks");

@@ -35,7 +35,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public final class GetToolRequest extends RequestBase implements ToCopyableBuilder<GetToolRequest.Builder, GetToolRequest> {
 
     @Nonnull
-    private final String toolName;
+    private final ToolName toolName;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ public final class GetToolRequest extends RequestBase implements ToCopyableBuild
      * Required - API name: {@code tool_name}
      */
     @Nonnull
-    public final String toolName() {
+    public final ToolName toolName() {
         return this.toolName;
     }
 
@@ -73,7 +73,7 @@ public final class GetToolRequest extends RequestBase implements ToCopyableBuild
      * Builder for {@link GetToolRequest}.
      */
     public static class Builder extends RequestBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, GetToolRequest> {
-        private String toolName;
+        private ToolName toolName;
 
         public Builder() {}
 
@@ -103,7 +103,7 @@ public final class GetToolRequest extends RequestBase implements ToCopyableBuild
          * Required - API name: {@code tool_name}
          */
         @Nonnull
-        public final Builder toolName(String value) {
+        public final Builder toolName(ToolName value) {
             this.toolName = value;
             return this;
         }
@@ -134,7 +134,7 @@ public final class GetToolRequest extends RequestBase implements ToCopyableBuild
         request -> {
             StringBuilder buf = new StringBuilder();
             buf.append("/_plugins/_ml/tools/");
-            SimpleEndpoint.pathEncode(request.toolName, buf);
+            SimpleEndpoint.pathEncode(request.toolName.jsonValue(), buf);
             return buf.toString();
         },
         // Request parameters
