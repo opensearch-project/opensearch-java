@@ -206,10 +206,7 @@ public class GetModelResponse implements PlainJsonSerializable, ToCopyableBuilde
     }
 
     /**
-     * Required - The model state.
-     * <p>
-     * API name: {@code model_state}
-     * </p>
+     * Required - API name: {@code model_state}
      */
     @Nonnull
     public final String modelState() {
@@ -539,10 +536,7 @@ public class GetModelResponse implements PlainJsonSerializable, ToCopyableBuilde
         }
 
         /**
-         * Required - The model state.
-         * <p>
-         * API name: {@code model_state}
-         * </p>
+         * Required - API name: {@code model_state}
          */
         @Nonnull
         public final Builder modelState(String value) {

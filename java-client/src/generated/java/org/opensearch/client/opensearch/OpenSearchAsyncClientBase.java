@@ -99,6 +99,7 @@ import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesAsyncClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesAsyncClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestAsyncClient;
+import org.opensearch.client.opensearch.ingestion.OpenSearchIngestionAsyncClient;
 import org.opensearch.client.opensearch.ism.OpenSearchIsmAsyncClient;
 import org.opensearch.client.opensearch.ml.OpenSearchMlAsyncClient;
 import org.opensearch.client.opensearch.nodes.OpenSearchNodesAsyncClient;
@@ -140,6 +141,10 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
 
     public OpenSearchIngestAsyncClient ingest() {
         return new OpenSearchIngestAsyncClient(this.transport, this.transportOptions);
+    }
+
+    public OpenSearchIngestionAsyncClient ingestion() {
+        return new OpenSearchIngestionAsyncClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchIsmAsyncClient ism() {

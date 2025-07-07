@@ -29,43 +29,34 @@ import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
-// typedef: ml.ColumnMeta
+// typedef: ml.AdditionalConfig
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class ColumnMeta implements PlainJsonSerializable, ToCopyableBuilder<ColumnMeta.Builder, ColumnMeta> {
+public class AdditionalConfig implements PlainJsonSerializable, ToCopyableBuilder<AdditionalConfig.Builder, AdditionalConfig> {
 
     @Nullable
-    private final String columnType;
-
-    @Nullable
-    private final String name;
+    private final String spaceType;
 
     // ---------------------------------------------------------------------------------------------
 
-    private ColumnMeta(Builder builder) {
-        this.columnType = builder.columnType;
-        this.name = builder.name;
+    private AdditionalConfig(Builder builder) {
+        this.spaceType = builder.spaceType;
     }
 
-    public static ColumnMeta of(Function<ColumnMeta.Builder, ObjectBuilder<ColumnMeta>> fn) {
+    public static AdditionalConfig of(Function<AdditionalConfig.Builder, ObjectBuilder<AdditionalConfig>> fn) {
         return fn.apply(new Builder()).build();
     }
 
     /**
-     * API name: {@code column_type}
+     * The distance metric for k-NN search.
+     * <p>
+     * API name: {@code space_type}
+     * </p>
      */
     @Nullable
-    public final String columnType() {
-        return this.columnType;
-    }
-
-    /**
-     * API name: {@code name}
-     */
-    @Nullable
-    public final String name() {
-        return this.name;
+    public final String spaceType() {
+        return this.spaceType;
     }
 
     /**
@@ -79,14 +70,9 @@ public class ColumnMeta implements PlainJsonSerializable, ToCopyableBuilder<Colu
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        if (this.columnType != null) {
-            generator.writeKey("column_type");
-            generator.write(this.columnType);
-        }
-
-        if (this.name != null) {
-            generator.writeKey("name");
-            generator.write(this.name);
+        if (this.spaceType != null) {
+            generator.writeKey("space_type");
+            generator.write(this.spaceType);
         }
     }
 
@@ -104,24 +90,20 @@ public class ColumnMeta implements PlainJsonSerializable, ToCopyableBuilder<Colu
     }
 
     /**
-     * Builder for {@link ColumnMeta}.
+     * Builder for {@link AdditionalConfig}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, ColumnMeta> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, AdditionalConfig> {
         @Nullable
-        private String columnType;
-        @Nullable
-        private String name;
+        private String spaceType;
 
         public Builder() {}
 
-        private Builder(ColumnMeta o) {
-            this.columnType = o.columnType;
-            this.name = o.name;
+        private Builder(AdditionalConfig o) {
+            this.spaceType = o.spaceType;
         }
 
         private Builder(Builder o) {
-            this.columnType = o.columnType;
-            this.name = o.name;
+            this.spaceType = o.spaceType;
         }
 
         @Override
@@ -131,57 +113,49 @@ public class ColumnMeta implements PlainJsonSerializable, ToCopyableBuilder<Colu
         }
 
         /**
-         * API name: {@code column_type}
+         * The distance metric for k-NN search.
+         * <p>
+         * API name: {@code space_type}
+         * </p>
          */
         @Nonnull
-        public final Builder columnType(@Nullable String value) {
-            this.columnType = value;
+        public final Builder spaceType(@Nullable String value) {
+            this.spaceType = value;
             return this;
         }
 
         /**
-         * API name: {@code name}
-         */
-        @Nonnull
-        public final Builder name(@Nullable String value) {
-            this.name = value;
-            return this;
-        }
-
-        /**
-         * Builds a {@link ColumnMeta}.
+         * Builds a {@link AdditionalConfig}.
          *
          * @throws NullPointerException if some of the required fields are null.
          */
         @Override
         @Nonnull
-        public ColumnMeta build() {
+        public AdditionalConfig build() {
             _checkSingleUse();
 
-            return new ColumnMeta(this);
+            return new AdditionalConfig(this);
         }
     }
 
     // ---------------------------------------------------------------------------------------------
 
     /**
-     * Json deserializer for {@link ColumnMeta}
+     * Json deserializer for {@link AdditionalConfig}
      */
-    public static final JsonpDeserializer<ColumnMeta> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+    public static final JsonpDeserializer<AdditionalConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
         Builder::new,
-        ColumnMeta::setupColumnMetaDeserializer
+        AdditionalConfig::setupAdditionalConfigDeserializer
     );
 
-    protected static void setupColumnMetaDeserializer(ObjectDeserializer<ColumnMeta.Builder> op) {
-        op.add(Builder::columnType, JsonpDeserializer.stringDeserializer(), "column_type");
-        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+    protected static void setupAdditionalConfigDeserializer(ObjectDeserializer<AdditionalConfig.Builder> op) {
+        op.add(Builder::spaceType, JsonpDeserializer.stringDeserializer(), "space_type");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Objects.hashCode(this.columnType);
-        result = 31 * result + Objects.hashCode(this.name);
+        result = 31 * result + Objects.hashCode(this.spaceType);
         return result;
     }
 
@@ -189,7 +163,7 @@ public class ColumnMeta implements PlainJsonSerializable, ToCopyableBuilder<Colu
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
-        ColumnMeta other = (ColumnMeta) o;
-        return Objects.equals(this.columnType, other.columnType) && Objects.equals(this.name, other.name);
+        AdditionalConfig other = (AdditionalConfig) o;
+        return Objects.equals(this.spaceType, other.spaceType);
     }
 }
