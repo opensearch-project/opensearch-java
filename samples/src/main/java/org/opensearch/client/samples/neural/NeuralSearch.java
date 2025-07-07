@@ -31,6 +31,7 @@ import org.opensearch.client.opensearch.ml.DeleteTaskRequest;
 import org.opensearch.client.opensearch.ml.DeployModelRequest;
 import org.opensearch.client.opensearch.ml.GetTaskRequest;
 import org.opensearch.client.opensearch.ml.ModelFormat;
+import org.opensearch.client.opensearch.ml.ModelGroupAccessMode;
 import org.opensearch.client.opensearch.ml.RegisterModelRequest;
 import org.opensearch.client.opensearch.ml.UndeployModelRequest;
 import org.opensearch.client.samples.SampleClient;
@@ -75,7 +76,7 @@ public class NeuralSearch {
                 .registerModelGroup(
                     r -> r.name(ML_MODEL_GROUP_NAME)
                         .description("A model group for the opensearch-java " + SAMPLE_NAME + " sample")
-                        .accessMode("public")
+                        .accessMode(ModelGroupAccessMode.Public)
                 );
             if (!"CREATED".equals(groupRegistration.status())) throw new Exception(
                 "Expected ML model group to be CREATED, was: " + groupRegistration.status()
@@ -103,10 +104,10 @@ public class NeuralSearch {
                 var modelRegistrationTask = client.ml().getTask(new GetTaskRequest.Builder().taskId(modelRegistrationTaskId).build());
                 LOGGER.info("ML model registration: {}", modelRegistrationTask.state());
                 switch (modelRegistrationTask.state()) {
-                    case "COMPLETED":
+                    case Completed:
                         modelId = modelRegistrationTask.modelId();
                         break registerWait;
-                    case "FAILED":
+                    case Failed:
                         throw new Exception("ML model registration failed: " + modelRegistrationTask.error());
                     default:
                         // noinspection BusyWait
@@ -128,9 +129,9 @@ public class NeuralSearch {
                 var modelDeployTask = client.ml().getTask(new GetTaskRequest.Builder().taskId(modelDeployTaskId).build());
                 LOGGER.info("ML model deployment: {}", modelDeployTask.state());
                 switch (modelDeployTask.state()) {
-                    case "COMPLETED":
+                    case Completed:
                         break deployWait;
-                    case "FAILED":
+                    case Failed:
                         throw new Exception("ML model deployment failed: " + modelDeployTask.error());
                     default:
                         // noinspection BusyWait
