@@ -21,7 +21,6 @@ import java.net.SocketTimeoutException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.hc.client5.http.config.ConnectionConfig;
 import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManager;
 import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManagerBuilder;
@@ -140,22 +139,21 @@ public class ConnectionConfigSocketTimeoutTest {
         }
     }
 
-    private void assertInstanceOf(Class<SocketTimeoutException> socketTimeoutExceptionClass, Throwable cause, String s) {
-    }
+    private void assertInstanceOf(Class<SocketTimeoutException> socketTimeoutExceptionClass, Throwable cause, String s) {}
 
     public static OpenSearchClient createClientWithCustomTimeout(int socketTimeoutMs, String hostName) {
 
         ApacheHttpClient5Transport apacheHttpClient5Transport = ApacheHttpClient5TransportBuilder.builder(new HttpHost(hostName, 9090))
-                .setHttpClientConfigCallback(httpClientBuilder -> {
-                    ConnectionConfig connectionConfig = ConnectionConfig.custom()
-                            .setSocketTimeout(Timeout.ofMilliseconds(socketTimeoutMs))
-                            .build();
-                    PoolingAsyncClientConnectionManager connectionManager = PoolingAsyncClientConnectionManagerBuilder.create()
-                            .setDefaultConnectionConfig(connectionConfig)
-                            .build();
-                    return httpClientBuilder.setConnectionManager(connectionManager);
-                })
-                .build();
+            .setHttpClientConfigCallback(httpClientBuilder -> {
+                ConnectionConfig connectionConfig = ConnectionConfig.custom()
+                    .setSocketTimeout(Timeout.ofMilliseconds(socketTimeoutMs))
+                    .build();
+                PoolingAsyncClientConnectionManager connectionManager = PoolingAsyncClientConnectionManagerBuilder.create()
+                    .setDefaultConnectionConfig(connectionConfig)
+                    .build();
+                return httpClientBuilder.setConnectionManager(connectionManager);
+            })
+            .build();
 
         return new OpenSearchClient(apacheHttpClient5Transport);
     }
