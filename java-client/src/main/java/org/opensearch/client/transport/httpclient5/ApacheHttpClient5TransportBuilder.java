@@ -28,7 +28,6 @@ import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
 import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManager;
 import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManagerBuilder;
-import org.apache.hc.client5.http.io.HttpClientConnectionManager;
 import org.apache.hc.client5.http.ssl.ClientTlsStrategyBuilder;
 import org.apache.hc.core5.function.Factory;
 import org.apache.hc.core5.http.Header;
@@ -410,8 +409,8 @@ public class ApacheHttpClient5TransportBuilder {
     /**
      * Callback used the default {@link ConnectionConfig} being set to the {@link CloseableHttpClient}.
      * The connectTimeout setting has been moved from {@link RequestConfig} to {@link ConnectionConfig}.
-     * Should not be used if you are using {@link HttpClientBuilder#setConnectionManager} in {@link HttpClientConfigCallback}.
-     * @see HttpClientBuilder#setConnectionManager(HttpClientConnectionManager#ConnectionConfig)
+     * Should not be used if you are using {@link HttpClientBuilder#setConnectionManager} within {@link HttpClientConfigCallback}, as anything passed here will be overridden.
+     * @see PoolingAsyncClientConnectionManager#setDefaultConnectionConfig
      */
     public interface ConnectionConfigCallback {
         /**
