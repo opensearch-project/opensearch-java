@@ -27,6 +27,7 @@ import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManagerBu
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.util.Timeout;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.opensearch.client.opensearch.OpenSearchClient;
@@ -139,7 +140,17 @@ public class ConnectionConfigSocketTimeoutTest {
         }
     }
 
-    private void assertInstanceOf(Class<SocketTimeoutException> socketTimeoutExceptionClass, Throwable cause, String s) {}
+    private void assertInstanceOf(Class<SocketTimeoutException> socketTimeoutExceptionClass, Throwable actualException, String message) {
+
+        if (actualException == null) {
+            Assert.fail(message + " - Expected exception of type " + socketTimeoutExceptionClass.getSimpleName() + ", but got null");
+        }
+
+        Assert.assertTrue(
+                message + " - Expected " + socketTimeoutExceptionClass.getSimpleName() + " but got " + actualException.getClass().getSimpleName(),
+                socketTimeoutExceptionClass.isInstance(actualException)
+        );
+    }
 
     public static OpenSearchClient createClientWithCustomTimeout(int socketTimeoutMs, String hostName) {
 
