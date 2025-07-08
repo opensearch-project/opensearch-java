@@ -18,6 +18,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fixed `ApacheHttpClient5Transport` not honoring connect & socket timeouts configured on `ConnectionConfig` ([#1662](https://github.com/opensearch-project/opensearch-java/pull/1662))
 
 ### Security
 
