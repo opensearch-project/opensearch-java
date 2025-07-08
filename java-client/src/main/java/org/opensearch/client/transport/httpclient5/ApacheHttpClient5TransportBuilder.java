@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
 import org.apache.hc.client5.http.auth.CredentialsProvider;
+import org.apache.hc.client5.http.config.ConnectionConfig;
 import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.client5.http.impl.DefaultAuthenticationStrategy;
 import org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClient;
@@ -70,6 +71,7 @@ public class ApacheHttpClient5TransportBuilder {
     private ApacheHttpClient5Transport.FailureListener failureListener;
     private HttpClientConfigCallback httpClientConfigCallback;
     private RequestConfigCallback requestConfigCallback;
+    private ConnectionConfigCallback connectionConfigCallback;
     private String pathPrefix;
     private NodeSelector nodeSelector = NodeSelector.ANY;
     private boolean strictDeprecationMode = false;
@@ -146,6 +148,18 @@ public class ApacheHttpClient5TransportBuilder {
     public ApacheHttpClient5TransportBuilder setRequestConfigCallback(RequestConfigCallback requestConfigCallback) {
         Objects.requireNonNull(requestConfigCallback, "requestConfigCallback must not be null");
         this.requestConfigCallback = requestConfigCallback;
+        return this;
+    }
+
+    /**
+     * Sets the {@link ConnectionConfigCallback} to be used to customize http client configuration
+     *
+     * @param connectionConfigCallback the {@link ConnectionConfigCallback} to be used
+     * @throws NullPointerException if {@code connectionConfigCallback} is {@code null}.
+     */
+    public ApacheHttpClient5TransportBuilder setConnectionConfigCallback(ConnectionConfigCallback connectionConfigCallback) {
+        Objects.requireNonNull(connectionConfigCallback, "connectionConfigCallback must not be null");
+        this.connectionConfigCallback = connectionConfigCallback;
         return this;
     }
 
@@ -327,12 +341,19 @@ public class ApacheHttpClient5TransportBuilder {
 
     private CloseableHttpAsyncClient createHttpClient() {
         // default timeouts are all infinite
-        RequestConfig.Builder requestConfigBuilder = RequestConfig.custom()
-            .setConnectTimeout(Timeout.ofMilliseconds(DEFAULT_CONNECT_TIMEOUT_MILLIS))
-            .setResponseTimeout(Timeout.ofMilliseconds(DEFAULT_RESPONSE_TIMEOUT_MILLIS));
+        RequestConfig.Builder requestConfigBuilder = RequestConfig.custom();
 
         if (requestConfigCallback != null) {
             requestConfigBuilder = requestConfigCallback.customizeRequestConfig(requestConfigBuilder);
+        }
+
+        // default timeouts are all infinite
+        ConnectionConfig.Builder connectionConfigBuilder = ConnectionConfig.custom()
+            .setConnectTimeout(Timeout.ofMilliseconds(DEFAULT_CONNECT_TIMEOUT_MILLIS))
+            .setSocketTimeout(Timeout.ofMilliseconds(DEFAULT_RESPONSE_TIMEOUT_MILLIS));
+
+        if (connectionConfigCallback != null) {
+            connectionConfigBuilder = connectionConfigCallback.customizeConnectionConfig(connectionConfigBuilder);
         }
 
         try {
@@ -350,6 +371,7 @@ public class ApacheHttpClient5TransportBuilder {
             final PoolingAsyncClientConnectionManager connectionManager = PoolingAsyncClientConnectionManagerBuilder.create()
                 .setMaxConnPerRoute(DEFAULT_MAX_CONN_PER_ROUTE)
                 .setMaxConnTotal(DEFAULT_MAX_CONN_TOTAL)
+                .setDefaultConnectionConfig(connectionConfigBuilder.build())
                 .setTlsStrategy(tlsStrategy)
                 .build();
 
@@ -382,6 +404,22 @@ public class ApacheHttpClient5TransportBuilder {
          * @param requestConfigBuilder the {@link RestClientBuilder} for customizing the request configuration.
          */
         RequestConfig.Builder customizeRequestConfig(RequestConfig.Builder requestConfigBuilder);
+    }
+
+    /**
+     * Callback used the default {@link ConnectionConfig} being set to the {@link CloseableHttpClient}.
+     * The connectTimeout setting has been moved from {@link RequestConfig} to {@link ConnectionConfig}.
+     * @see HttpClientBuilder#setDefaultRequestConfig
+     */
+    public interface ConnectionConfigCallback {
+        /**
+         * Allows to customize the {@link ConnectionConfig} that will be used with each request.
+         * It is common to customize the different timeout values through this method without losing any other useful default
+         * value that the {@link RestClientBuilder} internally sets.
+         *
+         * @param connectionConfigBuilder the {@link RestClientBuilder} for customizing the connection configuration.
+         */
+        ConnectionConfig.Builder customizeConnectionConfig(ConnectionConfig.Builder connectionConfigBuilder);
     }
 
     /**

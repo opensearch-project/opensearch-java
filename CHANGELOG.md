@@ -23,6 +23,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Fixed building instances of `Explanation` by making `details` optional ([#1620](https://github.com/opensearch-project/opensearch-java/pull/1620))
+- SocketTimeout and ConnectTimeout are not honored when they are set only in the ConnectionConfig, as described in issues ([#1661](https://github.com/opensearch-project/opensearch-java/issues/1661)) and ([#1581](https://github.com/opensearch-project/opensearch-java/issues/1581)). This is fixed in PR ([#662](https://github.com/opensearch-project/opensearch-java/pull/1662)).
 
 ### Security
 
