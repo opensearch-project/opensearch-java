@@ -147,8 +147,12 @@ public class ConnectionConfigSocketTimeoutTest {
         }
 
         Assert.assertTrue(
-                message + " - Expected " + socketTimeoutExceptionClass.getSimpleName() + " but got " + actualException.getClass().getSimpleName(),
-                socketTimeoutExceptionClass.isInstance(actualException)
+            message
+                + " - Expected "
+                + socketTimeoutExceptionClass.getSimpleName()
+                + " but got "
+                + actualException.getClass().getSimpleName(),
+            socketTimeoutExceptionClass.isInstance(actualException)
         );
     }
 
