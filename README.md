@@ -53,7 +53,7 @@ This project has adopted the [Amazon Open Source Code of Conduct](CODE_OF_CONDUC
 See [User Guide](USER_GUIDE.md).
 
 ## Snapshot Builds
-The [snapshots builds](https://central.sonatype.com/service/rest/repository/browse/maven-snapshots/org/opensearch/client/opensearch-java/) are published to sonatype using [publish-snapshots.yml](./.github/workflows/publish-snapshots.yml) workflow. Each `push` event to the main branch triggers this workflow.
+The [snapshots builds](https://central.sonatype.com/repository/maven-snapshots/org/opensearch/client/opensearch-java/maven-metadata.xml) are published to sonatype using [publish-snapshots.yml](./.github/workflows/publish-snapshots.yml) workflow. Each `push` event to the main branch triggers this workflow.
 
 ## Compatibility with OpenSearch
 

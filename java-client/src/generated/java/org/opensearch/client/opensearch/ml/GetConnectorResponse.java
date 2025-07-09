@@ -138,10 +138,7 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
     }
 
     /**
-     * The connector protocol.
-     * <p>
      * API name: {@code protocol}
-     * </p>
      */
     @Nullable
     public final String protocol() {
@@ -391,10 +388,7 @@ public class GetConnectorResponse implements PlainJsonSerializable, ToCopyableBu
         }
 
         /**
-         * The connector protocol.
-         * <p>
          * API name: {@code protocol}
-         * </p>
          */
         @Nonnull
         public final Builder protocol(@Nullable String value) {

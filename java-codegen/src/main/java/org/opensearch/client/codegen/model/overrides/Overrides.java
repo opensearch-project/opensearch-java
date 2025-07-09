@@ -18,12 +18,26 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.model.OperationGroup;
 import org.opensearch.client.codegen.model.Types;
+import org.opensearch.client.codegen.openapi.In;
 import org.opensearch.client.codegen.openapi.JsonPointer;
 import org.opensearch.client.codegen.openapi.OpenApiSchema;
 import org.opensearch.client.codegen.utils.builder.ObjectBuilder;
 import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 
 public class Overrides {
+    private static JsonPointer requestBodySchema(String operation) {
+        return JsonPointer.of("components", "requestBodies", operation, "content", "application/json", "schema");
+    }
+
+    private static JsonPointer parameterSchema(OperationGroup operation, In in, String name) {
+        return JsonPointer.of(
+            "components",
+            "parameters",
+            operation.toString() + OpenApiSchema.NAMESPACE_NAME_SEPARATOR + in.toString() + "." + name,
+            "schema"
+        );
+    }
+
     private static JsonPointer schema(String namespace, String name) {
         return OpenApiSchema.COMPONENTS_SCHEMAS.append(namespace + OpenApiSchema.NAMESPACE_NAME_SEPARATOR + name);
     }
@@ -110,7 +124,6 @@ public class Overrides {
                         )
                     )
                 )
-                .with(schema("_common.aggregations", "InferenceConfigContainer"), so -> so.withClassName("InferenceConfig"))
 
                 .with(schema("_common.analysis", "TokenizerDefinition"), so -> so.withShouldGenerate(ShouldGenerate.Always))
 
@@ -221,6 +234,26 @@ public class Overrides {
                             .with("successful", pb -> pb.withMappedType(Types.Java.Lang.Number))
                             .with("total", pb -> pb.withMappedType(Types.Java.Lang.Number))
                     )
+                )
+
+                // For backwards compatibility in ML namespace, keep these as plain strings instead of enums
+                .with(schema("ml._common", "AgentType"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(schema("ml._common", "ByteOrder"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(schema("ml._common", "ColumnType"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(schema("ml._common", "ConnectorProtocol"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(schema("ml._common", "GuardrailsType"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(schema("ml._common", "ModelGroupAccessMode"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(schema("ml._common", "ModelState"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(schema("ml._common", "MlIndexStatus"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(schema("ml._common", "MlResultDataType"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(schema("ml._common", "MlStatName"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(schema("ml._common", "MlTaskType"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(schema("ml._common", "RateLimiterUnit"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(schema("ml._common", "TaskState"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(schema("ml._common", "ToolName"), so -> so.withMappedType(Types.Java.Lang.String))
+                .with(
+                    parameterSchema(OperationGroup.from("ml.get_stats"), In.Path, "stat"),
+                    so -> so.withMappedType(Types.Java.Lang.String)
                 )
         )
         .build();

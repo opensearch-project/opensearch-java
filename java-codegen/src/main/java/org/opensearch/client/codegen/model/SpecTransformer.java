@@ -704,10 +704,16 @@ public class SpecTransformer {
     }
 
     private Type mapTypeInner(OpenApiSchema schema) {
+        var overriddenMappedType = getOverriddenMappedType(schema);
+
+        if (overriddenMappedType.isPresent()) {
+            return overriddenMappedType.get();
+        }
+
         if (schema.has$ref()) {
             schema = schema.resolve();
 
-            var overriddenMappedType = overrides.getSchema(schema.getPointer()).flatMap(SchemaOverride::getMappedType);
+            overriddenMappedType = getOverriddenMappedType(schema);
 
             if (overriddenMappedType.isPresent()) {
                 return overriddenMappedType.get();
@@ -784,6 +790,10 @@ public class SpecTransformer {
         }
 
         throw new UnsupportedOperationException("Can not get type name for: " + types);
+    }
+
+    private Optional<Type> getOverriddenMappedType(OpenApiSchema schema) {
+        return overrides.getSchema(schema.getPointer()).flatMap(SchemaOverride::getMappedType);
     }
 
     private Type mapOneOf(List<OpenApiSchema> oneOf) {

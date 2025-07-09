@@ -76,10 +76,7 @@ public class GetModelGroupResponse
     }
 
     /**
-     * Required - The model group access.
-     * <p>
-     * API name: {@code access}
-     * </p>
+     * Required - API name: {@code access}
      */
     @Nonnull
     public final String access() {
@@ -238,10 +235,7 @@ public class GetModelGroupResponse
         }
 
         /**
-         * Required - The model group access.
-         * <p>
-         * API name: {@code access}
-         * </p>
+         * Required - API name: {@code access}
          */
         @Nonnull
         public final Builder access(String value) {

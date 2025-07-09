@@ -173,10 +173,7 @@ public class Guardrails implements PlainJsonSerializable, ToCopyableBuilder<Guar
     }
 
     /**
-     * The guardrails type.
-     * <p>
      * API name: {@code type}
-     * </p>
      */
     @Nullable
     public final String type() {
@@ -494,10 +491,7 @@ public class Guardrails implements PlainJsonSerializable, ToCopyableBuilder<Guar
         }
 
         /**
-         * The guardrails type.
-         * <p>
          * API name: {@code type}
-         * </p>
          */
         @Nonnull
         public final Builder type(@Nullable String value) {

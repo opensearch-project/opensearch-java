@@ -32,7 +32,7 @@ buildscript {
 plugins {
     application
     id("com.github.jk1.dependency-license-report") version "2.9"
-    id("org.owasp.dependencycheck") version "12.1.1"
+    id("org.owasp.dependencycheck") version "12.1.2"
     id("de.undercouch.download") version "5.6.0"
 
     id("opensearch-java.spotless-conventions")
@@ -176,7 +176,7 @@ dependencies {
     implementation("org.commonmark", "commonmark", "0.24.0")
 
     // EPL-2.0
-    testImplementation(platform("org.junit:junit-bom:5.13.0"))
+    testImplementation(platform("org.junit:junit-bom:5.13.3"))
     testImplementation("org.junit.jupiter", "junit-jupiter")
     testRuntimeOnly("org.junit.platform", "junit-platform-launcher")
 }

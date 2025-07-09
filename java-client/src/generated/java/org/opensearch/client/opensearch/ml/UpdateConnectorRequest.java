@@ -104,10 +104,7 @@ public final class UpdateConnectorRequest extends RequestBase
     }
 
     /**
-     * The model group access mode.
-     * <p>
      * API name: {@code access_mode}
-     * </p>
      */
     @Nullable
     public final String accessMode() {
@@ -188,10 +185,7 @@ public final class UpdateConnectorRequest extends RequestBase
     }
 
     /**
-     * The connector protocol.
-     * <p>
      * API name: {@code protocol}
-     * </p>
      */
     @Nullable
     public final String protocol() {
@@ -365,10 +359,7 @@ public final class UpdateConnectorRequest extends RequestBase
         }
 
         /**
-         * The model group access mode.
-         * <p>
          * API name: {@code access_mode}
-         * </p>
          */
         @Nonnull
         public final Builder accessMode(@Nullable String value) {
@@ -532,10 +523,7 @@ public final class UpdateConnectorRequest extends RequestBase
         }
 
         /**
-         * The connector protocol.
-         * <p>
          * API name: {@code protocol}
-         * </p>
          */
         @Nonnull
         public final Builder protocol(@Nullable String value) {

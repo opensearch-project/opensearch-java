@@ -141,10 +141,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
     }
 
     /**
-     * The model state.
-     * <p>
      * API name: {@code model_state}
-     * </p>
      */
     @Nullable
     public final String modelState() {
@@ -471,10 +468,7 @@ public class ModelProfile implements PlainJsonSerializable, ToCopyableBuilder<Mo
         }
 
         /**
-         * The model state.
-         * <p>
          * API name: {@code model_state}
-         * </p>
          */
         @Nonnull
         public final Builder modelState(@Nullable String value) {
