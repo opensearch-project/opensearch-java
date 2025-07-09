@@ -34,6 +34,7 @@ import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.nio.ssl.TlsStrategy;
 import org.apache.hc.core5.reactor.ssl.TlsDetails;
+import org.apache.hc.core5.util.Timeout;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.RestClientBuilder;
 import org.opensearch.client.json.JsonpMapper;
@@ -43,6 +44,16 @@ import org.opensearch.client.transport.httpclient5.internal.Node;
 import org.opensearch.client.transport.httpclient5.internal.NodeSelector;
 
 public class ApacheHttpClient5TransportBuilder {
+    /**
+     * The default connection timeout in milliseconds.
+     */
+    public static final int DEFAULT_CONNECT_TIMEOUT_MILLIS = 1000;
+
+    /**
+     * The default response timeout in milliseconds.
+     */
+    public static final int DEFAULT_RESPONSE_TIMEOUT_MILLIS = 30000;
+
     /**
      * The default maximum of connections per route.
      */
