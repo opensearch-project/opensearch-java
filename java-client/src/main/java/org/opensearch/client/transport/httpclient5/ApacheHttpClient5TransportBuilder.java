@@ -409,7 +409,8 @@ public class ApacheHttpClient5TransportBuilder {
     /**
      * Callback used the default {@link ConnectionConfig} being set to the {@link CloseableHttpClient}.
      * The connectTimeout setting has been moved from {@link RequestConfig} to {@link ConnectionConfig}.
-     * @see HttpClientBuilder#setDefaultRequestConfig
+     * Should not be used if you are using {@link HttpClientBuilder#setConnectionManager} within {@link HttpClientConfigCallback}, as anything passed here will be overridden.
+     * @see PoolingAsyncClientConnectionManager#setDefaultConnectionConfig
      */
     public interface ConnectionConfigCallback {
         /**
