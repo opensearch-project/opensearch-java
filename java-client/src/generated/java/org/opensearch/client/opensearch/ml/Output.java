@@ -87,10 +87,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
     }
 
     /**
-     * The output data type.
-     * <p>
      * API name: {@code data_type}
-     * </p>
      */
     @Nullable
     public final String dataType() {
@@ -274,10 +271,7 @@ public class Output implements PlainJsonSerializable, ToCopyableBuilder<Output.B
         }
 
         /**
-         * The output data type.
-         * <p>
          * API name: {@code data_type}
-         * </p>
          */
         @Nonnull
         public final Builder dataType(@Nullable String value) {
