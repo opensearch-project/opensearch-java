@@ -3,27 +3,16 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.x]
 ### Added
-- Added support for Index Management plugin APIs ([#1604](https://github.com/opensearch-project/opensearch-java/pull/1604))
-- Added support for the security plugin APIs ([#1601](https://github.com/opensearch-project/opensearch-java/pull/1601))
-- Jackson `ObjectMapper` modules are now being auto-detected ([#1643](https://github.com/opensearch-project/opensearch-java/pull/1643))
-- Added support for the `ingestion` namespace ([#1663](https://github.com/opensearch-project/opensearch-java/pull/1663))
 
 ### Dependencies
-- Bump `org.owasp.dependencycheck` from 12.1.1 to 12.1.3 ([#1608](https://github.com/opensearch-project/opensearch-java/pull/1608), [#1607](https://github.com/opensearch-project/opensearch-java/pull/1607), [#1623](https://github.com/opensearch-project/opensearch-java/pull/1623))
-- Bump `org.junit:junit-bom` from 5.13.0 to 5.13.2 ([#1606](https://github.com/opensearch-project/opensearch-java/pull/1606), [#1650](https://github.com/opensearch-project/opensearch-java/pull/1650), [#1665](https://github.com/opensearch-project/opensearch-java/pull/1665))
-- Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.0 to 5.3.2 ([#1621](https://github.com/opensearch-project/opensearch-java/pull/1621))
-- Bump `io.github.classgraph:classgraph` from 4.8.179 to 4.8.180 ([#1651](https://github.com/opensearch-project/opensearch-java/pull/1651))
 
 ### Changed
-- Changed the type of the properties in DocStatus from integer to Long to resolve the integer overflow issue ([#1644](https://github.com/opensearch-project/opensearch-java/pull/1644))
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
-- Fixed building instances of `Explanation` by making `details` optional ([#1620](https://github.com/opensearch-project/opensearch-java/pull/1620))
-- SocketTimeout and ConnectTimeout are not honored when they are set only in the ConnectionConfig, as described in issues ([#1661](https://github.com/opensearch-project/opensearch-java/issues/1661)) and ([#1581](https://github.com/opensearch-project/opensearch-java/issues/1581)). This is fixed in PR ([#662](https://github.com/opensearch-project/opensearch-java/pull/1662)).
 
 ### Security
 
@@ -41,6 +30,39 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Fixed
 
 ### Security
+
+## [3.2.0] - 07/10/2025
+### Added
+- Added support for Index Management plugin APIs ([#1604](https://github.com/opensearch-project/opensearch-java/pull/1604))
+- Added support for the security plugin APIs ([#1601](https://github.com/opensearch-project/opensearch-java/pull/1601))
+- Added Jackson `ObjectMapper` module auto-detection ([#1643](https://github.com/opensearch-project/opensearch-java/pull/1643))
+- Added support for the `ingestion` namespace ([#1663](https://github.com/opensearch-project/opensearch-java/pull/1663))
+
+### Dependencies
+- Bump `org.owasp.dependencycheck` from 12.1.1 to 12.1.3 ([#1608](https://github.com/opensearch-project/opensearch-java/pull/1608), [#1607](https://github.com/opensearch-project/opensearch-java/pull/1607), [#1623](https://github.com/opensearch-project/opensearch-java/pull/1623))
+- Bump `org.junit:junit-bom` from 5.13.0 to 5.13.2 ([#1606](https://github.com/opensearch-project/opensearch-java/pull/1606), [#1650](https://github.com/opensearch-project/opensearch-java/pull/1650), [#1665](https://github.com/opensearch-project/opensearch-java/pull/1665))
+- Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.0 to 5.3.2 ([#1621](https://github.com/opensearch-project/opensearch-java/pull/1621))
+- Bump `io.github.classgraph:classgraph` from 4.8.179 to 4.8.180 ([#1651](https://github.com/opensearch-project/opensearch-java/pull/1651))
+
+### Changed
+- Changed the type of the properties in DocStatus from integer to Long to resolve the integer overflow issue ([#1644](https://github.com/opensearch-project/opensearch-java/pull/1644))
+
+### Fixed
+- Fixed building instances of `Explanation` by making `details` optional ([#1620](https://github.com/opensearch-project/opensearch-java/pull/1620))
+- Fixed `ApacheHttpClient5Transport` not honoring connect & socket timeouts configured on `ConnectionConfig` ([#1662](https://github.com/opensearch-project/opensearch-java/pull/1662))
+
+## [2.26.0] - 07/10/2025
+### Added
+- Added Jackson `ObjectMapper` module auto-detection ([#1643](https://github.com/opensearch-project/opensearch-java/pull/1643))
+
+### Dependencies
+- Bump `org.owasp.dependencycheck` from 12.1.1 to 12.1.3 ([#1608](https://github.com/opensearch-project/opensearch-java/pull/1608), [#1607](https://github.com/opensearch-project/opensearch-java/pull/1607), [#1623](https://github.com/opensearch-project/opensearch-java/pull/1623))
+- Bump `org.junit:junit-bom` from 5.13.0 to 5.13.2 ([#1606](https://github.com/opensearch-project/opensearch-java/pull/1606), [#1650](https://github.com/opensearch-project/opensearch-java/pull/1650), [#1665](https://github.com/opensearch-project/opensearch-java/pull/1665))
+- Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.0 to 5.3.2 ([#1621](https://github.com/opensearch-project/opensearch-java/pull/1621))
+- Bump `io.github.classgraph:classgraph` from 4.8.179 to 4.8.180 ([#1651](https://github.com/opensearch-project/opensearch-java/pull/1651))
+
+### Fixed
+- Fixed `ApacheHttpClient5Transport` not honoring connect & socket timeouts configured on `ConnectionConfig` ([#1662](https://github.com/opensearch-project/opensearch-java/pull/1662))
 
 ## [3.1.0] - 06/04/2025
 ### Added
@@ -545,10 +567,12 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix catching JsonParsingException ([#494](https://github.com/opensearch-project/opensearch-java/issues/494))
 - Fix StoryStats numeric value out of range of int ([#489](https://github.com/opensearch-project/opensearch-java/pull/489))
 
-[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.1.0...3.x
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.25.0...2.x
+[Unreleased 3.x]: https://github.com/opensearch-project/opensearch-java/compare/v3.2.0...3.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.26.0...2.x
+[3.2.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.1.0...v3.2.0
 [3.1.0]: https://github.com/opensearch-project/opensearch-java/compare/v3.0.0...v3.1.0
 [3.0.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.24.0...v3.0.0
+[2.26.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.25.0...v2.26.0
 [2.25.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.24.0...v2.25.0
 [2.24.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.23.0...v2.24.0
 [2.23.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.22.0...v2.23.0
