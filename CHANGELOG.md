@@ -3,13 +3,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 2.x]
 ### Added
-- Added Jackson `ObjectMapper` module auto-detection ([#1643](https://github.com/opensearch-project/opensearch-java/pull/1643))
 
 ### Dependencies
-- Bump `org.owasp.dependencycheck` from 12.1.1 to 12.1.3 ([#1608](https://github.com/opensearch-project/opensearch-java/pull/1608), [#1607](https://github.com/opensearch-project/opensearch-java/pull/1607), [#1623](https://github.com/opensearch-project/opensearch-java/pull/1623))
-- Bump `org.junit:junit-bom` from 5.13.0 to 5.13.2 ([#1606](https://github.com/opensearch-project/opensearch-java/pull/1606), [#1650](https://github.com/opensearch-project/opensearch-java/pull/1650), [#1665](https://github.com/opensearch-project/opensearch-java/pull/1665))
-- Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.0 to 5.3.2 ([#1621](https://github.com/opensearch-project/opensearch-java/pull/1621))
-- Bump `io.github.classgraph:classgraph` from 4.8.179 to 4.8.180 ([#1651](https://github.com/opensearch-project/opensearch-java/pull/1651))
 
 ### Changed
 
@@ -18,9 +13,21 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
-- Fixed `ApacheHttpClient5Transport` not honoring connect & socket timeouts configured on `ConnectionConfig` ([#1662](https://github.com/opensearch-project/opensearch-java/pull/1662))
 
 ### Security
+
+## [2.26.0] - 07/10/2025
+### Added
+- Added Jackson `ObjectMapper` module auto-detection ([#1643](https://github.com/opensearch-project/opensearch-java/pull/1643))
+
+### Dependencies
+- Bump `org.owasp.dependencycheck` from 12.1.1 to 12.1.3 ([#1608](https://github.com/opensearch-project/opensearch-java/pull/1608), [#1607](https://github.com/opensearch-project/opensearch-java/pull/1607), [#1623](https://github.com/opensearch-project/opensearch-java/pull/1623))
+- Bump `org.junit:junit-bom` from 5.13.0 to 5.13.2 ([#1606](https://github.com/opensearch-project/opensearch-java/pull/1606), [#1650](https://github.com/opensearch-project/opensearch-java/pull/1650), [#1665](https://github.com/opensearch-project/opensearch-java/pull/1665))
+- Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.0 to 5.3.2 ([#1621](https://github.com/opensearch-project/opensearch-java/pull/1621))
+- Bump `io.github.classgraph:classgraph` from 4.8.179 to 4.8.180 ([#1651](https://github.com/opensearch-project/opensearch-java/pull/1651))
+
+### Fixed
+- Fixed `ApacheHttpClient5Transport` not honoring connect & socket timeouts configured on `ConnectionConfig` ([#1662](https://github.com/opensearch-project/opensearch-java/pull/1662))
 
 ## [2.25.0] - 06/03/2025
 ### Added
@@ -481,7 +488,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix catching JsonParsingException ([#494](https://github.com/opensearch-project/opensearch-java/issues/494))
 - Fix StoryStats numeric value out of range of int ([#489](https://github.com/opensearch-project/opensearch-java/pull/489))
 
-[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.25.0...2.x
+[Unreleased 2.x]: https://github.com/opensearch-project/opensearch-java/compare/v2.26.0...2.x
+[2.26.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.25.0...v2.26.0
 [2.25.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.24.0...v2.25.0
 [2.24.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.23.0...v2.24.0
 [2.23.0]: https://github.com/opensearch-project/opensearch-java/compare/v2.22.0...v2.23.0
