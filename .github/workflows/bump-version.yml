@@ -1,0 +1,198 @@
+name: Bump Version
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to bump version on'
+        required: true
+      version:
+        description: 'Version to bump to'
+        required: true
+
+jobs:
+  bump-version-manual:
+    name: Bump Version (Manual)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Generate GitHub App Token
+        id: github_app_token
+        uses: actions/create-github-app-token@v2
+        if: github.repository == 'opensearch-project/opensearch-java'
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Checkout ${{ github.event.inputs.branch }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+          token: ${{ steps.github_app_token.outputs.token || github.token }}
+
+      - name: Bump Version
+        run: bash .ci/bump-version.sh "$VERSION"
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ steps.github_app_token.outputs.token || github.token }}
+          base: ${{ github.event.inputs.branch }}
+          branch: 'feat/${{ github.event.inputs.version }}/bump-version'
+          commit-message: Bump version to ${{ github.event.inputs.version }}
+          signoff: true
+          delete-branch: true
+          labels: |
+            autocut
+          title: '[AUTO] Bump version on `${{ github.event.inputs.branch }}` to `${{ github.event.inputs.version }}`'
+          body: |
+            Bumping version on `${{ github.event.inputs.branch }}` to `${{ github.event.inputs.version }}`.
+
+  bump-version-auto:
+    name: Bump Version (Auto)
+    runs-on: ubuntu-latest
+    if: github.repository == 'opensearch-project/opensearch-java' && github.event_name == 'push'
+    steps:
+      - name: Generate GitHub App Token
+        id: github_app_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Checkout ${{ github.ref }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          token: ${{ steps.github_app_token.outputs.token }}
+
+      - name: Fetch Version Information
+        run: |
+          echo "GITHUB_REF=${GITHUB_REF}"
+          VERSION="${GITHUB_REF#refs/*/v}
+          VERSION_COMPONENTS=(${VERSION//./ })
+          MAJOR="${VERSION_COMPONENTS[0]}"
+          MINOR="${VERSION_COMPONENTS[1]}"
+          PATCH="${VERSION_COMPONENTS[2]}"
+          BASE="${MAJOR}.${MINOR}"
+          BASE_X="${MAJOR}.x"
+          
+          IS_MAJOR_BUMP=false
+          IS_MINOR_BUMP=false
+          if [ "${PATCH}" = "0" ]; then
+            IS_MINOR_BUMP=true
+            if [ "${MINOR}" = "0" ]; then
+              IS_MAJOR_BUMP=true
+            fi
+          fi
+          
+          NEXT_MAJOR="$((MAJOR + 1)).0.0"
+          NEXT_MINOR="${MAJOR}.$((MINOR + 1)).0"
+          NEXT_PATCH="${MAJOR}.${MINOR}.$((PATCH + 1))"
+          
+          {
+            echo "VERSION=${VERSION}"
+            echo "MAJOR=${MAJOR}"
+            echo "MINOR=${MINOR}"
+            echo "PATCH=${PATCH}"
+            echo "BASE=${BASE}"
+            echo "BASE_X=${BASE_X}"
+            echo "IS_MAJOR_BUMP=${IS_MAJOR_BUMP}"
+            echo "IS_MINOR_BUMP=${IS_MINOR_BUMP}"
+            echo "NEXT_MAJOR=${NEXT_MAJOR}"
+            echo "NEXT_MINOR=${NEXT_MINOR}"
+            echo "NEXT_PATCH=${NEXT_PATCH}"
+          } | tee -a "${GITHUB_ENV}"
+
+      - name: Create ${{ env.BASE_X }} Branch
+        if: env.IS_MAJOR_BUMP == 'true'
+        run: git switch --create "${BASE_X}" && git push origin "${BASE_X}"
+
+# NB: Currently commented out to avoid creating patch branches as we do not frequently create patch releases.
+#
+#      - name: Create ${{ env.BASE }} Branch
+#        if: env.IS_MINOR_BUMP == 'true'
+#        run: git switch --create "${BASE}" && git push origin "${BASE}"
+#
+#      - name: Checkout ${{ env.BASE }} Branch
+#        uses: actions/checkout@v4
+#        with:
+#          ref: ${{ env.BASE }}
+#          token: ${{ steps.github_app_token.outputs.token }}
+#
+#      - name: Bump Patch Version
+#        run: bash .ci/bump-version.sh "${NEXT_PATCH}"
+#
+#      - name: Create Patch Version Pull Request
+#        uses: peter-evans/create-pull-request@v7
+#        with:
+#          token: ${{ steps.github_app_token.outputs.token }}
+#          base: ${{ env.BASE }}
+#          branch: 'feat/${{ env.BASE }}/bump-version'
+#          commit-message: Bump version to ${{ env.NEXT_PATCH }}
+#          signoff: true
+#          delete-branch: true
+#          labels: |
+#            autocut
+#          title: '[AUTO] Bump version on `${{ env.BASE }}` to `${{ env.NEXT_PATCH }}`'
+#          body: |
+#            Bumping version on `${{ env.BASE }}` to `${{ env.NEXT_PATCH }}`.
+
+      - name: Checkout ${{ env.BASE_X }} Branch
+        if: env.IS_MINOR_BUMP == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BASE_X }}
+          token: ${{ steps.github_app_token.outputs.token }}
+
+      - name: Bump Minor Version
+        if: env.IS_MINOR_BUMP == 'true'
+        run: bash .ci/bump-version.sh "${NEXT_MINOR}"
+
+      - name: Create Minor Version Pull Request
+        if: env.IS_MINOR_BUMP == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ steps.github_app_token.outputs.token }}
+          base: ${{ env.BASE_X }}
+          branch: 'feat/${{ env.BASE_X }}/bump-version'
+          commit-message: Bump version to ${{ env.NEXT_MINOR }}
+          signoff: true
+          delete-branch: true
+          labels: |
+            autocut
+          title: '[AUTO] Bump version on `${{ env.BASE_X }}` to `${{ env.NEXT_MINOR }}'
+          body: |
+            Bumping version on `${{ env.BASE_X }}` to `${{ env.NEXT_MINOR }}`.
+
+      - name: Checkout main Branch
+        if: env.IS_MAJOR_BUMP == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ steps.github_app_token.outputs.token }}
+
+      - name: Bump Major Version
+        if: env.IS_MAJOR_BUMP == 'true'
+        run: bash .ci/bump-version.sh "${NEXT_MAJOR}"
+
+      - name: Create Major Version Pull Request
+        if: env.IS_MAJOR_BUMP == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ steps.github_app_token.outputs.token }}
+          base: main
+          branch: 'feat/main/bump-version'
+          commit-message: Bump version to ${{ env.NEXT_MAJOR }}
+          signoff: true
+          delete-branch: true
+          labels: |
+            autocut
+          title: '[AUTO] Bump version on `main` to `${{ env.NEXT_MAJOR }}'
+          body: |
+            Bumping version on `main` to `${{ env.NEXT_MAJOR }}`.
