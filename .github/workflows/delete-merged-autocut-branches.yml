@@ -1,4 +1,4 @@
-name: Delete merged branch of the backport PRs
+name: Delete merged autocut PR branches
 on:
   pull_request:
     types:
@@ -7,7 +7,12 @@ on:
 jobs:
   delete-branch:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.base.repo.id == github.event.pull_request.head.repo.id && startsWith(github.event.pull_request.head.ref, 'backport/')
+    if: |
+      github.event.pull_request.base.repo.id == github.event.pull_request.head.repo.id 
+      && (
+        startsWith(github.event.pull_request.head.ref, 'backport/') 
+        || startsWith(github.event.pull_request.head.ref, 'bump-version/')
+      )
     permissions:
       contents: write
     steps:
