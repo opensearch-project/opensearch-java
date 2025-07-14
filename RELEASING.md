@@ -5,9 +5,9 @@
 - [Release Labels](#release-labels)
 - [Releasing](#releasing)
   - [Releasing New Versions](#releasing-new-versions)
-    - [Releasing a Patch (v2.10.5)](#releasing-a-patch-v2105)
-    - [Releasing a new Minor Version (v2.11.0)](#releasing-a-new-minor-version-v2110)
-    - [Releasing a new Major Version (v3.0.0)](#releasing-a-new-major-version-v300)
+    - [Releasing a Patch (v3.2.1)](#releasing-a-patch-v321)
+    - [Releasing a new Minor Version (v3.3.0)](#releasing-a-new-minor-version-v330)
+    - [Releasing a new Major Version (v4.0.0)](#releasing-a-new-major-version-v400)
   - [Automated Release](#automated-release)
   - [CHANGELOG Entries](#changelog-entries)
 
@@ -19,17 +19,17 @@ This document explains the release strategy for artifacts in this organization.
 
 ### Release Branching
 
-Given the next major release of 3.0, current major release of 2.x, and latest minor release of 2.10, this project maintains the following active branches.
+Given the next major release of 4.0, current major release of 3.x, and latest minor release of 3.2, this project maintains the following active branches.
 
-* **main**: The next _major_ release, e.g. `3.0.0`. This is the branch where all merges take place and code moves fast.
-* **2.x**: The next _minor_ release, e.g. `2.11.0`. Once a change is merged into `main`, decide whether to backport it to `2.x`.
-* **2.10**: The _next_ patch release, e.g. `2.10.5`. In between minor releases, only hotfixes (e.g. security) are backported to `2.10`.
+* **main**: The next _major_ release, e.g. `4.0.0`. This is the branch where all merges take place and code moves fast.
+* **3.x**: The next _minor_ release, e.g. `3.3.0`. Once a change is merged into `main`, decide whether to backport it to `3.x`.
+* **3.2**: The _next_ patch release, e.g. `3.2.1`. In between minor releases, only hotfixes (e.g. security) are backported to `3.2`.
 
-PRs go into `main`. Label PRs that you need to be backported as `backport 2.x`. Backport PRs by checking out the versioned branch, cherry-pick changes and open a PR against each target backport branch.
+PRs go into `main`. Label PRs that you need to be backported as `backport 3.x`. Backport PRs by checking out the versioned branch, cherry-pick changes and open a PR against each target backport branch.
 
 ### Feature Branches
 
-Do not create branches in the upstream repo, use your fork, for the exception of long lasting feature branches that require active collaboration from multiple developers. Name feature branches `feature/<thing>`. Once the work is merged to `main`, please make sure to delete the feature branch.
+Do not create branches in the upstream repo, use your fork, except for long-lasting feature branches that require active collaboration from multiple developers. Name feature branches `feature/<thing>`. Once the work is merged to `main`, please make sure to delete the feature branch.
 
 ## Release Labels
 
@@ -43,39 +43,43 @@ The release process is standard across repositories in this org and is run by a 
 
 Assuming the following current state.
 
-1. `2.10`: next patch, i.e. `2.10.5-SNAPSHOT`
-2. `2.x`: next minor, i.e. `2.11.0-SNAPSHOT`
-3. `main`: next major, i.e. `3.0.0-SNAPSHOT`
+1. `3.2`: next patch, i.e. `3.2.1-SNAPSHOT`
+2. `3.x`: next minor, i.e. `3.3.0-SNAPSHOT`
+3. `main`: next major, i.e. `4.0.0-SNAPSHOT`
 
-#### Releasing a Patch (v2.10.5)
+#### Releasing a Patch (v3.2.1)
 
-1. Check out `2.10`.
-2. Ensure `systemProp.version` in [gradle.properties](gradle.properties) matches the version being released, i.e. `2.10.5`.
-3. Replace `## [Unreleased x.y]` with `## [2.10.5] - 06/20/2024` in [CHANGELOG](CHANGELOG.md).
+1. If the `3.2` branch does not exist, create it at the commit tagged `v3.2.0` and push it to the upstream repo. The [bump version workflow](.github/workflows/bump-version.yml) will make a pull request to set `systemProp.version` in [gradle.properties](gradle.properties) to `3.2.1` in the `3.2` branch.
+2. Check out the `3.2` branch, and create a new branch in your fork from it (i.e. `release/3.2.1`).
+3. Ensure `systemProp.version` in [gradle.properties](gradle.properties) matches the version being released, i.e. `3.2.1`.
+4. Replace `## [Unreleased x.y]` with `## [3.2.1] - 07/20/2025` in [CHANGELOG](CHANGELOG.md).
+5. Commit changes to `gradle.properties` and [CHANGELOG](CHANGELOG.md).
+6. Pull-request the changes from your fork into the `3.2` branch.
+7. Create a tag, `v3.2.1`, on the `3.2` branch and push it to the upstream repo. An automated release will be made.
+8. The [bump version workflow](.github/workflows/bump-version.yml) will make a pull request to set `systemProp.version` in [gradle.properties](gradle.properties) to `3.2.2` in the `3.2` branch.
+
+#### Releasing a new Minor Version (v3.3.0)
+
+1. Check out the `3.x` branch, and create a new branch in your fork from it (i.e. `release/3.3.0`).
+2. Ensure `systemProp.version` in [gradle.properties](gradle.properties) matches the version being released, i.e. `3.3.0`.
+3. Replace `## [Unreleased x.y]` with `## [3.3.0] - 07/20/2025` in [CHANGELOG](CHANGELOG.md).
 4. Commit changes to `gradle.properties` and [CHANGELOG](CHANGELOG.md).
-5. Create a tag, `v2.10.5`, and push your changes and the new tag to GitHub. An automated release will be made.
-6. An [increment version workflow](.github/workflows/increment-version.yml) will make a pull request to set `systemProp.version` in [gradle.properties](gradle.properties) to `2.10.6` in the `2.10` branch.
+5. Pull-request the changes from your fork into the `3.x` branch.
+6. Create a tag, `v3.3.0`, on the `3.x` branch and push it to the upstream repo. An automated release will be made.
+7. The [bump version workflow](.github/workflows/bump-version.yml) will make a pull request to set `systemProp.version` in [gradle.properties](gradle.properties) to `3.4.0` in the `3.x` branch.
 
-#### Releasing a new Minor Version (v2.11.0)
+#### Releasing a new Major Version (v4.0.0)
 
-1. Check out `2.x`.
-2. Ensure `systemProp.version` in [gradle.properties](gradle.properties) matches the version being released, i.e. `2.11.0`.
-3. Replace `## [Unreleased x.y]` with `## [2.11.0] - 06/20/2024` in [CHANGELOG](CHANGELOG.md).
+1. Check out the `main` branch, and create a new branch in your fork from it (i.e. `release/4.0.0`).
+2. Ensure `systemProp.version` in [gradle.properties](gradle.properties) matches the version being released, i.e. `4.0.0`.
+3. Replace `## [Unreleased x.y]` with `## [4.0.0] - 07/20/2025` in [CHANGELOG](CHANGELOG.md).
 4. Commit changes to `gradle.properties` and [CHANGELOG](CHANGELOG.md).
-5. Create a tag, `v2.11.0`, and push your changes and the new tag to GitHub. An automated release will be made.
-6. Create a branch, `2.11`, set `systemProp.version` in [gradle.properties](gradle.properties) to `2.11.1`, and push the new branch to GitHub.
-7. An [increment version workflow](.github/workflows/increment-version.yml) will make a pull request to set `systemProp.version` in [gradle.properties](gradle.properties) to `2.12.0` in the `2.x` branch.
-
-#### Releasing a new Major Version (v3.0.0)
-
-1. Check out `main`.
-2. Ensure `systemProp.version` in [gradle.properties](gradle.properties) matches the version being released, i.e. `3.0.0`.
-3. Replace `## [Unreleased x.y]` with `## [3.0.0] - 06/20/2024` in [CHANGELOG](CHANGELOG.md).
-4. Commit changes to `gradle.properties` and [CHANGELOG](CHANGELOG.md).
-5. Create a tag, `v3.0.0`, and push your changes and the new tag to GitHub. An automated release will be made.
-6. Create a branch, `3.0`, set `systemProp.version` in [gradle.properties](gradle.properties) to `3.0.1`, and push the new branch to GitHub.
-7. Create a branch, `3.x`, set `systemProp.version` in [gradle.properties](gradle.properties) to `3.1.0`, and push the new branch to GitHub.
-8. An [increment version workflow](.github/workflows/increment-version.yml) will make a pull request to set `systemProp.version` in [gradle.properties](gradle.properties) to `4.0.0` in the `main` branch.
+5. Pull-request the changes from your fork into the `main` branch.
+6. Create a tag, `v4.0.0`, on the `main` branch and push it to the upstream repo. An automated release will be made.
+7. The [bump version workflow](.github/workflows/bump-version.yml) will automatically:
+   1. Make a pull request to set `systemProp.version` in [gradle.properties](gradle.properties) to `5.0.0` in the `main` branch.
+   2. Create a `4.x` branch.
+   3. Make a pull request to set `systemProp.version` in [gradle.properties](gradle.properties) to `4.1.0` in the `4.x` branch.
 
 ### Automated Release
 
@@ -86,7 +90,7 @@ The [release-drafter workflow](.github/workflows/release-drafter.yml) will be au
 The unreleased section in [CHANGELOG](CHANGELOG.md) should look like so.
 
 ```markdown
-## [Unreleased 2.x]
+## [Unreleased 3.x]
 ### Added
 ### Dependencies
 ### Changed
