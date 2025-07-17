@@ -83,7 +83,6 @@ public class CodeGenerator {
                     "asynchronous_search",
                     "flow_framework",
                     "insights",
-                    "knn",
                     "list",
                     "neural",
                     "notifications",
