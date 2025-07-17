@@ -20,6 +20,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.utils.Clone;
 import org.opensearch.client.codegen.utils.Maps;
+import org.opensearch.client.codegen.utils.json.JsonGenerator;
 
 public abstract class OpenApiMapElement<Self extends OpenApiMapElement<Self, Key, Value>, Key, Value extends OpenApiElement<Value>> extends
     OpenApiElement<Self> {
@@ -86,7 +87,14 @@ public abstract class OpenApiMapElement<Self extends OpenApiMapElement<Self, Key
 
     @Nonnull
     public Stream<Map.Entry<Key, Value>> entries() {
-        return values.entrySet().stream();
+        return values != null ? values.entrySet().stream() : Stream.empty();
+    }
+
+    @Override
+    protected void toJsonInner(JsonGenerator generator) {
+        if (values != null) {
+            generator.writeMapInner(values);
+        }
     }
 
     <Builder extends AbstractBuilder<Self, Key, Value, Builder>> @Nonnull Builder toBuilder(@Nonnull Builder builder) {

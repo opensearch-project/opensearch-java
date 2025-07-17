@@ -17645,7 +17645,7 @@ components:
     _global___query.pretty:
       name: pretty
       in: query
-      description: Whether to pretty format the returned JSON response.
+      description: Whether to pretty-format the returned JSON response.
       schema:
         type: boolean
         default: false
@@ -17653,10 +17653,10 @@ components:
     _global___query.human:
       name: human
       in: query
-      description: Whether to return human readable values for statistics.
+      description: Whether to return human-readable values for statistics.
       schema:
         type: boolean
-        default: true
+        default: false
       x-global: true
     _global___query.error_trace:
       name: error_trace
@@ -17676,7 +17676,7 @@ components:
     _global___query.filter_path:
       name: filter_path
       in: query
-      description: Used to reduce the response. This parameter takes a comma-separated list of filters. It supports using wildcards to match any field or part of a field’s name. You can also exclude fields with "-".
+      description: A comma-separated list of filters used to filter the response. Use wildcards to match any field or part of a field's name. To exclude fields, use `-`.
       schema:
         $ref: '#/components/schemas/_common___StringOrStringArray'
       x-global: true
@@ -21473,7 +21473,7 @@ components:
     field_caps___query.expand_wildcards:
       in: query
       name: expand_wildcards
-      description: Type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`.
+      description: The type of index that wildcard patterns can match. If the request can target data streams, this argument determines whether wildcard expressions match hidden data streams. Supports comma-separated values, such as `open,hidden`.
       schema:
         $ref: '#/components/schemas/_common___ExpandWildcards'
       style: form
@@ -23927,7 +23927,7 @@ components:
     indices.shard_stores___path.index:
       in: path
       name: index
-      description: List of data streams, indexes, and aliases used to limit the request.
+      description: Limits health reporting to a specific source. Can be a single source or a comma-separated list of sources (comprised of data streams, indexes, and aliases).
       required: true
       schema:
         $ref: '#/components/schemas/_common___Indices'
@@ -23964,9 +23964,11 @@ components:
     indices.shard_stores___query.status:
       in: query
       name: status
-      description: List of shard health statuses used to limit the request.
+      description: A list of shard health statuses used to limit the request.
       schema:
-        default: all
+        default:
+          - yellow
+          - red
         oneOf:
           - $ref: '#/components/schemas/indices.shard_stores___ShardStoreStatus'
           - type: array
@@ -35173,7 +35175,7 @@ components:
         application/json:
           schema:
             allOf:
-              - $ref: '#/components/schemas/_core.search___SearchResult'
+              - $ref: '#/components/schemas/_core.search___SearchResultJsonData'
               - type: object
                 properties: {}
     ltr.search_featuresets___200:
@@ -35182,7 +35184,7 @@ components:
         application/json:
           schema:
             allOf:
-              - $ref: '#/components/schemas/_core.search___SearchResult'
+              - $ref: '#/components/schemas/_core.search___SearchResultJsonData'
               - type: object
                 properties: {}
     ltr.search_models___200:
@@ -35191,7 +35193,7 @@ components:
         application/json:
           schema:
             allOf:
-              - $ref: '#/components/schemas/_core.search___SearchResult'
+              - $ref: '#/components/schemas/_core.search___SearchResultJsonData'
               - type: object
                 properties: {}
     ltr.stats___200:
@@ -38246,7 +38248,7 @@ components:
           description: Match closed, non-hidden indexes.
         - type: string
           const: hidden
-          description: Match hidden indexes. Must be combined with open, closed, or both.
+          description: Match hidden indexes. Must be combined with `open`, `closed`, or both.
         - type: string
           const: none
           description: Wildcard expressions are not accepted.
@@ -43864,7 +43866,7 @@ components:
         - type: object
           properties:
             hits:
-              $ref: '#/components/schemas/_core.search___HitsMetadata'
+              $ref: '#/components/schemas/_core.search___HitsMetadataJsonData'
           required:
             - hits
     _common.aggregations___TopHitsAggregation:
@@ -51054,6 +51056,17 @@ components:
               format: float
       required:
         - hits
+    _core.search___HitsMetadataJsonData:
+      allOf:
+        - $ref: '#/components/schemas/_core.search___HitsMetadata'
+        - type: object
+          properties:
+            hits:
+              type: array
+              items:
+                type: object
+                properties:
+                  _source: {}
     _core.search___InnerHits:
       type: object
       properties:
@@ -51515,6 +51528,43 @@ components:
         - hits
         - timed_out
         - took
+    _core.search___SearchResultJsonData:
+      allOf:
+        - $ref: '#/components/schemas/_core.search___SearchResult'
+        - type: object
+          properties:
+            hits:
+              type: object
+              properties:
+                hits:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      _source: {}
+            suggest:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  oneOf:
+                    - title: completion
+                      type: object
+                      properties:
+                        options:
+                          oneOf:
+                            - type: object
+                              properties:
+                                _source: {}
+                            - type: array
+                              items:
+                                type: object
+                                properties:
+                                  _source: {}
+                    - title: phrase
+                      $ref: '#/components/schemas/_core.search___PhraseSuggest'
+                    - title: term
+                      $ref: '#/components/schemas/_core.search___TermSuggest'
     _core.search___ShardProfile:
       type: object
       properties:
