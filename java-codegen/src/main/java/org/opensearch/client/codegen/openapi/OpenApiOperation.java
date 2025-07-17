@@ -22,6 +22,7 @@ import org.opensearch.client.codegen.utils.Clone;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Versions;
 import org.opensearch.client.codegen.utils.builder.ToBuilder;
+import org.opensearch.client.codegen.utils.json.JsonGenerator;
 import org.semver4j.Semver;
 
 public final class OpenApiOperation extends OpenApiElement<OpenApiOperation> implements ToBuilder<OpenApiOperation.Builder> {
@@ -147,6 +148,36 @@ public final class OpenApiOperation extends OpenApiElement<OpenApiOperation> imp
 
     public boolean isIgnorable() {
         return ignorable != null && ignorable;
+    }
+
+    @Override
+    protected void toJsonInner(JsonGenerator generator) {
+        generator.writeField("operationId", id);
+        if (parameters != null) {
+            generator.writeField("parameters", parameters);
+        }
+        if (requestBody != null) {
+            generator.writeField("requestBody", requestBody);
+        }
+        if (responses != null) {
+            generator.writeField("responses", responses);
+        }
+        if (description != null) {
+            generator.writeField("description", description);
+        }
+        if (isDeprecated != null) {
+            generator.writeField("deprecated", isDeprecated);
+        }
+        generator.writeField("x-operation-group", operationGroup.toString());
+        if (versionAdded != null) {
+            generator.writeField("x-version-added", versionAdded);
+        }
+        if (versionDeprecated != null) {
+            generator.writeField("x-version-deprecated", versionDeprecated.toString());
+        }
+        if (deprecationMessage != null) {
+            generator.writeField("x-deprecation-message", deprecationMessage);
+        }
     }
 
     @Override
