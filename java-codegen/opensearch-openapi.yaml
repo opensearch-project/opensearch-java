@@ -35175,7 +35175,7 @@ components:
         application/json:
           schema:
             allOf:
-              - $ref: '#/components/schemas/_core.search___SearchResultJsonData'
+              - $ref: '#/components/schemas/_core.search___SearchResultJsonValue'
               - type: object
                 properties: {}
     ltr.search_featuresets___200:
@@ -35184,7 +35184,7 @@ components:
         application/json:
           schema:
             allOf:
-              - $ref: '#/components/schemas/_core.search___SearchResultJsonData'
+              - $ref: '#/components/schemas/_core.search___SearchResultJsonValue'
               - type: object
                 properties: {}
     ltr.search_models___200:
@@ -35193,7 +35193,7 @@ components:
         application/json:
           schema:
             allOf:
-              - $ref: '#/components/schemas/_core.search___SearchResultJsonData'
+              - $ref: '#/components/schemas/_core.search___SearchResultJsonValue'
               - type: object
                 properties: {}
     ltr.stats___200:
@@ -43866,7 +43866,7 @@ components:
         - type: object
           properties:
             hits:
-              $ref: '#/components/schemas/_core.search___HitsMetadataJsonData'
+              $ref: '#/components/schemas/_core.search___HitsMetadataJsonValue'
           required:
             - hits
     _common.aggregations___TopHitsAggregation:
@@ -51056,7 +51056,7 @@ components:
               format: float
       required:
         - hits
-    _core.search___HitsMetadataJsonData:
+    _core.search___HitsMetadataJsonValue:
       allOf:
         - $ref: '#/components/schemas/_core.search___HitsMetadata'
         - type: object
@@ -51528,7 +51528,7 @@ components:
         - hits
         - timed_out
         - took
-    _core.search___SearchResultJsonData:
+    _core.search___SearchResultJsonValue:
       allOf:
         - $ref: '#/components/schemas/_core.search___SearchResult'
         - type: object
