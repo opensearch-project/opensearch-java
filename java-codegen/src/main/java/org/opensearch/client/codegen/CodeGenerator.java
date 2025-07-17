@@ -82,7 +82,6 @@ public class CodeGenerator {
                 isOneOf(
                     "asynchronous_search",
                     "flow_framework",
-                    "geospatial",
                     "insights",
                     "knn",
                     "list",
