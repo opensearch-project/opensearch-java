@@ -157,6 +157,8 @@ public class Overrides {
                 .with(schema("_core.search", "Profile"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(schema("_core.search", "NestedIdentity"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(schema("_core.search", "Rescore"), so -> so.withShouldGenerate(ShouldGenerate.Always))
+                .with(schema("_core.search", "SearchResult"), so -> so.withShouldGenerate(ShouldGenerate.Never))
+                .with(schema("_core.search", "Suggest"), so -> so.withShouldGenerate(ShouldGenerate.Never))
                 .with(schema("_core.search", "Suggester"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(schema("_core.search", "TermSuggestOption"), so -> so.withShouldGenerate(ShouldGenerate.Always))
                 .with(

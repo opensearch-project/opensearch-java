@@ -104,7 +104,6 @@ public class CodeGenerator {
                     "insights",
                     "knn",
                     "list",
-                    "ltr",
                     "neural",
                     "notifications",
                     "observability",

@@ -15,6 +15,7 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.openapi.reference.RelativeRef;
+import org.opensearch.client.codegen.utils.json.JsonGenerator;
 
 public abstract class OpenApiRefElement<Self extends OpenApiRefElement<Self>> extends OpenApiElement<Self> {
     @Nullable
@@ -65,6 +66,13 @@ public abstract class OpenApiRefElement<Self extends OpenApiRefElement<Self>> ex
             throw new IllegalStateException("Resolved $ref is not an instance of " + clazz.getSimpleName());
         }
         return clazz.cast(resolved);
+    }
+
+    @Override
+    protected void toJsonInner(JsonGenerator generator) {
+        if ($ref != null) {
+            generator.writeField("$ref", $ref.toString());
+        }
     }
 
     @Nonnull
