@@ -34769,7 +34769,10 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/_core.search___SearchResponse'
+            allOf:
+              - $ref: '#/components/schemas/_core.search___SearchResultJsonValue'
+              - type: object
+                properties: {}
       description: ''
     knn.stats___200:
       content:
@@ -61015,15 +61018,19 @@ components:
       type: object
       properties:
         current:
-          type: number
+          type: integer
+          format: int64
         total:
-          type: number
+          type: integer
+          format: int64
         total_time_in_millis:
           $ref: '#/components/schemas/_common___DurationValueUnitMillis'
         current_docs:
-          type: number
+          type: integer
+          format: int64
         total_docs:
-          type: number
+          type: integer
+          format: int64
         total_size_in_bytes:
           $ref: '#/components/schemas/_common___ByteCount'
         current_size_in_bytes:
@@ -61032,7 +61039,8 @@ components:
       type: object
       properties:
         total:
-          type: number
+          type: integer
+          format: int64
         total_time_in_millis:
           $ref: '#/components/schemas/_common___DurationValueUnitMillis'
     knn._common___GraphStats:
@@ -61098,72 +61106,93 @@ components:
       type: object
       properties:
         max_distance_query_with_filter_requests:
-          type: number
+          type: integer
+          format: int64
         graph_memory_usage_percentage:
           $ref: '#/components/schemas/_common___PercentageNumber'
         graph_query_requests:
-          type: number
+          type: integer
+          format: int64
         graph_memory_usage:
-          type: number
+          $ref: '#/components/schemas/_common___ByteCount'
         cache_capacity_reached:
           type: boolean
         load_success_count:
-          type: number
+          type: integer
+          format: int64
         training_memory_usage:
-          type: number
+          $ref: '#/components/schemas/_common___ByteCount'
         indices_in_cache:
           type: object
           additionalProperties: true
         script_query_errors:
-          type: number
+          type: integer
+          format: int64
         hit_count:
-          type: number
+          type: integer
+          format: int64
         knn_query_requests:
-          type: number
+          type: integer
+          format: int64
         total_load_time:
-          type: number
+          $ref: '#/components/schemas/_common___DurationValueUnitNanos'
         miss_count:
-          type: number
+          type: integer
+          format: int64
         min_score_query_requests:
-          type: number
+          type: integer
+          format: int64
         knn_query_with_filter_requests:
-          type: number
+          type: integer
+          format: int64
         training_memory_usage_percentage:
           $ref: '#/components/schemas/_common___PercentageNumber'
         max_distance_query_requests:
-          type: number
+          type: integer
+          format: int64
         lucene_initialized:
           type: boolean
         graph_index_requests:
-          type: number
+          type: integer
+          format: int64
         faiss_initialized:
           type: boolean
         load_exception_count:
-          type: number
+          type: integer
+          format: int64
         training_errors:
-          type: number
+          type: integer
+          format: int64
         min_score_query_with_filter_requests:
-          type: number
+          type: integer
+          format: int64
         eviction_count:
-          type: number
+          type: integer
+          format: int64
         nmslib_initialized:
           type: boolean
         script_compilations:
-          type: number
+          type: integer
+          format: int64
         script_query_requests:
-          type: number
+          type: integer
+          format: int64
         graph_stats:
           $ref: '#/components/schemas/knn._common___GraphStats'
         graph_query_errors:
-          type: number
+          type: integer
+          format: int64
         indexing_from_model_degraded:
           type: boolean
         graph_index_errors:
-          type: number
+          type: integer
+          format: int64
         training_requests:
-          type: number
+          type: integer
+          format: int64
         script_compilation_errors:
-          type: number
+          type: integer
+          format: int64
         remote_vector_index_build_stats:
           $ref: '#/components/schemas/knn._common___RemoteVectorIndexBuildStats'
     knn._common___RemoteVectorIndexBuildStats:
