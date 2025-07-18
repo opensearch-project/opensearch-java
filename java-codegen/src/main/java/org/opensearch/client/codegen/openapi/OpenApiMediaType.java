@@ -17,6 +17,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.utils.Clone;
 import org.opensearch.client.codegen.utils.builder.ToBuilder;
+import org.opensearch.client.codegen.utils.json.JsonGenerator;
 
 public final class OpenApiMediaType extends OpenApiElement<OpenApiMediaType> implements ToBuilder<OpenApiMediaType.Builder> {
     @Nullable
@@ -51,6 +52,13 @@ public final class OpenApiMediaType extends OpenApiElement<OpenApiMediaType> imp
     @Override
     public @Nonnull OpenApiMediaType clone() {
         return toBuilder().build();
+    }
+
+    @Override
+    protected void toJsonInner(JsonGenerator generator) {
+        if (schema != null) {
+            generator.writeField("schema", schema);
+        }
     }
 
     @Override

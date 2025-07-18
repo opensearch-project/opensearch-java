@@ -15,6 +15,7 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.utils.Clone;
+import org.opensearch.client.codegen.utils.json.JsonGenerator;
 
 public abstract class OpenApiOperationBodyElement<Self extends OpenApiOperationBodyElement<Self>> extends OpenApiRefElement<Self> {
     @Nullable
@@ -44,6 +45,14 @@ public abstract class OpenApiOperationBodyElement<Self extends OpenApiOperationB
     public void setContent(@Nullable OpenApiContent content) {
         this.content = content;
         initializeChild("content", content);
+    }
+
+    @Override
+    protected void toJsonInner(JsonGenerator generator) {
+        super.toJsonInner(generator);
+        if (content != null) {
+            generator.writeField("content", content);
+        }
     }
 
     @Nonnull

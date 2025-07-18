@@ -20,6 +20,7 @@ import org.opensearch.client.codegen.utils.Clone;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.builder.ToBuilder;
+import org.opensearch.client.codegen.utils.json.JsonGenerator;
 
 public final class OpenApiPath extends OpenApiRefElement<OpenApiPath> implements ToBuilder<OpenApiPath.Builder> {
     private String httpPath;
@@ -79,6 +80,17 @@ public final class OpenApiPath extends OpenApiRefElement<OpenApiPath> implements
     public void setParameters(@Nullable List<OpenApiParameter> parameters) {
         this.parameters = parameters;
         initializeChildren("parameters", parameters);
+    }
+
+    @Override
+    protected void toJsonInner(JsonGenerator generator) {
+        super.toJsonInner(generator);
+        if (operations != null) {
+            generator.writeMapInner(operations);
+        }
+        if (parameters != null) {
+            generator.writeField("parameters", parameters);
+        }
     }
 
     @Override

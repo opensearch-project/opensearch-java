@@ -130,7 +130,8 @@ public final class ShardStoresRequest extends RequestBase implements ToCopyableB
     }
 
     /**
-     * List of data streams, indexes, and aliases used to limit the request.
+     * Limits health reporting to a specific source. Can be a single source or a comma-separated list of sources (comprised of data streams,
+     * indexes, and aliases).
      * <p>
      * API name: {@code index}
      * </p>
@@ -141,7 +142,7 @@ public final class ShardStoresRequest extends RequestBase implements ToCopyableB
     }
 
     /**
-     * List of shard health statuses used to limit the request.
+     * A list of shard health statuses used to limit the request.
      * <p>
      * API name: {@code status}
      * </p>
@@ -271,7 +272,8 @@ public final class ShardStoresRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * List of data streams, indexes, and aliases used to limit the request.
+         * Limits health reporting to a specific source. Can be a single source or a comma-separated list of sources (comprised of data
+         * streams, indexes, and aliases).
          * <p>
          * API name: {@code index}
          * </p>
@@ -287,7 +289,8 @@ public final class ShardStoresRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * List of data streams, indexes, and aliases used to limit the request.
+         * Limits health reporting to a specific source. Can be a single source or a comma-separated list of sources (comprised of data
+         * streams, indexes, and aliases).
          * <p>
          * API name: {@code index}
          * </p>
@@ -303,7 +306,7 @@ public final class ShardStoresRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * List of shard health statuses used to limit the request.
+         * A list of shard health statuses used to limit the request.
          * <p>
          * API name: {@code status}
          * </p>
@@ -319,7 +322,7 @@ public final class ShardStoresRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * List of shard health statuses used to limit the request.
+         * A list of shard health statuses used to limit the request.
          * <p>
          * API name: {@code status}
          * </p>

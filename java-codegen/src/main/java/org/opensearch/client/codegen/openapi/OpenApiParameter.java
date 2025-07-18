@@ -20,6 +20,7 @@ import org.opensearch.client.codegen.utils.Clone;
 import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.Versions;
 import org.opensearch.client.codegen.utils.builder.ToBuilder;
+import org.opensearch.client.codegen.utils.json.JsonGenerator;
 import org.semver4j.Semver;
 
 public final class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> implements ToBuilder<OpenApiParameter.Builder> {
@@ -140,6 +141,38 @@ public final class OpenApiParameter extends OpenApiRefElement<OpenApiParameter> 
 
     public boolean isGlobalCatParameter() {
         return GLOBAL_CAT_PARAMETERS.contains(name);
+    }
+
+    @Override
+    protected void toJsonInner(JsonGenerator generator) {
+        super.toJsonInner(generator);
+        if (name != null) {
+            generator.writeField("name", name);
+        }
+        if (description != null) {
+            generator.writeField("description", description);
+        }
+        if (in != null) {
+            generator.writeField("in", in.toString());
+        }
+        if (isRequired != null) {
+            generator.writeField("required", isRequired);
+        }
+        if (schema != null) {
+            generator.writeField("schema", schema);
+        }
+        if (isDeprecated != null) {
+            generator.writeField("deprecated", isDeprecated);
+        }
+        if (versionDeprecated != null) {
+            generator.writeField("x-version-deprecated", versionDeprecated.toString());
+        }
+        if (deprecationMessage != null) {
+            generator.writeField("x-deprecation-message", deprecationMessage);
+        }
+        if (isGlobal != null) {
+            generator.writeField("x-global", isGlobal);
+        }
     }
 
     @Override

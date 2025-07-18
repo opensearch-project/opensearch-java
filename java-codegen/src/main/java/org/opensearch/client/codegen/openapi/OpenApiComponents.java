@@ -19,6 +19,7 @@ import javax.annotation.Nullable;
 import org.opensearch.client.codegen.utils.Clone;
 import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.builder.ToBuilder;
+import org.opensearch.client.codegen.utils.json.JsonGenerator;
 
 public final class OpenApiComponents extends OpenApiElement<OpenApiComponents> implements ToBuilder<OpenApiComponents.Builder> {
     @Nullable
@@ -98,6 +99,22 @@ public final class OpenApiComponents extends OpenApiElement<OpenApiComponents> i
     @Override
     public @Nonnull OpenApiComponents clone() {
         return toBuilder().build();
+    }
+
+    @Override
+    protected void toJsonInner(JsonGenerator generator) {
+        if (parameters != null) {
+            generator.writeField("parameters", parameters);
+        }
+        if (requestBodies != null) {
+            generator.writeField("requestBodies", requestBodies);
+        }
+        if (responses != null) {
+            generator.writeField("responses", responses);
+        }
+        if (schemas != null) {
+            generator.writeField("schemas", schemas);
+        }
     }
 
     @Override

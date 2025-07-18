@@ -20,8 +20,10 @@ import org.opensearch.client.codegen.utils.Clone;
 import org.opensearch.client.codegen.utils.Lists;
 import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
+import org.opensearch.client.codegen.utils.json.JsonGenerator;
+import org.opensearch.client.codegen.utils.json.ToJson;
 
-public abstract class OpenApiElement<Self extends OpenApiElement<Self>> implements Clone<Self> {
+public abstract class OpenApiElement<Self extends OpenApiElement<Self>> implements Clone<Self>, ToJson {
     @Nullable
     private OpenApiSpecification specification;
     @Nonnull
@@ -121,6 +123,13 @@ public abstract class OpenApiElement<Self extends OpenApiElement<Self>> implemen
         Objects.requireNonNull(valueFactory, "valueFactory must not be null");
         return Maps.transform(children, (k, v) -> keyMapper.apply(k), (k, v) -> valueFactory.create(v));
     }
+
+    @Override
+    public void toJson(JsonGenerator generator) {
+        generator.writeObject(this::toJsonInner);
+    }
+
+    protected abstract void toJsonInner(JsonGenerator generator);
 
     interface Factory<TIn, TOut> {
         @Nonnull

@@ -30,6 +30,7 @@ import org.opensearch.client.codegen.utils.Clone;
 import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.builder.ObjectBuilderBase;
 import org.opensearch.client.codegen.utils.builder.ToBuilder;
+import org.opensearch.client.codegen.utils.json.JsonGenerator;
 
 public final class OpenApiSpecification extends OpenApiElement<OpenApiSpecification> implements ToBuilder<OpenApiSpecification.Builder> {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -131,6 +132,16 @@ public final class OpenApiSpecification extends OpenApiElement<OpenApiSpecificat
     @Nonnull
     public URI getLocation() {
         return location;
+    }
+
+    @Override
+    protected void toJsonInner(JsonGenerator generator) {
+        if (paths != null) {
+            generator.writeField("paths", paths);
+        }
+        if (components != null) {
+            generator.writeField("components", components);
+        }
     }
 
     @Override

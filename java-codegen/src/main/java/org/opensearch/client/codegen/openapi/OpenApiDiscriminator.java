@@ -14,6 +14,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.opensearch.client.codegen.utils.Maps;
 import org.opensearch.client.codegen.utils.builder.ToBuilder;
+import org.opensearch.client.codegen.utils.json.JsonGenerator;
 
 public class OpenApiDiscriminator extends OpenApiElement<OpenApiDiscriminator> implements ToBuilder<OpenApiDiscriminator.Builder> {
     @Nullable
@@ -45,6 +46,16 @@ public class OpenApiDiscriminator extends OpenApiElement<OpenApiDiscriminator> i
     @Override
     public @Nonnull OpenApiDiscriminator clone() {
         return toBuilder().build();
+    }
+
+    @Override
+    protected void toJsonInner(JsonGenerator generator) {
+        if (propertyName != null) {
+            generator.writeField("propertyName", propertyName);
+        }
+        if (defaultValue != null) {
+            generator.writeField("x-default", defaultValue);
+        }
     }
 
     @Override

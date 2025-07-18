@@ -380,6 +380,48 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
         @Nullable
         private PhaseTook phaseTook;
 
+        public AbstractBuilder() {}
+
+        protected AbstractBuilder(AbstractBuilder<TDocument, BuilderT> o) {
+            this.took = o.took;
+            this.timedOut = o.timedOut;
+            this.shards = o.shards;
+            this.hits = o.hits;
+            this.aggregations = _mapCopy(o.aggregations);
+            this.clusters = o.clusters;
+            this.documents = _listCopy(o.documents);
+            this.fields = _mapCopy(o.fields);
+            this.maxScore = o.maxScore;
+            this.numReducePhases = o.numReducePhases;
+            this.profile = o.profile;
+            this.pitId = o.pitId;
+            this.scrollId = o.scrollId;
+            this.suggest = _mapCopy(o.suggest);
+            this.terminatedEarly = o.terminatedEarly;
+            this.tDocumentSerializer = o.tDocumentSerializer;
+            this.phaseTook = o.phaseTook;
+        }
+
+        protected AbstractBuilder(SearchResult<TDocument> o) {
+            this.took = o.took;
+            this.timedOut = o.timedOut;
+            this.shards = o.shards;
+            this.hits = o.hits;
+            this.aggregations = _mapCopy(o.aggregations);
+            this.clusters = o.clusters;
+            this.documents = _listCopy(o.documents);
+            this.fields = _mapCopy(o.fields);
+            this.maxScore = o.maxScore;
+            this.numReducePhases = o.numReducePhases;
+            this.profile = o.profile;
+            this.pitId = o.pitId;
+            this.scrollId = o.scrollId;
+            this.suggest = _mapCopy(o.suggest);
+            this.terminatedEarly = o.terminatedEarly;
+            this.tDocumentSerializer = o.tDocumentSerializer;
+            this.phaseTook = o.phaseTook;
+        }
+
         /**
          * Required - API name: {@code took}
          */

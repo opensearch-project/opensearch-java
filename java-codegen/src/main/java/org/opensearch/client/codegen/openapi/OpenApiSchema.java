@@ -34,6 +34,7 @@ import org.opensearch.client.codegen.utils.builder.ObjectListBuilderBase;
 import org.opensearch.client.codegen.utils.builder.ObjectMapBuilderBase;
 import org.opensearch.client.codegen.utils.builder.SetBuilder;
 import org.opensearch.client.codegen.utils.builder.ToBuilder;
+import org.opensearch.client.codegen.utils.json.JsonGenerator;
 import org.semver4j.Semver;
 
 public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements ToBuilder<OpenApiSchema.Builder> {
@@ -683,6 +684,82 @@ public class OpenApiSchema extends OpenApiRefElement<OpenApiSchema> implements T
         }
         // TODO: Implement a more comprehensive equivalence check
         return false;
+    }
+
+    @Override
+    protected void toJsonInner(JsonGenerator generator) {
+        super.toJsonInner(generator);
+        if (description != null) {
+            generator.writeField("description", description);
+        }
+        if (types != null) {
+            generator.writeField("types", types);
+        }
+        if (format != null) {
+            generator.writeField("format", format);
+        }
+        if (allOf != null) {
+            generator.writeField("allOf", allOf);
+        }
+        if (anyOf != null) {
+            generator.writeField("anyOf", anyOf);
+        }
+        if (oneOf != null) {
+            generator.writeField("oneOf", oneOf);
+        }
+        if (enums != null) {
+            generator.writeField("enum", enums);
+        }
+        if (items != null) {
+            generator.writeField("items", items);
+        }
+        if (propertyNames != null) {
+            generator.writeField("propertyNames", propertyNames);
+        }
+        if (additionalProperties != null) {
+            generator.writeField("additionalProperties", additionalProperties);
+        }
+        if (properties != null) {
+            generator.writeField("properties", properties);
+        }
+        if (minProperties != null) {
+            generator.writeField("minProperties", minProperties);
+        }
+        if (maxProperties != null) {
+            generator.writeField("maxProperties", maxProperties);
+        }
+        if (required != null) {
+            generator.writeField("required", required);
+        }
+        if (title != null) {
+            generator.writeField("title", title);
+        }
+        if (pattern != null) {
+            generator.writeField("pattern", pattern);
+        }
+        if (discriminator != null) {
+            generator.writeField("discriminator", discriminator);
+        }
+        if (constValue != null) {
+            generator.writeField("const", constValue);
+        }
+        if (versionRemoved != null) {
+            generator.writeField("x-version-removed", versionRemoved.toString());
+        }
+        if (versionDeprecated != null) {
+            generator.writeField("x-version-deprecated", versionDeprecated.toString());
+        }
+        if (supportsTypedKeys != null) {
+            generator.writeField("x-supports-typed-keys", supportsTypedKeys);
+        }
+        if (isGenericTypeParameter != null) {
+            generator.writeField("x-is-generic-type-parameter", isGenericTypeParameter);
+        }
+        if ($extends != null) {
+            generator.writeField("$extends", $extends);
+        }
+        generator.writeField("$isGeneric", isGeneric);
+        generator.writeField("$isInstantiatedGeneric", isInstantiatedGeneric);
     }
 
     @Override
