@@ -41,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nullable;
 import org.opensearch.client.ApiClient;
+import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch.cat.OpenSearchCatClient;
 import org.opensearch.client.opensearch.cluster.OpenSearchClusterClient;
@@ -89,6 +90,8 @@ import org.opensearch.client.opensearch.core.ReindexRethrottleRequest;
 import org.opensearch.client.opensearch.core.ReindexRethrottleResponse;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateRequest;
 import org.opensearch.client.opensearch.core.RenderSearchTemplateResponse;
+import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteRequest;
+import org.opensearch.client.opensearch.core.ScriptsPainlessExecuteResponse;
 import org.opensearch.client.opensearch.core.SearchShardsRequest;
 import org.opensearch.client.opensearch.core.SearchShardsResponse;
 import org.opensearch.client.opensearch.core.UpdateByQueryRequest;
@@ -106,9 +109,11 @@ import org.opensearch.client.opensearch.search_pipeline.OpenSearchSearchPipeline
 import org.opensearch.client.opensearch.security.OpenSearchSecurityClient;
 import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotClient;
 import org.opensearch.client.opensearch.tasks.OpenSearchTasksClient;
+import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.transport.endpoints.BooleanResponse;
+import org.opensearch.client.transport.endpoints.EndpointWithResponseMapperAttr;
 import org.opensearch.client.util.ObjectBuilder;
 
 /**
@@ -712,6 +717,41 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
      */
     public final RenderSearchTemplateResponse renderSearchTemplate() throws IOException, OpenSearchException {
         return renderSearchTemplate(new RenderSearchTemplateRequest.Builder().build());
+    }
+
+    // ----- Endpoint: scripts_painless_execute
+
+    /**
+     * Allows an arbitrary script to be executed and a result to be returned.
+     */
+    public <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
+        ScriptsPainlessExecuteRequest request,
+        Class<TResult> tResultClass
+    ) throws IOException, OpenSearchException {
+        @SuppressWarnings("unchecked")
+        JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> endpoint = (JsonEndpoint<
+            ScriptsPainlessExecuteRequest,
+            ScriptsPainlessExecuteResponse<TResult>,
+            ErrorResponse>) ScriptsPainlessExecuteRequest._ENDPOINT;
+        endpoint = new EndpointWithResponseMapperAttr<>(
+            endpoint,
+            "org.opensearch.client:Deserializer:_global.scripts_painless_execute.TResult",
+            getDeserializer(tResultClass)
+        );
+
+        return this.transport.performRequest(request, endpoint, this.transportOptions);
+    }
+
+    /**
+     * Allows an arbitrary script to be executed and a result to be returned.
+     *
+     * @param fn a function that initializes a builder to create the {@link ScriptsPainlessExecuteRequest}
+     */
+    public final <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
+        Function<ScriptsPainlessExecuteRequest.Builder, ObjectBuilder<ScriptsPainlessExecuteRequest>> fn,
+        Class<TResult> tResultClass
+    ) throws IOException, OpenSearchException {
+        return scriptsPainlessExecute(fn.apply(new ScriptsPainlessExecuteRequest.Builder()).build(), tResultClass);
     }
 
     // ----- Endpoint: search_shards

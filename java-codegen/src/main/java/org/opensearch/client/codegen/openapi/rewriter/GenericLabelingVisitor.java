@@ -72,7 +72,7 @@ public final class GenericLabelingVisitor extends OpenApiVisitorBase {
             } else if (left.getPointer().getLastKey().map("$extends"::equals).orElse(false)) {
                 return;
             } else if (!left.isGeneric()) {
-                thisPair = right == null;
+                thisPair = right == null || left.isEquivalentTo(right);
             } else if (right == null) {
                 thisPair = false;
             } else if (left.isGenericTypeParameter()) {
