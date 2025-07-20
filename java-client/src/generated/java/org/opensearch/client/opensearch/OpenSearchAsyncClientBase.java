@@ -100,6 +100,7 @@ import org.opensearch.client.opensearch.core.UpdateByQueryResponse;
 import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleRequest;
 import org.opensearch.client.opensearch.core.UpdateByQueryRethrottleResponse;
 import org.opensearch.client.opensearch.dangling_indices.OpenSearchDanglingIndicesAsyncClient;
+import org.opensearch.client.opensearch.geospatial.OpenSearchGeospatialAsyncClient;
 import org.opensearch.client.opensearch.indices.OpenSearchIndicesAsyncClient;
 import org.opensearch.client.opensearch.ingest.OpenSearchIngestAsyncClient;
 import org.opensearch.client.opensearch.ingestion.OpenSearchIngestionAsyncClient;
@@ -139,6 +140,10 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
 
     public OpenSearchDanglingIndicesAsyncClient danglingIndices() {
         return new OpenSearchDanglingIndicesAsyncClient(this.transport, this.transportOptions);
+    }
+
+    public OpenSearchGeospatialAsyncClient geospatial() {
+        return new OpenSearchGeospatialAsyncClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchIndicesAsyncClient indices() {
