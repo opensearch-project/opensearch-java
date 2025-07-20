@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 - Added decommission awareness & weighted routing operations ([#1632](https://github.com/opensearch-project/opensearch-java/pull/1632))
 - Added support for the `ltr` namespace ([#1689](https://github.com/opensearch-project/opensearch-java/pull/1689))
+- Added support for the `geospatial` namespace ([#1690](https://github.com/opensearch-project/opensearch-java/pull/1690))
 
 ### Dependencies
 
