@@ -8,7 +8,6 @@ This document contains a list of maintainers in this repo. See [opensearch-proje
 | -------------------- | ------------------------------------------------------- | -------------- |
 | Andriy Redko         | [reta](https://github.com/reta)                         | Independent    |
 | Bukhtawar Khan       | [Bukhtawar](https://github.com/Bukhtawar)               | Amazon         |
-| Daniel Doubrovkine   | [dblock](https://github.com/dblock)                     | Independent    |
 | Dominik Szczepańczyk | [szczepanczykd](https://github.com/szczepanczykd)       | Exadel         |
 | Madhusudhan Konda    | [madhusudhankonda](https://github.com/madhusudhankonda) | Chocolateminds |
 | Sarat Vemulapalli    | [saratvemulapalli](https://github.com/saratvemulapalli) | Amazon         |
@@ -22,3 +21,4 @@ This document contains a list of maintainers in this repo. See [opensearch-proje
 | Mital Awachat          | [mitalawachat](https://github.com/mitalawachat) | Amazon      |
 | Rishab Nahata          | [imRishN](https://github.com/imRishN)           | Amazon      |
 | Vamshi Vijay Nakkirtha | [vamshin](https://github.com/vamshin)           | Amazon      |
+| Daniel Doubrovkine     | [dblock](https://github.com/dblock)             | Independent |
