@@ -1170,4 +1170,16 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         return new RuntimeException("error while performing request", exception);
     }
 
+    public List<HttpHost> getDenyList() {
+        List<HttpHost> denyNodeList = new ArrayList();
+
+        for(Node node : (List)this.nodeTuple.nodes) {
+            if (this.denylist.containsKey(node.getHost())) {
+                denyNodeList.add(node.getHost());
+            }
+        }
+
+        return denyNodeList;
+    }
+
 }
