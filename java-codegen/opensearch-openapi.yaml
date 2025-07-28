@@ -29253,7 +29253,7 @@ components:
     snapshot.get___query.verbose:
       in: query
       name: verbose
-      description: When `true`, returns additional information about each snapshot such as the version of OpenSearch which took the snapshot, the start and end times of the snapshot, and the number of shards contained in the snapshot.
+      description: When `true`, returns additional information about each snapshot, such as the version of OpenSearch which took the snapshot, the start and end times of the snapshot, and the number of shards contained in the snapshot. When `false`, returns only snapshot names and contained indexes. This is useful when the snapshots belong to a cloud-based repository, where each blob read is a cost or performance concern.
       schema:
         type: boolean
       style: form
@@ -39762,8 +39762,8 @@ components:
           format: int64
         concurrent_avg_slice_count:
           description: The average slice count of all search requests. This is computed as the total slice count divided by the total number of concurrent search requests.
-          type: integer
-          format: int64
+          type: number
+          format: double
         fetch_current:
           description: The number of currently running shard fetch operations.
           type: integer
@@ -55864,7 +55864,11 @@ components:
           $ref: '#/components/schemas/_common___DateTime'
           description: When the provisioning operation completed.
         resources_created:
-          $ref: '#/components/schemas/flow_framework.common___ResourcesCreated'
+          oneOf:
+            - $ref: '#/components/schemas/flow_framework.common___ResourcesCreated'
+            - type: array
+              items:
+                $ref: '#/components/schemas/flow_framework.common___ResourcesCreated'
     flow_framework.common___SearchWorkflowRequest:
       type: object
       properties:
