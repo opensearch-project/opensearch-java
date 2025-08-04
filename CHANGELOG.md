@@ -3,6 +3,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 4.x]
 ### Dependencies
+- Bump `io.github.classgraph:classgraph` from 4.8.180 to 4.8.181 ([#1705](https://github.com/opensearch-project/opensearch-java/pull/1705))
 
 ## [Unreleased 3.x]
 ### Added
