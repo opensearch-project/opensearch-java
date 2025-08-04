@@ -9,6 +9,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added support for the `knn` namespace ([#1693](https://github.com/opensearch-project/opensearch-java/pull/1693))
 
 ### Dependencies
+- Bump `io.github.classgraph:classgraph` from 4.8.180 to 4.8.181 ([#1703](https://github.com/opensearch-project/opensearch-java/pull/1703))
+- Bump `org.junit:junit-bom` from 5.13.3 to 5.13.4 ([#1704](https://github.com/opensearch-project/opensearch-java/pull/1704))
 
 ### Changed
 
