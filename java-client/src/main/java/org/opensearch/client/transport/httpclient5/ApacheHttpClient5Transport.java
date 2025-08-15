@@ -147,6 +147,11 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         setNodes(nodes);
     }
 
+    public enum NodeState {
+        Active,
+        Unavailable
+    }
+
     @Override
     public <RequestT, ResponseT, ErrorT> ResponseT performRequest(
         RequestT request,
@@ -1170,16 +1175,17 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         return new RuntimeException("error while performing request", exception);
     }
 
-    public List<HttpHost> getDenyList() {
-        List<HttpHost> denyNodeList = new ArrayList();
-
-        for(Node node : (List)this.nodeTuple.nodes) {
-            if (this.denylist.containsKey(node.getHost())) {
-                denyNodeList.add(node.getHost());
+    public Map<Node, NodeState> getNodes() {
+        Map<Node, NodeState> nodes = new LinkedHashMap<>();
+        for (Node node : nodeTuple.nodes) {
+            DeadHostState deadHostState = denylist.get(node.getHost());
+            if (deadHostState == null || deadHostState.shallBeRetried()) {
+                nodes.put(node, NodeState.Active);
+            } else {
+                nodes.put(node, NodeState.Unavailable);
             }
         }
-
-        return denyNodeList;
+        return Collections.unmodifiableMap(nodes);
     }
 
 }
