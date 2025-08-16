@@ -98,6 +98,7 @@ import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.transport.httpclient5.internal.HttpUriRequestProducer;
 import org.opensearch.client.transport.httpclient5.internal.Node;
 import org.opensearch.client.transport.httpclient5.internal.NodeSelector;
+import org.opensearch.client.transport.httpclient5.internal.NodeState;
 import org.opensearch.client.util.MissingRequiredPropertyException;
 
 /**
