@@ -1171,6 +1171,15 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         return new RuntimeException("error while performing request", exception);
     }
 
+    /**
+     * Returns a map of all nodes managed by this transport and their current state.
+     * <p>
+     * Each node is mapped to either {@link NodeState#Active} if it is available for requests,
+     * or {@link NodeState#Unavailable} if it is currently denylisted due to previous failures.
+     * Nodes that are eligible for retry are considered active.
+     *
+     * @return an unmodifiable map of nodes to their current state
+     */
     public Map<Node, NodeState> getNodes() {
         Map<Node, NodeState> nodes = new LinkedHashMap<>();
         for (Node node : nodeTuple.nodes) {
