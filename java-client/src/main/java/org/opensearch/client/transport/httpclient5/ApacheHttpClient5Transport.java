@@ -98,6 +98,7 @@ import org.opensearch.client.transport.endpoints.BooleanResponse;
 import org.opensearch.client.transport.httpclient5.internal.HttpUriRequestProducer;
 import org.opensearch.client.transport.httpclient5.internal.Node;
 import org.opensearch.client.transport.httpclient5.internal.NodeSelector;
+import org.opensearch.client.transport.httpclient5.internal.NodeState;
 import org.opensearch.client.util.MissingRequiredPropertyException;
 
 /**
@@ -1168,6 +1169,28 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
             return new RuntimeException(exception.getMessage(), exception);
         }
         return new RuntimeException("error while performing request", exception);
+    }
+
+    /**
+     * Returns a map of all nodes managed by this transport and their current state.
+     * <p>
+     * Each node is mapped to either {@link NodeState#Active} if it is available for requests,
+     * or {@link NodeState#Unavailable} if it is currently denylisted due to previous failures.
+     * Nodes that are eligible for retry are considered active.
+     *
+     * @return an unmodifiable map of nodes to their current state
+     */
+    public Map<Node, NodeState> getNodes() {
+        Map<Node, NodeState> nodes = new LinkedHashMap<>();
+        for (Node node : nodeTuple.nodes) {
+            DeadHostState deadHostState = denylist.get(node.getHost());
+            if (deadHostState == null || deadHostState.shallBeRetried()) {
+                nodes.put(node, NodeState.Active);
+            } else {
+                nodes.put(node, NodeState.Unavailable);
+            }
+        }
+        return Collections.unmodifiableMap(nodes);
     }
 
 }
