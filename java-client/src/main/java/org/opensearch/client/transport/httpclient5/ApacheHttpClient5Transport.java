@@ -147,11 +147,6 @@ public class ApacheHttpClient5Transport implements OpenSearchTransport {
         setNodes(nodes);
     }
 
-    public enum NodeState {
-        Active,
-        Unavailable
-    }
-
     @Override
     public <RequestT, ResponseT, ErrorT> ResponseT performRequest(
         RequestT request,
