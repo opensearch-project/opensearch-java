@@ -5,6 +5,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Dependencies
 - Bump `io.github.classgraph:classgraph` from 4.8.180 to 4.8.181 ([#1703](https://github.com/opensearch-project/opensearch-java/pull/1703))
 - Bump `org.junit:junit-bom` from 5.13.3 to 5.13.4 ([#1704](https://github.com/opensearch-project/opensearch-java/pull/1704))
+- Bump `org.opensearch.gradle:build-tools` from 3.2.0-SNAPSHOT to 3.3.0-SNAPSHOT ([#1714](https://github.com/opensearch-project/opensearch-java/pull/1714))
 
 ## [Unreleased 3.x]
 ### Added
