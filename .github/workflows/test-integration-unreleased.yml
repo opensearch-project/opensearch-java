@@ -20,7 +20,7 @@ jobs:
           - { opensearch_ref: 'main', opensearch_jdk: 21, client_jdk: 21 }
     steps:
       - name: Set up JDK ${{ matrix.entry.opensearch_jdk }}
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: ${{ matrix.entry.opensearch_jdk }}
           distribution: 'temurin'
@@ -46,7 +46,7 @@ jobs:
 
       - name: Set up Gradle JDK runtime
         if: matrix.entry.gradle-runtime
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: ${{ matrix.entry.gradle-runtime }}
           distribution: temurin
@@ -81,7 +81,7 @@ jobs:
           path: opensearch-java
 
       - name: Set up JDK ${{ matrix.entry.client_jdk }}
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: ${{ matrix.entry.client_jdk }}
           distribution: 'temurin'
