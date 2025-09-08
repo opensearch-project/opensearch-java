@@ -7,6 +7,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.junit:junit-bom` from 5.13.3 to 5.13.4 ([#1704](https://github.com/opensearch-project/opensearch-java/pull/1704))
 - Bump `org.opensearch.gradle:build-tools` from 3.2.0-SNAPSHOT to 3.3.0-SNAPSHOT ([#1714](https://github.com/opensearch-project/opensearch-java/pull/1714))
 - Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.2 to 5.3.3 ([#1723](https://github.com/opensearch-project/opensearch-java/pull/1723))
+- Bump `org.apache.httpcomponents.core5:httpcore5-h2` from 5.3.4 to 5.3.5 ([#1724](https://github.com/opensearch-project/opensearch-java/pull/1724))
 
 ## [Unreleased 3.x]
 ### Added
