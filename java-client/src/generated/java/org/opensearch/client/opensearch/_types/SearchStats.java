@@ -65,7 +65,7 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<SearchStats.Builder, SearchStats> {
 
     @Nullable
-    private final Long concurrentAvgSliceCount;
+    private final Double concurrentAvgSliceCount;
 
     @Nullable
     private final Long concurrentQueryCurrent;
@@ -185,7 +185,7 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
      * </p>
      */
     @Nullable
-    public final Long concurrentAvgSliceCount() {
+    public final Double concurrentAvgSliceCount() {
         return this.concurrentAvgSliceCount;
     }
 
@@ -640,7 +640,7 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, SearchStats> {
         @Nullable
-        private Long concurrentAvgSliceCount;
+        private Double concurrentAvgSliceCount;
         @Nullable
         private Long concurrentQueryCurrent;
         @Nullable
@@ -766,7 +766,7 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
          * </p>
          */
         @Nonnull
-        public final Builder concurrentAvgSliceCount(@Nullable Long value) {
+        public final Builder concurrentAvgSliceCount(@Nullable Double value) {
             this.concurrentAvgSliceCount = value;
             return this;
         }
@@ -1256,7 +1256,7 @@ public class SearchStats implements PlainJsonSerializable, ToCopyableBuilder<Sea
     );
 
     protected static void setupSearchStatsDeserializer(ObjectDeserializer<SearchStats.Builder> op) {
-        op.add(Builder::concurrentAvgSliceCount, JsonpDeserializer.longDeserializer(), "concurrent_avg_slice_count");
+        op.add(Builder::concurrentAvgSliceCount, JsonpDeserializer.doubleDeserializer(), "concurrent_avg_slice_count");
         op.add(Builder::concurrentQueryCurrent, JsonpDeserializer.longDeserializer(), "concurrent_query_current");
         op.add(Builder::concurrentQueryTime, Time._DESERIALIZER, "concurrent_query_time");
         op.add(Builder::concurrentQueryTimeInMillis, JsonpDeserializer.longDeserializer(), "concurrent_query_time_in_millis");
