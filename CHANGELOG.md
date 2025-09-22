@@ -8,6 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.opensearch.gradle:build-tools` from 3.2.0-SNAPSHOT to 3.3.0-SNAPSHOT ([#1714](https://github.com/opensearch-project/opensearch-java/pull/1714))
 - Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.2 to 5.3.3 ([#1723](https://github.com/opensearch-project/opensearch-java/pull/1723))
 - Bump `org.apache.httpcomponents.core5:httpcore5` from 5.3.4 to 5.3.5 ([#1726](https://github.com/opensearch-project/opensearch-java/pull/1726))
+- Bump `org.owasp.dependencycheck` from 12.1.3 to 12.1.5 ([#1734](https://github.com/opensearch-project/opensearch-java/pull/1734))
 
 ## [Unreleased 3.x]
 ### Added
