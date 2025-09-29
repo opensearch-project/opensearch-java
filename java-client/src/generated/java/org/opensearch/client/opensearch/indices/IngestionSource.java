@@ -43,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import org.opensearch.client.json.JsonData;
 import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
@@ -66,6 +67,9 @@ import org.opensearch.client.util.ToCopyableBuilder;
 public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder<IngestionSource.Builder, IngestionSource> {
 
     @Nullable
+    private final Boolean allActive;
+
+    @Nullable
     private final ErrorPolicy errorStrategy;
 
     @Nullable
@@ -75,7 +79,7 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     private final Integer numProcessorThreads;
 
     @Nonnull
-    private final Map<String, String> param;
+    private final Map<String, JsonData> param;
 
     @Nullable
     private final IngestionSourcePointer pointer;
@@ -101,6 +105,7 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     // ---------------------------------------------------------------------------------------------
 
     private IngestionSource(Builder builder) {
+        this.allActive = builder.allActive;
         this.errorStrategy = builder.errorStrategy;
         this.internalQueueSize = builder.internalQueueSize;
         this.numProcessorThreads = builder.numProcessorThreads;
@@ -116,6 +121,17 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
 
     public static IngestionSource of(Function<IngestionSource.Builder, ObjectBuilder<IngestionSource>> fn) {
         return fn.apply(new Builder()).build();
+    }
+
+    /**
+     * Indicates if all-active ingestion is enabled for this index.
+     * <p>
+     * API name: {@code all_active}
+     * </p>
+     */
+    @Nullable
+    public final Boolean allActive() {
+        return this.allActive;
     }
 
     /**
@@ -158,7 +174,7 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
      * </p>
      */
     @Nonnull
-    public final Map<String, String> param() {
+    public final Map<String, JsonData> param() {
         return this.param;
     }
 
@@ -241,6 +257,11 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     }
 
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        if (this.allActive != null) {
+            generator.writeKey("all_active");
+            generator.write(this.allActive);
+        }
+
         if (this.errorStrategy != null) {
             generator.writeKey("error_strategy");
             this.errorStrategy.serialize(generator, mapper);
@@ -259,9 +280,9 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         if (ApiTypeHelper.isDefined(this.param)) {
             generator.writeKey("param");
             generator.writeStartObject();
-            for (Map.Entry<String, String> item0 : this.param.entrySet()) {
+            for (Map.Entry<String, JsonData> item0 : this.param.entrySet()) {
                 generator.writeKey(item0.getKey());
-                generator.write(item0.getValue());
+                item0.getValue().serialize(generator, mapper);
             }
             generator.writeEnd();
         }
@@ -320,13 +341,15 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, IngestionSource> {
         @Nullable
+        private Boolean allActive;
+        @Nullable
         private ErrorPolicy errorStrategy;
         @Nullable
         private Integer internalQueueSize;
         @Nullable
         private Integer numProcessorThreads;
         @Nullable
-        private Map<String, String> param;
+        private Map<String, JsonData> param;
         @Nullable
         private IngestionSourcePointer pointer;
         @Nullable
@@ -345,6 +368,7 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         public Builder() {}
 
         private Builder(IngestionSource o) {
+            this.allActive = o.allActive;
             this.errorStrategy = o.errorStrategy;
             this.internalQueueSize = o.internalQueueSize;
             this.numProcessorThreads = o.numProcessorThreads;
@@ -359,6 +383,7 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         }
 
         private Builder(Builder o) {
+            this.allActive = o.allActive;
             this.errorStrategy = o.errorStrategy;
             this.internalQueueSize = o.internalQueueSize;
             this.numProcessorThreads = o.numProcessorThreads;
@@ -376,6 +401,18 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         @Nonnull
         public Builder copy() {
             return new Builder(this);
+        }
+
+        /**
+         * Indicates if all-active ingestion is enabled for this index.
+         * <p>
+         * API name: {@code all_active}
+         * </p>
+         */
+        @Nonnull
+        public final Builder allActive(@Nullable Boolean value) {
+            this.allActive = value;
+            return this;
         }
 
         /**
@@ -425,7 +462,7 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
          * </p>
          */
         @Nonnull
-        public final Builder param(Map<String, String> map) {
+        public final Builder param(Map<String, JsonData> map) {
             this.param = _mapPutAll(this.param, map);
             return this;
         }
@@ -441,7 +478,7 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
          * </p>
          */
         @Nonnull
-        public final Builder param(String key, String value) {
+        public final Builder param(String key, JsonData value) {
             this.param = _mapPut(this.param, key, value);
             return this;
         }
@@ -562,10 +599,11 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     );
 
     protected static void setupIngestionSourceDeserializer(ObjectDeserializer<IngestionSource.Builder> op) {
+        op.add(Builder::allActive, JsonpDeserializer.booleanDeserializer(), "all_active");
         op.add(Builder::errorStrategy, ErrorPolicy._DESERIALIZER, "error_strategy");
         op.add(Builder::internalQueueSize, JsonpDeserializer.integerDeserializer(), "internal_queue_size");
         op.add(Builder::numProcessorThreads, JsonpDeserializer.integerDeserializer(), "num_processor_threads");
-        op.add(Builder::param, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "param");
+        op.add(Builder::param, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "param");
         op.add(Builder::pointer, IngestionSourcePointer._DESERIALIZER, "pointer");
         op.add(Builder::pointerInitReset, IngestionSourcePointerInitReset._DESERIALIZER, "pointer.init.reset");
         op.add(Builder::pointerInitResetValue, JsonpDeserializer.stringDeserializer(), "pointer.init.reset.value");
@@ -578,6 +616,7 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
     @Override
     public int hashCode() {
         int result = 17;
+        result = 31 * result + Objects.hashCode(this.allActive);
         result = 31 * result + Objects.hashCode(this.errorStrategy);
         result = 31 * result + Objects.hashCode(this.internalQueueSize);
         result = 31 * result + Objects.hashCode(this.numProcessorThreads);
@@ -597,7 +636,8 @@ public class IngestionSource implements PlainJsonSerializable, ToCopyableBuilder
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         IngestionSource other = (IngestionSource) o;
-        return Objects.equals(this.errorStrategy, other.errorStrategy)
+        return Objects.equals(this.allActive, other.allActive)
+            && Objects.equals(this.errorStrategy, other.errorStrategy)
             && Objects.equals(this.internalQueueSize, other.internalQueueSize)
             && Objects.equals(this.numProcessorThreads, other.numProcessorThreads)
             && Objects.equals(this.param, other.param)
