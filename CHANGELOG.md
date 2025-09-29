@@ -9,6 +9,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.2 to 5.3.3 ([#1723](https://github.com/opensearch-project/opensearch-java/pull/1723))
 - Bump `org.apache.httpcomponents.core5:httpcore5` from 5.3.4 to 5.3.6 ([#1726](https://github.com/opensearch-project/opensearch-java/pull/1726), [#1733](https://github.com/opensearch-project/opensearch-java/pull/1733))
 - Bump `org.owasp.dependencycheck` from 12.1.3 to 12.1.5 ([#1735](https://github.com/opensearch-project/opensearch-java/pull/1735))
+- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.5 to 5.5.1 ([#1743](https://github.com/opensearch-project/opensearch-java/pull/1743))
 
 ## [Unreleased 3.x]
 ### Added
