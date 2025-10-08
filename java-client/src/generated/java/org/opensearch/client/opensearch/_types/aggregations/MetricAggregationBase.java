@@ -45,16 +45,14 @@ import javax.annotation.Nullable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.Script;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 
 // typedef: _types.aggregations.MetricAggregationBase
 
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public abstract class MetricAggregationBase implements PlainJsonSerializable {
+public abstract class MetricAggregationBase extends AggregationBase {
 
     @Nullable
     private final String field;
@@ -68,6 +66,7 @@ public abstract class MetricAggregationBase implements PlainJsonSerializable {
     // ---------------------------------------------------------------------------------------------
 
     protected MetricAggregationBase(AbstractBuilder<?> builder) {
+        super(builder);
         this.field = builder.field;
         this.missing = builder.missing;
         this.script = builder.script;
@@ -97,17 +96,8 @@ public abstract class MetricAggregationBase implements PlainJsonSerializable {
         return this.script;
     }
 
-    /**
-     * Serialize this object to JSON.
-     */
-    @Override
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        serializeInternal(generator, mapper);
-        generator.writeEnd();
-    }
-
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        super.serializeInternal(generator, mapper);
         if (this.field != null) {
             generator.writeKey("field");
             generator.write(this.field);
@@ -126,7 +116,8 @@ public abstract class MetricAggregationBase implements PlainJsonSerializable {
 
     // ---------------------------------------------------------------------------------------------
 
-    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends ObjectBuilderBase {
+    public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> extends AggregationBase.AbstractBuilder<
+        BuilderT> {
         @Nullable
         private String field;
         @Nullable
@@ -137,19 +128,18 @@ public abstract class MetricAggregationBase implements PlainJsonSerializable {
         protected AbstractBuilder() {}
 
         protected AbstractBuilder(MetricAggregationBase o) {
+            super(o);
             this.field = o.field;
             this.missing = o.missing;
             this.script = o.script;
         }
 
         protected AbstractBuilder(AbstractBuilder<BuilderT> o) {
+            super(o);
             this.field = o.field;
             this.missing = o.missing;
             this.script = o.script;
         }
-
-        @Nonnull
-        protected abstract BuilderT self();
 
         /**
          * API name: {@code field}
@@ -200,6 +190,7 @@ public abstract class MetricAggregationBase implements PlainJsonSerializable {
     protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupMetricAggregationBaseDeserializer(
         ObjectDeserializer<BuilderT> op
     ) {
+        setupAggregationBaseDeserializer(op);
         op.add(AbstractBuilder::field, JsonpDeserializer.stringDeserializer(), "field");
         op.add(AbstractBuilder::missing, FieldValue._DESERIALIZER, "missing");
         op.add(AbstractBuilder::script, Script._DESERIALIZER, "script");
@@ -207,7 +198,7 @@ public abstract class MetricAggregationBase implements PlainJsonSerializable {
 
     @Override
     public int hashCode() {
-        int result = 17;
+        int result = super.hashCode();
         result = 31 * result + Objects.hashCode(this.field);
         result = 31 * result + Objects.hashCode(this.missing);
         result = 31 * result + Objects.hashCode(this.script);
@@ -216,6 +207,9 @@ public abstract class MetricAggregationBase implements PlainJsonSerializable {
 
     @Override
     public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         MetricAggregationBase other = (MetricAggregationBase) o;

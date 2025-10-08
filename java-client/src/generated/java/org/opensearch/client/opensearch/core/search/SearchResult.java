@@ -97,7 +97,7 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
     private final ShardStatistics shards;
 
     @Nonnull
-    private final Map<String, List<Suggest<TDocument>>> suggest;
+    private final Map<String, List<Suggest<JsonData>>> suggest;
 
     @Nullable
     private final Boolean terminatedEarly;
@@ -218,7 +218,7 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
      * API name: {@code suggest}
      */
     @Nonnull
-    public final Map<String, List<Suggest<TDocument>>> suggest() {
+    public final Map<String, List<Suggest<JsonData>>> suggest() {
         return this.suggest;
     }
 
@@ -357,7 +357,7 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
         private String scrollId;
         private ShardStatistics shards;
         @Nullable
-        private Map<String, List<Suggest<TDocument>>> suggest;
+        private Map<String, List<Suggest<JsonData>>> suggest;
         @Nullable
         private Boolean terminatedEarly;
         private Boolean timedOut;
@@ -626,7 +626,7 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
          * </p>
          */
         @Nonnull
-        public final BuilderT suggest(Map<String, List<Suggest<TDocument>>> map) {
+        public final BuilderT suggest(Map<String, List<Suggest<JsonData>>> map) {
             this.suggest = _mapPutAll(this.suggest, map);
             return self();
         }
@@ -639,7 +639,7 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
          * </p>
          */
         @Nonnull
-        public final BuilderT suggest(String key, List<Suggest<TDocument>> value) {
+        public final BuilderT suggest(String key, List<Suggest<JsonData>> value) {
             this.suggest = _mapPut(this.suggest, key, value);
             return self();
         }
@@ -695,7 +695,7 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
         op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
         op.add(
             AbstractBuilder::suggest,
-            ExternallyTaggedUnion.arrayDeserializer(Suggest.createSuggestDeserializer(tDocumentDeserializer)),
+            ExternallyTaggedUnion.arrayDeserializer(Suggest.createSuggestDeserializer(JsonData._DESERIALIZER)),
             "suggest"
         );
         op.add(AbstractBuilder::terminatedEarly, JsonpDeserializer.booleanDeserializer(), "terminated_early");
