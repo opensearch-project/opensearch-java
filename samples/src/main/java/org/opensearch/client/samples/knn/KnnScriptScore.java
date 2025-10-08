@@ -17,7 +17,7 @@ import org.opensearch.client.samples.SampleClient;
 import org.opensearch.client.samples.util.RandUtil;
 
 /**
- * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=knn.KnnScriptScore</c>
+ * Run with: {@code ./gradlew :samples:run -Dsamples.mainClass=knn.KnnScriptScore}
  */
 public class KnnScriptScore {
     private static final Logger LOGGER = LogManager.getLogger(KnnScriptScore.class);
