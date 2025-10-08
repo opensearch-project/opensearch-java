@@ -10,6 +10,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.apache.httpcomponents.core5:httpcore5` from 5.3.4 to 5.3.6 ([#1726](https://github.com/opensearch-project/opensearch-java/pull/1726), [#1733](https://github.com/opensearch-project/opensearch-java/pull/1733))
 - Bump `org.owasp.dependencycheck` from 12.1.3 to 12.1.6 ([#1735](https://github.com/opensearch-project/opensearch-java/pull/1735), [#1742](https://github.com/opensearch-project/opensearch-java/pull/1742))
 - Bump `org.apache.httpcomponents.client5:httpclient5` from 5.5 to 5.5.1 ([#1740](https://github.com/opensearch-project/opensearch-java/pull/1740))
+- Added support for the `search_relevance` namespace ([#1748](https://github.com/opensearch-project/opensearch-java/pull/1748))
 
 ## [Unreleased 3.x]
 ### Added
