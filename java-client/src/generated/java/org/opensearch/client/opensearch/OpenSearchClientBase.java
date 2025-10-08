@@ -121,6 +121,7 @@ import org.opensearch.client.opensearch.ltr.OpenSearchLtrClient;
 import org.opensearch.client.opensearch.ml.OpenSearchMlClient;
 import org.opensearch.client.opensearch.nodes.OpenSearchNodesClient;
 import org.opensearch.client.opensearch.search_pipeline.OpenSearchSearchPipelineClient;
+import org.opensearch.client.opensearch.search_relevance.OpenSearchSearchRelevanceClient;
 import org.opensearch.client.opensearch.security.OpenSearchSecurityClient;
 import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotClient;
 import org.opensearch.client.opensearch.tasks.OpenSearchTasksClient;
@@ -192,6 +193,10 @@ public abstract class OpenSearchClientBase<Self extends OpenSearchClientBase<Sel
 
     public OpenSearchSearchPipelineClient searchPipeline() {
         return new OpenSearchSearchPipelineClient(this.transport, this.transportOptions);
+    }
+
+    public OpenSearchSearchRelevanceClient searchRelevance() {
+        return new OpenSearchSearchRelevanceClient(this.transport, this.transportOptions);
     }
 
     public OpenSearchSecurityClient security() {

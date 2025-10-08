@@ -92,7 +92,6 @@ public class CodeGenerator {
                     "remote_store",
                     "replication",
                     "rollups",
-                    "search_relevance",
                     "security_analytics",
                     "sm",
                     "sql",
