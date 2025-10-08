@@ -25,7 +25,7 @@ import org.opensearch.client.opensearch.indices.DeleteIndexRequest;
 import org.opensearch.client.opensearch.indices.IndexSettings;
 
 /**
- * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=PointInTime</c>
+ * Run with: {@code ./gradlew :samples:run -Dsamples.mainClass=PointInTime}
  */
 public class PointInTime {
     private static final Logger LOGGER = LogManager.getLogger(PointInTime.class);

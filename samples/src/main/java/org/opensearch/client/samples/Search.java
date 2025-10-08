@@ -49,7 +49,7 @@ import org.opensearch.client.samples.util.AppData;
 import org.opensearch.client.samples.util.IndexData;
 
 /**
- * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=Search</c>
+ * Run with: {@code ./gradlew :samples:run -Dsamples.mainClass=Search}
  */
 public class Search {
     private static final Logger LOGGER = LogManager.getLogger(Search.class);

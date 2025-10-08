@@ -16,7 +16,7 @@ import org.opensearch.client.samples.SampleClient;
 import org.opensearch.client.samples.util.RandUtil;
 
 /**
- * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=knn.KnnBasics</c>
+ * Run with: {@code ./gradlew :samples:run -Dsamples.mainClass=knn.KnnBasics}
  */
 public class KnnBasics {
     private static final Logger LOGGER = LogManager.getLogger(KnnBasics.class);

@@ -29,7 +29,7 @@ import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.samples.util.IndexData;
 
 /**
- * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=Bulk</c>
+ * Run with: {@code ./gradlew :samples:run -Dsamples.mainClass=Bulk}
  */
 public class Bulk {
     private static final Logger LOGGER = LogManager.getLogger(Bulk.class);
