@@ -30,7 +30,7 @@ import org.opensearch.client.opensearch.indices.PutMappingRequest;
 import org.opensearch.client.samples.util.IndexData;
 
 /**
- * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=IndexingBasics</c>
+ * Run with: {@code ./gradlew :samples:run -Dsamples.mainClass=IndexingBasics}
  */
 public class IndexingBasics {
     private static final Logger LOGGER = LogManager.getLogger(IndexingBasics.class);
