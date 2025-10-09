@@ -2743,7 +2743,7 @@ paths:
       x-version-added: '1.0'
       description: Creates or updates an ingest pipeline.
       externalDocs:
-        url: https://opensearch.org/docs/latest/api-reference/ingest-apis/create-update-ingest/
+        url: https://docs.opensearch.org/latest/ingest-pipelines/create-ingest/
       parameters:
         - $ref: '#/components/parameters/ingest.put_pipeline___path.id'
         - $ref: '#/components/parameters/ingest.put_pipeline___query.cluster_manager_timeout'
@@ -5207,7 +5207,7 @@ paths:
       x-version-added: '1.0'
       description: Provides information about the current status of the k-NN plugin.
       externalDocs:
-        url: https://opensearch.org/docs/latest/search-plugins/knn/api/#stats
+        url: https://docs.opensearch.org/latest/vector-search/api/knn/#stats
       parameters:
         - $ref: '#/components/parameters/knn.stats___path.node_id'
         - $ref: '#/components/parameters/knn.stats___query.timeout'
@@ -5226,7 +5226,7 @@ paths:
       x-version-added: '1.0'
       description: Provides information about the current status of the k-NN plugin.
       externalDocs:
-        url: https://opensearch.org/docs/latest/search-plugins/knn/api/#stats
+        url: https://docs.opensearch.org/latest/vector-search/api/knn/#stats
       parameters:
         - $ref: '#/components/parameters/knn.stats___path.node_id'
         - $ref: '#/components/parameters/knn.stats___path.stat'
@@ -5246,7 +5246,7 @@ paths:
       x-version-added: '1.0'
       description: Use an OpenSearch query to search for models in the index.
       externalDocs:
-        url: https://opensearch.org/docs/latest/search-plugins/knn/api/#search-model
+        url: https://docs.opensearch.org/latest/vector-search/api/knn/#search-for-a-model
       parameters:
         - $ref: '#/components/parameters/knn.search_models___query._source'
         - $ref: '#/components/parameters/knn.search_models___query._source_excludes'
@@ -5306,7 +5306,7 @@ paths:
       x-version-added: '1.0'
       description: Use an OpenSearch query to search for models in the index.
       externalDocs:
-        url: https://opensearch.org/docs/latest/search-plugins/knn/api/#search-model
+        url: https://docs.opensearch.org/latest/vector-search/api/knn/#search-for-a-model
       parameters:
         - $ref: '#/components/parameters/knn.search_models___query._source'
         - $ref: '#/components/parameters/knn.search_models___query._source_excludes'
@@ -5367,7 +5367,7 @@ paths:
       x-version-added: '1.0'
       description: Create and train a model that can be used for initializing k-NN native library indexes during indexing.
       externalDocs:
-        url: https://opensearch.org/docs/latest/search-plugins/knn/api/#train-model
+        url: https://docs.opensearch.org/latest/vector-search/api/knn/#train-a-model
       parameters:
         - $ref: '#/components/parameters/knn.train_model___query.preference'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -5387,7 +5387,7 @@ paths:
       x-version-added: '1.0'
       description: Used to delete a particular model in the cluster.
       externalDocs:
-        url: https://opensearch.org/docs/latest/search-plugins/knn/api/#delete-model
+        url: https://docs.opensearch.org/latest/vector-search/api/knn/#delete-a-model
       parameters:
         - $ref: '#/components/parameters/knn.delete_model___path.model_id'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -5404,7 +5404,7 @@ paths:
       x-version-added: '1.0'
       description: Used to retrieve information about models present in the cluster.
       externalDocs:
-        url: https://opensearch.org/docs/latest/search-plugins/knn/api/#get-model
+        url: https://docs.opensearch.org/latest/vector-search/api/knn/#get-a-model
       parameters:
         - $ref: '#/components/parameters/knn.get_model___path.model_id'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -5422,7 +5422,7 @@ paths:
       x-version-added: '1.0'
       description: Create and train a model that can be used for initializing k-NN native library indexes during indexing.
       externalDocs:
-        url: https://opensearch.org/docs/latest/search-plugins/knn/api/#train-model
+        url: https://docs.opensearch.org/latest/vector-search/api/knn/#train-a-model
       parameters:
         - $ref: '#/components/parameters/knn.train_model___path.model_id'
         - $ref: '#/components/parameters/knn.train_model___query.preference'
@@ -5443,7 +5443,7 @@ paths:
       x-version-added: '1.0'
       description: Provides information about the current status of the k-NN plugin.
       externalDocs:
-        url: https://opensearch.org/docs/latest/search-plugins/knn/api/#stats
+        url: https://docs.opensearch.org/latest/vector-search/api/knn/#stats
       parameters:
         - $ref: '#/components/parameters/knn.stats___query.timeout'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -5461,7 +5461,7 @@ paths:
       x-version-added: '1.0'
       description: Provides information about the current status of the k-NN plugin.
       externalDocs:
-        url: https://opensearch.org/docs/latest/search-plugins/knn/api/#stats
+        url: https://docs.opensearch.org/latest/vector-search/api/knn/#stats
       parameters:
         - $ref: '#/components/parameters/knn.stats___path.stat'
         - $ref: '#/components/parameters/knn.stats___query.timeout'
@@ -5480,7 +5480,7 @@ paths:
       x-version-added: '1.0'
       description: Preloads native library files into memory, reducing initial search latency for specified indexes.
       externalDocs:
-        url: https://opensearch.org/docs/latest/search-plugins/knn/api/#warmup-operation
+        url: https://docs.opensearch.org/latest/vector-search/api/knn/#warmup-operation
       parameters:
         - $ref: '#/components/parameters/knn.warmup___path.index'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -15642,7 +15642,7 @@ paths:
       x-version-added: '1.0'
       description: Provides information about the current status of the k-NN plugin.
       externalDocs:
-        url: https://opensearch.org/docs/latest/search-plugins/knn/api/#stats
+        url: https://docs.opensearch.org/latest/vector-search/api/knn/#stats
       parameters:
         - $ref: '#/components/parameters/knn.stats___path.stat'
         - $ref: '#/components/parameters/knn.stats___query.timeout'
@@ -15663,7 +15663,7 @@ paths:
       x-version-added: '1.0'
       description: Preloads native library files into memory, reducing initial search latency for specified indexes.
       externalDocs:
-        url: https://opensearch.org/docs/latest/search-plugins/knn/api/#warmup-operation
+        url: https://docs.opensearch.org/latest/vector-search/api/knn/#warmup-operation
       parameters:
         - $ref: '#/components/parameters/knn.warmup___path.index'
         - $ref: '#/components/parameters/_global___query.pretty'
@@ -15683,7 +15683,7 @@ paths:
       x-version-added: '1.0'
       description: Provides information about the current status of the k-NN plugin.
       externalDocs:
-        url: https://opensearch.org/docs/latest/search-plugins/knn/api/#stats
+        url: https://docs.opensearch.org/latest/vector-search/api/knn/#stats
       parameters:
         - $ref: '#/components/parameters/knn.stats___path.node_id'
         - $ref: '#/components/parameters/knn.stats___path.stat'
@@ -29253,7 +29253,7 @@ components:
     snapshot.get___query.verbose:
       in: query
       name: verbose
-      description: When `true`, returns additional information about each snapshot such as the version of OpenSearch which took the snapshot, the start and end times of the snapshot, and the number of shards contained in the snapshot.
+      description: When `true`, returns additional information about each snapshot, such as the version of OpenSearch which took the snapshot, the start and end times of the snapshot, and the number of shards contained in the snapshot. When `false`, returns only snapshot names and contained indexes. This is useful when the snapshots belong to a cloud-based repository, where each blob read is a cost or performance concern.
       schema:
         type: boolean
       style: form
@@ -39762,8 +39762,8 @@ components:
           format: int64
         concurrent_avg_slice_count:
           description: The average slice count of all search requests. This is computed as the total slice count divided by the total number of concurrent search requests.
-          type: integer
-          format: int64
+          type: number
+          format: double
         fetch_current:
           description: The number of currently running shard fetch operations.
           type: integer
@@ -40811,20 +40811,6 @@ components:
       allOf:
         - type: object
           properties:
-            aggregations:
-              description: |-
-                Sub-aggregations for this aggregation.
-                Only applies to bucket aggregations.
-              type: object
-              additionalProperties:
-                $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
-            aggs:
-              description: |-
-                Sub-aggregations for this aggregation.
-                Only applies to bucket aggregations.
-              type: object
-              additionalProperties:
-                $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
             meta:
               $ref: '#/components/schemas/_common___Metadata'
         - type: object
@@ -41366,6 +41352,17 @@ components:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___Aggregation'
         - type: object
+          properties:
+            aggregations:
+              description: Sub-aggregations for this bucket aggregation
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
+            aggs:
+              description: Sub-aggregations for this bucket aggregation
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
     _common.aggregations___BucketMetricValueAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___SingleMetricAggregateBase'
@@ -41530,9 +41527,6 @@ components:
       enum:
         - direct
         - global_ordinals
-        - save_memory_heuristic
-        - save_time_heuristic
-        - segment_ordinals
     _common.aggregations___ChildrenAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___SingleBucketAggregateBase'
@@ -42518,14 +42512,16 @@ components:
               type: number
               format: double
     _common.aggregations___MetricAggregationBase:
-      type: object
-      properties:
-        field:
-          $ref: '#/components/schemas/_common___Field'
-        missing:
-          $ref: '#/components/schemas/_common___FieldValue'
-        script:
-          $ref: '#/components/schemas/_common___Script'
+      allOf:
+        - $ref: '#/components/schemas/_common.aggregations___Aggregation'
+        - type: object
+          properties:
+            field:
+              $ref: '#/components/schemas/_common___Field'
+            missing:
+              $ref: '#/components/schemas/_common___FieldValue'
+            script:
+              $ref: '#/components/schemas/_common___Script'
     _common.aggregations___MinAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___SingleMetricAggregateBase'
@@ -47300,29 +47296,31 @@ components:
           $ref: '#/components/schemas/_common___DateTime'
         scale:
           $ref: '#/components/schemas/_common___Duration'
-    _common.query_dsl___DateRangeQueryParameters:
-      type: object
-      properties:
-        gt:
-          $ref: '#/components/schemas/_common___DateMath'
-        gte:
-          $ref: '#/components/schemas/_common___DateMath'
-        lt:
-          $ref: '#/components/schemas/_common___DateMath'
-        lte:
-          $ref: '#/components/schemas/_common___DateMath'
-        from:
-          oneOf:
-            - $ref: '#/components/schemas/_common___DateMath'
-            - type: 'null'
-        to:
-          oneOf:
-            - $ref: '#/components/schemas/_common___DateMath'
-            - type: 'null'
-        format:
-          $ref: '#/components/schemas/_common___DateFormat'
-        time_zone:
-          $ref: '#/components/schemas/_common___TimeZone'
+    _common.query_dsl___DateRangeQuery:
+      allOf:
+        - $ref: '#/components/schemas/_common.query_dsl___RangeQueryBase'
+        - type: object
+          properties:
+            gt:
+              $ref: '#/components/schemas/_common___DateMath'
+            gte:
+              $ref: '#/components/schemas/_common___DateMath'
+            lt:
+              $ref: '#/components/schemas/_common___DateMath'
+            lte:
+              $ref: '#/components/schemas/_common___DateMath'
+            from:
+              oneOf:
+                - $ref: '#/components/schemas/_common___DateMath'
+                - type: 'null'
+            to:
+              oneOf:
+                - $ref: '#/components/schemas/_common___DateMath'
+                - type: 'null'
+            format:
+              $ref: '#/components/schemas/_common___DateFormat'
+            time_zone:
+              $ref: '#/components/schemas/_common___TimeZone'
     _common.query_dsl___DecayFunction:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___DecayFunctionBase'
@@ -48335,37 +48333,39 @@ components:
               format: float
             filter:
               $ref: '#/components/schemas/_common.query_dsl___QueryContainer'
-    _common.query_dsl___NumberRangeQueryParameters:
-      type: object
-      properties:
-        gt:
-          description: Greater than.
-          type: number
-          format: double
-        gte:
-          description: Greater than or equal to.
-          type: number
-          format: double
-        lt:
-          description: Less than.
-          type: number
-          format: double
-        lte:
-          description: Less than or equal to.
-          type: number
-          format: double
-        from:
-          oneOf:
-            - type: number
+    _common.query_dsl___NumberRangeQuery:
+      allOf:
+        - $ref: '#/components/schemas/_common.query_dsl___RangeQueryBase'
+        - type: object
+          properties:
+            gt:
+              description: Greater than.
+              type: number
               format: double
-            - type: string
-            - type: 'null'
-        to:
-          oneOf:
-            - type: number
+            gte:
+              description: Greater than or equal to.
+              type: number
               format: double
-            - type: string
-            - type: 'null'
+            lt:
+              description: Less than.
+              type: number
+              format: double
+            lte:
+              description: Less than or equal to.
+              type: number
+              format: double
+            from:
+              oneOf:
+                - type: number
+                  format: double
+                - type: string
+                - type: 'null'
+            to:
+              oneOf:
+                - type: number
+                  format: double
+                - type: string
+                - type: 'null'
     _common.query_dsl___NumericDecayPlacement:
       type: object
       properties:
@@ -48846,12 +48846,8 @@ components:
             - type: string
     _common.query_dsl___RangeQuery:
       oneOf:
-        - allOf:
-            - $ref: '#/components/schemas/_common.query_dsl___RangeQueryBase'
-            - $ref: '#/components/schemas/_common.query_dsl___NumberRangeQueryParameters'
-        - allOf:
-            - $ref: '#/components/schemas/_common.query_dsl___RangeQueryBase'
-            - $ref: '#/components/schemas/_common.query_dsl___DateRangeQueryParameters'
+        - $ref: '#/components/schemas/_common.query_dsl___NumberRangeQuery'
+        - $ref: '#/components/schemas/_common.query_dsl___DateRangeQuery'
     _common.query_dsl___RangeQueryBase:
       allOf:
         - $ref: '#/components/schemas/_common.query_dsl___QueryBase'
@@ -51496,34 +51492,7 @@ components:
           additionalProperties:
             type: array
             items:
-              allOf:
-                - $ref: '#/components/schemas/_core.search___Suggest'
-                - oneOf:
-                    - title: completion
-                      allOf:
-                        - $ref: '#/components/schemas/_core.search___CompletionSuggest'
-                        - type: object
-                          properties:
-                            options:
-                              oneOf:
-                                - allOf:
-                                    - $ref: '#/components/schemas/_core.search___CompletionSuggestOption'
-                                    - type: object
-                                      properties:
-                                        _source:
-                                          $ref: '#/components/schemas/_core.search___TDocument'
-                                - type: array
-                                  items:
-                                    allOf:
-                                      - $ref: '#/components/schemas/_core.search___CompletionSuggestOption'
-                                      - type: object
-                                        properties:
-                                          _source:
-                                            $ref: '#/components/schemas/_core.search___TDocument'
-                    - title: phrase
-                      $ref: '#/components/schemas/_core.search___PhraseSuggest'
-                    - title: term
-                      $ref: '#/components/schemas/_core.search___TermSuggest'
+              $ref: '#/components/schemas/_core.search___Suggest'
         terminated_early:
           type: boolean
       required:
@@ -55864,7 +55833,11 @@ components:
           $ref: '#/components/schemas/_common___DateTime'
           description: When the provisioning operation completed.
         resources_created:
-          $ref: '#/components/schemas/flow_framework.common___ResourcesCreated'
+          oneOf:
+            - $ref: '#/components/schemas/flow_framework.common___ResourcesCreated'
+            - type: array
+              items:
+                $ref: '#/components/schemas/flow_framework.common___ResourcesCreated'
     flow_framework.common___SearchWorkflowRequest:
       type: object
       properties:
@@ -57837,9 +57810,11 @@ components:
           description: Defines the size of the internal blocking queue in pull-based ingestion.
         param:
           type: object
-          additionalProperties:
-            type: string
+          additionalProperties: true
           description: Custom parameters for the ingestion source.
+        all_active:
+          description: Indicates if all-active ingestion is enabled for this index.
+          $ref: '#/components/schemas/_common___StringifiedBoolean'
     indices._common___IngestionSourcePointer:
       type: object
       properties:
@@ -60635,16 +60610,16 @@ components:
       type: object
       properties:
         min_size:
-          type: number
+          type: string
           description: The minimum size to trigger rollover.
         min_index_age:
-          type: number
+          type: string
           description: The minimum index age to trigger rollover.
         min_doc_count:
           type: number
           description: The minimum document count to trigger rollover.
         min_primary_shard_size:
-          type: number
+          type: string
           description: The minimum primary shard size to trigger rollover.
         copy_alias:
           type: boolean
