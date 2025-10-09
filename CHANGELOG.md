@@ -11,8 +11,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.apache.httpcomponents.core5:httpcore5` from 5.3.4 to 5.3.6 ([#1726](https://github.com/opensearch-project/opensearch-java/pull/1726), [#1733](https://github.com/opensearch-project/opensearch-java/pull/1733))
 - Bump `org.owasp.dependencycheck` from 12.1.3 to 12.1.6 ([#1735](https://github.com/opensearch-project/opensearch-java/pull/1735), [#1742](https://github.com/opensearch-project/opensearch-java/pull/1742))
 - Bump `org.apache.httpcomponents.client5:httpclient5` from 5.5 to 5.5.1 ([#1740](https://github.com/opensearch-project/opensearch-java/pull/1740))
-- Added support for the `search_relevance` namespace ([#1748](https://github.com/opensearch-project/opensearch-java/pull/1748))
-- Fix formatting of the main method to run for various samples ([#1749](https://github.com/opensearch-project/opensearch-java/pull/1749))
 
 ## [Unreleased 3.x]
 ### Added
@@ -21,6 +19,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added support for the `geospatial` namespace ([#1690](https://github.com/opensearch-project/opensearch-java/pull/1690))
 - Added support for the `knn` namespace ([#1693](https://github.com/opensearch-project/opensearch-java/pull/1693))
 - Added getter for retrieve all nodes along with their state ([#1698](https://github.com/opensearch-project/opensearch-java/pull/1698))
+- Added support for the `search_relevance` namespace ([#1748](https://github.com/opensearch-project/opensearch-java/pull/1748))
+- Fix formatting of the main method to run for various samples ([#1749](https://github.com/opensearch-project/opensearch-java/pull/1749))
 
 ### Dependencies
 - Bump `io.github.classgraph:classgraph` from 4.8.180 to 4.8.181 ([#1703](https://github.com/opensearch-project/opensearch-java/pull/1703))
