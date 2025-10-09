@@ -8,6 +8,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added support for the `geospatial` namespace ([#1690](https://github.com/opensearch-project/opensearch-java/pull/1690))
 - Added support for the `knn` namespace ([#1693](https://github.com/opensearch-project/opensearch-java/pull/1693))
 - Added getter for retrieve all nodes along with their state ([#1698](https://github.com/opensearch-project/opensearch-java/pull/1698))
+- Added support for the `search_relevance` namespace ([#1748](https://github.com/opensearch-project/opensearch-java/pull/1748))
 
 ### Dependencies
 - Bump `io.github.classgraph:classgraph` from 4.8.180 to 4.8.181 ([#1703](https://github.com/opensearch-project/opensearch-java/pull/1703))
