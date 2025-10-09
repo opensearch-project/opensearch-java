@@ -18,7 +18,7 @@ import org.opensearch.client.opensearch.core.BulkRequest;
 import org.opensearch.client.samples.SampleClient;
 
 /**
- * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=knn.KnnEfficientFilter</c>
+ * Run with: {@code ./gradlew :samples:run -Dsamples.mainClass=knn.KnnEfficientFilter}
  */
 public class KnnEfficientFilter {
     private static final Logger LOGGER = LogManager.getLogger(KnnEfficientFilter.class);

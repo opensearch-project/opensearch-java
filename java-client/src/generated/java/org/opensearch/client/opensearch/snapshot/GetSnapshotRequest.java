@@ -163,8 +163,10 @@ public final class GetSnapshotRequest extends RequestBase implements ToCopyableB
     }
 
     /**
-     * When <code>true</code>, returns additional information about each snapshot such as the version of OpenSearch which took the snapshot,
-     * the start and end times of the snapshot, and the number of shards contained in the snapshot.
+     * When <code>true</code>, returns additional information about each snapshot, such as the version of OpenSearch which took the
+     * snapshot, the start and end times of the snapshot, and the number of shards contained in the snapshot. When <code>false</code>,
+     * returns only snapshot names and contained indexes. This is useful when the snapshots belong to a cloud-based repository, where each
+     * blob read is a cost or performance concern.
      * <p>
      * API name: {@code verbose}
      * </p>
@@ -359,8 +361,10 @@ public final class GetSnapshotRequest extends RequestBase implements ToCopyableB
         }
 
         /**
-         * When <code>true</code>, returns additional information about each snapshot such as the version of OpenSearch which took the
-         * snapshot, the start and end times of the snapshot, and the number of shards contained in the snapshot.
+         * When <code>true</code>, returns additional information about each snapshot, such as the version of OpenSearch which took the
+         * snapshot, the start and end times of the snapshot, and the number of shards contained in the snapshot. When <code>false</code>,
+         * returns only snapshot names and contained indexes. This is useful when the snapshots belong to a cloud-based repository, where
+         * each blob read is a cost or performance concern.
          * <p>
          * API name: {@code verbose}
          * </p>

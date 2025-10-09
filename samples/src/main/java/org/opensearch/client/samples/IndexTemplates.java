@@ -22,7 +22,7 @@ import org.opensearch.client.opensearch.indices.GetMappingResponse;
 import org.opensearch.client.opensearch.indices.PutIndexTemplateRequest;
 
 /**
- * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=IndexTemplates</c>
+ * Run with: {@code ./gradlew :samples:run -Dsamples.mainClass=IndexTemplates}
  */
 public class IndexTemplates {
     private static final Logger LOGGER = LogManager.getLogger(IndexTemplates.class);
