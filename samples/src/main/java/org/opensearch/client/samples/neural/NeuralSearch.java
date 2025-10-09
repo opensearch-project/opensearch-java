@@ -36,7 +36,7 @@ import org.opensearch.client.opensearch.ml.UndeployModelRequest;
 import org.opensearch.client.samples.SampleClient;
 
 /**
- * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=neural.NeuralSearch</c>
+ * Run with: {@code ./gradlew :samples:run -Dsamples.mainClass=neural.NeuralSearch}
  */
 public class NeuralSearch {
     private static final String SAMPLE_NAME = "neural-search";
