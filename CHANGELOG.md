@@ -1,6 +1,21 @@
 # CHANGELOG
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+<<<<<<< HEAD
+=======
+## [Unreleased 4.x]
+### Dependencies
+- Bump `io.github.classgraph:classgraph` from 4.8.180 to 4.8.181 ([#1703](https://github.com/opensearch-project/opensearch-java/pull/1703))
+- Bump `org.junit:junit-bom` from 5.13.3 to 6.0.0 ([#1704](https://github.com/opensearch-project/opensearch-java/pull/1704), [#1746](https://github.com/opensearch-project/opensearch-java/pull/1746))
+- Bump `org.opensearch.gradle:build-tools` from 3.2.0-SNAPSHOT to 3.3.0-SNAPSHOT ([#1714](https://github.com/opensearch-project/opensearch-java/pull/1714))
+- Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.2 to 5.3.3 ([#1723](https://github.com/opensearch-project/opensearch-java/pull/1723))
+- Bump `org.apache.httpcomponents.core5:httpcore5` from 5.3.4 to 5.3.6 ([#1726](https://github.com/opensearch-project/opensearch-java/pull/1726), [#1733](https://github.com/opensearch-project/opensearch-java/pull/1733))
+- Bump `org.owasp.dependencycheck` from 12.1.3 to 12.1.6 ([#1735](https://github.com/opensearch-project/opensearch-java/pull/1735), [#1742](https://github.com/opensearch-project/opensearch-java/pull/1742))
+- Bump `org.apache.httpcomponents.client5:httpclient5` from 5.5 to 5.5.1 ([#1740](https://github.com/opensearch-project/opensearch-java/pull/1740))
+- Added support for the `search_relevance` namespace ([#1748](https://github.com/opensearch-project/opensearch-java/pull/1748))
+- Fix formatting of the main method to run for various samples ([#1749](https://github.com/opensearch-project/opensearch-java/pull/1749))
+
+>>>>>>> 717a4374c (Add search_relevance APIs to the Java client (#1748))
 ## [Unreleased 3.x]
 ### Added
 - Added decommission awareness & weighted routing operations ([#1632](https://github.com/opensearch-project/opensearch-java/pull/1632))
