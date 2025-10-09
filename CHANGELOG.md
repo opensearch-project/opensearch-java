@@ -1,7 +1,6 @@
 # CHANGELOG
 Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
-<<<<<<< HEAD
 =======
 ## [Unreleased 4.x]
 ### Dependencies
@@ -15,7 +14,6 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added support for the `search_relevance` namespace ([#1748](https://github.com/opensearch-project/opensearch-java/pull/1748))
 - Fix formatting of the main method to run for various samples ([#1749](https://github.com/opensearch-project/opensearch-java/pull/1749))
 
->>>>>>> 717a4374c (Add search_relevance APIs to the Java client (#1748))
 ## [Unreleased 3.x]
 ### Added
 - Added decommission awareness & weighted routing operations ([#1632](https://github.com/opensearch-project/opensearch-java/pull/1632))
