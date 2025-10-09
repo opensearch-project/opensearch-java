@@ -160,20 +160,15 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
     }
 
     @Nonnull
-    private final Map<String, Aggregation> aggregations;
-
-    @Nonnull
     private final Map<String, JsonData> meta;
 
     public Aggregation(AggregationVariant value) {
         this._kind = ApiTypeHelper.requireNonNull(value._aggregationKind(), this, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
-        this.aggregations = null;
         this.meta = null;
     }
 
     private Aggregation(Builder builder) {
-        this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
         this.meta = ApiTypeHelper.unmodifiable(builder.meta);
         this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
         this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
@@ -181,17 +176,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
 
     public static Aggregation of(Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
         return fn.apply(new Builder()).build();
-    }
-
-    /**
-     * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
-     * <p>
-     * API name: {@code aggregations}
-     * </p>
-     */
-    @Nonnull
-    public final Map<String, Aggregation> aggregations() {
-        return this.aggregations;
     }
 
     /**
@@ -1245,16 +1229,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
-        if (ApiTypeHelper.isDefined(this.aggregations)) {
-            generator.writeKey("aggregations");
-            generator.writeStartObject();
-            for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
-                generator.writeKey(item0.getKey());
-                item0.getValue().serialize(generator, mapper);
-            }
-            generator.writeEnd();
-        }
-
         if (ApiTypeHelper.isDefined(this.meta)) {
             generator.writeKey("meta");
             generator.writeStartObject();
@@ -1285,64 +1259,14 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         private Kind _kind;
         private AggregationVariant _value;
         @Nullable
-        private Map<String, Aggregation> aggregations;
-        @Nullable
         private Map<String, JsonData> meta;
 
         public Builder() {}
 
         private Builder(Aggregation o) {
-            this.aggregations = _mapCopy(o.aggregations);
             this.meta = _mapCopy(o.meta);
             this._kind = o._kind;
             this._value = o._value;
-        }
-
-        /**
-         * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
-         * <p>
-         * API name: {@code aggregations}
-         * </p>
-         *
-         * <p>
-         * Adds all elements of <code>map</code> to <code>aggregations</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder aggregations(Map<String, Aggregation> map) {
-            this.aggregations = _mapPutAll(this.aggregations, map);
-            return this;
-        }
-
-        /**
-         * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
-         * <p>
-         * API name: {@code aggregations}
-         * </p>
-         *
-         * <p>
-         * Adds an entry to <code>aggregations</code>.
-         * </p>
-         */
-        @Nonnull
-        public final Builder aggregations(String key, Aggregation value) {
-            this.aggregations = _mapPut(this.aggregations, key, value);
-            return this;
-        }
-
-        /**
-         * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
-         * <p>
-         * API name: {@code aggregations}
-         * </p>
-         *
-         * <p>
-         * Adds a value to <code>aggregations</code> using a builder lambda.
-         * </p>
-         */
-        @Nonnull
-        public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-            return aggregations(key, fn.apply(new Aggregation.Builder()).build());
         }
 
         /**
@@ -2056,53 +1980,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
             private ContainerBuilder() {}
 
             /**
-             * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
-             * <p>
-             * API name: {@code aggregations}
-             * </p>
-             *
-             * <p>
-             * Adds all elements of <code>map</code> to <code>aggregations</code>.
-             * </p>
-             */
-            @Nonnull
-            public final ContainerBuilder aggregations(Map<String, Aggregation> map) {
-                Builder.this.aggregations = _mapPutAll(Builder.this.aggregations, map);
-                return this;
-            }
-
-            /**
-             * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
-             * <p>
-             * API name: {@code aggregations}
-             * </p>
-             *
-             * <p>
-             * Adds an entry to <code>aggregations</code>.
-             * </p>
-             */
-            @Nonnull
-            public final ContainerBuilder aggregations(String key, Aggregation value) {
-                Builder.this.aggregations = _mapPut(Builder.this.aggregations, key, value);
-                return this;
-            }
-
-            /**
-             * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
-             * <p>
-             * API name: {@code aggregations}
-             * </p>
-             *
-             * <p>
-             * Adds a value to <code>aggregations</code> using a builder lambda.
-             * </p>
-             */
-            @Nonnull
-            public final ContainerBuilder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-                return aggregations(key, fn.apply(new Aggregation.Builder()).build());
-            }
-
-            /**
              * API name: {@code meta}
              *
              * <p>
@@ -2136,7 +2013,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
     }
 
     protected static void setupAggregationDeserializer(ObjectDeserializer<Builder> op) {
-        op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggregations", "aggs");
         op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
         op.add(Builder::adjacencyMatrix, AdjacencyMatrixAggregation._DESERIALIZER, "adjacency_matrix");
         op.add(Builder::autoDateHistogram, AutoDateHistogramAggregation._DESERIALIZER, "auto_date_histogram");
@@ -2216,7 +2092,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         int result = 17;
         result = 31 * result + Objects.hashCode(this._kind);
         result = 31 * result + Objects.hashCode(this._value);
-        result = 31 * result + Objects.hashCode(this.aggregations);
         result = 31 * result + Objects.hashCode(this.meta);
         return result;
     }
@@ -2228,7 +2103,6 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, AggregationVar
         Aggregation other = (Aggregation) o;
         return Objects.equals(this._kind, other._kind)
             && Objects.equals(this._value, other._value)
-            && Objects.equals(this.aggregations, other.aggregations)
             && Objects.equals(this.meta, other.meta);
     }
 }

@@ -66,13 +66,13 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
     private final Number minDocCount;
 
     @Nullable
-    private final Number minIndexAge;
+    private final String minIndexAge;
 
     @Nullable
-    private final Number minPrimaryShardSize;
+    private final String minPrimaryShardSize;
 
     @Nullable
-    private final Number minSize;
+    private final String minSize;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -117,7 +117,7 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
      * </p>
      */
     @Nullable
-    public final Number minIndexAge() {
+    public final String minIndexAge() {
         return this.minIndexAge;
     }
 
@@ -128,7 +128,7 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
      * </p>
      */
     @Nullable
-    public final Number minPrimaryShardSize() {
+    public final String minPrimaryShardSize() {
         return this.minPrimaryShardSize;
     }
 
@@ -139,7 +139,7 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
      * </p>
      */
     @Nullable
-    public final Number minSize() {
+    public final String minSize() {
         return this.minSize;
     }
 
@@ -166,17 +166,17 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
 
         if (this.minIndexAge != null) {
             generator.writeKey("min_index_age");
-            generator.write(this.minIndexAge.doubleValue());
+            generator.write(this.minIndexAge);
         }
 
         if (this.minPrimaryShardSize != null) {
             generator.writeKey("min_primary_shard_size");
-            generator.write(this.minPrimaryShardSize.doubleValue());
+            generator.write(this.minPrimaryShardSize);
         }
 
         if (this.minSize != null) {
             generator.writeKey("min_size");
-            generator.write(this.minSize.doubleValue());
+            generator.write(this.minSize);
         }
     }
 
@@ -202,11 +202,11 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
         @Nullable
         private Number minDocCount;
         @Nullable
-        private Number minIndexAge;
+        private String minIndexAge;
         @Nullable
-        private Number minPrimaryShardSize;
+        private String minPrimaryShardSize;
         @Nullable
-        private Number minSize;
+        private String minSize;
 
         public Builder() {}
 
@@ -263,7 +263,7 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
          * </p>
          */
         @Nonnull
-        public final Builder minIndexAge(@Nullable Number value) {
+        public final Builder minIndexAge(@Nullable String value) {
             this.minIndexAge = value;
             return this;
         }
@@ -275,7 +275,7 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
          * </p>
          */
         @Nonnull
-        public final Builder minPrimaryShardSize(@Nullable Number value) {
+        public final Builder minPrimaryShardSize(@Nullable String value) {
             this.minPrimaryShardSize = value;
             return this;
         }
@@ -287,7 +287,7 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
          * </p>
          */
         @Nonnull
-        public final Builder minSize(@Nullable Number value) {
+        public final Builder minSize(@Nullable String value) {
             this.minSize = value;
             return this;
         }
@@ -319,9 +319,9 @@ public class ActionRollover implements PlainJsonSerializable, ToCopyableBuilder<
     protected static void setupActionRolloverDeserializer(ObjectDeserializer<ActionRollover.Builder> op) {
         op.add(Builder::copyAlias, JsonpDeserializer.booleanDeserializer(), "copy_alias");
         op.add(Builder::minDocCount, JsonpDeserializer.numberDeserializer(), "min_doc_count");
-        op.add(Builder::minIndexAge, JsonpDeserializer.numberDeserializer(), "min_index_age");
-        op.add(Builder::minPrimaryShardSize, JsonpDeserializer.numberDeserializer(), "min_primary_shard_size");
-        op.add(Builder::minSize, JsonpDeserializer.numberDeserializer(), "min_size");
+        op.add(Builder::minIndexAge, JsonpDeserializer.stringDeserializer(), "min_index_age");
+        op.add(Builder::minPrimaryShardSize, JsonpDeserializer.stringDeserializer(), "min_primary_shard_size");
+        op.add(Builder::minSize, JsonpDeserializer.stringDeserializer(), "min_size");
     }
 
     @Override
