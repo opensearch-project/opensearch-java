@@ -71,8 +71,8 @@ public interface Body extends AutoCloseable {
     }
 
     /**
-     * Gets the body as {@link byte[]}
-     * @return body as {@link byte[]}
+     * Gets the body as {@code byte[]}
+     * @return body as {@code byte[]}
      */
     default byte[] bodyAsBytes() {
         try (final ByteArrayOutputStream out = new ByteArrayOutputStream()) {

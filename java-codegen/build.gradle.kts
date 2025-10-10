@@ -72,7 +72,7 @@ application {
 
 val localSpecification = "$projectDir/opensearch-openapi.yaml"
 
-tasks.create<Download>("downloadLatestSpec") {
+tasks.register<Download>("downloadLatestSpec") {
     src("https://github.com/opensearch-project/opensearch-api-specification/releases/download/main-latest/opensearch-openapi.yaml")
     dest(localSpecification)
 }
@@ -86,10 +86,10 @@ tasks.named<JavaExec>("run") {
 }
 
 tasks.withType<ProcessResources> {
-    expand(
+    expand(mapOf(
         "version" to version,
         "git_revision" to (if (rootProject.extra.has("gitHashFull")) rootProject.extra["gitHashFull"] else "unknown")
-    )
+    ))
 }
 
 tasks.withType<Javadoc>().configureEach{
