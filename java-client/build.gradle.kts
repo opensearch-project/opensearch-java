@@ -98,10 +98,10 @@ sourceSets {
 }
 
 tasks.withType<ProcessResources> {
-    expand(
+    expand(mapOf(
         "version" to version,
         "git_revision" to (if (rootProject.extra.has("gitHashFull")) rootProject.extra["gitHashFull"] else "unknown")
-    )
+    ))
 }
 
 tasks.withType<Javadoc>().configureEach{
