@@ -16,7 +16,7 @@ import org.opensearch.client.samples.SampleClient;
 import org.opensearch.client.samples.util.RandUtil;
 
 /**
- * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=knn.KnnBooleanFilter</c>
+ * Run with: {@code ./gradlew :samples:run -Dsamples.mainClass=knn.KnnBooleanFilter}
  */
 public class KnnBooleanFilter {
     private static final Logger LOGGER = LogManager.getLogger(KnnBooleanFilter.class);

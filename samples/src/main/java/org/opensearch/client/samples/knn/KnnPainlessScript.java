@@ -17,7 +17,7 @@ import org.opensearch.client.samples.SampleClient;
 import org.opensearch.client.samples.util.RandUtil;
 
 /**
- * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=knn.KnnPainlessScript</c>
+ * Run with: {@code ./gradlew :samples:run -Dsamples.mainClass=knn.KnnPainlessScript}
  */
 public class KnnPainlessScript {
     private static final Logger LOGGER = LogManager.getLogger(KnnPainlessScript.class);
