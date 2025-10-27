@@ -59,7 +59,7 @@ jobs:
 
       - name: Upload Reports
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: test-reports-os${{ matrix.entry.opensearch_version }}-java${{ matrix.entry.java }}
           path: java-client/build/reports/
