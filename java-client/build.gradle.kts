@@ -319,7 +319,7 @@ publishing {
         if (version.toString().endsWith("SNAPSHOT")) {
             maven(System.getenv("MAVEN_SNAPSHOTS_S3_REPO")) {
                 name = "Snapshots"
-                credentials(AwsCredentials) {
+		credentials(AwsCredentials::class) {
                     accessKey = System.getenv("AWS_ACCESS_KEY_ID")
                     secretKey = System.getenv("AWS_SECRET_ACCESS_KEY")
                     sessionToken = System.getenv("AWS_SESSION_TOKEN")
