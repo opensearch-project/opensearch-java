@@ -176,7 +176,7 @@ val integrationTest = task<Test>("integrationTest") {
             System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
 }
 
-val opensearchVersion = "3.0.0-beta1-SNAPSHOT"
+val opensearchVersion = "3.0.0-SNAPSHOT"
 
 dependencies {
     val jacksonVersion = "2.18.3"
