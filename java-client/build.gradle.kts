@@ -38,8 +38,7 @@ import java.io.FileWriter
 buildscript {
     repositories {
         mavenLocal()
-        maven(url = "https://central.sonatype.com/repository/maven-snapshots/")
-        maven(url = "https://aws.oss.sonatype.org/content/repositories/snapshots")
+        maven(url = "https://ci.opensearch.org/ci/dbc/snapshots/maven/")
         mavenCentral()
         gradlePluginPortal()
     }
@@ -177,7 +176,7 @@ val integrationTest = task<Test>("integrationTest") {
             System.getProperty("tests.awsSdk2support.domainRegion", "us-east-1"))
 }
 
-val opensearchVersion = "3.0.0-beta1-SNAPSHOT"
+val opensearchVersion = "3.0.0-SNAPSHOT"
 
 dependencies {
     val jacksonVersion = "2.18.3"
@@ -318,11 +317,12 @@ tasks.withType<Jar> {
 publishing {
     repositories{
         if (version.toString().endsWith("SNAPSHOT")) {
-            maven("https://central.sonatype.com/repository/maven-snapshots/") {
+            maven(providers.environmentVariable("MAVEN_SNAPSHOTS_S3_REPO")) {
                 name = "Snapshots"
-                credentials {
-                    username = System.getenv("SONATYPE_USERNAME")
-                    password = System.getenv("SONATYPE_PASSWORD")
+		credentials(AwsCredentials::class) {
+                    accessKey = System.getenv("AWS_ACCESS_KEY_ID")
+                    secretKey = System.getenv("AWS_SECRET_ACCESS_KEY")
+                    sessionToken = System.getenv("AWS_SESSION_TOKEN")
                 }
             }
         }
