@@ -317,7 +317,7 @@ tasks.withType<Jar> {
 publishing {
     repositories{
         if (version.toString().endsWith("SNAPSHOT")) {
-            maven(System.getenv("MAVEN_SNAPSHOTS_S3_REPO") ?: "default-s3-bucket") {
+            maven(providers.environmentVariable("MAVEN_SNAPSHOTS_S3_REPO")) {
                 name = "Snapshots"
 		credentials(AwsCredentials::class) {
                     accessKey = System.getenv("AWS_ACCESS_KEY_ID")
