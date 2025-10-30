@@ -19,8 +19,7 @@ import java.io.FileWriter
 buildscript {
     repositories {
         mavenLocal()
-        maven(url = "https://central.sonatype.com/repository/maven-snapshots/")
-        maven(url = "https://aws.oss.sonatype.org/content/repositories/snapshots")
+        maven(url = "https://ci.opensearch.org/ci/dbc/snapshots/maven/")
         mavenCentral()
         gradlePluginPortal()
     }
