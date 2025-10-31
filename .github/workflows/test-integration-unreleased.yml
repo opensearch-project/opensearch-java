@@ -18,6 +18,7 @@ jobs:
           - { opensearch_ref: '1.x', opensearch_jdk: 11, client_jdk: 21 }
           - { opensearch_ref: '2.x', opensearch_jdk: 21, client_jdk: 21 }
           - { opensearch_ref: 'main', opensearch_jdk: 21, client_jdk: 21 }
+          - { opensearch_ref: 'main', opensearch_jdk: 25, client_jdk: 25 }
     steps:
       - name: Set up JDK ${{ matrix.entry.opensearch_jdk }}
         uses: actions/setup-java@v5
