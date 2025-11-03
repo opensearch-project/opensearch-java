@@ -30,7 +30,7 @@ buildscript {
 
 plugins {
     application
-    id("com.github.jk1.dependency-license-report") version "2.9"
+    id("com.github.jk1.dependency-license-report") version "3.0.1"
     id("org.owasp.dependencycheck") version "12.1.2"
     id("de.undercouch.download") version "5.6.0"
 
