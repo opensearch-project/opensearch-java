@@ -12,6 +12,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.apache.httpcomponents.client5:httpclient5` from 5.5 to 5.5.1 ([#1740](https://github.com/opensearch-project/opensearch-java/pull/1740))
 - Added support for the `search_relevance` namespace ([#1748](https://github.com/opensearch-project/opensearch-java/pull/1748))
 - Fix formatting of the main method to run for various samples ([#1749](https://github.com/opensearch-project/opensearch-java/pull/1749))
+- Bump `com.github.jk1.dependency-license-report` from 2.9 to 3.0.1 ([#1779](https://github.com/opensearch-project/opensearch-java/pull/1779))
 
 ## [Unreleased 3.x]
 ### Added
