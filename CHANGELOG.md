@@ -4,7 +4,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## [Unreleased 4.x]
 ### Dependencies
 - Bump `io.github.classgraph:classgraph` from 4.8.180 to 4.8.184 ([#1703](https://github.com/opensearch-project/opensearch-java/pull/1703), [#1759](https://github.com/opensearch-project/opensearch-java/pull/1759))
-- Bump `org.junit:junit-bom` from 5.13.3 to 6.0.0 ([#1704](https://github.com/opensearch-project/opensearch-java/pull/1704), [#1746](https://github.com/opensearch-project/opensearch-java/pull/1746))
+- Bump `org.junit:junit-bom` from 5.13.3 to 6.0.1 ([#1704](https://github.com/opensearch-project/opensearch-java/pull/1704), [#1746](https://github.com/opensearch-project/opensearch-java/pull/1746), [#1780](https://github.com/opensearch-project/opensearch-java/pull/1780))
 - Bump `org.opensearch.gradle:build-tools` from 3.2.0-SNAPSHOT to 3.4.0-SNAPSHOT ([#1714](https://github.com/opensearch-project/opensearch-java/pull/1714), [#1756](https://github.com/opensearch-project/opensearch-java/pull/1756))
 - Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.2 to 5.3.3 ([#1723](https://github.com/opensearch-project/opensearch-java/pull/1723))
 - Bump `org.apache.httpcomponents.core5:httpcore5` from 5.3.4 to 5.3.6 ([#1726](https://github.com/opensearch-project/opensearch-java/pull/1726), [#1733](https://github.com/opensearch-project/opensearch-java/pull/1733))
