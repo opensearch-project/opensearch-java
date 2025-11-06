@@ -33,6 +33,8 @@
 package org.opensearch.client.json;
 
 import jakarta.json.stream.JsonParser;
+
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -89,12 +91,12 @@ public class ObjectBuilderDeserializer<T, B extends ObjectBuilder<T>> extends De
     @Override
     public T deserialize(JsonParser parser, JsonpMapper mapper) {
         ObjectBuilder<T> builder = builderDeserializer.deserialize(parser, mapper);
-        return builder.build();
+        return (Objects.isNull(builder)) ? null : builder.build();
     }
 
     @Override
     public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
         ObjectBuilder<T> builder = builderDeserializer.deserialize(parser, mapper, event);
-        return builder.build();
+        return (Objects.isNull(builder)) ? null : builder.build();
     }
 }
