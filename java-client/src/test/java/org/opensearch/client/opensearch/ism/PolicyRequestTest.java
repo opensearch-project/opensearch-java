@@ -48,44 +48,43 @@ public class PolicyRequestTest extends ModelTestCase {
     }
 
     String jsonWithoutIsmTemplateAndErrorNotification = """
-{
-    "policy_id": "ism-test-policy",
-    "description": "Test Policy",
-    "last_updated_time": 1762418442921,
-    "schema_version": 21,
-    "error_notification": null,
-    "default_state": "transition",
-    "states": [
-      {
-        "name": "transition",
-        "actions": [],
-        "transitions": [
-          {
-            "state_name": "delete",
-            "conditions": {
-              "min_index_age": "1d"
-            }
-          }
-        ]
-      },
-      {
-        "name": "delete",
-        "actions": [
-          {
-            "retry": {
-              "count": 3,
-              "backoff": "exponential",
-              "delay": "1s"
-            },
-            "delete": {}
-          }
-        ],
-        "transitions": []
-      }
-    ],
-    "ism_template": null
-}
-      """;
-
+        {
+            "policy_id": "ism-test-policy",
+            "description": "Test Policy",
+            "last_updated_time": 1762418442921,
+            "schema_version": 21,
+            "error_notification": null,
+            "default_state": "transition",
+            "states": [
+              {
+                "name": "transition",
+                "actions": [],
+                "transitions": [
+                  {
+                    "state_name": "delete",
+                    "conditions": {
+                      "min_index_age": "1d"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "delete",
+                "actions": [
+                  {
+                    "retry": {
+                      "count": 3,
+                      "backoff": "exponential",
+                      "delay": "1s"
+                    },
+                    "delete": {}
+                  }
+                ],
+                "transitions": []
+              }
+            ],
+            "ism_template": null
+        }
+              """;
 
 }
