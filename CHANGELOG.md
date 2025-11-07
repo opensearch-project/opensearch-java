@@ -26,6 +26,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Removed
 
 ### Fixed
+- Fixed an issue where `AwsSdk2Transport` would create a default `JacksonJsonpMapper` on every instantiation even if a mapper was already provided, which could cause issues with Jackson module resolution (dummy)
 
 ### Security
 
