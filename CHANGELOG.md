@@ -27,6 +27,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 - Fixed an issue where `AwsSdk2Transport` would create a default `JacksonJsonpMapper` on every instantiation even if a mapper was already provided, which could cause issues with Jackson module resolution ([#1788](https://github.com/opensearch-project/opensearch-java/pull/1788))
+- Fixed the regression introduced in the OpenSearch OpenAPI spec ([#1794](https://github.com/opensearch-project/opensearch-java/pull/1794))
 
 ### Security
 
