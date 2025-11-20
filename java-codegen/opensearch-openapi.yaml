@@ -40811,6 +40811,20 @@ components:
       allOf:
         - type: object
           properties:
+            aggregations:
+              description: |-
+                Sub-aggregations for this aggregation.
+                Only applies to bucket aggregations.
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
+            aggs:
+              description: |-
+                Sub-aggregations for this aggregation.
+                Only applies to bucket aggregations.
+              type: object
+              additionalProperties:
+                $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
             meta:
               $ref: '#/components/schemas/_common___Metadata'
         - type: object
@@ -41352,17 +41366,6 @@ components:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___Aggregation'
         - type: object
-          properties:
-            aggregations:
-              description: Sub-aggregations for this bucket aggregation
-              type: object
-              additionalProperties:
-                $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
-            aggs:
-              description: Sub-aggregations for this bucket aggregation
-              type: object
-              additionalProperties:
-                $ref: '#/components/schemas/_common.aggregations___AggregationContainer'
     _common.aggregations___BucketMetricValueAggregate:
       allOf:
         - $ref: '#/components/schemas/_common.aggregations___SingleMetricAggregateBase'
