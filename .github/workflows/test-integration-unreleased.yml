@@ -27,7 +27,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Checkout OpenSearch
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: opensearch-project/OpenSearch
           ref: ${{ matrix.entry.opensearch_ref }}
@@ -77,7 +77,7 @@ jobs:
           for attempt in {1..20}; do sleep 5; if curl -s localhost:9200; then echo '=====> ready'; break; fi; echo '=====> waiting...'; done
 
       - name: Checkout Java Client
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: opensearch-java
 
