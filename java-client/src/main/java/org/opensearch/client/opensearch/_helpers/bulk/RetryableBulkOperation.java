@@ -36,12 +36,34 @@ import java.util.Iterator;
 import java.util.Optional;
 import org.opensearch.client.opensearch.core.bulk.BulkOperation;
 
+/**
+ * A bulk operation with retry information and optional context.
+ * <p>
+ * This class wraps a {@link BulkOperation} along with:
+ * <ul>
+ *   <li>An optional context value for tracking</li>
+ *   <li>A retry iterator providing delay values in milliseconds</li>
+ *   <li>The calculated time when this operation can be sent (for retries)</li>
+ * </ul>
+ * <p>
+ * This is an internal utility class used by {@link BulkIngester} to manage operation retries
+ * with backoff delays.
+ *
+ * @param <Context> optional context type associated with the operation
+ */
 class RetryableBulkOperation<Context> {
     private final BulkOperation operation;
     private final Context context;
     private final Iterator<Long> retries;
     private final Long retryTime;
 
+    /**
+     * Create a retryable bulk operation.
+     *
+     * @param request the bulk operation
+     * @param context optional context associated with this operation
+     * @param retries iterator providing retry delay values in milliseconds, or null if this is not a retry
+     */
     RetryableBulkOperation(BulkOperation request, Context context, Iterator<Long> retries) {
         this.operation = request;
         this.context = context;
@@ -51,26 +73,56 @@ class RetryableBulkOperation<Context> {
         this.retryTime = Optional.ofNullable(retries).map(r -> currentMillis + r.next()).orElse(currentMillis);
     }
 
+    /**
+     * Get the wrapped bulk operation.
+     *
+     * @return the bulk operation
+     */
     public BulkOperation operation() {
         return operation;
     }
 
+    /**
+     * Get the optional context associated with this operation.
+     *
+     * @return the context, or null if none was provided
+     */
     public Context context() {
         return context;
     }
 
+    /**
+     * Get the retry iterator providing backoff delay values.
+     *
+     * @return the retry iterator, or null if this is not a retry
+     */
     public Iterator<Long> retries() {
         return retries;
     }
 
+    /**
+     * Get the time delay in milliseconds until this operation can be sent.
+     *
+     * @return the delay in milliseconds (may be negative if the operation is ready to send)
+     */
     public long currentRetryTimeDelay() {
         return this.retryTime - currentMillis();
     }
 
+    /**
+     * Check if this operation can be retried again after a failure.
+     *
+     * @return true if more retry attempts are available, false otherwise
+     */
     public boolean canRetry() {
         return Optional.ofNullable(retries).map(Iterator::hasNext).orElse(true);
     }
 
+    /**
+     * Check if this operation can be sent now (retry delay has elapsed).
+     *
+     * @return true if the operation can be sent immediately, false if it needs to wait
+     */
     public boolean isSendable() {
         return (this.retryTime - currentMillis()) <= 0;
     }

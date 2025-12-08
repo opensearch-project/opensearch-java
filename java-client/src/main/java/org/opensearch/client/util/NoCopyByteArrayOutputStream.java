@@ -41,8 +41,16 @@ import java.nio.ByteBuffer;
  */
 public class NoCopyByteArrayOutputStream extends ByteArrayOutputStream {
 
+    /**
+     * Create a new output stream with default initial capacity.
+     */
     public NoCopyByteArrayOutputStream() {}
 
+    /**
+     * Create a new output stream with the specified initial capacity.
+     *
+     * @param size the initial capacity of the internal buffer
+     */
     public NoCopyByteArrayOutputStream(int size) {
         super(size);
     }

@@ -46,6 +46,12 @@ import org.opensearch.client.util.NoCopyByteArrayOutputStream;
 
 /**
  * A bulk operation whose size has been calculated and content turned to a binary blob (to compute its size).
+ * <p>
+ * This class wraps a {@link RetryableBulkOperation} and calculates the estimated byte size that the operation
+ * will occupy in the bulk request payload. For operations with documents (create, index, update), the document
+ * content is converted to {@link BinaryData} to enable efficient size calculation and avoid re-serialization.
+ * <p>
+ * This is an internal utility class used by {@link BulkIngester} to track buffered operation sizes.
  */
 class IngesterOperation {
     private final RetryableBulkOperation repeatableOp;
@@ -56,6 +62,13 @@ class IngesterOperation {
         this.size = size;
     }
 
+    /**
+     * Create an IngesterOperation from a retryable bulk operation, calculating its size.
+     *
+     * @param repeatableOp the retryable bulk operation to wrap
+     * @param mapper       the JSON mapper for serialization
+     * @return an IngesterOperation with calculated size
+     */
     public static IngesterOperation of(RetryableBulkOperation repeatableOp, JsonpMapper mapper) {
         switch (repeatableOp.operation()._kind()) {
             case Create:
@@ -71,10 +84,20 @@ class IngesterOperation {
         }
     }
 
+    /**
+     * Get the wrapped retryable bulk operation.
+     *
+     * @return the retryable bulk operation
+     */
     public RetryableBulkOperation repeatableOperation() {
         return this.repeatableOp;
     }
 
+    /**
+     * Get the estimated size in bytes of this operation.
+     *
+     * @return the operation size in bytes
+     */
     public long size() {
         return this.size;
     }

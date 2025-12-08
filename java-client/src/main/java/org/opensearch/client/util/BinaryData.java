@@ -51,7 +51,9 @@ import org.opensearch.client.json.JsonpSerializable;
 public interface BinaryData extends JsonpSerializable {
 
     /**
-     * The content type.
+     * Get the content type of this binary data.
+     *
+     * @return the content type (e.g., "application/json")
      */
     String contentType();
 

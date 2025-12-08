@@ -64,6 +64,44 @@ import org.opensearch.client.transport.TransportOptions;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.ObjectBuilder;
 
+/**
+ * A bulk ingester for efficiently indexing large volumes of documents to OpenSearch.
+ * <p>
+ * The BulkIngester buffers bulk operations and automatically flushes them based on configurable thresholds:
+ * <ul>
+ *   <li>Number of operations (maxOperations)</li>
+ *   <li>Total size in bytes (maxSize)</li>
+ *   <li>Time interval (flushInterval)</li>
+ * </ul>
+ * <p>
+ * It also provides:
+ * <ul>
+ *   <li>Backpressure control via maxConcurrentRequests to prevent overwhelming the cluster</li>
+ *   <li>Automatic retries with configurable backoff policies for failed operations</li>
+ *   <li>Per-request context tracking via the optional Context type parameter</li>
+ *   <li>Event notifications through the {@link BulkListener} interface</li>
+ * </ul>
+ * <p>
+ * The ingester is thread-safe and can be used concurrently from multiple threads. It must be closed
+ * when no longer needed to flush any buffered operations and release resources.
+ * <p>
+ * Example usage:
+ * <pre>{@code
+ * BulkIngester<Void> ingester = BulkIngester.of(b -> b
+ *     .client(client)
+ *     .maxOperations(1000)
+ *     .flushInterval(5, TimeUnit.SECONDS)
+ * );
+ *
+ * // Add operations
+ * ingester.add(op -> op.index(i -> i.index("my-index").id("1").document(myDoc)));
+ *
+ * // Close when done (flushes remaining operations)
+ * ingester.close();
+ * }</pre>
+ *
+ * @param <Context> optional context type to associate with each bulk operation
+ */
 public class BulkIngester<Context> implements AutoCloseable {
 
     private static final Log logger = LogFactory.getLog(BulkIngester.class);
@@ -304,6 +342,16 @@ public class BulkIngester<Context> implements AutoCloseable {
         }
     }
 
+    /**
+     * Manually flush any buffered operations, sending them to OpenSearch immediately.
+     * <p>
+     * This method is non-blocking and returns immediately. Flushing happens asynchronously,
+     * subject to the maxConcurrentRequests limit. Operations that are scheduled for retry
+     * will only be sent once their retry delay has elapsed.
+     * <p>
+     * This method is useful when you want to ensure operations are sent without waiting for
+     * automatic flush triggers (maxOperations, maxSize, or flushInterval).
+     */
     public void flush() {
         List<RetryableBulkOperation<Context>> sentRequests = new ArrayList<>();
         RequestExecution<Context> exec = sendRequestCondition.whenReadyIf(() -> {
@@ -504,6 +552,20 @@ public class BulkIngester<Context> implements AutoCloseable {
 
     }
 
+    /**
+     * Add a bulk operation to the ingester with an associated context.
+     * <p>
+     * The operation will be buffered and sent to OpenSearch when any of the configured
+     * flush thresholds is reached (maxOperations, maxSize, or flushInterval), or when
+     * {@link #flush()} or {@link #close()} is called.
+     * <p>
+     * This method blocks if adding the operation would exceed the maxConcurrentRequests limit,
+     * providing backpressure to prevent overwhelming the cluster.
+     *
+     * @param operation the bulk operation to add
+     * @param context   optional context to associate with this operation for tracking purposes
+     * @throws IllegalStateException if the ingester has been closed
+     */
     public void add(BulkOperation operation, Context context) {
         if (isClosed) {
             throw new IllegalStateException("Ingester has been closed");
@@ -544,21 +606,49 @@ public class BulkIngester<Context> implements AutoCloseable {
         });
     }
 
+    /**
+     * Add a bulk operation to the ingester without an associated context.
+     * <p>
+     * Equivalent to calling {@code add(operation, null)}.
+     *
+     * @param operation the bulk operation to add
+     * @throws IllegalStateException if the ingester has been closed
+     * @see #add(BulkOperation, Object)
+     */
     public void add(BulkOperation operation) {
         add(operation, null);
     }
 
+    /**
+     * Add a bulk operation to the ingester using a builder function, without an associated context.
+     * <p>
+     * This is a convenience method that accepts a function to build the bulk operation inline.
+     *
+     * @param f the function to build the bulk operation
+     * @throws IllegalStateException if the ingester has been closed
+     * @see #add(BulkOperation)
+     */
     public void add(Function<BulkOperation.Builder, ObjectBuilder<BulkOperation>> f) {
         add(f.apply(new BulkOperation.Builder()).build(), null);
     }
 
+    /**
+     * Add a bulk operation to the ingester using a builder function, with an associated context.
+     * <p>
+     * This is a convenience method that accepts a function to build the bulk operation inline.
+     *
+     * @param f       the function to build the bulk operation
+     * @param context optional context to associate with this operation for tracking purposes
+     * @throws IllegalStateException if the ingester has been closed
+     * @see #add(BulkOperation, Object)
+     */
     public void add(Function<BulkOperation.Builder, ObjectBuilder<BulkOperation>> f, Context context) {
         add(f.apply(new BulkOperation.Builder()).build(), context);
     }
 
     /**
      * Close this ingester, first flushing any buffered operations. This <strong>does not close</strong>
-     * the underlying @{link {@link OpenSearchClient} and {@link org.opensearch.client.transport.Transport}.
+     * the underlying {@link OpenSearchClient} and {@link org.opensearch.client.transport.Transport}.
      */
     @Override
     public void close() {

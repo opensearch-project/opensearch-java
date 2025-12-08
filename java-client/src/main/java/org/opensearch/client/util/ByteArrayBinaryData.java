@@ -82,36 +82,57 @@ public class ByteArrayBinaryData implements BinaryData {
         this.length = out.size();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String contentType() {
         return this.contentType;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void writeTo(OutputStream out) throws IOException {
         out.write(bytes, offset, length);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long size() {
         return length;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ByteBuffer asByteBuffer() {
         return ByteBuffer.wrap(bytes, offset, length);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InputStream asInputStream() {
         return new ByteArrayInputStream(bytes, offset, length);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isRepeatable() {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         // Serialize the binary content as raw JSON by parsing it and copying events

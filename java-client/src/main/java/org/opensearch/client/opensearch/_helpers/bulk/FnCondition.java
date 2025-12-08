@@ -40,7 +40,11 @@ import java.util.function.Supplier;
 /**
  * A helper to make {@link Condition} easier and less error-prone to use.
  * <p>
- * It takes a {@code Lock} and a readiness predicate.
+ * This utility class wraps a {@link Lock} and {@link Condition} with a readiness predicate,
+ * providing a functional interface for executing code when the condition is satisfied.
+ * It handles the lock/unlock pattern and waiting on the condition variable automatically.
+ * <p>
+ * This is an internal utility class used by {@link BulkIngester} for coordinating concurrent operations.
  */
 class FnCondition {
     private final Lock lock;
@@ -55,6 +59,14 @@ class FnCondition {
         this.ready = ready;
     }
 
+    /**
+     * Execute a runnable when the condition becomes ready, blocking if necessary.
+     * <p>
+     * This method will wait on the condition variable until the readiness predicate returns true,
+     * then execute the provided runnable while holding the lock.
+     *
+     * @param fn the runnable to execute when ready
+     */
     public void whenReady(Runnable fn) {
         whenReadyIf(null, () -> {
             fn.run();
@@ -63,7 +75,14 @@ class FnCondition {
     }
 
     /**
-     * Runs a function when the condition variable is ready.
+     * Execute a function when the condition becomes ready, blocking if necessary.
+     * <p>
+     * This method will wait on the condition variable until the readiness predicate returns true,
+     * then execute the provided function while holding the lock.
+     *
+     * @param fn the function to execute when ready
+     * @param <T> the return type of the function
+     * @return the result of the function
      */
     public <T> T whenReady(Supplier<T> fn) {
         return whenReadyIf(null, fn);
@@ -105,6 +124,12 @@ class FnCondition {
         }
     }
 
+    /**
+     * Signal one waiting thread if the condition is ready.
+     * <p>
+     * This method checks if the readiness predicate is true, and if so, signals one thread
+     * waiting on the condition variable.
+     */
     public void signalIfReady() {
         lock.lock();
         try {
@@ -116,6 +141,12 @@ class FnCondition {
         }
     }
 
+    /**
+     * Signal all waiting threads if the condition is ready.
+     * <p>
+     * This method checks if the readiness predicate is true, and if so, signals all threads
+     * waiting on the condition variable.
+     */
     public void signalAllIfReady() {
         lock.lock();
         try {
@@ -127,6 +158,14 @@ class FnCondition {
         }
     }
 
+    /**
+     * Execute a runnable and then signal if the condition becomes ready.
+     * <p>
+     * This method executes the provided runnable while holding the lock, then checks the
+     * readiness predicate and signals one waiting thread if ready.
+     *
+     * @param r the runnable to execute
+     */
     public void signalIfReadyAfter(Runnable r) {
         lock.lock();
         try {
