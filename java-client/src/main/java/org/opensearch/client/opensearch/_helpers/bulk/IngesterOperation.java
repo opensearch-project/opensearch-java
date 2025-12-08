@@ -42,6 +42,7 @@ import org.opensearch.client.opensearch.core.bulk.DeleteOperation;
 import org.opensearch.client.opensearch.core.bulk.IndexOperation;
 import org.opensearch.client.opensearch.core.bulk.UpdateOperation;
 import org.opensearch.client.util.BinaryData;
+import org.opensearch.client.util.NoCopyByteArrayOutputStream;
 
 /**
  * A bulk operation whose size has been calculated and content turned to a binary blob (to compute its size).
@@ -148,20 +149,41 @@ class IngesterOperation {
     private static IngesterOperation updateOperation(RetryableBulkOperation repeatableOp, JsonpMapper mapper) {
         UpdateOperation<?> update = repeatableOp.operation().update();
 
-        // OpenSearch's UpdateOperation structure is different from Elasticsearch's
-        // It uses UpdateOperationData which is serialized as-is, so we just calculate the size
-        long size = basePropertiesSize(update) + size("retry_on_conflict", update.retryOnConflict()) + size(
-            "require_alias",
-            update.requireAlias()
-        );
+        // UpdateOperation implements NdJsonpSerializable, which means it serializes as two separate JSON objects:
+        // 1. The metadata line (with base properties, requireAlias, retryOnConflict)
+        // 2. The data line (UpdateOperationData with document, script, upsert, etc.)
+        //
+        // We calculate the size by serializing both parts to measure their actual byte size.
+        // This is more accurate than estimation and handles all fields (doc, upsert, script, etc.)
+        long size = 0;
 
-        // Known limitation: Update operation size estimation is approximate
-        // OpenSearch's UpdateOperationData is opaque and cannot be easily serialized here without
-        // duplicating the internal serialization logic. We use a conservative baseline estimate.
-        // This may cause the buffer to flush earlier than optimal for update-heavy workloads,
-        // but ensures we don't exceed the configured maxSize threshold.
-        // TODO: Improve this by accessing UpdateOperationData internals or providing size hints
-        size += 100; // Conservative baseline estimate for update operation data (doc, script, upsert, etc.)
+        // Serialize both the metadata and data parts using _serializables()
+        try {
+            NoCopyByteArrayOutputStream out = new NoCopyByteArrayOutputStream();
+            jakarta.json.stream.JsonGenerator generator = mapper.jsonProvider().createGenerator(out);
+
+            // UpdateOperation._serializables() returns an iterator with [metadata, data]
+            // Serialize each part (both are PlainJsonSerializable)
+            java.util.Iterator<?> serializables = update._serializables();
+            while (serializables.hasNext()) {
+                Object serializable = serializables.next();
+                if (serializable instanceof org.opensearch.client.json.PlainJsonSerializable) {
+                    ((org.opensearch.client.json.PlainJsonSerializable) serializable).serialize(generator, mapper);
+                    generator.flush();
+                }
+            }
+
+            generator.close();
+            size = out.size();
+
+        } catch (Exception e) {
+            // If serialization fails for any reason, fall back to conservative estimate
+            // This shouldn't happen in normal operation, but provides a safety net
+            size = basePropertiesSize(update) + size("retry_on_conflict", update.retryOnConflict()) + size(
+                "require_alias",
+                update.requireAlias()
+            ) + 300; // Fallback estimate for data
+        }
 
         return new IngesterOperation(repeatableOp, size);
     }
