@@ -68,7 +68,7 @@ public class JsonpUtils {
         return JsonProvider.provider();
     }
 
-    static final JsonpMapper DEFAULT_JSONP_MAPPER = new JsonpMapperBase() {
+    public static final JsonpMapper DEFAULT_JSONP_MAPPER = new JsonpMapperBase() {
         @Override
         public JsonProvider jsonProvider() {
             return DEFAULT_PROVIDER;
@@ -270,6 +270,66 @@ public class JsonpUtils {
             generator.writeNull();
         } else {
             generator.write(value);
+        }
+    }
+
+    /**
+     * Copy the JSON value at the current parser location to a JSON generator.
+     */
+    public static void copy(JsonParser parser, JsonGenerator generator) {
+        copy(parser, generator, parser.next());
+    }
+
+    /**
+     * Copy the JSON value at the current parser location to a JSON generator.
+     */
+    public static void copy(JsonParser parser, JsonGenerator generator, JsonParser.Event event) {
+
+        switch (event) {
+            case START_OBJECT:
+                generator.writeStartObject();
+                while ((event = parser.next()) != Event.END_OBJECT) {
+                    expectEvent(parser, Event.KEY_NAME, event);
+                    generator.writeKey(parser.getString());
+                    copy(parser, generator, parser.next());
+                }
+                generator.writeEnd();
+                break;
+
+            case START_ARRAY:
+                generator.writeStartArray();
+                while ((event = parser.next()) != Event.END_ARRAY) {
+                    copy(parser, generator, event);
+                }
+                generator.writeEnd();
+                break;
+
+            case VALUE_STRING:
+                generator.write(parser.getString());
+                break;
+
+            case VALUE_FALSE:
+                generator.write(false);
+                break;
+
+            case VALUE_TRUE:
+                generator.write(true);
+                break;
+
+            case VALUE_NULL:
+                generator.writeNull();
+                break;
+
+            case VALUE_NUMBER:
+                if (parser.isIntegralNumber()) {
+                    generator.write(parser.getLong());
+                } else {
+                    generator.write(parser.getBigDecimal());
+                }
+                break;
+
+            default:
+                throw new UnexpectedJsonEventException(parser, event);
         }
     }
 }
