@@ -335,8 +335,8 @@ public abstract class BackoffPolicy implements Iterable<Long> {
         @Override
         public Long next() {
             curr++;
-            Long Long = curr * delayIncrement;
-            return maximumDelay == null ? Long : Long.compareTo(maximumDelay) < 0 ? Long : maximumDelay;
+            Long delay = curr * delayIncrement;
+            return maximumDelay == null ? delay : delay.compareTo(maximumDelay) < 0 ? delay : maximumDelay;
         }
     }
 }
