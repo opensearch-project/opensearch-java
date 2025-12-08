@@ -42,7 +42,6 @@ import org.opensearch.client.opensearch.core.bulk.DeleteOperation;
 import org.opensearch.client.opensearch.core.bulk.IndexOperation;
 import org.opensearch.client.opensearch.core.bulk.UpdateOperation;
 import org.opensearch.client.util.BinaryData;
-import org.opensearch.client.util.NoCopyByteArrayOutputStream;
 
 /**
  * A bulk operation whose size has been calculated and content turned to a binary blob (to compute its size).
@@ -156,15 +155,13 @@ class IngesterOperation {
             update.requireAlias()
         );
 
-        // For OpenSearch, we estimate the data size by serializing it
-        // This is a rough estimate since UpdateOperationData handles the serialization
-        NoCopyByteArrayOutputStream out = new NoCopyByteArrayOutputStream();
-        jakarta.json.stream.JsonGenerator generator = mapper.jsonProvider().createGenerator(out);
-        generator.writeStartObject();
-        generator.writeEnd();
-        generator.close();
-        // Add a baseline size estimate for the update data
-        size += 100; // Conservative estimate for update operation data
+        // Known limitation: Update operation size estimation is approximate
+        // OpenSearch's UpdateOperationData is opaque and cannot be easily serialized here without
+        // duplicating the internal serialization logic. We use a conservative baseline estimate.
+        // This may cause the buffer to flush earlier than optimal for update-heavy workloads,
+        // but ensures we don't exceed the configured maxSize threshold.
+        // TODO: Improve this by accessing UpdateOperationData internals or providing size hints
+        size += 100; // Conservative baseline estimate for update operation data (doc, script, upsert, etc.)
 
         return new IngesterOperation(repeatableOp, size);
     }

@@ -47,7 +47,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.annotation.Nullable;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.JsonpUtils;
@@ -198,12 +197,8 @@ public class BulkIngesterTest extends Assert {
         assertEquals(expectedRequests, transport.requestsStarted.get());
     }
 
-    @Test
-    @Ignore("Requires OpenSearchTestServer - should be moved to integration tests")
-    public void multiThreadStressTest() throws InterruptedException, IOException {
-        // This test requires OpenSearchTestServer which is not available in unit tests
-        // TODO: Move to integration test suite
-    }
+    // Note: multiThreadStressTest has been moved to AbstractBulkIngesterIT
+    // See: java-client/src/test/java11/org/opensearch/client/opensearch/integTest/AbstractBulkIngesterIT.java
 
     @Test
     public void sizeLimitTest() throws Exception {
@@ -441,12 +436,8 @@ public class BulkIngesterTest extends Assert {
         assertEquals(json, create1Str);
     }
 
-    @Test
-    @Ignore("Requires OpenSearchTestServer - should be moved to integration tests")
-    public void endToEndTest() throws Exception {
-        // This test requires OpenSearchTestServer which is not available in unit tests
-        // TODO: Move to integration test suite
-    }
+    // Note: endToEndTest has been moved to AbstractBulkIngesterIT
+    // See: java-client/src/test/java11/org/opensearch/client/opensearch/integTest/AbstractBulkIngesterIT.java
 
     @Test
     public void testConfigValidation() {

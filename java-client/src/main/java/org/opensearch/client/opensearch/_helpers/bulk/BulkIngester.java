@@ -209,7 +209,7 @@ public class BulkIngester<Context> implements AutoCloseable {
 
     /**
      * The configured maximum size in bytes for a bulk request. Operations are added to the request until
-     * adding an operation leads the request to exceed this siz.
+     * adding an operation leads the request to exceed this size.
      */
     public long maxSize() {
         return this.maxSize;
