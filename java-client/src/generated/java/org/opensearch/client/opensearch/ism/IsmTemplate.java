@@ -65,7 +65,7 @@ public class IsmTemplate implements PlainJsonSerializable, ToCopyableBuilder<Ism
     private final List<String> indexPatterns;
 
     @Nullable
-    private final Long lastUpdatedTime;
+    private final Integer lastUpdatedTime;
 
     @Nullable
     private final Number priority;
@@ -100,7 +100,7 @@ public class IsmTemplate implements PlainJsonSerializable, ToCopyableBuilder<Ism
      * </p>
      */
     @Nullable
-    public final Long lastUpdatedTime() {
+    public final Integer lastUpdatedTime() {
         return this.lastUpdatedTime;
     }
 
@@ -166,7 +166,7 @@ public class IsmTemplate implements PlainJsonSerializable, ToCopyableBuilder<Ism
         @Nullable
         private List<String> indexPatterns;
         @Nullable
-        private Long lastUpdatedTime;
+        private Integer lastUpdatedTime;
         @Nullable
         private Number priority;
 
@@ -229,7 +229,7 @@ public class IsmTemplate implements PlainJsonSerializable, ToCopyableBuilder<Ism
          * </p>
          */
         @Nonnull
-        public final Builder lastUpdatedTime(@Nullable Long value) {
+        public final Builder lastUpdatedTime(@Nullable Integer value) {
             this.lastUpdatedTime = value;
             return this;
         }
@@ -272,7 +272,7 @@ public class IsmTemplate implements PlainJsonSerializable, ToCopyableBuilder<Ism
 
     protected static void setupIsmTemplateDeserializer(ObjectDeserializer<IsmTemplate.Builder> op) {
         op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index_patterns");
-        op.add(Builder::lastUpdatedTime, JsonpDeserializer.longDeserializer(), "last_updated_time");
+        op.add(Builder::lastUpdatedTime, JsonpDeserializer.integerDeserializer(), "last_updated_time");
         op.add(Builder::priority, JsonpDeserializer.numberDeserializer(), "priority");
     }
 

@@ -73,11 +73,11 @@ public class Policy implements PlainJsonSerializable, ToCopyableBuilder<Policy.B
     @Nullable
     private final ErrorNotification errorNotification;
 
-    @Nullable
+    @Nonnull
     private final List<IsmTemplate> ismTemplate;
 
     @Nullable
-    private final Long lastUpdatedTime;
+    private final Integer lastUpdatedTime;
 
     @Nullable
     private final String policyId;
@@ -144,7 +144,7 @@ public class Policy implements PlainJsonSerializable, ToCopyableBuilder<Policy.B
      * API name: {@code ism_template}
      * </p>
      */
-    @Nullable
+    @Nonnull
     public final List<IsmTemplate> ismTemplate() {
         return this.ismTemplate;
     }
@@ -156,7 +156,7 @@ public class Policy implements PlainJsonSerializable, ToCopyableBuilder<Policy.B
      * </p>
      */
     @Nullable
-    public final Long lastUpdatedTime() {
+    public final Integer lastUpdatedTime() {
         return this.lastUpdatedTime;
     }
 
@@ -279,7 +279,7 @@ public class Policy implements PlainJsonSerializable, ToCopyableBuilder<Policy.B
         @Nullable
         private List<IsmTemplate> ismTemplate;
         @Nullable
-        private Long lastUpdatedTime;
+        private Integer lastUpdatedTime;
         @Nullable
         private String policyId;
         @Nullable
@@ -376,9 +376,7 @@ public class Policy implements PlainJsonSerializable, ToCopyableBuilder<Policy.B
          */
         @Nonnull
         public final Builder ismTemplate(List<IsmTemplate> list) {
-            if (Objects.nonNull(list)) {
-                this.ismTemplate = _listAddAll(this.ismTemplate, list);
-            }
+            this.ismTemplate = _listAddAll(this.ismTemplate, list);
             return this;
         }
 
@@ -420,7 +418,7 @@ public class Policy implements PlainJsonSerializable, ToCopyableBuilder<Policy.B
          * </p>
          */
         @Nonnull
-        public final Builder lastUpdatedTime(@Nullable Long value) {
+        public final Builder lastUpdatedTime(@Nullable Integer value) {
             this.lastUpdatedTime = value;
             return this;
         }
@@ -525,7 +523,7 @@ public class Policy implements PlainJsonSerializable, ToCopyableBuilder<Policy.B
         op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
         op.add(Builder::errorNotification, ErrorNotification._DESERIALIZER, "error_notification");
         op.add(Builder::ismTemplate, JsonpDeserializer.arrayDeserializer(IsmTemplate._DESERIALIZER), "ism_template");
-        op.add(Builder::lastUpdatedTime, JsonpDeserializer.longDeserializer(), "last_updated_time");
+        op.add(Builder::lastUpdatedTime, JsonpDeserializer.integerDeserializer(), "last_updated_time");
         op.add(Builder::policyId, JsonpDeserializer.stringDeserializer(), "policy_id");
         op.add(Builder::schemaVersion, JsonpDeserializer.numberDeserializer(), "schema_version");
         op.add(Builder::states, JsonpDeserializer.arrayDeserializer(States._DESERIALIZER), "states");
