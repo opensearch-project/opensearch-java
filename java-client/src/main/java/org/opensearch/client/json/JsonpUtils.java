@@ -68,7 +68,7 @@ public class JsonpUtils {
         return JsonProvider.provider();
     }
 
-    public static final JsonpMapper DEFAULT_JSONP_MAPPER = new JsonpMapperBase() {
+    static final JsonpMapper DEFAULT_JSONP_MAPPER = new JsonpMapperBase() {
         @Override
         public JsonProvider jsonProvider() {
             return DEFAULT_PROVIDER;
@@ -157,6 +157,21 @@ public class JsonpUtils {
         } else {
             mapper.serialize(value, generator);
         }
+    }
+
+    /**
+     * Serializes an object to a JSON string.
+     *
+     * @param value the object to serialize
+     * @param mapper the JSON mapper to use for serialization
+     * @return the JSON string representation
+     */
+    public static String toJsonString(Object value, JsonpMapper mapper) {
+        java.io.StringWriter writer = new java.io.StringWriter();
+        JsonGenerator generator = mapper.jsonProvider().createGenerator(writer);
+        mapper.serialize(value, generator);
+        generator.close();
+        return writer.toString();
     }
 
     /**

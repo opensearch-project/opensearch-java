@@ -405,17 +405,6 @@ public class BulkIngesterTest extends Assert {
         assertEquals("bar", storedRequest.get().routing());
     }
 
-    private static String toJsonString(BulkOperation operation) {
-        try (java.io.StringWriter writer = new java.io.StringWriter()) {
-            try (jakarta.json.stream.JsonGenerator generator = JsonpUtils.DEFAULT_JSONP_MAPPER.jsonProvider().createGenerator(writer)) {
-                operation.serialize(generator, JsonpUtils.DEFAULT_JSONP_MAPPER);
-            }
-            return writer.toString();
-        } catch (java.io.IOException ex) {
-            throw new java.io.UncheckedIOException(ex);
-        }
-    }
-
     @Test
     public void pipelineTest() {
         String json = "{\"create\":{\"_id\":\"some_id\",\"_index\":\"some_idx\",\"pipeline\":\"pipe\",\"require_alias\":true}}";
@@ -425,14 +414,14 @@ public class BulkIngesterTest extends Assert {
             o -> o.create(c -> c.pipeline("pipe").requireAlias(true).index("some_idx").id("some_id").document("Some doc"))
         );
 
-        String createStr = toJsonString(create);
+        String createStr = JsonpUtils.toJsonString(create, mapper);
         assertEquals(json, createStr);
 
         BulkOperation create1 = IngesterOperation.of(new RetryableBulkOperation<>(create, null, null), mapper)
             .repeatableOperation()
             .operation();
 
-        String create1Str = toJsonString(create1);
+        String create1Str = JsonpUtils.toJsonString(create1, mapper);
         assertEquals(json, create1Str);
     }
 
