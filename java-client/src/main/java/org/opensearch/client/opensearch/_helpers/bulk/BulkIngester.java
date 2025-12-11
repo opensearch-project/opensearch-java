@@ -767,20 +767,6 @@ public class BulkIngester<Context> implements AutoCloseable {
         }
 
         /**
-         * Sets an interval flushing any bulk actions pending if the interval passes. Defaults to not set.
-         * <p>
-         * Flushing is still subject to the maximum number of requests set with
-         * {@link #maxConcurrentRequests}.
-         *
-         * @deprecated use {@link #scheduler(ScheduledExecutorService)}
-         */
-        @Deprecated
-        public Builder<Context> flushInterval(long value, TimeUnit unit, ScheduledExecutorService scheduler) {
-            this.scheduler = scheduler;
-            return flushInterval(value, unit);
-        }
-
-        /**
          * Sets a custom scheduler to run the flush thread and the listener logic. A default one is used if
          * not set.
          */
