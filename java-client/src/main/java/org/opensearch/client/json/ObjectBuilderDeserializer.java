@@ -33,7 +33,6 @@
 package org.opensearch.client.json;
 
 import jakarta.json.stream.JsonParser;
-import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
