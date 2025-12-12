@@ -17,6 +17,7 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased 3.x]
 ### Added
+- Added BulkIngester helper for efficient bulk operations with buffering, retries, and backpressure. Ported from elasticsearch-java (commit e7120d4) ([#1809](https://github.com/opensearch-project/opensearch-java/pull/1809))
 
 ### Dependencies
 
