@@ -110,9 +110,9 @@ public interface BinaryData extends JsonpSerializable {
         }
 
         NoCopyByteArrayOutputStream out = new NoCopyByteArrayOutputStream();
-        JsonGenerator generator = mapper.jsonProvider().createGenerator(out);
-        mapper.serialize(value, generator);
-        generator.close();
+        try (JsonGenerator generator = mapper.jsonProvider().createGenerator(out)) {
+            mapper.serialize(value, generator);
+        }
 
         return new ByteArrayBinaryData(out.array(), 0, out.size(), ContentType.APPLICATION_JSON);
     }
