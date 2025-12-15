@@ -130,21 +130,6 @@ public class ByteArrayBinaryData implements BinaryData {
         return true;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        // Serialize the binary content as raw JSON by parsing it and copying events
-        try (InputStream in = asInputStream()) {
-            JsonParser parser = mapper.jsonProvider().createParser(in);
-            JsonpUtils.copy(parser, generator);
-            parser.close();
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to serialize BinaryData", e);
-        }
-    }
-
     private static class Deserializer extends JsonpDeserializerBase<ByteArrayBinaryData> {
 
         Deserializer() {
