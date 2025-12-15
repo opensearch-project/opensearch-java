@@ -18,6 +18,7 @@ jobs:
           - { opensearch_ref: '1.x', opensearch_jdk: 11, client_jdk: 21 }
           - { opensearch_ref: '2.x', opensearch_jdk: 21, client_jdk: 21 }
           - { opensearch_ref: 'main', opensearch_jdk: 21, client_jdk: 21 }
+          - { opensearch_ref: 'main', opensearch_jdk: 25, client_jdk: 25 }
     steps:
       - name: Set up JDK ${{ matrix.entry.opensearch_jdk }}
         uses: actions/setup-java@v5
@@ -26,7 +27,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Checkout OpenSearch
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: opensearch-project/OpenSearch
           ref: ${{ matrix.entry.opensearch_ref }}
@@ -39,7 +40,7 @@ jobs:
 
       - name: Restore cached build
         id: cache-restore
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: opensearch/distribution/archives/linux-tar/build/distributions
           key: ${{ steps.get-key.outputs.key }}
@@ -63,7 +64,7 @@ jobs:
 
       - name: Save cached build
         if: steps.cache-restore.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: opensearch/distribution/archives/linux-tar/build/distributions
           key: ${{ steps.get-key.outputs.key }}
@@ -76,7 +77,7 @@ jobs:
           for attempt in {1..20}; do sleep 5; if curl -s localhost:9200; then echo '=====> ready'; break; fi; echo '=====> waiting...'; done
 
       - name: Checkout Java Client
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: opensearch-java
 

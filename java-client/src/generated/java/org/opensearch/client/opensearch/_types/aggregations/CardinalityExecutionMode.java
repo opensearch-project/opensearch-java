@@ -47,13 +47,7 @@ import org.opensearch.client.json.JsonpDeserializable;
 public enum CardinalityExecutionMode implements JsonEnum {
     Direct("direct"),
 
-    GlobalOrdinals("global_ordinals"),
-
-    SaveMemoryHeuristic("save_memory_heuristic"),
-
-    SaveTimeHeuristic("save_time_heuristic"),
-
-    SegmentOrdinals("segment_ordinals");
+    GlobalOrdinals("global_ordinals");
 
     private final String jsonValue;
 

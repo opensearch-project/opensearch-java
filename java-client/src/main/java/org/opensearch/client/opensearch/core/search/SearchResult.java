@@ -65,7 +65,7 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
     @Nullable
     private final String scrollId;
 
-    private final Map<String, List<Suggest<TDocument>>> suggest;
+    private final Map<String, List<Suggest<JsonData>>> suggest;
 
     @Nullable
     private final Boolean terminatedEarly;
@@ -200,7 +200,7 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
     /**
      * API name: {@code suggest}
      */
-    public final Map<String, List<Suggest<TDocument>>> suggest() {
+    public final Map<String, List<Suggest<JsonData>>> suggest() {
         return this.suggest;
     }
 
@@ -302,11 +302,11 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
         if (ApiTypeHelper.isDefined(this.suggest)) {
             generator.writeKey("suggest");
             generator.writeStartObject();
-            for (Map.Entry<String, List<Suggest<TDocument>>> item0 : this.suggest.entrySet()) {
+            for (Map.Entry<String, List<Suggest<JsonData>>> item0 : this.suggest.entrySet()) {
                 generator.writeKey(item0.getKey());
                 generator.writeStartArray();
                 if (item0.getValue() != null) {
-                    for (Suggest<TDocument> item1 : item0.getValue()) {
+                    for (Suggest<JsonData> item1 : item0.getValue()) {
                         item1.serialize(generator, mapper);
 
                     }
@@ -369,7 +369,7 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
         private String scrollId;
 
         @Nullable
-        private Map<String, List<Suggest<TDocument>>> suggest;
+        private Map<String, List<Suggest<JsonData>>> suggest;
 
         @Nullable
         private Boolean terminatedEarly;
@@ -604,7 +604,7 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
          * <p>
          * Adds all entries of <code>map</code> to <code>suggest</code>.
          */
-        public final BuilderT suggest(Map<String, List<Suggest<TDocument>>> map) {
+        public final BuilderT suggest(Map<String, List<Suggest<JsonData>>> map) {
             this.suggest = _mapPutAll(this.suggest, map);
             return self();
         }
@@ -614,7 +614,7 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
          * <p>
          * Adds an entry to <code>suggest</code>.
          */
-        public final BuilderT suggest(String key, List<Suggest<TDocument>> value) {
+        public final BuilderT suggest(String key, List<Suggest<JsonData>> value) {
             this.suggest = _mapPut(this.suggest, key, value);
             return self();
         }
@@ -677,7 +677,7 @@ public abstract class SearchResult<TDocument> implements PlainJsonSerializable {
         op.add(AbstractBuilder::scrollId, JsonpDeserializer.stringDeserializer(), "_scroll_id");
         op.add(
             AbstractBuilder::suggest,
-            ExternallyTaggedUnion.<Suggest<TDocument>>arrayDeserializer(Suggest.createSuggestDeserializer(tDocumentDeserializer)),
+            ExternallyTaggedUnion.arrayDeserializer(Suggest.createSuggestDeserializer(JsonData._DESERIALIZER)),
             "suggest"
         );
         op.add(AbstractBuilder::terminatedEarly, JsonpDeserializer.booleanDeserializer(), "terminated_early");
