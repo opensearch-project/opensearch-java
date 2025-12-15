@@ -32,6 +32,7 @@
 
 package org.opensearch.client.opensearch._helpers.bulk;
 
+import jakarta.json.stream.JsonGenerator;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -49,7 +50,6 @@ import javax.annotation.Nullable;
 import org.junit.Assert;
 import org.junit.Test;
 import org.opensearch.client.json.JsonpMapper;
-import org.opensearch.client.json.JsonpUtils;
 import org.opensearch.client.json.jackson.JacksonJsonpMapper;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
 import org.opensearch.client.opensearch.core.BulkRequest;
@@ -414,14 +414,14 @@ public class BulkIngesterTest extends Assert {
             o -> o.create(c -> c.pipeline("pipe").requireAlias(true).index("some_idx").id("some_id").document("Some doc"))
         );
 
-        String createStr = JsonpUtils.toJsonString(create, mapper);
+        String createStr = toJsonString(create, mapper);
         assertEquals(json, createStr);
 
         BulkOperation create1 = IngesterOperation.of(new RetryableBulkOperation<>(create, null, null), mapper)
             .repeatableOperation()
             .operation();
 
-        String create1Str = JsonpUtils.toJsonString(create1, mapper);
+        String create1Str = toJsonString(create1, mapper);
         assertEquals(json, create1Str);
     }
 
@@ -560,6 +560,21 @@ public class BulkIngesterTest extends Assert {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    /**
+     * Serializes an object to a JSON string.
+     *
+     * @param value the object to serialize
+     * @param mapper the JSON mapper to use for serialization
+     * @return the JSON string representation
+     */
+    public static String toJsonString(Object value, JsonpMapper mapper) {
+        java.io.StringWriter writer = new java.io.StringWriter();
+        JsonGenerator generator = mapper.jsonProvider().createGenerator(writer);
+        mapper.serialize(value, generator);
+        generator.close();
+        return writer.toString();
     }
 
     private boolean isGithubBuild() {
