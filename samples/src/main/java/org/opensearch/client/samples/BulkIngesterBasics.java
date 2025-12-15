@@ -25,10 +25,10 @@ import org.opensearch.client.opensearch.indices.IndexSettings;
 import org.opensearch.client.samples.util.IndexData;
 
 /**
- * Run with: {@code ./gradlew :samples:run -Dsamples.mainClass=BulkHelper}
+ * Run with: {@code ./gradlew :samples:run -Dsamples.mainClass=BulkIngesterBasics}
  */
-public class BulkHelper {
-    private static final Logger LOGGER = LogManager.getLogger(BulkHelper.class);
+public class BulkIngesterBasics {
+    private static final Logger LOGGER = LogManager.getLogger(BulkIngesterBasics.class);
 
     public static void main(String[] args) {
         try {
