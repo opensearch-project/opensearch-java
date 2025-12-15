@@ -42,7 +42,7 @@ ingester.close();
 
 [IndexData](../samples/src/main/java/org/opensearch/client/samples/util/IndexData.java) refers to sample data class.
 
-You can find a working sample of the above code in [BulkHelper.java](../samples/src/main/java/org/opensearch/client/samples/BulkHelper.java).
+You can find a working sample of the above code in [BulkIngesterBasics.java](../samples/src/main/java/org/opensearch/client/samples/BulkIngesterBasics.java).
 
 
 ## Bulk requests
