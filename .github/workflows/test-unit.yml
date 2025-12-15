@@ -25,7 +25,7 @@ jobs:
 
       - name: Upload Reports
         if: failure()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: test-reports-java${{ matrix.java }}-${{ runner.os }}
           path: java-client/build/reports/
@@ -59,7 +59,7 @@ jobs:
 
       - name: Upload Reports
         if: failure()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: test-reports-java8-${{ runner.os }}
           path: java-client/build/reports/
