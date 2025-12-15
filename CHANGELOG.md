@@ -25,6 +25,8 @@ Inspired from [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Bump `org.junit:junit-bom` from 5.13.0 to 5.13.2 ([#1606](https://github.com/opensearch-project/opensearch-java/pull/1606), [#1650](https://github.com/opensearch-project/opensearch-java/pull/1650), [#1665](https://github.com/opensearch-project/opensearch-java/pull/1665))
 - Bump `org.ajoberstar.grgit:grgit-gradle` from 5.3.0 to 5.3.2 ([#1621](https://github.com/opensearch-project/opensearch-java/pull/1621))
 - Bump `io.github.classgraph:classgraph` from 4.8.179 to 4.8.180 ([#1651](https://github.com/opensearch-project/opensearch-java/pull/1651))
+- Bump `io.github.classgraph:classgraph` from 4.8.180 to 4.8.181 ([#1703](https://github.com/opensearch-project/opensearch-java/pull/1703))
+- Bump `org.junit:junit-bom` from 5.13.3 to 5.13.4 ([#1704](https://github.com/opensearch-project/opensearch-java/pull/1704))
 
 ### Fixed
 - Fixed `ApacheHttpClient5Transport` not honoring connect & socket timeouts configured on `ConnectionConfig` ([#1662](https://github.com/opensearch-project/opensearch-java/pull/1662))
