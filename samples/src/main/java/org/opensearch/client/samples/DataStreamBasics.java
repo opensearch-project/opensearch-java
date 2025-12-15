@@ -19,7 +19,7 @@ import org.opensearch.client.opensearch.indices.GetDataStreamResponse;
 import org.opensearch.client.opensearch.indices.PutIndexTemplateRequest;
 
 /**
- * Run with: <c>./gradlew :samples:run -Dsamples.mainClass=DataStreamBasics</c>
+ * Run with: {@code ./gradlew :samples:run -Dsamples.mainClass=DataStreamBasics}
  */
 public class DataStreamBasics {
     private static final Logger LOGGER = LogManager.getLogger(DataStreamBasics.class);
