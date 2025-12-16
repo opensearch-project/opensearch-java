@@ -42,12 +42,13 @@ import org.opensearch.client.json.JsonpDeserializable;
 import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpDeserializerBase;
 import org.opensearch.client.json.JsonpMapper;
+import org.opensearch.client.json.JsonpSerializable;
 
 /**
  * Binary data with an associated content type.
  */
 @JsonpDeserializable
-public interface BinaryData {
+public interface BinaryData extends JsonpSerializable {
 
     /**
      * Get the content type of this binary data.
