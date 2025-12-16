@@ -56,11 +56,7 @@ public class BulkIngesterBasics {
             LOGGER.info("Bulk indexing documents using BulkIngester");
 
             // Create BulkIngester with custom settings
-            BulkIngester<Void> ingester = BulkIngester.of(b -> b
-                .client(client)
-                .maxOperations(100)
-                .flushInterval(1, TimeUnit.SECONDS)
-            );
+            BulkIngester<Void> ingester = BulkIngester.of(b -> b.client(client).maxOperations(100).flushInterval(1, TimeUnit.SECONDS));
 
             // Add index operations - they are automatically buffered and flushed
             IndexData doc1 = new IndexData("Document 1", "The text of document 1");
