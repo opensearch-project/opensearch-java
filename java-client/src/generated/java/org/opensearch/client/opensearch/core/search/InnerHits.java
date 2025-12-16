@@ -51,7 +51,7 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ScriptField;
-import org.opensearch.client.opensearch._types.SortCombinations;
+import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.query_dsl.FieldAndFormat;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
@@ -99,7 +99,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
     private final Integer size;
 
     @Nonnull
-    private final List<SortCombinations> sort;
+    private final List<SortOptions> sort;
 
     @Nullable
     private final SourceConfig source;
@@ -236,7 +236,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
      * API name: {@code sort}
      */
     @Nonnull
-    public final List<SortCombinations> sort() {
+    public final List<SortOptions> sort() {
         return this.sort;
     }
 
@@ -354,7 +354,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
         if (ApiTypeHelper.isDefined(this.sort)) {
             generator.writeKey("sort");
             generator.writeStartArray();
-            for (SortCombinations item0 : this.sort) {
+            for (SortOptions item0 : this.sort) {
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
@@ -425,7 +425,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
         @Nullable
         private Integer size;
         @Nullable
-        private List<SortCombinations> sort;
+        private List<SortOptions> sort;
         @Nullable
         private SourceConfig source;
         @Nullable
@@ -697,7 +697,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
          * </p>
          */
         @Nonnull
-        public final Builder sort(List<SortCombinations> list) {
+        public final Builder sort(List<SortOptions> list) {
             this.sort = _listAddAll(this.sort, list);
             return this;
         }
@@ -710,7 +710,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
          * </p>
          */
         @Nonnull
-        public final Builder sort(SortCombinations value, SortCombinations... values) {
+        public final Builder sort(SortOptions value, SortOptions... values) {
             this.sort = _listAdd(this.sort, value, values);
             return this;
         }
@@ -723,8 +723,8 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
          * </p>
          */
         @Nonnull
-        public final Builder sort(Function<SortCombinations.Builder, ObjectBuilder<SortCombinations>> fn) {
-            return sort(fn.apply(new SortCombinations.Builder()).build());
+        public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
+            return sort(fn.apply(new SortOptions.Builder()).build());
         }
 
         /**
@@ -824,7 +824,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
         op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER), "script_fields");
         op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
-        op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortCombinations._DESERIALIZER), "sort");
+        op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
         op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
         op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stored_fields");
         op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");

@@ -376,8 +376,7 @@ public abstract class AbstractMultiSearchRequestIT extends OpenSearchJavaClientT
         return fieldName != null
             ? Highlight.of(
                 builder -> builder.fields(
-                    fieldName,
-                    HighlightField.of(field -> field.preTags("<em class=\"highlight\">").postTags("</em>"))
+                    HighlightField.of(field -> field.key(fieldName).preTags("<em class=\"highlight\">").postTags("</em>"))
                 )
             )
             : null;

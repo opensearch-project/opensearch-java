@@ -61,7 +61,7 @@ import org.opensearch.client.opensearch._types.RequestBase;
 import org.opensearch.client.opensearch._types.ScriptField;
 import org.opensearch.client.opensearch._types.SearchType;
 import org.opensearch.client.opensearch._types.SlicedScroll;
-import org.opensearch.client.opensearch._types.SortCombinations;
+import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch._types.aggregations.Aggregation;
 import org.opensearch.client.opensearch._types.query_dsl.FieldAndFormat;
@@ -235,7 +235,7 @@ public final class SearchRequest extends RequestBase
     private final SlicedScroll slice;
 
     @Nonnull
-    private final List<SortCombinations> sort;
+    private final List<SortOptions> sort;
 
     @Nullable
     private final SourceConfig source;
@@ -869,7 +869,7 @@ public final class SearchRequest extends RequestBase
      * API name: {@code sort}
      */
     @Nonnull
-    public final List<SortCombinations> sort() {
+    public final List<SortOptions> sort() {
         return this.sort;
     }
 
@@ -1152,7 +1152,7 @@ public final class SearchRequest extends RequestBase
         if (ApiTypeHelper.isDefined(this.sort)) {
             generator.writeKey("sort");
             generator.writeStartArray();
-            for (SortCombinations item0 : this.sort) {
+            for (SortOptions item0 : this.sort) {
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
@@ -1329,7 +1329,7 @@ public final class SearchRequest extends RequestBase
         @Nullable
         private SlicedScroll slice;
         @Nullable
-        private List<SortCombinations> sort;
+        private List<SortOptions> sort;
         @Nullable
         private SourceConfig source;
         @Nullable
@@ -2488,7 +2488,7 @@ public final class SearchRequest extends RequestBase
          * </p>
          */
         @Nonnull
-        public final Builder sort(List<SortCombinations> list) {
+        public final Builder sort(List<SortOptions> list) {
             this.sort = _listAddAll(this.sort, list);
             return this;
         }
@@ -2501,7 +2501,7 @@ public final class SearchRequest extends RequestBase
          * </p>
          */
         @Nonnull
-        public final Builder sort(SortCombinations value, SortCombinations... values) {
+        public final Builder sort(SortOptions value, SortOptions... values) {
             this.sort = _listAdd(this.sort, value, values);
             return this;
         }
@@ -2514,8 +2514,8 @@ public final class SearchRequest extends RequestBase
          * </p>
          */
         @Nonnull
-        public final Builder sort(Function<SortCombinations.Builder, ObjectBuilder<SortCombinations>> fn) {
-            return sort(fn.apply(new SortCombinations.Builder()).build());
+        public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
+            return sort(fn.apply(new SortOptions.Builder()).build());
         }
 
         /**
@@ -2746,7 +2746,7 @@ public final class SearchRequest extends RequestBase
         op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
         op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
-        op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortCombinations._DESERIALIZER), "sort");
+        op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
         op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
         op.add(Builder::stats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stats");
         op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stored_fields");

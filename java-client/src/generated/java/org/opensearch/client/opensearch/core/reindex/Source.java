@@ -50,7 +50,7 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.SlicedScroll;
-import org.opensearch.client.opensearch._types.SortCombinations;
+import org.opensearch.client.opensearch._types.SortOptions;
 import org.opensearch.client.opensearch._types.query_dsl.Query;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
@@ -80,7 +80,7 @@ public class Source implements PlainJsonSerializable, ToCopyableBuilder<Source.B
     private final SlicedScroll slice;
 
     @Nonnull
-    private final List<SortCombinations> sort;
+    private final List<SortOptions> sort;
 
     @Nonnull
     private final List<String> sourceFields;
@@ -149,7 +149,7 @@ public class Source implements PlainJsonSerializable, ToCopyableBuilder<Source.B
      * API name: {@code sort}
      */
     @Nonnull
-    public final List<SortCombinations> sort() {
+    public final List<SortOptions> sort() {
         return this.sort;
     }
 
@@ -202,7 +202,7 @@ public class Source implements PlainJsonSerializable, ToCopyableBuilder<Source.B
         if (ApiTypeHelper.isDefined(this.sort)) {
             generator.writeKey("sort");
             generator.writeStartArray();
-            for (SortCombinations item0 : this.sort) {
+            for (SortOptions item0 : this.sort) {
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
@@ -245,7 +245,7 @@ public class Source implements PlainJsonSerializable, ToCopyableBuilder<Source.B
         @Nullable
         private SlicedScroll slice;
         @Nullable
-        private List<SortCombinations> sort;
+        private List<SortOptions> sort;
         @Nullable
         private List<String> sourceFields;
 
@@ -375,7 +375,7 @@ public class Source implements PlainJsonSerializable, ToCopyableBuilder<Source.B
          * </p>
          */
         @Nonnull
-        public final Builder sort(List<SortCombinations> list) {
+        public final Builder sort(List<SortOptions> list) {
             this.sort = _listAddAll(this.sort, list);
             return this;
         }
@@ -388,7 +388,7 @@ public class Source implements PlainJsonSerializable, ToCopyableBuilder<Source.B
          * </p>
          */
         @Nonnull
-        public final Builder sort(SortCombinations value, SortCombinations... values) {
+        public final Builder sort(SortOptions value, SortOptions... values) {
             this.sort = _listAdd(this.sort, value, values);
             return this;
         }
@@ -401,8 +401,8 @@ public class Source implements PlainJsonSerializable, ToCopyableBuilder<Source.B
          * </p>
          */
         @Nonnull
-        public final Builder sort(Function<SortCombinations.Builder, ObjectBuilder<SortCombinations>> fn) {
-            return sort(fn.apply(new SortCombinations.Builder()).build());
+        public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
+            return sort(fn.apply(new SortOptions.Builder()).build());
         }
 
         /**
@@ -461,7 +461,7 @@ public class Source implements PlainJsonSerializable, ToCopyableBuilder<Source.B
         op.add(Builder::remote, RemoteSource._DESERIALIZER, "remote");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
         op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
-        op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortCombinations._DESERIALIZER), "sort");
+        op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
         op.add(Builder::sourceFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "_source");
     }
 
