@@ -34,14 +34,48 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch._types.query_dsl;
+package org.opensearch.client.opensearch._types;
 
 import javax.annotation.Generated;
+import org.opensearch.client.json.JsonEnum;
+import org.opensearch.client.json.JsonpDeserializable;
 
-/**
- * Base interface for {@link PinnedQuery} variants.
- */
+// typedef: _types.FieldSortNumericType
+
+@JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public interface PinnedQueryVariant {
-    PinnedQuery.Kind _pinnedQueryKind();
+public enum FieldSortNumericType implements JsonEnum {
+    /**
+     * The field contains date values.
+     */
+    Date("date"),
+
+    /**
+     * The field contains date values with nanosecond precision.
+     */
+    DateNanos("date_nanos"),
+
+    /**
+     * The field contains double-precision floating-point values.
+     */
+    Double("double"),
+
+    /**
+     * The field contains long integer values.
+     */
+    Long("long");
+
+    private final String jsonValue;
+
+    FieldSortNumericType(String jsonValue) {
+        this.jsonValue = jsonValue;
+    }
+
+    public String jsonValue() {
+        return this.jsonValue;
+    }
+
+    public static final JsonEnum.Deserializer<FieldSortNumericType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+        FieldSortNumericType.values()
+    );
 }

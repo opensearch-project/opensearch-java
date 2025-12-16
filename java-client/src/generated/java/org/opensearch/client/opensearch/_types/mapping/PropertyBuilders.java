@@ -312,6 +312,13 @@ public class PropertyBuilders {
     }
 
     /**
+     * Creates a builder for the {@link SemanticProperty semantic} {@code Property} variant.
+     */
+    public static SemanticProperty.Builder semantic() {
+        return new SemanticProperty.Builder();
+    }
+
+    /**
      * Creates a builder for the {@link ShortNumberProperty short} {@code Property} variant.
      */
     public static ShortNumberProperty.Builder short_() {

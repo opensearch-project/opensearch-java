@@ -48,7 +48,7 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.opensearch._types.SortOptions;
+import org.opensearch.client.opensearch._types.SortCombinations;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
@@ -73,7 +73,7 @@ public class BucketSortAggregation extends AggregationBase
     private final Integer size;
 
     @Nonnull
-    private final List<SortOptions> sort;
+    private final List<SortCombinations> sort;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -131,7 +131,7 @@ public class BucketSortAggregation extends AggregationBase
      * API name: {@code sort}
      */
     @Nonnull
-    public final List<SortOptions> sort() {
+    public final List<SortCombinations> sort() {
         return this.sort;
     }
 
@@ -155,7 +155,7 @@ public class BucketSortAggregation extends AggregationBase
         if (ApiTypeHelper.isDefined(this.sort)) {
             generator.writeKey("sort");
             generator.writeStartArray();
-            for (SortOptions item0 : this.sort) {
+            for (SortCombinations item0 : this.sort) {
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
@@ -188,7 +188,7 @@ public class BucketSortAggregation extends AggregationBase
         @Nullable
         private Integer size;
         @Nullable
-        private List<SortOptions> sort;
+        private List<SortCombinations> sort;
 
         public Builder() {}
 
@@ -261,7 +261,7 @@ public class BucketSortAggregation extends AggregationBase
          * </p>
          */
         @Nonnull
-        public final Builder sort(List<SortOptions> list) {
+        public final Builder sort(List<SortCombinations> list) {
             this.sort = _listAddAll(this.sort, list);
             return this;
         }
@@ -274,7 +274,7 @@ public class BucketSortAggregation extends AggregationBase
          * </p>
          */
         @Nonnull
-        public final Builder sort(SortOptions value, SortOptions... values) {
+        public final Builder sort(SortCombinations value, SortCombinations... values) {
             this.sort = _listAdd(this.sort, value, values);
             return this;
         }
@@ -287,8 +287,8 @@ public class BucketSortAggregation extends AggregationBase
          * </p>
          */
         @Nonnull
-        public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
-            return sort(fn.apply(new SortOptions.Builder()).build());
+        public final Builder sort(Function<SortCombinations.Builder, ObjectBuilder<SortCombinations>> fn) {
+            return sort(fn.apply(new SortCombinations.Builder()).build());
         }
 
         /**
@@ -320,7 +320,7 @@ public class BucketSortAggregation extends AggregationBase
         op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
         op.add(Builder::gapPolicy, GapPolicy._DESERIALIZER, "gap_policy");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
-        op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
+        op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortCombinations._DESERIALIZER), "sort");
     }
 
     @Override

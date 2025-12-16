@@ -34,34 +34,27 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package org.opensearch.client.opensearch._types.aggregations;
+package org.opensearch.client.opensearch._types;
 
 import javax.annotation.Generated;
-import org.opensearch.client.json.JsonEnum;
-import org.opensearch.client.json.JsonpDeserializable;
 
-// typedef: _types.aggregations.CardinalityExecutionMode
-
-@JsonpDeserializable
+/**
+ * <p>
+ * Builders for {@link SortCombinations} variants.
+ * </p>
+ * <p>
+ * Variants <code>field</code>, <code>field_with_direction</code>, <code>field_with_order</code> are not available here as they don't have a
+ * dedicated class. Use {@link SortCombinations}'s builder for these.
+ * </p>
+ */
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public enum CardinalityExecutionMode implements JsonEnum {
-    Direct("direct"),
+public class SortCombinationsBuilders {
+    private SortCombinationsBuilders() {}
 
-    GlobalOrdinals("global_ordinals"),
-
-    SegmentOrdinals("segment_ordinals");
-
-    private final String jsonValue;
-
-    CardinalityExecutionMode(String jsonValue) {
-        this.jsonValue = jsonValue;
+    /**
+     * Creates a builder for the {@link SortOptions options} {@code SortCombinations} variant.
+     */
+    public static SortOptions.Builder options() {
+        return new SortOptions.Builder();
     }
-
-    public String jsonValue() {
-        return this.jsonValue;
-    }
-
-    public static final JsonEnum.Deserializer<CardinalityExecutionMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-        CardinalityExecutionMode.values()
-    );
 }

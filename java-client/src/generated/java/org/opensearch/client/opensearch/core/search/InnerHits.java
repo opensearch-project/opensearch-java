@@ -51,7 +51,7 @@ import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.opensearch._types.ScriptField;
-import org.opensearch.client.opensearch._types.SortOptions;
+import org.opensearch.client.opensearch._types.SortCombinations;
 import org.opensearch.client.opensearch._types.query_dsl.FieldAndFormat;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
@@ -75,7 +75,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
     private final Boolean explain;
 
     @Nonnull
-    private final List<String> fields;
+    private final List<FieldAndFormat> fields;
 
     @Nullable
     private final Integer from;
@@ -99,7 +99,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
     private final Integer size;
 
     @Nonnull
-    private final List<SortOptions> sort;
+    private final List<SortCombinations> sort;
 
     @Nullable
     private final SourceConfig source;
@@ -166,7 +166,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
      * API name: {@code fields}
      */
     @Nonnull
-    public final List<String> fields() {
+    public final List<FieldAndFormat> fields() {
         return this.fields;
     }
 
@@ -236,7 +236,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
      * API name: {@code sort}
      */
     @Nonnull
-    public final List<SortOptions> sort() {
+    public final List<SortCombinations> sort() {
         return this.sort;
     }
 
@@ -305,8 +305,8 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
         if (ApiTypeHelper.isDefined(this.fields)) {
             generator.writeKey("fields");
             generator.writeStartArray();
-            for (String item0 : this.fields) {
-                generator.write(item0);
+            for (FieldAndFormat item0 : this.fields) {
+                item0.serialize(generator, mapper);
             }
             generator.writeEnd();
         }
@@ -354,7 +354,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
         if (ApiTypeHelper.isDefined(this.sort)) {
             generator.writeKey("sort");
             generator.writeStartArray();
-            for (SortOptions item0 : this.sort) {
+            for (SortCombinations item0 : this.sort) {
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
@@ -409,7 +409,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
         @Nullable
         private Boolean explain;
         @Nullable
-        private List<String> fields;
+        private List<FieldAndFormat> fields;
         @Nullable
         private Integer from;
         @Nullable
@@ -425,7 +425,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
         @Nullable
         private Integer size;
         @Nullable
-        private List<SortOptions> sort;
+        private List<SortCombinations> sort;
         @Nullable
         private SourceConfig source;
         @Nullable
@@ -553,7 +553,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
          * </p>
          */
         @Nonnull
-        public final Builder fields(List<String> list) {
+        public final Builder fields(List<FieldAndFormat> list) {
             this.fields = _listAddAll(this.fields, list);
             return this;
         }
@@ -566,9 +566,21 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
          * </p>
          */
         @Nonnull
-        public final Builder fields(String value, String... values) {
+        public final Builder fields(FieldAndFormat value, FieldAndFormat... values) {
             this.fields = _listAdd(this.fields, value, values);
             return this;
+        }
+
+        /**
+         * API name: {@code fields}
+         *
+         * <p>
+         * Adds a value to <code>fields</code> using a builder lambda.
+         * </p>
+         */
+        @Nonnull
+        public final Builder fields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+            return fields(fn.apply(new FieldAndFormat.Builder()).build());
         }
 
         /**
@@ -685,7 +697,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
          * </p>
          */
         @Nonnull
-        public final Builder sort(List<SortOptions> list) {
+        public final Builder sort(List<SortCombinations> list) {
             this.sort = _listAddAll(this.sort, list);
             return this;
         }
@@ -698,7 +710,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
          * </p>
          */
         @Nonnull
-        public final Builder sort(SortOptions value, SortOptions... values) {
+        public final Builder sort(SortCombinations value, SortCombinations... values) {
             this.sort = _listAdd(this.sort, value, values);
             return this;
         }
@@ -711,8 +723,8 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
          * </p>
          */
         @Nonnull
-        public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
-            return sort(fn.apply(new SortOptions.Builder()).build());
+        public final Builder sort(Function<SortCombinations.Builder, ObjectBuilder<SortCombinations>> fn) {
+            return sort(fn.apply(new SortCombinations.Builder()).build());
         }
 
         /**
@@ -804,7 +816,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
         op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
         op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "docvalue_fields");
         op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
-        op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
+        op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
         op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
         op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
         op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
@@ -812,7 +824,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
         op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER), "script_fields");
         op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
-        op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
+        op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortCombinations._DESERIALIZER), "sort");
         op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
         op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stored_fields");
         op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");

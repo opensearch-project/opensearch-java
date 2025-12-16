@@ -47,19 +47,27 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
+import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.query_dsl.TermsQuery
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBuilder<TermsQuery.Builder, TermsQuery> {
+public class TermsQuery implements QueryVariant, PlainJsonSerializable, ToCopyableBuilder<TermsQuery.Builder, TermsQuery> {
+
+    @Nullable
+    private final Float boost;
 
     @Nonnull
     private final String field;
+
+    @Nullable
+    private final String name;
 
     @Nonnull
     private final TermsQueryField terms;
@@ -70,8 +78,9 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
     // ---------------------------------------------------------------------------------------------
 
     private TermsQuery(Builder builder) {
-        super(builder);
+        this.boost = builder.boost;
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+        this.name = builder.name;
         this.terms = ApiTypeHelper.requireNonNull(builder.terms, this, "terms");
         this.valueType = builder.valueType;
     }
@@ -89,11 +98,27 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
     }
 
     /**
+     * API name: {@code boost}
+     */
+    @Nullable
+    public final Float boost() {
+        return this.boost;
+    }
+
+    /**
      * Required -
      */
     @Nonnull
     public final String field() {
         return this.field;
+    }
+
+    /**
+     * API name: {@code _name}
+     */
+    @Nullable
+    public final String name() {
+        return this.name;
     }
 
     /**
@@ -116,10 +141,29 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
         return this.valueType;
     }
 
+    /**
+     * Serialize this object to JSON.
+     */
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        generator.writeStartObject();
+        serializeInternal(generator, mapper);
+        generator.writeEnd();
+    }
+
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-        super.serializeInternal(generator, mapper);
         generator.writeKey(this.field);
         this.terms.serialize(generator, mapper);
+        if (this.boost != null) {
+            generator.writeKey("boost");
+            generator.write(this.boost);
+        }
+
+        if (this.name != null) {
+            generator.writeKey("_name");
+            generator.write(this.name);
+        }
+
         if (this.valueType != null) {
             generator.writeKey("value_type");
             this.valueType.serialize(generator, mapper);
@@ -142,8 +186,12 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
     /**
      * Builder for {@link TermsQuery}.
      */
-    public static class Builder extends QueryBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, TermsQuery> {
+    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, TermsQuery> {
+        @Nullable
+        private Float boost;
         private String field;
+        @Nullable
+        private String name;
         private TermsQueryField terms;
         @Nullable
         private TermsQueryValueType valueType;
@@ -151,15 +199,17 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
         public Builder() {}
 
         private Builder(TermsQuery o) {
-            super(o);
+            this.boost = o.boost;
             this.field = o.field;
+            this.name = o.name;
             this.terms = o.terms;
             this.valueType = o.valueType;
         }
 
         private Builder(Builder o) {
-            super(o);
+            this.boost = o.boost;
             this.field = o.field;
+            this.name = o.name;
             this.terms = o.terms;
             this.valueType = o.valueType;
         }
@@ -170,9 +220,12 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
             return new Builder(this);
         }
 
-        @Override
+        /**
+         * API name: {@code boost}
+         */
         @Nonnull
-        protected Builder self() {
+        public final Builder boost(@Nullable Float value) {
+            this.boost = value;
             return this;
         }
 
@@ -182,6 +235,15 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
         @Nonnull
         public final Builder field(String value) {
             this.field = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code _name}
+         */
+        @Nonnull
+        public final Builder name(@Nullable String value) {
+            this.name = value;
             return this;
         }
 
@@ -240,7 +302,8 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
     );
 
     protected static void setupTermsQueryDeserializer(ObjectDeserializer<TermsQuery.Builder> op) {
-        setupQueryBaseDeserializer(op);
+        op.add(Builder::boost, JsonpDeserializer.floatDeserializer(), "boost");
+        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "_name");
         op.add(Builder::valueType, TermsQueryValueType._DESERIALIZER, "value_type");
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
             builder.field(name);
@@ -250,8 +313,10 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
+        int result = 17;
+        result = 31 * result + Objects.hashCode(this.boost);
         result = 31 * result + this.field.hashCode();
+        result = 31 * result + Objects.hashCode(this.name);
         result = 31 * result + this.terms.hashCode();
         result = 31 * result + Objects.hashCode(this.valueType);
         return result;
@@ -259,12 +324,13 @@ public class TermsQuery extends QueryBase implements QueryVariant, ToCopyableBui
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) {
-            return false;
-        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         TermsQuery other = (TermsQuery) o;
-        return this.field.equals(other.field) && this.terms.equals(other.terms) && Objects.equals(this.valueType, other.valueType);
+        return Objects.equals(this.boost, other.boost)
+            && this.field.equals(other.field)
+            && Objects.equals(this.name, other.name)
+            && this.terms.equals(other.terms)
+            && Objects.equals(this.valueType, other.valueType);
     }
 }
