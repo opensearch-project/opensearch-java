@@ -47,6 +47,7 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
+import org.opensearch.client.opensearch._types.DistanceUnit;
 import org.opensearch.client.opensearch._types.GeoDistanceType;
 import org.opensearch.client.opensearch._types.GeoLocation;
 import org.opensearch.client.util.ApiTypeHelper;
@@ -76,6 +77,9 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant, ToCopya
     private final GeoLocation location;
 
     @Nullable
+    private final DistanceUnit unit;
+
+    @Nullable
     private final GeoValidationMethod validationMethod;
 
     // ---------------------------------------------------------------------------------------------
@@ -87,6 +91,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant, ToCopya
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
         this.ignoreUnmapped = builder.ignoreUnmapped;
         this.location = ApiTypeHelper.requireNonNull(builder.location, this, "location");
+        this.unit = builder.unit;
         this.validationMethod = builder.validationMethod;
     }
 
@@ -152,6 +157,17 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant, ToCopya
     }
 
     /**
+     * The unit of distance measurement.
+     * <p>
+     * API name: {@code unit}
+     * </p>
+     */
+    @Nullable
+    public final DistanceUnit unit() {
+        return this.unit;
+    }
+
+    /**
      * API name: {@code validation_method}
      */
     @Nullable
@@ -174,6 +190,11 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant, ToCopya
         if (this.ignoreUnmapped != null) {
             generator.writeKey("ignore_unmapped");
             generator.write(this.ignoreUnmapped);
+        }
+
+        if (this.unit != null) {
+            generator.writeKey("unit");
+            this.unit.serialize(generator, mapper);
         }
 
         if (this.validationMethod != null) {
@@ -207,6 +228,8 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant, ToCopya
         private Boolean ignoreUnmapped;
         private GeoLocation location;
         @Nullable
+        private DistanceUnit unit;
+        @Nullable
         private GeoValidationMethod validationMethod;
 
         public Builder() {}
@@ -218,6 +241,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant, ToCopya
             this.field = o.field;
             this.ignoreUnmapped = o.ignoreUnmapped;
             this.location = o.location;
+            this.unit = o.unit;
             this.validationMethod = o.validationMethod;
         }
 
@@ -228,6 +252,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant, ToCopya
             this.field = o.field;
             this.ignoreUnmapped = o.ignoreUnmapped;
             this.location = o.location;
+            this.unit = o.unit;
             this.validationMethod = o.validationMethod;
         }
 
@@ -315,6 +340,18 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant, ToCopya
         }
 
         /**
+         * The unit of distance measurement.
+         * <p>
+         * API name: {@code unit}
+         * </p>
+         */
+        @Nonnull
+        public final Builder unit(@Nullable DistanceUnit value) {
+            this.unit = value;
+            return this;
+        }
+
+        /**
          * API name: {@code validation_method}
          */
         @Nonnull
@@ -352,6 +389,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant, ToCopya
         op.add(Builder::distance, JsonpDeserializer.stringDeserializer(), "distance");
         op.add(Builder::distanceType, GeoDistanceType._DESERIALIZER, "distance_type");
         op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
+        op.add(Builder::unit, DistanceUnit._DESERIALIZER, "unit");
         op.add(Builder::validationMethod, GeoValidationMethod._DESERIALIZER, "validation_method");
         op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
             builder.field(name);
@@ -367,6 +405,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant, ToCopya
         result = 31 * result + this.field.hashCode();
         result = 31 * result + Objects.hashCode(this.ignoreUnmapped);
         result = 31 * result + this.location.hashCode();
+        result = 31 * result + Objects.hashCode(this.unit);
         result = 31 * result + Objects.hashCode(this.validationMethod);
         return result;
     }
@@ -384,6 +423,7 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant, ToCopya
             && this.field.equals(other.field)
             && Objects.equals(this.ignoreUnmapped, other.ignoreUnmapped)
             && this.location.equals(other.location)
+            && Objects.equals(this.unit, other.unit)
             && Objects.equals(this.validationMethod, other.validationMethod);
     }
 }

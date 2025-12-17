@@ -69,7 +69,7 @@ application {
     )
 }
 
-val localSpecification = "$projectDir/opensearch-openapi.yaml"
+val localSpecification = file("$projectDir/opensearch-openapi.yaml").toURI().toString()
 
 tasks.register<Download>("downloadLatestSpec") {
     src("https://github.com/opensearch-project/opensearch-api-specification/releases/download/main-latest/opensearch-openapi.yaml")

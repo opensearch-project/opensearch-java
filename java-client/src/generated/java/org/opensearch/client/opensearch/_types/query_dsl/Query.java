@@ -101,7 +101,6 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
         Neural("neural"),
         ParentId("parent_id"),
         Percolate("percolate"),
-        Pinned("pinned"),
         Prefix("prefix"),
         QueryString("query_string"),
         Range("range"),
@@ -700,22 +699,6 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
      */
     public PercolateQuery percolate() {
         return TaggedUnionUtils.get(this, Kind.Percolate);
-    }
-
-    /**
-     * Is this variant instance of kind {@code pinned}?
-     */
-    public boolean isPinned() {
-        return _kind == Kind.Pinned;
-    }
-
-    /**
-     * Get the {@code pinned} variant value.
-     *
-     * @throws IllegalStateException if the current variant is not the {@code pinned} kind.
-     */
-    public PinnedQuery pinned() {
-        return TaggedUnionUtils.get(this, Kind.Pinned);
     }
 
     /**
@@ -1474,16 +1457,6 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
             return this.percolate(fn.apply(new PercolateQuery.Builder()).build());
         }
 
-        public ObjectBuilder<Query> pinned(PinnedQuery v) {
-            this._kind = Kind.Pinned;
-            this._value = v;
-            return this;
-        }
-
-        public ObjectBuilder<Query> pinned(Function<PinnedQuery.Builder, ObjectBuilder<PinnedQuery>> fn) {
-            return this.pinned(fn.apply(new PinnedQuery.Builder()).build());
-        }
-
         public ObjectBuilder<Query> prefix(PrefixQuery v) {
             this._kind = Kind.Prefix;
             this._value = v;
@@ -1761,7 +1734,6 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
         op.add(Builder::neural, NeuralQuery._DESERIALIZER, "neural");
         op.add(Builder::parentId, ParentIdQuery._DESERIALIZER, "parent_id");
         op.add(Builder::percolate, PercolateQuery._DESERIALIZER, "percolate");
-        op.add(Builder::pinned, PinnedQuery._DESERIALIZER, "pinned");
         op.add(Builder::prefix, PrefixQuery._DESERIALIZER, "prefix");
         op.add(Builder::queryString, QueryStringQuery._DESERIALIZER, "query_string");
         op.add(Builder::range, RangeQuery._DESERIALIZER, "range");

@@ -66,16 +66,12 @@ public class CardinalityAggregation extends MetricAggregationBase
     @Nullable
     private final Integer precisionThreshold;
 
-    @Nullable
-    private final Boolean rehash;
-
     // ---------------------------------------------------------------------------------------------
 
     private CardinalityAggregation(Builder builder) {
         super(builder);
         this.executionHint = builder.executionHint;
         this.precisionThreshold = builder.precisionThreshold;
-        this.rehash = builder.rehash;
     }
 
     public static CardinalityAggregation of(Function<CardinalityAggregation.Builder, ObjectBuilder<CardinalityAggregation>> fn) {
@@ -109,14 +105,6 @@ public class CardinalityAggregation extends MetricAggregationBase
         return this.precisionThreshold;
     }
 
-    /**
-     * API name: {@code rehash}
-     */
-    @Nullable
-    public final Boolean rehash() {
-        return this.rehash;
-    }
-
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         super.serializeInternal(generator, mapper);
         if (this.executionHint != null) {
@@ -127,11 +115,6 @@ public class CardinalityAggregation extends MetricAggregationBase
         if (this.precisionThreshold != null) {
             generator.writeKey("precision_threshold");
             generator.write(this.precisionThreshold);
-        }
-
-        if (this.rehash != null) {
-            generator.writeKey("rehash");
-            generator.write(this.rehash);
         }
     }
 
@@ -158,8 +141,6 @@ public class CardinalityAggregation extends MetricAggregationBase
         private CardinalityExecutionMode executionHint;
         @Nullable
         private Integer precisionThreshold;
-        @Nullable
-        private Boolean rehash;
 
         public Builder() {}
 
@@ -167,14 +148,12 @@ public class CardinalityAggregation extends MetricAggregationBase
             super(o);
             this.executionHint = o.executionHint;
             this.precisionThreshold = o.precisionThreshold;
-            this.rehash = o.rehash;
         }
 
         private Builder(Builder o) {
             super(o);
             this.executionHint = o.executionHint;
             this.precisionThreshold = o.precisionThreshold;
-            this.rehash = o.rehash;
         }
 
         @Override
@@ -211,15 +190,6 @@ public class CardinalityAggregation extends MetricAggregationBase
         }
 
         /**
-         * API name: {@code rehash}
-         */
-        @Nonnull
-        public final Builder rehash(@Nullable Boolean value) {
-            this.rehash = value;
-            return this;
-        }
-
-        /**
          * Builds a {@link CardinalityAggregation}.
          *
          * @throws NullPointerException if some of the required fields are null.
@@ -247,7 +217,6 @@ public class CardinalityAggregation extends MetricAggregationBase
         setupMetricAggregationBaseDeserializer(op);
         op.add(Builder::executionHint, CardinalityExecutionMode._DESERIALIZER, "execution_hint");
         op.add(Builder::precisionThreshold, JsonpDeserializer.integerDeserializer(), "precision_threshold");
-        op.add(Builder::rehash, JsonpDeserializer.booleanDeserializer(), "rehash");
     }
 
     @Override
@@ -255,7 +224,6 @@ public class CardinalityAggregation extends MetricAggregationBase
         int result = super.hashCode();
         result = 31 * result + Objects.hashCode(this.executionHint);
         result = 31 * result + Objects.hashCode(this.precisionThreshold);
-        result = 31 * result + Objects.hashCode(this.rehash);
         return result;
     }
 
@@ -267,8 +235,6 @@ public class CardinalityAggregation extends MetricAggregationBase
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         CardinalityAggregation other = (CardinalityAggregation) o;
-        return Objects.equals(this.executionHint, other.executionHint)
-            && Objects.equals(this.precisionThreshold, other.precisionThreshold)
-            && Objects.equals(this.rehash, other.rehash);
+        return Objects.equals(this.executionHint, other.executionHint) && Objects.equals(this.precisionThreshold, other.precisionThreshold);
     }
 }

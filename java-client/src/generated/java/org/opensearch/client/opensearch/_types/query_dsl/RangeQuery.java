@@ -80,6 +80,12 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
     private final JsonData gte;
 
     @Nullable
+    private final Boolean includeLower;
+
+    @Nullable
+    private final Boolean includeUpper;
+
+    @Nullable
     private final JsonData lt;
 
     @Nullable
@@ -106,6 +112,8 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
         this.from = builder.from;
         this.gt = builder.gt;
         this.gte = builder.gte;
+        this.includeLower = builder.includeLower;
+        this.includeUpper = builder.includeUpper;
         this.lt = builder.lt;
         this.lte = builder.lte;
         this.name = builder.name;
@@ -172,6 +180,22 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
     @Nullable
     public final JsonData gte() {
         return this.gte;
+    }
+
+    /**
+     * API name: {@code include_lower}
+     */
+    @Nullable
+    public final Boolean includeLower() {
+        return this.includeLower;
+    }
+
+    /**
+     * API name: {@code include_upper}
+     */
+    @Nullable
+    public final Boolean includeUpper() {
+        return this.includeUpper;
     }
 
     /**
@@ -259,6 +283,16 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
             this.gte.serialize(generator, mapper);
         }
 
+        if (this.includeLower != null) {
+            generator.writeKey("include_lower");
+            generator.write(this.includeLower);
+        }
+
+        if (this.includeUpper != null) {
+            generator.writeKey("include_upper");
+            generator.write(this.includeUpper);
+        }
+
         if (this.lt != null) {
             generator.writeKey("lt");
             this.lt.serialize(generator, mapper);
@@ -320,6 +354,10 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
         @Nullable
         private JsonData gte;
         @Nullable
+        private Boolean includeLower;
+        @Nullable
+        private Boolean includeUpper;
+        @Nullable
         private JsonData lt;
         @Nullable
         private JsonData lte;
@@ -341,6 +379,8 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
             this.from = o.from;
             this.gt = o.gt;
             this.gte = o.gte;
+            this.includeLower = o.includeLower;
+            this.includeUpper = o.includeUpper;
             this.lt = o.lt;
             this.lte = o.lte;
             this.name = o.name;
@@ -356,6 +396,8 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
             this.from = o.from;
             this.gt = o.gt;
             this.gte = o.gte;
+            this.includeLower = o.includeLower;
+            this.includeUpper = o.includeUpper;
             this.lt = o.lt;
             this.lte = o.lte;
             this.name = o.name;
@@ -421,6 +463,24 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
         @Nonnull
         public final Builder gte(@Nullable JsonData value) {
             this.gte = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code include_lower}
+         */
+        @Nonnull
+        public final Builder includeLower(@Nullable Boolean value) {
+            this.includeLower = value;
+            return this;
+        }
+
+        /**
+         * API name: {@code include_upper}
+         */
+        @Nonnull
+        public final Builder includeUpper(@Nullable Boolean value) {
+            this.includeUpper = value;
             return this;
         }
 
@@ -508,6 +568,8 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
         op.add(Builder::from, JsonData._DESERIALIZER, "from");
         op.add(Builder::gt, JsonData._DESERIALIZER, "gt");
         op.add(Builder::gte, JsonData._DESERIALIZER, "gte");
+        op.add(Builder::includeLower, JsonpDeserializer.booleanDeserializer(), "include_lower");
+        op.add(Builder::includeUpper, JsonpDeserializer.booleanDeserializer(), "include_upper");
         op.add(Builder::lt, JsonData._DESERIALIZER, "lt");
         op.add(Builder::lte, JsonData._DESERIALIZER, "lte");
         op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "_name");
@@ -526,6 +588,8 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
         result = 31 * result + Objects.hashCode(this.from);
         result = 31 * result + Objects.hashCode(this.gt);
         result = 31 * result + Objects.hashCode(this.gte);
+        result = 31 * result + Objects.hashCode(this.includeLower);
+        result = 31 * result + Objects.hashCode(this.includeUpper);
         result = 31 * result + Objects.hashCode(this.lt);
         result = 31 * result + Objects.hashCode(this.lte);
         result = 31 * result + Objects.hashCode(this.name);
@@ -546,6 +610,8 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
             && Objects.equals(this.from, other.from)
             && Objects.equals(this.gt, other.gt)
             && Objects.equals(this.gte, other.gte)
+            && Objects.equals(this.includeLower, other.includeLower)
+            && Objects.equals(this.includeUpper, other.includeUpper)
             && Objects.equals(this.lt, other.lt)
             && Objects.equals(this.lte, other.lte)
             && Objects.equals(this.name, other.name)
