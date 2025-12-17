@@ -282,13 +282,6 @@ public class QueryBuilders {
     }
 
     /**
-     * Creates a builder for the {@link PinnedQuery pinned} {@code Query} variant.
-     */
-    public static PinnedQuery.Builder pinned() {
-        return new PinnedQuery.Builder();
-    }
-
-    /**
      * Creates a builder for the {@link PrefixQuery prefix} {@code Query} variant.
      */
     public static PrefixQuery.Builder prefix() {

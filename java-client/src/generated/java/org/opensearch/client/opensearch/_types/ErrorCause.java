@@ -68,6 +68,9 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
     private final ErrorCause causedBy;
 
     @Nonnull
+    private final Map<String, List<String>> header;
+
+    @Nonnull
     private final Map<String, JsonData> metadata;
 
     @Nullable
@@ -89,6 +92,7 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
 
     private ErrorCause(Builder builder) {
         this.causedBy = builder.causedBy;
+        this.header = ApiTypeHelper.unmodifiable(builder.header);
         this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
         this.reason = builder.reason;
         this.rootCause = ApiTypeHelper.unmodifiable(builder.rootCause);
@@ -107,6 +111,14 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
     @Nullable
     public final ErrorCause causedBy() {
         return this.causedBy;
+    }
+
+    /**
+     * API name: {@code header}
+     */
+    @Nonnull
+    public final Map<String, List<String>> header() {
+        return this.header;
     }
 
     /**
@@ -186,6 +198,22 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
             this.causedBy.serialize(generator, mapper);
         }
 
+        if (ApiTypeHelper.isDefined(this.header)) {
+            generator.writeKey("header");
+            generator.writeStartObject();
+            for (Map.Entry<String, List<String>> item0 : this.header.entrySet()) {
+                generator.writeKey(item0.getKey());
+                generator.writeStartArray();
+                if (item0.getValue() != null) {
+                    for (String item1 : item0.getValue()) {
+                        generator.write(item1);
+                    }
+                }
+                generator.writeEnd();
+            }
+            generator.writeEnd();
+        }
+
         if (this.reason != null) {
             generator.writeKey("reason");
             generator.write(this.reason);
@@ -238,6 +266,8 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
         @Nullable
         private ErrorCause causedBy;
         @Nullable
+        private Map<String, List<String>> header;
+        @Nullable
         private Map<String, JsonData> metadata;
         @Nullable
         private String reason;
@@ -253,6 +283,7 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
 
         private Builder(ErrorCause o) {
             this.causedBy = o.causedBy;
+            this.header = _mapCopy(o.header);
             this.metadata = _mapCopy(o.metadata);
             this.reason = o.reason;
             this.rootCause = _listCopy(o.rootCause);
@@ -263,6 +294,7 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
 
         private Builder(Builder o) {
             this.causedBy = o.causedBy;
+            this.header = _mapCopy(o.header);
             this.metadata = _mapCopy(o.metadata);
             this.reason = o.reason;
             this.rootCause = _listCopy(o.rootCause);
@@ -292,6 +324,32 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
         @Nonnull
         public final Builder causedBy(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
             return causedBy(fn.apply(new ErrorCause.Builder()).build());
+        }
+
+        /**
+         * API name: {@code header}
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>header</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder header(Map<String, List<String>> map) {
+            this.header = _mapPutAll(this.header, map);
+            return this;
+        }
+
+        /**
+         * API name: {@code header}
+         *
+         * <p>
+         * Adds an entry to <code>header</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder header(String key, List<String> value) {
+            this.header = _mapPut(this.header, key, value);
+            return this;
         }
 
         /**
@@ -458,6 +516,11 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
 
     protected static void setupErrorCauseDeserializer(ObjectDeserializer<ErrorCause.Builder> op) {
         op.add(Builder::causedBy, ErrorCause._DESERIALIZER, "caused_by");
+        op.add(
+            Builder::header,
+            JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())),
+            "header"
+        );
         op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
         op.add(Builder::rootCause, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "root_cause");
         op.add(Builder::stackTrace, JsonpDeserializer.stringDeserializer(), "stack_trace");
@@ -475,6 +538,7 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
     public int hashCode() {
         int result = 17;
         result = 31 * result + Objects.hashCode(this.causedBy);
+        result = 31 * result + Objects.hashCode(this.header);
         result = 31 * result + Objects.hashCode(this.metadata);
         result = 31 * result + Objects.hashCode(this.reason);
         result = 31 * result + Objects.hashCode(this.rootCause);
@@ -490,6 +554,7 @@ public class ErrorCause implements PlainJsonSerializable, ToCopyableBuilder<Erro
         if (o == null || this.getClass() != o.getClass()) return false;
         ErrorCause other = (ErrorCause) o;
         return Objects.equals(this.causedBy, other.causedBy)
+            && Objects.equals(this.header, other.header)
             && Objects.equals(this.metadata, other.metadata)
             && Objects.equals(this.reason, other.reason)
             && Objects.equals(this.rootCause, other.rootCause)

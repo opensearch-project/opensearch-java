@@ -61,17 +61,17 @@ import org.opensearch.client.util.ToCopyableBuilder;
 @Generated("org.opensearch.client.codegen.CodeGenerator")
 public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<PhaseTook.Builder, PhaseTook> {
 
-    private final int canMatch;
+    private final long canMatch;
 
-    private final int dfsPreQuery;
+    private final long dfsPreQuery;
 
-    private final int dfsQuery;
+    private final long dfsQuery;
 
-    private final int expand;
+    private final long expand;
 
-    private final int fetch;
+    private final long fetch;
 
-    private final int query;
+    private final long query;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -94,7 +94,7 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
      * API name: {@code can_match}
      * </p>
      */
-    public final int canMatch() {
+    public final long canMatch() {
         return this.canMatch;
     }
 
@@ -104,7 +104,7 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
      * API name: {@code dfs_pre_query}
      * </p>
      */
-    public final int dfsPreQuery() {
+    public final long dfsPreQuery() {
         return this.dfsPreQuery;
     }
 
@@ -114,7 +114,7 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
      * API name: {@code dfs_query}
      * </p>
      */
-    public final int dfsQuery() {
+    public final long dfsQuery() {
         return this.dfsQuery;
     }
 
@@ -124,7 +124,7 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
      * API name: {@code expand}
      * </p>
      */
-    public final int expand() {
+    public final long expand() {
         return this.expand;
     }
 
@@ -134,7 +134,7 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
      * API name: {@code fetch}
      * </p>
      */
-    public final int fetch() {
+    public final long fetch() {
         return this.fetch;
     }
 
@@ -144,7 +144,7 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
      * API name: {@code query}
      * </p>
      */
-    public final int query() {
+    public final long query() {
         return this.query;
     }
 
@@ -195,12 +195,12 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
      * Builder for {@link PhaseTook}.
      */
     public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, PhaseTook> {
-        private Integer canMatch;
-        private Integer dfsPreQuery;
-        private Integer dfsQuery;
-        private Integer expand;
-        private Integer fetch;
-        private Integer query;
+        private Long canMatch;
+        private Long dfsPreQuery;
+        private Long dfsQuery;
+        private Long expand;
+        private Long fetch;
+        private Long query;
 
         public Builder() {}
 
@@ -235,7 +235,7 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
          * </p>
          */
         @Nonnull
-        public final Builder canMatch(int value) {
+        public final Builder canMatch(long value) {
             this.canMatch = value;
             return this;
         }
@@ -247,7 +247,7 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
          * </p>
          */
         @Nonnull
-        public final Builder dfsPreQuery(int value) {
+        public final Builder dfsPreQuery(long value) {
             this.dfsPreQuery = value;
             return this;
         }
@@ -259,7 +259,7 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
          * </p>
          */
         @Nonnull
-        public final Builder dfsQuery(int value) {
+        public final Builder dfsQuery(long value) {
             this.dfsQuery = value;
             return this;
         }
@@ -271,7 +271,7 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
          * </p>
          */
         @Nonnull
-        public final Builder expand(int value) {
+        public final Builder expand(long value) {
             this.expand = value;
             return this;
         }
@@ -283,7 +283,7 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
          * </p>
          */
         @Nonnull
-        public final Builder fetch(int value) {
+        public final Builder fetch(long value) {
             this.fetch = value;
             return this;
         }
@@ -295,7 +295,7 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
          * </p>
          */
         @Nonnull
-        public final Builder query(int value) {
+        public final Builder query(long value) {
             this.query = value;
             return this;
         }
@@ -325,23 +325,23 @@ public class PhaseTook implements PlainJsonSerializable, ToCopyableBuilder<Phase
     );
 
     protected static void setupPhaseTookDeserializer(ObjectDeserializer<PhaseTook.Builder> op) {
-        op.add(Builder::canMatch, JsonpDeserializer.integerDeserializer(), "can_match");
-        op.add(Builder::dfsPreQuery, JsonpDeserializer.integerDeserializer(), "dfs_pre_query");
-        op.add(Builder::dfsQuery, JsonpDeserializer.integerDeserializer(), "dfs_query");
-        op.add(Builder::expand, JsonpDeserializer.integerDeserializer(), "expand");
-        op.add(Builder::fetch, JsonpDeserializer.integerDeserializer(), "fetch");
-        op.add(Builder::query, JsonpDeserializer.integerDeserializer(), "query");
+        op.add(Builder::canMatch, JsonpDeserializer.longDeserializer(), "can_match");
+        op.add(Builder::dfsPreQuery, JsonpDeserializer.longDeserializer(), "dfs_pre_query");
+        op.add(Builder::dfsQuery, JsonpDeserializer.longDeserializer(), "dfs_query");
+        op.add(Builder::expand, JsonpDeserializer.longDeserializer(), "expand");
+        op.add(Builder::fetch, JsonpDeserializer.longDeserializer(), "fetch");
+        op.add(Builder::query, JsonpDeserializer.longDeserializer(), "query");
     }
 
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + Integer.hashCode(this.canMatch);
-        result = 31 * result + Integer.hashCode(this.dfsPreQuery);
-        result = 31 * result + Integer.hashCode(this.dfsQuery);
-        result = 31 * result + Integer.hashCode(this.expand);
-        result = 31 * result + Integer.hashCode(this.fetch);
-        result = 31 * result + Integer.hashCode(this.query);
+        result = 31 * result + Long.hashCode(this.canMatch);
+        result = 31 * result + Long.hashCode(this.dfsPreQuery);
+        result = 31 * result + Long.hashCode(this.dfsQuery);
+        result = 31 * result + Long.hashCode(this.expand);
+        result = 31 * result + Long.hashCode(this.fetch);
+        result = 31 * result + Long.hashCode(this.query);
         return result;
     }
 

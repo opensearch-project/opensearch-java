@@ -49,6 +49,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
 import org.opensearch.client.util.ObjectBuilderBase;
@@ -69,7 +70,7 @@ public class DecayPlacement implements PlainJsonSerializable, ToCopyableBuilder<
     @Nullable
     private final JsonData origin;
 
-    @Nullable
+    @Nonnull
     private final JsonData scale;
 
     // ---------------------------------------------------------------------------------------------
@@ -78,7 +79,7 @@ public class DecayPlacement implements PlainJsonSerializable, ToCopyableBuilder<
         this.decay = builder.decay;
         this.offset = builder.offset;
         this.origin = builder.origin;
-        this.scale = builder.scale;
+        this.scale = ApiTypeHelper.requireNonNull(builder.scale, this, "scale");
     }
 
     public static DecayPlacement of(Function<DecayPlacement.Builder, ObjectBuilder<DecayPlacement>> fn) {
@@ -110,9 +111,9 @@ public class DecayPlacement implements PlainJsonSerializable, ToCopyableBuilder<
     }
 
     /**
-     * API name: {@code scale}
+     * Required - API name: {@code scale}
      */
-    @Nullable
+    @Nonnull
     public final JsonData scale() {
         return this.scale;
     }
@@ -143,10 +144,8 @@ public class DecayPlacement implements PlainJsonSerializable, ToCopyableBuilder<
             this.origin.serialize(generator, mapper);
         }
 
-        if (this.scale != null) {
-            generator.writeKey("scale");
-            this.scale.serialize(generator, mapper);
-        }
+        generator.writeKey("scale");
+        this.scale.serialize(generator, mapper);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -172,7 +171,6 @@ public class DecayPlacement implements PlainJsonSerializable, ToCopyableBuilder<
         private JsonData offset;
         @Nullable
         private JsonData origin;
-        @Nullable
         private JsonData scale;
 
         public Builder() {}
@@ -225,10 +223,10 @@ public class DecayPlacement implements PlainJsonSerializable, ToCopyableBuilder<
         }
 
         /**
-         * API name: {@code scale}
+         * Required - API name: {@code scale}
          */
         @Nonnull
-        public final Builder scale(@Nullable JsonData value) {
+        public final Builder scale(JsonData value) {
             this.scale = value;
             return this;
         }
@@ -270,7 +268,7 @@ public class DecayPlacement implements PlainJsonSerializable, ToCopyableBuilder<
         result = 31 * result + Objects.hashCode(this.decay);
         result = 31 * result + Objects.hashCode(this.offset);
         result = 31 * result + Objects.hashCode(this.origin);
-        result = 31 * result + Objects.hashCode(this.scale);
+        result = 31 * result + this.scale.hashCode();
         return result;
     }
 
@@ -282,6 +280,6 @@ public class DecayPlacement implements PlainJsonSerializable, ToCopyableBuilder<
         return Objects.equals(this.decay, other.decay)
             && Objects.equals(this.offset, other.offset)
             && Objects.equals(this.origin, other.origin)
-            && Objects.equals(this.scale, other.scale);
+            && this.scale.equals(other.scale);
     }
 }

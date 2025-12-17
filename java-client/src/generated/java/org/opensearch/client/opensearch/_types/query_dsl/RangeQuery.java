@@ -48,21 +48,16 @@ import org.opensearch.client.json.JsonpDeserializer;
 import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
-import org.opensearch.client.json.PlainJsonSerializable;
 import org.opensearch.client.util.ApiTypeHelper;
 import org.opensearch.client.util.CopyableBuilder;
 import org.opensearch.client.util.ObjectBuilder;
-import org.opensearch.client.util.ObjectBuilderBase;
 import org.opensearch.client.util.ToCopyableBuilder;
 
 // typedef: _types.query_dsl.RangeQuery
 
 @JsonpDeserializable
 @Generated("org.opensearch.client.codegen.CodeGenerator")
-public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyableBuilder<RangeQuery.Builder, RangeQuery> {
-
-    @Nullable
-    private final Float boost;
+public class RangeQuery extends RangeQueryBase implements QueryVariant, ToCopyableBuilder<RangeQuery.Builder, RangeQuery> {
 
     @Nonnull
     private final String field;
@@ -86,12 +81,6 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
     private final JsonData lte;
 
     @Nullable
-    private final String name;
-
-    @Nullable
-    private final String relation;
-
-    @Nullable
     private final String timeZone;
 
     @Nullable
@@ -100,7 +89,7 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
     // ---------------------------------------------------------------------------------------------
 
     private RangeQuery(Builder builder) {
-        this.boost = builder.boost;
+        super(builder);
         this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
         this.format = builder.format;
         this.from = builder.from;
@@ -108,8 +97,6 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
         this.gte = builder.gte;
         this.lt = builder.lt;
         this.lte = builder.lte;
-        this.name = builder.name;
-        this.relation = builder.relation;
         this.timeZone = builder.timeZone;
         this.to = builder.to;
     }
@@ -124,14 +111,6 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
     @Override
     public Query.Kind _queryKind() {
         return Query.Kind.Range;
-    }
-
-    /**
-     * API name: {@code boost}
-     */
-    @Nullable
-    public final Float boost() {
-        return this.boost;
     }
 
     /**
@@ -191,22 +170,6 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
     }
 
     /**
-     * API name: {@code _name}
-     */
-    @Nullable
-    public final String name() {
-        return this.name;
-    }
-
-    /**
-     * API name: {@code relation}
-     */
-    @Nullable
-    public final String relation() {
-        return this.relation;
-    }
-
-    /**
      * API name: {@code time_zone}
      */
     @Nullable
@@ -222,23 +185,9 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
         return this.to;
     }
 
-    /**
-     * Serialize this object to JSON.
-     */
-    @Override
-    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        generator.writeStartObject();
-        serializeInternal(generator, mapper);
-        generator.writeEnd();
-    }
-
     protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject(this.field);
-        if (this.boost != null) {
-            generator.writeKey("boost");
-            generator.write(this.boost);
-        }
-
+        super.serializeInternal(generator, mapper);
         if (this.format != null) {
             generator.writeKey("format");
             generator.write(this.format);
@@ -269,16 +218,6 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
             this.lte.serialize(generator, mapper);
         }
 
-        if (this.name != null) {
-            generator.writeKey("_name");
-            generator.write(this.name);
-        }
-
-        if (this.relation != null) {
-            generator.writeKey("relation");
-            generator.write(this.relation);
-        }
-
         if (this.timeZone != null) {
             generator.writeKey("time_zone");
             generator.write(this.timeZone);
@@ -307,9 +246,7 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
     /**
      * Builder for {@link RangeQuery}.
      */
-    public static class Builder extends ObjectBuilderBase implements CopyableBuilder<Builder, RangeQuery> {
-        @Nullable
-        private Float boost;
+    public static class Builder extends RangeQueryBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, RangeQuery> {
         private String field;
         @Nullable
         private String format;
@@ -324,10 +261,6 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
         @Nullable
         private JsonData lte;
         @Nullable
-        private String name;
-        @Nullable
-        private String relation;
-        @Nullable
         private String timeZone;
         @Nullable
         private JsonData to;
@@ -335,7 +268,7 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
         public Builder() {}
 
         private Builder(RangeQuery o) {
-            this.boost = o.boost;
+            super(o);
             this.field = o.field;
             this.format = o.format;
             this.from = o.from;
@@ -343,14 +276,12 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
             this.gte = o.gte;
             this.lt = o.lt;
             this.lte = o.lte;
-            this.name = o.name;
-            this.relation = o.relation;
             this.timeZone = o.timeZone;
             this.to = o.to;
         }
 
         private Builder(Builder o) {
-            this.boost = o.boost;
+            super(o);
             this.field = o.field;
             this.format = o.format;
             this.from = o.from;
@@ -358,8 +289,6 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
             this.gte = o.gte;
             this.lt = o.lt;
             this.lte = o.lte;
-            this.name = o.name;
-            this.relation = o.relation;
             this.timeZone = o.timeZone;
             this.to = o.to;
         }
@@ -370,12 +299,9 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
             return new Builder(this);
         }
 
-        /**
-         * API name: {@code boost}
-         */
+        @Override
         @Nonnull
-        public final Builder boost(@Nullable Float value) {
-            this.boost = value;
+        protected Builder self() {
             return this;
         }
 
@@ -443,24 +369,6 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
         }
 
         /**
-         * API name: {@code _name}
-         */
-        @Nonnull
-        public final Builder name(@Nullable String value) {
-            this.name = value;
-            return this;
-        }
-
-        /**
-         * API name: {@code relation}
-         */
-        @Nonnull
-        public final Builder relation(@Nullable String value) {
-            this.relation = value;
-            return this;
-        }
-
-        /**
          * API name: {@code time_zone}
          */
         @Nonnull
@@ -503,15 +411,13 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
     );
 
     protected static void setupRangeQueryDeserializer(ObjectDeserializer<RangeQuery.Builder> op) {
-        op.add(Builder::boost, JsonpDeserializer.floatDeserializer(), "boost");
+        setupRangeQueryBaseDeserializer(op);
         op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
         op.add(Builder::from, JsonData._DESERIALIZER, "from");
         op.add(Builder::gt, JsonData._DESERIALIZER, "gt");
         op.add(Builder::gte, JsonData._DESERIALIZER, "gte");
         op.add(Builder::lt, JsonData._DESERIALIZER, "lt");
         op.add(Builder::lte, JsonData._DESERIALIZER, "lte");
-        op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "_name");
-        op.add(Builder::relation, JsonpDeserializer.stringDeserializer(), "relation");
         op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
         op.add(Builder::to, JsonData._DESERIALIZER, "to");
         op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
@@ -519,8 +425,7 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
 
     @Override
     public int hashCode() {
-        int result = 17;
-        result = 31 * result + Objects.hashCode(this.boost);
+        int result = super.hashCode();
         result = 31 * result + this.field.hashCode();
         result = 31 * result + Objects.hashCode(this.format);
         result = 31 * result + Objects.hashCode(this.from);
@@ -528,8 +433,6 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
         result = 31 * result + Objects.hashCode(this.gte);
         result = 31 * result + Objects.hashCode(this.lt);
         result = 31 * result + Objects.hashCode(this.lte);
-        result = 31 * result + Objects.hashCode(this.name);
-        result = 31 * result + Objects.hashCode(this.relation);
         result = 31 * result + Objects.hashCode(this.timeZone);
         result = 31 * result + Objects.hashCode(this.to);
         return result;
@@ -537,19 +440,19 @@ public class RangeQuery implements QueryVariant, PlainJsonSerializable, ToCopyab
 
     @Override
     public boolean equals(Object o) {
+        if (!super.equals(o)) {
+            return false;
+        }
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         RangeQuery other = (RangeQuery) o;
-        return Objects.equals(this.boost, other.boost)
-            && this.field.equals(other.field)
+        return this.field.equals(other.field)
             && Objects.equals(this.format, other.format)
             && Objects.equals(this.from, other.from)
             && Objects.equals(this.gt, other.gt)
             && Objects.equals(this.gte, other.gte)
             && Objects.equals(this.lt, other.lt)
             && Objects.equals(this.lte, other.lte)
-            && Objects.equals(this.name, other.name)
-            && Objects.equals(this.relation, other.relation)
             && Objects.equals(this.timeZone, other.timeZone)
             && Objects.equals(this.to, other.to);
     }

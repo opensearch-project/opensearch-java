@@ -101,6 +101,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
         RankFeatures("rank_features"),
         ScaledFloat("scaled_float"),
         SearchAsYouType("search_as_you_type"),
+        Semantic("semantic"),
         Short("short"),
         Text("text"),
         TokenCount("token_count"),
@@ -758,6 +759,22 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
     }
 
     /**
+     * Is this variant instance of kind {@code semantic}?
+     */
+    public boolean isSemantic() {
+        return _kind == Kind.Semantic;
+    }
+
+    /**
+     * Get the {@code semantic} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not the {@code semantic} kind.
+     */
+    public SemanticProperty semantic() {
+        return TaggedUnionUtils.get(this, Kind.Semantic);
+    }
+
+    /**
      * Is this variant instance of kind {@code short}?
      */
     public boolean isShort() {
@@ -1301,6 +1318,16 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
             return this.searchAsYouType(fn.apply(new SearchAsYouTypeProperty.Builder()).build());
         }
 
+        public ObjectBuilder<Property> semantic(SemanticProperty v) {
+            this._kind = Kind.Semantic;
+            this._value = v;
+            return this;
+        }
+
+        public ObjectBuilder<Property> semantic(Function<SemanticProperty.Builder, ObjectBuilder<SemanticProperty>> fn) {
+            return this.semantic(fn.apply(new SemanticProperty.Builder()).build());
+        }
+
         public ObjectBuilder<Property> short_(ShortNumberProperty v) {
             this._kind = Kind.Short;
             this._value = v;
@@ -1429,6 +1456,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Pl
         op.add(Builder::rankFeatures, RankFeaturesProperty._DESERIALIZER, "rank_features");
         op.add(Builder::scaledFloat, ScaledFloatNumberProperty._DESERIALIZER, "scaled_float");
         op.add(Builder::searchAsYouType, SearchAsYouTypeProperty._DESERIALIZER, "search_as_you_type");
+        op.add(Builder::semantic, SemanticProperty._DESERIALIZER, "semantic");
         op.add(Builder::short_, ShortNumberProperty._DESERIALIZER, "short");
         op.add(Builder::text, TextProperty._DESERIALIZER, "text");
         op.add(Builder::tokenCount, TokenCountProperty._DESERIALIZER, "token_count");
