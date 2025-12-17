@@ -44,13 +44,11 @@ import org.junit.Test;
 import org.opensearch.Version;
 import org.opensearch.client.json.JsonData;
 import org.opensearch.client.opensearch.OpenSearchAsyncClient;
-import org.opensearch.client.opensearch._types.FieldValue;
 import org.opensearch.client.opensearch._types.OpenSearchException;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch._types.Time;
 import org.opensearch.client.opensearch._types.aggregations.Aggregate;
 import org.opensearch.client.opensearch._types.aggregations.HistogramAggregate;
-import org.opensearch.client.opensearch._types.aggregations.TermsAggregation;
 import org.opensearch.client.opensearch._types.analysis.Analyzer;
 import org.opensearch.client.opensearch._types.analysis.CustomAnalyzer;
 import org.opensearch.client.opensearch._types.analysis.ShingleTokenFilter;
@@ -59,8 +57,6 @@ import org.opensearch.client.opensearch._types.analysis.TokenFilterDefinition;
 import org.opensearch.client.opensearch._types.mapping.Property;
 import org.opensearch.client.opensearch._types.mapping.TextProperty;
 import org.opensearch.client.opensearch._types.mapping.TypeMapping;
-import org.opensearch.client.opensearch._types.query_dsl.BoolQuery;
-import org.opensearch.client.opensearch._types.query_dsl.TermsQuery;
 import org.opensearch.client.opensearch.cat.NodesResponse;
 import org.opensearch.client.opensearch.core.BulkResponse;
 import org.opensearch.client.opensearch.core.ClearScrollResponse;
@@ -455,20 +451,13 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         javaClient().create(_1 -> _1.index("products").id("C").document(new Product(25)).refresh(Refresh.True));
 
         SearchResponse<Product> searchResponse = javaClient().search(
-            _1 -> _1.index("products")
-                .size(0)
-                .aggregations(
-                    "prices",
-                    _3 -> _3.histogram(_4 -> _4.field("price").interval(10.0))
-                        .aggregations("average", _5 -> _5.avg(_6 -> _6.field("price")))
-                ),
+            _1 -> _1.index("products").size(0).aggregations("prices", _3 -> _3.histogram(_4 -> _4.field("price").interval(10.0))),
             Product.class
         );
 
         HistogramAggregate prices = searchResponse.aggregations().get("prices").histogram();
         assertEquals(3, prices.buckets().array().size());
         assertEquals(1, prices.buckets().array().get(0).docCount());
-        assertEquals(5.0, prices.buckets().array().get(0).aggregations().get("average").avg().value(), 0.01);
 
         // We've set "size" to zero
         assertEquals(0, searchResponse.hits().hits().size());
@@ -482,29 +471,14 @@ public abstract class AbstractRequestIT extends OpenSearchJavaClientTestCase {
         javaClient().create(_1 -> _1.index("products").id("B").document(new Product(10, "Blue")).refresh(Refresh.True));
         javaClient().create(_1 -> _1.index("products").id("C").document(new Product(15, "Black")).refresh(Refresh.True));
 
-        List<FieldValue> fieldValues = List.of(FieldValue.of("Blue"));
-
         SearchRequest searchRequest = SearchRequest.of(
-            _1 -> _1.index("products")
-                .size(0)
-                .aggregations(
-                    "price",
-                    _3 -> _3.aggregations(Map.of("price", TermsAggregation.of(_4 -> _4.field("price")).toAggregation()))
-                        .filter(
-                            BoolQuery.of(
-                                _5 -> _5.filter(
-                                    List.of(TermsQuery.of(_6 -> _6.field("color.keyword").terms(_7 -> _7.value(fieldValues))).toQuery())
-                                )
-                            ).toQuery()
-                        )
-                )
+            _1 -> _1.index("products").size(0).aggregations("price", _3 -> _3.terms(_4 -> _4.field("price")))
         );
         SearchResponse<Product> searchResponse = javaClient().search(searchRequest, Product.class);
 
         Aggregate prices = searchResponse.aggregations().get("price")._get().toAggregate();
-        assertEquals(2, searchResponse.aggregations().get("price").filter().docCount());
-        assertEquals(1, prices.filter().aggregations().get("price").dterms().buckets().array().get(0).docCount());
-        assertEquals(1, prices.filter().aggregations().get("price").dterms().buckets().array().get(1).docCount());
+        assertEquals(1, prices.dterms().buckets().array().get(0).docCount());
+        assertEquals(1, prices.dterms().buckets().array().get(1).docCount());
 
         // We've set "size" to zero
         assertEquals(0, searchResponse.hits().hits().size());

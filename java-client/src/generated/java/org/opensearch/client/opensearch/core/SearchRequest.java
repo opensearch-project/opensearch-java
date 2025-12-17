@@ -53,6 +53,7 @@ import org.opensearch.client.json.JsonpMapper;
 import org.opensearch.client.json.ObjectBuilderDeserializer;
 import org.opensearch.client.json.ObjectDeserializer;
 import org.opensearch.client.json.PlainJsonSerializable;
+import org.opensearch.client.opensearch._types.DerivedField;
 import org.opensearch.client.opensearch._types.ErrorResponse;
 import org.opensearch.client.opensearch._types.ExpandWildcard;
 import org.opensearch.client.opensearch._types.FieldValue;
@@ -121,6 +122,9 @@ public final class SearchRequest extends RequestBase
 
     @Nullable
     private final Operator defaultOperator;
+
+    @Nonnull
+    private final Map<String, DerivedField> derived;
 
     @Nullable
     private final String df;
@@ -216,6 +220,9 @@ public final class SearchRequest extends RequestBase
     private final List<FieldValue> searchAfter;
 
     @Nullable
+    private final String searchPipeline;
+
+    @Nullable
     private final SearchType searchType;
 
     @Nullable
@@ -274,6 +281,7 @@ public final class SearchRequest extends RequestBase
         this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
         this.collapse = builder.collapse;
         this.defaultOperator = builder.defaultOperator;
+        this.derived = ApiTypeHelper.unmodifiable(builder.derived);
         this.df = builder.df;
         this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
         this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
@@ -305,6 +313,7 @@ public final class SearchRequest extends RequestBase
         this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
         this.scroll = builder.scroll;
         this.searchAfter = ApiTypeHelper.unmodifiable(builder.searchAfter);
+        this.searchPipeline = builder.searchPipeline;
         this.searchType = builder.searchType;
         this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
         this.size = builder.size;
@@ -442,6 +451,14 @@ public final class SearchRequest extends RequestBase
     }
 
     /**
+     * API name: {@code derived}
+     */
+    @Nonnull
+    public final Map<String, DerivedField> derived() {
+        return this.derived;
+    }
+
+    /**
      * Field to use as default where no field prefix is given in the query string. This parameter can only be used when the q query string
      * parameter is specified.
      * <p>
@@ -554,8 +571,7 @@ public final class SearchRequest extends RequestBase
     }
 
     /**
-     * Indicates whether <code>hit.matched_queries</code> should be rendered as a map that includes the name of the matched query associated
-     * with its score (true) or as an array containing the name of the matched queries (false)
+     * Whether to return scores with named queries. Default is false.
      * <p>
      * API name: {@code include_named_queries_score}
      * </p>
@@ -797,6 +813,17 @@ public final class SearchRequest extends RequestBase
     }
 
     /**
+     * Customizable sequence of processing stages applied to search queries.
+     * <p>
+     * API name: {@code search_pipeline}
+     * </p>
+     */
+    @Nullable
+    public final String searchPipeline() {
+        return this.searchPipeline;
+    }
+
+    /**
      * How distributed term frequencies are calculated for relevance scoring.
      * <p>
      * API name: {@code search_type}
@@ -928,10 +955,7 @@ public final class SearchRequest extends RequestBase
     }
 
     /**
-     * Enables or disables verbose mode for the search pipeline. When verbose mode is enabled, detailed information about each processor in
-     * the search pipeline is included in the search response. This includes the processor name, execution status, input, output, and time
-     * taken for processing. This parameter is primarily intended for debugging purposes, allowing users to track how data flows and
-     * transforms through the search pipeline.
+     * Enables or disables verbose mode for the search pipeline.
      * <p>
      * API name: {@code verbose_pipeline}
      * </p>
@@ -978,6 +1002,16 @@ public final class SearchRequest extends RequestBase
             this.collapse.serialize(generator, mapper);
         }
 
+        if (ApiTypeHelper.isDefined(this.derived)) {
+            generator.writeKey("derived");
+            generator.writeStartObject();
+            for (Map.Entry<String, DerivedField> item0 : this.derived.entrySet()) {
+                generator.writeKey(item0.getKey());
+                item0.getValue().serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
+
         if (ApiTypeHelper.isDefined(this.docvalueFields)) {
             generator.writeKey("docvalue_fields");
             generator.writeStartArray();
@@ -1019,6 +1053,11 @@ public final class SearchRequest extends RequestBase
         if (this.highlight != null) {
             generator.writeKey("highlight");
             this.highlight.serialize(generator, mapper);
+        }
+
+        if (this.includeNamedQueriesScore != null) {
+            generator.writeKey("include_named_queries_score");
+            generator.write(this.includeNamedQueriesScore);
         }
 
         if (ApiTypeHelper.isDefined(this.indicesBoost)) {
@@ -1088,6 +1127,11 @@ public final class SearchRequest extends RequestBase
                 item0.serialize(generator, mapper);
             }
             generator.writeEnd();
+        }
+
+        if (this.searchPipeline != null) {
+            generator.writeKey("search_pipeline");
+            generator.write(this.searchPipeline);
         }
 
         if (this.seqNoPrimaryTerm != null) {
@@ -1162,6 +1206,11 @@ public final class SearchRequest extends RequestBase
             this.trackTotalHits.serialize(generator, mapper);
         }
 
+        if (this.verbosePipeline != null) {
+            generator.writeKey("verbose_pipeline");
+            generator.write(this.verbosePipeline);
+        }
+
         if (this.version != null) {
             generator.writeKey("version");
             generator.write(this.version);
@@ -1205,6 +1254,8 @@ public final class SearchRequest extends RequestBase
         private FieldCollapse collapse;
         @Nullable
         private Operator defaultOperator;
+        @Nullable
+        private Map<String, DerivedField> derived;
         @Nullable
         private String df;
         @Nullable
@@ -1268,6 +1319,8 @@ public final class SearchRequest extends RequestBase
         @Nullable
         private List<FieldValue> searchAfter;
         @Nullable
+        private String searchPipeline;
+        @Nullable
         private SearchType searchType;
         @Nullable
         private Boolean seqNoPrimaryTerm;
@@ -1312,6 +1365,7 @@ public final class SearchRequest extends RequestBase
             this.ccsMinimizeRoundtrips = o.ccsMinimizeRoundtrips;
             this.collapse = o.collapse;
             this.defaultOperator = o.defaultOperator;
+            this.derived = _mapCopy(o.derived);
             this.df = o.df;
             this.docvalueFields = _listCopy(o.docvalueFields);
             this.expandWildcards = _listCopy(o.expandWildcards);
@@ -1343,6 +1397,7 @@ public final class SearchRequest extends RequestBase
             this.scriptFields = _mapCopy(o.scriptFields);
             this.scroll = o.scroll;
             this.searchAfter = _listCopy(o.searchAfter);
+            this.searchPipeline = o.searchPipeline;
             this.searchType = o.searchType;
             this.seqNoPrimaryTerm = o.seqNoPrimaryTerm;
             this.size = o.size;
@@ -1372,6 +1427,7 @@ public final class SearchRequest extends RequestBase
             this.ccsMinimizeRoundtrips = o.ccsMinimizeRoundtrips;
             this.collapse = o.collapse;
             this.defaultOperator = o.defaultOperator;
+            this.derived = _mapCopy(o.derived);
             this.df = o.df;
             this.docvalueFields = _listCopy(o.docvalueFields);
             this.expandWildcards = _listCopy(o.expandWildcards);
@@ -1403,6 +1459,7 @@ public final class SearchRequest extends RequestBase
             this.scriptFields = _mapCopy(o.scriptFields);
             this.scroll = o.scroll;
             this.searchAfter = _listCopy(o.searchAfter);
+            this.searchPipeline = o.searchPipeline;
             this.searchType = o.searchType;
             this.seqNoPrimaryTerm = o.seqNoPrimaryTerm;
             this.size = o.size;
@@ -1611,6 +1668,44 @@ public final class SearchRequest extends RequestBase
         public final Builder defaultOperator(@Nullable Operator value) {
             this.defaultOperator = value;
             return this;
+        }
+
+        /**
+         * API name: {@code derived}
+         *
+         * <p>
+         * Adds all elements of <code>map</code> to <code>derived</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder derived(Map<String, DerivedField> map) {
+            this.derived = _mapPutAll(this.derived, map);
+            return this;
+        }
+
+        /**
+         * API name: {@code derived}
+         *
+         * <p>
+         * Adds an entry to <code>derived</code>.
+         * </p>
+         */
+        @Nonnull
+        public final Builder derived(String key, DerivedField value) {
+            this.derived = _mapPut(this.derived, key, value);
+            return this;
+        }
+
+        /**
+         * API name: {@code derived}
+         *
+         * <p>
+         * Adds a value to <code>derived</code> using a builder lambda.
+         * </p>
+         */
+        @Nonnull
+        public final Builder derived(String key, Function<DerivedField.Builder, ObjectBuilder<DerivedField>> fn) {
+            return derived(key, fn.apply(new DerivedField.Builder()).build());
         }
 
         /**
@@ -1859,8 +1954,7 @@ public final class SearchRequest extends RequestBase
         }
 
         /**
-         * Indicates whether <code>hit.matched_queries</code> should be rendered as a map that includes the name of the matched query
-         * associated with its score (true) or as an array containing the name of the matched queries (false)
+         * Whether to return scores with named queries. Default is false.
          * <p>
          * API name: {@code include_named_queries_score}
          * </p>
@@ -2321,6 +2415,18 @@ public final class SearchRequest extends RequestBase
         }
 
         /**
+         * Customizable sequence of processing stages applied to search queries.
+         * <p>
+         * API name: {@code search_pipeline}
+         * </p>
+         */
+        @Nonnull
+        public final Builder searchPipeline(@Nullable String value) {
+            this.searchPipeline = value;
+            return this;
+        }
+
+        /**
          * How distributed term frequencies are calculated for relevance scoring.
          * <p>
          * API name: {@code search_type}
@@ -2565,10 +2671,7 @@ public final class SearchRequest extends RequestBase
         }
 
         /**
-         * Enables or disables verbose mode for the search pipeline. When verbose mode is enabled, detailed information about each processor
-         * in the search pipeline is included in the search response. This includes the processor name, execution status, input, output, and
-         * time taken for processing. This parameter is primarily intended for debugging purposes, allowing users to track how data flows
-         * and transforms through the search pipeline.
+         * Enables or disables verbose mode for the search pipeline.
          * <p>
          * API name: {@code verbose_pipeline}
          * </p>
@@ -2618,12 +2721,14 @@ public final class SearchRequest extends RequestBase
     protected static void setupSearchRequestDeserializer(ObjectDeserializer<SearchRequest.Builder> op) {
         op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggregations", "aggs");
         op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
+        op.add(Builder::derived, JsonpDeserializer.stringMapDeserializer(DerivedField._DESERIALIZER), "derived");
         op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "docvalue_fields");
         op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
         op.add(Builder::ext, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "ext");
         op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
         op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
         op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
+        op.add(Builder::includeNamedQueriesScore, JsonpDeserializer.booleanDeserializer(), "include_named_queries_score");
         op.add(
             Builder::indicesBoost,
             JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.floatDeserializer())),
@@ -2637,6 +2742,7 @@ public final class SearchRequest extends RequestBase
         op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore._DESERIALIZER), "rescore");
         op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER), "script_fields");
         op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "search_after");
+        op.add(Builder::searchPipeline, JsonpDeserializer.stringDeserializer(), "search_pipeline");
         op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
         op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
         op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
@@ -2649,6 +2755,7 @@ public final class SearchRequest extends RequestBase
         op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
         op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");
         op.add(Builder::trackTotalHits, TrackHits._DESERIALIZER, "track_total_hits");
+        op.add(Builder::verbosePipeline, JsonpDeserializer.booleanDeserializer(), "verbose_pipeline");
         op.add(Builder::version, JsonpDeserializer.booleanDeserializer(), "version");
     }
 
@@ -2694,9 +2801,6 @@ public final class SearchRequest extends RequestBase
         if (this.ignoreUnavailable != null) {
             params.put("ignore_unavailable", String.valueOf(this.ignoreUnavailable));
         }
-        if (this.includeNamedQueriesScore != null) {
-            params.put("include_named_queries_score", String.valueOf(this.includeNamedQueriesScore));
-        }
         if (this.lenient != null) {
             params.put("lenient", String.valueOf(this.lenient));
         }
@@ -2729,9 +2833,6 @@ public final class SearchRequest extends RequestBase
         }
         if (this.searchType != null) {
             params.put("search_type", this.searchType.jsonValue());
-        }
-        if (this.verbosePipeline != null) {
-            params.put("verbose_pipeline", String.valueOf(this.verbosePipeline));
         }
     }
 
@@ -2795,6 +2896,7 @@ public final class SearchRequest extends RequestBase
         result = 31 * result + Objects.hashCode(this.ccsMinimizeRoundtrips);
         result = 31 * result + Objects.hashCode(this.collapse);
         result = 31 * result + Objects.hashCode(this.defaultOperator);
+        result = 31 * result + Objects.hashCode(this.derived);
         result = 31 * result + Objects.hashCode(this.df);
         result = 31 * result + Objects.hashCode(this.docvalueFields);
         result = 31 * result + Objects.hashCode(this.expandWildcards);
@@ -2826,6 +2928,7 @@ public final class SearchRequest extends RequestBase
         result = 31 * result + Objects.hashCode(this.scriptFields);
         result = 31 * result + Objects.hashCode(this.scroll);
         result = 31 * result + Objects.hashCode(this.searchAfter);
+        result = 31 * result + Objects.hashCode(this.searchPipeline);
         result = 31 * result + Objects.hashCode(this.searchType);
         result = 31 * result + Objects.hashCode(this.seqNoPrimaryTerm);
         result = 31 * result + Objects.hashCode(this.size);
@@ -2859,6 +2962,7 @@ public final class SearchRequest extends RequestBase
             && Objects.equals(this.ccsMinimizeRoundtrips, other.ccsMinimizeRoundtrips)
             && Objects.equals(this.collapse, other.collapse)
             && Objects.equals(this.defaultOperator, other.defaultOperator)
+            && Objects.equals(this.derived, other.derived)
             && Objects.equals(this.df, other.df)
             && Objects.equals(this.docvalueFields, other.docvalueFields)
             && Objects.equals(this.expandWildcards, other.expandWildcards)
@@ -2890,6 +2994,7 @@ public final class SearchRequest extends RequestBase
             && Objects.equals(this.scriptFields, other.scriptFields)
             && Objects.equals(this.scroll, other.scroll)
             && Objects.equals(this.searchAfter, other.searchAfter)
+            && Objects.equals(this.searchPipeline, other.searchPipeline)
             && Objects.equals(this.searchType, other.searchType)
             && Objects.equals(this.seqNoPrimaryTerm, other.seqNoPrimaryTerm)
             && Objects.equals(this.size, other.size)

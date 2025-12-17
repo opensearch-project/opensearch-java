@@ -126,6 +126,7 @@ import org.opensearch.client.opensearch.search_relevance.OpenSearchSearchRelevan
 import org.opensearch.client.opensearch.security.OpenSearchSecurityAsyncClient;
 import org.opensearch.client.opensearch.snapshot.OpenSearchSnapshotAsyncClient;
 import org.opensearch.client.opensearch.tasks.OpenSearchTasksAsyncClient;
+import org.opensearch.client.opensearch.ubi.OpenSearchUbiAsyncClient;
 import org.opensearch.client.transport.JsonEndpoint;
 import org.opensearch.client.transport.OpenSearchTransport;
 import org.opensearch.client.transport.TransportOptions;
@@ -210,6 +211,10 @@ public abstract class OpenSearchAsyncClientBase<Self extends OpenSearchAsyncClie
 
     public OpenSearchTasksAsyncClient tasks() {
         return new OpenSearchTasksAsyncClient(this.transport, this.transportOptions);
+    }
+
+    public OpenSearchUbiAsyncClient ubi() {
+        return new OpenSearchUbiAsyncClient(this.transport, this.transportOptions);
     }
 
     // ----- Endpoint: clear_scroll

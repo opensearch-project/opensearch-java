@@ -37,7 +37,7 @@
 package org.opensearch.client.opensearch.core.search;
 
 import jakarta.json.stream.JsonGenerator;
-import java.util.Map;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Generated;
@@ -63,7 +63,7 @@ public class Highlight extends HighlightBase implements ToCopyableBuilder<Highli
     private final HighlighterEncoder encoder;
 
     @Nonnull
-    private final Map<String, HighlightField> fields;
+    private final List<HighlightField> fields;
 
     // ---------------------------------------------------------------------------------------------
 
@@ -89,7 +89,7 @@ public class Highlight extends HighlightBase implements ToCopyableBuilder<Highli
      * Required - API name: {@code fields}
      */
     @Nonnull
-    public final Map<String, HighlightField> fields() {
+    public final List<HighlightField> fields() {
         return this.fields;
     }
 
@@ -101,10 +101,9 @@ public class Highlight extends HighlightBase implements ToCopyableBuilder<Highli
         }
 
         generator.writeKey("fields");
-        generator.writeStartObject();
-        for (Map.Entry<String, HighlightField> item0 : this.fields.entrySet()) {
-            generator.writeKey(item0.getKey());
-            item0.getValue().serialize(generator, mapper);
+        generator.writeStartArray();
+        for (HighlightField item0 : this.fields) {
+            item0.serialize(generator, mapper);
         }
         generator.writeEnd();
     }
@@ -128,20 +127,20 @@ public class Highlight extends HighlightBase implements ToCopyableBuilder<Highli
     public static class Builder extends HighlightBase.AbstractBuilder<Builder> implements CopyableBuilder<Builder, Highlight> {
         @Nullable
         private HighlighterEncoder encoder;
-        private Map<String, HighlightField> fields;
+        private List<HighlightField> fields;
 
         public Builder() {}
 
         private Builder(Highlight o) {
             super(o);
             this.encoder = o.encoder;
-            this.fields = _mapCopy(o.fields);
+            this.fields = _listCopy(o.fields);
         }
 
         private Builder(Builder o) {
             super(o);
             this.encoder = o.encoder;
-            this.fields = _mapCopy(o.fields);
+            this.fields = _listCopy(o.fields);
         }
 
         @Override
@@ -169,12 +168,12 @@ public class Highlight extends HighlightBase implements ToCopyableBuilder<Highli
          * Required - API name: {@code fields}
          *
          * <p>
-         * Adds all elements of <code>map</code> to <code>fields</code>.
+         * Adds all elements of <code>list</code> to <code>fields</code>.
          * </p>
          */
         @Nonnull
-        public final Builder fields(Map<String, HighlightField> map) {
-            this.fields = _mapPutAll(this.fields, map);
+        public final Builder fields(List<HighlightField> list) {
+            this.fields = _listAddAll(this.fields, list);
             return this;
         }
 
@@ -182,12 +181,12 @@ public class Highlight extends HighlightBase implements ToCopyableBuilder<Highli
          * Required - API name: {@code fields}
          *
          * <p>
-         * Adds an entry to <code>fields</code>.
+         * Adds one or more values to <code>fields</code>.
          * </p>
          */
         @Nonnull
-        public final Builder fields(String key, HighlightField value) {
-            this.fields = _mapPut(this.fields, key, value);
+        public final Builder fields(HighlightField value, HighlightField... values) {
+            this.fields = _listAdd(this.fields, value, values);
             return this;
         }
 
@@ -199,8 +198,8 @@ public class Highlight extends HighlightBase implements ToCopyableBuilder<Highli
          * </p>
          */
         @Nonnull
-        public final Builder fields(String key, Function<HighlightField.Builder, ObjectBuilder<HighlightField>> fn) {
-            return fields(key, fn.apply(new HighlightField.Builder()).build());
+        public final Builder fields(Function<HighlightField.Builder, ObjectBuilder<HighlightField>> fn) {
+            return fields(fn.apply(new HighlightField.Builder()).build());
         }
 
         /**
@@ -230,7 +229,7 @@ public class Highlight extends HighlightBase implements ToCopyableBuilder<Highli
     protected static void setupHighlightDeserializer(ObjectDeserializer<Highlight.Builder> op) {
         setupHighlightBaseDeserializer(op);
         op.add(Builder::encoder, HighlighterEncoder._DESERIALIZER, "encoder");
-        op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(HighlightField._DESERIALIZER), "fields");
+        op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(HighlightField._DESERIALIZER), "fields");
     }
 
     @Override

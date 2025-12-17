@@ -75,7 +75,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
     private final Boolean explain;
 
     @Nonnull
-    private final List<String> fields;
+    private final List<FieldAndFormat> fields;
 
     @Nullable
     private final Integer from;
@@ -166,7 +166,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
      * API name: {@code fields}
      */
     @Nonnull
-    public final List<String> fields() {
+    public final List<FieldAndFormat> fields() {
         return this.fields;
     }
 
@@ -305,8 +305,8 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
         if (ApiTypeHelper.isDefined(this.fields)) {
             generator.writeKey("fields");
             generator.writeStartArray();
-            for (String item0 : this.fields) {
-                generator.write(item0);
+            for (FieldAndFormat item0 : this.fields) {
+                item0.serialize(generator, mapper);
             }
             generator.writeEnd();
         }
@@ -409,7 +409,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
         @Nullable
         private Boolean explain;
         @Nullable
-        private List<String> fields;
+        private List<FieldAndFormat> fields;
         @Nullable
         private Integer from;
         @Nullable
@@ -553,7 +553,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
          * </p>
          */
         @Nonnull
-        public final Builder fields(List<String> list) {
+        public final Builder fields(List<FieldAndFormat> list) {
             this.fields = _listAddAll(this.fields, list);
             return this;
         }
@@ -566,9 +566,21 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
          * </p>
          */
         @Nonnull
-        public final Builder fields(String value, String... values) {
+        public final Builder fields(FieldAndFormat value, FieldAndFormat... values) {
             this.fields = _listAdd(this.fields, value, values);
             return this;
+        }
+
+        /**
+         * API name: {@code fields}
+         *
+         * <p>
+         * Adds a value to <code>fields</code> using a builder lambda.
+         * </p>
+         */
+        @Nonnull
+        public final Builder fields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+            return fields(fn.apply(new FieldAndFormat.Builder()).build());
         }
 
         /**
@@ -804,7 +816,7 @@ public class InnerHits implements PlainJsonSerializable, ToCopyableBuilder<Inner
         op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
         op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "docvalue_fields");
         op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
-        op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
+        op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
         op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
         op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
         op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");

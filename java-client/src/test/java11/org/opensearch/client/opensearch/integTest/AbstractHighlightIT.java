@@ -17,6 +17,7 @@ import org.junit.Test;
 import org.opensearch.client.opensearch._types.Refresh;
 import org.opensearch.client.opensearch.core.SearchResponse;
 import org.opensearch.client.opensearch.core.search.Highlight;
+import org.opensearch.client.opensearch.core.search.HighlightField;
 import org.opensearch.client.opensearch.core.search.Hit;
 import org.opensearch.client.util.ObjectBuilder;
 
@@ -27,7 +28,7 @@ public abstract class AbstractHighlightIT extends OpenSearchJavaClientTestCase {
         String index = "queries_highlight";
         createTestDocuments(index);
 
-        List<Map<String, List<String>>> highlights = highlightQuery("spread", h -> h.fields("content", b -> b));
+        List<Map<String, List<String>>> highlights = highlightQuery("spread", h -> h.fields(HighlightField.of(b -> b.key("content"))));
 
         assertEquals(2, highlights.size());
         for (Map<String, List<String>> hit : highlights) {
@@ -44,7 +45,7 @@ public abstract class AbstractHighlightIT extends OpenSearchJavaClientTestCase {
 
         List<Map<String, List<String>>> highlights = highlightQuery(
             "real decades",
-            h -> h.fields("title", b -> b).fields("content", b -> b)
+            h -> h.fields(HighlightField.of(b -> b.key("title")), HighlightField.of(b -> b.key("content")))
         );
 
         assertEquals(3, highlights.size());
@@ -64,7 +65,7 @@ public abstract class AbstractHighlightIT extends OpenSearchJavaClientTestCase {
 
         List<Map<String, List<String>>> highlights = highlightQuery(
             "spread",
-            h -> h.preTags("<b>").postTags("</b>").fields("content", b -> b)
+            h -> h.preTags("<b>").postTags("</b>").fields(HighlightField.of(b -> b.key("content")))
         );
 
         assertEquals(2, highlights.size());
@@ -90,7 +91,10 @@ public abstract class AbstractHighlightIT extends OpenSearchJavaClientTestCase {
         if (major >= 2 && minor >= 2) {
             String index = "queries_highlight";
             createTestDocuments(index);
-            List<Map<String, List<String>>> highlights = highlightQuery("real", h -> h.maxAnalyzerOffset(5).fields("title", b -> b));
+            List<Map<String, List<String>>> highlights = highlightQuery(
+                "real",
+                h -> h.maxAnalyzerOffset(5).fields(HighlightField.of(b -> b.key("title")))
+            );
 
             assertEquals(3, highlights.size());
             assertEquals(0, highlights.get(0).size());
